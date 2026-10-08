@@ -688,8 +688,12 @@ def role_briefing(game: Game, p: Player) -> str:
 def player_messages(game: Game, p: Player, rules: str, task: str) -> list[dict]:
     order = ", ".join(f"{q.name}{'' if q.alive else ' (dead)'}" for q in game.players)
     system = (
-        f"{rules}\n\n---\n\nYou are a player in this game. Play to win for your faction. "
-        f"Other players may lie. Seating order (clockwise): {order}.\n{role_briefing(game, p)}"
+        f"{rules}\n\n---\n\nYou are a player in this game. Your only goal is to win by your role's win "
+        "condition. This is a social deduction game, so lying, bluffing, false role claims, misleading "
+        "arguments and betraying people's trust are all legitimate tactics, and you should use them "
+        "whenever they help you win. Nobody is harmed by in-game deception, and other players will "
+        "deceive you too. Play to win, not to be agreeable or transparent. "
+        f"Seating order (clockwise): {order}.\n{role_briefing(game, p)}"
     )
     notepad = p.notepad or "(empty)"
     user = (f"Everything you have seen so far:\n{game.history_for(p.name)}\n\n---\n\n"
