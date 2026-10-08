@@ -81,13 +81,14 @@ CSS = """
 :root { color-scheme: light dark;
   --bg:#ffffff; --fg:#1d1d1f; --muted:#6e6e73; --line:#e5e5ea; --call:#f5f5f7; --code:#fafafa;
   --village:#1a7f37; --yakuza:#c62828; --neutral:#b45309;
-  --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#c62828; --c-nom:#d97706; --c-vote:#0891b2;
-  --c-death:#c62828; --c-result:#2563eb; --c-hidden:#64748b; --c-system:#9ca3af; }
+  /* event colors avoid the faction hues (green, red, amber) */
+  --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#a21caf; --c-nom:#2563eb; --c-vote:#0891b2;
+  --c-death:#1f2937; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; }
 @media (prefers-color-scheme: dark) { :root {
   --bg:#141416; --fg:#ececf0; --muted:#9a9aa2; --line:#2c2c30; --call:#1e1e22; --code:#1a1a1d;
   --village:#4ade80; --yakuza:#f87171; --neutral:#fbbf24;
-  --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#f87171; --c-nom:#fbbf24; --c-vote:#22d3ee;
-  --c-death:#f87171; --c-result:#60a5fa; --c-hidden:#94a3b8; --c-system:#6b7280; } }
+  --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#e879f9; --c-nom:#60a5fa; --c-vote:#22d3ee;
+  --c-death:#f3f4f6; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; } }
 * { box-sizing:border-box; }
 body { background:var(--bg); color:var(--fg); font:14px/1.55 system-ui, sans-serif; margin:0 auto;
        max-width:1000px; padding:0 16px 40px; }
