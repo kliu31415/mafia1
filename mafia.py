@@ -31,7 +31,9 @@ Usage:
 """
 
 import argparse
+import hashlib
 import random
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -58,6 +60,20 @@ EXTRA_DAYS = 10
 STALL_LIMIT = 6  # rules R14: everyone loses after three nights and three days with no deaths
 
 
+def game_meta(rules: str, settings: dict) -> dict:
+    """What a game ran with, for comparing games across code and rules versions: the git commit
+    (and whether there were uncommitted changes), a hash of the rules text, and the settings."""
+    def git(*args: str) -> str | None:
+        try:
+            out = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, timeout=10)
+            return out.stdout.strip() if out.returncode == 0 else None
+        except (OSError, subprocess.SubprocessError):
+            return None
+    status = git("status", "--porcelain", "--untracked-files=no")
+    return {"git_commit": git("rev-parse", "HEAD"), "git_dirty": bool(status) if status is not None else None,
+            "rules_sha256": hashlib.sha256(rules.encode("utf-8")).hexdigest()[:16], "settings": settings}
+
+
 def play_game(client: LLMClient, models: list[Model], moderator_model: Model, roles: list[str],
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
@@ -66,7 +82,12 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
     prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
     log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
     rules = RULES_PATH.read_text(encoding="utf-8")
-    game = setup_game(roles, models, rng, log)
+    max_days = max_days or len(roles) + EXTRA_DAYS
+    settings = {"moderator": moderator_model.value, "models": [m.value for m in models], "roles": roles,
+                "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
+                "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
+                "feedback_field": feedback_field, "check_nights": check_nights}
+    game = setup_game(roles, models, rng, log, meta=game_meta(rules, settings))
     players = Players(game, client, rules, feedback_field=feedback_field)
     moderator = Moderator(game, client, players, moderator_model, rules, flag_issues=flag_issues)
     # The judge is the moderator's model; checks run in the background while the game continues.
@@ -74,7 +95,6 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
     for p in game.players:
         print(f"  {p.name:<8} {p.role:<17} {p.model.short}")
 
-    max_days = max_days or len(roles) + EXTRA_DAYS
     while game.day <= max_days:
         # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
         # i.e. after the day's execution and after the night's (simultaneous) deaths.

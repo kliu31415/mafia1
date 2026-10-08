@@ -10,7 +10,7 @@ import log_viewer
 
 
 # Bump when a record's fields change in a way analysis code has to handle (written in "setup").
-LOG_VERSION = 1
+LOG_VERSION = 2  # 2: setup has git_commit, git_dirty, rules_sha256, settings; "vote" records
 
 
 class GameLog:

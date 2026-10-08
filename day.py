@@ -96,7 +96,7 @@ def run_day(game: Game, players: Players) -> None:
         nominator = game.rng.choice(game.alive())  # the rules pick a random "nominator"
         game.emit(f"{name} is being prosecuted and goes straight to trial.", cat=NOMINATION)
         game.vote_record.append(f"Day {game.day}: {name} was prosecuted (straight to trial)")
-        if run_trial(game, players, nominator, name, rnd=1) == "executed":
+        if run_trial(game, players, nominator, name, rnd=1, prosecuted=True) == "executed":
             return
         trials += 1
     if trials >= MAX_TRIALS_PER_DAY:
@@ -248,6 +248,7 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
               f"No - {', '.join(no_voters) or 'nobody'}.", cat=VOTE)
     passed = majority(len(yes_voters), len(game.alive()))
+    log_vote(game, "nomination", nominator.name, nominee, yes_voters, no_voters, "passed" if passed else "failed")
     game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}; "
                             f"No - {', '.join(no_voters) or 'nobody'}; {'passed' if passed else 'failed'}")
     if not passed:
@@ -261,10 +262,20 @@ TRIAL_VOTE_NOTE = ("This turn is only for discussion: after everyone has spoken,
                    "Guilty/Innocent in a separate, simultaneous vote.")
 
 
-def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
+def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str], no: list[str], outcome: str,
+             prosecuted: bool = False) -> None:
+    """A structured vote record for analysis. stage is "nomination" (yes = Yes votes, including the
+    nominator's automatic one) or "trial" (yes = Guilty votes)."""
+    game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
+                   votes={**{n: True for n in yes}, **{n: False for n in no}}, outcome=outcome,
+                   prosecuted=prosecuted)
+
+
+def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int,
+              prosecuted: bool = False) -> str:
     """Defense, discussion, then a simultaneous Guilty/Innocent vote. Returns "innocent" or "executed".
     If a Clerk rigged today's vote, the accused is executed regardless; the rigging is announced
-    only if the vote alone wouldn't have executed them."""
+    only if the vote alone wouldn't have executed them. A prosecuted player's nominator is random."""
     accused = game.player(nominee)
     chat_turn(game, players, accused, rnd, can_nominate=False, free_defense=True,
               extra="You are on trial. Defend yourself; you speak first. " + TRIAL_VOTE_NOTE)
@@ -283,6 +294,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     voted_guilty = majority(len(guilty), len(game.alive()))
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
+    log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted)
     game.vote_record.append(f"Day {game.day}: trial of {nominee}; Guilty - {', '.join(guilty) or 'nobody'}; "
                             f"Innocent - {', '.join(innocent) or 'nobody'}; {verdict}")
     if voted_guilty or game.rigged_day == game.day:

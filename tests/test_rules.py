@@ -270,3 +270,18 @@ def test_night_check_logs_the_judges_verdict(tmp_path, monkeypatch):
     report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
     assert "Night checks" in report and "defense ignored" in report
     assert "Night check" in path.with_suffix(".html").read_text(encoding="utf-8")
+
+
+def test_logs_describe_the_game_and_its_votes(tmp_path, monkeypatch):
+    import json
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    client = ScriptedClient(votes(guilty_for={"Bob"}, nominate={"Alice": "Bob"}))
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(client, [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1)
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    setup = records[0]
+    assert setup["kind"] == "setup" and len(setup["rules_sha256"]) == 16
+    assert setup["settings"]["roles"] == roles and "git_commit" in setup
+    votes_ = [r for r in records if r["kind"] == "vote"]
+    assert {v["stage"] for v in votes_} == {"nomination", "trial"}
+    assert all(set(v["votes"]) <= {p["name"] for p in setup["players"]} for v in votes_)

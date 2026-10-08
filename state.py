@@ -239,7 +239,9 @@ class Game:
         }
 
 
-def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: GameLog) -> Game:
+def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: GameLog,
+               meta: dict | None = None) -> Game:
+    """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py)."""
     if len(models) > len(roles):
         raise ValueError(f"{len(roles)} roles but {len(models)} models")
     models = [models[i % len(models)] for i in range(len(roles))]  # cycle models over the seats
@@ -258,7 +260,7 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
         logic(p.role).setup(game, p)
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "role": p.role,
                                  "status": p.status} for p in players], katana=game.katana_holder,
-              log_version=LOG_VERSION)
+              log_version=LOG_VERSION, **(meta or {}))
     return game
 
 
