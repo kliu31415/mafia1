@@ -15,7 +15,8 @@ import log_viewer
 #    night_check has alive and roles_in_play
 # 4: death records (and result players' death) have killer, killer_role, katana
 # 5: setup players have effort; settings.models is a list of {model, effort}, plus moderator_effort
-LOG_VERSION = 5
+# 6: "strategy_review" records (moderator model's lessons with evidence); lessons.jsonl lines have source
+LOG_VERSION = 6
 
 
 class GameLog:

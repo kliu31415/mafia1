@@ -94,13 +94,48 @@ def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
         for p, out in zip(game.players, outs):
             game.log.write("lessons", who=p.name, role=p.role, model=p.model.value, lessons=out["lessons"])
             for lesson in out["lessons"]:
-                f.write(json.dumps({"game": game.log.path.stem, "player": p.name, "role": p.role,
-                                    "model": p.model.value, "won": p.name in (game.winners or []),
-                                    **lesson}) + "\n")
+                f.write(json.dumps({"game": game.log.path.stem, "source": "player", "player": p.name,
+                                    "role": p.role, "model": p.model.value,
+                                    "won": p.name in (game.winners or []), **lesson}) + "\n")
+
+
+STRATEGY_SCHEMA = obj(summary=STR, lessons={"type": "array", "items": obj(
+    topic={"type": "string", "enum": LESSON_TOPICS},
+    applies_to=STR,  # a role, faction, or "everyone"
+    tip=STR,
+    evidence=STR)})  # the moment in this game that shows it
+
+
+def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
+                        lessons_file: Path, effort: str | None = None) -> None:
+    """The moderator model, which saw everything, reads the whole log and draws general strategy
+    lessons: things to do and to avoid, per role or faction. Saved to the game log and appended to
+    `lessons_file` alongside the players' lessons (source "moderator")."""
+    messages = [
+        {"role": "system", "content": f"{rules}\n\n---\n\nYou moderated this game and saw everything, "
+         "including hidden events and night actions. Now analyze it as a strategy coach."},
+        {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}\n\n"
+         "Write a short summary of why the game went the way it did (the decisive plays and mistakes), "
+         "then 3-8 general strategy lessons: things to do or to avoid that would help a player of this "
+         "game in future games, not a recap. Each lesson has a topic, who it applies to (a role, a "
+         "faction, or 'everyone'), the tip, and the evidence: the moment in this game that shows it. "
+         "Cover good and evil play, and ignore problems with the rules or the program."},
+    ]
+    reply = client.chat(model, messages, schema=STRATEGY_SCHEMA, schema_name="strategy_review", effort=effort)
+    out = json.loads(reply.content or "{}")
+    lessons = out.get("lessons", [])
+    game.log.write("strategy_review", model=model.value, summary=out.get("summary", ""), lessons=lessons,
+                   cost=reply.cost)
+    lessons_file.parent.mkdir(parents=True, exist_ok=True)
+    with lessons_file.open("a", encoding="utf-8") as f:
+        for lesson in lessons:
+            f.write(json.dumps({"game": game.log.path.stem, "source": "moderator", "player": None,
+                                "role": "Moderator", "model": model.value, "won": None, **lesson}) + "\n")
 
 
 def write_report(jsonl_path: Path) -> Path | None:
-    """Collect night checks, moderator flags, in-game feedback, debriefs and the review into
+    """Collect night checks, moderator flags, in-game feedback, debriefs, lessons, the strategy review
+    and the review into
     <game>_feedback.md."""
     records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
     flags = [r for r in records if r["kind"] == "moderator_flag"]
@@ -108,8 +143,9 @@ def write_report(jsonl_path: Path) -> Path | None:
     debriefs = [r for r in records if r["kind"] == "debrief"]
     reviews = [r for r in records if r["kind"] == "review"]
     lessons = [r for r in records if r["kind"] == "lessons"]
+    strategy = [r for r in records if r["kind"] == "strategy_review"]
     checks = sorted((r for r in records if r["kind"] == "night_check"), key=lambda r: r["night"])
-    if not (flags or in_game or debriefs or reviews or lessons or checks):
+    if not (flags or in_game or debriefs or reviews or lessons or strategy or checks):
         return None
     out = [f"# Feedback for {jsonl_path.stem}\n"]
     if checks:
@@ -140,6 +176,11 @@ def write_report(jsonl_path: Path) -> Path | None:
         for r in lessons:
             out += [f"- **{r['who']} ({r['role']}, {r['model'].split('/')[-1]})**, {x['topic']}, for "
                     f"{x['applies_to']}: {x['tip']}" for x in r["lessons"]]
+        out.append("")
+    for r in strategy:
+        out.append(f"## Moderator strategy review ({r['model'].split('/')[-1]})\n")
+        out.append(r["summary"].strip() + "\n")
+        out += [f"- **{x['topic']}, for {x['applies_to']}:** {x['tip']} _({x['evidence']})_" for x in r["lessons"]]
         out.append("")
     for r in reviews:
         out.append(f"## Outside review ({r['model'].split('/')[-1]})\n")

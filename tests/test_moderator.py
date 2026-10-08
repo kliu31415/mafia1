@@ -61,3 +61,24 @@ def test_kills_record_the_killer_and_their_role(game_factory):
                                          "killer_role": "Grunt", "katana": True}
     with pytest.raises(ValueError, match="no player"):
         mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "by": "Zed"}]})
+
+
+def test_lessons_include_the_moderators_strategy_review(tmp_path, monkeypatch):
+    lesson = {"topic": "deception", "applies_to": "Yakuza", "tip": "don't PM your partner on Day 1",
+              "evidence": "Alice's PMs to Heidi"}
+
+    def decide(name, task, schema):
+        return {"summary": "Village read the PMs.", "lessons": [lesson]} if "evidence" in str(schema) else None
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(ScriptedClient(decide), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
+                           lessons=True)
+    import json
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    assert [r["lessons"] for r in records if r["kind"] == "strategy_review"] == [[lesson]]
+    shared = [json.loads(line) for line in (tmp_path / "lessons.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [r for r in shared if r["source"] == "moderator"] == [
+        {"game": path.stem, "source": "moderator", "player": None, "role": "Moderator",
+         "model": Model.HAIKU_5_5.value, "won": None, **lesson}]
+    report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
+    assert "Moderator strategy review" in report and "don't PM your partner" in report

@@ -19,7 +19,7 @@ Code layout:
     night.py       Yakuza chat, night actions, Katana vote
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
-    feedback.py    debriefs, log review, lessons and the rules quiz
+    feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     tests/         offline scenario and hidden-information tests (uv run pytest)
 
@@ -41,7 +41,7 @@ from datetime import datetime
 from pathlib import Path
 
 from day import run_day
-from feedback import run_debrief, run_lessons, run_quiz, run_review, write_report
+from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
 from gamelog import GameLog
 from llm import (DEFAULT_EFFORT, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, load_api_key,
                  parse_model_spec)
@@ -145,6 +145,9 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         print("Collecting lessons from players...")
         lessons_file = LOG_DIR / ("mock_lessons.jsonl" if isinstance(client, MockClient) else "lessons.jsonl")
         run_lessons(game, players, lessons_file)
+        print("Collecting the moderator's strategy review...")
+        run_strategy_review(game, client, mod.model, rules, log.path.with_suffix(".txt"), lessons_file,
+                            effort=mod.effort)
     if checker:
         print("Waiting for night checks...")
         checker.finish()
@@ -195,7 +198,8 @@ def main() -> None:
     fb.add_argument("--feedback-field", action=argparse.BooleanOptionalAction, default=True, help="add an optional out-of-game feedback field "
                     "to every player response")
     fb.add_argument("--lessons", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player for tips they wish "
-                    "they'd known; also appended to logs/lessons.jsonl across games for analysis")
+                    "they'd known, and the moderator model for a strategy review of the game; also "
+                    "appended to logs/lessons.jsonl across games for analysis")
     fb.add_argument("--review", action=argparse.BooleanOptionalAction, default=True, help="after the game, have the moderator model review the "
                     "whole log for problems")
     fb.add_argument("--check-nights", action=argparse.BooleanOptionalAction, default=True,
