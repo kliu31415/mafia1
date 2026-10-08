@@ -69,6 +69,15 @@ class Game:
     pending_deaths: list[tuple[str, str]] = field(default_factory=list)  # (name, cause), revealed at dawn
     personal_winners: list[str] = field(default_factory=list)  # Jester / Executioner
     pending_revenge: list[tuple[str, list[str]]] = field(default_factory=list)  # (source, Guilty voters)
+    pending_cardinal: int = 0  # Cardinal deaths whose curse strikes at the next dawn
+    prosecutions: list[str] = field(default_factory=list)  # players put on trial when the next day starts
+    rigged_day: int | None = None  # day whose trials a Clerk has rigged
+    puppets_next: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, for the next day
+    puppets: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, today
+
+    def chat_controller(self, name: str) -> str:
+        """Who reads and writes `name`'s chat today (the Puppeteer, if `name` is puppeted)."""
+        return self.puppets.get(name, name)
 
     # --- lookups --------------------------------------------------------------------------
 
@@ -152,7 +161,18 @@ class Game:
             self.katana_holder = self.rng.choice(remaining).name if remaining else None
             if self.katana_holder:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
-        # TODO: Cardinal.
+        if p.role == "Cardinal":
+            self.pending_cardinal += 1
+
+    def resolve_cardinal(self) -> None:
+        """Cardinal: a Divine Attack on a random Good player at the beginning of the day after they die."""
+        for _ in range(self.pending_cardinal):
+            good = [q.name for q in self.alive() if q.info.alignment is Alignment.GOOD]
+            if good:
+                victim = self.rng.choice(good)
+                self.log.write("cardinal", victim=victim)
+                self.kill(victim, "Cardinal's curse")
+        self.pending_cardinal = 0
 
     def announce_dawn(self) -> None:
         """Publicly reveal the night's deaths and queued announcements."""

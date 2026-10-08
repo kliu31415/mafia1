@@ -62,7 +62,14 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
         "were role-blocked. "
         "Jester/Executioner revenge attacks are handled by code after you finish. Tell all Yakuza which "
         "actions each Yakuza performed but not the results; only the attacker learns whether the "
-        "Katana attack succeeded."
+        "Katana attack succeeded.\n\n"
+        "Don't forget effects that happen without a submitted action, using random_choice for anything "
+        "random: the Seer's two random players each night (unless they spent a token to choose); the "
+        "Ex-Con's random visit; the Fortune Teller's two numbers about tonight's visits (tell them now; "
+        "they read them at the start of the day); Trapper traps that persist across nights (track them "
+        "with set_status); Arsonist douses (set_status 'doused'); and a Roleplayer's fake but plausible "
+        "results for the role they believe they have (their status 'fake_role'). Use the prosecute, "
+        "rig_vote and puppet ops for Prosecutor, Clerk and Puppeteer actions, and update token counts."
     )
     game.resolve_revenge()
     game.day += 1

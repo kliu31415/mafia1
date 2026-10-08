@@ -2,7 +2,8 @@
 
 import json
 
-from players import LAST_WILL_SCHEMA, Players, VOTE_SCHEMA, day_turn_schema, truncate_words, word_count
+from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
+                     truncate_words, word_count)
 from state import Game, Player, majority
 
 
@@ -57,6 +58,16 @@ def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
     game.emit(f"Day {game.day} begins.")
     game.announce_dawn()
+    game.resolve_cardinal()
+    if game.check_winner() is not None:
+        return
+    game.puppets, game.puppets_next = game.puppets_next, {}
+    for puppet in list(game.puppets):
+        if game.player(puppet).alive:
+            game.emit("You are being puppeted today: you can't chat or see private messages, but you can "
+                      "still nominate and vote.", [puppet])
+        else:
+            del game.puppets[puppet]
 
     # Last wills, written once at the beginning of each day (including day 1).
     task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
@@ -69,10 +80,28 @@ def run_day(game: Game, players: Players) -> None:
     for p in game.alive():
         p.speaking_budget = 0.0
     trials = 0
-    # TODO: Prosecutor trials, Clerk rigging and Puppeteer chat substitution happen here.
+    # Prosecutions happen when nominations would start, before any chat. Round 1's budget is paid
+    # out first so others can speak at the trial.
+    prosecuted = [n for n in game.prosecutions if game.player(n).alive]
+    game.prosecutions.clear()
+    if prosecuted:
+        for p in game.alive():
+            p.speaking_budget = BUDGET_PER_ROUND
+    for name in prosecuted:
+        if trials >= MAX_TRIALS_PER_DAY or not game.player(name).alive:
+            break
+        nominator = game.rng.choice(game.alive())  # the rules pick a random "nominator"
+        game.emit(f"{name} is being prosecuted and goes straight to trial.")
+        if run_trial(game, players, nominator, name, rnd=1) == "executed":
+            return
+        trials += 1
+    if trials >= MAX_TRIALS_PER_DAY:
+        game.emit("Three trials ended in Innocent verdicts. The day ends.")
+        return
     for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
-            p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
+            if not (rnd == 1 and prosecuted):
+                p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
         order = game.alive()
         game.rng.shuffle(order)
         active = False  # did anyone send a message or nominate this go-around?
@@ -136,9 +165,23 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
             + extra)
-    schema = day_turn_schema(game, p.name, can_nominate)
     fallback = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
-    out = players.ask(p, task, schema, fallback)
+    writer = game.player(game.chat_controller(p.name))
+    if writer is p:
+        schema = day_turn_schema(game, p.name, can_nominate)
+        out = players.ask(p, task, schema, fallback)
+    else:
+        # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
+        task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
+                f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
+        schema = day_turn_schema(game, p.name, can_nominate=False)
+        out = players.ask(writer, task, schema, fallback)
+        if can_nominate:
+            nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
+                             "can't chat, but you may nominate a player for trial (or null). Nominating costs "
+                             f"{nomination_fee:.2f} from your budget ({p.speaking_budget:.2f}).")
+            nominate_schema = obj(thoughts=STR, nominate=nullable(name_enum(game.alive_names())))
+            out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None})["nominate"]
     planned = total_cost(out)
     if planned > p.speaking_budget + 1e-9:
         nominating = f" plus a nomination of {out['nominate']}" if can_nominate and out.get("nominate") else ""
@@ -147,7 +190,10 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                    "If you still can't afford a nomination it won't happen, and messages over budget will "
                    "be truncated, starting with your last message.")
         game.log.write("budget_warning", player=p.name, planned=planned, budget=p.speaking_budget)
-        out = players.ask(p, task + warning, schema, fallback)
+        nominee = out.get("nominate")
+        out = players.ask(writer, task + warning, schema, fallback)
+        if writer is not p:
+            out["nominate"] = nominee
 
     nominee = out.get("nominate") if can_nominate else None
     if nominee:
@@ -174,7 +220,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         if to is None:
             game.emit(f"{p.name} (public): {text}")
         else:
-            game.emit(f"{p.name} -> {to} (private): {text}", [p.name, to])
+            # A puppeted player's private chat is read and written by their Puppeteer instead.
+            game.emit(f"{p.name} -> {to} (private): {text}", [writer.name, game.chat_controller(to)])
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.players if q.name not in (p.name, to)], kind="notice")
@@ -198,8 +245,14 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     if not majority(len(yes_voters), len(game.alive())):
         game.emit(f"The nomination of {nominee} failed ({len(yes_voters)} Yes).")
         return "failed"
-
     game.emit(f"{nominee} is put on trial ({len(yes_voters)} Yes).")
+    return run_trial(game, players, nominator, nominee, rnd)
+
+
+def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
+    """Defense, discussion, then a simultaneous Guilty/Innocent vote. Returns "innocent" or "executed".
+    If a Clerk rigged today's vote, the accused is executed regardless; the rigging is announced
+    only if the vote alone wouldn't have executed them."""
     accused = game.player(nominee)
     chat_turn(game, players, accused, rnd, can_nominate=False, free_defense=True,
               extra="You are on trial. Defend yourself; you speak first.")
@@ -215,7 +268,10 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
     game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
               f"Innocent - {', '.join(innocent) or 'nobody'}.")
-    if majority(len(guilty), len(game.alive())):
+    voted_guilty = majority(len(guilty), len(game.alive()))
+    if voted_guilty or game.rigged_day == game.day:
+        if not voted_guilty:
+            game.emit(f"The vote was rigged by a Clerk: {nominee} is executed despite the Innocent verdict.")
         game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).")
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
         return "executed"

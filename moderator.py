@@ -21,8 +21,11 @@ MODERATOR_TOOLS = [
          "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
          "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
          "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
-         "the dawn reveal then hides the role, will and cause. Night deaths are revealed at dawn with the last will as it is "
-         "then, so the order of ops within a night doesn't matter.",
+         "the dawn reveal then hides the role, will and cause. Night deaths are revealed at dawn with "
+         "the last will as it is then, so the order of ops within a night doesn't matter. Day effects "
+         "that code carries out: {op:'prosecute', player} (they go to trial when the next day starts), "
+         "{op:'rig_vote'} (Clerk: tomorrow's trials execute the accused regardless of the vote; no "
+         "player field), {op:'puppet', player, by} (player is puppeted by the Puppeteer `by` tomorrow).",
          changes={"type": "array", "items": {"type": "object"}}),
     tool("random_choice", "Pick k distinct items uniformly at random using the game's RNG. "
          "Always use this instead of choosing 'randomly' yourself.",
@@ -89,8 +92,14 @@ class Moderator:
                 return g.full_state()
             case "apply_changes":
                 for c in args["changes"]:
-                    p = g.player(c["player"])
+                    p = g.player(c["player"]) if "player" in c else None
                     match c["op"]:
+                        case "prosecute":
+                            g.prosecutions.append(p.name)
+                        case "rig_vote":
+                            g.rigged_day = g.day + 1
+                        case "puppet":
+                            g.puppets_next[p.name] = g.player(c["by"]).name
                         case "kill":
                             g.kill(p.name, c.get("cause", "killed"))
                         case "set_tokens":
