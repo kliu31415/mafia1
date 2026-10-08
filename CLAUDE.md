@@ -53,3 +53,6 @@ unless asked).
 - Every `emit` also passes `cat=` (`CHAT`, `PM`, `DEATH`, ... in `events.py`) plus that category's fields.
   The log viewer colors events by `cat`, never by their wording, so wording can change freely.
 - `Player.status` keys that code reads are in `roles.Status`; use the constants, not strings.
+- Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
+  Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
+  `mafia.py`), so a stuck game can't run forever.

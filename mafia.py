@@ -50,13 +50,16 @@ RULES_PATH = ROOT / "rules_1.txt"
 LOG_DIR = ROOT / "logs"
 
 
-MAX_DAYS = 10
+# Safeguard against games that never end (not a rule from rules_1.txt): by default a game stops
+# after (number of players + EXTRA_DAYS) days, with no winner. Override with --max-days.
+EXTRA_DAYS = 10
 STALL_LIMIT = 6  # rules: everyone loses after three nights and three days with no deaths
 
 
 def play_game(client: LLMClient, models: list[Model], moderator_model: Model, roles: list[str],
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
-              feedback_field: bool = False, review: bool = False, lessons: bool = False) -> Path:
+              feedback_field: bool = False, review: bool = False, lessons: bool = False,
+              max_days: int | None = None) -> Path:
     rng = random.Random(seed)
     prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
     log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
@@ -67,7 +70,8 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
     for p in game.players:
         print(f"  {p.name:<8} {p.role:<17} {p.model.short}")
 
-    while game.day <= MAX_DAYS:
+    max_days = max_days or len(roles) + EXTRA_DAYS
+    while game.day <= max_days:
         # The stall rule is checked when a day begins; a winner is checked after every death,
         # i.e. after the day's execution and after the night's (simultaneous) deaths.
         if game.phases_without_death >= STALL_LIMIT:
@@ -91,6 +95,10 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
             break
         if game.death_count() == deaths_before:
             game.phases_without_death += 2
+    else:
+        game.winners = []
+        game.emit(f"The game reached its limit of {max_days} days, a safeguard of this program rather "
+                  "than a rule, so it ends with no winner.")
 
     winner_names = ", ".join(game.winners or []) or "nobody"
     game.emit(f"The game is over. Winners: {winner_names}.")
@@ -124,6 +132,8 @@ def main() -> None:
     ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names")
     ap.add_argument("--effort", default=DEFAULT_EFFORT)
     ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--max-days", type=int, default=None,
+                    help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md); on by default, "
@@ -159,7 +169,7 @@ def main() -> None:
         return
     play_game(client, models, parse_model(args.moderator), roles, seed, debrief=args.debrief,
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
-              lessons=args.lessons)
+              lessons=args.lessons, max_days=args.max_days)
 
 
 if __name__ == "__main__":

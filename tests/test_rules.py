@@ -230,3 +230,12 @@ def test_every_role_file_is_registered():
     files = {p.stem for p in Path(roles.__file__).parent.glob("*.py")} - {"__init__", "base"}
     registered = {type(r).__module__.removeprefix("roles.") for r in LOGIC.values()}
     assert files == registered
+
+
+def test_day_limit_ends_the_game_with_no_winner(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(mafia, "STALL_LIMIT", 100)  # so the stall rule doesn't end it first
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(ScriptedClient(), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1, max_days=2)
+    text = path.with_suffix(".txt").read_text(encoding="utf-8")
+    assert "limit of 2 days" in text and "Winners: nobody" in text
