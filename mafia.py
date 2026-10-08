@@ -125,6 +125,10 @@ class OpenRouterClient:
             "reasoning": {"effort": self.effort},
             "usage": {"include": True},
         }
+        if model.value.startswith("anthropic/"):
+            # Claude needs an opt-in for caching (other providers cache automatically). The top-level
+            # field caches the prompt up to the last block, 5-minute TTL.
+            body["cache_control"] = {"type": "ephemeral"}
         if tools:
             body["tools"] = tools
         if schema:
@@ -626,7 +630,8 @@ class Players:
                 reply = self.client.chat(p.model, messages, schema=schema)
                 out = json.loads(reply.content or "")
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
-                                    output=out, reasoning=reply.reasoning, cost=reply.cost)
+                                    output=out, reasoning=reply.reasoning, cost=reply.cost,
+                                    usage=reply.usage)
                 return out
             except (json.JSONDecodeError, RuntimeError) as e:
                 self.game.log.write("player_error", player=p.name, attempt=attempt, error=str(e))
@@ -854,7 +859,8 @@ class Moderator:
         for _ in range(MAX_MODERATOR_STEPS):
             reply = self.client.chat(self.model, messages, tools=MODERATOR_TOOLS)
             self.game.log.write("moderator_call", model=self.model.value, content=reply.content,
-                                reasoning=reply.reasoning, tool_calls=reply.tool_calls, cost=reply.cost)
+                                reasoning=reply.reasoning, tool_calls=reply.tool_calls, cost=reply.cost,
+                                usage=reply.usage)
             messages.append(reply.message)
             if not reply.tool_calls:
                 messages.append({"role": "user", "content": "Call end_phase when you are finished."})
