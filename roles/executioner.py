@@ -7,6 +7,7 @@ from roles.base import RoleLogic, Status, register
 @register("Executioner")
 class Executioner(RoleLogic):
     blocks_win = False
+    night_note = "Executioner revenge attacks are carried out by code after you finish; don't resolve them."
 
     def setup(self, game, p):
         p.status[Status.TARGET] = game.rng.choice([q.name for q in game.players if q is not p])

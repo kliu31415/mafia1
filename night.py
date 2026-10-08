@@ -60,10 +60,9 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
         "Deaths you apply are announced publicly at dawn automatically, including the kill's cause, so "
         "make the cause just the source as the rules allow it to be known (e.g. 'Katana', 'Vigilante', "
         "'Serial Killer', 'Trap'); don't tell() deaths to all. Tell each role-blocked player that they "
-        "were role-blocked. "
-        "Jester/Executioner revenge attacks are handled by code after you finish. Tell all Yakuza which "
-        "actions each Yakuza performed but not the results; only the attacker learns whether the "
-        "Katana attack succeeded. Update token counts for any tokens spent.\n\n"
+        "were role-blocked. Tell all Yakuza which actions each Yakuza performed but not the results; "
+        "only the attacker learns whether the Katana attack succeeded. Update token counts for any "
+        "tokens spent.\n\n"
         + role_notes(game)
     )
     game.resolve_revenge()

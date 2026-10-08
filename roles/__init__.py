@@ -109,3 +109,5 @@ def role_status_table() -> str:
 # Role files register their hooks when imported.
 from roles import (arsonist, cardinal, clerk, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
                    prosecutor, puppeteer, roleplayer, seer, trapper)
+
+assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"

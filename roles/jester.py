@@ -6,6 +6,7 @@ from roles.base import RoleLogic, register
 @register("Jester")
 class Jester(RoleLogic):
     blocks_win = False
+    night_note = "Jester revenge attacks are carried out by code after you finish; don't resolve them."
 
     def on_death(self, game, p, guilty_voters):
         if guilty_voters is not None:

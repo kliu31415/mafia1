@@ -220,3 +220,13 @@ def test_role_ops_are_offered_only_for_roles_in_the_game(game_factory):
         mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "player": "Bob"}]})
     description = next(t for t in mod.tools if t["function"]["name"] == "apply_changes")["function"]["description"]
     assert "rig_vote" in description and "prosecute" not in description
+
+
+def test_every_role_file_is_registered():
+    """A roles/<role>.py that isn't imported in roles/__init__.py would silently do nothing."""
+    from pathlib import Path
+    import roles
+    from roles.base import LOGIC
+    files = {p.stem for p in Path(roles.__file__).parent.glob("*.py")} - {"__init__", "base"}
+    registered = {type(r).__module__.removeprefix("roles.") for r in LOGIC.values()}
+    assert files == registered
