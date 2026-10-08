@@ -67,8 +67,9 @@ MAX_MODERATOR_STEPS = 40
 
 class Moderator:
     def __init__(self, game: Game, client: LLMClient, players: Players, model: Model, rules: str,
-                 flag_issues: bool = False):
+                 flag_issues: bool = False, effort: str | None = None):
         self.game = game
+        self.effort = effort  # None: the client's default
         self.client = client
         self.players = players
         self.model = model
@@ -104,7 +105,7 @@ class Moderator:
              f"{self.game.history_for('__moderator_public__')}"},
         ]
         for _ in range(MAX_MODERATOR_STEPS):
-            reply = self.client.chat(self.model, messages, tools=self.tools)
+            reply = self.client.chat(self.model, messages, tools=self.tools, effort=self.effort)
             self.game.log.write("moderator_call", model=self.model.value, content=reply.content,
                                 reasoning=reply.reasoning, tool_calls=reply.tool_calls, cost=reply.cost,
                                 usage=reply.usage)

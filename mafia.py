@@ -28,6 +28,7 @@ Usage:
     uv run mafia.py --mock                                   # offline run, no API calls
     uv run mafia.py --list-roles                             # which roles are implemented
     uv run mafia.py --players haiku-5.5,gpt-6-luna --moderator haiku-5.5
+    uv run mafia.py --players opus-5.5:high,haiku-5.5:low --moderator opus-5.5:medium
 """
 
 import argparse
@@ -35,13 +36,15 @@ import hashlib
 import random
 import subprocess
 import time
+from collections.abc import Sequence
 from datetime import datetime
 from pathlib import Path
 
 from day import run_day
 from feedback import run_debrief, run_lessons, run_quiz, run_review, write_report
 from gamelog import GameLog
-from llm import DEFAULT_EFFORT, LLMClient, MockClient, Model, OpenRouterClient, load_api_key, parse_model
+from llm import (DEFAULT_EFFORT, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, load_api_key,
+                 parse_model_spec)
 from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
@@ -75,27 +78,32 @@ def game_meta(rules: str, settings: dict) -> dict:
             "rules_sha256": hashlib.sha256(rules.encode("utf-8")).hexdigest()[:16], "settings": settings}
 
 
-def play_game(client: LLMClient, models: list[Model], moderator_model: Model, roles: list[str],
+def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_model: Model | ModelSpec,
+              roles: list[str],
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
               max_days: int | None = None, check_nights: bool = False) -> Path:
+    mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
+    specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rng = random.Random(seed)
     prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
     log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
     rules = RULES_PATH.read_text(encoding="utf-8")
     max_days = max_days or len(roles) + EXTRA_DAYS
-    settings = {"moderator": moderator_model.value, "models": [m.value for m in models], "roles": roles,
+    settings = {"moderator": mod.model.value, "moderator_effort": mod.effort,
+                "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
                 "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
                 "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
                 "feedback_field": feedback_field, "check_nights": check_nights}
     started = time.time()
-    game = setup_game(roles, models, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
+    game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
     players = Players(game, client, rules, feedback_field=feedback_field)
-    moderator = Moderator(game, client, players, moderator_model, rules, flag_issues=flag_issues)
+    moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
     # The judge is the moderator's model; checks run in the background while the game continues.
-    checker = NightChecker(client, moderator_model, moderator_model, rules, log) if check_nights else None
+    checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort)
+               if check_nights else None)
     for p in game.players:
-        print(f"  {p.name:<8} {p.role:<17} {p.model.short}")
+        print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}")
 
     while game.day <= max_days:
         # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
@@ -142,7 +150,7 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
         checker.finish()
     if review:
         print("Reviewing the log...")
-        run_review(game, client, moderator_model, rules, log.path.with_suffix(".txt"))
+        run_review(game, client, mod.model, rules, log.path.with_suffix(".txt"), effort=mod.effort)
     faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
     winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
     if end_reason == "win" and winning_faction is None:
@@ -166,10 +174,13 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--players", default="haiku-5.5",
-                    help="comma-separated models, cycled over the seats (seats are shuffled)")
-    ap.add_argument("--moderator", default="opus-5.5")
+                    help="comma-separated models, cycled over the seats (seats are shuffled); each may set its "
+                    "own reasoning effort, e.g. opus-5.5:high,haiku-5.5:low")
+    ap.add_argument("--moderator", default="opus-5.5", help="model[:effort] for the moderator, and for the "
+                    "night checks, review and quiz grading")
     ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names")
-    ap.add_argument("--effort", default=DEFAULT_EFFORT)
+    ap.add_argument("--effort", default=DEFAULT_EFFORT, choices=EFFORTS,
+                    help="reasoning effort for models that don't set their own")
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--max-days", type=int, default=None,
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
@@ -201,15 +212,18 @@ def main() -> None:
     unknown = [r for r in roles if r not in ROLES]
     if unknown:
         ap.error(f"unknown roles: {unknown}")
-    models = [parse_model(m.strip()) for m in args.players.split(",")]
+    try:
+        models = [parse_model_spec(m) for m in args.players.split(",")]
+        moderator = parse_model_spec(args.moderator)
+    except ValueError as e:
+        ap.error(str(e))
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
     if args.rules_quiz:
-        moderator = parse_model(args.moderator)
         path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return
-    play_game(client, models, parse_model(args.moderator), roles, seed, debrief=args.debrief,
+    play_game(client, models, moderator, roles, seed, debrief=args.debrief,
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
               lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights)
 

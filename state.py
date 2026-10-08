@@ -1,11 +1,12 @@
 """Game state: players, visibility-aware events, deaths and win checks."""
 
 import random
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
 from gamelog import LOG_VERSION, GameLog
-from llm import Model
+from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 
@@ -20,6 +21,7 @@ class Player:
     seat: int
     model: Model
     role: str
+    effort: str | None = None  # reasoning effort; None means the client's default
     alive: bool = True
     tokens: dict[str, int] = field(default_factory=dict)
     status: dict[str, Any] = field(default_factory=dict)  # keys code reads are in Status; the moderator adds others
@@ -250,7 +252,7 @@ class Game:
         }
 
 
-def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: GameLog,
+def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: random.Random, log: GameLog,
                meta: dict | None = None) -> Game:
     """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py)."""
     if len(models) > len(roles):
@@ -259,9 +261,9 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
     names = PLAYER_NAMES[:len(roles)]
     shuffled = roles[:]
     rng.shuffle(shuffled)
-    seat_models = models[:]
+    seat_models = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rng.shuffle(seat_models)
-    players = [Player(n, i, m, r, tokens=dict(ROLES[r].tokens))
+    players = [Player(n, i, m.model, r, effort=m.effort, tokens=dict(ROLES[r].tokens))
                for i, (n, m, r) in enumerate(zip(names, seat_models, shuffled))]
     game = Game(players, rng, log)
     yakuza = game.yakuza()
@@ -269,7 +271,8 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         logic(p.role).setup(game, p)
-    log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "role": p.role,
+    log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
+                                 "role": p.role,
                                  "status": p.status} for p in players], katana=game.katana_holder,
               log_version=LOG_VERSION, **(meta or {}))
     return game

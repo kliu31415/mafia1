@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from llm import LLMClient, Model
+from llm import LLMClient, Model, ModelSpec
 from moderator import Moderator
 from players import STR, Players, obj
 from state import Game
@@ -51,12 +51,14 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
          f"Issues you flagged during the game:\n{flags}\n\n{task}\nAnswer as the moderator: also cover "
          "rules you had to interpret, and tools or state you were missing."},
     ]
-    reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief")
+    reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
+                                  effort=moderator.effort)
     game.log.write("debrief", who="moderator", role="Moderator", model=moderator.model.value,
                    answers=json.loads(reply.content or "{}"), cost=reply.cost)
 
 
-def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path) -> None:
+def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
+               effort: str | None = None) -> None:
     """An outside model reads the whole human-readable log and lists problems it sees."""
     messages = [
         {"role": "system", "content": f"{rules}\n\n---\n\nYou review logs of LLMs playing this game, which "
@@ -65,7 +67,7 @@ def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log
          "interface. Ignore ordinary bad strategy."},
         {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}"},
     ]
-    reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review")
+    reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
     game.log.write("review", model=model.value, issues=json.loads(reply.content or "{}").get("issues", []),
                    cost=reply.cost)
 
@@ -184,7 +186,7 @@ QUIZ_GRADE_SCHEMA = obj(results={"type": "array", "items": obj(
     question={"type": "integer"}, correct={"type": "boolean"}, note=STR)})
 
 
-def run_quiz(client: LLMClient, models: list[Model], grader: Model, rules: str, out_dir: Path) -> Path:
+def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules: str, out_dir: Path) -> Path:
     """Ask each model the quiz questions given only the rules, then have `grader` mark the answers
     against the reference answers. Wrong or split answers point at rules that need clarifying."""
     questions = "\n".join(f"{i + 1}. {q}" for i, (q, _) in enumerate(QUIZ))
@@ -192,25 +194,26 @@ def run_quiz(client: LLMClient, models: list[Model], grader: Model, rules: str, 
     answer_schema = obj(**{f"q{i + 1}": STR for i in range(len(QUIZ))})
     table: dict[str, list[dict]] = {}
     answers_by_model: dict[str, list[str]] = {}
-    for model in dict.fromkeys(models):
+    for spec in dict.fromkeys(specs):
+        model = spec.model
         reply = client.chat(model, [
             {"role": "system", "content": f"{rules}\n\n---\n\nAnswer questions about the rules above."},
             {"role": "user", "content": f"Answer each question in one or two sentences, in order:\n{questions}"},
-        ], schema=answer_schema, schema_name="quiz")
+        ], schema=answer_schema, schema_name="quiz", effort=spec.effort)
         parsed = json.loads(reply.content or "{}")
         answers = [parsed.get(f"q{i + 1}", "") for i in range(len(QUIZ))]
-        answers_by_model[model.short] = answers
+        answers_by_model[str(spec)] = answers
         marking = "\n".join(f"{i + 1}. Q: {q}\n   Reference: {ref}\n   Answer: {answers[i] if i < len(answers) else '(none)'}"
                             for i, (q, ref) in enumerate(QUIZ))
-        graded = client.chat(grader, [
+        graded = client.chat(grader.model, [
             {"role": "user", "content": "Mark each answer correct if it gets the reference's main point right and "
              "contradicts nothing in it; leaving out a minor detail is fine. Otherwise mark it incorrect. "
              "Give a short note either way, and say if the answer reveals a misreading of the rules."
              f"\n\n{marking}"},
-        ], schema=QUIZ_GRADE_SCHEMA, schema_name="quiz_grades")
-        table[model.short] = json.loads(graded.content or "{}").get("results", [])
+        ], schema=QUIZ_GRADE_SCHEMA, schema_name="quiz_grades", effort=grader.effort)
+        table[str(spec)] = json.loads(graded.content or "{}").get("results", [])
 
-    out = ["# Rules quiz\n", f"Graded by {grader.short}.\n", "| # | Question | " + " | ".join(table) + " |",
+    out = ["# Rules quiz\n", f"Graded by {grader}.\n", "| # | Question | " + " | ".join(table) + " |",
            "|---|---|" + "---|" * len(table)]
     for i, (q, _) in enumerate(QUIZ):
         cells = []

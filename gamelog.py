@@ -14,7 +14,8 @@ import log_viewer
 # 3: setup has game_id; result has end_reason, winning_faction, duration_s, players (per-player outcome);
 #    night_check has alive and roles_in_play
 # 4: death records (and result players' death) have killer, killer_role, katana
-LOG_VERSION = 4
+# 5: setup players have effort; settings.models is a list of {model, effort}, plus moderator_effort
+LOG_VERSION = 5
 
 
 class GameLog:

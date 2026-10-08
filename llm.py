@@ -18,8 +18,8 @@ API_KEY_ENV_VAR = "OPENROUTER_API_KEY"
 
 
 class Model(str, Enum):
-    """OpenRouter model ids. All of these accept reasoning.effort = "medium" (checked against
-    GET /api/v1/models on 2026-10-08). The cheap ones are for testing the harness."""
+    """OpenRouter model ids. All of these accept every reasoning.effort in EFFORTS (OpenRouter maps
+    them to each provider's setting). The cheap ones are for testing the harness."""
 
     OPUS_5_5 = "anthropic/claude-opus-5.5"
     SONNET_5_5 = "anthropic/claude-sonnet-5.5"
@@ -56,6 +56,28 @@ def parse_model(name: str) -> Model:
 
 
 DEFAULT_EFFORT = "medium"
+# reasoning.effort values OpenRouter accepts for every model (it maps them to each provider's own
+# setting; checked 2026-10-08: anything else is rejected with HTTP 400).
+EFFORTS = ("none", "minimal", "low", "medium", "high", "xhigh", "max")
+
+
+@dataclass(frozen=True)
+class ModelSpec:
+    """A model plus its reasoning effort; effort None means the client's default (--effort)."""
+
+    model: Model
+    effort: str | None = None
+
+    def __str__(self) -> str:
+        return self.model.short + (f":{self.effort}" if self.effort else "")
+
+
+def parse_model_spec(text: str) -> ModelSpec:
+    """'opus-5.5' or 'opus-5.5:high'."""
+    name, _, effort = text.strip().partition(":")
+    if effort and effort not in EFFORTS:
+        raise ValueError(f"Unknown effort {effort!r} in {text!r}; choose from {list(EFFORTS)}")
+    return ModelSpec(parse_model(name), effort or None)
 DEFAULT_MAX_TOKENS = 16_000  # reasoning + answer; Anthropic needs this above the reasoning budget
 
 
@@ -90,7 +112,9 @@ class LLMClient(Protocol):
     total_cost: dict[str, float]
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
-             schema: dict | None = None, schema_name: str = "response") -> LLMReply: ...
+             schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
+        """effort: reasoning effort for this call (one of EFFORTS); None means the client's default."""
+        ...
 
 
 class OpenRouterClient:
@@ -105,12 +129,12 @@ class OpenRouterClient:
         self.cost_lock = threading.Lock()  # chat() is called from several threads
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
-             schema: dict | None = None, schema_name: str = "response") -> LLMReply:
+             schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
         body: dict[str, Any] = {
             "model": model.value,
             "messages": messages,
             "max_tokens": self.max_tokens,
-            "reasoning": {"effort": self.effort},
+            "reasoning": {"effort": effort or self.effort},
             "usage": {"include": True},
         }
         if model.value.startswith("anthropic/"):
@@ -180,7 +204,7 @@ class MockClient:
         self.total_cost: dict[str, float] = {}
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
-             schema: dict | None = None, schema_name: str = "response") -> LLMReply:
+             schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
         rng = random.Random(f"{self.seed}|{model.value}|{json.dumps(messages, sort_keys=True)}")
         tool_calls = []
         content = None

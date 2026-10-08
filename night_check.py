@@ -27,8 +27,10 @@ CHECK_SCHEMA = obj(
 
 
 class NightChecker:
-    def __init__(self, client: LLMClient, judge: Model, moderator: Model, rules: str, log: GameLog):
+    def __init__(self, client: LLMClient, judge: Model, moderator: Model, rules: str, log: GameLog,
+                 effort: str | None = None):
         self.client, self.judge, self.moderator, self.rules, self.log = client, judge, moderator, rules, log
+        self.effort = effort  # the judge's reasoning effort; None: the client's default
         self.pool = ThreadPoolExecutor(max_workers=2)
         self.pending: list[Future] = []
 
@@ -54,7 +56,8 @@ class NightChecker:
 
     def _check(self, night: int, messages: list[dict], in_play: dict) -> None:
         try:
-            reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check")
+            reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check",
+                                     effort=self.effort)
             out = json.loads(reply.content or "")
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
                            verdict=out["verdict"], issues=out["issues"], cost=reply.cost, **in_play)

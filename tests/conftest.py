@@ -47,10 +47,12 @@ class ScriptedClient:
         self.moderator_calls = list(moderator_calls or [])
         self.total_cost: dict[str, float] = {}
         self.asked: list[tuple[str, str]] = []  # (player, task) for every player call
+        self.efforts: list[tuple[str, str | None]] = []  # (player name, "moderator" or "other"; effort) per call
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
-             schema: dict | None = None, schema_name: str = "response") -> LLMReply:
+             schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
         if tools:
+            self.efforts.append(("moderator", effort))
             name, args = self.moderator_calls.pop(0) if self.moderator_calls else ("end_phase", {"summary": ""})
             calls = [{"id": f"call_{len(messages)}", "type": "function",
                       "function": {"name": name, "arguments": json.dumps(args)}}]
@@ -60,6 +62,7 @@ class ScriptedClient:
         match = re.search(r"You are (\w+) \(seat", messages[0]["content"])
         player = match[1] if match else None  # None: not a player, e.g. the night check's judge
         task = messages[-1]["content"].rsplit("---\n\n", 1)[-1]
+        self.efforts.append((player or "other", effort))
         if player:
             self.asked.append((player, task))
         out = default_answer(schema)

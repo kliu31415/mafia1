@@ -310,3 +310,18 @@ def test_kills_record_the_killer_and_their_role(game_factory):
                                          "killer_role": "Grunt", "katana": True}
     with pytest.raises(ValueError, match="no player"):
         mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "by": "Zed"}]})
+
+
+def test_each_model_uses_its_own_effort(tmp_path, monkeypatch):
+    from llm import ModelSpec, parse_model_spec
+    assert parse_model_spec("opus-5.5:high") == ModelSpec(Model.OPUS_5_5, "high")
+    assert parse_model_spec("haiku-5.5") == ModelSpec(Model.HAIKU_5_5, None)
+    with pytest.raises(ValueError, match="effort"):
+        parse_model_spec("haiku-5.5:extreme")
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    client = ScriptedClient()
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    mafia.play_game(client, [ModelSpec(Model.HAIKU_5_5, "low")], ModelSpec(Model.OPUS_5_5, "high"), roles,
+                    seed=1, check_nights=True)
+    assert {e for who, e in client.efforts if who not in ("moderator", "other")} == {"low"}
+    assert {e for who, e in client.efforts if who in ("moderator", "other")} == {"high"}  # incl. night checks
