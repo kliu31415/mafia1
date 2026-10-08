@@ -3,7 +3,7 @@
 import json
 import random
 import re
-from collections.abc import Callable
+from collections.abc import Callable, Collection
 
 import pytest
 
@@ -86,3 +86,24 @@ def make_game(tmp_path, roles: list[str], client: ScriptedClient | None = None) 
 @pytest.fixture
 def game_factory(tmp_path):
     return lambda roles, client=None: make_game(tmp_path, roles, client)
+
+
+# Shared by several test files.
+
+VILLAGE5 = ["Vanilla Villager"] * 5
+TOWN4_GRUNT = ["Vanilla Villager"] * 4 + ["Grunt"]  # run_day needs two factions alive, or the game is over
+
+
+def votes(guilty_for: Collection[str] = (), nominate: dict[str, str] | None = None):
+    """A decide() where everyone votes Yes/Guilty on the given nominees, and the given players
+    nominate once each."""
+    nominated = set()
+
+    def decide(name, task, schema):
+        if "vote" in schema["properties"]:
+            return {"vote": any(f"nominated {n}." in task or f"{n} is on trial" in task for n in guilty_for)}
+        if nominate and name in nominate and name not in nominated and "nominate" in schema["properties"]:
+            nominated.add(name)
+            return {"nominate": nominate[name]}
+        return None
+    return decide

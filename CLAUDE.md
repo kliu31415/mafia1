@@ -47,7 +47,7 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   5. A role-specific `apply_changes` op: declare it in the role's `ops` and carry it out in `apply_op`.
      The moderator is offered it only when the role is in the game. Ops every game needs are
      `CORE_OPS` in `moderator.py`.
-  6. `tests/test_rules.py`: a scenario test for anything code carries out.
+  6. `tests/test_roles.py`: a scenario test for anything code carries out.
 
 ## Conventions
 
