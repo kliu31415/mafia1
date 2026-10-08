@@ -146,7 +146,8 @@ def run_quiz(client, models: list[Model], grader: Model, rules: str, out_dir: Pa
     """Ask each model the quiz questions given only the rules, then have `grader` mark the answers
     against the reference answers. Wrong or split answers point at rules that need clarifying."""
     questions = "\n".join(f"{i + 1}. {q}" for i, (q, _) in enumerate(QUIZ))
-    answer_schema = obj(answers={"type": "array", "items": STR})
+    # One named field per question, so an answer can't slip into the wrong slot.
+    answer_schema = obj(**{f"q{i + 1}": STR for i in range(len(QUIZ))})
     table: dict[str, list[dict]] = {}
     answers_by_model: dict[str, list[str]] = {}
     for model in dict.fromkeys(models):
@@ -154,13 +155,16 @@ def run_quiz(client, models: list[Model], grader: Model, rules: str, out_dir: Pa
             {"role": "system", "content": f"{rules}\n\n---\n\nAnswer questions about the rules above."},
             {"role": "user", "content": f"Answer each question in one or two sentences, in order:\n{questions}"},
         ], schema=answer_schema, schema_name="quiz")
-        answers = json.loads(reply.content or "{}").get("answers", [])
+        parsed = json.loads(reply.content or "{}")
+        answers = [parsed.get(f"q{i + 1}", "") for i in range(len(QUIZ))]
         answers_by_model[model.short] = answers
         marking = "\n".join(f"{i + 1}. Q: {q}\n   Reference: {ref}\n   Answer: {answers[i] if i < len(answers) else '(none)'}"
                             for i, (q, ref) in enumerate(QUIZ))
         graded = client.chat(grader, [
-            {"role": "user", "content": "Mark each answer correct if it agrees with the reference on every point "
-             f"the reference makes, otherwise incorrect, with a short note.\n\n{marking}"},
+            {"role": "user", "content": "Mark each answer correct if it gets the reference's main point right and "
+             "contradicts nothing in it; leaving out a minor detail is fine. Otherwise mark it incorrect. "
+             "Give a short note either way, and say if the answer reveals a misreading of the rules."
+             f"\n\n{marking}"},
         ], schema=QUIZ_GRADE_SCHEMA, schema_name="quiz_grades")
         table[model.short] = json.loads(graded.content or "{}").get("results", [])
 
