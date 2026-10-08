@@ -61,3 +61,51 @@ DEFAULT_SETUP = [
     "Grunt", "Pharmacist", "Fabricator",
     "Jester",
 ]
+
+
+# Implementation status of every role. Keep this up to date when a role's handling changes, so
+# nobody has to re-audit the code. `uv run mafia.py --list-roles` prints it.
+#   handled_by: "code"       - its effects are implemented in code
+#               "moderator"  - the LLM moderator resolves its night action from the rules
+#               "passive"    - moderator-resolved, but it has effects with no submitted action, so the
+#                              moderator's night prompt lists it explicitly
+#               "none"       - no ability to implement
+#   live_tested: seen working in at least one live (API) game
+ROLE_STATUS: dict[str, tuple[str, bool, str]] = {
+    # role: (handled_by, live_tested, notes)
+    "Vanilla Villager": ("none", True, ""),
+    "Sheriff": ("moderator", True, "Katana holder and framed players handled by the moderator"),
+    "Tracker": ("moderator", True, ""),
+    "Lookout": ("moderator", True, ""),
+    "Seer": ("passive", False, "random pair each night unless a token is spent"),
+    "Fortune Teller": ("passive", False, "numbers told at the end of the night"),
+    "Oracle": ("moderator", False, ""),
+    "Medic": ("moderator", True, "tokens tracked via set_tokens"),
+    "Trapper": ("passive", False, "persistent traps tracked as player status"),
+    "Vigilante": ("moderator", True, ""),
+    "Prosecutor": ("code", False, "moderator records the prosecution; code runs the trial next day"),
+    "Party Animal": ("moderator", False, ""),
+    "Roleplayer": ("passive", False, "code assigns the fake role; moderator invents its results"),
+    "Ex-Con": ("passive", False, "random visit each night"),
+    "Cardinal": ("code", False, "curse resolved by code at the next dawn"),
+    "Grunt": ("none", True, ""),
+    "Pharmacist": ("moderator", True, ""),
+    "Ritualist": ("moderator", False, "failed guesses must be announced publicly at dawn"),
+    "Puppeteer": ("code", False, "moderator records the puppet; code swaps who chats next day"),
+    "Fabricator": ("moderator", True, "forged wills via set_last_will"),
+    "Clerk": ("code", False, "moderator records the rig; code executes regardless of the vote"),
+    "Diviner": ("moderator", False, ""),
+    "Mortician": ("moderator", True, "clean via status 'cleaned'; code hides the reveal"),
+    "Serial Killer": ("moderator", False, ""),
+    "Arsonist": ("passive", False, "douses tracked as player status"),
+    "Jester": ("code", True, "hanging win and revenge in code"),
+    "Executioner": ("code", True, "target, win, leaving and turning into a Jester in code"),
+}
+assert ROLE_STATUS.keys() == ROLES.keys(), "every role needs a ROLE_STATUS entry"
+
+
+def role_status_table() -> str:
+    rows = [f"{'Role':<17} {'Handled by':<10} {'Live-tested':<11} Notes"]
+    for role, (by, tested, notes) in ROLE_STATUS.items():
+        rows.append(f"{role:<17} {by:<10} {'yes' if tested else 'no':<11} {notes}")
+    return "\n".join(rows)

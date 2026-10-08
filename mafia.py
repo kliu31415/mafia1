@@ -21,6 +21,7 @@ Code layout:
 
 Usage:
     uv run mafia.py --mock                                   # offline run, no API calls
+    uv run mafia.py --list-roles                             # which roles are implemented
     uv run mafia.py --players haiku-5.5,gpt-6-luna --moderator haiku-5.5
 """
 
@@ -35,7 +36,7 @@ from llm import DEFAULT_EFFORT, MockClient, Model, OpenRouterClient, load_api_ke
 from moderator import Moderator
 from night import run_night
 from players import Players
-from roles import DEFAULT_SETUP, ROLES
+from roles import DEFAULT_SETUP, ROLES, role_status_table
 from state import setup_game
 
 ROOT = Path(__file__).resolve().parent
@@ -100,7 +101,11 @@ def main() -> None:
     ap.add_argument("--effort", default=DEFAULT_EFFORT)
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
+    ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     args = ap.parse_args()
+    if args.list_roles:
+        print(role_status_table())
+        return
 
     roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
