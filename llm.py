@@ -191,7 +191,8 @@ class MockClient:
             name, args = ("end_phase", {"summary": "mock"}) if done else ("get_state", {})
             katana = re.search(r"Katana vote result: (\{.*?\})\n", messages[-1].get("content") or "")
             if not done and katana and (target := json.loads(katana[1]).get("attack")):
-                name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana"}]}
+                name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana",
+                                                           "by": json.loads(katana[1])["holder"], "katana": True}]}
             tool_calls = [{"id": f"call_{rng.randrange(10**9)}", "type": "function",
                            "function": {"name": name, "arguments": json.dumps(args)}}]
         elif schema:

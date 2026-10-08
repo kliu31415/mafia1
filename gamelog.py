@@ -13,7 +13,8 @@ import log_viewer
 # 2: setup has git_commit, git_dirty, rules_sha256, settings; "vote" records
 # 3: setup has game_id; result has end_reason, winning_faction, duration_s, players (per-player outcome);
 #    night_check has alive and roles_in_play
-LOG_VERSION = 3
+# 4: death records (and result players' death) have killer, killer_role, katana
+LOG_VERSION = 4
 
 
 class GameLog:

@@ -135,9 +135,11 @@ class Game:
 
     # --- state changes ----------------------------------------------------------------------
 
-    def kill(self, name: str, cause: str, public: bool = True,
-             guilty_voters: list[str] | None = None) -> None:
-        """Rules R12. guilty_voters is set only for an execution by hanging."""
+    def kill(self, name: str, cause: str, public: bool = True, guilty_voters: list[str] | None = None,
+             by: str | None = None, katana: bool = False) -> None:
+        """Rules R12. guilty_voters is set only for an execution by hanging. `by` is the killer, if a
+        player, and katana marks the Katana attack; they're logged for analysis (deaths by role),
+        while `cause` is the public wording."""
         p = self.player(name)
         if not p.alive:
             return
@@ -146,8 +148,11 @@ class Game:
         for q in self.alive():
             logic(q.role).on_other_death(self, q, p, guilty_voters)
         self.phases_without_death = 0
-        p.death = {"day": self.day, "phase": self.phase, "cause": cause}
-        self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase)
+        killer_role = self.player(by).role if by else None
+        p.death = {"day": self.day, "phase": self.phase, "cause": cause, "killer": by, "killer_role": killer_role,
+                   "katana": katana}
+        self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase,
+                       killer=by, killer_role=killer_role, katana=katana)
         if not public:
             pass  # caller (e.g. moderator after a Mortician clean) announces it differently
         elif self.phase == "night":
@@ -210,7 +215,7 @@ class Game:
             if targets:
                 victim = self.rng.choice(targets)
                 self.log.write("revenge", source=source, victim=victim)
-                self.kill(victim, f"{self.player(source).role}'s revenge")
+                self.kill(victim, f"{self.player(source).role}'s revenge", by=source)
         self.pending_revenge.clear()
 
     def check_winner(self) -> list[str] | None:

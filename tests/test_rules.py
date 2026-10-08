@@ -296,3 +296,17 @@ def test_logs_describe_the_game_and_its_votes(tmp_path, monkeypatch):
     assert set(by_name) == {p["name"] for p in setup["players"]}
     assert all(p["won"] == (p["name"] in result["winners"]) for p in by_name.values())
     assert all((p["death"] is None) == (p["alive"] or p["left"]) for p in by_name.values())
+
+
+def test_kills_record_the_killer_and_their_role(game_factory):
+    game, players = game_factory(["Vigilante", "Vanilla Villager", "Grunt", "Jester"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.phase = "night"
+    mod.dispatch("apply_changes", {"changes": [
+        {"op": "kill", "player": "Bob", "cause": "Vigilante", "by": "Alice"},
+        {"op": "kill", "player": "Dave", "cause": "Katana", "by": "Carol", "katana": True}]})
+    assert game.player("Bob").death["killer_role"] == "Vigilante" and not game.player("Bob").death["katana"]
+    assert game.player("Dave").death == {"day": 1, "phase": "night", "cause": "Katana", "killer": "Carol",
+                                         "killer_role": "Grunt", "katana": True}
+    with pytest.raises(ValueError, match="no player"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "by": "Zed"}]})

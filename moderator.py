@@ -20,7 +20,8 @@ def tool(name: str, description: str, **params: dict) -> dict:
 
 def apply_changes_tool(role_op_docs: list[str]) -> dict:
     return tool(
-        "apply_changes", "Apply state changes. Ops: {op:'kill', player, cause} | "
+        "apply_changes", "Apply state changes. Ops: {op:'kill', player, cause, by, katana} (by = the "
+        "killer's name if a player killed them; katana = true for the Katana attack; cause = the public wording) | "
         "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
         "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
@@ -48,7 +49,7 @@ MODERATOR_TOOLS = [
 # Ops are checked before any is applied, so a malformed batch changes nothing and the moderator
 # gets a clear error.
 CORE_OPS: dict[str, tuple[set[str], set[str]]] = {
-    "kill": ({"player"}, {"cause"}),
+    "kill": ({"player"}, {"cause", "by", "katana"}),
     "set_tokens": ({"player", "token", "value"}, set()),
     "set_status": ({"player", "key"}, {"value"}),
     "set_katana": ({"player"}, set()),
@@ -143,7 +144,7 @@ class Moderator:
                     p = g.player(c["player"])  # every core op names a player
                     match c["op"]:
                         case "kill":
-                            g.kill(p.name, c.get("cause", "killed"))
+                            g.kill(p.name, c.get("cause", "killed"), by=c.get("by"), katana=bool(c.get("katana")))
                         case "set_tokens":
                             p.tokens[c["token"]] = int(c["value"])
                         case "set_status":
