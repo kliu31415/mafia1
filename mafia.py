@@ -468,6 +468,15 @@ class Game:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
         # TODO: Cardinal.
 
+    def announce_dawn(self) -> None:
+        """Publicly reveal the night's deaths and queued announcements."""
+        for name, cause in self.pending_deaths:
+            self.emit(self.death_reveal(name, cause))
+        self.pending_deaths.clear()
+        for text in self.pending_announcements:
+            self.emit(text)
+        self.pending_announcements.clear()
+
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
         if p.status.get("cleaned"):
@@ -484,7 +493,7 @@ class Game:
             if targets:
                 victim = self.rng.choice(targets)
                 self.log.write("revenge", source=source, victim=victim)
-                self.kill(victim, "Divine Attack")
+                self.kill(victim, f"{self.player(source).role}'s revenge")
         self.pending_revenge.clear()
 
     def check_winner(self) -> list[str] | None:
@@ -563,9 +572,11 @@ MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody 
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
 MAX_TRIALS_PER_DAY = 3
+NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budget; deters spam
 
 YAKUZA_CHAT_ROUNDS = 3
 YAKUZA_MESSAGE_WORDS = 200  # Yakuza chat is free but each message is capped at this length
+LAST_WILL_WORDS = 300  # longer wills are truncated
 
 
 def word_count(text: str) -> int:
@@ -716,18 +727,14 @@ class Players:
 def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
     game.emit(f"Day {game.day} begins.")
-    for name, cause in game.pending_deaths:
-        game.emit(game.death_reveal(name, cause))
-    game.pending_deaths.clear()
-    for text in game.pending_announcements:
-        game.emit(text)
-    game.pending_announcements.clear()
+    game.announce_dawn()
 
     # Last wills, written once at the beginning of each day (including day 1).
-    outs = players.ask_many([(p, "Write or update your last will (shown publicly if you die).",
-                              LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
+    task = f"Write or update your last will (shown publicly if you die; max {LAST_WILL_WORDS} words)."
+    outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
     for p, out in zip(game.alive(), outs):
-        p.last_will = out["last_will"]
+        will = out["last_will"]
+        p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
 
     for p in game.alive():
         p.speaking_budget = 0.0
@@ -778,8 +785,12 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     def cost_of(i: int, to: str | None, words: int) -> float:
         return message_cost(words, rnd, private=to is not None, free_words=free_words if i == 0 and to is None else 0)
 
-    def total_cost(msgs: list[tuple[str | None, str]]) -> float:
-        return sum(cost_of(i, to, min(word_count(t), MAX_MESSAGE_WORDS)) for i, (to, t) in enumerate(msgs))
+    nomination_fee = NOMINATION_COST * round_multiplier(rnd)
+
+    def total_cost(out: dict) -> float:
+        fee = nomination_fee if can_nominate and out.get("nominate") else 0.0
+        return fee + sum(cost_of(i, to, min(word_count(t), MAX_MESSAGE_WORDS))
+                         for i, (to, t) in enumerate(planned_messages(out)))
 
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
@@ -790,19 +801,31 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             "nobody sends a message.\n" + price_table(rnd) + "\n"
             + (f"Your first public message now is free up to {FREE_DEFENSE_WORDS} words; beyond that you "
                "pay only for the extra length.\n" if free_defense else "")
-            + ("You may nominate a player for trial, which stops chat for a vote.\n" if can_nominate else "")
+            + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
+               f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
+               if can_nominate else "")
             + extra)
     schema = day_turn_schema(game, p.name, can_nominate)
     fallback = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
     out = players.ask(p, task, schema, fallback)
-    planned = total_cost(planned_messages(out))
+    planned = total_cost(out)
     if planned > p.speaking_budget + 1e-9:
-        warning = (f"\n\nWARNING: your planned messages {json.dumps(planned_messages(out))} cost "
-                   f"{planned:.2f}, but your budget is {p.speaking_budget:.2f}. Revise them to fit. "
-                   "Anything still over budget will be truncated, starting with your last message.")
+        nominating = f" plus a nomination of {out['nominate']}" if can_nominate and out.get("nominate") else ""
+        warning = (f"\n\nWARNING: your planned messages {json.dumps(planned_messages(out))}{nominating} "
+                   f"cost {planned:.2f}, but your budget is {p.speaking_budget:.2f}. Revise them to fit. "
+                   "If you still can't afford a nomination it won't happen, and messages over budget will "
+                   "be truncated, starting with your last message.")
         game.log.write("budget_warning", player=p.name, planned=planned, budget=p.speaking_budget)
         out = players.ask(p, task + warning, schema, fallback)
 
+    nominee = out.get("nominate") if can_nominate else None
+    if nominee:
+        if nomination_fee <= p.speaking_budget + 1e-9:
+            p.speaking_budget -= nomination_fee
+        else:
+            game.log.write("nomination_dropped", player=p.name, nominee=nominee, budget=p.speaking_budget)
+            game.emit(f"You couldn't afford to nominate {nominee}.", [p.name])
+            nominee = None
     sent = 0
     for i, (to, text) in enumerate(planned_messages(out)):
         if to is not None and to not in game.alive_names():
@@ -821,7 +844,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"{p.name} (public): {text}")
         else:
             game.emit(f"{p.name} -> {to} (private): {text}", [p.name, to])
-    return sent, (out.get("nominate") if can_nominate else None)
+    return sent, nominee
 
 
 def majority(yes: int, total: int) -> bool:
@@ -915,7 +938,10 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
         "Resolve all actions simultaneously per the rules (visits, role-blocks, attack vs defense, "
         "investigation results, Katana appearing Not Evil, Fabricator framing, etc). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "
-        "Deaths you apply are announced publicly at dawn automatically; don't tell() them to all. "
+        "Deaths you apply are announced publicly at dawn automatically, including the kill's cause, so "
+        "make the cause just the source as the rules allow it to be known (e.g. 'Katana', 'Vigilante', "
+        "'Serial Killer', 'Trap'); don't tell() deaths to all. Tell each role-blocked player that they "
+        "were role-blocked. "
         "Jester/Executioner revenge attacks are handled by code after you finish. Tell all Yakuza which "
         "actions each Yakuza performed but not the results; only the attacker learns whether the "
         "Katana attack succeeded."
@@ -1107,19 +1133,24 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
         print(f"  {p.name:<8} {p.role:<17} {p.model.short}")
 
     while game.day <= MAX_DAYS:
-        # The rules only check for a winner (or a stall) at the beginning of a day.
+        # The stall rule is checked when a day begins; a winner is checked after every death,
+        # i.e. after the day's execution and after the night's (simultaneous) deaths.
         if game.phases_without_death >= STALL_LIMIT:
             game.winners = []
             game.emit("Nobody died for three days and three nights. Everyone loses.")
             break
-        if (winners := game.check_winner()) is not None:
-            game.winners = winners
-            break
         print(f"Day {game.day}...")
         deaths_before = game.death_count()
         run_day(game, players)
+        if (winners := game.check_winner()) is not None:
+            game.winners = winners
+            break
         print(f"Night {game.day}...")
         run_night(game, players, moderator)
+        if (winners := game.check_winner()) is not None:
+            game.announce_dawn()  # reveal the night's deaths before the game ends
+            game.winners = winners
+            break
         if game.death_count() == deaths_before:
             game.phases_without_death += 2
 
