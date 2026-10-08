@@ -19,6 +19,7 @@ Code layout:
     night.py       Yakuza chat, night actions, Katana vote
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
+    checkpoint.py  saves the game each day so a stopped game can continue (--resume)
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     tests/         offline scenario and hidden-information tests (uv run pytest)
@@ -29,6 +30,7 @@ Usage:
     uv run mafia.py --list-roles                             # which roles are implemented
     uv run mafia.py --players haiku-5.5,gpt-6-luna --moderator haiku-5.5
     uv run mafia.py --players opus-5.5:high,haiku-5.5:low --moderator opus-5.5:medium
+    uv run mafia.py --resume logs/<game>.ckpt                # continue a game that stopped
 """
 
 import argparse
@@ -41,6 +43,7 @@ from datetime import datetime
 from pathlib import Path
 
 from day import run_day
+from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
 from gamelog import GameLog
 from llm import (DEFAULT_EFFORT, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, load_api_key,
@@ -82,30 +85,57 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               roles: list[str],
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
-              max_days: int | None = None, check_nights: bool = False) -> Path:
+              max_days: int | None = None, check_nights: bool = False, checkpoint: bool = True,
+              resume: dict | None = None) -> Path:
+    """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
+    finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game."""
+    play_args = {"models": models, "moderator_model": moderator_model, "roles": roles, "seed": seed,
+                 "debrief": debrief, "flag_issues": flag_issues, "feedback_field": feedback_field,
+                 "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights}
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
-    rng = random.Random(seed)
-    prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
-    log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
     rules = RULES_PATH.read_text(encoding="utf-8")
     max_days = max_days or len(roles) + EXTRA_DAYS
-    settings = {"moderator": mod.model.value, "moderator_effort": mod.effort,
-                "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
-                "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
-                "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
-                "feedback_field": feedback_field, "check_nights": check_nights}
-    started = time.time()
-    game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
+    if resume:
+        game = resume["game"]
+        log = game.log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
+        # Night checks of earlier nights that finished after the checkpoint stay; the rest is replayed.
+        for r in log.cut_records:
+            if r["kind"] == "night_check" and r["night"] < game.day:
+                log.write_raw(r)
+        log.write("resume", day=game.day, cut_records=len(log.cut_records))
+        print(f"Resuming {log.path.stem} at day {game.day}")
+        for model, cost in resume["cost"].items():
+            client.total_cost[model] = client.total_cost.get(model, 0) + cost
+        started = time.time() - resume["elapsed_s"]
+    else:
+        rng = random.Random(seed)
+        prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
+        log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
+        settings = {"moderator": mod.model.value, "moderator_effort": mod.effort,
+                    "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
+                    "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
+                    "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
+                    "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint}
+        started = time.time()
+        game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
     players = Players(game, client, rules, feedback_field=feedback_field)
     moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
+    if resume:
+        moderator.flags = resume["moderator_flags"]
     # The judge is the moderator's model; checks run in the background while the game continues.
     checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort)
                if check_nights else None)
     for p in game.players:
         print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}")
+    ckpt_path = log.path.with_suffix(".ckpt")
 
     while game.day <= max_days:
+        if checkpoint:
+            save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
+                            moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
+                            client={"mock": isinstance(client, MockClient),
+                                    "effort": getattr(client, "effort", None)})
         # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
         # i.e. after the day's execution and after the night's (simultaneous) deaths.
         if game.phases_without_death >= STALL_LIMIT:
@@ -167,6 +197,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                         "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
                         "death": p.death} for p in game.players])
     log.close()
+    ckpt_path.unlink(missing_ok=True)
     print(f"Cost by model: {client.total_cost}")
     print(f"Logs: {log.path} (+ .txt, .html)")
     if report := write_report(log.path):
@@ -189,6 +220,11 @@ def main() -> None:
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
+    ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
+                    help="save the game at the start of each day to logs/<game>.ckpt, deleted when the game "
+                    "finishes, so a stopped game can be continued with --resume")
+    ap.add_argument("--resume", metavar="CKPT", help="continue a stopped game from its checkpoint, with the "
+                    "settings it started with (other game options are ignored); replays the day it was saved on")
     fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md); on by default, "
                              "turn one off with --no-<flag>")
     fb.add_argument("--debrief", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player and the moderator "
@@ -211,6 +247,13 @@ def main() -> None:
     if args.list_roles:
         print(role_status_table())
         return
+    if args.resume:
+        ckpt = load_checkpoint(Path(args.resume))
+        saved = ckpt["play_args"]
+        resumed_client = (MockClient(saved["seed"]) if ckpt["client"]["mock"]
+                          else OpenRouterClient(load_api_key(), effort=ckpt["client"]["effort"]))
+        play_game(resumed_client, **saved, checkpoint=args.checkpoint, resume=ckpt)
+        return
 
     roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
@@ -229,7 +272,8 @@ def main() -> None:
         return
     play_game(client, models, moderator, roles, seed, debrief=args.debrief,
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
-              lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights)
+              lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
+              checkpoint=args.checkpoint)
 
 
 if __name__ == "__main__":

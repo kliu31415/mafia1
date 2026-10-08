@@ -26,7 +26,10 @@ class Model(str, Enum):
     GPT_6_1_SOL = "openai/gpt-6.1-sol"
     GEMINI_3_1_PRO = "google/gemini-3.1-pro-preview"
     GROK_4_7 = "x-ai/grok-4.7"
-    QWEN_3_8_MAX = "qwen/qwen3.8-max-prime"
+    QWEN_3_8_MAX_PRIME = "qwen/qwen3.8-max-prime"  # same weights as QWEN_3_8_MAX at twice the price
+    QWEN_3_8_MAX = "qwen/qwen3.8-max-0902"
+    KIMI_K3 = "moonshotai/kimi-k3"
+    GEMINI_3_8_FLASH = "google/gemini-3.8-flash"
     # Cheap models for smoke tests.
     HAIKU_5_5 = "anthropic/claude-haiku-5.5"
     GPT_6_LUNA = "openai/gpt-6-luna"
@@ -42,7 +45,10 @@ MODEL_SHORT_NAMES = {
     Model.GPT_6_1_SOL: "gpt-6.1-sol",
     Model.GEMINI_3_1_PRO: "gemini-3.1-pro",
     Model.GROK_4_7: "grok-4.7",
+    Model.QWEN_3_8_MAX_PRIME: "qwen-3.8-max-prime",
     Model.QWEN_3_8_MAX: "qwen-3.8-max",
+    Model.KIMI_K3: "kimi-k3",
+    Model.GEMINI_3_8_FLASH: "gemini-3.8-flash",
     Model.HAIKU_5_5: "haiku-5.5",
     Model.GPT_6_LUNA: "gpt-6-luna",
 }

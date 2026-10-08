@@ -51,6 +51,8 @@ def text_line(r: dict) -> str | None:
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
         case "night_check":
             return f"[Night check] {describe_check(r)}"
+        case "resume":
+            return f"[Resumed from the checkpoint at the start of day {r['day']}]"
         case "result":
             return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\nCost: {r['cost']}"
     return None

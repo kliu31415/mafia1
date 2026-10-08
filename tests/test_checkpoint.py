@@ -1,0 +1,64 @@
+"""Checkpoints (checkpoint.py): a game stopped partway and resumed plays out like one that wasn't stopped."""
+
+import json
+
+import pytest
+
+import mafia
+from checkpoint import load
+from llm import MockClient, Model
+from roles import DEFAULT_SETUP
+
+
+def records(path):
+    """The log's records without times, game ids and durations, which differ between runs, in a fixed order."""
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        if r["kind"] == "resume":
+            continue
+        r.pop("t")
+        r.pop("game_id", None)
+        r.pop("duration_s", None)
+        out.append(r)
+    return sorted(out, key=lambda r: json.dumps(r, sort_keys=True))  # players are asked in parallel
+
+
+def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
+    seed = 7
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "full")
+    full = mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
+    assert not full.with_suffix(".ckpt").exists()  # deleted once the game finishes
+    assert any(r["kind"] == "death" for r in records(full)) and json.loads(
+        full.read_text(encoding="utf-8").splitlines()[-1])["days"] >= 2
+
+    # Same game, stopped partway through night 2 (after the day-2 checkpoint and some of day 2's log).
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "stopped")
+    real_run_night = mafia.run_night
+
+    def crash_on_night_2(game, *args):
+        if game.day == 2:
+            raise RuntimeError("laptop went to sleep")
+        real_run_night(game, *args)
+    monkeypatch.setattr(mafia, "run_night", crash_on_night_2)
+    with pytest.raises(RuntimeError):
+        mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
+    [ckpt_path] = (tmp_path / "stopped").glob("*.ckpt")
+    ckpt = load(ckpt_path)
+    assert ckpt["game"].day == 2
+
+    monkeypatch.setattr(mafia, "run_night", real_run_night)
+    resumed = mafia.play_game(MockClient(seed), **ckpt["play_args"], resume=ckpt)
+    assert resumed == ckpt_path.with_suffix(".jsonl")
+    assert records(resumed) == records(full)
+    text = resumed.with_suffix(".txt").read_text(encoding="utf-8")
+    assert text.count("===== DAY 2 =====") == 1 and "Resumed from the checkpoint at the start of day 2" in text
+    assert not ckpt_path.exists()
+
+
+def test_no_checkpoint_without_the_flag(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(mafia, "run_night", lambda *args: (_ for _ in ()).throw(RuntimeError("stop")))
+    with pytest.raises(RuntimeError):
+        mafia.play_game(MockClient(1), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 1, checkpoint=False)
+    assert not list(tmp_path.glob("*.ckpt"))

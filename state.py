@@ -87,6 +87,10 @@ class Game:
     death_record: list[str] = field(default_factory=list)  # public summary of each death, for the ledger
     vote_record: list[str] = field(default_factory=list)  # public summary of each nomination and trial
 
+    def __getstate__(self) -> dict[str, Any]:
+        # Pickled for checkpoints (checkpoint.py) without the log's open files; resuming reattaches a log.
+        return {k: v for k, v in self.__dict__.items() if k != "log"}
+
     def chat_controller(self, name: str) -> str:
         """Who reads and writes `name`'s chat today (the Puppeteer, if `name` is puppeted)."""
         return self.puppets.get(name, name)
