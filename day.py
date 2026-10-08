@@ -103,12 +103,17 @@ def run_day(game: Game, players: Players) -> None:
     if trials >= MAX_TRIALS_PER_DAY:
         game.emit("Three trials ended in Innocent verdicts. The day ends.")
         return
+    # Turns go around the circle in seat order from a random start, the same every round, so nobody
+    # speaks last in one round and first in the next.
+    start = game.rng.choice(game.alive()).seat
+    game.emit(f"Speaking order today goes around the circle in seat order, starting with "
+              f"{game.players[start].name}.")
     for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
                 p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
-        order = game.alive()
-        game.rng.shuffle(order)
+        alive = game.alive()
+        order = [p for p in alive if p.seat >= start] + [p for p in alive if p.seat < start]
         active = False  # did anyone send a public message or nominate this go-around?
         for p in order:
             if not p.alive:

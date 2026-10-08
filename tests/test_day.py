@@ -110,3 +110,16 @@ def test_puppeteer_reads_and_writes_the_puppets_private_messages(game_factory):
     pms = {e.fields["message"]: e.visible_to for e in game.events if e.cat == "pm"}
     assert pms["from Alice"] == {"Alice", "Erin"}  # sent to Bob, read by his Puppeteer
     assert pms["from Erin-as-Bob"] == {"Erin", "Carol"}  # Bob's message, written by Erin
+
+
+def test_turns_go_around_the_circle_in_the_same_order_every_round(game_factory):
+    def decide(name, task, schema):
+        return {"public_message": "Hi."} if "public_message" in schema["properties"] else None
+    client = ScriptedClient(decide)
+    game, players = game_factory(TOWN4_GRUNT, client)
+    run_day(game, players)
+    rounds = [[p for p, task in client.asked if f"round {r} " in task] for r in (1, 2)]
+    seats = [p.name for p in game.players]
+    start = seats.index(rounds[0][0])
+    assert rounds[0] == seats[start:] + seats[:start]
+    assert rounds[1] == rounds[0]
