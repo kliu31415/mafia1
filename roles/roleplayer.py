@@ -5,6 +5,9 @@ from roles.base import RoleLogic, Status, register
 
 @register("Roleplayer")
 class Roleplayer(RoleLogic):
+    night_note = ("Give the Roleplayer fake but plausible results for the role they believe they have (their "
+                  "status 'fake_role').")
+
     def setup(self, game, p):
         from roles import ROLES
         p.status[Status.FAKE_ROLE] = game.rng.choice([r for r, i in ROLES.items() if i.category == "Investigative"])

@@ -38,7 +38,8 @@ unless asked).
      `RoleLogic`. Per-game role state goes in `game.role_state`, not new `Game` fields.
   3. Not yet moved into hooks: the Prosecutor, Clerk and Puppeteer `Game` fields (`prosecutions`,
      `rigged_day`, `puppets`) and their handling in `day.py`, and `night_action_schema` in `players.py`.
-  4. `night.py`: the moderator's night instructions, which list passive effects by hand.
+  4. `night_note` on the role's class: a reminder the moderator gets each night for effects with no
+     submitted action or that need a special op. Only roles in the game are included.
   5. `moderator.py`: a new `apply_changes` op needs an `OPS` entry, a `dispatch` case and a line in the
      tool description.
   6. `tests/test_rules.py`: a scenario test for anything code carries out.

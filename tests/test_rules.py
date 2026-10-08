@@ -199,3 +199,11 @@ def test_setup_hooks_assign_executioner_target_and_roleplayer_fake_role(tmp_path
     assert f"Your target is {exe.status[Status.TARGET]}." in role_briefing(game, exe)
     briefing = role_briefing(game, rp)
     assert f"Your role is {rp.status[Status.FAKE_ROLE]}." in briefing and "Roleplayer" not in briefing
+
+
+def test_moderator_night_notes_cover_roles_in_the_game(game_factory):
+    from night import role_notes
+    game, _ = game_factory(["Trapper", "Seer", "Vanilla Villager", "Grunt"])
+    game.kill("Alice", "Katana")  # a dead Trapper's traps still work
+    notes = role_notes(game)
+    assert "Trapper" in notes and "Seer" in notes and "Arsonist" not in notes

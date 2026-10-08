@@ -107,4 +107,5 @@ def role_status_table() -> str:
 
 
 # Role files register their hooks when imported.
-from roles import cardinal, executioner, jester, roleplayer  # noqa: E402, F401
+from roles import (arsonist, cardinal, clerk, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
+                   prosecutor, puppeteer, roleplayer, seer, trapper)

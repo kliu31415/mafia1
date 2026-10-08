@@ -34,6 +34,9 @@ class RoleLogic:
     Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
 
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
+    # Reminder for the moderator's night resolution, for effects with no submitted action or that
+    # need a special op. Included when anyone in the game has (or had) the role.
+    night_note: str = ""
 
     def setup(self, game: Game, p: Player) -> None:
         """After seats and the Katana are assigned. Use game.rng for anything random."""

@@ -3,7 +3,7 @@
 import json
 
 from players import BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, truncate_words, word_count
-from roles import Alignment
+from roles import Alignment, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from moderator import Moderator
@@ -63,18 +63,21 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
         "were role-blocked. "
         "Jester/Executioner revenge attacks are handled by code after you finish. Tell all Yakuza which "
         "actions each Yakuza performed but not the results; only the attacker learns whether the "
-        "Katana attack succeeded.\n\n"
-        "Don't forget effects that happen without a submitted action, using random_choice for anything "
-        "random: the Seer's two random players each night (unless they spent a token to choose); the "
-        "Ex-Con's random visit; the Fortune Teller's two numbers about tonight's visits (tell them now; "
-        "they read them at the start of the day); Trapper traps that persist across nights (track them "
-        "with set_status); Arsonist douses (set_status 'doused'); and a Roleplayer's fake but plausible "
-        "results for the role they believe they have (their status 'fake_role'). Use the prosecute, "
-        "rig_vote and puppet ops for Prosecutor, Clerk and Puppeteer actions, and update token counts."
+        "Katana attack succeeded. Update token counts for any tokens spent.\n\n"
+        + role_notes(game)
     )
     game.resolve_revenge()
     game.pass_katana()
     game.day += 1
+
+
+def role_notes(game: Game) -> str:
+    """Reminders from roles/*.py for roles in this game (alive or dead, e.g. a dead Trapper's traps)."""
+    notes = [logic(r).night_note for r in sorted({p.role for p in game.players}) if logic(r).night_note]
+    if not notes:
+        return ""
+    return ("Also handle these roles' effects, using random_choice for anything random:\n"
+            + "\n".join(f"- {n}" for n in notes))
 
 
 def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
