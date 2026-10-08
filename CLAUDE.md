@@ -3,6 +3,16 @@
 The module map is in `mafia.py`'s docstring. The rules are `rules_1.txt` (Kevin's text; don't edit it
 unless asked).
 
+## Working preferences
+
+- Commit and push straight to `main` once `uv run pytest` and `uv run ruff check .` pass. No need to ask
+  first or to open a branch, unless Kevin asks for one.
+- Small changes: test with offline mock games only, no live games.
+- Bigger changes: also run a live game in the background: about 7-8 players with cheap player models
+  (haiku-5.5, gpt-6-luna) and an opus-5.5 moderator. Keep a status line saying a live game is running
+  until it finishes (games take 10-40 minutes).
+- Low-cost API calls (Haiku, Luna) are fine whenever they help verify that code works.
+
 ## Checking changes
 
 - `uv run pytest` runs the scenario and visibility tests (offline, about a second). Run it before
@@ -10,8 +20,6 @@ unless asked).
 - `uv run ruff check .` catches undefined names, unused imports and likely bugs.
 - `uv run mafia.py --mock` plays a full offline game. Its moderator only carries out the Katana attack,
   so moderator-handled roles are only exercised in live games.
-- Live (API) games cost money: skip them for small changes. For bigger ones use a small game with cheap
-  player models (haiku-5.5, gpt-6-luna) and run it in the background.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
   roles you give, in order).
