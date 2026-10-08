@@ -81,3 +81,14 @@ def register(role: str):
 
 def logic(role: str) -> RoleLogic:
     return LOGIC.get(role, DEFAULT)
+
+
+def code_hooks(role_logic: RoleLogic) -> list[str]:
+    """Which hooks a role's file implements (for --list-roles), plus its ops and win-check flag."""
+    hooks = [name for name, attr in vars(RoleLogic).items()
+             if callable(attr) and not name.startswith("_") and name != "apply_op"
+             and getattr(type(role_logic), name) is not attr]
+    hooks += [f"op {op}" for op in role_logic.ops]
+    if not role_logic.blocks_win:
+        hooks.append("never blocks a win")
+    return hooks

@@ -21,20 +21,21 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   every commit, and add a test when you fix a rules bug or change a code-handled role.
 - `uv run ruff check .` catches undefined names, unused imports and likely bugs; `uv run mypy .` checks
   types (e.g. a possibly-None value used as a player).
-- `uv run mafia.py --mock` plays a full offline game; the same `--seed` replays the same game. Its moderator only carries out the Katana attack,
-  so moderator-handled roles are only exercised in live games.
+- `uv run mafia.py --mock` plays a full offline game; the same `--seed` replays the same game. Its
+  moderator only carries out the Katana attack, so moderator-handled roles are only exercised in live games.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
   roles you give, in order).
 
 ## Roles
 
-- Which roles are implemented, and how, is tracked in `ROLE_STATUS` in `roles/__init__.py` (print it with
-  `uv run mafia.py --list-roles`). Check it there instead of auditing the code, and update it whenever
-  a role's handling changes or a role is first seen working in a live game.
+- `uv run mafia.py --list-roles` shows how every role is implemented: its code hooks and night note
+  are read from the code; `tested` and `notes` in its `ROLES` entry are kept by hand. Check it there
+  instead of auditing the code. Set `tested=True` when a role is first seen working in a live game, and
+  update `notes` when its handling changes.
 - Adding or changing a role can touch all of these; check each one:
   1. `roles/__init__.py`: `ROLES` entry (alignment, category, Sheriff result, defense, tokens,
-     `acts_at_night`) and `ROLE_STATUS`.
+     `acts_at_night`, `tested`, `notes`).
   2. `roles/<role>.py`: effects that code carries out, as hooks from `roles/base.py` (setup, briefing,
      deaths, dawn, ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core
      code calls hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to
