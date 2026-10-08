@@ -315,6 +315,7 @@ class Player:
     tokens: dict[str, int] = field(default_factory=dict)
     status: dict[str, Any] = field(default_factory=dict)  # free-form flags, e.g. doused, fake_role
     last_will: str = ""
+    notepad: str = ""  # private notes the player keeps across turns
     speaking_budget: float = 0.0
 
     @property
@@ -578,6 +579,7 @@ NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budg
 YAKUZA_CHAT_ROUNDS = 3
 YAKUZA_MESSAGE_WORDS = 200  # Yakuza chat is free but each message is capped at this length
 LAST_WILL_WORDS = 300  # longer wills are truncated
+NOTEPAD_WORDS = 300  # longer notepads are truncated
 
 
 def word_count(text: str) -> int:
@@ -644,7 +646,7 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool) -> dict:
 
 
 VOTE_SCHEMA = obj(thoughts=STR, vote=BOOL)
-LAST_WILL_SCHEMA = obj(last_will=STR)
+LAST_WILL_SCHEMA = obj(thoughts=STR, last_will=STR)
 ANSWER_SCHEMA = obj(answer=STR)
 
 
@@ -689,8 +691,19 @@ def player_messages(game: Game, p: Player, rules: str, task: str) -> list[dict]:
         f"{rules}\n\n---\n\nYou are a player in this game. Play to win for your faction. "
         f"Other players may lie. Seating order (clockwise): {order}.\n{role_briefing(game, p)}"
     )
-    user = f"Everything you have seen so far:\n{game.history_for(p.name)}\n\n---\n\n{task}"
+    notepad = p.notepad or "(empty)"
+    user = (f"Everything you have seen so far:\n{game.history_for(p.name)}\n\n---\n\n"
+            f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
+            f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
+            "words; longer is truncated), or null to keep it as is. Use it for plans, suspicions and "
+            f"anything you want to remember.\n\n---\n\n{task}")
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
+
+
+def with_notepad(schema: dict) -> dict:
+    """Adds the 'notepad' field every player response carries."""
+    return {**schema, "properties": {**schema["properties"], "notepad": nullable(STR)},
+            "required": [*schema["required"], "notepad"]}
 
 
 class Players:
@@ -703,6 +716,7 @@ class Players:
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
         messages = player_messages(self.game, p, self.rules, task)
+        schema = with_notepad(schema)
         for attempt in range(2):
             try:
                 reply = self.client.chat(p.model, messages, schema=schema)
@@ -710,6 +724,8 @@ class Players:
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage)
+                if isinstance(note := out.pop("notepad", None), str):
+                    p.notepad = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
                 return out
             except (json.JSONDecodeError, RuntimeError) as e:
                 self.game.log.write("player_error", player=p.name, attempt=attempt, error=str(e))
@@ -731,7 +747,8 @@ def run_day(game: Game, players: Players) -> None:
     game.announce_dawn()
 
     # Last wills, written once at the beginning of each day (including day 1).
-    task = f"Write or update your last will (shown publicly if you die; max {LAST_WILL_WORDS} words)."
+    task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
+            "to ALL players, including other factions.")
     outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
     for p, out in zip(game.alive(), outs):
         will = out["last_will"]
