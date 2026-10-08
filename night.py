@@ -7,13 +7,14 @@ from roles import Alignment, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from moderator import Moderator
+from night_check import NightChecker
 
 
 YAKUZA_CHAT_ROUNDS = 3
 YAKUZA_MESSAGE_WORDS = 200  # Yakuza chat is free but each message is capped at this length
 
 
-def run_night(game: Game, players: Players, moderator: Moderator) -> None:
+def run_night(game: Game, players: Players, moderator: Moderator, checker: NightChecker | None = None) -> None:
     game.phase = "night"
     game.emit(f"Night {game.day} begins.", cat=PHASE)
     if len(game.yakuza()) > 1:
@@ -51,7 +52,7 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
                                    katana_vote_target=out["katana_vote_target"])
         katana = tally_katana(game, actions)
     game.log.write("katana", day=game.day, result=katana)
-    moderator.run_phase(
+    instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
         "Resolve all actions simultaneously per the rules (R10; visits R6, role-blocks R9, attack vs defense R3, "
@@ -65,9 +66,18 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
         "tokens spent.\n\n"
         + role_notes(game)
     )
+    before = snapshot(game.full_state())
+    transcript = moderator.run_phase(instructions)
+    if checker:
+        checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()))
     game.resolve_revenge()
     game.pass_katana()
     game.day += 1
+
+
+def snapshot(x):
+    """A deep copy, for a night check that reads it in another thread while the game goes on."""
+    return json.loads(json.dumps(x, default=str))
 
 
 def role_notes(game: Game) -> str:

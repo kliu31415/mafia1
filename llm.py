@@ -4,6 +4,7 @@ import json
 import os
 import random
 import re
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -101,6 +102,7 @@ class OpenRouterClient:
         self.timeout = timeout
         self.retries = retries
         self.total_cost: dict[str, float] = {}
+        self.cost_lock = threading.Lock()  # chat() is called from several threads
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
              schema: dict | None = None, schema_name: str = "response") -> LLMReply:
@@ -128,7 +130,8 @@ class OpenRouterClient:
         msg = data["choices"][0]["message"]
         usage = data.get("usage", {})
         cost = float(usage.get("cost") or 0)
-        self.total_cost[model.value] = self.total_cost.get(model.value, 0) + cost
+        with self.cost_lock:
+            self.total_cost[model.value] = self.total_cost.get(model.value, 0) + cost
         return LLMReply(
             content=msg.get("content"),
             reasoning=msg.get("reasoning"),

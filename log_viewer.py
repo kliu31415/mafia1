@@ -49,9 +49,18 @@ def text_line(r: dict) -> str | None:
             return f"[Moderator summary] {summary}"
         case "revenge":
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
+        case "night_check":
+            return f"[Night check] {describe_check(r)}"
         case "result":
             return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\nCost: {r['cost']}"
     return None
+
+
+def describe_check(r: dict) -> str:
+    """A night_check record (night_check.py) as one line."""
+    head = f"Night {r['night']}: {r['verdict']}" + (f" ({r['error']})" if r.get("error") else "")
+    issues = "; ".join(f"[{i['severity']}, {i['rule']}, {i['kind']}] {i['description']}" for i in r["issues"])
+    return f"{head}. {issues}" if issues else head
 
 
 def describe_action(a: dict) -> str:
@@ -287,6 +296,8 @@ def render_html(jsonl_path: Path) -> Path:
             line("hidden", "Night actions", rows)
         elif k in ("katana", "revenge"):
             line("hidden", "Katana" if k == "katana" else "Revenge", name(text_line(r) or ""))
+        elif k == "night_check":
+            line("hidden", "Night check", name(describe_check(r)))
         elif k in ("budget_warning", "message_dropped", "nomination_dropped", "player_error", "moderator_error"):
             out.append(f"<details class='call'><summary>{esc(k.replace('_', ' '))}: "
                        f"{esc(r.get('player', ''))}</summary>{pre('Details', r)}</details>")

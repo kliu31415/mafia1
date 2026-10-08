@@ -4,7 +4,7 @@ import random
 from dataclasses import dataclass, field
 from typing import Any
 
-from gamelog import GameLog
+from gamelog import LOG_VERSION, GameLog
 from llm import Model
 from events import ANNOUNCEMENT, DEATH, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
@@ -257,7 +257,8 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
     for p in players:
         logic(p.role).setup(game, p)
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "role": p.role,
-                                 "status": p.status} for p in players], katana=game.katana_holder)
+                                 "status": p.status} for p in players], katana=game.katana_holder,
+              log_version=LOG_VERSION)
     return game
 
 

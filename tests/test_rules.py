@@ -249,3 +249,24 @@ def test_puppeting_lapses_if_the_puppeteer_died(game_factory):
     run_day(game, players)
     assert not any(name == "Erin" for name, _ in client.asked)
     assert not any("being puppeted" in e.text for e in game.events)
+
+
+# --- Night checks -------------------------------------------------------------------------------
+
+def test_night_check_logs_the_judges_verdict(tmp_path, monkeypatch):
+    issue = {"rule": "R3", "severity": "high", "kind": "wrong death", "description": "defense ignored"}
+
+    def decide(name, task, schema):
+        return {"verdict": "errors", "issues": [issue]} if name is None and "verdict" in schema["properties"] else None
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(ScriptedClient(decide), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
+                           check_nights=True)
+    import json
+    checks = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()
+              if '"night_check"' in line]
+    assert checks and all(c["verdict"] == "errors" and c["issues"] == [issue] for c in checks)
+    assert sorted(c["night"] for c in checks) == list(range(1, len(checks) + 1))
+    report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
+    assert "Night checks" in report and "defense ignored" in report
+    assert "Night check" in path.with_suffix(".html").read_text(encoding="utf-8")

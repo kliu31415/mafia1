@@ -56,6 +56,10 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 - Every `emit` also passes `cat=` (`CHAT`, `PM`, `DEATH`, ... in `events.py`) plus that category's fields.
   The log viewer colors events by `cat`, never by their wording, so wording can change freely.
 - `Player.status` keys that code reads are in `roles.Status`; use the constants, not strings.
+- Logs are meant for analysis across games: each record kind keeps stable fields. If you change a
+  record's fields, bump `LOG_VERSION` in `gamelog.py` (it's written in the "setup" record).
+- Night checks (`night_check.py`, on by default) log a judge model's verdict on each night's moderator
+  resolution as "night_check" records; they never change the game.
 - Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
   Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
   `mafia.py`), so a stuck game can't run forever.

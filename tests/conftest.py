@@ -13,8 +13,9 @@ from players import Players
 from roles import ROLES, Alignment
 from state import Game, setup_game
 
-# decide(player name, task, schema) -> the fields to set in that player's answer, or None for defaults
-Decide = Callable[[str, str, dict], dict | None]
+# decide(player name, or None for a non-player call such as the night check, task, schema) -> the fields
+# to set in the answer, or None for defaults
+Decide = Callable[[str | None, str, dict], dict | None]
 
 
 def default_answer(schema: dict):
@@ -57,10 +58,10 @@ class ScriptedClient:
             return LLMReply(None, None, calls, msg, model.value, 0.0, {})
         assert schema is not None
         match = re.search(r"You are (\w+) \(seat", messages[0]["content"])
-        assert match, "not a player prompt"
-        player = match[1]
+        player = match[1] if match else None  # None: not a player, e.g. the night check's judge
         task = messages[-1]["content"].rsplit("---\n\n", 1)[-1]
-        self.asked.append((player, task))
+        if player:
+            self.asked.append((player, task))
         out = default_answer(schema)
         out.update({k: v for k, v in (self.decide(player, task, schema) or {}).items() if k in out})
         content = json.dumps(out)

@@ -9,6 +9,10 @@ from typing import Any
 import log_viewer
 
 
+# Bump when a record's fields change in a way analysis code has to handle (written in "setup").
+LOG_VERSION = 1
+
+
 class GameLog:
     """Writes every event and LLM call as one JSON line, for later analysis, plus a live
     human-readable .txt next to it. close() also renders an expandable .html view.

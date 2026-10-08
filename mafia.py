@@ -20,6 +20,7 @@ Code layout:
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
     feedback.py    debriefs, log review, lessons and the rules quiz
+    night_check.py a judge model checks each night's moderator resolution (--check-nights)
     tests/         offline scenario and hidden-information tests (uv run pytest)
 
 Usage:
@@ -39,6 +40,7 @@ from feedback import run_debrief, run_lessons, run_quiz, run_review, write_repor
 from gamelog import GameLog
 from llm import DEFAULT_EFFORT, LLMClient, MockClient, Model, OpenRouterClient, load_api_key, parse_model
 from moderator import Moderator
+from night_check import NightChecker
 from night import run_night
 from players import Players
 from roles import DEFAULT_SETUP, ROLES, role_status_table
@@ -59,7 +61,7 @@ STALL_LIMIT = 6  # rules R14: everyone loses after three nights and three days w
 def play_game(client: LLMClient, models: list[Model], moderator_model: Model, roles: list[str],
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
-              max_days: int | None = None) -> Path:
+              max_days: int | None = None, check_nights: bool = False) -> Path:
     rng = random.Random(seed)
     prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
     log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
@@ -67,6 +69,8 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
     game = setup_game(roles, models, rng, log)
     players = Players(game, client, rules, feedback_field=feedback_field)
     moderator = Moderator(game, client, players, moderator_model, rules, flag_issues=flag_issues)
+    # The judge is the moderator's model; checks run in the background while the game continues.
+    checker = NightChecker(client, moderator_model, moderator_model, rules, log) if check_nights else None
     for p in game.players:
         print(f"  {p.name:<8} {p.role:<17} {p.model.short}")
 
@@ -85,7 +89,7 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
             game.winners = winners
             break
         print(f"Night {game.day}...")
-        run_night(game, players, moderator)
+        run_night(game, players, moderator, checker)
         if (winners := game.check_winner()) is not None:
             # Reveal the night's deaths at a proper dawn before the game ends.
             game.phase = "day"
@@ -110,6 +114,9 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
         print("Collecting lessons from players...")
         lessons_file = LOG_DIR / ("mock_lessons.jsonl" if isinstance(client, MockClient) else "lessons.jsonl")
         run_lessons(game, players, lessons_file)
+    if checker:
+        print("Waiting for night checks...")
+        checker.finish()
     if review:
         print("Reviewing the log...")
         run_review(game, client, moderator_model, rules, log.path.with_suffix(".txt"))
@@ -148,6 +155,9 @@ def main() -> None:
                     "they'd known; also appended to logs/lessons.jsonl across games for analysis")
     fb.add_argument("--review", action=argparse.BooleanOptionalAction, default=True, help="after the game, have the moderator model review the "
                     "whole log for problems")
+    fb.add_argument("--check-nights", action=argparse.BooleanOptionalAction, default=True,
+                    help="after each night, have the moderator model check the moderator's resolution against "
+                    "the rules, in the background; results are logged as night_check records")
     fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
                     "--moderator models on the rules (graded by the moderator model)")
     args = ap.parse_args()
@@ -169,7 +179,7 @@ def main() -> None:
         return
     play_game(client, models, parse_model(args.moderator), roles, seed, debrief=args.debrief,
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
-              lessons=args.lessons, max_days=args.max_days)
+              lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights)
 
 
 if __name__ == "__main__":

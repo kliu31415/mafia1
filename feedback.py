@@ -98,16 +98,24 @@ def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
 
 
 def write_report(jsonl_path: Path) -> Path | None:
-    """Collect moderator flags, in-game feedback, debriefs and the review into <game>_feedback.md."""
+    """Collect night checks, moderator flags, in-game feedback, debriefs and the review into
+    <game>_feedback.md."""
     records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
     flags = [r for r in records if r["kind"] == "moderator_flag"]
     in_game = [r for r in records if r["kind"] == "player_feedback"]
     debriefs = [r for r in records if r["kind"] == "debrief"]
     reviews = [r for r in records if r["kind"] == "review"]
     lessons = [r for r in records if r["kind"] == "lessons"]
-    if not (flags or in_game or debriefs or reviews or lessons):
+    checks = sorted((r for r in records if r["kind"] == "night_check"), key=lambda r: r["night"])
+    if not (flags or in_game or debriefs or reviews or lessons or checks):
         return None
     out = [f"# Feedback for {jsonl_path.stem}\n"]
+    if checks:
+        out.append(f"## Night checks (judge: {checks[0]['judge'].split('/')[-1]})\n")
+        for r in checks:
+            out.append(f"- **Night {r['night']}: {r['verdict']}**" + (f" ({r['error']})" if r.get("error") else ""))
+            out += [f"  - {i['severity']}, {i['rule']}, {i['kind']}: {i['description']}" for i in r["issues"]]
+        out.append("")
     if flags:
         out.append("## Moderator flags (during the game)\n")
         out += [f"- Day {r['day']} {r['phase']}: {r['issue']}" for r in flags]

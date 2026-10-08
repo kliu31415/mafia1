@@ -84,7 +84,10 @@ class Moderator:
         self.tools = ([MODERATOR_TOOLS[0], apply_changes_tool(docs)] + MODERATOR_TOOLS[1:]
                       + ([FLAG_TOOL] if flag_issues else []))
 
-    def run_phase(self, instructions: str) -> None:
+    def run_phase(self, instructions: str) -> list[dict]:
+        """Runs the moderator until it ends the phase. Returns what it did: each tool call, its
+        arguments and result, in order (for the night check)."""
+        transcript: list[dict] = []
         messages = [
             {"role": "system", "content": f"{self.rules}\n\n---\n\nYou are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
@@ -117,10 +120,14 @@ class Moderator:
                     result = {"error": f"{type(e).__name__}: {e}"}
                 self.game.log.write("moderator_tool", name=name, args=call["function"].get("arguments"),
                                     result=result)
+                transcript.append({"tool": name, "args": call["function"].get("arguments"),
+                                   "result": "(the full state)" if name == "get_state" else result})
                 messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
                 if name == "end_phase":
-                    return
+                    return transcript
         self.game.log.write("moderator_error", error="step limit reached")
+        transcript.append({"tool": "(none)", "result": "the moderator hit its step limit without ending the phase"})
+        return transcript
 
     def dispatch(self, name: str, args: dict) -> Any:
         g = self.game
