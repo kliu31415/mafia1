@@ -5,9 +5,8 @@ unless asked).
 
 ## Working preferences
 
-- Commit and push straight to `main` once `uv run pytest`, `uv run ruff check .` and
-  `uv run mypy .` pass. No need to ask
-  first or to open a branch, unless Kevin asks for one.
+- Commit and push straight to `main` once `uv run pytest`, `uv run ruff check .` and `uv run mypy .`
+  pass. No need to ask first or to open a branch, unless Kevin asks for one.
 - Small changes: test with offline mock games only, no live games.
 - Bigger changes: also run a live game in the background: about 7-8 players with cheap player models
   (haiku-5.5, gpt-6-luna) and an opus-5.5 moderator. Keep a status line saying a live game is running
