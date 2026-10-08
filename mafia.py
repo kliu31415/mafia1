@@ -460,6 +460,8 @@ class Game:
 
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
+        if p.status.get("cleaned"):
+            return f"{name} died. Their role and last will were cleaned by a Mortician."
         reveal = f"{name} died ({cause}). Their role was {p.role}."
         if p.last_will:
             reveal += f" Last will: {p.last_will!r}"
@@ -962,7 +964,8 @@ MODERATOR_TOOLS = [
     tool("apply_changes", "Apply state changes. Ops: {op:'kill', player, cause} | "
          "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
          "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
-         "(e.g. a Fabricator forgery). Night deaths are revealed at dawn with the last will as it is "
+         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
+         "the dawn reveal then hides the role, will and cause. Night deaths are revealed at dawn with the last will as it is "
          "then, so the order of ops within a night doesn't matter.",
          changes={"type": "array", "items": {"type": "object"}}),
     tool("random_choice", "Pick k distinct items uniformly at random using the game's RNG. "
