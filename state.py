@@ -7,7 +7,7 @@ from typing import Any
 from gamelog import GameLog
 from llm import Model
 from events import ANNOUNCEMENT, DEATH, SYSTEM
-from roles import Alignment, NON_BLOCKING_ROLES, ROLES, RoleInfo, Status, logic
+from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 
 
 PLAYER_NAMES = ["Alice", "Bob", "Carol", "Dave", "Erin", "Frank", "Grace", "Heidi", "Ivan", "Judy",
@@ -72,7 +72,7 @@ class Game:
     pending_deaths: list[tuple[str, str]] = field(default_factory=list)  # (name, cause), revealed at dawn
     personal_winners: list[str] = field(default_factory=list)  # Jester / Executioner
     pending_revenge: list[tuple[str, list[str]]] = field(default_factory=list)  # (source, Guilty voters)
-    pending_cardinal: int = 0  # Cardinal deaths whose curse strikes at the next dawn
+    role_state: dict[str, Any] = field(default_factory=dict)  # per-game state of role hooks (roles/*.py)
     prosecutions: list[str] = field(default_factory=list)  # players put on trial when the next day starts
     rigged_day: int | None = None  # day whose trials a Clerk has rigged
     puppets_next: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, for the next day
@@ -137,24 +137,9 @@ class Game:
         if not p.alive:
             return
         p.alive = False
-        hanged = guilty_voters is not None
-        if hanged and p.role == "Jester":
-            self.personal_winners.append(name)
-            self.pending_revenge.append((name, guilty_voters))
-        for exe in self.alive():
-            if exe.role == "Executioner" and exe.status.get(Status.TARGET) == name:
-                if hanged:
-                    self.personal_winners.append(exe.name)
-                    self.pending_revenge.append((exe.name, guilty_voters))
-                    exe.alive = False  # leaves the game; not a death
-                    exe.status[Status.LEFT] = True
-                    self.emit(f"{exe.name} was the Executioner, whose target was {name}. "
-                              f"They win and leave the game.", cat=DEATH)
-                    self.death_record.append(f"Day {self.day}: {exe.name} (Executioner) won and left the game")
-                else:
-                    # Our reading of "if you die of other means": the target dying otherwise.
-                    exe.role = "Jester"
-                    self.emit("Your target died other than by hanging. You are now a Jester.", [exe.name])
+        logic(p.role).on_death(self, p, guilty_voters)
+        for q in self.alive():
+            logic(q.role).on_other_death(self, q, p, guilty_voters)
         self.phases_without_death = 0
         self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase)
         if not public:
@@ -166,8 +151,6 @@ class Game:
             self.reveal_death(name, cause)
         if self.phase != "night":  # a holder who dies at night passes it on after the night's results
             self.pass_katana()
-        if p.role == "Cardinal":
-            self.pending_cardinal += 1
 
     def pass_katana(self) -> None:
         """If the Katana holder is dead, pass the Katana to a random living Yakuza."""
@@ -177,15 +160,10 @@ class Game:
             if self.katana_holder:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
 
-    def resolve_cardinal(self) -> None:
-        """Cardinal: a Divine Attack on a random Good player at the beginning of the day after they die."""
-        for _ in range(self.pending_cardinal):
-            good = [q.name for q in self.alive() if q.info.alignment is Alignment.GOOD]
-            if good:
-                victim = self.rng.choice(good)
-                self.log.write("cardinal", victim=victim)
-                self.kill(victim, "Cardinal's curse")
-        self.pending_cardinal = 0
+    def run_dawn_hooks(self) -> None:
+        """Role effects at the start of the day (e.g. the Cardinal's curse)."""
+        for role_logic in LOGIC.values():
+            role_logic.at_dawn(self)
 
     def announce_dawn(self) -> None:
         """Publicly reveal the night's deaths and queued announcements."""
@@ -233,7 +211,7 @@ class Game:
         """Called at the start of each day. Returns the winning player names, or None.
         Jester / Executioner wins are personal: they don't end the game, but are added at the end."""
         alive = self.alive()
-        blocking = {p.faction for p in alive if p.role not in NON_BLOCKING_ROLES}
+        blocking = {p.faction for p in alive if logic(p.role).blocks_win}
         if len(blocking) <= 1:
             faction = next(iter(blocking), None)
             return [p.name for p in self.players if faction and p.faction == faction] + self.personal_winners

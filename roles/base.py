@@ -7,10 +7,17 @@ the defaults, which do nothing; the LLM moderator resolves their abilities from 
 
 from __future__ import annotations
 
+from enum import Enum
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from state import Game, Player
+
+
+class Alignment(str, Enum):
+    GOOD = "Good"  # the Village faction
+    EVIL = "Evil"  # the Yakuza faction
+    NEUTRAL = "Neutral"  # each Neutral player is their own faction
 
 
 class Status:
@@ -23,7 +30,10 @@ class Status:
 
 
 class RoleLogic:
-    """Defaults for every hook. Subclass it in roles/<role>.py and decorate with @register."""
+    """Defaults for every hook. Subclass it in roles/<role>.py and decorate with @register.
+    Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
+
+    blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
 
     def setup(self, game: Game, p: Player) -> None:
         """After seats and the Katana are assigned. Use game.rng for anything random."""
@@ -35,6 +45,16 @@ class RoleLogic:
     def briefing(self, game: Game, p: Player) -> list[str]:
         """Extra sentences for the player's role briefing (shown in every prompt)."""
         return []
+
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        """This player just died. guilty_voters is set only for an execution by hanging."""
+
+    def on_other_death(self, game: Game, me: Player, dead: Player, guilty_voters: list[str] | None) -> None:
+        """Another player just died; called for every living player of this role."""
+
+    def at_dawn(self, game: Game) -> None:
+        """Start of each day, after the night's deaths are revealed. Called once per registered role,
+        whether or not anyone has it, so it can act after its player has died."""
 
 
 LOGIC: dict[str, RoleLogic] = {}

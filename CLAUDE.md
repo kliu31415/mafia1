@@ -33,10 +33,11 @@ unless asked).
   1. `roles/__init__.py`: `ROLES` entry (alignment, category, Sheriff result, defense, tokens,
      `acts_at_night`) and `ROLE_STATUS`.
   2. `roles/<role>.py`: effects that code carries out, as hooks from `roles/base.py` (setup, briefing,
-     ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core code calls
-     hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to `RoleLogic`.
-  3. Not yet moved into hooks: role logic in `Game.kill`, `check_winner`, dawn effects and per-role
-     `Game` fields (e.g. `rigged_day`, `puppets`) in `state.py`, and `night_action_schema` in `players.py`.
+     deaths, dawn, ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core
+     code calls hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to
+     `RoleLogic`. Per-game role state goes in `game.role_state`, not new `Game` fields.
+  3. Not yet moved into hooks: the Prosecutor, Clerk and Puppeteer `Game` fields (`prosecutions`,
+     `rigged_day`, `puppets`) and their handling in `day.py`, and `night_action_schema` in `players.py`.
   4. `night.py`: the moderator's night instructions, which list passive effects by hand.
   5. `moderator.py`: a new `apply_changes` op needs an `OPS` entry, a `dispatch` case and a line in the
      tool description.

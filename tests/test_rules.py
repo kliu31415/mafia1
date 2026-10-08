@@ -132,7 +132,7 @@ def test_katana_passes_when_its_holder_dies_by_day(game_factory):
 def test_cardinal_curse_kills_a_good_player_next_dawn(game_factory):
     game, _ = game_factory(["Cardinal", "Vanilla Villager", "Vanilla Villager", "Grunt"])
     game.kill("Alice", "executed by hanging", guilty_voters=["Dave"])
-    game.resolve_cardinal()
+    game.run_dawn_hooks()
     assert [p.name for p in game.alive()] in (["Bob", "Dave"], ["Carol", "Dave"])
 
 

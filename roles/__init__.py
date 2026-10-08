@@ -5,16 +5,8 @@ implementing the hooks in roles/base.py. Import it at the bottom of this file to
 """
 
 from dataclasses import dataclass, field
-from enum import Enum
 
-from roles.base import RoleLogic, Status, logic, register  # noqa: F401  (re-exported)
-
-
-class Alignment(str, Enum):
-    GOOD = "Good"  # the Village faction
-    EVIL = "Evil"  # the Yakuza faction
-    NEUTRAL = "Neutral"  # each Neutral player is their own faction
-
+from roles.base import LOGIC, Alignment, RoleLogic, Status, logic, register  # noqa: F401  (re-exported)
 
 @dataclass(frozen=True)
 class RoleInfo:
@@ -58,9 +50,6 @@ ROLES: dict[str, RoleInfo] = {
     "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True, defense="Basic"),
     "Executioner": RoleInfo(Alignment.NEUTRAL, "Neutral", True, defense="Basic"),
 }
-
-# Neutrals that never block a win (rules: "if we ignore Jesters and Executioners...").
-NON_BLOCKING_ROLES = {"Jester", "Executioner"}
 
 DEFAULT_SETUP = [
     "Sheriff", "Medic", "Lookout", "Vigilante", "Vanilla Villager", "Vanilla Villager",
@@ -118,4 +107,4 @@ def role_status_table() -> str:
 
 
 # Role files register their hooks when imported.
-from roles import executioner, roleplayer  # noqa: E402, F401
+from roles import cardinal, executioner, jester, roleplayer  # noqa: E402, F401

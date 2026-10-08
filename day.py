@@ -59,7 +59,7 @@ def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
     game.emit(f"Day {game.day} begins.", cat=PHASE)
     game.announce_dawn()
-    game.resolve_cardinal()
+    game.run_dawn_hooks()
     if game.check_winner() is not None:
         return
     game.puppets, game.puppets_next = game.puppets_next, {}
