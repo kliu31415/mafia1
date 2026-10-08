@@ -120,22 +120,23 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--players", default="haiku-5.5",
                     help="comma-separated models, cycled over the seats (seats are shuffled)")
-    ap.add_argument("--moderator", default="haiku-5.5")
+    ap.add_argument("--moderator", default="opus-5.5")
     ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names")
     ap.add_argument("--effort", default=DEFAULT_EFFORT)
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
-    fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md)")
-    fb.add_argument("--debrief", action="store_true", help="after the game, ask every player and the moderator "
+    fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md); on by default, "
+                             "turn one off with --no-<flag>")
+    fb.add_argument("--debrief", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player and the moderator "
                     "what was confusing, missing or broken")
-    fb.add_argument("--mod-flags", action="store_true", help="give the moderator a flag_issue tool for rules "
+    fb.add_argument("--mod-flags", action=argparse.BooleanOptionalAction, default=True, help="give the moderator a flag_issue tool for rules "
                     "ambiguities and missing tools during the game")
-    fb.add_argument("--feedback-field", action="store_true", help="add an optional out-of-game feedback field "
+    fb.add_argument("--feedback-field", action=argparse.BooleanOptionalAction, default=True, help="add an optional out-of-game feedback field "
                     "to every player response")
-    fb.add_argument("--lessons", action="store_true", help="after the game, ask every player for tips they wish "
+    fb.add_argument("--lessons", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player for tips they wish "
                     "they'd known; also appended to logs/lessons.jsonl across games for analysis")
-    fb.add_argument("--review", action="store_true", help="after the game, have the moderator model review the "
+    fb.add_argument("--review", action=argparse.BooleanOptionalAction, default=True, help="after the game, have the moderator model review the "
                     "whole log for problems")
     fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
                     "--moderator models on the rules (graded by the moderator model)")
