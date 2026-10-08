@@ -37,6 +37,9 @@ class RoleLogic:
     # Reminder for the moderator's night resolution, for effects with no submitted action or that
     # need a special op. Included when anyone in the game has (or had) the role.
     night_note: str = ""
+    # Extra apply_changes ops for the moderator, offered only when someone in the game has the role:
+    # op -> (required fields, optional fields, description shown in the tool). apply_op carries them out.
+    ops: dict[str, tuple[set[str], set[str], str]] = {}
 
     def setup(self, game: Game, p: Player) -> None:
         """After seats and the Katana are assigned. Use game.rng for anything random."""
@@ -54,6 +57,11 @@ class RoleLogic:
 
     def on_other_death(self, game: Game, me: Player, dead: Player, guilty_voters: list[str] | None) -> None:
         """Another player just died; called for every living player of this role."""
+
+    def apply_op(self, game: Game, change: dict) -> None:
+        """Carry out one of this role's ops. Fields are already checked against `ops`, and player
+        names against the game."""
+        raise NotImplementedError(change["op"])
 
     def at_dawn(self, game: Game) -> None:
         """Start of each day, after the night's deaths are revealed. Called once per registered role,

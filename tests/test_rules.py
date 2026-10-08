@@ -207,3 +207,14 @@ def test_moderator_night_notes_cover_roles_in_the_game(game_factory):
     game.kill("Alice", "Katana")  # a dead Trapper's traps still work
     notes = role_notes(game)
     assert "Trapper" in notes and "Seer" in notes and "Arsonist" not in notes
+
+
+def test_role_ops_are_offered_only_for_roles_in_the_game(game_factory):
+    game, players = game_factory(["Clerk", "Vanilla Villager", "Vanilla Villager"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote"}]})
+    assert game.rigged_day == game.day + 1
+    with pytest.raises(ValueError, match="op must be one of"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "player": "Bob"}]})
+    description = next(t for t in mod.tools if t["function"]["name"] == "apply_changes")["function"]["description"]
+    assert "rig_vote" in description and "prosecute" not in description

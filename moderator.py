@@ -7,7 +7,7 @@ from typing import Any
 from llm import LLMClient, Model
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT, RESULT
-from roles import Status
+from roles import RoleLogic, Status, logic
 from state import Game
 
 
@@ -18,18 +18,21 @@ def tool(name: str, description: str, **params: dict) -> dict:
     }}
 
 
+def apply_changes_tool(role_op_docs: list[str]) -> dict:
+    return tool(
+        "apply_changes", "Apply state changes. Ops: {op:'kill', player, cause} | "
+        "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
+        "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
+        "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
+        "the dawn reveal then hides the role, will and cause. Night deaths are revealed at dawn with "
+        "the last will as it is then, so the order of ops within a night doesn't matter."
+        + (" Ops for roles in this game, whose effects code carries out: " + " | ".join(role_op_docs)
+           if role_op_docs else ""),
+        changes={"type": "array", "items": {"type": "object"}})
+
+
 MODERATOR_TOOLS = [
     tool("get_state", "Full hidden game state: roles, tokens, statuses, katana holder."),
-    tool("apply_changes", "Apply state changes. Ops: {op:'kill', player, cause} | "
-         "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
-         "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
-         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
-         "the dawn reveal then hides the role, will and cause. Night deaths are revealed at dawn with "
-         "the last will as it is then, so the order of ops within a night doesn't matter. Day effects "
-         "that code carries out: {op:'prosecute', player} (they go to trial when the next day starts), "
-         "{op:'rig_vote'} (Clerk: tomorrow's trials execute the accused regardless of the vote; no "
-         "player field), {op:'puppet', player, by} (player is puppeted by the Puppeteer `by` tomorrow).",
-         changes={"type": "array", "items": {"type": "object"}}),
     tool("random_choice", "Pick k distinct items uniformly at random using the game's RNG. "
          "Always use this instead of choosing 'randomly' yourself.",
          options={"type": "array", "items": {"type": "string"}}, k={"type": "integer"}),
@@ -41,17 +44,15 @@ MODERATOR_TOOLS = [
          summary={"type": "string"}),
 ]
 
-# apply_changes ops: op -> (required fields, optional fields). Ops are checked against this before
-# any is applied, so a malformed batch changes nothing and the moderator gets a clear error.
-OPS: dict[str, tuple[set[str], set[str]]] = {
+# apply_changes ops: op -> (required fields, optional fields). Roles add their own (RoleLogic.ops).
+# Ops are checked before any is applied, so a malformed batch changes nothing and the moderator
+# gets a clear error.
+CORE_OPS: dict[str, tuple[set[str], set[str]]] = {
     "kill": ({"player"}, {"cause"}),
     "set_tokens": ({"player", "token", "value"}, set()),
     "set_status": ({"player", "key"}, {"value"}),
     "set_katana": ({"player"}, set()),
     "set_last_will": ({"player", "text"}, set()),
-    "prosecute": ({"player"}, set()),
-    "rig_vote": (set(), set()),
-    "puppet": ({"player", "by"}, set()),
 }
 CODE_STATUS_KEYS = {v for k, v in vars(Status).items() if not k.startswith("_")}
 
@@ -70,8 +71,17 @@ class Moderator:
         self.players = players
         self.model = model
         self.rules = rules
-        self.tools = MODERATOR_TOOLS + ([FLAG_TOOL] if flag_issues else [])
         self.flags: list[str] = []
+        self.ops = dict(CORE_OPS)
+        self.op_roles: dict[str, RoleLogic] = {}  # role op -> the role that carries it out
+        docs = []
+        for role in sorted({p.role for p in game.players}):
+            for op, (required, optional, doc) in logic(role).ops.items():
+                self.ops[op] = (required, optional)
+                self.op_roles[op] = logic(role)
+                docs.append(doc)
+        self.tools = ([MODERATOR_TOOLS[0], apply_changes_tool(docs)] + MODERATOR_TOOLS[1:]
+                      + ([FLAG_TOOL] if flag_issues else []))
 
     def run_phase(self, instructions: str) -> None:
         messages = [
@@ -83,7 +93,7 @@ class Moderator:
              "mention the Katana, framing or defenses to an investigator), and never name an attacker "
              "or reveal roles beyond what the rules allow."
              + (" If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and "
-                "then continue with your best interpretation." if len(self.tools) > len(MODERATOR_TOOLS) else "")},
+                "then continue with your best interpretation." if FLAG_TOOL in self.tools else "")},
             {"role": "user", "content": f"{instructions}\n\nCurrent full state (call get_state to "
              f"refresh after changes):\n{json.dumps(self.game.full_state())}\n\nPublic history so far:\n"
              f"{self.game.history_for('__moderator_public__')}"},
@@ -121,12 +131,6 @@ class Moderator:
                 for c in args["changes"]:
                     p = g.player(c["player"]) if "player" in c else None
                     match c["op"]:
-                        case "prosecute":
-                            g.prosecutions.append(p.name)
-                        case "rig_vote":
-                            g.rigged_day = g.day + 1
-                        case "puppet":
-                            g.puppets_next[p.name] = g.player(c["by"]).name
                         case "kill":
                             g.kill(p.name, c.get("cause", "killed"))
                         case "set_tokens":
@@ -140,6 +144,8 @@ class Moderator:
                             p.last_will = c["text"]
                         case "set_katana":
                             g.katana_holder = p.name
+                        case op:
+                            self.op_roles[op].apply_op(g, c)
                 return {"ok": True, **({"notes": notes} if notes else {})}
             case "random_choice":
                 return {"chosen": g.rng.sample(args["options"], int(args.get("k", 1)))}
@@ -171,9 +177,9 @@ class Moderator:
         """Raises ValueError, before anything is applied, if any op is malformed. Returns warnings."""
         notes = []
         for i, c in enumerate(changes):
-            if not isinstance(c, dict) or c.get("op") not in OPS:
-                raise ValueError(f"change {i}: op must be one of {sorted(OPS)}; nothing was applied")
-            required, optional = OPS[c["op"]]
+            if not isinstance(c, dict) or c.get("op") not in self.ops:
+                raise ValueError(f"change {i}: op must be one of {sorted(self.ops)}; nothing was applied")
+            required, optional = self.ops[c["op"]]
             fields = set(c) - {"op"}
             if missing := required - fields:
                 raise ValueError(f"change {i} ({c['op']}): missing {sorted(missing)}; nothing was applied")

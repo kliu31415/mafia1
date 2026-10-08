@@ -36,12 +36,13 @@ unless asked).
      deaths, dawn, ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core
      code calls hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to
      `RoleLogic`. Per-game role state goes in `game.role_state`, not new `Game` fields.
-  3. Not yet moved into hooks: the Prosecutor, Clerk and Puppeteer `Game` fields (`prosecutions`,
-     `rigged_day`, `puppets`) and their handling in `day.py`, and `night_action_schema` in `players.py`.
+  3. Day mechanics roles trigger (`Game.prosecutions`, `rigged_day`, `puppets`) are generic and live in
+     `state.py` and `day.py`; `night_action_schema` in `players.py` is one shape for every role.
   4. `night_note` on the role's class: a reminder the moderator gets each night for effects with no
      submitted action or that need a special op. Only roles in the game are included.
-  5. `moderator.py`: a new `apply_changes` op needs an `OPS` entry, a `dispatch` case and a line in the
-     tool description.
+  5. A role-specific `apply_changes` op: declare it in the role's `ops` and carry it out in `apply_op`.
+     The moderator is offered it only when the role is in the game. Ops every game needs are
+     `CORE_OPS` in `moderator.py`.
   6. `tests/test_rules.py`: a scenario test for anything code carries out.
 
 ## Conventions
