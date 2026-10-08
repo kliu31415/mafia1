@@ -168,14 +168,17 @@ class OpenRouterClient:
 
 
 class MockClient:
-    """Offline stand-in: random schema-valid answers for players, a no-op moderator."""
+    """Offline stand-in: random schema-valid answers for players; the moderator only carries out the
+    Katana attack. Each answer is seeded by the seed and the prompt, not by call order, so a seed
+    replays the same game even though players are asked in parallel threads."""
 
     def __init__(self, seed: int | None = None):
-        self.rng = random.Random(seed)
+        self.seed = seed
         self.total_cost: dict[str, float] = {}
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
              schema: dict | None = None, schema_name: str = "response") -> LLMReply:
+        rng = random.Random(f"{self.seed}|{model.value}|{json.dumps(messages, sort_keys=True)}")
         tool_calls = []
         content = None
         if tools:
@@ -186,36 +189,36 @@ class MockClient:
             katana = re.search(r"Katana vote result: (\{.*?\})\n", messages[-1].get("content") or "")
             if not done and katana and (target := json.loads(katana[1]).get("attack")):
                 name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana"}]}
-            tool_calls = [{"id": f"call_{self.rng.randrange(10**9)}", "type": "function",
+            tool_calls = [{"id": f"call_{rng.randrange(10**9)}", "type": "function",
                            "function": {"name": name, "arguments": json.dumps(args)}}]
         elif schema:
-            content = json.dumps(self._sample(schema))
+            content = json.dumps(self._sample(schema, rng))
         else:
             content = "ok"
         msg = {"role": "assistant", "content": content, "tool_calls": tool_calls or None}
         return LLMReply(content, None, tool_calls, msg, model.value, 0.0, {})
 
-    def _sample(self, s: dict) -> Any:
+    def _sample(self, s: dict, rng: random.Random) -> Any:
         if "enum" in s:
-            return self.rng.choice(s["enum"])
+            return rng.choice(s["enum"])
         if "anyOf" in s:
-            return self._sample(self.rng.choice(s["anyOf"]))
+            return self._sample(rng.choice(s["anyOf"]), rng)
         t = s.get("type")
         if isinstance(t, list):
             # Mostly pick the non-null type so mocks actually do things.
             non_null = [x for x in t if x != "null"]
-            t = "null" if self.rng.random() < 0.3 or not non_null else self.rng.choice(non_null)
+            t = "null" if rng.random() < 0.3 or not non_null else rng.choice(non_null)
         match t:
             case "object":
-                return {k: self._sample(v) for k, v in s.get("properties", {}).items()}
+                return {k: self._sample(v, rng) for k, v in s.get("properties", {}).items()}
             case "array":
-                return [self._sample(s["items"]) for _ in range(self.rng.randint(0, 1))]
+                return [self._sample(s["items"], rng) for _ in range(rng.randint(0, 1))]
             case "string":
-                return self.rng.choice(["Hmm.", "I trust no one.", "Let's be careful today.", "blah " * 40,
+                return rng.choice(["Hmm.", "I trust no one.", "Let's be careful today.", "blah " * 40,
                                         "long " * 900])
             case "integer":
-                return self.rng.randint(s.get("minimum", 0), s.get("maximum", 1))
+                return rng.randint(s.get("minimum", 0), s.get("maximum", 1))
             case "boolean":
-                return self.rng.random() < 0.5
+                return rng.random() < 0.5
             case _:
                 return None

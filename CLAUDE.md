@@ -17,11 +17,11 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 
 ## Checking changes
 
-- `uv run pytest` runs the scenario and visibility tests (offline, about a second). Run it before
+- `uv run pytest` runs the scenario and visibility tests (offline, a few seconds). Run it before
   every commit, and add a test when you fix a rules bug or change a code-handled role.
 - `uv run ruff check .` catches undefined names, unused imports and likely bugs; `uv run mypy .` checks
   types (e.g. a possibly-None value used as a player).
-- `uv run mafia.py --mock` plays a full offline game. Its moderator only carries out the Katana attack,
+- `uv run mafia.py --mock` plays a full offline game; the same `--seed` replays the same game. Its moderator only carries out the Katana attack,
   so moderator-handled roles are only exercised in live games.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the

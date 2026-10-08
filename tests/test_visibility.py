@@ -50,3 +50,12 @@ def test_briefings_reveal_only_what_a_role_knows(game_factory):
                 continue
             teammates = p.info.alignment is Alignment.EVIL and q.info.alignment is Alignment.EVIL
             assert (f"{q.name} ({q.role})" in briefing) == teammates, (p.name, briefing)
+
+
+def test_mock_games_replay_from_their_seed(tmp_path, monkeypatch):
+    """Players are asked in parallel threads, so this fails if answers depend on call order."""
+    def events(sub):
+        (tmp_path / sub).mkdir()
+        recs = mock_game_records(tmp_path / sub, monkeypatch, seed=77)
+        return [r["text"] for r in recs if r["kind"] == "event"]
+    assert events("a") == events("b")
