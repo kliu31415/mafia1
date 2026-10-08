@@ -31,6 +31,7 @@ from datetime import datetime
 from pathlib import Path
 
 from day import run_day
+from feedback import run_debrief, run_quiz, run_review, write_report
 from gamelog import GameLog
 from llm import DEFAULT_EFFORT, MockClient, Model, OpenRouterClient, load_api_key, parse_model
 from moderator import Moderator
@@ -49,14 +50,15 @@ STALL_LIMIT = 6  # rules: everyone loses after three nights and three days with 
 
 
 def play_game(client, models: list[Model], moderator_model: Model, roles: list[str],
-              seed: int | None) -> Path:
+              seed: int | None, debrief: bool = False, flag_issues: bool = False,
+              feedback_field: bool = False, review: bool = False) -> Path:
     rng = random.Random(seed)
     prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
     log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
     rules = RULES_PATH.read_text(encoding="utf-8")
     game = setup_game(roles, models, rng, log)
-    players = Players(game, client, rules)
-    moderator = Moderator(game, client, players, moderator_model, rules)
+    players = Players(game, client, rules, feedback_field=feedback_field)
+    moderator = Moderator(game, client, players, moderator_model, rules, flag_issues=flag_issues)
     for p in game.players:
         print(f"  {p.name:<8} {p.role:<17} {p.model.short}")
 
@@ -83,12 +85,20 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
             game.phases_without_death += 2
 
     print(f"Winners: {game.winners}")
+    if debrief:
+        print("Debriefing players and moderator...")
+        run_debrief(game, players, moderator)
+    if review:
+        print("Reviewing the log...")
+        run_review(game, client, moderator_model, rules, log.path.with_suffix(".txt"))
     log.write("result", winners=game.winners, days=game.day, cost=client.total_cost,
               roles={p.name: p.role for p in game.players},
               models={p.name: p.model.value for p in game.players})
     log.close()
     print(f"Cost by model: {client.total_cost}")
     print(f"Logs: {log.path} (+ .txt, .html)")
+    if report := write_report(log.path):
+        print(f"Feedback: {report}")
     return log.path
 
 
@@ -102,6 +112,17 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
+    fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md)")
+    fb.add_argument("--debrief", action="store_true", help="after the game, ask every player and the moderator "
+                    "what was confusing, missing or broken")
+    fb.add_argument("--mod-flags", action="store_true", help="give the moderator a flag_issue tool for rules "
+                    "ambiguities and missing tools during the game")
+    fb.add_argument("--feedback-field", action="store_true", help="add an optional out-of-game feedback field "
+                    "to every player response")
+    fb.add_argument("--review", action="store_true", help="after the game, have the moderator model review the "
+                    "whole log for problems")
+    fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
+                    "--moderator models on the rules (graded by the moderator model)")
     args = ap.parse_args()
     if args.list_roles:
         print(role_status_table())
@@ -114,7 +135,13 @@ def main() -> None:
     models = [parse_model(m.strip()) for m in args.players.split(",")]
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
-    play_game(client, models, parse_model(args.moderator), roles, seed)
+    if args.rules_quiz:
+        moderator = parse_model(args.moderator)
+        path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
+        print(f"Quiz results: {path}  Cost: {client.total_cost}")
+        return
+    play_game(client, models, parse_model(args.moderator), roles, seed, debrief=args.debrief,
+              flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review)
 
 
 if __name__ == "__main__":

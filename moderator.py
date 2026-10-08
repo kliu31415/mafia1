@@ -38,16 +38,23 @@ MODERATOR_TOOLS = [
          summary={"type": "string"}),
 ]
 
+FLAG_TOOL = tool("flag_issue", "Report a problem with the game itself without stopping it: an ambiguous or "
+                 "contradictory rule, a tool or piece of state you're missing, or anything that looks "
+                 "like a program bug. Then carry on with your best interpretation.", issue={"type": "string"})
+
 MAX_MODERATOR_STEPS = 40
 
 
 class Moderator:
-    def __init__(self, game: Game, client, players: Players, model: Model, rules: str):
+    def __init__(self, game: Game, client, players: Players, model: Model, rules: str,
+                 flag_issues: bool = False):
         self.game = game
         self.client = client
         self.players = players
         self.model = model
         self.rules = rules
+        self.tools = MODERATOR_TOOLS + ([FLAG_TOOL] if flag_issues else [])
+        self.flags: list[str] = []
 
     def run_phase(self, instructions: str) -> None:
         messages = [
@@ -57,13 +64,15 @@ class Moderator:
              "as the rules allow. A private result contains only what the rules say its recipient "
              "learns, worded neutrally: never explain why a result came out as it did (e.g. never "
              "mention the Katana, framing or defenses to an investigator), and never name an attacker "
-             "or reveal roles beyond what the rules allow."},
+             "or reveal roles beyond what the rules allow."
+             + (" If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and "
+                "then continue with your best interpretation." if len(self.tools) > len(MODERATOR_TOOLS) else "")},
             {"role": "user", "content": f"{instructions}\n\nCurrent full state (call get_state to "
              f"refresh after changes):\n{json.dumps(self.game.full_state())}\n\nPublic history so far:\n"
              f"{self.game.history_for('__moderator_public__')}"},
         ]
         for _ in range(MAX_MODERATOR_STEPS):
-            reply = self.client.chat(self.model, messages, tools=MODERATOR_TOOLS)
+            reply = self.client.chat(self.model, messages, tools=self.tools)
             self.game.log.write("moderator_call", model=self.model.value, content=reply.content,
                                 reasoning=reply.reasoning, tool_calls=reply.tool_calls, cost=reply.cost,
                                 usage=reply.usage)
@@ -136,4 +145,8 @@ class Moderator:
                 return out
             case "end_phase":
                 return {"ok": True}
+            case "flag_issue":
+                self.flags.append(args["issue"])
+                g.log.write("moderator_flag", day=g.day, phase=g.phase, issue=args["issue"])
+                return {"ok": True, "note": "Thanks; carry on."}
         raise ValueError(f"unknown tool {name!r}")

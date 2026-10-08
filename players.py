@@ -86,7 +86,7 @@ def role_briefing(game: Game, p: Player) -> str:
     return " ".join(lines)
 
 
-def player_messages(game: Game, p: Player, rules: str, task: str) -> list[dict]:
+def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field: bool = False) -> list[dict]:
     order = ", ".join(f"{q.name}{'' if q.alive else ' (dead)'}" for q in game.players)
     system = (
         f"{rules}\n\n---\n\nYou are a player in this game. Your only goal is to win by your role's win "
@@ -101,8 +101,15 @@ def player_messages(game: Game, p: Player, rules: str, task: str) -> list[dict]:
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
             "words; longer is truncated), or null to keep it as is. Use it for plans, suspicions and "
-            f"anything you want to remember.\n\n---\n\n{task}")
+            "anything you want to remember.\n\n"
+            + (FEEDBACK_NOTE if feedback_field else "")
+            + f"---\n\n{task}")
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
+
+
+FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: if a rule or this "
+                 "interface is confusing, seems broken, or stops you doing something you want, say so "
+                 "there briefly; otherwise leave it null. Nobody in the game sees it.\n\n")
 
 
 def with_notepad(schema: dict) -> dict:
@@ -114,14 +121,18 @@ def with_notepad(schema: dict) -> dict:
 class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""
 
-    def __init__(self, game: Game, client, rules: str):
+    def __init__(self, game: Game, client, rules: str, feedback_field: bool = False):
         self.game = game
         self.client = client
         self.rules = rules
+        self.feedback_field = feedback_field
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
-        messages = player_messages(self.game, p, self.rules, task)
+        messages = player_messages(self.game, p, self.rules, task, self.feedback_field)
         schema = with_notepad(schema)
+        if self.feedback_field:
+            schema = {**schema, "properties": {**schema["properties"], "feedback": nullable(STR)},
+                      "required": [*schema["required"], "feedback"]}
         for attempt in range(2):
             try:
                 reply = self.client.chat(p.model, messages, schema=schema)
@@ -129,6 +140,9 @@ class Players:
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage)
+                if isinstance(fb := out.pop("feedback", None), str) and fb.strip():
+                    self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase,
+                                        player=p.name, role=p.role, feedback=fb)
                 if isinstance(note := out.pop("notepad", None), str):
                     p.notepad = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
                 return out
