@@ -857,35 +857,39 @@ def majority(yes: int, total: int) -> bool:
 
 
 def run_nomination(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
-    """Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed"."""
-    game.emit(f"{nominator.name} nominated {nominee}. Voting Yes/No proceeds clockwise.")
-    yes = 0
-    for voter in game.clockwise_from(nominator.name):
-        if voter is nominator:
-            vote = True  # the nominator votes Yes by default
-        else:
-            vote = players.ask(voter, f"{nominator.name} nominated {nominee}. Vote Yes to put them on "
-                               "trial, No otherwise.", VOTE_SCHEMA, {"thoughts": "", "vote": False})["vote"]
-        yes += vote
-        game.emit(f"{voter.name} votes {'Yes' if vote else 'No'} on the nomination of {nominee}.")
-    if not majority(yes, len(game.alive())):
-        game.emit(f"The nomination of {nominee} failed ({yes} Yes).")
+    """Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed".
+    Both votes are simultaneous: every voter decides without seeing the others, then all votes
+    are revealed together."""
+    game.emit(f"{nominator.name} nominated {nominee}. Everyone now votes Yes/No simultaneously.")
+    others = [v for v in game.clockwise_from(nominator.name) if v is not nominator]
+    task = (f"{nominator.name} nominated {nominee}. Vote true (Yes) to put them on trial, false (No) "
+            "otherwise. Voting is simultaneous: you can't see anyone else's vote, and all votes are "
+            f"revealed publicly once everyone has voted. {nominator.name} votes Yes automatically.")
+    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"thoughts": "", "vote": False}) for v in others])
+    yes_voters = [nominator.name] + [v.name for v, o in zip(others, outs) if o["vote"]]
+    no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
+    game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
+              f"No - {', '.join(no_voters) or 'nobody'}.")
+    if not majority(len(yes_voters), len(game.alive())):
+        game.emit(f"The nomination of {nominee} failed ({len(yes_voters)} Yes).")
         return "failed"
 
-    game.emit(f"{nominee} is put on trial ({yes} Yes).")
+    game.emit(f"{nominee} is put on trial ({len(yes_voters)} Yes).")
     accused = game.player(nominee)
     chat_turn(game, players, accused, rnd, can_nominate=False, free_defense=True,
               extra="You are on trial. Defend yourself; you speak first.")
     for p in game.clockwise_from(accused.name)[1:]:
         chat_turn(game, players, p, rnd, can_nominate=False, extra=f"{nominee} is on trial.")
 
-    guilty = []
-    for voter in game.clockwise_from(nominator.name):
-        vote = players.ask(voter, f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent.",
-                           VOTE_SCHEMA, {"thoughts": "", "vote": False})["vote"]
-        if vote:
-            guilty.append(voter.name)
-        game.emit(f"{voter.name} votes {'Guilty' if vote else 'Innocent'} on {nominee}.")
+    voters = game.alive()
+    task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
+            "simultaneous: you can't see anyone else's vote, and all votes are revealed publicly once "
+            "everyone has voted.")
+    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"thoughts": "", "vote": False}) for v in voters])
+    guilty = [v.name for v, o in zip(voters, outs) if o["vote"]]
+    innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
+    game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
+              f"Innocent - {', '.join(innocent) or 'nobody'}.")
     if majority(len(guilty), len(game.alive())):
         game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).")
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
