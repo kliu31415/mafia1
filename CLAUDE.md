@@ -1,7 +1,9 @@
 # mafia1
 
 The module map is in `mafia.py`'s docstring. The rules are `rules_1.txt` (Kevin's text; don't edit it
-unless asked).
+unless asked). Its general paragraphs are labeled R1-R15 and roles are cited by name; code that implements
+a rule cites it (e.g. `# rules R8`), so `grep -n "R8"` finds every place the Katana rule is used. Keep
+labels stable: add new paragraphs at the end of the general rules (R16, ...) instead of renumbering.
 
 ## Working preferences
 

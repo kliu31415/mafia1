@@ -54,7 +54,7 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
     moderator.run_phase(
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
-        "Resolve all actions simultaneously per the rules (visits, role-blocks, attack vs defense, "
+        "Resolve all actions simultaneously per the rules (R10; visits R6, role-blocks R9, attack vs defense R3, "
         "investigation results, Katana appearing Not Evil, Fabricator framing, etc). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "
         "Deaths you apply are announced publicly at dawn automatically, including the kill's cause, so "
@@ -80,7 +80,7 @@ def role_notes(game: Game) -> str:
 
 
 def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
-    """Free Yakuza chat in seat order. Ends early once everyone says they're ready."""
+    """Free Yakuza chat in seat order (rules R8). Ends early once everyone says they're ready."""
     yakuza = game.yakuza()
     names = [y.name for y in yakuza]
     schema = obj(thoughts=STR, message=nullable(STR), ready=BOOL)
@@ -102,6 +102,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
 
 
 def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
+    """Rules R8: the Katana holder and target each need a strict majority of living Yakuza."""
     yakuza = [y.name for y in game.yakuza()]
     if not yakuza:
         return {"attack": None, "holder": game.katana_holder}

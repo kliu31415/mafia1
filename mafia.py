@@ -53,7 +53,7 @@ LOG_DIR = ROOT / "logs"
 # Safeguard against games that never end (not a rule from rules_1.txt): by default a game stops
 # after (number of players + EXTRA_DAYS) days, with no winner. Override with --max-days.
 EXTRA_DAYS = 10
-STALL_LIMIT = 6  # rules: everyone loses after three nights and three days with no deaths
+STALL_LIMIT = 6  # rules R14: everyone loses after three nights and three days with no deaths
 
 
 def play_game(client: LLMClient, models: list[Model], moderator_model: Model, roles: list[str],
@@ -72,7 +72,7 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
 
     max_days = max_days or len(roles) + EXTRA_DAYS
     while game.day <= max_days:
-        # The stall rule is checked when a day begins; a winner is checked after every death,
+        # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
         # i.e. after the day's execution and after the night's (simultaneous) deaths.
         if game.phases_without_death >= STALL_LIMIT:
             game.winners = []

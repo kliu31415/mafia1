@@ -71,7 +71,7 @@ def run_day(game: Game, players: Players) -> None:
         else:
             del game.puppets[puppet]
 
-    # Last wills, written once at the beginning of each day (including day 1).
+    # Last wills, written once at the beginning of each day (including day 1). Rules R13.
     task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
             "to ALL players, including other factions.")
     outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
@@ -233,7 +233,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
 
 
 def run_nomination(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
-    """Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed".
+    """Rules R4. Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed".
     Both votes are simultaneous: every voter decides without seeing the others, then all votes
     are revealed together."""
     game.emit(f"{nominator.name} nominated {nominee}. Everyone now votes Yes/No simultaneously.", cat=NOMINATION)

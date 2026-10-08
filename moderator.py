@@ -58,7 +58,8 @@ CODE_STATUS_KEYS = {v for k, v in vars(Status).items() if not k.startswith("_")}
 
 FLAG_TOOL = tool("flag_issue", "Report a problem with the game itself without stopping it: an ambiguous or "
                  "contradictory rule, a tool or piece of state you're missing, or anything that looks "
-                 "like a program bug. Then carry on with your best interpretation.", issue={"type": "string"})
+                 "like a program bug. Cite the rule (e.g. R9) or role it concerns. Then carry on with your "
+                 "best interpretation.", issue={"type": "string"})
 
 MAX_MODERATOR_STEPS = 40
 

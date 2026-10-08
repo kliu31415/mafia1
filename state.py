@@ -105,7 +105,7 @@ class Game:
         return [p for p in self.alive() if p.info.alignment is Alignment.EVIL]
 
     def clockwise_from(self, name: str) -> list[Player]:
-        """Alive players in circle order, starting at `name` (who must be alive)."""
+        """Alive players in circle order (rules R11), starting at `name` (who must be alive)."""
         alive = self.alive()
         i = next(i for i, p in enumerate(alive) if p.name == name)
         return alive[i:] + alive[:i]
@@ -132,7 +132,7 @@ class Game:
 
     def kill(self, name: str, cause: str, public: bool = True,
              guilty_voters: list[str] | None = None) -> None:
-        """guilty_voters is set only for an execution by hanging."""
+        """Rules R12. guilty_voters is set only for an execution by hanging."""
         p = self.player(name)
         if not p.alive:
             return
@@ -153,7 +153,7 @@ class Game:
             self.pass_katana()
 
     def pass_katana(self) -> None:
-        """If the Katana holder is dead, pass the Katana to a random living Yakuza."""
+        """If the Katana holder is dead, pass the Katana to a random living Yakuza (rules R8)."""
         if self.katana_holder and not self.player(self.katana_holder).alive:
             remaining = self.yakuza()
             self.katana_holder = self.rng.choice(remaining).name if remaining else None
@@ -208,7 +208,7 @@ class Game:
         self.pending_revenge.clear()
 
     def check_winner(self) -> list[str] | None:
-        """Called at the start of each day. Returns the winning player names, or None.
+        """Rules R1. Called at the start of each day. Returns the winning player names, or None.
         Jester / Executioner wins are personal: they don't end the game, but are added at the end."""
         alive = self.alive()
         blocking = {p.faction for p in alive if logic(p.role).blocks_win}
@@ -262,4 +262,4 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
 
 
 def majority(yes: int, total: int) -> bool:
-    return yes * 2 > total  # strictly more than half
+    return yes * 2 > total  # strictly more than half (rules R4, R8)
