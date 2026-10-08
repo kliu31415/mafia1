@@ -5,8 +5,8 @@ nominations, votes) run in code. Night actions are collected from players as str
 then an LLM moderator resolves them through tools (get_state, apply_changes, random_choice, tell,
 ask_player, end_phase), since the role interactions are too varied to hand-code yet.
 
-All LLM calls go through OpenRouter. The API key is read from ../api_keys.txt (a line like
-"OpenRouter: sk-or-...").
+All LLM calls go through OpenRouter. The API key is read from the OPENROUTER_API_KEY
+environment variable.
 
 Usage:
     uv run mafia.py --mock                                   # offline run, no API calls
@@ -15,6 +15,7 @@ Usage:
 
 import argparse
 import json
+import os
 import random
 import time
 import urllib.error
@@ -28,9 +29,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
-API_KEYS_PATH = ROOT.parent / "api_keys.txt"
 LOG_DIR = ROOT / "logs"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+API_KEY_ENV_VAR = "OPENROUTER_API_KEY"
 
 
 # ---------------------------------------------------------------------------------------------
@@ -80,13 +81,18 @@ DEFAULT_EFFORT = "medium"
 DEFAULT_MAX_TOKENS = 16_000  # reasoning + answer; Anthropic needs this above the reasoning budget
 
 
-def load_api_key(path: Path = API_KEYS_PATH, name: str = "openrouter") -> str:
-    """Read a "Name: key" line from the keys file. Never print the result."""
-    for line in path.read_text(encoding="utf-8").splitlines():
-        label, sep, value = line.partition(":")
-        if sep and label.strip().lower() == name:
-            return value.strip()
-    raise KeyError(f"No '{name}:' line in {path}")
+def load_api_key() -> str:
+    """Read the OpenRouter key from the environment. Never print the result."""
+    key = os.environ.get(API_KEY_ENV_VAR, "").strip()
+    if not key:
+        raise SystemExit(
+            f"{API_KEY_ENV_VAR} is not set. Set it to your OpenRouter API key, e.g.\n"
+            f"  PowerShell (this session):  $env:{API_KEY_ENV_VAR} = \"sk-or-...\"\n"
+            f"  PowerShell (persistent):    setx {API_KEY_ENV_VAR} \"sk-or-...\"  (then open a new terminal)\n"
+            f"  bash:                       export {API_KEY_ENV_VAR}=sk-or-...\n"
+            "Or pass --mock to run without API calls."
+        )
+    return key
 
 
 @dataclass
