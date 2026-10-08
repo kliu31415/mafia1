@@ -34,6 +34,7 @@ import argparse
 import hashlib
 import random
 import subprocess
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -45,7 +46,7 @@ from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
 from players import Players
-from roles import DEFAULT_SETUP, ROLES, role_status_table
+from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from events import PHASE
 from state import setup_game
 
@@ -87,7 +88,8 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
                 "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
                 "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
                 "feedback_field": feedback_field, "check_nights": check_nights}
-    game = setup_game(roles, models, rng, log, meta=game_meta(rules, settings))
+    started = time.time()
+    game = setup_game(roles, models, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
     players = Players(game, client, rules, feedback_field=feedback_field)
     moderator = Moderator(game, client, players, moderator_model, rules, flag_issues=flag_issues)
     # The judge is the moderator's model; checks run in the background while the game continues.
@@ -99,14 +101,14 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
         # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
         # i.e. after the day's execution and after the night's (simultaneous) deaths.
         if game.phases_without_death >= STALL_LIMIT:
-            game.winners = []
+            game.winners, end_reason = [], "stall"
             game.emit("Nobody died for three days and three nights. Everyone loses.")
             break
         print(f"Day {game.day}...")
         deaths_before = game.death_count()
         run_day(game, players)
         if (winners := game.check_winner()) is not None:
-            game.winners = winners
+            game.winners, end_reason = winners, "win"
             break
         print(f"Night {game.day}...")
         run_night(game, players, moderator, checker)
@@ -115,15 +117,16 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
             game.phase = "day"
             game.emit(f"Day {game.day} begins.", cat=PHASE)
             game.announce_dawn()
-            game.winners = winners
+            game.winners, end_reason = winners, "win"
             break
         if game.death_count() == deaths_before:
             game.phases_without_death += 2
     else:
-        game.winners = []
+        game.winners, end_reason = [], "day_limit"
         game.emit(f"The game reached its limit of {max_days} days, a safeguard of this program rather "
                   "than a rule, so it ends with no winner.")
 
+    duration = time.time() - started  # the game itself, without the feedback steps below
     winner_names = ", ".join(game.winners or []) or "nobody"
     game.emit(f"The game is over. Winners: {winner_names}.")
     print(f"Winners: {game.winners}")
@@ -140,9 +143,18 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
     if review:
         print("Reviewing the log...")
         run_review(game, client, moderator_model, rules, log.path.with_suffix(".txt"))
+    faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
+    winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
+    if end_reason == "win" and winning_faction is None:
+        end_reason = "no_faction_left"  # e.g. the last players died together, or only Jesters remain
     log.write("result", winners=game.winners, days=game.day, cost=client.total_cost,
               roles={p.name: p.role for p in game.players},
-              models={p.name: p.model.value for p in game.players})
+              models={p.name: p.model.value for p in game.players},
+              end_reason=end_reason, winning_faction=winning_faction, duration_s=round(duration),
+              players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "start_role": p.start_role,
+                        "final_role": p.role, "faction": p.faction, "alive": p.alive,
+                        "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
+                        "death": p.death} for p in game.players])
     log.close()
     print(f"Cost by model: {client.total_cost}")
     print(f"Logs: {log.path} (+ .txt, .html)")

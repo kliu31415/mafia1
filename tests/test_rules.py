@@ -159,6 +159,9 @@ def test_nobody_wins_after_three_days_and_nights_without_deaths(tmp_path, monkey
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
     path = mafia.play_game(ScriptedClient(), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1)
     assert "Everyone loses" in path.with_suffix(".txt").read_text(encoding="utf-8")
+    import json
+    result = json.loads(path.read_text(encoding="utf-8").splitlines()[-1])
+    assert result["end_reason"] == "stall" and result["winning_faction"] is None
 
 
 # --- Moderator ops ---------------------------------------------------------------------------
@@ -267,6 +270,7 @@ def test_night_check_logs_the_judges_verdict(tmp_path, monkeypatch):
               if '"night_check"' in line]
     assert checks and all(c["verdict"] == "errors" and c["issues"] == [issue] for c in checks)
     assert sorted(c["night"] for c in checks) == list(range(1, len(checks) + 1))
+    assert all(c["alive"] == len(c["roles_in_play"]) == 5 for c in checks)  # nobody dies in this game
     report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
     assert "Night checks" in report and "defense ignored" in report
     assert "Night check" in path.with_suffix(".html").read_text(encoding="utf-8")
@@ -285,3 +289,10 @@ def test_logs_describe_the_game_and_its_votes(tmp_path, monkeypatch):
     votes_ = [r for r in records if r["kind"] == "vote"]
     assert {v["stage"] for v in votes_} == {"nomination", "trial"}
     assert all(set(v["votes"]) <= {p["name"] for p in setup["players"]} for v in votes_)
+    assert setup["game_id"] == path.stem
+    result = records[-1]
+    assert result["kind"] == "result" and result["end_reason"] in ("win", "stall", "day_limit", "no_faction_left")
+    by_name = {p["name"]: p for p in result["players"]}
+    assert set(by_name) == {p["name"] for p in setup["players"]}
+    assert all(p["won"] == (p["name"] in result["winners"]) for p in by_name.values())
+    assert all((p["death"] is None) == (p["alive"] or p["left"]) for p in by_name.values())

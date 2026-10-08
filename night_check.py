@@ -48,17 +48,19 @@ class NightChecker:
         messages = [{"role": "system", "content": f"{self.rules}\n\n---\n\nYou audit an LLM moderator's "
                      "resolution of one night of this game. Be precise and only report real mistakes."},
                     {"role": "user", "content": user}]
-        self.pending.append(self.pool.submit(self._check, night, messages))
+        alive = [p for p in before["players"] if p["alive"]]
+        in_play = {"alive": len(alive), "roles_in_play": sorted(p["role"] for p in alive)}  # for analysis
+        self.pending.append(self.pool.submit(self._check, night, messages, in_play))
 
-    def _check(self, night: int, messages: list[dict]) -> None:
+    def _check(self, night: int, messages: list[dict], in_play: dict) -> None:
         try:
             reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check")
             out = json.loads(reply.content or "")
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
-                           verdict=out["verdict"], issues=out["issues"], cost=reply.cost)
+                           verdict=out["verdict"], issues=out["issues"], cost=reply.cost, **in_play)
         except Exception as e:  # a failed check must never stop the game
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
-                           verdict="failed", issues=[], error=f"{type(e).__name__}: {e}")
+                           verdict="failed", issues=[], error=f"{type(e).__name__}: {e}", **in_play)
 
     def finish(self) -> None:
         """Wait for the remaining checks (call before the log is closed)."""

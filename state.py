@@ -26,6 +26,11 @@ class Player:
     last_will: str = ""
     notepad: str = ""  # private notes the player keeps across turns
     speaking_budget: float = 0.0
+    start_role: str = ""  # the role at setup (an Executioner can become a Jester)
+    death: dict | None = None  # day, phase and cause, once dead
+
+    def __post_init__(self) -> None:
+        self.start_role = self.start_role or self.role
 
     @property
     def info(self) -> RoleInfo:
@@ -141,6 +146,7 @@ class Game:
         for q in self.alive():
             logic(q.role).on_other_death(self, q, p, guilty_voters)
         self.phases_without_death = 0
+        p.death = {"day": self.day, "phase": self.phase, "cause": cause}
         self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase)
         if not public:
             pass  # caller (e.g. moderator after a Mortician clean) announces it differently

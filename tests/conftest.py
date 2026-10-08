@@ -74,7 +74,7 @@ def make_game(tmp_path, roles: list[str], client: ScriptedClient | None = None) 
     log = GameLog(tmp_path / "test.jsonl")
     game = setup_game(roles, [Model.HAIKU_5_5], random.Random(0), log)
     for p, role in zip(game.players, roles):
-        p.role, p.tokens, p.status = role, dict(ROLES[role].tokens), {}
+        p.role, p.start_role, p.tokens, p.status = role, role, dict(ROLES[role].tokens), {}
     yakuza = [p.name for p in game.players if p.info.alignment is Alignment.EVIL]
     game.katana_holder = yakuza[0] if yakuza else None
     return game, Players(game, client or ScriptedClient(), rules="(rules)")
