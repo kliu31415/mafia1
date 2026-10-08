@@ -74,6 +74,8 @@ class Game:
     rigged_day: int | None = None  # day whose trials a Clerk has rigged
     puppets_next: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, for the next day
     puppets: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, today
+    death_record: list[str] = field(default_factory=list)  # public summary of each death, for the ledger
+    vote_record: list[str] = field(default_factory=list)  # public summary of each nomination and trial
 
     def chat_controller(self, name: str) -> str:
         """Who reads and writes `name`'s chat today (the Puppeteer, if `name` is puppeted)."""
@@ -143,6 +145,7 @@ class Game:
                     exe.status["left"] = True
                     self.emit(f"{exe.name} was the Executioner, whose target was {name}. "
                               f"They win and leave the game.")
+                    self.death_record.append(f"Day {self.day}: {exe.name} (Executioner) won and left the game")
                 else:
                     # Our reading of "if you die of other means": the target dying otherwise.
                     exe.role = "Jester"
@@ -155,14 +158,19 @@ class Game:
             # Revealed at dawn, so a will forged later the same night still applies.
             self.pending_deaths.append((name, cause))
         else:
-            self.emit(self.death_reveal(name, cause))
-        if self.katana_holder == name:
+            self.reveal_death(name, cause)
+        if self.phase != "night":  # a holder who dies at night passes it on after the night's results
+            self.pass_katana()
+        if p.role == "Cardinal":
+            self.pending_cardinal += 1
+
+    def pass_katana(self) -> None:
+        """If the Katana holder is dead, pass the Katana to a random living Yakuza."""
+        if self.katana_holder and not self.player(self.katana_holder).alive:
             remaining = self.yakuza()
             self.katana_holder = self.rng.choice(remaining).name if remaining else None
             if self.katana_holder:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
-        if p.role == "Cardinal":
-            self.pending_cardinal += 1
 
     def resolve_cardinal(self) -> None:
         """Cardinal: a Divine Attack on a random Good player at the beginning of the day after they die."""
@@ -177,11 +185,25 @@ class Game:
     def announce_dawn(self) -> None:
         """Publicly reveal the night's deaths and queued announcements."""
         for name, cause in self.pending_deaths:
-            self.emit(self.death_reveal(name, cause))
+            self.reveal_death(name, cause)
         self.pending_deaths.clear()
         for text in self.pending_announcements:
             self.emit(text)
         self.pending_announcements.clear()
+
+    def reveal_death(self, name: str, cause: str) -> None:
+        self.emit(self.death_reveal(name, cause))
+        p = self.player(name)
+        what = "role cleaned by a Mortician" if p.status.get("cleaned") else f"{p.role}, {cause}"
+        self.death_record.append(f"Day {self.day} {self.phase}: {name} ({what})")
+
+    def public_ledger(self) -> str:
+        """A compact summary of public facts, shown to every player each turn."""
+        alive = ", ".join(self.alive_names())
+        deaths = "\n".join(f"- {d}" for d in self.death_record) or "- none yet"
+        votes = "\n".join(f"- {v}" for v in self.vote_record) or "- none yet"
+        return (f"Alive, in seat order: {alive}\nDeaths and departures:\n{deaths}\n"
+                f"Nominations and trials:\n{votes}")
 
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)

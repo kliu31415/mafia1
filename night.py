@@ -72,6 +72,7 @@ def run_night(game: Game, players: Players, moderator: Moderator) -> None:
         "rig_vote and puppet ops for Prosecutor, Clerk and Puppeteer actions, and update token counts."
     )
     game.resolve_revenge()
+    game.pass_katana()
     game.day += 1
 
 

@@ -10,7 +10,7 @@ from state import Game, Player, majority
 # Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
 # times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
 # to BUDGET_MAX; the budget resets to 0 each day.
-BUDGET_PER_ROUND = 2.5
+BUDGET_PER_ROUND = 3.0
 BUDGET_MAX = 8.0
 MESSAGE_BASE_COST = 1.0
 PRIVATE_COST_FACTOR = 0.25
@@ -92,6 +92,7 @@ def run_day(game: Game, players: Players) -> None:
             break
         nominator = game.rng.choice(game.alive())  # the rules pick a random "nominator"
         game.emit(f"{name} is being prosecuted and goes straight to trial.")
+        game.vote_record.append(f"Day {game.day}: {name} was prosecuted (straight to trial)")
         if run_trial(game, players, nominator, name, rnd=1) == "executed":
             return
         trials += 1
@@ -242,7 +243,10 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
               f"No - {', '.join(no_voters) or 'nobody'}.")
-    if not majority(len(yes_voters), len(game.alive())):
+    passed = majority(len(yes_voters), len(game.alive()))
+    game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}; "
+                            f"No - {', '.join(no_voters) or 'nobody'}; {'passed' if passed else 'failed'}")
+    if not passed:
         game.emit(f"The nomination of {nominee} failed ({len(yes_voters)} Yes).")
         return "failed"
     game.emit(f"{nominee} is put on trial ({len(yes_voters)} Yes).")
@@ -269,6 +273,10 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
               f"Innocent - {', '.join(innocent) or 'nobody'}.")
     voted_guilty = majority(len(guilty), len(game.alive()))
+    rigged = not voted_guilty and game.rigged_day == game.day
+    verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
+    game.vote_record.append(f"Day {game.day}: trial of {nominee}; Guilty - {', '.join(guilty) or 'nobody'}; "
+                            f"Innocent - {', '.join(innocent) or 'nobody'}; {verdict}")
     if voted_guilty or game.rigged_day == game.day:
         if not voted_guilty:
             game.emit(f"The vote was rigged by a Clerk: {nominee} is executed despite the Innocent verdict.")
