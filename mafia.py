@@ -413,10 +413,11 @@ class Game:
 
     # --- events ---------------------------------------------------------------------------
 
-    def emit(self, text: str, visible_to: list[str] | set[str] | None = None) -> None:
+    def emit(self, text: str, visible_to: list[str] | set[str] | None = None, kind: str = "event") -> None:
+        """kind="notice" marks events that the readable logs skip (they duplicate another event)."""
         vis = frozenset(visible_to) if visible_to is not None else None
         self.events.append(Event(self.day, self.phase, text, vis))
-        self.log.write("event", day=self.day, phase=self.phase, text=text,
+        self.log.write(kind, day=self.day, phase=self.phase, text=text,
                        visible_to=sorted(vis) if vis is not None else "all")
 
     def history_for(self, name: str) -> str:
@@ -795,7 +796,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
             f"up to {BUDGET_MAX:g}, and it resets each day. You may send one public message and any "
-            f"number of private messages (seen only by you and the recipient), or nothing. Messages are "
+            f"number of private messages (everyone sees who you messaged, but only the recipient sees "
+            f"the contents), or nothing. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
             "so late messages are only worth it if important. The day ends after a full round where "
             "nobody sends a message.\n" + price_table(rnd) + "\n"
@@ -844,6 +846,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"{p.name} (public): {text}")
         else:
             game.emit(f"{p.name} -> {to} (private): {text}", [p.name, to])
+            # Everyone else sees that the message happened, but not its contents.
+            game.emit(f"{p.name} sent {to} a private message.",
+                      [q.name for q in game.players if q.name not in (p.name, to)], kind="notice")
     return sent, nominee
 
 
