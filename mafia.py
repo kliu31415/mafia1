@@ -371,6 +371,7 @@ class Game:
     phases_without_death: int = 0  # day and night phases since the last death
     winners: list[str] | None = None
     pending_announcements: list[str] = field(default_factory=list)
+    pending_deaths: list[tuple[str, str]] = field(default_factory=list)  # (name, cause), revealed at dawn
     personal_winners: list[str] = field(default_factory=list)  # Jester / Executioner
     pending_revenge: list[tuple[str, list[str]]] = field(default_factory=list)  # (source, Guilty voters)
 
@@ -443,21 +444,26 @@ class Game:
                     self.emit("Your target died other than by hanging. You are now a Jester.", [exe.name])
         self.phases_without_death = 0
         self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase)
-        reveal = f"{name} died ({cause}). Their role was {p.role}."
-        if p.last_will:
-            reveal += f" Last will: {p.last_will!r}"
         if not public:
             pass  # caller (e.g. moderator after a Mortician clean) announces it differently
         elif self.phase == "night":
-            self.pending_announcements.append(reveal)
+            # Revealed at dawn, so a will forged later the same night still applies.
+            self.pending_deaths.append((name, cause))
         else:
-            self.emit(reveal)
+            self.emit(self.death_reveal(name, cause))
         if self.katana_holder == name:
             remaining = self.yakuza()
             self.katana_holder = self.rng.choice(remaining).name if remaining else None
             if self.katana_holder:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
         # TODO: Cardinal.
+
+    def death_reveal(self, name: str, cause: str) -> str:
+        p = self.player(name)
+        reveal = f"{name} died ({cause}). Their role was {p.role}."
+        if p.last_will:
+            reveal += f" Last will: {p.last_will!r}"
+        return reveal
 
     def resolve_revenge(self) -> None:
         """Jester / Executioner revenge: a Divine Attack on a random Guilty voter, the night after."""
@@ -534,13 +540,13 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
 # Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
 # times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
 # to BUDGET_MAX; the budget resets to 0 each day.
-BUDGET_PER_ROUND = 3.0
-BUDGET_MAX = 10.0
+BUDGET_PER_ROUND = 2.5
+BUDGET_MAX = 8.0
 MESSAGE_BASE_COST = 1.0
 PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
 FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
-ROUND_COST_GROWTH = 1.5
+ROUND_COST_GROWTH = 2.0
 MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
@@ -697,16 +703,18 @@ class Players:
 
 def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
+    for name, cause in game.pending_deaths:
+        game.emit(game.death_reveal(name, cause))
+    game.pending_deaths.clear()
     for text in game.pending_announcements:
         game.emit(text)
     game.pending_announcements.clear()
 
-    # Last wills (skipped on day 1: nobody has died yet and the will can be written on later days).
-    if game.day > 1:
-        outs = players.ask_many([(p, "Write or update your last will (shown publicly if you die).",
-                                  LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
-        for p, out in zip(game.alive(), outs):
-            p.last_will = out["last_will"]
+    # Last wills, written once at the beginning of each day (including day 1).
+    outs = players.ask_many([(p, "Write or update your last will (shown publicly if you die).",
+                              LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
+    for p, out in zip(game.alive(), outs):
+        p.last_will = out["last_will"]
 
     for p in game.alive():
         p.speaking_budget = 0.0
@@ -893,7 +901,9 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
         "investigation results, Katana appearing Not Evil, Fabricator framing, etc). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "
         "Deaths you apply are announced publicly at dawn automatically; don't tell() them to all. "
-        "Jester/Executioner revenge attacks are handled by code after you finish."
+        "Jester/Executioner revenge attacks are handled by code after you finish. Tell all Yakuza which "
+        "actions each Yakuza performed but not the results; only the attacker learns whether the "
+        "Katana attack succeeded."
     )
     game.resolve_revenge()
     game.day += 1
@@ -951,7 +961,9 @@ MODERATOR_TOOLS = [
     tool("get_state", "Full hidden game state: roles, tokens, statuses, katana holder."),
     tool("apply_changes", "Apply state changes. Ops: {op:'kill', player, cause} | "
          "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
-         "(value null deletes the key) | {op:'set_katana', player}.",
+         "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
+         "(e.g. a Fabricator forgery). Night deaths are revealed at dawn with the last will as it is "
+         "then, so the order of ops within a night doesn't matter.",
          changes={"type": "array", "items": {"type": "object"}}),
     tool("random_choice", "Pick k distinct items uniformly at random using the game's RNG. "
          "Always use this instead of choosing 'randomly' yourself.",
@@ -984,7 +996,8 @@ class Moderator:
              "learns, worded neutrally: never explain why a result came out as it did (e.g. never "
              "mention the Katana, framing or defenses to an investigator), and never name an attacker "
              "or reveal roles beyond what the rules allow."},
-            {"role": "user", "content": f"{instructions}\n\nPublic history so far:\n"
+            {"role": "user", "content": f"{instructions}\n\nCurrent full state (call get_state to "
+             f"refresh after changes):\n{json.dumps(self.game.full_state())}\n\nPublic history so far:\n"
              f"{self.game.history_for('__moderator_public__')}"},
         ]
         for _ in range(MAX_MODERATOR_STEPS):
@@ -1028,6 +1041,8 @@ class Moderator:
                                 p.status.pop(c["key"], None)
                             else:
                                 p.status[c["key"]] = c["value"]
+                        case "set_last_will":
+                            p.last_will = c["text"]
                         case "set_katana":
                             g.katana_holder = p.name
                         case op:
