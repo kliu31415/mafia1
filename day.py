@@ -19,8 +19,9 @@ PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
 FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
 ROUND_COST_GROWTH = 1.5
-MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a message
+MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a public message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
+FREE_TRIAL_COMMENT_WORDS = 50  # everyone else's public message during a trial is free up to this length
 MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
 MAX_TRIALS_PER_DAY = 3
 NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budget; deters spam
@@ -108,12 +109,12 @@ def run_day(game: Game, players: Players) -> None:
                 p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
         order = game.alive()
         game.rng.shuffle(order)
-        active = False  # did anyone send a message or nominate this go-around?
+        active = False  # did anyone send a public message or nominate this go-around?
         for p in order:
             if not p.alive:
                 continue
-            sent, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY)
-            active |= sent > 0 or nominee is not None
+            public, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY)
+            active |= public or nominee is not None
             if nominee:
                 outcome = run_nomination(game, players, nominator=p, nominee=nominee, rnd=rnd)
                 if outcome == "executed":
@@ -123,7 +124,7 @@ def run_day(game: Game, players: Players) -> None:
                     game.emit("Three trials ended in Innocent verdicts. The day ends.")
                     return
         if not active:
-            game.emit("A full round passed with no messages. The day ends.")
+            game.emit("A full round passed with no public messages. The day ends.")
             return
     game.emit("Discussion time is over. The day ends.")
 
@@ -138,12 +139,12 @@ def planned_messages(out: dict) -> list[tuple[str | None, str]]:
 
 
 def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: bool,
-              extra: str = "", free_defense: bool = False) -> tuple[int, str | None]:
-    """One speaking turn. Returns (messages sent, nominee or None).
+              extra: str = "", free_words: int = 0) -> tuple[bool, str | None]:
+    """One speaking turn. Returns (whether a public message was sent, nominee or None).
+    free_words: this turn's public message is free up to that many words (used on trial turns).
 
     If the planned messages cost more than the player's budget, they're warned and asked once to
     revise; anything still over budget is then truncated (later messages first) or dropped."""
-    free_words = FREE_DEFENSE_WORDS if free_defense else 0
 
     def cost_of(i: int, to: str | None, words: int) -> float:
         return message_cost(words, rnd, private=to is not None, free_words=free_words if i == 0 and to is None else 0)
@@ -162,9 +163,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             f"the contents), or nothing. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
             "so late messages are only worth it if important. The day ends after a full round where "
-            "nobody sends a message.\n" + price_table(rnd) + "\n"
-            + (f"Your first public message now is free up to {FREE_DEFENSE_WORDS} words; beyond that you "
-               "pay only for the extra length.\n" if free_defense else "")
+            "nobody sends a public message.\n" + price_table(rnd) + "\n"
+            + (f"Your public message this turn is free up to {free_words} words; beyond that you "
+               "pay only for the extra length.\n" if free_words else "")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
@@ -207,7 +208,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.log.write("nomination_dropped", player=p.name, nominee=nominee, budget=p.speaking_budget)
             game.emit(f"You couldn't afford to nominate {nominee}.", [p.name])
             nominee = None
-    sent = 0
+    public = False
     for i, (to, text) in enumerate(planned_messages(out)):
         if to is not None and to not in game.alive_names():
             continue
@@ -220,8 +221,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         if words < word_count(text):
             text = truncate_words(text, words)
         p.speaking_budget -= cost_of(i, to, words)
-        sent += 1
         if to is None:
+            public = True
             game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
         else:
             # A puppeted player's private chat is read and written by their Puppeteer instead.
@@ -230,7 +231,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.players if q.name not in (p.name, to)], kind="notice")
-    return sent, nominee
+    return public, nominee
 
 
 def run_nomination(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
@@ -277,10 +278,11 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     If a Clerk rigged today's vote, the accused is executed regardless; the rigging is announced
     only if the vote alone wouldn't have executed them. A prosecuted player's nominator is random."""
     accused = game.player(nominee)
-    chat_turn(game, players, accused, rnd, can_nominate=False, free_defense=True,
+    chat_turn(game, players, accused, rnd, can_nominate=False, free_words=FREE_DEFENSE_WORDS,
               extra="You are on trial. Defend yourself; you speak first. " + TRIAL_VOTE_NOTE)
     for p in game.clockwise_from(accused.name)[1:]:
-        chat_turn(game, players, p, rnd, can_nominate=False, extra=f"{nominee} is on trial. " + TRIAL_VOTE_NOTE)
+        chat_turn(game, players, p, rnd, can_nominate=False, free_words=FREE_TRIAL_COMMENT_WORDS,
+                  extra=f"{nominee} is on trial. " + TRIAL_VOTE_NOTE)
 
     voters = game.alive()
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
