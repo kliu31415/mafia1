@@ -239,3 +239,13 @@ def test_day_limit_ends_the_game_with_no_winner(tmp_path, monkeypatch):
     path = mafia.play_game(ScriptedClient(), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1, max_days=2)
     text = path.with_suffix(".txt").read_text(encoding="utf-8")
     assert "limit of 2 days" in text and "Winners: nobody" in text
+
+
+def test_puppeting_lapses_if_the_puppeteer_died(game_factory):
+    client = ScriptedClient()
+    game, players = game_factory(VILLAGE5[:3] + ["Grunt", "Puppeteer"], client)
+    game.puppets_next = {"Bob": "Erin"}
+    game.player("Erin").alive = False  # died overnight
+    run_day(game, players)
+    assert not any(name == "Erin" for name, _ in client.asked)
+    assert not any("being puppeted" in e.text for e in game.events)
