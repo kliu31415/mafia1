@@ -1,7 +1,13 @@
-"""Role definitions from rules_1.txt and the default setup."""
+"""Role definitions from rules_1.txt and the default setup.
+
+Each role with effects that code carries out has its own file here (e.g. roles/executioner.py),
+implementing the hooks in roles/base.py. Import it at the bottom of this file to register it.
+"""
 
 from dataclasses import dataclass, field
 from enum import Enum
+
+from roles.base import RoleLogic, Status, logic, register  # noqa: F401  (re-exported)
 
 
 class Alignment(str, Enum):
@@ -109,3 +115,7 @@ def role_status_table() -> str:
     for role, (by, tested, notes) in ROLE_STATUS.items():
         rows.append(f"{role:<17} {by:<10} {'yes' if tested else 'no':<11} {notes}")
     return "\n".join(rows)
+
+
+# Role files register their hooks when imported.
+from roles import executioner, roleplayer  # noqa: E402, F401

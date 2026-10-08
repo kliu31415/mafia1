@@ -26,15 +26,17 @@ unless asked).
 
 ## Roles
 
-- Which roles are implemented, and how, is tracked in `ROLE_STATUS` in `roles.py` (print it with
+- Which roles are implemented, and how, is tracked in `ROLE_STATUS` in `roles/__init__.py` (print it with
   `uv run mafia.py --list-roles`). Check it there instead of auditing the code, and update it whenever
   a role's handling changes or a role is first seen working in a live game.
 - Adding or changing a role can touch all of these; check each one:
-  1. `roles.py`: `ROLES` entry (alignment, category, Sheriff result, defense, tokens, `acts_at_night`)
-     and `ROLE_STATUS`.
-  2. `state.py`: role-specific logic in `Game.kill`, `setup_game`, `check_winner`, dawn effects, and
-     any per-role `Game` field (e.g. `rigged_day`, `puppets`).
-  3. `players.py`: `role_briefing` (what the player is told at the start) and `night_action_schema`.
+  1. `roles/__init__.py`: `ROLES` entry (alignment, category, Sheriff result, defense, tokens,
+     `acts_at_night`) and `ROLE_STATUS`.
+  2. `roles/<role>.py`: effects that code carries out, as hooks from `roles/base.py` (setup, briefing,
+     ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core code calls
+     hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to `RoleLogic`.
+  3. Not yet moved into hooks: role logic in `Game.kill`, `check_winner`, dawn effects and per-role
+     `Game` fields (e.g. `rigged_day`, `puppets`) in `state.py`, and `night_action_schema` in `players.py`.
   4. `night.py`: the moderator's night instructions, which list passive effects by hand.
   5. `moderator.py`: a new `apply_changes` op needs an `OPS` entry, a `dispatch` case and a line in the
      tool description.
@@ -44,6 +46,6 @@ unless asked).
 
 - Hidden information: every `game.emit(...)` passes `visible_to` (None means everyone). A wrong list
   leaks secrets into other players' prompts; `tests/test_visibility.py` checks this per category.
-- Every `emit` also passes `cat=` (`CHAT`, `PM`, `DEATH`, ... in `state.py`) plus that category's fields.
+- Every `emit` also passes `cat=` (`CHAT`, `PM`, `DEATH`, ... in `events.py`) plus that category's fields.
   The log viewer colors events by `cat`, never by their wording, so wording can change freely.
-- `Player.status` keys that code reads are in `state.Status`; use the constants, not strings.
+- `Player.status` keys that code reads are in `roles.Status`; use the constants, not strings.

@@ -4,8 +4,8 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 
 from llm import LLMClient
-from roles import Alignment, ROLES
-from state import Game, Player, Status
+from roles import Alignment, ROLES, logic
+from state import Game, Player
 
 
 NOTEPAD_WORDS = 300  # longer notepads are truncated
@@ -73,17 +73,13 @@ def night_action_schema(game: Game, p: Player) -> dict:
 
 def role_briefing(game: Game, p: Player) -> str:
     lines = [f"You are {p.name} (seat {p.seat})."]
-    if p.role == "Roleplayer":
-        lines.append(f"Your role is {p.status[Status.FAKE_ROLE]}.")  # they're told the fake role
-    else:
-        lines.append(f"Your role is {p.role} ({p.info.alignment.value}).")
+    lines.append(f"Your role is {logic(p.role).shown_role(p)}.")
     if p.tokens:
         lines.append(f"Your tokens: {p.tokens}.")
     if p.info.alignment is Alignment.EVIL:
         team = ", ".join(f"{y.name} ({y.role})" for y in game.players if y.info.alignment is Alignment.EVIL)
         lines.append(f"Yakuza members: {team}. Katana holder: {game.katana_holder}.")
-    if p.role == "Executioner":
-        lines.append(f"Your target is {p.status[Status.TARGET]}.")
+    lines += logic(p.role).briefing(game, p)
     return " ".join(lines)
 
 

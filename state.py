@@ -6,7 +6,8 @@ from typing import Any
 
 from gamelog import GameLog
 from llm import Model
-from roles import Alignment, NON_BLOCKING_ROLES, ROLES, RoleInfo
+from events import ANNOUNCEMENT, DEATH, SYSTEM
+from roles import Alignment, NON_BLOCKING_ROLES, ROLES, RoleInfo, Status, logic
 
 
 PLAYER_NAMES = ["Alice", "Bob", "Carol", "Dave", "Erin", "Frank", "Grace", "Heidi", "Ivan", "Judy",
@@ -39,29 +40,6 @@ class Player:
                 return "Yakuza"
             case _:
                 return f"Neutral:{self.name}"
-
-
-# Event categories. Every emit() names one, and the log viewer colors and labels events by it
-# (never by parsing their text), so event wording can change freely.
-CHAT = "chat"  # public chat; fields: speaker, message
-PM = "pm"  # private message; fields: speaker, to, message
-YAKUZA_CHAT = "yak"  # fields: speaker, message
-NOMINATION = "nom"
-VOTE = "vote"  # vote results, trials, verdicts
-DEATH = "death"  # deaths, executions, players leaving the game
-RESULT = "result"  # moderator's private result; fields: message
-ANNOUNCEMENT = "announcement"  # moderator's public announcement; fields: message
-PHASE = "phase"  # "Day N begins." / "Night N begins."
-SYSTEM = "system"  # anything else
-
-
-class Status:
-    """Player.status keys that code reads. The moderator may also set its own keys (e.g. doused)."""
-
-    LEFT = "left"  # left the game (a winning Executioner); not a death
-    CLEANED = "cleaned"  # Mortician: the death reveal hides role and will
-    TARGET = "target"  # Executioner's target
-    FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
 
 
 @dataclass
@@ -299,11 +277,7 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
     if yakuza:
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
-        if p.role == "Executioner":
-            p.status[Status.TARGET] = rng.choice([q.name for q in players if q is not p])
-        if p.role == "Roleplayer":
-            p.status[Status.FAKE_ROLE] = rng.choice(
-                [r for r, i in ROLES.items() if i.category == "Investigative"])
+        logic(p.role).setup(game, p)
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "role": p.role,
                                  "status": p.status} for p in players], katana=game.katana_holder)
     return game

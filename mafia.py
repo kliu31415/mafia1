@@ -11,7 +11,8 @@ environment variable.
 Code layout:
     mafia.py       entry point: game loop and CLI
     llm.py         OpenRouter client, model list, offline mock client
-    roles.py       role definitions and the default setup
+    roles/         role definitions, the default setup, and per-role hooks (roles/base.py)
+    events.py      event categories for game.emit()
     state.py       game state, events with visibility, deaths, win checks
     players.py     player prompts, output schemas, notepads
     day.py         speaking budget, chat turns, nominations, votes
@@ -41,7 +42,8 @@ from moderator import Moderator
 from night import run_night
 from players import Players
 from roles import DEFAULT_SETUP, ROLES, role_status_table
-from state import PHASE, setup_game
+from events import PHASE
+from state import setup_game
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"

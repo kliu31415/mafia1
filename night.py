@@ -4,7 +4,8 @@ import json
 
 from players import BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, truncate_words, word_count
 from roles import Alignment
-from state import PHASE, YAKUZA_CHAT, Game, majority
+from events import PHASE, YAKUZA_CHAT
+from state import Game, majority
 from moderator import Moderator
 
 

@@ -6,7 +6,7 @@ import mafia
 from day import run_day, run_nomination, run_trial
 from moderator import Moderator
 from llm import Model
-from state import Status
+from roles import Status
 from tests.conftest import ScriptedClient
 
 VILLAGE5 = ["Vanilla Villager"] * 5
@@ -180,3 +180,22 @@ def test_status_key_typo_gets_a_hint(game_factory):
     out = mod.dispatch("apply_changes", {"changes": [{"op": "set_status", "player": "Bob", "key": "clean",
                                                       "value": True}]})
     assert "cleaned" in out["notes"][0]
+
+
+# --- Setup and briefings ----------------------------------------------------------------------
+
+def test_setup_hooks_assign_executioner_target_and_roleplayer_fake_role(tmp_path):
+    import random
+    from gamelog import GameLog
+    from players import role_briefing
+    from roles import ROLES
+    from state import setup_game
+    game = setup_game(["Executioner", "Roleplayer", "Grunt", "Vanilla Villager"], [Model.HAIKU_5_5],
+                      random.Random(3), GameLog(tmp_path / "t.jsonl"))
+    exe = next(p for p in game.players if p.role == "Executioner")
+    rp = next(p for p in game.players if p.role == "Roleplayer")
+    assert exe.status[Status.TARGET] in {p.name for p in game.players} - {exe.name}
+    assert ROLES[rp.status[Status.FAKE_ROLE]].category == "Investigative"
+    assert f"Your target is {exe.status[Status.TARGET]}." in role_briefing(game, exe)
+    briefing = role_briefing(game, rp)
+    assert f"Your role is {rp.status[Status.FAKE_ROLE]}." in briefing and "Roleplayer" not in briefing

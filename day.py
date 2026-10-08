@@ -4,7 +4,8 @@ import json
 
 from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
-from state import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE, Game, Player, majority
+from events import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE
+from state import Game, Player, majority
 
 
 # Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),

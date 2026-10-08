@@ -6,7 +6,9 @@ from typing import Any
 
 from llm import LLMClient, Model
 from players import ANSWER_SCHEMA, Players
-from state import ANNOUNCEMENT, RESULT, Game, Status
+from events import ANNOUNCEMENT, RESULT
+from roles import Status
+from state import Game
 
 
 def tool(name: str, description: str, **params: dict) -> dict:

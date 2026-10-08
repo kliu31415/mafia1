@@ -8,8 +8,7 @@ import pytest
 import mafia
 from llm import MockClient, Model
 from players import role_briefing
-from roles import DEFAULT_SETUP, ROLES, Alignment
-from state import Status
+from roles import DEFAULT_SETUP, ROLES, Alignment, Status
 
 
 def mock_game_records(tmp_path, monkeypatch, seed: int) -> list[dict]:
