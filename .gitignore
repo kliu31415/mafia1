@@ -1,0 +1,24 @@
+# Secrets
+.env
+.env.*
+*.key
+secrets*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and outputs
+*.log
+logs/
