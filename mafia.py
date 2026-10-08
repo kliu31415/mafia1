@@ -221,7 +221,8 @@ class MockClient:
             case "array":
                 return [self._sample(s["items"]) for _ in range(self.rng.randint(0, 1))]
             case "string":
-                return self.rng.choice(["Hmm.", "I trust no one.", "Let's be careful today."])
+                return self.rng.choice(["Hmm.", "I trust no one.", "Let's be careful today.", "blah " * 40,
+                                        "long " * 900])
             case "integer":
                 return self.rng.randint(s.get("minimum", 0), s.get("maximum", 1))
             case "boolean":
@@ -312,7 +313,7 @@ class Player:
     tokens: dict[str, int] = field(default_factory=dict)
     status: dict[str, Any] = field(default_factory=dict)  # free-form flags, e.g. doused, fake_role
     last_will: str = ""
-    speaking_budget: int = 0
+    speaking_budget: float = 0.0
 
     @property
     def info(self) -> RoleInfo:
@@ -530,11 +531,58 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
 # Players: prompts and structured outputs
 # ---------------------------------------------------------------------------------------------
 
-SPEAK_BUDGET_START = 2
-SPEAK_BUDGET_RECHARGE = 1  # per chat round
-SPEAK_BUDGET_MAX = 4
-DAY_CHAT_ROUNDS = 3
+# Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
+# times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
+# to BUDGET_MAX; the budget resets to 0 each day.
+BUDGET_PER_ROUND = 3.0
+BUDGET_MAX = 10.0
+MESSAGE_BASE_COST = 1.0
+PRIVATE_COST_FACTOR = 0.25
+MAX_MESSAGE_WORDS = 800
+FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
+ROUND_COST_GROWTH = 1.5
+MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a message
+FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
+MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
 MAX_TRIALS_PER_DAY = 3
+
+YAKUZA_CHAT_ROUNDS = 3
+YAKUZA_MESSAGE_WORDS = 200  # Yakuza chat is free but each message is capped at this length
+
+
+def word_count(text: str) -> int:
+    return len(text.split())
+
+
+def length_cost(words: int) -> float:
+    """Cheap for short and medium messages, superlinear for long ones."""
+    return words / 60 + (words / 200) ** 2
+
+
+def round_multiplier(rnd: int) -> float:
+    """rnd is 1-based."""
+    return ROUND_COST_GROWTH ** max(0, rnd - FULL_PRICE_ROUNDS)
+
+
+def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> float:
+    if words == 0:
+        return 0.0
+    cost = MESSAGE_BASE_COST + length_cost(words)
+    if free_words:
+        cost = 0.0 if words <= free_words else length_cost(words) - length_cost(free_words)
+    return cost * round_multiplier(rnd) * (PRIVATE_COST_FACTOR if private else 1.0)
+
+
+def truncate_words(text: str, words: int) -> str:
+    return " ".join(text.split()[:words]) + " [truncated]"
+
+
+def price_table(rnd: int) -> str:
+    rows = [f"  {w:>3} words: public {message_cost(w, rnd, False):.2f}, private {message_cost(w, rnd, True):.2f}"
+            for w in (10, 25, 50, 100, 200, 400, MAX_MESSAGE_WORDS)]
+    nxt = round_multiplier(rnd + 1)
+    return (f"Message prices this round (round {rnd}, {round_multiplier(rnd):.2f}x; next round "
+            f"{nxt:.2f}x):\n" + "\n".join(rows))
 
 
 def nullable(schema: dict) -> dict:
@@ -661,57 +709,106 @@ def run_day(game: Game, players: Players) -> None:
             p.last_will = out["last_will"]
 
     for p in game.alive():
-        p.speaking_budget = SPEAK_BUDGET_START
+        p.speaking_budget = 0.0
     trials = 0
     # TODO: Prosecutor trials, Clerk rigging and Puppeteer chat substitution happen here.
-    for rnd in range(DAY_CHAT_ROUNDS):
+    for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
-            p.speaking_budget = min(SPEAK_BUDGET_MAX, p.speaking_budget + (rnd > 0) * SPEAK_BUDGET_RECHARGE)
+            p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
         order = game.alive()
         game.rng.shuffle(order)
+        active = False  # did anyone send a message or nominate this go-around?
         for p in order:
             if not p.alive:
                 continue
-            nominee = chat_turn(game, players, p, can_nominate=trials < MAX_TRIALS_PER_DAY)
+            sent, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY)
+            active |= sent > 0 or nominee is not None
             if nominee:
-                trials += 1
-                if run_nomination(game, players, nominator=p, nominee=nominee):
+                outcome = run_nomination(game, players, nominator=p, nominee=nominee, rnd=rnd)
+                if outcome == "executed":
                     return  # an execution ends the day
+                trials += outcome == "innocent"  # failed nominations don't count toward the limit
                 if trials >= MAX_TRIALS_PER_DAY:
                     game.emit("Three trials ended in Innocent verdicts. The day ends.")
                     return
+        if not active:
+            game.emit("A full round passed with no messages. The day ends.")
+            return
     game.emit("Discussion time is over. The day ends.")
 
 
-def chat_turn(game: Game, players: Players, p: Player, can_nominate: bool,
-              extra: str = "") -> str | None:
-    """One speaking turn. Returns the nominee's name if the player nominates someone."""
-    task = (f"It is Day {game.day}. It's your turn to speak. You have a speaking budget of "
-            f"{p.speaking_budget} (each public or private message costs 1; it recharges by "
-            f"{SPEAK_BUDGET_RECHARGE} each round up to {SPEAK_BUDGET_MAX}). "
-            "Private messages are seen only by you and the recipient. "
-            + ("You may nominate a player for trial, which stops chat for a vote. " if can_nominate else "")
+def planned_messages(out: dict) -> list[tuple[str | None, str]]:
+    """(recipient or None for public, text), public message first."""
+    msgs: list[tuple[str | None, str]] = []
+    if out.get("public_message"):
+        msgs.append((None, out["public_message"]))
+    msgs += [(pm["to"], pm["text"]) for pm in out.get("private_messages", []) if pm.get("text")]
+    return msgs
+
+
+def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: bool,
+              extra: str = "", free_defense: bool = False) -> tuple[int, str | None]:
+    """One speaking turn. Returns (messages sent, nominee or None).
+
+    If the planned messages cost more than the player's budget, they're warned and asked once to
+    revise; anything still over budget is then truncated (later messages first) or dropped."""
+    free_words = FREE_DEFENSE_WORDS if free_defense else 0
+
+    def cost_of(i: int, to: str | None, words: int) -> float:
+        return message_cost(words, rnd, private=to is not None, free_words=free_words if i == 0 and to is None else 0)
+
+    def total_cost(msgs: list[tuple[str | None, str]]) -> float:
+        return sum(cost_of(i, to, min(word_count(t), MAX_MESSAGE_WORDS)) for i, (to, t) in enumerate(msgs))
+
+    task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
+            f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
+            f"up to {BUDGET_MAX:g}, and it resets each day. You may send one public message and any "
+            f"number of private messages (seen only by you and the recipient), or nothing. Messages are "
+            f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
+            "so late messages are only worth it if important. The day ends after a full round where "
+            "nobody sends a message.\n" + price_table(rnd) + "\n"
+            + (f"Your first public message now is free up to {FREE_DEFENSE_WORDS} words; beyond that you "
+               "pay only for the extra length.\n" if free_defense else "")
+            + ("You may nominate a player for trial, which stops chat for a vote.\n" if can_nominate else "")
             + extra)
+    schema = day_turn_schema(game, p.name, can_nominate)
     fallback = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
-    out = players.ask(p, task, day_turn_schema(game, p.name, can_nominate), fallback)
-    if out.get("public_message") and p.speaking_budget > 0:
-        p.speaking_budget -= 1
-        game.emit(f"{p.name} (public): {out['public_message']}")
-    for pm in out.get("private_messages", []):
-        if p.speaking_budget <= 0:
-            break
-        if pm["to"] in game.alive_names():
-            p.speaking_budget -= 1
-            game.emit(f"{p.name} -> {pm['to']} (private): {pm['text']}", [p.name, pm["to"]])
-    return out.get("nominate") if can_nominate else None
+    out = players.ask(p, task, schema, fallback)
+    planned = total_cost(planned_messages(out))
+    if planned > p.speaking_budget + 1e-9:
+        warning = (f"\n\nWARNING: your planned messages {json.dumps(planned_messages(out))} cost "
+                   f"{planned:.2f}, but your budget is {p.speaking_budget:.2f}. Revise them to fit. "
+                   "Anything still over budget will be truncated, starting with your last message.")
+        game.log.write("budget_warning", player=p.name, planned=planned, budget=p.speaking_budget)
+        out = players.ask(p, task + warning, schema, fallback)
+
+    sent = 0
+    for i, (to, text) in enumerate(planned_messages(out)):
+        if to is not None and to not in game.alive_names():
+            continue
+        words = min(word_count(text), MAX_MESSAGE_WORDS)
+        while words > 0 and cost_of(i, to, words) > p.speaking_budget + 1e-9:
+            words -= 1
+        if words == 0 or (words < word_count(text) and words < MIN_TRUNCATED_WORDS):
+            game.log.write("message_dropped", player=p.name, to=to, words=word_count(text))
+            continue
+        if words < word_count(text):
+            text = truncate_words(text, words)
+        p.speaking_budget -= cost_of(i, to, words)
+        sent += 1
+        if to is None:
+            game.emit(f"{p.name} (public): {text}")
+        else:
+            game.emit(f"{p.name} -> {to} (private): {text}", [p.name, to])
+    return sent, (out.get("nominate") if can_nominate else None)
 
 
 def majority(yes: int, total: int) -> bool:
     return yes * 2 > total  # strictly more than half
 
 
-def run_nomination(game: Game, players: Players, nominator: Player, nominee: str) -> bool:
-    """Nomination vote, then trial and verdict. Returns True if someone was executed."""
+def run_nomination(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
+    """Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed"."""
     game.emit(f"{nominator.name} nominated {nominee}. Voting Yes/No proceeds clockwise.")
     yes = 0
     for voter in game.clockwise_from(nominator.name):
@@ -724,15 +821,14 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
         game.emit(f"{voter.name} votes {'Yes' if vote else 'No'} on the nomination of {nominee}.")
     if not majority(yes, len(game.alive())):
         game.emit(f"The nomination of {nominee} failed ({yes} Yes).")
-        return False
+        return "failed"
 
     game.emit(f"{nominee} is put on trial ({yes} Yes).")
     accused = game.player(nominee)
-    accused.speaking_budget = max(accused.speaking_budget, 1)
-    chat_turn(game, players, accused, can_nominate=False, extra="You are on trial. Defend yourself.")
-    for p in game.alive():
-        if p is not accused:
-            chat_turn(game, players, p, can_nominate=False, extra=f"{nominee} is on trial.")
+    chat_turn(game, players, accused, rnd, can_nominate=False, free_defense=True,
+              extra="You are on trial. Defend yourself; you speak first.")
+    for p in game.clockwise_from(accused.name)[1:]:
+        chat_turn(game, players, p, rnd, can_nominate=False, extra=f"{nominee} is on trial.")
 
     guilty = []
     for voter in game.clockwise_from(nominator.name):
@@ -744,9 +840,9 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     if majority(len(guilty), len(game.alive())):
         game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).")
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
-        return True
+        return "executed"
     game.emit(f"{nominee} is found Innocent ({len(guilty)} Guilty).")
-    return False
+    return "innocent"
 
 
 # ---------------------------------------------------------------------------------------------
@@ -757,14 +853,9 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
 def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
     game.phase = "night"
     game.emit(f"Night {game.day} begins.")
-    yakuza = game.yakuza()
-    if len(yakuza) > 1:
-        # One round of Yakuza chat before actions.
-        for y in yakuza:
-            out = players.ask(y, "It is night. Send a message to the Yakuza chat (or null).",
-                              obj(message=nullable(STR)), {"message": None})
-            if out["message"]:
-                game.emit(f"{y.name} (Yakuza chat): {out['message']}", [q.name for q in yakuza])
+    if len(game.yakuza()) > 1:
+        yakuza_chat(game, players, YAKUZA_CHAT_ROUNDS,
+                    "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions.")
 
     actors = [p for p in game.alive() if p.info.acts_at_night or p.info.alignment is Alignment.EVIL]
     jobs = []
@@ -777,6 +868,24 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
     actions = dict(zip([p.name for p in actors], players.ask_many(jobs)))
 
     katana = tally_katana(game, actions)
+    yakuza = game.yakuza()
+    if katana["attack"] is None and len(yakuza) > 1:
+        # No majority: show the votes, one more round of chat, then a Katana-only revote.
+        votes = "; ".join(f"{y.name}: holder {actions[y.name].get('katana_vote_holder')}, target "
+                          f"{actions[y.name].get('katana_vote_target')}" for y in yakuza)
+        game.emit(f"The Katana vote had no majority, so there would be no attack. Votes: {votes}.",
+                  [y.name for y in yakuza])
+        yakuza_chat(game, players, 1, "Agree on the Katana holder and target before the revote.")
+        names = game.alive_names()
+        revote_schema = obj(thoughts=STR, katana_vote_holder=name_enum([y.name for y in yakuza]),
+                            katana_vote_target=nullable(name_enum(names)))
+        outs = players.ask_many([(y, "Revote on the Katana holder and the Katana target (or null).",
+                                  revote_schema, {"katana_vote_holder": y.name, "katana_vote_target": None})
+                                 for y in yakuza])
+        for y, out in zip(yakuza, outs):
+            actions[y.name].update(katana_vote_holder=out["katana_vote_holder"],
+                                   katana_vote_target=out["katana_vote_target"])
+        katana = tally_katana(game, actions)
     moderator.run_phase(
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
@@ -788,6 +897,28 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
     )
     game.resolve_revenge()
     game.day += 1
+
+
+def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
+    """Free Yakuza chat in seat order. Ends early once everyone says they're ready."""
+    yakuza = game.yakuza()
+    names = [y.name for y in yakuza]
+    schema = obj(thoughts=STR, message=nullable(STR), ready=BOOL)
+    for rnd in range(1, rounds + 1):
+        ready = []
+        for y in yakuza:
+            out = players.ask(
+                y, f"It is Night {game.day}. Yakuza chat, round {rnd} of at most {rounds}. {topic} "
+                f"Send a message (max {YAKUZA_MESSAGE_WORDS} words; longer is truncated) or null. Set "
+                "ready=true if you have nothing more to discuss; chat ends when everyone is ready.",
+                schema, {"thoughts": "", "message": None, "ready": True})
+            if msg := out.get("message"):
+                if word_count(msg) > YAKUZA_MESSAGE_WORDS:
+                    msg = truncate_words(msg, YAKUZA_MESSAGE_WORDS)
+                game.emit(f"{y.name} (Yakuza chat): {msg}", names)
+            ready.append(out.get("ready", True))
+        if all(ready):
+            return
 
 
 def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
