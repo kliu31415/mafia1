@@ -1,0 +1,32 @@
+"""The game log: JSONL for analysis, plus live .txt and an .html view."""
+
+import json
+import time
+from pathlib import Path
+from typing import Any
+
+import log_viewer
+
+
+class GameLog:
+    """Writes every event and LLM call as one JSON line, for later analysis, plus a live
+    human-readable .txt next to it. close() also renders an expandable .html view."""
+
+    def __init__(self, path: Path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self.path = path
+        self.f = path.open("w", encoding="utf-8")
+        self.txt = path.with_suffix(".txt").open("w", encoding="utf-8")
+
+    def write(self, kind: str, **data: Any) -> None:
+        line = json.dumps({"t": time.time(), "kind": kind, **data}, default=str)
+        self.f.write(line + "\n")
+        self.f.flush()
+        if (text := log_viewer.text_line(json.loads(line))) is not None:
+            self.txt.write(text + "\n")
+            self.txt.flush()
+
+    def close(self) -> None:
+        self.f.close()
+        self.txt.close()
+        log_viewer.render_html(self.path)

@@ -17,6 +17,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from roles import ROLES, Alignment
+
 
 def text_line(r: dict) -> str | None:
     k = r["kind"]
@@ -144,7 +146,6 @@ def pre(label: str, value: Any) -> str:
 
 
 def faction_of(role: str) -> str:
-    from mafia import ROLES, Alignment  # lazy: mafia imports this module
     info = ROLES.get(role)
     if info is None:
         return "Village"
