@@ -16,7 +16,7 @@ MESSAGE_BASE_COST = 1.0
 PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
 FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
-ROUND_COST_GROWTH = 2.0
+ROUND_COST_GROWTH = 1.5
 MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
@@ -254,15 +254,19 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     return run_trial(game, players, nominator, nominee, rnd)
 
 
+TRIAL_VOTE_NOTE = ("This turn is only for discussion: after everyone has spoken, all players vote "
+                   "Guilty/Innocent in a separate, simultaneous vote.")
+
+
 def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
     """Defense, discussion, then a simultaneous Guilty/Innocent vote. Returns "innocent" or "executed".
     If a Clerk rigged today's vote, the accused is executed regardless; the rigging is announced
     only if the vote alone wouldn't have executed them."""
     accused = game.player(nominee)
     chat_turn(game, players, accused, rnd, can_nominate=False, free_defense=True,
-              extra="You are on trial. Defend yourself; you speak first.")
+              extra="You are on trial. Defend yourself; you speak first. " + TRIAL_VOTE_NOTE)
     for p in game.clockwise_from(accused.name)[1:]:
-        chat_turn(game, players, p, rnd, can_nominate=False, extra=f"{nominee} is on trial.")
+        chat_turn(game, players, p, rnd, can_nominate=False, extra=f"{nominee} is on trial. " + TRIAL_VOTE_NOTE)
 
     voters = game.alive()
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
