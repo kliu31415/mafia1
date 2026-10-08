@@ -18,8 +18,11 @@ Code layout:
     night.py       Yakuza chat, night actions, Katana vote
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
+    feedback.py    debriefs, log review, lessons and the rules quiz
+    tests/         offline scenario and hidden-information tests (uv run pytest)
 
 Usage:
+    uv run pytest                                            # offline tests
     uv run mafia.py --mock                                   # offline run, no API calls
     uv run mafia.py --list-roles                             # which roles are implemented
     uv run mafia.py --players haiku-5.5,gpt-6-luna --moderator haiku-5.5
@@ -33,12 +36,12 @@ from pathlib import Path
 from day import run_day
 from feedback import run_debrief, run_lessons, run_quiz, run_review, write_report
 from gamelog import GameLog
-from llm import DEFAULT_EFFORT, MockClient, Model, OpenRouterClient, load_api_key, parse_model
+from llm import DEFAULT_EFFORT, LLMClient, MockClient, Model, OpenRouterClient, load_api_key, parse_model
 from moderator import Moderator
 from night import run_night
 from players import Players
 from roles import DEFAULT_SETUP, ROLES, role_status_table
-from state import setup_game
+from state import PHASE, setup_game
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -49,7 +52,7 @@ MAX_DAYS = 10
 STALL_LIMIT = 6  # rules: everyone loses after three nights and three days with no deaths
 
 
-def play_game(client, models: list[Model], moderator_model: Model, roles: list[str],
+def play_game(client: LLMClient, models: list[Model], moderator_model: Model, roles: list[str],
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False) -> Path:
     rng = random.Random(seed)
@@ -80,7 +83,7 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
         if (winners := game.check_winner()) is not None:
             # Reveal the night's deaths at a proper dawn before the game ends.
             game.phase = "day"
-            game.emit(f"Day {game.day} begins.")
+            game.emit(f"Day {game.day} begins.", cat=PHASE)
             game.announce_dawn()
             game.winners = winners
             break

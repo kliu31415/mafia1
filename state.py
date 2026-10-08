@@ -21,7 +21,7 @@ class Player:
     role: str
     alive: bool = True
     tokens: dict[str, int] = field(default_factory=dict)
-    status: dict[str, Any] = field(default_factory=dict)  # free-form flags, e.g. doused, fake_role
+    status: dict[str, Any] = field(default_factory=dict)  # keys code reads are in Status; the moderator adds others
     last_will: str = ""
     notepad: str = ""  # private notes the player keeps across turns
     speaking_budget: float = 0.0
@@ -41,6 +41,29 @@ class Player:
                 return f"Neutral:{self.name}"
 
 
+# Event categories. Every emit() names one, and the log viewer colors and labels events by it
+# (never by parsing their text), so event wording can change freely.
+CHAT = "chat"  # public chat; fields: speaker, message
+PM = "pm"  # private message; fields: speaker, to, message
+YAKUZA_CHAT = "yak"  # fields: speaker, message
+NOMINATION = "nom"
+VOTE = "vote"  # vote results, trials, verdicts
+DEATH = "death"  # deaths, executions, players leaving the game
+RESULT = "result"  # moderator's private result; fields: message
+ANNOUNCEMENT = "announcement"  # moderator's public announcement; fields: message
+PHASE = "phase"  # "Day N begins." / "Night N begins."
+SYSTEM = "system"  # anything else
+
+
+class Status:
+    """Player.status keys that code reads. The moderator may also set its own keys (e.g. doused)."""
+
+    LEFT = "left"  # left the game (a winning Executioner); not a death
+    CLEANED = "cleaned"  # Mortician: the death reveal hides role and will
+    TARGET = "target"  # Executioner's target
+    FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
+
+
 @dataclass
 class Event:
     """Something that happened, and who may see it. visible_to=None means public."""
@@ -49,6 +72,8 @@ class Event:
     phase: str
     text: str
     visible_to: frozenset[str] | None = None
+    cat: str = SYSTEM
+    fields: dict[str, Any] = field(default_factory=dict)
 
     def visible(self, name: str) -> bool:
         return self.visible_to is None or name in self.visible_to
@@ -96,7 +121,7 @@ class Game:
         return [p.name for p in self.alive()]
 
     def death_count(self) -> int:
-        return sum(not p.alive and not p.status.get("left") for p in self.players)
+        return sum(not p.alive and not p.status.get(Status.LEFT) for p in self.players)
 
     def yakuza(self) -> list[Player]:
         return [p for p in self.alive() if p.info.alignment is Alignment.EVIL]
@@ -109,12 +134,14 @@ class Game:
 
     # --- events ---------------------------------------------------------------------------
 
-    def emit(self, text: str, visible_to: list[str] | set[str] | None = None, kind: str = "event") -> None:
-        """kind="notice" marks events that the readable logs skip (they duplicate another event)."""
+    def emit(self, text: str, visible_to: list[str] | set[str] | None = None, kind: str = "event",
+             cat: str = SYSTEM, **fields: Any) -> None:
+        """cat is the event's category (CHAT etc. above), with that category's fields.
+        kind="notice" marks events that the readable logs skip (they duplicate another event)."""
         vis = frozenset(visible_to) if visible_to is not None else None
-        self.events.append(Event(self.day, self.phase, text, vis))
+        self.events.append(Event(self.day, self.phase, text, vis, cat, fields))
         self.log.write(kind, day=self.day, phase=self.phase, text=text,
-                       visible_to=sorted(vis) if vis is not None else "all")
+                       visible_to=sorted(vis) if vis is not None else "all", cat=cat, **fields)
 
     def history_for(self, name: str) -> str:
         lines = []
@@ -137,14 +164,14 @@ class Game:
             self.personal_winners.append(name)
             self.pending_revenge.append((name, guilty_voters))
         for exe in self.alive():
-            if exe.role == "Executioner" and exe.status.get("target") == name:
+            if exe.role == "Executioner" and exe.status.get(Status.TARGET) == name:
                 if hanged:
                     self.personal_winners.append(exe.name)
                     self.pending_revenge.append((exe.name, guilty_voters))
                     exe.alive = False  # leaves the game; not a death
-                    exe.status["left"] = True
+                    exe.status[Status.LEFT] = True
                     self.emit(f"{exe.name} was the Executioner, whose target was {name}. "
-                              f"They win and leave the game.")
+                              f"They win and leave the game.", cat=DEATH)
                     self.death_record.append(f"Day {self.day}: {exe.name} (Executioner) won and left the game")
                 else:
                     # Our reading of "if you die of other means": the target dying otherwise.
@@ -188,13 +215,13 @@ class Game:
             self.reveal_death(name, cause)
         self.pending_deaths.clear()
         for text in self.pending_announcements:
-            self.emit(text)
+            self.emit(f"Moderator: {text}", cat=ANNOUNCEMENT, message=text)
         self.pending_announcements.clear()
 
     def reveal_death(self, name: str, cause: str) -> None:
-        self.emit(self.death_reveal(name, cause))
+        self.emit(self.death_reveal(name, cause), cat=DEATH)
         p = self.player(name)
-        what = "role cleaned by a Mortician" if p.status.get("cleaned") else f"{p.role}, {cause}"
+        what = "role cleaned by a Mortician" if p.status.get(Status.CLEANED) else f"{p.role}, {cause}"
         self.death_record.append(f"Day {self.day} {self.phase}: {name} ({what})")
 
     def public_ledger(self) -> str:
@@ -207,7 +234,7 @@ class Game:
 
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
-        if p.status.get("cleaned"):
+        if p.status.get(Status.CLEANED):
             return f"{name} died. Their role and last will were cleaned by a Mortician."
         reveal = f"{name} died ({cause}). Their role was {p.role}."
         if p.last_will:
@@ -273,9 +300,9 @@ def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: G
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         if p.role == "Executioner":
-            p.status["target"] = rng.choice([q.name for q in players if q is not p])
+            p.status[Status.TARGET] = rng.choice([q.name for q in players if q is not p])
         if p.role == "Roleplayer":
-            p.status["fake_role"] = rng.choice(
+            p.status[Status.FAKE_ROLE] = rng.choice(
                 [r for r, i in ROLES.items() if i.category == "Investigative"])
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "role": p.role,
                                  "status": p.status} for p in players], katana=game.katana_holder)

@@ -29,8 +29,8 @@ def text_line(r: dict) -> str | None:
             return "\n".join(lines + [f"  Katana starts with {r.get('katana')}"])
         case "event":
             text = r["text"]
-            if text.startswith(("Day ", "Night ")) and text.endswith("begins."):
-                return f"\n===== {text[:-len(' begins.')].upper()} ====="
+            if is_phase_start(r):
+                return f"\n===== {text.removesuffix(' begins.').upper()} ====="
             vis = r.get("visible_to")
             prefix = "" if vis == "all" else f"(to {', '.join(vis)}) "
             return f"{prefix}{text}"
@@ -168,8 +168,37 @@ class Namer:
         return self.pattern.sub(lambda m: f"<span class='n {self.factions[m[1]]}'>{m[1]}</span>", escaped)
 
 
+def is_phase_start(r: dict) -> bool:
+    if "cat" in r:
+        return r["cat"] == "phase"
+    t = r["text"]  # logs from before events had categories
+    return t.startswith(("Day ", "Night ")) and t.endswith("begins.")
+
+
 def classify(r: dict) -> tuple[str, str, str]:
-    """(category, badge text, body text) for an event."""
+    """(category, badge text, body text) for an event, from the category and fields that
+    state.Game.emit() logs."""
+    if "cat" not in r:
+        return classify_legacy(r)
+    cat, t, vis = r["cat"], r["text"], r.get("visible_to")
+    match cat:
+        case "chat":
+            return "chat", "", f"{r['speaker']}: {r['message']}"
+        case "pm":
+            return "pm", "PM", f"{r['speaker']} → {r['to']}: {r['message']}"
+        case "yak":
+            return "yak", "Yakuza chat", f"{r['speaker']}: {r['message']}"
+        case "result":
+            return "result", f"Result → {', '.join(vis)}", r["message"]
+        case "announcement":
+            return "result", "Announcement", r["message"]
+        case "death" | "nom" | "vote":
+            return cat, CATEGORY_LABELS[cat], t
+    return "system", "" if vis == "all" else f"→ {', '.join(vis)}", t
+
+
+def classify_legacy(r: dict) -> tuple[str, str, str]:
+    """classify() for logs written before events had categories: guesses from the text."""
     t, vis = r["text"], r.get("visible_to")
     if m := re.match(r"(\w+) \(public\): (.*)", t, re.S):
         return "chat", "", f"{m[1]}: {m[2]}"
@@ -222,9 +251,8 @@ def render_html(jsonl_path: Path) -> Path:
             out.append(f"<table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr>"
                        f"{rows}</table><div class='muted'>Katana starts with {name(str(r.get('katana')))}</div>")
         elif k == "event":
-            t = r["text"]
-            if t.startswith(("Day ", "Night ")) and t.endswith("begins."):
-                start_phase(t[:-len(" begins.")])
+            if is_phase_start(r):
+                start_phase(r["text"].removesuffix(" begins."))
                 continue
             category, badge, body = classify(r)
             line(category, badge, name(body))

@@ -1,11 +1,12 @@
 """The LLM moderator and its tools."""
 
+import difflib
 import json
 from typing import Any
 
-from llm import Model
+from llm import LLMClient, Model
 from players import ANSWER_SCHEMA, Players
-from state import Game
+from state import ANNOUNCEMENT, RESULT, Game, Status
 
 
 def tool(name: str, description: str, **params: dict) -> dict:
@@ -38,6 +39,20 @@ MODERATOR_TOOLS = [
          summary={"type": "string"}),
 ]
 
+# apply_changes ops: op -> (required fields, optional fields). Ops are checked against this before
+# any is applied, so a malformed batch changes nothing and the moderator gets a clear error.
+OPS: dict[str, tuple[set[str], set[str]]] = {
+    "kill": ({"player"}, {"cause"}),
+    "set_tokens": ({"player", "token", "value"}, set()),
+    "set_status": ({"player", "key"}, {"value"}),
+    "set_katana": ({"player"}, set()),
+    "set_last_will": ({"player", "text"}, set()),
+    "prosecute": ({"player"}, set()),
+    "rig_vote": (set(), set()),
+    "puppet": ({"player", "by"}, set()),
+}
+CODE_STATUS_KEYS = {v for k, v in vars(Status).items() if not k.startswith("_")}
+
 FLAG_TOOL = tool("flag_issue", "Report a problem with the game itself without stopping it: an ambiguous or "
                  "contradictory rule, a tool or piece of state you're missing, or anything that looks "
                  "like a program bug. Then carry on with your best interpretation.", issue={"type": "string"})
@@ -46,7 +61,7 @@ MAX_MODERATOR_STEPS = 40
 
 
 class Moderator:
-    def __init__(self, game: Game, client, players: Players, model: Model, rules: str,
+    def __init__(self, game: Game, client: LLMClient, players: Players, model: Model, rules: str,
                  flag_issues: bool = False):
         self.game = game
         self.client = client
@@ -100,6 +115,7 @@ class Moderator:
             case "get_state":
                 return g.full_state()
             case "apply_changes":
+                notes = self.check_changes(args["changes"])
                 for c in args["changes"]:
                     p = g.player(c["player"]) if "player" in c else None
                     match c["op"]:
@@ -122,21 +138,19 @@ class Moderator:
                             p.last_will = c["text"]
                         case "set_katana":
                             g.katana_holder = p.name
-                        case op:
-                            raise ValueError(f"unknown op {op!r}")
-                return {"ok": True}
+                return {"ok": True, **({"notes": notes} if notes else {})}
             case "random_choice":
                 return {"chosen": g.rng.sample(args["options"], int(args.get("k", 1)))}
             case "tell":
                 to = args["to"]
                 if to == ["all"] and g.phase == "night":
-                    g.pending_announcements.append(f"Moderator: {args['text']}")  # read out at dawn
+                    g.pending_announcements.append(args["text"])  # read out at dawn
                 elif to == ["all"]:
-                    g.emit(f"Moderator: {args['text']}")
+                    g.emit(f"Moderator: {args['text']}", cat=ANNOUNCEMENT, message=args["text"])
                 else:
                     for n in to:
                         g.player(n)  # validate names
-                    g.emit(f"Moderator (private): {args['text']}", to)
+                    g.emit(f"Moderator (private): {args['text']}", to, cat=RESULT, message=args["text"])
                 return {"ok": True}
             case "ask_player":
                 p = g.player(args["player"])
@@ -150,3 +164,26 @@ class Moderator:
                 g.log.write("moderator_flag", day=g.day, phase=g.phase, issue=args["issue"])
                 return {"ok": True, "note": "Thanks; carry on."}
         raise ValueError(f"unknown tool {name!r}")
+
+    def check_changes(self, changes: list) -> list[str]:
+        """Raises ValueError, before anything is applied, if any op is malformed. Returns warnings."""
+        notes = []
+        for i, c in enumerate(changes):
+            if not isinstance(c, dict) or c.get("op") not in OPS:
+                raise ValueError(f"change {i}: op must be one of {sorted(OPS)}; nothing was applied")
+            required, optional = OPS[c["op"]]
+            fields = set(c) - {"op"}
+            if missing := required - fields:
+                raise ValueError(f"change {i} ({c['op']}): missing {sorted(missing)}; nothing was applied")
+            if extra := fields - required - optional:
+                notes.append(f"change {i} ({c['op']}): ignored unknown fields {sorted(extra)}")
+            for key in ("player", "by"):
+                if key in c and c[key] not in {p.name for p in self.game.players}:
+                    raise ValueError(f"change {i} ({c['op']}): no player named {c[key]!r}; nothing was applied")
+            if c["op"] == "set_tokens" and not str(c["value"]).lstrip("-").isdigit():
+                raise ValueError(f"change {i} (set_tokens): value must be an integer; nothing was applied")
+            if c["op"] == "set_status" and c["key"] not in CODE_STATUS_KEYS:
+                close = difflib.get_close_matches(c["key"], CODE_STATUS_KEYS, n=1)
+                if close:
+                    notes.append(f"status key {c['key']!r} is not one code reads; did you mean {close[0]!r}?")
+        return notes

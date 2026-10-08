@@ -4,7 +4,7 @@ import json
 
 from players import BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, truncate_words, word_count
 from roles import Alignment
-from state import Game, majority
+from state import PHASE, YAKUZA_CHAT, Game, majority
 from moderator import Moderator
 
 
@@ -14,7 +14,7 @@ YAKUZA_MESSAGE_WORDS = 200  # Yakuza chat is free but each message is capped at 
 
 def run_night(game: Game, players: Players, moderator: Moderator) -> None:
     game.phase = "night"
-    game.emit(f"Night {game.day} begins.")
+    game.emit(f"Night {game.day} begins.", cat=PHASE)
     if len(game.yakuza()) > 1:
         yakuza_chat(game, players, YAKUZA_CHAT_ROUNDS,
                     "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions.")
@@ -92,7 +92,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
             if msg := out.get("message"):
                 if word_count(msg) > YAKUZA_MESSAGE_WORDS:
                     msg = truncate_words(msg, YAKUZA_MESSAGE_WORDS)
-                game.emit(f"{y.name} (Yakuza chat): {msg}", names)
+                game.emit(f"{y.name} (Yakuza chat): {msg}", names, cat=YAKUZA_CHAT, speaker=y.name, message=msg)
             ready.append(out.get("ready", True))
         if all(ready):
             return

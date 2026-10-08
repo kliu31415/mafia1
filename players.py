@@ -3,8 +3,9 @@
 import json
 from concurrent.futures import ThreadPoolExecutor
 
+from llm import LLMClient
 from roles import Alignment, ROLES
-from state import Game, Player
+from state import Game, Player, Status
 
 
 NOTEPAD_WORDS = 300  # longer notepads are truncated
@@ -73,7 +74,7 @@ def night_action_schema(game: Game, p: Player) -> dict:
 def role_briefing(game: Game, p: Player) -> str:
     lines = [f"You are {p.name} (seat {p.seat})."]
     if p.role == "Roleplayer":
-        lines.append(f"Your role is {p.status['fake_role']}.")  # they're told the fake role
+        lines.append(f"Your role is {p.status[Status.FAKE_ROLE]}.")  # they're told the fake role
     else:
         lines.append(f"Your role is {p.role} ({p.info.alignment.value}).")
     if p.tokens:
@@ -82,7 +83,7 @@ def role_briefing(game: Game, p: Player) -> str:
         team = ", ".join(f"{y.name} ({y.role})" for y in game.players if y.info.alignment is Alignment.EVIL)
         lines.append(f"Yakuza members: {team}. Katana holder: {game.katana_holder}.")
     if p.role == "Executioner":
-        lines.append(f"Your target is {p.status['target']}.")
+        lines.append(f"Your target is {p.status[Status.TARGET]}.")
     return " ".join(lines)
 
 
@@ -123,7 +124,7 @@ def with_notepad(schema: dict) -> dict:
 class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""
 
-    def __init__(self, game: Game, client, rules: str, feedback_field: bool = False):
+    def __init__(self, game: Game, client: LLMClient, rules: str, feedback_field: bool = False):
         self.game = game
         self.client = client
         self.rules = rules

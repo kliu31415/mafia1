@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from llm import Model
+from llm import LLMClient, Model
 from moderator import Moderator
 from players import STR, Players, obj
 from state import Game
@@ -56,7 +56,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
                    answers=json.loads(reply.content or "{}"), cost=reply.cost)
 
 
-def run_review(game: Game, client, model: Model, rules: str, text_log: Path) -> None:
+def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path) -> None:
     """An outside model reads the whole human-readable log and lists problems it sees."""
     messages = [
         {"role": "system", "content": f"{rules}\n\n---\n\nYou review logs of LLMs playing this game, which "
@@ -176,7 +176,7 @@ QUIZ_GRADE_SCHEMA = obj(results={"type": "array", "items": obj(
     question={"type": "integer"}, correct={"type": "boolean"}, note=STR)})
 
 
-def run_quiz(client, models: list[Model], grader: Model, rules: str, out_dir: Path) -> Path:
+def run_quiz(client: LLMClient, models: list[Model], grader: Model, rules: str, out_dir: Path) -> Path:
     """Ask each model the quiz questions given only the rules, then have `grader` mark the answers
     against the reference answers. Wrong or split answers point at rules that need clarifying."""
     questions = "\n".join(f"{i + 1}. {q}" for i, (q, _) in enumerate(QUIZ))

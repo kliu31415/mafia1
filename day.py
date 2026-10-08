@@ -4,7 +4,7 @@ import json
 
 from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
-from state import Game, Player, majority
+from state import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE, Game, Player, majority
 
 
 # Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
@@ -56,7 +56,7 @@ def price_table(rnd: int) -> str:
 
 def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
-    game.emit(f"Day {game.day} begins.")
+    game.emit(f"Day {game.day} begins.", cat=PHASE)
     game.announce_dawn()
     game.resolve_cardinal()
     if game.check_winner() is not None:
@@ -91,7 +91,7 @@ def run_day(game: Game, players: Players) -> None:
         if trials >= MAX_TRIALS_PER_DAY or not game.player(name).alive:
             break
         nominator = game.rng.choice(game.alive())  # the rules pick a random "nominator"
-        game.emit(f"{name} is being prosecuted and goes straight to trial.")
+        game.emit(f"{name} is being prosecuted and goes straight to trial.", cat=NOMINATION)
         game.vote_record.append(f"Day {game.day}: {name} was prosecuted (straight to trial)")
         if run_trial(game, players, nominator, name, rnd=1) == "executed":
             return
@@ -219,10 +219,11 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         p.speaking_budget -= cost_of(i, to, words)
         sent += 1
         if to is None:
-            game.emit(f"{p.name} (public): {text}")
+            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
         else:
             # A puppeted player's private chat is read and written by their Puppeteer instead.
-            game.emit(f"{p.name} -> {to} (private): {text}", [writer.name, game.chat_controller(to)])
+            game.emit(f"{p.name} -> {to} (private): {text}", [writer.name, game.chat_controller(to)],
+                      cat=PM, speaker=p.name, to=to, message=text)
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.players if q.name not in (p.name, to)], kind="notice")
@@ -233,7 +234,7 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     """Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed".
     Both votes are simultaneous: every voter decides without seeing the others, then all votes
     are revealed together."""
-    game.emit(f"{nominator.name} nominated {nominee}. Everyone now votes Yes/No simultaneously.")
+    game.emit(f"{nominator.name} nominated {nominee}. Everyone now votes Yes/No simultaneously.", cat=NOMINATION)
     others = [v for v in game.clockwise_from(nominator.name) if v is not nominator]
     task = (f"{nominator.name} nominated {nominee}. Vote true (Yes) to put them on trial, false (No) "
             "otherwise. Voting is simultaneous: you can't see anyone else's vote, and all votes are "
@@ -242,14 +243,14 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     yes_voters = [nominator.name] + [v.name for v, o in zip(others, outs) if o["vote"]]
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
-              f"No - {', '.join(no_voters) or 'nobody'}.")
+              f"No - {', '.join(no_voters) or 'nobody'}.", cat=VOTE)
     passed = majority(len(yes_voters), len(game.alive()))
     game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}; "
                             f"No - {', '.join(no_voters) or 'nobody'}; {'passed' if passed else 'failed'}")
     if not passed:
-        game.emit(f"The nomination of {nominee} failed ({len(yes_voters)} Yes).")
+        game.emit(f"The nomination of {nominee} failed ({len(yes_voters)} Yes).", cat=VOTE)
         return "failed"
-    game.emit(f"{nominee} is put on trial ({len(yes_voters)} Yes).")
+    game.emit(f"{nominee} is put on trial ({len(yes_voters)} Yes).", cat=VOTE)
     return run_trial(game, players, nominator, nominee, rnd)
 
 
@@ -271,7 +272,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     guilty = [v.name for v, o in zip(voters, outs) if o["vote"]]
     innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
     game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
-              f"Innocent - {', '.join(innocent) or 'nobody'}.")
+              f"Innocent - {', '.join(innocent) or 'nobody'}.", cat=VOTE)
     voted_guilty = majority(len(guilty), len(game.alive()))
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
@@ -279,9 +280,10 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
                             f"Innocent - {', '.join(innocent) or 'nobody'}; {verdict}")
     if voted_guilty or game.rigged_day == game.day:
         if not voted_guilty:
-            game.emit(f"The vote was rigged by a Clerk: {nominee} is executed despite the Innocent verdict.")
-        game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).")
+            game.emit(f"The vote was rigged by a Clerk: {nominee} is executed despite the Innocent verdict.",
+                      cat=VOTE)
+        game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).", cat=DEATH)
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
         return "executed"
-    game.emit(f"{nominee} is found Innocent ({len(guilty)} Guilty).")
+    game.emit(f"{nominee} is found Innocent ({len(guilty)} Guilty).", cat=VOTE)
     return "innocent"

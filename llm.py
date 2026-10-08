@@ -3,12 +3,13 @@
 import json
 import os
 import random
+import re
 import time
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any
+from typing import Any, Protocol
 
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -80,6 +81,15 @@ class LLMReply:
     model: str
     cost: float
     usage: dict
+
+
+class LLMClient(Protocol):
+    """What game code needs from a client: OpenRouterClient, MockClient, or a test's scripted client."""
+
+    total_cost: dict[str, float]
+
+    def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
+             schema: dict | None = None, schema_name: str = "response") -> LLMReply: ...
 
 
 class OpenRouterClient:
@@ -169,9 +179,12 @@ class MockClient:
         tool_calls = []
         content = None
         if tools:
-            # Look at the state once, then end the phase.
+            # Carry out the Katana attack (so mock games have night deaths), then end the phase.
             done = any(m.get("role") == "tool" for m in messages)
             name, args = ("end_phase", {"summary": "mock"}) if done else ("get_state", {})
+            katana = re.search(r"Katana vote result: (\{.*?\})\n", messages[-1].get("content") or "")
+            if not done and katana and (target := json.loads(katana[1]).get("attack")):
+                name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana"}]}
             tool_calls = [{"id": f"call_{self.rng.randrange(10**9)}", "type": "function",
                            "function": {"name": name, "arguments": json.dumps(args)}}]
         elif schema:
