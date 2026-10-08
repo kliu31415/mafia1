@@ -27,6 +27,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Any
 
+import log_viewer
+
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
 LOG_DIR = ROOT / "logs"
@@ -344,19 +346,27 @@ class Event:
 
 
 class GameLog:
-    """Writes every event and LLM call as one JSON line, for later analysis."""
+    """Writes every event and LLM call as one JSON line, for later analysis, plus a live
+    human-readable .txt next to it. close() also renders an expandable .html view."""
 
     def __init__(self, path: Path):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
         self.f = path.open("w", encoding="utf-8")
+        self.txt = path.with_suffix(".txt").open("w", encoding="utf-8")
 
     def write(self, kind: str, **data: Any) -> None:
-        self.f.write(json.dumps({"t": time.time(), "kind": kind, **data}, default=str) + "\n")
+        line = json.dumps({"t": time.time(), "kind": kind, **data}, default=str)
+        self.f.write(line + "\n")
         self.f.flush()
+        if (text := log_viewer.text_line(json.loads(line))) is not None:
+            self.txt.write(text + "\n")
+            self.txt.flush()
 
     def close(self) -> None:
         self.f.close()
+        self.txt.close()
+        log_viewer.render_html(self.path)
 
 
 @dataclass
@@ -705,6 +715,7 @@ class Players:
 
 def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
+    game.emit(f"Day {game.day} begins.")
     for name, cause in game.pending_deaths:
         game.emit(game.death_reveal(name, cause))
     game.pending_deaths.clear()
@@ -876,6 +887,7 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
             task += " Also vote on who should hold the Katana and who the Katana should attack (or null)."
         jobs.append((p, task, night_action_schema(game, p), {"act": False}))
     actions = dict(zip([p.name for p in actors], players.ask_many(jobs)))
+    game.log.write("night_actions", day=game.day, actions=actions, roles={p.name: p.role for p in actors})
 
     katana = tally_katana(game, actions)
     yakuza = game.yakuza()
@@ -896,6 +908,7 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
             actions[y.name].update(katana_vote_holder=out["katana_vote_holder"],
                                    katana_vote_target=out["katana_vote_target"])
         katana = tally_katana(game, actions)
+    game.log.write("katana", day=game.day, result=katana)
     moderator.run_phase(
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
@@ -1116,7 +1129,7 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
               models={p.name: p.model.value for p in game.players})
     log.close()
     print(f"Cost by model: {client.total_cost}")
-    print(f"Log: {log.path}")
+    print(f"Logs: {log.path} (+ .txt, .html)")
     return log.path
 
 
