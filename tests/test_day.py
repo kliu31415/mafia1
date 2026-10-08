@@ -1,6 +1,6 @@
 """The day phase: nominations, trials, speaking budget and when the day ends."""
 
-from day import MAX_TRIALS_PER_DAY, run_day, run_nomination, run_trial
+from day import MAX_TRIALS_PER_DAY, TRIAL_BUDGET, message_cost, run_day, run_nomination, run_trial
 from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, votes
 
 
@@ -55,16 +55,34 @@ def test_private_messages_alone_dont_keep_the_day_going(game_factory):
     assert not any("round 2 " in task for _, task in client.asked)
 
 
-def test_trial_comments_are_free_up_to_the_limit(game_factory):
+def test_trial_turns_use_a_trial_budget_at_1x(game_factory):
+    # Round 8 prices are 7.6x, so a broke player could say nothing; at trial prices the trial budget
+    # pays for a short comment, and what's left of it doesn't carry over.
     def decide(name, task, schema):
         return {"public_message": "I lean Guilty."} if "public_message" in schema["properties"] else None
     game, players = game_factory(VILLAGE5, ScriptedClient(decide))
     for p in game.players:
         p.speaking_budget = 0.0
-    run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
+    run_trial(game, players, game.player("Alice"), "Bob", rnd=8)
     speakers = {e.fields["speaker"] for e in game.events if e.cat == "chat"}
     assert speakers == {p.name for p in game.players}
     assert all(p.speaking_budget == 0.0 for p in game.players)
+
+
+def test_trial_turns_dip_into_the_regular_budget_past_the_trial_budget(game_factory):
+    long = " ".join(["word"] * 200)  # 5.33 at 1x: the 3.00 trial budget, then 2.33 of the regular one
+
+    def decide(name, task, schema):
+        if "public_message" in schema["properties"] and name == "Carol":
+            return {"public_message": long}
+        return None
+    game, players = game_factory(VILLAGE5, ScriptedClient(decide))
+    for p in game.players:
+        p.speaking_budget = 8.0
+    run_trial(game, players, game.player("Alice"), "Bob", rnd=8)
+    assert any(e.fields.get("message") == long for e in game.events if e.cat == "chat")
+    assert abs(game.player("Carol").speaking_budget - (8.0 - (message_cost(200, 1, False) - TRIAL_BUDGET))) < 1e-9
+    assert game.player("Dave").speaking_budget == 8.0
 
 
 def always_nominate_never_convict(name, task, schema):

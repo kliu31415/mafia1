@@ -21,7 +21,9 @@ FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH 
 ROUND_COST_GROWTH = 1.5
 MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a public message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
-FREE_TRIAL_COMMENT_WORDS = 50  # everyone else's public message during a trial is free up to this length
+# Each player's turn in a trial is priced at 1x whatever the round, and comes with a trial-only budget
+# that is spent before their regular budget. Unspent trial budget is lost when the turn ends.
+TRIAL_BUDGET = 3.0
 MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
 MAX_TRIALS_PER_DAY = 3
 NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budget; deters spam
@@ -49,9 +51,14 @@ def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> fl
     return cost * round_multiplier(rnd) * (PRIVATE_COST_FACTOR if private else 1.0)
 
 
-def price_table(rnd: int) -> str:
-    rows = [f"  {w:>3} words: public {message_cost(w, rnd, False):.2f}, private {message_cost(w, rnd, True):.2f}"
+def price_table(rnd: int, trial: bool = False) -> str:
+    """trial: the 1x prices of a trial turn, whatever the round."""
+    price_rnd = 1 if trial else rnd
+    rows = [f"  {w:>3} words: public {message_cost(w, price_rnd, False):.2f}, "
+            f"private {message_cost(w, price_rnd, True):.2f}"
             for w in (10, 25, 50, 100, 200, 400, MAX_MESSAGE_WORDS)]
+    if trial:
+        return "Message prices during this trial (1.00x):\n" + "\n".join(rows)
     nxt = round_multiplier(rnd + 1)
     return (f"Message prices this round (round {rnd}, {round_multiplier(rnd):.2f}x; next round "
             f"{nxt:.2f}x):\n" + "\n".join(rows))
@@ -144,15 +151,29 @@ def planned_messages(out: dict) -> list[tuple[str | None, str]]:
 
 
 def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: bool,
-              extra: str = "", free_words: int = 0) -> tuple[bool, str | None]:
+              extra: str = "", free_words: int = 0, trial: bool = False) -> tuple[bool, str | None]:
     """One speaking turn. Returns (whether a public message was sent, nominee or None).
-    free_words: this turn's public message is free up to that many words (used on trial turns).
+    free_words: this turn's public message is free up to that many words (the accused's defense).
+    trial: a trial turn, priced at 1x with a TRIAL_BUDGET spent first; what's left of it is lost.
 
     If the planned messages cost more than the player's budget, they're warned and asked once to
     revise; anything still over budget is then truncated (later messages first) or dropped."""
 
+    price_rnd = 1 if trial else rnd
+    trial_budget = TRIAL_BUDGET if trial else 0.0
+
     def cost_of(i: int, to: str | None, words: int) -> float:
-        return message_cost(words, rnd, private=to is not None, free_words=free_words if i == 0 and to is None else 0)
+        return message_cost(words, price_rnd, private=to is not None,
+                            free_words=free_words if i == 0 and to is None else 0)
+
+    def available() -> float:
+        return trial_budget + p.speaking_budget
+
+    def spend(cost: float) -> None:
+        nonlocal trial_budget
+        from_trial = min(trial_budget, cost)
+        trial_budget -= from_trial
+        p.speaking_budget -= cost - from_trial
 
     nomination_fee = NOMINATION_COST * round_multiplier(rnd)
 
@@ -168,7 +189,11 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             f"the contents), or nothing. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
             "so late messages are only worth it if important. The day ends after a full round where "
-            "nobody sends a public message.\n" + price_table(rnd) + "\n"
+            "nobody sends a public message.\n" + price_table(rnd, trial) + "\n"
+            + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
+               f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
+               "lost when this turn ends, but don't speak just to use it up: say nothing if you have "
+               "nothing to add.\n" if trial else "")
             + (f"Your public message this turn is free up to {free_words} words; beyond that you "
                "pay only for the extra length.\n" if free_words else "")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
@@ -193,13 +218,13 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             nominate_schema = obj(thoughts=STR, nominate=nullable(name_enum(game.alive_names())))
             out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None})["nominate"]
     planned = total_cost(out)
-    if planned > p.speaking_budget + 1e-9:
+    if planned > available() + 1e-9:
         nominating = f" plus a nomination of {out['nominate']}" if can_nominate and out.get("nominate") else ""
         warning = (f"\n\nWARNING: your planned messages {json.dumps(planned_messages(out))}{nominating} "
-                   f"cost {planned:.2f}, but your budget is {p.speaking_budget:.2f}. Revise them to fit. "
+                   f"cost {planned:.2f}, but your budget is {available():.2f}. Revise them to fit. "
                    "If you still can't afford a nomination it won't happen, and messages over budget will "
                    "be truncated, starting with your last message.")
-        game.log.write("budget_warning", player=p.name, planned=planned, budget=p.speaking_budget)
+        game.log.write("budget_warning", player=p.name, planned=planned, budget=available())
         nominee = out.get("nominate")
         out = players.ask(writer, task + warning, schema, fallback)
         if writer is not p:
@@ -218,14 +243,14 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         if to is not None and to not in game.alive_names():
             continue
         words = min(word_count(text), MAX_MESSAGE_WORDS)
-        while words > 0 and cost_of(i, to, words) > p.speaking_budget + 1e-9:
+        while words > 0 and cost_of(i, to, words) > available() + 1e-9:
             words -= 1
         if words == 0 or (words < word_count(text) and words < MIN_TRUNCATED_WORDS):
             game.log.write("message_dropped", player=p.name, to=to, words=word_count(text))
             continue
         if words < word_count(text):
             text = truncate_words(text, words)
-        p.speaking_budget -= cost_of(i, to, words)
+        spend(cost_of(i, to, words))
         if to is None:
             public = True
             game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
@@ -283,10 +308,10 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     If a Clerk rigged today's vote, the accused is executed regardless; the rigging is announced
     only if the vote alone wouldn't have executed them. A prosecuted player's nominator is random."""
     accused = game.player(nominee)
-    chat_turn(game, players, accused, rnd, can_nominate=False, free_words=FREE_DEFENSE_WORDS,
+    chat_turn(game, players, accused, rnd, can_nominate=False, free_words=FREE_DEFENSE_WORDS, trial=True,
               extra="You are on trial. Defend yourself; you speak first. " + TRIAL_VOTE_NOTE)
     for p in game.clockwise_from(accused.name)[1:]:
-        chat_turn(game, players, p, rnd, can_nominate=False, free_words=FREE_TRIAL_COMMENT_WORDS,
+        chat_turn(game, players, p, rnd, can_nominate=False, trial=True,
                   extra=f"{nominee} is on trial. " + TRIAL_VOTE_NOTE)
 
     voters = game.alive()
