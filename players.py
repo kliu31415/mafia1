@@ -98,6 +98,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
     )
     notepad = p.notepad or "(empty)"
     user = (f"Everything you have seen so far:\n{game.history_for(p.name)}\n\n---\n\n"
+            f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
             "words; longer is truncated), or null to keep it as is. Use it for plans, suspicions and "

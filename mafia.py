@@ -78,12 +78,17 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
         print(f"Night {game.day}...")
         run_night(game, players, moderator)
         if (winners := game.check_winner()) is not None:
-            game.announce_dawn()  # reveal the night's deaths before the game ends
+            # Reveal the night's deaths at a proper dawn before the game ends.
+            game.phase = "day"
+            game.emit(f"Day {game.day} begins.")
+            game.announce_dawn()
             game.winners = winners
             break
         if game.death_count() == deaths_before:
             game.phases_without_death += 2
 
+    winners = ", ".join(game.winners or []) or "nobody"
+    game.emit(f"The game is over. Winners: {winners}.")
     print(f"Winners: {game.winners}")
     if debrief:
         print("Debriefing players and moderator...")
