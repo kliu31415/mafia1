@@ -1129,7 +1129,8 @@ STALL_LIMIT = 6  # rules: everyone loses after three nights and three days with 
 def play_game(client, models: list[Model], moderator_model: Model, roles: list[str],
               seed: int | None) -> Path:
     rng = random.Random(seed)
-    log = GameLog(LOG_DIR / f"game_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
+    prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
+    log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
     rules = RULES_PATH.read_text(encoding="utf-8")
     game = setup_game(roles, models, rng, log)
     players = Players(game, client, rules)
