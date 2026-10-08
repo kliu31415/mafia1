@@ -5,7 +5,8 @@ unless asked).
 
 ## Working preferences
 
-- Commit and push straight to `main` once `uv run pytest` and `uv run ruff check .` pass. No need to ask
+- Commit and push straight to `main` once `uv run pytest`, `uv run ruff check .` and
+  `uv run mypy .` pass. No need to ask
   first or to open a branch, unless Kevin asks for one.
 - Small changes: test with offline mock games only, no live games.
 - Bigger changes: also run a live game in the background: about 7-8 players with cheap player models
@@ -17,7 +18,8 @@ unless asked).
 
 - `uv run pytest` runs the scenario and visibility tests (offline, about a second). Run it before
   every commit, and add a test when you fix a rules bug or change a code-handled role.
-- `uv run ruff check .` catches undefined names, unused imports and likely bugs.
+- `uv run ruff check .` catches undefined names, unused imports and likely bugs; `uv run mypy .` checks
+  types (e.g. a possibly-None value used as a player).
 - `uv run mafia.py --mock` plays a full offline game. Its moderator only carries out the Katana attack,
   so moderator-handled roles are only exercised in live games.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says

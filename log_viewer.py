@@ -31,7 +31,7 @@ def text_line(r: dict) -> str | None:
             text = r["text"]
             if is_phase_start(r):
                 return f"\n===== {text.removesuffix(' begins.').upper()} ====="
-            vis = r.get("visible_to")
+            vis = r["visible_to"]
             prefix = "" if vis == "all" else f"(to {', '.join(vis)}) "
             return f"{prefix}{text}"
         case "night_actions":
@@ -180,7 +180,7 @@ def classify(r: dict) -> tuple[str, str, str]:
     state.Game.emit() logs."""
     if "cat" not in r:
         return classify_legacy(r)
-    cat, t, vis = r["cat"], r["text"], r.get("visible_to")
+    cat, t, vis = r["cat"], r["text"], r["visible_to"]
     match cat:
         case "chat":
             return "chat", "", f"{r['speaker']}: {r['message']}"
@@ -199,7 +199,7 @@ def classify(r: dict) -> tuple[str, str, str]:
 
 def classify_legacy(r: dict) -> tuple[str, str, str]:
     """classify() for logs written before events had categories: guesses from the text."""
-    t, vis = r["text"], r.get("visible_to")
+    t, vis = r["text"], r["visible_to"]
     if m := re.match(r"(\w+) \(public\): (.*)", t, re.S):
         return "chat", "", f"{m[1]}: {m[2]}"
     if m := re.match(r"(\w+) -> (\w+) \(private\): (.*)", t, re.S):
@@ -286,7 +286,7 @@ def render_html(jsonl_path: Path) -> Path:
                            for n, a in r["actions"].items())
             line("hidden", "Night actions", rows)
         elif k in ("katana", "revenge"):
-            line("hidden", "Katana" if k == "katana" else "Revenge", name(text_line(r)))
+            line("hidden", "Katana" if k == "katana" else "Revenge", name(text_line(r) or ""))
         elif k in ("budget_warning", "message_dropped", "nomination_dropped", "player_error", "moderator_error"):
             out.append(f"<details class='call'><summary>{esc(k.replace('_', ' '))}: "
                        f"{esc(r.get('player', ''))}</summary>{pre('Details', r)}</details>")

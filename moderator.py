@@ -129,7 +129,10 @@ class Moderator:
             case "apply_changes":
                 notes = self.check_changes(args["changes"])
                 for c in args["changes"]:
-                    p = g.player(c["player"]) if "player" in c else None
+                    if c["op"] in self.op_roles:
+                        self.op_roles[c["op"]].apply_op(g, c)
+                        continue
+                    p = g.player(c["player"])  # every core op names a player
                     match c["op"]:
                         case "kill":
                             g.kill(p.name, c.get("cause", "killed"))
@@ -144,8 +147,6 @@ class Moderator:
                             p.last_will = c["text"]
                         case "set_katana":
                             g.katana_holder = p.name
-                        case op:
-                            self.op_roles[op].apply_op(g, c)
                 return {"ok": True, **({"notes": notes} if notes else {})}
             case "random_choice":
                 return {"chosen": g.rng.sample(args["options"], int(args.get("k", 1)))}

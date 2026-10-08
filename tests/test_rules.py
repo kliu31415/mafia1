@@ -1,5 +1,7 @@
 """Scenario tests for the rules that code (not the LLM moderator) carries out."""
 
+from collections.abc import Collection
+
 import pytest
 
 import mafia
@@ -13,7 +15,7 @@ VILLAGE5 = ["Vanilla Villager"] * 5
 TOWN4_GRUNT = ["Vanilla Villager"] * 4 + ["Grunt"]  # run_day needs two factions alive, or the game is over
 
 
-def votes(guilty_for: set[str] = frozenset(), nominate: dict[str, str] | None = None):
+def votes(guilty_for: Collection[str] = (), nominate: dict[str, str] | None = None):
     """A decide() where everyone votes Yes/Guilty on the given nominees, and the given players
     nominate once each."""
     nominated = set()

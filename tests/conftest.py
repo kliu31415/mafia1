@@ -56,7 +56,9 @@ class ScriptedClient:
             msg = {"role": "assistant", "content": None, "tool_calls": calls}
             return LLMReply(None, None, calls, msg, model.value, 0.0, {})
         assert schema is not None
-        player = re.search(r"You are (\w+) \(seat", messages[0]["content"])[1]
+        match = re.search(r"You are (\w+) \(seat", messages[0]["content"])
+        assert match, "not a player prompt"
+        player = match[1]
         task = messages[-1]["content"].rsplit("---\n\n", 1)[-1]
         self.asked.append((player, task))
         out = default_answer(schema)

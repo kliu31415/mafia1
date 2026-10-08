@@ -181,6 +181,7 @@ class MockClient:
         if tools:
             # Carry out the Katana attack (so mock games have night deaths), then end the phase.
             done = any(m.get("role") == "tool" for m in messages)
+            args: dict[str, Any]
             name, args = ("end_phase", {"summary": "mock"}) if done else ("get_state", {})
             katana = re.search(r"Katana vote result: (\{.*?\})\n", messages[-1].get("content") or "")
             if not done and katana and (target := json.loads(katana[1]).get("attack")):

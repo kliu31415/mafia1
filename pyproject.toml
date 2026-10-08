@@ -6,7 +6,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -19,3 +19,7 @@ line-length = 120
 # Bug-catching rules only (undefined names, unused imports, likely mistakes), not style.
 select = ["F", "E9", "B"]
 ignore = ["B905"]  # zip() without strict=
+
+[tool.mypy]
+explicit_package_bases = true
+exclude = ['\.venv']

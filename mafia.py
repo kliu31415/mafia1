@@ -92,8 +92,8 @@ def play_game(client: LLMClient, models: list[Model], moderator_model: Model, ro
         if game.death_count() == deaths_before:
             game.phases_without_death += 2
 
-    winners = ", ".join(game.winners or []) or "nobody"
-    game.emit(f"The game is over. Winners: {winners}.")
+    winner_names = ", ".join(game.winners or []) or "nobody"
+    game.emit(f"The game is over. Winners: {winner_names}.")
     print(f"Winners: {game.winners}")
     if debrief:
         print("Debriefing players and moderator...")

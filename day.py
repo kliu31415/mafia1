@@ -1,6 +1,7 @@
 """The day phase: speaking budget, chat turns, nominations and simultaneous votes."""
 
 import json
+from typing import Any
 
 from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
@@ -167,7 +168,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
             + extra)
-    fallback = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
+    fallback: dict[str, Any] = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
     writer = game.player(game.chat_controller(p.name))
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
