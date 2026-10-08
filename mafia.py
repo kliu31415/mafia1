@@ -360,6 +360,8 @@ class Game:
     phases_without_death: int = 0  # day and night phases since the last death
     winners: list[str] | None = None
     pending_announcements: list[str] = field(default_factory=list)
+    personal_winners: list[str] = field(default_factory=list)  # Jester / Executioner
+    pending_revenge: list[tuple[str, list[str]]] = field(default_factory=list)  # (source, Guilty voters)
 
     # --- lookups --------------------------------------------------------------------------
 
@@ -374,6 +376,9 @@ class Game:
 
     def alive_names(self) -> list[str]:
         return [p.name for p in self.alive()]
+
+    def death_count(self) -> int:
+        return sum(not p.alive and not p.status.get("left") for p in self.players)
 
     def yakuza(self) -> list[Player]:
         return [p for p in self.alive() if p.info.alignment is Alignment.EVIL]
@@ -401,11 +406,30 @@ class Game:
 
     # --- state changes ----------------------------------------------------------------------
 
-    def kill(self, name: str, cause: str, public: bool = True) -> None:
+    def kill(self, name: str, cause: str, public: bool = True,
+             guilty_voters: list[str] | None = None) -> None:
+        """guilty_voters is set only for an execution by hanging."""
         p = self.player(name)
         if not p.alive:
             return
         p.alive = False
+        hanged = guilty_voters is not None
+        if hanged and p.role == "Jester":
+            self.personal_winners.append(name)
+            self.pending_revenge.append((name, guilty_voters))
+        for exe in self.alive():
+            if exe.role == "Executioner" and exe.status.get("target") == name:
+                if hanged:
+                    self.personal_winners.append(exe.name)
+                    self.pending_revenge.append((exe.name, guilty_voters))
+                    exe.alive = False  # leaves the game; not a death
+                    exe.status["left"] = True
+                    self.emit(f"{exe.name} was the Executioner, whose target was {name}. "
+                              f"They win and leave the game.")
+                else:
+                    # Our reading of "if you die of other means": the target dying otherwise.
+                    exe.role = "Jester"
+                    self.emit("Your target died other than by hanging. You are now a Jester.", [exe.name])
         self.phases_without_death = 0
         self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase)
         reveal = f"{name} died ({cause}). Their role was {p.role}."
@@ -422,16 +446,26 @@ class Game:
             self.katana_holder = self.rng.choice(remaining).name if remaining else None
             if self.katana_holder:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
-        # TODO: Cardinal, Executioner -> Jester, Jester/Executioner win triggers.
+        # TODO: Cardinal.
+
+    def resolve_revenge(self) -> None:
+        """Jester / Executioner revenge: a Divine Attack on a random Guilty voter, the night after."""
+        for source, voters in self.pending_revenge:
+            targets = [v for v in voters if self.player(v).alive]
+            if targets:
+                victim = self.rng.choice(targets)
+                self.log.write("revenge", source=source, victim=victim)
+                self.kill(victim, "Divine Attack")
+        self.pending_revenge.clear()
 
     def check_winner(self) -> list[str] | None:
-        """Called at the start of each day. Returns the winning player names, or None."""
+        """Called at the start of each day. Returns the winning player names, or None.
+        Jester / Executioner wins are personal: they don't end the game, but are added at the end."""
         alive = self.alive()
         blocking = {p.faction for p in alive if p.role not in NON_BLOCKING_ROLES}
         if len(blocking) <= 1:
             faction = next(iter(blocking), None)
-            return [p.name for p in self.players if faction and p.faction == faction] or []
-        # TODO: Jester / Executioner wins are personal and don't end the game; record them separately.
+            return [p.name for p in self.players if faction and p.faction == faction] + self.personal_winners
         return None
 
     def public_state(self) -> dict:
@@ -457,10 +491,9 @@ class Game:
 
 
 def setup_game(roles: list[str], models: list[Model], rng: random.Random, log: GameLog) -> Game:
-    if len(models) == 1:
-        models = models * len(roles)
-    if len(models) != len(roles):
+    if len(models) > len(roles):
         raise ValueError(f"{len(roles)} roles but {len(models)} models")
+    models = [models[i % len(models)] for i in range(len(roles))]  # cycle models over the seats
     names = PLAYER_NAMES[:len(roles)]
     shuffled = roles[:]
     rng.shuffle(shuffled)
@@ -690,17 +723,18 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
         if p is not accused:
             chat_turn(game, players, p, can_nominate=False, extra=f"{nominee} is on trial.")
 
-    guilty = 0
+    guilty = []
     for voter in game.clockwise_from(nominator.name):
         vote = players.ask(voter, f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent.",
                            VOTE_SCHEMA, {"thoughts": "", "vote": False})["vote"]
-        guilty += vote
+        if vote:
+            guilty.append(voter.name)
         game.emit(f"{voter.name} votes {'Guilty' if vote else 'Innocent'} on {nominee}.")
-    if majority(guilty, len(game.alive())):
-        game.emit(f"{nominee} is executed by hanging ({guilty} Guilty).")
-        game.kill(nominee, "executed by hanging")
+    if majority(len(guilty), len(game.alive())):
+        game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).")
+        game.kill(nominee, "executed by hanging", guilty_voters=guilty)
         return True
-    game.emit(f"{nominee} is found Innocent ({guilty} Guilty).")
+    game.emit(f"{nominee} is found Innocent ({len(guilty)} Guilty).")
     return False
 
 
@@ -738,8 +772,10 @@ def run_night(game: Game, players: Players, moderator: "Moderator") -> None:
         "Resolve all actions simultaneously per the rules (visits, role-blocks, attack vs defense, "
         "investigation results, Katana appearing Not Evil, Fabricator framing, etc). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "
-        "Deaths you apply are announced publicly at dawn automatically; don't tell() them to all."
+        "Deaths you apply are announced publicly at dawn automatically; don't tell() them to all. "
+        "Jester/Executioner revenge attacks are handled by code after you finish."
     )
+    game.resolve_revenge()
     game.day += 1
 
 
@@ -802,7 +838,10 @@ class Moderator:
             {"role": "system", "content": f"{self.rules}\n\n---\n\nYou are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
              "by calling tools. Be exact about the rules. Never reveal hidden information except "
-             "as the rules allow."},
+             "as the rules allow. A private result contains only what the rules say its recipient "
+             "learns, worded neutrally: never explain why a result came out as it did (e.g. never "
+             "mention the Katana, framing or defenses to an investigator), and never name an attacker "
+             "or reveal roles beyond what the rules allow."},
             {"role": "user", "content": f"{instructions}\n\nPublic history so far:\n"
              f"{self.game.history_for('__moderator_public__')}"},
         ]
@@ -903,11 +942,11 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
             game.winners = winners
             break
         print(f"Day {game.day}...")
-        deaths_before = sum(not p.alive for p in game.players)
+        deaths_before = game.death_count()
         run_day(game, players)
         print(f"Night {game.day}...")
         run_night(game, players, moderator)
-        if sum(not p.alive for p in game.players) == deaths_before:
+        if game.death_count() == deaths_before:
             game.phases_without_death += 2
 
     print(f"Winners: {game.winners}")
@@ -923,7 +962,7 @@ def play_game(client, models: list[Model], moderator_model: Model, roles: list[s
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--players", default="haiku-5.5",
-                    help="comma-separated models, one per seat (or one for all seats)")
+                    help="comma-separated models, cycled over the seats (seats are shuffled)")
     ap.add_argument("--moderator", default="haiku-5.5")
     ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names")
     ap.add_argument("--effort", default=DEFAULT_EFFORT)
