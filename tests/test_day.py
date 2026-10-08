@@ -1,6 +1,6 @@
 """The day phase: nominations, trials, speaking budget and when the day ends."""
 
-from day import run_day, run_nomination, run_trial
+from day import MAX_TRIALS_PER_DAY, run_day, run_nomination, run_trial
 from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, votes
 
 
@@ -65,3 +65,48 @@ def test_trial_comments_are_free_up_to_the_limit(game_factory):
     speakers = {e.fields["speaker"] for e in game.events if e.cat == "chat"}
     assert speakers == {p.name for p in game.players}
     assert all(p.speaking_budget == 0.0 for p in game.players)
+
+
+def always_nominate_never_convict(name, task, schema):
+    """Every nomination passes and every trial ends Innocent; everyone nominates whenever they can."""
+    if "vote" in schema["properties"]:
+        return {"vote": "nominated" in task}  # Yes on nominations, Innocent at trials
+    if "nominate" in schema["properties"]:
+        others = [n for n in schema["properties"]["nominate"]["anyOf"][0]["enum"] if n != name]
+        return {"nominate": others[0]}
+    return None
+
+
+def test_three_innocent_trials_end_the_day(game_factory):
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(always_nominate_never_convict))
+    run_day(game, players)
+    trials = [v for v in game.vote_record if "trial of" in v]
+    assert len(trials) == MAX_TRIALS_PER_DAY and all(p.alive for p in game.players)
+    assert "Three trials ended in Innocent verdicts. The day ends." in game.events[-1].text
+
+
+def test_prosecutions_count_toward_the_trial_limit(game_factory):
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(always_nominate_never_convict))
+    game.prosecutions.append("Erin")
+    run_day(game, players)
+    trials = [v for v in game.vote_record if "trial of" in v]
+    assert len(trials) == MAX_TRIALS_PER_DAY and "trial of Erin" in trials[0]
+
+
+def test_puppeteer_reads_and_writes_the_puppets_private_messages(game_factory):
+    sent = set()
+
+    def decide(name, task, schema):
+        if "private_messages" not in schema["properties"]:
+            return None
+        key = ("Erin-as-Bob" if "You are puppeting Bob" in task else name)
+        if key in sent or key not in ("Alice", "Erin-as-Bob"):
+            return None
+        sent.add(key)
+        return {"private_messages": [{"to": "Bob" if key == "Alice" else "Carol", "text": f"from {key}"}]}
+    game, players = game_factory(TOWN4_GRUNT[:3] + ["Grunt", "Puppeteer"], ScriptedClient(decide))
+    game.puppets_next = {"Bob": "Erin"}
+    run_day(game, players)
+    pms = {e.fields["message"]: e.visible_to for e in game.events if e.cat == "pm"}
+    assert pms["from Alice"] == {"Alice", "Erin"}  # sent to Bob, read by his Puppeteer
+    assert pms["from Erin-as-Bob"] == {"Erin", "Carol"}  # Bob's message, written by Erin

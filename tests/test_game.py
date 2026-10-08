@@ -55,3 +55,16 @@ def test_each_model_uses_its_own_effort(tmp_path, monkeypatch):
                     seed=1, check_nights=True)
     assert {e for who, e in client.efforts if who not in ("moderator", "other")} == {"low"}
     assert {e for who, e in client.efforts if who in ("moderator", "other")} == {"high"}  # incl. night checks
+
+
+def test_rule_citations_in_code_exist_in_the_rules():
+    """Code cites rules_1.txt paragraphs by label (e.g. "rules R8"); a citation to a label that no
+    longer exists would silently point nowhere."""
+    import re
+    from pathlib import Path
+    root = Path(mafia.__file__).parent
+    labels = set(re.findall(r"^(R\d+) \(", (root / "rules_1.txt").read_text(encoding="utf-8"), re.M))
+    assert labels, "the rules lost their R labels"
+    for path in [*root.glob("*.py"), *root.glob("roles/*.py")]:
+        cited = set(re.findall(r"\b(R\d{1,2})\b", path.read_text(encoding="utf-8")))
+        assert cited <= labels, f"{path.name} cites {sorted(cited - labels)}, which aren't in rules_1.txt"

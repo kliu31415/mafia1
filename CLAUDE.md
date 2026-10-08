@@ -17,7 +17,7 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 
 ## Checking changes
 
-- `uv run pytest` runs the scenario and visibility tests (offline, a few seconds). Run it before
+- `uv run pytest` runs the scenario and visibility tests (offline, about 10 seconds). Run it before
   every commit, and add a test when you fix a rules bug or change a code-handled role.
 - `uv run ruff check .` catches undefined names, unused imports and likely bugs; `uv run mypy .` checks
   types (e.g. a possibly-None value used as a player).
@@ -47,7 +47,8 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   5. A role-specific `apply_changes` op: declare it in the role's `ops` and carry it out in `apply_op`.
      The moderator is offered it only when the role is in the game. Ops every game needs are
      `CORE_OPS` in `moderator.py`.
-  6. `tests/test_roles.py`: a scenario test for anything code carries out.
+  6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game
+     smoke test automatically (`test_every_role_survives_a_mock_game`).
 
 ## Conventions
 

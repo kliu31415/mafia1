@@ -1,11 +1,14 @@
 """Role hooks and role-specific rules that code carries out (roles/*.py)."""
 
+import json
+
 import pytest
 
+import mafia
 from day import run_day
-from llm import Model
+from llm import MockClient, Model
 from moderator import Moderator
-from roles import Status
+from roles import ROLES, Status
 from tests.conftest import VILLAGE5, ScriptedClient
 
 
@@ -125,3 +128,68 @@ def test_puppeting_lapses_if_the_puppeteer_died(game_factory):
     run_day(game, players)
     assert not any(name == "Erin" for name, _ in client.asked)
     assert not any("being puppeted" in e.text for e in game.events)
+
+
+# --- Every role ---------------------------------------------------------------------------------
+
+@pytest.mark.parametrize("role", list(ROLES))
+def test_every_role_survives_a_mock_game(role, tmp_path, monkeypatch):
+    """A smoke test new roles get for free: setup, briefing, night note and a whole mock game
+    (with night checks) run with the role in play, and the game ends with a result."""
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = [role, "Vanilla Villager", "Vanilla Villager", "Sheriff", "Grunt", "Pharmacist"]
+    path = mafia.play_game(MockClient(7), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=7, check_nights=True)
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    assert records[-1]["kind"] == "result"
+    assert not [r for r in records if r["kind"] == "moderator_tool" and "error" in (r["result"] or {})]
+
+
+# --- Mortician, Fabricator, Katana --------------------------------------------------------------
+
+def test_mortician_clean_hides_role_and_will(game_factory):
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Mortician", "Grunt"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.player("Alice").last_will = "I am the Sheriff."
+    game.phase = "night"
+    mod.dispatch("apply_changes", {"changes": [
+        {"op": "kill", "player": "Alice", "cause": "Katana"},
+        {"op": "set_status", "player": "Alice", "key": Status.CLEANED, "value": True}]})
+    game.announce_dawn()
+    reveal = next(e.text for e in game.events if e.cat == "death")
+    assert "cleaned by a Mortician" in reveal and "Vanilla Villager" not in reveal and "Sheriff" not in reveal
+    assert "Katana" not in reveal and "Vanilla" not in game.death_record[0]
+
+
+def test_forged_will_shows_at_dawn_even_if_set_after_the_kill(game_factory):
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Fabricator", "Grunt"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.player("Alice").last_will = "real will"
+    game.phase = "night"
+    mod.dispatch("apply_changes", {"changes": [
+        {"op": "kill", "player": "Alice", "cause": "Katana"},
+        {"op": "set_last_will", "player": "Alice", "text": "Bob is Yakuza."}]})
+    game.announce_dawn()
+    reveal = next(e.text for e in game.events if e.cat == "death")
+    assert "Bob is Yakuza." in reveal and "real will" not in reveal
+
+
+def test_katana_needs_a_majority_and_gets_one_revote(game_factory):
+    def decide(name, task, schema):
+        if "katana_vote_target" not in schema["properties"]:
+            return None
+        if task.startswith("Revote"):  # everyone agrees on the revote
+            return {"katana_vote_holder": "Carol", "katana_vote_target": "Alice"}
+        own = {"Carol": "Alice", "Dave": "Bob"}  # first vote: split, so no majority
+        return {"katana_vote_holder": name, "katana_vote_target": own[name], "act": False}
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"], ScriptedClient(decide))
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    from night import run_night, tally_katana
+    assert tally_katana(game, {"Carol": {"katana_vote_holder": "Carol", "katana_vote_target": "Alice"},
+                               "Dave": {"katana_vote_holder": "Dave", "katana_vote_target": "Bob"}})["attack"] is None
+    game.katana_holder = "Dave"
+    run_night(game, players, mod)
+    split = [e for e in game.events if "no majority" in e.text]
+    assert split and split[0].visible_to == {"Carol", "Dave"}
+    katana = [json.loads(line) for line in game.log.path.read_text(encoding="utf-8").splitlines()
+              if '"kind": "katana"' in line]
+    assert katana[-1]["result"]["attack"] == "Alice" and game.katana_holder == "Carol"
