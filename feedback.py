@@ -70,6 +70,33 @@ def run_review(game: Game, client, model: Model, rules: str, text_log: Path) -> 
                    cost=reply.cost)
 
 
+LESSON_TOPICS = ["rules and mechanics", "deduction", "deception", "persuasion and voting",
+                 "night actions", "coordination", "speaking budget", "other"]
+LESSONS_SCHEMA = obj(lessons={"type": "array", "items": obj(
+    topic={"type": "string", "enum": LESSON_TOPICS},
+    applies_to=STR,  # a role, faction, or "everyone"
+    tip=STR)})
+
+
+def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
+    """Each player lists tips and tricks they wish they'd known. Saved to the game log and appended
+    to `lessons_file` (one JSON object per tip, across all games) for later analysis."""
+    roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
+    task = (f"The game is over. Winners: {', '.join(game.winners or []) or 'nobody'}. Everyone's roles: "
+            f"{roles}.\n\nIf you played this game again, what tips and tricks do you wish you'd known? "
+            "Give 1-5 concrete, reusable lessons (not a recap of this game), each with a topic and who it "
+            "applies to (a role, a faction, or 'everyone').")
+    outs = players.ask_many([(p, task, LESSONS_SCHEMA, {"lessons": []}) for p in game.players])
+    lessons_file.parent.mkdir(parents=True, exist_ok=True)
+    with lessons_file.open("a", encoding="utf-8") as f:
+        for p, out in zip(game.players, outs):
+            game.log.write("lessons", who=p.name, role=p.role, model=p.model.value, lessons=out["lessons"])
+            for lesson in out["lessons"]:
+                f.write(json.dumps({"game": game.log.path.stem, "player": p.name, "role": p.role,
+                                    "model": p.model.value, "won": p.name in (game.winners or []),
+                                    **lesson}) + "\n")
+
+
 def write_report(jsonl_path: Path) -> Path | None:
     """Collect moderator flags, in-game feedback, debriefs and the review into <game>_feedback.md."""
     records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
@@ -77,7 +104,8 @@ def write_report(jsonl_path: Path) -> Path | None:
     in_game = [r for r in records if r["kind"] == "player_feedback"]
     debriefs = [r for r in records if r["kind"] == "debrief"]
     reviews = [r for r in records if r["kind"] == "review"]
-    if not (flags or in_game or debriefs or reviews):
+    lessons = [r for r in records if r["kind"] == "lessons"]
+    if not (flags or in_game or debriefs or reviews or lessons):
         return None
     out = [f"# Feedback for {jsonl_path.stem}\n"]
     if flags:
@@ -97,6 +125,12 @@ def write_report(jsonl_path: Path) -> Path | None:
                 if answer and answer.lower().rstrip(".") != "none":
                     out.append(f"- **{q}** {answer}")
             out.append("")
+    if lessons:
+        out.append("## Lessons players wish they'd known\n")
+        for r in lessons:
+            out += [f"- **{r['who']} ({r['role']}, {r['model'].split('/')[-1]})**, {x['topic']}, for "
+                    f"{x['applies_to']}: {x['tip']}" for x in r["lessons"]]
+        out.append("")
     for r in reviews:
         out.append(f"## Outside review ({r['model'].split('/')[-1]})\n")
         order = {"high": 0, "medium": 1, "low": 2}
