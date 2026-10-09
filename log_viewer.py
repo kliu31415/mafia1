@@ -288,6 +288,7 @@ def classify_legacy(r: dict) -> tuple[str, str, str]:
 def render_html(jsonl_path: Path) -> Path:
     records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
     roles: dict[str, str] = {}
+    models: dict[str, str] = {}
     name = Namer({})
     out: list[str] = []
     open_phase = False
@@ -308,6 +309,7 @@ def render_html(jsonl_path: Path) -> Path:
         k = r["kind"]
         if k == "setup":
             roles = {p["name"]: p["role"] for p in r["players"]}
+            models = {p["name"]: short_model(p["model"]) for p in r["players"]}
             name = Namer({n: faction_of(role) for n, role in roles.items()})
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat']}</td><td>{esc(p['role'])}</td>"
                            f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
@@ -318,6 +320,9 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "tips":
             out.append(f"<div class='muted'>Tips from past games ({esc(r['file'])}) given to: "
                        f"{esc(', '.join(r['players']) or 'nobody')}</div>")
+            for who, shown in r.get("shown", {}).items():  # LOG_VERSION 12+: the sections each player saw
+                out.append(f"<details class='call'><summary>Tips for {name(who)} ({esc(roles.get(who, '?'))}, "
+                           f"{esc(models.get(who, '?'))})</summary><pre>{esc(shown)}</pre></details>")
         elif k == "event":
             if is_phase_start(r):
                 start_phase(r["text"].removesuffix(" begins."))

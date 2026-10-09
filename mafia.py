@@ -60,7 +60,7 @@ from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from events import PHASE
 from state import setup_game
-from tips import choose_players, file_digest
+from tips import choose_players, file_digest, tips_for_role
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -137,7 +137,8 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                                     tips_for, random.Random(f"tips|{seed}"))
             for p in game.players:
                 p.tips = text if p.name in chosen else ""
-            log.write("tips", file=str(tips), sha256=file_digest(text), players=chosen, text=text)
+            log.write("tips", file=str(tips), sha256=file_digest(text), players=chosen, text=text,
+                      shown={p.name: tips_for_role(text, p.role) for p in game.players if p.tips})
     if isinstance(client, OpenRouterClient):
         client.on_retry = lambda model, attempt, error: log.error(
             "api_retry", f"a {model} request failed (attempt {attempt + 1}), retrying: {error[:300]}",

@@ -8,8 +8,13 @@ A tips file is Markdown with one `## <heading>` section per audience: "Everyone"
 edits the file and is never shown to players. A player sees "Everyone", their faction's section and
 their current role's section; a section with any other heading goes to everyone. Hand edits are fine.
 
+`build` keeps the tips file as a living document, the way a player's notes grow over many games: run
+again after more games, it revises the file with only the new games (their lessons, plus what players
+who had the tips, and the moderator, say went especially well or badly with them), and keeps the old
+version in history/. --fresh rebuilds from scratch.
+
 Usage:
-    uv run tips.py build                                # all logs/game_*.jsonl -> tips/tips.md
+    uv run tips.py build                                # revise tips/tips.md with new logs/game_*.jsonl
     uv run tips.py build logs/game_2026100* --out tips/early.md --max-words 600
     uv run tips.py show tips/tips.md --role Medic       # what a Medic would see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
@@ -114,7 +119,8 @@ def read_game(path: Path) -> dict | None:
         return None
     result: dict = next((r for r in records if r["kind"] == "result"), {})
     fallbacks = Counter(r.get("player") for r in records if r["kind"] == "player_fallback")
-    return {"game": path.stem, "records": lessons, "result": result,
+    tips = next((r for r in records if r["kind"] == "tips"), None)
+    return {"game": path.stem, "records": lessons, "result": result, "had_tips": tips["players"] if tips else [],
             "unreliable": sorted(p for p, n in fallbacks.items() if p and n >= FALLBACKS_TO_DISTRUST),
             "mock": next((r.get("settings", {}).get("mock") for r in records if r["kind"] == "setup"), False)}
 
@@ -134,6 +140,8 @@ def describe_game(g: dict) -> str:
             lines.append(f"Program errors this game: {res['errors']}.")
     else:
         lines.append("(no result record: the game did not finish)")
+    if g["had_tips"]:
+        lines.append(f"Players given a tips sheet from earlier games: {', '.join(g['had_tips'])}.")
     if g["unreliable"]:
         lines.append(f"Distrust lessons from {', '.join(g['unreliable'])}: many of their turns failed, so they "
                      "barely played.")
@@ -144,11 +152,14 @@ def describe_game(g: dict) -> str:
                          f"{r['summary'].strip()}")
             lines += [f"- [moderator, weight {w}] for {x['applies_to']}, {x['topic']}: {x['tip']} "
                       f"(evidence: {x['evidence']})" for x in r["lessons"]]
+            author = f"moderator, weight {w}"
         else:
             won = "won" if r["who"] in (res.get("winners") or []) else "lost"
             w = lesson_weight(strength(r["model"]), avg)
-            lines += [f"- [{r['who']}, {r['role']}, {won}, {r['model'].split('/')[-1]}, weight {w}] for {x['applies_to']}, "
-                      f"{x['topic']}: {x['tip']}" for x in r["lessons"]]
+            author = f"{r['who']}, {r['role']}, {won}, {r['model'].split('/')[-1]}, weight {w}"
+            lines += [f"- [{author}] for {x['applies_to']}, {x['topic']}: {x['tip']}" for x in r["lessons"]]
+        lines += [f"- [{author}] FEEDBACK ON THE TIPS SHEET, {x['verdict']}: \"{x['tip']}\" because {x['why']}"
+                  for x in r.get("tips_feedback", [])]
     return "\n".join(lines)
 
 
@@ -162,18 +173,28 @@ DISTILL_SCHEMA = _obj(sections={"type": "array", "items": _obj(
                                          games={"type": "integer"})})})  # games: how many games support it
 
 
-def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], max_words: int) -> tuple[str, float]:
-    """Ask `spec` to merge every game's lessons into one tips file. Returns (Markdown body, cost)."""
+def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], max_words: int,
+            current: str = "") -> tuple[str, float]:
+    """Ask `spec` to merge the games' lessons into one tips file, or, given the `current` tips file, to
+    revise it with these (newer) games. Returns (Markdown body, cost)."""
     lessons = "\n\n".join(describe_game(g) for g in games)
+    sheet = "\n\n".join(f"## {h}\n{body}" for h, body in sections(current).items())
+    task = ("Distill these into a tips sheet that will be given to players before future games, so they "
+            "start with the experience of these games." if not sheet else
+            "Here is the current tips sheet, built from earlier games (a tip without '(seen in N games)' was "
+            f"seen in 1):\n\n{sheet}\n\n---\n\nRevise it with the lessons from these newer games, like a "
+            "thoughtful player updating their notes after more games: keep tips that held up (and raise their "
+            "count when a new game supports them), sharpen or drop tips reported as hurting or wrong (weighing "
+            "who reported it and why; one weak report is not enough to drop a well-supported tip), and add new "
+            "tips the new games teach. Players who had the sheet comment on it under FEEDBACK ON THE TIPS SHEET; "
+            "watch for tips that opponents learned to exploit.")
     messages = [
         {"role": "system", "content": f"{rules}\n\n---\n\nYou coach players of this game. Below are lessons "
          "written after past games by the players (each tagged with their role, whether they won, their "
          "model and a weight) and by the moderator, who saw everything, including hidden night actions. "
          "The weight (0-1) is higher when the lesson's author is a stronger model and when the game's "
          "players were stronger on average."},
-        {"role": "user", "content": f"Lessons from {len(games)} games:\n\n{lessons}\n\n---\n\n"
-         "Distill these into a tips sheet that will be given to players before future games, so they "
-         "start with the experience of these games. Rules:\n"
+        {"role": "user", "content": f"Lessons from {len(games)} games:\n\n{lessons}\n\n---\n\n{task} Rules:\n"
          "- Merge duplicates. Prefer lessons with a high weight, lessons that recur across games, and "
          "lessons the moderator backs with evidence; a low-weight lesson needs support from elsewhere to be "
          "kept, and where lessons conflict, the higher-weight side wins. For each tip give the number of "
@@ -198,19 +219,35 @@ def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], m
     return "\n\n".join(out) + "\n", reply.cost
 
 
+GAMES_LINE = re.compile(r"^Games: (.*)\.$", re.M)
+
+
 def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
-          include_mock: bool = False) -> Path:
-    games = [g for p in sorted(paths) if (g := read_game(p)) and (include_mock or not g["mock"])]
+          include_mock: bool = False, fresh: bool = False) -> Path:
+    """Write the tips file `out`. If it exists (and not `fresh`), it is a living document: only games it
+    doesn't list yet are read, it is revised with them, and the old version is kept in <out dir>/history/."""
+    current = "" if fresh or not out.exists() else out.read_text(encoding="utf-8")
+    listed = GAMES_LINE.search(current)
+    done = [g for g in listed[1].split(", ") if g] if listed else []
+    games = [g for p in sorted(paths) if p.stem not in done and (g := read_game(p))
+             and (include_mock or not g["mock"])]
     if not games:
-        raise SystemExit("No game logs with lessons found (games need --lessons, which is on by default).")
+        raise SystemExit("No new game logs with lessons found (games need --lessons, which is on by default)."
+                         + (f" {out} already has all {len(done)} games." if done else ""))
     rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8")
-    body, cost = distill(client, spec, rules, games, max_words)
-    header = (f"# Tips from past games\n\nBuilt {datetime.now():%Y-%m-%d %H:%M} by {spec} from {len(games)} games "
-              f"with `uv run tips.py build`. Players never see this paragraph; the sections below go to "
-              f"players by heading (see tips.py). Games: {', '.join(g['game'] for g in games)}.\n\n")
+    body, cost = distill(client, spec, rules, games, max_words, current)
+    if current:
+        old = out.parent / "history" / f"{out.stem}_{datetime.now():%Y%m%d_%H%M%S}.md"
+        old.parent.mkdir(parents=True, exist_ok=True)
+        old.write_text(current, encoding="utf-8")
+    names = done + [g["game"] for g in games]
+    header = (f"# Tips from past games\n\n{'Revised' if current else 'Built'} {datetime.now():%Y-%m-%d %H:%M} by "
+              f"{spec} with `uv run tips.py build` ({len(games)} new games, {len(names)} in all). Players never "
+              "see this preamble; the sections below go to players by heading (see tips.py). Earlier versions "
+              f"are in history/.\n\nGames: {', '.join(names)}.\n\n")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(header + body, encoding="utf-8")
-    print(f"Tips: {out} ({len(body.split())} words, from {len(games)} games; cost ${cost:.2f})")
+    print(f"Tips: {out} ({len(body.split())} words; {len(games)} new games, {len(names)} in all; cost ${cost:.2f})")
     return out
 
 
@@ -223,6 +260,8 @@ def main() -> None:
     b.add_argument("--model", default="opus-5.5", help="model[:effort] that distills the tips")
     b.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
     b.add_argument("--exclude", default="", help="comma-separated game ids (log file stems) to leave out")
+    b.add_argument("--fresh", action="store_true", help="rebuild from all the games instead of revising --out "
+                   "with games it doesn't have yet")
     b.add_argument("--mock", action="store_true", help="no API calls (random tips), and read mock_*.jsonl logs")
     s = sub.add_parser("show", help="print what a player with a given role would see")
     s.add_argument("file")
@@ -236,7 +275,8 @@ def main() -> None:
     paths = {Path(p) for pat in patterns for p in (glob.glob(pat) or [pat])}
     paths = {p for p in paths if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
     client = MockClient(0) if args.mock else OpenRouterClient(load_api_key())
-    build(sorted(paths), Path(args.out), client, parse_model_spec(args.model), args.max_words, include_mock=args.mock)
+    build(sorted(paths), Path(args.out), client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
+          fresh=args.fresh)
 
 
 if __name__ == "__main__":

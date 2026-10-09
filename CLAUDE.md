@@ -69,7 +69,8 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`); add one
   there for a new maker.
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in
-  game logs into `tips/tips.md`; `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
+  game logs into `tips/tips.md`, a living document: later runs revise it with only the new games, including
+  what players who had the tips and the moderator said went well or badly with them (`tips_feedback`); `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
   system prompts. Each player sees only the sections for everyone, their faction and their role. The
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
   Lessons are weighted by their author's model strength and the game's average (`STRENGTH` in `tips.py`,

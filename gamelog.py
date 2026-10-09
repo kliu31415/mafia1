@@ -26,7 +26,9 @@ import log_viewer
 #     usage_by_caller); night_check, review, strategy_review and the moderator's debrief have usage
 # 11: "tips" record (the tips file given to some players: file, sha256, players, text); settings have tips
 #     and tips_for; result players have tips (whether that player had them)
-LOG_VERSION = 11
+# 12: "tips" record has shown (the sections each player with tips saw); lessons records of players with tips,
+#     and the strategy_review when anyone had tips, have tips_feedback (tip, verdict helped/hurt/wrong, why)
+LOG_VERSION = 12
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

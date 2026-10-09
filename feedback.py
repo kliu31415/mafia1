@@ -94,21 +94,39 @@ LESSONS_SCHEMA = obj(lessons={"type": "array", "items": obj(
     topic={"type": "string", "enum": LESSON_TOPICS},
     applies_to=STR,  # a role, faction, or "everyone"
     tip=STR)})
+# Feedback on the tips from past games (tips.py) a player was given: the ones that mattered this game.
+TIPS_FEEDBACK = {"type": "array", "items": obj(
+    tip=STR,  # the tip, quoted or closely paraphrased
+    verdict={"type": "string", "enum": ["helped", "hurt", "wrong"]},  # wrong: false or against the rules
+    why=STR)}
+TIPS_FEEDBACK_TASK = ("\n\nYou were also given tips from past games (in your instructions). Which of them went "
+                      "especially well or badly for you or others this game? List only tips that clearly "
+                      "mattered (or none): helped, hurt (followed it and it backfired, or it was predictable "
+                      "to opponents), or wrong (it is false or contradicts the rules), and why, concretely.")
+
+
+def with_tips_feedback(schema: dict) -> dict:
+    return {**schema, "properties": {**schema["properties"], "tips_feedback": TIPS_FEEDBACK},
+            "required": [*schema["required"], "tips_feedback"]}
 
 
 def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
-    """Each player lists tips and tricks they wish they'd known. Saved to the game log and appended
-    to `lessons_file` (one JSON object per tip, across all games) for later analysis."""
+    """Each player lists tips and tricks they wish they'd known, and players given tips from past
+    games (tips.py) say which of those went well or badly. Saved to the game log; lessons are also
+    appended to `lessons_file` (one JSON object per tip, across all games) for later analysis."""
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
     task = (f"The game is over. Winners: {', '.join(game.winners or []) or 'nobody'}. Everyone's roles: "
             f"{roles}.\n\nIf you played this game again, what tips and tricks do you wish you'd known? "
             "Give 1-5 concrete, reusable lessons (not a recap of this game), each with a topic and who it "
             "applies to (a role, a faction, or 'everyone').")
-    outs = players.ask_many([(p, task, LESSONS_SCHEMA, {"lessons": []}) for p in game.players])
+    outs = players.ask_many([(p, task + TIPS_FEEDBACK_TASK, with_tips_feedback(LESSONS_SCHEMA),
+                              {"lessons": [], "tips_feedback": []})
+                             if p.tips else (p, task, LESSONS_SCHEMA, {"lessons": []}) for p in game.players])
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:
         for p, out in zip(game.players, outs):
-            game.log.write("lessons", who=p.name, role=p.role, model=p.model.value, lessons=out["lessons"])
+            game.log.write("lessons", who=p.name, role=p.role, model=p.model.value, lessons=out["lessons"],
+                           **({"tips_feedback": out.get("tips_feedback", [])} if p.tips else {}))
             for lesson in out["lessons"]:
                 f.write(json.dumps({"game": game.log.path.stem, "source": "player", "player": p.name,
                                     "role": p.role, "model": p.model.value,
@@ -126,7 +144,15 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
                         lessons_file: Path, effort: str | None = None) -> None:
     """The moderator model, which saw everything, reads the whole log and draws general strategy
     lessons: things to do and to avoid, per role or faction. Saved to the game log and appended to
-    `lessons_file` alongside the players' lessons (source "moderator")."""
+    `lessons_file` alongside the players' lessons (source "moderator"). If some players had tips from
+    past games (tips.py), it also says which of those tips went especially well or badly."""
+    with_tips = [p for p in game.players if p.tips]
+    tips_task = ("" if not with_tips else
+                 f"\n\nThese players were given the tips sheet below from past games (each saw the sections for "
+                 f"everyone, their faction and their role): {', '.join(p.name for p in with_tips)}. Also list the "
+                 "tips that clearly mattered this game, for better or worse: helped, hurt (followed and it "
+                 "backfired, or opponents exploited it), or wrong (false or against the rules), and why, citing "
+                 f"what happened. Leave it empty if none mattered.\n\n{with_tips[0].tips}")
     messages = [
         {"role": "system", "content": f"{rules}\n\n---\n\nYou moderated this game and saw everything, "
          "including hidden events and night actions. Now analyze it as a strategy coach."},
@@ -135,13 +161,15 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
          "then 3-8 general strategy lessons: things to do or to avoid that would help a player of this "
          "game in future games, not a recap. Each lesson has a topic, who it applies to (a role, a "
          "faction, or 'everyone'), the tip, and the evidence: the moment in this game that shows it. "
-         "Cover good and evil play, and ignore problems with the rules or the program."},
+         "Cover good and evil play, and ignore problems with the rules or the program." + tips_task},
     ]
-    reply = client.chat(model, messages, schema=STRATEGY_SCHEMA, schema_name="strategy_review", effort=effort)
+    reply = client.chat(model, messages, schema=with_tips_feedback(STRATEGY_SCHEMA) if with_tips else STRATEGY_SCHEMA,
+                        schema_name="strategy_review", effort=effort)
     out = answer_json(reply)
     lessons = out.get("lessons", [])
     game.log.write("strategy_review", model=model.value, summary=out.get("summary", ""), lessons=lessons,
-                   cost=reply.cost, usage=reply.usage)
+                   cost=reply.cost, usage=reply.usage,
+                   **({"tips_feedback": out.get("tips_feedback", [])} if with_tips else {}))
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:
         for lesson in lessons:
@@ -209,6 +237,13 @@ def write_report(jsonl_path: Path) -> Path | None:
         out.append(f"## Moderator strategy review ({r['model'].split('/')[-1]})\n")
         out.append(r["summary"].strip() + "\n")
         out += [f"- **{x['topic']}, for {x['applies_to']}:** {x['tip']} _({x['evidence']})_" for x in r["lessons"]]
+        out.append("")
+    tips_feedback = [(r.get("who", "moderator"), r.get("role", "Moderator"), r["model"], x)
+                     for r in lessons + strategy for x in r.get("tips_feedback", [])]
+    if tips_feedback:
+        out.append("## How the tips from past games went\n")
+        out += [f"- **{x['verdict']}**, {who} ({role}, {model.split('/')[-1]}): {x['tip']} _({x['why']})_"
+                for who, role, model, x in tips_feedback]
         out.append("")
     for r in reviews:
         out.append(f"## Outside review ({r['model'].split('/')[-1]})\n")
