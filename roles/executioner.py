@@ -14,7 +14,9 @@ if TYPE_CHECKING:
 @register("Executioner")
 class Executioner(RoleLogic):
     blocks_win = False
-    night_note = "Executioner revenge attacks are carried out by code after you finish; don't resolve them."
+    night_note = ("Executioner revenge attacks are carried out by code after you finish; don't resolve them. Code "
+                  "also turns an Executioner whose target died tonight into a Jester at dawn: don't set any status "
+                  "for it.")
 
     def setup(self, game: Game, p: Player) -> None:
         p.status[Status.TARGET] = game.rng.choice([q.name for q in game.players if q is not p])
