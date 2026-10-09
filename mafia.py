@@ -51,11 +51,13 @@ import random
 import subprocess
 import time
 import traceback
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Iterator, Sequence
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
 import alerts
+import sync_logs
 from day import run_day
 from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
@@ -389,10 +391,14 @@ def main() -> None:
     ap.add_argument("--tips-for", default="all", metavar="WHO", help="who gets --tips: all (default), half (a "
                     "random half of the seats, for comparing experienced and fresh players), or comma-separated "
                     "player names (Alice, ...) and models (e.g. opus-5.5)")
-    ap.add_argument("--update-tips", metavar="FILE", type=Path, default=DEFAULT_TIPS, help="after the game, add "
+    ap.add_argument("--update-tips", metavar="FILE", type=Path, help="after the game, add "
                     "its lessons to the notebook of this tips sheet and rewrite the sheet (tips.py build; needs "
-                    f"--lessons); default {DEFAULT_TIPS.relative_to(ROOT)}, or {MOCK_TIPS.relative_to(ROOT)} for --mock")
+                    f"--lessons); default {DEFAULT_TIPS.relative_to(ROOT)}, {MOCK_TIPS.relative_to(ROOT)} for "
+                    "--mock, and none in the cloud (the PC's notebook is the one source of truth)")
     ap.add_argument("--no-update-tips", action="store_true", help="don't update the tips after the game")
+    ap.add_argument("--sync", action=argparse.BooleanOptionalAction, default=True, help="when a live game ends or "
+                    "stops: in the cloud, push its logs to the logs branch (sync_logs.py push); on the PC, publish "
+                    f"the {DEFAULT_TIPS.relative_to(ROOT)} it updated there for cloud games")
     ap.add_argument("--player-tips", default="", metavar="WHO=FILE,...", help="per player or model, which tips "
                     "file to give (or none), applied after --tips/--tips-for; a name wins over a model, e.g. "
                     "opus-5.5=tips/tips.md,Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none")
@@ -410,11 +416,12 @@ def main() -> None:
         if any(r["kind"] == "result" for r in read_records(ckpt["log_path"])[0]):  # e.g. a stale synced .ckpt
             ap.error(f"{ckpt['log_path']} already finished; resuming would replace its ending")
         saved = ckpt["play_args"]
-        if args.no_update_tips:  # the other options are the game's own
+        if args.no_update_tips or sync_logs.in_cloud():  # the other options are the game's own
             saved["update_tips"] = None
         resumed_client = (MockClient(saved["seed"]) if ckpt["client"]["mock"]
                           else OpenRouterClient(load_api_key(), effort=ckpt["client"]["effort"]))
-        play_game(resumed_client, **saved, checkpoint=args.checkpoint, resume=ckpt)
+        with synced(args.sync and not ckpt["client"]["mock"], saved["update_tips"]):
+            play_game(resumed_client, **saved, checkpoint=args.checkpoint, resume=ckpt)
         return
 
     if args.max_days is not None and args.max_days < 1:
@@ -443,8 +450,8 @@ def main() -> None:
         moderator = parse_model_spec(args.moderator)
     except ValueError as e:
         ap.error(str(e))
-    update_tips = (None if args.no_update_tips
-                   else MOCK_TIPS if args.mock and args.update_tips == DEFAULT_TIPS else args.update_tips)
+    update_tips = (None if args.no_update_tips else args.update_tips or (
+        MOCK_TIPS if args.mock else None if sync_logs.in_cloud() else DEFAULT_TIPS))
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
     try:
         player_tips = parse_player_tips(args.player_tips)
@@ -469,11 +476,23 @@ def main() -> None:
         path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return
-    play_game(client, models, moderator, roles, seed, debrief=args.debrief,
-              flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
-              lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
-              checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
-              player_tips=player_tips, update_tips=update_tips, setup=setup)
+    with synced(args.sync and not args.mock, update_tips):
+        play_game(client, models, moderator, roles, seed, debrief=args.debrief,
+                  flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
+                  lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
+                  checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
+                  player_tips=player_tips, update_tips=update_tips, setup=setup)
+
+
+@contextmanager
+def synced(sync: bool, update_tips: Path | None) -> Iterator[None]:
+    """Runs a game, then (even if it crashed or was stopped) syncs it: see --sync and sync_logs.after_game."""
+    try:
+        yield
+    finally:
+        if sync:
+            sync_logs.after_game(LOG_DIR, DEFAULT_TIPS.parent if update_tips == DEFAULT_TIPS else None,
+                                 sync_logs.in_cloud())
 
 
 if __name__ == "__main__":

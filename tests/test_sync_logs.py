@@ -101,3 +101,62 @@ def test_a_log_pushed_again_after_the_game_went_on_replaces_the_earlier_copy(mac
     written, kept = sync_logs.pull(pc, pc.root / "logs")
     assert [w.name for w in written] == ["game_1.jsonl"] and kept == []
     assert (pc.root / "logs" / "game_1.jsonl").read_text().endswith('{"kind": "result"}\n')
+
+
+def test_a_re_pushed_game_s_other_files_follow_its_log_but_another_game_s_dont(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    logs = cloud.root / "logs"
+    logs.mkdir()
+    for name, text in [("game_1.jsonl", '{"kind": "setup"}\n'), ("game_1.html", "day 1"),
+                       ("game_1_feedback.md", "early"), ("game_1_2.html", "another game")]:
+        (logs / name).write_text(text)
+    sync_logs.push(cloud, logs)
+    sync_logs.pull(pc, pc.root / "logs")
+    (pc.root / "logs" / "game_1_2.html").write_text("regenerated here")
+    (logs / "game_1.jsonl").write_text('{"kind": "setup"}\n{"kind": "result"}\n')
+    (logs / "game_1.html").write_text("final")
+    (logs / "game_1_feedback.md").write_text("late")
+    (logs / "game_1_2.html").write_text("another game, later")
+    sync_logs.push(cloud, logs)
+    written, kept = sync_logs.pull(pc, pc.root / "logs")
+    assert sorted(w.name for w in written) == ["game_1.html", "game_1.jsonl", "game_1_feedback.md"]
+    assert kept == ["game_1_2.html"]  # game_1_2 is its own game, whose log wasn't continued
+    assert (pc.root / "logs" / "game_1.html").read_text() == "final"
+
+
+def test_a_game_pushes_its_logs_in_the_cloud_and_publishes_the_tips_on_the_pc(machines, capsys):
+    cloud, pc = machines["cloud"], machines["pc"]
+    (cloud.root / "logs").mkdir()
+    (cloud.root / "logs" / "game_1.jsonl").write_text("{}\n")
+    sync_logs.after_game(cloud.root / "logs", None, cloud=True, repo=cloud)
+    (pc.root / "tips").mkdir()
+    (pc.root / "tips" / "tips.md").write_text("## Everyone\n- Count votes.\n")
+    sync_logs.after_game(pc.root / "logs", pc.root / "tips", cloud=False, repo=pc)
+    files = cloud.files(cloud.fetch(), "logs") | cloud.files(cloud.fetch(), "tips")
+    assert sorted(files) == ["logs/game_1.jsonl", "tips/tips.md"]
+    assert "ALERT" not in capsys.readouterr().err
+
+    broken = sync_logs.Repo(cloud.root, remote="nowhere")
+    sync_logs.after_game(cloud.root / "logs", None, cloud=True, repo=broken)  # reported, not raised
+    assert "ALERT sync_error: pushing the logs failed" in capsys.readouterr().err
+
+
+def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch):
+    import sys
+
+    import mafia
+    calls = []
+    monkeypatch.setattr(mafia, "play_game", lambda client, *a, **kw: calls.append(("play", kw["update_tips"])))
+    monkeypatch.setattr(mafia, "OpenRouterClient", lambda *a, **kw: None)
+    monkeypatch.setattr(mafia, "load_api_key", lambda: "key")
+    monkeypatch.setattr(sync_logs, "after_game", lambda log_dir, tips_dir, cloud: calls.append(("sync", tips_dir, cloud)))
+    for cloud, argv, expected in [
+            ("true", [], [("play", None), ("sync", None, True)]),
+            ("", [], [("play", mafia.DEFAULT_TIPS), ("sync", mafia.DEFAULT_TIPS.parent, False)]),
+            ("", ["--no-sync"], [("play", mafia.DEFAULT_TIPS)]),
+            ("", ["--mock"], [("play", mafia.MOCK_TIPS)])]:
+        monkeypatch.setenv("CLAUDE_CODE_REMOTE", cloud)
+        monkeypatch.setattr(sys, "argv", ["mafia.py", *argv])
+        calls.clear()
+        mafia.main()
+        assert calls == expected

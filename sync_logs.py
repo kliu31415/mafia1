@@ -7,8 +7,10 @@ temporary index and pushed, and pulled files are read straight from the fetched 
 safe to run from the main checkout on any branch, with uncommitted changes.
 
 Tips: the notebook on the PC (tips/) stays the one source of truth. Cloud games play with a copy of its
-sheet and don't update it (--no-update-tips); `pull` on the PC adds their lessons to the notebook (the
-same `tips.py build` a PC game runs when it ends) and publishes the new sheet for later cloud games.
+sheet and don't update it (mafia.py turns that off in the cloud); `pull` on the PC adds their lessons to the
+notebook (the same `tips.py build` a PC game runs when it ends) and publishes the new sheet for later cloud
+games. mafia.py also calls after_game when a live game ends or stops: a cloud game pushes its logs, and a
+PC game publishes the sheet it just updated.
 
 Files merged rather than copied: logs/lessons.jsonl (lines from every machine, each kept once) and
 logs/alerts_reviewed.json (a problem counts as reviewed once any machine reviewed it).
@@ -26,6 +28,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -155,12 +158,15 @@ def push(repo: Repo, log_dir: Path) -> list[str]:
 def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
     """Copies the branch's log files that log_dir lacks, and merges the shared ones into log_dir.
     A local file that differs from the branch's copy is kept (e.g. a cloud game resumed here), unless the
-    branch's copy just continues it (a log pushed again after the game went on).
+    branch's copy just continues it (a log pushed again after the game went on); then that game's other
+    files (.txt, .html, feedback, ...) are replaced too, since they were written from the older log.
     Returns (files written, names kept because they differ)."""
     head = repo.fetch()
     written, kept = [], []
     log_dir.mkdir(parents=True, exist_ok=True)
-    for path, blob_id in repo.files(head, "logs").items():
+    continued: list[str] = []  # stems of local game logs the branch's copy continues
+    # Game logs first, so the files written from them know whether their log was continued.
+    for path, blob_id in sorted(repo.files(head, "logs").items(), key=lambda x: not x[0].endswith(".jsonl")):
         name = path.split("/", 1)[1]
         if "/" in name:
             continue
@@ -174,7 +180,9 @@ def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
             ours = local.read_bytes()
             if ours == theirs:
                 continue
-            if not theirs.startswith(ours):  # not just an earlier copy of the same log (e.g. pushed mid-game)
+            if name.endswith(".jsonl") and theirs.startswith(ours):  # an earlier copy (e.g. pushed mid-game)
+                continued.append(name.removesuffix(".jsonl"))
+            elif not any(re.match(re.escape(stem) + r"(\.|_[a-z])", name) for stem in continued):
                 kept.append(name)
                 continue
             data = theirs
@@ -185,6 +193,30 @@ def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
         os.replace(tmp, local)
         written.append(local)
     return written, kept
+
+
+def in_cloud() -> bool:
+    """Running in Claude Code on the web, whose sandbox (with any log not pushed) is deleted afterwards."""
+    return os.environ.get("CLAUDE_CODE_REMOTE") == "true"
+
+
+def after_game(log_dir: Path, tips_dir: Path | None, cloud: bool, repo: Repo | None = None) -> None:
+    """What a live game does when it ends or stops (mafia.py --sync): in the cloud, push its logs; on the
+    PC, publish the tips sheet it updated in tips_dir (None if it didn't), for later cloud games. Failures
+    are printed as ALERT lines, never raised: the game itself is over and its log closed."""
+    repo = repo or Repo()
+    try:
+        if cloud:
+            changed = push(repo, log_dir)
+            print(f"Pushed {len(changed)} log files to {repo.remote}/{repo.branch}")
+        elif tips_dir and (tips_dir / "tips.md").exists():
+            if put_tips(repo, tips_dir):
+                print(f"Published the tips to {repo.remote}/{repo.branch}")
+    except Exception as e:
+        what = "pushing the logs" if cloud else "publishing the tips"
+        print(f"ALERT sync_error: {what} failed: {type(e).__name__}: {e}"
+              + ("; run `uv run sync_logs.py push` before the sandbox goes" if cloud else
+                 "; `uv run sync_logs.py publish-tips` retries"), file=sys.stderr)
 
 
 def get_tips(repo: Repo, tips_dir: Path, force: bool = False) -> tuple[list[Path], list[str]]:

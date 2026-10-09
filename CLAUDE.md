@@ -20,13 +20,16 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 Cloud threads (Claude Code on the web) can run live games once `OPENROUTER_API_KEY` is set in the cloud
 environment, but their sandbox is deleted afterwards, so the logs go through the repo's `logs` branch
 (logs/ and tips/ only, never code; `sync_logs.py` writes it with git plumbing, so main's checkout is untouched):
-1. Before games: `uv run sync_logs.py tips` gets the PC's latest tips sheet into tips/.
-2. Run games with `--no-update-tips` (add `--tips tips/tips.md --tips-for ...` to give players tips). The
-   notebook on Kevin's PC is the one source of truth; a cloud copy would fork it.
-3. After each game, even one that crashed or was stopped: `uv run sync_logs.py push`. Do this before saying
-   the game is done; logs that aren't pushed are lost with the sandbox.
-On the PC, `uv run sync_logs.py pull` copies new logs into logs/, adds their lessons to the tips notebook
-(as a PC game does when it ends) and publishes the new sheet to the branch (`--no-tips` only copies logs).
+1. Before games: `uv run sync_logs.py tips` gets the PC's latest tips sheet into tips/ (add
+   `--tips tips/tips.md --tips-for ...` to a game to give players tips).
+2. Games detect the cloud (`CLAUDE_CODE_REMOTE=true`): they don't update the tips (the notebook on Kevin's PC
+   is the one source of truth; a cloud copy would fork it), and when one ends, crashes or is stopped it
+   pushes logs/ to the branch itself (`--sync`, on by default). If that prints `ALERT sync_error`, run
+   `uv run sync_logs.py push` before saying the game is done; logs that aren't pushed are lost with the sandbox.
+On the PC, `uv run sync_logs.py pull` copies new logs into logs/ (a game pushed again, e.g. after a
+mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback files), adds their lessons to
+the tips notebook and publishes the new sheet to the branch (`--no-tips` only copies logs). A PC game also
+publishes the sheet when it updates it, so cloud games get it without a pull.
 `lessons.jsonl` and `alerts_reviewed.json` are merged, not overwritten; mock games are never synced.
 
 ## Checking changes
