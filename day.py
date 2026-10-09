@@ -4,6 +4,7 @@ import json
 import re
 from typing import Any
 
+from llm import Model
 from players import (LAST_WILL_SCHEMA, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
@@ -166,11 +167,16 @@ def run_day(game: Game, players: Players) -> None:
     game.emit("Discussion time is over. The day ends.")
 
 
-def drop_own_name(out: dict, name: str) -> dict:
-    """Strips a leading "Name:" from the public message: the transcript already names the speaker, and
-    Haiku kept writing it despite the prompt (game_20261009_084630_739772)."""
+NAME_PREFIX_MODELS = {Model.HAIKU_5_5}  # models that ignore the prompt's "no need to start with your own name"
+
+
+def drop_own_name(out: dict, name: str, model: Model) -> dict:
+    """HACK, Haiku only: strips a leading "Name:" from the public message. The prompt already says not to
+    write it, and every other model follows that; Haiku 5.5 wrote it on nearly every turn
+    (game_20261009_084630_739772). Kept to the models in NAME_PREFIX_MODELS so other models' messages
+    are never rewritten; drop it if a later Haiku follows the prompt."""
     msg = out.get("public_message")
-    if isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
+    if model in NAME_PREFIX_MODELS and isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
         out = {**out, "public_message": msg[m.end():]}
     return out
 
@@ -248,14 +254,14 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
         out = players.ask(p, task, schema, fallback)
-        out = drop_own_name(out, p.name)
+        out = drop_own_name(out, p.name, writer.model)
     else:
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
         schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
         out = players.ask(writer, task, schema, fallback)
-        out = drop_own_name(out, p.name)
+        out = drop_own_name(out, p.name, writer.model)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
                              "can't chat, but you may nominate a player for trial (or null). Nominating costs "
@@ -275,7 +281,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
         out = players.ask(writer, task + warning, schema, out)
-        out = drop_own_name(out, p.name)
+        out = drop_own_name(out, p.name, writer.model)
         if writer is not p:
             out["nominate"] = nominee
 

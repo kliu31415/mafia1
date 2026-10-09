@@ -1,5 +1,6 @@
 """The day phase: nominations, trials, speaking budget and when the day ends."""
 
+from llm import Model
 from day import MAX_TRIALS_PER_DAY, TRIAL_BUDGET, chat_turn, message_cost, run_day, run_nomination, run_trial
 from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, votes
 
@@ -244,10 +245,13 @@ def test_a_new_claim_shows_in_everyones_history_and_a_name_prefix_is_dropped(gam
             return {"public_message": "Alice: I'm the Sheriff.", "claim": "Sheriff. N1: Bob Not Evil"}
         return None
     game, players = game_factory(VILLAGE5, ScriptedClient(decide))
-    game.player("Alice").speaking_budget = 8.0
-    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
-    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)  # the same claim isn't repeated
+    alice = game.player("Alice")
+    alice.speaking_budget = 8.0
+    alice.model = Model.SONNET_5_5
+    chat_turn(game, players, alice, rnd=1, can_nominate=False)  # only Haiku's name prefix is stripped (a hack)
+    alice.model = Model.HAIKU_5_5
+    chat_turn(game, players, alice, rnd=1, can_nominate=False)  # the same claim isn't repeated
     claims = [e for e in game.events if e.cat == "claim"]
     assert len(claims) == 1 and claims[0].text == "[Claim] Alice: Sheriff. N1: Bob Not Evil"
     assert "[Claim] Alice" in game.history_for("Bob")
-    assert [e.fields["message"] for e in game.events if e.cat == "chat"][0] == "I'm the Sheriff."
+    assert [e.fields["message"] for e in game.events if e.cat == "chat"] == ["Alice: I'm the Sheriff.", "I'm the Sheriff."]
