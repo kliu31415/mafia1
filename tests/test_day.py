@@ -227,3 +227,12 @@ def test_ledger_dates_night_deaths_by_their_night_and_a_quiet_night_is_announced
     game.day = 3
     run_day(game, players)
     assert sum(e.text == "Nobody died last night." for e in game.events) == 1
+
+
+def test_the_accused_speaks_first_and_last(game_factory):
+    def decide(name, task, schema):
+        return {"public_message": "words"} if "public_message" in schema["properties"] else None
+    game, players = game_factory(VILLAGE5, ScriptedClient(decide))
+    run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
+    speakers = [e.fields["speaker"] for e in game.events if e.cat == "chat"]
+    assert speakers[0] == speakers[-1] == "Bob" and speakers.count("Bob") == 2 and len(speakers) == 6

@@ -53,6 +53,7 @@ Nominations:
 - If a majority of all votes counted are Yes, the nominee goes on trial.
 Trials:
 - The nominee says the first public message and may defend themself; others may chat publicly and privately.
+  After everyone else has had a turn, the nominee gets one last public message before the vote.
 - Then everyone votes Guilty/Innocent at the same time (no abstentions: a player who doesn't vote counts as voting
   Innocent); every vote is revealed.
 - If a majority of all votes counted are Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
@@ -88,6 +89,7 @@ Ex-Con's nightly visit), aren't optional and always happen.
 
 R6 (Visits)
 - When A performs an action on B, A visits B, unless the action is an Astral Visit.
+- A role that targets a player may target itself unless its text says otherwise (e.g. "other than yourself").
 - A player whose role can target others but who targets themself shows as visiting themself.
 - A player whose action can only affect themself does not show as visiting anyone.
 
@@ -103,7 +105,7 @@ Seer's random pair) draw from and report on everyone alive when the night began,
 night.
 
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
-1. Remove actions of role-blocked players (R9). Party Animal and Pharmacist can't be role-blocked.
+1. Remove actions of role-blocked players (R9). Party Animal, Pharmacist and Veteran can't be role-blocked.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
    Traps hit non-Village visitors (Trapper).
@@ -286,7 +288,8 @@ Roleplayer
   You are told your role is X, a random Village Investigative role other than Eavesdropper or Archivist, chosen at
   the start.
   The moderator gives you results that are usually false but plausible. Exact-role checks see you as Roleplayer
-  (R19).
+  (R19). Your night actions only happen in your imagination: they aren't visits, have no effect, and no other
+  role sees them.
 
 Ex-Con
   Appears: Evil to alignment checks (R19).

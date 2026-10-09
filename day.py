@@ -369,6 +369,10 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     for p in game.clockwise_from(accused.name)[1:]:
         chat_turn(game, players, p, rnd, can_nominate=False, trial=True,
                   extra=f"{nominee} is on trial. " + TRIAL_VOTE_NOTE)
+    # rules R4: a last word, so questions asked during the trial get an answer
+    chat_turn(game, players, accused, rnd, can_nominate=False, free_words=FREE_DEFENSE_WORDS, trial=True,
+              extra="You are on trial. Everyone else has spoken: this is your last public message before the "
+                    "vote, to answer questions and accusations. " + TRIAL_VOTE_NOTE)
 
     voters = game.alive()
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
