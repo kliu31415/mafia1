@@ -49,7 +49,9 @@ class Model(str, Enum):
     # In game_20261009_164356_960898 it also twice wrote its thinking as plain text in the answer, with no JSON,
     # until the token limit (no reasoning returned). Every successful call returned its reasoning separately, with
     # up to ~16k output tokens, so these look like thinking that ran into the cap before it closed (~5% of calls,
-    # more on later days). The retry usually parses; low effort might avoid it but wasn't tried.
+    # more on later days). The retry usually parses. It got worse in a 15-player game (28 of 185 calls in
+    # game_20261009_181836_910820), and effort "low" didn't shorten its thinking (replayed turns: 1-15k output
+    # tokens at low vs 2-11k at medium), so effort can't fix it.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
 
