@@ -1,10 +1,17 @@
 """Archivist: once per game, sees the roles of a random three quarters of the other players alive when the night
 began (those who died that night count)."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from events import RESULT
 from roles.base import RoleLogic, register
 
 SHARE = 0.75  # rules: floor(0.75 * N) of the other players alive when the night began
+
+if TYPE_CHECKING:
+    from state import Game
 
 
 @register("Archivist")
@@ -15,7 +22,7 @@ class Archivist(RoleLogic):
     ops = {"archive": ({"by"}, set(), "{op:'archive', by}: the Archivist `by` consults the archive (spends their "
                                       "token; code draws and tells the roles at once)")}
 
-    def check_op(self, game, change):
+    def check_op(self, game: Game, change: dict) -> str | None:
         by = game.player(change["by"])
         if by.role != "Archivist" or not by.alive:
             return f"{by.name} is not a living Archivist"
@@ -23,7 +30,7 @@ class Archivist(RoleLogic):
             return f"{by.name} has no archive token left"
         return None
 
-    def apply_op(self, game, change):
+    def apply_op(self, game: Game, change: dict) -> None:
         # Told at once, like other night results. The sample is everyone alive when the night began, so it's
         # the same whether the moderator applies the night's kills before or after this op.
         by = game.player(change["by"])

@@ -1,9 +1,16 @@
 """Eavesdropper: picks a player at night and reads their private messages the next day."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from roles.base import RoleLogic, register
 
 NEXT = "eavesdrops_next"  # game.role_state: Eavesdropper -> target, recorded tonight for the next day
 TODAY = "eavesdrops"  # game.role_state: Eavesdropper -> target, today
+
+if TYPE_CHECKING:
+    from state import Game, Player
 
 
 @register("Eavesdropper")
@@ -14,7 +21,7 @@ class Eavesdropper(RoleLogic):
     ops = {"eavesdrop": ({"player", "by"}, set(), "{op:'eavesdrop', player, by}: the Eavesdropper `by` reads "
                                                     "player's private messages tomorrow")}
 
-    def check_op(self, game, change):
+    def check_op(self, game: Game, change: dict) -> str | None:
         by = game.player(change["by"])
         if by.role != "Eavesdropper" or not by.alive:
             return f"{by.name} is not a living Eavesdropper"
@@ -22,10 +29,10 @@ class Eavesdropper(RoleLogic):
             return "an Eavesdropper can't eavesdrop on themselves"
         return None
 
-    def apply_op(self, game, change):
+    def apply_op(self, game: Game, change: dict) -> None:
         game.role_state.setdefault(NEXT, {})[change["by"]] = change["player"]
 
-    def at_dawn(self, game):
+    def at_dawn(self, game: Game) -> None:
         game.role_state[TODAY] = game.role_state.pop(NEXT, {})
         for me, target in game.role_state[TODAY].items():
             if game.player(me).alive and not game.player(target).alive:
@@ -34,5 +41,5 @@ class Eavesdropper(RoleLogic):
                 game.emit(f"You are eavesdropping on {target} today: you'll read every private message they send "
                           "or receive.", [me])
 
-    def hears_pm(self, game, me, speaker, to):
+    def hears_pm(self, game: Game, me: Player, speaker: str, to: str) -> bool:
         return game.role_state.get(TODAY, {}).get(me.name) in (speaker, to)

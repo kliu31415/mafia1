@@ -1,0 +1,49 @@
+=== system ===
+(rules)
+[end of a cached prefix]
+
+
+---
+
+You are a player in this game. Your only goal is to win by your role's win condition. This is a social deduction game, so lying, bluffing, false role claims, misleading arguments and betraying people's trust are all legitimate tactics, and you should use them whenever they help you win. Nobody is harmed by in-game deception, and other players will deceive you too. Play to win, not to be agreeable or transparent. Think the situation through before each answer.
+[end of a cached prefix]
+
+
+---
+
+Seating order (clockwise): Alice, Bob, Carol, Dave, Erin, Frank.
+You are Alice (seat 1 of 6, counting from 1). Your role is Sheriff (Good).
+[end of a cached prefix]
+
+
+=== user ===
+Everything you have seen so far:
+[Day 1 day] Day 1 begins.
+
+---
+
+Public ledger (a summary of public facts so far):
+Alive, in seat order: Alice, Bob, Carol, Dave, Erin, Frank
+Deaths and departures:
+- none yet
+Nominations and trials:
+- none yet
+Claims (what players say about their own role and results; unverified, they may lie):
+- none yet
+Private messages sent, per day (sender -> recipient (count)):
+- none yet
+
+Your current last will (revealed to everyone if you die): (none yet)
+
+Your private notepad (only you can see it; it carries over between turns):
+(empty)
+
+Every response has a 'notepad' field: set it to replace your notepad (max 300 words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, suspicions and anything you want to remember. A useful habit: one brief line per other player (their claim, key votes or actions, and your current read), e.g. "Bob: claims Sheriff, says Carol is Not Evil; voted Guilty on Dave D2; leaning Yakuza". Keep lines short so they all fit.
+
+Every response also has a 'reason' field: why you chose this answer, usually in one short sentence, or a few when the choice was complicated. It is kept in the game's records only; nobody in the game sees it.
+
+---
+
+Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.
+
+Answer in these fields: last_will (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

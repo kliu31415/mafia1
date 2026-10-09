@@ -1,0 +1,72 @@
+=== system ===
+(rules)
+[end of a cached prefix]
+
+
+---
+
+You are a player in this game. Your only goal is to win by your role's win condition. This is a social deduction game, so lying, bluffing, false role claims, misleading arguments and betraying people's trust are all legitimate tactics, and you should use them whenever they help you win. Nobody is harmed by in-game deception, and other players will deceive you too. Play to win, not to be agreeable or transparent. Think the situation through before each answer.
+[end of a cached prefix]
+
+
+---
+
+Seating order (clockwise): Alice, Bob, Carol, Dave (dead), Erin, Frank.
+You are Erin (seat 5 of 6, counting from 1). Your role is Grunt (Evil). Yakuza members: Erin (Grunt), Frank (Grunt). Katana holder: Erin.
+
+---
+
+Everything you have seen in earlier phases (this phase's events are in the next message):
+[Day 1 day] Day 1 begins.
+[Day 1 day] Speaking order today goes around the circle in seat order, starting with Carol.
+[Day 1 day] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Day 1 day] [Claim] Alice: Sheriff
+[Day 1 day] Alice (public): Dave has been very quiet. I nominate him.
+[Day 1 day] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
+[Day 1 day] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
+[Day 1 day] Dave is put on trial (6 Yes).
+[Day 1 day] Dave (public): Dave has a view on this trial.
+[Day 1 day] Erin (public): Erin has a view on this trial.
+[Day 1 day] Frank (public): Frank has a view on this trial.
+[Day 1 day] Alice (public): Alice has a view on this trial.
+[Day 1 day] Bob (public): Bob has a view on this trial.
+[Day 1 day] Carol (public): Carol has a view on this trial.
+[Day 1 day] Dave (public): Dave has a view on this trial.
+[Day 1 day] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
+[Day 1 day] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
+[Day 1 day] Dave died (executed by hanging). Their role was Vanilla Villager.
+[end of a cached prefix]
+
+
+=== user ===
+What you have seen this phase so far:
+[Day 1 night] Night 1 begins.
+
+---
+
+Public ledger (a summary of public facts so far):
+Alive, in seat order: Alice, Bob, Carol, Erin, Frank
+Deaths and departures:
+- Day 1: Dave (Vanilla Villager, executed by hanging)
+Nominations and trials:
+- Day 1: Alice nominated Dave; Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody; passed
+- Day 1: trial of Dave; Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody; executed
+Claims (what players say about their own role and results; unverified, they may lie):
+- Alice: Day 1: Sheriff
+Private messages sent, per day (sender -> recipient (count)):
+- none yet
+
+Your current last will (revealed to everyone if you die): (none yet)
+
+Your private notepad (only you can see it; it carries over between turns):
+(empty)
+
+Every response has a 'notepad' field: set it to replace your notepad (max 300 words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, suspicions and anything you want to remember. A useful habit: one brief line per other player (their claim, key votes or actions, and your current read), e.g. "Bob: claims Sheriff, says Carol is Not Evil; voted Guilty on Dave D2; leaning Yakuza". Keep lines short so they all fit.
+
+Every response also has a 'reason' field: why you chose this answer, usually in one short sentence, or a few when the choice was complicated. It is kept in the game's records only; nobody in the game sees it.
+
+---
+
+It is Night 1. Yakuza chat, round 1 of at most 3. Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. There is no attack unless at least 2 of the 2 living Yakuza vote for the same target (with two of you, both must agree). The holder vote is separate: the Katana moves only if at least 2 vote for the same new holder, and otherwise the current holder keeps it and makes any attack. Send a message (max 200 words; longer is truncated) or null. Set ready=true if you have nothing more to discuss; chat ends when everyone is ready.
+
+Answer in these fields: message, ready (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

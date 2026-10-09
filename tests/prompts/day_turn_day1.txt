@@ -1,0 +1,63 @@
+=== system ===
+(rules)
+[end of a cached prefix]
+
+
+---
+
+You are a player in this game. Your only goal is to win by your role's win condition. This is a social deduction game, so lying, bluffing, false role claims, misleading arguments and betraying people's trust are all legitimate tactics, and you should use them whenever they help you win. Nobody is harmed by in-game deception, and other players will deceive you too. Play to win, not to be agreeable or transparent. Think the situation through before each answer.
+[end of a cached prefix]
+
+
+---
+
+Seating order (clockwise): Alice, Bob, Carol, Dave, Erin, Frank.
+You are Alice (seat 1 of 6, counting from 1). Your role is Sheriff (Good).
+[end of a cached prefix]
+
+
+=== user ===
+Everything you have seen so far:
+[Day 1 day] Day 1 begins.
+[Day 1 day] Speaking order today goes around the circle in seat order, starting with Carol.
+[Day 1 day] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+
+---
+
+Public ledger (a summary of public facts so far):
+Alive, in seat order: Alice, Bob, Carol, Dave, Erin, Frank
+Deaths and departures:
+- none yet
+Nominations and trials:
+- none yet
+Claims (what players say about their own role and results; unverified, they may lie):
+- none yet
+Private messages sent, per day (sender -> recipient (count)):
+- none yet
+
+Your current last will (revealed to everyone if you die): (none yet)
+
+Your private notepad (only you can see it; it carries over between turns):
+(empty)
+
+Every response has a 'notepad' field: set it to replace your notepad (max 300 words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, suspicions and anything you want to remember. A useful habit: one brief line per other player (their claim, key votes or actions, and your current read), e.g. "Bob: claims Sheriff, says Carol is Not Evil; voted Guilty on Dave D2; leaning Yakuza". Keep lines short so they all fit.
+
+Every response also has a 'reason' field: why you chose this answer, usually in one short sentence, or a few when the choice was complicated. It is kept in the game's records only; nobody in the game sees it.
+
+---
+
+It is Day 1, round 1 of at most 8. It's your turn. Your speaking budget is 2.50; you earn 2.5 per round, carrying over up to 8, and it resets each day. You may send one public message and any number of private messages (everyone sees who you messaged, but only the recipient sees the contents), or nothing. The transcript already shows who sent each message, so there's no need to start a message with your own name. Messages are capped at 800 words. Prices grow each round after round 3, so late messages are only worth it if important. The day ends after a full round where nobody sends a public message, so a message that only repeats what you already said keeps the day going for everyone: if you have nothing new, send nothing.
+Message prices this round (round 1, 1.00x; next round 1.00x):
+   10 words: public 1.17, private 0.29
+   25 words: public 1.43, private 0.36
+   50 words: public 1.90, private 0.47
+  100 words: public 2.92, private 0.73
+  200 words: public 5.33, private 1.33
+  400 words: public 11.67, private 2.92
+  800 words: public 30.33, private 7.58
+You may also replace your last will (free; null keeps it), e.g. to match a claim you make today. It's shown to everyone if you die.
+You may also set your claim (free, max 30 words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
+You may nominate a player for trial, which stops chat for a vote. Nominating costs 1.00 from your budget this round and is paid before your messages.
+
+
+Answer in these fields: public_message, private_messages, claim, last_will, nominate (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

@@ -37,7 +37,10 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
 - `uv run pytest` runs the scenario and visibility tests (offline, about 10 seconds). Run it before
   every commit, and add a test when you fix a rules bug or change a code-handled role.
 - `uv run ruff check .` catches undefined names, unused imports and likely bugs; `uv run mypy .` checks
-  types (e.g. a possibly-None value used as a player).
+  types (e.g. a possibly-None value used as a player), including the bodies of unannotated functions.
+- `tests/test_prompts.py` keeps what players and the moderator are sent for a short scripted game in
+  `tests/prompts/`, and checks that each player's cached system message stays the same within a phase. After an
+  intended prompt change, run `uv run pytest --update-prompts` and read the diff of `tests/prompts/` before committing.
 - `uv run mafia.py --mock` plays a full offline game; the same `--seed` replays the same game. Its
   moderator only carries out the Katana attack, so moderator-handled roles are only exercised in live games.
 - `uv run stats.py` reads every finished live game in `logs/`: win rates by faction, model and role (with

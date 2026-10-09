@@ -1,5 +1,9 @@
 """Surveyor: spends a token to learn the role of a random player among a target and their neighbors."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from events import RESULT
 from roles.base import RoleLogic, register
 
@@ -17,6 +21,9 @@ def survey_group(game, surveyor: str, target: str) -> list[str]:
     group = [circle[i - 1], target, circle[(i + 1) % len(circle)]]
     return list(dict.fromkeys(group))
 
+if TYPE_CHECKING:
+    from state import Game
+
 
 @register("Surveyor")
 class Surveyor(RoleLogic):
@@ -26,7 +33,7 @@ class Surveyor(RoleLogic):
     ops = {"survey": ({"player", "by"}, set(), "{op:'survey', player, by}: the Surveyor `by` surveys player (spends a "
                                                "token; code picks the group and tells them one random role in it)")}
 
-    def check_op(self, game, change):
+    def check_op(self, game: Game, change: dict) -> str | None:
         by, target = game.player(change["by"]), game.player(change["player"])
         if by.role != "Surveyor" or not alive_at_night_start(game, by):
             return f"{by.name} is not a Surveyor who was alive tonight"
@@ -36,7 +43,7 @@ class Surveyor(RoleLogic):
             return "a Surveyor surveys another player who was alive at the start of the night"
         return None
 
-    def apply_op(self, game, change):
+    def apply_op(self, game: Game, change: dict) -> None:
         by = game.player(change["by"])
         by.tokens["survey"] -= 1
         group = survey_group(game, by.name, change["player"])

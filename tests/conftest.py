@@ -13,6 +13,11 @@ from players import Players
 from roles import ROLES, Alignment
 from state import Game, setup_game
 
+def pytest_addoption(parser):
+    parser.addoption("--update-prompts", action="store_true",
+                     help="rewrite the prompt snapshots in tests/prompts/ (test_prompts.py) instead of comparing")
+
+
 # decide(player name, or None for a non-player call such as the night check, task, schema) -> the fields
 # to set in the answer, or None for defaults
 Decide = Callable[[str | None, str, dict], dict | None]

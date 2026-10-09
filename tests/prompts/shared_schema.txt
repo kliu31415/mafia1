@@ -1,0 +1,228 @@
+{
+ "type": "object",
+ "properties": {
+  "public_message": {
+   "type": "string"
+  },
+  "private_messages": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "to": {
+      "type": "string",
+      "enum": [
+       "Alice",
+       "Bob",
+       "Carol",
+       "Dave",
+       "Erin",
+       "Frank"
+      ]
+     },
+     "text": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "to",
+     "text"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "claim": {
+   "type": "string"
+  },
+  "last_will": {
+   "type": "string"
+  },
+  "nominate": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "Dave",
+      "Erin",
+      "Frank"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "vote": {
+   "type": "boolean"
+  },
+  "answer": {
+   "type": "string"
+  },
+  "act": {
+   "type": "boolean"
+  },
+  "target": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "Dave",
+      "Erin",
+      "Frank"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "second_target": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "Dave",
+      "Erin",
+      "Frank"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "guessed_role": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Vanilla Villager",
+      "Sheriff",
+      "Tracker",
+      "Lookout",
+      "Seer",
+      "Fortune Teller",
+      "Oracle",
+      "Eavesdropper",
+      "Archivist",
+      "Surveyor",
+      "Accountant",
+      "Medic",
+      "Trapper",
+      "Vigilante",
+      "Veteran",
+      "Prosecutor",
+      "Philanthropist",
+      "Party Animal",
+      "Roleplayer",
+      "Ex-Con",
+      "Cardinal",
+      "Grunt",
+      "Pharmacist",
+      "Ritualist",
+      "Puppeteer",
+      "Fabricator",
+      "Clerk",
+      "Ballot Stuffer",
+      "Diviner",
+      "Mortician",
+      "Wiretap",
+      "Vulture",
+      "Serial Killer",
+      "Arsonist",
+      "Jester",
+      "Executioner"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "tokens_to_spend": {
+   "type": "integer"
+  },
+  "details": {
+   "type": "string"
+  },
+  "katana_vote_holder": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "Dave",
+      "Erin",
+      "Frank"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "katana_vote_target": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "Dave",
+      "Erin",
+      "Frank"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "message": {
+   "type": "string"
+  },
+  "ready": {
+   "type": "boolean"
+  },
+  "notepad": {
+   "type": "string"
+  },
+  "reason": {
+   "type": "string"
+  }
+ },
+ "required": [
+  "public_message",
+  "private_messages",
+  "claim",
+  "last_will",
+  "nominate",
+  "vote",
+  "answer",
+  "act",
+  "target",
+  "second_target",
+  "guessed_role",
+  "tokens_to_spend",
+  "details",
+  "katana_vote_holder",
+  "katana_vote_target",
+  "message",
+  "ready",
+  "notepad",
+  "reason"
+ ],
+ "additionalProperties": false
+}

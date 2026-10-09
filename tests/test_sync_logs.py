@@ -145,7 +145,7 @@ def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch):
     import sys
 
     import mafia
-    calls = []
+    calls: list[tuple] = []
     monkeypatch.setattr(mafia, "play_game", lambda client, *a, **kw: calls.append(("play", kw["update_tips"])))
     monkeypatch.setattr(mafia, "OpenRouterClient", lambda *a, **kw: None)
     monkeypatch.setattr(mafia, "load_api_key", lambda: "key")

@@ -426,7 +426,8 @@ def test_katana_holder_and_target_majorities_are_separate(game_factory):
     from night import tally_katana
     game, _ = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt", "Grunt"])
     game.katana_holder = "Carol"
-    votes = {y: {"katana_vote_holder": y, "katana_vote_target": "Alice"} for y in ("Carol", "Dave", "Erin")}
+    votes: dict[str, dict[str, str | None]] = {y: {"katana_vote_holder": y, "katana_vote_target": "Alice"}
+                                               for y in ("Carol", "Dave", "Erin")}
     assert tally_katana(game, votes) == {"attack": "Alice", "holder": "Carol", "attack_level": "Standard"}  # rules R8
     votes = {y: {"katana_vote_holder": "Dave", "katana_vote_target": t} for y, t in
              (("Carol", "Alice"), ("Dave", "Bob"), ("Erin", None))}

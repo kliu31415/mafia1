@@ -1,7 +1,14 @@
 """Executioner: wins if their target is hanged; becomes a Jester if the target dies otherwise."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from events import DEATH
 from roles.base import RoleLogic, Status, logic, register
+
+if TYPE_CHECKING:
+    from state import Game, Player
 
 
 @register("Executioner")
@@ -9,13 +16,13 @@ class Executioner(RoleLogic):
     blocks_win = False
     night_note = "Executioner revenge attacks are carried out by code after you finish; don't resolve them."
 
-    def setup(self, game, p):
+    def setup(self, game: Game, p: Player) -> None:
         p.status[Status.TARGET] = game.rng.choice([q.name for q in game.players if q is not p])
 
-    def briefing(self, game, p):
+    def briefing(self, game: Game, p: Player) -> list[str]:
         return [f"Your target is {p.status[Status.TARGET]}."]
 
-    def on_other_death(self, game, me, dead, guilty_voters):
+    def on_other_death(self, game: Game, me: Player, dead: Player, guilty_voters: list[str] | None) -> None:
         if me.status.get(Status.TARGET) != dead.name:
             return
         if guilty_voters is not None:
@@ -34,7 +41,7 @@ class Executioner(RoleLogic):
         else:
             turn_jester(game, me)
 
-    def at_dawn(self, game):
+    def at_dawn(self, game: Game) -> None:
         for name in game.role_state.pop(TURN_JESTER, []):
             if (me := game.player(name)).alive and me.role == "Executioner":
                 turn_jester(game, me)

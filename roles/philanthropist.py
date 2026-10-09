@@ -1,7 +1,14 @@
 """Philanthropist: spends a token at night to hand another player a token of their own role's kind."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from events import RESULT
 from roles.base import RoleLogic, register
+
+if TYPE_CHECKING:
+    from state import Game
 
 
 @register("Philanthropist")
@@ -11,7 +18,7 @@ class Philanthropist(RoleLogic):
     ops = {"give_token": ({"player", "by"}, set(), "{op:'give_token', player, by}: the Philanthropist `by` hands "
                                                    "player a token of their role's kind (spends a token)")}
 
-    def check_op(self, game, change):
+    def check_op(self, game: Game, change: dict) -> str | None:
         by, to = game.player(change["by"]), game.player(change["player"])
         if by.role != "Philanthropist":
             return f"{by.name} is not a Philanthropist"
@@ -21,7 +28,7 @@ class Philanthropist(RoleLogic):
             return "a Philanthropist hands tokens to other players only"
         return None
 
-    def apply_op(self, game, change):
+    def apply_op(self, game: Game, change: dict) -> None:
         game.player(change["by"]).tokens["philanthropy"] -= 1
         to = game.player(change["player"])
         # A Roleplayer's token kinds are their fake role's, so the gift keeps their cover.

@@ -1,0 +1,101 @@
+=== system ===
+(rules)
+[end of a cached prefix]
+
+
+---
+
+You are the omniscient moderator of this game. Code stores the state and runs the day phase; you resolve what code can't by calling tools. Be exact about the rules. Never reveal hidden information except as the rules allow. A private result contains only what the rules say its recipient learns, worded neutrally: never explain why a result came out as it did (e.g. never mention the Katana, framing or defenses to an investigator), and never name an attacker or reveal roles beyond what the rules allow. If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and then continue with your best interpretation.
+
+=== user ===
+Resolve Night 1. Submitted night actions (JSON, keyed by player):
+{
+ "Alice": {
+  "act": true,
+  "target": "Erin",
+  "second_target": null,
+  "guessed_role": null,
+  "tokens_to_spend": 0,
+  "details": ""
+ },
+ "Carol": {
+  "act": true,
+  "target": "Alice",
+  "second_target": null,
+  "guessed_role": null,
+  "tokens_to_spend": 0,
+  "details": ""
+ },
+ "Erin": {
+  "act": true,
+  "target": "Alice",
+  "second_target": null,
+  "guessed_role": null,
+  "tokens_to_spend": 0,
+  "details": "",
+  "katana_vote_holder": "Erin",
+  "katana_vote_target": "Alice"
+ },
+ "Frank": {
+  "act": true,
+  "target": "Alice",
+  "second_target": null,
+  "guessed_role": null,
+  "tokens_to_spend": 0,
+  "details": "",
+  "katana_vote_holder": "Erin",
+  "katana_vote_target": "Alice"
+ }
+}
+
+Katana vote result: {"attack": "Alice", "holder": "Erin", "attack_level": "Standard"}
+
+Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, role-blocks R9, attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator frames). Use apply_changes for deaths and token/status changes, tell() for each private result, and end_phase when done. Deaths you apply are announced publicly at dawn automatically, including the kill's cause, so make the cause just the source as the rules allow it to be known (e.g. 'Katana', 'Vigilante', 'Serial Killer', 'Trap'). For each kill also set `by` to the player whose action killed them (the trap's owner for a trap) and katana=true for the Katana attack; these are recorded for analysis, never shown. Don't tell() deaths to all. Tell each role-blocked player that they were role-blocked. Every player who used an ability gets a private result line, even when nothing else happened (e.g. 'You went on alert. 1 alert token left.'), stating any tokens they have left. Tell all Yakuza which actions each Yakuza performed but not the results; only the attacker learns whether the Katana attack succeeded. Update token counts for any tokens spent.
+
+
+
+Current state, summarized:
+Day 1, night. Katana holder: Erin.
+Living players in seat order:
+- seat 1: Alice (Sheriff, Village)
+- seat 2: Bob (Vanilla Villager, Village)
+- seat 3: Carol (Medic, Village); tokens medic 2
+- seat 5: Erin (Grunt, Yakuza); holds the Katana
+- seat 6: Frank (Grunt, Yakuza)
+Dead: Dave (Vanilla Villager, Village), died day 1 day
+Pending day effects: none
+
+Current full state (call get_state to refresh after changes):
+{"day": 1, "phase": "night", "katana_holder": "Erin", "players": [{"name": "Alice", "seat": 0, "alive": true, "role": "Sheriff", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Bob", "seat": 1, "alive": true, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Carol", "seat": 2, "alive": true, "role": "Medic", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {"medic": 2}, "status": {}, "last_will": ""}, {"name": "Dave", "seat": 3, "alive": false, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Erin", "seat": 4, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Frank", "seat": 5, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "last_will": ""}]}
+
+Public history so far:
+[Day 1 day] Day 1 begins.
+[Day 1 day] Speaking order today goes around the circle in seat order, starting with Carol.
+[Day 1 day] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Day 1 day] [Claim] Alice: Sheriff
+[Day 1 day] Alice (public): Dave has been very quiet. I nominate him.
+[Day 1 day] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
+[Day 1 day] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
+[Day 1 day] Dave is put on trial (6 Yes).
+[Day 1 day] Dave (public): Dave has a view on this trial.
+[Day 1 day] Erin (public): Erin has a view on this trial.
+[Day 1 day] Frank (public): Frank has a view on this trial.
+[Day 1 day] Alice (public): Alice has a view on this trial.
+[Day 1 day] Bob (public): Bob has a view on this trial.
+[Day 1 day] Carol (public): Carol has a view on this trial.
+[Day 1 day] Dave (public): Dave has a view on this trial.
+[Day 1 day] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
+[Day 1 day] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
+[Day 1 day] Dave died (executed by hanging). Their role was Vanilla Villager.
+[Day 1 night] Night 1 begins.
+[end of a cached prefix]
+
+
+=== tools ===
+get_state
+apply_changes
+random_choice
+tell
+ask_player
+end_phase
+flag_issue
