@@ -3,9 +3,10 @@
   "game_20261009_004910_895267",
   "game_20261009_100017_447818",
   "game_20261009_101825_928470",
-  "game_20261009_055144_260309"
+  "game_20261009_055144_260309",
+  "game_20261009_084630_739772"
  ],
- "next_id": 55,
+ "next_id": 69,
  "entries": [
   {
    "id": "t1",
@@ -87,6 +88,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.4,
      "note": "Moderator and Niaj: both of Carol's and Niaj's fake claims collapsed against living real role holders."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator: Mallory's fake Vigilante claim was instantly counterclaimed by Niaj, and she was shot that night."
     }
    ],
    "against": [],
@@ -143,6 +149,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Alice and Carol: the team confirmed holder and target each night, and no attack was lost to a missed vote."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Alice, Bob, Grace, Mallory and the moderator: holder and target were confirmed every night, including at 2 alive, and every Katana attack resolved."
     }
    ],
    "against": [],
@@ -156,7 +167,7 @@
   {
    "id": "t7",
    "audience": "Vigilante",
-   "tip": "Stay hidden and spend Basic shots on players whose votes contradict their own stated reads, which saves tokens for more targets. Claim publicly only after your shots flip Yakuza, then use that credibility to lead the town.",
+   "tip": "Hold your shots until you have a mechanical lead: a claim conflict, a flipped Yakuza's vote or PM partners, or votes that clearly contradict the player's own stated reads. Never shoot on a soft behavioral read or on odd questions; the player may hold hidden info. A misfire costs as much as a mislynch and can hand Yakuza parity. Use Basic shots to save tokens, and claim only after your shots flip Yakuza.",
    "status": "active",
    "support": [
     {
@@ -170,11 +181,23 @@
      "note": "Erin held her shots on N1-N2, then used one Basic shot on Dave, the triangle starter, who flipped Fabricator. She later shot Heidi with Standard."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Alice: Niaj followed the 'stay hidden and shoot' advice and shot Erin, the Surveyor, on a behavioral read. That cost the town a power role and opened space for Mallory's fake Vigilante claim."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "edited",
+     "old": "Stay hidden and spend Basic shots on players whose votes contradict their own stated reads, which saves tokens for more targets. Claim publicly only after your shots flip Yakuza, then use that credibility to lead the town.",
+     "note": "Moderator, Niaj, Carol, Heidi, Erin and Ivan: Niaj's N2 Basic shot on Surveyor Erin, a 'bad read' whose votes matched her lean, put the town at 4v3 under a Ballot Stuffer lock."
     }
    ]
   },
@@ -228,6 +251,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.16,
      "note": "On N4, Erin's shot and Heidi's Katana resolved simultaneously, and they traded lives."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Mallory and Dave: Niaj's shot killed Mallory even though the Katana killed Niaj that same night, and the Yakuza planned around it."
     }
    ],
    "against": [],
@@ -372,7 +400,7 @@
   {
    "id": "t16",
    "audience": "Yakuza",
-   "tip": "Don't vote as a block with an exposed teammate. Once a teammate is clearly doomed, vote Guilty with the town. Plan the whole team's vote record across trials in night chat rather than improvising each trial, because lone Innocent votes on a teammate who later flips become the main case against you.",
+   "tip": "Don't vote as a block with a doomed teammate; vote Guilty with the town. First do the vote math in night chat, though. If your team's Innocent votes (plus a Ballot Stuffer's doubled vote) can stop the execution, defend them: an exposed teammate saved beats a clean record. Plan the whole team's votes across trials in advance, because lone Innocent votes on a teammate who later flips become the case against you.",
    "status": "active",
    "support": [
     {
@@ -394,9 +422,20 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.4,
      "note": "Moderator, Alice, Bob, Frank and Grace: Mallory's repeated Innocent votes on flipped Yakuza got her hanged, while Alice's Guilty votes protected her."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Alice and Grace: the team voted Guilty with the town on Frank and stayed blended, keeping a clean record."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator: Grace was exposed but not doomed, because the doubled vote allowed a 4-4 tie. Bob and Mallory chose not to bus her and saved her; bussing would have cost the win."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_004910_895267",
@@ -407,6 +446,12 @@
      "change": "edited",
      "old": "Don't vote as a block with an exposed teammate. Spread your votes, and sometimes vote with town against a doomed teammate to protect your own read.",
      "note": "Mallory was the only voter besides Carol to vote Innocent at Carol's execution, then voted Innocent on Niaj, and was hanged on D6. Alice voted Guilty on both and survived to the final day. Niaj noted that distancing must be coordinated across trials."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "edited",
+     "old": "Don't vote as a block with an exposed teammate. Once a teammate is clearly doomed, vote Guilty with the town. Plan the whole team's vote record across trials in night chat rather than improvising each trial, because lone Innocent votes on a teammate who later flips become the main case against you.",
+     "note": "Moderator, Bob and Mallory: on D3 Grace was saved 4-4 by Innocent votes plus a stuffed vote. In earlier games, bussing doomed teammates protected the survivors."
     }
    ]
   },
@@ -495,9 +540,20 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Dave, Heidi and Grace: correcting false 'contradictions' (optional Medic actions, a Tracker seeing visits rather than actions) kept true claims alive."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Ivan, Frank and Niaj: premise checks separated honest slips from lies. Dave's Roleplayer flip was correctly not read as deliberate deception."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.48,
+     "note": "Heidi: the town still treated Frank's corrected timeline slip as a tell and hanged him. The tip didn't stop the misapplication."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_004910_895267",
@@ -594,7 +650,7 @@
   {
    "id": "t25",
    "audience": "Village",
-   "tip": "Ask every living player to name a strongest suspect with reasoning each day, even if they won't nominate. Repeated 'no case' answers give evil free cover, while named reads create a record to check against later flips.",
+   "tip": "Ask every living player to name a strongest suspect with reasoning each day, so there is a record to check against later flips. But a named lean is a record, not evidence. Several players echoing the same soft lean add up to nothing, and Yakuza will nominate the pile-on target 'to hear a defense'. Never let a stack of leans become a Guilty vote.",
    "status": "active",
    "support": [
     {
@@ -611,13 +667,30 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Grace: stated daily reads made the later voting patterns easy to compare."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.32,
+     "note": "Erin: the named reads exposed inconsistencies, e.g. Alice's lean checked against her Guilty vote."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator: forced daily leans piled onto Frank, and Grace (Yakuza) nominated him 'to hear a defense'. Vanilla Frank was hanged 6-5."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "edited",
+     "old": "Ask every living player to name a strongest suspect with reasoning each day, even if they won't nominate. Repeated 'no case' answers give evil free cover, while named reads create a record to check against later flips.",
+     "note": "Moderator, Frank, Bob and Erin: the leans helped later analysis, but they stacked into the D2 mislynch of Vanilla Frank and gave Yakuza cover."
     }
    ]
   },
@@ -662,6 +735,11 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.63,
      "note": "Heidi lost her trial partly because she couldn't cite the vote-symmetry data that would have countered Bob."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Dave, Ivan and Niaj: the vote ledger and PM record correctly identified the Bob/Mallory/Grace bloc, though too late."
     }
    ],
    "against": [],
@@ -758,6 +836,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Alice got Not Evil on Heidi on N4 because Heidi held the Katana, though Heidi was Yakuza."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Mallory and Carol: Alice matched Good Ivan in Carol's Seer comparison only because Alice held the Katana that night."
     }
    ],
    "against": [],
@@ -771,7 +854,7 @@
   {
    "id": "t32",
    "audience": "Village",
-   "tip": "Don't hint at a power role or its tokens on Day 1, especially a protective one. It marks you as the first kill. Put the info in your last will instead.",
+   "tip": "Don't hint at your own power role or its tokens on Day 1, especially a protective one or a Veteran. Investigators should still post results publicly once they matter, not only in a will that may come too late. When a Ritualist may be alive, never name another living player's exact role in your will or in public; write 'one of X/Y holds info, ask them'.",
    "status": "active",
    "support": [
     {
@@ -788,6 +871,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Frank held his Tracker claim until D4 and tracked unblocked until then. Bob agreed."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Judy: as a quiet Veteran she drew the Katana on N2 and her alert killed Alice."
     }
    ],
    "against": [
@@ -795,12 +883,23 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Erin: hiding early made late claims look retrofitted. Her example was Yakuza Carol's Vanilla lie, so this is weak evidence against."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator: Erin kept her Surveyor result for her will, and it effectively named Carol as Seer. With a Ritualist alive, that became a guaranteed kill on Carol."
     }
    ],
    "history": [
     {
      "game": "game_20261009_100017_447818",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "edited",
+     "old": "Don't hint at a power role or its tokens on Day 1, especially a protective one. It marks you as the first kill. Put the info in your last will instead.",
+     "note": "Moderator, Erin and Judy: hiding helped Veteran Judy, but Erin's will-only Surveyor result came too late and pointed the Ritualist at Carol."
     }
    ]
   },
@@ -912,7 +1011,7 @@
   {
    "id": "t38",
    "audience": "Everyone",
-   "tip": "Treat the nomination and trial votes as separate decisions. Yes only puts someone on trial; vote Guilty only after their defense, if the evidence supports execution.",
+   "tip": "Treat the nomination and trial votes as separate decisions. Yes only puts someone on trial. Before voting Guilty, name one concrete contradiction in their own claims, votes or a mechanical result, and say why an innocent explanation no longer fits. Echoed concerns and corrected slips are not new evidence. A nominator who says they 'just want to hear a defense' has given no case.",
    "status": "active",
    "support": [
     {
@@ -924,6 +1023,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Heidi: say so when a Yes vote is only to hear someone out, and judge guilt fresh at the verdict."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Ivan: separating the nomination from the execution decision kept him voting Innocent on Frank, who flipped Vanilla."
     }
    ],
    "against": [],
@@ -931,6 +1035,12 @@
     {
      "game": "game_20261009_100017_447818",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "edited",
+     "old": "Treat the nomination and trial votes as separate decisions. Yes only puts someone on trial; vote Guilty only after their defense, if the evidence supports execution.",
+     "note": "Moderator, Ivan, Frank, Carol, Heidi and Erin: Frank was hanged 6-5 on stacked leans and a corrected timeline slip after Grace (Yakuza) nominated him 'to hear a defense'."
     }
    ]
   },
@@ -944,6 +1054,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Alice announced checks on Dave and then Heidi, and Bob blocked her every night. Carol announced a watch on Heidi, so the Yakuza moved the Katana to Dave and killed Carol on N2. Carol, Erin, Grace, Frank and Alice all reported this."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Judy publicly told Niaj to shoot Mallory, and the Katana killed Niaj that night."
     }
    ],
    "against": [],
@@ -964,6 +1079,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Dave DMed Bob and Heidi repeatedly, and Bob and Heidi repeated his 'check-ins' excuse. The 'Dave/Bob/Heidi triangle' was cited all game and appeared in Carol's and Frank's wills."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.64,
+     "note": "Grace: Mallory and Bob PMed each other on D3 after voting Innocent on Grace, and Carol cited it as a tell."
     }
    ],
    "against": [],
@@ -989,6 +1109,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Frank and Grace: the Carol/Judy/Niaj bloc that voted Yes on Bob kept resurfacing as an alignment signal."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.64,
+     "note": "Niaj and Ivan: the Mallory-Bob PM pair after their joint Innocent votes on Grace correctly marked the Yakuza bloc."
     }
    ],
    "against": [],
@@ -1034,6 +1159,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.16,
      "note": "Grace: Judy, who was blocked on N4-N5, was the real Medic."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Erin and Frank: Judy survived the Katana and Alice died to a Veteran, so the claim was accepted at once and anchored the D3 role count."
     }
    ],
    "against": [],
@@ -1079,6 +1209,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.4,
      "note": "Heidi survived the N1 Katana to Judy's protection. The Yakuza switched targets, then blocked Judy on N4-N5 and landed kills. Alice, Carol, Niaj and the moderator all reported this helped."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Bob, Grace and Ivan: after Judy's alert killed Alice, the Yakuza never revisited Judy and switched to Niaj and Heidi."
     }
    ],
    "against": [],
@@ -1119,6 +1254,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.4,
      "note": "Erin claimed a Medic must act every night, was corrected, and was later tried. Mallory's archive miscount was itself wrong. Bob, Dave, Heidi, Judy and Grace said the same."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Ivan, Dave and Judy: checking deadlines, claim timing and the archive count (N=9, 6 roles) against 8 votes from 7 voters exposed the Ballot Stuffer."
     }
    ],
    "against": [],
@@ -1139,6 +1279,11 @@
      "game": "game_20261009_055144_260309",
      "weight": 0.4,
      "note": "Heidi saw an extra Innocent at Carol's trial and an extra Guilty at Ivan's, matching Carol's own votes, plus Carol's 1-token audit. Carol was hanged and flipped Ballot Stuffer. Frank, Erin, Dave and Judy agreed."
+    },
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Judy and Ivan: the 8-vote total from 7 voters proved a Ballot Stuffer, confirmed the archive entry and located the stuffer among the Innocent voters."
     }
    ],
    "against": [],
@@ -1265,6 +1410,286 @@
    "history": [
     {
      "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t55",
+   "audience": "Village",
+   "tip": "While a Ritualist may be alive with tokens, every exact-role claim (Seer, Archivist, Eavesdropper) is a near-certain extra kill on top of the Katana. A living Diviner also feeds it exact roles, and a Wiretap reads private claims. Survey or archive results can pin a survivor's role indirectly. Claim only when it changes a vote, and expect the claimant to die that night.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Judy, Dave and Mallory: Bob killed Ivan (via a Diviner check) and Carol (via Erin's will and her claim) with unannounced Ritualist guesses."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t56",
+   "audience": "Yakuza",
+   "tip": "Chain exact-role info into Ritualist guesses: Diviner or Mortician results, Wiretap-read claims and public role claims give 100% guesses that never out the Ritualist. The Katana stays free for a second kill the same night. Save Ritualist tokens for confirmed investigators.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Bob and Grace: Alice's N1 Diviner check on Ivan led to Bob's N2 kill, and Carol's claim led to the N3 kill. Both nights were double kills."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t57",
+   "audience": "Yakuza",
+   "tip": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. Don't attack an unclaimed, confident, vocal organizer who may be an alerting Veteran. If you must hit one, have the Diviner give the holder Strong Defense (it beats the Veteran's Strong attack), or use an Astral Ritualist guess.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Alice and Bob: Alice, the Diviner, held the Katana on N2, attacked Judy and died to her Veteran alert while Grace (Wiretap) sat idle."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t58",
+   "audience": "Ballot Stuffer",
+   "tip": "Do the trial math in night chat. Spend a token on the night your team gets close to half: a doubled Innocent vote makes trials need more Guilty than the Village has (e.g. 7 alive means 8 counted, so 5 Guilty are needed). That blocks every execution, even of an exposed teammate. Nomination votes aren't doubled.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Mallory and Bob: Mallory's N2 token turned D3 into a 4-4 lock, and the exposed Grace survived."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t59",
+   "audience": "Village",
+   "tip": "When a trial total exceeds the revealed votes, a Ballot Stuffer exists. Recompute the threshold at once (count the extra vote) and see whether any trial can still pass. If evil is near half with the stuffer, hangs are impossible: kill the stuffer or the evil bloc at night, and act on mechanical deductions before parity arrives. Count evil's kills per night (Katana + Ritualist + misfires), not just heads.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Judy, Ivan, Niaj, Heidi, Frank, Carol and Dave: at 4v3 with a stuffed vote, every D3 trial tied 4-4. Then the Katana plus Ritualist took two Villagers a night."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t60",
+   "audience": "Village",
+   "tip": "Combine an Archivist or Surveyor role list with flips and claims to rule out roles. If the Village Vanilla and power slots are accounted for, extra Vanilla claims or duplicate power claims are fake. Corroborating one entry (e.g. a stuffed vote proving the Ballot Stuffer) doesn't verify the whole list, so keep the deductions conditional and account for unsampled roles.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Moderator, Niaj, Judy, Dave and Ivan: Heidi's archive plus the claims exposed Bob's and Grace's fake Vanilla claims and Mallory's fake Vigilante claim, but only after the vote math was lost."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t61",
+   "audience": "Yakuza",
+   "tip": "Agree the team's claim set in night chat. Never have two or more members claim Vanilla in a power-heavy setup; one archive list or role count can prove there is no Vanilla slot left and expose all of them at once. Spread claims over plausible unchecked roles, or stay unclaimed.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Alice, Bob and Frank: Bob's and Grace's Vanilla claims were both broken by Heidi's archive count."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t62",
+   "audience": "Yakuza",
+   "tip": "Plan the endgame around exact vote math. Parity doesn't end the game. At 2v2, vote No on every nomination (none can reach a majority), kill one villager at night, then nominate and hang the last at 2-1. Before risky night trades, pre-agree exactly whom the survivors kill and how they vote.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Bob, Grace and Mallory: after the N3 trade (Niaj and Mallory dead), the pair blocked nominations, killed Heidi and hanged Judy 2-1."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t63",
+   "audience": "Yakuza",
+   "tip": "Never visit a revealed or suspected Veteran at night, and don't trust public claims that their alert tokens are spent. Kill the other villagers and hang the Veteran once you control the vote; hanging bypasses alerts.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Mallory, Bob, Grace and Ivan: after Alice died to Judy's alert, the Yakuza never visited Judy again and hanged her on D5."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t64",
+   "audience": "Veteran",
+   "tip": "Once you claim Veteran publicly, Yakuza will avoid you, so later alerts are mostly wasted. Claim when it confirms a kill or saves a lynch, ideally after your best alerts are used. If you claim, don't reveal how many tokens you have left; it tells evil when you are safe to visit.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Judy: her N2 alert killed Alice. After her claim, the Yakuza stayed away and hanged her instead."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t65",
+   "audience": "Yakuza",
+   "tip": "Before nominating a soft-lean player, ask whether they could be a hidden info role. A trial forces their claim, and an Archivist or Seer claim mid-game can expose your whole lineup. Kill them quietly at night instead.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Alice: Heidi's archive came out under trial pressure on D3 and exposed Bob, Grace and Mallory."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t66",
+   "audience": "Vigilante",
+   "tip": "If a Yakuza fake-claims your role first, counterclaim immediately with details only the real holder has (token count, shot reasoning), and put the claim in your will. A late counterclaim reads as an echo.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.64,
+     "note": "Niaj: Mallory's copied Vigilante claim muddied his identity until role-count math resolved it."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t67",
+   "audience": "Eavesdropper",
+   "tip": "Choose targets who will likely survive the next Day and send private messages, not just today's suspect. You and your target must both be alive and there must be PM traffic. An empty record clears nobody.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.8,
+     "note": "Ivan's reflection; he was killed by the Ritualist on N2 before he could use his results."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t68",
+   "audience": "Wiretap",
+   "tip": "Stay quiet and never hint publicly that a Wiretap exists. The Village's own fear of a Wiretap often shuts down PM evidence for you. Hold the Katana yourself when the team needs a low-value holder.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_084630_739772",
+     "weight": 0.64,
+     "note": "Grace: the town's 'no PMs because of Wiretap' warning killed PM evidence. Her teammates' PMs, not her, were the risk."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_084630_739772",
      "change": "added"
     }
    ]
