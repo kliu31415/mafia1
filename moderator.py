@@ -111,6 +111,9 @@ class Moderator:
                                 usage=reply.usage)
             messages.append(reply.message)
             if not reply.tool_calls:
+                if not reply.content:  # e.g. refused or cut off; a reply in words only is just nudged
+                    self.game.log.error("moderator_error", f"the moderator gave an empty answer on day "
+                                        f"{self.game.day} {self.game.phase} ({reply.stop_note or 'no reason given'})")
                 messages.append({"role": "user", "content": "Call end_phase when you are finished."})
                 continue
             for call in reply.tool_calls:

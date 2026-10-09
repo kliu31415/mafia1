@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --quiet --no-project alerts.py --hook",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}

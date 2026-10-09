@@ -14,6 +14,7 @@ import html
 import json
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +24,8 @@ from tips import player_view
 
 def text_line(r: dict) -> str | None:
     k = r["kind"]
+    if r.get("alert"):  # GameLog.error
+        return f"[ERROR {k}] {r['error']}"
     match k:
         case "setup":
             lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat']:<2} {p['role']:<17} {p['model']}"
@@ -104,12 +107,12 @@ CSS = """
   --village:#1a7f37; --yakuza:#c62828; --neutral:#b45309;
   /* event colors avoid the faction hues (green, red, amber) */
   --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#a21caf; --c-nom:#2563eb; --c-vote:#0891b2;
-  --c-death:#1f2937; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; }
+  --c-death:#1f2937; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; --c-error:#dc2626; }
 @media (prefers-color-scheme: dark) { :root {
   --bg:#141416; --fg:#ececf0; --muted:#9a9aa2; --line:#2c2c30; --call:#1e1e22; --code:#1a1a1d;
   --village:#4ade80; --yakuza:#f87171; --neutral:#fbbf24;
   --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#e879f9; --c-nom:#60a5fa; --c-vote:#22d3ee;
-  --c-death:#f3f4f6; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; } }
+  --c-death:#f3f4f6; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; --c-error:#f87171; } }
 * { box-sizing:border-box; }
 body { background:var(--bg); color:var(--fg); font:14px/1.55 system-ui, sans-serif; margin:0 auto;
        max-width:1000px; padding:0 16px 40px; }
@@ -130,7 +133,11 @@ details.phase.night > summary { color:var(--c-hidden); }
          border-radius:4px; color:var(--c); border:1px solid var(--c); vertical-align:1px; white-space:nowrap; }
 .chat { --c:var(--c-chat); } .pm { --c:var(--c-pm); } .yak { --c:var(--c-yak); } .nom { --c:var(--c-nom); }
 .vote { --c:var(--c-vote); } .death { --c:var(--c-death); } .result { --c:var(--c-result); }
-.hidden { --c:var(--c-hidden); } .system { --c:var(--c-system); }
+.hidden { --c:var(--c-hidden); } .system { --c:var(--c-system); } .error { --c:var(--c-error); }
+.ev.error { color:var(--c-error); }
+.errors { border:2px solid var(--c-error); border-radius:6px; padding:6px 12px; margin:8px 0; }
+.errors summary { cursor:pointer; font-weight:650; color:var(--c-error); }
+.errors ul { margin:4px 0; padding-left:20px; } .no-errors { margin:8px 0; }
 .n { font-weight:650; } .n.Village { color:var(--village); } .n.Yakuza { color:var(--yakuza); }
 .n.Neutral { color:var(--neutral); }
 details.call { background:var(--call); border-radius:6px; margin:2px 0 2px 24px; padding:2px 8px; }
@@ -144,6 +151,7 @@ div.usage.total { font-weight:650; padding:3px 0 3px 16px; }
 .usage .cost { display:inline-block; width:80px; text-align:right; margin-right:14px; font-variant-numeric:tabular-nums; }
 details.usage table { margin:4px 0 8px 16px; }
 body.no-calls details.call { display:none; } body.no-hidden .ev.hidden { display:none; }
+body.no-hidden .ev.error { display:none; }
 """
 
 JS = """
@@ -302,6 +310,7 @@ def render_html(jsonl_path: Path) -> Path:
     name = Namer({})
     out: list[str] = []
     phase_start: int | None = None  # index in out of the open phase's opening tag
+    errors: list[tuple[str, dict]] = []  # (anchor id, record) of each GameLog.error record
 
     def end_phase() -> None:
         if phase_start is None:
@@ -332,7 +341,15 @@ def render_html(jsonl_path: Path) -> Path:
 
     for r in records:
         k = r["kind"]
-        if k == "setup":
+        if r.get("alert"):  # GameLog.error: shown where it happened and listed at the top
+            anchor = f"error-{len(errors)}"
+            errors.append((anchor, r))
+            details = {f: v for f, v in r.items() if f not in ("t", "kind", "alert", "error", "traceback")}
+            out.append(f"<div class='ev error' id='{anchor}'><span class='badge'>Error: {esc(k)}</span>"
+                       f"{name(r['error'])}" + (f"<details class='call'><summary>Details</summary>"
+                                                f"{pre('Fields', details)}{pre('Traceback', r.get('traceback'))}"
+                                                "</details>" if details or r.get("traceback") else "") + "</div>")
+        elif k == "setup":
             roles = {p["name"]: p["role"] for p in r["players"]}
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
             name = Namer({n: faction_of(role) for n, role in roles.items()})
@@ -418,10 +435,29 @@ def render_html(jsonl_path: Path) -> Path:
             f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
             f"<span class='muted'>Untick both to read it like a player would.</span></div>"
-            f"{''.join(out)}<script>{JS}</script></body></html>")
+            f"{errors_html(errors)}{''.join(out)}<script>{JS}</script></body></html>")
     html_path = jsonl_path.with_suffix(".html")
     html_path.write_text(page, encoding="utf-8")
     return html_path
+
+
+def errors_html(errors: list[tuple[str, dict]]) -> str:
+    """The box at the top of the page: how many errors of each kind, and links to the first few of each
+    kind per player (the same ones the feedback report lists)."""
+    if not errors:
+        return "<div class='muted no-errors'>No program errors were logged.</div>"
+    counts = Counter(r["kind"] for _, r in errors)
+    shown: Counter[tuple[str, str]] = Counter()
+    items = []
+    for anchor, r in errors:
+        shown[source := (r["kind"], str(r.get("player", "")))] += 1
+        if shown[source] <= 3:
+            items.append(f"<li><a href='#{anchor}'>{esc(r['kind'])}</a>: {esc(r['error'][:300])}</li>")
+    more = len(errors) - len(items)
+    return (f"<details class='errors' open><summary>{len(errors)} error{'s' if len(errors) > 1 else ''}: "
+            + esc(", ".join(f"{n} {k}" for k, n in counts.most_common())) + "</summary><ul>" + "".join(items)
+            + "</ul>" + (f"<div class='muted'>{more} more like these are marked in red below.</div>" if more else "")
+            + "</details>")
 
 
 def render_text(jsonl_path: Path) -> Path:

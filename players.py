@@ -174,8 +174,9 @@ class Players:
                 out.pop("notepad", None)
                 p.notepad = after
                 return out
-            except (json.JSONDecodeError, RuntimeError) as e:
-                self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {e}",
+            except Exception as e:  # a bad answer, or a request that failed after its retries
+                error = str(e) if isinstance(e, (json.JSONDecodeError, RuntimeError)) else f"{type(e).__name__}: {e}"
+                self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {error}",
                                     player=p.name, model=p.model.value, attempt=attempt, task=task)
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",

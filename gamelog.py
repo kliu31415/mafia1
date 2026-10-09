@@ -4,6 +4,7 @@ import json
 import os
 import threading
 import time
+import traceback
 from pathlib import Path
 from typing import Any
 
@@ -30,7 +31,9 @@ import log_viewer
 #     and the strategy_review when anyone had tips, have tips_feedback (tip, verdict helped/hurt/wrong, why)
 # 13: "tips" record: players, files (player -> tips file), sha256 and texts (per file), instead of one file,
 #     sha256, text and shown; settings have player_tips ([who, file or null] pairs)
-LOG_VERSION = 13
+# 14: new error kinds checkpoint_error, viewer_error, tips_error (and moderator_error for an empty answer);
+#     a resumed game keeps the crash record that stopped it, counted in the result's errors
+LOG_VERSION = 14
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
@@ -95,9 +98,14 @@ class GameLog:
                 self.txt.flush()
 
     def close(self) -> None:
+        """Renders the .html view (a failure is logged as an error, so the log keeps it), then closes."""
+        try:
+            log_viewer.render_html(self.path)
+        except Exception as e:
+            self.error("viewer_error", f"rendering the HTML view failed: {type(e).__name__}: {e}",
+                       traceback=traceback.format_exc())
         self.f.close()
         self.txt.close()
-        log_viewer.render_html(self.path)
 
 
 # Who a model call's cost belongs to, for records that aren't a player's or the moderator's own call.

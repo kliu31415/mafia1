@@ -15,11 +15,12 @@ def records(path):
     out = []
     for line in path.read_text(encoding="utf-8").splitlines():
         r = json.loads(line)
-        if r["kind"] == "resume":
+        if r["kind"] in ("resume", "crash"):  # a resumed game keeps the crash that stopped it
             continue
         r.pop("t")
         r.pop("game_id", None)
         r.pop("duration_s", None)
+        r.pop("errors", None)  # the resumed game counts its crash
         out.append(r)
     return sorted(out, key=lambda r: json.dumps(r, sort_keys=True))  # players are asked in parallel
 
@@ -49,11 +50,15 @@ def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
     crash = json.loads(ckpt_path.with_suffix(".jsonl").read_text(encoding="utf-8").splitlines()[-1])
     assert crash["kind"] == "crash" and crash["alert"] and "laptop went to sleep" in crash["error"]
     assert f"--resume {ckpt_path}" in crash["error"]
+    assert "laptop went to sleep" in ckpt_path.with_suffix(".html").read_text(encoding="utf-8")  # rendered anyway
 
     monkeypatch.setattr(mafia, "run_night", real_run_night)
     resumed = mafia.play_game(MockClient(seed), **ckpt["play_args"], resume=ckpt)
     assert resumed == ckpt_path.with_suffix(".jsonl")
     assert records(resumed) == records(full)
+    resumed_records = [json.loads(line) for line in resumed.read_text(encoding="utf-8").splitlines()]
+    assert [r["kind"] for r in resumed_records].count("crash") == 1
+    assert resumed_records[-1]["errors"] == {"crash": 1}
     text = resumed.with_suffix(".txt").read_text(encoding="utf-8")
     assert text.count("===== DAY 2 =====") == 1 and "Resumed from the checkpoint at the start of day 2" in text
     assert not ckpt_path.exists()

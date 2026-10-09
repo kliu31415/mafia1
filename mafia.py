@@ -23,6 +23,7 @@ Code layout:
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
+    alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
     tests/         offline scenario and hidden-information tests (uv run pytest)
 
 Usage:
@@ -33,6 +34,7 @@ Usage:
     uv run mafia.py --players opus-5.5:high,haiku-5.5:low --moderator opus-5.5:medium
     uv run mafia.py --resume logs/<game>.ckpt                # continue a game that stopped
     uv run tips.py build                                     # tips file from past games' lessons
+    uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
 """
 
@@ -46,11 +48,12 @@ from collections.abc import Callable, Sequence
 from datetime import datetime
 from pathlib import Path
 
+import alerts
 from day import run_day
 from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
 from gamelog import GameLog, usage_by_caller
-from log_viewer import usage_lines
+from log_viewer import render_html, usage_lines
 from llm import (DEFAULT_EFFORT, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, load_api_key,
                  parse_model_spec)
 from moderator import Moderator
@@ -115,8 +118,9 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         game = resume["game"]
         log = game.log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
         # Night checks of earlier nights that finished after the checkpoint stay; the rest is replayed.
+        # So does the crash that stopped the game, which stays counted as an error.
         for r in log.cut_records:
-            if r["kind"] == "night_check" and r["night"] < game.day:
+            if (r["kind"] == "night_check" and r["night"] < game.day) or r["kind"] == "crash":
                 log.write_raw(r)
         log.write("resume", day=game.day, cut_records=len(log.cut_records))
         print(f"Resuming {log.path.stem} at day {game.day}")
@@ -124,6 +128,9 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
             client.total_cost[model] = client.total_cost.get(model, 0) + cost
         started = time.time() - resume["elapsed_s"]
         log.error_counts = resume["error_counts"]
+        for r in log.cut_records:
+            if r["kind"] == "crash":
+                log.error_counts["crash"] = log.error_counts.get("crash", 0) + 1
     else:
         rng = random.Random(seed)
         prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
@@ -164,11 +171,15 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
     try:
         while game.day <= max_days:
             if checkpoint:
-                save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
-                                moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
-                                error_counts=dict(log.error_counts),
-                                client={"mock": isinstance(client, MockClient),
-                                        "effort": getattr(client, "effort", None)})
+                try:
+                    save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
+                                    moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
+                                    error_counts=dict(log.error_counts),
+                                    client={"mock": isinstance(client, MockClient),
+                                            "effort": getattr(client, "effort", None)})
+                except Exception as e:  # the game goes on; it just can't be resumed from today
+                    log.error("checkpoint_error", f"saving the day {game.day} checkpoint failed: "
+                              f"{type(e).__name__}: {e}", traceback=traceback.format_exc())
             # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
             # i.e. after the day's execution and after the night's (simultaneous) deaths.
             if game.phases_without_death >= STALL_LIMIT:
@@ -200,6 +211,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         log.error("crash", f"the game stopped on day {game.day} {game.phase}: {type(e).__name__}: {e}"
                   + (f"; continue it with: uv run mafia.py --resume {ckpt_path}" if ckpt_path.exists() else ""),
                   traceback=traceback.format_exc())
+        write_views(log)  # the log stays open: night checks may still be running
         raise
 
     duration = time.time() - started  # the game itself, without the feedback steps below
@@ -246,15 +258,39 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               errors=dict(log.error_counts))
     if update_tips and lessons:  # after the result record, which it reads; its errors miss the result's count
         step("Updating the tips notebook and sheet", lambda: build_tips(
-            [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient)))
-    log.close()
+            [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient),
+            on_error=log.error))
+    report = write_views(log, close=True)
     ckpt_path.unlink(missing_ok=True)
     print("\n".join(usage_lines(usage)))
-    print(f"Errors: {log.error_counts} (see the top of the feedback report)" if log.error_counts else "Errors: none")
+    print(f"Errors: {log.error_counts} (listed at the top of the feedback report and the HTML view)"
+          if log.error_counts else "Errors: none")
     print(f"Logs: {log.path} (+ .txt, .html)")
-    if report := write_report(log.path):
+    if report:
         print(f"Feedback: {report}")
+    if pending := alerts.pending_line(log.path.parent):
+        print(pending)
     return log.path
+
+
+def write_views(log: GameLog, close: bool = False) -> Path | None:
+    """Writes the feedback report and (closing the log if `close`) the HTML view. Their failures are
+    logged as errors too. Returns the report's path, if there was anything to report."""
+    report = None
+    try:
+        report = write_report(log.path)
+    except Exception as e:
+        log.error("feedback_error", f"writing the feedback report failed: {type(e).__name__}: {e}",
+                  traceback=traceback.format_exc())
+    if close:
+        log.close()  # renders the HTML view
+    else:
+        try:
+            render_html(log.path)
+        except Exception as e:
+            log.error("viewer_error", f"rendering the HTML view failed: {type(e).__name__}: {e}",
+                      traceback=traceback.format_exc())
+    return report
 
 
 def main() -> None:

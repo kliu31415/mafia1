@@ -36,10 +36,11 @@ import random
 import re
 import time
 from collections import Counter
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 from llm import LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, answer_json, load_api_key, parse_model_spec
 from roles import ROLES
@@ -408,17 +409,23 @@ def write_atomic(path: Path, text: str) -> None:
     os.replace(tmp, path)
 
 
+def print_alert(kind: str, error: str, **data: Any) -> None:
+    """How `uv run tips.py build` reports errors (a game's own build logs them with GameLog.error)."""
+    print(f"ALERT {kind}: {error}", flush=True)
+
+
 def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
-          include_mock: bool = False, fresh: bool = False) -> Path:
+          include_mock: bool = False, fresh: bool = False, on_error: Callable[..., None] = print_alert) -> Path:
     """Updates the notebook beside the sheet `out` with each game it doesn't have yet (in log order),
     then rewrites the sheet from it. Earlier versions of both go to <out dir>/history/. `fresh` starts
-    a new notebook. Safe to run from several processes at once: builds of the same sheet take turns."""
+    a new notebook. Safe to run from several processes at once: builds of the same sheet take turns.
+    on_error(kind, summary, **fields) is told about problems that don't stop the build (GameLog.error)."""
     with locked(out):
-        return _build(paths, out, client, spec, max_words, include_mock, fresh)
+        return _build(paths, out, client, spec, max_words, include_mock, fresh, on_error)
 
 
 def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
-           include_mock: bool, fresh: bool) -> Path:
+           include_mock: bool, fresh: bool, on_error: Callable[..., None]) -> Path:
     nb_path = notebook_path(out)
     nb = new_notebook() if fresh or not nb_path.exists() else json.loads(nb_path.read_text(encoding="utf-8"))
     games = [g for p in sorted(paths, key=lambda p: p.name) if p.stem not in nb["games"] and (g := read_game(p))
@@ -432,6 +439,9 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
         applied, skipped, c = update_notebook(client, spec, rules, nb, g)
         cost += c
         print(f"  {g['game']}: {applied} notebook changes" + (f" ({skipped} invalid ones skipped)" if skipped else ""))
+        if skipped:
+            on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes for {g['game']} "
+                     "(an unknown entry id or an empty tip); they were skipped", game=g["game"], skipped=skipped)
     body, c = write_sheet(client, spec, rules, nb, max_words)
     cost += c
     stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"

@@ -64,8 +64,15 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 - Anything that goes wrong (a failed or empty LLM answer, a fallback, an API retry, a moderator tool
   error, a failed post-game step, a crash) goes through `game.log.error(kind, summary, ...)`, never a
   bare `write` or a silent `except`. It's logged with `alert: true`, counted in the result record, listed
-  at the top of the feedback report and printed as an `ALERT ...` line. When running a live game, watch
-  its output for `ALERT` lines and tell Kevin about new kinds of errors as they happen.
+  at the top of the feedback report and of the HTML view (each error is also marked in red where it
+  happened, and in the .txt as `[ERROR kind]`), and printed as an `ALERT ...` line. When running a live game,
+  watch its output for `ALERT` lines and tell Kevin about new kinds of errors as they happen.
+- Errors get looked at even in games Kevin runs himself: `uv run alerts.py` lists games in `logs/` with errors
+  nobody has reviewed (and games killed without a result), and a SessionStart hook in `.claude/settings.json`
+  puts that list in Claude's context when a session starts in this folder. When it does, tell Kevin first
+  (which games, which kinds, likely cause), then `uv run alerts.py --ack all` once he has seen them. Finished
+  games also print a reminder line while anything is unreviewed. A new error kind needs no registration;
+  anything that goes through `game.log.error` shows up everywhere above.
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`); add one
   there for a new maker.
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in

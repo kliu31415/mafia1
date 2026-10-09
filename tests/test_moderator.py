@@ -82,3 +82,18 @@ def test_lessons_include_the_moderators_strategy_review(tmp_path, monkeypatch):
          "model": Model.HAIKU_5_5.value, "won": None, **lesson}]
     report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
     assert "Moderator strategy review" in report and "don't PM your partner" in report
+
+
+def test_an_empty_moderator_answer_is_an_error(game_factory):
+    from llm import LLMReply
+
+    class Refuses(ScriptedClient):
+        def chat(self, model, messages, *, tools=None, **kw):
+            if tools and not any(m.get("role") == "tool" for m in messages) and len(messages) < 4:
+                return LLMReply(None, None, [], {"role": "assistant", "content": None}, model.value, 0.0, {},
+                                stop_note="finish_reason content_filter via X: blocked")
+            return super().chat(model, messages, tools=tools, **kw)
+    client = Refuses()
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"], client)
+    Moderator(game, client, players, Model.HAIKU_5_5, "(rules)").run_phase("Resolve.")
+    assert game.log.error_counts == {"moderator_error": 1}

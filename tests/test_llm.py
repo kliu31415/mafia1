@@ -59,3 +59,63 @@ def test_errors_are_alerted_counted_and_reported(tmp_path, monkeypatch, capsys):
     assert result["errors"]["player_error"] == sum(r["kind"] == "player_error" for r in records) > 3
     report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
     assert "## Errors (things to fix)" in report and "content_filter via Azure" in report
+
+
+def test_a_failed_request_falls_back_instead_of_stopping_the_game(tmp_path):
+    import urllib.error
+    from tests.conftest import ScriptedClient
+
+    class DownClient(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            raise urllib.error.URLError("connection reset")
+    game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], DownClient())  # type: ignore[arg-type]
+    out = players.ask(game.player("Alice"), "Vote.", {"type": "object", "properties": {}, "required": []},
+                      {"fallback": True})
+    assert out == {"fallback": True}
+    assert game.log.error_counts == {"player_error": 2, "player_fallback": 1}
+
+
+def test_errors_show_in_the_html_and_text_views(tmp_path):
+    from log_viewer import render_html
+    game, _ = make_game(tmp_path, ["Vanilla Villager", "Grunt"])
+    game.log.error("player_error", "Alice (haiku-5.5), attempt 1: empty answer (blocked)", player="Alice")
+    game.log.error("crash", "the game stopped: boom", traceback="Traceback ...")
+    game.log.close()
+    page = render_html(game.log.path).read_text(encoding="utf-8")
+    assert "2 errors: 1 player_error, 1 crash" in page and "href='#error-1'" in page and "id='error-1'" in page
+    assert "Traceback ..." in page
+    text = game.log.path.with_suffix(".txt").read_text(encoding="utf-8")
+    assert "[ERROR crash] the game stopped: boom" in text
+
+
+def test_unreviewed_errors_are_listed_until_acknowledged(tmp_path, monkeypatch, capsys):
+    import os
+    import sys
+    import alerts
+    log = tmp_path / "game_20261009_000000_1.jsonl"
+    rec = [{"t": 0, "kind": "setup"}, {"t": 1, "kind": "player_error", "alert": True, "error": "Bob broke"},
+           {"t": 2, "kind": "result", "errors": {"player_error": 1}}]
+    log.write_text("\n".join(json.dumps(r) for r in rec) + "\n", encoding="utf-8")
+    killed = tmp_path / "game_20261009_000000_2.jsonl"  # no result, untouched for hours: killed
+    killed.write_text(json.dumps({"t": 0, "kind": "setup"}) + "\n", encoding="utf-8")
+    os.utime(killed, (0, 0))
+    running = tmp_path / "game_20261009_000000_3.jsonl"  # no result, but still being written
+    running.write_text(json.dumps({"t": 0, "kind": "setup"}) + "\n", encoding="utf-8")
+    clean = tmp_path / "game_20261009_000000_4.jsonl"
+    clean.write_text(json.dumps({"t": 0, "kind": "result"}) + "\n", encoding="utf-8")
+
+    games = alerts.unreviewed(tmp_path)
+    assert [g["game"] for g in games] == [log.stem, killed.stem]
+    assert "1 player_error" in alerts.describe(games) and "probably killed" in alerts.describe(games)
+    assert "Unreviewed errors in 2 games" in (alerts.pending_line(tmp_path) or "")
+    monkeypatch.setattr(sys, "argv", ["alerts.py", "--hook", "--logs", str(tmp_path)])
+    alerts.main()
+    assert "tell Kevin" in capsys.readouterr().out
+
+    alerts.ack(tmp_path, ["all"])
+    assert alerts.unreviewed(tmp_path) == [] and alerts.pending_line(tmp_path) is None
+    alerts.main()
+    assert capsys.readouterr().out == ""  # the hook stays quiet once everything is reviewed
+    with log.open("a", encoding="utf-8") as f:  # a new error in a reviewed game brings it back
+        f.write(json.dumps({"t": 3, "kind": "crash", "alert": True, "error": "boom"}) + "\n")
+    assert [g["game"] for g in alerts.unreviewed(tmp_path)] == [log.stem]

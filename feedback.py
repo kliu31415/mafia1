@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 from events import RESULT
-from llm import LLMClient, Model, ModelSpec, answer_json
+from llm import LLMClient, LLMReply, Model, ModelSpec, answer_json
 from log_viewer import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
@@ -295,6 +295,17 @@ QUIZ_GRADE_SCHEMA = obj(results={"type": "array", "items": obj(
     question={"type": "integer"}, correct={"type": "boolean"}, note=STR)})
 
 
+def quiz_answer(reply: LLMReply, what: str, problems: list[str]) -> dict:
+    """A quiz call's JSON answer; an empty or broken one is printed as an ALERT, listed in the results'
+    errors and treated as no answers (the quiz has no game log for GameLog.error)."""
+    try:
+        return answer_json(reply)
+    except (json.JSONDecodeError, RuntimeError) as e:
+        problems.append(f"{what}: {e}")
+        print(f"ALERT quiz_error: {what}: {e}", flush=True)
+        return {}
+
+
 def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules: str, out_dir: Path) -> Path:
     """Ask each model the quiz questions given only the rules, then have `grader` mark the answers
     against the reference answers. Wrong or split answers point at rules that need clarifying."""
@@ -303,13 +314,14 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
     answer_schema = obj(**{f"q{i + 1}": STR for i in range(len(QUIZ))})
     table: dict[str, list[dict]] = {}
     answers_by_model: dict[str, list[str]] = {}
+    problems: list[str] = []
     for spec in dict.fromkeys(specs):
         model = spec.model
         reply = client.chat(model, [
             {"role": "system", "content": f"{rules}\n\n---\n\nAnswer questions about the rules above."},
             {"role": "user", "content": f"Answer each question in one or two sentences, in order:\n{questions}"},
         ], schema=answer_schema, schema_name="quiz", effort=spec.effort)
-        parsed = json.loads(reply.content or "{}")
+        parsed = quiz_answer(reply, f"{spec}'s answers", problems)
         answers = [parsed.get(f"q{i + 1}", "") for i in range(len(QUIZ))]
         answers_by_model[str(spec)] = answers
         marking = "\n".join(f"{i + 1}. Q: {q}\n   Reference: {ref}\n   Answer: {answers[i] if i < len(answers) else '(none)'}"
@@ -320,10 +332,13 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
              "Give a short note either way, and say if the answer reveals a misreading of the rules."
              f"\n\n{marking}"},
         ], schema=QUIZ_GRADE_SCHEMA, schema_name="quiz_grades", effort=grader.effort)
-        table[str(spec)] = json.loads(graded.content or "{}").get("results", [])
+        table[str(spec)] = quiz_answer(graded, f"grading {spec}", problems).get("results", [])
 
-    out = ["# Rules quiz\n", f"Graded by {grader}.\n", "| # | Question | " + " | ".join(table) + " |",
-           "|---|---|" + "---|" * len(table)]
+    out = ["# Rules quiz\n", f"Graded by {grader}.\n"]
+    if problems:
+        out += ["## Errors (things to fix)\n"] + [f"- {p}" for p in problems] + [""]
+    out += ["| # | Question | " + " | ".join(table) + " |",
+            "|---|---|" + "---|" * len(table)]
     for i, (q, _) in enumerate(QUIZ):
         cells = []
         for m in table:
