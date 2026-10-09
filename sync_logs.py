@@ -154,7 +154,8 @@ def push(repo: Repo, log_dir: Path) -> list[str]:
 
 def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
     """Copies the branch's log files that log_dir lacks, and merges the shared ones into log_dir.
-    A local file that differs from the branch's copy is kept (e.g. a cloud game resumed here).
+    A local file that differs from the branch's copy is kept (e.g. a cloud game resumed here), unless the
+    branch's copy just continues it (a log pushed again after the game went on).
     Returns (files written, names kept because they differ)."""
     head = repo.fetch()
     written, kept = [], []
@@ -170,9 +171,13 @@ def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
             if local.exists() and data == local.read_bytes():
                 continue
         elif local.exists():
-            if local.read_bytes() != theirs:
+            ours = local.read_bytes()
+            if ours == theirs:
+                continue
+            if not theirs.startswith(ours):  # not just an earlier copy of the same log (e.g. pushed mid-game)
                 kept.append(name)
-            continue
+                continue
+            data = theirs
         else:
             data = theirs
         tmp = local.with_name(local.name + ".tmp")
@@ -231,7 +236,7 @@ def main() -> None:
             written, kept = pull(repo, log_dir)
             print(f"Copied {len(written)} files into {log_dir}" + "".join(f"\n  {w.name}" for w in written))
             for name in kept:
-                print(f"  kept {name}: the local copy differs from the branch's (not overwritten)")
+                print(f"ALERT sync_error: kept {name}: the local copy differs from the branch's (not overwritten)")
             # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
             games = sorted(log_dir.glob("game_*.jsonl"))
             if any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written) and not args.no_tips:

@@ -42,7 +42,8 @@ from records import read_records, safe_print
 #     unreadable_lines; a resumed game keeps earlier nights' night_check records; "night_effects_undone" record (a revenge kill reverted a
 #     night's will forgery or cleaning); new error kind log_error (unreadable log lines)
 # 18: "katana" has revote_targets (Yakuza -> target in the revote, or null when there was none)
-LOG_VERSION = 18
+# 19: "tips_update" record after the result (model, cost of updating the tips; not in the result's cost)
+LOG_VERSION = 19
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

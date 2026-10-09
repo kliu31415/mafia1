@@ -70,6 +70,7 @@ from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from setups import POOLS, parse_random_roles, random_setup
 from events import PHASE
+from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
 from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
 
@@ -260,10 +261,12 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                             "tips": bool(p.tips),
                             "death": p.death} for p in game.players],
                   errors=dict(log.error_counts))
-        if update_tips and lessons:  # after the result record, which it reads; its errors miss the result's count
+        if update_tips and lessons:  # after the result record, which it reads; its errors and cost miss the result
+            before = sum(client.total_cost.values())
             step("Updating the tips notebook and sheet", lambda: build_tips(
                 [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient),
                 on_error=log.error))
+            log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
     except BaseException as e:  # log it for whoever runs the game, then stop as before
         where = stage.format(day=game.day, phase=game.phase) if "{" in stage else stage
         log.error("crash", f"the game stopped {where}: {type(e).__name__}: {e}"
@@ -278,7 +281,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
     print(f"Logs: {log.path} (+ .txt, .html)")
     if report:
         print(f"Feedback: {report}")
-    if pending := alerts.pending_line(log.path.parent):
+    if pending := alerts.pending_line(log.path.parent, log.path.stem.split("_")[0]):
         print(pending)
     return log.path
 
@@ -404,6 +407,8 @@ def main() -> None:
             ckpt = load_checkpoint(Path(args.resume))
         except Exception as e:  # e.g. damaged, or pickled on another OS
             ap.error(f"can't resume from {args.resume}: {type(e).__name__}: {e}")
+        if any(r["kind"] == "result" for r in read_records(ckpt["log_path"])[0]):  # e.g. a stale synced .ckpt
+            ap.error(f"{ckpt['log_path']} already finished; resuming would replace its ending")
         saved = ckpt["play_args"]
         if args.no_update_tips:  # the other options are the game's own
             saved["update_tips"] = None
@@ -453,6 +458,11 @@ def main() -> None:
                 f.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             ap.error(f"{f} isn't UTF-8 text; save it as UTF-8")
+    try:  # the same check play_game makes, before a game log exists (seat order doesn't matter to it)
+        assign_tips(PLAYER_NAMES[:len(roles)], [models[i % len(models)].model.short for i in range(len(roles))],
+                    args.tips, args.tips_for, player_tips, random.Random(0))
+    except ValueError as e:
+        ap.error(str(e))
     if args.rules_quiz:
         if isinstance(client, OpenRouterClient):
             client.on_error = print_alert  # the quiz has no game log

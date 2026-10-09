@@ -121,8 +121,8 @@ def pending_line(log_dir: Path, prefix: str = "game") -> str | None:
         return f"ALERT alerts_error: checking for unreviewed errors failed: {type(e).__name__}: {e}"
     if not games:
         return None
-    return (f"Unreviewed errors in {len(games)} game{'s' if len(games) > 1 else ''}: see `uv run alerts.py`"
-            + (" --mock" if prefix == "mock" else "") + ", then mark them reviewed with --ack.")
+    return (f"Unreviewed errors in {len(games)} game{'s' if len(games) > 1 else ''}: see `uv run alerts.py"
+            + (" --mock" if prefix == "mock" else "") + "`, then mark them reviewed with --ack.")
 
 
 def ack(log_dir: Path, which: list[str], prefix: str = "game") -> list[str]:

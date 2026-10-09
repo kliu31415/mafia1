@@ -87,3 +87,17 @@ def test_tips_published_on_the_pc_reach_cloud_games(machines):
     (cloud.root / "tips" / "tips.md").write_text("edited")
     assert sync_logs.get_tips(cloud, cloud.root / "tips") == ([], ["tips.md"])
     assert sync_logs.get_tips(cloud, cloud.root / "tips", force=True)[0] == [cloud.root / "tips" / "tips.md"]
+
+
+def test_a_log_pushed_again_after_the_game_went_on_replaces_the_earlier_copy(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    logs = cloud.root / "logs"
+    logs.mkdir()
+    (logs / "game_1.jsonl").write_text('{"kind": "setup"}\n')  # pushed mid-game
+    sync_logs.push(cloud, logs)
+    sync_logs.pull(pc, pc.root / "logs")
+    (logs / "game_1.jsonl").write_text('{"kind": "setup"}\n{"kind": "result"}\n')
+    sync_logs.push(cloud, logs)
+    written, kept = sync_logs.pull(pc, pc.root / "logs")
+    assert [w.name for w in written] == ["game_1.jsonl"] and kept == []
+    assert (pc.root / "logs" / "game_1.jsonl").read_text().endswith('{"kind": "result"}\n')

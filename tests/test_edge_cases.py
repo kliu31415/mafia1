@@ -504,3 +504,30 @@ def test_yakuza_who_agree_not_to_attack_get_no_revote(game_factory):
     assert not any("no majority" in e.text for e in game.events)
     assert not any(t.startswith("Revote") for _, t in players.client.asked)
     assert not any("(Yakuza chat):" in e.text for e in game.events)  # a blank message isn't posted
+
+
+# --- Sweep 3 -----------------------------------------------------------------------------------------
+
+def test_a_finished_game_cant_be_resumed_from_a_stale_checkpoint(tmp_path, monkeypatch, capsys):
+    import pickle
+
+    from checkpoint import CHECKPOINT_VERSION
+    log = tmp_path / "game_1.jsonl"
+    log.write_text('{"kind": "setup"}\n{"kind": "result"}\n', encoding="utf-8")
+    log.with_suffix(".ckpt").write_bytes(pickle.dumps({"version": CHECKPOINT_VERSION, "log_path": str(log)}))
+    monkeypatch.setattr(sys, "argv", ["mafia.py", "--resume", str(log.with_suffix(".ckpt"))])
+    with pytest.raises(SystemExit):
+        mafia.main()
+    assert "already finished" in capsys.readouterr().err
+
+
+def test_a_mistyped_tips_name_is_a_cli_error_not_a_crashed_game(tmp_path, monkeypatch, capsys):
+    tips = tmp_path / "tips.md"
+    tips.write_text("## Everyone\n- Count votes.\n", encoding="utf-8")
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "logs")
+    for extra in (["--tips", str(tips), "--tips-for", "Zed"], ["--player-tips", f"Zed={tips}"]):
+        monkeypatch.setattr(sys, "argv", ["mafia.py", "--mock", *extra])
+        with pytest.raises(SystemExit):
+            mafia.main()
+        assert "Zed" in capsys.readouterr().err
+    assert not (tmp_path / "logs").exists()
