@@ -132,5 +132,16 @@
    "1791562363.0039353:player_feedback"
   ],
   "note": "harness fixes in 61112c8; rules questions for Kevin (Jester revenge timing, Cardinal vs Vulture order, speaking budget not in rules, which actions are visits)"
+ },
+ "game_20261009_152409_117630": {
+  "ids": [
+   "1791563077.1172552:api_retry",
+   "1791563630.097108:api_retry",
+   "1791568499.86194:api_retry",
+   "1791569829.8773007:api_retry",
+   "1791576882.3125799:api_retry",
+   "1791580013.0848916:api_retry"
+  ],
+  "note": "fixes in this push; rules questions: Veteran block immunity (R20 vs role text), blocker feedback, armed trap when Trapper blocked"
  }
 }
