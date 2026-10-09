@@ -79,7 +79,9 @@ def test_every_role_has_an_icon_in_the_html_log(game_factory):
     from roles import ROLES
     assert all(icon_slug(role) != "generic" for role in ROLES), "draw an icon in roles/icons/ for each new role"
     assert icon_slug("Some Removed Role") == "generic" and (ICONS / "generic.svg").exists()
+    assert all(info.summary for info in ROLES.values()), "give each new role a one-line summary for the icon's hover text"
     game, _ = game_factory(["Medic", "Grunt"], ScriptedClient())
     game.log.close()
     page = render_html(game.log.path).read_text(encoding="utf-8")
-    assert "class='n Village ic i-medic'>Alice<" in page and ".i-medic { --icon:url(" in page
+    assert "class='n Village ic i-medic' title='Medic (Village): Night: protect" in page
+    assert ".i-medic { --icon:url(" in page

@@ -228,7 +228,7 @@ def usage_html(usage: list[dict]) -> str:
         return f"{n:,}"
     rows = []
     for u in usage:
-        who = f"<span class='{name_classes(u['role'])}'>{esc(u['who'])}</span>" if u.get("role") \
+        who = name_span(u['who'], u['role']) if u.get("role") \
             else esc(u["who"])
         detail = {"Role": u.get("role"), "Models": ", ".join(u["models"]), "Calls": u["calls"],
                   "Cost per call": f"${u['cost'] / u['calls']:.4f}" if u["calls"] else None,
@@ -259,9 +259,12 @@ def icon_slug(role: str) -> str:
     return slug if (ICONS / f"{slug}.svg").exists() else "generic"
 
 
-def name_classes(role: str) -> str:
-    """CSS classes of a player's name: faction color and role icon."""
-    return f"n {faction_of(role)} ic i-{icon_slug(role)}"
+def name_span(name: str, role: str) -> str:
+    """A player's (escaped) name colored by faction, with their role's icon and, on hover, the role's name,
+    faction and one-line summary."""
+    info = ROLES.get(role)
+    hover = f"{role} ({faction_of(role)})" + (f": {info.summary}" if info and info.summary else "")
+    return f"<span class='n {faction_of(role)} ic i-{icon_slug(role)}' title='{esc(hover)}'>{esc(name)}</span>"
 
 
 def icons_css() -> str:
@@ -286,7 +289,7 @@ class Namer:
     """Escapes text and wraps player names in spans colored by faction, with their role's icon."""
 
     def __init__(self, roles: dict[str, str]):
-        self.classes = {n: name_classes(role) for n, role in roles.items()}
+        self.spans = {n: name_span(n, role) for n, role in roles.items()}
         names = sorted(roles, key=len, reverse=True)
         self.pattern = re.compile(r"\b(" + "|".join(map(re.escape, names)) + r")\b") if names else None
 
@@ -294,7 +297,7 @@ class Namer:
         escaped = esc(text)
         if not self.pattern:
             return escaped
-        return self.pattern.sub(lambda m: f"<span class='{self.classes[m[1]]}'>{m[1]}</span>", escaped)
+        return self.pattern.sub(lambda m: self.spans[m[1]], escaped)
 
 
 def is_phase_start(r: dict) -> bool:
