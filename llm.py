@@ -315,6 +315,17 @@ def flat_nullable_enums(schema: Any) -> Any:
     return {k: flat_nullable_enums(v) for k, v in schema.items()}
 
 
+def byok_cost(usage: dict) -> float | None:
+    """What a call cost, or None if the answer didn't say. With BYOK (the account's own provider key), OpenRouter's
+    `cost` is only its own fee and the provider bills the rest, reported as upstream_inference_cost; count both,
+    so games compare the same whoever pays."""
+    cost = usage.get("cost")
+    upstream = (usage.get("cost_details") or {}).get("upstream_inference_cost")
+    if usage.get("is_byok") and upstream is not None:
+        return float(cost or 0) + float(upstream)
+    return None if cost is None else float(cost)
+
+
 RETRY_CODES = (408, 429, 500, 502, 503, 504)  # HTTP statuses (or error codes in an answer) worth retrying
 
 
@@ -362,10 +373,11 @@ class OpenRouterClient:
         choice = data["choices"][0]
         msg = choice["message"]
         usage = data.get("usage") or {}
-        if usage.get("cost") is None and self.on_error:  # the cost tables would quietly undercount
+        cost = byok_cost(usage)
+        if cost is None and self.on_error:  # the cost tables would quietly undercount
             self.on_error("api_error", f"a {model.value} answer reported no cost, so it counts as $0",
                           model=model.value, usage=usage)
-        cost = float(usage.get("cost") or 0)
+        cost = cost or 0.0
         with self.cost_lock:
             self.total_cost[model.value] = self.total_cost.get(model.value, 0) + cost
         return LLMReply(

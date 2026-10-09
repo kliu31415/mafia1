@@ -2,7 +2,7 @@
 
 import json
 
-from llm import PROVIDERS, Model, ModelSpec, OpenRouterClient, text_of
+from llm import PROVIDERS, Model, ModelSpec, OpenRouterClient, byok_cost, text_of
 from mafia import resolve_effort
 from tests.conftest import make_game
 
@@ -199,3 +199,9 @@ def test_gemini_gets_nullable_enums_in_the_form_it_accepts(monkeypatch):
     client.chat(Model.HAIKU_5_5, [], schema=schema)  # Claude rejects the flat form
     sent = [b["response_format"]["json_schema"]["schema"]["properties"]["role"] for b in bodies]
     assert sent == [{"type": ["string", "null"], "enum": ["Medic", "Seer", None]}, schema["properties"]["role"]]
+
+
+def test_a_byok_call_costs_the_provider_bill_plus_openrouters_fee():
+    assert byok_cost({"cost": 0.001, "is_byok": True, "cost_details": {"upstream_inference_cost": 0.02}}) == 0.021
+    assert byok_cost({"cost": 0.02, "is_byok": False, "cost_details": {"upstream_inference_cost": 0.02}}) == 0.02
+    assert byok_cost({"is_byok": False}) is None

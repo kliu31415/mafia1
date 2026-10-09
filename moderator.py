@@ -6,7 +6,7 @@ import re
 import time
 from typing import Any
 
-from llm import LLMClient, LLMReply, Model, cache_block, clean_json, rules_system
+from llm import LLMClient, LLMReply, Model, ModelSpec, cache_block, clean_json, rules_system
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT, RESULT
 from roles import Alignment, RoleLogic, Status, logic
@@ -65,14 +65,20 @@ FLAG_TOOL = tool("flag_issue", "Report a problem with the game itself without st
                  "best interpretation.", issue={"type": "string"})
 
 MAX_MODERATOR_STEPS = 40
+# Anthropic's filter against copying model outputs sometimes blocks a moderator request (finish_reason
+# content_filter; game_20261009_084630_739772, night 3, where a third try went through). This many blocks in a
+# row switch the moderator to its fallback model for the rest of the game, a program safeguard, not a rule.
+FILTER_BLOCKS_BEFORE_SWITCH = 3
 MODERATOR_CALL_ATTEMPTS = 3
 MODERATOR_RETRY_WAIT_S = 30
 
 
 class Moderator:
     def __init__(self, game: Game, client: LLMClient, players: Players, model: Model, rules: str,
-                 flag_issues: bool = False, effort: str | None = None):
+                 flag_issues: bool = False, effort: str | None = None, fallback: ModelSpec | None = None):
         self.game = game
+        self.fallback = fallback  # the model to switch to if a filter keeps blocking this one
+        self.filter_blocks = 0  # consecutive blocked answers
         self.effort = effort  # None: the client's default
         self.client = client
         self.players = players
@@ -152,7 +158,9 @@ class Moderator:
         few times, since the game can't go on without its moderator; then the game stops (resumable)."""
         for attempt in range(MODERATOR_CALL_ATTEMPTS):
             try:
-                return self.client.chat(self.model, messages, tools=self.tools, effort=self.effort)
+                reply = self.client.chat(self.model, messages, tools=self.tools, effort=self.effort)
+                self.note_filter_block(reply)
+                return reply
             except Exception as e:
                 if attempt == MODERATOR_CALL_ATTEMPTS - 1:
                     raise
@@ -161,6 +169,18 @@ class Moderator:
                                     f"{type(e).__name__}: {e}", attempt=attempt)
                 time.sleep(MODERATOR_RETRY_WAIT_S * (attempt + 1))
         raise AssertionError("unreachable")
+
+    def note_filter_block(self, reply: LLMReply) -> None:
+        blocked = not reply.content and not reply.tool_calls and "content_filter" in (reply.stop_note or "")
+        self.filter_blocks = self.filter_blocks + 1 if blocked else 0
+        if self.filter_blocks < FILTER_BLOCKS_BEFORE_SWITCH or not self.fallback or self.fallback.model == self.model:
+            return
+        old = self.model.short
+        self.model, self.effort, self.filter_blocks = self.fallback.model, self.fallback.effort, 0
+        self.game.log.error("moderator_switch", f"the moderator switched from {old} to {self.model.short} on day "
+                            f"{self.game.day} {self.game.phase}: {FILTER_BLOCKS_BEFORE_SWITCH} answers in a row were "
+                            f"blocked by a content filter ({reply.stop_note})", day=self.game.day,
+                            phase=self.game.phase, old=old, new=self.model.value, reason=reply.stop_note)
 
     def dispatch(self, name: str, args: dict) -> Any:
         g = self.game

@@ -82,6 +82,8 @@ RULES_PATH = ROOT / "rules_1.txt"
 LOG_DIR = ROOT / "logs"
 DEFAULT_TIPS = ROOT / "tips" / "tips.md"  # the players' sheet --update-tips keeps up to date after each game
 MOCK_TIPS = LOG_DIR / "mock_tips" / "tips.md"  # mock games' random lessons stay out of the real notebook
+# The moderator's replacement if a content filter keeps blocking it (moderator.FILTER_BLOCKS_BEFORE_SWITCH).
+DEFAULT_MODERATOR_FALLBACK = ModelSpec(Model.GPT_6_1_SOL, default_effort(Model.GPT_6_1_SOL))
 
 
 # Safeguard against games that never end (not a rule from rules_1.txt): by default a game stops
@@ -111,7 +113,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               max_days: int | None = None, check_nights: bool = False, checkpoint: bool = True,
               resume: dict | None = None, tips: Path | None = None, tips_for: str = "all",
               player_tips: list[tuple[str, Path | None]] | None = None, update_tips: Path | None = None,
-              setup: dict | None = None) -> Path:
+              setup: dict | None = None, moderator_fallback: ModelSpec | None = DEFAULT_MODERATOR_FALLBACK) -> Path:
     """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
     finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game.
     tips: a tips file (tips.py) put into the system prompt of the players tips_for picks (see
@@ -123,7 +125,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                  "debrief": debrief, "flag_issues": flag_issues, "feedback_field": feedback_field,
                  "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights,
                  "tips": tips, "tips_for": tips_for, "player_tips": player_tips,
-                 "update_tips": update_tips, "setup": setup}
+                 "update_tips": update_tips, "setup": setup, "moderator_fallback": moderator_fallback}
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rules = RULES_PATH.read_text(encoding="utf-8")
@@ -144,6 +146,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         else:
             rng = random.Random(seed)
             settings = {"moderator": mod.model.value, "moderator_effort": mod.effort,
+                        "moderator_fallback": str(moderator_fallback) if moderator_fallback else None,
                         "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
                         "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
                         "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
@@ -169,7 +172,8 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         if isinstance(client, OpenRouterClient):
             client.on_error = log.error
         players = Players(game, client, rules, feedback_field=feedback_field)
-        moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
+        moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort,
+                              fallback=moderator_fallback)
         if resume:
             moderator.flags = resume["moderator_flags"]
         # The judge is the moderator's model; checks run in the background while the game continues.
@@ -359,6 +363,9 @@ def main() -> None:
                     "own reasoning effort, e.g. opus-5.5:high,haiku-5.5:low")
     ap.add_argument("--moderator", default="opus-5.5", help="model[:effort] for the moderator, and for the "
                     "night checks, review and quiz grading")
+    ap.add_argument("--moderator-fallback", default=str(DEFAULT_MODERATOR_FALLBACK),
+                    help="model[:effort] the moderator switches to for the rest of the game if a content filter "
+                    "blocks it several times in a row, or 'none'")
     ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names, or random:N "
                     "for a random N-player setup drawn from the seed (see setups.py)")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for --roles random:N, draw from every "
@@ -455,6 +462,8 @@ def main() -> None:
         # Efforts resolved here, so the log records what each model actually used.
         models = [resolve_effort(parse_model_spec(m), args.effort) for m in args.players.split(",")]
         moderator = resolve_effort(parse_model_spec(args.moderator), args.effort)
+        fallback = (None if args.moderator_fallback == "none"
+                    else resolve_effort(parse_model_spec(args.moderator_fallback), args.effort))
     except ValueError as e:
         ap.error(str(e))
     update_tips = (None if args.no_update_tips else args.update_tips or (
@@ -488,7 +497,7 @@ def main() -> None:
                   flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
                   lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
                   checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
-                  player_tips=player_tips, update_tips=update_tips, setup=setup)
+                  player_tips=player_tips, update_tips=update_tips, setup=setup, moderator_fallback=fallback)
 
 
 @contextmanager

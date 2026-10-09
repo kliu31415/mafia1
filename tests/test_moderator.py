@@ -3,7 +3,7 @@
 import pytest
 
 import mafia
-from llm import Model
+from llm import LLMReply, Model, ModelSpec
 from moderator import Moderator
 from tests.conftest import ScriptedClient
 
@@ -105,3 +105,30 @@ def test_killing_a_dead_player_is_a_warning(game_factory):
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     out = mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Bob"}]})
     assert "already dead" in out["notes"][0] and game.log.error_counts == {"moderator_warning": 1}
+
+
+def test_a_moderator_the_filter_keeps_blocking_switches_to_its_fallback(game_factory):
+    blocked = LLMReply(None, None, [], {"role": "assistant", "content": None}, "m", 0.0, {},
+                       stop_note="finish_reason content_filter via Anthropic: blocked")
+
+    class Filtered(ScriptedClient):
+        def __init__(self, blocks: int):
+            super().__init__()
+            self.blocks, self.models = blocks, list[Model]()
+
+        def chat(self, model, messages, *, tools=None, **kw):
+            self.models.append(model)
+            if tools and model is Model.OPUS_5_5 and self.blocks:
+                self.blocks -= 1
+                return blocked
+            return super().chat(model, messages, tools=tools, **kw)
+
+    for blocks, switched in [(2, False), (3, True)]:
+        client = Filtered(blocks)
+        game, players = game_factory(["Vanilla Villager", "Grunt"], client)
+        mod = Moderator(game, client, players, Model.OPUS_5_5, "(rules)",
+                        fallback=ModelSpec(Model.GPT_6_1_SOL, "high"))
+        mod.run_phase("Resolve the night.")
+        assert (mod.model is Model.GPT_6_1_SOL) is switched
+        assert (client.models[-1] is Model.GPT_6_1_SOL) is switched  # the phase went on with the fallback
+        assert ("moderator_switch" in game.log.error_counts) is switched
