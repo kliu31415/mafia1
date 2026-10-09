@@ -186,6 +186,17 @@ def test_the_notebook_and_sheet_are_built_from_game_logs(tmp_path):
         tips.build(sorted(tmp_path.glob("game_*.jsonl")), out, client, ModelSpec(Model.OPUS_5_5), max_words=500)
 
 
+def test_older_logs_count_failed_last_attempts_as_fallbacks(tmp_path):
+    log = tmp_path / "game_20261008_000000_1.jsonl"  # before player_fallback records existed
+    records = [*[{"kind": "player_error", "player": "Ivan", "attempt": a} for a in (0, 1)] * 3,
+               *[{"kind": "player_error", "player": "Bob", "attempt": a} for a in (0, 0, 1)],
+               {"kind": "lessons", "who": "Bob", "role": "Grunt", "model": "x", "lessons": []},
+               {"kind": "result", "winners": []}]
+    log.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+    g = tips.read_game(log)
+    assert g is not None and g["unreliable"] == ["Ivan"]
+
+
 def test_a_game_can_update_the_tips_when_it_ends(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     sheet = tmp_path / "tips" / "tips.md"

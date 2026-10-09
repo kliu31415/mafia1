@@ -156,6 +156,9 @@ def read_game(path: Path) -> dict | None:
     if not lessons or result is None:
         return None
     fallbacks = Counter(r.get("player") for r in records if r["kind"] == "player_fallback")
+    if not fallbacks:  # older logs had no player_fallback record: a failed second (last) attempt was one
+        fallbacks = Counter(r.get("player") for r in records
+                            if r["kind"] == "player_error" and r.get("attempt") == 1)
     tips = next((r for r in records if r["kind"] == "tips"), None)
     return {"game": path.stem, "records": lessons, "result": result, "had_tips": tips["players"] if tips else [],
             "unreliable": sorted(p for p, n in fallbacks.items() if p and n >= FALLBACKS_TO_DISTRUST),
