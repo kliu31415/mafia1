@@ -71,6 +71,10 @@ class RoleLogic:
         `speaker` to `to` (Wiretap, Eavesdropper)."""
         return False
 
+    def trial_vote_weight(self, game: Game, p: Player) -> int:
+        """How many votes this player's Guilty/Innocent vote counts as today (Ballot Stuffer)."""
+        return 1
+
     def check_op(self, game: Game, change: dict) -> str | None:
         """Why one of this role's ops can't be carried out (the whole batch is then refused, so nothing is
         half-applied), or None if it can. Fields are already checked against `ops`."""

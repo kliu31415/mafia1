@@ -6,6 +6,7 @@ from typing import Any
 from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
 from events import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE
+from roles import logic
 from state import Game, Player, majority
 
 
@@ -343,12 +344,12 @@ TRIAL_VOTE_NOTE = ("This turn is only for discussion: after everyone has spoken,
 
 
 def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str], no: list[str], outcome: str,
-             prosecuted: bool = False) -> None:
+             prosecuted: bool = False, weights: dict[str, int] | None = None) -> None:
     """A structured vote record for analysis. stage is "nomination" (yes = Yes votes, including the
-    nominator's automatic one) or "trial" (yes = Guilty votes)."""
+    nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once."""
     game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
                    votes={**{n: True for n in yes}, **{n: False for n in no}}, outcome=outcome,
-                   prosecuted=prosecuted)
+                   prosecuted=prosecuted, **({"weights": weights} if stage == "trial" else {}))
 
 
 def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int,
@@ -372,18 +373,24 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
     game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
               f"Innocent - {', '.join(innocent) or 'nobody'}.", cat=VOTE)
-    voted_guilty = majority(len(guilty), len(game.alive()))
+    # A role may count a voter more than once (Ballot Stuffer); the verdict then needs a majority of all
+    # votes counted, and the announced totals include the extra votes without saying whose they are.
+    weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
+    guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
+    tally = f"{guilty_votes} Guilty of {total_votes} votes"
+    voted_guilty = majority(guilty_votes, total_votes)
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
-    log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted)
+    log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted,
+             weights={n: w for n, w in weight.items() if w != 1})
     game.vote_record.append(f"Day {game.day}: trial of {nominee}; Guilty - {', '.join(guilty) or 'nobody'}; "
                             f"Innocent - {', '.join(innocent) or 'nobody'}; {verdict}")
     if voted_guilty or game.rigged_day == game.day:
         if not voted_guilty:
             game.emit(f"The vote was rigged by a Clerk: {nominee} is executed despite the Innocent verdict.",
                       cat=VOTE)
-        game.emit(f"{nominee} is executed by hanging ({len(guilty)} Guilty).", cat=DEATH)
+        game.emit(f"{nominee} is executed by hanging ({tally}).", cat=DEATH)
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
         return "executed"
-    game.emit(f"{nominee} is found Innocent ({len(guilty)} Guilty).", cat=VOTE)
+    game.emit(f"{nominee} is found Innocent ({tally}).", cat=VOTE)
     return "innocent"

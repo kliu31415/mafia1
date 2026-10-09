@@ -71,6 +71,9 @@ ROLES: dict[str, RoleInfo] = {
                            tested=True, notes="forged wills via set_last_will"),
     "Clerk": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"clerk": 1}, acts_at_night=True,
                       notes="moderator records the rig; code executes regardless of the vote"),
+    "Ballot Stuffer": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"ballot": 2}, acts_at_night=True,
+                               notes="moderator records the use with the stuff_ballot op; code doubles the vote "
+                               "in the next day's trials"),
     "Diviner": RoleInfo(Alignment.EVIL, "Yakuza", True, acts_at_night=True),
     "Mortician": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"mortician": 2}, acts_at_night=True,
                           tested=True, notes="clean via status 'cleaned'; code hides role and will in the reveal (cause shown)"),
@@ -109,7 +112,7 @@ def role_status_table() -> str:
 
 
 # Role files register their hooks when imported.
-from roles import (accountant, archivist, arsonist, cardinal, clerk, eavesdropper, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
+from roles import (accountant, archivist, arsonist, ballot_stuffer, cardinal, clerk, eavesdropper, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
                    medic, prosecutor, puppeteer, roleplayer, seer, trapper, veteran, vulture, wiretap)
 
 assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"

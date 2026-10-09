@@ -307,6 +307,13 @@ Clerk
   The Guilty/Innocent vote still happens; if a majority votes Guilty, the rig is not announced, otherwise it is
   announced publicly.
 
+Ballot Stuffer
+  Tokens: 2 ballot tokens.
+  Night: may spend a token so that during the following Day your vote counts twice in every Guilty/Innocent trial
+  vote. It does not count twice in nomination (Yes/No) votes, which stay one vote each. A trial that Day needs a
+  majority of all votes counted, so your extra vote counts whether you vote Guilty or Innocent. Every player's vote is still revealed as usual; the announced totals
+  include your extra vote without saying whose it is.
+
 Diviner
   Night: may pick one player. If they are Yakuza, they get Strong Defense for that night. Otherwise, you learn their
   exact role.

@@ -196,6 +196,29 @@ def test_unique_roles_appear_at_most_once(tmp_path):
                    GameLog(tmp_path / "t.jsonl"))
 
 
+def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
+    from day import run_trial
+    guilty = {"Bob", "Erin", "Frank"}
+
+    def decide(name, task, schema):
+        if "Vote true for Guilty" in task:
+            return {"vote": name in guilty}
+        return None
+    game, players = game_factory(["Vanilla Villager"] * 4 + ["Grunt", "Ballot Stuffer"], ScriptedClient(decide))
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    alice = game.player("Alice")
+    assert run_trial(game, players, alice, "Bob", 1) == "innocent"  # 3 of 6: no majority without stuffing
+    mod.dispatch("apply_changes", {"changes": [{"op": "stuff_ballot", "by": "Frank"}]})
+    assert game.player("Frank").tokens["ballot"] == 1
+    game.run_dawn_hooks()
+    assert run_trial(game, players, alice, "Alice", 1) == "executed"  # Frank counts twice: 4 of 7
+    assert any("(4 Guilty of 7 votes)" in e.text for e in game.events)
+    game.run_dawn_hooks()  # the next day, without a new token, Frank's Innocent is back to one vote
+    guilty.clear()
+    guilty.update({"Bob", "Carol", "Erin"})
+    assert run_trial(game, players, game.player("Bob"), "Dave", 1) == "executed"  # 3 of 5, not 3 of 6
+
+
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     game, _ = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"])
     assert game.katana_holder == "Alice"
