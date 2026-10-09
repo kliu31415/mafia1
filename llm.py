@@ -311,7 +311,23 @@ def flat_messages(messages: list[dict]) -> list[dict]:
 # on every call (36/36 test calls; at medium effort Sonnet 5.5 didn't reason at all). Claude returns summarized
 # thinking, Gemini thought summaries, Grok/Qwen/Kimi their reasoning text. OpenAI (Sol, Luna) returns only
 # encrypted reasoning, plus a summary on about 1 call in 8 even with reasoning.summary "auto" or "detailed",
-# so players give a short "reason" (a sentence, a few for complicated choices) with every answer (players.REASON_NOTE) for the logs.
+# so every player answer has a "reason" field for the logs: why the player chose it.
+# Players give a long "reason" by default (players.LONG_REASON_NOTE: a dense paragraph of up to ~150 words, with
+# the options weighed, reads and plan), since for a model whose reasoning doesn't come back it's all we see of its
+# thinking. Kevin (2026-10-09) would rather get API errors (alerted, retried, checkpointed) than lose that content,
+# so a model gets the short note (players.REASON_NOTE) only when it's in SHORT_REASON below: its full reasoning
+# comes back, or its API filters strictly. In game 121338 (Haiku/Luna) the short "reason" had a median of 18 words
+# against 88 for returned reasoning, which held the alternatives and reads that "reason" left out. The long note
+# asks for an explanation of a choice already made, not a transcript of reasoning. A new model gets the long one
+# until it's checked.
+
+
+# Models whose players give the short "reason" (see the note above). Claude: its thinking comes back summarized,
+# and long written-out reasoning in answers is a likely trigger of Anthropic's distillation filter. Grok, Qwen and
+# Kimi: their reasoning text comes back in full. Not here, so long: OpenAI (encrypted reasoning, a summary on about
+# 1 call in 8), Gemini (brief thought summaries only) and GLM (not checked).
+SHORT_REASON = frozenset({Model.OPUS_5_5, Model.SONNET_5_5, Model.HAIKU_5_5, Model.GROK_4_7,
+                          Model.QWEN_3_8_MAX_PRIME, Model.QWEN_3_8_MAX, Model.KIMI_K3})
 
 
 def flat_nullable_enums(schema: Any) -> Any:

@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
 from events import RESULT
-from llm import LLMClient, LLMReply, answer_json, cache_block, rules_system, schema_errors
+from llm import SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, rules_system, schema_errors
 from roles import Alignment, ROLES, logic
 from state import Game, Player
 from tips import player_view
@@ -221,7 +221,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             "anything you want to remember. A useful habit: one brief line per other player (their claim, "
             "key votes or actions, and your current read), e.g. \"Bob: claims Sheriff, says Carol is Not "
             "Evil; voted Guilty on Dave D2; leaning Yakuza\". Keep lines short so they all fit.\n\n"
-            f"{REASON_NOTE}\n\n"
+            f"{REASON_NOTE if p.model in SHORT_REASON else LONG_REASON_NOTE}\n\n"
             + (FEEDBACK_NOTE if feedback_field else "")
             + f"---\n\n{task}")
     return [system, {"role": "user", "content": user}]
@@ -238,12 +238,20 @@ def night_history(game: Game, p: Player) -> str:
     return "\n".join(lines)
 
 
-# A short why for each answer, for the logs: many models' reasoning comes back only summarized or not at all
-# (OpenAI's Sol and Luna return a summary on about 1 call in 8). A short why after the decision rather than a
+# A why for each answer, for the logs: many models' reasoning comes back only summarized or not at all
+# (OpenAI's Sol and Luna return a summary on about 1 call in 8). A why after the decision rather than a
 # "thoughts" scratchpad before it, which Anthropic's filter likely reads as distillation (gamelog v23).
+# The short one, for models in llm.SHORT_REASON:
 REASON_NOTE = ("Every response also has a 'reason' field: why you chose this answer, usually in one short "
                "sentence, or a few when the choice was complicated. It is kept in the game's records only; "
                "nobody in the game sees it.")
+# The default: a longer why, since for many models it's the only record of their thinking (llm.SHORT_REASON
+# lists the models that get the short one, and why). Asked as an explanation of a choice already made.
+LONG_REASON_NOTE = ("Every response also has a 'reason' field: explain why you chose this answer, in a dense "
+                    "paragraph of up to about 150 words (shorter is fine for simple choices): the options you "
+                    "weighed and why you rejected them, your current reads on the players involved, what you "
+                    "expect to happen next and your plan. No filler or restating the answer. It is kept in "
+                    "the game's records only; nobody in the game sees it.")
 
 FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: if a rule or this "
                  "interface is confusing, seems broken, or stops you doing something you want, say so "

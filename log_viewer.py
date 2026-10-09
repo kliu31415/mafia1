@@ -205,11 +205,22 @@ def esc(x: Any) -> str:
     return html.escape(str(x))
 
 
-def pre(label: str, value: Any) -> str:
+def pre(label: str, value: Any, hint: str = "") -> str:
+    """hint: hover text on the label explaining what it is."""
     if value in (None, "", {}, []):
         return ""
     text = value if isinstance(value, str) else json.dumps(value, indent=1, ensure_ascii=False)
-    return f"<div class='muted'>{esc(label)}</div><pre>{esc(text)}</pre>"
+    title = f" title='{esc(hint)}' style='cursor:help'" if hint else ""
+    return f"<div class='muted'{title}>{esc(label)}{' ⓘ' if hint else ''}</div><pre>{esc(text)}</pre>"
+
+
+REASONING_HINT = ("The model's own thinking before it answered, as its provider returns it: summarized for "
+                  "Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, "
+                  "with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.")
+REASON_HINT = ("The 'reason' field of the answer: the player's own explanation of this choice, written after "
+               "deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 "
+               "words by default; a sentence or a few for models whose reasoning comes back in full or whose API "
+               "filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).")
 
 
 def short_model(model: str) -> str:
@@ -453,14 +464,15 @@ def render_html(jsonl_path: Path) -> Path:
             summary = (f"{name(r['player'])} ({esc(roles.get(r['player'], '?'))}, "
                        f"{esc(r['model'].split('/')[-1])}) · {esc(first_line[:90])} · ${r.get('cost', 0):.4f}")
             out.append(f"<details class='call'><summary>{summary}</summary>"
-                       + pre("Reasoning (model's summarized thinking)", r.get("reasoning"))
-                       + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason) + pre("Output", o) + notepad
+                       + pre("Reasoning (model's thinking)", r.get("reasoning"), REASONING_HINT)
+                       + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason, REASON_HINT)
+                       + pre("Output", o) + notepad
                        + pre("Task prompt", r["task"]) + pre("Usage", r.get("usage")) + "</details>")
         elif k == "moderator_call":
             calls = ", ".join(c["function"]["name"] for c in r.get("tool_calls") or []) or "no tool call"
             out.append(f"<details class='call'><summary>Moderator ({esc(r['model'].split('/')[-1])}) → "
                        f"{esc(calls)} · ${r.get('cost', 0):.4f}</summary>"
-                       + pre("Reasoning", r.get("reasoning")) + pre("Content", r.get("content"))
+                       + pre("Reasoning", r.get("reasoning"), REASONING_HINT) + pre("Content", r.get("content"))
                        + pre("Tool calls", [{"name": c["function"]["name"],
                                              "args": tool_args(c["function"].get("arguments"))}
                                             for c in r.get("tool_calls") or []])

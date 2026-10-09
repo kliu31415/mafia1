@@ -18,7 +18,7 @@ from llm import Model
 from moderator import Moderator
 from night import run_night
 from players import Players
-from tests.conftest import ScriptedClient, make_game
+from tests.conftest import TOWN4_GRUNT, ScriptedClient, make_game
 
 PROMPTS = Path(__file__).parent / "prompts"
 ROLES = ["Sheriff", "Vanilla Villager", "Medic", "Vanilla Villager", "Grunt", "Grunt"]  # Alice ... Frank
@@ -144,3 +144,14 @@ def test_every_in_game_call_sends_one_schema(requests):
     """The answer schema is part of Claude's cached prefix (players.shared_schema)."""
     schemas = {json.dumps(r["schema"], sort_keys=True) for r in requests if r["step"]}
     assert len(schemas) == 1
+
+
+def test_models_get_the_long_reason_note_unless_listed_short(game_factory):
+    from players import LONG_REASON_NOTE, REASON_NOTE, player_messages
+    game, _ = game_factory(TOWN4_GRUNT)
+    alice, bob = game.players[:2]
+    bob.model = Model.GPT_6_LUNA
+    def text(p):
+        return player_messages(game, p, "(rules)", "task")[-1]["content"]
+    assert REASON_NOTE in text(alice) and LONG_REASON_NOTE not in text(alice)
+    assert LONG_REASON_NOTE in text(bob) and REASON_NOTE not in text(bob)
