@@ -135,7 +135,9 @@ class Players:
         for attempt in range(2):
             try:
                 reply = self.client.chat(p.model, messages, schema=schema, effort=p.effort)
-                out = json.loads(reply.content or "")
+                if not reply.content:
+                    raise RuntimeError(f"empty answer ({reply.stop_note})")
+                out = json.loads(reply.content)
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage)

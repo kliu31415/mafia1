@@ -110,6 +110,8 @@ class LLMReply:
     model: str
     cost: float
     usage: dict
+    # Why an empty answer is empty, e.g. "finish_reason content_filter via Azure: <refusal text>".
+    stop_note: str | None = None
 
 
 class LLMClient(Protocol):
@@ -147,6 +149,10 @@ class OpenRouterClient:
             # Claude needs an opt-in for caching (other providers cache automatically). The top-level
             # field caches the prompt up to the last block, 5-minute TTL.
             body["cache_control"] = {"type": "ephemeral"}
+            # Only Anthropic's own endpoint: OpenRouter's Azure route refuses any request whose output
+            # schema has a "thoughts" field, as distillation (seen 2026-10-09; Ivan's player_errors in
+            # game_20261009_004910_895267).
+            body["provider"] = {"order": ["Anthropic"], "allow_fallbacks": False}
         if tools:
             body["tools"] = tools
         if schema:
@@ -157,7 +163,8 @@ class OpenRouterClient:
         data = self._post(body)
         if "error" in data:
             raise RuntimeError(f"OpenRouter error from {model.value}: {data['error']}")
-        msg = data["choices"][0]["message"]
+        choice = data["choices"][0]
+        msg = choice["message"]
         usage = data.get("usage", {})
         cost = float(usage.get("cost") or 0)
         with self.cost_lock:
@@ -170,6 +177,8 @@ class OpenRouterClient:
             model=data.get("model", model.value),
             cost=cost,
             usage=usage,
+            stop_note=(f"finish_reason {choice.get('finish_reason')} via {data.get('provider')}: "
+                       f"{msg.get('refusal') or 'no refusal text'}"),
         )
 
     def _post(self, body: dict) -> dict:
