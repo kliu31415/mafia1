@@ -172,3 +172,17 @@ def test_players_can_update_their_will_on_a_day_turn(game_factory):
     run_day(game, players)
     assert game.player("Alice").last_will == "I claimed Medic today."
     assert game.player("Bob").last_will == ""  # null keeps the will as it was
+
+
+def test_claims_are_listed_in_the_ledger_with_earlier_ones_they_changed_from(game_factory):
+    def decide(name, task, schema):
+        if name == "Alice" and "claim" in schema["properties"]:
+            return {"claim": "Vanilla Villager" if "Day 1," in task else "Medic. N1: protected Bob"}
+        return None
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
+    run_day(game, players)
+    assert "- Alice: Day 1: Vanilla Villager\n" in game.public_ledger()
+    game.day = 2
+    run_day(game, players)
+    assert "- Alice: Day 2: Medic. N1: protected Bob (earlier: Day 1: Vanilla Villager)" in game.public_ledger()
+    assert list(game.claim_record) == ["Alice"]  # null claims change nothing

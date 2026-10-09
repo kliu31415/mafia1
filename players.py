@@ -37,15 +37,17 @@ def name_enum(names: list[str]) -> dict:
     return {"type": "string", "enum": names}
 
 
-def day_turn_schema(game: Game, me: str, can_nominate: bool, can_update_will: bool = True) -> dict:
+def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = True) -> dict:
+    """own_turn: false when a Puppeteer writes this turn, who can't change the puppet's will or claims."""
     others = [n for n in game.alive_names() if n != me]
     props = {
         "thoughts": STR,  # private scratchpad, never shown to other players
         "public_message": nullable(STR),
         "private_messages": {"type": "array", "items": obj(to=name_enum(others), text=STR)},
     }
-    if can_update_will:  # so a claim made today can be in the will by tonight
-        props["last_will"] = nullable(STR)
+    if own_turn:
+        props["last_will"] = nullable(STR)  # so a claim made today can be in the will by tonight
+        props["claim"] = nullable(STR)  # recorded in the public ledger's claims list (Game.claim_record)
     if can_nominate:
         props["nominate"] = nullable(name_enum(game.alive_names()))
     return obj(**props)

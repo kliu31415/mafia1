@@ -30,6 +30,7 @@ NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budg
 
 
 LAST_WILL_WORDS = 300  # longer wills are truncated
+CLAIM_WORDS = 30  # claims (in the public ledger) are short and free, so they can't replace chat
 
 
 def length_cost(words: int) -> float:
@@ -216,6 +217,10 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "pay only for the extra length.\n" if free_words else "")
             + ("You may also replace your last will (free; null keeps it), e.g. to match a claim you make "
                "today. It's shown to everyone if you die.\n" if writer is p else "")
+            + (f"You may also set your claim (free, max {CLAIM_WORDS} words; null keeps it): your claimed role "
+               "and night results, e.g. 'Sheriff. N1: Bob Not Evil'. The public ledger lists every player's "
+               "latest claim and any earlier ones they changed from, as unverified claims.\n"
+               if writer is p else "")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
@@ -228,7 +233,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
-        schema = day_turn_schema(game, p.name, can_nominate=False, can_update_will=False)
+        schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
         out = players.ask(writer, task, schema, fallback)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
@@ -251,6 +256,13 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
 
     if writer is p and isinstance(will := out.get("last_will"), str) and will.strip():
         p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
+    if writer is p and isinstance(claim := out.get("claim"), str) and claim.strip():
+        claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
+        claims = game.claim_record.setdefault(p.name, [])
+        if claims and claims[-1][0] == game.day:
+            claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
+        elif not claims or claims[-1][1] != claim:
+            claims.append((game.day, claim))
     nominee = out.get("nominate") if can_nominate else None
     if nominee:
         if nomination_fee <= p.speaking_budget + 1e-9:
