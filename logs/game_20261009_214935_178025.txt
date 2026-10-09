@@ -1,0 +1,57 @@
+Setup:
+  Alice    seat 1  Oracle            google/gemini-3.8-flash
+  Bob      seat 2  Vanilla Villager  openai/gpt-6-luna
+  Carol    seat 3  Puppeteer         openai/gpt-6-luna
+  Dave     seat 4  Sheriff           openai/gpt-6-luna
+  Erin     seat 5  Serial Killer     anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Lookout           openai/gpt-6-luna-pro
+  Heidi    seat 8  Mortician         deepseek/deepseek-v4.1-flash
+  Ivan     seat 9  Grunt             anthropic/claude-haiku-5.5
+  Judy     seat 10 Medic             deepseek/deepseek-v4.1-flash
+  Mallory  seat 11 Pharmacist        openai/gpt-6-luna-pro
+  Niaj     seat 12 Tracker           google/gemini-3.8-flash
+  Katana starts with Heidi
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Dave (tips/tips.md), Grace (tips/tips.md), Ivan (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Niaj.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Niaj (public): Greetings everyone. Day 1 is here—let's keep discussions open and see what claims or observations emerge today.
+Alice (public): Hello everyone. Looking forward to hearing initial thoughts and seeing how the discussion unfolds today.
+Bob (public): Let's get beyond greetings: name one player you currently read as suspicious, even weakly, and say what evidence would change your mind. No blind pile-ons.
+Carol (public): Weakly suspicious of Bob for pushing everyone to name a suspect so early, but that’s thin. A reasoned follow-up would ease that read; greetings alone tell me little.
+Dave (public): Agree with Bob that named, revisable reads are more useful than greetings. Carol's suspicion is explicitly thin, so I wouldn't turn that into a case yet. Let's see who responds with specifics.
+Erin (public): No hard read yet; I'll weigh specifics as they come.
+Frank (public): Frank here, Vanilla Villager with no night info. Early on I want specifics: who is pushing votes, and who is only asking questions? I'll weigh reads as they develop.
+Grace (public): Bob asked everyone to name a suspect but hasn't offered his own read yet. I'd like his specific, revisable take; Carol's concern is still thin.
+Heidi (public): Reads this early are mostly noise, so I won't force one. What I'll watch is behavior: who pushes votes versus who only asks questions, and who goes quiet. Bob, you asked for reads first—give us your specific one when you can.
+Ivan (public): Ivan here, no night info. I back Grace: Bob should give his specific read before anyone is pushed. Erin and Alice, which player looks odd to you so far, and why?
+Judy (public): Echoing Grace and Heidi: Bob set the agenda, so he should post his own specific read first. My thin read: Bob slightly suspicious for asking without answering. Ivan's question to Erin and Alice is fair. Nobody has earned trust yet; I'll judge by votes and follow-through.
+Mallory (public): Bob's prompt is fair, but he should give a concrete read himself. For now that's only a mild process concern; let's hear Alice and Erin answer Ivan.
+Niaj (public): A lot of people echoed the critique of Bob. Let's see Bob's actual read on his turn, plus Alice and Erin answering Ivan, so we get past commenting on the prompt.
+Alice (public): To answer Ivan: Bob's prompt was a standard conversation starter, but the chain of people safely echoing mild suspicion onto him (Judy, Grace, Heidi) feels easy and performative. Frank's unprompted Vanilla claim also felt slightly premature. Looking forward to Bob's actual read next.
+Bob (public): My weak read is Judy: she echoed Grace and Heidi’s critique of me, then added no distinct evidence. That may just be agreement, so I’d revise if she gives a specific reason beyond my prompt. Frank’s early Vanilla claim is also odd, but not enough for a trial. I’ll track the votes.
+Carol (public): Alice's point on Frank is more concrete than looping back over Bob. The Vanilla claim was unsolicited and could be a preemptive shield, though it might just be awkward. Frank, why volunteer it? I wouldn't treat Bob's prompt alone as much.
+Dave (public): The Bob critique has become repetitive; his weak Judy read was at least specific and revisable. Frank, since Carol asked: why volunteer Vanilla before anyone asked? Not proof, but let's hear the explanation before turning it into a case.
+Erin (public): Frank's answer on the early Vanilla claim matters more now than another round on Bob's prompt.
+Frank (public): Carol, Dave: I said Vanilla early to end role guessing about me. I have no info, so judge my votes, not my claim.
+Grace (public): Frank's explanation doesn't really resolve why he volunteered Vanilla before anyone asked; it could be awkwardness, but it remains the most concrete oddity so far. Bob did eventually name Judy, though his reasoning was thin. Let's not treat repeated agreement as proof; track who gives distinct reasons and revises after answers.
+Heidi (public): Fair, Alice—mine was a process note, not a case. Frank's early Vanilla volunteer is the most concrete oddity so far, but a claim isn't proof; I'll weigh votes over words. Bob's Judy read was thin but at least specific. No nomination from me yet—I want to see who follows through.
+Ivan (public): Frank's early Vanilla claim is still unexplained, but one oddity isn't a case. I want a checkable reason before any nomination, and I'll judge people by their follow-through, not by repeated echoes.
+Judy (public): Bob: here's my distinct reason—you set a 'name a suspect' agenda, then withheld your own read for a full round, which reads like staying active without risk. You've answered now, so I'm not pushing it further. Frank: the unprompted Vanilla claim is still the most concrete oddity; 'to end role guessing' doesn't fit when nobody was guessing you. Could be awkwardness or a preemptive shield—I'll judge it by your votes, not the claim. No nomination from me yet; I want a checkable case, not another echo.
+(to Grace, Judy) Judy -> Grace (private): I read you as genuine town. Want to compare reads privately and avoid wasting early votes on each other? I'm no-nominate today unless Frank's votes look off. Your current lean?
+Mallory (public): Frank’s explanation still doesn’t answer why he volunteered the claim before anyone was guessing roles. It’s a soft concern, not a case for a trial by itself. Bob has now given a specific read, and Judy answered it; I’d weigh their votes next.
+Niaj (public): Frank's early claim feels more awkward than malicious. Without concrete info, let's avoid forcing an uninformed trial today unless someone has a real case.
+Alice (public): Noted Judy's PM to Grace. I agree we shouldn't force an uninformed trial today on Frank or anyone else. Happy to head to night unless someone has actionable info.
+Carol nominated Frank. Everyone now votes Yes/No simultaneously.
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 1), retrying: HTTP 503: {"error":{"message":"Provider returned error","code":503,"metadata":{"raw":"{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"The service is currently unavailable.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n","provider_name":"Google AI Studio","is_byok":false,"provider_error_code
+Nomination votes on Frank: Yes - Carol, Dave, Erin, Mallory, Bob; No - Frank, Grace, Heidi, Ivan, Judy, Niaj, Alice.
+The nomination of Frank failed (5 Yes).
+Frank (public): No trial on thin reads from me. Judy's PM to Grace is the only private link so far. Judy and Grace, what was it about?
+Grace (public): Judy’s PM said she reads me as genuine town, wanted to compare reads, and was no-nominate unless Frank’s votes looked off. She asked for my lean; I hadn’t replied. No basis was given for her read on me, so I wouldn’t treat it as evidence.
+Ivan (public): I voted No on Frank because his early Vanilla claim is still only a soft oddity, not a case. Carol and Bob pushed the nomination, so I want one checkable reason from them before anyone nominates on Day 2. Judy's PM to Grace is worth tracking, but it isn't a trial yet.
+Judy (public): On my PM to Grace: I shared a light town read and suggested comparing notes. No role info, no plan against anyone. Frank's early Vanilla claim stays a soft concern I'll judge by votes, not words. No case now, so no nomination from me—let's go to night.
+(to Grace, Judy) Judy -> Grace (private): Still reading you town. My PM was just trust-building, no role info. Keep weighting votes over words. Compare notes tomorrow?
+Bob (public): I voted Yes to hear Frank explain, not because the claim alone proves guilt. His explanation didn’t resolve why he volunteered Vanilla, but that’s still weak. Carol, what concrete case justified nominating after calling this only a soft oddity? I’ll weigh the trial vote separately.
+Carol (public): I nominated to test whether Frank had a better explanation and observe votes, not because I had a firm case. It was thin; I won't push again today.

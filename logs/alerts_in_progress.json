@@ -96,5 +96,48 @@
    "1791568876.8726997:api_retry"
   ],
   "note": "fixes in 0e72ab8 and this push; rules questions: several attacks on one target (R12 cause), role repetition, Roleplayer fake token limits"
+ },
+ "game_20261009_181836_910820": {
+  "ids": [
+   "1791571625.062267:player_error",
+   "1791572239.9212966:player_error",
+   "1791572335.5689752:player_error",
+   "1791572372.1070988:player_error",
+   "1791572372.1076891:player_fallback",
+   "1791572570.9917598:player_error",
+   "1791572804.8039486:player_error",
+   "1791572935.9647872:moderator_flag",
+   "1791573526.2346573:player_error",
+   "1791574051.2225091:player_error",
+   "1791574768.086429:player_error",
+   "1791575038.5685408:player_error",
+   "1791575159.6920912:player_error",
+   "1791575960.601611:player_error",
+   "1791576690.244618:player_error",
+   "1791576805.492813:player_error",
+   "1791577115.8581448:player_error",
+   "1791577444.6210158:player_error",
+   "1791577536.057637:player_error",
+   "1791577798.2223485:api_retry",
+   "1791578353.3487313:player_error",
+   "1791578390.166345:player_error",
+   "1791578390.1667814:player_fallback",
+   "1791578644.0675375:player_error",
+   "1791578757.1732948:player_error",
+   "1791579564.7800577:player_feedback",
+   "1791579790.3781247:player_error",
+   "1791579807.4781544:player_feedback",
+   "1791580536.269214:api_retry",
+   "1791580606.9923809:player_error",
+   "1791580699.8388925:player_error",
+   "1791581120.3185792:player_error",
+   "1791581281.7378438:player_error",
+   "1791581354.4239507:player_feedback",
+   "1791582108.8776672:player_error",
+   "1791582144.4396856:player_feedback",
+   "1791582266.5484931:player_feedback",
+   "1791582376.6941924:player_error"
+  ],
+  "note": "fixes pushed; DeepSeek 15% token-cap failures (dropped from later games); rules: does a Roleplayer know they're one?, Ex-Con auto visit vs role-block"
  }
 }

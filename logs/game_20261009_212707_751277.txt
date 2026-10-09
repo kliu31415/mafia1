@@ -101,3 +101,49 @@ Night actions:
   Niaj (Medic): target Erin; "Standard protect Erin; free for another player at Standard Defense."
   Olivia (Tracker): target Erin; "Tracking Erin tonight to see whom she visits, since she claims a result-producing night role."
 Katana: Mallory holds it and attacks Erin.
+(to Judy) Moderator (private): You surveyed Dave, Erin and Frank. One of them, chosen at random, has the role Party Animal. 1 survey token left.
+(to Alice) Moderator (private): You audited Carol. At the end of the night, Carol has 0 tokens in total.
+(to Bob) Moderator (private): You guessed that Olivia is the Tracker. You were right.
+(to Carol) Moderator (private): You were role-blocked tonight. Your action had no effect.
+(to Erin) Moderator (private): You investigated Carol. Result: Evil. You were also attacked tonight with the Katana, but you survived.
+(to Frank) Moderator (private): You visited Carol and role-blocked her tonight.
+(to Ivan) Moderator (private): You doused Judy.
+(to Niaj) Moderator (private): You protected Erin tonight (Standard Defense). You have 2 medic tokens left.
+(to Olivia) Moderator (private): You tracked Erin. Erin visited Carol.
+(to Mallory) Moderator (private): You kept the Katana and attacked Erin with it. The attack failed: Erin did not die. You spent 1 mortician token to try to clean Erin. Erin did not die, so there was nothing to clean. You have 1 mortician token left.
+(to Carol, Heidi, Mallory) Moderator (private): Yakuza actions tonight: Mallory kept the Katana, used it to attack Erin, and spent a mortician token to try to clean Erin. Carol performed no action. Heidi performed no action. Mallory still holds the Katana.
+[Moderator flag] R8/R9: It's unclear what the other Yakuza should be told when a Yakuza teammate was role-blocked. R8 says they learn "what actions the other Yakuza performed, but not their results." R9 says a role-blocked action works "exactly as if they had chosen not to act." Tonight Carol (Diviner) was role-blocked while trying to divine Alice. Following R9, I told the Yakuza that Carol "performed no action." Telling them she divined Alice would be the other reading. Either way, Heidi and Mallory could guess from this that Carol was blocked.
+[Moderator summary] Night 1: Frank (Party Animal) role-blocked Carol, so her divine on Alice had no effect. Mallory's Standard Katana attack on Erin was stopped by Niaj's Standard protection, so no deaths. Mallory spent a mortician token on Erin and has 1 left. Erin's Sheriff check on Carol: Evil (Carol did not hold the Katana). Olivia tracked Erin and saw her visit Carol. Bob's Oracle guess (Olivia = Tracker) was correct. Alice audited Carol: 0 tokens. Ivan doused Judy. Judy surveyed Erin (group Dave/Erin/Frank) through the survey op. Yakuza were told each other's actions. Carol's blocked action was reported as no action (issue flagged).
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Olivia.
+14 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Olivia (public): Erin, you said you'd post your Night 1 target and result. Post them now, before any trial talk. Carol, your second PM to Frank is still unexplained.
+Peggy (public): Zero deaths overnight—likely a Medic save, roleblock, or someone hitting defense. Let's hear Erin's result first since she committed to sharing today.
+Alice (public): Erin, please give the N1 target and result you promised, including what kind of result it was. No death overnight is not itself evidence of a save.
+[Claim] Bob: Oracle. N1: guessed Olivia's exact role as Tracker; correct.
+Bob (public): I can corroborate Olivia: my N1 Oracle guess of her exact role, Tracker, was correct, so she’s Village. Olivia, please share your actual track result as promised; Erin, please share yours too. No deaths alone doesn’t establish a save.
+Carol (public): Olivia: the second PM was exactly what Frank said — asking if the note-trading deal still stood and what Niaj wanted. Nothing more. Bob's Oracle claim is a strong lead, but exact-role guesses can also come from a Roleplayer, so it's not proof. Olivia, please post your N1 track result in full. Erin, you promised a target and result today; post it now. And if anyone's result is 'X visited Y', remember visitors include medics, trackers, roleblockers, and neutrals — not a guilt check. We need actual claims and results, not vague suspicion.
+(to Carol, Mallory) Carol -> Mallory (private): I was roleblocked N1 — no Diviner result. Erin survived Katana, so either protected or has Standard defense. Bob's Oracle claim is the biggest threat. Let's settle N2 in night chat. Don't overclaim today.
+Dave (public): Erin speaks right after me, so let's hear her promised target and result. We also need Olivia to confirm Bob's Oracle check and post whom she tracked. With zero deaths N1, let's gather all mechanical info before discussing nominations.
+[Claim] Erin: Sheriff. N1: Carol Evil. Attacked by Katana N1, survived.
+Erin (public): Erin, Sheriff. My N1 target was Carol and the result was Evil. I was also attacked by the Katana on N1 and survived, so a Yakuza went after me. Bob, your Oracle claim doesn't touch my result. Carol, explain the second PM to Frank and why you dropped the soft-claim. If you have a Sheriff-style reason to doubt my Evil result, say it now.
+Frank (public): I role-blocked Carol N1 and got no feedback, so that neither confirms nor clears her. Erin’s Evil result is serious, but framing or a false claim remain possible. Carol, please address the result directly; no nomination from me yet.
+Grace (public): Erin’s result makes Carol a real lead, though Fabricator framing or a false claim remain possible. Carol, please address the result directly. Frank, clarify your role and what you mean by getting no feedback; role-blocking Carol alone neither confirms nor clears her. Let’s hear the answers before an execution.
+Heidi (public): Erin surviving a Katana attack strongly corroborates her presence on evil's radar, making an Evil check on Carol critical. Frank claiming to have role-blocked Carol adds another layer. Carol hasn't spoken since those claims came out, so we need her explicit defense and claim before deciding on a nomination.
+Ivan (public): Carol needs to answer the actual Evil result. Erin surviving a Katana attack is consistent with protection or defense, but doesn't independently validate her Sheriff claim; Frank's block also doesn't settle alignment. Hear Carol's claim before judging.
+Judy (public): Erin's Sheriff claim and Evil result on Carol warrant a trial, though framing or a false claim remain possible. Carol, please address the result and give your claim.
+Judy nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Judy, Niaj, Olivia, Peggy, Alice, Bob, Dave, Erin, Frank, Grace, Heidi, Ivan; No - Mallory, Carol.
+Carol is put on trial (12 Yes).
+[ERROR player_error] Carol (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): 'continue to argue. Actually no...\n\nArgh. Let me just go with the Jester claim? No... \n\nHmm, let me think about what my teammates would want. If I claim Jester, the village might ignore me and focus on'
+[Feedback from Carol] The interface timed out mid-thought once; no game issue. Rules and prompt are clear.
+[Claim] Carol: Ex-Con. Appears Evil to alignment checks, so Erin's N1 read is expected for a Villager.
+Carol (public): I'm the Ex-Con. Check the rules: an Ex-Con appears Evil to alignment checks. So Erin's read is real and still does not make me Yakuza — that role exists precisely because it reads Evil while being Village. If I were Yakuza, my team would want me to claim something that reads Good, not a role that reads Evil. Second, Erin's own story is odd: a Sheriff has no defense, so a Standard Katana kills her unless a protector saved her. Nobody has explained that. Before you hang a claimed Villager on a read with a built-in Village explanation, get Olivia's track result and ask who saved Erin. Don't let today's only execution be a free gift to the Yakuza. I'll take questions.
+(to Carol, Mallory) Carol -> Mallory (private): Claiming Ex-Con on trial to explain Erin's Evil read. If I hang, push a Clerk rig from Heidi for Day 3 and hunt the Medic who saved Erin. Erin is the priority N2 target.
+Dave (public): Ex-Con is the textbook cover for an Evil check, but what stands out just as much is Mallory being the only 'No' vote alongside Carol, followed immediately by private messages between them. Everyone gets a turn during this trial, so let's hear Olivia's tracking result and Frank's role claim as the circle speaks before we cast our trial votes.
+[Claim] Erin: Sheriff. N1: Carol Evil.
+Erin (public): Erin, Sheriff: my N1 result on Carol is Evil and I stand by it. Carol's Ex-Con claim came only after her nomination and can't be checked. Her 'who saved Erin' point is a deflection: a Standard Katana kills an undefended Sheriff, so a protector exists, and that tells us nothing about Carol. Carol and Mallory voted No together, then PMed each other right after. I'm voting Guilty. Anyone defending Carol needs a mechanical reason, not a Village-coded excuse.
+Frank (public): Erin’s result alone is not a guilt case: Ex-Con is Village and specifically appears Evil to alignment checks. My N1 roleblock on Carol neither confirms nor clears her. Erin surviving the Katana could be protection, but doesn’t settle Carol’s alignment. Olivia, please share your actual tracking result before we decide. I’m leaning Innocent absent a concrete contradiction.
