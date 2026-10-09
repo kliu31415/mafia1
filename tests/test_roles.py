@@ -240,6 +240,25 @@ def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
     assert survey_group(game, "Alice", "Bob") == ["Bob"]
 
 
+def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_factory):
+    game, players = game_factory(["Diviner", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="Strong Defense"):  # a Yakuza target: no result
+        mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Dave", "by": "Alice"}]})
+    drawn = []
+    for _ in range(200):
+        mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Bob", "by": "Alice"}]})
+        result = [e for e in game.events if e.cat == "result"][-1]
+        assert result.visible_to == {"Alice"} and "the group was Frank, Bob and Carol" in result.text
+        drawn.append(next(r for r in ("Jester", "Vanilla Villager", "Medic") if f"role drawn is {r}" in result.text))
+    assert 100 < drawn.count("Vanilla Villager") < 140 and drawn.count("Jester") > 20 and drawn.count("Medic") > 20
+    for name in ["Carol", "Dave", "Erin"]:
+        game.player(name).alive, game.player(name).death = False, None  # died on earlier days
+    mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Bob", "by": "Alice"}]})
+    assert "the group was Frank and Bob" in [e for e in game.events if e.cat == "result"][-1].text
+
+
 def test_philanthropist_hands_a_token_of_the_recipients_kind(game_factory):
     game, players = game_factory(["Philanthropist", "Medic", "Vanilla Villager", "Grunt"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")

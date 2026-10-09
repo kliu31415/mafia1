@@ -343,8 +343,12 @@ Ballot Stuffer
   include your extra vote without saying whose it is.
 
 Diviner
-  Night: may pick one player. If they are Yakuza, they get Strong Defense for that night. Otherwise, you learn their
-  exact role.
+  Night: may pick one player. If they are Yakuza, they get Strong Defense for that night. Otherwise, the group is
+  that player plus their nearest neighbor on each side in the circle (R11) among the players alive at the start of
+  the night, skipping yourself and never counting anyone twice. You are told who was in the group and the exact
+  role of one of them (exact-role check, R19), but not whose it is: it is the player you picked with 60% chance,
+  otherwise one of the others (20% each, or 40% if there is only one other). Yakuza in the group and players who
+  die that night can be drawn too.
 
 Mortician
   Tokens: 2 mortician tokens.
