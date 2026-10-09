@@ -1,0 +1,35 @@
+Setup:
+  Alice    seat 1  Trapper           deepseek/deepseek-v4.1-flash
+  Bob      seat 2  Lookout           openai/gpt-6-luna
+  Carol    seat 3  Eavesdropper      anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  openai/gpt-6-luna-pro
+  Erin     seat 5  Medic             anthropic/claude-haiku-5.5
+  Frank    seat 6  Executioner       anthropic/claude-haiku-5.5  {'target': 'Judy'}
+  Grace    seat 7  Prosecutor        google/gemini-3.8-flash
+  Heidi    seat 8  Wiretap           openai/gpt-6-luna
+  Ivan     seat 9  Ritualist         openai/gpt-6-luna
+  Judy     seat 10 Philanthropist    google/gemini-3.8-flash
+  Mallory  seat 11 Fabricator        openai/gpt-6-luna-pro
+  Niaj     seat 12 Sheriff           google/gemini-3.8-flash
+  Olivia   seat 13 Pharmacist        deepseek/deepseek-v4.1-flash
+  Katana starts with Mallory
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Carol (public): Carol here, no information yet. Each of you, name one suspect and a concrete reason so we have a record to check against.
+Dave (public): Weakly Carol: she asked everyone to name suspects but hasn’t named one herself. No real evidence yet; I’ll update after hearing claims and votes.
+Erin (public): Erin here, no information yet. I'll be watching who pushes early nominations and who dodges direct questions.
+Frank (public): Frank here, no role claim yet. Agree with Erin: nobody should nominate until more people have named suspects with reasons.
+Grace (public): No info yet. Carol setting the prompt without naming anyone stands out slightly, but let's hear everyone's intro around the circle before any nominations.
+Heidi (public): Carol's prompt seems reasonable rather than a tell; let's hear the remaining intros, then compare who actually names a reasoned suspect.
+Ivan (public): I don't have a concrete suspect yet. Asking for named reads is reasonable, but let's separate soft suspicion from an actual case and note who updates after everyone has spoken.
+Judy (public): Agree with holding off on nominations until the circle finishes. Dave's poke at Carol is reasonable early pressure, but I want to hear from Mallory through Bob before locking in any suspects.
+Mallory (public): Tentatively Dave: his only reason to suspect Carol is that she hasn’t named someone, though she asked everyone to do exactly that. Weak read; let’s hear the rest.
+Niaj (public): Holding off on reads until Olivia, Alice, and Bob speak. Dave's push on Carol at least started discussion, but let's hear everyone's intro first.
+Olivia (public): Olivia here. No info yet. The Dave–Carol poke is the only signal so far and it's thin: Dave pushed without a real case, but Carol also asked for suspects and named none. I'll hold my vote until we hear actual claims rather than hang someone on intros.
+Alice (public): Alice here, no info yet. Dave's poke at Carol was the only concrete move; several echoed it without adding a case. I'll keep reads light and judge by who pushes an actual case or votes against their stated read later. Holding my vote until real claims or a contradiction appear.
+Bob (public): Slight lean Dave for turning Carol’s reasonable prompt into a suspect reason before the circle finished. Thin read, though; no nomination from me without something concrete.
+Carol (public): my suspect is Dave, on a record basis. He's the only one who went after me, for not naming anyone, yet he hasn't named a real suspect himself. Thin, and I'll update.
+Dave (public): I did name Carol as a weak suspect; fair that my reason was thin. Let’s move past parsing it—give an actual read and reason, rather than echoing the Dave-Carol exchange, before anyone nominates.
