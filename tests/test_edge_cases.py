@@ -531,6 +531,9 @@ def test_yakuza_who_agree_not_to_attack_get_no_revote(game_factory):
     assert not any("no majority" in e.text for e in game.events)
     assert not any(t.startswith("Revote") for _, t in players.client.asked)
     assert game.katana_holder == "Dave"  # they agreed to move it without attacking (rules R8)
+    katana = [json.loads(line) for line in game.log.path.read_text(encoding="utf-8").splitlines()
+              if '"kind": "katana"' in line][-1]
+    assert katana["result"]["moved_from"] == "Carol"  # so the moderator doesn't say Dave "kept" it
     assert not any("(Yakuza chat):" in e.text for e in game.events)  # a blank message isn't posted
 
 

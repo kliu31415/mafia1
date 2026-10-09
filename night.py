@@ -164,9 +164,11 @@ def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
     holder = next((h for h in set(holders) if h and majority(holders.count(h), len(yakuza))), None)
     target = next((t for t in set(targets) if t and majority(targets.count(t), len(yakuza))), None)
     # The two choices are separate: a holder majority moves the Katana whatever happens to the attack.
+    # moved_from: the moderator wrote "X kept the Katana" after it moved, seeing only the new holder.
+    moved = {"moved_from": game.katana_holder} if holder and holder != game.katana_holder else {}
     game.katana_holder = holder or game.katana_holder
     if target is not None:
-        return {"attack": target, "holder": game.katana_holder, "attack_level": "Standard"}
+        return {"attack": target, "holder": game.katana_holder, **moved, "attack_level": "Standard"}
     if majority(targets.count(None), len(yakuza)):
-        return {"attack": None, "holder": game.katana_holder, "note": "the Yakuza agreed not to attack"}
-    return {"attack": None, "holder": game.katana_holder, "note": "no majority on a target; no attack"}
+        return {"attack": None, "holder": game.katana_holder, **moved, "note": "the Yakuza agreed not to attack"}
+    return {"attack": None, "holder": game.katana_holder, **moved, "note": "no majority on a target; no attack"}
