@@ -289,6 +289,8 @@ class MockClient:
                                         "long " * 900])
             case "integer":
                 return rng.randint(s.get("minimum", 0), s.get("maximum", 1))
+            case "number":
+                return rng.random()
             case "boolean":
                 return rng.random() < 0.5
             case _:

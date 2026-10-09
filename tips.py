@@ -9,13 +9,18 @@ A tips file is Markdown with one `## <heading>` section per audience: "Everyone"
 edits the file and is never shown to players. Players see every section, the way an experienced player
 knows how every role tends to play, not only their own. Hand edits are fine.
 
-`build` keeps the tips file as a living document, the way a player's notes grow over many games: run
-again after more games, it revises the file with only the new games (their lessons, plus what players
-who had the tips, and the moderator, say went especially well or badly with them), and keeps the old
-version in history/. --fresh rebuilds from scratch.
+Two living documents, the way a serious player keeps detailed notes and a short cheat sheet:
+- the notebook (tips/tips_notebook.json, readable as .md): every tip ever learned, with the games and
+  evidence behind it and reports of it backfiring, including ideas too thinly supported for players
+  yet. `build` updates it one new game at a time (their lessons, plus what players who had the tips and
+  the moderator say went especially well or badly with them) through small ops, so nothing is lost to
+  a rewrite.
+- the sheet (tips/tips.md): what players get, distilled from the notebook's active entries each time.
+Old versions of both go to history/. --fresh starts a new notebook. `mafia.py --update-tips FILE`
+runs the update after each game.
 
 Usage:
-    uv run tips.py build                                # revise tips/tips.md with new logs/game_*.jsonl
+    uv run tips.py build                                # add new logs/game_*.jsonl, rewrite tips/tips.md
     uv run tips.py build logs/game_2026100* --out tips/early.md --max-words 600
     uv run tips.py show tips/tips.md                    # what players see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
@@ -191,41 +196,153 @@ def _obj(**props: dict) -> dict:  # players.obj; not imported, since players.py 
     return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
 
 
+def system_prompt(rules: str, role: str) -> str:
+    return (f"{rules}\n\n---\n\nYou coach players of this game. {role} Lessons come from past games, written "
+            "by the players (each tagged with their role, whether they won, their model and a weight) and by "
+            "the moderator, who saw everything, including hidden night actions. The weight (0-1) is higher when "
+            "the author is a stronger model and when the game's players were stronger on average.")
+
+
+# The notebook: every tip ever learned, with its evidence, in JSON (<sheet>_notebook.json, plus a
+# readable .md). The model updates it one game at a time with small ops, so nothing it once knew is
+# lost to a rewrite, including ideas with thin evidence that aren't worth a place on the sheet yet.
+OPS_SCHEMA = _obj(ops={"type": "array", "items": _obj(
+    op={"type": "string", "enum": ["add", "support", "against", "edit", "retire", "restore"]},
+    id={"type": "string"},  # an existing entry's id; "" for add
+    audience={"type": "string", "enum": HEADINGS},  # for add (and edit, to move it)
+    tip={"type": "string"},  # for add and edit; "" otherwise
+    weight={"type": "number"},  # the weight of the lesson or report this op is based on
+    note={"type": "string"})})  # the evidence, or why (for against, edit, retire, restore)
+
+
+def new_notebook() -> dict:
+    return {"games": [], "next_id": 1, "entries": []}
+
+
+def notebook_path(sheet: Path) -> Path:
+    return sheet.with_name(sheet.stem + "_notebook.json")
+
+
+def entry_line(e: dict, notes: int = 3) -> str:
+    """One notebook entry for a model to read: id, audience, tip, support and reports against it."""
+    games = {x["game"] for x in e["support"]}
+    line = (f"[{e['id']}] ({e['audience']}) {e['tip']} | support: {len(games)} games, total weight "
+            f"{sum(x['weight'] for x in e['support']):.2f}")
+    if e["against"]:
+        line += (f" | against: {len(e['against'])} reports, total weight {sum(x['weight'] for x in e['against']):.2f}: "
+                 + "; ".join(x["note"] for x in e["against"][-notes:]))
+    if e["support"] and notes:
+        line += " | recent evidence: " + "; ".join(x["note"] for x in e["support"][-notes:] if x["note"])
+    return line
+
+
+def notebook_view(nb: dict) -> str:
+    live = [entry_line(e) for e in nb["entries"] if e["status"] == "active"]
+    retired = [f"[{e['id']}] ({e['audience']}) {e['tip']} | retired: {e['history'][-1]['note'] if e['history'] else ''}"
+               for e in nb["entries"] if e["status"] == "retired"]
+    return ("\n".join(live) or "(empty)") + ("\n\nRetired entries:\n" + "\n".join(retired) if retired else "")
+
+
+def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
+    """Carries out the model's ops on the notebook; returns how many were skipped (an unknown id, an
+    empty tip)."""
+    by_id = {e["id"]: e for e in nb["entries"]}
+    skipped = 0
+    for op in ops:
+        w = op.get("weight")
+        kind, note, weight = op["op"], op["note"].strip(), max(0.0, min(1.0, w)) if isinstance(w, (int, float)) else 0.0
+        if kind == "add":
+            if not op["tip"].strip():
+                skipped += 1
+                continue
+            added = {"id": f"t{nb['next_id']}", "audience": op["audience"], "tip": op["tip"].strip(), "status": "active",
+                 "support": [{"game": game, "weight": weight, "note": note}], "against": [],
+                 "history": [{"game": game, "change": "added"}]}
+            nb["next_id"] += 1
+            nb["entries"].append(added)
+            by_id[added["id"]] = added
+            continue
+        e = by_id.get(op["id"])
+        if e is None:
+            skipped += 1
+            continue
+        if kind == "support":
+            e["support"].append({"game": game, "weight": weight, "note": note})
+        elif kind == "against":
+            e["against"].append({"game": game, "weight": weight, "note": note})
+        elif kind == "edit" and op["tip"].strip():
+            e["history"].append({"game": game, "change": "edited", "old": e["tip"], "note": note})
+            e["tip"], e["audience"] = op["tip"].strip(), op["audience"]
+        elif kind in ("retire", "restore"):
+            e["status"] = "retired" if kind == "retire" else "active"
+            e["history"].append({"game": game, "change": kind + "d", "note": note})
+        else:
+            skipped += 1
+    nb["games"].append(game)
+    return skipped
+
+
+def update_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, g: dict) -> tuple[int, int, float]:
+    """Updates the notebook with one game. Returns (ops applied, ops skipped, cost)."""
+    messages = [
+        {"role": "system", "content": system_prompt(rules, "You keep a notebook of everything learned about "
+         "playing this game well: the long-term memory behind a short tips sheet that players get.")},
+        {"role": "user", "content": f"The notebook so far:\n\n{notebook_view(nb)}\n\n---\n\nLessons from a new game:"
+         f"\n\n{describe_game(g)}\n\n---\n\nUpdate the notebook with this game, as ops:\n"
+         "- support: a lesson matches an existing entry. Give the lesson's weight and a short note of the "
+         "evidence (who, and what happened).\n"
+         "- add: a concrete, reusable lesson with no entry yet, with its audience ('Everyone', a faction or a "
+         "role), weight and evidence. Keep ideas with thin evidence too: the notebook is where they wait for "
+         "more games, and only the best reach the players' sheet.\n"
+         "- against: a report that an entry backfired, was exploited by opponents, or is wrong, with the "
+         "report's weight and why. FEEDBACK ON THE TIPS SHEET lines are such reports when they say hurt or "
+         "wrong, and support when they say helped.\n"
+         "- edit: new evidence refines an entry (sharper wording, a condition, a different audience); give "
+         "the new tip and why.\n"
+         "- retire: an entry is shown wrong (it contradicts the rules, or well-weighted reports keep showing "
+         "it backfires); restore: new evidence revives a retired entry, instead of adding it again.\n"
+         "Skip recaps of this game, complaints about the program or interface, vague advice, lessons that "
+         "contradict the rules, and lessons from players marked as barely playing. Several ops can come "
+         "from one lesson, and no ops is fine if the game taught nothing new."},
+    ]
+    reply = client.chat(spec.model, messages, schema=OPS_SCHEMA, schema_name="notebook_ops", effort=spec.effort)
+    ops = answer_json(reply).get("ops", [])
+    skipped = apply_ops(nb, ops, g["game"])
+    return len(ops) - skipped, skipped, reply.cost
+
+
+def render_notebook(nb: dict) -> str:
+    """The notebook as Markdown, for people to read."""
+    out = [f"# Tips notebook\n\nEverything learned from {len(nb['games'])} games, with evidence. Built by "
+           "`uv run tips.py build`; the players' sheet is distilled from the active entries.\n"]
+    for status in ("active", "retired"):
+        entries = [e for e in nb["entries"] if e["status"] == status]
+        if entries:
+            out.append(f"## {status.capitalize()} ({len(entries)})\n")
+            out += [f"- {entry_line(e, notes=10)}" for e in sorted(entries, key=lambda e: HEADINGS.index(e["audience"])
+                                                                     if e["audience"] in HEADINGS else len(HEADINGS))]
+            out.append("")
+    return "\n".join(out)
+
+
 DISTILL_SCHEMA = _obj(sections={"type": "array", "items": _obj(
     heading={"type": "string", "enum": HEADINGS},
     tips={"type": "array", "items": _obj(tip={"type": "string"},
                                          games={"type": "integer"})})})  # games: how many games support it
 
 
-def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], max_words: int,
-            current: str = "") -> tuple[str, float]:
-    """Ask `spec` to merge the games' lessons into one tips file, or, given the `current` tips file, to
-    revise it with these (newer) games. Returns (Markdown body, cost)."""
-    lessons = "\n\n".join(describe_game(g) for g in games)
-    sheet = "\n\n".join(f"## {h}\n{body}" for h, body in sections(current).items())
-    task = ("Distill these into a tips sheet that will be given to players before future games, so they "
-            "start with the experience of these games." if not sheet else
-            "Here is the current tips sheet, built from earlier games (a tip without '(seen in N games)' was "
-            f"seen in 1):\n\n{sheet}\n\n---\n\nRevise it with the lessons from these newer games, like a "
-            "thoughtful player updating their notes after more games: keep tips that held up (and raise their "
-            "count when a new game supports them), sharpen or drop tips reported as hurting or wrong (weighing "
-            "who reported it and why; one weak report is not enough to drop a well-supported tip), and add new "
-            "tips the new games teach. Players who had the sheet comment on it under FEEDBACK ON THE TIPS SHEET; "
-            "watch for tips that opponents learned to exploit.")
+def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_words: int) -> tuple[str, float]:
+    """Distills the notebook's active entries into the players' tips sheet. Returns (Markdown body, cost)."""
+    entries = "\n".join(entry_line(e) for e in nb["entries"] if e["status"] == "active")
     messages = [
-        {"role": "system", "content": f"{rules}\n\n---\n\nYou coach players of this game. Below are lessons "
-         "written after past games by the players (each tagged with their role, whether they won, their "
-         "model and a weight) and by the moderator, who saw everything, including hidden night actions. "
-         "The weight (0-1) is higher when the lesson's author is a stronger model and when the game's "
-         "players were stronger on average."},
-        {"role": "user", "content": f"Lessons from {len(games)} games:\n\n{lessons}\n\n---\n\n{task} Rules:\n"
-         "- Merge duplicates. Prefer lessons with a high weight, lessons that recur across games, and "
-         "lessons the moderator backs with evidence; a low-weight lesson needs support from elsewhere to be "
-         "kept, and where lessons conflict, the higher-weight side wins. For each tip give the number of "
-         "games that support it.\n"
-         "- Drop tips that contradict the rules above, recaps of one game, tips about the program or "
-         "interface rather than play, and vague advice ('be careful'). Lessons from players marked as "
-         "barely playing, or from games with many program errors, count for less.\n"
+        {"role": "system", "content": system_prompt(rules, "You keep a notebook of tips learned from past "
+         "games, and from it write the short tips sheet players get before a game.")},
+        {"role": "user", "content": f"The notebook ({len(nb['games'])} games):\n\n{entries}\n\n---\n\n"
+         "Write the tips sheet: the most useful entries, merged and worded for a player about to play. Rules:\n"
+         "- Prefer entries with more games and total weight behind them; an entry with reports against it "
+         "needs clearly more support than reports, or a rewording that fixes what went wrong. Thinly supported "
+         "entries make the sheet only if they are clearly valuable. For each tip give the number of games "
+         "that support it.\n"
          "- Each tip is one or two concrete sentences a player can act on.\n"
          "- Use one section per audience: 'Everyone', a faction ('Village', 'Yakuza', 'Neutral'), or a "
          "role name. Every player sees the whole sheet, so a section also tells the other side how that "
@@ -245,49 +362,60 @@ def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], m
     return "\n\n".join(out) + "\n", reply.cost
 
 
-GAMES_LINE = re.compile(r"^Games: (.*)\.$", re.M)
+class NoNewGames(Exception):
+    pass
 
 
 def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
           include_mock: bool = False, fresh: bool = False) -> Path:
-    """Write the tips file `out`. If it exists (and not `fresh`), it is a living document: only games it
-    doesn't list yet are read, it is revised with them, and the old version is kept in <out dir>/history/."""
-    current = "" if fresh or not out.exists() else out.read_text(encoding="utf-8")
-    listed = GAMES_LINE.search(current)
-    done = [g for g in listed[1].split(", ") if g] if listed else []
-    games = [g for p in sorted(paths) if p.stem not in done and (g := read_game(p))
+    """Updates the notebook beside the sheet `out` with each game it doesn't have yet (in log order),
+    then rewrites the sheet from it. Earlier versions of both go to <out dir>/history/. `fresh` starts
+    a new notebook."""
+    nb_path = notebook_path(out)
+    nb = new_notebook() if fresh or not nb_path.exists() else json.loads(nb_path.read_text(encoding="utf-8"))
+    games = [g for p in sorted(paths, key=lambda p: p.name) if p.stem not in nb["games"] and (g := read_game(p))
              and (include_mock or not g["mock"])]
     if not games:
-        raise SystemExit("No new game logs with lessons found (games need --lessons, which is on by default)."
-                         + (f" {out} already has all {len(done)} games." if done else ""))
+        raise NoNewGames("No new game logs with lessons found (games need --lessons, which is on by default)."
+                         + (f" {nb_path} already has all {len(nb['games'])} games." if nb["games"] else ""))
     rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8")
-    body, cost = distill(client, spec, rules, games, max_words, current)
-    if current:
-        old = out.parent / "history" / f"{out.stem}_{datetime.now():%Y%m%d_%H%M%S}.md"
-        old.parent.mkdir(parents=True, exist_ok=True)
-        old.write_text(current, encoding="utf-8")
-    names = done + [g["game"] for g in games]
-    header = (f"# Tips from past games\n\n{'Revised' if current else 'Built'} {datetime.now():%Y-%m-%d %H:%M} by "
-              f"{spec} with `uv run tips.py build` ({len(games)} new games, {len(names)} in all). Players never "
-              "see this preamble; the sections below go to players by heading (see tips.py). Earlier versions "
-              f"are in history/.\n\nGames: {', '.join(names)}.\n\n")
+    cost = 0.0
+    for g in games:
+        applied, skipped, c = update_notebook(client, spec, rules, nb, g)
+        cost += c
+        print(f"  {g['game']}: {applied} notebook changes" + (f" ({skipped} invalid ones skipped)" if skipped else ""))
+    body, c = write_sheet(client, spec, rules, nb, max_words)
+    cost += c
+    stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
+    for path in (out, nb_path):
+        if path.exists():
+            (out.parent / "history").mkdir(parents=True, exist_ok=True)
+            (out.parent / "history" / f"{path.stem}_{stamp}{path.suffix}").write_bytes(path.read_bytes())
+    active = sum(e["status"] == "active" for e in nb["entries"])
+    header = (f"# Tips from past games\n\nWritten {datetime.now():%Y-%m-%d %H:%M} by {spec} with `uv run tips.py "
+              f"build`, from the {active} active entries of {nb_path.name} ({len(nb['games'])} games). Players never "
+              "see this preamble; they see every section below. Earlier versions are in history/.\n\n")
     out.parent.mkdir(parents=True, exist_ok=True)
+    nb_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False), encoding="utf-8")
+    nb_path.with_suffix(".md").write_text(render_notebook(nb), encoding="utf-8")
     out.write_text(header + body, encoding="utf-8")
-    print(f"Tips: {out} ({len(body.split())} words; {len(games)} new games, {len(names)} in all; cost ${cost:.2f})")
+    print(f"Tips: {out} ({len(body.split())} words) from {nb_path.name} ({active} active entries, "
+          f"{len(nb['games'])} games; {len(games)} new); cost ${cost:.2f}")
     return out
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    b = sub.add_parser("build", help="distill lessons and strategy reviews from game logs into a tips file")
+    b = sub.add_parser("build", help="update the notebook with new games' lessons, then rewrite the tips sheet")
     b.add_argument("logs", nargs="*", help="game JSONL logs or globs (default: logs/game_*.jsonl)")
-    b.add_argument("--out", default=str(ROOT / "tips" / "tips.md"))
+    b.add_argument("--out", default=str(ROOT / "tips" / "tips.md"), help="the players' sheet; the notebook is "
+                   "<name>_notebook.json (and .md) beside it")
     b.add_argument("--model", default="opus-5.5", help="model[:effort] that distills the tips")
     b.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
     b.add_argument("--exclude", default="", help="comma-separated game ids (log file stems) to leave out")
-    b.add_argument("--fresh", action="store_true", help="rebuild from all the games instead of revising --out "
-                   "with games it doesn't have yet")
+    b.add_argument("--fresh", action="store_true", help="start a new notebook from all the games, instead of "
+                   "adding the games it doesn't have yet")
     b.add_argument("--mock", action="store_true", help="no API calls (random tips), and read mock_*.jsonl logs")
     s = sub.add_parser("show", help="print what players see of a tips file")
     s.add_argument("file")
@@ -300,8 +428,11 @@ def main() -> None:
     paths = {Path(p) for pat in patterns for p in (glob.glob(pat) or [pat])}
     paths = {p for p in paths if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
     client = MockClient(0) if args.mock else OpenRouterClient(load_api_key())
-    build(sorted(paths), Path(args.out), client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
-          fresh=args.fresh)
+    try:
+        build(sorted(paths), Path(args.out), client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
+              fresh=args.fresh)
+    except NoNewGames as e:
+        raise SystemExit(str(e)) from None
 
 
 if __name__ == "__main__":

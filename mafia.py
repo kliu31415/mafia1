@@ -60,7 +60,7 @@ from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from events import PHASE
 from state import setup_game
-from tips import assign_tips, file_digest, parse_player_tips
+from tips import assign_tips, build as build_tips, file_digest, parse_player_tips
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -93,16 +93,18 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
               max_days: int | None = None, check_nights: bool = False, checkpoint: bool = True,
               resume: dict | None = None, tips: Path | None = None, tips_for: str = "all",
-              player_tips: list[tuple[str, Path | None]] | None = None) -> Path:
+              player_tips: list[tuple[str, Path | None]] | None = None, update_tips: Path | None = None) -> Path:
     """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
     finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game.
     tips: a tips file (tips.py) put into the system prompt of the players tips_for picks (see
     tips.choose_players); player_tips then sets (or, with None, removes) each named player's or model's
-    tips file. Resumed games keep the tips they started with."""
+    tips file. Resumed games keep the tips they started with. update_tips: a tips sheet whose notebook
+    to update with this game's lessons afterwards (tips.build), rewriting the sheet."""
     play_args = {"models": models, "moderator_model": moderator_model, "roles": roles, "seed": seed,
                  "debrief": debrief, "flag_issues": flag_issues, "feedback_field": feedback_field,
                  "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights,
-                 "tips": tips, "tips_for": tips_for, "player_tips": player_tips}
+                 "tips": tips, "tips_for": tips_for, "player_tips": player_tips,
+                 "update_tips": update_tips}
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rules = RULES_PATH.read_text(encoding="utf-8")
@@ -240,6 +242,9 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                         "tips": bool(p.tips),
                         "death": p.death} for p in game.players],
               errors=dict(log.error_counts))
+    if update_tips and lessons:  # after the result record, which it reads; its errors miss the result's count
+        step("Updating the tips notebook and sheet", lambda: build_tips(
+            [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient)))
     log.close()
     ckpt_path.unlink(missing_ok=True)
     print("\n".join(usage_lines(usage)))
@@ -291,6 +296,9 @@ def main() -> None:
     ap.add_argument("--tips-for", default="all", metavar="WHO", help="who gets --tips: all (default), half (a "
                     "random half of the seats, for comparing experienced and fresh players), or comma-separated "
                     "player names (Alice, ...) and models (e.g. opus-5.5)")
+    ap.add_argument("--update-tips", metavar="FILE", type=Path, help="after the game, add its lessons to the "
+                    "notebook of this tips sheet and rewrite the sheet (tips.py build; needs --lessons), e.g. "
+                    "tips/tips.md")
     ap.add_argument("--player-tips", default="", metavar="WHO=FILE,...", help="per player or model, which tips "
                     "file to give (or none), applied after --tips/--tips-for; a name wins over a model, e.g. "
                     "opus-5.5=tips/tips.md,Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none")
@@ -334,7 +342,7 @@ def main() -> None:
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
               lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
               checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
-              player_tips=player_tips)
+              player_tips=player_tips, update_tips=args.update_tips)
 
 
 if __name__ == "__main__":

@@ -101,23 +101,31 @@ def test_a_game_logs_who_had_tips_and_how_they_went(tmp_path, monkeypatch):
     assert "Caught a Grunt" in path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
 
 
-class DistillClient:
-    """Answers the distill call with fixed sections and remembers the prompt."""
+class TipsClient:
+    """Answers notebook updates with queued ops and the sheet call with fixed sections, and keeps each prompt."""
 
-    def __init__(self):
+    def __init__(self, ops: list[list[dict]]):
         self.total_cost: dict[str, float] = {}
-        self.prompt = ""
+        self.ops = ops
+        self.prompts: list[tuple[str, str]] = []  # (schema name, user prompt)
 
     def chat(self, model, messages, *, tools=None, schema=None, schema_name="response", effort=None):
-        self.prompt = messages[-1]["content"]
-        content = json.dumps({"sections": [
-            {"heading": "Medic", "tips": [{"tip": "Protect a claimed Sheriff.", "games": 2}]},
-            {"heading": "Everyone", "tips": [{"tip": "Count the votes.", "games": 1}, {"tip": " ", "games": 1}]},
-            {"heading": "Yakuza", "tips": []}]})
+        self.prompts.append((schema_name, messages[-1]["content"]))
+        if schema_name == "notebook_ops":
+            content = json.dumps({"ops": self.ops.pop(0)})
+        else:
+            content = json.dumps({"sections": [
+                {"heading": "Medic", "tips": [{"tip": "Protect a claimed Sheriff.", "games": 2}]},
+                {"heading": "Everyone", "tips": [{"tip": "Count the votes.", "games": 1}, {"tip": " ", "games": 1}]},
+                {"heading": "Yakuza", "tips": []}]})
         return LLMReply(content, None, [], {"role": "assistant", "content": content}, model.value, 0.0, {})
 
 
-def test_building_a_tips_file_from_game_logs(tmp_path):
+def op(kind, id="", tip="", audience="Everyone", weight=0.5, note=""):
+    return {"op": kind, "id": id, "audience": audience, "tip": tip, "weight": weight, "note": note}
+
+
+def test_the_notebook_and_sheet_are_built_from_game_logs(tmp_path):
     log = tmp_path / "game_20261009_000000_1.jsonl"
     records = [
         {"kind": "setup", "settings": {"mock": False}},
@@ -132,36 +140,58 @@ def test_building_a_tips_file_from_game_logs(tmp_path):
     ]
     log.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     (tmp_path / "game_20261009_000001_2.jsonl").write_text(json.dumps({"kind": "setup"}) + "\n", encoding="utf-8")
-    client = DistillClient()
+    client = TipsClient([[op("add", tip="Guard the Sheriff.", audience="Medic", weight=0.28, note="Alice"),
+                          op("add", tip="Track votes.", weight=0.7, note="Day 2 vote"),
+                          op("support", id="t99", weight=1.0)]])  # an unknown id is skipped
     out = tips.build(sorted(tmp_path.glob("game_*.jsonl")), tmp_path / "tips.md", client,
                      ModelSpec(Model.OPUS_5_5), max_words=500)
-    assert "Guard the Sheriff" in client.prompt and "Track votes" in client.prompt and "Day 2 vote" in client.prompt
-    assert "Distrust lessons from Ivan" in client.prompt and "[Alice, Medic, won" in client.prompt
+    (_, update), (_, sheet) = client.prompts
+    assert "Guard the Sheriff" in update and "Track votes" in update and "Day 2 vote" in update
+    assert "Distrust lessons from Ivan" in update and "[Alice, Medic, won" in update
     # Average player strength (2 + 5) / 2 = 3.5: Haiku's lesson weighs 0.4 * 0.7, the Opus moderator's 1.0 * 0.7.
-    assert "average player strength 3.5/5" in client.prompt
-    assert "claude-haiku-5.5, weight 0.28]" in client.prompt and "[moderator, weight 0.7]" in client.prompt
+    assert "average player strength 3.5/5" in update
+    assert "claude-haiku-5.5, weight 0.28]" in update and "[moderator, weight 0.7]" in update
+    assert "[t1] (Medic) Guard the Sheriff. | support: 1 games" in sheet and "[t2] (Everyone) Track votes." in sheet
+    nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
+    assert nb["games"] == ["game_20261009_000000_1"] and len(nb["entries"]) == 2  # the game without lessons is skipped
     text = out.read_text(encoding="utf-8")
-    assert "1 new games, 1 in all" in text  # the game without lessons is skipped
+    assert "2 active entries" in text and "(1 games)" in text
     assert text.index("## Everyone") < text.index("## Medic") and "## Yakuza" not in text
     assert "- Protect a claimed Sheriff. (seen in 2 games)" in text
     assert tips.player_view(text).startswith("## Everyone\n- Count the votes.")
+    assert "Guard the Sheriff" in tips.notebook_path(out).with_suffix(".md").read_text(encoding="utf-8")
 
-    # Run again after another game: the file is revised with only the new game, and the old one is kept.
+    # After another game, only that game updates the notebook, and the old sheet and notebook are kept.
     newer = tmp_path / "game_20261010_000000_3.jsonl"
     newer.write_text("\n".join(json.dumps(r) for r in [
         {"kind": "tips", "players": ["Alice"]},
         {"kind": "lessons", "who": "Alice", "role": "Medic", "model": "anthropic/claude-haiku-5.5", "lessons": [],
-         "tips_feedback": [{"tip": "Count the votes.", "verdict": "hurt", "why": "Yakuza voted in a block."}]},
+         "tips_feedback": [{"tip": "Track votes.", "verdict": "hurt", "why": "Yakuza voted in a block."}]},
     ]) + "\n", encoding="utf-8")
+    client.ops = [[op("against", id="t2", weight=0.16, note="Yakuza voted in a block"),
+                   op("edit", id="t1", tip="Guard a claimed Sheriff.", audience="Medic", note="sharper"),
+                   op("support", id="t1", weight=0.3, note="again"), op("retire", id="t2", note="backfired")]]
     tips.build(sorted(tmp_path.glob("game_*.jsonl")), out, client, ModelSpec(Model.OPUS_5_5), max_words=500)
-    assert "Revise it" in client.prompt and "## Medic\n- Protect a claimed Sheriff. (seen in 2 games)" in client.prompt
-    assert "Guard the Sheriff" not in client.prompt  # the first game is already in the sheet
-    assert 'FEEDBACK ON THE TIPS SHEET, hurt: "Count the votes." because Yakuza voted' in client.prompt
-    assert "given a tips sheet from earlier games: Alice" in client.prompt
-    assert "Games: game_20261009_000000_1, game_20261010_000000_3." in out.read_text(encoding="utf-8")
-    assert [p.read_text(encoding="utf-8") for p in (tmp_path / "history").iterdir()] == [text]
-    with pytest.raises(SystemExit, match="already has all 2 games"):
+    (_, update), (_, sheet) = client.prompts[2:]
+    assert "[t1] (Medic) Guard the Sheriff. | support: 1 games" in update  # the notebook so far
+    assert 'FEEDBACK ON THE TIPS SHEET, hurt: "Track votes." because Yakuza voted' in update
+    assert "given a tips sheet from earlier games: Alice" in update
+    assert "Track votes" not in sheet and "[t1] (Medic) Guard a claimed Sheriff. | support: 2 games" in sheet
+    nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
+    t1, t2 = nb["entries"]
+    assert t1["history"][-1]["old"] == "Guard the Sheriff." and t2["status"] == "retired" and len(t2["against"]) == 1
+    assert sorted(p.name.split("_2026")[0] for p in (tmp_path / "history").iterdir()) == ["tips", "tips_notebook"]
+    with pytest.raises(tips.NoNewGames, match="already has all 2 games"):
         tips.build(sorted(tmp_path.glob("game_*.jsonl")), out, client, ModelSpec(Model.OPUS_5_5), max_words=500)
+
+
+def test_a_game_can_update_the_tips_when_it_ends(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    sheet = tmp_path / "tips" / "tips.md"
+    mafia.play_game(ScriptedClient(), [Model.HAIKU_5_5], Model.HAIKU_5_5, TOWN4_GRUNT, seed=1, lessons=True,
+                    update_tips=sheet)
+    nb = json.loads(tips.notebook_path(sheet).read_text(encoding="utf-8"))
+    assert len(nb["games"]) == 1 and sheet.exists()
 
 
 def test_every_model_has_a_strength():
