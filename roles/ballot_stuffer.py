@@ -16,7 +16,7 @@ class BallotStuffer(RoleLogic):
     def briefing(self, game, p):
         line = ("When you spend a token at night, your vote counts twice in every Guilty/Innocent trial vote the "
                 "next Day, but never in nomination (Yes/No) votes.")
-        if p.name in game.role_state.get(TODAY, []):
+        if game.phase == "day" and p.name in game.role_state.get(TODAY, []):
             line += " Today your trial votes count twice."
         return [line]
 

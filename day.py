@@ -70,6 +70,8 @@ def price_table(rnd: int, trial: bool = False) -> str:
 def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
     game.emit(f"Day {game.day} begins.", cat=PHASE)
+    if game.day > 1 and not game.pending_deaths:  # players asked whether a quiet night was ever announced
+        game.emit("Nobody died last night.")
     game.announce_dawn()
     game.run_dawn_hooks()
     if game.check_winner() is not None:

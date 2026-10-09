@@ -31,7 +31,7 @@ def text_line(r: dict) -> str | None:
         return f"[ERROR {k}] {r['error']}"
     match k:
         case "setup":
-            lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat']:<2} {p['role']:<17} {p['model']}"
+            lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat'] + 1:<2} {p['role']:<17} {p['model']}"
                                   + (f"  {p['status']}" if p.get("status") else "") for p in r["players"]]
             return "\n".join(lines + [f"  Katana starts with {r.get('katana')}"])
         case "event":
@@ -50,12 +50,16 @@ def text_line(r: dict) -> str | None:
             res = r["result"]
             if res.get("attack"):
                 return f"Katana: {res['holder']} holds it and attacks {res['attack']}."
-            return f"Katana: no attack ({res.get('note', 'no target')}); {res.get('holder')} keeps it."
+            return f"Katana: no attack ({res.get('note', 'no target')}); {res.get('holder')} holds it."
         case "moderator_tool" if r["name"] == "end_phase":
             summary = tool_args(r["args"]).get("summary", "")
             return f"[Moderator summary] {summary}"
         case "claim":
             return f"[Claim] {r['player']}: {r['claim']}"
+        case "moderator_flag":
+            return f"[Moderator flag] {r['issue']}"
+        case "player_feedback":
+            return f"[Feedback from {r['player']}] {r['feedback']}"
         case "revenge":
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
         case "night_check":
@@ -402,7 +406,7 @@ def render_html(jsonl_path: Path) -> Path:
             roles = {p["name"]: p["role"] for p in r["players"]}
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
             name = Namer(roles)
-            rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat']}</td><td>{esc(p['role'])}</td>"
+            rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}</td>"
                            f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
             start_phase("Setup")

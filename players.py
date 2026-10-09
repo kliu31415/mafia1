@@ -91,7 +91,7 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = Tr
 
 VOTE_SCHEMA = obj(thoughts=STR, vote=BOOL)
 LAST_WILL_SCHEMA = obj(thoughts=STR, last_will=STR)  # thoughts first: Haiku often skipped reasoning here
-ANSWER_SCHEMA = obj(answer=STR)
+ANSWER_SCHEMA = obj(thoughts=STR, answer=STR)
 
 
 def night_action_schema(game: Game, p: Player) -> dict:
@@ -126,8 +126,8 @@ def role_briefing(game: Game, p: Player) -> str:
         lines.append(f"You have {tokens_left(p)}.")
     if p.info.alignment is Alignment.EVIL:
         # Teammates' tokens too: players lost track of their own and each other's (game_20261009_055144).
-        team = ", ".join(f"{y.name} ({y.role}{', ' + tokens_left(y) if y.tokens else ''})"
-                         for y in game.players if y.info.alignment is Alignment.EVIL)
+        team = ", ".join(f"{y.name} ({y.role}{', ' + tokens_left(y) if y.tokens and y.alive else ''}"
+                         f"{'' if y.alive else ', dead'})" for y in game.players if y.info.alignment is Alignment.EVIL)
         lines.append(f"Yakuza members: {team}. Katana holder: {game.katana_holder}.")
     lines += logic(p.role).briefing(game, p)
     return " ".join(lines)

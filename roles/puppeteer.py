@@ -1,18 +1,18 @@
 """Puppeteer: spends a token at night to chat as someone else the next day."""
 
-from roles.base import Alignment, RoleLogic, register
+from roles.base import Alignment, RoleLogic, register, token_user_error
 
 
 @register("Puppeteer")
 class Puppeteer(RoleLogic):
     night_note = "A Puppeteer's puppet: use the puppet op (code swaps who chats tomorrow)."
-    ops = {"puppet": ({"player", "by"}, set(), "{op:'puppet', player, by}: player is puppeted by the Puppeteer "
-                                                 "`by` tomorrow")}
+    ops = {"puppet": ({"player", "by"}, set(), "{op:'puppet', player, by}: the Puppeteer `by` spends a "
+                                                 "token; player is puppeted by them tomorrow")}
 
     def check_op(self, game, change):
         by = game.player(change["by"])
-        if by.role != "Puppeteer" or not by.alive:
-            return f"{by.name} is not a living Puppeteer"
+        if error := token_user_error(game, by.name, "Puppeteer", "puppet"):
+            return error
         if change["player"] == by.name:
             return "a Puppeteer can't puppet themselves"
         if game.player(change["player"]).info.alignment is Alignment.EVIL:
@@ -20,4 +20,5 @@ class Puppeteer(RoleLogic):
         return None
 
     def apply_op(self, game, change):
+        game.player(change["by"]).tokens["puppet"] -= 1
         game.puppets_next[change["player"]] = change["by"]

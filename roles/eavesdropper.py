@@ -10,7 +10,7 @@ TODAY = "eavesdrops"  # game.role_state: Eavesdropper -> target, today
 class Eavesdropper(RoleLogic):
     roleplayer_can_fake = False  # live PMs
     night_note = ("An Eavesdropper's target (a visit; nothing if role-blocked): use the eavesdrop op (code shows "
-                  "them the target's private messages tomorrow).")
+                  "them the target's private messages tomorrow, and tells them so at dawn: don't tell() them).")
     ops = {"eavesdrop": ({"player", "by"}, set(), "{op:'eavesdrop', player, by}: the Eavesdropper `by` reads "
                                                     "player's private messages tomorrow")}
 
@@ -28,7 +28,9 @@ class Eavesdropper(RoleLogic):
     def at_dawn(self, game):
         game.role_state[TODAY] = game.role_state.pop(NEXT, {})
         for me, target in game.role_state[TODAY].items():
-            if game.player(me).alive:
+            if game.player(me).alive and not game.player(target).alive:
+                game.emit(f"{target} died, so you have no one to eavesdrop on today.", [me])
+            elif game.player(me).alive:
                 game.emit(f"You are eavesdropping on {target} today: you'll read every private message they send "
                           "or receive.", [me])
 

@@ -226,3 +226,15 @@ def test_a_speaker_naming_themself_at_the_start_of_a_message_is_trimmed(game_fac
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
     sent = [e.fields["message"] for e in game.events if e.cat in ("chat", "pm") and e.fields["speaker"] == "Alice"]
     assert sent == ["I'm the Sheriff.", "hi", "Bob: hi"]
+
+
+def test_ledger_dates_night_deaths_by_their_night_and_a_quiet_night_is_announced(game_factory):
+    game, players = game_factory(TOWN4_GRUNT)
+    game.phase = "night"
+    game.kill("Alice", "Katana")
+    game.day = 2
+    run_day(game, players)
+    assert "- Night 1: Alice (" in game.public_ledger()
+    game.day = 3
+    run_day(game, players)
+    assert sum(e.text == "Nobody died last night." for e in game.events) == 1

@@ -215,7 +215,10 @@ class Moderator:
                 p = g.player(args["player"])
                 out = self.players.ask(p, f"The moderator asks: {args['question']}", ANSWER_SCHEMA,
                                        {"answer": ""})
-                return out
+                # Kept in the player's history, so later turns show what they chose.
+                text = f"The moderator asked you: {args['question']} You answered: {out['answer']}"
+                g.emit(f"Moderator (private): {text}", [p.name], cat=RESULT, message=text)
+                return {"answer": out["answer"]}  # not the player's private thoughts
             case "end_phase":
                 return {"ok": True}
             case "flag_issue":

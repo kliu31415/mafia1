@@ -224,7 +224,8 @@ class Game:
         self.emit(self.death_reveal(name, cause), cat=DEATH)
         p = self.player(name)
         what = f"role cleaned by a Mortician, {cause}" if p.status.get(Status.CLEANED) else f"{p.role}, {cause}"
-        self.death_record.append(f"Day {self.day} {self.phase}: {name} ({what})")
+        when = p.death or {"day": self.day, "phase": self.phase}  # when they died, not when it's revealed
+        self.death_record.append(f"{'Night' if when['phase'] == 'night' else 'Day'} {when['day']}: {name} ({what})")
 
     def public_ledger(self) -> str:
         """A compact summary of public facts, shown to every player each turn."""

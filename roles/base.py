@@ -94,6 +94,16 @@ LOGIC: dict[str, RoleLogic] = {}
 DEFAULT = RoleLogic()
 
 
+def token_user_error(game: Game, by_name: str, role: str, kind: str) -> str | None:
+    """check_op for an op that spends one of `role`'s `kind` tokens: None if `by` can spend one."""
+    by = game.player(by_name)
+    if by.role != role or not by.alive:
+        return f"{by.name} is not a living {role}"
+    if by.tokens.get(kind, 0) < 1:
+        return f"{by.name} has no {kind} token left"
+    return None
+
+
 def register(role: str):
     def wrap(cls: type[RoleLogic]) -> type[RoleLogic]:
         LOGIC[role] = cls()

@@ -304,8 +304,10 @@ def test_moderator_is_told_ex_con_reads_evil_to_seers_too(game_factory):
 def test_role_ops_are_offered_only_for_roles_in_the_game(game_factory):
     game, players = game_factory(["Clerk", "Vanilla Villager", "Vanilla Villager"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote"}]})
-    assert game.rigged_day == game.day + 1
+    mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
+    assert game.rigged_day == game.day + 1 and game.player("Alice").tokens["clerk"] == 0
+    with pytest.raises(ValueError, match="no clerk token"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
     with pytest.raises(ValueError, match="op must be one of"):
         mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "player": "Bob"}]})
     description = next(t for t in mod.tools if t["function"]["name"] == "apply_changes")["function"]["description"]
@@ -423,3 +425,13 @@ def test_medic_briefing_spells_out_token_costs(game_factory):
     from players import role_briefing
     game, _ = game_factory(["Medic", "Grunt"])
     assert "yourself with Standard Defense costs 1 token" in role_briefing(game, game.player("Alice"))
+
+
+def test_ask_player_answer_is_kept_in_the_players_history_and_hides_their_thoughts(game_factory):
+    def decide(name, task, schema):
+        return {"thoughts": "secret plan", "answer": "ignite"} if name == "Alice" and "answer" in schema["properties"] \
+            else None
+    game, players = game_factory(["Arsonist", "Vanilla Villager", "Grunt"], ScriptedClient(decide))
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert mod.dispatch("ask_player", {"player": "Alice", "question": "Ignite or douse?"}) == {"answer": "ignite"}
+    assert "You answered: ignite" in game.history_for("Alice") and "ignite" not in game.history_for("Bob")
