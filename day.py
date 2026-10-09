@@ -302,6 +302,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):  # a Puppeteer may set the puppet's
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
+        if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
+            claim = claims[-1][1]
         if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
             game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim)
         if claims and claims[-1][0] == game.day:
@@ -354,6 +356,14 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.alive() if q.name not in (p.name, to, *readers)], kind="notice")
     return public, nominee
+
+
+def same_claim(a: str, b: str) -> bool:
+    """Claims that differ only in case, spacing or end punctuation ("Carol Evil." and "Carol Evil" made two
+    [Claim] lines in game_20261009_214935_178025)."""
+    def norm(s: str) -> str:
+        return " ".join(s.split()).rstrip(".!;, ").casefold()
+    return norm(a) == norm(b)
 
 
 def run_nomination(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
