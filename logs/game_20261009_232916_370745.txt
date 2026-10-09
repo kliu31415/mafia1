@@ -1,0 +1,46 @@
+Setup:
+  Alice    seat 1  Fortune Teller    google/gemini-3.8-flash
+  Bob      seat 2  Medic             openai/gpt-6-luna-pro
+  Carol    seat 3  Lookout           google/gemini-3.8-flash
+  Dave     seat 4  Executioner       anthropic/claude-haiku-5.5  {'target': 'Frank'}
+  Erin     seat 5  Prosecutor        google/gemini-3.8-flash
+  Frank    seat 6  Fabricator        openai/gpt-6-luna-pro
+  Grace    seat 7  Trapper           openai/gpt-6-luna
+  Heidi    seat 8  Ritualist         anthropic/claude-haiku-5.5
+  Ivan     seat 9  Seer              openai/gpt-6-luna
+  Judy     seat 10 Sheriff           openai/gpt-6-luna
+  Mallory  seat 11 Clerk             anthropic/claude-haiku-5.5
+  Katana starts with Heidi
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Judy (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Judy.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Judy (public): Day 1 is thin on evidence. Everyone name one player you currently distrust and why; let's build a record before anyone pushes a trial.
+Mallory (public): Too early for hard reads. Bob opened by naming people without giving reasons, so I'll watch who pushes nominations and who defends them too fast.
+Alice (public): Mallory, Bob hasn't even spoken yet—the order started with Judy and went to you. Let's hear what Bob and the rest of the circle actually have to say before casting shade.
+Bob (public): No solid read yet. Mallory wrongly attributed a speech to me before my turn; could be a mistake, but that's my tentative distrust. Others?
+Carol (public): Mallory misattributing a push to Bob before Bob even spoke is definitely sloppy or an attempt to fabricate early friction. I'm keeping an eye on Mallory for now.
+Dave (public): No hard read yet. Agree Mallory jumped the gun on Bob. I'll wait for Erin, Frank and the rest before naming anyone, and I want reasons, not vibes.
+Erin (public): Mallory likely mixed up Judy and Bob, since Judy was the one asking people to name suspects. It is sloppy, but let's see how Mallory responds before tunneling on it. I want to hear from Frank, Grace, Heidi, and Ivan next.
+Frank (public): Mallory's timeline slip is worth noting, but it could be a simple mix-up; I don't think it proves intent. I'll watch how she responds. Let's hear Grace, Heidi and Ivan before anyone turns this into a case.
+Grace (public): Mallory's attribution is the only concrete inconsistency so far, but it could be a mix-up. I'd like her clarification; let's hear Heidi and Ivan before considering a trial.
+Heidi (public): Mallory's slip looks like a simple mix-up to me, so I won't push it yet. Nobody has given a real reason so far. I'm waiting to hear Ivan and the rest before naming anyone.
+Ivan (public): The timeline error is real, but everyone piling onto it isn’t new evidence. Mallory, explain what you meant; then let’s hear something independent before considering a trial.
+Judy (public): For clarity, my opening asked everyone to name someone they distrust and why; I didn’t name Bob or anyone else. Mallory, what did you mean? Repeating the slip isn’t new evidence—others, please offer independent reads.
+Mallory (public): Apologies, I mixed up Judy and Bob; that was my slip. My honest read so far: Carol and Ivan piled on fast. I want independent reasons before any trial.
+Alice (public): Mallory's clarification fits an honest mix-up. Let's move past it—Carol, Dave, who are your actual suspects if not Mallory?
+Bob (public): Mallory’s correction is plausible, so I don’t support a trial on that alone. Carol, you called it a possible fabrication—what specifically suggests intent rather than a name mix-up? Dave, please give us an independent read.
+Carol (public): Fair enough—mixing up Judy and Bob explains it cleanly, so I'm fine dropping that. I said 'sloppy or intentional' because manufactured pushes do happen on Day 1, but Mallory's explanation fits. Without night info yet, I'm mainly watching to see who takes proactive stances versus coasting behind the crowd.
+Dave (public): Frank, you and Grace both called Mallory's slip a mix-up within seconds of each other. What's your independent read on anyone besides Mallory?
+Erin (public): Now that Mallory's mix-up is cleared, notice how almost the entire circle gave identical safe reactions. I agree with Dave: Frank, Grace, and particularly Heidi and Ivan need to offer concrete thoughts on someone other than Mallory before this day stalls out.
+Frank (public): My independent lean is Carol: she first framed Mallory's mistake as possibly manufactured, then dropped that without offering a separate suspect. That's not a case by itself; I want her and the rest to name one concrete reason behind an actual read.
+Grace (public): My independent lean is Dave: after agreeing the Mallory case was weak, he shifted scrutiny to Frank and me for not naming a suspect. That’s pressure, not evidence; I don’t support a trial yet.
+Heidi (public): Erin and Dave both pushed hard for named suspects from Frank and Grace, which is fair but thin on evidence. My lean is Erin: she's steering the talk toward trials before anyone has real information. Still no nomination from me.
+Ivan (public): My independent concern is Erin: she singled out Heidi and me for lacking concrete reads, though I had already argued against piling onto Mallory. That may just be pressure for discussion, not a case. Dave’s pressure on Frank and Grace also merits follow-up; I wouldn’t trial anyone yet.
+Judy (public): The slip is resolved, not a case. My mild concern is Erin: she repeatedly pressed others for named suspects but hasn’t given a concrete case herself. Dave has pressed too; neither is trial-worthy yet. Let’s hear independent reads.
+Mallory (public): Agree with Judy: Erin and Dave have pressed others for suspects without giving a case of their own. Erin, name your suspect and reason before anyone is put on trial.
+Alice (public): Scrutinizing Erin and Dave just for pressing others to speak feels exaggerated; generating discussion on Day 1 is standard town play. Let's hear Erin's response before drawing conclusions.
+Bob (public): Erin, you've asked several people for independent reads; what's yours, and what specific behavior supports it? Dave's pressure is similarly thin, so I don't support a trial yet.
+Carol (public): Frank, sticking to Mallory after a clean explanation would be tunneling. Day 1 needs conversation, so the sudden wave of players pivoting onto Erin just for pressing people feels rather opportunistic. I want to hear Erin's response, but I'm keeping an eye on those eager to form an easy wagon.
+Dave (public): Frank's case against Carol is thin: she dropped the Mallory point without pushing a trial. Frank, what concrete evidence supports calling her suspicious?

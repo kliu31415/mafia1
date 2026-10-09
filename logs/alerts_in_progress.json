@@ -139,5 +139,22 @@
    "1791582376.6941924:player_error"
   ],
   "note": "fixes pushed; DeepSeek 15% token-cap failures (dropped from later games); rules: does a Roleplayer know they're one?, Ex-Con auto visit vs role-block"
+ },
+ "game_20261009_212707_751277": {
+  "ids": [
+   "1791582585.1212685:moderator_flag",
+   "1791582969.5905356:player_error",
+   "1791582978.2940457:player_feedback",
+   "1791583802.7074058:player_error",
+   "1791584354.691468:player_error",
+   "1791585305.6994536:api_retry",
+   "1791586066.9134102:player_error",
+   "1791586747.2348254:moderator_flag",
+   "1791587291.4485703:moderator_flag",
+   "1791587322.524165:night_check_issue",
+   "1791588525.7925715:review_issue:0",
+   "1791588525.7925715:review_issue:1"
+  ],
+  "note": "Cardinal double curse by moderator (night note fixed f24e749; outcome likely unchanged); rules: Yakuza report on a blocked teammate, blocked Yakuza's Katana vote"
  }
 }
