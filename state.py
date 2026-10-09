@@ -110,6 +110,11 @@ class Game:
         """Who reads and writes `name`'s chat today (the Puppeteer, if `name` is puppeted)."""
         return self.puppets.get(name, name)
 
+    def pm_listeners(self) -> list[str]:
+        """Living players who read every private message's contents (Wiretap). A puppeted listener
+        can't see private messages today, like any puppet."""
+        return [p.name for p in self.alive() if logic(p.role).hears_all_pms and p.name not in self.puppets]
+
     # --- lookups --------------------------------------------------------------------------
 
     def player(self, name: str) -> Player:

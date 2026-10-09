@@ -291,6 +291,11 @@ Mortician
   death is revealed publicly with its cause, but their role and last will show as "cleaned by mortician". You are
   privately told their role and last will.
 
+Wiretap
+  You passively read the contents of every private message sent during the Day, between any two players. This is
+  not a night action or a visit, so role-blocks don't stop it. Puppeted messages reach you as the puppet's (you
+  aren't told about the puppeting). Nobody is told that a Wiretap exists.
+
 ---------------------------------------- Neutral ----------------------------------------
 Each Neutral player is their own faction (R2).
 

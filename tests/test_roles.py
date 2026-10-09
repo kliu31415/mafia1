@@ -85,6 +85,30 @@ def test_puppeteer_writes_the_puppets_messages(game_factory):
     assert game.claim_record == {"Bob": [(1, "Sheriff. N1: Carol Evil")]}
 
 
+def test_wiretap_reads_every_pm_but_a_dead_one_stops(game_factory):
+    def decide(name, task, schema):
+        if name == "Bob" and "public_message" in task:  # Bob is puppeted, so Erin writes as Bob
+            return None
+        if name == "Erin" and "You are puppeting Bob" in task:
+            return {"private_messages": [{"to": "Alice", "text": "Puppet secret."}]}
+        if name == "Carol" and "private_messages" in schema["properties"]:
+            return {"private_messages": [{"to": "Alice", "text": "Carol secret."}]}
+        return None
+    game, players = game_factory(VILLAGE5[:3] + ["Wiretap", "Puppeteer", "Grunt"], ScriptedClient(decide))
+    game.puppets_next = {"Bob": "Erin"}
+    run_day(game, players)
+    pms = [e for e in game.events if e.cat == "pm"]
+    assert {e.fields["message"] for e in pms} == {"Puppet secret.", "Carol secret."}
+    assert all(e.visible("Dave") and not e.visible("Frank") for e in pms)  # Frank is a Yakuza, not a Wiretap
+    assert "Bob -> Alice (private): Puppet secret." in game.history_for("Dave")  # shown as the puppet's
+    assert "Carol sent Alice a private message." not in game.history_for("Dave")  # no duplicate notice
+
+    game.player("Dave").alive = False
+    run_day(game, players)
+    later = [e for e in game.events if e.cat == "pm"][len(pms):]
+    assert later and not any(e.visible("Dave") for e in later)
+
+
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     game, _ = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"])
     assert game.katana_holder == "Alice"

@@ -29,12 +29,13 @@ def test_private_events_reach_only_their_audience(tmp_path, monkeypatch, seed):
     records = mock_game_records(tmp_path, monkeypatch, seed)
     setup = next(r for r in records if r["kind"] == "setup")
     yakuza = {p["name"] for p in setup["players"] if ROLES[p["role"]].alignment is Alignment.EVIL}
+    wiretaps = {p["name"] for p in setup["players"] if p["role"] == "Wiretap"}
     events = [r for r in records if r["kind"] in ("event", "notice")]
     for r in events:
         vis = r["visible_to"]
         match r.get("cat"):
             case "pm" if r["kind"] == "event":
-                assert set(vis) <= {r["speaker"], r["to"]}, r
+                assert set(vis) <= {r["speaker"], r["to"]} | wiretaps, r
             case "yak":
                 assert set(vis) <= yakuza, r
             case "result":

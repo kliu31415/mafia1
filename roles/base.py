@@ -35,6 +35,7 @@ class RoleLogic:
     Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
 
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
+    hears_all_pms: bool = False  # True: a living player of this role reads every Day private message's contents
     # Reminder for the moderator's night resolution, for effects with no submitted action or that
     # need a special op. Included when anyone in the game has (or had) the role.
     night_note: str = ""
@@ -101,4 +102,6 @@ def code_hooks(role_logic: RoleLogic) -> list[str]:
     hooks += [f"op {op}" for op in role_logic.ops]
     if not role_logic.blocks_win:
         hooks.append("never blocks a win")
+    if role_logic.hears_all_pms:
+        hooks.append("hears all PMs")
     return hooks
