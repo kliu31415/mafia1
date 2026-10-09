@@ -31,6 +31,10 @@ mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback fil
 the tips notebook and publishes the new sheet to the branch (`--no-tips` only copies logs). A PC game also
 publishes the sheet when it updates it, so cloud games get it without a pull.
 `lessons.jsonl` and `alerts_reviewed.json` are merged, not overwritten; mock games are never synced.
+tips/ (sheet, notebook, history/) is also tracked on main, so a new PC can pull it and keep building the
+notebook: commit its changes from the PC along with other work. Cloud threads never commit tips/ (their copy
+comes from the branch and the PC's commit is what counts). Changes under tips/ don't mark a game's
+`git_dirty`. logs/ stays untracked (large; it lives on the `logs` branch and the PC).
 
 ## Checking changes
 

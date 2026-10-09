@@ -10,7 +10,9 @@ Tips: the notebook on the PC (tips/) stays the one source of truth. Cloud games 
 sheet and don't update it (mafia.py turns that off in the cloud); `pull` on the PC adds their lessons to the
 notebook (the same `tips.py build` a PC game runs when it ends) and publishes the new sheet for later cloud
 games. mafia.py also calls after_game when a live game ends or stops: a cloud game pushes its logs, and a
-PC game publishes the sheet it just updated.
+PC game publishes the sheet it just updated. tips/ is also committed to main (by hand, from the PC), so a new
+PC can pull the notebook and carry on; main's copy can lag the branch's, so `tips` replaces unedited checkout
+copies.
 
 Files merged rather than copied: logs/lessons.jsonl (lines from every machine, each kept once) and
 logs/alerts_reviewed.json (a problem counts as reviewed once any machine reviewed it).
@@ -89,6 +91,14 @@ class Repo:
         out = self.git("ls-tree", "-r", "-z", commit, "--", prefix + "/").decode()
         entries = (e.split("\t", 1) for e in out.split("\0") if e)
         return {path: meta.split()[2] for meta, path in entries}
+
+    def unedited(self, path: Path, blob_id: str | None) -> bool:
+        """Whether the file at path is the committed blob blob_id (after git's line-ending conversion)."""
+        try:
+            rel = path.resolve().relative_to(self.root.resolve()).as_posix()
+        except ValueError:  # not in this checkout
+            return False
+        return blob_id is not None and self.git("hash-object", f"--path={rel}", str(path)).decode().strip() == blob_id
 
     def blob(self, blob_id: str) -> bytes:
         return self.git("cat-file", "blob", blob_id)
@@ -223,6 +233,7 @@ def get_tips(repo: Repo, tips_dir: Path, force: bool = False) -> tuple[list[Path
     """Writes the branch's tips sheet and notebook into tips_dir. Files that exist here and differ are
     kept unless `force`. Returns (files written, names kept)."""
     head = repo.fetch()
+    committed = repo.files("HEAD", "tips")  # main's copy: a fresh checkout's unedited files get replaced
     written, kept = [], []
     for path, blob_id in repo.files(head, "tips").items():
         name = path.split("/", 1)[1]
@@ -231,7 +242,7 @@ def get_tips(repo: Repo, tips_dir: Path, force: bool = False) -> tuple[list[Path
         local, data = tips_dir / name, repo.blob(blob_id)
         if local.exists() and local.read_bytes() == data:
             continue
-        if local.exists() and not force:
+        if local.exists() and not force and not repo.unedited(local, committed.get(path)):
             kept.append(name)
             continue
         tips_dir.mkdir(parents=True, exist_ok=True)

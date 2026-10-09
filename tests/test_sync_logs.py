@@ -160,3 +160,21 @@ def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch):
         calls.clear()
         mafia.main()
         assert calls == expected
+
+
+def test_main_s_committed_tips_are_replaced_by_the_branch_s_newer_ones_but_local_edits_are_kept(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    tips = cloud.root / "tips"
+    tips.mkdir()
+    (tips / "tips.md").write_text("old sheet\n")
+    (tips / "tips_notebook.json").write_text("{}\n")
+    run(cloud.root, "add", "tips")
+    run(cloud.root, "commit", "-m", "tips")
+    (tips / "tips_notebook.json").write_text('{"edited": true}\n')  # a local edit, not main's copy
+    (pc.root / "tips").mkdir()
+    (pc.root / "tips" / "tips.md").write_text("new sheet\n")
+    (pc.root / "tips" / "tips_notebook.json").write_text('{"games": 1}\n')
+    sync_logs.put_tips(pc, pc.root / "tips")
+    written, kept = sync_logs.get_tips(cloud, tips)
+    assert written == [tips / "tips.md"] and kept == ["tips_notebook.json"]
+    assert (tips / "tips.md").read_text() == "new sheet\n"

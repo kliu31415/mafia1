@@ -101,7 +101,8 @@ def game_meta(rules: str, settings: dict) -> dict:
             return out.stdout.strip() if out.returncode == 0 else None
         except (OSError, subprocess.SubprocessError):
             return None
-    status = git("status", "--porcelain", "--untracked-files=no")
+    # tips/ is tracked but changes after every PC game; it isn't code, so it doesn't make a game "dirty"
+    status = git("status", "--porcelain", "--untracked-files=no", "--", ".", ":!tips")
     return {"git_commit": git("rev-parse", "HEAD"), "git_dirty": bool(status) if status is not None else None,
             "rules_sha256": hashlib.sha256(rules.encode("utf-8")).hexdigest()[:16], "settings": settings}
 

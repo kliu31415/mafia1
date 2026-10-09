@@ -22,3 +22,10 @@ Thumbs.db
 # Logs and outputs
 *.log
 logs/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Tips build leftovers (tips/ itself is tracked)
+tips/*.lock
+tips/*.tmp
