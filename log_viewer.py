@@ -70,7 +70,7 @@ def text_line(r: dict) -> str | None:
         case "section":
             return f"\n===== {r['title'].upper()} ====="
         case "resume":
-            return f"[Resumed from the checkpoint at the start of day {r['day']}]"
+            return f"[Resumed from the checkpoint at the start of {r.get('at', 'day')} {r['day']}]"
         case "result":
             cost = "\n".join(usage_lines(r["usage"])) if "usage" in r else f"Cost: {r['cost']}"  # LOG_VERSION 10+
             return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\n{cost}"

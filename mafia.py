@@ -20,7 +20,7 @@ Code layout:
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
     records.py     lenient JSONL reading (skips damaged lines) and console-safe printing
-    checkpoint.py  saves the game each day so a stopped game can continue (--resume)
+    checkpoint.py  saves the game each day and night so a stopped game can continue (--resume)
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
     setups.py      random setups (--roles random:N), for role strength across many role mixes
@@ -114,7 +114,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               resume: dict | None = None, tips: Path | None = None, tips_for: str = "all",
               player_tips: list[tuple[str, Path | None]] | None = None, update_tips: Path | None = None,
               setup: dict | None = None, moderator_fallback: ModelSpec | None = DEFAULT_MODERATOR_FALLBACK) -> Path:
-    """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
+    """checkpoint: save the game at the start of each day and night to logs/<game>.ckpt (deleted when the game
     finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game.
     tips: a tips file (tips.py) put into the system prompt of the players tips_for picks (see
     tips.choose_players); player_tips then sets (or, with None, removes) each named player's or model's
@@ -182,30 +182,42 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         for p in game.players:
             print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}" + ("  +tips" if p.tips else ""))
 
+        def save(at: str, **extra: object) -> None:
+            """A checkpoint at the start of a day or night (at: "day" or "night"); resuming replays from there."""
+            if not checkpoint:
+                return
+            try:
+                save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
+                                moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
+                                error_counts=dict(log.error_counts), at=at,
+                                client={"mock": isinstance(client, MockClient),
+                                        "effort": getattr(client, "effort", None)}, **extra)
+            except Exception as e:  # the game goes on; it just can't be resumed from here
+                log.error("checkpoint_error", f"saving the {at} {game.day} checkpoint failed: "
+                          f"{type(e).__name__}: {e}", traceback=traceback.format_exc())
+
+        # A game resumed from a night checkpoint skips straight to that night.
+        at_night = bool(resume and resume.get("at") == "night")
+        deaths_before = resume.get("deaths_before", 0) if resume else 0
         while game.day <= max_days:
             stage = "on day {day} {phase}"
-            if checkpoint:
-                try:
-                    save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
-                                    moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
-                                    error_counts=dict(log.error_counts),
-                                    client={"mock": isinstance(client, MockClient),
-                                            "effort": getattr(client, "effort", None)})
-                except Exception as e:  # the game goes on; it just can't be resumed from today
-                    log.error("checkpoint_error", f"saving the day {game.day} checkpoint failed: "
-                              f"{type(e).__name__}: {e}", traceback=traceback.format_exc())
-            # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
-            # i.e. after the day's execution and after the night's (simultaneous) deaths.
-            if game.phases_without_death >= STALL_LIMIT:
-                game.winners, end_reason = [], "stall"
-                game.emit("Nobody died for three days and three nights. Everyone loses.")
-                break
-            print(f"Day {game.day}...")
-            deaths_before = game.death_count()
-            run_day(game, players)
-            if (winners := game.check_winner()) is not None:
-                game.winners, end_reason = winners, "win"
-                break
+            if at_night:
+                at_night = False
+            else:
+                save("day")
+                # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
+                # i.e. after the day's execution and after the night's (simultaneous) deaths.
+                if game.phases_without_death >= STALL_LIMIT:
+                    game.winners, end_reason = [], "stall"
+                    game.emit("Nobody died for three days and three nights. Everyone loses.")
+                    break
+                print(f"Day {game.day}...")
+                deaths_before = game.death_count()
+                run_day(game, players)
+                if (winners := game.check_winner()) is not None:
+                    game.winners, end_reason = winners, "win"
+                    break
+            save("night", deaths_before=deaths_before)  # deaths_before: for the stall count after the night
             print(f"Night {game.day}...")
             run_night(game, players, moderator, checker)
             if (winners := game.check_winner()) is not None:
@@ -317,9 +329,10 @@ def resume_log(game: Game, log: GameLog, resume: dict, client: LLMClient, check_
     for r in log.cut_records:
         if r.get("cost") and (model := r.get("model") or r.get("judge")):
             cut_cost[model] = cut_cost.get(model, 0) + float(r["cost"])
-    log.write("resume", day=game.day, cut_records=len(log.cut_records), unreadable_lines=log.cut_unreadable,
+    at = resume.get("at", "day")
+    log.write("resume", day=game.day, at=at, cut_records=len(log.cut_records), unreadable_lines=log.cut_unreadable,
               cut_cost=round(sum(cut_cost.values()), 6))
-    print(f"Resuming {log.path.stem} at day {game.day}")
+    print(f"Resuming {log.path.stem} at {at} {game.day}")
     for model, cost in list(resume["cost"].items()) + list(cut_cost.items()):
         client.total_cost[model] = client.total_cost.get(model, 0) + cost
     log.error_counts = dict(resume["error_counts"])
@@ -379,10 +392,10 @@ def main() -> None:
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
-                    help="save the game at the start of each day to logs/<game>.ckpt, deleted when the game "
+                    help="save the game at the start of each day and night to logs/<game>.ckpt, deleted when the game "
                     "finishes, so a stopped game can be continued with --resume")
     ap.add_argument("--resume", metavar="CKPT", help="continue a stopped game from its checkpoint, with the "
-                    "settings it started with (other game options are ignored); replays the day it was saved on")
+                    "settings it started with (other game options are ignored); replays the day or night it was saved at")
     fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md); on by default, "
                              "turn one off with --no-<flag>")
     fb.add_argument("--debrief", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player and the moderator "

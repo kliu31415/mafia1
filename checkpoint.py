@@ -1,6 +1,7 @@
 """Checkpoints, a program feature rather than a rule: the game state is saved next to the log at the
-start of each day, so a game stopped by a crash, a sleeping laptop or an API error can continue with
-`uv run mafia.py --resume logs/<game>.ckpt`. Resuming replays the day the checkpoint was taken on.
+start of each day and each night ("at" in the checkpoint), so a game stopped by a crash, a sleeping laptop
+or an API error can continue with `uv run mafia.py --resume logs/<game>.ckpt`. Resuming replays the day or
+night the checkpoint was taken at.
 The log is cut back to where it was then, so it reads as one game, plus a "resume" record."""
 
 import os

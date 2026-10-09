@@ -20,12 +20,14 @@ def records(path):
         r.pop("t")
         r.pop("game_id", None)
         r.pop("duration_s", None)
+        r.pop("latency_s", None)
         r.pop("errors", None)  # the resumed game counts its crash
         out.append(r)
     return sorted(out, key=lambda r: json.dumps(r, sort_keys=True))  # players are asked in parallel
 
 
-def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
+@pytest.mark.parametrize("phase", ["day", "night"])
+def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch, phase):
     seed = 2  # any seed whose mock game has a death and lasts 2+ days (the mock reads the rules text)
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "full")
     full = mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
@@ -33,26 +35,26 @@ def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
     assert any(r["kind"] == "death" for r in records(full)) and json.loads(
         full.read_text(encoding="utf-8").splitlines()[-1])["days"] >= 2
 
-    # Same game, stopped partway through night 2 (after the day-2 checkpoint and some of day 2's log).
+    # Same game, stopped at the start of day 2 or night 2 (after that phase's checkpoint).
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "stopped")
-    real_run_night = mafia.run_night
+    real_run = getattr(mafia, f"run_{phase}")
 
-    def crash_on_night_2(game, *args):
+    def crash_on_2(game, *args):
         if game.day == 2:
             raise RuntimeError("laptop went to sleep")
-        real_run_night(game, *args)
-    monkeypatch.setattr(mafia, "run_night", crash_on_night_2)
+        real_run(game, *args)
+    monkeypatch.setattr(mafia, f"run_{phase}", crash_on_2)
     with pytest.raises(RuntimeError):
         mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
     [ckpt_path] = (tmp_path / "stopped").glob("*.ckpt")
     ckpt = load(ckpt_path)
-    assert ckpt["game"].day == 2
+    assert ckpt["game"].day == 2 and ckpt["at"] == phase
     crash = json.loads(ckpt_path.with_suffix(".jsonl").read_text(encoding="utf-8").splitlines()[-1])
     assert crash["kind"] == "crash" and crash["alert"] and "laptop went to sleep" in crash["error"]
     assert f"--resume {ckpt_path}" in crash["error"]
     assert "laptop went to sleep" in ckpt_path.with_suffix(".html").read_text(encoding="utf-8")  # rendered anyway
 
-    monkeypatch.setattr(mafia, "run_night", real_run_night)
+    monkeypatch.setattr(mafia, f"run_{phase}", real_run)
     resumed = mafia.play_game(MockClient(seed), **ckpt["play_args"], resume=ckpt)
     assert resumed == ckpt_path.with_suffix(".jsonl")
     assert records(resumed) == records(full)
@@ -60,7 +62,7 @@ def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
     assert [r["kind"] for r in resumed_records].count("crash") == 1
     assert resumed_records[-1]["errors"] == {"crash": 1}
     text = resumed.with_suffix(".txt").read_text(encoding="utf-8")
-    assert text.count("===== DAY 2 =====") == 1 and "Resumed from the checkpoint at the start of day 2" in text
+    assert text.count("===== DAY 2 =====") == 1 and f"Resumed from the checkpoint at the start of {phase} 2" in text
     assert not ckpt_path.exists()
 
 
