@@ -270,12 +270,18 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "player_call":
             o = dict(r.get("output") or {})
             thoughts = o.pop("thoughts", "")
+            notepad = ""
+            if "notepad_before" in r:  # LOG_VERSION 9+
+                o.pop("notepad", None)
+                before, after = r["notepad_before"] or "(empty)", r["notepad_after"] or "(empty)"
+                notepad = (pre("Notepad before", before)
+                           + pre("Notepad after", "(unchanged)" if after == before else after))
             first_line = r["task"].split("\n")[0]
             summary = (f"{name(r['player'])} ({esc(roles.get(r['player'], '?'))}, "
                        f"{esc(r['model'].split('/')[-1])}) · {esc(first_line[:90])} · ${r.get('cost', 0):.4f}")
             out.append(f"<details class='call'><summary>{summary}</summary>"
                        + pre("Reasoning (model's summarized thinking)", r.get("reasoning"))
-                       + pre("Thoughts (private field)", thoughts) + pre("Output", o)
+                       + pre("Thoughts (private field)", thoughts) + pre("Output", o) + notepad
                        + pre("Task prompt", r["task"]) + pre("Usage", r.get("usage")) + "</details>")
         elif k == "moderator_call":
             calls = ", ".join(c["function"]["name"] for c in r.get("tool_calls") or []) or "no tool call"

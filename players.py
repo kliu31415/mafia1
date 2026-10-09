@@ -136,14 +136,18 @@ class Players:
             try:
                 reply = self.client.chat(p.model, messages, schema=schema, effort=p.effort)
                 out = answer_json(reply)
+                before = p.notepad
+                after = before
+                if isinstance(note := out.get("notepad"), str):
+                    after = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
-                                    usage=reply.usage)
+                                    usage=reply.usage, notepad_before=before, notepad_after=after)
                 if isinstance(fb := out.pop("feedback", None), str) and fb.strip():
                     self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase,
                                         player=p.name, role=p.role, feedback=fb)
-                if isinstance(note := out.pop("notepad", None), str):
-                    p.notepad = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
+                out.pop("notepad", None)
+                p.notepad = after
                 return out
             except (json.JSONDecodeError, RuntimeError) as e:
                 self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {e}",

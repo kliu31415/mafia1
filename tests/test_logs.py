@@ -25,3 +25,22 @@ def test_logs_describe_the_game_and_its_votes(tmp_path, monkeypatch):
     assert set(by_name) == {p["name"] for p in setup["players"]}
     assert all(p["won"] == (p["name"] in result["winners"]) for p in by_name.values())
     assert all((p["death"] is None) == (p["alive"] or p["left"]) for p in by_name.values())
+
+
+def test_player_calls_log_the_notepad_before_and_after(game_factory):
+    import json
+    from log_viewer import render_html
+    writes = iter(["first note", None])
+    game, players = game_factory(["Vanilla Villager", "Grunt"],
+                                 ScriptedClient(lambda name, task, schema: {"notepad": next(writes)}))
+    alice = game.players[0]
+    for _ in range(2):
+        players.ask(alice, "Say something.", {"type": "object", "properties": {}, "required": []}, {})
+    game.log.close()
+    calls = [json.loads(line) for line in game.log.path.read_text(encoding="utf-8").splitlines()]
+    calls = [r for r in calls if r["kind"] == "player_call"]
+    assert [(r["notepad_before"], r["notepad_after"]) for r in calls] == [("", "first note"),
+                                                                         ("first note", "first note")]
+    assert alice.notepad == "first note"
+    page = render_html(game.log.path).read_text(encoding="utf-8")
+    assert "Notepad before" in page and "(unchanged)" in page

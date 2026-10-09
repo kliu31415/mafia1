@@ -20,7 +20,9 @@ import log_viewer
 # 7: "resume" records (the game continued from a checkpoint; see checkpoint.py)
 # 8: error records (GameLog.error) have alert=true and an "error" summary; new kinds player_fallback,
 #    api_retry, moderator_tool_error, night_check_error, feedback_error, crash; result has errors
-LOG_VERSION = 8
+# 9: player_call records have notepad_before and notepad_after (the notepad the player saw, and after
+#    its answer; equal when the answer kept it)
+LOG_VERSION = 9
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
