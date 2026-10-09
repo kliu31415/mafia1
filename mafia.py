@@ -21,6 +21,7 @@ Code layout:
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
     checkpoint.py  saves the game each day so a stopped game can continue (--resume)
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
+    tips.py        distills lessons from past games into a tips file; --tips gives it to players
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     tests/         offline scenario and hidden-information tests (uv run pytest)
 
@@ -31,6 +32,8 @@ Usage:
     uv run mafia.py --players haiku-5.5,gpt-6-luna --moderator haiku-5.5
     uv run mafia.py --players opus-5.5:high,haiku-5.5:low --moderator opus-5.5:medium
     uv run mafia.py --resume logs/<game>.ckpt                # continue a game that stopped
+    uv run tips.py build                                     # tips file from past games' lessons
+    uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
 """
 
 import argparse
@@ -57,6 +60,7 @@ from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from events import PHASE
 from state import setup_game
+from tips import choose_players, file_digest
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -88,12 +92,15 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
               max_days: int | None = None, check_nights: bool = False, checkpoint: bool = True,
-              resume: dict | None = None) -> Path:
+              resume: dict | None = None, tips: Path | None = None, tips_for: str = "all") -> Path:
     """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
-    finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game."""
+    finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game.
+    tips: a tips file (tips.py) put into the system prompt of the players tips_for picks (see
+    tips.choose_players); resumed games keep the tips they started with."""
     play_args = {"models": models, "moderator_model": moderator_model, "roles": roles, "seed": seed,
                  "debrief": debrief, "flag_issues": flag_issues, "feedback_field": feedback_field,
-                 "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights}
+                 "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights,
+                 "tips": tips, "tips_for": tips_for}
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rules = RULES_PATH.read_text(encoding="utf-8")
@@ -119,9 +126,18 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                     "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
                     "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
                     "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
-                    "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint}
+                    "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint,
+                    "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None}
         started = time.time()
         game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
+        if tips:
+            text = tips.read_text(encoding="utf-8")
+            # Its own RNG, so choosing who gets tips doesn't change the rest of a seed's game.
+            chosen = choose_players([p.name for p in game.players], [p.model.short for p in game.players],
+                                    tips_for, random.Random(f"tips|{seed}"))
+            for p in game.players:
+                p.tips = text if p.name in chosen else ""
+            log.write("tips", file=str(tips), sha256=file_digest(text), players=chosen, text=text)
     if isinstance(client, OpenRouterClient):
         client.on_retry = lambda model, attempt, error: log.error(
             "api_retry", f"a {model} request failed (attempt {attempt + 1}), retrying: {error[:300]}",
@@ -134,7 +150,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
     checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort)
                if check_nights else None)
     for p in game.players:
-        print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}")
+        print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}" + ("  +tips" if p.tips else ""))
     ckpt_path = log.path.with_suffix(".ckpt")
 
     try:
@@ -217,6 +233,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "start_role": p.start_role,
                         "final_role": p.role, "faction": p.faction, "alive": p.alive,
                         "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
+                        "tips": bool(p.tips),
                         "death": p.death} for p in game.players],
               errors=dict(log.error_counts))
     log.close()
@@ -265,6 +282,11 @@ def main() -> None:
     fb.add_argument("--check-nights", action=argparse.BooleanOptionalAction, default=True,
                     help="after each night, have the moderator model check the moderator's resolution against "
                     "the rules, in the background; results are logged as night_check records")
+    ap.add_argument("--tips", metavar="FILE", type=Path, help="a tips file from past games (build one with "
+                    "`uv run tips.py build`), shown in the system prompt of the players --tips-for picks")
+    ap.add_argument("--tips-for", default="all", metavar="WHO", help="who gets --tips: all (default), half (a "
+                    "random half of the seats, for comparing experienced and fresh players), or comma-separated "
+                    "player names (Alice, ...) and models (e.g. opus-5.5)")
     fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
                     "--moderator models on the rules (graded by the moderator model)")
     args = ap.parse_args()
@@ -290,6 +312,8 @@ def main() -> None:
         ap.error(str(e))
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
+    if args.tips and not args.tips.is_file():
+        ap.error(f"--tips: no such file {args.tips}")
     if args.rules_quiz:
         path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
@@ -297,7 +321,7 @@ def main() -> None:
     play_game(client, models, moderator, roles, seed, debrief=args.debrief,
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
               lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
-              checkpoint=args.checkpoint)
+              checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for)
 
 
 if __name__ == "__main__":

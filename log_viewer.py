@@ -51,6 +51,8 @@ def text_line(r: dict) -> str | None:
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
         case "night_check":
             return f"[Night check] {describe_check(r)}"
+        case "tips":
+            return f"Tips from past games ({r['file']}) given to: {', '.join(r['players']) or 'nobody'}"
         case "resume":
             return f"[Resumed from the checkpoint at the start of day {r['day']}]"
         case "result":
@@ -313,6 +315,9 @@ def render_html(jsonl_path: Path) -> Path:
             start_phase("Setup")
             out.append(f"<table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr>"
                        f"{rows}</table><div class='muted'>Katana starts with {name(str(r.get('katana')))}</div>")
+        elif k == "tips":
+            out.append(f"<div class='muted'>Tips from past games ({esc(r['file'])}) given to: "
+                       f"{esc(', '.join(r['players']) or 'nobody')}</div>")
         elif k == "event":
             if is_phase_start(r):
                 start_phase(r["text"].removesuffix(" begins."))

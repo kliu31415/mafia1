@@ -27,6 +27,7 @@ class Player:
     status: dict[str, Any] = field(default_factory=dict)  # keys code reads are in Status; the moderator adds others
     last_will: str = ""
     notepad: str = ""  # private notes the player keeps across turns
+    tips: str = ""  # a tips file from past games, shown in the system prompt (tips.py; --tips)
     speaking_budget: float = 0.0
     start_role: str = ""  # the role at setup (an Executioner can become a Jester)
     death: dict | None = None  # day, phase and cause, once dead
