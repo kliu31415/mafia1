@@ -186,6 +186,18 @@ def test_claims_are_listed_in_the_ledger_with_earlier_ones_they_changed_from(gam
     run_day(game, players)
     assert "- Alice: Day 2: Medic. N1: protected Bob (earlier: Day 1: Vanilla Villager)" in game.public_ledger()
     assert list(game.claim_record) == ["Alice"]  # null claims change nothing
+    game.log.txt.flush()  # the transcript shows each new claim once (the log review reads it)
+    txt = game.log.path.with_suffix(".txt").read_text(encoding="utf-8")
+    assert txt.count("[Claim] Alice: Vanilla Villager") == 1 and "[Claim] Alice: Medic. N1: protected Bob" in txt
+
+
+def test_yakuza_see_their_own_and_teammates_tokens_left(game_factory):
+    from players import role_briefing
+    game, _ = game_factory(["Mortician", "Ballot Stuffer", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.player("Bob").tokens["ballot"] = 1
+    briefing = role_briefing(game, game.player("Alice"))
+    assert "You have 2 mortician tokens left." in briefing
+    assert "Bob (Ballot Stuffer, 1 ballot token left)" in briefing and "Carol (Grunt)" in briefing
 
 
 def test_a_message_over_budget_is_cut_or_dropped_and_the_sender_is_told(game_factory):

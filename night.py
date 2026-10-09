@@ -2,7 +2,8 @@
 
 import json
 
-from players import BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, truncate_words, word_count
+from players import (BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, tokens_left, truncate_words,
+                     word_count)
 from roles import Alignment, Status, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
@@ -26,7 +27,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     jobs = []
     for p in actors:
         task = (f"It is Night {game.day}. Choose your night action for your role, following the rules. "
-                "Set act=false to do nothing. Fill only the fields your role needs.")
+                "Set act=false to do nothing. Fill only the fields your role needs."
+                + (f" You have {tokens_left(p)}." if p.tokens else ""))
         if p.info.alignment is Alignment.EVIL:
             task += (" Also vote on who should hold the Katana and who the Katana should attack (or null). "
                      + katana_majority_note(game))

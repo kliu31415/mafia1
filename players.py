@@ -113,13 +113,21 @@ def night_action_schema(game: Game, p: Player) -> dict:
     return obj(**props)
 
 
+def tokens_left(p: Player) -> str:
+    """e.g. "1 mortician token left", or "" for a player without tokens."""
+    return ", ".join(f"{n} {kind} token{'' if n == 1 else 's'}" for kind, n in p.tokens.items()) + " left" \
+        if p.tokens else ""
+
+
 def role_briefing(game: Game, p: Player) -> str:
     lines = [f"You are {p.name} (seat {p.seat})."]
     lines.append(f"Your role is {logic(p.role).shown_role(p)}.")
     if p.tokens:
-        lines.append(f"Your tokens: {p.tokens}.")
+        lines.append(f"You have {tokens_left(p)}.")
     if p.info.alignment is Alignment.EVIL:
-        team = ", ".join(f"{y.name} ({y.role})" for y in game.players if y.info.alignment is Alignment.EVIL)
+        # Teammates' tokens too: players lost track of their own and each other's (game_20261009_055144).
+        team = ", ".join(f"{y.name} ({y.role}{', ' + tokens_left(y) if y.tokens else ''})"
+                         for y in game.players if y.info.alignment is Alignment.EVIL)
         lines.append(f"Yakuza members: {team}. Katana holder: {game.katana_holder}.")
     lines += logic(p.role).briefing(game, p)
     return " ".join(lines)

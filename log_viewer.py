@@ -54,6 +54,8 @@ def text_line(r: dict) -> str | None:
         case "moderator_tool" if r["name"] == "end_phase":
             summary = tool_args(r["args"]).get("summary", "")
             return f"[Moderator summary] {summary}"
+        case "claim":
+            return f"[Claim] {r['player']}: {r['claim']}"
         case "revenge":
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
         case "night_check":
@@ -418,6 +420,8 @@ def render_html(jsonl_path: Path) -> Path:
                 continue
             category, badge, body = classify(r)
             line(category, badge, name(body))
+        elif k == "claim":
+            line("system", "Claim", name(f"{r['player']}: {r['claim']}"))
         elif k == "player_call":
             o = dict(r.get("output") or {})
             thoughts = o.pop("thoughts", "")

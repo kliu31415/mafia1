@@ -57,7 +57,8 @@ Trials:
   ends immediately.
 - If three nominations pass (failed ones don't count) and all three trials end Innocent, the Day ends.
 - Some roles can change how votes are counted. If an announced vote total doesn't match the revealed votes,
-  a role manipulated the count on purpose; it is not an error.
+  a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial
+  that Day, so the number of changed totals doesn't show how many times a role was used.
 Voting Yes or Guilty on yourself is allowed.
 
 R16 (Day length)
@@ -79,7 +80,8 @@ wakes players one by one, or faction by faction, to act. When the Night ends, th
 effect. By default, effects are announced publicly at the start of the next Day; some are not announced.
 
 R7 (Optional actions)
-Night actions are optional ("may") unless a role says "must".
+Every ability is optional ("may") unless its role says "must": any player may choose not to act at Night, not to
+use a Day ability, and not to spend a token.
 
 R6 (Visits)
 - When A performs an action on B, A visits B, unless the action is an Astral Visit.
@@ -204,14 +206,14 @@ Oracle
   Night: may guess one player's exact role (Astral Visit). At the end of the night, learn whether you were right.
 
 Eavesdropper
-  Night: may eavesdrop on one player. Throughout the following Day, you read the contents of every private
+  Night: may eavesdrop on one player. Only during the following Day (not the Night you eavesdrop), you read the contents of every private
   message they send or receive, as it is sent. Puppeted messages reach you as the puppet's (you aren't told about
   the puppeting). They aren't told.
 
 Archivist
   Tokens: 1 archive token.
-  Night: may spend the token to consult the archive. At the end of the night, let N be the number of living players
-  other than you: you are shown the roles of floor(0.75 * N) of them, chosen at random, in random order and
+  Night: may spend the token to consult the archive. At the end of the night, let N be the number of players other
+  than you who were alive when the night began (players who died that night count): you are shown the roles of floor(0.75 * N) of them, chosen at random, in random order and
   without names. A role appears as many times as it was drawn, so two drawn Vanilla Villagers show twice. This
   is an exact-role check (R19): a Roleplayer shows as Roleplayer.
 

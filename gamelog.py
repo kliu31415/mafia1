@@ -44,7 +44,8 @@ from records import read_records, safe_print
 # 18: "katana" has revote_targets (Yakuza -> target in the revote, or null when there was none)
 # 19: "tips_update" record after the result (model, cost of updating the tips; not in the result's cost)
 # 20: trial "vote" records have weights (voter -> votes counted, only voters counted more than once; Ballot Stuffer)
-LOG_VERSION = 20
+# 21: "claim" record (day, player, claim) when a player's public claim changes
+LOG_VERSION = 21
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

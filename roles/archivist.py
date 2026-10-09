@@ -1,10 +1,11 @@
-"""Archivist: once per game, sees the roles of a random three quarters of the other living players."""
+"""Archivist: once per game, sees the roles of a random three quarters of the other players alive when the night
+began (those who died that night count)."""
 
 from events import RESULT
 from roles.base import RoleLogic, register
 
 PENDING = "archive_uses"  # game.role_state: Archivists who consulted the archive tonight
-SHARE = 0.75  # rules: floor(0.75 * N) of the other living players
+SHARE = 0.75  # rules: floor(0.75 * N) of the other players alive when the night began
 
 
 @register("Archivist")
@@ -31,8 +32,14 @@ class Archivist(RoleLogic):
         for name in game.role_state.pop(PENDING, []):
             if not game.player(name).alive:  # died the same night: the result is never read
                 continue
-            others = [p for p in game.alive() if p.name != name]
+            others = [p for p in game.players if p.name != name and (p.alive or died_tonight(game, p))]
             drawn = game.rng.sample(others, int(len(others) * SHARE))
             roles = ", ".join(sorted(p.role for p in drawn)) or "none"
-            text = f"The archive shows {len(drawn)} of the {len(others)} other living players' roles: {roles}."
+            text = (f"The archive shows {len(drawn)} of the roles of the {len(others)} other players who were alive "
+                    f"when the night began: {roles}.")
             game.emit(f"Moderator (private): {text}", [name], cat=RESULT, message=text)
+
+
+def died_tonight(game, p) -> bool:
+    """Rules (Archivist): N counts players who died this night."""
+    return bool(p.death) and p.death["day"] == game.day and p.death["phase"] == "night"

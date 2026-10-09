@@ -265,6 +265,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if isinstance(claim := out.get("claim"), str) and claim.strip():  # a Puppeteer may set the puppet's
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
+        if not claims or claims[-1][1] != claim:  # logged so transcripts (and the log review) show claims
+            game.log.write("claim", day=game.day, player=p.name, claim=claim)
         if claims and claims[-1][0] == game.day:
             claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
         elif not claims or claims[-1][1] != claim:
