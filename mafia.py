@@ -171,7 +171,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                           sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
         if isinstance(client, OpenRouterClient):
             client.on_error = log.error
-        players = Players(game, client, rules, feedback_field=feedback_field)
+        players = Players(game, client, rules, feedback_field=feedback_field, shared=isinstance(client, OpenRouterClient))
         moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort,
                               fallback=moderator_fallback)
         if resume:

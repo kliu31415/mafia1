@@ -6,7 +6,8 @@ from roles.base import RoleLogic, Status, register
 @register("Roleplayer")
 class Roleplayer(RoleLogic):
     night_note = ("Give the Roleplayer fake but plausible results for the role they believe they have (their "
-                  "status 'fake_role').")
+                  "status 'fake_role'). Their own actions aren't visits and have no effect: no other role sees or "
+                  "is affected by them (rules: Roleplayer).")
 
     # They must not be able to tell they aren't the real role: same tokens, alignment and night prompts.
     def setup(self, game, p):

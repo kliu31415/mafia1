@@ -6,13 +6,18 @@ from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
 from events import RESULT
-from llm import LLMClient, LLMReply, answer_json, cache_block, rules_system
+from llm import LLMClient, LLMReply, answer_json, cache_block, rules_system, schema_errors
 from roles import Alignment, ROLES, logic
 from state import Game, Player
 from tips import player_view
 
 
-NOTEPAD_WORDS = 300  # longer notepads are truncated
+NOTEPAD_WORDS = 300  # longer notepads are truncated; the cap grows with the player count (notepad_words)
+
+
+def notepad_words(game: Game) -> int:
+    """Room for a short line per player plus plans: 300 words was tight with 12 players."""
+    return max(NOTEPAD_WORDS, 25 * len(game.players) + 100)
 
 
 # Scripts written without spaces (Chinese, Japanese, Thai, ...) count one word per character, and a run of
@@ -111,6 +116,47 @@ def night_action_schema(game: Game, p: Player) -> dict:
     return obj(**props)
 
 
+# Every in-game player call sends one answer schema (shared_schema) instead of its task's own, because the schema
+# is part of the cached prompt prefix: Claude missed the whole cache, rules included, whenever a call's schema
+# differed from the last one (a vote after day turns, a will after a night action, a target list one name
+# shorter; Haiku test calls 2026-10-09). The task says which fields it reads (fields_note), and the answer
+# is checked against the task's own schema (fit_answer), which still limits names to living players and so on.
+# Text fields are plain strings with "" for none, and booleans aren't nullable, since Claude rejects a schema
+# with more than 16 nullable or union-typed fields; only the name enums are nullable.
+SHARED_FIELDS: dict[str, dict] = {
+    "public_message": STR, "private_messages": {"type": "array", "items": {}}, "claim": STR, "last_will": STR,
+    "nominate": {}, "vote": BOOL, "answer": STR, "act": BOOL, "target": {}, "second_target": {},
+    "guessed_role": {}, "tokens_to_spend": {"type": "integer"}, "details": STR, "katana_vote_holder": {},
+    "katana_vote_target": {}, "message": STR, "ready": BOOL,
+}  # {} marks fields whose enum of names shared_schema fills in
+
+
+def shared_schema(game: Game) -> dict:
+    """The answer schema of every in-game player call (see SHARED_FIELDS). Fixed for the whole game."""
+    names = name_enum([p.name for p in game.players])
+    fields = {**SHARED_FIELDS, "private_messages": {"type": "array", "items": obj(to=names, text=STR)},
+              "guessed_role": nullable(name_enum(list(ROLES)))}
+    return obj(**{k: v or nullable(names) for k, v in fields.items()})
+
+
+def fields_note(schema: dict) -> str:
+    return (f"\n\nAnswer in these fields: {', '.join(schema['properties'])} (plus the ones every answer has). "
+            "The other fields aren't used for this answer: leave them empty (null, \"\", false, 0 or []). In a "
+            "text field, \"\" means none, the same as null.")
+
+
+def fit_answer(out: dict, schema: dict) -> dict:
+    """An answer to shared_schema cut down to the fields of its task's own schema, "" read as null where that
+    schema allows null. Raises RuntimeError if it breaks that schema (e.g. a dead player as target)."""
+    out = {k: v for k, v in out.items() if k in schema["properties"]}
+    for k, v in out.items():
+        if v == "" and {"type": "null"} in schema["properties"][k].get("anyOf", []):
+            out[k] = None
+    if errors := schema_errors(out, schema):
+        raise RuntimeError(f"the answer doesn't fit this question: {'; '.join(errors[:5])}")
+    return out
+
+
 def tokens_left(p: Player) -> str:
     """e.g. "1 mortician token left", or "" for a player without tokens."""
     return ", ".join(f"{n} {kind} token{'' if n == 1 else 's'}" for kind, n in p.tokens.items()) + " left" \
@@ -164,7 +210,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
                if nights else "")
             + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
-            f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
+            f"Every response has a 'notepad' field: set it to replace your notepad (max {notepad_words(game)} "
             "words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, "
             "suspicions and "
             "anything you want to remember. A useful habit: one brief line per other player (their claim, "
@@ -180,7 +226,8 @@ def night_history(game: Game, p: Player) -> str:
     """p's submitted action each night and the moderator's private results to p, in one place (players
     lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
     lines = [f"- Night {night}: you submitted {log_viewer.describe_action(actions[p.name])}"
-             for night, actions in game.night_actions.items() if p.name in actions]
+             for night, actions in game.night_actions.items()
+             if p.name in actions and not actions[p.name].get("automatic")]  # e.g. the Ex-Con isn't told its visit
     lines += [f"- Day {e.day} {e.phase}, result: {e.fields.get('message', e.text)}" for e in game.events
               if e.cat == RESULT and e.visible_to is not None and p.name in e.visible_to]
     return "\n".join(lines)
@@ -198,38 +245,49 @@ FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: 
                  "there briefly; otherwise leave it null. Nobody in the game sees it.\n\n")
 
 
-def with_notepad(schema: dict) -> dict:
-    """Adds the 'notepad' field every player response carries."""
-    return {**schema, "properties": {**schema["properties"], "notepad": nullable(STR)},
-            "required": [*schema["required"], "notepad"]}
+def with_common_fields(schema: dict, feedback_field: bool, text: dict | None = None) -> dict:
+    """Adds the fields every player response carries: notepad, reason and (with --feedback-field) feedback.
+    text: the schema of notepad and feedback (plain STR in shared_schema, where "" means none)."""
+    text = text or nullable(STR)
+    extra = {"notepad": text, "reason": STR, **({"feedback": text} if feedback_field else {})}
+    return {**schema, "properties": {**schema["properties"], **extra}, "required": [*schema["required"], *extra]}
 
 
 class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""
 
-    def __init__(self, game: Game, client: LLMClient, rules: str, feedback_field: bool = False):
+    def __init__(self, game: Game, client: LLMClient, rules: str, feedback_field: bool = False,
+                 shared: bool = False):
+        """shared: send shared_schema in place of each task's own (OpenRouter games, for prompt caching). Offline
+        clients answer the task's own schema, so mock games and tests stay simple."""
         self.game = game
         self.client = client
         self.rules = rules
         self.feedback_field = feedback_field
+        self.shared = shared
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
-        messages = player_messages(self.game, p, self.rules, task, self.feedback_field)
-        schema = with_notepad(schema)
-        schema = {**schema, "properties": {**schema["properties"], "reason": STR},
-                  "required": [*schema["required"], "reason"]}
-        if self.feedback_field:
-            schema = {**schema, "properties": {**schema["properties"], "feedback": nullable(STR)},
-                      "required": [*schema["required"], "feedback"]}
+        wanted = with_common_fields(schema, self.feedback_field)
+        # Post-game questions (debrief, lessons) have fields of their own and keep their own schema.
+        shared = self.shared and set(schema["properties"]) <= set(SHARED_FIELDS)
+        sent = with_common_fields(shared_schema(self.game), self.feedback_field, STR) if shared else wanted
+        messages = player_messages(self.game, p, self.rules, task + (fields_note(schema) if shared else ""),
+                                   self.feedback_field)
         for attempt in range(2):
             reply: LLMReply | None = None
             try:
-                reply = self.client.chat(p.model, messages, schema=schema, effort=p.effort)
-                out = answer_json(reply, schema)
+                reply = self.client.chat(p.model, messages, schema=sent, effort=p.effort)
+                out = answer_json(reply, sent)
+                if shared:
+                    out = fit_answer(out, wanted)
                 before = p.notepad
                 after = before
                 if isinstance(note := out.get("notepad"), str) and note.strip():  # "" keeps it, like null
-                    after = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
+                    cap = notepad_words(self.game)
+                    after = truncate_words(note, cap) if word_count(note) > cap else note
+                    if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
+                        self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
+                                       f"to its first {cap}.)", [p.name])
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage, notepad_before=before, notepad_after=after)
@@ -253,6 +311,10 @@ class Players:
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, task=task, fallback=fallback)
+        # Tell the player, so they don't believe their own choice happened (Heidi thought she had saved a
+        # token on purpose after a failed Night 1 answer, game_20261009_084630_739772).
+        self.game.emit(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
+                       f"technical error, so the default was used instead: {json.dumps(fallback)}.)", [p.name])
         return fallback
 
     def ask_many(self, jobs: list[tuple[Player, str, dict, dict]]) -> list[dict]:

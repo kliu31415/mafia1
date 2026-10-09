@@ -42,31 +42,47 @@ def night_replay(game: Game) -> str:
     return "\n".join(lines) or "(no nights were played)"
 
 
-def debrief_task(game: Game) -> str:
+def full_log(game: Game) -> str:
+    """Every event, with who could see it. Players get it after the game too, so feedback and lessons
+    from players who died early (or never saw the other side's chat) cover the whole game."""
+    return "\n".join(f"[Day {e.day} {e.phase}] " + ("" if e.visible_to is None else f"(to {', '.join(sorted(e.visible_to))}) ")
+                     + e.text for e in game.events)
+
+
+def debrief_task(game: Game, with_log: bool = True) -> str:
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
     questions = "\n".join(f"- {k}: {q}" for k, q in DEBRIEF_QUESTIONS.items())
     return (f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
-            f"What happened each night (now revealed):\n{night_replay(game)}\n\n"
+            + (f"The whole game, now revealed (every event, with who could see it):\n{full_log(game)}\n\n"
+               if with_log else "")
+            + f"What happened each night (now revealed):\n{night_replay(game)}\n\n"
             "We're improving this game and the program that runs it. Out of character now, answer from "
             "your own experience of playing it. Be specific and concrete, and write 'none' where you have "
             f"nothing to say.\n{questions}")
 
 
+POST_GAME_SECTIONS = {  # "section" records: the log views start a titled section for each post-game step
+    "debrief": "Post-game feedback: rules, interface and bugs (debrief)",
+    "lessons": "Post-game lessons: tips players wish they'd known, and how past tips went",
+    "strategy": "Moderator strategy review",
+    "review": "Outside log review (rules and bugs)",
+}
+
+
 def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
+    game.log.write("section", title=POST_GAME_SECTIONS["debrief"])
     task = debrief_task(game)
     fallback = {k: "" for k in DEBRIEF_QUESTIONS}
     outs = players.ask_many([(p, task, DEBRIEF_SCHEMA, fallback) for p in game.players])
     for p, out in zip(game.players, outs):
         game.log.write("debrief", who=p.name, role=p.role, model=p.model.value, answers=out)
 
-    events = "\n".join(f"[Day {e.day} {e.phase}] "
-                       + ("" if e.visible_to is None else f"(to {', '.join(sorted(e.visible_to))}) ")
-                       + e.text for e in game.events)
+    events = full_log(game)
     flags = "\n".join(f"- {f}" for f in moderator.flags) or "(none)"
     messages = [
         rules_system(moderator.rules, "You were the moderator of this game."),
         {"role": "user", "content": f"Everything that happened (with who could see each event):\n{events}\n\n"
-         f"Issues you flagged during the game:\n{flags}\n\n{task}\nAnswer as the moderator: also cover "
+         f"Issues you flagged during the game:\n{flags}\n\n{debrief_task(game, with_log=False)}\nAnswer as the moderator: also cover "
          "rules you had to interpret, and tools or state you were missing."},
     ]
     reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
@@ -78,6 +94,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
 def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
                effort: str | None = None) -> None:
     """An outside model reads the whole human-readable log and lists problems it sees."""
+    game.log.write("section", title=POST_GAME_SECTIONS["review"])
     messages = [
         rules_system(rules, "You review logs of LLMs playing this game, which "
          "is run by a program plus an LLM moderator. Find problems: rules ambiguities, program bugs, "
@@ -116,9 +133,11 @@ def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
     """Each player lists tips and tricks they wish they'd known, and players given tips from past
     games (tips.py) say which of those went well or badly. Saved to the game log; lessons are also
     appended to `lessons_file` (one JSON object per tip, across all games) for later analysis."""
+    game.log.write("section", title=POST_GAME_SECTIONS["lessons"])
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
     task = (f"The game is over. {game.winners_line()} Everyone's roles: "
-            f"{roles}.\n\nIf you played this game again, what tips and tricks do you wish you'd known? "
+            f"{roles}.\n\nThe whole game, now revealed (every event, with who could see it):\n{full_log(game)}"
+            "\n\nIf you played this game again, what tips and tricks do you wish you'd known? "
             "Give 1-5 concrete, reusable lessons (not a recap of this game), each with a topic and who it "
             "applies to (a role, a faction, or 'everyone').")
     outs = players.ask_many([(p, task + TIPS_FEEDBACK_TASK, with_tips_feedback(LESSONS_SCHEMA),
@@ -148,6 +167,7 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
     lessons: things to do and to avoid, per role or faction. Saved to the game log and appended to
     `lessons_file` alongside the players' lessons (source "moderator"). If some players had tips from
     past games (tips.py), it also says which of those tips went especially well or badly."""
+    game.log.write("section", title=POST_GAME_SECTIONS["strategy"])
     with_tips = [p for p in game.players if p.tips]
     sheets: dict[str, list[str]] = {}  # tips text -> who had it
     for p in with_tips:

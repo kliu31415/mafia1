@@ -83,6 +83,10 @@ def test_puppeteer_writes_the_puppets_messages(game_factory):
     assert not any(name == "Bob" and "public_message" in task for name, task in client.asked)
     # The claim is public chat in effect, so the Puppeteer sets it too; it shows as Bob's.
     assert game.claim_record == {"Bob": [(1, "Sheriff. N1: Carol Evil")]}
+    # Only the puppet (who is told about the puppeting) sees the message marked as the Puppeteer's.
+    mark = "[written by your Puppeteer, not you]"
+    assert any(mark in line for line in game.history_split("Bob")[1])
+    assert not any(mark in line for name in ("Alice", "Erin") for line in game.history_split(name)[1])
 
 
 def test_wiretap_reads_every_pm_but_a_dead_one_stops(game_factory):
@@ -213,7 +217,7 @@ def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
     assert game.player("Frank").tokens["ballot"] == 1
     game.run_dawn_hooks()
     assert run_trial(game, players, alice, "Alice", 1) == "executed"  # Frank counts twice: 4 of 7
-    assert any("(4 Guilty of 7 votes; these totals don't match" in e.text for e in game.events)
+    assert any("(4 Guilty of 7 votes; 4 needed; these totals don't match" in e.text for e in game.events)
     game.run_dawn_hooks()  # the next day, without a new token, Frank's Innocent is back to one vote
     guilty.clear()
     guilty.update({"Bob", "Carol", "Erin"})
@@ -238,6 +242,25 @@ def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
     assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob"]  # two others alive
     game.player("Frank").alive, game.player("Frank").death = False, None
     assert survey_group(game, "Alice", "Bob") == ["Bob"]
+
+
+def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_factory):
+    game, players = game_factory(["Diviner", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="Strong Defense"):  # a Yakuza target: no result
+        mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Dave", "by": "Alice"}]})
+    drawn = []
+    for _ in range(200):
+        mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Bob", "by": "Alice"}]})
+        result = [e for e in game.events if e.cat == "result"][-1]
+        assert result.visible_to == {"Alice"} and "the group was Frank, Bob and Carol" in result.text
+        drawn.append(next(r for r in ("Jester", "Vanilla Villager", "Medic") if f"role drawn is {r}" in result.text))
+    assert 100 < drawn.count("Vanilla Villager") < 140 and drawn.count("Jester") > 20 and drawn.count("Medic") > 20
+    for name in ["Carol", "Dave", "Erin"]:
+        game.player(name).alive, game.player(name).death = False, None  # died on earlier days
+    mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Bob", "by": "Alice"}]})
+    assert "the group was Frank and Bob" in [e for e in game.events if e.cat == "result"][-1].text
 
 
 def test_philanthropist_hands_a_token_of_the_recipients_kind(game_factory):
@@ -435,3 +458,14 @@ def test_ask_player_answer_is_kept_in_the_players_history_and_hides_their_notepa
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     assert mod.dispatch("ask_player", {"player": "Alice", "question": "Ignite or douse?"}) == {"answer": "ignite"}
     assert "You answered: ignite" in game.history_for("Alice") and "ignite" not in game.history_for("Bob")
+
+
+def test_ex_con_visit_is_drawn_by_code_and_hidden_from_the_ex_con(game_factory):
+    """rules Ex-Con: a random visit each night, and the Ex-Con isn't told whom."""
+    from night import run_night
+    from players import night_history
+    game, players = game_factory(["Ex-Con", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    run_night(game, players, Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)"))
+    action = game.night_actions[1]["Alice"]
+    assert action["automatic"] and action["target"] in ("Bob", "Carol", "Dave")
+    assert "Alice" not in night_history(game, game.player("Alice"))

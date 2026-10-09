@@ -1,7 +1,7 @@
 # mafia1
 
 The module map is in `mafia.py`'s docstring. Ideas considered but not built yet, with their tradeoffs, are in `IDEAS.md`. The rules are `rules_1.txt` (Kevin's text; don't edit it
-unless asked). Its general paragraphs are labeled R1-R20 (grouped by topic, so not in numeric order; R18 defines terms, R19 is what investigations see, R20 the night checklist) and roles are cited by name; code that implements
+unless asked). Its general paragraphs are labeled R1-R21 (grouped by topic, so not in numeric order; R18 defines terms, R19 is what investigations see, R20 the night checklist, R21 next-Day effects whose user died) and roles are cited by name; code that implements
 a rule cites it (e.g. `# rules R8`), so `grep -n "R8"` finds every place the Katana rule is used. Keep
 labels stable: add new paragraphs at the end of the general rules (R16, ...) instead of renumbering.
 
@@ -108,7 +108,9 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   anything that goes through `game.log.error` shows up everywhere above.
 - Prompt caching: a prompt starts with what many calls repeat (the rules, via `llm.rules_system`), and ends
   each stable part with `llm.cache_block`; Claude and Gemini cache only up to those marks, and OpenAI only the
-  system message, so a player's stable text (briefing, earlier phases' history) goes there. Check `cached_tokens`
+  system message, so a player's stable text (briefing, earlier phases' history) goes there. The answer schema is part of the cached
+  prefix too, so live games send every in-game player call one schema (`players.shared_schema`) and check the
+  answer against the task's own afterwards. Check `cached_tokens`
   in `player_call` usage after changing a prompt's layout.
 - Reasoning effort: each model has a default (`MODEL_EFFORT` in `llm.py`: high, except Qwen and Gemini Flash at medium,
   since at high they run near or past the token cap); measured cost and time per turn at medium vs high are in the comment there.

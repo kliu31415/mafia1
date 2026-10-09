@@ -1,5 +1,6 @@
 """Game state: players, visibility-aware events, deaths and win checks."""
 
+import json
 import random
 import re
 from collections.abc import Sequence
@@ -161,7 +162,9 @@ class Game:
     def history_split(self, name: str) -> tuple[list[str], list[str]]:
         """What `name` has seen, as lines from earlier phases and lines from the current one. Earlier
         phases don't change, so prompts can cache them (llm.cache_block)."""
-        lines = [(e.day, e.phase, f"[Day {e.day} {e.phase}] {e.text}") for e in self.events if e.visible(name)]
+        lines = [(e.day, e.phase, f"[Day {e.day} {e.phase}] {e.text}" + (
+            " [written by your Puppeteer, not you]" if e.fields.get("puppeteer") and e.fields.get("speaker") == name
+            else "")) for e in self.events if e.visible(name)]
         start = len(lines)
         while start and lines[start - 1][:2] == (self.day, self.phase):
             start -= 1
@@ -288,6 +291,28 @@ class Game:
             "players": [{"name": p.name, "seat": p.seat, "alive": p.alive,
                          "revealed_role": None if p.alive else p.role} for p in self.players],
         }
+
+    def state_summary(self) -> str:
+        """full_state() as readable lines, for the moderator (it asked for one after
+        game_20261009_084630_739772): seat order, Katana holder, tokens, statuses and next-Day effects."""
+        def who(p: Player) -> str:
+            extras = [f"tokens {', '.join(f'{k} {v}' for k, v in p.tokens.items())}" if p.tokens else "",
+                      f"status {json.dumps(p.status)}" if p.status else "",
+                      "holds the Katana" if p.name == self.katana_holder else ""]
+            return f"{p.name} ({p.role}, {p.faction})" + "".join(f"; {x}" for x in extras if x)
+        lines = [f"Day {self.day}, {self.phase}. Katana holder: {self.katana_holder or 'none'}.",
+                 "Living players in seat order:"]
+        lines += [f"- seat {p.seat + 1}: {who(p)}" for p in self.alive()]
+        dead = [p for p in self.players if not p.alive]
+        if dead:
+            lines.append("Dead: " + "; ".join(
+                f"{who(p)}, died day {p.death['day']} {p.death['phase']}" if p.death else who(p) for p in dead))
+        effects = ([f"Clerk's rig on day {self.rigged_day}"] if self.rigged_day and self.rigged_day >= self.day else []) \
+            + [f"{n} is prosecuted next day" for n in self.prosecutions] \
+            + [f"{a} puppets {b} next day" for b, a in self.puppets_next.items()] \
+            + [f"{a} puppets {b} today" for b, a in self.puppets.items()]
+        lines.append("Pending day effects: " + ("; ".join(effects) or "none"))
+        return "\n".join(lines)
 
     def full_state(self) -> dict:
         """Everything, for the moderator."""

@@ -1,11 +1,13 @@
 """The day phase: speaking budget, chat turns, nominations and simultaneous votes."""
 
 import json
+import re
 from typing import Any
 
+from llm import Model
 from players import (LAST_WILL_SCHEMA, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
-from events import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE
+from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import logic
 from state import Game, Player, majority
 
@@ -77,7 +79,7 @@ def run_day(game: Game, players: Players) -> None:
         return
     game.puppets, game.puppets_next = game.puppets_next, {}
     for puppet, puppeteer in list(game.puppets.items()):
-        # A Puppeteer who died overnight can't act any more (rules R12), so the puppeting lapses.
+        # A Puppeteer who died overnight can't act any more, so the puppeting lapses (rules R21).
         if game.player(puppet).alive and game.player(puppeteer).alive:
             game.emit("You are being puppeted today: you can't chat or see private messages, but you can "
                       "still nominate and vote.", [puppet])
@@ -122,6 +124,8 @@ def run_day(game: Game, players: Players) -> None:
     start = game.rng.choice(game.alive()).seat
     game.emit(f"Speaking order today goes around the circle in seat order, starting with "
               f"{game.players[start].name}.")
+    n_alive = len(game.alive())  # players asked for the day's numbers (game_20261009_084630_739772)
+    game.emit(f"{n_alive} players are alive, so a nomination needs {n_alive // 2 + 1} Yes votes (rules R4).")
     for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
@@ -163,6 +167,20 @@ def run_day(game: Game, players: Players) -> None:
             game.emit("A full round passed with no public messages. The day ends.")
             return
     game.emit("Discussion time is over. The day ends.")
+
+
+NAME_PREFIX_MODELS = {Model.HAIKU_5_5}  # models that ignore the prompt's "no need to start with your own name"
+
+
+def drop_own_name(out: dict, name: str, model: Model) -> dict:
+    """HACK, Haiku only: strips a leading "Name:" from the public message. The prompt already says not to
+    write it, and every other model follows that; Haiku 5.5 wrote it on nearly every turn
+    (game_20261009_084630_739772). Kept to the models in NAME_PREFIX_MODELS so other models' messages
+    are never rewritten; drop it if a later Haiku follows the prompt."""
+    msg = out.get("public_message")
+    if model in NAME_PREFIX_MODELS and isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
+        out = {**out, "public_message": msg[m.end():]}
+    return out
 
 
 def planned_messages(out: dict) -> list[tuple[str | None, str]]:
@@ -215,7 +233,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             "no need to start a message with your own name. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
             "so late messages are only worth it if important. The day ends after a full round where "
-            "nobody sends a public message.\n" + price_table(rnd, trial) + "\n"
+            "nobody sends a public message, so a message that only repeats what you already said keeps "
+            "the day going for everyone: if you have nothing new, send nothing.\n" + price_table(rnd, trial) + "\n"
             + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
                f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
                "lost when this turn ends, but don't speak just to use it up: say nothing if you have "
@@ -226,8 +245,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "today. It's shown to everyone if you die.\n" if writer is p else "")
             + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
                f"{CLAIM_WORDS} words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: "
-               "Bob Not Evil'. The public ledger lists every player's latest claim and any earlier ones they "
-               "changed from, as unverified claims.\n")
+               "Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, "
+               "and the public ledger lists every player's latest claim and any earlier ones they changed from, "
+               "as unverified claims.\n")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
@@ -236,12 +256,14 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
         out = players.ask(p, task, schema, fallback)
+        out = drop_own_name(out, p.name, writer.model)
     else:
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
         schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
         out = players.ask(writer, task, schema, fallback)
+        out = drop_own_name(out, p.name, writer.model)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
                              "can't chat, but you may nominate a player for trial (or null). Nominating costs "
@@ -261,6 +283,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
         out = players.ask(writer, task + warning, schema, out)
+        out = drop_own_name(out, p.name, writer.model)
         if writer is not p:
             out["nominate"] = nominee
 
@@ -269,8 +292,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if isinstance(claim := out.get("claim"), str) and claim.strip():  # a Puppeteer may set the puppet's
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
-        if not claims or claims[-1][1] != claim:  # logged so transcripts (and the log review) show claims
-            game.log.write("claim", day=game.day, player=p.name, claim=claim)
+        if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
+            game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim)
         if claims and claims[-1][0] == game.day:
             claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
         elif not claims or claims[-1][1] != claim:
@@ -284,6 +307,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"You couldn't afford to nominate {nominee}.", [p.name])
             nominee = None
     public = False
+    # The puppet sees these marked as their Puppeteer's in their own history (Game.history_split), as do log views.
+    puppeted: dict[str, Any] = {} if writer is p else {"puppeteer": writer.name}
     for i, (to, text) in enumerate(planned_messages(out)):
         if to is not None and to not in game.alive_names():  # the schema only offers living players
             game.log.error("harness_error", f"{p.name}'s private message went to {to!r}, who isn't a living "
@@ -305,12 +330,13 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         spend(cost_of(i, to, words))
         if to is None:
             public = True
-            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
+            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text, **puppeted)
         else:
             # A puppeted player's private chat is read and written by their Puppeteer instead. Listeners
             # (Wiretap, Eavesdropper) read it under the puppet's name, unaware of the puppeting.
             readers = [writer.name, game.chat_controller(to)] + game.pm_listeners(p.name, to)
-            game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text)
+            game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text,
+                      **puppeted)
             pair = f"{p.name} -> {to}"
             counts = game.pm_record.setdefault(game.day, {})
             counts[pair] = counts.get(pair, 0) + 1
@@ -369,6 +395,10 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     for p in game.clockwise_from(accused.name)[1:]:
         chat_turn(game, players, p, rnd, can_nominate=False, trial=True,
                   extra=f"{nominee} is on trial. " + TRIAL_VOTE_NOTE)
+    # rules R4: a last word, so questions asked during the trial get an answer
+    chat_turn(game, players, accused, rnd, can_nominate=False, free_words=FREE_DEFENSE_WORDS, trial=True,
+              extra="You are on trial. Everyone else has spoken: this is your last public message before the "
+                    "vote, to answer questions and accusations. " + TRIAL_VOTE_NOTE)
 
     voters = game.alive()
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
@@ -383,7 +413,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     # votes counted, and the announced totals include the extra votes without saying whose they are.
     weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
     guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
-    tally = f"{guilty_votes} Guilty of {total_votes} votes"
+    tally = f"{guilty_votes} Guilty of {total_votes} votes; {total_votes // 2 + 1} needed"  # rules R4: a majority
     if total_votes != len(voters):
         tally += ("; these totals don't match the revealed votes because a role manipulated the count on purpose "
                   "(rules R4), not because of an error")

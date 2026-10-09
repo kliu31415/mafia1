@@ -101,7 +101,7 @@ ROLES: dict[str, RoleInfo] = {
                            "moderator invents its results"),
     "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True,
                        summary="Visits a random player each night without knowing whom; reads Evil to alignment checks.",
-                       notes="random visit each night; night note says it reads Evil to Sheriff and Seer"),
+                       notes="code draws the random visit each night (automatic action); night note says it reads Evil to Sheriff and Seer"),
     "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
                          summary="If they die, a random living Good player is dealt a Divine Attack.",
                          notes="curse resolved by code at the next dawn"),
@@ -134,8 +134,9 @@ ROLES: dict[str, RoleInfo] = {
                                notes="moderator records the use with the stuff_ballot op; code doubles the vote "
                                "in the next day's trials"),
     "Diviner": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                        summary="Night: pick a player; a Yakuza gets Strong Defense, anyone else's exact role is learned.",
-                        acts_at_night=True),
+                        summary="Night: pick a player; a Yakuza gets Strong Defense, else learn a role from them and neighbors (60% theirs).",
+                        acts_at_night=True,
+                        notes="divine op: code draws the role from the group; the moderator applies the Strong Defense"),
     "Mortician": RoleInfo(Alignment.EVIL, "Yakuza", True,
                           summary="Token: clean a player; if they die that night, their role and will are hidden.",
                           tokens={"mortician": 2}, acts_at_night=True,
@@ -186,7 +187,7 @@ def role_status_table() -> str:
 
 
 # Role files register their hooks when imported.
-from roles import (accountant, archivist, arsonist, ballot_stuffer, cardinal, clerk, eavesdropper, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
+from roles import (accountant, archivist, arsonist, ballot_stuffer, cardinal, clerk, diviner, eavesdropper, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
                    medic, philanthropist, prosecutor, puppeteer, roleplayer, seer, surveyor, trapper, veteran, vulture, wiretap)
 
 assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"
