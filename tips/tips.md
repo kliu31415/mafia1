@@ -1,52 +1,54 @@
 # Tips from past games
 
-Written 2026-10-09 19:54 by opus-5.5 with `uv run tips.py build`, from the 68 active entries of tips_notebook.json (5 games). Players never see this preamble; they see every section below. Earlier versions are in history/.
+Written 2026-10-09 22:56 by opus-5.5 with `uv run tips.py build`, from the 90 active entries of tips_notebook.json (6 games). Players never see this preamble; they see every section below. Earlier versions are in history/.
 
 ## Everyone
-- Treat nomination and trial as separate votes. Before voting Guilty, name one concrete contradiction in the player's claims, votes or a mechanical result; echoed concerns, corrected slips and 'I just want to hear a defense' are not evidence. (seen in 3 games)
-- A visit shows only where someone went, not what they did: a track or watch can't tell a protection from a frame or a Katana attack. A night kill on an attacker doesn't cancel their attack that same night. (seen in 3 games)
-- Keep your votes consistent with your stated reads. Accusing someone and then voting No or Innocent on them is the mismatch Vigilantes shoot. (seen in 2 games)
-- Check the mechanics before calling a contradiction: night actions are optional unless a role says 'must', duplicate claims are possible, and counts depend on who was alive at that moment. Also re-check who sent each PM. A false contradiction costs you credibility. (seen in 2 games)
-- PMs are publicly visible, so briefly summarize their content in public. Unexplained PM clusters after claims or votes draw suspicion. (seen in 2 games)
+- Keep your votes consistent with your stated reads. Accusing someone and then voting No or Innocent on them is exactly the mismatch Vigilantes shoot and the Village should scan for. (seen in 2 games)
+- A visit shows only a destination, not the action or the visitor's alignment. A Lookout on the Katana holder sees nothing of the holder's attack, and killing an attacker at night doesn't cancel their attack that night. (seen in 3 games)
+- Check the mechanics and the ledger before calling a contradiction. Actions are optional, most roles aren't unique, and you must recheck who sent each PM and the exact wording of results; one reversed fact can discredit a true claimant. (seen in 2 games)
+- Treat the nomination and the trial as separate decisions, unless a Clerk may hold an unused rig. Before voting Guilty, name one concrete contradiction; echoed concerns and 'just want to hear a defense' are not a case. (seen in 3 games)
+- Fortune Teller numbers are unordered, and one visitor can cover two targets (e.g. a Katana holder using their own action). List every way a count could fit before using it, and never hang on a count alone.
 
 ## Village
-- Weigh contradictions between a player's own premises or claimed knowledge far above awkward wording or delays. Before a hang, say what separates a lie from an honest slip, a frame or a Roleplayer. (seen in 4 games)
-- Don't hint at a power role on Day 1, especially Medic or Veteran. Once investigator results matter, post them publicly rather than only in your will. While a Ritualist may be alive, never name another living player's exact role; write 'X or Y has info, ask them'. (seen in 4 games)
-- Named daily leans are a record to check against later flips, not evidence. A pile of soft leans must never become a Guilty vote, and be wary of whoever nominates the pile-on target. (seen in 4 games)
-- Keep a ledger of trial votes, totals, PM senders, deaths, blocks and visits. Find who starts PM clusters and co-nominates without new info, and once one of them flips Yakuza, use the shared vote record on the rest. (seen in 3 games)
-- A power claimant who survives a Katana or is blocked night after night is probably real. Evil rarely wastes its blocker and kills on a fake. (seen in 3 games)
-- Two Sheriffs calling each other Evil can both be honest, since Jesters and Executioners read Evil. Don't hang on who sounded better; wait a day or find a mechanical check. (seen in 2 games)
-- Never announce tonight's investigation target. It tells the Pharmacist whom to block and the Katana where to strike. (seen in 2 games)
-- If a trial total exceeds the revealed votes, a Ballot Stuffer exists. Recount the threshold, find the voter whose votes match every extra vote, and act before evil reaches near-half and hangs become impossible. (seen in 2 games)
-- Hostile Neutrals stay suspects after the Yakuza die. A Not Evil result or a Vanilla claim doesn't clear an SK or Arsonist.
+- Weigh contradictions in a player's own premises or claimed knowledge far above awkward wording or delays. Before a hang, say what separates a lie from an honest slip, a frame or a Roleplayer. (seen in 4 games)
+- Two Sheriff claimants calling each other Evil can both be telling the truth, since Jesters and Executioners read Evil. Wait a day or find a mechanical check instead of hanging whoever sounded better. (seen in 2 games)
+- Map who starts PM clusters and who co-nominates. After a Yakuza flips, suspect whoever voted No or Innocent with them or messaged them, and weigh these links above unverifiable late claims. (seen in 4 games)
+- Don't hint at your power role on Day 1. Investigators never announce tonight's target, only resolved results. While a Ritualist may be alive, never name another living player's exact role. (seen in 5 games)
+- A power-role claimant who survives a Katana attack, or who is role-blocked night after night, is likely real. Don't vote Guilty on an investigator just for having no results. (seen in 3 games)
+- Keep a ledger of trial votes, announced totals, deaths and blocks. If a total exceeds the revealed votes, a Ballot Stuffer exists: recompute the threshold, find the voter who matches every extra vote, and act before evil reaches half. (seen in 2 games)
+- Ask everyone for a named suspect so you have a record, but a stack of echoed soft leans is not evidence. Watch for Yakuza nominating the pile-on target. (seen in 4 games)
+- Don't hang a power claimant just because the claim came late; ask who is pushing the trial and who benefits. (seen in 2 games)
+- Keep the Serial Killer and Arsonist in the suspect pool. A Not Evil result or a Vanilla claim doesn't clear them, and surviving an attack with no Medic can mean innate Defense. (seen in 2 games)
+- When a Clerk rig is announced, the nominator, the pushers and the Guilty voters are your prime suspects. Hang from that group next.
 
 ## Yakuza
-- Do the vote math in night chat before each trial. If your Innocent votes (plus any doubled Ballot Stuffer vote) can save an exposed teammate, defend them. If the teammate is doomed, vote Guilty with the town, because lone Innocent votes become the case against you. (seen in 5 games)
-- Every member must submit the agreed action and Katana vote every night. Confirm the exact holder and target in chat; with two alive, one missed vote cancels the kill. (seen in 3 games)
-- Assume the real holder of any role you fake is alive and that tokens can be audited. Don't claim against a Lookout or Tracker result, and never switch to a second power claim after the first breaks. (seen in 3 games)
-- After a failed attack, assume protection or innate Defense. Kill or block the likely protector instead of retrying blindly. (seen in 3 games)
-- When a Lookout or Tracker is active, give the Katana to an unclaimed member with no reason to visit, and prioritize killing the likeliest Vigilante. (seen in 2 games)
-- Don't PM teammates on Day 1, and don't all repeat the same excuse. A visible PM triangle becomes the town's lead all game. (seen in 2 games)
+- Do the vote math in night chat. If your Innocent votes (plus a doubled ballot) can save a teammate, defend them; if not, vote Guilty with the town, because lone No or Innocent votes on a flipped teammate become the case against you. (seen in 6 games)
+- Assume the real holder of any role you fake is alive and that tokens can be audited. Never claim something a living Lookout or Tracker can contradict, and don't have two members claim Vanilla. (seen in 4 games)
+- Every member submits their action and Katana vote every night; confirm the holder and target in chat. With two alive, one missing vote cancels the kill. (seen in 3 games)
+- After a failed attack, assume a protector or innate Defense: block or kill the Medic, or push the survivor to the gallows, rather than retrying blindly. (seen in 3 games)
+- Give the Katana to your least valuable member with no reason to visit. Never visit a suspected or claimed Veteran; hang them instead. (seen in 2 games)
+- No Day 1 PMs between teammates, and give each teammate different wording; PM triangles and scripted lines become the town's lead for the whole game. (seen in 2 games)
+- Parity doesn't end the game. At 2v2, vote No on every nomination, kill at night, then hang the last villager 2-1. (seen in 2 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged.
 
 ## Sheriff
+- Post your target and result in your first speech after getting it, and keep your will current. A result held back and revealed after a counterclaim looks retrofitted.
 - The Katana holder reads Not Evil that night, so a Not Evil result on a suspected attacker clears nothing. Say so when you post it. (seen in 3 games)
-- Check a prominent player on N1 and post each result in your next speech, with your will kept current. A result held back looks retrofitted.
 
 ## Medic
-- Protect every night from N1, since free Standard Defense stops the Katana. Guard vocal analysts early, then claimed investigators. (seen in 4 games)
-- You get no feedback, so never claim a confirmed save; say your protection is consistent with the target surviving. (seen in 2 games)
+- Protect every night from N1: vocal analysts early, claimed investigators later. Free Standard Defense stops the Katana. (seen in 4 games)
+- You get no feedback, so never claim a confirmed save. Say your protection is consistent with the target surviving. (seen in 2 games)
 
 ## Vigilante
-- Shoot only on a mechanical lead: a claim conflict, votes contradicting stated reads, or links to a flipped Yakuza. Never shoot on a soft behavioral read, use Basic shots, and never telegraph when you'll shoot. (seen in 2 games)
+- Shoot only on a mechanical lead (claim conflict, a flipped Yakuza's vote or PM partners, votes contradicting reads), never on a behavioral read. Use Basic shots and never announce whom you'll shoot. (seen in 2 games)
 
 ## Veteran
-- Once you claim, Yakuza stop visiting you and will try to hang you instead. Claim only to confirm a kill or stop a lynch, and never reveal how many alerts you have left.
-
-## Ballot Stuffer
-- Spend your token when your team nears half. A doubled Innocent vote can make every trial unwinnable (7 alive means 8 votes counted, so 5 Guilty are needed). Nomination votes are not doubled.
+- Alert on nights you drew attention, not quiet ones. Once you claim, Yakuza avoid you, so claim late and never reveal your remaining tokens.
 
 ## Arsonist
-- Count living players against your douses every night and ignite once it swings the endgame. Douse players likely to survive, not today's lynch target.
+- Ignite once 3 or more living players are doused or as soon as you're suspected. Ignite is Astral, but Strong Defense stops it.
 
 ## Executioner
-- Fake-claim Sheriff early with an Evil result on your target and a simple reason. Going first makes the target's counterclaim look reactionary.
+- Fake-claim Sheriff early with an Evil result on your target and a simple reason. Leading first makes their counterclaim look reactionary.
