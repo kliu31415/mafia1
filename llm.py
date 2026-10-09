@@ -1,5 +1,6 @@
 """OpenRouter client, the model list, and an offline mock client."""
 
+import http.client
 import json
 import os
 import random
@@ -130,15 +131,69 @@ class LLMReply:
     stop_note: str | None = None
 
 
-def answer_json(reply: LLMReply) -> Any:
-    """The JSON answer of a structured-output call. An empty answer raises RuntimeError saying why
-    (a refusal, the token limit, ...), rather than a bare JSON error."""
+def clean_json(x: Any) -> Any:
+    """Parsed JSON with each string made encodable: a lone UTF-16 surrogate (e.g. half of an emoji, which
+    JSON's \\ud83d allows) becomes U+FFFD, instead of failing whenever the text is written to a file."""
+    if isinstance(x, str):
+        return x.encode("utf-8", "surrogatepass").decode("utf-8", "replace") if any(
+            "\ud800" <= ch <= "\udfff" for ch in x) else x
+    if isinstance(x, list):
+        return [clean_json(v) for v in x]
+    if isinstance(x, dict):
+        return {clean_json(k): clean_json(v) for k, v in x.items()}
+    return x
+
+
+JSON_TYPES = {"object": dict, "array": list, "string": str, "boolean": bool, "null": type(None)}
+
+
+def schema_errors(value: object, schema: dict, path: str = "answer") -> list[str]:
+    """Where a JSON answer breaks its schema (the subset our schemas use: type, enum, properties, required,
+    additionalProperties, items, anyOf, minimum, maximum). Providers are asked for strict structured output,
+    but one that ignores it would otherwise feed the game an unknown name or a missing field."""
+    if "anyOf" in schema:
+        options = [schema_errors(value, s, path) for s in schema["anyOf"]]
+        return [] if any(not e for e in options) else min(options, key=len)
+    t = schema.get("type")
+    if t == "integer":
+        ok = isinstance(value, int) and not isinstance(value, bool)
+    elif t == "number":
+        ok = isinstance(value, (int, float)) and not isinstance(value, bool)
+    else:
+        ok = t is None or isinstance(value, JSON_TYPES[t]) and not (t != "boolean" and isinstance(value, bool))
+    if not ok:
+        return [f"{path} should be {t}, not {json.dumps(value)[:60]}"]
+    if "enum" in schema and value not in schema["enum"]:
+        return [f"{path} is {json.dumps(value)[:60]}, not one of {schema['enum']}"]
+    if isinstance(value, (int, float)) and not schema.get("minimum", value) <= value <= schema.get("maximum", value):
+        return [f"{path} is {value}, outside {schema.get('minimum')}..{schema.get('maximum')}"]
+    errors = []
+    if isinstance(value, dict):
+        props = schema.get("properties", {})
+        errors += [f"{path} is missing {k!r}" for k in schema.get("required", []) if k not in value]
+        if schema.get("additionalProperties") is False:
+            errors += [f"{path} has an unknown field {k!r}" for k in value if k not in props]
+        for k, v in value.items():
+            if k in props:
+                errors += schema_errors(v, props[k], f"{path}.{k}")
+    if isinstance(value, list) and "items" in schema:
+        for i, v in enumerate(value):
+            errors += schema_errors(v, schema["items"], f"{path}[{i}]")
+    return errors
+
+
+def answer_json(reply: LLMReply, schema: dict | None = None) -> Any:
+    """The JSON answer of a structured-output call. An empty or unparsable answer, or one that breaks
+    `schema`, raises RuntimeError saying why (a refusal, the token limit, ...)."""
     if not reply.content:
         raise RuntimeError(f"empty answer ({reply.stop_note or 'no reason given'})")
     try:
-        return json.loads(reply.content)
+        out = clean_json(json.loads(reply.content))
     except json.JSONDecodeError as e:  # e.g. cut off at the token limit
         raise RuntimeError(f"unparsable answer ({e}; {reply.stop_note}): {reply.content[-200:]!r}") from None
+    if schema and (errors := schema_errors(out, schema)):
+        raise RuntimeError(f"the answer doesn't match its schema: {'; '.join(errors[:5])}")
+    return out
 
 
 class LLMClient(Protocol):
@@ -150,6 +205,9 @@ class LLMClient(Protocol):
              schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
         """effort: reasoning effort for this call (one of EFFORTS); None means the client's default."""
         ...
+
+
+RETRY_CODES = (408, 429, 500, 502, 503, 504)  # HTTP statuses (or error codes in an answer) worth retrying
 
 
 class OpenRouterClient:
@@ -188,8 +246,9 @@ class OpenRouterClient:
                 "json_schema": {"name": schema_name, "strict": True, "schema": schema},
             }
         data = self._post(body)
-        if "error" in data:
-            raise RuntimeError(f"OpenRouter error from {model.value}: {data['error']}")
+        if not isinstance(data, dict) or "error" in data:
+            raise RuntimeError(f"OpenRouter error from {model.value}: "
+                               f"{data.get('error') if isinstance(data, dict) else data!r:.300}")
         if not data.get("choices"):
             raise RuntimeError(f"OpenRouter answer from {model.value} has no choices: {json.dumps(data)[:300]}")
         choice = data["choices"][0]
@@ -226,18 +285,26 @@ class OpenRouterClient:
         for attempt in range(self.retries + 1):
             try:
                 with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                    return json.loads(resp.read().decode("utf-8"))
+                    data = json.loads(resp.read().decode("utf-8"))
             except urllib.error.HTTPError as e:
                 detail = e.read().decode("utf-8", "replace")[:500]
-                if e.code in (408, 429, 500, 502, 503, 504) and attempt < self.retries:
+                if e.code in RETRY_CODES and attempt < self.retries:
                     self._retrying(body, attempt, f"HTTP {e.code}: {detail}")
                     continue
                 raise RuntimeError(f"OpenRouter HTTP {e.code}: {detail}") from None
-            except (urllib.error.URLError, TimeoutError) as e:
+            # A dropped or cut-off connection while reading the answer (urllib only wraps errors while
+            # sending in URLError), or a body that isn't JSON (e.g. a proxy's HTML error page).
+            except (OSError, http.client.HTTPException, json.JSONDecodeError, UnicodeDecodeError) as e:
                 if attempt < self.retries:
                     self._retrying(body, attempt, f"{type(e).__name__}: {e}")
                     continue
-                raise
+                raise RuntimeError(f"OpenRouter request failed after {attempt + 1} attempts: "
+                                   f"{type(e).__name__}: {e}") from e
+            error = data.get("error") if isinstance(data, dict) else {"message": f"not a JSON object: {data!r:.200}"}
+            if error and attempt < self.retries and (not isinstance(error, dict) or error.get("code") in RETRY_CODES):
+                self._retrying(body, attempt, f"error in the answer: {json.dumps(error)[:300]}")
+                continue  # e.g. the provider failed partway through generating
+            return data
         raise AssertionError("unreachable")
 
     def _retrying(self, body: dict, attempt: int, error: str) -> None:

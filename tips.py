@@ -31,10 +31,12 @@ import argparse
 import glob
 import hashlib
 import json
+import math
 import os
 import random
 import re
 import time
+import uuid
 from collections import Counter
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
@@ -43,6 +45,7 @@ from pathlib import Path
 from typing import Any
 
 from llm import LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, answer_json, load_api_key, parse_model_spec
+from records import read_records, safe_print
 from roles import ROLES
 
 ROOT = Path(__file__).resolve().parent
@@ -146,12 +149,13 @@ def file_digest(text: str) -> str:
 # ---------------------------------------------------------------------------------------------
 
 def read_game(path: Path) -> dict | None:
-    """The lessons, strategy review and outcome of one game log, or None if it has no lessons."""
-    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    """The lessons, strategy review and outcome of one finished game log, or None if it has no lessons or
+    hasn't finished (its post-game steps may still be running, and a game is only read once)."""
+    records, _ = read_records(path)  # a half-written last line (a killed game) is skipped
     lessons = [r for r in records if r["kind"] in ("lessons", "strategy_review")]
-    if not lessons:
+    result = next((r for r in records if r["kind"] == "result"), None)
+    if not lessons or result is None:
         return None
-    result: dict = next((r for r in records if r["kind"] == "result"), {})
     fallbacks = Counter(r.get("player") for r in records if r["kind"] == "player_fallback")
     tips = next((r for r in records if r["kind"] == "tips"), None)
     return {"game": path.stem, "records": lessons, "result": result, "had_tips": tips["players"] if tips else [],
@@ -255,10 +259,11 @@ def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
     skipped = 0
     for op in ops:
         w = op.get("weight")
-        kind, note, weight = op["op"], op["note"].strip(), max(0.0, min(1.0, w)) if isinstance(w, (int, float)) else 0.0
+        kind, note = op["op"], op["note"].strip()
+        weight = max(0.0, min(1.0, w)) if isinstance(w, (int, float)) and math.isfinite(w) else 0.0
         if kind == "add":
-            if not op["tip"].strip():
-                skipped += 1
+            if not op["tip"].strip() or any(e["tip"] == op["tip"].strip() for e in nb["entries"]):
+                skipped += 1  # empty, or the same tip added twice
                 continue
             added = {"id": f"t{nb['next_id']}", "audience": op["audience"], "tip": op["tip"].strip(), "status": "active",
                  "support": [{"game": game, "weight": weight, "note": note}], "against": [],
@@ -271,14 +276,16 @@ def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
         if e is None:
             skipped += 1
             continue
-        if kind == "support":
+        if kind in ("support", "against") and any(x["game"] == game for x in e[kind]):
+            skipped += 1  # one game counts once for (or against) an entry, however many lessons say so
+        elif kind == "support":
             e["support"].append({"game": game, "weight": weight, "note": note})
         elif kind == "against":
             e["against"].append({"game": game, "weight": weight, "note": note})
         elif kind == "edit" and op["tip"].strip():
             e["history"].append({"game": game, "change": "edited", "old": e["tip"], "note": note})
             e["tip"], e["audience"] = op["tip"].strip(), op["audience"]
-        elif kind in ("retire", "restore"):
+        elif kind in ("retire", "restore") and e["status"] == ("active" if kind == "retire" else "retired"):
             e["status"] = "retired" if kind == "retire" else "active"
             e["history"].append({"game": game, "change": kind + "d", "note": note})
         else:
@@ -311,7 +318,7 @@ def update_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, g:
          "from one lesson, and no ops is fine if the game taught nothing new."},
     ]
     reply = client.chat(spec.model, messages, schema=OPS_SCHEMA, schema_name="notebook_ops", effort=spec.effort)
-    ops = answer_json(reply).get("ops", [])
+    ops = answer_json(reply, OPS_SCHEMA)["ops"]
     skipped = apply_ops(nb, ops, g["game"])
     return len(ops) - skipped, skipped, reply.cost
 
@@ -359,7 +366,7 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
     reply = client.chat(spec.model, messages, schema=DISTILL_SCHEMA, schema_name="tips", effort=spec.effort)
     order = {h: i for i, h in enumerate(HEADINGS)}
     out = []
-    for s in sorted(answer_json(reply).get("sections", []), key=lambda s: order.get(s["heading"], len(order))):
+    for s in sorted(answer_json(reply, DISTILL_SCHEMA)["sections"], key=lambda s: order.get(s["heading"], len(order))):
         tips = [t for t in s["tips"] if t["tip"].strip()]
         if tips:
             out.append(f"## {s['heading']}\n" + "\n".join(
@@ -373,7 +380,7 @@ class NoNewGames(Exception):
 
 def print_alert(kind: str, error: str, **data: Any) -> None:
     """How `uv run tips.py build` reports errors (a game's own build logs them with GameLog.error)."""
-    print(f"ALERT {kind}: {error}", flush=True)
+    safe_print(f"ALERT {kind}: {error}")
 
 
 LOCK_WAIT_S = 3600  # how long a build waits for another process's build of the same sheet
@@ -381,15 +388,20 @@ LOCK_STALE_S = 1800  # a lock older than this was left by a process that died, a
 
 
 @contextmanager
-def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[None]:
+def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[Callable[[], None]]:
     """Only one process at a time builds a given sheet (games running in parallel each update the tips
-    when they finish): a lock file next to it, created atomically, works across processes and OSes."""
+    when they finish): a lock file next to it, created atomically, works across processes and OSes. Yields
+    touch(), which the holder calls now and then to show it's still alive; a lock nobody touched for
+    LOCK_STALE_S was left by a build that died, and is taken over."""
     lock = path.with_name(path.name + ".lock")
     lock.parent.mkdir(parents=True, exist_ok=True)
+    token = f"{os.getpid()} {uuid.uuid4()}"  # ours, so we never delete a lock another build took over
     deadline = time.time() + LOCK_WAIT_S
     while True:
         try:
-            os.close(os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+            fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.write(fd, token.encode())
+            os.close(fd)
             break
         except FileExistsError:
             try:
@@ -403,16 +415,29 @@ def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[
             if time.time() > deadline:
                 raise TimeoutError(f"{lock} is still held by another build after {LOCK_WAIT_S}s") from None
             time.sleep(1)
+    def ours() -> bool:
+        try:
+            return lock.read_text(encoding="utf-8") == token
+        except OSError:
+            return False
+
+    def touch() -> None:
+        if ours():
+            os.utime(lock)
+        else:
+            on_error("tips_error", f"{lock} was taken over by another build while this one ran; their "
+                     "notebook writes may overwrite each other", lock=str(lock))
     try:
-        yield
+        yield touch
     finally:
-        lock.unlink(missing_ok=True)
+        if ours():
+            lock.unlink(missing_ok=True)
 
 
 def write_atomic(path: Path, text: str) -> None:
     """So a game starting meanwhile never reads a half-written sheet."""
     tmp = path.with_name(path.name + ".tmp")
-    tmp.write_text(text, encoding="utf-8")
+    tmp.write_text(text, encoding="utf-8", errors="replace")
     os.replace(tmp, path)
 
 
@@ -422,12 +447,12 @@ def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_
     then rewrites the sheet from it. Earlier versions of both go to <out dir>/history/. `fresh` starts
     a new notebook. Safe to run from several processes at once: builds of the same sheet take turns.
     on_error(kind, summary, **fields) is told about problems that don't stop the build (GameLog.error)."""
-    with locked(out, on_error):
-        return _build(paths, out, client, spec, max_words, include_mock, fresh, on_error)
+    with locked(out, on_error) as touch:
+        return _build(paths, out, client, spec, max_words, include_mock, fresh, on_error, touch)
 
 
 def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
-           include_mock: bool, fresh: bool, on_error: Callable[..., None]) -> Path:
+           include_mock: bool, fresh: bool, on_error: Callable[..., None], touch: Callable[[], None]) -> Path:
     nb_path = notebook_path(out)
     nb = new_notebook() if fresh or not nb_path.exists() else json.loads(nb_path.read_text(encoding="utf-8"))
     games = [g for p in sorted(paths, key=lambda p: p.name) if p.stem not in nb["games"] and (g := read_game(p))
@@ -437,26 +462,34 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
                          + (f" {nb_path} already has all {len(nb['games'])} games." if nb["games"] else ""))
     rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8")
     cost = 0.0
+    stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
+    for path in (out, nb_path):  # the versions before this build
+        if path.exists():
+            (out.parent / "history").mkdir(parents=True, exist_ok=True)
+            (out.parent / "history" / f"{path.stem}_{stamp}{path.suffix}").write_bytes(path.read_bytes())
+    out.parent.mkdir(parents=True, exist_ok=True)
     for g in games:
         applied, skipped, c = update_notebook(client, spec, rules, nb, g)
         cost += c
         print(f"  {g['game']}: {applied} notebook changes" + (f" ({skipped} invalid ones skipped)" if skipped else ""))
         if skipped:
             on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes for {g['game']} "
-                     "(an unknown entry id or an empty tip); they were skipped", game=g["game"], skipped=skipped)
+                     "(an unknown entry id, an empty or repeated tip, a second support or report from the same "
+                     "game, or retiring a retired entry); they were skipped", game=g["game"], skipped=skipped)
+        # Saved after each game, so a failure later keeps (and doesn't pay again for) the games before it.
+        write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
+        touch()  # still alive: other builds wait instead of taking over the lock
     body, c = write_sheet(client, spec, rules, nb, max_words)
     cost += c
-    stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
-    for path in (out, nb_path):
-        if path.exists():
-            (out.parent / "history").mkdir(parents=True, exist_ok=True)
-            (out.parent / "history" / f"{path.stem}_{stamp}{path.suffix}").write_bytes(path.read_bytes())
     active = sum(e["status"] == "active" for e in nb["entries"])
+    if not body.strip() and active:
+        on_error("tips_error", f"the tips model wrote an empty sheet from {active} active entries; {out} was "
+                 "kept as it was")
+        write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
+        return out
     header = (f"# Tips from past games\n\nWritten {datetime.now():%Y-%m-%d %H:%M} by {spec} with `uv run tips.py "
               f"build`, from the {active} active entries of {nb_path.name} ({len(nb['games'])} games). Players never "
               "see this preamble; they see every section below. Earlier versions are in history/.\n\n")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
     write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
     write_atomic(out, header + body)
     print(f"Tips: {out} ({len(body.split())} words) from {nb_path.name} ({active} active entries, "
@@ -469,8 +502,8 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
     b = sub.add_parser("build", help="update the notebook with new games' lessons, then rewrite the tips sheet")
     b.add_argument("logs", nargs="*", help="game JSONL logs or globs (default: logs/game_*.jsonl)")
-    b.add_argument("--out", default=str(ROOT / "tips" / "tips.md"), help="the players' sheet; the notebook is "
-                   "<name>_notebook.json (and .md) beside it")
+    b.add_argument("--out", help="the players' sheet; the notebook is <name>_notebook.json (and .md) beside it "
+                   "(default tips/tips.md, or logs/mock_tips/tips.md with --mock, as mafia.py uses)")
     b.add_argument("--model", default="opus-5.5", help="model[:effort] that distills the tips")
     b.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
     b.add_argument("--exclude", default="", help="comma-separated game ids (log file stems) to leave out")
@@ -483,15 +516,23 @@ def main() -> None:
     if args.cmd == "show":
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
         return
-    patterns = args.logs or [str(ROOT / "logs" / ("mock_*.jsonl" if args.mock else "game_*.jsonl"))]
+    prefix = "mock" if args.mock else "game"
+    out = Path(args.out) if args.out else ROOT / ("logs/mock_tips/tips.md" if args.mock else "tips/tips.md")
+    patterns = [str(Path(p) / f"{prefix}_*.jsonl") if Path(p).is_dir() else p
+                for p in args.logs or [str(ROOT / "logs")]]
     excluded = {e.strip() for e in args.exclude.split(",") if e.strip()}
-    paths = {Path(p) for pat in patterns for p in (glob.glob(pat) or [pat])}
+    paths = set()
+    for pat in patterns:
+        found = [Path(p) for p in glob.glob(pat)]
+        if not found:
+            raise SystemExit(f"No game logs match {pat}")
+        paths |= set(found)
     paths = {p for p in paths if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
     client = MockClient(0) if args.mock else OpenRouterClient(load_api_key())
     if isinstance(client, OpenRouterClient):
         client.on_error = print_alert
     try:
-        build(sorted(paths), Path(args.out), client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
+        build(sorted(paths), out, client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
               fresh=args.fresh)
     except NoNewGames as e:
         raise SystemExit(str(e)) from None

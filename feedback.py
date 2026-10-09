@@ -7,12 +7,13 @@ from datetime import datetime
 from pathlib import Path
 
 from events import RESULT
-from llm import LLMClient, LLMReply, Model, ModelSpec, answer_json
+from llm import LLMClient, Model, ModelSpec, answer_json
 from log_viewer import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
+from records import read_records
 from state import Game
-from tips import player_view
+from tips import player_view, print_alert
 
 DEBRIEF_QUESTIONS = {
     "confusing_rules": "Which rules, or parts of your instructions, were confusing or ambiguous?",
@@ -71,7 +72,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
                                   effort=moderator.effort)
     game.log.write("debrief", who="moderator", role="Moderator", model=moderator.model.value,
-                   answers=answer_json(reply), cost=reply.cost, usage=reply.usage)
+                   answers=answer_json(reply, DEBRIEF_SCHEMA), cost=reply.cost, usage=reply.usage)
 
 
 def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
@@ -85,7 +86,7 @@ def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log
         {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}"},
     ]
     reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
-    game.log.write("review", model=model.value, issues=answer_json(reply).get("issues", []),
+    game.log.write("review", model=model.value, issues=answer_json(reply, REVIEW_SCHEMA)["issues"],
                    cost=reply.cost, usage=reply.usage)
 
 
@@ -168,9 +169,9 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
          "faction, or 'everyone'), the tip, and the evidence: the moment in this game that shows it. "
          "Cover good and evil play, and ignore problems with the rules or the program." + tips_task},
     ]
-    reply = client.chat(model, messages, schema=with_tips_feedback(STRATEGY_SCHEMA) if with_tips else STRATEGY_SCHEMA,
-                        schema_name="strategy_review", effort=effort)
-    out = answer_json(reply)
+    schema = with_tips_feedback(STRATEGY_SCHEMA) if with_tips else STRATEGY_SCHEMA
+    reply = client.chat(model, messages, schema=schema, schema_name="strategy_review", effort=effort)
+    out = answer_json(reply, schema)
     lessons = out.get("lessons", [])
     game.log.write("strategy_review", model=model.value, summary=out.get("summary", ""), lessons=lessons,
                    cost=reply.cost, usage=reply.usage,
@@ -186,7 +187,7 @@ def write_report(jsonl_path: Path) -> Path | None:
     """Collect errors, night checks, moderator flags, in-game feedback, debriefs, lessons, the strategy review
     and the review into
     <game>_feedback.md."""
-    records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
+    records, unreadable = read_records(jsonl_path)
     flags = [r for r in records if r["kind"] == "moderator_flag"]
     in_game = [r for r in records if r["kind"] == "player_feedback"]
     debriefs = [r for r in records if r["kind"] == "debrief"]
@@ -195,11 +196,13 @@ def write_report(jsonl_path: Path) -> Path | None:
     strategy = [r for r in records if r["kind"] == "strategy_review"]
     checks = sorted((r for r in records if r["kind"] == "night_check"), key=lambda r: r["night"])
     errors = [r for r in records if r.get("alert")]
-    if not (errors or flags or in_game or debriefs or reviews or lessons or strategy or checks):
+    if not (unreadable or errors or flags or in_game or debriefs or reviews or lessons or strategy or checks):
         return None
     out = [f"# Feedback for {jsonl_path.stem}\n"]
-    if errors:
+    if errors or unreadable:
         counts = Counter(r["kind"] for r in errors)
+        if unreadable:
+            counts["unreadable log line"] = unreadable
         out.append("## Errors (things to fix)\n")
         out.append(", ".join(f"{n} {k}" for k, n in counts.most_common()) + "\n")
         shown: Counter[tuple[str, str]] = Counter()
@@ -257,7 +260,7 @@ def write_report(jsonl_path: Path) -> Path | None:
                 for i in sorted(r["issues"], key=lambda i: order.get(i["severity"], 3))]
         out.append("")
     path = jsonl_path.with_name(jsonl_path.stem + "_feedback.md")
-    path.write_text("\n".join(out), encoding="utf-8")
+    path.write_text("\n".join(out), encoding="utf-8", errors="replace")
     return path
 
 
@@ -295,14 +298,17 @@ QUIZ_GRADE_SCHEMA = obj(results={"type": "array", "items": obj(
     question={"type": "integer"}, correct={"type": "boolean"}, note=STR)})
 
 
-def quiz_answer(reply: LLMReply, what: str, problems: list[str]) -> dict:
-    """A quiz call's JSON answer; an empty or broken one is printed as an ALERT, listed in the results'
-    errors and treated as no answers (the quiz has no game log for GameLog.error)."""
+def quiz_answer(client: LLMClient, spec: ModelSpec, messages: list[dict], schema: dict, name: str, what: str,
+                problems: list[str]) -> dict:
+    """One quiz call's JSON answer. A failed call or a broken answer is printed as an ALERT, listed in the
+    results' errors and treated as no answers (the quiz has no game log for GameLog.error), so one failure
+    doesn't lose the other models' paid answers."""
     try:
-        return answer_json(reply)
-    except (json.JSONDecodeError, RuntimeError) as e:
-        problems.append(f"{what}: {e}")
-        print(f"ALERT quiz_error: {what}: {e}", flush=True)
+        return answer_json(client.chat(spec.model, messages, schema=schema, schema_name=name, effort=spec.effort),
+                           schema)
+    except Exception as e:
+        problems.append(f"{what}: {type(e).__name__}: {e}")
+        print_alert("quiz_error", f"{what}: {type(e).__name__}: {e}")
         return {}
 
 
@@ -316,23 +322,20 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
     answers_by_model: dict[str, list[str]] = {}
     problems: list[str] = []
     for spec in dict.fromkeys(specs):
-        model = spec.model
-        reply = client.chat(model, [
+        parsed = quiz_answer(client, spec, [
             {"role": "system", "content": f"{rules}\n\n---\n\nAnswer questions about the rules above."},
             {"role": "user", "content": f"Answer each question in one or two sentences, in order:\n{questions}"},
-        ], schema=answer_schema, schema_name="quiz", effort=spec.effort)
-        parsed = quiz_answer(reply, f"{spec}'s answers", problems)
+        ], answer_schema, "quiz", f"{spec}'s answers", problems)
         answers = [parsed.get(f"q{i + 1}", "") for i in range(len(QUIZ))]
         answers_by_model[str(spec)] = answers
         marking = "\n".join(f"{i + 1}. Q: {q}\n   Reference: {ref}\n   Answer: {answers[i] if i < len(answers) else '(none)'}"
                             for i, (q, ref) in enumerate(QUIZ))
-        graded = client.chat(grader.model, [
+        table[str(spec)] = quiz_answer(client, grader, [
             {"role": "user", "content": "Mark each answer correct if it gets the reference's main point right and "
              "contradicts nothing in it; leaving out a minor detail is fine. Otherwise mark it incorrect. "
              "Give a short note either way, and say if the answer reveals a misreading of the rules."
              f"\n\n{marking}"},
-        ], schema=QUIZ_GRADE_SCHEMA, schema_name="quiz_grades", effort=grader.effort)
-        table[str(spec)] = quiz_answer(graded, f"grading {spec}", problems).get("results", [])
+        ], QUIZ_GRADE_SCHEMA, "quiz_grades", f"grading {spec}", problems).get("results", [])
 
     out = ["# Rules quiz\n", f"Graded by {grader}.\n"]
     if problems:
@@ -354,5 +357,5 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
                 out.append(f"- **Q{i + 1}, {m}:** {answer} *({r['note']})*")
     path = out_dir / f"quiz_{datetime.now():%Y%m%d_%H%M%S}.md"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(out) + "\n", encoding="utf-8")
+    path.write_text("\n".join(out) + "\n", encoding="utf-8", errors="replace")
     return path

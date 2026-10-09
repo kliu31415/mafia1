@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 import log_viewer
+from records import read_records, safe_print
 
 
 # Bump when a record's fields change in a way analysis code has to handle (written in "setup").
@@ -37,7 +38,10 @@ import log_viewer
 #     error kinds moderator_warning, api_error, harness_error, setup_error; player answers that break their
 #     schema are player_errors
 # 16: settings have setup: {"kind": "fixed"}, or {"kind": "random", "players", "pool"} for --roles random:N
-LOG_VERSION = 16
+# 17: "resume" has replayed_cost (cost of the calls cut from the log) and unreadable_lines; a resumed game
+#     keeps earlier nights' night_check records; "night_effects_undone" record (a revenge kill reverted a
+#     night's will forgery or cleaning); new error kind log_error (unreadable log lines)
+LOG_VERSION = 17
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
@@ -47,24 +51,32 @@ class GameLog:
     human-readable .txt next to it. close() also renders an expandable .html view.
     Safe to call from several threads (players are asked in parallel)."""
 
-    def __init__(self, path: Path, resume_at: tuple[int, int] | None = None):
-        """resume_at: offsets() of an existing log, which is cut back to them and continued (checkpoint.py)."""
+    def __init__(self, path: Path, resume_at: tuple[int, int] | None = None, exclusive: bool = False):
+        """resume_at: offsets() of an existing log, which is cut back to them and continued (checkpoint.py).
+        exclusive: raise FileExistsError rather than overwrite an existing log."""
         path.parent.mkdir(parents=True, exist_ok=True)
         self.path = path
         self.cut_records: list[dict] = []  # JSONL records that resume_at cut off
+        self.cut_unreadable = 0  # lines among them that weren't JSON (e.g. half-written when the game stopped)
         if resume_at is not None:
             for p, offset in zip((path, path.with_suffix(".txt")), resume_at):
                 with p.open("r+b") as fh:
                     fh.seek(offset)
                     tail = fh.read().decode("utf-8", "replace")
+                    if p == path:  # read before cutting, so a bad line can't lose the rest
+                        for line in tail.splitlines():
+                            try:
+                                if line.strip():
+                                    self.cut_records.append(json.loads(line))
+                            except json.JSONDecodeError:
+                                self.cut_unreadable += 1
                     fh.truncate(offset)
-                if p == path:
-                    self.cut_records = [json.loads(line) for line in tail.splitlines() if line.strip()]
         self.error_counts: dict[str, int] = {}  # per error kind, for the result record
         self.alerts_printed: dict[tuple[str, str], int] = {}
-        mode = "w" if resume_at is None else "a"
+        mode = "a" if resume_at is not None else "x" if exclusive else "w"
         self.f = path.open(mode, encoding="utf-8")
-        self.txt = path.with_suffix(".txt").open(mode, encoding="utf-8")
+        # errors="replace": e.g. a lone surrogate in a model's text can't be encoded
+        self.txt = path.with_suffix(".txt").open("w" if mode == "x" else mode, encoding="utf-8", errors="replace")
         self.lock = threading.Lock()
 
     def offsets(self) -> tuple[int, int]:
@@ -85,7 +97,7 @@ class GameLog:
         self.write(kind, alert=True, error=error, **data)
         if printed <= ALERT_LINES_PER_SOURCE:
             more = " (further ones like this are only logged)" if printed == ALERT_LINES_PER_SOURCE else ""
-            print(f"ALERT {kind}: {error[:400]}{more}", flush=True)  # the log has the whole error
+            safe_print(f"ALERT {kind}: {error[:400]}{more}")  # the log has the whole error
 
     def write_raw(self, record: dict) -> None:
         """Writes a record as it is (keeping its time), e.g. one that resuming cut off but keeps."""
@@ -135,11 +147,17 @@ def usage_by_caller(path: Path, players: list[dict]) -> list[dict]:
     fallback answers (player_fallback) are counted too."""
     rows: dict[str, dict] = {p["name"]: {"who": p["name"], "kind": "player", "role": p.get("role"),
                                          "models": [p["model"]]} for p in players}
-    for line in path.read_text(encoding="utf-8").splitlines():
-        r = json.loads(line)
+    for r in read_records(path)[0]:
         if r["kind"] in ("player_error", "player_fallback") and r.get("player") in rows:
             key = "failed_calls" if r["kind"] == "player_error" else "fallbacks"
             rows[r["player"]][key] = rows[r["player"]].get(key, 0) + 1
+        if r["kind"] == "resume" and r.get("replayed_cost"):  # paid for, then cut from the log and replayed
+            row = rows.setdefault("Replayed after a crash", {"who": "Replayed after a crash", "kind": "post_game",
+                                                             "models": []})
+            for model, cost in r["replayed_cost"].items():
+                row["cost"] = row.get("cost", 0.0) + cost
+                if model not in row["models"]:
+                    row["models"].append(model)
         who = caller_of(r)
         if who is None:
             continue

@@ -2,12 +2,14 @@
 
 import difflib
 import json
+import re
+import time
 from typing import Any
 
-from llm import LLMClient, Model
+from llm import LLMClient, LLMReply, Model, clean_json
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT, RESULT
-from roles import RoleLogic, Status, logic
+from roles import Alignment, RoleLogic, Status, logic
 from state import Game
 
 
@@ -63,6 +65,8 @@ FLAG_TOOL = tool("flag_issue", "Report a problem with the game itself without st
                  "best interpretation.", issue={"type": "string"})
 
 MAX_MODERATOR_STEPS = 40
+MODERATOR_CALL_ATTEMPTS = 3
+MODERATOR_RETRY_WAIT_S = 30
 
 
 class Moderator:
@@ -105,7 +109,7 @@ class Moderator:
              f"{self.game.history_for('__moderator_public__')}"},
         ]
         for _ in range(MAX_MODERATOR_STEPS):
-            reply = self.client.chat(self.model, messages, tools=self.tools, effort=self.effort)
+            reply = self.chat(messages)
             self.game.log.write("moderator_call", model=self.model.value, content=reply.content,
                                 reasoning=reply.reasoning, tool_calls=reply.tool_calls, cost=reply.cost,
                                 usage=reply.usage)
@@ -116,10 +120,13 @@ class Moderator:
                                         f"{self.game.day} {self.game.phase} ({reply.stop_note or 'no reason given'})")
                 messages.append({"role": "user", "content": "Call end_phase when you are finished."})
                 continue
-            for call in reply.tool_calls:
+            ended = False
+            for call in reply.tool_calls:  # all of them, even ones listed after end_phase
                 name = call["function"]["name"]
                 try:
-                    args = json.loads(call["function"].get("arguments") or "{}")
+                    args = clean_json(json.loads(call["function"].get("arguments") or "{}"))
+                    if not isinstance(args, dict):
+                        raise ValueError(f"arguments must be a JSON object, not {args!r:.100}")
                     result = self.dispatch(name, args)
                 except Exception as e:  # report tool errors back to the moderator, and to whoever runs the game
                     result = {"error": f"{type(e).__name__}: {e}"}
@@ -131,12 +138,28 @@ class Moderator:
                 transcript.append({"tool": name, "args": call["function"].get("arguments"),
                                    "result": "(the full state)" if name == "get_state" else result})
                 messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
-                if name == "end_phase":
-                    return transcript
+                ended = ended or name == "end_phase"
+            if ended:
+                return transcript
         self.game.log.error("moderator_error", f"the moderator hit its step limit ({MAX_MODERATOR_STEPS}) "
                             f"without ending the phase, day {self.game.day} {self.game.phase}")
         transcript.append({"tool": "(none)", "result": "the moderator hit its step limit without ending the phase"})
         return transcript
+
+    def chat(self, messages: list[dict]) -> LLMReply:
+        """One moderator call. A failed one (after the client's own retries) is logged and tried again a
+        few times, since the game can't go on without its moderator; then the game stops (resumable)."""
+        for attempt in range(MODERATOR_CALL_ATTEMPTS):
+            try:
+                return self.client.chat(self.model, messages, tools=self.tools, effort=self.effort)
+            except Exception as e:
+                if attempt == MODERATOR_CALL_ATTEMPTS - 1:
+                    raise
+                self.game.log.error("moderator_error", f"a moderator call failed on day {self.game.day} "
+                                    f"{self.game.phase} (attempt {attempt + 1}), trying again: "
+                                    f"{type(e).__name__}: {e}", attempt=attempt)
+                time.sleep(MODERATOR_RETRY_WAIT_S * (attempt + 1))
+        raise AssertionError("unreachable")
 
     def dispatch(self, name: str, args: dict) -> Any:
         g = self.game
@@ -144,17 +167,17 @@ class Moderator:
             case "get_state":
                 return g.full_state()
             case "apply_changes":
-                notes = self.check_changes(args["changes"])
+                changes, notes = self.check_changes(args["changes"])
                 for note in notes:  # applied anyway, but likely a moderator mistake
                     g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
-                for c in args["changes"]:
+                for c in changes:
                     if c["op"] in self.op_roles:
                         self.op_roles[c["op"]].apply_op(g, c)
                         continue
                     p = g.player(c["player"])  # every core op names a player
                     match c["op"]:
                         case "kill":
-                            g.kill(p.name, c.get("cause", "killed"), by=c.get("by"), katana=bool(c.get("katana")))
+                            g.kill(p.name, c.get("cause", "killed"), by=c.get("by"), katana=c.get("katana", False))
                         case "set_tokens":
                             p.tokens[c["token"]] = int(c["value"])
                         case "set_status":
@@ -168,9 +191,16 @@ class Moderator:
                             g.katana_holder = p.name
                 return {"ok": True, **({"notes": notes} if notes else {})}
             case "random_choice":
-                return {"chosen": g.rng.sample(args["options"], int(args.get("k", 1)))}
+                options, k = args["options"], args.get("k", 1)
+                if not isinstance(options, list) or not isinstance(k, int) or isinstance(k, bool):
+                    raise ValueError("options must be a list and k an integer")
+                if not 0 < k <= len(options):
+                    raise ValueError(f"k must be between 1 and the number of options ({len(options)})")
+                return {"chosen": g.rng.sample(options, k)}
             case "tell":
                 to = args["to"]
+                if not isinstance(to, list) or not to or not isinstance(args["text"], str):
+                    raise ValueError("to must be a non-empty list of player names, or ['all'], and text a string")
                 if to == ["all"] and g.phase == "night":
                     g.pending_announcements.append(args["text"])  # read out at dawn
                 elif to == ["all"]:
@@ -193,27 +223,60 @@ class Moderator:
                 return {"ok": True, "note": "Thanks; carry on."}
         raise ValueError(f"unknown tool {name!r}")
 
-    def check_changes(self, changes: list) -> list[str]:
-        """Raises ValueError, before anything is applied, if any op is malformed. Returns warnings."""
-        notes = []
+    def check_changes(self, changes: Any) -> tuple[list[dict], list[str]]:
+        """Raises ValueError, before anything is applied, if any op is malformed. Returns the changes
+        (optional fields set to null left out) and warnings about ones that apply but look wrong."""
+        if not isinstance(changes, list):
+            raise ValueError("changes must be a list of ops; nothing was applied")
+        names = {p.name for p in self.game.players}
+        notes, out = [], []
         for i, c in enumerate(changes):
             if not isinstance(c, dict) or c.get("op") not in self.ops:
                 raise ValueError(f"change {i}: op must be one of {sorted(self.ops)}; nothing was applied")
             required, optional = self.ops[c["op"]]
-            fields = set(c) - {"op"}
+            c = {k: v for k, v in c.items() if not (k in optional and v is None)}  # null means "not given"
+            out.append(c)
+            op, fields = c["op"], set(c) - {"op"}
+
+            def bad(why: str, i: int = i, op: str = op) -> ValueError:
+                return ValueError(f"change {i} ({op}): {why}; nothing was applied")
             if missing := required - fields:
-                raise ValueError(f"change {i} ({c['op']}): missing {sorted(missing)}; nothing was applied")
+                raise bad(f"missing {sorted(missing)}")
             if extra := fields - required - optional:
-                notes.append(f"change {i} ({c['op']}): ignored unknown fields {sorted(extra)}")
+                notes.append(f"change {i} ({op}): ignored unknown fields {sorted(extra)}")
             for key in ("player", "by"):
-                if key in c and c[key] not in {p.name for p in self.game.players}:
-                    raise ValueError(f"change {i} ({c['op']}): no player named {c[key]!r}; nothing was applied")
-            if c["op"] == "kill" and not self.game.player(c["player"]).alive:
-                notes.append(f"change {i} (kill): {c['player']} is already dead, so it does nothing")
-            if c["op"] == "set_tokens" and not str(c["value"]).lstrip("-").isdigit():
-                raise ValueError(f"change {i} (set_tokens): value must be an integer; nothing was applied")
-            if c["op"] == "set_status" and c["key"] not in CODE_STATUS_KEYS:
-                close = difflib.get_close_matches(c["key"], CODE_STATUS_KEYS, n=1)
-                if close:
-                    notes.append(f"status key {c['key']!r} is not one code reads; did you mean {close[0]!r}?")
-        return notes
+                if key in c and c[key] not in names:
+                    raise bad(f"no player named {c[key]!r}")
+            if op == "kill":
+                if "katana" in c and not isinstance(c["katana"], bool):
+                    raise bad("katana must be true or false")
+                if "cause" in c and not isinstance(c["cause"], str):
+                    raise bad("cause must be text")
+                if not self.game.player(c["player"]).alive:
+                    notes.append(f"change {i} (kill): {c['player']} is already dead, so it does nothing")
+            if op == "set_tokens":
+                if isinstance(c["value"], bool) or not isinstance(c["value"], (int, str)) \
+                        or not re.fullmatch(r"-?\d+", str(c["value"]).strip()):
+                    raise bad("value must be an integer")
+                p = self.game.player(c["player"])
+                if c["token"] not in p.tokens and c["token"] not in p.info.tokens:
+                    notes.append(f"change {i} (set_tokens): {c['player']} ({p.role}) has no {c['token']!r} tokens"
+                                 + (f" (they have {sorted(p.tokens)})" if p.tokens else ""))
+            if op == "set_status":
+                if not isinstance(c["key"], str):
+                    raise bad("key must be text")
+                if isinstance(c.get("value"), str) and c["value"].strip().lower() in ("true", "false"):
+                    raise bad("use JSON true/false for the value, not a string")
+                if c["key"] not in CODE_STATUS_KEYS:
+                    close = difflib.get_close_matches(c["key"], CODE_STATUS_KEYS, n=1)
+                    if close:
+                        notes.append(f"status key {c['key']!r} is not one code reads; did you mean {close[0]!r}?")
+            if op in self.op_roles and (why := self.op_roles[op].check_op(self.game, c)):
+                raise bad(why)
+            if op == "set_last_will" and not isinstance(c["text"], str):
+                raise bad("text must be text (an empty string for no will)")
+            if op == "set_katana":
+                p = self.game.player(c["player"])
+                if not p.alive or p.info.alignment is not Alignment.EVIL:
+                    raise bad(f"{p.name} is not a living Yakuza")
+        return out, notes

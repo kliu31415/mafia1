@@ -19,6 +19,7 @@ Code layout:
     night.py       Yakuza chat, night actions, Katana vote
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
+    records.py     lenient JSONL reading (skips damaged lines) and console-safe printing
     checkpoint.py  saves the game each day so a stopped game can continue (--resume)
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
@@ -46,6 +47,7 @@ Usage:
 
 import argparse
 import hashlib
+import pickle
 import random
 import subprocess
 import time
@@ -66,10 +68,11 @@ from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
 from players import Players
+from records import read_records
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from setups import POOLS, parse_random_roles, random_setup
 from events import PHASE
-from state import setup_game
+from state import PLAYER_NAMES, Game, setup_game
 from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
 
 ROOT = Path(__file__).resolve().parent
@@ -122,66 +125,59 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rules = RULES_PATH.read_text(encoding="utf-8")
-    max_days = max_days or len(roles) + EXTRA_DAYS
+    max_days = max_days if max_days is not None else len(roles) + EXTRA_DAYS
     if resume:
-        game = resume["game"]
-        log = game.log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
-        # Night checks of earlier nights that finished after the checkpoint stay; the rest is replayed.
-        # So does the crash that stopped the game, which stays counted as an error.
-        for r in log.cut_records:
-            if (r["kind"] == "night_check" and r["night"] < game.day) or r["kind"] == "crash":
-                log.write_raw(r)
-        log.write("resume", day=game.day, cut_records=len(log.cut_records))
-        print(f"Resuming {log.path.stem} at day {game.day}")
-        for model, cost in resume["cost"].items():
-            client.total_cost[model] = client.total_cost.get(model, 0) + cost
-        started = time.time() - resume["elapsed_s"]
-        log.error_counts = resume["error_counts"]
-        for r in log.cut_records:
-            if r["kind"] == "crash":
-                log.error_counts["crash"] = log.error_counts.get("crash", 0) + 1
+        log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
     else:
-        rng = random.Random(seed)
         prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
-        log = GameLog(LOG_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}.jsonl")
-        settings = {"moderator": mod.model.value, "moderator_effort": mod.effort,
-                    "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
-                    "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
-                    "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
-                    "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint,
-                    "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None,
-                    "player_tips": [[w, str(f) if f else None] for w, f in player_tips or []],
-                    "setup": setup or {"kind": "fixed"}}
-        started = time.time()
-        meta = game_meta(rules, settings)
-        game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **meta})
-        if meta["git_commit"] is None:  # analysis across games groups them by code version
-            log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
-                      "game's code version isn't recorded")
-        # Its own RNG, so choosing who gets tips doesn't change the rest of a seed's game.
-        files = assign_tips([p.name for p in game.players], [p.model.short for p in game.players], tips,
-                            tips_for, player_tips or [], random.Random(f"tips|{seed}"))
-        if files:
-            texts = {str(f): f.read_text(encoding="utf-8") for f in set(files.values())}
-            for p in game.players:
-                p.tips = texts[str(files[p.name])] if p.name in files else ""
-            log.write("tips", players=list(files), files={n: str(f) for n, f in files.items()},
-                      sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
-    if isinstance(client, OpenRouterClient):
-        client.on_error = log.error
-    players = Players(game, client, rules, feedback_field=feedback_field)
-    moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
-    if resume:
-        moderator.flags = resume["moderator_flags"]
-    # The judge is the moderator's model; checks run in the background while the game continues.
-    checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort)
-               if check_nights else None)
-    for p in game.players:
-        print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}" + ("  +tips" if p.tips else ""))
+        log = new_log(prefix, seed)
     ckpt_path = log.path.with_suffix(".ckpt")
-
+    stage = "while setting it up"  # for the crash record
     try:
+        if resume:
+            game = resume["game"]
+            game.log = log
+            resume_log(game, log, resume, client, check_nights)
+            started = time.time() - resume["elapsed_s"]
+        else:
+            rng = random.Random(seed)
+            settings = {"moderator": mod.model.value, "moderator_effort": mod.effort,
+                        "models": [{"model": m.model.value, "effort": m.effort} for m in specs], "roles": roles,
+                        "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
+                        "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
+                        "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint,
+                        "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None,
+                        "player_tips": [[w, str(f) if f else None] for w, f in player_tips or []],
+                        "setup": setup or {"kind": "fixed"}}
+            started = time.time()
+            meta = game_meta(rules, settings)
+            game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **meta})
+            if meta["git_commit"] is None:  # analysis across games groups them by code version
+                log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
+                          "game's code version isn't recorded")
+            # Its own RNG, so choosing who gets tips doesn't change the rest of a seed's game.
+            files = assign_tips([p.name for p in game.players], [p.model.short for p in game.players], tips,
+                                tips_for, player_tips or [], random.Random(f"tips|{seed}"))
+            if files:
+                texts = {str(f): f.read_text(encoding="utf-8") for f in set(files.values())}
+                for p in game.players:
+                    p.tips = texts[str(files[p.name])] if p.name in files else ""
+                log.write("tips", players=list(files), files={n: str(f) for n, f in files.items()},
+                          sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
+        if isinstance(client, OpenRouterClient):
+            client.on_error = log.error
+        players = Players(game, client, rules, feedback_field=feedback_field)
+        moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
+        if resume:
+            moderator.flags = resume["moderator_flags"]
+        # The judge is the moderator's model; checks run in the background while the game continues.
+        checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort)
+                   if check_nights else None)
+        for p in game.players:
+            print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}" + ("  +tips" if p.tips else ""))
+
         while game.day <= max_days:
+            stage = "on day {day} {phase}"
             if checkpoint:
                 try:
                     save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
@@ -219,61 +215,65 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
             game.winners, end_reason = [], "day_limit"
             game.emit(f"The game reached its limit of {max_days} days, a safeguard of this program rather "
                       "than a rule, so it ends with no winner.")
+
+        # The game is decided. Steps after it aren't resumable: replaying the last day would add its
+        # lessons to lessons.jsonl twice.
+        ckpt_path.unlink(missing_ok=True)
+        stage = "after the game (in the post-game steps)"
+        duration = time.time() - started  # the game itself, without the feedback steps below
+        winner_names = ", ".join(game.winners or []) or "nobody"
+        game.emit(f"The game is over. Winners: {winner_names}.")
+        print(f"Winners: {game.winners}")
+
+        def step(label: str, run: Callable[[], object]) -> None:
+            """A step after the game; one that fails is logged as an error and the rest still run."""
+            print(f"{label}...")
+            try:
+                run()
+            except Exception as e:
+                log.error("feedback_error", f"{label} failed: {type(e).__name__}: {e}", step=label,
+                          traceback=traceback.format_exc())
+
+        lessons_file = LOG_DIR / ("mock_lessons.jsonl" if isinstance(client, MockClient) else "lessons.jsonl")
+        text_log = log.path.with_suffix(".txt")
+        if debrief:
+            step("Debriefing players and moderator", lambda: run_debrief(game, players, moderator))
+        if lessons:
+            step("Collecting lessons from players", lambda: run_lessons(game, players, lessons_file))
+            step("Collecting the moderator's strategy review",
+                 lambda: run_strategy_review(game, client, mod.model, rules, text_log, lessons_file, effort=mod.effort))
+        if checker:
+            step("Waiting for night checks", checker.finish)
+        if review:
+            step("Reviewing the log", lambda: run_review(game, client, mod.model, rules, text_log, effort=mod.effort))
+        faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
+        winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
+        if end_reason == "win" and winning_faction is None:
+            end_reason = "no_faction_left"  # e.g. the last players died together, or only Jesters remain
+        usage = usage_by_caller(log.path, [{"name": p.name, "model": p.model.value, "role": p.start_role}
+                                           for p in game.players])
+        log.write("result", winners=game.winners, days=game.day, cost=client.total_cost, usage=usage,
+                  roles={p.name: p.role for p in game.players},
+                  models={p.name: p.model.value for p in game.players},
+                  end_reason=end_reason, winning_faction=winning_faction, duration_s=round(duration),
+                  players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "start_role": p.start_role,
+                            "final_role": p.role, "faction": p.faction, "alive": p.alive,
+                            "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
+                            "tips": bool(p.tips),
+                            "death": p.death} for p in game.players],
+                  errors=dict(log.error_counts))
+        if update_tips and lessons:  # after the result record, which it reads; its errors miss the result's count
+            step("Updating the tips notebook and sheet", lambda: build_tips(
+                [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient),
+                on_error=log.error))
     except BaseException as e:  # log it for whoever runs the game, then stop as before
-        log.error("crash", f"the game stopped on day {game.day} {game.phase}: {type(e).__name__}: {e}"
+        where = stage.format(day=game.day, phase=game.phase) if "{" in stage else stage
+        log.error("crash", f"the game stopped {where}: {type(e).__name__}: {e}"
                   + (f"; continue it with: uv run mafia.py --resume {ckpt_path}" if ckpt_path.exists() else ""),
                   traceback=traceback.format_exc())
         write_views(log)  # the log stays open: night checks may still be running
         raise
-
-    duration = time.time() - started  # the game itself, without the feedback steps below
-    winner_names = ", ".join(game.winners or []) or "nobody"
-    game.emit(f"The game is over. Winners: {winner_names}.")
-    print(f"Winners: {game.winners}")
-
-    def step(label: str, run: Callable[[], object]) -> None:
-        """A step after the game; one that fails is logged as an error and the rest still run."""
-        print(f"{label}...")
-        try:
-            run()
-        except Exception as e:
-            log.error("feedback_error", f"{label} failed: {type(e).__name__}: {e}", step=label,
-                      traceback=traceback.format_exc())
-
-    lessons_file = LOG_DIR / ("mock_lessons.jsonl" if isinstance(client, MockClient) else "lessons.jsonl")
-    text_log = log.path.with_suffix(".txt")
-    if debrief:
-        step("Debriefing players and moderator", lambda: run_debrief(game, players, moderator))
-    if lessons:
-        step("Collecting lessons from players", lambda: run_lessons(game, players, lessons_file))
-        step("Collecting the moderator's strategy review",
-             lambda: run_strategy_review(game, client, mod.model, rules, text_log, lessons_file, effort=mod.effort))
-    if checker:
-        step("Waiting for night checks", checker.finish)
-    if review:
-        step("Reviewing the log", lambda: run_review(game, client, mod.model, rules, text_log, effort=mod.effort))
-    faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
-    winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
-    if end_reason == "win" and winning_faction is None:
-        end_reason = "no_faction_left"  # e.g. the last players died together, or only Jesters remain
-    usage = usage_by_caller(log.path, [{"name": p.name, "model": p.model.value, "role": p.start_role}
-                                       for p in game.players])
-    log.write("result", winners=game.winners, days=game.day, cost=client.total_cost, usage=usage,
-              roles={p.name: p.role for p in game.players},
-              models={p.name: p.model.value for p in game.players},
-              end_reason=end_reason, winning_faction=winning_faction, duration_s=round(duration),
-              players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "start_role": p.start_role,
-                        "final_role": p.role, "faction": p.faction, "alive": p.alive,
-                        "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
-                        "tips": bool(p.tips),
-                        "death": p.death} for p in game.players],
-              errors=dict(log.error_counts))
-    if update_tips and lessons:  # after the result record, which it reads; its errors miss the result's count
-        step("Updating the tips notebook and sheet", lambda: build_tips(
-            [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient),
-            on_error=log.error))
     report = write_views(log, close=True)
-    ckpt_path.unlink(missing_ok=True)
     print("\n".join(usage_lines(usage)))
     print(f"Errors: {log.error_counts} (listed at the top of the feedback report and the HTML view)"
           if log.error_counts else "Errors: none")
@@ -283,6 +283,53 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
     if pending := alerts.pending_line(log.path.parent):
         print(pending)
     return log.path
+
+
+def new_log(prefix: str, seed: int | None) -> GameLog:
+    """A new game's log, named by its start time and seed; never another game's (parallel games with the
+    same seed can start in the same second)."""
+    stem = f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}"
+    for n in range(1, 100):
+        try:
+            return GameLog(LOG_DIR / (stem + (f"_{n}" if n > 1 else "") + ".jsonl"), exclusive=True)
+        except FileExistsError:
+            continue
+    raise FileExistsError(f"{LOG_DIR / stem}*.jsonl: too many games with this name")
+
+
+def resume_log(game: Game, log: GameLog, resume: dict, client: LLMClient, check_nights: bool) -> None:
+    """Continues a stopped game's log from its checkpoint (checkpoint.py). The log was cut back to the
+    checkpoint; of the records after it, night checks of earlier nights (and the errors they raised) stay,
+    as does the crash that stopped the game: they stay counted as errors. The rest is replayed."""
+    kept = [r for r in log.cut_records if r["kind"] == "crash"
+            or (r["kind"] in ("night_check", "night_check_issue", "night_check_error") and r["night"] < game.day)]
+    for r in kept:
+        log.write_raw(r)
+    # None of the cut calls' costs were in the checkpoint's; the replayed ones are paid for again.
+    cut_cost: dict[str, float] = {}
+    for r in log.cut_records:
+        if r.get("cost") and (model := r.get("model") or r.get("judge")):
+            cut_cost[model] = cut_cost.get(model, 0) + float(r["cost"])
+    replayed = {m: c for m, c in cut_cost.items()}
+    for r in kept:
+        if r.get("cost") and (model := r.get("model") or r.get("judge")):
+            replayed[model] -= float(r["cost"])
+    log.write("resume", day=game.day, cut_records=len(log.cut_records), unreadable_lines=log.cut_unreadable,
+              replayed_cost={m: round(c, 6) for m, c in replayed.items() if c > 1e-9})
+    print(f"Resuming {log.path.stem} at day {game.day}")
+    for model, cost in list(resume["cost"].items()) + list(cut_cost.items()):
+        client.total_cost[model] = client.total_cost.get(model, 0) + cost
+    log.error_counts = dict(resume["error_counts"])
+    for r in kept:
+        if r.get("alert"):
+            log.error_counts[r["kind"]] = log.error_counts.get(r["kind"], 0) + 1
+    if log.cut_unreadable:
+        log.error("log_error", f"{log.cut_unreadable} unreadable line(s) after the checkpoint were dropped "
+                  "(probably half-written when the game stopped)")
+    nights_checked = {r["night"] for r in read_records(log.path)[0] if r["kind"] == "night_check"}
+    if check_nights and game.day > 1 and game.day - 1 not in nights_checked:
+        log.error("night_check_error", f"night {game.day - 1}'s check was lost when the game stopped",
+                  night=game.day - 1)
 
 
 def write_views(log: GameLog, close: bool = False) -> Path | None:
@@ -363,13 +410,22 @@ def main() -> None:
         print(role_status_table())
         return
     if args.resume:
-        ckpt = load_checkpoint(Path(args.resume))
+        try:
+            ckpt = load_checkpoint(Path(args.resume))
+        except (OSError, ValueError, EOFError, pickle.UnpicklingError) as e:
+            ap.error(f"can't resume from {args.resume}: {type(e).__name__}: {e}")
         saved = ckpt["play_args"]
+        if args.no_update_tips:  # the other options are the game's own
+            saved["update_tips"] = None
         resumed_client = (MockClient(saved["seed"]) if ckpt["client"]["mock"]
                           else OpenRouterClient(load_api_key(), effort=ckpt["client"]["effort"]))
         play_game(resumed_client, **saved, checkpoint=args.checkpoint, resume=ckpt)
         return
 
+    if args.max_days is not None and args.max_days < 1:
+        ap.error("--max-days must be at least 1")
+    if args.tips_for != "all" and not args.tips:
+        ap.error("--tips-for picks who gets --tips, so it needs --tips")
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     try:
         random_players = parse_random_roles(args.roles)
@@ -385,6 +441,8 @@ def main() -> None:
     unknown = [r for r in roles if r not in ROLES]
     if unknown:
         ap.error(f"unknown roles: {unknown}")
+    if not 1 <= len(roles) <= len(PLAYER_NAMES):
+        ap.error(f"a game has 1 to {len(PLAYER_NAMES)} players (one name each), not {len(roles)}")
     try:
         models = [parse_model_spec(m) for m in args.players.split(",")]
         moderator = parse_model_spec(args.moderator)
@@ -400,6 +458,11 @@ def main() -> None:
     for f in [args.tips] + [f for _, f in player_tips]:
         if f and not f.is_file():
             ap.error(f"no such tips file {f}")
+        try:
+            if f:
+                f.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            ap.error(f"{f} isn't UTF-8 text; save it as UTF-8")
     if args.rules_quiz:
         if isinstance(client, OpenRouterClient):
             client.on_error = print_alert  # the quiz has no game log

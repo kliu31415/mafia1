@@ -3,7 +3,7 @@
 import json
 
 from players import BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, truncate_words, word_count
-from roles import Alignment, logic
+from roles import Alignment, Status, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from moderator import Moderator
@@ -74,10 +74,22 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         + role_notes(game)
     )
     before = snapshot(game.full_state())
+    wills = {p.name: p.last_will for p in game.alive()}
     transcript = moderator.run_phase(instructions)
     if checker:
         checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()))
     game.resolve_revenge()
+    # A forged will and a Mortician's clean only take effect if their target died tonight; the moderator may
+    # apply them before knowing (any op order is fine), so survivors get theirs back.
+    for p in game.alive():
+        undone = []
+        if p.name in wills and p.last_will != wills[p.name]:
+            p.last_will = wills[p.name]
+            undone.append("last will")
+        if p.status.pop(Status.CLEANED, None) is not None:
+            undone.append("cleaned")
+        if undone:
+            game.log.write("night_effects_undone", day=game.day, player=p.name, undone=undone)
     game.pass_katana()
     game.day += 1
 

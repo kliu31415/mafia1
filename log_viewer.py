@@ -18,6 +18,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from records import read_records
 from roles import ROLES, Alignment
 from tips import player_view
 
@@ -49,7 +50,7 @@ def text_line(r: dict) -> str | None:
                 return f"Katana: {res['holder']} holds it and attacks {res['attack']}."
             return f"Katana: no attack ({res.get('note', 'no target')}); {res.get('holder')} keeps it."
         case "moderator_tool" if r["name"] == "end_phase":
-            summary = json.loads(r["args"] or "{}").get("summary", "")
+            summary = tool_args(r["args"]).get("summary", "")
             return f"[Moderator summary] {summary}"
         case "revenge":
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
@@ -64,6 +65,15 @@ def text_line(r: dict) -> str | None:
             cost = "\n".join(usage_lines(r["usage"])) if "usage" in r else f"Cost: {r['cost']}"  # LOG_VERSION 10+
             return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\n{cost}"
     return None
+
+
+def tool_args(text: str | None) -> dict:
+    """A tool call's arguments as the model wrote them: invalid JSON (e.g. cut off) is shown as text."""
+    try:
+        args = json.loads(text or "{}")
+    except json.JSONDecodeError:
+        return {"unparsable arguments": text}
+    return args if isinstance(args, dict) else {"arguments": args}
 
 
 def tips_files(r: dict) -> dict[str, str]:
@@ -304,7 +314,7 @@ def classify_legacy(r: dict) -> tuple[str, str, str]:
 
 
 def render_html(jsonl_path: Path) -> Path:
-    records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
+    records, unreadable = read_records(jsonl_path)
     roles: dict[str, str] = {}
     models: dict[str, str] = {}
     name = Namer({})
@@ -364,7 +374,8 @@ def render_html(jsonl_path: Path) -> Path:
             out.append(f"<div class='muted'>Tips from past games given to: {esc(', '.join(r['players']) or 'nobody')}"
                        "</div>")
             for who, file in files.items():
-                shown = player_view(r["texts"][file]) if "texts" in r else r.get("shown", {}).get(who, "")
+                shown = (player_view(r["texts"][file]) if "texts" in r else r["shown"].get(who, "") if "shown" in r
+                         else player_view(r.get("text", "")))  # LOG_VERSION 11 had one text
                 out.append(f"<details class='call'><summary>Tips for {name(who)} ({esc(roles.get(who, '?'))}, "
                            f"{esc(models.get(who, '?'))}): {esc(file)}</summary><pre>{esc(shown)}</pre></details>")
         elif k == "event":
@@ -395,12 +406,12 @@ def render_html(jsonl_path: Path) -> Path:
                        f"{esc(calls)} · ${r.get('cost', 0):.4f}</summary>"
                        + pre("Reasoning", r.get("reasoning")) + pre("Content", r.get("content"))
                        + pre("Tool calls", [{"name": c["function"]["name"],
-                                             "args": json.loads(c["function"].get("arguments") or "{}")}
+                                             "args": tool_args(c["function"].get("arguments"))}
                                             for c in r.get("tool_calls") or []])
                        + pre("Usage", r.get("usage")) + "</details>")
         elif k == "moderator_tool":
             if r["name"] == "end_phase":
-                line("hidden", "Moderator summary", name(json.loads(r["args"] or "{}").get("summary", "")))
+                line("hidden", "Moderator summary", name(str(tool_args(r["args"]).get("summary", ""))))
             else:
                 out.append(f"<details class='call'><summary>Tool {esc(r['name'])} result</summary>"
                            + pre("Args", r.get("args")) + pre("Result", r.get("result")) + "</details>")
@@ -435,17 +446,20 @@ def render_html(jsonl_path: Path) -> Path:
             f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
             f"<span class='muted'>Untick both to read it like a player would.</span></div>"
-            f"{errors_html(errors)}{''.join(out)}<script>{JS}</script></body></html>")
+            f"{errors_html(errors, unreadable)}{''.join(out)}<script>{JS}</script></body></html>")
     html_path = jsonl_path.with_suffix(".html")
-    html_path.write_text(page, encoding="utf-8")
+    html_path.write_text(page, encoding="utf-8", errors="replace")
     return html_path
 
 
-def errors_html(errors: list[tuple[str, dict]]) -> str:
+def errors_html(errors: list[tuple[str, dict]], unreadable: int = 0) -> str:
     """The box at the top of the page: how many errors of each kind, and links to the first few of each
     kind per player (the same ones the feedback report lists)."""
+    bad_lines = (f"<details class='errors' open><summary>{unreadable} unreadable log line(s) skipped</summary>"
+                 "The log has lines that aren't JSON, e.g. half-written when the game was killed.</details>"
+                 if unreadable else "")
     if not errors:
-        return "<div class='muted no-errors'>No program errors were logged.</div>"
+        return bad_lines + "<div class='muted no-errors'>No program errors were logged.</div>"
     counts = Counter(r["kind"] for _, r in errors)
     shown: Counter[tuple[str, str]] = Counter()
     items = []
@@ -454,16 +468,16 @@ def errors_html(errors: list[tuple[str, dict]]) -> str:
         if shown[source] <= 3:
             items.append(f"<li><a href='#{anchor}'>{esc(r['kind'])}</a>: {esc(r['error'][:300])}</li>")
     more = len(errors) - len(items)
-    return (f"<details class='errors' open><summary>{len(errors)} error{'s' if len(errors) > 1 else ''}: "
+    return bad_lines + (f"<details class='errors' open><summary>{len(errors)} error{'s' if len(errors) > 1 else ''}: "
             + esc(", ".join(f"{n} {k}" for k, n in counts.most_common())) + "</summary><ul>" + "".join(items)
             + "</ul>" + (f"<div class='muted'>{more} more like these are marked in red below.</div>" if more else "")
             + "</details>")
 
 
 def render_text(jsonl_path: Path) -> Path:
-    lines = [text_line(json.loads(l)) for l in jsonl_path.read_text(encoding="utf-8").splitlines() if l]
+    lines = [text_line(r) for r in read_records(jsonl_path)[0]]
     txt_path = jsonl_path.with_suffix(".txt")
-    txt_path.write_text("\n".join(l for l in lines if l is not None) + "\n", encoding="utf-8")
+    txt_path.write_text("\n".join(l for l in lines if l is not None) + "\n", encoding="utf-8", errors="replace")
     return txt_path
 
 

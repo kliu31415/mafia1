@@ -9,4 +9,5 @@ class Prosecutor(RoleLogic):
     ops = {"prosecute": ({"player"}, set(), "{op:'prosecute', player}: they go to trial when the next day starts")}
 
     def apply_op(self, game, change):
-        game.prosecutions.append(change["player"])
+        if change["player"] not in game.prosecutions:  # two Prosecutors on one player: one trial
+            game.prosecutions.append(change["player"])

@@ -58,6 +58,11 @@ class RoleLogic:
     def on_other_death(self, game: Game, me: Player, dead: Player, guilty_voters: list[str] | None) -> None:
         """Another player just died; called for every living player of this role."""
 
+    def check_op(self, game: Game, change: dict) -> str | None:
+        """Why one of this role's ops can't be carried out (the whole batch is then refused, so nothing is
+        half-applied), or None if it can. Fields are already checked against `ops`."""
+        return None
+
     def apply_op(self, game: Game, change: dict) -> None:
         """Carry out one of this role's ops. Fields are already checked against `ops`, and player
         names against the game."""

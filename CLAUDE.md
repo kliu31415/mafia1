@@ -61,7 +61,7 @@ On the PC, `uv run sync_logs.py pull` copies new logs into logs/, adds their les
      `state.py` and `day.py`; `night_action_schema` in `players.py` is one shape for every role.
   4. `night_note` on the role's class: a reminder the moderator gets each night for effects with no
      submitted action or that need a special op. Only roles in the game are included.
-  5. A role-specific `apply_changes` op: declare it in the role's `ops` and carry it out in `apply_op`.
+  5. A role-specific `apply_changes` op: declare it in the role's `ops`, validate it in `check_op` (the error goes back to the moderator) and carry it out in `apply_op`.
      The moderator is offered it only when the role is in the game. Ops every game needs are
      `CORE_OPS` in `moderator.py`.
   6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game

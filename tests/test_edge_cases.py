@@ -1,0 +1,427 @@
+"""Unhandled errors and edge cases found by code sweeps: each test is one that used to crash, go
+unnoticed, or give a wrong result."""
+
+import dataclasses
+import http.client
+import io
+import json
+import os
+import sys
+
+import pytest
+
+import mafia
+import moderator as moderator_module
+from llm import LLMReply, MockClient, Model, OpenRouterClient
+from moderator import Moderator
+from players import NOTEPAD_WORDS, truncate_words, word_count
+from roles import DEFAULT_SETUP, Status
+from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, make_game
+
+ROLES5 = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+
+
+def records(path):
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+
+
+# --- LLM requests and answers --------------------------------------------------------------------
+
+class FakeResponse:
+    def __init__(self, body: bytes, fail: Exception | None = None):
+        self.body, self.fail = body, fail
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def read(self):
+        if self.fail:
+            raise self.fail
+        return self.body
+
+
+def test_dropped_connections_and_provider_errors_in_an_answer_are_retried(monkeypatch):
+    ok = json.dumps({"choices": [{"message": {"content": "{}"}}], "usage": {"cost": 0.01}}).encode()
+    answers = iter([FakeResponse(b"", http.client.RemoteDisconnected("closed")),  # dropped while reading
+                    FakeResponse(b"<html>Bad gateway</html>"),  # not JSON
+                    FakeResponse(json.dumps({"error": {"code": 502, "message": "provider died"}}).encode()),
+                    FakeResponse(ok)])
+    monkeypatch.setattr("urllib.request.urlopen", lambda req, timeout: next(answers))
+    monkeypatch.setattr("time.sleep", lambda s: None)
+    client = OpenRouterClient("key")
+    seen: list[str] = []
+    client.on_error = lambda kind, summary, **data: seen.append(kind)
+    assert client.chat(Model.GPT_6_LUNA, []).content == "{}"
+    assert seen == ["api_retry"] * 3
+
+    client.retries = 0  # out of retries: a clear error, not a bare JSON or connection error
+    monkeypatch.setattr("urllib.request.urlopen", lambda req, timeout: FakeResponse(b"not json"))
+    with pytest.raises(RuntimeError, match="failed after 1 attempts"):
+        client.chat(Model.GPT_6_LUNA, [])
+
+
+def test_a_lone_surrogate_in_a_models_text_is_replaced(game_factory):
+    def decide(name, task, schema):
+        return {"public_message": "Hello \ud83d"} if name == "Alice" and "public_message" in schema["properties"] else None
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
+    from day import chat_turn
+    game.player("Alice").speaking_budget = 3.0
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
+    game.log.close()
+    assert "Hello �" in game.log.path.with_suffix(".txt").read_text(encoding="utf-8")
+
+
+def test_words_count_in_scripts_without_spaces_and_in_very_long_words():
+    assert word_count("Vote Bob today") == 3
+    assert word_count("我们应该投票给鲍勃") == 9  # one word per character
+    assert word_count("x" * 100_000) == 5000  # can't dodge the caps by leaving out spaces
+    assert truncate_words("我们应该投票给鲍勃", 4) == "我们应该 [truncated]"
+    assert word_count(truncate_words("x" * 100_000, NOTEPAD_WORDS).removesuffix(" [truncated]")) == NOTEPAD_WORDS
+
+
+def test_an_empty_notepad_keeps_the_notepad_and_a_retry_says_what_was_wrong(game_factory):
+    answers = iter([{"notepad": "plan"}, {"notepad": ""}])
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: next(answers, None)))
+    schema = {"type": "object", "properties": {}, "required": []}
+    for _ in range(2):
+        players.ask(game.player("Alice"), "Note something.", schema, {})
+    assert game.player("Alice").notepad == "plan"
+
+    class OnceBroken(ScriptedClient):
+        def __init__(self):
+            super().__init__()
+            self.calls: list[list[dict]] = []
+
+        def chat(self, model, messages, **kw):
+            self.calls.append(messages)
+            reply = super().chat(model, messages, **kw)
+            return dataclasses.replace(reply, content='{"vote": "yes"}') if len(self.calls) == 1 else reply
+    client = OnceBroken()
+    game, players = game_factory(TOWN4_GRUNT, client)
+    from players import VOTE_SCHEMA
+    players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False})
+    assert "couldn't be used" in client.calls[1][-1]["content"] and "answer.vote" in client.calls[1][-1]["content"]
+
+
+def test_a_night_check_answer_that_breaks_its_schema_is_one_failed_check(tmp_path):
+    from night_check import NightChecker
+
+    class BadJudge(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            content = json.dumps({"verdict": "errors", "issues": [{"rule": "R9", "kind": "other", "description": "x"}]})
+            return LLMReply(content, None, [], {}, model.value, 0.0, {})
+    game, _ = make_game(tmp_path, TOWN4_GRUNT)
+    checker = NightChecker(BadJudge(), Model.OPUS_5_5, Model.OPUS_5_5, "(rules)", game.log)
+    state = game.full_state()
+    checker.submit(1, "Resolve.", state, [], state)
+    checker.finish()
+    game.log.close()
+    checks = [r for r in records(game.log.path) if r["kind"] == "night_check"]
+    assert len(checks) == 1 and checks[0]["verdict"] == "failed" and "severity" in checks[0]["error"]
+
+
+def test_printing_an_alert_never_fails(monkeypatch, capsys):
+    from records import safe_print
+    stream = io.TextIOWrapper(io.BytesIO(), encoding="cp1252")
+    monkeypatch.setattr(sys, "stdout", stream)
+    safe_print("ALERT x: Bob → Carol \ud83d")
+    stream.flush()
+    assert b"Bob \\u2192 Carol" in stream.buffer.getvalue()
+
+
+# --- The moderator -----------------------------------------------------------------------------------
+
+def test_a_failed_moderator_call_is_retried(game_factory, monkeypatch):
+    monkeypatch.setattr(moderator_module, "MODERATOR_RETRY_WAIT_S", 0)
+
+    class Flaky(ScriptedClient):
+        failures = 1
+
+        def chat(self, model, messages, *, tools=None, **kw):
+            if tools and self.failures:
+                self.failures -= 1
+                raise RuntimeError("OpenRouter HTTP 400: bad")
+            return super().chat(model, messages, tools=tools, **kw)
+    client = Flaky()
+    game, players = game_factory(TOWN4_GRUNT, client)
+    Moderator(game, client, players, Model.HAIKU_5_5, "(rules)").run_phase("Resolve.")
+    assert game.log.error_counts == {"moderator_error": 1}
+
+
+def test_tool_calls_after_end_phase_in_the_same_reply_are_carried_out(game_factory):
+    class EndsFirst(ScriptedClient):
+        def chat(self, model, messages, *, tools=None, **kw):
+            calls = [{"id": f"c{i}", "type": "function", "function": {"name": n, "arguments": json.dumps(a)}}
+                     for i, (n, a) in enumerate([("end_phase", {"summary": ""}),
+                                                 ("apply_changes", {"changes": [{"op": "kill", "player": "Bob"}]})])]
+            return LLMReply(None, None, calls, {"role": "assistant", "tool_calls": calls}, model.value, 0.0, {})
+    client = EndsFirst()
+    game, players = game_factory(TOWN4_GRUNT, client)
+    Moderator(game, client, players, Model.HAIKU_5_5, "(rules)").run_phase("Resolve.")
+    assert not game.player("Bob").alive
+
+
+@pytest.mark.parametrize("change, why", [
+    ({"op": "set_tokens", "player": "Bob", "token": "bullets", "value": "--2"}, "integer"),
+    ({"op": "kill", "player": "Bob", "katana": "false"}, "true or false"),
+    ({"op": "set_status", "player": "Bob", "key": "cleaned", "value": "false"}, "JSON true/false"),
+    ({"op": "set_katana", "player": "Alice"}, "not a living Yakuza"),
+    ({"op": "set_last_will", "player": "Bob", "text": None}, "must be text"),
+])
+def test_bad_ops_refuse_the_whole_batch(game_factory, change, why):
+    game, players = game_factory(TOWN4_GRUNT)
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match=why):
+        mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Carol"}, change]})
+    assert game.player("Carol").alive  # nothing was applied
+
+
+def test_null_optional_fields_mean_not_given_and_an_unknown_token_is_a_warning(game_factory):
+    game, players = game_factory(TOWN4_GRUNT)
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Bob", "by": None, "cause": None}]})
+    assert "Bob died (killed)" in game.events[-1].text
+    out = mod.dispatch("apply_changes", {"changes": [{"op": "set_tokens", "player": "Carol", "token": "bulets",
+                                                      "value": 1}]})
+    assert "no 'bulets' tokens" in out["notes"][0] and game.log.error_counts == {"moderator_warning": 1}
+
+
+@pytest.mark.parametrize("name, args", [
+    ("tell", {"to": [], "text": "You were role-blocked."}),
+    ("tell", {"to": "all", "text": "Hi"}),
+    ("random_choice", {"options": "Alice, Bob", "k": 1}),
+    ("random_choice", {"options": ["Alice"], "k": 2}),
+])
+def test_malformed_tool_arguments_are_errors(game_factory, name, args):
+    game, players = game_factory(TOWN4_GRUNT)
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError):
+        mod.dispatch(name, args)
+
+
+def test_a_puppet_op_needs_a_living_puppeteer(game_factory):
+    game, players = game_factory(["Puppeteer", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="not a living Puppeteer"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Carol", "by": "Bob"}]})
+    with pytest.raises(ValueError, match="themselves"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Alice", "by": "Alice"}]})
+
+
+# --- Game rules ------------------------------------------------------------------------------------
+
+def test_two_prosecutions_of_one_player_are_one_trial(game_factory):
+    from day import run_day
+    game, players = game_factory(VILLAGE5 + ["Grunt"], ScriptedClient())
+    game.prosecutions += ["Bob", "Bob"]
+    run_day(game, players)
+    assert sum("Bob was prosecuted" in v for v in game.vote_record) == 1
+
+
+def test_a_survivors_forged_will_and_clean_are_undone(game_factory):
+    from night import run_night
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(moderator_calls=[
+        ("apply_changes", {"changes": [{"op": "set_last_will", "player": "Bob", "text": "I am the Grunt."},
+                                       {"op": "set_status", "player": "Bob", "key": "cleaned", "value": True}]})]))
+    game.player("Bob").last_will = "Sheriff: Erin is Evil."
+    mod = Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)")
+    run_night(game, players, mod)
+    bob = game.player("Bob")
+    assert bob.alive and bob.last_will == "Sheriff: Erin is Evil." and Status.CLEANED not in bob.status
+
+
+def test_blank_messages_arent_messages_and_a_failed_revision_keeps_the_first_answer(game_factory):
+    from day import chat_turn
+    turns = iter([{"public_message": "   ", "private_messages": [{"to": "Carol", "text": "word " * 50}]}])
+
+    class RevisionFails(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            reply = super().chat(model, messages, **kw)
+            return dataclasses.replace(reply, content=None) if "WARNING" in messages[-1]["content"] else reply
+    game, players = game_factory(VILLAGE5, RevisionFails(lambda n, t, s: next(turns, None) if n == "Alice" else None))
+    game.player("Alice").speaking_budget = 0.3
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
+    told = [e.text for e in game.events if e.visible_to == {"Alice"}]
+    assert not any("public message" in t for t in told)  # the blank one was never planned
+    assert any(e.fields.get("to") == "Carol" for e in game.events if e.cat == "pm")  # cut to fit, still sent
+
+
+# --- Running games: crashes, resumes and logs ----------------------------------------------------------
+
+def test_a_crash_while_setting_up_is_logged(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(mafia, "Players", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("bad prompt")))
+    with pytest.raises(RuntimeError):
+        mafia.play_game(MockClient(1), [Model.HAIKU_5_5], Model.HAIKU_5_5, ROLES5, 1)
+    [log] = tmp_path.glob("*.jsonl")
+    assert "while setting it up: RuntimeError: bad prompt" in records(log)[-1]["error"]
+
+
+def test_ctrl_c_after_the_game_is_logged_and_doesnt_leave_a_checkpoint(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(mafia, "run_lessons", lambda *a: (_ for _ in ()).throw(KeyboardInterrupt()))
+    with pytest.raises(KeyboardInterrupt):
+        mafia.play_game(MockClient(1), [Model.HAIKU_5_5], Model.HAIKU_5_5, ROLES5, 1, lessons=True)
+    [log] = tmp_path.glob("*.jsonl")
+    assert "after the game" in records(log)[-1]["error"] and not log.with_suffix(".ckpt").exists()
+    assert log.with_suffix(".html").exists()
+
+
+def test_games_started_together_with_one_seed_get_their_own_logs(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    first, second = mafia.new_log("game", 7), mafia.new_log("game", 7)
+    assert first.path != second.path
+    first.close()
+    second.close()
+
+
+def test_resuming_keeps_the_crash_night_check_errors_and_costs_and_survives_a_torn_line(tmp_path, monkeypatch):
+    from checkpoint import load
+    seed = 7
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    real_run_night = mafia.run_night
+
+    def crash_on_night_2(game, *args):
+        if game.day == 2:
+            game.log.write("player_call", player="Alice", model=Model.HAIKU_5_5.value, task="x", output={},
+                           cost=0.5)  # paid for, then cut by the resume
+            game.log.error("night_check_issue", "night 1: wrong death", night=1)
+            raise RuntimeError("laptop went to sleep")
+        real_run_night(game, *args)
+    monkeypatch.setattr(mafia, "run_night", crash_on_night_2)
+    with pytest.raises(RuntimeError):
+        mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
+    [ckpt_path] = tmp_path.glob("*.ckpt")
+    log = ckpt_path.with_suffix(".jsonl")
+    with log.open("a", encoding="utf-8") as f:
+        f.write('{"t": 1, "kind": "player_ca')  # the process died mid-write
+    monkeypatch.setattr(mafia, "run_night", real_run_night)
+    ckpt = load(ckpt_path)
+    mafia.play_game(MockClient(seed), **ckpt["play_args"], resume=ckpt)
+    out = records(log)
+    result = out[-1]
+    assert result["errors"]["crash"] == 1 and result["errors"]["night_check_issue"] == 1
+    assert result["errors"]["log_error"] == 1  # the torn line
+    replayed = next(u for u in result["usage"] if u["who"] == "Replayed after a crash")
+    assert replayed["cost"] == 0.5 and result["cost"][Model.HAIKU_5_5.value] == pytest.approx(0.5)
+
+
+def test_cli_rejects_settings_that_cant_work(monkeypatch, capsys):
+    for argv, why in [(["--max-days", "0"], "at least 1"), (["--tips-for", "half"], "needs --tips"),
+                      (["--roles", "random:20"], "1 to 16 players"), (["--resume", "nope.ckpt"], "can't resume")]:
+        monkeypatch.setattr(sys, "argv", ["mafia.py", "--mock", *argv])
+        with pytest.raises(SystemExit):
+            mafia.main()
+        assert why in capsys.readouterr().err
+
+
+# --- Reading logs: viewer, alerts, tips, stats --------------------------------------------------------
+
+def test_the_viewer_shows_unparsable_tool_arguments_and_old_tips_and_skips_torn_lines(tmp_path):
+    from log_viewer import render_html
+    path = tmp_path / "game_1.jsonl"
+    lines = [json.dumps(r) for r in [
+        {"kind": "setup", "players": [{"name": "Bob", "seat": 0, "role": "Grunt", "model": "m"}], "katana": "Bob"},
+        {"kind": "tips", "players": ["Bob"], "file": "tips.md", "text": "## Everyone\n- Claim early."},  # version 11
+        {"kind": "moderator_call", "model": "m", "tool_calls": [
+            {"function": {"name": "end_phase", "arguments": '{"summary": "Night 1 resol'}}]},
+        {"kind": "moderator_tool", "name": "end_phase", "args": '{"summary": "Night 1 resol', "result": {}},
+    ]] + ['{"kind": "even']
+    path.write_text("\n".join(lines), encoding="utf-8")
+    page = render_html(path).read_text(encoding="utf-8")
+    assert "unparsable arguments" in page and "Claim early." in page and "1 unreadable log line" in page
+
+
+def test_alerts_handle_torn_lines_running_games_and_new_errors_after_a_resume(tmp_path):
+    import alerts
+    log = tmp_path / "game_20261009_000000_1.jsonl"
+    err = lambda t, kind="player_error": json.dumps({"t": t, "kind": kind, "alert": True, "error": "x"})  # noqa: E731
+    log.write_text("\n".join([err(1), err(2), err(3, "crash"), '{"t": 4, "kind": "player_ca']), encoding="utf-8")
+    [g] = alerts.unreviewed(tmp_path)  # running: the half-written last line isn't counted
+    assert g["kinds"] == {"player_error": 2, "crash": 1}
+    alerts.ack(tmp_path, ["all"])
+    assert alerts.unreviewed(tmp_path) == []
+    # Resumed: the cut errors go, the crash stays, and one new error comes; fewer in total, but it's new.
+    log.write_text("\n".join([err(3, "crash"), err(9, "api_retry"), json.dumps({"t": 10, "kind": "result"})]) + "\n",
+                   encoding="utf-8")
+    [g] = alerts.unreviewed(tmp_path)
+    assert g["kinds"] == {"crash": 1, "api_retry": 1}
+    (tmp_path / "game_20261009_000000_2.jsonl").write_text('{"t": 1, "kind": "setup"}\n{"t": 2\n', encoding="utf-8")
+    os.utime(tmp_path / "game_20261009_000000_2.jsonl", (0, 0))
+    assert "unreadable log line" in alerts.describe(alerts.unreviewed(tmp_path))
+    (tmp_path / "mock_lessons.jsonl").write_text("{}\n", encoding="utf-8")
+    assert not any(g["game"] == "mock_lessons" for g in alerts.unreviewed(tmp_path, "mock"))
+
+
+def test_tips_skip_unfinished_games_and_repeated_ops_and_keep_the_sheet_when_the_new_one_is_empty(tmp_path):
+    import tips
+    from llm import ModelSpec
+    from tests.test_tips import TipsClient, op
+    game = lambda n, result=True: [  # noqa: E731
+        {"kind": "setup", "settings": {"mock": False}},
+        {"kind": "lessons", "who": "Alice", "role": "Medic", "model": "anthropic/claude-haiku-5.5",
+         "lessons": [{"topic": "deduction", "applies_to": "everyone", "tip": f"Tip {n}."}]},
+    ] + ([{"kind": "result", "winners": [], "roles": {}, "models": {}}] if result else [])
+    for n, finished in [(1, True), (2, False)]:
+        (tmp_path / f"game_2026100{n}_000000_1.jsonl").write_text(
+            "\n".join(json.dumps(r) for r in game(n, finished)) + "\n", encoding="utf-8")
+    client = TipsClient([[op("add", tip="Count votes.", weight=0.5), op("add", tip="Count votes.")]])
+    out = tips.build(sorted(tmp_path.glob("game_*.jsonl")), tmp_path / "tips.md", client, ModelSpec(Model.OPUS_5_5), 500)
+    nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
+    assert nb["games"] == ["game_20261001_000000_1"] and len(nb["entries"]) == 1  # unfinished: not yet
+    entry = nb["entries"][0]
+    assert tips.apply_ops(nb, [op("support", id=entry["id"], weight=1.0)] * 3 + [op("restore", id=entry["id"]),
+                                                                               op("support", weight=float("nan"),
+                                                                                  id=entry["id"])], "g2") == 4
+    assert len(entry["support"]) == 2  # g1's add, then one from g2
+
+    class EmptySheet(TipsClient):
+        def chat(self, model, messages, *, schema_name="response", **kw):
+            if schema_name == "notebook_ops":
+                return super().chat(model, messages, schema_name=schema_name, **kw)
+            return LLMReply('{"sections": []}', None, [], {}, model.value, 0.0, {})
+    before = out.read_text(encoding="utf-8")
+    (tmp_path / "game_20261002_000000_1.jsonl").write_text(
+        "\n".join(json.dumps(r) for r in game(2)) + "\n", encoding="utf-8")
+    errors: list[str] = []
+    tips.build(sorted(tmp_path.glob("game_*.jsonl")), out, EmptySheet([[]]), ModelSpec(Model.OPUS_5_5), 500,
+               on_error=lambda kind, summary, **d: errors.append(summary))
+    assert out.read_text(encoding="utf-8") == before and "empty sheet" in errors[0]
+
+
+def test_a_tips_build_never_deletes_a_lock_another_build_took_over(tmp_path, monkeypatch):
+    import tips
+    monkeypatch.setattr(tips, "LOCK_STALE_S", -1)  # every lock looks stale
+    errors: list[str] = []
+    with tips.locked(tmp_path / "tips.md", lambda kind, summary, **d: errors.append(summary)) as touch:
+        with tips.locked(tmp_path / "tips.md", lambda kind, summary, **d: errors.append(summary)):
+            touch()  # the first build notices it lost the lock
+        lock = tmp_path / "tips.md.lock"
+        assert not lock.exists()  # the second build removed its own lock...
+        lock.write_text("someone else", encoding="utf-8")
+    assert lock.read_text(encoding="utf-8") == "someone else"  # ...and the first doesn't remove a third's
+    assert any("took over" in e for e in errors) and any("taken over by another build" in e for e in errors)
+
+
+def test_tips_cli_mock_builds_dont_touch_the_real_sheet(tmp_path, monkeypatch):
+    import tips
+    calls = []
+    monkeypatch.setattr(tips, "build", lambda paths, out, *a, **k: calls.append(out))
+    (tmp_path / "mock_20261009_000000_1.jsonl").write_text("{}\n", encoding="utf-8")
+    monkeypatch.setattr(sys, "argv", ["tips.py", "build", "--mock", str(tmp_path)])
+    tips.main()
+    assert calls == [tips.ROOT / "logs" / "mock_tips" / "tips.md"]
+    monkeypatch.setattr(sys, "argv", ["tips.py", "build", str(tmp_path / "game_2099*.jsonl")])
+    with pytest.raises(SystemExit, match="No game logs match"):
+        tips.main()
+
+
+def test_stats_says_what_it_skipped_when_no_games_are_left(tmp_path):
+    import stats
+    from tests.test_stats import game_records, write_log
+    write_log(tmp_path / "game_a.jsonl", game_records()[:-1])
+    games, skipped = stats.load_games(stats.log_files([tmp_path]))
+    assert stats.report(games, skipped) == "No finished games found. Skipped: 1 unfinished."

@@ -123,7 +123,8 @@ def test_unreviewed_errors_are_listed_until_acknowledged(tmp_path, monkeypatch, 
 
 def test_an_answer_that_breaks_its_schema_is_an_error_and_still_costs(tmp_path):
     import dataclasses
-    from players import VOTE_SCHEMA, schema_errors
+    from llm import schema_errors
+    from players import VOTE_SCHEMA
     from tests.conftest import ScriptedClient
     assert schema_errors({"thoughts": "", "vote": "yes"}, VOTE_SCHEMA) == ["answer.vote should be boolean, not \"yes\""]
     assert schema_errors({"to": "Zed"}, {"anyOf": [{"type": "string", "enum": ["Bob"]}, {"type": "null"}]})

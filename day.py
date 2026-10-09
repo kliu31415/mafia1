@@ -94,7 +94,7 @@ def run_day(game: Game, players: Players) -> None:
     trials = 0
     # Prosecutions happen when nominations would start, before any chat. Round 1's budget is paid
     # out first so others can speak at the trial.
-    prosecuted = [n for n in game.prosecutions if game.player(n).alive]
+    prosecuted = [n for n in dict.fromkeys(game.prosecutions) if game.player(n).alive]
     game.prosecutions.clear()
     if prosecuted:
         for p in game.alive():
@@ -162,9 +162,9 @@ def run_day(game: Game, players: Players) -> None:
 def planned_messages(out: dict) -> list[tuple[str | None, str]]:
     """(recipient or None for public, text), public message first."""
     msgs: list[tuple[str | None, str]] = []
-    if out.get("public_message"):
+    if (out.get("public_message") or "").strip():  # blank messages aren't messages
         msgs.append((None, out["public_message"]))
-    msgs += [(pm["to"], pm["text"]) for pm in out.get("private_messages", []) if pm.get("text")]
+    msgs += [(pm["to"], pm["text"]) for pm in out.get("private_messages", []) if (pm.get("text") or "").strip()]
     return msgs
 
 
@@ -250,7 +250,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                    "be truncated, starting with your last message.")
         game.log.write("budget_warning", player=p.name, planned=planned, budget=available())
         nominee = out.get("nominate")
-        out = players.ask(writer, task + warning, schema, fallback)
+        # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
+        out = players.ask(writer, task + warning, schema, out)
         if writer is not p:
             out["nominate"] = nominee
 

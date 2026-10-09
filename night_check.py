@@ -58,7 +58,7 @@ class NightChecker:
         try:
             reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check",
                                      effort=self.effort)
-            out = answer_json(reply)
+            out = answer_json(reply, CHECK_SCHEMA)
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
                            verdict=out["verdict"], issues=out["issues"], cost=reply.cost, usage=reply.usage,
                            **in_play)

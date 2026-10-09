@@ -4,8 +4,9 @@ Every error a game runs into is logged with alert: true (GameLog.error). This li
 whose errors haven't been marked reviewed, plus games that stopped with no result and no crash record
 (the process was killed). Claude Code runs `--hook` when a session starts in this folder
 (.claude/settings.json), so Claude sees new errors and brings them up; a finished game also prints a
-reminder line while any are unreviewed. Reviewed games are kept in logs/alerts_reviewed.json; a game
-that gets new errors later (e.g. it was resumed) shows up again.
+reminder line while any are unreviewed. Reviewed errors are kept in logs/alerts_reviewed.json (by when
+each happened), so a game that gets new errors later (e.g. it was resumed) shows up again. Each log's
+scan is cached in logs/alerts_cache.json until the log changes, so the hook stays fast.
 
 Usage:
     uv run alerts.py                 # list games with unreviewed errors
@@ -17,67 +18,110 @@ Usage:
 import argparse
 import json
 import os
-import sys
+import re
 import time
 from collections import Counter
 from pathlib import Path
 
+from records import safe_print
+
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 REVIEWED_FILE = "alerts_reviewed.json"
+CACHE_FILE = "alerts_cache.json"
 STOPPED_AFTER_S = 3600  # a log with no result, untouched this long, belongs to a game that was killed
 SAMPLES_PER_KIND = 2
 
 
-def scan(path: Path) -> dict | None:
-    """A game log's problems: error counts per kind and a few samples, and whether it stopped silently.
-    None if it has none (or is still running without errors)."""
+def scan(path: Path) -> dict:
+    """A game log's problems: an id for each (its error records' times, "stopped" if it stopped silently,
+    "unreadable:<n>" for lines that aren't JSON), counts per kind and a few samples."""
     data = path.read_bytes()
     finished = b'"kind": "result"' in data
-    if b'"alert": true' not in data and (finished or time.time() - path.stat().st_mtime < STOPPED_AFTER_S):
-        return None
-    errors = [json.loads(line) for line in data.splitlines() if b'"alert": true' in line]
-    errors = [r for r in errors if r.get("alert")]
-    kinds = Counter(r["kind"] for r in errors)
+    stale = time.time() - path.stat().st_mtime >= STOPPED_AFTER_S
+    lines = data.split(b"\n")
+    errors, unreadable = [], 0
+    for i, line in enumerate(lines):
+        if not line.strip() or (b'"alert": true' not in line and not stale and i < len(lines) - 1):
+            continue
+        try:
+            r = json.loads(line)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            if i < len(lines) - 1 or stale:  # a running game's last line may be half-written
+                unreadable += 1
+            continue
+        if isinstance(r, dict) and r.get("alert"):
+            errors.append(r)
+    kinds = Counter(str(r.get("kind")) for r in errors)
     samples: list[str] = []
     for kind in kinds:
-        samples += [f"{kind}: {r['error'][:300]}" for r in errors if r["kind"] == kind][:SAMPLES_PER_KIND]
-    stopped = not finished and not kinds["crash"] and time.time() - path.stat().st_mtime >= STOPPED_AFTER_S
+        samples += [f"{kind}: {str(r.get('error'))[:300]}" for r in errors if r.get("kind") == kind][:SAMPLES_PER_KIND]
+    ids = [f"{r.get('t')}:{r.get('kind')}" for r in errors]
+    stopped = not finished and not kinds["crash"] and stale
     if stopped:
+        ids.append("stopped")
         samples.append("the log ends with no result and no crash record: the process was probably killed"
                        + (f"; continue it with: uv run mafia.py --resume {path.with_suffix('.ckpt')}"
                           if path.with_suffix(".ckpt").exists() else ""))
-    return {"game": path.stem, "path": path, "issues": len(errors) + stopped, "kinds": kinds,
-            "finished": finished, "stopped": stopped, "samples": samples}
+    if unreadable:
+        kinds["unreadable log line"] = unreadable
+        ids.append(f"unreadable:{unreadable}")
+        samples.append(f"{unreadable} line(s) of the log aren't readable JSON")
+    return {"game": path.stem, "path": str(path), "ids": ids, "kinds": dict(kinds), "finished": finished,
+            "stopped": stopped, "samples": samples}
 
 
-def reviewed_path(log_dir: Path) -> Path:
-    return log_dir / REVIEWED_FILE
+def load_json(path: Path) -> dict:
+    """A small state file of ours; an unreadable one counts as empty (it is rebuilt)."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
 
 
-def load_reviewed(log_dir: Path) -> dict[str, int]:
-    """Game id -> how many issues it had when it was marked reviewed."""
-    p = reviewed_path(log_dir)
-    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+def save_json(path: Path, data: dict) -> None:
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")  # parallel games each write their own
+    tmp.write_text(json.dumps(data, indent=1, sort_keys=True), encoding="utf-8")
+    os.replace(tmp, path)
 
 
-def unreviewed(log_dir: Path, prefix: str = "game") -> list[dict]:
-    """Games (oldest first) with more issues than when they were last marked reviewed."""
-    reviewed = load_reviewed(log_dir)
-    out = []
-    for path in sorted(log_dir.glob(f"{prefix}_*.jsonl")):
-        if (s := scan(path)) and s["issues"] > reviewed.get(s["game"], 0):
-            out.append(s)
+def game_logs(log_dir: Path, prefix: str) -> list[Path]:
+    return sorted(p for p in log_dir.glob(f"{prefix}_*.jsonl") if re.match(rf"{prefix}_\d", p.name))
+
+
+def unreviewed(log_dir: Path, prefix: str = "game", update_cache: bool = True) -> list[dict]:
+    """Games (oldest first) with problems that weren't marked reviewed."""
+    reviewed = load_json(log_dir / REVIEWED_FILE)
+    cache = load_json(log_dir / CACHE_FILE)
+    out, changed = [], False
+    for path in game_logs(log_dir, prefix):
+        st = path.stat()
+        key = f"{st.st_size}:{st.st_mtime_ns}"
+        entry = cache.get(path.name)
+        if not (entry and entry.get("key") == key and entry.get("finished")):  # only finished logs stop changing
+            entry = {"key": key, **scan(path)}
+            cache[path.name], changed = entry, True
+        old = reviewed.get(entry["game"])
+        seen = set(old) if isinstance(old, list) else set()
+        if any(i not in seen for i in entry["ids"]):
+            out.append(entry)
+    if changed and update_cache:
+        try:
+            save_json(log_dir / CACHE_FILE, cache)
+        except OSError:
+            pass  # only a cache: the next run scans again
     return out
 
 
 def describe(games: list[dict]) -> str:
     lines = []
     for g in games:
-        counts = ", ".join(f"{n} {k}" for k, n in g["kinds"].most_common())
-        state = "finished" if g["finished"] else "stopped" if g["stopped"] or g["kinds"]["crash"] else "running"
-        lines.append(f"- {g['game']} ({state}): {counts or 'no error records'}. "
-                     f"Details: {g['path'].with_suffix('.html')}"
-                     + (f" and {g['path'].stem}_feedback.md" if g["finished"] else ""))
+        kinds = Counter(g["kinds"])
+        counts = ", ".join(f"{n} {k}" for k, n in kinds.most_common())
+        state = "finished" if g["finished"] else "stopped" if g["stopped"] or kinds["crash"] else "running"
+        path = Path(g["path"])
+        lines.append(f"- {g['game']} ({state}): {counts or 'no error records'}. Details: {path.with_suffix('.html')}"
+                     + (f" and {path.stem}_feedback.md" if g["finished"] else ""))
         lines += [f"    {s}" for s in g["samples"]]
     return "\n".join(lines)
 
@@ -95,19 +139,17 @@ def pending_line(log_dir: Path, prefix: str = "game") -> str | None:
 
 
 def ack(log_dir: Path, which: list[str], prefix: str = "game") -> list[str]:
-    """Marks games reviewed at their current issue count ("all": every unreviewed one). Returns their ids."""
+    """Marks games' current problems reviewed ("all": every unreviewed game). Returns their ids."""
     games = {g["game"]: g for g in unreviewed(log_dir, prefix)}
     names = list(games) if which == ["all"] else which
-    reviewed = load_reviewed(log_dir)
+    reviewed = load_json(log_dir / REVIEWED_FILE)
     for name in names:
         path = log_dir / f"{name}.jsonl"
         g = games.get(name) or (scan(path) if path.exists() else None)
         if g is None:
-            raise SystemExit(f"no game log {log_dir / name}.jsonl with errors")
-        reviewed[name] = g["issues"]
-    tmp = reviewed_path(log_dir).with_suffix(".tmp")
-    tmp.write_text(json.dumps(reviewed, indent=1, sort_keys=True), encoding="utf-8")
-    os.replace(tmp, reviewed_path(log_dir))
+            raise SystemExit(f"no game log {path}")
+        reviewed[name] = sorted(set(g["ids"]))
+    save_json(log_dir / REVIEWED_FILE, reviewed)
     return names
 
 
@@ -130,20 +172,20 @@ def main() -> None:
         if not args.hook:
             print(f"No logs folder at {args.logs}.")
         return
-    if args.ack:
-        names = ack(args.logs, args.ack, prefix)
-        print(f"Marked reviewed: {', '.join(names) or 'nothing (no unreviewed errors)'}")
-        return
     try:
+        if args.ack:
+            names = ack(args.logs, args.ack, prefix)
+            print(f"Marked reviewed: {', '.join(names) or 'nothing (no unreviewed errors)'}")
+            return
         games = unreviewed(args.logs, prefix)
-    except Exception as e:
-        print(f"alerts.py could not check the logs for errors: {type(e).__name__}: {e}")
-        sys.exit(0 if args.hook else 1)
+    except Exception as e:  # the hook must say so, not fail with a traceback Claude never sees
+        safe_print(f"alerts.py could not check the logs for errors: {type(e).__name__}: {e}")
+        raise SystemExit(0 if args.hook else 1) from None
     if args.hook:
         if games:
-            print(HOOK_INTRO + "\n\n" + describe(games))
+            safe_print(HOOK_INTRO + "\n\n" + describe(games))
         return
-    print(describe(games) if games else "No unreviewed errors.")
+    safe_print(describe(games) if games else "No unreviewed errors.")
 
 
 if __name__ == "__main__":

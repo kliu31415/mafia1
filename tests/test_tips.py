@@ -167,6 +167,7 @@ def test_the_notebook_and_sheet_are_built_from_game_logs(tmp_path):
         {"kind": "tips", "players": ["Alice"]},
         {"kind": "lessons", "who": "Alice", "role": "Medic", "model": "anthropic/claude-haiku-5.5", "lessons": [],
          "tips_feedback": [{"tip": "Track votes.", "verdict": "hurt", "why": "Yakuza voted in a block."}]},
+        {"kind": "result", "winners": [], "roles": {}, "models": {}},
     ]) + "\n", encoding="utf-8")
     client.ops = [[op("against", id="t2", weight=0.16, note="Yakuza voted in a block"),
                    op("edit", id="t1", tip="Guard a claimed Sheriff.", audience="Medic", note="sharper"),

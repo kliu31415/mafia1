@@ -32,13 +32,13 @@ These are measures of choices, not of luck: a good decision can still lose the g
 
 import argparse
 import csv
-import json
 import math
 from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
 
 from llm import Model
+from records import read_records
 from roles import ROLES, Alignment, logic
 
 ROOT = Path(__file__).resolve().parent
@@ -80,7 +80,8 @@ def log_files(paths: Iterable[Path]) -> list[Path]:
     out: list[Path] = []
     for p in paths:
         if p.is_dir():
-            out += sorted([*p.glob("game_*.jsonl"), *p.glob("mock_*.jsonl")])
+            out += sorted(f for f in [*p.glob("game_*.jsonl"), *p.glob("mock_*.jsonl")]
+                          if f.name != "mock_lessons.jsonl")
         elif p.suffix == ".jsonl":
             out.append(p)
     return out
@@ -88,7 +89,7 @@ def log_files(paths: Iterable[Path]) -> list[Path]:
 
 def load_game(path: Path) -> dict | None:
     """One finished game's summary, players and scored decisions, or None if it has no result."""
-    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    records, _ = read_records(path)  # a half-written last line (a killed game) is skipped
     setup = next((r for r in records if r.get("kind") == "setup"), None)
     result = next((r for r in reversed(records) if r.get("kind") == "result"), None)
     if setup is None or result is None:  # stopped or crashed, or not a game log (e.g. mock_lessons.jsonl)
@@ -204,12 +205,12 @@ def table(header: list[str], rows: list[list[str]]) -> str:
 
 
 def report(games: list[dict], skipped: dict[str, int], decisions_by: str = "model") -> str:
+    skip = ", ".join(f"{n} {why}" for why, n in skipped.items() if n)
     if not games:
-        return "No finished games found."
+        return "No finished games found." + (f" Skipped: {skip}." if skip else "")
     out = []
     versions = sorted({g["log_version"] for g in games})
     dates = sorted(g["date"] for g in games if g["date"])
-    skip = ", ".join(f"{n} {why}" for why, n in skipped.items() if n)
     out.append(f"{len(games)} games ({dates[0] if dates else '?'} to {dates[-1] if dates else '?'}; log versions "
                f"{versions[0]}-{versions[-1]}; {sum(g['setup'] == 'random' for g in games)} with random setups)"
                + (f". Skipped: {skip}." if skip else "."))
@@ -294,7 +295,7 @@ def write_csv(games: list[dict], folder: Path) -> list[Path]:
     paths = []
     for name, rows in tables.items():
         path = folder / name
-        with path.open("w", newline="", encoding="utf-8") as fh:
+        with path.open("w", newline="", encoding="utf-8", errors="replace") as fh:
             if rows:
                 writer = csv.DictWriter(fh, fieldnames=list(rows[0]))
                 writer.writeheader()

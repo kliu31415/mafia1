@@ -1,6 +1,7 @@
 """Player prompts, structured-output schemas, notepads, and the LLM calls for players."""
 
 import json
+import re
 from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
@@ -14,12 +15,44 @@ from tips import player_view
 NOTEPAD_WORDS = 300  # longer notepads are truncated
 
 
+# Scripts written without spaces (Chinese, Japanese, Thai, ...) count one word per character, and a run of
+# letters with no space counts one word per LONG_WORD characters, so word caps and prices can't be dodged
+# by leaving out spaces.
+NO_SPACE_SCRIPTS = re.compile("[\u0e00-\u0eff\u1000-\u109f\u1780-\u17ff\u3040-\u30ff\u3400-\u4dbf"
+                              "\u4e00-\u9fff\uac00-\ud7af\uf900-\ufaff\uff00-\uffef]")
+LONG_WORD = 20
+
+
+def token_words(token: str) -> int:
+    chars = len(NO_SPACE_SCRIPTS.findall(token))
+    rest = len(token) - chars
+    return chars + -(-rest // LONG_WORD)
+
+
 def word_count(text: str) -> int:
-    return len(text.split())
+    return sum(token_words(t) for t in text.split())
 
 
 def truncate_words(text: str, words: int) -> str:
-    return " ".join(text.split()[:words]) + " [truncated]"
+    kept: list[str] = []
+    for token in text.split():
+        n = token_words(token)
+        if n > words:  # cut inside the token: as many characters as the words left allow
+            chars = rest = end = 0
+            for ch in token:
+                if NO_SPACE_SCRIPTS.match(ch):
+                    chars += 1
+                else:
+                    rest += 1
+                if chars + -(-rest // LONG_WORD) > words:
+                    break
+                end += 1
+            if end:
+                kept.append(token[:end])
+            break
+        kept.append(token)
+        words -= n
+    return " ".join(kept) + " [truncated]"
 
 
 def nullable(schema: dict) -> dict:
@@ -28,44 +61,6 @@ def nullable(schema: dict) -> dict:
 
 def obj(**props: dict) -> dict:
     return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
-
-
-JSON_TYPES = {"object": dict, "array": list, "string": str, "boolean": bool, "null": type(None)}
-
-
-def schema_errors(value: object, schema: dict, path: str = "answer") -> list[str]:
-    """Where a JSON answer breaks its schema (the subset our schemas use: type, enum, properties, required,
-    additionalProperties, items, anyOf, minimum, maximum). Providers are asked for strict structured output,
-    but one that ignores it would otherwise feed the game an unknown name or a missing field."""
-    if "anyOf" in schema:
-        options = [schema_errors(value, s, path) for s in schema["anyOf"]]
-        return [] if any(not e for e in options) else min(options, key=len)
-    t = schema.get("type")
-    if t == "integer":
-        ok = isinstance(value, int) and not isinstance(value, bool)
-    elif t == "number":
-        ok = isinstance(value, (int, float)) and not isinstance(value, bool)
-    else:
-        ok = t is None or isinstance(value, JSON_TYPES[t]) and not (t != "boolean" and isinstance(value, bool))
-    if not ok:
-        return [f"{path} should be {t}, not {json.dumps(value)[:60]}"]
-    if "enum" in schema and value not in schema["enum"]:
-        return [f"{path} is {json.dumps(value)[:60]}, not one of {schema['enum']}"]
-    if isinstance(value, (int, float)) and not schema.get("minimum", value) <= value <= schema.get("maximum", value):
-        return [f"{path} is {value}, outside {schema.get('minimum')}..{schema.get('maximum')}"]
-    errors = []
-    if isinstance(value, dict):
-        props = schema.get("properties", {})
-        errors += [f"{path} is missing {k!r}" for k in schema.get("required", []) if k not in value]
-        if schema.get("additionalProperties") is False:
-            errors += [f"{path} has an unknown field {k!r}" for k in value if k not in props]
-        for k, v in value.items():
-            if k in props:
-                errors += schema_errors(v, props[k], f"{path}.{k}")
-    if isinstance(value, list) and "items" in schema:
-        for i, v in enumerate(value):
-            errors += schema_errors(v, schema["items"], f"{path}[{i}]")
-    return errors
 
 
 STR = {"type": "string"}
@@ -152,7 +147,8 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
-            "words; longer is truncated), or null to keep it as is. Use it for plans, suspicions and "
+            "words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, "
+            "suspicions and "
             "anything you want to remember. A useful habit: one brief line per other player (their claim, "
             "key votes or actions, and your current read), e.g. \"Bob: claims Sheriff, says Carol is Not "
             "Evil; voted Guilty on Dave D2; leaning Yakuza\". Keep lines short so they all fit.\n\n"
@@ -201,12 +197,10 @@ class Players:
             reply: LLMReply | None = None
             try:
                 reply = self.client.chat(p.model, messages, schema=schema, effort=p.effort)
-                out = answer_json(reply)
-                if errors := schema_errors(out, schema):
-                    raise RuntimeError(f"the answer doesn't match its schema: {'; '.join(errors[:5])}")
+                out = answer_json(reply, schema)
                 before = p.notepad
                 after = before
-                if isinstance(note := out.get("notepad"), str):
+                if isinstance(note := out.get("notepad"), str) and note.strip():  # "" keeps it, like null
                     after = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
@@ -223,6 +217,10 @@ class Players:
                                     player=p.name, model=p.model.value, attempt=attempt, task=task,
                                     **({"output": reply.content, "reasoning": reply.reasoning, "cost": reply.cost,
                                         "usage": reply.usage} if reply else {}))  # a failed answer still costs
+                if reply and reply.content:  # tell the model what was wrong, so the retry isn't the same answer
+                    messages = messages + [{"role": "assistant", "content": reply.content},
+                                           {"role": "user", "content": f"That answer couldn't be used ({error[:300]}). "
+                                            "Answer again with JSON that follows the schema exactly."}]
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, task=task, fallback=fallback)

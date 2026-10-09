@@ -43,7 +43,29 @@ def test_executioner_becomes_jester_when_target_dies_otherwise(game_factory):
     game.player("Alice").status[Status.TARGET] = "Bob"
     game.phase = "night"
     game.kill("Bob", "Katana")
+    assert game.player("Alice").role == "Executioner"  # night deaths are simultaneous: it happens at dawn
+    game.run_dawn_hooks()
     assert game.player("Alice").role == "Jester" and game.player("Alice").alive
+
+
+def test_an_executioner_dying_the_same_night_as_their_target_dies_an_executioner(game_factory):
+    game, _ = game_factory(["Executioner", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").status[Status.TARGET] = "Bob"
+    game.phase = "night"
+    game.kill("Bob", "Katana")
+    game.kill("Alice", "Vigilante")
+    game.run_dawn_hooks()
+    assert game.player("Alice").role == "Executioner"
+
+
+def test_an_executioner_whose_target_leaves_becomes_a_jester(game_factory):
+    game, _ = game_factory(["Executioner", "Executioner", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").status[Status.TARGET] = "Bob"
+    game.player("Bob").status[Status.TARGET] = "Carol"
+    game.player("Bob").last_will = "Carol is lying."
+    game.kill("Carol", "executed by hanging", guilty_voters=["Dave"])
+    assert game.player("Bob").status[Status.LEFT] and game.player("Alice").role == "Jester"
+    assert any("Carol is lying." in e.text for e in game.events)  # the leaving Executioner's will
 
 
 def test_puppeteer_writes_the_puppets_messages(game_factory):
