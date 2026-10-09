@@ -170,6 +170,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             "anything you want to remember. A useful habit: one brief line per other player (their claim, "
             "key votes or actions, and your current read), e.g. \"Bob: claims Sheriff, says Carol is Not "
             "Evil; voted Guilty on Dave D2; leaning Yakuza\". Keep lines short so they all fit.\n\n"
+            f"{REASON_NOTE}\n\n"
             + (FEEDBACK_NOTE if feedback_field else "")
             + f"---\n\n{task}")
     return [system, {"role": "user", "content": user}]
@@ -184,6 +185,12 @@ def night_history(game: Game, p: Player) -> str:
               if e.cat == RESULT and e.visible_to is not None and p.name in e.visible_to]
     return "\n".join(lines)
 
+
+# A short why for each answer, for the logs: many models' reasoning comes back only summarized or not at all
+# (OpenAI's Sol and Luna return a summary on about 1 call in 8). One sentence after the decision rather than a
+# "thoughts" scratchpad, which Anthropic's filter reads as distillation (gamelog v23).
+REASON_NOTE = ("Every response also has a 'reason' field: one short sentence saying why you chose this answer. "
+               "It is kept in the game's records only; nobody in the game sees it.")
 
 FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: if a rule or this "
                  "interface is confusing, seems broken, or stops you doing something you want, say so "
@@ -208,6 +215,8 @@ class Players:
     def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
         messages = player_messages(self.game, p, self.rules, task, self.feedback_field)
         schema = with_notepad(schema)
+        schema = {**schema, "properties": {**schema["properties"], "reason": STR},
+                  "required": [*schema["required"], "reason"]}
         if self.feedback_field:
             schema = {**schema, "properties": {**schema["properties"], "feedback": nullable(STR)},
                       "required": [*schema["required"], "feedback"]}
@@ -227,6 +236,7 @@ class Players:
                     self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase,
                                         player=p.name, role=p.role, feedback=fb)
                 out.pop("notepad", None)
+                out.pop("reason", None)  # logged above; game code and the moderator never see it
                 p.notepad = after
                 return out
             except Exception as e:  # a bad answer, or a request that failed after its retries

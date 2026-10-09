@@ -431,7 +431,8 @@ def render_html(jsonl_path: Path) -> Path:
             line("system", "Claim", name(f"{r['player']}: {r['claim']}"))
         elif k == "player_call":
             o = dict(r.get("output") or {})
-            thoughts = o.pop("thoughts", "")
+            thoughts = o.pop("thoughts", "")  # LOG_VERSION 22 and earlier
+            reason = o.pop("reason", "")  # LOG_VERSION 24+
             notepad = ""
             if "notepad_before" in r:  # LOG_VERSION 9+
                 o.pop("notepad", None)
@@ -443,7 +444,7 @@ def render_html(jsonl_path: Path) -> Path:
                        f"{esc(r['model'].split('/')[-1])}) · {esc(first_line[:90])} · ${r.get('cost', 0):.4f}")
             out.append(f"<details class='call'><summary>{summary}</summary>"
                        + pre("Reasoning (model's summarized thinking)", r.get("reasoning"))
-                       + pre("Thoughts (private field)", thoughts) + pre("Output", o) + notepad
+                       + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason) + pre("Output", o) + notepad
                        + pre("Task prompt", r["task"]) + pre("Usage", r.get("usage")) + "</details>")
         elif k == "moderator_call":
             calls = ", ".join(c["function"]["name"] for c in r.get("tool_calls") or []) or "no tool call"
