@@ -61,7 +61,7 @@ STRENGTH = {
     Model.GEMINI_3_8_FLASH: 3,
     Model.HAIKU_5_5: 2, Model.GPT_6_LUNA: 2,
     # Cheap models added 2026-10-09; a guess from one test turn each, until games say more.
-    Model.DEEPSEEK_V4_1_FLASH: 2, Model.GPT_6_LUNA_PRO: 2, Model.SOLAR_PRO_4: 2, Model.MIMO_V2_6_FLASH: 2,
+    Model.DEEPSEEK_V4_1_FLASH: 2, Model.GPT_6_LUNA_PRO: 2,
 }
 DEFAULT_STRENGTH = 3  # a model missing from STRENGTH
 

@@ -38,15 +38,14 @@ class Model(str, Enum):
     HAIKU_5_5 = "anthropic/claude-haiku-5.5"
     GPT_6_LUNA = "openai/gpt-6-luna"
     # Cheap models tried 2026-10-09 on one real Day 2 turn and one night action each (seconds, $ per call):
-    # DeepSeek V4.1 Flash 8-11 s/$0.002-0.004, Luna Pro 14-23 s/$0.0025, Solar Pro 4 16-23 s/$0.001-0.0015,
-    # MiMo V2.6 Flash 16-83 s/$0.001-0.002; all sensible play. Turned down: Qwen 3.8 Flash and GLM-5.3 Flash
-    # (ran out of tokens, unparsable answers), Seed 2.1 Turbo (90-100 s a call), Nemotron 3.5 Lightning and
-    # Command A+ (claimed their role and announced their target in public chat on Day 2), Mistral Large 4
-    # ($0.01 a call, about 70 s).
+    # DeepSeek V4.1 Flash 8-11 s/$0.002-0.004, Luna Pro 14-23 s/$0.0025; sensible play. Turned down: Qwen 3.8
+    # Flash and GLM-5.3 Flash (ran out of tokens, unparsable answers), Seed 2.1 Turbo (90-100 s a call), Nemotron
+    # 3.5 Lightning and Command A+ (claimed their role and announced their target in public chat on Day 2),
+    # Mistral Large 4 ($0.01 a call, about 70 s). Solar Pro 4 and MiMo V2.6 Flash passed the test but in their
+    # first game (2026-10-09) often filled strict-schema answers with runs of tabs or whitespace up to the token
+    # limit (unparsable, minutes per call), so they were dropped.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
-    SOLAR_PRO_4 = "upstage/solar-pro4"
-    MIMO_V2_6_FLASH = "xiaomi/mimo-v2.6-flash"
 
     @property
     def short(self) -> str:
@@ -67,8 +66,6 @@ MODEL_SHORT_NAMES = {
     Model.GPT_6_LUNA: "gpt-6-luna",
     Model.DEEPSEEK_V4_1_FLASH: "deepseek-v4.1-flash",
     Model.GPT_6_LUNA_PRO: "gpt-6-luna-pro",
-    Model.SOLAR_PRO_4: "solar-pro4",
-    Model.MIMO_V2_6_FLASH: "mimo-v2.6-flash",
 }
 
 
@@ -86,8 +83,6 @@ PROVIDERS = {
     "moonshotai": "Moonshot AI",
     "z-ai": "Together",  # the exception: Z.AI's own endpoint doesn't take structured outputs (2026-10-09)
     "deepseek": "Together",  # DeepSeek's own endpoint doesn't take structured outputs either (2026-10-09)
-    "upstage": "Upstage",
-    "xiaomi": "Xiaomi",
 }
 
 
@@ -141,8 +136,7 @@ def parse_model_spec(text: str) -> ModelSpec:
 # s/turn sets a game's length: Grok and Kimi seats are slow at any effort. Artificial Analysis'
 # Intelligence Index (Oct 2026) also rises with effort, e.g. Sonnet 5.5 41 at medium, 47 high, 56 max.
 MODEL_EFFORT = {m: "high" for m in Model} | {Model.QWEN_3_8_MAX: "medium", Model.QWEN_3_8_MAX_PRIME: "medium",
-                                              Model.GEMINI_3_8_FLASH: "medium", Model.DEEPSEEK_V4_1_FLASH: "medium",
-                                              Model.MIMO_V2_6_FLASH: "medium"}
+                                              Model.GEMINI_3_8_FLASH: "medium", Model.DEEPSEEK_V4_1_FLASH: "medium"}
 
 
 def default_effort(model: Model) -> str:
