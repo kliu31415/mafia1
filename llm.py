@@ -116,12 +116,15 @@ def parse_model_spec(text: str) -> ModelSpec:
 #   grok-4.7       93 -> 136  4995       -> 7976          +$0.89 (+40%)
 #   qwen-3.8-max   72 -> 552  2556       -> 14621         ~5x; hit the 16k max_tokens cap with no answer on
 #                                                         1 of 3 runs, so Qwen stays at medium
+#   gemini-3.8-flash 25 -> 84 2390 (1736)-> 11098 (10482) +$1.80 (~4x); low: 8 s, 402 (0). High nears the
+#                                                         16k cap and scores no better (AA index 40 vs 41), so medium
 #   haiku-5.5      10 -> 23   1276 (800) -> 4158 (3470)   +$0.07
 #   gpt-6-luna     19 -> 33   1272 (891) -> 2449 (2070)   +$0.03
 # Times are with 12 requests at once. Speaking turns run one at a time (~260 in a 7-day 12p game), so
 # s/turn sets a game's length: Grok and Kimi seats are slow at any effort. Artificial Analysis'
 # Intelligence Index (Oct 2026) also rises with effort, e.g. Sonnet 5.5 41 at medium, 47 high, 56 max.
-MODEL_EFFORT = {m: "high" for m in Model} | {Model.QWEN_3_8_MAX: "medium", Model.QWEN_3_8_MAX_PRIME: "medium"}
+MODEL_EFFORT = {m: "high" for m in Model} | {Model.QWEN_3_8_MAX: "medium", Model.QWEN_3_8_MAX_PRIME: "medium",
+                                              Model.GEMINI_3_8_FLASH: "medium"}
 
 
 def default_effort(model: Model) -> str:
