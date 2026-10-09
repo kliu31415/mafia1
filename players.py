@@ -191,6 +191,17 @@ FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: 
                  "there briefly; otherwise leave it null. Nobody in the game sees it.\n\n")
 
 
+def without_thoughts(schema: dict) -> dict:
+    """Claude players answer without the "thoughts" field: an answer that writes out its reasoning looks like
+    distillation to Anthropic's filter against duplicating model outputs, which cut off an Opus player's answer
+    (game_20261009_084630_739772, day 3; Azure's route refused such schemas outright). Their own reasoning is
+    logged instead (player_call "reasoning"), and the field averaged about 200 characters on top of it."""
+    if "thoughts" not in schema.get("properties", {}):
+        return schema
+    return {**schema, "properties": {k: v for k, v in schema["properties"].items() if k != "thoughts"},
+            "required": [k for k in schema["required"] if k != "thoughts"]}
+
+
 def with_notepad(schema: dict) -> dict:
     """Adds the 'notepad' field every player response carries."""
     return {**schema, "properties": {**schema["properties"], "notepad": nullable(STR)},
@@ -209,6 +220,8 @@ class Players:
     def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
         messages = player_messages(self.game, p, self.rules, task, self.feedback_field)
         schema = with_notepad(schema)
+        if p.model.value.startswith("anthropic/"):
+            schema = without_thoughts(schema)
         if self.feedback_field:
             schema = {**schema, "properties": {**schema["properties"], "feedback": nullable(STR)},
                       "required": [*schema["required"], "feedback"]}

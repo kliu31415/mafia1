@@ -47,7 +47,8 @@ from records import read_records, safe_print
 # 21: "claim" record (day, player, claim) when a player's public claim changes
 # 22: setup settings.moderator_fallback; "moderator_switch" error record (day, phase, old, new, reason); a BYOK
 #     call's cost includes what the provider billed (upstream_inference_cost)
-LOG_VERSION = 22
+# 23: Claude players' player_call outputs have no "thoughts" (players.without_thoughts); see "reasoning" instead
+LOG_VERSION = 23
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
