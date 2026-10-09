@@ -1,7 +1,6 @@
 """The day phase: speaking budget, chat turns, nominations and simultaneous votes."""
 
 import json
-import re
 from typing import Any
 
 from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
@@ -175,17 +174,6 @@ def planned_messages(out: dict) -> list[tuple[str | None, str]]:
     return msgs
 
 
-def drop_own_name(out: dict, name: str) -> None:
-    """Strips a leading "Name:" the speaker put in their own message. The transcript already shows who
-    spoke, so it read "Erin (public): Erin: ..." (Haiku did this in 116 of 121 messages,
-    game_20261009_055144_260309), and it cost budget words."""
-    prefix = re.compile(rf"\s*{re.escape(name)}\s*:\s*")
-    fields = [(out, "public_message")] + [(pm, "text") for pm in out.get("private_messages") or []]
-    for holder, key in fields:
-        if isinstance(holder.get(key), str) and (m := prefix.match(holder[key])):
-            holder[key] = holder[key][m.end():]
-
-
 def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: bool,
               extra: str = "", free_words: int = 0, trial: bool = False) -> tuple[bool, str | None]:
     """One speaking turn. Returns (whether a public message was sent, nominee or None).
@@ -223,7 +211,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
             f"up to {BUDGET_MAX:g}, and it resets each day. You may send one public message and any "
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "
-            f"the contents), or nothing. Messages are "
+            f"the contents), or nothing. The transcript already shows who sent each message, so there's "
+            "no need to start a message with your own name. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
             "so late messages are only worth it if important. The day ends after a full round where "
             "nobody sends a public message.\n" + price_table(rnd, trial) + "\n"
@@ -259,7 +248,6 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                              f"{nomination_fee:.2f} from your budget ({p.speaking_budget:.2f}).")
             nominate_schema = obj(thoughts=STR, nominate=nullable(name_enum(game.alive_names())))
             out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None})["nominate"]
-    drop_own_name(out, p.name)
     # A puppet's own nomination is private: the Puppeteer revising the messages neither sees nor pays for it.
     planned = total_cost(out if writer is p else {**out, "nominate": None})
     if planned > available() + 1e-9:
@@ -273,7 +261,6 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
         out = players.ask(writer, task + warning, schema, out)
-        drop_own_name(out, p.name)
         if writer is not p:
             out["nominate"] = nominee
 

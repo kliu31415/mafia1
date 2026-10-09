@@ -217,17 +217,6 @@ def test_every_round_allows_a_short_public_message_and_a_nomination():
     assert message_cost(10, MAX_DAY_ROUNDS, False) + NOMINATION_COST * round_multiplier(MAX_DAY_ROUNDS) <= BUDGET_MAX
 
 
-def test_a_speaker_naming_themself_at_the_start_of_a_message_is_trimmed(game_factory):
-    out = {"public_message": "Alice: I'm the Sheriff.", "private_messages": [{"to": "Bob", "text": " Alice : hi"},
-                                                                             {"to": "Carol", "text": "Bob: hi"}]}
-    game, players = game_factory(VILLAGE5, ScriptedClient(lambda name, task, schema: out if name == "Alice" else None))
-    from day import chat_turn
-    game.player("Alice").speaking_budget = 5.0
-    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
-    sent = [e.fields["message"] for e in game.events if e.cat in ("chat", "pm") and e.fields["speaker"] == "Alice"]
-    assert sent == ["I'm the Sheriff.", "hi", "Bob: hi"]
-
-
 def test_ledger_dates_night_deaths_by_their_night_and_a_quiet_night_is_announced(game_factory):
     game, players = game_factory(TOWN4_GRUNT)
     game.phase = "night"
