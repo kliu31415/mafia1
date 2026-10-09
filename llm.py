@@ -374,7 +374,8 @@ class OpenRouterClient:
         msg = choice["message"]
         usage = data.get("usage") or {}
         cost = byok_cost(usage)
-        if cost is None and self.on_error:  # the cost tables would quietly undercount
+        # The cost tables would quietly undercount; a blocked answer (content_filter) is free and reported anyway.
+        if cost is None and self.on_error and choice.get("finish_reason") != "content_filter":
             self.on_error("api_error", f"a {model.value} answer reported no cost, so it counts as $0",
                           model=model.value, usage=usage)
         cost = cost or 0.0
