@@ -153,7 +153,9 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
             "words; longer is truncated), or null to keep it as is. Use it for plans, suspicions and "
-            "anything you want to remember.\n\n"
+            "anything you want to remember. A useful habit: one brief line per other player (their claim, "
+            "key votes or actions, and your current read), e.g. \"Bob: claims Sheriff, says Carol is Not "
+            "Evil; voted Guilty on Dave D2; leaning Yakuza\". Keep lines short so they all fit.\n\n"
             + (FEEDBACK_NOTE if feedback_field else "")
             + f"---\n\n{task}")
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
