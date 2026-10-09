@@ -6,7 +6,9 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
+from events import RESULT
 from llm import LLMClient, Model, ModelSpec, answer_json
+from log_viewer import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
 from state import Game
@@ -26,10 +28,23 @@ REVIEW_SCHEMA = obj(issues={"type": "array", "items": obj(
     description=STR)})
 
 
+def night_replay(game: Game) -> str:
+    """What happened each night, now that it can be revealed: everyone's submitted actions and every
+    private result (players asked for this after games, to understand failed attacks and so on)."""
+    lines = []
+    for night, actions in game.night_actions.items():
+        lines.append(f"Night {night} actions:")
+        lines += [f"- {name} ({game.player(name).role}): {describe_action(a)}" for name, a in actions.items()]
+        lines += [f"- Result to {', '.join(sorted(e.visible_to or []))}: {e.fields.get('message', e.text)}"
+                  for e in game.events if e.cat == RESULT and e.day == night and e.phase == "night"]
+    return "\n".join(lines) or "(no nights were played)"
+
+
 def debrief_task(game: Game) -> str:
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
     questions = "\n".join(f"- {k}: {q}" for k, q in DEBRIEF_QUESTIONS.items())
     return (f"The game is over. Winners: {', '.join(game.winners or []) or 'nobody'}. Everyone's roles: {roles}.\n\n"
+            f"What happened each night (now revealed):\n{night_replay(game)}\n\n"
             "We're improving this game and the program that runs it. Out of character now, answer from "
             "your own experience of playing it. Be specific and concrete, and write 'none' where you have "
             f"nothing to say.\n{questions}")

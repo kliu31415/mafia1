@@ -86,6 +86,8 @@ class Game:
     puppets: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, today
     death_record: list[str] = field(default_factory=list)  # public summary of each death, for the ledger
     vote_record: list[str] = field(default_factory=list)  # public summary of each nomination and trial
+    pm_record: dict[int, dict[str, int]] = field(default_factory=dict)  # day -> {"A -> B": private messages}
+    night_actions: dict[int, dict[str, dict]] = field(default_factory=dict)  # night -> submitted actions
 
     def __getstate__(self) -> dict[str, Any]:
         # Pickled for checkpoints (checkpoint.py) without the log's open files; resuming reattaches a log.
@@ -202,8 +204,11 @@ class Game:
         alive = ", ".join(self.alive_names())
         deaths = "\n".join(f"- {d}" for d in self.death_record) or "- none yet"
         votes = "\n".join(f"- {v}" for v in self.vote_record) or "- none yet"
+        pms = "\n".join(f"- Day {day}: " + ", ".join(f"{pair} ({n})" for pair, n in counts.items())
+                        for day, counts in self.pm_record.items()) or "- none yet"
         return (f"Alive, in seat order: {alive}\nDeaths and departures:\n{deaths}\n"
-                f"Nominations and trials:\n{votes}")
+                f"Nominations and trials:\n{votes}\n"
+                f"Private messages sent, per day (sender -> recipient (count)):\n{pms}")
 
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)

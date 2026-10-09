@@ -51,6 +51,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             actions[y.name].update(katana_vote_holder=out["katana_vote_holder"],
                                    katana_vote_target=out["katana_vote_target"])
         katana = tally_katana(game, actions)
+    game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
     game.log.write("katana", day=game.day, result=katana)
     instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"

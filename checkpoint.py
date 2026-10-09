@@ -10,7 +10,7 @@ from typing import Any
 
 from state import Game
 
-CHECKPOINT_VERSION = 1
+CHECKPOINT_VERSION = 2  # 2: Game has pm_record and night_actions
 
 
 def save(path: Path, game: Game, **extra: Any) -> None:

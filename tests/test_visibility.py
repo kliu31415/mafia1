@@ -59,3 +59,22 @@ def test_mock_games_replay_from_their_seed(tmp_path, monkeypatch):
         recs = mock_game_records(tmp_path / sub, monkeypatch, seed=77)
         return [r["text"] for r in recs if r["kind"] == "event"]
     assert events("a") == events("b")
+
+
+def test_night_history_shows_only_your_own_actions_and_results(game_factory):
+    from events import RESULT
+    from feedback import night_replay
+    from players import player_messages
+    game, _ = game_factory(["Sheriff", "Vanilla Villager", "Grunt"])
+    game.night_actions[1] = {"Alice": {"act": True, "target": "Carol"},
+                             "Carol": {"act": False, "katana_vote_holder": "Carol", "katana_vote_target": "Bob"}}
+    game.phase = "night"
+    game.emit("Moderator (private): Carol is Evil.", ["Alice"], cat=RESULT, message="Carol is Evil.")
+    alice = player_messages(game, game.player("Alice"), "(rules)", "task")[1]["content"]
+    carol = player_messages(game, game.player("Carol"), "(rules)", "task")[1]["content"]
+    bob = player_messages(game, game.player("Bob"), "(rules)", "task")[1]["content"]
+    assert "Night 1: you submitted target Carol" in alice and "result: Carol is Evil." in alice
+    assert "Katana vote: Carol holds, attacks Bob" in carol and "Carol is Evil" not in carol
+    assert "Your night history" not in bob  # Bob had no night action and got no results
+    replay = night_replay(game)  # after the game, everything is revealed
+    assert "Alice (Sheriff): target Carol" in replay and "Result to Alice: Carol is Evil." in replay

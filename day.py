@@ -122,18 +122,35 @@ def run_day(game: Game, players: Players) -> None:
         alive = game.alive()
         order = [p for p in alive if p.seat >= start] + [p for p in alive if p.seat < start]
         active = False  # did anyone send a public message or nominate this go-around?
-        for p in order:
-            if not p.alive:
-                continue
-            public, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY)
+        round_start = len(game.events)
+
+        def turn(p: Player, rnd: int, extra: str = "") -> bool:
+            """One chat turn plus any nomination it makes. Returns whether the day is over."""
+            nonlocal active, trials
+            public, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY,
+                                        extra=extra)
             active |= public or nominee is not None
             if nominee:
                 outcome = run_nomination(game, players, nominator=p, nominee=nominee, rnd=rnd)
                 if outcome == "executed":
-                    return  # an execution ends the day
+                    return True  # an execution ends the day
                 trials += outcome == "innocent"  # failed nominations don't count toward the limit
                 if trials >= MAX_TRIALS_PER_DAY:
                     game.emit("Three trials ended in Innocent verdicts. The day ends.")
+                    return True
+            return False
+
+        for p in order:
+            if p.alive and turn(p, rnd):
+                return
+        if not active:
+            # Program rule, not from rules_1.txt: before a silent round ends the day, anyone sent a
+            # private message this round gets one last turn to react to it (or the day just ends).
+            got_pm = {e.fields["to"] for e in game.events[round_start:] if e.cat == PM}
+            for p in [q for q in order if q.alive and q.name in got_pm]:
+                if turn(p, rnd, extra="Nobody spoke publicly this round, so the day ends after this turn unless "
+                                 "someone does. You get this last turn because you were sent a private "
+                                 "message this round.\n"):
                     return
         if not active:
             game.emit("A full round passed with no public messages. The day ends.")
@@ -182,6 +199,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         return fee + sum(cost_of(i, to, min(word_count(t), MAX_MESSAGE_WORDS))
                          for i, (to, t) in enumerate(planned_messages(out)))
 
+    writer = game.player(game.chat_controller(p.name))
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
             f"up to {BUDGET_MAX:g}, and it resets each day. You may send one public message and any "
@@ -196,12 +214,13 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "nothing to add.\n" if trial else "")
             + (f"Your public message this turn is free up to {free_words} words; beyond that you "
                "pay only for the extra length.\n" if free_words else "")
+            + ("You may also replace your last will (free; null keeps it), e.g. to match a claim you make "
+               "today. It's shown to everyone if you die.\n" if writer is p else "")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
             + extra)
     fallback: dict[str, Any] = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
-    writer = game.player(game.chat_controller(p.name))
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
         out = players.ask(p, task, schema, fallback)
@@ -209,7 +228,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
-        schema = day_turn_schema(game, p.name, can_nominate=False)
+        schema = day_turn_schema(game, p.name, can_nominate=False, can_update_will=False)
         out = players.ask(writer, task, schema, fallback)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
@@ -230,6 +249,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         if writer is not p:
             out["nominate"] = nominee
 
+    if writer is p and isinstance(will := out.get("last_will"), str) and will.strip():
+        p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
     nominee = out.get("nominate") if can_nominate else None
     if nominee:
         if nomination_fee <= p.speaking_budget + 1e-9:
@@ -258,6 +279,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             # A puppeted player's private chat is read and written by their Puppeteer instead.
             game.emit(f"{p.name} -> {to} (private): {text}", [writer.name, game.chat_controller(to)],
                       cat=PM, speaker=p.name, to=to, message=text)
+            pair = f"{p.name} -> {to}"
+            counts = game.pm_record.setdefault(game.day, {})
+            counts[pair] = counts.get(pair, 0) + 1
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.players if q.name not in (p.name, to)], kind="notice")

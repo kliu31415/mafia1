@@ -141,3 +141,34 @@ def test_turns_go_around_the_circle_in_the_same_order_every_round(game_factory):
     start = seats.index(rounds[0][0])
     assert rounds[0] == seats[start:] + seats[:start]
     assert rounds[1] == rounds[0]
+
+
+def test_a_late_private_message_gets_one_last_turn_before_a_silent_round_ends_the_day(game_factory):
+    # Alice privately asks Bob something; nobody speaks publicly, so the round is silent. Bob gets
+    # one last turn and answers publicly, which keeps the day going into round 2.
+    def decide(name, task, schema):
+        if "private_messages" not in schema["properties"]:
+            return None
+        if name == "Alice" and "round 1 " in task and "last turn" not in task:
+            return {"private_messages": [{"to": "Bob", "text": "are you the Sheriff?"}]}
+        if name == "Bob" and "last turn" in task:
+            return {"public_message": "Yes, and Dave is Evil."}
+        return None
+    client = ScriptedClient(decide)
+    game, players = game_factory(TOWN4_GRUNT, client)
+    run_day(game, players)
+    last_turns = [who for who, task in client.asked if "last turn" in task]
+    assert last_turns == ["Bob"]
+    assert any("round 2 " in task for _, task in client.asked)
+    assert "Alice -> Bob (1)" in game.public_ledger()
+
+
+def test_players_can_update_their_will_on_a_day_turn(game_factory):
+    def decide(name, task, schema):
+        if name == "Alice" and "private_messages" in schema["properties"]:
+            return {"last_will": "I claimed Medic today."}
+        return None
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
+    run_day(game, players)
+    assert game.player("Alice").last_will == "I claimed Medic today."
+    assert game.player("Bob").last_will == ""  # null keeps the will as it was

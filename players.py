@@ -3,6 +3,8 @@
 import json
 from concurrent.futures import ThreadPoolExecutor
 
+import log_viewer
+from events import RESULT
 from llm import LLMClient, answer_json
 from roles import Alignment, ROLES, logic
 from state import Game, Player
@@ -35,13 +37,15 @@ def name_enum(names: list[str]) -> dict:
     return {"type": "string", "enum": names}
 
 
-def day_turn_schema(game: Game, me: str, can_nominate: bool) -> dict:
+def day_turn_schema(game: Game, me: str, can_nominate: bool, can_update_will: bool = True) -> dict:
     others = [n for n in game.alive_names() if n != me]
     props = {
         "thoughts": STR,  # private scratchpad, never shown to other players
         "public_message": nullable(STR),
         "private_messages": {"type": "array", "items": obj(to=name_enum(others), text=STR)},
     }
+    if can_update_will:  # so a claim made today can be in the will by tonight
+        props["last_will"] = nullable(STR)
     if can_nominate:
         props["nominate"] = nullable(name_enum(game.alive_names()))
     return obj(**props)
@@ -94,9 +98,12 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
         f"Seating order (clockwise): {order}.\n{role_briefing(game, p)}"
     )
     notepad = p.notepad or "(empty)"
+    nights = night_history(game, p)
     user = (f"Everything you have seen so far:\n{game.history_for(p.name)}\n\n---\n\n"
             f"Public ledger (a summary of public facts so far):\n{game.public_ledger()}\n\n"
-            f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
+            + (f"Your night history (what you submitted each night, and your private results):\n{nights}\n\n"
+               if nights else "")
+            + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
             "words; longer is truncated), or null to keep it as is. Use it for plans, suspicions and "
@@ -104,6 +111,16 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             + (FEEDBACK_NOTE if feedback_field else "")
             + f"---\n\n{task}")
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
+
+
+def night_history(game: Game, p: Player) -> str:
+    """p's submitted action each night and the moderator's private results to p, in one place (players
+    lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
+    lines = [f"- Night {night}: you submitted {log_viewer.describe_action(actions[p.name])}"
+             for night, actions in game.night_actions.items() if p.name in actions]
+    lines += [f"- Day {e.day} {e.phase}, result: {e.fields.get('message', e.text)}" for e in game.events
+              if e.cat == RESULT and e.visible_to is not None and p.name in e.visible_to]
+    return "\n".join(lines)
 
 
 FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: if a rule or this "
