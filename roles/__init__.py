@@ -56,7 +56,7 @@ ROLES: dict[str, RoleInfo] = {
     "Ritualist": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"ritual": 2}, acts_at_night=True,
                           notes="failed guesses must be announced publicly at dawn"),
     "Puppeteer": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"puppet": 1}, acts_at_night=True,
-                          tested=True, notes="moderator records the puppet; code swaps who chats next day"),
+                          tested=True, notes="moderator records the puppet; code refuses self or Yakuza puppets and swaps who chats next day"),
     "Fabricator": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"fabricator": 1}, acts_at_night=True,
                            tested=True, notes="forged wills via set_last_will"),
     "Clerk": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"clerk": 1}, acts_at_night=True,

@@ -1,6 +1,6 @@
 """Puppeteer: spends a token at night to chat as someone else the next day."""
 
-from roles.base import RoleLogic, register
+from roles.base import Alignment, RoleLogic, register
 
 
 @register("Puppeteer")
@@ -15,6 +15,8 @@ class Puppeteer(RoleLogic):
             return f"{by.name} is not a living Puppeteer"
         if change["player"] == by.name:
             return "a Puppeteer can't puppet themselves"
+        if game.player(change["player"]).info.alignment is Alignment.EVIL:
+            return "a Puppeteer can't puppet another Yakuza"
         return None
 
     def apply_op(self, game, change):
