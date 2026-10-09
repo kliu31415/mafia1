@@ -108,7 +108,9 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   anything that goes through `game.log.error` shows up everywhere above.
 - Prompt caching: a prompt starts with what many calls repeat (the rules, via `llm.rules_system`), and ends
   each stable part with `llm.cache_block`; Claude and Gemini cache only up to those marks, and OpenAI only the
-  system message, so a player's stable text (briefing, earlier phases' history) goes there. Check `cached_tokens`
+  system message, so a player's stable text (briefing, earlier phases' history) goes there. The answer schema is part of the cached
+  prefix too, so live games send every in-game player call one schema (`players.shared_schema`) and check the
+  answer against the task's own afterwards. Check `cached_tokens`
   in `player_call` usage after changing a prompt's layout.
 - Reasoning effort: each model has a default (`MODEL_EFFORT` in `llm.py`: high, except Qwen and Gemini Flash at medium,
   since at high they run near or past the token cap); measured cost and time per turn at medium vs high are in the comment there.

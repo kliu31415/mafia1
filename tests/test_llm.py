@@ -206,3 +206,30 @@ def test_a_byok_call_costs_the_provider_bill_plus_openrouters_fee():
     assert byok_cost({"cost": 0.001, "is_byok": True, "cost_details": {"upstream_inference_cost": 0.02}}) == 0.021
     assert byok_cost({"cost": 0.02, "is_byok": False, "cost_details": {"upstream_inference_cost": 0.02}}) == 0.02
     assert byok_cost({"is_byok": False}) is None
+
+
+def test_live_games_send_one_schema_for_every_in_game_question(tmp_path):
+    """The schema is part of the cached prompt prefix, so every in-game question sends the same one, and the
+    answer is checked against the question's own schema afterwards (players.shared_schema)."""
+    from players import LAST_WILL_SCHEMA, VOTE_SCHEMA, day_turn_schema, night_action_schema
+    from tests.conftest import ScriptedClient
+
+    sent: list[dict] = []
+
+    def decide(name, task, schema):
+        sent.append(schema)
+        if task.startswith("Vote."):
+            return {"vote": True, "last_will": "ignored, not asked"}
+        if task.startswith("Act."):
+            return {"act": True, "target": "Carol"}  # Carol is dead, which only the task's schema knows
+        return {"last_will": "", "notepad": ""}
+    game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt", "Vanilla Villager"], ScriptedClient(decide))
+    players.shared = True
+    game.player("Carol").alive = False
+    alice, bob = game.player("Alice"), game.player("Bob")
+    assert players.ask(alice, "Vote.", VOTE_SCHEMA, {"vote": False}) == {"vote": True}
+    assert players.ask(alice, "Will.", LAST_WILL_SCHEMA, {"last_will": "x"}) == {"last_will": ""}
+    players.ask(alice, "Talk.", day_turn_schema(game, "Alice", can_nominate=True), {})
+    assert players.ask(bob, "Act.", night_action_schema(game, bob), {"act": False}) == {"act": False}  # fallback
+    assert all(s == sent[0] for s in sent) and len(sent) == 5  # the night action was asked twice
+    assert "Answer in these fields: vote" in players.client.asked[0][1]  # type: ignore[attr-defined]
