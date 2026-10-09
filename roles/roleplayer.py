@@ -10,10 +10,9 @@ class Roleplayer(RoleLogic):
 
     # They must not be able to tell they aren't the real role: same tokens, alignment and night prompts.
     def setup(self, game, p):
-        from roles import ROLES, RoleLogic, logic
-        # Results that code delivers during the Day (an Eavesdropper's PMs) can't be faked by the moderator.
+        from roles import ROLES, logic
         fake = game.rng.choice([r for r, i in ROLES.items() if i.category == "Investigative"
-                                and type(logic(r)).hears_pm is RoleLogic.hears_pm])
+                                and logic(r).roleplayer_can_fake])
         p.status[Status.FAKE_ROLE] = fake
         p.tokens = dict(ROLES[fake].tokens)
 

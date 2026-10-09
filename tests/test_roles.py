@@ -134,14 +134,35 @@ def test_eavesdropper_reads_its_targets_pms_for_one_day(game_factory):
     assert {e.fields["message"] for e in game.events if e.cat == "pm" and e.visible("Alice")} == heard
 
 
-def test_roleplayers_never_think_they_are_eavesdroppers(game_factory):
+def test_archivist_sees_three_quarters_of_the_other_living_roles_once(game_factory):
+    game, players = game_factory(["Archivist", "Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt",
+                                  "Jester", "Sheriff", "Medic", "Pharmacist"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.phase = "night"
+    mod.dispatch("apply_changes", {"changes": [{"op": "archive", "by": "Alice"},
+                                               {"op": "kill", "player": "Bob", "cause": "Katana"}]})
+    with pytest.raises(ValueError, match="no archive token"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "archive", "by": "Alice"}]})
+    game.announce_dawn()
+    game.run_dawn_hooks()
+    result = next(e for e in game.events if e.cat == "result")
+    assert result.visible_to == {"Alice"}
+    assert "5 of the 7 other living players' roles" in result.text  # Bob died tonight, so N = 7, floor(5.25) = 5
+    shown = result.fields["message"].split(": ", 1)[1].rstrip(".").split(", ")
+    pool = ["Vanilla Villager", "Vanilla Villager", "Grunt", "Jester", "Sheriff", "Medic", "Pharmacist"]
+    assert len(shown) == 5 and all(shown.count(r) <= pool.count(r) for r in shown)
+    game.run_dawn_hooks()  # nothing more the next dawn
+    assert sum(e.cat == "result" for e in game.events) == 1
+
+
+def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
     import random
     from roles import logic
     game, _ = game_factory(["Roleplayer", "Vanilla Villager", "Grunt"])
     for seed in range(40):
         game.rng = random.Random(seed)
         logic("Roleplayer").setup(game, game.player("Alice"))
-        assert game.player("Alice").status[Status.FAKE_ROLE] != "Eavesdropper"
+        assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist")
 
 
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):

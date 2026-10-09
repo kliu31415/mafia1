@@ -35,6 +35,9 @@ class RoleLogic:
     Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
 
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
+    # False for roles whose results code delivers (live PMs, random samples), which the moderator can't fake
+    # for a Roleplayer who believes they have the role.
+    roleplayer_can_fake: bool = True
     # Reminder for the moderator's night resolution, for effects with no submitted action or that
     # need a special op. Included when anyone in the game has (or had) the role.
     night_note: str = ""

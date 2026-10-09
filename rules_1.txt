@@ -206,6 +206,13 @@ Eavesdropper
   message they send or receive, as it is sent. Puppeted messages reach you as the puppet's (you aren't told about
   the puppeting). They aren't told.
 
+Archivist
+  Tokens: 1 archive token.
+  Night: may spend the token to consult the archive. At the end of the night, let N be the number of living players
+  other than you: you are shown the roles of floor(0.75 * N) of them, chosen at random, in random order and
+  without names. A role appears as many times as it was drawn, so two drawn Vanilla Villagers show twice. This
+  is an exact-role check (R19): a Roleplayer shows as Roleplayer.
+
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they
   spent that night (token count, R19). You learn only the total, not what kind of tokens they are.
@@ -245,7 +252,8 @@ Party Animal
 Outsiders (Village, but the role can hurt the Village)
 
 Roleplayer
-  You are told your role is X, a random Village Investigative role other than Eavesdropper, chosen at the start.
+  You are told your role is X, a random Village Investigative role other than Eavesdropper or Archivist, chosen at
+  the start.
   The moderator gives you results that are usually false but plausible. Exact-role checks see you as Roleplayer
   (R19).
 

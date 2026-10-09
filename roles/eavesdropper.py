@@ -8,6 +8,7 @@ TODAY = "eavesdrops"  # game.role_state: Eavesdropper -> target, today
 
 @register("Eavesdropper")
 class Eavesdropper(RoleLogic):
+    roleplayer_can_fake = False  # live PMs
     night_note = ("An Eavesdropper's target (a visit; nothing if role-blocked): use the eavesdrop op (code shows "
                   "them the target's private messages tomorrow).")
     ops = {"eavesdrop": ({"player", "by"}, set(), "{op:'eavesdrop', player, by}: the Eavesdropper `by` reads "
