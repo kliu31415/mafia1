@@ -17,14 +17,19 @@ def mock_game_records(tmp_path, monkeypatch, seed: int) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
 
 
+def test_the_mock_games_exercise_private_chat(tmp_path, monkeypatch):
+    # Mock answers depend on the prompt text, so any single seed may happen to skip a category
+    # (e.g. after a rules edit); between them, the seeds below must cover private chat.
+    seen = {r.get("cat") for seed in range(5) for r in mock_game_records(tmp_path / str(seed), monkeypatch, seed)}
+    assert {"pm", "yak", "chat"} <= seen
+
+
 @pytest.mark.parametrize("seed", range(5))
 def test_private_events_reach_only_their_audience(tmp_path, monkeypatch, seed):
     records = mock_game_records(tmp_path, monkeypatch, seed)
     setup = next(r for r in records if r["kind"] == "setup")
     yakuza = {p["name"] for p in setup["players"] if ROLES[p["role"]].alignment is Alignment.EVIL}
     events = [r for r in records if r["kind"] in ("event", "notice")]
-    seen = {r.get("cat") for r in events}
-    assert {"pm", "yak", "chat"} <= seen, "the mock game should exercise private chat"
     for r in events:
         vis = r["visible_to"]
         match r.get("cat"):
