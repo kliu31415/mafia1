@@ -378,6 +378,9 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
     guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
     tally = f"{guilty_votes} Guilty of {total_votes} votes"
+    if total_votes != len(voters):
+        tally += ("; these totals don't match the revealed votes because a role manipulated the count on purpose "
+                  "(rules R4), not because of an error")
     voted_guilty = majority(guilty_votes, total_votes)
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
