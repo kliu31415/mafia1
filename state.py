@@ -154,9 +154,6 @@ class Game:
         if not p.alive:
             return
         p.alive = False
-        logic(p.role).on_death(self, p, guilty_voters)
-        for q in self.alive():
-            logic(q.role).on_other_death(self, q, p, guilty_voters)
         self.phases_without_death = 0
         killer_role = self.player(by).role if by else None
         p.death = {"day": self.day, "phase": self.phase, "cause": cause, "killer": by, "killer_role": killer_role,
@@ -170,6 +167,10 @@ class Game:
             self.pending_deaths.append((name, cause))
         else:
             self.reveal_death(name, cause)
+        # After the reveal, so what a death sets off (an Executioner's win, ...) is announced after it.
+        logic(p.role).on_death(self, p, guilty_voters)
+        for q in self.alive():
+            logic(q.role).on_other_death(self, q, p, guilty_voters)
         if self.phase != "night":  # a holder who dies at night passes it on after the night's results
             self.pass_katana()
 

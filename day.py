@@ -243,9 +243,11 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                              f"{nomination_fee:.2f} from your budget ({p.speaking_budget:.2f}).")
             nominate_schema = obj(thoughts=STR, nominate=nullable(name_enum(game.alive_names())))
             out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None})["nominate"]
-    planned = total_cost(out)
+    # A puppet's own nomination is private: the Puppeteer revising the messages neither sees nor pays for it.
+    planned = total_cost(out if writer is p else {**out, "nominate": None})
     if planned > available() + 1e-9:
-        nominating = f" plus a nomination of {out['nominate']}" if can_nominate and out.get("nominate") else ""
+        nominating = (f" plus a nomination of {out['nominate']}" if writer is p and can_nominate
+                      and out.get("nominate") else "")
         warning = (f"\n\nWARNING: your planned messages {json.dumps(planned_messages(out))}{nominating} "
                    f"cost {planned:.2f}, but your budget is {available():.2f}. Revise them to fit. "
                    "If you still can't afford a nomination it won't happen, and messages over budget will "

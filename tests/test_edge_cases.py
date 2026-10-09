@@ -531,3 +531,30 @@ def test_a_mistyped_tips_name_is_a_cli_error_not_a_crashed_game(tmp_path, monkey
             mafia.main()
         assert "Zed" in capsys.readouterr().err
     assert not (tmp_path / "logs").exists()
+
+
+def test_a_hanging_is_announced_before_the_executioner_s_win(game_factory):
+    game, _ = game_factory(["Executioner", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").status[Status.TARGET] = "Bob"
+    game.kill("Bob", "executed by hanging", guilty_voters=["Carol"])
+    texts = [e.text for e in game.events]
+    death = next(i for i, t in enumerate(texts) if t.startswith("Bob died"))
+    assert all(i > death for i, t in enumerate(texts) if "Alice" in t)
+
+
+def test_the_puppeteer_never_sees_the_puppet_s_nomination(game_factory):
+    from day import chat_turn
+
+    def decide(name, task, schema):
+        if name == "Bob" and "nominate" in schema["properties"]:
+            return {"nominate": "Carol"}
+        if name == "Erin" and "puppeting Bob" in task:
+            return {"public_message": "word " * 300}  # over budget: the Puppeteer is asked to revise
+        return None
+    client = ScriptedClient(decide)
+    game, players = game_factory(VILLAGE5[:4] + ["Puppeteer"], client)
+    game.puppets = {"Bob": "Erin"}
+    game.player("Bob").speaking_budget = 3.0
+    chat_turn(game, players, game.player("Bob"), rnd=1, can_nominate=True)
+    assert any(name == "Erin" and "WARNING" in task for name, task in client.asked)
+    assert not any(name == "Erin" and "Carol" in task.split("WARNING")[-1] for name, task in client.asked)
