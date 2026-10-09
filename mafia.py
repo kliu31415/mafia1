@@ -46,7 +46,8 @@ from pathlib import Path
 from day import run_day
 from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
-from gamelog import GameLog
+from gamelog import GameLog, usage_by_caller
+from log_viewer import usage_lines
 from llm import (DEFAULT_EFFORT, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, load_api_key,
                  parse_model_spec)
 from moderator import Moderator
@@ -207,7 +208,9 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
     winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
     if end_reason == "win" and winning_faction is None:
         end_reason = "no_faction_left"  # e.g. the last players died together, or only Jesters remain
-    log.write("result", winners=game.winners, days=game.day, cost=client.total_cost,
+    usage = usage_by_caller(log.path, [{"name": p.name, "model": p.model.value, "role": p.start_role}
+                                       for p in game.players])
+    log.write("result", winners=game.winners, days=game.day, cost=client.total_cost, usage=usage,
               roles={p.name: p.role for p in game.players},
               models={p.name: p.model.value for p in game.players},
               end_reason=end_reason, winning_faction=winning_faction, duration_s=round(duration),
@@ -218,7 +221,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               errors=dict(log.error_counts))
     log.close()
     ckpt_path.unlink(missing_ok=True)
-    print(f"Cost by model: {client.total_cost}")
+    print("\n".join(usage_lines(usage)))
     print(f"Errors: {log.error_counts} (see the top of the feedback report)" if log.error_counts else "Errors: none")
     print(f"Logs: {log.path} (+ .txt, .html)")
     if report := write_report(log.path):

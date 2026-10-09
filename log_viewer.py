@@ -54,7 +54,8 @@ def text_line(r: dict) -> str | None:
         case "resume":
             return f"[Resumed from the checkpoint at the start of day {r['day']}]"
         case "result":
-            return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\nCost: {r['cost']}"
+            cost = "\n".join(usage_lines(r["usage"])) if "usage" in r else f"Cost: {r['cost']}"  # LOG_VERSION 10+
+            return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\n{cost}"
     return None
 
 
@@ -125,6 +126,11 @@ details.call > summary { cursor:pointer; color:var(--muted); font-size:13px; }
 pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:8px;
       white-space:pre-wrap; word-break:break-word; font-size:12px; max-height:500px; overflow:auto; }
 table { border-collapse:collapse; } td, th { padding:2px 12px 2px 0; text-align:left; }
+details.usage { border-bottom:1px solid var(--line); padding:3px 0; } details.usage > summary { cursor:pointer; }
+div.usage.total { font-weight:650; padding:3px 0 3px 16px; }
+.usage .who { display:inline-block; width:240px; } .usage .model { display:inline-block; width:200px; }
+.usage .cost { display:inline-block; width:80px; text-align:right; margin-right:14px; font-variant-numeric:tabular-nums; }
+details.usage table { margin:4px 0 8px 16px; }
 body.no-calls details.call { display:none; } body.no-hidden .ev.hidden { display:none; }
 """
 
@@ -155,6 +161,52 @@ def pre(label: str, value: Any) -> str:
         return ""
     text = value if isinstance(value, str) else json.dumps(value, indent=1, ensure_ascii=False)
     return f"<div class='muted'>{esc(label)}</div><pre>{esc(text)}</pre>"
+
+
+def short_model(model: str) -> str:
+    return model.split("/")[-1]
+
+
+def usage_lines(usage: list[dict]) -> list[str]:
+    """The result record's cost by player (and moderator, and post-game steps) as plain-text lines."""
+    label = {u["who"]: u["who"] + (f" ({u['role']})" if u.get("role") else "") for u in usage}
+    width = max((len(s) for s in label.values()), default=0)
+    lines = ["Cost by player (USD):"]
+    for u in usage:
+        lines.append(f"  {label[u['who']]:<{width}}  ${u['cost']:.4f}  {u['calls']:>3} calls  "
+                     f"{', '.join(short_model(m) for m in u['models']) or '?'}")
+    lines.append(f"  {'Total':<{width}}  ${sum(u['cost'] for u in usage):.4f}  "
+                 f"{sum(u['calls'] for u in usage):>3} calls")
+    return lines
+
+
+def usage_html(usage: list[dict]) -> str:
+    """The cost table at the end of the HTML view: one expandable row per player, the moderator and
+    each post-game step, with its calls and tokens inside."""
+    def num(n: float) -> str:
+        return f"{n:,}"
+    rows = []
+    for u in usage:
+        who = f"<span class='n {faction_of(u['role'])}'>{esc(u['who'])}</span>" if u.get("role") \
+            else esc(u["who"])
+        detail = {"Role": u.get("role"), "Models": ", ".join(u["models"]), "Calls": u["calls"],
+                  "Cost per call": f"${u['cost'] / u['calls']:.4f}" if u["calls"] else None,
+                  "Prompt tokens": num(u["prompt_tokens"]), "Cached prompt tokens": num(u["cached_tokens"]),
+                  "Completion tokens": num(u["completion_tokens"]),
+                  "Reasoning tokens": num(u["reasoning_tokens"]),
+                  "Failed calls": u.get("failed_calls"), "Fallback answers": u.get("fallbacks")}
+        cells = "".join(f"<tr><td class='muted'>{esc(k)}</td><td>{esc(v)}</td></tr>"
+                        for k, v in detail.items() if v is not None)
+        role = f" <span class='muted'>({esc(u['role'])})</span>" if u.get("role") else ""
+        rows.append(f"<details class='usage'><summary><span class='who'>{who}{role}</span>"
+                    f"<span class='model'>{esc(', '.join(short_model(m) for m in u['models']) or '?')}</span>"
+                    f"<span class='cost'>${u['cost']:.4f}</span><span class='muted'>{u['calls']} calls</span>"
+                    f"</summary><table>{cells}</table></details>")
+    total = sum(u["cost"] for u in usage)
+    rows.append(f"<div class='usage total'><span class='who'>Total</span><span class='model'></span>"
+                f"<span class='cost'>${total:.4f}</span>"
+                f"<span class='muted'>{sum(u['calls'] for u in usage)} calls</span></div>")
+    return "<div class='muted'>Cost by player (USD), click a row for calls and tokens</div>" + "".join(rows)
 
 
 def faction_of(role: str) -> str:
@@ -312,7 +364,10 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "result":
             start_phase("Game over")
             line("death", "Winners", name(", ".join(r["winners"] or []) or "nobody"))
-            out.append(pre("Cost by model (USD)", r.get("cost")))
+            if "usage" in r:  # LOG_VERSION 10+
+                out.append(usage_html(r["usage"]))
+            else:
+                out.append(pre("Cost by model (USD)", r.get("cost")))
     if open_phase:
         out.append("</details>")
 

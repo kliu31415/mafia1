@@ -60,7 +60,8 @@ class NightChecker:
                                      effort=self.effort)
             out = answer_json(reply)
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
-                           verdict=out["verdict"], issues=out["issues"], cost=reply.cost, **in_play)
+                           verdict=out["verdict"], issues=out["issues"], cost=reply.cost, usage=reply.usage,
+                           **in_play)
             for issue in out["issues"]:
                 if issue["severity"] == "high":  # changed who lives or what someone learned
                     self.log.error("night_check_issue", f"night {night}: {issue['description']}",

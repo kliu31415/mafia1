@@ -55,7 +55,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
                                   effort=moderator.effort)
     game.log.write("debrief", who="moderator", role="Moderator", model=moderator.model.value,
-                   answers=answer_json(reply), cost=reply.cost)
+                   answers=answer_json(reply), cost=reply.cost, usage=reply.usage)
 
 
 def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
@@ -70,7 +70,7 @@ def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log
     ]
     reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
     game.log.write("review", model=model.value, issues=answer_json(reply).get("issues", []),
-                   cost=reply.cost)
+                   cost=reply.cost, usage=reply.usage)
 
 
 LESSON_TOPICS = ["rules and mechanics", "deduction", "deception", "persuasion and voting",
@@ -126,7 +126,7 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
     out = answer_json(reply)
     lessons = out.get("lessons", [])
     game.log.write("strategy_review", model=model.value, summary=out.get("summary", ""), lessons=lessons,
-                   cost=reply.cost)
+                   cost=reply.cost, usage=reply.usage)
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:
         for lesson in lessons:

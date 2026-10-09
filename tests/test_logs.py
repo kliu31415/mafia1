@@ -44,3 +44,31 @@ def test_player_calls_log_the_notepad_before_and_after(game_factory):
     assert alice.notepad == "first note"
     page = render_html(game.log.path).read_text(encoding="utf-8")
     assert "Notepad before" in page and "(unchanged)" in page
+
+
+def test_result_breaks_cost_down_by_player(tmp_path, monkeypatch):
+    import dataclasses
+    import json
+    from log_viewer import render_html
+
+    class PricedClient(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            usage = {"prompt_tokens": 100, "completion_tokens": 20, "cost": 0.01,
+                     "prompt_tokens_details": {"cached_tokens": 40},
+                     "completion_tokens_details": {"reasoning_tokens": 5}}
+            return dataclasses.replace(super().chat(model, messages, **kw), cost=0.01, usage=usage)
+
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    client = PricedClient(votes(guilty_for={"Bob"}, nominate={"Alice": "Bob"}))
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(client, [Model.HAIKU_5_5], Model.SONNET_5_5, roles, seed=1)
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    usage = {u["who"]: u for u in records[-1]["usage"]}
+    for p in records[0]["players"]:
+        calls = sum(r["kind"] == "player_call" and r["player"] == p["name"] for r in records)
+        assert usage[p["name"]]["calls"] == calls > 0 and usage[p["name"]]["models"] == [p["model"]]
+        assert usage[p["name"]]["prompt_tokens"] == 100 * calls and usage[p["name"]]["cached_tokens"] == 40 * calls
+    assert usage["Moderator"]["models"] == [Model.SONNET_5_5.value] and usage["Moderator"]["calls"] > 0
+    assert round(sum(u["cost"] for u in usage.values()), 6) == round(sum(r.get("cost", 0) for r in records[:-1]), 6)
+    page = render_html(path).read_text(encoding="utf-8")
+    assert "Cost by player" in page and "Reasoning tokens" in page

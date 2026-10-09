@@ -22,7 +22,9 @@ import log_viewer
 #    api_retry, moderator_tool_error, night_check_error, feedback_error, crash; result has errors
 # 9: player_call records have notepad_before and notepad_after (the notepad the player saw, and after
 #    its answer; equal when the answer kept it)
-LOG_VERSION = 9
+# 10: result has usage (cost, calls and tokens per player, the moderator and each post-game step; see
+#     usage_by_caller); night_check, review, strategy_review and the moderator's debrief have usage
+LOG_VERSION = 10
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
@@ -90,3 +92,60 @@ class GameLog:
         self.f.close()
         self.txt.close()
         log_viewer.render_html(self.path)
+
+
+# Who a model call's cost belongs to, for records that aren't a player's or the moderator's own call.
+# These all run on the moderator's model.
+CALLER_BY_KIND = {"moderator_call": "Moderator", "night_check": "Night checks", "review": "Log review",
+                  "strategy_review": "Strategy review"}
+TOKEN_FIELDS = ["prompt_tokens", "cached_tokens", "completion_tokens", "reasoning_tokens"]
+
+
+def caller_of(record: dict) -> str | None:
+    """Whose call a record is: a player's name, "Moderator", a post-game step, or None (not a call)."""
+    if record["kind"] == "player_call":
+        return record["player"]
+    if record["kind"] == "debrief" and record.get("who") == "moderator":
+        return "Moderator"
+    return CALLER_BY_KIND.get(record["kind"]) if "cost" in record else None
+
+
+def usage_by_caller(path: Path, players: list[dict]) -> list[dict]:
+    """Cost, calls and tokens of each player (in seat order), the moderator, and each post-game step
+    that made calls, read from a log's records so far. players: {name, model, role} per player.
+    A player's failed calls (player_error, no cost) and fallback answers (player_fallback) are counted too."""
+    rows: dict[str, dict] = {p["name"]: {"who": p["name"], "kind": "player", "role": p.get("role"),
+                                         "models": [p["model"]]} for p in players}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        if r["kind"] in ("player_error", "player_fallback") and r.get("player") in rows:
+            key = "failed_calls" if r["kind"] == "player_error" else "fallbacks"
+            rows[r["player"]][key] = rows[r["player"]].get(key, 0) + 1
+        who = caller_of(r)
+        if who is None:
+            continue
+        row = rows.setdefault(who, {"who": who, "kind": "moderator" if who == "Moderator" else "post_game",
+                                    "models": []})
+        model = r.get("model") or r.get("judge")
+        if model and model not in row["models"]:
+            row["models"].append(model)
+        row["calls"] = row.get("calls", 0) + 1
+        row["cost"] = row.get("cost", 0.0) + float(r.get("cost") or 0)
+        usage = r.get("usage") or {}
+        tokens = {"prompt_tokens": usage.get("prompt_tokens"),
+                  "cached_tokens": (usage.get("prompt_tokens_details") or {}).get("cached_tokens"),
+                  "completion_tokens": usage.get("completion_tokens"),
+                  "reasoning_tokens": (usage.get("completion_tokens_details") or {}).get("reasoning_tokens")}
+        for k, v in tokens.items():
+            row[k] = row.get(k, 0) + int(v or 0)
+    out = []
+    for row in rows.values():
+        row.setdefault("calls", 0)
+        row["cost"] = round(row.get("cost", 0.0), 6)
+        for k in TOKEN_FIELDS:
+            row.setdefault(k, 0)
+        if row["kind"] == "player":
+            row.setdefault("failed_calls", 0)
+            row.setdefault("fallbacks", 0)
+        out.append(row)
+    return out
