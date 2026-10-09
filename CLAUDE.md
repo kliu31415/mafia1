@@ -15,6 +15,20 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   until it finishes (games take 10-40 minutes).
 - Low-cost API calls (Haiku, Luna) are fine whenever they help verify that code works.
 
+## Live games in the cloud
+
+Cloud threads (Claude Code on the web) can run live games once `OPENROUTER_API_KEY` is set in the cloud
+environment, but their sandbox is deleted afterwards, so the logs go through the repo's `logs` branch
+(logs/ and tips/ only, never code; `sync_logs.py` writes it with git plumbing, so main's checkout is untouched):
+1. Before games: `uv run sync_logs.py tips` gets the PC's latest tips sheet into tips/.
+2. Run games with `--no-update-tips` (add `--tips tips/tips.md --tips-for ...` to give players tips). The
+   notebook on Kevin's PC is the one source of truth; a cloud copy would fork it.
+3. After each game, even one that crashed or was stopped: `uv run sync_logs.py push`. Do this before saying
+   the game is done; logs that aren't pushed are lost with the sandbox.
+On the PC, `uv run sync_logs.py pull` copies new logs into logs/, adds their lessons to the tips notebook
+(as a PC game does when it ends) and publishes the new sheet to the branch (`--no-tips` only copies logs).
+`lessons.jsonl` and `alerts_reviewed.json` are merged, not overwritten; mock games are never synced.
+
 ## Checking changes
 
 - `uv run pytest` runs the scenario and visibility tests (offline, about 10 seconds). Run it before

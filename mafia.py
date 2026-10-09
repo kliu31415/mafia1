@@ -26,6 +26,7 @@ Code layout:
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
+    sync_logs.py   moves logs from cloud games to the PC (and the tips sheet back) through the `logs` branch
     tests/         offline scenario and hidden-information tests (uv run pytest)
 
 Usage:
@@ -40,6 +41,7 @@ Usage:
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
     uv run mafia.py --roles random:8                         # a random 8-player setup
     uv run stats.py                                          # win rates and decision skill across logs/
+    uv run sync_logs.py pull                                 # cloud games' logs into logs/ (see sync_logs.py)
 """
 
 import argparse
