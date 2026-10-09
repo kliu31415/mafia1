@@ -1,0 +1,66 @@
+Setup:
+  Alice    seat 1  Eavesdropper      google/gemini-3.8-flash
+  Bob      seat 2  Cardinal          deepseek/deepseek-v4.1-flash
+  Carol    seat 3  Puppeteer         deepseek/deepseek-v4.1-flash
+  Dave     seat 4  Oracle            deepseek/deepseek-v4.1-flash
+  Erin     seat 5  Vulture           openai/gpt-6-luna-pro
+  Frank    seat 6  Sheriff           google/gemini-3.8-flash
+  Grace    seat 7  Roleplayer        anthropic/claude-haiku-5.5  {'fake_role': 'Oracle'}
+  Heidi    seat 8  Tracker           openai/gpt-6-luna
+  Ivan     seat 9  Surveyor          openai/gpt-6-luna-pro
+  Judy     seat 10 Clerk             openai/gpt-6-luna
+  Mallory  seat 11 Ex-Con            openai/gpt-6-luna-pro
+  Niaj     seat 12 Ritualist         anthropic/claude-haiku-5.5
+  Olivia   seat 13 Medic             google/gemini-3.8-flash
+  Peggy    seat 14 Party Animal      anthropic/claude-haiku-5.5
+  Rupert   seat 15 Trapper           openai/gpt-6-luna
+  Katana starts with Judy
+Tips from past games given to: Bob (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Judy (tips/tips.md), Olivia (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+15 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Carol (public): Morning, everyone. Fresh start with 15 alive. I have nothing to report yet — I'll share anything I learn as it comes. Let's see what claims emerge.
+(to Alice, Carol) Carol -> Alice (private): Hi Alice — want to compare notes through the day? I have nothing yet.
+(to Carol, Frank) Carol -> Frank (private): Hi Frank — happy to compare notes today. Nothing to report yet.
+(to Carol, Judy) Carol -> Judy (private): Morning. I'll stay village-facing and low-key today; you do the same.
+Dave (public): Morning. Nothing to report yet — no night results exist. Noting Carol's early private messages to Alice, Frank and Judy for later; if anyone learns anything, share it when it matters.
+(to Dave, Frank) Dave -> Frank (private): Carol PM'd you too. Did she say anything concrete, or just hello?
+Erin (public): No results yet, so let's start with named reads and the reasons behind them. Who would you nominate if you had to choose now?
+Frank (public): Way too early to nominate before the circle has even introduced themselves. Let's hear from Grace through Rupert first before throwing blind votes around.
+(to Dave, Frank) Frank -> Dave (private): Just said hello and open to comparing notes later, nothing concrete.
+Grace (public): Grace here. Nothing to report yet, and I won't nominate blind on Day 1. Carol, Dave and Frank have already started private chats, so I'd like to hear everyone's first read before anyone votes.
+Heidi (public): Early PMs are worth tracking, not proof: Carol contacted Alice, Frank and Judy; Dave and Frank contacted each other. Share a concrete first read before nominating.
+Ivan (public): The PM pattern is worth tracking, not treating as evidence by itself. Carol, Dave, Frank: was there a specific reason for those contacts? Everyone else, give one named read with a reason; I’ll avoid a blind nomination.
+Judy (public): Frank's caution about blind nominations is sensible, but we still need named reads once everyone's spoken. Early PMs are observable, not proof; I'd rather evaluate reasons and vote records than infer teams from them.
+[Claim] Mallory: Good Ex-Con; Sheriff sees me as Evil. My nightly random visit is automatic; no result to report.
+Mallory (public): I'm a Good Ex-Con: a Sheriff sees me as Evil, and my nightly random visit is automatic. Early PMs aren't proof; Carol, Dave, Frank, what prompted yours? No blind nomination from me.
+Niaj (public): No results yet, so I won't nominate blind. Dave and Frank, what prompted your PMs? Mallory's Ex-Con claim can't be checked yet, so let's see who backs it.
+(to Carol, Niaj) Niaj -> Carol (private): Keep your Day 1 read neutral. What were your PMs to Alice, Frank and Judy about? Let's keep our stories matched.
+(to Judy, Niaj) Niaj -> Judy (private): Let's avoid early noms and watch Dave and Frank's PM pattern.
+Olivia (public): Not nominating blind before hearing from Peggy, Rupert, Alice, and Bob. Mallory's Ex-Con claim is noted. Carol and Frank, anything useful to share from those PMs?
+[Claim] Peggy: null
+Peggy (public): Peggy here: nothing to report and no night results yet, so I won't nominate blind. Carol, Dave, Frank: what concrete reason prompted those PMs?
+Rupert (public): Rupert here. No results yet, so I won't nominate blind. PMs alone aren't alignment evidence; Carol, Dave, and Frank, what were you trying to learn?
+Alice (public): No night info on Day 1. Carol just checked in politely in PM, nothing suspicious so far. Against blind nominations; let's hear Bob's thoughts.
+(to Alice, Carol) Alice -> Carol (private): Sounds good Carol, let's keep in touch as reads and claims develop.
+Bob (public): Bob here — no night results, so no blind nomination from me. Carol's three opening PMs deserve a reason, but they aren't proof of anything yet. My one read: Mallory's early Ex-Con claim is a liability a real Yakuza usually avoids, so I lean slight Village unless a check contradicts it. Everyone should still give a named read with a reason.
+(to Carol, Niaj) Carol -> Niaj (private): Nothing loaded — early rapport to test reactions. Staying neutral today, keeping my read low-key. Match that.
+(to Alice, Carol) Carol -> Alice (private): Just rapport so far, nothing suspicious from my side. Keep trading reads as claims develop.
+[Claim] Dave: null
+Dave (public): Since others asked: my PM to Frank asked whether Carol's contact had substance. Early PMs aren't proof. My read so far: Mallory's Ex-Con claim is a risky one Yakuza usually avoid, and Bob's defense of it leans Village. Watching Carol's follow-ups.
+(to Dave, Frank) Dave -> Frank (private): Early PMs aren't proof, agreed. Two threads I'm tracking: Carol messaged three people before anyone spoke publicly — town networking or role-fishing; and Mallory's Ex-Con claim, which either invites a Sheriff check or pre-empts one. I have no night result yet. If you learn anything concrete, trade with me.
+Frank (public): Dave accurately described it: Carol sent a polite hello, Dave asked if there was substance, and I told him it was just a greeting. Nothing hidden. On reads, Mallory claiming Ex-Con D1 is noted—checking her tonight is low value since she reads Evil regardless. I'd rather watch how people position on early wagons.
+(to Dave, Frank) Frank -> Dave (private): Sounds sensible. Mallory's claim certainly deflects early Sheriff checks. Let's see how votes shape up before Day ends.
+Grace (public): Named read: Frank. On Day 1 he said Mallory 'reads Evil regardless' and that checking her is low value, which is a confident take on a claim nobody can verify yet. Carol's three opening PMs are the cluster I'm watching. No nomination from me yet.
+Heidi (public): Frank's point that Mallory is low-value to check follows the claimed Ex-Con mechanics, so that alone isn't a tell. Grace's concern is the confidence and positioning; Frank, answer that directly. Carol, explain the purpose of your initial PM cluster. Let's get concrete reads before nominations.
+Ivan (public): Dave and Frank’s PM exchange now has a mundane explanation—checking Carol’s hello—so I won’t treat it as a team tell. Frank’s Ex-Con point is mechanically sound, though it doesn’t clear him. Carol, what were you trying to learn from those opening contacts? Everyone, give one concrete read.
+Judy (public): So far, Carol's PM cluster is unresolved but not alignment evidence; her explanation matters. Frank's Ex-Con mechanics are correct, while Grace's concern is about confidence, not a contradiction. I don't see a vote-worthy case yet.
+Mallory (public): We have enough discussion of PMs; Carol, were your opening contacts role-fishing, coordination, or just greetings? Niaj also contacted Carol and Judy—what were you hoping to learn? Specific answers beat another round of speculation.
+Niaj (public): my PMs to Carol and Judy only asked for their Day 1 reads, nothing hidden. No blind nominations from me. Mallory's Ex-Con claim is checkable at night, so let's wait for results before any votes.
+(to Judy, Niaj) Niaj -> Judy (private): Stay quiet, no early noms. I'll follow your lead.
+Olivia (public): Carol still hasn't explained her opening PM cluster publicly despite multiple questions. Frank's mechanic observation regarding Ex-Con is correct, but Grace's note on his positioning is fair. I'd like to hear from Carol directly before considering nominations.
+Peggy (public): still no results, so no blind nomination from me. Carol has been asked about her opening PM cluster several times and hasn't given a real answer. I'll judge her next reply on substance.
+Rupert (public): Carol, several people have asked why you opened three PMs. Please answer directly; I’ll treat them as neutral for now, but continued evasion would matter. No nomination without a concrete case.
+Alice (public): Carol's PM to me was just casual rapport, nothing substantive. However, skipping public chat in round 2 while sending PMs looks evasive. Let's hear her explanation in round 3.
+Bob (public): Carol: three PMs, two rounds, no public explanation — that's the town's main open question now, and I want your specific answer in round 3, not another hello. Reads so far: Mallory's Ex-Con claim leans Village; Frank's Ex-Con mechanics are sound, so Grace's concern is tone, not a contradiction — I won't vote him on that. Watching the Carol/Niaj/Judy PM web.
