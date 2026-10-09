@@ -23,6 +23,9 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   types (e.g. a possibly-None value used as a player).
 - `uv run mafia.py --mock` plays a full offline game; the same `--seed` replays the same game. Its
   moderator only carries out the Katana attack, so moderator-handled roles are only exercised in live games.
+- `uv run stats.py` reads every finished live game in `logs/`: win rates by faction, model and role (with
+  95% intervals), Village win rate with and without each role, and per-decision skill by model or role.
+  Logs are on Kevin's PC; `--csv DIR` exports the tables.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
   roles you give, in order).
@@ -49,6 +52,9 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
      `CORE_OPS` in `moderator.py`.
   6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game
      smoke test automatically (`test_every_role_survives_a_mock_game`).
+  7. `setups.py` draws random setups (`--roles random:N`) by alignment and category, and `stats.py` scores
+     some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
+     when the role's choices have a clear right answer.
 
 ## Conventions
 

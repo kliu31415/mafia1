@@ -22,6 +22,8 @@ Code layout:
     checkpoint.py  saves the game each day so a stopped game can continue (--resume)
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
+    setups.py      random setups (--roles random:N), for role strength across many role mixes
+    stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
     tests/         offline scenario and hidden-information tests (uv run pytest)
@@ -36,6 +38,8 @@ Usage:
     uv run tips.py build                                     # tips file from past games' lessons
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
+    uv run mafia.py --roles random:8                         # a random 8-player setup
+    uv run stats.py                                          # win rates and decision skill across logs/
 """
 
 import argparse
@@ -61,6 +65,7 @@ from night_check import NightChecker
 from night import run_night
 from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
+from setups import POOLS, parse_random_roles, random_setup
 from events import PHASE
 from state import setup_game
 from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
@@ -98,18 +103,20 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
               max_days: int | None = None, check_nights: bool = False, checkpoint: bool = True,
               resume: dict | None = None, tips: Path | None = None, tips_for: str = "all",
-              player_tips: list[tuple[str, Path | None]] | None = None, update_tips: Path | None = None) -> Path:
+              player_tips: list[tuple[str, Path | None]] | None = None, update_tips: Path | None = None,
+              setup: dict | None = None) -> Path:
     """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
     finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game.
     tips: a tips file (tips.py) put into the system prompt of the players tips_for picks (see
     tips.choose_players); player_tips then sets (or, with None, removes) each named player's or model's
     tips file. Resumed games keep the tips they started with. update_tips: a tips sheet whose notebook
-    to update with this game's lessons afterwards (tips.build), rewriting the sheet."""
+    to update with this game's lessons afterwards (tips.build), rewriting the sheet. setup: how roles
+    was chosen, for the log (default {"kind": "fixed"}; setups.py makes {"kind": "random", "pool": ...})."""
     play_args = {"models": models, "moderator_model": moderator_model, "roles": roles, "seed": seed,
                  "debrief": debrief, "flag_issues": flag_issues, "feedback_field": feedback_field,
                  "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights,
                  "tips": tips, "tips_for": tips_for, "player_tips": player_tips,
-                 "update_tips": update_tips}
+                 "update_tips": update_tips, "setup": setup}
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rules = RULES_PATH.read_text(encoding="utf-8")
@@ -141,7 +148,8 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                     "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
                     "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint,
                     "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None,
-                    "player_tips": [[w, str(f) if f else None] for w, f in player_tips or []]}
+                    "player_tips": [[w, str(f) if f else None] for w, f in player_tips or []],
+                    "setup": setup or {"kind": "fixed"}}
         started = time.time()
         meta = game_meta(rules, settings)
         game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **meta})
@@ -302,7 +310,10 @@ def main() -> None:
                     "own reasoning effort, e.g. opus-5.5:high,haiku-5.5:low")
     ap.add_argument("--moderator", default="opus-5.5", help="model[:effort] for the moderator, and for the "
                     "night checks, review and quiz grading")
-    ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names")
+    ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names, or random:N "
+                    "for a random N-player setup drawn from the seed (see setups.py)")
+    ap.add_argument("--role-pool", default="all", choices=POOLS, help="for --roles random:N, draw from every "
+                    "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=DEFAULT_EFFORT, choices=EFFORTS,
                     help="reasoning effort for models that don't set their own")
     ap.add_argument("--seed", type=int, default=None)
@@ -357,7 +368,18 @@ def main() -> None:
         play_game(resumed_client, **saved, checkpoint=args.checkpoint, resume=ckpt)
         return
 
-    roles = [r.strip() for r in args.roles.split(",")]
+    seed = args.seed if args.seed is not None else random.randrange(10**6)
+    try:
+        random_players = parse_random_roles(args.roles)
+    except ValueError as e:
+        ap.error(str(e))
+    setup = None
+    if random_players:
+        # Its own RNG, so a seed's setup doesn't depend on the rest of the game (and vice versa).
+        roles = random_setup(random_players, random.Random(f"setup|{seed}"), args.role_pool)
+        setup = {"kind": "random", "players": random_players, "pool": args.role_pool}
+    else:
+        roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
     if unknown:
         ap.error(f"unknown roles: {unknown}")
@@ -368,7 +390,6 @@ def main() -> None:
         ap.error(str(e))
     update_tips = (None if args.no_update_tips
                    else MOCK_TIPS if args.mock and args.update_tips == DEFAULT_TIPS else args.update_tips)
-    seed = args.seed if args.seed is not None else random.randrange(10**6)
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
     try:
         player_tips = parse_player_tips(args.player_tips)
@@ -387,7 +408,7 @@ def main() -> None:
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
               lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
               checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
-              player_tips=player_tips, update_tips=update_tips)
+              player_tips=player_tips, update_tips=update_tips, setup=setup)
 
 
 if __name__ == "__main__":

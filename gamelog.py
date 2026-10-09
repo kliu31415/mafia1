@@ -36,7 +36,8 @@ import log_viewer
 # 15: player_error has output, reasoning, cost and usage when an answer arrived (and counts in usage); new
 #     error kinds moderator_warning, api_error, harness_error, setup_error; player answers that break their
 #     schema are player_errors
-LOG_VERSION = 15
+# 16: settings have setup: {"kind": "fixed"}, or {"kind": "random", "players", "pool"} for --roles random:N
+LOG_VERSION = 16
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

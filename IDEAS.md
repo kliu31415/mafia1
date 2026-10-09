@@ -18,5 +18,23 @@ night actions already run in parallel.
   replies to each other are lost.
 - **Chat in 2-3 batches per round.** Each batch sees what earlier batches said. Chat 2-3x faster
   while keeping most back-and-forth. Together with parallel trials: roughly 21 min -> 8 min.
-- **Several games at once** (e.g. a `--games N` flag). No change to the game at all; multiplies games
-  per hour, limited only by OpenRouter rate limits.
+- **Several games at once** (e.g. a `--games N` flag, with a `--budget $X` that stops starting new
+  games once spent). No change to the game at all; multiplies games per hour, limited only by
+  OpenRouter rate limits. Matters for `stats.py`: with the Yakuza winning about 1 game in 5, telling a
+  role's or model's win rate apart from another's takes on the order of 100 games per setup.
+
+## Analysis
+
+- **Suspicion over time.** Who each player thinks is evil, turn by turn, would show how fast each
+  model finds the Yakuza and which claims or wills change minds. Two ways to get it:
+  - Extract it after the game from what's already logged: every player call has `thoughts` and the
+    notepad before and after. No game change, but it needs a cheap judge call per turn (or per day),
+    and turns where a player didn't write down suspicions come out blank.
+  - A private `suspects` field on every turn (1-3 names). Uniform and free to analyse, a few output
+    tokens a turn, but asking every turn may itself make players think about suspicion more, which
+    changes their play a little.
+- **Decision puzzles from checkpoints.** Replay one saved moment (a close trial vote, a Sheriff
+  deciding whether to claim) with many models, many times. Same situation, so little variance, and one
+  call per sample instead of a whole game: the cheapest per-model comparison.
+- **More scored decisions in `stats.py`.** Role-blocks (Pharmacist, Party Animal), Lookout/Tracker
+  targets, and whether claims were true (claims are free text, so that needs a judge pass).
