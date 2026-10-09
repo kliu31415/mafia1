@@ -137,6 +137,8 @@ except:
 - Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
   every Neutral as Neutral.)
 Exact-role checks see the true role. The Roleplayer is seen as "Roleplayer".
+Token counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,
+even though they believe they have their fake role's tokens.
 Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.
 
 ==================================================================================================
@@ -198,6 +200,10 @@ Fortune Teller
 
 Oracle
   Night: may guess one player's exact role (Astral Visit). At the end of the night, learn whether you were right.
+
+Accountant
+  Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they
+  spent that night (token count, R19). You learn only the total, not what kind of tokens they are.
   If their role changed at the end of this night, the role just before the change counts.
 
 Combat
