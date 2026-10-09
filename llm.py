@@ -298,6 +298,21 @@ def flat_messages(messages: list[dict]) -> list[dict]:
 #   cut-off answer (Qwen 3.8 Max and nearly Gemini Flash at high effort; see MODEL_EFFORT).
 # Gemini's limit was found by testing (5-20 values fine, 30+ rejected); its error text never says why.
 
+# Anthropic's distillation filter (seen 2026-10-09, game_20261009_084630_739772): Claude answers can come back empty
+# or cut off with finish_reason content_filter and "...reverse engineering or duplicating model outputs" (no cost).
+# It runs on Anthropic's side; neither OpenRouter nor a BYOK key can turn it off. It hit 3 of ~300 Claude calls
+# in a 12-player Opus/Sonnet/Sol/Flash/Haiku game (all Opus: 2 moderator calls, 1 player answer), and none of
+# ~2000 Claude calls in earlier Haiku/Luna games. It's intermittent: the same request replayed 8 times was never
+# blocked. Likely triggers are prompts full of other models' text and answers that write out reasoning, so player
+# answers have no "thoughts" field and the moderator never gets players' private fields (gamelog v23). Handling:
+# a blocked moderator call is retried unchanged, then the moderator switches to its fallback model (moderator.py);
+# a blocked player answer is retried once, then the default answer is used.
+# Reasoning that comes back (player_call "reasoning"), measured 2026-10-09 at default effort: every model reasons
+# on every call (36/36 test calls; at medium effort Sonnet 5.5 didn't reason at all). Claude returns summarized
+# thinking, Gemini thought summaries, Grok/Qwen/Kimi their reasoning text. OpenAI (Sol, Luna) returns only
+# encrypted reasoning, plus a summary on about 1 call in 8 even with reasoning.summary "auto" or "detailed",
+# so players give a one-sentence "reason" with every answer (players.REASON_NOTE) for the logs.
+
 
 def flat_nullable_enums(schema: Any) -> Any:
     """Gemini rejects (HTTP 400) a nullable enum written as anyOf [enum, null] once the enum has more than
