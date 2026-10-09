@@ -118,6 +118,9 @@ h1 { font-size:20px; margin:16px 0 4px; } .muted { color:var(--muted); }
             border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; }
 .legend { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:8px 0; }
 details.phase { border-top:1px solid var(--line); padding:6px 0; }
+/* the browser skips rendering phases that are off screen (they stay searchable with Ctrl+F); each
+   phase's estimated height is set inline so the scrollbar is about right before it is first drawn */
+details.phase { content-visibility:auto; }
 details.phase > summary { font-weight:650; font-size:16px; cursor:pointer; padding:4px 0; }
 details.phase.night > summary { color:var(--c-hidden); }
 .ev { padding:3px 0 3px 10px; margin:1px 0; border-left:3px solid var(--c); white-space:pre-wrap;
@@ -298,15 +301,30 @@ def render_html(jsonl_path: Path) -> Path:
     models: dict[str, str] = {}
     name = Namer({})
     out: list[str] = []
-    open_phase = False
+    phase_start: int | None = None  # index in out of the open phase's opening tag
+
+    def end_phase() -> None:
+        if phase_start is None:
+            return
+        # rough height for content-visibility until the phase is drawn: collapsed calls are one line,
+        # other text wraps at about 110 characters
+        px = 40
+        for part in out[phase_start + 1:]:
+            if part.startswith("<details class='call'"):
+                px += 26
+            else:
+                text = re.sub(r"<[^>]+>", "", part.replace("<tr", "\n<tr").replace("<div", "\n<div"))
+                px += 23 * sum(1 + len(ln) // 110 for ln in text.strip("\n").split("\n"))
+        out[phase_start] = out[phase_start].replace("<details ", f"<details style='contain-intrinsic-size:"
+                                                                f"auto {px}px' ", 1)
+        out.append("</details>")
 
     def start_phase(title: str) -> None:
-        nonlocal open_phase
-        if open_phase:
-            out.append("</details>")
+        nonlocal phase_start
+        end_phase()
         cls = "night" if title.startswith("Night") else ""
+        phase_start = len(out)
         out.append(f"<details class='phase {cls}' open><summary>{esc(title)}</summary>")
-        open_phase = True
 
     def line(category: str, badge: str, body_html: str) -> None:
         b = f"<span class='badge'>{esc(badge)}</span>" if badge else ""
@@ -387,8 +405,7 @@ def render_html(jsonl_path: Path) -> Path:
                 out.append(usage_html(r["usage"]))
             else:
                 out.append(pre("Cost by model (USD)", r.get("cost")))
-    if open_phase:
-        out.append("</details>")
+    end_phase()
 
     legend = "".join(f"<span class='badge {c}'>{esc(label)}</span>" for c, label in CATEGORY_LABELS.items())
     legend += ("<span class='n Village'>Village</span> <span class='n Yakuza'>Yakuza</span> "
