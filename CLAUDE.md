@@ -72,6 +72,8 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   game logs into `tips/tips.md`; `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
   system prompts. Each player sees only the sections for everyone, their faction and their role. The
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
+  Lessons are weighted by their author's model strength and the game's average (`STRENGTH` in `tips.py`,
+  1-5, kept by hand; a new model needs an entry there).
 - Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
   Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
   `mafia.py`), so a stuck game can't run forever.

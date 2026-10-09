@@ -25,13 +25,34 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
-from llm import LLMClient, MockClient, ModelSpec, OpenRouterClient, answer_json, load_api_key, parse_model_spec
+from llm import LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, answer_json, load_api_key, parse_model_spec
 from roles import ROLES, Alignment
 
 ROOT = Path(__file__).resolve().parent
 FACTIONS = {Alignment.GOOD: "Village", Alignment.EVIL: "Yakuza"}  # anything else is "Neutral"
 HEADINGS = ["Everyone", "Village", "Yakuza", "Neutral", *ROLES]
 FALLBACKS_TO_DISTRUST = 3  # a player with this many fallback answers barely played (e.g. a provider bug)
+
+# How strong each model is at this game, 1-5, kept by hand (a first guess from general capability, to be
+# replaced by measured results). Lessons count for more when their author's model is stronger, and when the
+# game's players were stronger on average (lessons from a game of weak players may be about beating weak play).
+STRENGTH = {
+    Model.OPUS_5_5: 5, Model.GPT_6_1_SOL: 5,
+    Model.SONNET_5_5: 4, Model.GEMINI_3_1_PRO: 4, Model.GROK_4_7: 4, Model.KIMI_K3: 4,
+    Model.QWEN_3_8_MAX_PRIME: 4, Model.QWEN_3_8_MAX: 4,
+    Model.GEMINI_3_8_FLASH: 3,
+    Model.HAIKU_5_5: 2, Model.GPT_6_LUNA: 2,
+}
+DEFAULT_STRENGTH = 3  # a model missing from STRENGTH
+
+
+def strength(model_id: str) -> int:
+    return next((v for m, v in STRENGTH.items() if m.value == model_id), DEFAULT_STRENGTH)
+
+
+def lesson_weight(author: int, game_average: float) -> float:
+    """1.0 for a top model's lesson from a game of top models; 0.16 for the weakest in the weakest game."""
+    return round((author / 5) * (game_average / 5), 2)
 
 
 def faction_of(role: str) -> str:
@@ -101,9 +122,11 @@ def read_game(path: Path) -> dict | None:
 def describe_game(g: dict) -> str:
     """One game's lessons as text for the distilling model."""
     res = g["result"]
-    lines = [f"### Game {g['game']}"]
+    models = res.get("models", {})
+    avg = sum(map(strength, models.values())) / len(models) if models else DEFAULT_STRENGTH
+    lines = [f"### Game {g['game']} (average player strength {avg:.1f}/5)"]
     if res:
-        roles = ", ".join(f"{n} ({r})" for n, r in res.get("roles", {}).items())
+        roles = ", ".join(f"{n} ({r}, {models.get(n, '?').split('/')[-1]})" for n, r in res.get("roles", {}).items())
         lines.append(f"Winners: {', '.join(res.get('winners') or []) or 'nobody'} "
                      f"(faction: {res.get('winning_faction') or 'none'}, end: {res.get('end_reason')}, "
                      f"{res.get('days')} days). Roles: {roles}.")
@@ -116,12 +139,15 @@ def describe_game(g: dict) -> str:
                      "barely played.")
     for r in g["records"]:
         if r["kind"] == "strategy_review":
-            lines.append(f"Moderator's strategy review (saw everything): {r['summary'].strip()}")
-            lines += [f"- [moderator] for {x['applies_to']}, {x['topic']}: {x['tip']} (evidence: {x['evidence']})"
-                      for x in r["lessons"]]
+            w = lesson_weight(strength(r["model"]), avg)
+            lines.append(f"Moderator's strategy review ({r['model'].split('/')[-1]}, saw everything): "
+                         f"{r['summary'].strip()}")
+            lines += [f"- [moderator, weight {w}] for {x['applies_to']}, {x['topic']}: {x['tip']} "
+                      f"(evidence: {x['evidence']})" for x in r["lessons"]]
         else:
             won = "won" if r["who"] in (res.get("winners") or []) else "lost"
-            lines += [f"- [{r['who']}, {r['role']}, {won}, {r['model'].split('/')[-1]}] for {x['applies_to']}, "
+            w = lesson_weight(strength(r["model"]), avg)
+            lines += [f"- [{r['who']}, {r['role']}, {won}, {r['model'].split('/')[-1]}, weight {w}] for {x['applies_to']}, "
                       f"{x['topic']}: {x['tip']}" for x in r["lessons"]]
     return "\n".join(lines)
 
@@ -141,13 +167,17 @@ def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], m
     lessons = "\n\n".join(describe_game(g) for g in games)
     messages = [
         {"role": "system", "content": f"{rules}\n\n---\n\nYou coach players of this game. Below are lessons "
-         "written after past games by the players (each tagged with their role, whether they won and their "
-         "model) and by the moderator, who saw everything, including hidden night actions."},
+         "written after past games by the players (each tagged with their role, whether they won, their "
+         "model and a weight) and by the moderator, who saw everything, including hidden night actions. "
+         "The weight (0-1) is higher when the lesson's author is a stronger model and when the game's "
+         "players were stronger on average."},
         {"role": "user", "content": f"Lessons from {len(games)} games:\n\n{lessons}\n\n---\n\n"
          "Distill these into a tips sheet that will be given to players before future games, so they "
          "start with the experience of these games. Rules:\n"
-         "- Merge duplicates. Prefer lessons that recur across games or that the moderator backs with "
-         "evidence; for each tip give the number of games that support it.\n"
+         "- Merge duplicates. Prefer lessons with a high weight, lessons that recur across games, and "
+         "lessons the moderator backs with evidence; a low-weight lesson needs support from elsewhere to be "
+         "kept, and where lessons conflict, the higher-weight side wins. For each tip give the number of "
+         "games that support it.\n"
          "- Drop tips that contradict the rules above, recaps of one game, tips about the program or "
          "interface rather than play, and vague advice ('be careful'). Lessons from players marked as "
          "barely playing, or from games with many program errors, count for less.\n"

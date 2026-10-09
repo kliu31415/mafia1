@@ -96,10 +96,11 @@ def test_building_a_tips_file_from_game_logs(tmp_path):
         *[{"kind": "player_fallback", "player": "Ivan"}] * 3,
         {"kind": "lessons", "who": "Alice", "role": "Medic", "model": "anthropic/claude-haiku-5.5",
          "lessons": [{"topic": "night actions", "applies_to": "Medic", "tip": "Guard the Sheriff."}]},
-        {"kind": "strategy_review", "summary": "The Village won on day 3.", "lessons": [
+        {"kind": "strategy_review", "model": "anthropic/claude-opus-5.5", "summary": "The Village won on day 3.", "lessons": [
             {"topic": "deduction", "applies_to": "everyone", "tip": "Track votes.", "evidence": "Day 2 vote."}]},
         {"kind": "result", "winners": ["Alice"], "winning_faction": "Village", "end_reason": "win", "days": 3,
-         "roles": {"Alice": "Medic", "Ivan": "Grunt"}, "errors": {"player_fallback": 3}},
+         "roles": {"Alice": "Medic", "Ivan": "Grunt"},
+         "models": {"Alice": "anthropic/claude-haiku-5.5", "Ivan": "anthropic/claude-opus-5.5"}, "errors": {"player_fallback": 3}},
     ]
     log.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     (tmp_path / "game_20261009_000001_2.jsonl").write_text(json.dumps({"kind": "setup"}) + "\n", encoding="utf-8")
@@ -108,8 +109,15 @@ def test_building_a_tips_file_from_game_logs(tmp_path):
                      ModelSpec(Model.OPUS_5_5), max_words=500)
     assert "Guard the Sheriff" in client.prompt and "Track votes" in client.prompt and "Day 2 vote" in client.prompt
     assert "Distrust lessons from Ivan" in client.prompt and "[Alice, Medic, won" in client.prompt
+    # Average player strength (2 + 5) / 2 = 3.5: Haiku's lesson weighs 0.4 * 0.7, the Opus moderator's 1.0 * 0.7.
+    assert "average player strength 3.5/5" in client.prompt
+    assert "claude-haiku-5.5, weight 0.28]" in client.prompt and "[moderator, weight 0.7]" in client.prompt
     text = out.read_text(encoding="utf-8")
     assert "from 1 games" in text  # the game without lessons is skipped
     assert text.index("## Everyone") < text.index("## Medic") and "## Yakuza" not in text
     assert "- Protect a claimed Sheriff. (seen in 2 games)" in text
     assert tips.tips_for_role(text, "Medic").startswith("## Everyone\n- Count the votes.")
+
+
+def test_every_model_has_a_strength():
+    assert set(tips.STRENGTH) == set(Model)
