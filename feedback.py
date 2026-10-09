@@ -49,14 +49,22 @@ def full_log(game: Game) -> str:
                      + e.text for e in game.events)
 
 
-def debrief_task(game: Game, with_log: bool = True) -> str:
+def post_game_context(game: Game) -> str:
+    """The reveal every post-game player question starts from. It goes in a cached part of the prompt
+    (Players.ask's context), so the debrief and lessons calls share it."""
+    roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
+    return (f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
+            f"The whole game, now revealed (every event, with who could see it):\n{full_log(game)}\n\n"
+            f"What happened each night (now revealed):\n{night_replay(game)}")
+
+
+def debrief_task(game: Game, with_reveal: bool = True) -> str:
+    """with_reveal: start with the roles and night replay (the moderator's debrief, which has its own log)."""
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
     questions = "\n".join(f"- {k}: {q}" for k, q in DEBRIEF_QUESTIONS.items())
-    return (f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
-            + (f"The whole game, now revealed (every event, with who could see it):\n{full_log(game)}\n\n"
-               if with_log else "")
-            + f"What happened each night (now revealed):\n{night_replay(game)}\n\n"
-            "We're improving this game and the program that runs it. Out of character now, answer from "
+    return ((f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
+             f"What happened each night (now revealed):\n{night_replay(game)}\n\n" if with_reveal else "")
+            + "We're improving this game and the program that runs it. Out of character now, answer from "
             "your own experience of playing it. Be specific and concrete, and write 'none' where you have "
             f"nothing to say.\n{questions}")
 
@@ -71,9 +79,10 @@ POST_GAME_SECTIONS = {  # "section" records: the log views start a titled sectio
 
 def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     game.log.write("section", title=POST_GAME_SECTIONS["debrief"])
-    task = debrief_task(game)
+    task = debrief_task(game, with_reveal=False)  # the reveal is in the context
     fallback = {k: "" for k in DEBRIEF_QUESTIONS}
-    outs = players.ask_many([(p, task, DEBRIEF_SCHEMA, fallback) for p in game.players], step="debrief")
+    outs = players.ask_many([(p, task, DEBRIEF_SCHEMA, fallback) for p in game.players], step="debrief",
+                            context=post_game_context(game), shared_with=POST_GAME_SCHEMA)
     for p, out in zip(game.players, outs):
         game.log.write("debrief", who=p.name, role=p.role, model=p.model.value, answers=out)
 
@@ -82,7 +91,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     messages = [
         rules_system(moderator.rules, "You were the moderator of this game."),
         {"role": "user", "content": f"Everything that happened (with who could see each event):\n{events}\n\n"
-         f"Issues you flagged during the game:\n{flags}\n\n{debrief_task(game, with_log=False)}\nAnswer as the moderator: also cover "
+         f"Issues you flagged during the game:\n{flags}\n\n{debrief_task(game)}\nAnswer as the moderator: also cover "
          "rules you had to interpret, and tools or state you were missing."},
     ]
     reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
@@ -129,21 +138,23 @@ def with_tips_feedback(schema: dict) -> dict:
             "required": [*schema["required"], "tips_feedback"]}
 
 
+# The one schema post-game player questions send in live games (Players.ask shared_with), so the debrief and
+# lessons calls share a cache: a different schema misses the whole cached prompt (see players.shared_schema).
+POST_GAME_SCHEMA = obj(**DEBRIEF_SCHEMA["properties"], **LESSONS_SCHEMA["properties"], tips_feedback=TIPS_FEEDBACK)
+
+
 def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
     """Each player lists tips and tricks they wish they'd known, and players given tips from past
     games (tips.py) say which of those went well or badly. Saved to the game log; lessons are also
     appended to `lessons_file` (one JSON object per tip, across all games) for later analysis."""
     game.log.write("section", title=POST_GAME_SECTIONS["lessons"])
-    roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
-    task = (f"The game is over. {game.winners_line()} Everyone's roles: "
-            f"{roles}.\n\nThe whole game, now revealed (every event, with who could see it):\n{full_log(game)}"
-            "\n\nIf you played this game again, what tips and tricks do you wish you'd known? "
+    task = ("If you played this game again, what tips and tricks do you wish you'd known? "
             "Give 1-5 concrete, reusable lessons (not a recap of this game), each with a topic and who it "
             "applies to (a role, a faction, or 'everyone').")
     outs = players.ask_many([(p, task + TIPS_FEEDBACK_TASK, with_tips_feedback(LESSONS_SCHEMA),
                               {"lessons": [], "tips_feedback": []})
                              if p.tips else (p, task, LESSONS_SCHEMA, {"lessons": []}) for p in game.players],
-                            step="lessons")
+                            step="lessons", context=post_game_context(game), shared_with=POST_GAME_SCHEMA)
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:
         for p, out in zip(game.players, outs):

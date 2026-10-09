@@ -93,6 +93,7 @@ R6 (Visits)
 - A role that targets a player may target itself unless its text says otherwise (e.g. "other than yourself").
 - A player whose role can target others but who targets themself shows as visiting themself.
 - A player whose action can only affect themself does not show as visiting anyone.
+- An action that targets no player (e.g. the Clerk's rig) is not a visit.
 
 R9 (Role-blocks)
 A role-blocked player's actions that night have no effect, exactly as if they had chosen not to act: no visit,
@@ -214,7 +215,10 @@ Seer
 Fortune Teller
   Day: at the start of each Day except the first, you get two numbers without being told which is which: how many
   players were visited last night (a player visited several times counts once), and how many players visited
-  someone else last night (a player who visited several others counts once).
+  anyone last night (a player who visited several players counts once). Self-visits (R6) count in both numbers.
+  Example: A holds the Katana, attacks B and also uses their own role's action on C, D visits B, and E protects
+  themself. Visited: B, C and E, so 3. Visitors: A, D and E, so 3. Equal numbers don't mean nobody was visited
+  twice.
 
 Oracle
   Night: may guess one player's exact role (Astral Visit). At the end of the night, learn whether you were right.

@@ -637,8 +637,24 @@ def test_the_notepad_cap_grows_with_the_player_count(game_factory):
 
 
 def test_feedback_prompts_show_dead_players_the_whole_game(game_factory):
-    from feedback import debrief_task
-    game, _ = game_factory(TOWN4_GRUNT)
+    from feedback import POST_GAME_SCHEMA, post_game_context, run_debrief
+    from llm import Model
+    from moderator import Moderator
+    from players import player_messages
+    from tests.conftest import ScriptedClient
+    game, players = game_factory(TOWN4_GRUNT)
     game.emit("Grunt (Yakuza chat): secret plan", ["Erin"])
     game.kill("Alice", "Katana")
-    assert "secret plan" in debrief_task(game) and "secret plan" not in debrief_task(game, with_log=False)
+    assert "secret plan" in post_game_context(game)
+    # The reveal is a cached part of the system prompt, shared by the debrief and lessons questions.
+    assert "secret plan" in str(player_messages(game, game.player("Alice"), "(rules)", "?",
+                                                context=post_game_context(game))[0])
+    sent: list[dict] = []
+
+    def decide(name, task, schema):
+        sent.append(schema)
+    client = ScriptedClient(decide)
+    game.log.path.parent.mkdir(exist_ok=True)
+    players.client, players.shared = client, True
+    run_debrief(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"))
+    assert all(set(POST_GAME_SCHEMA["properties"]) <= set(s["properties"]) for s in sent[:5])

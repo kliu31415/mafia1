@@ -41,3 +41,10 @@ night actions already run in parallel.
   call per sample instead of a whole game: the cheapest per-model comparison.
 - **More scored decisions in `stats.py`.** Role-blocks (Pharmacist, Party Animal), Lookout/Tracker
   targets, and whether claims were true (claims are free text, so that needs a judge pass).
+
+## Turned down for now
+
+- **End the game once a faction has an unbreakable voting majority** (suggested by a player in
+  game_20261009_121338_61703, whose last day was a foregone 3-vs-2 hang). Would cut hollow final days.
+  Turned down (Kevin, 2026-10-09): factions can still occasionally win from a minority, e.g. with a
+  Medic save, a Vigilante shot or a Clerk rig, so "unbreakable" is hard to define in general.

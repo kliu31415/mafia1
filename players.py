@@ -3,6 +3,7 @@
 import json
 import re
 import time
+from typing import Any
 from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
@@ -178,7 +179,9 @@ def role_briefing(game: Game, p: Player) -> str:
     return " ".join(lines)
 
 
-def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field: bool = False) -> list[dict]:
+def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field: bool = False,
+                    context: str = "") -> list[dict]:
+    """context: text several of this player's calls share after their own part (the post-game reveal), cached too."""
     # Ordered from most to least shared, for prompt caching (llm.cache_block): the rules (every call),
     # then the general instructions and tips (players with the same tips), then this player's briefing
     # and everything they saw in earlier phases (all their calls this phase). The system message holds
@@ -200,7 +203,8 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
     if earlier:
         own += ("\n\n---\n\nEverything you have seen in earlier phases (this phase's events are in the "
                 "next message):\n" + "\n".join(earlier))
-    system = rules_system(rules, [cache_block(general), cache_block(own)])
+    system = rules_system(rules, [cache_block(general), cache_block(own),
+                                  *([cache_block(f"\n\n---\n\n{context}")] if context else [])])
     notepad = p.notepad or "(empty)"
     nights = night_history(game, p)
     seen = "\n".join(current) or "(nothing yet)"
@@ -272,18 +276,21 @@ class Players:
         self.feedback_field = feedback_field
         self.shared = shared
 
-    def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None) -> dict:
+    def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None,
+            context: str = "", shared_with: dict | None = None) -> dict:
         """step: what kind of decision this is (one of STEPS), and rnd the chat round if there is one; logged
-        with day, phase and latency on every call record, so analysis never has to parse the task's wording."""
+        with day, phase and latency on every call record, so analysis never has to parse the task's wording.
+        context: see player_messages. shared_with: a schema to send instead of shared_schema when this question's
+        fields aren't in it (the post-game questions share one, feedback.POST_GAME_SCHEMA), for the same caching."""
         assert step in STEPS, step
         where = {"step": step, "day": self.game.day, "phase": self.game.phase,
                  **({"round": rnd} if rnd is not None else {})}
         wanted = with_common_fields(schema, self.feedback_field)
-        # Post-game questions (debrief, lessons) have fields of their own and keep their own schema.
-        shared = self.shared and set(schema["properties"]) <= set(SHARED_FIELDS)
-        sent = with_common_fields(shared_schema(self.game), self.feedback_field, STR) if shared else wanted
+        common = shared_with or (shared_schema(self.game) if set(schema["properties"]) <= set(SHARED_FIELDS) else None)
+        shared = self.shared and common is not None
+        sent = with_common_fields(common, self.feedback_field, STR) if shared and common else wanted
         messages = player_messages(self.game, p, self.rules, task + (fields_note(schema) if shared else ""),
-                                   self.feedback_field)
+                                   self.feedback_field, context)
         for attempt in range(2):
             reply: LLMReply | None = None
             started = time.monotonic()
@@ -332,6 +339,7 @@ class Players:
                        f"technical error, so the default was used instead: {json.dumps(fallback)}.)", [p.name])
         return fallback
 
-    def ask_many(self, jobs: list[tuple[Player, str, dict, dict]], *, step: str) -> list[dict]:
+    def ask_many(self, jobs: list[tuple[Player, str, dict, dict]], *, step: str, **kw: Any) -> list[dict]:
+        """kw: ask's keyword arguments, the same for every job."""
         with ThreadPoolExecutor(max_workers=max(1, len(jobs))) as pool:  # a round waits for its slowest call
-            return list(pool.map(lambda j: self.ask(*j, step=step), jobs))
+            return list(pool.map(lambda j: self.ask(*j, step=step, **kw), jobs))
