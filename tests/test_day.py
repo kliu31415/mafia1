@@ -277,25 +277,6 @@ def test_half_the_budget_left_carries_into_the_next_day(game_factory):
     game.player("Bob").speaking_budget = 2.0
     run_day(game, players)
     budget = {n: float(m[1]) for n, t in seen.items() if (m := re.search(r"budget is ([\d.]+)", t))}
-    assert budget["Alice"] == 4.0 + BUDGET_PER_ROUND / 2  # Day 1 income is halved (rules R16)
-    assert budget["Bob"] == 1.0 + BUDGET_PER_ROUND / 2
-    assert budget["Carol"] == BUDGET_PER_ROUND / 2
-
-
-def test_day_1_income_is_halved_for_everyone_and_later_days_get_the_full_amount(game_factory):
-    from day import BUDGET_PER_ROUND
-    first: dict[int, str] = {}
-
-    def decide(name, task, schema):
-        if "Your speaking budget is" in task:
-            first.setdefault(game.day, task)
-        return None
-    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
-    run_day(game, players)
-    assert f"budget is {BUDGET_PER_ROUND / 2:.2f}; you earn {BUDGET_PER_ROUND / 2:g} per round today" in first[1]
-    assert "halved on Day 1 for every player" in first[1]
-    game.day = 2
-    for p in game.alive():
-        p.speaking_budget = 0.0
-    run_day(game, players)
-    assert f"you earn {BUDGET_PER_ROUND:g} per round, carrying" in first[2] and "halved" not in first[2]
+    assert budget["Alice"] == 4.0 + BUDGET_PER_ROUND
+    assert budget["Bob"] == 1.0 + BUDGET_PER_ROUND
+    assert budget["Carol"] == BUDGET_PER_ROUND

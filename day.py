@@ -16,8 +16,6 @@ from state import Game, Player, majority
 # times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
 # to BUDGET_MAX; at the start of each day, CARRY_SHARE of what's left carries over.
 BUDGET_PER_ROUND = 2.5
-DAY1_INCOME_SHARE = 0.5  # rules R16: Day 1's per-round income is halved for everyone (trial budget and free
-#   defense are not), since Day 1 talk was mostly filler; it also makes Day 1's late rounds hard to afford
 BUDGET_MAX = 8.0
 CARRY_SHARE = 0.5
 MESSAGE_BASE_COST = 1.0
@@ -37,11 +35,6 @@ NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budg
 
 LAST_WILL_WORDS = 300  # longer wills are truncated
 CLAIM_WORDS = 30  # claims (in the public ledger) are short and free, so they can't replace chat
-
-
-def round_income(game: Game) -> float:
-    """What each living player earns per round today (rules R16)."""
-    return BUDGET_PER_ROUND * (DAY1_INCOME_SHARE if game.day == 1 else 1.0)
 
 
 def length_cost(words: int) -> float:
@@ -115,7 +108,7 @@ def run_day(game: Game, players: Players) -> None:
     game.prosecutions.clear()
     if prosecuted:
         for p in game.alive():
-            p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + round_income(game))
+            p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
     for name in prosecuted:
         if trials >= MAX_TRIALS_PER_DAY or not game.player(name).alive:
             break
@@ -138,7 +131,7 @@ def run_day(game: Game, players: Players) -> None:
     for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
-                p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + round_income(game))
+                p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
         alive = game.alive()
         order = [p for p in alive if p.seat >= start] + [p for p in alive if p.seat < start]
         active = False  # did anyone send a public message or nominate this go-around?
@@ -236,10 +229,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     writer = game.player(game.chat_controller(p.name))
     step = "trial_turn" if trial else "day_turn"
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
-            f"budget is {p.speaking_budget:.2f}; you earn {round_income(game):g} per round"
-            + (f" today (the usual {BUDGET_PER_ROUND:g} is halved on Day 1 for every player, only because it's "
-               "Day 1, not because of anything anyone did)" if game.day == 1 else "")
-            + ", carrying over "
+            f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
             f"up to {BUDGET_MAX:g}; at the start of each day, half of what you have left "
             "carries over. You may send one public message and any "
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "

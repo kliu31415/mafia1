@@ -69,8 +69,6 @@ Day chat goes around the circle in turns. Each Day the program picks a random li
 turns then go around the circle from them in the same order every round. Besides the endings in R4, the Day ends when a full round passes in
 which nobody sends a public message or nominates, except that anyone sent a private message during that round
 first gets one last turn. The Day also ends after at most 8 rounds.
-Each round, every living player earns speaking budget (the program tells you the amounts). On Day 1 that per-round
-income is halved for every player alike, only because it is Day 1; no player or role causes it.
 
 R13 (Last wills)
 Players may write and update a last will at the beginning of each Day (except those who died the night before)
