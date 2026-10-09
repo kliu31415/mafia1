@@ -124,6 +124,13 @@ def test_moderator_night_notes_cover_roles_in_the_game(game_factory):
     assert "Trapper" in notes and "Seer" in notes and "Arsonist" not in notes
 
 
+def test_moderator_is_told_ex_con_reads_evil_to_seers_too(game_factory):
+    """rules Ex-Con: Evil to every alignment check, not just the Sheriff."""
+    from night import role_notes
+    game, _ = game_factory(["Ex-Con", "Seer", "Vanilla Villager", "Grunt"])
+    notes = role_notes(game)
+    assert "Ex-Con" in notes and "Seer" in notes.split("Ex-Con", 1)[1]
+
 def test_role_ops_are_offered_only_for_roles_in_the_game(game_factory):
     game, players = game_factory(["Clerk", "Vanilla Villager", "Vanilla Villager"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")

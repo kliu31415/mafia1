@@ -14,7 +14,7 @@ from roles.base import (LOGIC, Alignment, RoleLogic, Status, code_hooks, logic, 
 class RoleInfo:
     alignment: Alignment
     category: str
-    sheriff_evil: bool  # how the role appears to a Sheriff, before Katana/Fabricator effects
+    sheriff_evil: bool  # how the role appears to a Sheriff, before Katana/Fabricator effects (Ex-Con: to Seers too)
     defense: str = "None"
     tokens: dict[str, int] = field(default_factory=dict)
     acts_at_night: bool = False  # submits a night action, which the LLM moderator resolves
@@ -46,7 +46,8 @@ ROLES: dict[str, RoleInfo] = {
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False, acts_at_night=True,
                            notes="code assigns the fake role (with its tokens and night prompts); "
                            "moderator invents its results"),
-    "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True, notes="random visit each night"),
+    "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True,
+                       notes="random visit each night; night note says it reads Evil to Sheriff and Seer"),
     "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
                          notes="curse resolved by code at the next dawn"),
     # Yakuza

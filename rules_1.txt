@@ -54,7 +54,7 @@ Village Misc Roles:
 
 Village Outsider Roles (villager, but with a role that's potentially harmful to the village):
 1. Roleplayer: You are falsely told your role is X, where X is a Village Investigative role randomly chosen at the beginning of the game. The moderator provides you with usually false, but plausible results. To others with investigative capabilities, you appear as a Roleplayer.
-2. Ex-Con: You appear Evil to the Sheriff. Every night, you randomly visit someone (not including yourself), and you don't know who.
+2. Ex-Con: You appear to have the Evil alignment to roles that learn alignments (e.g. the Sheriff and the Seer); roles that don't check alignment, such as the Tracker, learn nothing different. Every night, you randomly visit someone (not including yourself), and you don't know who.
 3. Cardinal: If you die, a random Good player (if any are left) is dealt a Divine Attack. If you die in the night, the Attack happens at the beginning of the following day. If you die in the day, the Attack happens at the beginning of the next day.
 
 Yakuza roles:
