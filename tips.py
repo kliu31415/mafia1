@@ -465,7 +465,7 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
         applied, skipped, c = update_notebook(client, spec, rules, nb, g)
         cost += c
         print(f"  {g['game']}: {applied} notebook changes" + (f" ({skipped} invalid ones skipped)" if skipped else ""))
-        if skipped:
+        if skipped and not g["mock"]:  # a mock game's tips model answers at random, so it often makes these
             on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes for {g['game']} "
                      "(an unknown entry id, an empty or repeated tip, a second support or report from the same "
                      "game, or retiring a retired entry); they were skipped", game=g["game"], skipped=skipped)
