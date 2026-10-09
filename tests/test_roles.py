@@ -196,3 +196,14 @@ def test_katana_needs_a_majority_and_gets_one_revote(game_factory):
     katana = [json.loads(line) for line in game.log.path.read_text(encoding="utf-8").splitlines()
               if '"kind": "katana"' in line]
     assert katana[-1]["result"]["attack"] == "Alice" and game.katana_holder == "Carol"
+
+
+def test_yakuza_are_told_that_two_of_them_must_both_agree_on_the_katana(game_factory):
+    client = ScriptedClient()
+    game, players = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"], client)
+    from moderator import Moderator
+    from llm import Model
+    from night import run_night
+    run_night(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"))
+    yakuza_tasks = [task for name, task in client.asked if name in ("Alice", "Bob")]
+    assert yakuza_tasks and all("both must agree" in task for task in yakuza_tasks if "Katana" in task)

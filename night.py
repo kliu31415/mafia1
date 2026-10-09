@@ -19,7 +19,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.emit(f"Night {game.day} begins.", cat=PHASE)
     if len(game.yakuza()) > 1:
         yakuza_chat(game, players, YAKUZA_CHAT_ROUNDS,
-                    "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions.")
+                    "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. "
+                    + katana_majority_note(game))
 
     actors = [p for p in game.alive() if p.info.acts_at_night or p.info.alignment is Alignment.EVIL]
     jobs = []
@@ -27,7 +28,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         task = (f"It is Night {game.day}. Choose your night action for your role, following the rules. "
                 "Set act=false to do nothing. Fill only the fields your role needs.")
         if p.info.alignment is Alignment.EVIL:
-            task += " Also vote on who should hold the Katana and who the Katana should attack (or null)."
+            task += (" Also vote on who should hold the Katana and who the Katana should attack (or null). "
+                     + katana_majority_note(game))
         jobs.append((p, task, night_action_schema(game, p), {"act": False}))
     actions = dict(zip([p.name for p in actors], players.ask_many(jobs)))
     game.log.write("night_actions", day=game.day, actions=actions, roles={p.name: p.role for p in actors})
@@ -40,11 +42,13 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                           f"{actions[y.name].get('katana_vote_target')}" for y in yakuza)
         game.emit(f"The Katana vote had no majority, so there would be no attack. Votes: {votes}.",
                   [y.name for y in yakuza])
-        yakuza_chat(game, players, 1, "Agree on the Katana holder and target before the revote.")
+        yakuza_chat(game, players, 1, "Agree on the Katana holder and target before the revote. "
+                    + katana_majority_note(game))
         names = game.alive_names()
         revote_schema = obj(thoughts=STR, katana_vote_holder=name_enum([y.name for y in yakuza]),
                             katana_vote_target=nullable(name_enum(names)))
-        outs = players.ask_many([(y, "Revote on the Katana holder and the Katana target (or null).",
+        outs = players.ask_many([(y, "Revote on the Katana holder and the Katana target (or null). "
+                                  + katana_majority_note(game),
                                   revote_schema, {"katana_vote_holder": y.name, "katana_vote_target": None})
                                  for y in yakuza])
         for y, out in zip(yakuza, outs):
@@ -112,6 +116,15 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
             ready.append(out.get("ready", True))
         if all(ready):
             return
+
+
+def katana_majority_note(game: Game) -> str:
+    """Rules R8, spelled out for the Yakuza: players were surprised that one missing vote of two
+    cancelled the attack."""
+    n = len(game.yakuza())
+    need = n // 2 + 1
+    return (f"There is no attack unless at least {need} of the {n} living Yakuza vote for the same Katana "
+            "holder and the same target" + (" (with two of you, both must agree)" if n == 2 else "") + ".")
 
 
 def tally_katana(game: Game, actions: dict[str, dict]) -> dict:

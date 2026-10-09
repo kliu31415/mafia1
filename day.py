@@ -19,7 +19,7 @@ PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
 FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
 ROUND_COST_GROWTH = 1.5
-MAX_DAY_ROUNDS = 10  # the day also ends after a full go-around in which nobody sends a public message
+MAX_DAY_ROUNDS = 10  # rules R16; the day also ends after a full go-around in which nobody sends a public message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 # Each player's turn in a trial is priced at 1x whatever the round, and comes with a trial-only budget
 # that is spent before their regular budget. Unspent trial budget is lost when the turn ends.
@@ -81,7 +81,7 @@ def run_day(game: Game, players: Players) -> None:
         else:
             del game.puppets[puppet]
 
-    # Last wills, written once at the beginning of each day (including day 1). Rules R13.
+    # Last wills, written at the beginning of each day (including day 1); also on day turns. Rules R13.
     task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
             "to ALL players, including other factions.")
     outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
@@ -145,7 +145,7 @@ def run_day(game: Game, players: Players) -> None:
             if p.alive and turn(p, rnd):
                 return
         if not active:
-            # Program rule, not from rules_1.txt: before a silent round ends the day, anyone sent a
+            # Rules R16: before a silent round ends the day, anyone sent a
             # private message this round gets one last turn to react to it (or the day just ends).
             got_pm = {e.fields["to"] for e in game.events[round_start:] if e.cat == PM}
             for p in [q for q in order if q.alive and q.name in got_pm]:
