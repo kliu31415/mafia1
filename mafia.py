@@ -64,8 +64,8 @@ from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
 from gamelog import GameLog, usage_by_caller
 from log_viewer import render_html, usage_lines
-from llm import (DEFAULT_EFFORT, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, load_api_key,
-                 parse_model_spec)
+from llm import (EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, default_effort,
+                 load_api_key, parse_model_spec)
 from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
@@ -347,6 +347,11 @@ def write_views(log: GameLog, close: bool = False) -> Path | None:
     return report
 
 
+def resolve_effort(spec: ModelSpec, effort: str | None) -> ModelSpec:
+    """A spec's own effort, else --effort, else the model's default (MODEL_EFFORT in llm.py)."""
+    return ModelSpec(spec.model, spec.effort or effort or default_effort(spec.model))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--players", default="haiku-5.5",
@@ -358,8 +363,9 @@ def main() -> None:
                     "for a random N-player setup drawn from the seed (see setups.py)")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for --roles random:N, draw from every "
                     "role or only roles seen working in a live game")
-    ap.add_argument("--effort", default=DEFAULT_EFFORT, choices=EFFORTS,
-                    help="reasoning effort for models that don't set their own")
+    ap.add_argument("--effort", default=None, choices=EFFORTS,
+                    help="reasoning effort for models that don't set their own (default: each model's own, "
+                    "MODEL_EFFORT in llm.py)")
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--max-days", type=int, default=None,
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
@@ -446,8 +452,9 @@ def main() -> None:
     if not 1 <= len(roles) <= len(PLAYER_NAMES):
         ap.error(f"a game has 1 to {len(PLAYER_NAMES)} players (one name each), not {len(roles)}")
     try:
-        models = [parse_model_spec(m) for m in args.players.split(",")]
-        moderator = parse_model_spec(args.moderator)
+        # Efforts resolved here, so the log records what each model actually used.
+        models = [resolve_effort(parse_model_spec(m), args.effort) for m in args.players.split(",")]
+        moderator = resolve_effort(parse_model_spec(args.moderator), args.effort)
     except ValueError as e:
         ap.error(str(e))
     update_tips = (None if args.no_update_tips else args.update_tips or (

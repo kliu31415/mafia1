@@ -81,7 +81,7 @@ def parse_model(name: str) -> Model:
     raise ValueError(f"Unknown model {name!r}; choose from {[m.short for m in Model]}")
 
 
-DEFAULT_EFFORT = "medium"
+DEFAULT_EFFORT = "medium"  # for a model missing from MODEL_EFFORT
 # reasoning.effort values OpenRouter accepts for every model (it maps them to each provider's own
 # setting; checked 2026-10-08: anything else is rejected with HTTP 400).
 EFFORTS = ("none", "minimal", "low", "medium", "high", "xhigh", "max")
@@ -89,7 +89,8 @@ EFFORTS = ("none", "minimal", "low", "medium", "high", "xhigh", "max")
 
 @dataclass(frozen=True)
 class ModelSpec:
-    """A model plus its reasoning effort; effort None means the client's default (--effort)."""
+    """A model plus its reasoning effort; effort None means the client's default (--effort, else the
+    model's own default_effort)."""
 
     model: Model
     effort: str | None = None
@@ -104,6 +105,29 @@ def parse_model_spec(text: str) -> ModelSpec:
     if effort and effort not in EFFORTS:
         raise ValueError(f"Unknown effort {effort!r} in {text!r}; choose from {list(EFFORTS)}")
     return ModelSpec(parse_model(name), effort or None)
+# Each model's reasoning effort when nothing sets one (a model:effort spec or --effort). From one real
+# day-2 speaking turn (~12-18k-token prompt), 3 runs per model and effort, 2026-10-09. Medium -> high:
+#   model          s/turn     output tokens (reasoning)   extra $ per seat in a 12p game (~50 calls)
+#   opus-5.5       19 -> 21   1214 (461) -> 1687 (840)    +$0.47 (+18%)
+#   sonnet-5.5      7 -> 16    495 (0)   -> 1773 (1256)   +$0.64 (+58%)  no reasoning at all at medium
+#   gpt-6.1-sol    25 -> 42    825 (101) -> 1689 (1002)   +$0.43 (+45%)  barely reasons at medium
+#   glm-5.3        20 -> 20    518 (97)  -> 3270 (2290)   +$0.60
+#   kimi-k3        92 -> 118  3010       -> 3434          +$0.32 (+35%)
+#   grok-4.7       93 -> 136  4995       -> 7976          +$0.89 (+40%)
+#   qwen-3.8-max   72 -> 552  2556       -> 14621         ~5x; hit the 16k max_tokens cap with no answer on
+#                                                         1 of 3 runs, so Qwen stays at medium
+#   haiku-5.5      10 -> 23   1276 (800) -> 4158 (3470)   +$0.07
+#   gpt-6-luna     19 -> 33   1272 (891) -> 2449 (2070)   +$0.03
+# Times are with 12 requests at once. Speaking turns run one at a time (~260 in a 7-day 12p game), so
+# s/turn sets a game's length: Grok and Kimi seats are slow at any effort. Artificial Analysis'
+# Intelligence Index (Oct 2026) also rises with effort, e.g. Sonnet 5.5 41 at medium, 47 high, 56 max.
+MODEL_EFFORT = {m: "high" for m in Model} | {Model.QWEN_3_8_MAX: "medium", Model.QWEN_3_8_MAX_PRIME: "medium"}
+
+
+def default_effort(model: Model) -> str:
+    return MODEL_EFFORT.get(model, DEFAULT_EFFORT)
+
+
 DEFAULT_MAX_TOKENS = 16_000  # reasoning + answer; Anthropic needs this above the reasoning budget
 
 
@@ -258,7 +282,7 @@ RETRY_CODES = (408, 429, 500, 502, 503, 504)  # HTTP statuses (or error codes in
 
 
 class OpenRouterClient:
-    def __init__(self, api_key: str, effort: str = DEFAULT_EFFORT, max_tokens: int = DEFAULT_MAX_TOKENS,
+    def __init__(self, api_key: str, effort: str | None = None, max_tokens: int = DEFAULT_MAX_TOKENS,
                  timeout: float = 600, retries: int = 4):
         self.api_key = api_key
         self.effort = effort
@@ -277,7 +301,7 @@ class OpenRouterClient:
             "model": model.value,
             "messages": messages,
             "max_tokens": self.max_tokens,
-            "reasoning": {"effort": effort or self.effort},
+            "reasoning": {"effort": effort or self.effort or default_effort(model)},
             "usage": {"include": True},
         }
         if model.value.split("/")[0] not in CACHE_MARKERS:

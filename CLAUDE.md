@@ -110,6 +110,9 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   each stable part with `llm.cache_block`; Claude and Gemini cache only up to those marks, and OpenAI only the
   system message, so a player's stable text (briefing, earlier phases' history) goes there. Check `cached_tokens`
   in `player_call` usage after changing a prompt's layout.
+- Reasoning effort: each model has a default (`MODEL_EFFORT` in `llm.py`: high, except Qwen at medium, since at high
+  it runs past the token cap); measured cost and time per turn at medium vs high are in the comment there.
+  `model:effort` or `--effort` override it.
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`; GLM uses Together,
   since Z.AI's endpoint lacks structured outputs); add one there for a new maker.
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in

@@ -2,7 +2,8 @@
 
 import json
 
-from llm import PROVIDERS, Model, OpenRouterClient, text_of
+from llm import PROVIDERS, Model, ModelSpec, OpenRouterClient, text_of
+from mafia import resolve_effort
 from tests.conftest import make_game
 
 REFUSAL = {"provider": "Azure", "choices": [{"finish_reason": "content_filter", "message": {
@@ -172,3 +173,16 @@ def test_prompts_cache_what_repeats_and_other_models_get_plain_text(tmp_path, mo
     players.ask(game.player("Alice"), "Act.", schema, {})
     assert isinstance(bodies[-1]["messages"][0]["content"], str)
     assert bodies[-1]["messages"][0]["content"] == text_of(system["content"])
+
+
+def test_each_model_has_its_own_default_effort(monkeypatch):
+    client = OpenRouterClient("test-key")
+    bodies: list[dict] = []
+    monkeypatch.setattr(client, "_post", lambda body: bodies.append(body) or REFUSAL)
+    client.chat(Model.SONNET_5_5, [])
+    client.chat(Model.QWEN_3_8_MAX, [])  # high runs past the token cap
+    client.chat(Model.QWEN_3_8_MAX, [], effort="low")  # a spec's own effort wins
+    assert [b["reasoning"]["effort"] for b in bodies] == ["high", "medium", "low"]
+    assert resolve_effort(ModelSpec(Model.QWEN_3_8_MAX), None).effort == "medium"
+    assert resolve_effort(ModelSpec(Model.QWEN_3_8_MAX), "xhigh").effort == "xhigh"  # --effort
+    assert resolve_effort(ModelSpec(Model.OPUS_5_5, "low"), "xhigh").effort == "low"
