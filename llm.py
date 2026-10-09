@@ -207,8 +207,19 @@ class LLMClient(Protocol):
         ...
 
 
-# Makers whose models cache only prompt prefixes ending at a cache_block (checked 2026-10-09: without
-# one, Claude wrote the cache on every call and never read it, and Gemini didn't cache at all).
+# Makers whose models cache only prompt prefixes ending at a cache_block. Results of real calls on
+# 2026-10-09 (repeated ~5-9k-token prompts through each maker's own provider; no need to re-test soon):
+# - Claude (Haiku 5.5): caches up to marked blocks only. With just one mark at the end of the prompt it
+#   wrote the cache on every call (1.25x input price) and never read it, since history grows mid-prompt.
+#   Marks on shared parts (the rules) hit across players.
+# - Gemini (3.8 Flash): no implicit caching at all; with a mark, ~100% hits, cheap writes. Seems to use only
+#   the last mark (a different player's call hit only its own block).
+# - OpenAI (Luna, 6.1 Sol): automatic, but only the whole system message is reused, never part of a later
+#   message, and content blocks or splitting into more messages don't change that. Writes cost 1.25x.
+#   cache_control is accepted and ignored.
+# - Qwen 3.8 Max, Kimi K3: automatic prefix caching, ~5120 of ~5300 tokens hit on the second call.
+# - Grok 4.7: unreliable. Repeats of an identical prompt hit 1152, 0 or the full ~6270 tokens at random
+#   (likely depends on which server takes the request); prompt_cache_key and `user` didn't help.
 CACHE_MARKERS = ("anthropic", "google")
 
 
