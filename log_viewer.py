@@ -152,9 +152,11 @@ details.phase.night > summary { color:var(--c-hidden); }
 .errors ul { margin:4px 0; padding-left:20px; } .no-errors { margin:8px 0; }
 .n { font-weight:650; } .n.Village { color:var(--village); } .n.Yakuza { color:var(--yakuza); }
 .n.Neutral { color:var(--neutral); }
-/* role icons (roles/icons/*.svg), drawn in the name's faction color: each role's class sets --icon */
-.n.ic::before { content:""; display:inline-block; width:1.05em; height:1.05em; margin-right:2px; vertical-align:-0.15em;
-  background:currentColor; -webkit-mask:var(--icon) center/contain no-repeat; mask:var(--icon) center/contain no-repeat; }
+/* role icons (roles/icons/*.svg) in full color, each on a badge tinted by faction: each role's class sets --icon */
+.n.Village { --tint:#dcfce7; --edge:#4ade80; } .n.Yakuza { --tint:#fee2e2; --edge:#f87171; }
+.n.Neutral { --tint:#fef3c7; --edge:#fbbf24; }
+.n.ic::before { content:""; display:inline-block; width:1.35em; height:1.35em; margin-right:3px; vertical-align:-0.35em;
+  border-radius:5px; border:1px solid var(--edge); background:var(--icon) center/80% no-repeat, var(--tint); }
 body.no-icons .n.ic::before { display:none; }
 details.call { background:var(--call); border-radius:6px; margin:2px 0 2px 24px; padding:2px 8px; }
 details.call > summary { cursor:pointer; color:var(--muted); font-size:13px; }
@@ -261,7 +263,7 @@ def name_classes(role: str) -> str:
 
 
 def icons_css() -> str:
-    """CSS rules giving each role class its icon, inlined as data URIs (all of them, about 15 KB) so the page
+    """CSS rules giving each role class its icon, inlined as data URIs (all of them, about 25 KB) so the page
     stays one file. Icons come from the repo's roles/icons/, so every log shows the same icons until those
     files change."""
     rules = []
