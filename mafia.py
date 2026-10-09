@@ -509,6 +509,12 @@ def main() -> None:
         path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return
+    if args.sync and update_tips == DEFAULT_TIPS:  # a PC game: cloud games' lessons go in the tips first
+        try:
+            sync_logs.catch_up(sync_logs.Repo(), LOG_DIR, DEFAULT_TIPS.parent, args.moderator)
+        except Exception as e:  # the game can still run with the tips it has
+            print_alert("sync_error", f"getting cloud games' logs failed: {type(e).__name__}: {e}; "
+                        "`uv run sync_logs.py pull` retries")
     with synced(args.sync and not args.mock, update_tips):
         play_game(client, models, moderator, roles, seed, debrief=args.debrief,
                   flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,

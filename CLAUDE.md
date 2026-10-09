@@ -29,7 +29,9 @@ environment, but their sandbox is deleted afterwards, so the logs go through the
 On the PC, `uv run sync_logs.py pull` copies new logs into logs/ (a game pushed again, e.g. after a
 mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback files), adds their lessons to
 the tips notebook and publishes the new sheet to the branch (`--no-tips` only copies logs). A PC game also
-publishes the sheet when it updates it, so cloud games get it without a pull.
+publishes the sheet when it updates it, so cloud games get it without a pull. A PC game (with `--sync`, the
+default) also does the pull's first part before it starts (`sync_logs.catch_up`: new cloud logs, and their
+lessons into the notebook with the game's moderator model), so the tips don't fall behind cloud games.
 `lessons.jsonl` and `alerts_reviewed.json` are merged, not overwritten; mock games are never synced.
 tips/ (sheet, notebook, and old sheets in history/; the notebook's old versions are in git history) is also
 tracked on main, so a new PC can pull it and keep building the notebook. A PC game that updates the tips (and

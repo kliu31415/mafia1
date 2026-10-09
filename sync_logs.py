@@ -383,15 +383,8 @@ def main() -> None:
             print(f"Pushed {len(changed)} files to {repo.remote}/{repo.branch}" + "".join(f"\n  {c}" for c in changed)
                   if changed else f"Nothing new to push to {repo.remote}/{repo.branch}")
         elif args.cmd == "pull":
-            written, kept = pull(repo, log_dir)
-            print(f"Copied {len(written)} files into {log_dir}" + "".join(f"\n  {w.name}" for w in written))
-            for name in kept:
-                print(f"ALERT sync_error: kept {name}: the local copy differs from the branch's (not overwritten)")
-            # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
-            games = sorted(log_dir.glob("game_*.jsonl"))
-            if any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written) and not args.no_tips:
-                rebase_tips(repo, tips_dir, log_dir)  # the build below adds every game it lacks anyway
-                update_tips(games, tips_dir, args.tips_model)
+            if not catch_up(repo, log_dir, tips_dir, None if args.no_tips else args.tips_model):
+                print(f"No new logs on {repo.remote}/{repo.branch}")
             if not args.no_tips and (tips_dir / "tips.md").exists():
                 commit_tips(repo, tips_dir)
             if not args.no_tips:
@@ -408,6 +401,23 @@ def main() -> None:
     except RuntimeError as e:
         print(f"ALERT sync_error: {e}", file=sys.stderr)
         sys.exit(1)
+
+
+def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None) -> list[Path]:
+    """Copies new logs from the branch (cloud games') into log_dir and, unless tips_model is None, adds their
+    lessons to the tips notebook (main's first, if another PC added games to it). `pull` does this, and so
+    does a PC game before it starts, so the notebook never falls behind cloud games. Returns the files
+    copied. Raises RuntimeError when git fails."""
+    written, kept = pull(repo, log_dir)
+    if written:
+        print(f"Copied {len(written)} files into {log_dir}" + "".join(f"\n  {w.name}" for w in written))
+    for name in kept:
+        print(f"ALERT sync_error: kept {name}: the local copy differs from the branch's (not overwritten)")
+    if tips_model and any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written):
+        rebase_tips(repo, tips_dir, log_dir)  # the build below adds every game it lacks anyway
+        # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
+        update_tips(sorted(log_dir.glob("game_*.jsonl")), tips_dir, tips_model)
+    return written
 
 
 def update_tips(games: list[Path], tips_dir: Path, model: str) -> None:

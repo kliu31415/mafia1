@@ -150,9 +150,11 @@ def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch):
     monkeypatch.setattr(mafia, "OpenRouterClient", lambda *a, **kw: None)
     monkeypatch.setattr(mafia, "load_api_key", lambda: "key")
     monkeypatch.setattr(sync_logs, "after_game", lambda log_dir, tips_dir, cloud: calls.append(("sync", tips_dir, cloud)))
+    monkeypatch.setattr(sync_logs, "catch_up", lambda repo, log_dir, tips_dir, model: calls.append(("catch_up", tips_dir)))
     for cloud, argv, expected in [
             ("true", [], [("play", None), ("sync", None, True)]),
-            ("", [], [("play", mafia.DEFAULT_TIPS), ("sync", mafia.DEFAULT_TIPS.parent, False)]),
+            ("", [], [("catch_up", mafia.DEFAULT_TIPS.parent), ("play", mafia.DEFAULT_TIPS),
+                      ("sync", mafia.DEFAULT_TIPS.parent, False)]),  # cloud games' lessons go in first
             ("", ["--no-sync"], [("play", mafia.DEFAULT_TIPS)]),
             ("", ["--mock"], [("play", mafia.MOCK_TIPS)])]:
         monkeypatch.setenv("CLAUDE_CODE_REMOTE", cloud)
@@ -247,3 +249,16 @@ def test_a_pc_takes_main_s_notebook_when_another_pc_added_games_and_adds_its_own
     assert "game_4.jsonl is in this PC's tips notebook" in capsys.readouterr().err
     (tips / "tips_notebook.json").write_text(json.dumps({"games": ["game_1", "game_2", "game_3"]}))
     assert sync_logs.rebase_tips(pc, tips, logs) == []  # ours has all of main's games: nothing to take
+
+
+def test_a_pc_game_first_adds_new_cloud_games_to_the_tips(machines, monkeypatch):
+    cloud, pc = machines["cloud"], machines["pc"]
+    (cloud.root / "logs").mkdir()
+    (cloud.root / "logs" / "game_1.jsonl").write_text("{}")
+    sync_logs.push(cloud, cloud.root / "logs")
+    built: list = []
+    monkeypatch.setattr(sync_logs, "update_tips", lambda games, tips_dir, model: built.append(([g.name for g in games], model)))
+    logs, tips = pc.root / "logs", pc.root / "tips"
+    assert [w.name for w in sync_logs.catch_up(pc, logs, tips, "opus-5.5")] == ["game_1.jsonl"]
+    assert built == [(["game_1.jsonl"], "opus-5.5")]
+    assert sync_logs.catch_up(pc, logs, tips, "opus-5.5") == [] and len(built) == 1  # nothing new: no build
