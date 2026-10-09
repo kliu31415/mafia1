@@ -1,0 +1,47 @@
+Setup:
+  Alice    seat 1  Accountant        openai/gpt-6-luna-pro
+  Bob      seat 2  Oracle            openai/gpt-6-luna-pro
+  Carol    seat 3  Diviner           deepseek/deepseek-v4.1-flash
+  Dave     seat 4  Vigilante         google/gemini-3.8-flash
+  Erin     seat 5  Sheriff           anthropic/claude-haiku-5.5
+  Frank    seat 6  Party Animal      openai/gpt-6-luna
+  Grace    seat 7  Cardinal          openai/gpt-6-luna-pro
+  Heidi    seat 8  Clerk             google/gemini-3.8-flash
+  Ivan     seat 9  Arsonist          openai/gpt-6-luna
+  Judy     seat 10 Surveyor          openai/gpt-6-luna
+  Mallory  seat 11 Mortician         anthropic/claude-haiku-5.5
+  Niaj     seat 12 Medic             deepseek/deepseek-v4.1-flash
+  Olivia   seat 13 Tracker           anthropic/claude-haiku-5.5
+  Peggy    seat 14 Jester            google/gemini-3.8-flash
+  Katana starts with Mallory
+Tips from past games given to: Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Olivia (tips/tips.md), Peggy (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+14 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Carol (public): Morning all. Day 1, no info, so I won't waste a trial on a coin flip. Suggestion: each of us says whether we have a night action, not the full role. It gives us something to compare later without exposing much. I'll go first: I have a night action, no claim yet.
+(to Carol, Frank) Carol -> Frank (private): Day 1 is mostly noise. If you notice anything off, I'd rather trade notes privately than shout it public. Deal?
+Dave (public): Narrowing down who has a night action mostly helps a Ritualist narrow their pool. We shouldn't do a mass soft-claim on Day 1.
+Frank (public): Agree with Dave: no soft-claim round; it narrows the Ritualist's guesses. Let's avoid blind trials and note who pushes them.
+Grace (public): Agreed with Dave and Frank: action soft-claims help a Ritualist narrow guesses. Let's avoid claims and blind nominations; share concrete reads or suspicions instead.
+Heidi (public): I agree with the pushback. Splitting the town into action vs non-action gives a Ritualist easy targets on Day 1. Let's hear introductions and natural reads instead of structured claims.
+Ivan (public): Agree: avoid soft-claims and random trials. Let's hear natural reads and flag anyone pushing unsupported certainty.
+Judy (public): Agreed, no soft-claim round or blind trial. Carol, what made you suggest it, and what was the private message to Frank about? Not enough for a nomination, but worth hearing.
+Mallory (public): Agree there should be no blind trials yet. I'd rather hear more concrete reads before anyone pushes a nomination.
+(to Carol, Mallory) Mallory -> Carol (private): Keep your role talk vague from here. No more soft-claim pushes.
+Niaj (public): Agreed, no soft-claim round — it mostly feeds a Ritualist. Carol, still waiting on your answer about the Frank PM and Mallory's PM to you. Let's hear the rest of the circle before any nomination.
+(to Frank, Niaj) Niaj -> Frank (private): Carol PM'd you right before the soft-claim idea got shut down. Did it change your read of her? I'll keep this between us.
+Olivia (public): Agree with no soft-claims yet. The PM cluster is worth noting: Carol to Frank, Mallory to Carol, Niaj to Frank. Carol and Frank, what were those about?
+Peggy (public): Everyone echoing the exact same talking point against Carol feels a bit performative. Her suggestion was clearly flawed, but piling on before Alice, Bob, and Erin have even spoken seems like easy cover.
+Alice (public): No soft-claim round; it gives a Ritualist a narrower pool. Peggy's right that the pile-on is quick, though the objection is sound. Carol and Frank, explain the PMs; let's hear Bob and Erin before drawing conclusions.
+Bob (public): Carol's suggestion was risky, but the near-unison objection before the remaining speakers is notable too. I'd like Carol and Frank to explain the PMs; the messages alone aren't evidence. No blind trial yet—let's hear the rest of the circle.
+Carol (public): Fair pushback; I'll drop the soft-claim idea. My PM to Frank was just: rather trade notes privately than shout it public. Mallory privately nudged me to drop the push. That's the whole story — no hidden claims. Let's get to real reads.
+(to Carol, Frank) Carol -> Frank (private): Deal still stands? What did Niaj want with you?
+Dave (public): Carol immediately sent a second PM to Frank after claiming that was the whole story. Frank, what's your take on those exchanges? Also noting Erin passed entirely in round 1.
+Erin (public): Erin here, no reads yet and no claim. The one thing I want answered: Carol sent Frank two PMs, Niaj also PMed Frank, and Mallory nudged Carol. Frank, what was in those? Carol, your 'whole story' skipped why you PMed Frank twice. Let's get specifics before any nomination.
+Frank (public): Carol's first PM proposed private note-trading; her second asked if that still stood and what Niaj wanted. Niaj asked whether Carol's PM changed my read, adding he'd keep it between us. Neither gave me evidence; I have no firm read. I see no reason to keep these mundane contents secret.
+Grace (public): Frank's account makes the gap concrete: Carol called it the whole story but omitted the follow-up. Worth tracking, not treating ordinary PMs as proof. Niaj, why ask Frank to keep his read between you two? Let's hear individual reads before anyone nominates.
+Heidi (public): Thanks to Frank for being transparent about the PMs; the contents sound fairly mundane rather than conspiratorial. Niaj wanting to keep reads private is a bit odd, but overall let's move past the opener. Who is actually pinging people on substance?
+Ivan (public): Frank's details explain the PMs, though Carol's “whole story” did omit the follow-up. Niaj asking to keep his read private is also worth noting. Neither seems enough for a trial alone; I'd rather hear concrete reads.
+Judy (public): Frank’s account makes Carol’s omission look minor but worth tracking; the PM contents themselves sound mundane. Niaj, the “keep it between us” part is the more unusual detail—what were you hoping to learn? Peggy’s point about the quick pile-on is fair too. I’m not seeing a trial case yet.
+Mallory (public): Niaj's 'keep it between us' request is the strongest odd detail so far. I want his answer before anyone goes to trial.
