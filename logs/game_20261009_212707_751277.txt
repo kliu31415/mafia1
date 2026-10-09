@@ -399,34 +399,97 @@ Katana: Heidi holds it and attacks Niaj.
 (to Grace) Moderator (private): You were attacked by the Vigilante.
 (to Heidi) Moderator (private): Yakuza actions tonight: Heidi held the Katana and attacked Niaj with it. Heidi used no other action (clerk token unspent; 1 clerk token left). Your Katana attack on Niaj succeeded. You still hold the Katana.
 [Moderator summary] Night 4: Frank (Party Animal) role-blocked Niaj, so Niaj's free Standard protection on Erin didn't happen. Heidi (Clerk, holding the Katana) attacked Niaj with the Katana (Standard vs. None), and Niaj died. Dave spent 1 Vigilante token on a Basic shot at Grace (None defense), and Grace (Cardinal) died; Dave has 1 token left. Grace's Cardinal effect: a random living Good player is dealt a Divine Attack at the start of Day 5. The random pick from Alice/Dave/Erin/Frank/Judy was Alice, who died (cause Cardinal); this was applied now and flagged. Erin's check on Heidi came back Not Evil because the Katana holder reads Good. Alice's audit on Grace: 0 tokens. Heidi didn't rig the vote (still has 1 clerk token). Judy and Peggy didn't act. Living at dawn: Dave, Erin, Frank, Heidi, Judy, Peggy. No win yet.
-
-===== DAY 5 =====
-Grace died (killed by Vigilante). Their role was Cardinal. Last will: 'Carol’s reveal as Diviner and Mallory’s reveal as Mortician confirm both were Yakuza, despite their Ex-Con and Jester claims. Erin’s Evil results on both were accurate, strongly supporting her Sheriff claim. Bob’s Oracle flip supports Olivia’s Tracker claim; Olivia’s results establish visits, not alignments.\n\nNiaj’s Medic claim is supported by Olivia tracking him to Erin and Alice’s audit showing one token after N2, though neither claim is conclusive alone. Judy’s N2 survey put an Arsonist among Ivan, Mallory, and Niaj. With Mallory confirmed Yakuza and Niaj’s token count, Ivan is the leading Arsonist suspect if those reports are genuine; keep this separate from the remaining Yakuza threat. The Katana killed Olivia on N3, but that does not identify its holder. Carol privately urged me to vote Innocent on Mallory, consistent with their confirmed factional connection.'
-Niaj died (killed by Katana). Their role was Medic. Last will: "Niaj — Medic (Good), 0 tokens left. N1 Std Erin (free), N2/N3 Strong Erin. I can still give free Standard protection each night, and I'll keep covering Erin (Standard stops the Katana).\n\nErin is a genuine Sheriff: her N1 Carol Evil and N2 Mallory Evil both flipped Yakuza (Diviner, Mortician). Trust her scans.\n\nIvan is the Arsonist: Judy's survey named an Arsonist among Ivan/Mallory/me; Mallory flipped Mortician; Alice confirmed I hold a token. Hang him.\n\nRemaining Yakuza: top read Grace — voted Innocent on both Carol and Mallory, said she leaned Guilty on Mallory then voted Innocent, and Carol PM'd her mid-trial. Second Heidi (Mallory's 7 PMs D2). Town core: Erin, Frank, Judy, Alice, Dave, Peggy.\n\nIf I die, protect Erin's scans and hang Grace."
-Alice died (killed by Cardinal). Their role was Accountant. Last will: 'I am Alice, Good Accountant. My audits found: N1 Carol had 0 tokens; N2 Niaj had 1; N3 Ivan had 0. These are token counts, not role or alignment checks.\n\nCarol flipped Diviner and Mallory flipped Mortician; both are Yakuza roles. Erin’s Evil results on Carol (N1) and Mallory (N2) match those flips, strongly supporting her Sheriff claim, though they do not prove it. Niaj’s one token after N2 fits his Medic claim and claimed Strong protection; Olivia’s N2 track confirms he visited Erin, not his role.\n\nJudy’s N2 survey placed an Arsonist among Ivan, Mallory, and Niaj. Mallory was Mortician, and Niaj had a token (Arsonists have none), so Ivan is the leading Arsonist suspect if Judy’s result is truthful. My audit found Ivan had 0 tokens, consistent with either Arsonist or Vanilla and proving nothing. Ivan’s Vanilla claim remains unverified. Keep token counts and claimed roles distinct from proof, and continue looking for any surviving Yakuza.'
-Frank died (killed by Cardinal's curse). Their role was Party Animal. Last will: 'I am Frank, the Good Party Animal. I visited and role-blocked Carol on Nights 1, 2, and 3. Blocking her stopped her actions; it did not by itself prove her alignment. Carol revealed as Diviner (Yakuza), so her Ex-Con claim was false. Erin’s Evil results on Carol and Mallory match their revealed Yakuza roles, substantially supporting her Sheriff claim.\n\nBecause I blocked Carol on Night 3, she could not have performed the Katana attack that killed Olivia that night. Another Yakuza held and used the Katana. Olivia’s confirmed Tracker results were Erin visiting Carol on N1 and Niaj visiting Erin on N2; these establish visits, not roles or alignments.\n\nMallory flipped Mortician (Yakuza), after claiming Jester. Judy’s N2 Surveyor result put an Arsonist among Ivan, Mallory, and Niaj. Mallory’s flip removes her; Alice’s reported N2 audit found Niaj had a token, which an Arsonist cannot have. If those reports are accurate, Ivan is the remaining candidate. Niaj’s Medic and Alice’s Accountant claims remain unverified. The remaining living Yakuza and Katana holder are still unknown.'
 [Night check] Night 4: errors. [high, Cardinal / R12 (dawn effects are handled by code), wrong death] The night itself was resolved correctly. Frank blocked Niaj, so Erin got no protection. Heidi's Katana (Standard) killed Niaj (Defense None). Dave's Basic shot killed Grace (Defense None), leaving Dave 1 token. Erin's check on Heidi correctly read Not Evil because Heidi held the Katana. Alice's audit correctly showed Grace with 0 tokens. The error is Grace's Cardinal revenge. The rules deal that Divine Attack at the start of the following Day, and dawn effects like this are carried out by code, not the moderator. The moderator nonetheless drew a victim with random_choice and killed Alice as part of Night 4's deaths. That is a death outside the night's resolution, and it risks a duplicate or conflicting Cardinal kill when code applies the dawn effect. Alice should not have been killed during night resolution.
 [ERROR night_check_issue] night 4: The night itself was resolved correctly. Frank blocked Niaj, so Erin got no protection. Heidi's Katana (Standard) killed Niaj (Defense None). Dave's Basic shot killed Grace (Defense None), leaving Dave 1 token. Erin's check on Heidi correctly read Not Evil because Heidi held the Katana. Alice's audit correctly showed Grace with 0 tokens. The error is Grace's Cardinal revenge. The rules deal that Divine Attack at the start of the following Day, and dawn effects like this are carried out by code, not the moderator. The moderator nonetheless drew a victim with random_choice and killed Alice as part of Night 4's deaths. That is a death outside the night's resolution, and it risks a duplicate or conflicting Cardinal kill when code applies the dawn effect. Alice should not have been killed during night resolution.
+[Resumed from the checkpoint at the start of day 5]
+
+===== DAY 5 =====
+Grace died (killed by Vigilante). Their role was Cardinal. Their last will (written by them): "Carol’s reveal as Diviner and Mallory’s reveal as Mortician confirm both were Yakuza, despite their Ex-Con and Jester claims. Erin’s Evil results on both were accurate, strongly supporting her Sheriff claim. Bob’s Oracle flip supports Olivia’s Tracker claim; Olivia’s results establish visits, not alignments.
+
+Niaj’s Medic claim is supported by Olivia tracking him to Erin and Alice’s audit showing one token after N2, though neither claim is conclusive alone. Judy’s N2 survey put an Arsonist among Ivan, Mallory, and Niaj. With Mallory confirmed Yakuza and Niaj’s token count, Ivan is the leading Arsonist suspect if those reports are genuine; keep this separate from the remaining Yakuza threat. The Katana killed Olivia on N3, but that does not identify its holder. Carol privately urged me to vote Innocent on Mallory, consistent with their confirmed factional connection."
+Niaj died (killed by Katana). Their role was Medic. Their last will (written by them): "Niaj — Medic (Good), 0 tokens left. N1 Std Erin (free), N2/N3 Strong Erin. I can still give free Standard protection each night, and I'll keep covering Erin (Standard stops the Katana).
+
+Erin is a genuine Sheriff: her N1 Carol Evil and N2 Mallory Evil both flipped Yakuza (Diviner, Mortician). Trust her scans.
+
+Ivan is the Arsonist: Judy's survey named an Arsonist among Ivan/Mallory/me; Mallory flipped Mortician; Alice confirmed I hold a token. Hang him.
+
+Remaining Yakuza: top read Grace — voted Innocent on both Carol and Mallory, said she leaned Guilty on Mallory then voted Innocent, and Carol PM'd her mid-trial. Second Heidi (Mallory's 7 PMs D2). Town core: Erin, Frank, Judy, Alice, Dave, Peggy.
+
+If I die, protect Erin's scans and hang Grace."
+Alice died (killed by Cardinal). Their role was Accountant. Their last will (written by them): "I am Alice, Good Accountant. My audits found: N1 Carol had 0 tokens; N2 Niaj had 1; N3 Ivan had 0. These are token counts, not role or alignment checks.
+
+Carol flipped Diviner and Mallory flipped Mortician; both are Yakuza roles. Erin’s Evil results on Carol (N1) and Mallory (N2) match those flips, strongly supporting her Sheriff claim, though they do not prove it. Niaj’s one token after N2 fits his Medic claim and claimed Strong protection; Olivia’s N2 track confirms he visited Erin, not his role.
+
+Judy’s N2 survey placed an Arsonist among Ivan, Mallory, and Niaj. Mallory was Mortician, and Niaj had a token (Arsonists have none), so Ivan is the leading Arsonist suspect if Judy’s result is truthful. My audit found Ivan had 0 tokens, consistent with either Arsonist or Vanilla and proving nothing. Ivan’s Vanilla claim remains unverified. Keep token counts and claimed roles distinct from proof, and continue looking for any surviving Yakuza."
+Frank died (killed by Cardinal's curse). Their role was Party Animal. Their last will (written by them): "I am Frank, the Good Party Animal. I visited and role-blocked Carol on Nights 1, 2, and 3. Blocking her stopped her actions; it did not by itself prove her alignment. Carol revealed as Diviner (Yakuza), so her Ex-Con claim was false. Erin’s Evil results on Carol and Mallory match their revealed Yakuza roles, substantially supporting her Sheriff claim.
+
+Because I blocked Carol on Night 3, she could not have performed the Katana attack that killed Olivia that night. Another Yakuza held and used the Katana. Olivia’s confirmed Tracker results were Erin visiting Carol on N1 and Niaj visiting Erin on N2; these establish visits, not roles or alignments.
+
+Mallory flipped Mortician (Yakuza), after claiming Jester. Judy’s N2 Surveyor result put an Arsonist among Ivan, Mallory, and Niaj. Mallory’s flip removes her; Alice’s reported N2 audit found Niaj had a token, which an Arsonist cannot have. If those reports are accurate, Ivan is the remaining candidate. Niaj’s Medic and Alice’s Accountant claims remain unverified. The remaining living Yakuza and Katana holder are still unknown."
 Speaking order today goes around the circle in seat order, starting with Heidi.
 5 players are alive, so a nomination needs 3 Yes votes (rules R4).
-Heidi (public): Devastating night. The Vigilante shot Grace, flipping Cardinal and triggering the cascade that killed Alice and Frank, while the Katana took Niaj. We are down to 5 alive, so any misstep ends the game. We need Erin's N3 and N4 scans, Judy's survey results, and the Vigilante between Dave and Peggy to step forward before anyone considers nominating.
-Judy (public): Heidi, Mallory was confirmed Yakuza and sent you seven Day 2 PMs. Your Innocent vote on Carol and Guilty on Mallory need context; explain the messages.
-Judy nominated Heidi. Everyone now votes Yes/No simultaneously.
-Nomination votes on Heidi: Yes - Judy, Dave, Erin; No - Peggy, Heidi.
-Heidi is put on trial (3 Yes).
-[Claim] Heidi: Vanilla Villager
-Heidi (public): Look at the voting ledger before throwing this game away. On Day 3, Mallory was executed 7 to 6. I cast the 7th Guilty vote that hanged her. If I were Yakuza with Mallory, I vote Innocent like Carol did and Mallory walks free. Why would any Yakuza execute their own partner when the town was completely split? Furthermore, on Day 2 I immediately revealed Mallory’s unsolicited PMs to the public in real time—she was desperately lobbying me.
-
-I am Vanilla Villager. Judy put me on trial before Erin even posted her N3 and N4 results. Erin, if you scanned me, you already know I come back clean. With Grace flipping Cardinal and wiping out Alice and Frank, the remaining Yakuza is hiding between the unverified slots. Dave jumped on my nomination without waiting for Erin’s or Judy’s reports. Look at the math: execute me today and evil wins. Vote Innocent.
-Judy (public): Her Mallory vote doesn’t clear her: she was one of seven, and all four of us now accusing her also voted Guilty; joining an exposed teammate’s execution is easy cover. The sharper link is Mallory’s seven Day 2 PMs lobbying Heidi to spare Carol, followed by Heidi’s Innocent vote on Carol. I would not acquit on the bus vote.
-Peggy (public): Rushing Heidi to the gallows before Erin even gives her N3 and N4 results is reckless. Remember, Heidi cast the 7th Guilty vote on Mallory on Day 3 when an Innocent or abstaining vote would have spared her teammate at 6-6. Why would Yakuza bus their partner when Mallory was one vote from surviving?
-
-We have three nomination trials available today. Executing Heidi right now without hearing Erin's scans or Judy's survey throws away our mechanical leads. If Heidi is Town, mislynching her here hands the game to evil. We should vote Innocent, let Erin and Judy put all results on the table, and proceed with full information.
-[Claim] Dave: Vigilante. Shot Carol N3, shot Grace N4. 1 token left.
-Dave (public): I am claiming Vigilante. I shot Carol on N3 (flipping Diviner) and Grace on N4 (flipping Cardinal). With Judy confirmed Surveyor and Erin confirmed Sheriff, our town core is completely locked, which isolates the final Yakuza strictly between Heidi and Peggy.
-
-Erin speaks right after me and has both her N3 and N4 scans ready. Erin, put both targets and results on record now. If you cleared Heidi or scanned Peggy Evil, we acquit Heidi and pivot to Peggy. If you scanned Heidi Evil, Heidi is executed today. Let's hear Erin's results before the vote.
+Heidi (public): A brutal night—a Vigilante shot on Grace triggered the Cardinal's death effect, taking Alice and Frank alongside Niaj falling to the Katana. We are down to five alive, meaning we cannot afford a misstep. Erin, please give us your N3 and N4 Sheriff scans immediately, and Judy, please report any survey results. Let's gather all night information before discussing nominations.
+Judy (public): Both surveys matched revealed roles (Frank, Ivan); they clear no living player. Correction to my will: Dave voted Guilty on Carol; I voted Innocent. Erin’s two Evil results matched Yakuza flips. Before we nominate with five alive, Heidi, please explain Mallory’s seven D2 PMs, and everyone state a claim and top suspect. PMs alone aren’t proof.
+[Claim] Peggy: Vanilla Villager. No night actions.
+Peggy (public): Claiming Vanilla Villager. With five alive, nobody should nominate until Erin gives us her N3 and N4 scans. Dave appears to be the Vigilante who took down Carol and Grace. Heidi has heavy baggage from Mallory's PMs, but let's hear what Erin and Dave have to say before making any move.
+[Claim] Dave: Vigilante. N3 shot Carol (Diviner), N4 shot Grace (Cardinal). 1 token left.
+Dave (public): I am the Vigilante. I shot Carol on N3 and Grace on N4 following Niaj's read; Grace flipping Cardinal caused the collateral hits. With me, Judy, and Erin confirmed, Town holds a clean 3-player majority. The final Yakuza is strictly Heidi or Peggy. No nomination yet—let's hear Erin's N3 and N4 scans right now.
 [Claim] Erin: Sheriff. N1: Carol Evil. N2: Mallory Evil. N3: Niaj Not Evil. N4: Heidi Not Evil.
-Erin (public): Erin, Sheriff. Full record: N1 Carol Evil (Diviner, dead), N2 Mallory Evil (Mortician, dead), N3 Niaj Not Evil (consistent with Medic), N4 Heidi Not Evil. A Katana holder reads Good that night, and Niaj died to the N4 Katana, so Heidi's Not Evil does not clear her. Heidi: seven Day 2 PMs from Mallory, Innocent on Carol, and a Guilty on Mallory that you call the decisive vote don't add up to a clean record. Peggy: you defended Carol early and now argue for Heidi's innocence. I'm voting Guilty on Heidi.
-Heidi (public): Dave, hold yourself to your own exact words from two minutes ago: 'If you cleared Heidi or scanned Peggy Evil, we acquit Heidi and pivot to Peggy. If you scanned Heidi Evil, Heidi is executed today.' Erin did NOT scan me Evil—she scanned me Not Evil! Erin is theorizing Katana concealment, but that equally applies to Peggy, who has zero scans, zero checks, and defended Carol on Day 1. Look at Day 3: Mallory hung 7 to 6. If I were Yakuza, a single Innocent vote from me saves Mallory 6-7. Why would Yakuza execute their own partner on a knife-edge vote? Voting Guilty on me here is a blind gamble when an acquittal lets us hear Judy's N3/N4 surveys and put unexamined Peggy on the stand with trials to spare. If you hang me, town throws the game away. Vote Innocent, acquit, and look at Peggy.
-[ERROR player_error] Erin (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Erin (public): Erin, Sheriff. N3 result: Niaj Not Evil, which fits his Good Medic claim. N4 result: Heidi Not Evil. Caveat: a Katana holder reads Not Evil on the night they hold it, and Niaj died to the Katana on N4, so a living Yakuza held it that night. Mallory sent Heidi seven PMs on Day 2 during Carol's trial, and Heidi voted Innocent on Carol then. Judy and Peggy both asked her to explain. I'm nominating Heidi. Heidi, answer now.
+Erin nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Erin, Judy, Dave; No - Heidi, Peggy.
+Heidi is put on trial (3 Yes).
+[Claim] Heidi: Vanilla Villager. No night actions.
+Heidi (public): Look at the hard mechanics and voting records before throwing away the game on a theory. First, Erin scanned me Not Evil last night. To push me, Erin has to construct a theory that I specifically held the Katana last night, when the straightforward explanation is simply that I am Village.
+
+Second, look at the Day 3 trial of Mallory. The vote was 7 Guilty to 6 Innocent—exactly 7 needed. I voted Guilty on Mallory. If I were her Yakuza partner, all I had to do was vote Innocent and Mallory would have walked free. No Yakuza executes their own partner on a knife-edge 1-vote margin.
+
+Third, look at the PM ledger: Mallory sent 7 PMs to me on Day 2. How many did I send in return? Zero. I explicitly told the town on Day 2 that Mallory was lobbying me to vote Innocent, which I rejected, and then I cast the deciding vote to hang her.
+
+Peggy claimed Vanilla and has never been checked by Erin. I scan Not Evil and voted out evil. Do not hang a Not Evil result.
+Judy (public): Erin’s Not Evil scan does not clear Heidi: a Yakuza holding the Katana reads Good that night, and the Katana killed Niaj on N4. That makes Heidi a live suspect, not proven guilty. Her decisive Mallory vote is counterevidence, but could be bussing; I favor Guilty.
+Peggy (public): Dave, pause and look at the math before following Erin and Judy. Day 3 Mallory was convicted with exactly 7 Guilty votes—the bare minimum required. Heidi was the 7th Guilty vote. If Heidi were Yakuza, voting Innocent would have saved Mallory 6-7. No Yakuza deliberately hangs their partner on a knife-edge vote when a single vote saves them. Furthermore, Erin's scan on Heidi is literally Not Evil. Stacking a Katana-holder theory on top of ignoring that 7-6 vote record is how Town misfires again. I am voting Innocent.
+Dave (public): Votes are simultaneous: during Mallory's trial, Alice, Frank, Grace, and Ivan all publicly stated they were voting Guilty before submitting Innocent. To Yakuza, Mallory was doomed, making bussing standard. Look at Day 2: Peggy voted Guilty on Carol alongside confirmed town (me, Erin, Niaj, Olivia), while Heidi voted Innocent. With only one Yakuza alive on N4, that Yakuza held the Katana to kill Niaj, and the Katana holder mechanically reads Not Evil (R19). Heidi is the final Yakuza. Vote Guilty.
+Erin (public): Erin, Sheriff: I'm voting Guilty on Heidi. Her Day 1 push that I was an investigator, the 7 Mallory PMs on Day 2, and her decisive Guilty on an already-doomed Mallory look like bussing a partner. Her Not Evil only clears her if she wasn't holding the Katana on N4. Peggy, why are you defending her?
+Heidi (public): Judy, you correctly identified that my decisive vote on Mallory is real counterevidence and that I am not proven guilty.
+
+Dave’s case against me requires stacking multiple extreme assumptions: that I intentionally sacrificed Mallory on a knife-edge 7–6 margin where a single Innocent vote would have saved her, and that my Not Evil result is a convenient Katana disguise.
+
+Look at the alternative: Peggy is completely unscanned, claimed Vanilla, and has faced zero pressure. If you hang me—a player who literally scanned Not Evil—and I flip Vanilla Villager, Town loses the game on the spot.
+
+Voting Innocent does not clear me forever; it prevents an irreversible mistake and lets us put Peggy on trial today to hear her defense. If Peggy cannot answer for her record, you hang the unchecked player. Don’t bet the game on a convoluted theory when you can test Peggy first.
+Trial votes on Heidi: Guilty - Dave, Erin, Judy; Innocent - Heidi, Peggy.
+Heidi is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Heidi died (executed by hanging). Their role was Clerk. Their last will (written by them): "Heidi, Vanilla Villager (Good). Erin scanned me Not Evil on N4. I voted Guilty on Mallory on D3 (deciding 7th vote; would never do this as Yakuza) and received 0-reply PMs from Mallory. If I am executed, Peggy is the remaining unchecked player. Look at Peggy and avoid mislynching."
+The game is over. Winners: Alice (dead), Bob (dead), Dave, Erin, Frank (dead), Grace (dead), Judy, Niaj (dead), Olivia (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Erin, Frank, Grace, Judy, Niaj, Olivia
+Cost by player (USD):
+  Alice (Accountant)    $0.1743   36 calls  gpt-6-luna-pro
+  Bob (Oracle)          $0.1064   25 calls  gpt-6-luna-pro
+  Carol (Diviner)       $0.2722   41 calls  deepseek-v4.1-flash
+  Dave (Vigilante)      $0.3369   41 calls  gemini-3.8-flash
+  Erin (Sheriff)        $0.0974   40 calls  claude-haiku-5.5
+  Frank (Party Animal)  $0.0640   35 calls  gpt-6-luna
+  Grace (Cardinal)      $0.1514   32 calls  gpt-6-luna-pro
+  Heidi (Clerk)         $0.4126   48 calls  gemini-3.8-flash
+  Ivan (Arsonist)       $0.0611   37 calls  gpt-6-luna
+  Judy (Surveyor)       $0.0687   40 calls  gpt-6-luna
+  Mallory (Mortician)   $0.0735   35 calls  claude-haiku-5.5
+  Niaj (Medic)          $0.2150   38 calls  deepseek-v4.1-flash
+  Olivia (Tracker)      $0.0659   31 calls  claude-haiku-5.5
+  Peggy (Jester)        $0.3371   37 calls  gemini-3.8-flash
+  Moderator             $1.4079   17 calls  claude-opus-5.5
+  Night checks          $0.4412    4 calls  claude-opus-5.5
+  Strategy review       $0.3426    1 calls  claude-opus-5.5
+  Log review            $0.2779    1 calls  claude-opus-5.5
+  Total                 $4.9060  539 calls

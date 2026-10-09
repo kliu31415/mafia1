@@ -14,30 +14,58 @@ Setup:
   Olivia   seat 13 Veteran           openai/gpt-6-luna
   Katana starts with Carol
 Tips from past games given to: Alice (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md)
+[Resumed from the checkpoint at the start of day 1]
 
 ===== DAY 1 =====
 Speaking order today goes around the circle in seat order, starting with Heidi.
 13 players are alive, so a nomination needs 7 Yes votes (rules R4).
-Heidi (public): Day one has no hard evidence yet. I'd like everyone to name one tentative suspect and what would change their mind.
-Ivan (public): No reliable suspect yet; anything specific would be arbitrary. I’ll watch for people who name someone but can’t explain why, or change their story under pressure.
-Judy (public): No solid reads yet. I want named suspects with reasons before I commit to anyone.
-Mallory (public): I won't name anyone without evidence yet. A suspect with no stated reason is just noise, so everyone should give one concrete read and its basis, and I'll weigh them.
-Niaj (public): Everyone asking for others to name suspects first creates a loop. Let's see who actually takes initiative or tries to steer the vote.
-Olivia (public): Tentative: Mallory, for repeatedly asking others to name suspects while offering none herself. Weak Day 1 read; I’ll revise if she gives a grounded read.
-Alice (public): Olivia gives the only named read, but repetition alone is weak evidence. Mallory, name your own tentative suspect and what would change your mind.
-Bob (public): Niaj is right that asking everyone else to step forward first just stalls things. Olivia breaking the ice on Mallory gave us an actual thread. Let's hear Mallory's reply, and watch who helps advance discussion versus who deflects.
-Carol (public): Mallory still hasn't given a read. Tentatively Niaj: he dismissed everyone's reads but offered none of his own.
-Dave (public): Mallory has been asked directly for a tentative suspect twice and still hasn’t offered one. Niaj at least identified the discussion loop; I’d press Mallory for a concrete read before treating them equally.
-Erin (public): Mallory definitely needs to give a name once the circle returns to her. That said, she hasn't had a chance to reply yet, so let's hear Frank and Grace out too rather than tunneling completely on round one.
-Frank (public): Tentatively Niaj: he calls out the loop and asks for initiative, but still gives no suspect himself. Weak read; I want to hear Mallory answer the criticism next round.
-Grace (public): Grace here. I have no evidence yet, so I won't name a suspect on vibes. I'd like Mallory's answer to the pressure before I read anyone.
-Ivan (public): Mallory has only had one turn, so she hasn’t had a chance to answer the follow-up yet. The criticism of Niaj also seems weak unless someone can explain why his comment is more suspicious than the others’.
-Judy (public): Still no solid reads. Olivia's Mallory case and Carol's Niaj case are both mostly repetition so far. I want Mallory's answer, and I'd like anyone who names a suspect to give one concrete, checkable reason.
-Mallory (public): My tentative read is Heidi. She opened Day 1 demanding everyone name a suspect, then named none herself. Olivia's case on me was also repetition with no basis.
-Niaj (public): Calling out the stall loop in round 1 was meant to force actual stances instead of generic prompts. Carol and Frank immediately mirroring that into a low-effort push on me looks opportunistic. Carol is my tentative watch for taking the safest deflection.
-Olivia (public): Mallory has now named Heidi, so that answers the request for a read; the basis is still weak, much like the earlier reads on Mallory and Niaj. I’d like Heidi’s response, and what would change Mallory’s mind.
-Alice (public): Mallory answered, but her basis—that Heidi asked for reads without naming one—also described Mallory until just now. It’s weak, not a hang case. Heidi, how do you read this?
-Bob (public): I agree with Alice that weak Day 1 reads aren't grounds for a trial. Niaj's counterpoint on Carol and Frank is fair to keep in mind, though. Let's hear Carol's response.
-Carol (public): Fair challenge, Niaj. I named you because you criticized everyone's reads without offering one. I'm not pushing a trial on Day 1. Niaj, give us your own read on someone, and I'll weigh it.
-Dave (public): Mallory did answer when her turn came; her read on Heidi uses the same standard she was criticized for, but that's only a weak inconsistency. Niaj and Carol disagree on whether skepticism is deflection. I don't see a trial case yet; let's see who updates.
-Erin (public): Mallory answered as asked, and the exchange between Niaj and Carol feels like natural early friction rather than an intentional slip. Let's see what Frank and Grace add, and hear Heidi's response to Mallory.
+Heidi (public): No hard evidence yet; everyone should give one named read and a reason, then keep their votes consistent with it.
+Ivan (public): Heidi's process-focused opener is a slight town lean, not evidence. Everyone, give one named read with an observable reason; I'll track consistency.
+Judy (public): Judy here: no reads yet and no claim. I'll give a named read with a reason once I have one, and I'd like everyone else to do the same.
+Mallory (public): Heidi's opener was all process and no read, and Ivan already flagged it. Heidi, give one named read with a reason now. I'll judge answers, not vibes.
+Niaj (public): Pressuring each other for reads before any action occurred is natural early game, but Mallory actually asking Heidi for immediate substance is more productive than repeating procedure. Let's see what Olivia and the rest offer.
+Olivia (public): Mallory is my slight town lean: she moved beyond the process opener by asking Heidi for an immediate read, which gives us something testable. It's weak Day 1 evidence; I'll reassess after responses. Heidi, what's your named read and observable reason?
+Alice (public): Mallory is my slight scum lean so far: she demands Heidi name a read but hasn't offered one herself. Weak Day 1 evidence; I'd like her own read and reason.
+Bob (public): Alice makes a fair point on Mallory demanding reads while giving none, but Judy's purely passive pass is even safer. Slight town lean on Alice for actively analyzing the dynamic.
+Carol (public): Carol here: Mallory and Alice are both pushing for reads, which is fine. Judy, you've given nothing yet. What's your read on Ivan, and why?
+(to Carol, Heidi) Carol -> Heidi (private): Stay low today. Don't claim anything yet; we'll coordinate once we see who pushes nominations.
+(to Carol, Dave) Carol -> Dave (private): Keep quiet and avoid early nominations. I'm watching the vote patterns.
+Dave (public): Slight town lean on Mallory: she moved beyond process by asking Heidi for a concrete read, though Alice's criticism is fair. I'll wait for Heidi's response.
+Erin (public): I agree with Bob that Judy's complete passivity is more concerning than Mallory pressing Heidi. Judy didn't even attempt an initial observation. Slight scum lean on Judy.
+Frank (public): Judy is my slight scum lean for staying content-free, but that case is already being repeated. Let’s judge whether she gives a read next, not treat headcount as evidence.
+Grace (public): Grace here: no read yet and no claim. Heidi and Judy, give one named read each with a reason, and I'll judge consistency from there.
+Heidi (public): Slight town lean on Frank: he cautioned against treating repetition as evidence instead of simply joining the Judy pile-on. Weak read; Judy still owes a concrete one.
+Ivan (public): Heidi has now offered Frank as a read, so she followed through. Judy still hasn’t answered Carol’s direct question. Carol’s two private messages are worth noting, but not evidence by themselves; Carol, please give your own read too.
+Judy (public): Judy here. My named read is Erin: she called me a slight scum lean for passivity after one quiet round, and the pile-on is the case, not my silence. Carol, my read on Ivan is that his tracking of consistency is fine, but his Heidi-the-process-opener take was a thin push. I'm watching Erin's and Carol's next votes.
+Mallory (public): Heidi's Frank read is weak: it praises a player rather than pointing at an observed action. Judy still hasn't answered Carol's direct question about Ivan, and her Erin read only reacts to pressure. My read: Judy, slight scum lean. Heidi, name a concrete case, not praise.
+Niaj (public): Mallory, Judy actually did answer Carol about Ivan in her post. Saying she didn't looks like tunneling or forcing a narrative. Judy's pushback on Erin feels reasonable under pressure, whereas Grace gave a completely empty pass that went unnoticed.
+Olivia (public): Agreed with Niaj: Mallory's criticism omitted Judy's answer about Ivan; that's stronger evidence than style reads. Mallory, did you miss that line, or disagree that it answered Carol?
+Alice (public): Olivia's correction is right: Judy did answer Carol's question about Ivan. Mallory repeated that she hadn't, which is a concrete factual miss—possibly an oversight, but Mallory should explain it.
+Bob (public): Mallory clearly missed or ignored Judy's direct answer about Ivan, though she may have drafted before reading Judy. More importantly, Niaj is right that Grace slipped by with a completely content-free pass that mirrored Judy's round one opener without taking any heat.
+Carol (public): Alice and Mallory are both giving reads now, which is useful. I'm still forming my views, and I want Ivan and Frank to give concrete observations too.
+Dave (public): Judy did answer Carol's question about Ivan, so Mallory's claim she hadn't is a real miss. I still lean town on Mallory for engaging, but want an explanation before treating it as alignment evidence. Grace also passed without a read.
+Erin (public): Fair enough on Judy pushing back and answering Carol—that shows actual engagement, so my initial passivity concern is softened. Mallory clearly mischaracterized Judy's post, but Grace's identical non-contribution slipping by unnoticed is equally worth noting.
+Frank (public): Mallory is my slight scum lean: Judy had answered Carol’s question about Ivan before Mallory said she still hadn’t, then Mallory repeated the claim. It could be a miss, but I’d like an explanation. Carol, what are your own reads? That’s my concrete observation.
+Grace (public): Grace here. My read is Mallory, slight scum lean: after Judy answered Carol about Ivan, Mallory repeated that she hadn't, and she hasn't explained the miss. I'll keep my votes tied to explained answers.
+Heidi (public): Mallory repeating that Judy hadn't answered is the clearest concrete miss. Hear her explanation before calling it alignment evidence; Grace's empty pass is weaker.
+Ivan (public): Agreed: Mallory's repeated misstatement is the clearest issue, but let's hear her explanation before turning it into a pile-on. Separately, Carol has been asked for her own read several times and still hasn't given one; the two PMs are worth noting, not treating as proof. Carol, name your read.
+Judy (public): Carol has been asked for her own read by Ivan and me, and still hasn't given one. Her only moves so far are a question to me and two PMs, to Heidi and Dave. Carol, name a read with a reason. Grace's empty pass also still needs an answer.
+Mallory (public): Mallory here: I missed Judy's answer to Carol about Ivan. That was my error, and I'll stop repeating it. Heidi, your reads so far are praise, first Frank and now Judy-free pile-ons. Name one concrete action you've observed from Judy, Erin, or Grace. Until then my slight lean stays on you.
+Niaj (public): Mallory acknowledging the honest miss is good to see—no need to drag that out into an easy mislynch. Carol, you’ve sent two PMs and avoided giving reads across multiple rounds; let's hear your concrete positions. Also watching Grace closely for jumping straight onto Mallory after an empty pass.
+Olivia (public): Carol is my slight scum lean now: she’s been asked for her own reads repeatedly and still hasn’t given one, while sending two private messages. Carol, give us a concrete position.
+Alice (public): Mallory’s correction resolves the factual issue; don’t keep treating it as a lie. Carol is my slight scum lean now: multiple direct requests for her own read, two PMs, and still mostly questions or process. Could be caution, so Carol should state one actual position; the PMs alone aren’t evidence.
+Bob (public): Mallory owning the mistake looks genuine. Carol speaks right after me, so let's let her give her reads and explain the PMs before considering any nomination. If she deflects again, that's when real pressure is warranted.
+Carol (public): Direct answer: my read is Grace, slight scum lean. She passed empty on round one, then piled onto Mallory right after Judy answered Carol, with no reason given. My PMs to Heidi and Dave only urged no rushed nominations on thin reads. Ivan, name your own read too.
+Dave (public): Grace's first pass was empty, but her Mallory read did give a reason; I wouldn't call it baseless. Carol's concern is worth testing—Grace, who is your strongest current read, and why?
+Erin (public): Carol providing a concrete read and explaining her PMs relieves some pressure on her for now. I agree with Dave that Grace's stance is the more pressing issue—she moved from an empty pass directly onto Mallory without much unique context. Looking forward to Grace's response.
+Frank (public): Mallory owning the missed answer lowers my suspicion; the repeated mistake still merits attention, but I won't treat it as a lie without more. Grace, what specifically made you suspect Mallory beyond that now-corrected miss? Carol's case on you is testable; the PMs alone aren't evidence.
+Grace (public): Fair ask, Frank. My Mallory read rested on her repeating that Judy hadn't answered after Judy had. She owned that miss, so I'm lowering the read. My round one pass was empty, and I admit it. Carol: your PMs urged no nominations on Day 1, and you only gave a read after repeated pressure. What did those PMs say?
+Heidi (public): Grace explained her Mallory read and owned the empty opener. Carol has now given a read and explained the PMs, though the delay is still worth watching; PMs alone aren't a case. I don't see enough here to justify a trial yet.
+Ivan (public): Carol, the chronology in your Grace case is off: Grace's Mallory read came much later and explicitly cited the repeated Judy-answer misstatement, then she lowered it after the correction. That's not baseless; what's your strongest independent evidence?
+Judy (public): Carol's answer is a real read, though Grace has already lowered her Mallory case. I'm watching Carol and Erin; no nomination yet.
+Mallory (public): Heidi, you have defended Grace and Carol but still named no suspect with a reason of your own. Name one now, with an observable action, or I keep my scum lean on you.
+Niaj (public): Mallory's point stands: Heidi needs to name an actual suspect with an observable reason. Otherwise, forcing a rushed trial today without mechanical leads is premature.
+Olivia (public): Carol gave a read, but Ivan's chronology point stands: Grace cited Mallory's repeated miss, then lowered it after correction. Carol, what independent evidence makes Grace scum? Heidi, please answer Mallory with a concrete suspect.
+Alice (public): Carol's case on Grace omits that Grace had already explained the Mallory read as the repeated Judy-answer miss, then lowered it. That weakens Carol's premise; I'm still waiting for independent evidence beyond PMs and delayed reads.
+Bob (public): Carol’s timeline on Grace is definitely strained as Ivan and Alice noted, but Carol speaks next, so let’s hear her response. Heidi also still owes an actual suspect rather than process and praise.
+Carol (public): Fair timeline point. My Grace read rests on her empty opener and her piling onto Mallory. I'll revise if she explains it well.
