@@ -197,3 +197,9 @@ def test_a_message_over_budget_is_cut_or_dropped_and_the_sender_is_told(game_fac
     told = [e.text for e in game.events if e.visible_to == {"Alice"}]  # public words cost more than private ones
     assert "Your public message was not sent: over budget." in told
     assert any(t.startswith("Your private message to Carol was cut to") for t in told)
+
+
+def test_every_round_allows_a_short_public_message_and_a_nomination():
+    # A round where nobody can afford to speak publicly is dead weight (round 8 was, at 1.5x per round).
+    from day import BUDGET_MAX, MAX_DAY_ROUNDS, NOMINATION_COST, round_multiplier
+    assert message_cost(10, MAX_DAY_ROUNDS, False) + NOMINATION_COST * round_multiplier(MAX_DAY_ROUNDS) <= BUDGET_MAX

@@ -12,13 +12,13 @@ from state import Game, Player, majority
 # Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
 # times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
 # to BUDGET_MAX; the budget resets to 0 each day.
-BUDGET_PER_ROUND = 3.0
+BUDGET_PER_ROUND = 2.5
 BUDGET_MAX = 8.0
 MESSAGE_BASE_COST = 1.0
 PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
-FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
-ROUND_COST_GROWTH = 1.5
+FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round's multiplier is ROUND_COST_STEP higher
+ROUND_COST_STEP = 0.5  # linear, so late rounds stay affordable: round 8 is 3.5x
 MAX_DAY_ROUNDS = 8  # rules R16; the day also ends after a full go-around in which nobody sends a public message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 # Each player's turn in a trial is priced at 1x whatever the round, and comes with a trial-only budget
@@ -40,7 +40,7 @@ def length_cost(words: int) -> float:
 
 def round_multiplier(rnd: int) -> float:
     """rnd is 1-based."""
-    return ROUND_COST_GROWTH ** max(0, rnd - FULL_PRICE_ROUNDS)
+    return 1 + ROUND_COST_STEP * max(0, rnd - FULL_PRICE_ROUNDS)
 
 
 def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> float:
