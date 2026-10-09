@@ -437,3 +437,58 @@ Dave (public): Dave here. No nomination from me today. Heidi, you nominated Erin
 [Feedback from Heidi] Rules say I'm a Vulture who wins at Day start with 2 alive, but Day 6 state lacks a clear view of Cardinal Divine timing; the interface otherwise works.
 (to Dave, Heidi) Heidi -> Dave (private): Dave, I'm Vanilla with no night action. Hold No on Erin until Bob's Day 7 Lookout result is posted, then vote Yes with me if it shows nothing that clears her.
 (to Bob, Dave) Dave -> Bob (private): Bob, if your Erin watch is clean, will you vote Yes on Heidi with me and Erin on Day 7?
+(to Dave, Erin) Erin -> Dave (private): Dave, I'm nominating Heidi now. Please vote Yes with me; she was PMed by Grace and Judy and nominated me on PMs.
+(to Bob, Erin) Erin -> Bob (private): Bob, I nominated Heidi: she was PMed by Grace and Judy and nominated me on PMs alone. Please vote Yes.
+Erin nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Erin, Bob, Dave; No - Heidi.
+Heidi is put on trial (3 Yes).
+Heidi (public): Heidi here. I'm a Vanilla Villager with no night action or result, so there is nothing a Guilty vote can check. The case against me is my Day 6 contact with Judy and Grace, which I haven't hidden, plus my silence on my role, which I've now answered. Bob's Day 7 Lookout on Erin is the only checkable result we have. If I'm hanged today, we lose that test and Erin's Cardinal claim stays unverified. Dave, you asked for my role and Night 5 action, and I've given both. Vote Innocent and we check Erin's watch before anyone is hanged.
+(to Dave, Heidi) Heidi -> Dave (private): Dave, I'm Vanilla with no night action. Hanging me now throws away Bob's Day 7 watch on Erin, the only checkable result. Vote Innocent and I'll go Yes on Erin if her visitors look wrong.
+Bob (public): Bob here. I'm voting Guilty on Heidi. Grace and Judy, both now confirmed Yakuza, PMed her repeatedly. She nominated Erin on PMs alone with no result, and Judy's Day 5 push to Heidi matches Erin's account. Her Vanilla claim can't be tested, and she hid the Judy PMs until Erin raised them. Erin and Dave, Heidi's trial is our chance to remove a Yakuza contact before Day 7.
+(to Bob, Dave) Bob -> Dave (private): Dave, Heidi is the Judy and Grace contact. Please vote Guilty with me and Erin.
+Dave (public): Dave here, voting Guilty on Heidi. She nominated Erin on PMs alone, then promised to wait for Bob's Day 7 watch and nominated her anyway. Grace and Judy, both confirmed Yakuza, PMed her repeatedly, and she hid it until Erin raised it. Bob's Lookout has matched every confirmed fact, so I trust Bob.
+[Feedback from Erin] null
+Erin (public): Erin here, voting Guilty on Heidi. Grace and Judy, both confirmed Yakuza, PMed her during their trials. She then nominated me on PMs alone and stated her role only after being nominated. Bob's Lookout results have matched confirmed facts, and Heidi fits the pattern. Vote Guilty.
+Heidi (public): Heidi here, final word. I'm Vanilla with no night action, so a Guilty vote has nothing to check. The only checkable result on the table is Bob's Day 7 Lookout on Erin. Erin, Bob and Dave want my vote now, but nobody has shown Erin's Cardinal claim is real, and Erin has been PMing Dave all day to hold No. Judy and Grace PMed me; I didn't follow their pushes, and I'm not following Erin's push either. The Katana has been quiet since Night 4, so no live Yakuza has killed anyone since Ivan. Vote Innocent, let Bob's watch post on Day 7, and if Erin's visitors look wrong, we nominate her together and I'll vote Yes.
+(to Dave, Heidi) Heidi -> Dave (private): Dave, if you hang me now you lose your Day 7 vote against Erin. Vote Innocent, then we test Bob's watch, and I'll vote Yes on her if it's bad.
+Trial votes on Heidi: Guilty - Bob, Dave, Erin; Innocent - Heidi.
+Heidi is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Heidi died (executed by hanging). Their role was Vulture. Last will: "Heidi here. I have no night role and no night results. I voted Guilty on Frank for his unevidenced self-nomination, and on Grace and Judy after their private messages and visits were exposed. Bob's Lookout is the only checkable result we have, so weigh it seriously. Ivan's Medic claim was unverified and his Night 3 protection was reported as blocked, so test it. Judy and Grace exchanged many private messages, and Judy pressed several players to vote Innocent. Do not let silence decide the game: vote on claims that can be tested, and check whose results stay consistent."
+The game is over. Winners: Alice (dead), Bob, Carol (dead), Dave, Erin, Ivan (dead), Frank (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Judy] The interface asks for a notepad and reason on every response, which felt redundant here; a shorter feedback-only mode would help.
+[Feedback from Alice] Night-by-night log wording varies (Night 5 vs Night 6 for Bob's Lookout, Alice's cleaned death reported after the fact) making it hard to reconstruct the timeline.
+[Feedback from Frank] The notepad 375-word cap and the replace-only update made it hard to keep a running history; the ledger also had some duplicated private-message lines that made counting PMs error-prone.
+[Feedback from Bob] The public ledger and night logs were hard to cross-check, and the rules on Katana holder death and Astral Visit visibility to Lookouts were ambiguous to me.
+[Feedback from Dave] The interface and notepad worked; the main friction was tracking private-message contents and the Katana holder across nights.
+[Feedback from Grace] Night 6 and Day 7 labelling of Lookout results was confusing (announced at Day start but described as Night actions); the ledger also did not list per-night attack outcomes, which made tracking the Katana difficult.
+[Feedback from Ivan] The interface needs the notepad limit raised, and clearer wording for token costs and Katana holder mechanics.
+[Feedback from Erin] Interface field 'notepad' and 'reason' are fine, but the schema requires all top-level fields even when unused; a note that empty fields may be null would help.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[Feedback from Mallory] The game is over, so the notepad and other response fields are unused here.
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Dave, Erin, Ivan, Frank
+Cost by player (USD):
+  Alice (Oracle)           $0.0229   17 calls  claude-haiku-5.5
+  Bob (Lookout)            $0.0945   48 calls  claude-haiku-5.5
+  Carol (Sheriff)          $0.0465   27 calls  claude-haiku-5.5
+  Dave (Vanilla Villager)  $0.0931   43 calls  claude-haiku-5.5
+  Erin (Cardinal)          $0.0811   43 calls  claude-haiku-5.5
+  Frank (Jester)           $0.0252   16 calls  claude-haiku-5.5
+  Grace (Pharmacist)       $0.0609   37 calls  claude-haiku-5.5
+  Heidi (Vulture)          $0.0951   43 calls  claude-haiku-5.5
+  Ivan (Medic)             $0.0560   32 calls  claude-haiku-5.5
+  Judy (Puppeteer)         $0.0721   42 calls  claude-haiku-5.5
+  Mallory (Mortician)      $0.0310   21 calls  claude-haiku-5.5
+  Moderator                $0.9081   13 calls  claude-opus-5.5
+  Night checks             $0.2713    5 calls  claude-opus-5.5
+  Strategy review          $0.2326    1 calls  claude-opus-5.5
+  Log review               $0.2709    1 calls  claude-opus-5.5
+  Total                    $2.3613  389 calls
