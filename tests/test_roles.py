@@ -470,3 +470,14 @@ def test_ex_con_visit_is_drawn_by_code_and_hidden_from_the_ex_con(game_factory):
     action = game.night_actions[1]["Alice"]
     assert action["automatic"] and action["target"] in ("Bob", "Carol", "Dave")
     assert "Alice" not in night_history(game, game.player("Alice"))
+
+
+def test_trapper_is_told_whether_their_trap_still_stands(game_factory):
+    from players import role_briefing
+    from roles import Status
+    game, _ = game_factory(["Trapper", "Vanilla Villager", "Grunt"])
+    trapper = game.player("Alice")
+    assert "no trap set" in role_briefing(game, trapper)
+    game.player("Bob").status[Status.TRAPPED_BY] = "Alice"
+    assert "Your trap is on Bob" in role_briefing(game, trapper)
+    assert "trap" not in role_briefing(game, game.player("Bob"))

@@ -428,10 +428,11 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     game.vote_record.append(f"Day {game.day}: trial of {nominee}; Guilty - {', '.join(guilty) or 'nobody'}; "
                             f"Innocent - {', '.join(innocent) or 'nobody'}; {verdict}")
     if voted_guilty or game.rigged_day == game.day:
-        if not voted_guilty:
-            game.emit(f"The vote was rigged by a Clerk: {nominee} is executed despite the Innocent verdict.",
-                      cat=VOTE)
-        game.emit(f"{nominee} is executed by hanging ({tally}).", cat=DEATH)
+        # One line for a rigged hanging: "executed (3 Guilty of 7; 4 needed)" read as a contradiction
+        # (game_20261009_121338_61703).
+        game.emit(f"{nominee} is executed by hanging ({tally})." if voted_guilty else
+                  f"The verdict was Innocent ({tally}), but the vote was rigged by a Clerk, so {nominee} is "
+                  "executed by hanging anyway.", cat=DEATH)
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
         return "executed"
     game.emit(f"{nominee} is found Innocent ({tally}).", cat=VOTE)

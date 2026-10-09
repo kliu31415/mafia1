@@ -362,7 +362,7 @@ Mortician
   Tokens: 2 mortician tokens.
   Night: may spend a token to try to clean someone. If they die that night by any cause, they are cleaned: their
   death is revealed publicly with its cause, but their role and last will show as "cleaned by mortician". You are
-  privately told their role and last will.
+  privately told their role and last will. The token is spent even if they survive.
 
 Wiretap
   You passively read the contents of every private message sent during the Day, between any two players. This is
