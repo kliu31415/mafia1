@@ -49,7 +49,8 @@ def test_executioner_becomes_jester_when_target_dies_otherwise(game_factory):
 def test_puppeteer_writes_the_puppets_messages(game_factory):
     def decide(name, task, schema):
         if name == "Erin" and "You are puppeting Bob" in task:
-            return {"public_message": "I am definitely Bob."}
+            assert "last_will" not in schema["properties"]  # the puppet's will stays the puppet's
+            return {"public_message": "I am definitely Bob.", "claim": "Sheriff. N1: Carol Evil"}
         return None
     client = ScriptedClient(decide)
     game, players = game_factory(VILLAGE5[:4] + ["Puppeteer"], client)
@@ -58,6 +59,8 @@ def test_puppeteer_writes_the_puppets_messages(game_factory):
     chat = {(e.fields["speaker"], e.fields["message"]) for e in game.events if e.cat == "chat"}
     assert chat == {("Bob", "I am definitely Bob.")}
     assert not any(name == "Bob" and "public_message" in task for name, task in client.asked)
+    # The claim is public chat in effect, so the Puppeteer sets it too; it shows as Bob's.
+    assert game.claim_record == {"Bob": [(1, "Sheriff. N1: Carol Evil")]}
 
 
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):

@@ -217,10 +217,10 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "pay only for the extra length.\n" if free_words else "")
             + ("You may also replace your last will (free; null keeps it), e.g. to match a claim you make "
                "today. It's shown to everyone if you die.\n" if writer is p else "")
-            + (f"You may also set your claim (free, max {CLAIM_WORDS} words; null keeps it): your claimed role "
-               "and night results, e.g. 'Sheriff. N1: Bob Not Evil'. The public ledger lists every player's "
-               "latest claim and any earlier ones they changed from, as unverified claims.\n"
-               if writer is p else "")
+            + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
+               f"{CLAIM_WORDS} words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: "
+               "Bob Not Evil'. The public ledger lists every player's latest claim and any earlier ones they "
+               "changed from, as unverified claims.\n")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
@@ -256,7 +256,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
 
     if writer is p and isinstance(will := out.get("last_will"), str) and will.strip():
         p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
-    if writer is p and isinstance(claim := out.get("claim"), str) and claim.strip():
+    if isinstance(claim := out.get("claim"), str) and claim.strip():  # a Puppeteer may set the puppet's
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
         if claims and claims[-1][0] == game.day:
