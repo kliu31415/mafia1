@@ -90,7 +90,7 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = Tr
 
 
 VOTE_SCHEMA = obj(thoughts=STR, vote=BOOL)
-LAST_WILL_SCHEMA = obj(last_will=STR)
+LAST_WILL_SCHEMA = obj(thoughts=STR, last_will=STR)  # thoughts first: Haiku often skipped reasoning here
 ANSWER_SCHEMA = obj(answer=STR)
 
 

@@ -84,7 +84,8 @@ def run_day(game: Game, players: Players) -> None:
 
     # Last wills, written at the beginning of each day (including day 1); also on day turns. Rules R13.
     task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
-            "to ALL players, including other factions. An empty answer keeps your current will.")
+            "to ALL players, including other factions, so think about what each of them would learn from it. "
+            "An empty answer keeps your current will.")
     outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
     for p, out in zip(game.alive(), outs):
         will = out["last_will"]
