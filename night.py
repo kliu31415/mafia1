@@ -78,7 +78,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "analysis, never shown. Don't tell() deaths to all. Tell each role-blocked player that they "
         "were role-blocked. Every player who used an ability gets a private result line, even when nothing "
         "else happened (e.g. 'You went on alert. 1 alert token left.'), stating any tokens they have left, "
-        "except where a role note below says code tells them (don't tell() those players a second result). "
+        "except where a role note below says otherwise (e.g. code tells them, so don't tell() them a second result). "
         "Tell all Yakuza which actions each Yakuza performed but not the results; "
         "only the attacker learns whether the Katana attack succeeded. Update token counts for any "
         "tokens spent.\n\n"

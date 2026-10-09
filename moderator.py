@@ -268,6 +268,7 @@ class Moderator:
             raise ValueError("changes must be a list of ops; nothing was applied")
         names = {p.name for p in self.game.players}
         notes, out = [], []
+        killed: set[str] = set()
         for i, c in enumerate(changes):
             if not isinstance(c, dict) or c.get("op") not in self.ops:
                 raise ValueError(f"change {i}: op must be one of {sorted(self.ops)}; nothing was applied")
@@ -290,6 +291,11 @@ class Moderator:
                     raise bad("katana must be true or false")
                 if "cause" in c and not isinstance(c["cause"], str):
                     raise bad("cause must be text")
+                if c["player"] in killed:  # the second kill would be dropped, with its cause and katana flag
+                    raise bad(f"{c['player']} is already killed by an earlier change; make it one kill that names "
+                              "every cause (e.g. 'Katana and Serial Killer'), with katana=true if the Katana's "
+                              "attack was one of them")
+                killed.add(c["player"])
                 if not self.game.player(c["player"]).alive:
                     notes.append(f"change {i} (kill): {c['player']} is already dead, so it does nothing")
             if op == "set_tokens":

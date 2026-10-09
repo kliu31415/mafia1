@@ -108,6 +108,16 @@ def test_killing_a_dead_player_is_a_warning(game_factory):
     assert "already dead" in out["notes"][0] and game.log.error_counts == {"moderator_warning": 1}
 
 
+def test_two_kills_of_one_player_in_a_batch_are_rejected(game_factory):
+    # game_20261009_164356_960898: the second kill (the Katana's) was silently dropped with its katana flag.
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="one kill"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Bob", "cause": "Serial Killer"},
+                                                   {"op": "kill", "player": "Bob", "cause": "Katana", "katana": True}]})
+    assert game.player("Bob").alive
+
+
 def test_a_moderator_the_filter_keeps_blocking_switches_to_its_fallback(game_factory, monkeypatch):
     monkeypatch.setattr(moderator, "MODERATOR_RETRY_WAIT_S", 0)
     blocked = LLMReply(None, None, [], {"role": "assistant", "content": None}, "m", 0.0, {},
