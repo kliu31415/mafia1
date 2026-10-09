@@ -282,8 +282,11 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                   errors=dict(log.error_counts))
         if update_tips and lessons:  # after the result record, which it reads; its errors and cost miss the result
             before = sum(client.total_cost.values())
+            # main's notebook first, if another PC added games to it (then this PC's other games go on top again)
+            again = sync_logs.rebase_tips(sync_logs.Repo(), update_tips.parent, LOG_DIR, on_error=log.error) \
+                if update_tips == DEFAULT_TIPS and not isinstance(client, MockClient) else []
             step("Updating the tips notebook and sheet", lambda: build_tips(
-                [log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient),
+                [*again, log.path], update_tips, client, mod, 800, include_mock=isinstance(client, MockClient),
                 on_error=log.error))
             log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
     except BaseException as e:  # log it for whoever runs the game, then stop as before

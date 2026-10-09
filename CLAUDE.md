@@ -31,12 +31,14 @@ mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback fil
 the tips notebook and publishes the new sheet to the branch (`--no-tips` only copies logs). A PC game also
 publishes the sheet when it updates it, so cloud games get it without a pull.
 `lessons.jsonl` and `alerts_reviewed.json` are merged, not overwritten; mock games are never synced.
-tips/ (sheet, notebook, history/) is also tracked on main, so a new PC can pull it and keep building the
-notebook. A PC game that updates the tips (and `sync_logs.py pull`) commits tips/ alone to main and pushes it
-when that's a fast-forward (`sync_logs.commit_tips`; staged work stays staged; skipped off main). Cloud threads
-never commit tips/ (their copy
-comes from the branch and the PC's commit is what counts). Changes under tips/ don't mark a game's
-`git_dirty`. logs/ stays untracked (large; it lives on the `logs` branch and the PC).
+tips/ (sheet, notebook, and old sheets in history/; the notebook's old versions are in git history) is also
+tracked on main, so a new PC can pull it and keep building the notebook. A PC game that updates the tips (and
+`sync_logs.py pull`) commits tips/ alone to main and pushes it, as a tips-only commit on the remote's main when
+the local main has other unpushed commits (`sync_logs.commit_tips`; staged work stays staged; skipped off main).
+Git never merges two notebooks: before a build, `sync_logs.rebase_tips` takes main's notebook if it has games
+this PC's lacks, and the build adds this PC's other games again (an extra tips-model call each). Cloud threads
+never commit tips/ (their copy comes from the branch and the PC's commit is what counts). Changes under tips/
+don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `logs` branch and the PC).
 
 ## Checking changes
 

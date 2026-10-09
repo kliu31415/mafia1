@@ -197,13 +197,53 @@ def test_tips_are_committed_to_main_alone_and_pushed_when_that_s_a_fast_forward(
     assert sync_logs.commit_tips(pc, tips) is None  # nothing new
 
     run(cloud.root, "pull", "-q", "origin", "main")
-    (cloud.root / "more.py").write_text("y = 2\n")  # main moves on elsewhere: committed here, not pushed
+    (cloud.root / "more.py").write_text("y = 2\n")  # main moves on elsewhere
     run(cloud.root, "add", "more.py")
     run(cloud.root, "commit", "-m", "more")
     run(cloud.root, "push", "origin", "HEAD:main")
+    run(pc.root, "commit", "-q", "-m", "work")  # and this PC has work it hasn't pushed
     (tips / "tips.md").write_text("newer sheet\n")
+    (tips / "history" / "tips_1.md").unlink()
     later = sync_logs.commit_tips(pc, tips)
-    assert later and pc.git("ls-remote", "origin", "main").decode().split()[0] != later
+    remote = pc.git("ls-remote", "origin", "main").decode().split()[0]
+    assert later and remote != later  # an equal tips-only commit on the remote's main, without work.py
+    assert pc.git("ls-tree", "-r", "--name-only", remote).decode().split() == ["code.py", "more.py", "tips/tips.md"]
+    assert pc.git("show", f"{remote}:tips/tips.md").decode() == "newer sheet\n"
+    run(pc.root, "pull", "-q", "--rebase", "origin", "main")  # the local tips commit goes away cleanly
+    assert pc.git("log", "--format=%s", "origin/main..HEAD").decode().split("\n")[0] == "work"
+
+    nb = {"games": ["game_1", "game_9"], "next_id": 1, "entries": []}  # another PC added game_9
+    (cloud.root / "tips" / "tips_notebook.json").write_text(json.dumps(nb))
+    run(cloud.root, "pull", "-q", "origin", "main")
+    run(cloud.root, "add", "tips")
+    run(cloud.root, "commit", "-m", "tips")
+    run(cloud.root, "push", "origin", "HEAD:main")
+    (tips / "tips_notebook.json").write_text(json.dumps({**nb, "games": ["game_1", "game_2"]}))
+    before = pc.git("ls-remote", "origin", "main").decode().split()[0]
+    assert sync_logs.commit_tips(pc, tips)
+    assert pc.git("ls-remote", "origin", "main").decode().split()[0] == before  # not pushed over game_9
+
     run(pc.root, "checkout", "-q", "-b", "other")
     (tips / "tips.md").write_text("on a branch\n")
     assert sync_logs.commit_tips(pc, tips) is None  # only main gets tips commits
+
+
+def test_a_pc_takes_main_s_notebook_when_another_pc_added_games_and_adds_its_own_again(machines, capsys):
+    other, pc = machines["cloud"], machines["pc"]
+    (other.root / "tips").mkdir()
+    (other.root / "tips" / "tips.md").write_text("their sheet\n")
+    (other.root / "tips" / "tips_notebook.json").write_text(json.dumps({"games": ["game_1", "game_3"]}))
+    run(other.root, "add", "tips")
+    run(other.root, "commit", "-m", "tips")
+    run(other.root, "push", "origin", "HEAD:main")
+    tips, logs = pc.root / "tips", pc.root / "logs"
+    tips.mkdir()
+    logs.mkdir()
+    (tips / "tips.md").write_text("our sheet\n")
+    (tips / "tips_notebook.json").write_text(json.dumps({"games": ["game_1", "game_2", "game_4"]}))
+    (logs / "game_2.jsonl").write_text("{}\n")  # game_4's log is gone
+    assert sync_logs.rebase_tips(pc, tips, logs) == [logs / "game_2.jsonl"]
+    assert (tips / "tips.md").read_text() == "their sheet\n"
+    assert "game_4.jsonl is in this PC's tips notebook" in capsys.readouterr().err
+    (tips / "tips_notebook.json").write_text(json.dumps({"games": ["game_1", "game_2", "game_3"]}))
+    assert sync_logs.rebase_tips(pc, tips, logs) == []  # ours has all of main's games: nothing to take

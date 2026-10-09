@@ -181,7 +181,7 @@ def test_the_notebook_and_sheet_are_built_from_game_logs(tmp_path):
     nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
     t1, t2 = nb["entries"]
     assert t1["history"][-1]["old"] == "Guard the Sheriff." and t2["status"] == "retired" and len(t2["against"]) == 1
-    assert sorted(p.name.split("_2026")[0] for p in (tmp_path / "history").iterdir()) == ["tips", "tips_notebook"]
+    assert sorted(p.name.split("_2026")[0] for p in (tmp_path / "history").iterdir()) == ["tips"]
     with pytest.raises(tips.NoNewGames, match="already has all 2 games"):
         tips.build(sorted(tmp_path.glob("game_*.jsonl")), out, client, ModelSpec(Model.OPUS_5_5), max_words=500)
 

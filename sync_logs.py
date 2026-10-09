@@ -12,7 +12,8 @@ notebook (the same `tips.py build` a PC game runs when it ends) and publishes th
 games. mafia.py also calls after_game when a live game ends or stops: a cloud game pushes its logs, and a
 PC game publishes the sheet it just updated. tips/ is also committed to main (commit_tips, on the PC), so a new
 PC can pull the notebook and carry on; main's copy can lag the branch's, so `tips` replaces unedited checkout
-copies.
+copies. Two PCs' notebooks are never merged by git: before a build, rebase_tips takes main's if it has games
+this one lacks, and the build adds this PC's other games again.
 
 Files merged rather than copied: logs/lessons.jsonl (lines from every machine, each kept once) and
 logs/alerts_reviewed.json (a problem counts as reviewed once any machine reviewed it).
@@ -33,6 +34,7 @@ import platform
 import re
 import subprocess
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -103,13 +105,17 @@ class Repo:
     def blob(self, blob_id: str) -> bytes:
         return self.git("cat-file", "blob", blob_id)
 
-    def commit(self, parent: str | None, files: dict[str, bytes], message: str) -> str | None:
-        """A commit of parent's tree plus `files` (path -> content), or None if that changes nothing."""
+    def commit(self, parent: str | None, files: dict[str, bytes | None], message: str) -> str | None:
+        """A commit of parent's tree plus `files` (path -> content, None to remove it), or None if that
+        changes nothing."""
         index = Path(self.git("rev-parse", "--absolute-git-dir").decode().strip()) / f"sync_logs_{os.getpid()}.index"
         env = {"GIT_INDEX_FILE": str(index)}
         try:
             self.git("read-tree", *([parent] if parent else ["--empty"]), env=env)
             for path, content in sorted(files.items()):
+                if content is None:
+                    self.git("update-index", "--force-remove", path, env=env)
+                    continue
                 blob_id = self.git("hash-object", "-w", "--no-filters", "--stdin", input=content).decode().strip()
                 self.git("update-index", "--add", "--cacheinfo", f"100644,{blob_id},{path}", env=env)
             tree = self.git("write-tree", env=env).decode().strip()
@@ -231,11 +237,62 @@ def after_game(log_dir: Path, tips_dir: Path | None, cloud: bool, repo: Repo | N
         commit_tips(repo, tips_dir)
 
 
+def notebook_games(data: bytes | None) -> set[str]:
+    """The games a tips notebook (its JSON) has taken in."""
+    return set(json.loads(data)["games"]) if data else set()
+
+
+def main_tips(repo: Repo, rel: str, branch: str) -> tuple[str, dict[str, str]]:
+    """Fetches `branch` and returns (its commit, path -> blob id of its files under rel/)."""
+    repo.git("fetch", "--quiet", repo.remote, f"+refs/heads/{branch}:refs/remotes/{repo.remote}/{branch}")
+    head = repo.git("rev-parse", f"refs/remotes/{repo.remote}/{branch}").decode().strip()
+    return head, repo.files(head, rel)
+
+
+def rebase_tips(repo: Repo, tips_dir: Path, log_dir: Path, branch: str = "main",
+                on_error: Callable[..., None] | None = None) -> list[Path]:
+    """Before a tips build on a PC: if `branch` on the remote has a notebook with games this one lacks
+    (another PC built it), takes its sheet and notebook here and returns the logs of the games only this
+    notebook had, for the build to add again on top. Like a rebase, so two PCs' notebooks never need a git
+    merge. [] when there's nothing to take. Failures go to on_error(kind, summary) (a game's log.error),
+    else are printed as ALERT lines; never raised."""
+    alert = on_error or (lambda kind, summary: print(f"ALERT {kind}: {summary}", file=sys.stderr))
+    try:
+        rel = tips_dir.resolve().relative_to(repo.root.resolve()).as_posix()
+        _, files = main_tips(repo, rel, branch)
+        nb = tips_dir / "tips_notebook.json"
+        blob = files.get(f"{rel}/tips_notebook.json")
+        theirs = notebook_games(repo.blob(blob) if blob else None)
+        ours = notebook_games(nb.read_bytes() if nb.exists() else None)
+        if theirs <= ours:
+            return []
+        for name in TIPS_FILES:
+            if f"{rel}/{name}" in files:
+                (tips_dir / name).write_bytes(repo.blob(files[f"{rel}/{name}"]))
+        again = [log_dir / f"{g}.jsonl" for g in sorted(ours - theirs)]
+        for path in again:
+            if not path.exists():
+                alert("sync_error", f"{path.name} is in this PC's tips notebook but not {repo.remote}/{branch}'s, "
+                      "and its log is gone, so its lessons can't be added again")
+        print(f"Took {repo.remote}/{branch}'s tips notebook ({len(theirs - ours)} games from another machine); "
+              f"adding this machine's {len(again)} other games again")
+        return [p for p in again if p.exists()]
+    except Exception as e:
+        alert("sync_error", f"checking {repo.remote}/{branch}'s tips failed: {type(e).__name__}: {e}")
+        return []
+
+
+class LaterBuild(Exception):
+    """The remote's tips notebook has games this one lacks: don't push over it."""
+
+
 def commit_tips(repo: Repo, tips_dir: Path, branch: str = "main") -> str | None:
-    """Commits tips_dir (sheet, notebook, history/) to `branch`, so another PC that pulls main carries on the
-    notebook, then pushes it if that's a fast-forward (else the next push of main takes it along). Only
-    tips_dir's files go in the commit: other staged work stays staged. Skipped unless `branch` is checked
-    out. Returns the commit, or None. Failures are printed as ALERT lines, never raised."""
+    """Commits tips_dir (sheet, notebook, history/) to `branch`, so another PC that pulls it carries on the
+    notebook. Only tips_dir's files go in the commit: other staged work stays staged. Skipped unless `branch`
+    is checked out. Then pushes it: as is when it's the only commit the remote lacks, else as an equal
+    tips-only commit on the remote's branch (so it never pushes anyone's unpushed work, and the local one
+    merges cleanly later). Not pushed if the remote's notebook has games this one lacks: the next build takes
+    them first (rebase_tips). Returns the local commit, or None. Failures are printed as ALERT lines."""
     try:
         rel = tips_dir.resolve().relative_to(repo.root.resolve()).as_posix()
         if repo.git("rev-parse", "--abbrev-ref", "HEAD").decode().strip() != branch:
@@ -250,9 +307,32 @@ def commit_tips(repo: Repo, tips_dir: Path, branch: str = "main") -> str | None:
         print(f"ALERT sync_error: committing {tips_dir} failed: {type(e).__name__}: {e}; commit it by hand",
               file=sys.stderr)
         return None
-    r = subprocess.run(["git", "push", "--quiet", repo.remote, f"HEAD:{branch}"], cwd=repo.root, capture_output=True)
-    print(f"Committed the tips to {branch} ({commit[:7]})" + (" and pushed" if r.returncode == 0 else
-          f"; not pushed ({repo.remote}/{branch} has newer commits), the next push of {branch} takes it"))
+    ours = repo.files(commit, rel)
+    nb = f"{rel}/tips_notebook.json"
+    mine = notebook_games(repo.blob(ours[nb]) if nb in ours else None)
+
+    def gather(parent: str | None) -> dict[str, bytes | None]:
+        theirs = repo.files(parent, rel)
+        if not notebook_games(repo.blob(theirs[nb]) if nb in theirs else None) <= mine:
+            raise LaterBuild
+        return {p: repo.blob(b) for p, b in ours.items()} | {p: None for p in theirs if p not in ours}
+
+    try:
+        head, _ = main_tips(repo, rel, branch)
+        if repo.git("rev-parse", f"{commit}^").decode().strip() == head:  # a fast-forward of just this commit
+            repo.git("push", "--quiet", repo.remote, f"{commit}:refs/heads/{branch}")
+            pushed: str | None = commit
+        else:
+            pushed = Repo(repo.root, repo.remote, branch).publish(gather, "Update the tips notebook and sheet")[0]
+        print(f"Committed the tips to {branch} ({commit[:7]}) and pushed " + (
+            "it" if pushed == commit else f"them as {pushed[:7]}" if pushed
+            else f"nothing ({repo.remote}/{branch} already has them)"))
+    except LaterBuild:
+        print(f"Committed the tips to {branch} ({commit[:7]}), not pushed: {repo.remote}/{branch}'s notebook has "
+              "games this one lacks, so the next tips build takes them first")
+    except Exception as e:
+        print(f"ALERT sync_error: pushing the tips to {repo.remote}/{branch} failed: {type(e).__name__}: {e}; "
+              f"the next push of {branch} takes them", file=sys.stderr)
     return commit
 
 
@@ -310,6 +390,7 @@ def main() -> None:
             # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
             games = sorted(log_dir.glob("game_*.jsonl"))
             if any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written) and not args.no_tips:
+                rebase_tips(repo, tips_dir, log_dir)  # the build below adds every game it lacks anyway
                 update_tips(games, tips_dir, args.tips_model)
             if not args.no_tips and (tips_dir / "tips.md").exists():
                 commit_tips(repo, tips_dir)

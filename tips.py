@@ -16,7 +16,7 @@ Two living documents, the way a serious player keeps detailed notes and a short 
   the moderator say went especially well or badly with them) through small ops, so nothing is lost to
   a rewrite.
 - the sheet (tips/tips.md): what players get, distilled from the notebook's active entries each time.
-Old versions of both go to history/. --fresh starts a new notebook. `mafia.py --update-tips FILE`
+Old sheets go to history/ (the notebook's are in git). --fresh starts a new notebook. `mafia.py --update-tips FILE`
 runs the update after each game.
 
 Usage:
@@ -449,7 +449,7 @@ def write_atomic(path: Path, text: str) -> None:
 def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
           include_mock: bool = False, fresh: bool = False, on_error: Callable[..., None] = print_alert) -> Path:
     """Updates the notebook beside the sheet `out` with each game it doesn't have yet (in log order),
-    then rewrites the sheet from it. Earlier versions of both go to <out dir>/history/. `fresh` starts
+    then rewrites the sheet from it. Earlier sheets go to <out dir>/history/. `fresh` starts
     a new notebook. Safe to run from several processes at once: builds of the same sheet take turns.
     on_error(kind, summary, **fields) is told about problems that don't stop the build (GameLog.error)."""
     with locked(out, on_error) as touch:
@@ -468,10 +468,9 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
     rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8")
     cost = 0.0
     stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
-    for path in (out, nb_path):  # the versions before this build
-        if path.exists():
-            (out.parent / "history").mkdir(parents=True, exist_ok=True)
-            (out.parent / "history" / f"{path.stem}_{stamp}{path.suffix}").write_bytes(path.read_bytes())
+    if out.exists():  # the sheet before this build (the notebook's old versions are in git history)
+        (out.parent / "history").mkdir(parents=True, exist_ok=True)
+        (out.parent / "history" / f"{out.stem}_{stamp}{out.suffix}").write_bytes(out.read_bytes())
     out.parent.mkdir(parents=True, exist_ok=True)
     for g in games:
         applied, skipped, c = update_notebook(client, spec, rules, nb, g)
@@ -494,7 +493,7 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
         return out
     header = (f"# Tips from past games\n\nWritten {datetime.now():%Y-%m-%d %H:%M} by {spec} with `uv run tips.py "
               f"build`, from the {active} active entries of {nb_path.name} ({len(nb['games'])} games). Players never "
-              "see this preamble; they see every section below. Earlier versions are in history/.\n\n")
+              "see this preamble; they see every section below. Earlier sheets are in history/.\n\n")
     write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
     write_atomic(out, header + body)
     print(f"Tips: {out} ({len(body.split())} words) from {nb_path.name} ({active} active entries, "
