@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 class Archivist(RoleLogic):
     roleplayer_can_fake = False  # code draws the sample
     night_note = ("An Archivist who spent their token (and wasn't role-blocked): use the archive op, which spends "
-                  "the token; code shows them the sampled roles at once, as a night result.")
+                  "the token; code shows them the sampled roles at once, as a night result (don't tell() them).")
     ops = {"archive": ({"by"}, set(), "{op:'archive', by}: the Archivist `by` consults the archive (spends their "
                                       "token; code draws and tells the roles at once)")}
 

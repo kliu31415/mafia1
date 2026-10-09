@@ -42,11 +42,18 @@ def night_replay(game: Game) -> str:
     return "\n".join(lines) or "(no nights were played)"
 
 
+def when(r: dict) -> str:
+    """When a player_feedback record was written: answers to the post-game questions carry the last day's
+    number, which read as in-game reports from dead players (game_20261009_152339_529912)."""
+    return "After the game" if r.get("step") in ("debrief", "lessons") else f"Day {r['day']} {r['phase']}"
+
+
 def full_log(game: Game) -> str:
     """Every event, with who could see it. Players get it after the game too, so feedback and lessons
     from players who died early (or never saw the other side's chat) cover the whole game."""
     return "\n".join(f"[Day {e.day} {e.phase}] " + ("" if e.visible_to is None else f"(to {', '.join(sorted(e.visible_to))}) ")
-                     + e.text for e in game.events)
+                     + e.text for e in game.events
+                     if not e.notice)  # "X sent Y a private message" would repeat the message shown above it
 
 
 def post_game_context(game: Game) -> str:
@@ -108,7 +115,9 @@ def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log
         rules_system(rules, "You review logs of LLMs playing this game, which "
          "is run by a program plus an LLM moderator. Find problems: rules ambiguities, program bugs, "
          "moderator mistakes, prompt problems, and places players seemed confused about the rules or "
-         "interface. Ignore ordinary bad strategy."),
+         "interface. Ignore ordinary bad strategy. This text log leaves out the answers to the post-game "
+         "questions (debrief, lessons, strategy review), which are stored separately, so those sections "
+         "look empty."),
         {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}"},
     ]
     reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
@@ -256,7 +265,7 @@ def write_report(jsonl_path: Path) -> Path | None:
         out.append("")
     if in_game:
         out.append("## In-game player feedback\n")
-        out += [f"- Day {r['day']} {r['phase']}, {r['player']} ({r['role']}): {r['feedback']}" for r in in_game]
+        out += [f"- {when(r)}, {r['player']} ({r['role']}): {r['feedback']}" for r in in_game]
         out.append("")
     if debriefs:
         out.append("## Post-game debriefs\n")

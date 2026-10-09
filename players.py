@@ -216,7 +216,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {notepad_words(game)} "
-            "words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, "
+            "words; longer is truncated), or leave it empty (\"\") to keep it as is. Use it for plans, "
             "suspicions and "
             "anything you want to remember. A useful habit: one brief line per other player (their claim, "
             "key votes or actions, and your current read), e.g. \"Bob: claims Sheriff, says Carol is Not "
@@ -255,7 +255,7 @@ LONG_REASON_NOTE = ("Every response also has a 'reason' field: explain why you c
 
 FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: if a rule or this "
                  "interface is confusing, seems broken, or stops you doing something you want, say so "
-                 "there briefly; otherwise leave it null. Nobody in the game sees it.\n\n")
+                 "there briefly; otherwise leave it empty. Nobody in the game sees it.\n\n")
 
 
 def with_common_fields(schema: dict, feedback_field: bool, text: dict | None = None) -> dict:
@@ -270,6 +270,11 @@ def with_common_fields(schema: dict, feedback_field: bool, text: dict | None = N
 STEPS = ("will", "day_turn", "trial_turn", "budget_revision", "puppet_nomination", "nomination_vote", "trial_vote",
          "yakuza_chat", "night_action", "katana_revote", "ask_player", "debrief", "lessons")
 
+
+def blank(text: str) -> bool:
+    """An answer meaning "nothing": "" or a written-out null (Haiku wrote "null" as feedback 27 times in
+    game_20261009_152339_529912, since the shared schema types text fields as plain strings)."""
+    return text.strip().strip(".").lower() in ("", "null", "none", "n/a")
 
 class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""
@@ -310,7 +315,7 @@ class Players:
                     out = fit_answer(out, wanted)
                 before = p.notepad
                 after = before
-                if isinstance(note := out.get("notepad"), str) and note.strip():  # "" keeps it, like null
+                if isinstance(note := out.get("notepad"), str) and not blank(note):  # "" keeps it, like null
                     cap = notepad_words(self.game)
                     after = truncate_words(note, cap) if word_count(note) > cap else note
                     if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
@@ -320,8 +325,8 @@ class Players:
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage, latency_s=latency, notepad_before=before,
                                     notepad_after=after)
-                if isinstance(fb := out.pop("feedback", None), str) and fb.strip():
-                    self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase,
+                if isinstance(fb := out.pop("feedback", None), str) and not blank(fb):
+                    self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
                                         player=p.name, role=p.role, feedback=fb)
                 out.pop("notepad", None)
                 out.pop("reason", None)  # logged above; game code and the moderator never see it

@@ -658,3 +658,23 @@ def test_feedback_prompts_show_dead_players_the_whole_game(game_factory):
     players.client, players.shared = client, True
     run_debrief(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"))
     assert all(set(POST_GAME_SCHEMA["properties"]) <= set(s["properties"]) for s in sent[:5])
+
+
+def test_a_written_out_null_is_no_feedback_and_keeps_the_notepad(game_factory):
+    # Haiku wrote "null" as feedback 27 times in game_20261009_152339_529912 (text fields are plain strings).
+    answers = iter([{"notepad": "plan"}, {"notepad": "null", "feedback": "null"}])
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: next(answers, None)))
+    players.feedback_field = True
+    schema = {"type": "object", "properties": {}, "required": []}
+    for _ in range(2):
+        players.ask(game.player("Alice"), "Note something.", schema, {}, step="day_turn")
+    assert game.player("Alice").notepad == "plan"
+    assert '"player_feedback"' not in game.log.path.read_text(encoding="utf-8")
+
+
+def test_the_post_game_reveal_shows_each_private_message_once(game_factory):
+    from feedback import full_log
+    game, _ = game_factory(TOWN4_GRUNT)
+    game.emit("Alice -> Bob (private): hi", ["Alice", "Bob"])
+    game.emit("Alice sent Bob a private message.", ["Carol", "Dave", "Erin"], kind="notice")
+    assert "hi" in full_log(game) and "sent Bob a private message" not in full_log(game)

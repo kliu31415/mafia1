@@ -62,6 +62,7 @@ class Event:
     visible_to: frozenset[str] | None = None
     cat: str = SYSTEM
     fields: dict[str, Any] = field(default_factory=dict)
+    notice: bool = False  # emitted with kind="notice": it duplicates another event for those who can't see that one
 
     def visible(self, name: str) -> bool:
         return self.visible_to is None or name in self.visible_to
@@ -151,7 +152,7 @@ class Game:
         """cat is the event's category (CHAT etc. above), with that category's fields.
         kind="notice" marks events that the readable logs skip (they duplicate another event)."""
         vis = frozenset(visible_to) if visible_to is not None else None
-        self.events.append(Event(self.day, self.phase, text, vis, cat, fields))
+        self.events.append(Event(self.day, self.phase, text, vis, cat, fields, kind == "notice"))
         self.log.write(kind, day=self.day, phase=self.phase, text=text,
                        visible_to=sorted(vis) if vis is not None else "all", cat=cat, **fields)
 

@@ -57,7 +57,8 @@ from records import read_records, safe_print
 # 28: player_call, player_error and player_fallback have step (players.STEPS), day, phase and round (chat turns and
 #     Yakuza chat); player_call, player_error and moderator_call have latency_s (seconds the call took, retries
 #     included); moderator_call has day and phase; "resume" has at ("day" or "night": the checkpoint's phase)
-LOG_VERSION = 28
+# 29: player_feedback has step (players.STEPS), so answers to post-game questions aren't read as in-game reports
+LOG_VERSION = 29
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
