@@ -69,7 +69,9 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
      `CORE_OPS` in `moderator.py`.
   6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game
      smoke test automatically (`test_every_role_survives_a_mock_game`).
-  7. `setups.py` draws random setups (`--roles random:N`) by alignment and category, and `stats.py` scores
+  7. `roles/icons/<role-name>.svg` (e.g. `ex-con.svg`): the icon next to the role's players in the HTML log, a
+     24x24 line drawing in black (it's used as a mask and drawn in the faction color). A test checks every role has one.
+  8. `setups.py` draws random setups (`--roles random:N`) by alignment and category, and `stats.py` scores
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
      when the role's choices have a clear right answer.
 

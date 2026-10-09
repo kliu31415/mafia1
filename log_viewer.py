@@ -5,6 +5,7 @@
 - render_html(jsonl_path): a single self-contained HTML page. Game events are plain lines grouped
   by day and night; every model call (prompt, thinking, output, cost) is a collapsed row you can
   click to expand. Open it in any browser; no server or framework needed.
+  Player names are colored by faction, with their role's icon from roles/icons/ inlined into the page.
 
 Usage:
     uv run log_viewer.py logs/game_....jsonl     # writes logs/game_....html next to it
@@ -14,6 +15,7 @@ import html
 import json
 import re
 import sys
+import urllib.parse
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -150,6 +152,10 @@ details.phase.night > summary { color:var(--c-hidden); }
 .errors ul { margin:4px 0; padding-left:20px; } .no-errors { margin:8px 0; }
 .n { font-weight:650; } .n.Village { color:var(--village); } .n.Yakuza { color:var(--yakuza); }
 .n.Neutral { color:var(--neutral); }
+/* role icons (roles/icons/*.svg), drawn in the name's faction color: each role's class sets --icon */
+.n.ic::before { content:""; display:inline-block; width:1.05em; height:1.05em; margin-right:2px; vertical-align:-0.15em;
+  background:currentColor; -webkit-mask:var(--icon) center/contain no-repeat; mask:var(--icon) center/contain no-repeat; }
+body.no-icons .n.ic::before { display:none; }
 details.call { background:var(--call); border-radius:6px; margin:2px 0 2px 24px; padding:2px 8px; }
 details.call > summary { cursor:pointer; color:var(--muted); font-size:13px; }
 pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:8px;
@@ -172,6 +178,7 @@ const toggle = (id, cls) => {
 };
 toggle('showcalls', 'no-calls');
 toggle('showhidden', 'no-hidden');
+toggle('showicons', 'no-icons');
 document.getElementById('expand').addEventListener('click', () =>
   document.querySelectorAll('details.call').forEach(d => d.open = true));
 document.getElementById('collapse').addEventListener('click', () =>
@@ -217,7 +224,7 @@ def usage_html(usage: list[dict]) -> str:
         return f"{n:,}"
     rows = []
     for u in usage:
-        who = f"<span class='n {faction_of(u['role'])}'>{esc(u['who'])}</span>" if u.get("role") \
+        who = f"<span class='{name_classes(u['role'])}'>{esc(u['who'])}</span>" if u.get("role") \
             else esc(u["who"])
         detail = {"Role": u.get("role"), "Models": ", ".join(u["models"]), "Calls": u["calls"],
                   "Cost per call": f"${u['cost'] / u['calls']:.4f}" if u["calls"] else None,
@@ -239,6 +246,31 @@ def usage_html(usage: list[dict]) -> str:
     return "<div class='muted'>Cost by player (USD), click a row for calls and tokens</div>" + "".join(rows)
 
 
+ICONS = Path(__file__).parent / "roles" / "icons"  # <role-slug>.svg; generic.svg for roles without one
+
+
+def icon_slug(role: str) -> str:
+    """The icon file name for a role, e.g. "Ex-Con" -> "ex-con", "Vanilla Villager" -> "vanilla-villager"."""
+    slug = re.sub(r"[^a-z0-9]+", "-", role.lower()).strip("-")
+    return slug if (ICONS / f"{slug}.svg").exists() else "generic"
+
+
+def name_classes(role: str) -> str:
+    """CSS classes of a player's name: faction color and role icon."""
+    return f"n {faction_of(role)} ic i-{icon_slug(role)}"
+
+
+def icons_css() -> str:
+    """CSS rules giving each role class its icon, inlined as data URIs (all of them, about 15 KB) so the page
+    stays one file. Icons come from the repo's roles/icons/, so every log shows the same icons until those
+    files change."""
+    rules = []
+    for path in sorted(ICONS.glob("*.svg")):
+        slug, svg = path.stem, " ".join(path.read_text(encoding="utf-8").split())
+        rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
+    return "\n".join(rules)
+
+
 def faction_of(role: str) -> str:
     info = ROLES.get(role)
     if info is None:
@@ -247,18 +279,18 @@ def faction_of(role: str) -> str:
 
 
 class Namer:
-    """Escapes text and wraps player names in spans colored by faction."""
+    """Escapes text and wraps player names in spans colored by faction, with their role's icon."""
 
-    def __init__(self, factions: dict[str, str]):
-        self.factions = factions
-        names = sorted(factions, key=len, reverse=True)
+    def __init__(self, roles: dict[str, str]):
+        self.classes = {n: name_classes(role) for n, role in roles.items()}
+        names = sorted(roles, key=len, reverse=True)
         self.pattern = re.compile(r"\b(" + "|".join(map(re.escape, names)) + r")\b") if names else None
 
     def __call__(self, text: str) -> str:
         escaped = esc(text)
         if not self.pattern:
             return escaped
-        return self.pattern.sub(lambda m: f"<span class='n {self.factions[m[1]]}'>{m[1]}</span>", escaped)
+        return self.pattern.sub(lambda m: f"<span class='{self.classes[m[1]]}'>{m[1]}</span>", escaped)
 
 
 def is_phase_start(r: dict) -> bool:
@@ -362,7 +394,7 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "setup":
             roles = {p["name"]: p["role"] for p in r["players"]}
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
-            name = Namer({n: faction_of(role) for n, role in roles.items()})
+            name = Namer(roles)
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat']}</td><td>{esc(p['role'])}</td>"
                            f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
@@ -440,10 +472,11 @@ def render_html(jsonl_path: Path) -> Path:
                "<span class='n Neutral'>Neutral</span>")
     title = f"Mafia game {jsonl_path.stem}"
     page = (f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' "
-            f"content='width=device-width, initial-scale=1'><title>{esc(title)}</title><style>{CSS}</style>"
+            f"content='width=device-width, initial-scale=1'><title>{esc(title)}</title><style>{CSS}{icons_css()}</style>"
             f"</head><body><h1>{esc(title)}</h1><div class='legend'>{legend}</div><div class='controls'>"
             f"<label><input type='checkbox' id='showcalls' checked> Model details</label>"
             f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
+            f"<label><input type='checkbox' id='showicons' checked> Role icons</label>"
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
             f"<span class='muted'>Untick both to read it like a player would.</span></div>"
             f"{errors_html(errors, unreadable)}{''.join(out)}<script>{JS}</script></body></html>")

@@ -72,3 +72,14 @@ def test_result_breaks_cost_down_by_player(tmp_path, monkeypatch):
     assert round(sum(u["cost"] for u in usage.values()), 6) == round(sum(r.get("cost", 0) for r in records[:-1]), 6)
     page = render_html(path).read_text(encoding="utf-8")
     assert "Cost by player" in page and "Reasoning tokens" in page
+
+
+def test_every_role_has_an_icon_in_the_html_log(game_factory):
+    from log_viewer import ICONS, icon_slug, render_html
+    from roles import ROLES
+    assert all(icon_slug(role) != "generic" for role in ROLES), "draw an icon in roles/icons/ for each new role"
+    assert icon_slug("Some Removed Role") == "generic" and (ICONS / "generic.svg").exists()
+    game, _ = game_factory(["Medic", "Grunt"], ScriptedClient())
+    game.log.close()
+    page = render_html(game.log.path).read_text(encoding="utf-8")
+    assert "class='n Village ic i-medic'>Alice<" in page and ".i-medic { --icon:url(" in page
