@@ -14,6 +14,11 @@ if TYPE_CHECKING:
 
 @register("Cardinal")
 class Cardinal(RoleLogic):
+    # The moderator drew and killed a curse victim itself during the night in game_20261009_212707_751277,
+    # and code then dealt the real curse at dawn: two victims.
+    night_note = ("A Cardinal who dies tonight: code deals their Divine Attack on a random Good player at the "
+                  "start of the next Day. Don't draw or kill a victim yourself.")
+
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         game.role_state.setdefault(CURSES, []).append(p.name)
 
