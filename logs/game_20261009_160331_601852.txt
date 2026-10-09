@@ -595,3 +595,66 @@ Judy nominated Judy. Everyone now votes Yes/No simultaneously.
 Nomination votes on Judy: Yes - Judy; No - Olivia, Heidi, Ivan.
 The nomination of Judy failed (1 Yes).
 [Feedback from Olivia] Nothing to report beyond the very high cost of long public messages.
+Heidi (public): I will not vote on Judy—executing a self-proclaimed Jester and taking a Divine revenge hit is suicidal. Without consensus on Olivia, forcing another nomination is pointless. Let's advance to night.
+[ERROR player_error] Ivan (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): "e reconsider the possibility of winning today via a coordinated vote, because it might be more reliable than Olivia's tokens.\n\nIf I nominate Heidi:\n- I vote Yes, Olivia votes Yes (she'll follow), so 2"
+(to Ivan, Olivia) Ivan -> Olivia (private): Olivia — tonight is the guaranteed win, don't hold tokens this time. The Arsonist is definitely alive and is either Heidi or Judy (Ivan and I are Yakuza, so neither of us; 3 died to fire N5). Judy has begged for the noose since D1 and a live Jester loses if the game ends, so she is the Jester — meaning HEIDI is the Arsonist. Arsonist has Standard Defense, so my Katana (Standard) CANNOT kill her; you must spend BOTH ritual tokens on a Divine guess of 'Heidi = Arsonist'. If right, she dies tonight and we win instantly (Judy the Jester is ignored in the win check). If I'm wrong and Judy is the Arsonist, my Katana still kills Heidi (Village, no Defense), you get outed but it doesn't matter — D7 we hang Judy 2-1 and still win. Both branches win. Confirm you'll spend the 2 tokens.
+(to Heidi, Judy) Judy -> Heidi (private): Heidi: Dave was a confirmed Sheriff, and his Evil result on Olivia was never explained. Ivan and Olivia PM'd four times today. I'm the Jester, so hanging me costs the Village little, and only one Guilty voter takes revenge. Please reconsider Guilty on me and judge the record, not my tone.
+(to Ivan, Olivia) Olivia -> Ivan (private): Confirmed: I'll spend both ritual tokens on a Divine guess that Heidi is the Arsonist. Katana on Heidi as planned.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 6 =====
+(to Ivan, Olivia) Ivan (Yakuza chat): Confirming tonight: I hold the Katana and attack Heidi. Olivia, you MUST spend both ritual tokens on a Divine guess 'Heidi = Arsonist'. Why: the Arsonist is Heidi or Judy. Judy has begged for the noose since D1 — that is a real Jester, not the Arsonist. Arsonist has Standard Defense, so my Standard Katana cannot kill Heidi; only your Divine can. If Heidi is actually Village, my Katana kills her anyway and your wrong guess merely outs you, but then we simply hang Judy tomorrow 2-1 with our vote majority and still win. So the spend is win/win and covers the dangerous branch. Vote Ivan as holder, Heidi as target. Both of us on both, so the kill passes.
+(to Ivan, Olivia) Olivia (Yakuza chat): Confirmed: Ivan keeps the Katana and targets Heidi. I will spend both ritual tokens on a Divine guess that Heidi is the Arsonist (Astral, no visit). If Heidi is Arsonist, the Standard Katana fails but my Divine kills her and we win at once. If Heidi is Village, the Katana kills her, which leaves Judy as the Arsonist; we then nominate and hang Judy on D7 with Ivan and me voting Guilty. Ivan, do not change the holder or target tonight. Ready.
+(to Ivan, Olivia) Ivan (Yakuza chat): Plan locked: I hold the Katana and attack Heidi. Olivia, you MUST spend both ritual tokens on the Divine guess 'Heidi = Arsonist'. If Heidi is the Arsonist, my Standard Katana fails on her Standard Defense, but your Divine kills her and we win at D7 start. If Heidi is Village, my Katana kills her, leaving Judy as the Arsonist; we then nominate and hang Judy 2-1 on D7 and still win. Both branches work, so the spend covers the only dangerous case. Do not change holder or target. Confirm your holder/target votes and the token spend.
+(to Ivan, Olivia) Olivia (Yakuza chat): Confirmed: Ivan holds the Katana and targets Heidi, as planned. I will spend both ritual tokens on a Divine guess that Heidi is the Arsonist. Judy's Jester claim points to Heidi as the Arsonist, so a hit ends the game for us at once. If Heidi is Village, the Katana kills her and we hang Judy on Day 7 with two of three votes. Ready.
+[Feedback from Ivan] Sumission about the locked two-Yakuza vote is fine; no issues.
+Night actions:
+  Heidi (Arsonist): target Ivan; "douse"
+  Ivan (Grunt): no role action; Katana vote: Ivan holds, attacks Heidi
+  Olivia (Ritualist): target Heidi; guessed role Arsonist; 2 token(s); Katana vote: Ivan holds, attacks Heidi
+Katana: Ivan holds it and attacks Heidi.
+(to Heidi) Moderator (private): Night 6 result: You doused Ivan.
+(to Ivan) Moderator (private): Night 6 result: You held the Katana and attacked Heidi. Your attack did not succeed. Yakuza actions tonight: Ivan held the Katana and attacked Heidi; Olivia used her Ritualist ability, guessing Heidi's role (spending 2 ritual tokens).
+(to Olivia) Moderator (private): Night 6 result: Your guess that Heidi is the Arsonist was correct, and your Divine Attack on Heidi succeeded. 0 ritual tokens left. Yakuza actions tonight: Ivan held the Katana and attacked Heidi; Olivia used her Ritualist ability, guessing Heidi's role (spending 2 ritual tokens).
+[Moderator summary] Night 6: Heidi (Arsonist) doused Ivan (visit). Ivan (Katana holder) attacked Heidi with a Standard attack, which failed against her Standard Defense. Olivia (Ritualist) correctly guessed that Heidi is the Arsonist and spent 2 tokens on a Divine Attack (Astral Visit). That attack killed Heidi (cause: Ritualist, by Olivia). Olivia's ritual tokens are now 0, and Ivan is marked doused. No Fortune Teller, Seer or Veteran is alive. Left alive: Ivan and Olivia (both Yakuza) and Judy (Jester). Ignoring the Jester, only Yakuza remain, so the Yakuza should win at the win check.
+
+===== DAY 7 =====
+Heidi died (killed by Ritualist). Their role was Arsonist. Last will: "Heidi - Vanilla Villager. Dave's N2 check on Olivia was Evil and remains completely unexplained. Ivan and Olivia have been coordinating privately. Do not let Judy bait a Jester revenge execution."
+The game is over. Winners: Erin (dead), Ivan, Niaj (dead), Olivia. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Peggy] The interface kept prompting me for night actions and day responses after I had already died (Night 2), which is wasteful and confusing. Also, two of my turns were replaced by 'Program note' defaults due to technical errors—if those had mattered (e.g., a vital vote), it would have corrupted the game. Please suppress prompts for dead players and make the answer-submission more reliable.
+[Feedback from Ivan] The default-substitution on failed vote inputs is the one thing I'd call out as potentially unfair: it converts an intended vote into No/Innocent without the player's knowledge, which can decide a nomination or trial. Everything else worked well.
+[Feedback from Olivia] The notepad and reason fields are described as 'every response', but this feedback request lists only five fields; I filled the unused fields with empty values as instructed.
+[Feedback from Heidi] none
+[Night check] Night 6: correct
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[Feedback from Ivan] null
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Erin, Ivan, Niaj, Olivia
+Cost by player (USD):
+  Alice (Fortune Teller)  $0.0727   46 calls  gpt-6-luna
+  Bob (Veteran)           $0.2601   51 calls  gpt-6-luna-pro
+  Carol (Medic)           $0.1015   14 calls  claude-haiku-5.5
+  Dave (Sheriff)          $0.0550   37 calls  gpt-6-luna
+  Erin (Mortician)        $0.3602   62 calls  gpt-6-luna-pro
+  Frank (Lookout)         $0.3499   45 calls  gemini-3.8-flash
+  Grace (Cardinal)        $0.2178   45 calls  gpt-6-luna-pro
+  Heidi (Arsonist)        $0.7074   62 calls  gemini-3.8-flash
+  Ivan (Grunt)            $0.5179   79 calls  deepseek-v4.1-flash
+  Judy (Jester)           $0.1936   52 calls  claude-haiku-5.5
+  Mallory (Tracker)       $0.0853   49 calls  gpt-6-luna
+  Niaj (Clerk)            $0.3129   53 calls  deepseek-v4.1-flash
+  Olivia (Ritualist)      $0.2719   77 calls  claude-haiku-5.5
+  Peggy (Seer)            $0.1555   28 calls  deepseek-v4.1-flash
+  Moderator               $1.9072   17 calls  claude-opus-5.5
+  Night checks            $0.6312    6 calls  claude-opus-5.5
+  Strategy review         $0.3915    1 calls  claude-opus-5.5
+  Log review              $0.4043    1 calls  claude-opus-5.5
+  Total                   $6.9959  725 calls
