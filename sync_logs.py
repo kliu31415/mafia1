@@ -10,7 +10,7 @@ Tips: the notebook on the PC (tips/) stays the one source of truth. Cloud games 
 sheet and don't update it (mafia.py turns that off in the cloud); `pull` on the PC adds their lessons to the
 notebook (the same `tips.py build` a PC game runs when it ends) and publishes the new sheet for later cloud
 games. mafia.py also calls after_game when a live game ends or stops: a cloud game pushes its logs, and a
-PC game publishes the sheet it just updated. tips/ is also committed to main (by hand, from the PC), so a new
+PC game publishes the sheet it just updated. tips/ is also committed to main (commit_tips, on the PC), so a new
 PC can pull the notebook and carry on; main's copy can lag the branch's, so `tips` replaces unedited checkout
 copies.
 
@@ -227,6 +227,33 @@ def after_game(log_dir: Path, tips_dir: Path | None, cloud: bool, repo: Repo | N
         print(f"ALERT sync_error: {what} failed: {type(e).__name__}: {e}"
               + ("; run `uv run sync_logs.py push` before the sandbox goes" if cloud else
                  "; `uv run sync_logs.py publish-tips` retries"), file=sys.stderr)
+    if not cloud and tips_dir and (tips_dir / "tips.md").exists():
+        commit_tips(repo, tips_dir)
+
+
+def commit_tips(repo: Repo, tips_dir: Path, branch: str = "main") -> str | None:
+    """Commits tips_dir (sheet, notebook, history/) to `branch`, so another PC that pulls main carries on the
+    notebook, then pushes it if that's a fast-forward (else the next push of main takes it along). Only
+    tips_dir's files go in the commit: other staged work stays staged. Skipped unless `branch` is checked
+    out. Returns the commit, or None. Failures are printed as ALERT lines, never raised."""
+    try:
+        rel = tips_dir.resolve().relative_to(repo.root.resolve()).as_posix()
+        if repo.git("rev-parse", "--abbrev-ref", "HEAD").decode().strip() != branch:
+            print(f"Tips not committed: {branch} isn't checked out (commit {rel}/ there by hand)")
+            return None
+        repo.git("add", "-A", "--", rel, ":(exclude)*.lock", ":(exclude)*.tmp")  # a build in progress
+        if not repo.git("diff", "--cached", "--name-only", "--", rel).strip():
+            return None
+        repo.git("commit", "--quiet", "-m", "Update the tips notebook and sheet", "--", rel)
+        commit = repo.git("rev-parse", "HEAD").decode().strip()
+    except Exception as e:
+        print(f"ALERT sync_error: committing {tips_dir} failed: {type(e).__name__}: {e}; commit it by hand",
+              file=sys.stderr)
+        return None
+    r = subprocess.run(["git", "push", "--quiet", repo.remote, f"HEAD:{branch}"], cwd=repo.root, capture_output=True)
+    print(f"Committed the tips to {branch} ({commit[:7]})" + (" and pushed" if r.returncode == 0 else
+          f"; not pushed ({repo.remote}/{branch} has newer commits), the next push of {branch} takes it"))
+    return commit
 
 
 def get_tips(repo: Repo, tips_dir: Path, force: bool = False) -> tuple[list[Path], list[str]]:
@@ -284,6 +311,8 @@ def main() -> None:
             games = sorted(log_dir.glob("game_*.jsonl"))
             if any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written) and not args.no_tips:
                 update_tips(games, tips_dir, args.tips_model)
+            if not args.no_tips and (tips_dir / "tips.md").exists():
+                commit_tips(repo, tips_dir)
             if not args.no_tips:
                 changed = put_tips(repo, tips_dir)
                 print(f"Published the tips to {repo.remote}/{repo.branch}" if changed else "Tips on the branch are "

@@ -178,3 +178,32 @@ def test_main_s_committed_tips_are_replaced_by_the_branch_s_newer_ones_but_local
     written, kept = sync_logs.get_tips(cloud, tips)
     assert written == [tips / "tips.md"] and kept == ["tips_notebook.json"]
     assert (tips / "tips.md").read_text() == "new sheet\n"
+
+
+def test_tips_are_committed_to_main_alone_and_pushed_when_that_s_a_fast_forward(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    tips = pc.root / "tips"
+    (tips / "history").mkdir(parents=True)
+    (tips / "tips.md").write_text("sheet\n")
+    (tips / "history" / "tips_1.md").write_text("old sheet\n")
+    (tips / "tips.md.lock").write_text("")
+    (pc.root / "work.py").write_text("half done\n")
+    run(pc.root, "add", "work.py")  # someone's staged work, not part of the tips commit
+    commit = sync_logs.commit_tips(pc, tips)
+    assert commit and pc.git("ls-tree", "-r", "--name-only", commit).decode().split() == [
+        "code.py", "tips/history/tips_1.md", "tips/tips.md"]
+    assert pc.git("status", "--porcelain").decode().splitlines() == ["A  work.py", "?? tips/tips.md.lock"]
+    assert pc.git("ls-remote", "origin", "main").decode().split()[0] == commit
+    assert sync_logs.commit_tips(pc, tips) is None  # nothing new
+
+    run(cloud.root, "pull", "-q", "origin", "main")
+    (cloud.root / "more.py").write_text("y = 2\n")  # main moves on elsewhere: committed here, not pushed
+    run(cloud.root, "add", "more.py")
+    run(cloud.root, "commit", "-m", "more")
+    run(cloud.root, "push", "origin", "HEAD:main")
+    (tips / "tips.md").write_text("newer sheet\n")
+    later = sync_logs.commit_tips(pc, tips)
+    assert later and pc.git("ls-remote", "origin", "main").decode().split()[0] != later
+    run(pc.root, "checkout", "-q", "-b", "other")
+    (tips / "tips.md").write_text("on a branch\n")
+    assert sync_logs.commit_tips(pc, tips) is None  # only main gets tips commits
