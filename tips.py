@@ -56,7 +56,7 @@ FALLBACKS_TO_DISTRUST = 3  # a player with this many fallback answers barely pla
 # game's players were stronger on average (lessons from a game of weak players may be about beating weak play).
 STRENGTH = {
     Model.OPUS_5_5: 5, Model.GPT_6_1_SOL: 5,
-    Model.SONNET_5_5: 4, Model.GEMINI_3_1_PRO: 4, Model.GROK_4_7: 4, Model.KIMI_K3: 4,
+    Model.SONNET_5_5: 4, Model.GROK_4_7: 4, Model.KIMI_K3: 4, Model.GLM_5_3: 4,
     Model.QWEN_3_8_MAX_PRIME: 4, Model.QWEN_3_8_MAX: 4,
     Model.GEMINI_3_8_FLASH: 3,
     Model.HAIKU_5_5: 2, Model.GPT_6_LUNA: 2,

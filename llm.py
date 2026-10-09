@@ -26,11 +26,13 @@ class Model(str, Enum):
     OPUS_5_5 = "anthropic/claude-opus-5.5"
     SONNET_5_5 = "anthropic/claude-sonnet-5.5"
     GPT_6_1_SOL = "openai/gpt-6.1-sol"
-    GEMINI_3_1_PRO = "google/gemini-3.1-pro-preview"
+    # GEMINI_4_ARGON = "google/gemini-4-argon"  # Google's frontier model (Sep 30, 2026); not on OpenRouter as
+    #     of 2026-10-09. When it is: uncomment, add it to MODEL_SHORT_NAMES and to STRENGTH in tips.py (5).
     GROK_4_7 = "x-ai/grok-4.7"
     QWEN_3_8_MAX_PRIME = "qwen/qwen3.8-max-prime"  # same weights as QWEN_3_8_MAX at twice the price
     QWEN_3_8_MAX = "qwen/qwen3.8-max-0902"
     KIMI_K3 = "moonshotai/kimi-k3"
+    GLM_5_3 = "z-ai/glm-5.3"
     GEMINI_3_8_FLASH = "google/gemini-3.8-flash"
     # Cheap models for smoke tests.
     HAIKU_5_5 = "anthropic/claude-haiku-5.5"
@@ -45,11 +47,11 @@ MODEL_SHORT_NAMES = {
     Model.OPUS_5_5: "opus-5.5",
     Model.SONNET_5_5: "sonnet-5.5",
     Model.GPT_6_1_SOL: "gpt-6.1-sol",
-    Model.GEMINI_3_1_PRO: "gemini-3.1-pro",
     Model.GROK_4_7: "grok-4.7",
     Model.QWEN_3_8_MAX_PRIME: "qwen-3.8-max-prime",
     Model.QWEN_3_8_MAX: "qwen-3.8-max",
     Model.KIMI_K3: "kimi-k3",
+    Model.GLM_5_3: "glm-5.3",
     Model.GEMINI_3_8_FLASH: "gemini-3.8-flash",
     Model.HAIKU_5_5: "haiku-5.5",
     Model.GPT_6_LUNA: "gpt-6-luna",
@@ -68,6 +70,7 @@ PROVIDERS = {
     "x-ai": "xAI",
     "qwen": "Alibaba",
     "moonshotai": "Moonshot AI",
+    "z-ai": "Together",  # the exception: Z.AI's own endpoint doesn't take structured outputs (2026-10-09)
 }
 
 
@@ -220,6 +223,8 @@ class LLMClient(Protocol):
 # - Qwen 3.8 Max, Kimi K3: automatic prefix caching, ~5120 of ~5300 tokens hit on the second call.
 # - Grok 4.7: unreliable. Repeats of an identical prompt hit 1152, 0 or the full ~6270 tokens at random
 #   (likely depends on which server takes the request); prompt_cache_key and `user` didn't help.
+# - GLM-5.3 (via Together): automatic but patchy; a repeat of the same player's prompt missed while another
+#   player's call hit the shared rules (5184 tokens). Not worth marks: Together ignores them.
 CACHE_MARKERS = ("anthropic", "google")
 
 
