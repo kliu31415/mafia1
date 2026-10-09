@@ -99,6 +99,8 @@ def describe_check(r: dict) -> str:
 
 
 def describe_action(a: dict) -> str:
+    if a.get("automatic"):  # drawn by code, e.g. the Ex-Con's random visit (RoleLogic.automatic_action)
+        return f"automatic: {describe_action({**a, 'automatic': False})}"
     if not a.get("act") and not a.get("katana_vote_holder"):
         return "no action"
     parts = []
@@ -313,6 +315,10 @@ def is_phase_start(r: dict) -> bool:
     return t.startswith(("Day ", "Night ")) and t.endswith("begins.")
 
 
+def puppeted(r: dict) -> str:
+    return f" (puppeted by {r['puppeteer']})" if r.get("puppeteer") else ""
+
+
 def classify(r: dict) -> tuple[str, str, str]:
     """(category, badge text, body text) for an event, from the category and fields that
     state.Game.emit() logs."""
@@ -321,9 +327,9 @@ def classify(r: dict) -> tuple[str, str, str]:
     cat, t, vis = r["cat"], r["text"], r["visible_to"]
     match cat:
         case "chat":
-            return "chat", "", f"{r['speaker']}: {r['message']}"
+            return "chat", "", f"{r['speaker']}{puppeted(r)}: {r['message']}"
         case "pm":
-            return "pm", "PM", f"{r['speaker']} → {r['to']}: {r['message']}"
+            return "pm", "PM", f"{r['speaker']}{puppeted(r)} → {r['to']}: {r['message']}"
         case "yak":
             return "yak", "Yakuza chat", f"{r['speaker']}: {r['message']}"
         case "result":

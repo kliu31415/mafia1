@@ -101,7 +101,7 @@ ROLES: dict[str, RoleInfo] = {
                            "moderator invents its results"),
     "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True,
                        summary="Visits a random player each night without knowing whom; reads Evil to alignment checks.",
-                       notes="random visit each night; night note says it reads Evil to Sheriff and Seer"),
+                       notes="code draws the random visit each night (automatic action); night note says it reads Evil to Sheriff and Seer"),
     "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
                          summary="If they die, a random living Good player is dealt a Divine Attack.",
                          notes="curse resolved by code at the next dawn"),

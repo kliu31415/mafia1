@@ -83,6 +83,10 @@ def test_puppeteer_writes_the_puppets_messages(game_factory):
     assert not any(name == "Bob" and "public_message" in task for name, task in client.asked)
     # The claim is public chat in effect, so the Puppeteer sets it too; it shows as Bob's.
     assert game.claim_record == {"Bob": [(1, "Sheriff. N1: Carol Evil")]}
+    # Only the puppet (who is told about the puppeting) sees the message marked as the Puppeteer's.
+    mark = "[written by your Puppeteer, not you]"
+    assert any(mark in line for line in game.history_split("Bob")[1])
+    assert not any(mark in line for name in ("Alice", "Erin") for line in game.history_split(name)[1])
 
 
 def test_wiretap_reads_every_pm_but_a_dead_one_stops(game_factory):
@@ -454,3 +458,14 @@ def test_ask_player_answer_is_kept_in_the_players_history_and_hides_their_notepa
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     assert mod.dispatch("ask_player", {"player": "Alice", "question": "Ignite or douse?"}) == {"answer": "ignite"}
     assert "You answered: ignite" in game.history_for("Alice") and "ignite" not in game.history_for("Bob")
+
+
+def test_ex_con_visit_is_drawn_by_code_and_hidden_from_the_ex_con(game_factory):
+    """rules Ex-Con: a random visit each night, and the Ex-Con isn't told whom."""
+    from night import run_night
+    from players import night_history
+    game, players = game_factory(["Ex-Con", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    run_night(game, players, Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)"))
+    action = game.night_actions[1]["Alice"]
+    assert action["automatic"] and action["target"] in ("Bob", "Carol", "Dave")
+    assert "Alice" not in night_history(game, game.player("Alice"))

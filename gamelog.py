@@ -52,7 +52,9 @@ from records import read_records, safe_print
 # 24: player_call outputs have "reason", a sentence or a few on why the player chose that answer (players.REASON_NOTE)
 # 25: claims are "event" records with cat "claim" (fields speaker, claim), shown in players' history, instead of "claim" records
 # 26: "section" records (title) before each post-game step, so log views show them as named sections
-LOG_VERSION = 26
+# 27: chat and pm events a Puppeteer wrote have a "puppeteer" field; night_actions include automatic actions
+#     (the Ex-Con's random visit), marked "automatic": true
+LOG_VERSION = 27
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

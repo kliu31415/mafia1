@@ -34,6 +34,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                      + katana_majority_note(game))
         jobs.append((p, task, night_action_schema(game, p), {"act": False}))
     actions = dict(zip([p.name for p in actors], players.ask_many(jobs)))
+    for p in game.alive():
+        if p.name not in actions and (auto := logic(p.role).automatic_action(game, p)) is not None:
+            actions[p.name] = {**auto, "automatic": True}
     game.log.write("night_actions", day=game.day, actions=actions, roles={p.name: p.role for p in actors})
 
     katana = tally_katana(game, actions)

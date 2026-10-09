@@ -162,7 +162,9 @@ class Game:
     def history_split(self, name: str) -> tuple[list[str], list[str]]:
         """What `name` has seen, as lines from earlier phases and lines from the current one. Earlier
         phases don't change, so prompts can cache them (llm.cache_block)."""
-        lines = [(e.day, e.phase, f"[Day {e.day} {e.phase}] {e.text}") for e in self.events if e.visible(name)]
+        lines = [(e.day, e.phase, f"[Day {e.day} {e.phase}] {e.text}" + (
+            " [written by your Puppeteer, not you]" if e.fields.get("puppeteer") and e.fields.get("speaker") == name
+            else "")) for e in self.events if e.visible(name)]
         start = len(lines)
         while start and lines[start - 1][:2] == (self.day, self.phase):
             start -= 1

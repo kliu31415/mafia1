@@ -307,6 +307,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"You couldn't afford to nominate {nominee}.", [p.name])
             nominee = None
     public = False
+    # The puppet sees these marked as their Puppeteer's in their own history (Game.history_split), as do log views.
+    puppeted: dict[str, Any] = {} if writer is p else {"puppeteer": writer.name}
     for i, (to, text) in enumerate(planned_messages(out)):
         if to is not None and to not in game.alive_names():  # the schema only offers living players
             game.log.error("harness_error", f"{p.name}'s private message went to {to!r}, who isn't a living "
@@ -328,12 +330,13 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         spend(cost_of(i, to, words))
         if to is None:
             public = True
-            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
+            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text, **puppeted)
         else:
             # A puppeted player's private chat is read and written by their Puppeteer instead. Listeners
             # (Wiretap, Eavesdropper) read it under the puppet's name, unaware of the puppeting.
             readers = [writer.name, game.chat_controller(to)] + game.pm_listeners(p.name, to)
-            game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text)
+            game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text,
+                      **puppeted)
             pair = f"{p.name} -> {to}"
             counts = game.pm_record.setdefault(game.day, {})
             counts[pair] = counts.get(pair, 0) + 1

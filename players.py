@@ -226,7 +226,8 @@ def night_history(game: Game, p: Player) -> str:
     """p's submitted action each night and the moderator's private results to p, in one place (players
     lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
     lines = [f"- Night {night}: you submitted {log_viewer.describe_action(actions[p.name])}"
-             for night, actions in game.night_actions.items() if p.name in actions]
+             for night, actions in game.night_actions.items()
+             if p.name in actions and not actions[p.name].get("automatic")]  # e.g. the Ex-Con isn't told its visit
     lines += [f"- Day {e.day} {e.phase}, result: {e.fields.get('message', e.text)}" for e in game.events
               if e.cat == RESULT and e.visible_to is not None and p.name in e.visible_to]
     return "\n".join(lines)
