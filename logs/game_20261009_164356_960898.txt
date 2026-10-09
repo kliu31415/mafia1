@@ -1,0 +1,447 @@
+Setup:
+  Alice    seat 1  Accountant        anthropic/claude-haiku-5.5
+  Bob      seat 2  Fabricator        openai/gpt-6-luna-pro
+  Carol    seat 3  Serial Killer     openai/gpt-6-luna
+  Dave     seat 4  Philanthropist    google/gemini-3.8-flash
+  Erin     seat 5  Vigilante         openai/gpt-6-luna
+  Frank    seat 6  Sheriff           openai/gpt-6-luna-pro
+  Grace    seat 7  Lookout           deepseek/deepseek-v4.1-flash
+  Heidi    seat 8  Executioner       google/gemini-3.8-flash  {'target': 'Alice'}
+  Ivan     seat 9  Prosecutor        anthropic/claude-haiku-5.5
+  Judy     seat 10 Diviner           openai/gpt-6-luna
+  Mallory  seat 11 Pharmacist        anthropic/claude-haiku-5.5
+  Niaj     seat 12 Medic             deepseek/deepseek-v4.1-flash
+  Katana starts with Mallory
+Tips from past games given to: Alice (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Alice.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Alice (public): Alice here, no reads yet and no role claim from me. Before anyone is nominated, let's hear concrete contradictions, not pile-ons. I'll keep a ledger of every vote.
+Bob (public): No concrete evidence yet, so I’m wary of a blind nomination. Let’s hear everyone’s reasoning first and track who pushes a case without specifics.
+Carol (public): No case yet; let's hear the later seats' views before anyone spends a nomination.
+Dave (public): Agreed. Let's let the rest of the circle speak before pushing any nominations, and watch how everyone positions themselves.
+Erin (public): No specific case yet, so I won't nominate blindly. Later seats, please name one tentative suspect and the concrete reason behind it; we'll record positions.
+Frank (public): No defensible suspect yet, so I won’t invent one. Later seats, share a tentative read and a reason so we can compare positions before anyone nominates.
+Grace (public): Nothing solid yet. Flag: anyone pushing fast role claims on D1 helps the Yakuza; name a real contradiction or wait. Keeping notes.
+Heidi (public): Agreed with the caution. Day 1 blind pushes without information just risk exposing Village power roles to the Yakuza. Let's finish the circle and move into the night unless someone slips up.
+Ivan (public): Ivan here, no read yet and no role claim. I'll vote on concrete contradictions, not pile-ons. Later seats, name one suspect with a specific reason.
+Judy (public): Nothing concrete has emerged, so I’m not seeing a defensible D1 case. Let’s hear Niaj, then avoid forcing claims or a blind trial; I’ll reassess after tonight’s information.
+Mallory (public): Mallory here, no read yet. Agreed on waiting; I'll only vote on concrete contradictions, not pile-ons. Niaj, your take?
+Niaj (public): Same read: nothing concrete, no claim. I won't nominate blind. I'll judge people by how they vote tomorrow and by Night 1 outcomes.
+Mallory (public): Still no read, so no nomination from me yet. I'm watching who pushes early and who backs claims with reasons.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Judy, Mallory) Bob (Yakuza chat): Keep the Katana with Mallory; no need to risk a holder change. I suggest we all vote to attack Alice: she’s an organized voice and my frame can make any alignment check on her read Evil tonight. I’ll frame Alice, but save the forge token for later. Please confirm or offer a better target.
+(to Bob, Judy, Mallory) Judy (Yakuza chat): Agree: keep the Katana with Mallory and attack Alice. I’ll use my Diviner action on Alice tonight for role information.
+(to Bob, Judy, Mallory) Mallory (Yakuza chat): Agreed on both: Katana stays with Mallory and the attack goes on Alice. I'll hold my role-block for now and won't spend it tonight. Judy's Diviner read on Alice is fine. No changes from me. Ready.
+(to Bob, Judy, Mallory) Bob (Yakuza chat): Agreed: keep the Katana with Mallory and attack Alice. I’ll frame Alice tonight for the alignment check, without spending my forge token. Judy can use Diviner on Alice; Mallory should hold her role-block. Ready.
+(to Bob, Judy, Mallory) Judy (Yakuza chat): Confirming: keep the Katana with Mallory and attack Alice. I’ll use Diviner on Dave; that group (Carol, Dave, Erin) is all unknown to us and should give a useful role read. Ready.
+(to Bob, Judy, Mallory) Mallory (Yakuza chat): Confirming: Katana stays with Mallory, and the Katana attack goes on Alice. Judy, your last message says Dave for Diviner, but earlier you said Alice. Please confirm your Diviner target now so we don't split. I'm holding my role-block tonight. Bob, keep the frame on Alice without spending the forge. Once Judy confirms, I'm ready.
+(to Bob, Judy, Mallory) Bob (Yakuza chat): Confirming: keep the Katana with Mallory and attack Alice. I’ll frame Alice tonight without spending the forge token. Judy, use Diviner on Dave as in your latest message; Mallory, hold your role-block. Ready.
+(to Bob, Judy, Mallory) Judy (Yakuza chat): Confirming: keep the Katana with Mallory, attack Alice, and I’ll use Diviner on Dave. Ready.
+(to Bob, Judy, Mallory) Mallory (Yakuza chat): Final plan, confirmed: Katana stays with Mallory (no holder change). Katana attacks Alice (Standard). Bob frames Alice, no forge. Judy uses Diviner on Dave. Mallory does not role-block tonight. Ready.
+Night actions:
+  Alice (Accountant): target Erin; "Audit Erin's token count."
+  Bob (Fabricator): target Alice; "Frame Alice; do not forge her will."; Katana vote: Mallory holds, attacks Alice
+  Carol (Serial Killer): target Alice
+  Dave (Philanthropist): no action
+  Erin (Vigilante): no action
+  Frank (Sheriff): target Alice
+  Grace (Lookout): target Alice
+  Ivan (Prosecutor): no action
+  Judy (Diviner): target Dave; Katana vote: Mallory holds, attacks Alice
+  Mallory (Pharmacist): no role action; Katana vote: Mallory holds, attacks Alice
+  Niaj (Medic): target Alice; "Protect Alice with Standard Defense (free, 0 tokens)."
+Katana: Mallory holds it and attacks Alice.
+(to Judy) Moderator (private): You divined Dave; the group was Carol, Dave and Erin. The role drawn is Philanthropist (60% chance it is Dave's, otherwise one of the others').
+[Moderator flag] Executioner rule: Heidi's target Alice died at night (Serial Killer), so per the Executioner text Heidi "becomes a Jester". The state did not convert her role automatically and apply_changes has no op to change a role. Workaround: I set status 'became_jester'=true on Heidi and told her she is now a Jester. The code should treat her as a Jester from now on (Basic Defense, appears Evil to the Sheriff, wins if hanged, Jester revenge).
+[ERROR moderator_tool_error] apply_changes failed on day 1 night: ValueError: change 1 (set_status): 'target' is set by code at setup and can't be changed; nothing was applied
+(to Alice) Moderator (private): Night 1 result: Erin has 3 tokens in total. You were attacked tonight by the Katana and by a Serial Killer.
+(to Frank) Moderator (private): Night 1 result: Alice is Evil.
+(to Grace) Moderator (private): Night 1 result: Alice was visited by Bob, Carol, Frank, Mallory and Niaj.
+(to Niaj) Moderator (private): Night 1: You protected Alice (Standard Defense). 2 medic tokens left.
+(to Carol) Moderator (private): Night 1: Your attack on Alice succeeded.
+(to Bob) Moderator (private): Night 1: You framed Alice (no will forged). 1 fabricator token left.
+(to Mallory) Moderator (private): Night 1: Your Katana attack on Alice failed.
+(to Bob, Judy, Mallory) Moderator (private): Yakuza actions Night 1: Mallory held the Katana and attacked Alice with it (Mallory took no Pharmacist action). Bob framed Alice (no will forged). Judy divined Dave.
+(to Heidi) Moderator (private): Your target, Alice, died at night, not by hanging. You are now a Jester: you win iff you are hanged during a Day, and you lose if the game ends with you alive.
+[Moderator summary] Night 1: No role-blocks. Alice was visited by Bob (frame), Carol (SK Strong attack), Frank (Sheriff), Grace (Lookout), Mallory (Katana Standard attack) and Niaj (Medic Standard protect, 0 tokens). The Katana attack was blocked by the Standard protection, but the SK's Strong attack killed Alice (cause Serial Killer, by Carol). Alice audited Erin: 3 tokens. Frank saw Alice as Evil (framed). Grace saw Bob, Carol, Frank, Mallory and Niaj. Judy divined Dave via the divine op. Alice was Heidi's Executioner target and died at night, so Heidi became a Jester. No role-change op exists, so I set status became_jester and flagged it. Yakuza were told each other's actions. Mallory was told her Katana attack failed, and Carol that hers succeeded.
+
+===== DAY 2 =====
+Alice died (killed by Serial Killer). Their role was Accountant. Last will: "Alice's last will: I have no confirmed reads yet. Judge by the trial votes and nominations I made, not by anything I said in chat. Be wary of anyone who pushes a Day 1 execution without a concrete contradiction."
+(to Heidi) Your target died other than by hanging. You are now a Jester.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Mallory (public): Alice's death means a non-Village killer is active, so the Day should focus on who has useful information. I have no claim and no read yet. I'll vote only on concrete contradictions.
+(to Judy, Mallory) Mallory -> Judy (private): Judy, what did your Diviner read show? Share it privately.
+Niaj (public): Alice died to the Serial Killer — a confirmed neutral killer is in the game. Only one death on Night 1, so the Katana didn't land: the Yakuza either held back, lacked a majority, or the holder was blocked. Investigators: if you hold a real result, this is the day to anchor it — name the player and quote the exact wording. I have no claim. I'll push hard on anyone who produces a result they can't back, and I'll track who avoids committing.
+[Claim] Bob: Sheriff. N1: Alice = Evil.
+Bob (public): Sheriff result: N1 Alice = Evil. Her Accountant reveal doesn't invalidate an alignment result; she could have been framed. Also, one death doesn't prove the Katana missed—protection or defense could explain it. I have no living result yet.
+Carol (public): Alice's Accountant reveal makes Bob's Evil result questionable, though a Fabricator frame is possible. That explanation isn't proof either way. Don't execute on this alone; Bob, share your next result, and anyone with independently checkable information should state it.
+Dave (public): Bob checking Alice produces zero actionable information today since Alice is dead, leaving only a Fabricator frame, Roleplayer, or a fabricated claim. Let's not rush Bob yet, but let's hear from the rest of the circle—especially any living investigative leads—before considering nominations.
+Erin (public): Bob’s result is mechanically possible if a Fabricator framed Alice, but it isn’t independently corroborated and doesn’t make Alice’s revealed role suspicious. One Night 1 death alone doesn’t establish whether the Katana was blocked, stopped by protection, or withheld. Bob, share a living-player result when you have one; everyone else, name a suspect and concrete basis.
+[Claim] Frank: Sheriff. N1: Alice = Evil.
+Frank (public): I am also Sheriff. I investigated Alice on N1 and got Evil, matching Bob’s result. Since Alice flipped Accountant and died to the Serial Killer, a Fabricator frame is possible; neither result proves she was Yakuza. I’ll investigate a living player tonight.
+[Claim] Grace: Lookout. N1: Alice was visited by Bob, Carol, Frank, Mallory and Niaj; Serial Killer is among them.
+Grace (public): I'm Lookout. N1 I watched Alice, and she was visited by Bob, Carol, Frank, Mallory and Niaj. Alice died to the Serial Killer, and the SK's kill is a visit — so the Serial Killer is one of those five. Bob and Frank both claim Sheriff and both visited Alice, which fits their claims. That leaves Carol, Mallory and Niaj: each of you has to account for a visit to Alice, because a no-action Vanilla claim is no longer available to you. A Medic protecting Alice couldn't have saved her — Standard Defense loses to the SK's Strong attack — so a protective visit is plausible and not itself damning. None of the five is proven, but one is the SK, and since Alice flipped Good, the two Evil reads on her suggest a Fabricator framed her (a Yakuza visit is also in the mix). Carol, Mallory, Niaj: explain your visit. Bob, Frank: post a living-player result next.
+[Claim] Heidi: Tracker. N1: Grace visited Dave.
+Heidi (public): I have to step in. I am Tracker. On Night 1 I tracked Grace, and Grace visited Dave, not Alice. Grace never watched Alice. Bob and Frank already claimed visiting Alice before Grace spoke, so Grace just took their public claims and added Carol, Mallory, and Niaj to create a fake report. Grace is lying.
+Ivan (public): Two claims conflict and both can't be true. Heidi (Tracker) says Grace visited Dave N1. Grace (Lookout) says Alice was visited by Bob, Carol, Frank, Mallory and Niaj. Heidi and Grace, post your full N1 result details. Bob and Frank, you both say Alice Evil; give a living-player result. Mallory, why did you PM Judy with no claim?
+[Claim] Judy: Surveyor. N1: surveyed Dave (Carol, Dave, Erin); role drawn: Philanthropist, identity unknown.
+Judy (public): I have a tentative investigative lead: I surveyed Dave; the group was Carol, Dave, and Erin, and the role drawn was Philanthropist, though I can’t attribute it to anyone. Separately, Grace and Heidi conflict directly: watched Alice versus Grace visited Dave. Both should give exact targets and results; neither report alone settles it.
+(to Judy, Mallory) Judy -> Mallory (private): I’m claiming Surveyor publicly: Carol/Dave/Erin, Philanthropist drawn. If pressed on your Alice visit, a Medic’s Standard Defense could stop the Katana while the SK’s Strong Attack still kills.
+[Claim] Mallory: Medic. N1: protected Alice with Standard Defense.
+Mallory (public): Answering Grace and Ivan: I am Medic. On N1 I protected Alice with Standard Defense. That is the Mallory visit Grace listed, and it fits the SK's Strong kill. My PM to Judy asked for her investigative read privately, so it wouldn't go public before she confirms it. Heidi and Grace can't both be right, so each should post exact targets and results.
+(to Judy, Mallory) Mallory -> Judy (private): Judy: I'm claiming Medic publicly (N1 protected Alice). Keep your Surveyor claim as it is and don't add details. Stay consistent on Dave's group.
+[Claim] Niaj: Medic. N1: protected Alice (Standard, 0 tokens spent).
+Niaj (public): I'm the real Medic. N1 I protected Alice with Standard Defense (free; 2 tokens left). Mallory also claims Medic and says she protected Alice. There is only one Medic — I am it — so Mallory's claim is false. Grace's Lookout shows Mallory visiting Alice, the Serial Killer's victim: a fake Medic claim is exactly how the SK (or the Fabricator who framed Alice Evil to Bob and Frank) hides that visit. Carol is the other unnamed visitor to Alice and remains unaccounted for. Also, Grace's list matches my own real visit, so Heidi's conflicting Tracker result is suspect. I'm nominating Mallory.
+(to Grace, Niaj) Niaj -> Grace (private): Niaj here — I'm the real Medic; Mallory is the SK/Fabricator. Vote Guilty and help push others. Carol is the other suspect.
+Niaj nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Niaj, Carol, Dave, Erin, Frank, Ivan; No - Bob, Grace, Heidi, Judy, Mallory.
+Mallory is put on trial (6 Yes).
+Mallory (public): I'm Medic and I stand by it. On N1 I protected Alice with Standard Defense. That is the Mallory visit Grace listed, and it fits the Katana attack on Alice failing while the Serial Killer's Strong attack still killed her. Niaj made the same claim, so one of us is wrong. Niaj is also the player who rushed a nomination on Day 2 with no result beyond 'I'm the real Medic,' and Niaj privately messaged Grace right before nominating. That looks like Village-vs-Medic positioning built on a coin-flip claim. Heidi's Tracker result (Grace visited Dave) directly contradicts Grace's Lookout report, so Grace's list is not yet trustworthy either. I'd vote Innocent on a trial built on conflicting claims. Niaj, give your exact protection details and Grace, give your exact watch result.
+[Claim] Niaj: Medic. N1: protected Alice with Standard Defense, 0 tokens spent. I am the real Medic; Mallory's identical claim is fake.
+Niaj (public): Mallory's defense invents a Katana attack on Alice that never happened—only one death, Serial Killer. My N1 protection was Standard, free, 2 tokens left. There is exactly one Medic; I am it. Mallory visited Alice and now hides behind my role. Vote Guilty. Carol remains the other unexplained Alice visitor; Bob/Frank's duplicate Sheriff claims also need scrutiny tomorrow.
+(to Judy, Niaj) Niaj -> Judy (private): Mallory PMed you twice—she's fake Medic. Vote Guilty.
+Bob (public): I’ll vote Innocent. Identical Medic claims don’t establish which claimant is lying, and Niaj has offered no independent confirmation. Mallory’s account is mechanically coherent: Standard protection could stop a Standard Katana attack while a Strong Serial Killer attack still kills. One death alone doesn’t prove the Katana didn’t attack; the Grace/Heidi conflict also leaves visits unresolved.
+Carol (public): Vote Innocent. The case against Mallory is still just mutually exclusive Medic claims; neither has been independently verified. Grace’s visitor list cannot settle it while Heidi’s Tracker result directly conflicts with Grace’s claimed watch. A Standard Katana attack stopped by Standard protection is mechanically possible, though unproven. Don’t turn uncertainty into a hanging.
+Dave (public): I voted Yes to hear both sides, but Carol and Bob make a fair point: rushing to hang Mallory while Grace versus Heidi is unresolved is dangerous. If Heidi is truthful and Grace wasn't on Alice, Grace's visitor list is fabricated. Carol still hasn't explained her claimed visit to Alice either. Let's hear Erin, Grace, and Heidi before deciding our trial vote.
+Erin (public): One mechanics point: nothing here establishes that Medic is unique; Niaj’s assertion that there can only be one isn’t supported by the rules. Two Medic claims and both protecting Alice are possible. Standard Defense could stop a Katana attack while losing to the SK’s Strong attack, so Mallory’s account is coherent, not proven. The Grace/Heidi conflict also makes Grace’s visitor list uncertain. Unless a concrete contradiction emerges, I lean Innocent; my Yes vote was only to hear the case.
+Frank (public): I’m voting Innocent. The rules don’t say Medic is unique, so Niaj’s claim that Mallory must be lying isn’t established. Standard protection could stop a Standard Katana attack while an SK’s Strong attack still kills—but that attack is only a possibility, not evidence. The Grace/Heidi conflict also leaves the visitor list unresolved; don’t treat it as proof against Mallory.
+[Claim] Grace: Lookout. N1: watched Alice; visitors Bob, Carol, Frank, Mallory, Niaj.
+Grace (public): Voting Innocent on Mallory. The case is two identical Medic claims; Niaj's 'only one Medic' premise is false — duplicates are allowed — and nothing independent separates them. Hanging a possible protector on a coin flip is bad.
+
+Heidi's Tracker result can't be right: I watched Alice, so my N1 visit was to Alice, not Dave. If Heidi is honest she's a Roleplayer getting false results; otherwise she's lying. My visitor list stands.
+
+Carol: you visited Alice and still haven't explained it. A Fabricator framing Alice (which explains Bob's and Frank's two Evil reads) visits their target; so does the Serial Killer. You're my top suspect. Explain.
+(to Grace, Heidi) Grace -> Heidi (private): Your Tracker result can't be right: I watched Alice, so my N1 visit was to Alice, not Dave. One of us is lying or a Roleplayer got false data; recheck your exact result and post it. If you're Village, help catch the SK instead.
+Heidi (public): Voting Innocent on Mallory. The push on Mallory relies on Niaj's false claim that Medic must be unique, and Grace's list is entirely untrustworthy. My Tracker result is clear: Grace visited Dave on Night 1, not Alice. Grace claiming five visitors after people already spoke looks like a fabricated cover. Let's acquit Mallory and sort this out.
+(to Grace, Heidi) Heidi -> Grace (private): My action result was unambiguous: you visited Dave. I'm not backing down or playing into your Roleplayer excuse.
+Ivan (public): I nominated Mallory to hear the case, not to hang her. Niaj's 'only one Medic' premise is wrong, since roles aren't unique, so that argument falls. Niaj also PM'd Grace right before nominating, with no living result. Carol, Grace's list puts you on Alice, so explain that visit. I'm still undecided on the trial vote.
+Judy (public): A concrete problem with Grace’s evidence: Alice died to the Serial Killer, whose attack is a visit. If Grace watched Alice, her visitor list must include that attacker; it lists Bob, Carol, Frank, Mallory and Niaj, but omits the confirmed killer. So it cannot establish Mallory visited Alice. With Heidi’s result also conflicting, don’t hang on this list; vote Innocent.
+Mallory (public): Final word before the vote: Niaj's case rests on 'only one Medic', which is false, since roles aren't unique. Niaj also privately messaged Grace right before nominating and offered no result beyond a bare claim. Heidi's Tracker result contradicts Grace's watch, so Grace's visitor list can't convict me on its own. My N1 Medic protection of Alice fits the failed Katana attack and the Serial Killer's Strong kill. Carol is the visitor nobody has explained, and that's where the Village should focus. Unless someone produces a concrete contradiction in my own statements, I ask for an Innocent vote.
+Trial votes on Mallory: Guilty - nobody; Innocent - Bob, Carol, Dave, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory, Niaj.
+Mallory is found Innocent (0 Guilty of 11 votes; 6 needed).
+Bob (public): The rules don't make Medic unique, so Niaj's exclusivity claim proves nothing. Mallory's attack explanation is mechanically possible: Standard protection could stop a Katana attack while the SK's Strong attack kills, and one death doesn't tell us whether the Katana struck. If Grace's visitor list is accurate, the SK is among those visitors; Carol still hasn't accounted for her visit.
+[Claim] Carol: Ex-Con. N1: forced random visit; target unknown.
+Carol (public): I’m Ex-Con. My forced N1 visit is random, and I’m not told whom I visited, so I can’t confirm Grace’s list from my own information. Her report remains disputed by Heidi’s Tracker result; it doesn’t establish who killed Alice. Let’s focus on verifiable evidence before another trial.
+Dave (public): Carol's Ex-Con claim explains why she wouldn't know her visit target, but it also means it can't independently verify Grace's list. That leaves the direct contradiction between Heidi and Grace unresolved: either Heidi is fabricating or a Roleplayer, or Grace built a five-visitor list after Bob and Frank already claimed visiting Alice. Let's hear what Erin, Frank, and the rest make of that before rushing another nomination.
+Erin (public): Carol’s Ex-Con claim doesn’t clear her: if Grace’s list is accurate, Carol visited Alice, and the SK necessarily visited Alice too. An unknown forced destination isn’t independently checkable, while the Grace/Heidi conflict keeps the list conditional. Carol is my leading suspect for now. Bob and Frank, please provide any living-player results.
+Frank (public): One fact is firm from my own result: Alice was a Good Accountant, yet my genuine Sheriff check said Evil. Under R19, a Fabricator framed her that night and therefore visited her; the Serial Killer also visited to attack her, and I visited her. So if Grace truly watched Alice and her list is complete, two of Bob, Carol, Mallory, and Niaj must be the Fabricator and SK. This doesn’t tell us which, but it’s more useful than assuming the claims settle it.
+[Claim] Grace: Lookout. N1 watched Alice: visited by Bob, Carol, Frank, Mallory, Niaj — SK is among them.
+Grace (public): My watch is real: the SK's kill is a visit, so the killer is inside my five — Judy's 'omits the killer' is wrong. Heidi's Dave result is false or a Roleplayer. Carol's unverifiable Ex-Con cover and Niaj's fake-uniqueness push top my list. Test me tonight, don't hang the Lookout.
+(to Erin, Grace) Grace -> Erin (private): My watch is real; SK is inside my five. Carol's Ex-Con cover is unverifiable; Niaj pushed a false uniqueness rule. Help pressure them.
+Heidi (public): Dave, can you confirm or deny receiving any interaction or visit N1? Grace’s claim of five visitors on Alice is mathematically absurd and conveniently ropes in half the town, including two people who already claimed before her. My Tracker result on Grace to Dave was logged and direct. If town is following Grace’s narrative, you're being led by someone who fabricated a shotgun list.
+Ivan (public): Bob and Frank: name your N1 targets besides Alice and each exact result. Grace and Heidi: post your exact N1 targets. Carol: your Ex-Con visit is random, so it can't clear you. Anyone with a checkable result, state it now.
+Judy (public): Correction to my earlier point: Grace’s list doesn’t identify the SK; the attacker could be one of the five, so it isn’t proof against any one visitor. Heidi’s tracker claim conflicts with Grace’s claimed target, leaving that dispute open. Niaj’s Alice visit and protection are no more independently verified than Mallory’s, and “only one Medic” isn’t a rule. Seek living results instead of relitigating the acquittal.
+Mallory (public): Heidi's Tracker result is the only direct observation on record, and Grace's five-visitor list contradicts it. Grace, name which visitor you think was the Serial Killer. Niaj rushed a nomination on a disputed Medic claim right after a private message to Grace; that pairing deserves scrutiny. Bob and Frank, each give one living-player result.
+(to Judy, Mallory) Mallory -> Judy (private): Keep your Surveyor line exactly as stated. No added details.
+Niaj (public): I'll drop 'Medic is unique' — roles can repeat. But the visitor math still bites: Grace's five visitors to Alice must include the SK who killed her, and if Bob and Frank are both real Sheriffs, the Fabricator too. So at least two visits there are non-Good, and mine is a genuine protection. That leaves {Bob, Carol, Frank, Mallory}: Mallory's second Medic claim and Carol's unfalsifiable Ex-Con are the cleanest SK covers. I'm not re-nominating on a coin flip — a real investigator should check inside that pool tonight, and we compare at dawn.
+(to Grace, Niaj) Niaj -> Grace (private): Your list matches my real Alice visit — I trust it. Carol's Ex-Con is the perfect SK cover, my main push. Watch Mallory. Self-protecting tonight.
+Bob (public): Niaj has conceded that duplicate Medic claims are allowed, so his exclusivity argument against Mallory is gone; neither protection claim is independently verified. Don’t treat either as cleared. Grace and Heidi still directly contradict each other—Dave’s answer to Heidi may help. Carol’s forced visit and Niaj’s claimed protection leave their Alice visits unverified, so keep both in the suspect pool.
+Carol (public): Dave’s answer on whether he had any N1 interaction is the cleanest test of Heidi’s Tracker claim. Until then, Grace and Heidi directly conflict, and neither report settles who killed Alice. My Ex-Con visit was forced and random; I wasn’t told the target, so I can’t corroborate the list.
+Dave (public): Mechanically, a player receives no notification of being visited unless they are attacked, role-blocked, or gifted a token. I had zero notifications on N1, so I cannot mechanically confirm or deny a silent visit. That said, Grace clearly did not attack me since I am alive. The Grace versus Heidi contradiction remains unresolved by my notifications alone.
+Erin (public): Dave’s lack of notification settles nothing: silent visits aren’t observable to the target. The hard conflict remains: if Heidi’s Tracker result is true, Grace visited Dave and couldn’t also watch Alice; if Grace’s watch is true, Heidi is lying or a Roleplayer. Neither report independently identifies the SK. I don’t see a hang-worthy case yet; compare living-player results tomorrow.
+[Claim] Grace: Lookout. N1 watched Alice: visited by Bob, Carol, Frank, Mallory, Niaj.
+Grace (public): My watch is real: Alice was visited by Bob, Carol, Frank, Mallory, Niaj. That five contains the Serial Killer and likely the Fabricator who framed Alice. Heidi's 'Grace visited Dave' is impossible — I watched Alice; she's a Roleplayer or Yakuza. Carol's Ex-Con is the only unfalsifiable cover there. Don't hang the Lookout.
+(to Erin, Grace) Grace -> Erin (private): Real Lookout. My five (Bob, Carol, Frank, Mallory, Niaj) contain the SK; push Carol or Niaj. Heidi is a Roleplayer or Yakuza. Tonight I'll watch a likely target.
+Heidi (public): Grace visited Dave on Night 1. That is my Tracker result, and I am not backing down from it. A Lookout conveniently seeing five people on one target is absurd, and people scrambling to match her story doesn't make Grace legit. The direct contradiction is between me and Grace. If town refuses to hold Grace accountable, you are letting Yakuza dictate the day.
+Ivan (public): Grace and Heidi cannot both be right, so one of them is lying. Grace, did you visit Dave on N1? Niaj, why did you PM Grace right before nominating Mallory? Mallory and Judy keep PMing each other; Judy, what did Mallory ask? Bob and Frank: give one living-player result each now. I'm not nominating yet.
+Judy (public): Mallory asked about my N1 investigative result; I disclosed the exact Surveyor group and draw publicly, and I have no private evidence identifying her N1 visit. Grace’s watch and Heidi’s track are mutually exclusive if both are accurate. I’d compare specific N2 results before treating either report as proven.
+Mallory (public): Carol: Ex-Con is unfalsifiable, and Grace's list puts you on Alice as the only unexplained visitor who could be the SK. Explain that visit concretely.
+[ERROR player_error] Niaj (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): 'ol & Mallory are SK+Fabricator. If I die: SK/Yakuza hit me; check my protect targets." ~55 words. Fine.\n\nActually, let me keep the last will concise. Let me write it.\n\nNow, the night action isn\'t part'
+Niaj (public): Two of {Bob, Carol, Frank, Mallory} are non-Village — the Serial Killer and the framer both visited Alice. Hanging in that pool hits 50%.
+(to Grace, Niaj) Niaj -> Grace (private): Two of Bob/Carol/Frank/Mallory are SK+framer. Protecting you.
+Bob (public): If Grace’s list is accurate, Niaj is among the visitors and cannot use it to exclude himself as the SK. The list doesn’t identify which visitor killed Alice, and Heidi directly disputes the watch. I won’t nominate on unresolved reports; focus checks on living players.
+Frank (public): My genuine Sheriff result plus Alice’s Good Accountant flip means she was framed: a Fabricator necessarily visited her. It doesn’t identify who. If Grace’s disputed list is accurate, Bob’s claimed visit and matching Evil result make him a serious framer suspect, not a confirmed Sheriff; Niaj is likewise not cleared by his claimed visit.
+Grace (public): My watch is real; Heidi is Roleplayer/Yakuza. The SK is among my five Alice-visitors. Carol's unverifiable Ex-Con is my top suspect. Check that five tonight.
+(to Erin, Grace) Grace -> Erin (private): My watch is real; SK in {Bob, Carol, Frank, Mallory, Niaj}. Carol's unverifiable Ex-Con is the weakest cover—push with me. I'll watch your pick tonight; align D3.
+Heidi (public): Grace's five-person list is an obvious fabricated cover, and Dave's defense shows they are coordinating. Calling me a Roleplayer is just an excuse to let evil skate by without testing the contradiction. If you believe Grace, you believe an absurd statistical miracle. I nominate Grace.
+Heidi nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Heidi, Ivan, Mallory, Bob, Carol, Dave, Erin, Frank; No - Judy, Niaj, Grace.
+Grace is put on trial (8 Yes).
+[Claim] Grace: Lookout. N1 watched Alice: visited by Bob, Carol, Frank, Mallory, Niaj. Four of five confirmed their visits.
+Grace (public): My watch is real and corroborated. Four of the five I listed — Bob, Frank, Mallory, Niaj — publicly admitted visiting Alice. Only Carol can't (Ex-Con, unknown target). A fabricated list wouldn't match four honest admissions; a real Lookout's would. Heidi's single uncorroborated Tracker result contradicts four confirmations, and Dave can't verify a silent visit — so Heidi is a Roleplayer fed false data, or Yakuza framing me.
+
+Who benefits if you hang your Lookout? The SK, who is in my five. Two of my five are non-Good: the SK and the Fabricator who framed Alice Evil to both Sheriffs.
+
+Niaj invented 'Medic is unique' to hang Mallory, PM'd me to vote Guilty, then dropped it. Carol's Ex-Con is unfalsifiable. Don't hang the Lookout on one disputed claim — test me tonight. Vote Innocent.
+(to Erin, Grace) Grace -> Erin (private): Grace. My list is corroborated: Bob, Frank, Mallory, Niaj all publicly admitted visiting Alice — 4/5. Heidi's lone uncorroborated result can't outweigh that. Vote Innocent; watch Carol or Niaj tonight.
+(to Grace, Judy) Grace -> Judy (private): Grace. Four of my five (Bob, Frank, Mallory, Niaj) publicly admitted visiting Alice — my watch is corroborated. Heidi's Dave result is uncorroborated. Please vote Innocent and recheck the five.
+Heidi (public): Grace's 'four confirmations' are pure smoke: Bob and Frank claimed visiting Alice before Grace ever spoke, so she simply mirrored them. Dave received no notification. My Tracker result of Grace visiting Dave is unambiguous. I am voting Guilty—letting Grace walk gives evil a free pass.
+Ivan (public): Ivan on the Grace trial: Heidi's Tracker result (Grace visited Dave) and Grace's watch (Alice visited by five) cannot both be true, so one of them is lying. The asymmetry matters: Bob, Frank, Mallory and Niaj all publicly claimed their Alice visits before Grace spoke, so Grace's list could be assembled from what the table already said. Heidi's Dave visit was never public, so nobody could have copied it. Grace, explain concretely how your watch on Alice produced a list that includes Carol, who publicly claimed a random Ex-Con visit afterwards. I'm leaning Guilty unless Grace gives a concrete answer.
+Judy (public): Heidi’s Tracker result and Grace’s Lookout claim describe incompatible visits. The later confirmations don’t independently settle which action Grace took: Bob and Frank had already said they visited Alice, and the rest of the list is still disputed. Grace hasn’t resolved that conflict; I favor Guilty.
+Mallory (public): Ivan's point stands. Grace's five-visitor list was assembled after Bob and Frank had already claimed visiting Alice, and it includes Carol, whose visit is random and unknowable to her. Heidi's Tracker result is specific and Grace hasn't disproved it. I lean Guilty on a list that can't be checked.
+(to Judy, Mallory) Mallory -> Judy (private): Ivan and Judy both lean Guilty on Grace. I'm leaning the same way; let's keep the pressure on her list.
+[Claim] Niaj: Medic. N1 protected Alice (Standard, free). Grace named my real visit before I claimed—Innocent.
+Niaj (public): Vote Innocent. Grace named my real Alice visit before I claimed. She's genuine Lookout; Heidi's track is false. Don't hang our Lookout.
+(to Ivan, Niaj) Niaj -> Ivan (private): Grace named my real Alice visit before claim. Innocent.
+(to Judy, Niaj) Niaj -> Judy (private): Grace named my real Alice visit before I claimed. She's genuine. Vote Innocent.
+Bob (public): Grace's follow-up “confirmations” aren't independent: Bob and Frank had already claimed Alice visits before her report, and Mallory claimed before the repeated list; Carol's forced visit can't corroborate it. Niaj's later claim adds little. The Tracker/Lookout contradiction remains, while Heidi's specific Dave result wasn't public to copy. I lean Guilty.
+Carol (public): I'm leaning Guilty. Heidi's specific Tracker result names a private target, Grace→Dave; Grace's list could partly be reconstructed from earlier Bob and Frank claims, while Carol's alleged Ex-Con visit is inherently uncheckable. The claimed confirmations therefore aren't independent corroboration, and Grace hasn't resolved the direct contradiction.
+Dave (public): Before everyone votes, check the transcript: Ivan, Bob, and Carol are misremembering the timeline. Grace named Mallory, Niaj, and Carol in her initial Lookout report before any of the three had spoken or claimed. Only Bob and Frank had claimed visiting Alice before Grace spoke. If Grace fabricated that five-person list out of nowhere, predicting that both Mallory and Niaj would subsequently claim visiting Alice as Medics is mechanically bizarre. Heidi’s Tracker result could easily be a Roleplayer receiving false information. Don't rush to hang Grace on a mistaken timeline premise.
+Erin (public): Dave’s timeline correction matters: before Mallory, Niaj, or Carol spoke, Grace named all three as Alice visitors. That’s three specific predictions, not later corroboration. Heidi’s Tracker claim directly conflicts, but it’s still an unverified result and could be false or a lie. The later repeats don’t add much, but the chronology makes Grace’s report more credible than the claim she invented it. I lean Innocent; keep the named visitors under scrutiny.
+Frank (public): Dave and Erin’s timeline correction is accurate: Grace named Carol, Mallory, and Niaj before their claims, so she couldn’t have copied those visits from them. That supports her Lookout claim. Heidi’s result still directly conflicts, but could be a Roleplayer result; I lean Innocent, not certain.
+Grace (public): Last word. The only evidence against me is Heidi's single Tracker result — one uncorroborated claim versus three specific predictions I made first: I named Carol, Mallory and Niaj as Alice visitors before any of the three spoke or claimed. A fabricator cannot guess three real visitors; a real Lookout sees them. Bob and Frank were already public, but those other three are independent.
+
+Heidi's result may be genuine yet false: a Roleplayer (R19) is told they hold a random Village Investigative role and receives plausible false results. That is exactly what a lone 'Tracker' contradiction looks like. Or Heidi is Yakuza framing me.
+
+If I hang, the town loses its real Lookout and the Serial Killer inside my five walks free — Carol's unverifiable Ex-Con remains my top suspect.
+
+Vote Innocent. Test me tonight; check Carol and Heidi.
+(to Grace, Ivan) Grace -> Ivan (private): I watched Alice and named Carol, Mallory, Niaj before they spoke — impossible to fabricate. Heidi's lone result can be a Roleplayer's false data (R19). Vote Innocent, check Carol/Heidi.
+(to Bob, Grace) Grace -> Bob (private): I named Carol, Mallory, Niaj before their claims — a fake list can't predict three real visitors. Heidi may be a Roleplayer with false results. Vote Innocent; investigate inside my five.
+(to Carol, Grace) Grace -> Carol (private): My list is the best SK lead; your Ex-Con visit is the only uncorroborated one. If I hang, the SK walks. Vote Innocent and account for your visit tomorrow.
+(to Grace, Judy) Grace -> Judy (private): Three predictions before they spoke beats one uncorroborated result. Roleplayer gets false investigative data (R19). Vote Innocent; recheck Heidi.
+(to Grace, Mallory) Grace -> Mallory (private): I named you as an Alice visitor before you claimed Medic — a fabricator couldn't guess that. Heidi's result is lone and may be Roleplayer false data. Vote Innocent.
+Trial votes on Grace: Guilty - Bob, Carol, Heidi, Judy, Mallory; Innocent - Dave, Erin, Frank, Grace, Ivan, Niaj.
+Grace is found Innocent (5 Guilty of 11 votes; 6 needed).
+Ivan (public): Grace and Heidi cannot both be right. Grace's list named Carol, Mallory and Niaj before they spoke, which is hard to fake, but Heidi's Tracker result is specific too. Mallory and Niaj both claim Medic on Alice, so one is fake. Heidi, restate your exact target and result. Mallory and Niaj, which of you can name the protection's exact effect on Alice's attack?
+Judy (public): On the Medic question: neither protector gets feedback on whether protection stopped an attack, so that proves nothing. Dave’s timeline does change my read: Grace named Carol, Mallory, and Niaj before they claimed. I’m revising my earlier Guilty lean; Heidi’s result is the incompatible report. I nominate Heidi.
+Judy nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Judy, Mallory, Niaj, Bob, Carol, Dave, Erin, Frank, Grace, Ivan; No - Heidi.
+Heidi is put on trial (10 Yes).
+Heidi (public): I am the real Tracker and I am not backing down. On Night 1, Grace visited Dave. That is the result I received.
+
+Do not hide behind the 'Roleplayer' theory—that is a convenient excuse being pushed by Dave and Grace to dismiss a direct mechanical catch. If you think Grace couldn't have guessed Carol, Mallory, and Niaj, remember that Yakuza coordinate in night chat, and framing Alice while orchestrating visits is entirely within evil's playbook. Grace spent the entire afternoon privately messaging half the circle to lock down votes and orchestrate this counter-push.
+
+I am not a Roleplayer. If you hang me, you are executing your Tracker and handing full control to Grace and Dave. Look at who pushed my nomination—it is the exact same bloc that bailed Grace out. Vote Innocent if you want Village to have any chance.
+Ivan (public): Correction for the record: I argued Grace copied her Alice visitors from public claims. Dave and Erin are right. Grace named Carol, Mallory and Niaj before any of them claimed, so that premise was wrong and my earlier lean toward Heidi was too strong. Heidi, your Tracker result depends on that premise. Explain how your Dave result fits Grace's earlier predictions, or I lean Guilty.
+Judy (public): The timeline correction matters: Grace named Carol, Mallory, and Niaj before any of them claimed those visits. That supports her report; Heidi’s one incompatible result remains uncorroborated and could be false Roleplayer data. I favor Guilty.
+Mallory (public): On Heidi's trial: Heidi's Dave result is the only report that conflicts with Grace, and Dave received no notification. Grace named Carol, Mallory and Niaj as Alice visitors before any of them claimed, so that list is hard to dismiss. Heidi has no corroboration. I'm leaning Guilty unless Heidi gives a checkable detail.
+(to Judy, Mallory) Mallory -> Judy (private): Heidi Guilty. Grace's timeline holds; keep it steady.
+[ERROR player_error] Niaj (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): 'ant to send a private message? Maybe to Grace: "protecting you tonight." But that reveals my plan to Grace only. Hmm. Actually, if I tell Grace I\'m protecting her, and Grace is genuine, it\'s fine. But'
+[Claim] Niaj: Medic. N1: protected Alice (Standard, free; 2 tokens left).
+Niaj (public): Guilty on Heidi. Grace's Lookout named my real Alice visit before I claimed — Yakuza can't know a Villager's action, so Grace is genuine. Heidi's Grace→Dave is false: Roleplayer or Yakuza. The SK and framer sit in {Bob, Carol, Frank, Mallory}; check that pool tonight.
+Bob (public): Grace named Carol, Mallory, and Niaj as Alice visitors before any of them claimed those visits. That makes her report more credible than Heidi’s single incompatible result, which could be false Roleplayer data. I favor Guilty.
+Carol (public): Grace's timeline correction is real: she named Carol, Mallory and Niaj before their claims. That supports her, though it doesn't prove she's Lookout. Heidi hasn't reconciled the incompatible visits; I lean Guilty.
+Dave (public): Heidi’s Dave result directly conflicts with Grace naming three independent visitors to Alice prior to their claims, which evil could not realistically orchestrate. Even if Heidi is an honest Roleplayer receiving false information rather than evil, town cannot navigate the game with an ungrounded Tracker report clouding the ledger. I lean Guilty.
+Erin (public): I’ll vote Guilty. The reports can’t both be true, but the chronology matters: Grace named Carol, Mallory, and Niaj as Alice visitors before any of them claimed those visits. That gives her watch specific support; Heidi has no corroboration for Grace→Dave. I can’t rule out Roleplayer, but I think Heidi’s result is likelier false.
+[ERROR api_retry] a openai/gpt-6-luna-pro request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+Frank (public): Chronology is decisive: Grace named Carol, Mallory, and Niaj as Alice visitors before any of them claimed those visits. That is meaningful support for her Lookout report. Heidi’s conflicting Tracker result could be false Roleplayer data; I lean Guilty, without treating Heidi as proven Yakuza.
+[Claim] Grace: Lookout. N1 watched Alice: visited by Bob, Carol, Frank, Mallory, Niaj.
+Grace (public): Vote Guilty on Heidi. Her Grace→Dave result is the only claim contradicting my watch, and nobody corroborates it. I named Carol, Mallory and Niaj as Alice visitors before any spoke—a fake list can't predict three real visits. Heidi is a Roleplayer fed false data, or Yakuza. Hang the false Tracker, then test me tonight.
+Heidi (public): I reject the convenient 'Roleplayer' narrative being offered to dismiss my report. I am the Tracker, and my Night 1 result was Grace visiting Dave. Grace naming those visitors is entirely consistent with Yakuza coordinating in night chat and constructing a narrative around Alice's death. Dave's timeline defense doesn't erase what I tracked. You have zero independent corroboration for Grace's watch, while Dave received no notification either way. If you refuse to believe my result and vote Guilty, you are executing your Tracker and leaving Grace completely unchecked to dictate the rest of the game. I have told the truth from the start—vote Innocent if you want Village to retain its information.
+Trial votes on Heidi: Guilty - Bob, Carol, Dave, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory, Niaj; Innocent - nobody.
+Heidi is executed by hanging (11 Guilty of 11 votes; 6 needed).
+Heidi died (executed by hanging). Their role was Jester. Last will: 'Heidi - Tracker\nN1: Grace -> Dave'
+
+===== NIGHT 2 =====
+(to Bob, Judy, Mallory) Bob (Yakuza chat): Suggest Mallory keep the Katana and attack Grace; her Lookout report is probably real and she's a dangerous information source. Mallory can block Niaj to stop a possible protection. Judy, Diviner on Carol could test the SK theory (group Dave/Carol/Niaj). I can frame Grace and spend my forge token on her will; if she dies, it could point to Carol as a suspect based on the Alice visitor list. Let me know if you disagree.
+(to Bob, Judy, Mallory) Judy (Yakuza chat): Agree: keep the Katana with Mallory and attack Grace. Mallory should block Niaj to stop a possible protection. I’ll divine Carol; if she isn’t Yakuza, the group is Bob, Carol, and Dave, which could give us useful information. Bob, framing Grace and forging her will if she dies sounds worthwhile—she’s a dangerous information source, and the will may redirect suspicion.
+(to Bob, Judy, Mallory) Mallory (Yakuza chat): Agreed: Katana stays with Mallory and attacks Grace (Standard). Mallory role-blocks Niaj tonight so no protection lands. Bob frames Grace; forge is Bob's call. Judy divines Carol. Confirm these exact targets and I'm ready.
+(to Bob, Judy, Mallory) Bob (Yakuza chat): Confirmed: keep the Katana with Mallory and attack Grace. Mallory blocks Niaj; Judy divines Carol. I’ll frame Grace and spend my forge token on her will if she dies. Suggested forged will: “My Lookout report on Alice was genuine. Carol remains my leading SK suspect: her claimed Ex-Con visit is unverifiable, and she was one of Alice’s visitors.” Ready.
+(to Bob, Judy, Mallory) Judy (Yakuza chat): Confirmed: Mallory keeps the Katana and attacks Grace; Mallory blocks Niaj. I divine Carol. Bob frames Grace and spends the forge token if she dies, using the suggested will to point suspicion toward Carol. Ready.
+(to Bob, Judy, Mallory) Mallory (Yakuza chat): Confirmed, no changes: Katana stays with Mallory (no holder move) and attacks Grace (Standard). Mallory role-blocks Niaj. Judy divines Carol. Bob frames Grace and spends the forge token on her will if she dies, using the suggested will that points to Carol. Ready.
+Night actions:
+  Bob (Fabricator): target Grace; 1 token(s); "Frame Grace and spend 1 token to forge her will if she dies tonight. Forged will: "My Lookout report on Alice was genuine. Carol remains my leading SK suspect: her claimed Ex-Con visit is unverifiable, and she was one of Alice’s visitors.""; Katana vote: Mallory holds, attacks Grace
+  Carol (Serial Killer): target Grace; "Use my Strong Attack on Grace."
+  Dave (Philanthropist): target Judy; 1 token(s); "Gift 1 token to Judy"
+  Erin (Vigilante): no action
+  Frank (Sheriff): target Bob
+  Grace (Lookout): target Judy
+  Ivan (Prosecutor): no action
+  Judy (Diviner): target Carol; Katana vote: Mallory holds, attacks Grace
+  Mallory (Pharmacist): target Niaj; Katana vote: Mallory holds, attacks Grace
+  Niaj (Medic): target Grace; 1 token(s); "Protect Grace with Strong Defense (another player, Strong = 1 token). This stops both the Katana (Standard) and the Serial Killer's Strong attack on her. Not usable against the Jester's Divine revenge."
+Katana: Mallory holds it and attacks Grace.
+(to Judy) Moderator (private): A Philanthropist handed you a token, but you threw it away because you have no use for it.
+(to Judy) Moderator (private): You divined Carol; the group was Bob, Carol and Dave. The role drawn is Fabricator (60% chance it is Carol's, otherwise one of the others').
+[Moderator flag] R3/R12: Grace was dealt two lethal attacks on Night 2 (Katana, Standard, by Mallory; Serial Killer, Strong, by Carol). The kill op has only one `by` and a single cause. I recorded cause 'Katana and Serial Killer' with by=Mallory, katana=true. Carol's Serial Killer attack also succeeded and also killed her.
+(to Niaj) Moderator (private): You were role-blocked tonight. Your action had no effect and no token was spent. You have 2 medic tokens left.
+(to Frank) Moderator (private): Your investigation result: Bob is Evil.
+(to Grace) Moderator (private): You watched Judy. Judy was visited by: Dave.
+(to Carol) Moderator (private): You attacked Grace. Your attack succeeded.
+(to Dave) Moderator (private): You handed Judy a philanthropy token. You have 1 philanthropy token left.
+(to Bob) Moderator (private): You framed Grace and forged her last will. You have 0 fabricator tokens left.
+(to Mallory) Moderator (private): You held the Katana and attacked Grace with it. Your Katana attack succeeded. You also role-blocked Niaj. You still hold the Katana.
+(to Bob, Judy, Mallory) Moderator (private): Yakuza actions tonight: Bob framed Grace and forged her last will. Judy divined Carol. Mallory held the Katana, attacked Grace with it, and role-blocked Niaj. Mallory still holds the Katana.
+[Moderator summary] Night 2: Mallory (Pharmacist, Katana holder) role-blocked Niaj, so Niaj's Strong protection on Grace had no effect and no token was spent (2 medic left). Grace was hit by the Katana (Standard, Mallory) and by the Serial Killer (Strong, Carol). With Defense None, she died. Cause recorded as 'Katana and Serial Killer' (issue flagged). Bob framed Grace and forged her will (fabricator 0), and the forged will replaced hers. Frank checked Bob: Evil. Grace's Lookout watch on Judy showed Dave as the only visitor. Dave gave Judy a token via give_token (philanthropy 1 left); Judy is a Diviner with no tokens, so code handles it. Judy divined Carol via the divine op (group Bob, Carol, Dave). Erin and Ivan did not act. Mallory still holds the Katana. Win check: mixed factions, game continues.
+[Revenge] Heidi's Divine Attack hits Ivan.
+
+===== DAY 3 =====
+Grace died (killed by Katana and Serial Killer). Their role was Lookout. Last will: 'My Lookout report on Alice was genuine. Carol remains my leading SK suspect: her claimed Ex-Con visit is unverifiable, and she was one of Alice’s visitors.'
+Ivan died (killed by Jester's revenge). Their role was Prosecutor. Last will: "Ivan (Village). No confirmed reads. Trust concrete contradictions over vibes. Watch who pushes early nominations without a reason, who starts PM clusters, and who co-nominates. Vote on evidence, not pile-ons. Keep the Serial Killer and Arsonist in the suspect pool; a Not Evil or Vanilla claim doesn't clear them."
+[Night check] Night 2: errors. [medium, Philanthropist / moderator instructions, leaked information] The instructions say to tell the Philanthropist nothing about the gift, because code handles give_token. The Philanthropist role also says Dave is not told whether the recipient could use the token. The moderator still sent Dave 'You handed Judy a philanthropy token.' This is wrong on two counts. Judy is a Diviner with no tokens, so the token was thrown away. The line also implies Judy received and kept a token, which is information about her role's token use that Dave should not get. No tell() should have gone to Dave about the gift.
+Speaking order today goes around the circle in seat order, starting with Bob.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Bob: Sheriff. N1: Alice = Evil. N2: Carol = Evil.
+Bob (public): My Sheriff result from N2 was Carol = Evil. Her Ex-Con claim could explain that appearance, so it doesn't prove she's Yakuza. But Grace flipped Lookout, and her will names Carol as an Alice visitor and SK suspect. That warrants a trial; I nominate Carol.
+Bob nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Bob, Dave, Erin, Frank, Judy, Mallory, Niaj; No - Carol.
+Carol is put on trial (7 Yes).
+Carol (public): I’m Ex-Con: my Night 1 visit was forced and I wasn’t told the target. Ex-Con appears Evil to alignment checks, so Bob’s Carol = Evil result is exactly what my claim predicts—not evidence that I’m Yakuza or the Serial Killer. Grace’s report can establish that I visited Alice, but it cannot identify me as her killer; an Ex-Con visit is automatic. Bob’s Alice = Evil result, shared by Frank, was on someone revealed Good, so don’t treat either Sheriff claim as independently confirmed. Please vote Innocent.
+Dave (public): A crucial mechanics reminder regarding Bob's result: under R19, the Sheriff sees the Serial Killer as Not Evil. Therefore, Bob's 'Carol = Evil' result cannot be a direct catch on the Serial Killer unless a Fabricator framed Carol last night. If Bob's result is accurate, Carol is either Yakuza or her claimed Ex-Con.
+
+That said, Grace’s flip validates her N1 Lookout list: Alice was visited by {Bob, Carol, Frank, Mallory, Niaj}. The Serial Killer and Fabricator are in that pool. Carol's random Ex-Con explanation remains unverifiable, and Carol voted Guilty on Grace yesterday.
+
+Let’s hear what Erin, Frank, Judy, Mallory, and Niaj have to say about Bob’s result and the N1 visitor pool before deciding our vote.
+Erin (public): Bob’s result is compatible with Carol’s Ex-Con claim: R19 explicitly makes an Ex-Con appear Evil to the Sheriff. It is not a catch without evidence she was framed or a contradiction in her claim. Grace’s will and confirmed Alice visit establish a visit, not an SK attack; Carol’s forced visit is random and unknown to her. Her votes don’t distinguish her either: everyone voted Guilty on Heidi, who flipped Jester. I favor Innocent absent stronger evidence.
+[Claim] Frank: Sheriff. N1: Alice = Evil. N2: Bob = Evil.
+Frank (public): I am the genuine Sheriff. N2 I checked Bob and got Evil. That is concerning, but a Fabricator frame is possible. Bob’s Carol = Evil result is also exactly what her claimed Ex-Con role predicts; her forced visit could explain her presence at Alice. I favor Innocent on Carol absent stronger evidence, and Bob needs scrutiny.
+Judy (public): Dave is right that Bob’s result alone can’t identify an SK, and Carol’s Ex-Con claim can explain Evil. But Grace flipped genuine Lookout, and Carol voted Guilty on Grace despite the specific pre-claim visitor predictions. Her Alice visit is confirmed, while the forced-target story can’t verify it. I favor Guilty.
+Mallory (public): Carol: your Ex-Con visit is random and uncheckable, yet Grace's watch put you on Alice, the Serial Killer's victim. A forced visit doesn't explain away the one visit we can trace. Carol, give a checkable detail or I lean Guilty.
+[Claim] Niaj: Medic. N1: protected Alice (Standard). N2: role-blocked protecting Grace.
+Niaj (public): Carol's Ex-Con claim exactly explains Bob's Evil result. Ex-Con appears Evil to Sheriff. Bob's N1 Alice=Evil on a confirmed Good Accountant already means Bob is fake or a framer visited her. Frank's N2 Bob=Evil is a direct counter, making Bob likely Yakuza. The SK is in {Carol, Mallory}. I am Medic; Mallory's duplicate Medic claim on the same target is the better SK cover. I was role-blocked N2 protecting Grace, so no result. Do not hang an unverifiable Ex-Con on Bob's self-serving result. Vote Innocent on Carol; check Bob and Mallory tonight.
+(to Dave, Niaj) Niaj -> Dave (private): Vote Innocent on Carol. Bob's Evil result is exactly Ex-Con. Frank says Bob=Evil. Bob likely Yakuza. Mallory's duplicate Medic is better SK suspect.
+(to Judy, Niaj) Niaj -> Judy (private): Bob's Carol=Evil is exactly her Ex-Con claim. Frank counterclaims Bob=Evil. Don't hang Good Ex-Con on Bob's fake result. Vote Innocent; check Mallory.
+(to Erin, Niaj) Niaj -> Erin (private): Vote Innocent on Carol. Ex-Con explains Bob's result. Bob likely Yakuza per Frank's counter. Mallory's duplicate Medic is the better SK suspect tonight.
+(to Frank, Niaj) Niaj -> Frank (private): Your N2 Bob=Evil is key. Vote Innocent on Carol; Bob's Carol=Evil is a fake mislynch. We should hang Bob or Mallory next.
+Bob (public): I agree my Evil result alone cannot distinguish Ex-Con from Yakuza, and it does not identify an SK. But Carol's forced visit happened to land on Alice, the confirmed SK victim; Grace's genuine report puts her there, and Grace's will names her. That combination merits Guilty over an unverifiable account.
+Carol (public): Grace’s genuine Lookout report establishes that I visited Alice, not that I killed her. An Ex-Con automatically visits a random player, and Bob’s Evil result is exactly what R19 predicts for an Ex-Con. That’s a coherent explanation, not proof—but neither is the SK accusation. A Sheriff sees a Serial Killer as Not Evil unless framed, so Bob’s Carol=Evil does not identify an SK. Bob and Frank both got Evil on Alice, who flipped Good; matching claims aren’t independent corroboration, and if she was framed the Fabricator also visited her. Now Frank says Bob is Evil while Bob says I’m Evil. Resolve that conflict instead of executing on an unverified visit. Vote Innocent and scrutinize Bob and Frank.
+Trial votes on Carol: Guilty - Bob, Judy, Mallory; Innocent - Carol, Dave, Erin, Frank, Niaj.
+Carol is found Innocent (3 Guilty of 8 votes; 5 needed).
+Carol (public): Carol’s acquittal doesn’t clear anyone. Bob’s result on me fits my Ex-Con claim, but Frank’s Bob=Evil result makes Bob worth hearing from. Let’s examine both Sheriff claims and the unresolved Alice frame.
+Carol nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Carol, Dave, Erin, Frank, Niaj; No - Judy, Mallory, Bob.
+Bob is put on trial (5 Yes).
+Bob (public): Vote Innocent. My Carol = Evil result is exactly what her Ex-Con claim predicts under R19; I said it did not prove she was Yakuza or the Serial Killer. Frank’s Bob = Evil is one unverified counterclaim, not independent proof. His N1 Alice = Evil matched mine, but Alice was Good and framed, so that shared result validates neither of our Sheriff claims. Carol nominated me immediately after her acquittal; don’t let competing claims substitute for evidence. Keep both Sheriff claims under scrutiny and compare future results before hanging either of us.
+Carol (public): My nomination followed my acquittal, but the issue is substantive: Bob’s Carol=Evil fits Ex-Con and isn’t a catch; he then dismisses Frank’s Bob=Evil as unverified while relying on his own unverified Sheriff result. Their matching Alice checks don’t validate either after Alice flipped Good. I lean Guilty, not certainty.
+Dave (public): Between the two Sheriff claimants, Frank holds substantially higher credibility. Frank voted Innocent on Grace yesterday, whereas Bob voted Guilty to hang our confirmed Lookout. Furthermore, Alice flipped Good Accountant despite two Evil results, proving a Fabricator visited her on N1. If Bob is that Fabricator, his visit to Alice is accounted for on Grace's list, and Frank's genuine N1 check on Alice being framed led directly to Frank checking Bob on N2 for Bob = Evil. Bob also tried to push Carol today using an Evil result to imply Serial Killer, despite knowing Sheriffs see SK as Not Evil under R19. I am voting Guilty on Bob.
+Erin (public): I’m leaning Guilty. Frank’s Bob=Evil result is an unverified counterclaim, not proof, and Bob’s Carol=Evil result fits her claimed Ex-Con, so neither Sheriff result settles this alone. But Bob voted Guilty on Grace after she named Carol, Mallory, and Niaj as Alice visitors before their claims; Grace flipped genuine Lookout. That is a concrete reason to distrust him, alongside his unsupported Sheriff claim with Alice=Evil on a Good player. I would not treat Frank as confirmed either.
+Frank (public): Bob’s N2 result from me is an independent Sheriff check: Evil. A Fabricator could have framed him, but Bob’s N1 visit to Alice is consistent with the confirmed frame, and he voted Guilty on the genuine Lookout Grace. His Carol result adds nothing against her: Ex-Con explicitly appears Evil, as both she and Bob acknowledge. Our matching Alice results don’t clear Bob—Alice really was framed. I believe my own check; I will vote Guilty.
+Judy (public): This is still two unverified Sheriff claims. Frank’s Bob=Evil is a counterclaim, not independent proof; both claim Alice=Evil, and Alice was framed, so that shared result validates neither. Bob acknowledged Carol’s Ex-Con appearance rather than treating it as proof she was the SK. Don’t hang on one disputed result: vote Innocent and demand checkable evidence.
+Mallory (public): Bob's trial rests on one unverified Sheriff result, Frank's Bob=Evil. Bob's Carol=Evil fits Carol's Ex-Con claim exactly, and Frank's and Bob's claims both need checkable detail. Hanging on a single counterclaim repeats the Heidi mistake. I vote Innocent unless someone gives a concrete, checkable detail.
+(to Judy, Mallory) Mallory -> Judy (private): Judy: Innocent on Bob. Frank's Bob=Evil is the only case; Carol stays our pressure point.
+Niaj (public): Guilty on Bob. He voted to hang our genuine Lookout Grace, and Frank's independent N2 Bob=Evil corroborates. Bob's N1 Alice=Evil on a Good player fits the Fabricator, who necessarily visited Alice. Ex-Con explains his Carol=Evil, so that push was a mislynch. Hang Bob.
+(to Judy, Niaj) Niaj -> Judy (private): Judy, Bob voted Guilty on the genuine Lookout Grace, and Frank's N2 Bob=Evil is an independent check. His N1 Alice=Evil on a Good player fits a Fabricator. Follow the concrete pattern: vote Guilty on Bob, then test Mallory and Carol tonight.
+Bob (public): Don't treat the Alice checks as corroboration: Alice was Good, and the shared Evil result can come from the same frame; it verifies neither Sheriff. My Carol=Evil result fits her claimed Ex-Con appearance exactly—I did not say it proves she's the SK. Frank's Bob=Evil is one unverified counter-result. Grace's real Lookout report confirms Carol visited Alice, not that she killed her; a forced Ex-Con visit fits. I accept my vote on Grace was wrong, but the whole table also unanimously hanged Heidi, who flipped Jester; a bad vote isn't faction proof. Be skeptical of my claim and Frank's alike. Vote Innocent; check Frank with future evidence.
+Trial votes on Bob: Guilty - Carol, Dave, Erin, Frank, Niaj; Innocent - Bob, Judy, Mallory.
+Bob is executed by hanging (5 Guilty of 8 votes; 5 needed).
+Bob died (executed by hanging). Their role was Fabricator. Last will: "Sheriff. N1: Alice = Evil; N2: Carol = Evil. Carol's Evil result is consistent with her Ex-Con claim and does not establish she is Yakuza. Alice was Good, so the matching Evil results from Frank and me do not independently confirm either Sheriff claim. Frank's Bob = Evil is also an unverified claim; compare future results before concluding."
+
+===== NIGHT 3 =====
+(to Judy, Mallory) Judy (Yakuza chat): Keep the Katana with Mallory and attack Frank. Mallory should role-block Niaj to stop a possible protection; I’ll divine Niaj, which may tell us more about him or Frank. Frank’s Sheriff claim and Bob=Evil result make him the most dangerous information source. Ready with that plan.
+(to Judy, Mallory) Mallory (Yakuza chat): Confirming tonight: Katana stays with Mallory (no holder move) and attacks Frank (Standard). Mallory role-blocks Niaj so any protection fails. Judy divines Niaj. Frank's Bob=Evil result is the threat, so this is the target. Ready.
+Night actions:
+  Carol (Serial Killer): target Frank; "Use my Strong Attack on Frank."
+  Dave (Philanthropist): target Judy; 1 token(s); "Gift 1 philanthropy token to Judy"
+  Erin (Vigilante): target Mallory; 3 token(s)
+  Frank (Sheriff): target Judy
+  Judy (Diviner): target Niaj; Katana vote: Mallory holds, attacks Frank
+  Mallory (Pharmacist): target Niaj; Katana vote: Mallory holds, attacks Frank
+  Niaj (Medic): target Frank; 1 token(s); "Protect Frank with Strong Defense (another player, Strong = 1 token). This stops both the Katana (Standard) and the Serial Killer's Strong attack."
+Katana: Mallory holds it and attacks Frank.
+(to Judy) Moderator (private): A Philanthropist handed you a token, but you threw it away because you have no use for it.
+(to Judy) Moderator (private): You divined Niaj; the group was Mallory, Niaj and Carol. The role drawn is Medic (60% chance it is Niaj's, otherwise one of the others').
+(to Carol) Moderator (private): Night 3 result: You attacked Frank. Your attack succeeded.
+(to Erin) Moderator (private): Night 3 result: You shot Mallory with a Strong Attack (3 tokens). Your attack succeeded. 0 vigilante tokens left.
+(to Frank) Moderator (private): Night 3 result: You investigated Judy. Result: Evil. You were attacked by the Serial Killer and with the Katana.
+(to Niaj) Moderator (private): Night 3 result: You were role-blocked. Your action had no effect and no token was spent. 2 medic tokens left.
+(to Mallory) Moderator (private): Night 3 result: You role-blocked Niaj. Your Katana attack on Frank succeeded. You were attacked by a Vigilante. Yakuza actions tonight: Judy divined Niaj.
+(to Judy) Moderator (private): Yakuza actions tonight: Mallory held the Katana and attacked Frank with it, and role-blocked Niaj. The Katana holder has died; you now hold the Katana.
+[Moderator summary] Night 3: Mallory (Pharmacist, Katana holder) role-blocked Niaj, so Niaj's Strong protection on Frank failed (no token spent, 2 left). Frank was attacked by the SK Carol (Strong) and the Katana (Standard). He had no Defense and died. Erin (Vigilante) spent 3 tokens on a Strong shot at Mallory and killed her. The Katana passed to Judy, the only living Yakuza. Frank's Sheriff check on Judy came back Evil. Judy divined Niaj (divine op). Dave gave Judy a token (give_token op); Judy has no tokens, so she threw it away, and Dave has 0 left. Living: Carol (SK), Dave, Erin, Judy (Yakuza), Niaj. The game continues.
+
+===== DAY 4 =====
+Frank died (killed by Serial Killer). Their role was Sheriff. Last will: "I am the genuine Sheriff. N1 I checked Alice and got Evil; her Good Accountant flip means she was framed that night, so a Fabricator visited her. N2 I checked Bob and got Evil. He may be Yakuza or may have been framed; my result is not absolute proof. Bob's N1 visit to Alice is consistent with the confirmed frame, and he voted Guilty on the genuine Lookout Grace. Bob's Carol = Evil result fits her claimed Ex-Con role, which appears Evil to Sheriffs. Grace's early predictions supported her Lookout report; Heidi flipped Jester, so her Tracker result was unreliable. The visitor list does not identify the Serial Killer or Fabricator."
+Mallory died (killed by Vigilante). Their role was Pharmacist. Last will: "Mallory (claimed Medic, N1 protected Alice with Standard Defense). I stand by that claim. Carol visited Alice by her own account and her Ex-Con cover can't be checked, so Carol is the first player to test. Keep trials tied to checkable results: compare Sheriff results against living players and don't hang on duplicate claims alone. Stay evidence-based."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Carol (public): Mallory flipped Pharmacist, so Niaj’s Medic claim remains unverified. More concerning, he defended both Mallory and Bob when they were under scrutiny, and his claimed N2 role-blocked protection cannot be checked. With five alive, we can’t afford to ignore the possibility he’s the last Yakuza. Put Niaj on trial and compare exact actions.
+Carol nominated Niaj. Everyone now votes Yes/No simultaneously.
+Nomination votes on Niaj: Yes - Carol, Dave, Erin, Judy; No - Niaj.
+Niaj is put on trial (4 Yes).
+[Claim] Niaj: Medic (Good), 2 tokens. N1 protected Alice; N2/N3 role-blocked. Grace's genuine visitor list ⇒ Carol is the Serial Killer.
+Niaj (public): Vote Innocent. I'm the real Medic, and the visitor math identifies Carol as the Serial Killer.
+
+Grace's Lookout report — confirmed genuine when she flipped Lookout — listed Alice's N1 visitors: Bob, Carol, Frank, Mallory, Niaj. Alice died to the Serial Killer, whose kill is a visit, so the SK is one of those five. Four are accounted for: Bob flipped Fabricator (Yakuza), Mallory flipped Pharmacist (Yakuza), Frank flipped Sheriff (Good), and I'm the real Medic — proven, because Mallory, who claimed Medic, flipped Yakuza. Only Carol is unaccounted for. Carol is the Serial Killer.
+
+Carol's case is backwards: she says I 'defended Mallory and Bob.' The record shows I nominated Mallory on D2 and voted Guilty on Bob D3 — both correct. Her Ex-Con story is the cover: an Ex-Con is Village, but she is the neutral killer.
+
+Dave, Erin, Judy: vote Innocent, then hang Carol.
+(to Dave, Niaj) Niaj -> Dave (private): Vote Innocent on me. Grace's genuine Lookout list of Alice's N1 visitors was Bob, Carol, Frank, Mallory, Niaj. Alice died to the SK, and the SK's kill is a visit — so the SK is in that list. Bob and Mallory flipped Yakuza, Frank was Sheriff (Good), and I'm the real Medic (Mallory's Pharmacist flip proves it). Only Carol is unaccounted for: she's the Serial Killer. Hang her next.
+(to Erin, Niaj) Niaj -> Erin (private): Vote Innocent on me. Grace's genuine Lookout list of Alice's N1 visitors was Bob, Carol, Frank, Mallory, Niaj. Alice died to the SK, whose kill is a visit — so the SK is inside that list. Bob/Mallory flipped Yakuza, Frank was Sheriff (Good), I'm the real Medic (Mallory's Pharmacist flip proves it). Only Carol is left unaccounted: she is the Serial Killer. Hang her next.
+(to Judy, Niaj) Niaj -> Judy (private): Vote Innocent on me. This deduction is independent of claims: Grace's genuine Lookout list of Alice's N1 visitors was Bob, Carol, Frank, Mallory, Niaj. Alice died to the SK (a visit), so the SK is one of those five. Bob=Fabricator, Mallory=Pharmacist (Yakuza), Frank=Sheriff, me=real Medic (Mallory's flip proves it). Only Carol remains: she's the Serial Killer. Vote Innocent, then hang Carol.
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+Carol (public): Niaj's conclusion assumes his unverified Medic claim to eliminate himself. Grace's list leaves Carol and Niaj as candidates; a visit alone doesn't distinguish between us. Vote Guilty.
+[Claim] Dave: Philanthropist (Good)
+Dave (public): Vote Innocent on Niaj. The math on Grace’s N1 Lookout list on Alice ({Bob, Carol, Frank, Mallory, Niaj}) is conclusive. Alice was killed by the Serial Killer, whose attack is a visit. Frank flipped Sheriff, while Bob and Mallory both flipped Yakuza. That leaves Carol and Niaj as the only candidates for the Serial Killer. Niaj’s Medic claim coherently explains why the Katana failed to kill Alice N1 (Standard defense stopping Standard Katana). Furthermore, Mallory fake-claimed Medic specifically because Mallory was a visiting Yakuza trying to explain her presence on Grace’s list. Carol’s Ex-Con claim is the obvious cover for the SK's kill on Alice. Carol also voted Guilty to hang Grace on Day 2, whereas Niaj voted Innocent on Grace and voted Guilty on Bob. Acquit Niaj now, and let's put Carol on trial next.
+(to Dave, Erin) Dave -> Erin (private): Vote Innocent on Niaj. Grace's N1 list isolates the SK strictly to Carol or Niaj. Niaj's Medic protection explains the stopped Katana on Alice. Carol is the Serial Killer using Ex-Con as cover. Acquit Niaj and let's hang Carol.
+[Claim] Erin: Village Vigilante. N3: shot Mallory with Strong Attack; succeeded (Mallory flipped Pharmacist).
+Erin (public): I’m the Vigilante: N3 I shot Mallory with Strong; it succeeded, and she flipped Pharmacist. Bob and Mallory are confirmed Yakuza; Frank flipped Sheriff. Grace’s Alice list then leaves Carol and Niaj as SK candidates, but it doesn’t distinguish them. Niaj’s Medic claim is unverified; Bob’s fabricated Carol=Evil result could fit framing a Not-Evil target. I lean Innocent on Niaj; trial Carol next.
+[Claim] Judy: Surveyor. N1 Dave group: Philanthropist. N2 Carol group: Fabricator. N3 Niaj group: Medic.
+Judy (public): My Surveyor results add context: the N2 Bob/Carol/Dave group drew Fabricator, consistent with Bob’s flip; the N3 Mallory/Niaj/Carol group drew Medic, fitting Niaj after Mallory flipped Pharmacist. These draws don’t prove identity, but they support Niaj over Carol. Acquit him; try Carol next.
+Niaj (public): Vote Innocent. I am the real Medic — Mallory's Pharmacist flip proves her Medic claim was fake. Grace's confirmed Lookout list of Alice's N1 visitors was Bob, Carol, Frank, Mallory, Niaj. Alice died to the Serial Killer, whose attack is a visit, so the SK is in that list. Bob flipped Fabricator, Mallory flipped Pharmacist (both Yakuza), Frank flipped Sheriff, and I am the Medic. Only Carol is unaccounted for. Carol is the Serial Killer. Her claim that I defended Mallory and Bob is false: I nominated Mallory D2 and voted Guilty on Bob D3. Carol's Ex-Con story is a cover. Hang Carol next.
+Trial votes on Niaj: Guilty - Carol; Innocent - Dave, Erin, Judy, Niaj.
+Niaj is found Innocent (1 Guilty of 5 votes; 3 needed).
+Dave nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Dave, Erin, Judy, Niaj; No - Carol.
+Carol is put on trial (4 Yes).
+Carol (public): Grace's list proves I visited Alice, not that I attacked her. That is exactly what my Ex-Con claim predicts: a forced random visit with an unknown target. Bob's Carol = Evil result doesn't catch a Serial Killer; Bob flipped Fabricator and could have framed me that night, while Sheriffs normally see an SK as Not Evil. Niaj's conclusion depends on treating his own unverified Medic claim as one of the four 'accounted' visitors. Judy's group draw supports Niaj, but it isn't direct proof of his alignment; his claimed role-blocks aren't independently verified either. I understand the suspicion, but this is a visitor list plus competing role claims, not certainty. Vote Innocent, then test Niaj.
+Dave (public): Carol's defense doesn't hold. Grace's confirmed Lookout list narrows the Serial Killer strictly to Carol or Niaj. Mallory's Pharmacist flip proves her Medic counter-claim was fake, confirming Niaj as genuine Medic. That mathematically leaves Carol as the Serial Killer hiding behind Ex-Con. Vote Guilty and secure the execution.
+Erin (public): Carol is right that Grace’s list establishes a visit, not the identity of the killer; it leaves Carol and Niaj as candidates, not a proof. Judy’s N3 group draw is relevant: the group was Carol/Mallory/Niaj and drew Medic; Mallory flipped Pharmacist, so one of the remaining two fits Medic, though it doesn’t identify whom. Niaj’s claimed protection/block history is coherent, and the claim he defended Bob and Mallory is contradicted by his votes. I lean Guilty on Carol, but this is a probability call, not certainty.
+Judy (public): Carol is right that the visitor list proves a visit, not a kill. But with Bob and Mallory confirmed Yakuza and Frank confirmed Sheriff, it leaves Carol or Niaj as the likely SK. My N3 Surveyor group draw was Medic; that fits Niaj better, though it is not proof. Given his consistent claim, Carol is the stronger suspect.
+[Claim] Niaj: Medic (Good), 2 tokens. N1 protected Alice (Standard). N2 and N3 role-blocked; no tokens spent.
+Niaj (public): Vote Guilty. This deduction does not depend on trusting my claim. Grace's Lookout report on Alice — confirmed when she flipped Lookout — listed Bob, Carol, Frank, Mallory, Niaj. Alice died to the Serial Killer, whose kill is a visit, so the killer must be on that list. Bob flipped Fabricator, Mallory flipped Pharmacist, Frank flipped Sheriff. Excluding the dead, only Carol and I remain — and I am the Village Medic with 2 tokens. That leaves Carol as the Serial Killer. Her Ex-Con story is the cover. Dave, Erin, Judy: finish it.
+(to Dave, Niaj) Niaj -> Dave (private): Vote Guilty on Carol. Grace's confirmed list leaves only Carol or me as the SK, and I'm the real Medic — Mallory's Pharmacist flip proves it. After Carol hangs, only Good remain: instant Village win. Lock in Guilty.
+(to Erin, Niaj) Niaj -> Erin (private): Vote Guilty on Carol. Grace's genuine Lookout list on Alice contains the SK; Bob/Mallory/Frank flips plus my Medic role leave Carol the only unaccounted visitor. Hanging her ends the game for Village. Vote Guilty.
+(to Judy, Niaj) Niaj -> Judy (private): Vote Guilty on Carol. Your N3 group draw fit Medic, and Grace's genuine list leaves only Carol or me as the SK — I'm the Medic. Carol's Ex-Con claim is the cover for the kill on Alice. Guilty ends the game.
+Carol (public): Erin is right: Grace’s list proves a visit, not a kill. It narrows the SK to me or Niaj only if you accept Niaj’s self-claimed Medic as fact. Mallory’s flip disproves her claim; it doesn’t prove his. Judy’s Surveyor result names an unnamed role in a group, not its owner. Niaj nominated Mallory, then voted Innocent on her trial; his claimed role-blocks can’t be checked. Bob was Fabricator, so his Carol=Evil result could be a frame. Don’t turn assumptions into certainty: vote Innocent, then test Niaj.
+Trial votes on Carol: Guilty - Dave, Erin, Judy, Niaj; Innocent - Carol.
+Carol is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Carol died (executed by hanging). Their role was Serial Killer. Last will: 'I claimed Ex-Con; my Night 1 visit was forced and its target unknown to me. Grace’s genuine Lookout report confirms I visited Alice, not that I killed her. Bob flipped Fabricator, so his Carol=Evil result could have been a frame. Niaj’s Medic claim and role-block accounts remain unverified; he nominated Mallory, then voted Innocent on her trial. The visitor list establishes a visit, not the killer.'
+
+===== NIGHT 4 =====
+Night actions:
+  Dave (Philanthropist): no action
+  Erin (Vigilante): no action
+  Judy (Diviner): target Erin; Katana vote: Judy holds, attacks Niaj
+  Niaj (Medic): target Erin; 1 token(s); "Protect Erin with Strong Defense (1 token)."
+Katana: Judy holds it and attacks Niaj.
+(to Judy) Moderator (private): You divined Erin; the group was Dave, Erin and Niaj. The role drawn is Medic (60% chance it is Erin's, otherwise one of the others').
+(to Niaj) Moderator (private): You protected Erin with Strong Defense (1 token spent). 1 medic token left. During the night you were attacked with the Katana.
+(to Judy) Moderator (private): You kept the Katana. Your Katana attack on Niaj succeeded. Your Diviner result on Erin will be sent to you separately.
+[Moderator summary] Night 4: Judy (Diviner, holds the Katana) divined Erin (group Erin/Dave/Niaj, drawn by code) and hit Niaj with the Standard Katana attack. Niaj spent 1 medic token to give Erin Strong Defense (1 left), so he had no Defense himself and died. Dave and Erin did nothing. Living: Dave, Erin (Village), Judy (Yakuza). The game goes on.
+
+===== DAY 5 =====
+Niaj died (killed by Katana). Their role was Medic. Last will: "Niaj — Medic (Good), 2 tokens. Grace's confirmed Lookout list of Alice's N1 visitors (Bob, Carol, Frank, Mallory, Niaj) plus flips (Bob=Fabricator, Mallory=Pharmacist, Frank=Sheriff, Niaj=Medic) prove CAROL is the Serial Killer: Alice died to an SK visit and only Carol is unaccounted for. Carol's Ex-Con claim is a cover. Dave/Erin read pro-Village; Judy possible."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Dave.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Dave (public): Erin is confirmed Vigilante who shot Mallory, and I am Philanthropist. That leaves Judy as the final Yakuza. Judy voted Innocent on Bob with Mallory on Day 3 and Guilty on Grace on Day 2. Erin, let's vote Judy out and win.
+Dave nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Dave, Erin, Judy; No - nobody.
+Judy is put on trial (3 Yes).
+[Claim] Judy: Roleplayer, told Surveyor. N1 Dave group: Philanthropist; N2 Carol group: Fabricator; N3 Niaj group: Medic.
+Judy (public): Dave, I need to correct my claim: I said Surveyor, but I gave three survey results despite Surveyor having only two tokens. I can’t defend that as a literal Surveyor. The only Village explanation I can offer is that I’m a Roleplayer who was told Surveyor; those results may be false, even though they happen to fit the flips. My votes were mistakes amid conflicting claims, not proof of my faction. Please vote Innocent and judge the evidence again at dawn.
+[Claim] Dave: Philanthropist (Good). Judy is the final Yakuza. Vote Guilty to win.
+Dave (public): Judy pivoting to Roleplayer confirms she is the final Yakuza scrambling after getting caught in a fabricated claim. Erin, vote Guilty and secure the Village win right now.
+Erin (public): Judy’s Roleplayer explanation doesn’t neatly account for three Surveyor results: a Roleplayer told Surveyor believes it has that role’s tokens, and no extra token was reported. Her Innocent vote on Bob alongside Mallory and Guilty vote on Grace are also strong links. Dave’s Philanthropist claim is not proof, but Judy is my leading suspect.
+Judy (public): Erin, the token-count inconsistency is serious; I shouldn’t have presented these as three ordinary Surveyor actions. I’m claiming Roleplayer told Surveyor: those were the reports I was given, not three real visits, and I can’t independently verify their identities. That may make my claim unreliable, but it doesn’t mechanically establish I’m Yakuza. Dave’s conclusion is circular: my mistaken votes and imperfect claim mean I’m Yakuza, then my defense supposedly confirms it. I voted Innocent on Bob amid conflicting Sheriff claims, and voted Guilty on Grace while I believed the Tracker/Lookout conflict unresolved. Those were bad judgments, not proof of faction. Erin’s Mallory shot is credible; Dave’s role is still a claim. Please vote Innocent rather than hang on social reads alone.
+Trial votes on Judy: Guilty - Dave, Erin; Innocent - Judy.
+Judy is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Judy died (executed by hanging). Their role was Diviner. Last will: "Roleplayer, told Surveyor. I initially claimed Surveyor, but my three survey-style results exceed its two-token limit. My results may be false, even though they fit Dave's, Bob's, and Niaj's flips. My votes on Bob and Grace were judgments amid disputed claims, not confirmation of my faction."
+The game is over. Winners: Alice (dead), Dave, Erin, Frank (dead), Grace (dead), Ivan (dead), Niaj (dead), Heidi (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Dave, Erin, Frank, Grace, Ivan, Niaj, Heidi
+Cost by player (USD):
+  Alice (Accountant)     $0.0186    7 calls  claude-haiku-5.5
+  Bob (Fabricator)       $0.1746   35 calls  gpt-6-luna-pro
+  Carol (Serial Killer)  $0.0682   39 calls  gpt-6-luna
+  Dave (Philanthropist)  $0.3785   42 calls  gemini-3.8-flash
+  Erin (Vigilante)       $0.0825   42 calls  gpt-6-luna
+  Frank (Sheriff)        $0.1436   30 calls  gpt-6-luna-pro
+  Grace (Lookout)        $0.1210   23 calls  deepseek-v4.1-flash
+  Heidi (Executioner)    $0.2256   20 calls  gemini-3.8-flash
+  Ivan (Prosecutor)      $0.0623   22 calls  claude-haiku-5.5
+  Judy (Diviner)         $0.0906   48 calls  gpt-6-luna
+  Mallory (Pharmacist)   $0.0814   37 calls  claude-haiku-5.5
+  Niaj (Medic)           $0.2931   42 calls  deepseek-v4.1-flash
+  Moderator              $1.3064   16 calls  claude-opus-5.5
+  Night checks           $0.2670    4 calls  claude-opus-5.5
+  Strategy review        $0.3094    1 calls  claude-opus-5.5
+  Log review             $0.3087    1 calls  claude-opus-5.5
+  Total                  $3.9316  409 calls
