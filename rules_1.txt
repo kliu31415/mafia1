@@ -201,6 +201,11 @@ Fortune Teller
 Oracle
   Night: may guess one player's exact role (Astral Visit). At the end of the night, learn whether you were right.
 
+Eavesdropper
+  Night: may eavesdrop on one player. Throughout the following Day, you read the contents of every private
+  message they send or receive, as it is sent. Puppeted messages reach you as the puppet's (you aren't told about
+  the puppeting). They aren't told.
+
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they
   spent that night (token count, R19). You learn only the total, not what kind of tokens they are.
@@ -240,8 +245,9 @@ Party Animal
 Outsiders (Village, but the role can hurt the Village)
 
 Roleplayer
-  You are told your role is X, a random Village Investigative role chosen at the start. The moderator gives you
-  results that are usually false but plausible. Exact-role checks see you as Roleplayer (R19).
+  You are told your role is X, a random Village Investigative role other than Eavesdropper, chosen at the start.
+  The moderator gives you results that are usually false but plausible. Exact-role checks see you as Roleplayer
+  (R19).
 
 Ex-Con
   Appears: Evil to alignment checks (R19).

@@ -109,6 +109,41 @@ def test_wiretap_reads_every_pm_but_a_dead_one_stops(game_factory):
     assert later and not any(e.visible("Dave") for e in later)
 
 
+def test_eavesdropper_reads_its_targets_pms_for_one_day(game_factory):
+    def decide(name, task, schema):
+        if "private_messages" not in schema.get("properties", {}):
+            return None
+        if name == "Bob":
+            return {"private_messages": [{"to": "Carol", "text": f"Bob secret {game.day}."}]}
+        if name == "Carol":
+            return {"private_messages": [{"to": "Dave", "text": f"Carol secret {game.day}."}]}
+        return None
+    game, players = game_factory(["Eavesdropper", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager",
+                                  "Grunt"], ScriptedClient(decide))
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="themselves"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "eavesdrop", "player": "Alice", "by": "Alice"}]})
+    mod.dispatch("apply_changes", {"changes": [{"op": "eavesdrop", "player": "Bob", "by": "Alice"}]})
+    run_day(game, players)
+    heard = {e.fields["message"] for e in game.events if e.cat == "pm" and e.visible("Alice")}
+    assert heard == {"Bob secret 1."}  # Bob's PM, not Carol's to Dave
+    assert "Bob sent Carol a private message." not in game.history_for("Alice")
+
+    game.day = 2  # no eavesdrop recorded for the next day, so nothing more is heard
+    run_day(game, players)
+    assert {e.fields["message"] for e in game.events if e.cat == "pm" and e.visible("Alice")} == heard
+
+
+def test_roleplayers_never_think_they_are_eavesdroppers(game_factory):
+    import random
+    from roles import logic
+    game, _ = game_factory(["Roleplayer", "Vanilla Villager", "Grunt"])
+    for seed in range(40):
+        game.rng = random.Random(seed)
+        logic("Roleplayer").setup(game, game.player("Alice"))
+        assert game.player("Alice").status[Status.FAKE_ROLE] != "Eavesdropper"
+
+
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     game, _ = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"])
     assert game.katana_holder == "Alice"

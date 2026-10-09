@@ -35,7 +35,6 @@ class RoleLogic:
     Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
 
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
-    hears_all_pms: bool = False  # True: a living player of this role reads every Day private message's contents
     # Reminder for the moderator's night resolution, for effects with no submitted action or that
     # need a special op. Included when anyone in the game has (or had) the role.
     night_note: str = ""
@@ -63,6 +62,11 @@ class RoleLogic:
 
     def on_other_death(self, game: Game, me: Player, dead: Player, guilty_voters: list[str] | None) -> None:
         """Another player just died; called for every living player of this role."""
+
+    def hears_pm(self, game: Game, me: Player, speaker: str, to: str) -> bool:
+        """Whether this living, unpuppeted player also reads the contents of a Day private message from
+        `speaker` to `to` (Wiretap, Eavesdropper)."""
+        return False
 
     def check_op(self, game: Game, change: dict) -> str | None:
         """Why one of this role's ops can't be carried out (the whole batch is then refused, so nothing is
@@ -102,6 +106,4 @@ def code_hooks(role_logic: RoleLogic) -> list[str]:
     hooks += [f"op {op}" for op in role_logic.ops]
     if not role_logic.blocks_win:
         hooks.append("never blocks a win")
-    if role_logic.hears_all_pms:
-        hooks.append("hears all PMs")
     return hooks

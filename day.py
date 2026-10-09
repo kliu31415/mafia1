@@ -301,8 +301,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
         else:
             # A puppeted player's private chat is read and written by their Puppeteer instead. Listeners
-            # (Wiretap) read it under the puppet's name, unaware of the puppeting.
-            readers = [writer.name, game.chat_controller(to)] + game.pm_listeners()
+            # (Wiretap, Eavesdropper) read it under the puppet's name, unaware of the puppeting.
+            readers = [writer.name, game.chat_controller(to)] + game.pm_listeners(p.name, to)
             game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text)
             pair = f"{p.name} -> {to}"
             counts = game.pm_record.setdefault(game.day, {})
