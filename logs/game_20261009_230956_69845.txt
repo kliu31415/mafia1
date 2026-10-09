@@ -1,0 +1,21 @@
+Setup:
+  Alice    seat 1  Tracker           openai/gpt-6-luna
+  Bob      seat 2  Medic             google/gemini-3.8-flash
+  Carol    seat 3  Ballot Stuffer    anthropic/claude-haiku-5.5
+  Dave     seat 4  Fabricator        openai/gpt-6-luna-pro
+  Erin     seat 5  Serial Killer     google/gemini-3.8-flash
+  Frank    seat 6  Vanilla Villager  openai/gpt-6-luna-pro
+  Grace    seat 7  Archivist         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Puppeteer         openai/gpt-6-luna-pro
+  Ivan     seat 9  Accountant        openai/gpt-6-luna
+  Judy     seat 10 Seer              anthropic/claude-haiku-5.5
+  Mallory  seat 11 Executioner       anthropic/claude-haiku-5.5  {'target': 'Heidi'}
+  Niaj     seat 12 Sheriff           google/gemini-3.8-flash
+  Olivia   seat 13 Veteran           openai/gpt-6-luna
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Heidi.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Heidi (public): Day one has no hard evidence yet. I'd like everyone to name one tentative suspect and what would change their mind.

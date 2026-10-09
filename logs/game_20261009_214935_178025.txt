@@ -55,3 +55,315 @@ Judy (public): On my PM to Grace: I shared a light town read and suggested compa
 (to Grace, Judy) Judy -> Grace (private): Still reading you town. My PM was just trust-building, no role info. Keep weighting votes over words. Compare notes tomorrow?
 Bob (public): I voted Yes to hear Frank explain, not because the claim alone proves guilt. His explanation didn’t resolve why he volunteered Vanilla, but that’s still weak. Carol, what concrete case justified nominating after calling this only a soft oddity? I’ll weigh the trial vote separately.
 Carol (public): I nominated to test whether Frank had a better explanation and observe votes, not because I had a firm case. It was thin; I won't push again today.
+Frank (public): Judy's two PMs to Grace are the only private link so far. Grace and Judy, did either of you name anyone as suspicious? I'm not nominating without a checkable case.
+Grace (public): I called Frank's volunteered Vanilla claim the strongest oddity so far, and Bob's read on Judy thin; Judy's PM named no suspect.
+Ivan (public): Judy and Grace's PM link is worth tracking, but it's not a case. Carol, Bob: what checkable lead made you vote Yes?
+(to Grace, Judy) Judy -> Grace (private): Quiet so the day ends. No case worth forcing on Frank. Compare reads at start of Day 2; don't overclaim tonight.
+Frank (public): Judy and Grace, you've now exchanged three PMs. Each of you, state its gist publicly. I still have no checkable case against anyone.
+Grace (public): Three PMs: trust-building and comparing reads; the third said “Quiet so the day ends,” no case on Frank, compare tomorrow, and don’t overclaim tonight. No role info or suspect named.
+Ivan (public): Judy-Grace PMs are the only lead; I'm watching votes.
+Frank (public): Judy's 'Quiet so the day ends' PM line is what I'm tracking, and I want her vote to match it tomorrow.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): I suggest we keep the Katana with Heidi and attack Grace: that breaks up the Judy-Grace read-sharing link, and I can puppet Judy tomorrow. Heidi, consider cleaning Grace if we agree on the attack. Mallory, a block on Bob could disrupt the player most likely to press us about Day 1. Let me know your preferences so we can coordinate the votes.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Agreed, Carol. I'll keep the Katana and attack Grace. I'll also clean Grace with a mortician token to hide her role/will and learn it. Mallory, please block Bob. Ivan, just stay quiet. That gives us 3 votes for attack on Grace (me, Carol, and hopefully Mallory/Ivan). If anyone objects to Grace, say so now. Otherwise we proceed. Let's not overcomplicate. Ready to move on after confirmations.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Confirming: I vote Grace for the Katana attack, and Heidi keeps the Katana. Mallory, block Bob as planned. No objections from me, so I'm ready.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Agreed: keep the Katana with Heidi and attack Grace. I’ll block Bob as planned. Ready.
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): Confirming: keep the Katana with Heidi and attack Grace. I’ll spend my puppet token on Judy tomorrow to disrupt the Grace link and control the messaging. Heidi cleans Grace; Mallory blocks Bob; Ivan stays quiet. Ready.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): All confirmed: I hold the Katana and attack Grace; I spend 1 mortician token to clean Grace if she dies tonight (learn her role/will, death shows cleaned). Mallory blocks Bob, Carol puppets Judy, Ivan stays quiet. Locking this in — ready.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Ivan confirms: Heidi keeps the Katana and attacks Grace. I vote Grace. Mallory blocks Bob, Carol puppets Judy, Heidi cleans Grace. No objections, ready.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Agreed with the plan: keep the Katana with Heidi and attack Grace. I’ll block Bob; Carol puppets Judy, and Ivan stays quiet. No objections from me. Ready.
+Night actions:
+  Alice (Oracle): target Frank; guessed role Vanilla Villager
+  Carol (Puppeteer): target Judy; 1 token(s); "Puppet Judy for the following Day."; Katana vote: Heidi holds, attacks Grace
+  Dave (Sheriff): target Carol
+  Erin (Serial Killer): target Judy
+  Grace (Lookout): target Frank
+  Heidi (Mortician): target Grace; 1 token(s); Katana vote: Heidi holds, attacks Grace
+  Ivan (Grunt): no role action; Katana vote: Heidi holds, attacks Grace
+  Judy (Medic): target Judy; 1 token(s); "Self-protect with Standard Defense"
+  Mallory (Pharmacist): target Bob; Katana vote: Heidi holds, attacks Grace
+  Niaj (Tracker): target Bob
+Katana: Heidi holds it and attacks Grace.
+(to Alice) Moderator (private): Night 1 result: You guessed that Frank is a Vanilla Villager. Your guess was correct.
+(to Carol) Moderator (private): Night 1 result: You spent your puppet token to puppet Judy for the following Day. 0 puppet tokens left.
+(to Dave) Moderator (private): Night 1 result: You investigated Carol. Result: Evil.
+(to Erin) Moderator (private): Night 1 result: You attacked Judy. Your attack succeeded.
+(to Grace) Moderator (private): Night 1 result: You watched Frank. Nobody visited Frank. You were attacked with the Katana.
+(to Heidi) Moderator (private): Night 1 result: Your Katana attack on Grace succeeded. You spent a mortician token to clean Grace, and she died tonight, so she is cleaned. Grace's role: Lookout. Grace's last will: "D1: No results yet. Frank claimed Vanilla before being asked; the nomination failed 5–7 (Yes: Carol, Dave, Erin, Mallory, Bob). Judy sent Grace three PMs about trust/comparing reads and ending the day; she named no suspect or role info. Track tomorrow, but this is not proof." 1 mortician token left. You still hold the Katana.
+(to Judy) Moderator (private): Night 1 result: You spent 1 medic token to protect yourself. 1 medic token left. You were attacked by a Serial Killer.
+(to Mallory) Moderator (private): Night 1 result: You role-blocked Bob.
+(to Bob) Moderator (private): Night 1: You were role-blocked.
+(to Niaj) Moderator (private): Night 1 result: You tracked Bob. Bob did not visit anyone.
+(to Carol, Heidi, Ivan, Mallory) Moderator (private): Yakuza actions on Night 1: Heidi held the Katana and used it to attack Grace; Heidi also used a mortician token to try to clean Grace. Carol puppeted Judy for the following Day. Mallory role-blocked Bob. Ivan took no action. Heidi still holds the Katana.
+[Moderator flag] Puppeteer: Carol puppeted Judy on Night 1 and spent her token, but Judy died the same night (Serial Killer). I used the puppet op so the token was spent (R18/R21). The code should not run a puppet swap for a dead player on Day 2, since there is no puppet left to chat for.
+[Moderator summary] Night 1: Heidi (Katana holder, Mortician) killed Grace (Lookout) with the Katana (Standard vs None) and cleaned her (1 mortician token left). Erin (SK) killed Judy (Medic) with a Strong attack, which beat Judy's self-protection (Standard, 1 medic token spent). Carol spent her puppet token on Judy, so the puppet lapses because Judy is dead. Dave saw Carol as Evil. Alice's Oracle guess (Frank = Vanilla Villager) was correct. Grace's Lookout watch on Frank: no visitors (Oracle is an Astral Visit). Mallory role-blocked Bob (Vanilla, no effect), and Bob was told. Niaj tracked Bob: no visits. Ivan did nothing. 10 alive; no win.
+
+===== DAY 2 =====
+Grace died (killed by Katana). Their role and last will were cleaned by a Mortician.
+Judy died (killed by Serial Killer). Their role was Medic. Last will: "Judy's reads (D1 end): Grace/Heidi/Ivan lean town (consistent, low-ego, judge by votes). Frank: unprompted Vanilla, explained weakly; soft oddity—watch votes, not words. Alice sharp/unknown. Bob answered his deferred read; mild. Carol nominated Frank on a thin case then didn't push—watch. Dave/Erin/Mallory/Niaj: little signal. My PMs to Grace were trust-building only, no role or suspect info. No case yet; role hidden for now."
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Ivan (public): Ivan here. Judy's will claims Medic, and she died to a Serial Killer, so a real Medic was killed without protecting herself. A Serial Killer is alive among Alice, Bob, Dave, Erin, Frank and Niaj. I have no role info. Anyone with a claim, give your Night 1 action so we can check it. I won't nominate on thin reads.
+Mallory (public): Judy's will gives impressions, not confirmation; the Medic flip makes Ivan's Serial Killer theory plausible. Anyone with an investigative result from N1 can share the result, without naming a future target. Frank's early Vanilla claim remains an oddity, but it's still not enough on its own for a trial.
+Niaj (public): Two kills confirm both Yakuza and an active Serial Killer in the game. I agree we should hear from the rest of the circle—especially Alice, Bob, and Carol—before jumping to any conclusions. Let's see what information or claims emerge.
+Alice (public): Two kills confirm both Yakuza (with a Mortician) and a Serial Killer. With Judy dead as Medic, town power roles lack confirmed protection, so investigative roles shouldn't expose themselves without actionable guilty results. Let's look closely at yesterday's failed push on Frank—Carol, Dave, Erin, Mallory, and Bob voted Yes. Carol and Bob, where do your reads stand now?
+Bob (public): My Frank read is lower now: the early claim was odd, but the night deaths provide no link. Carol is a mild concern for nominating after calling it only a soft oddity, though her explanation may be ordinary information-gathering; my Yes was just to hear Frank’s defense. I was role-blocked N1, so have no result. No trial case from me yet.
+Carol (public): My Frank nomination was a weak attempt to test the claim, not a firm case; the failed vote should stay on record. Bob's roleblock claim doesn't clear him or identify a blocker. Let's hear any actionable N1 results, without requiring power roles to expose themselves absent one.
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+[Claim] Dave: Sheriff. N1: Carol Evil.
+Dave (public): I am the Sheriff. N1 I investigated Carol and got Evil. This could be a Fabricator frame, and some Neutrals also read Evil, so it isn’t proof she’s Yakuza—but it’s actionable. Carol, explain; everyone, weigh the result and caveats.
+Dave nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Dave, Erin, Frank, Mallory, Niaj, Alice, Bob; No - Heidi, Ivan, Carol.
+Carol is put on trial (7 Yes).
+[Claim] Carol: Ex-Con. N1: My automatic visit was to a random player; I wasn't told who.
+Carol (public): I am the Ex-Con. A Sheriff reading me as Evil is exactly what my role produces; it does not establish that I’m Yakuza. I have no voluntary Night 1 result to offer: my visit is automatic and I’m not told whom I visited. Dave’s claim is otherwise uncorroborated, so don’t execute me on a result that fits a Village role. My Day 1 push on Frank was weak judgment, not evidence of alignment.
+[Claim] Dave: Sheriff. N1: Carol Evil
+Dave (public): Carol’s Ex-Con claim exactly explains my Evil result; that result can’t distinguish Ex-Con from Yakuza, certain Neutrals, or a Fabricator frame. Her weak Day 1 push on Frank isn’t independent corroboration. Unless there’s other evidence, I’ll vote Innocent—my result alone is not proof she’s Yakuza.
+Erin (public): Carol's Ex-Con claim fits Dave's Evil result, but that is one unverified check, and nothing else in the thread confirms either claim. Dave, why did you pick Carol on N1? Carol, is there anything beyond the Frank push that makes you feel safe?
+Frank (public): Dave's Evil result and Carol's Ex-Con claim both fit each other, and neither is verified. The Ex-Con explanation accounts for the result, so the result alone isn't enough to execute. Carol's Day 1 push on me was thin. Unless a real case appears, I lean Innocent. Dave, why did you check Carol first, and what is your next check?
+Heidi (public): On Carol's trial: Dave's own Evil result is exactly what an Ex-Con produces, and Dave said so himself. A single alignment check that an Ex-Con—or a Fabricator frame—can explain isn't grounds for hanging. Carol's Day 1 push on Frank was weak, but weak play isn't proof of role. Unless someone brings a checkable case beyond Dave's result, I'll vote Innocent. Erin's question to Dave—why Carol, and what's his next check—is worth an answer; it may tell us whether he's a real Sheriff. I'd also rather spend today hunting the Serial Killer who killed Judy than hang on one frame-able check.
+Ivan (public): Carol's trial rests on one Sheriff result that her Ex-Con claim fully explains, and nothing else corroborates it. Dave, what is your next check, and why Carol first? Without a second independent piece, I'll vote Innocent.
+Mallory (public): Dave’s result is compatible with an Ex-Con, as Carol claims; it doesn’t distinguish her from a Yakuza or a frame. The claim isn’t independently verified, but nothing else presented contradicts it. I don’t see a concrete basis for Guilty on this result alone. Let’s track Dave’s future checks and keep looking for the Serial Killer.
+Niaj (public): Dave's Evil check is fully explained by an Ex-Con claim, and Dave himself is voting Innocent. Without corroborating scum behavior or another lead, I'm voting Innocent as well.
+Alice (public): An Ex-Con claim mechanically matches Dave's Evil check, and with Fabricator framing or Neutral possibilities, executing Carol without corroborating evidence is premature. I will be voting Innocent. Also, Dave: do not answer questions about your upcoming night target—investigators should never telegraph who they plan to check.
+Bob (public): I lean Innocent. Carol's Ex-Con claim precisely produces Dave's Evil result, and her forced random visit offers no checkable N1 account. Her thin Frank nomination is weak, not corroboration. Dave's willingness to vote Innocent is notable but verifies neither claim. Unless anyone has independent evidence, don't hang on this result alone.
+Carol (public): Dave's Evil result is compatible with my claimed Ex-Con role, but it cannot distinguish that from Yakuza or a frame. My automatic visit gives me no target to offer as independent proof, and I understand that leaves my claim unverified. But an unverified claim is not a second piece of evidence against me. Dave nominated me on this result, then said he would vote Innocent because it isn't proof; let's not turn an ambiguous check into a hanging case. Vote Innocent, and judge Dave by independently checkable results and follow-through.
+Trial votes on Carol: Guilty - nobody; Innocent - Alice, Bob, Carol, Dave, Erin, Frank, Heidi, Ivan, Mallory, Niaj.
+Carol is found Innocent (0 Guilty of 10 votes; 6 needed).
+Erin (public): Carol's Innocent result stands. Dave, a Sheriff claim gets more weight from a fresh check on someone new; repeating Carol tells us little. Let's track whose votes follow the checks, not whose claims are loudest.
+Frank (public): I voted Innocent on Carol. Dave's Sheriff claim is unverified. Dave, your next check should target someone new, and report it publicly with the result.
+Heidi (public): Carol's trial is settled: Dave's own Evil check is exactly what her claimed Ex-Con produces, and nothing corroborated it beyond that, so re-running the same check is just noise. Our live problem is the Serial Killer who killed Judy—protection is gone now, so that's who we should hunt. I'll keep judging by votes and follow-through, not volume. Dave, don't telegraph future checks.
+Ivan (public): Dave's Carol result is on record. I want a fresh check on someone new, reported publicly with the result, before anyone is pushed to trial. I won't nominate on the current reads, and I'll watch who pushes the next trial.
+Niaj (public): Agreed that Carol's check is settled for today. With Medic dead, power roles should stay cautious. Let's see if anyone has fresh observations before we head into night.
+Bob (public): I agree Carol shouldn’t be hanged on an Evil result her claimed Ex-Con role explains. Let’s keep Dave’s choice to check her and his nomination on record, without demanding his next target. Erin and Mallory, what specifically made you vote Yes on Frank beyond wanting to hear his defense? Those votes are leads, not proof.
+Dave (public): To answer Bob: I had no independent evidence against Frank beyond wanting his explanation; my Yes was a request to hear it, not a guilt vote. I chose Carol N1 because her thin Frank nomination was the clearest behavior to check—not because I knew her role. The Evil result still can’t distinguish her claimed Ex-Con from other possibilities.
+Erin (public): Dave, your Carol check is on record. A new check on someone else, reported with its result, would tell us more than repeating it. I'm voting on checkable evidence, not claims.
+Frank (public): Night 1 had a Katana kill and a Mortician clean, so Yakuza are active and alive. Dave, your next Sheriff check should target someone new, and you should post the result. Re-checking Carol tells us nothing new, so we need fresh information, and I'll judge votes on it.
+Ivan (public): Carol's acquittal stands. Dave, post the result of your next check publicly, on someone new. Fresh information matters more than repeating Carol. I'm not nominating yet.
+Erin (public): Carol's acquittal stands. Dave, post your next Sheriff check on someone new, with the result. I'm judging by checkable evidence, not claims.
+Frank (public): Dave: post your next Sheriff check on someone new, with the result. Erin and Mallory: beyond wanting my defense, what made you vote Yes on me?
+Mallory (public): I voted Yes because Frank’s unsolicited Vanilla claim and his explanation left a weak question I wanted answered. In hindsight, that was too thin a reason to support a nomination; I treated it as a chance to hear him, not as a guilt vote. I won’t use that alone as a case again.
+Frank (public): Mallory, thanks for the candor. Dave, post your next Sheriff check publicly, on someone new, with the result.
+Bob (public): One timing point: Dave can’t have an N2 check result during D2. He should choose privately tonight and report the resolved result tomorrow if safe; don’t ask for his target. I have no new lead and won’t nominate. Carol’s explained result still isn’t a scum case.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): I propose Heidi keeps the Katana and we attack Dave; his Sheriff claim and result make him the most urgent threat. Heidi should clean Dave if he dies, both to conceal the role and learn it. Mallory, please block Bob again; his timing and vote analysis could be dangerous. I have no puppet token left for another action. Let me know if you see a better target.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Agreed: I keep the Katana and attack Dave. I'll spend my last mortician token to clean Dave—hiding his Sheriff flip leaves town unsure whether his claim was real, and I still learn his will for reads (his N2 check result won't be in it, but his suspicions will). Mallory, blocking Bob is fine, though I'd lean Alice since she's steering hardest; either shuts down a dangerous town action. Ivan, stay quiet. With no puppet token left we just need clean kills. After Dave, our main risk is the Serial Killer hitting one of us—watch who the SK might go for. Any objection to Dave, raise it now; otherwise confirm and we lock it.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Ivan confirms: Heidi keeps the Katana and attacks Dave. Dave is a real Sheriff threat, and his next check would hurt us. Heidi cleans Dave with the last mortician token. Mallory, I lean toward blocking Alice since she is steering hardest, but your call. Ivan will not visit anyone outside the plan. No objections from me, ready.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Agreed: Heidi keeps the Katana and attacks Dave. I’ll role-block Alice tonight; she’s been steering the discussion and could have a useful action. Ready.
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): Agreed: keep the Katana with Heidi and attack Dave. His Sheriff claim is our clearest threat, and cleaning him hides the flip while giving Heidi his will. Mallory blocking Alice is reasonable; I have no action left. No objections—ready.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Locked in: I keep the Katana and attack Dave, and I spend my last mortician token to clean him so his flip is hidden and we learn his will. Mallory blocks Alice, Ivan stays quiet. After Dave, ~8 alive and our biggest wild card is the SK — Judy's killer is still out there and could hit one of us, so let's keep our heads down and let town chase the sheriff question tomorrow. No further objections from me; ready.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Ivan confirms the plan: Heidi keeps the Katana and attacks Dave. Heidi cleans Dave with her last mortician token, Mallory blocks Alice, and Carol and I take no action. I'm voting Dave as the target, so that is 3 of 4 if Carol and Heidi agree. Ready.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Confirmed: keep the Katana with Heidi and attack Dave. Heidi cleans Dave, and I’ll block Alice. Dave’s Sheriff claim is the most immediate threat; I have no objection to the plan. Ready.
+Night actions:
+  Alice (Oracle): target Carol; guessed role Ex-Con
+  Carol (Puppeteer): no role action; Katana vote: Heidi holds, attacks Dave
+  Dave (Sheriff): target Frank
+  Erin (Serial Killer): target Dave; "Strong Attack on Dave."
+  Heidi (Mortician): target Dave; 1 token(s); Katana vote: Heidi holds, attacks Dave
+  Ivan (Grunt): no role action; Katana vote: Heidi holds, attacks Dave
+  Mallory (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Heidi holds, attacks Dave
+  Niaj (Tracker): target Alice
+Katana: Heidi holds it and attacks Dave.
+[Moderator flag] R3/R12: Dave was killed by two successful attacks on the same night (Katana Standard from Heidi and Serial Killer Strong from Erin). The kill op takes one cause/by. Interpretation: one kill, cause 'Katana and Serial Killer' (both sources may be known), by=Heidi with katana=true; Erin's attack is also recorded as succeeding. The recorded killer for analysis can only list one player.
+(to Alice) Moderator (private): You were role-blocked last night. Your action had no effect.
+(to Dave) Moderator (private): Your investigation result: Frank is Not Evil. You were attacked last night by the Katana and by a Serial Killer.
+(to Erin) Moderator (private): Your attack on Dave succeeded.
+(to Niaj) Moderator (private): Your tracking result: Alice did not visit anyone.
+(to Heidi) Moderator (private): Your Katana attack on Dave succeeded. You spent a mortician token to clean Dave (0 mortician tokens left). Dave died and was cleaned. His role: Sheriff. His last will: "Dave — Sheriff. N1: investigated Carol; result Evil. Carol claims Ex-Con, which explains the result, so it is not proof of Yakuza. I voted Innocent. No N2 result yet."
+(to Mallory) Moderator (private): You role-blocked Alice.
+(to Carol, Heidi, Ivan, Mallory) Moderator (private): Yakuza night report: Heidi keeps the Katana and attacked Dave with it; Heidi also used her Mortician action to clean Dave. Mallory role-blocked Alice. Carol and Ivan took no action.
+[Moderator summary] Night 2: Mallory (Pharmacist) role-blocked Alice, so her Oracle guess (Carol = Ex-Con) had no effect. Heidi kept the Katana and attacked Dave (Standard). Erin (SK) also attacked Dave (Strong). Dave had no defense and died. Heidi spent her last mortician token, so Dave is cleaned. Dave's Sheriff check on Frank came back Not Evil. Niaj tracked Alice, who visited no one because she was blocked. The Katana stays with Heidi. 9 players are still alive from several factions, so the game goes on.
+
+===== DAY 3 =====
+Dave died (killed by Katana and Serial Killer). Their role and last will were cleaned by a Mortician.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Niaj.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Niaj (public): Both the Katana and Serial Killer targeted Dave last night, and the Mortician cleaned him. That confirms Dave was the primary target for both evils due to his Sheriff claim. With 9 alive, let's hear everyone's reads and see if anyone has fresh information from Night 2 before considering nominations.
+Alice (public): Both Katana and Serial Killer doubled up on Dave, and Mortician cleaned him. Importantly, Mortician starts with 2 tokens, meaning they are completely out of cleans—any future night kills will flip roles and wills normally. Let's hear if anyone has actionable N2 investigative results before discussing nominations.
+Bob (public): Dave being hit by both attacks makes his Sheriff claim plausible as a threat, but doesn't verify it or Carol's claim. The cleanings show a Mortician acted; they don't prove there was only one Mortician. Anyone with a resolved N2 result, please share it now, without naming a future target. Then let's weigh the actual votes and behavior around Dave and Carol.
+Carol (public): Dave's double-hit makes his Sheriff claim plausible as a threat, but it doesn't verify it; we still don't know his N2 result. Please share resolved N2 results and distinguish what they establish from what they merely fit. No one should telegraph future targets.
+Erin (public): Nothing new from me. I have no resolved N2 result to share, and I'm judging votes and checkable evidence, not claims.
+Frank (public): Dave's Sheriff claim can't be re-checked now. Any living player with a real N2 result, post it with the target. I won't nominate without a checkable case.
+[ERROR player_error] Heidi (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): 'ith Vulture win. With 12 players, threshold is max(floor(12/4),2)=3. So if we get down to 3 alive, Vulture (if alive) wins and everyone else loses. So we must ensure Vulture is dead or avoid reaching '
+Heidi (public): Nothing checkable from me. Dave's double-kill confirms an active Serial Killer alongside the Katana, and with the Medic gone nobody is safe at night. I won't vote to hang on weak reads; absent a real N2 result, let's go to night and regroup tomorrow.
+Ivan (public): Nothing new from me. Anyone with a resolved N2 result, post it publicly, and I'll judge by votes and follow-through.
+Frank (public): nothing new. I won't nominate without a checkable case. Any living player with a resolved N2 result, post it with the target and result.
+Ivan (public): Nothing new from me, and I won't nominate without a checkable case. Anyone holding a resolved N2 result should post it with the target and outcome.
+Bob (public): Repeatedly asking for N2 claims hasn’t produced one. Let’s switch to reads: Erin and Mallory, you both voted Yes on Carol’s D1 Frank nomination and Dave’s D2 Carol nomination. What is your current named suspect, and what independent fact supports it? That pattern is worth clarifying, not guilt by itself. I have no basis to nominate yet.
+Carol (public): Bob's caveat is fair: two cleaned deaths don't establish that one Mortician spent both tokens. Alice's “completely out” conclusion assumes a single Mortician. That's an overstatement, though not a case alone. Let's weigh actual votes and reads rather than keep soliciting claims.
+[ERROR player_error] Heidi (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): 'we can force a hang once 7 players remain (our 4 votes are then a majority), the cleanest line is to let the night work: Katana kills a strong townie while the SK likely kills another townie, reaching'
+Heidi (public): No N2 results have surfaced, so demanding claims is a dead end. The pattern that matters: Judy and Dave — our two strongest town roles — both died to a Serial Killer, while we hang nobody. Bob's read on Erin stands: Erin voted Yes on both failed nominations and keeps asking for results without giving one suspect of her own. Erin, name a player and the fact behind it. I won't nominate on that alone; I'll judge the next real votes.
+Ivan (public): Agree with Heidi and Bob: Erin voted Yes on both failed nominations and asks for results without naming a suspect. Erin, give one named suspect and the fact behind it.
+Mallory (public): One caveat: I also voted Yes on both Frank and Carol, and have explained my reasons, so that pattern alone doesn't distinguish Erin. Erin should answer Bob's direct request with a named suspect; continued refusal would matter more than the votes themselves. Alice's Mortician inference is also not certain without knowing there was only one.
+Carol (public): The shared Yes votes alone are weak, especially since Mallory explained hers. But Erin has now been directly asked for a named suspect and still hasn't given one. I'd like a concrete read before we end the day.
+Erin (public): Answering Bob and Ivan: my named suspect is Frank. His unprompted Vanilla claim on Day 1 was never explained, which is why I voted Yes. I won't nominate without a new checkable fact.
+Frank (public): Erin: my Day 1 Vanilla claim was explained, and I've answered it twice. Your Yes votes are on record. What checkable fact, beyond that claim, makes me a suspect?
+[ERROR player_error] Heidi (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): ' fits." \n\nActually — here\'s a thought: we could push the idea that the SK is among {Erin, Frank, Niaj} (true!) and unite town against one of them. That\'s genuinely helpful to town in a way (finding SK'
+Heidi (public): I'll nominate Erin. Bob was role-blocked Night 1 — the night Judy died to the Serial Killer — so Bob isn't the SK. Erin fits the lone-killer pattern best: she voted Yes on both failed nominations, then spent Day 3 asking everyone else for N2 results while offering no suspect of her own until cornered. Blending in and letting others take the risk is exactly how a Serial Killer survives. Erin, if you have a real role or a checkable obsN2 result, this trial is your moment to give it.
+Heidi nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Heidi, Ivan, Mallory, Niaj, Alice, Bob, Carol, Frank; No - Erin.
+Erin is put on trial (8 Yes).
+Erin (public): Heidi's case is a pattern, not evidence. Quiet play and asking for results is how any Village player acts while the day is open. Bob's role-block claim doesn't clear anyone, and 'Bob isn't the SK' says nothing about me. I voted Yes on Frank because his unexplained Vanilla claim was a real oddity, and when asked I named a suspect and the fact behind it. Dave's Sheriff result on Carol is unverified, and so is Carol's Ex-Con claim. Hanging me on 'Erin is quiet and voted Yes twice' repeats the thin-case mistake we made with Frank. Heidi, name one checkable fact against me beyond my vote history. Absent that, I'm voting Innocent.
+Frank (public): Heidi's case is a pattern, not a fact: Erin's Yes votes and her asking for results don't establish guilt. Her Yes on me was a read, not proof, and I have no checkable fact against her. Heidi, 'Bob isn't the SK' says nothing about Erin. Unless someone brings a concrete check, I'm voting Innocent.
+[ERROR api_retry] a deepseek/deepseek-v4.1-flash request failed (attempt 1), retrying: error in the answer: {"message": "Network connection lost.", "code": 502, "metadata": {"error_type": "provider_unavailable"}}
+[ERROR api_retry] a deepseek/deepseek-v4.1-flash request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"deepseek/deepseek-v4.1-flash is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations","provider_name":"Together","
+Heidi (public): Frank, fair — a pattern isn't proof. But weigh the nights: Judy died to the Serial Killer on N1 while Bob was role-blocked, and Dave died N2 while Alice was role-blocked. So the SK is Erin, Frank, or Niaj. The SK has Standard Defense — no Katana and no bullet removes them; only a hanging does. Erin is the only one of the three who also voted Yes on both failed nominations and, pressed for a named suspect, produced only the same weak Vanilla complaint we already tested. I'm voting Guilty; sparing her buys another double-kill night.
+(to Heidi, Niaj) Heidi -> Niaj (private): Niaj — vote Guilty on Erin. Judy died to the SK on N1 (Bob blocked), Dave on N2 (Alice blocked), so the SK sits among Erin/Frank/Niaj. The SK has Standard Defense: no Katana or bullet kills them, only a hang. Erin is the best fit. Hanging her stops the double-kill nights.
+Ivan (public): I voted Yes on Erin's nomination and will vote Guilty. Her only named suspect, Frank, rests on a Vanilla claim the table already tested, and her Yes votes on Frank and Carol were pressed out of her, not explained. Erin, give one checkable fact that isn't a vote count, or I'll judge you on that.
+Mallory (public): The vote pattern alone isn't enough, but the night-based narrowing matters if the reported blocks are accurate: the SK candidates include Erin, Frank, and Niaj. Erin's only named suspect rests on Frank's already-discussed claim. I think Guilty is justified to resolve the strongest live lead.
+Niaj (public): Heidi noted Alice was role-blocked on Night 2, though Alice hasn't claimed that publicly yet, so I am curious to hear Alice's response to that on her turn. Erin's defense gives very little checkable substance, so the pressure on her is understandable, but let's hear Alice and Bob speak before locking in votes.
+(to Heidi, Niaj) Niaj -> Heidi (private): How did you know Alice was role-blocked N2? Alice hasn't claimed that publicly. Did you block her yourself?
+Alice (public): Niaj caught something critical: I was indeed role-blocked on Night 2, but I have not stated that publicly or messaged anyone about it. Heidi, how did you know I was role-blocked? Only the person who blocked me—or a Yakuza member seeing their Pharmacist's target—could possess that information. If you are claiming Party Animal, explain why you blocked me and why you didn't claim your role when stating it. Otherwise, this is a direct slip of evil night knowledge. As for Erin: her defense is thin and her persistent focus on Frank is misguided, but Heidi's slip is a massive development that we need answered before trial votes lock.
+Bob (public): The block logic is sound if those blocks are real: a role-blocked Serial Killer could not make that night's kill, so Bob and Alice would be excluded for those respective nights. But Heidi's knowledge of Alice's private N2 block needs an explanation. Heidi, did you personally block Alice as Party Animal? If not, how did you learn it? A Yakuza Pharmacist or teammate could know too. This narrows the candidates; it doesn't establish Erin's guilt. I won't support hanging her solely on this circumstantial case.
+Carol (public): Heidi’s knowledge of Alice’s block is a serious, separate issue that deserves scrutiny, but it doesn’t establish Erin’s innocence. If the claimed block pattern is accurate, it narrows the Serial Killer candidates; Erin’s defense offers no fresh alternative. I favor resolving this lead.
+Erin (public): Erin here. Heidi's slip is the real lead. She knew Alice was role-blocked on Night 2, which only the blocker or a Yakuza teammate who saw the Pharmacist's target could know. Heidi has not said she blocked Alice, so she needs to explain how she knew. Her case against me rests on my Yes votes, which I explained, and on a theory that Niaj or Frank must be the Serial Killer. I am not Yakuza. Before anyone votes Guilty, Heidi should answer how she learned Alice's block.
+(to Erin, Niaj) Erin -> Niaj (private): Niaj: Heidi knew Alice's N2 block without it being public. Only a blocker or a Yakuza teammate could know that. Press her on it before you lock a Guilty vote on me.
+Trial votes on Erin: Guilty - Bob, Carol, Heidi, Ivan, Mallory; Innocent - Alice, Erin, Frank, Niaj.
+Erin is executed by hanging (5 Guilty of 9 votes; 5 needed).
+Erin died (executed by hanging). Their role was Serial Killer. Last will: "Erin's last will: I have no confirmed role information and I am not a Yakuza member. Judge players by their votes and follow-through, not by their claims. Be wary of anyone who pushes a nomination on a single unverifiable result."
+
+===== NIGHT 3 =====
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): Proposal: keep the Katana with Heidi and attack Bob. He’s been tracking votes and pressing for independent reads, so removing him limits the strongest scrutiny. Mallory, I suggest blocking Alice again since she was blocked last night and is also actively investigating the block slip. I have no action left. I’m ready unless someone has a better target.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Switch target to Alice. She caught my slip and will lead tomorrow; Bob is less urgent. To support my cover, I should not hold the Katana tonight. Proposal: Ivan holds Katana and attacks Alice. I stay home (0 tokens). Mallory, block Bob instead of Alice—Alice will be dead. Carol no action. For my slip, I'll claim Party Animal who blocked Alice N2; if asked why I hid, I say I didn't want to expose a Village role. Risk: if a Tracker saw me visit Dave N2, this fails, but it's our best line. Ivan/Carol/Mallory, confirm: target Alice, holder Ivan. Ready to lock.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Ivan: I agree on Alice as the attack target. She caught Heidi's block knowledge and is steering the town at us. Carol, please vote Alice too so we reach 3 of 4 (Heidi, Carol, Mallory, me). Holder: keep the Katana with Heidi. Moving it needs 3 votes for a new holder, and a Grunt with no action gains nothing by visiting Alice. Mallory, block Alice to stop any action she has. Heidi, don't claim Party Animal publicly. If asked, say you know nothing beyond what you already said. Ready to lock once Carol confirms.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): I agree we should attack Alice. Keep the Katana with Heidi so we don't risk splitting the holder vote; Heidi attacks Alice. I’ll block Bob, since Alice should be eliminated if the attack lands. Carol and Ivan, please confirm Alice as the attack target and Heidi as holder so we have the needed votes. I’m ready.
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): I vote Alice as the attack target and Heidi to keep holding the Katana. Alice is the immediate threat, and changing the holder risks splitting votes when Heidi can make the attack. I have no other action.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Locked: I keep the Katana and attack Alice; Mallory blocks Bob; Carol and Ivan stay home. After tonight that's 4 Yakuza vs 3 town — we control tomorrow's nomination (need 4 of 7) and can force the hang, so play it normal and let town chase the Dave/Carol mess rather than overpushing. Cover plan for my slip: I'll claim Party Animal who blocked Alice N2 — that explains how I knew she was blocked and reads as a Village role defending itself. Main risk: a Tracker who saw me visit Dave N2; if challenged I'll deny and argue no real tracker caught me. Killing Alice tonight mostly closes the issue since she's the one pressing it. Niaj PM'd me directly — I'll answer him privately with the same Party Animal line on Day 4. No objections, ready to lock.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Ivan confirms: Heidi keeps the Katana and attacks Alice. Mallory blocks Bob. Carol and I take no action. Heidi, don't claim Party Animal publicly or privately yet; if asked about the Alice block, say you only know what the night report said. Ready to lock.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Confirming: Heidi holds the Katana and attacks Alice; I’ll block Bob. Alice has all four attack votes. Heidi’s final confirmation resolves the earlier suggestion to move the Katana to Ivan.
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 1), retrying: IncompleteRead: IncompleteRead(55 bytes read)
+Night actions:
+  Alice (Oracle): target Heidi; guessed role Pharmacist
+  Carol (Puppeteer): no role action; Katana vote: Heidi holds, attacks Alice
+  Heidi (Mortician): no role action; Katana vote: Heidi holds, attacks Alice
+  Ivan (Grunt): no role action; Katana vote: Heidi holds, attacks Alice
+  Mallory (Pharmacist): target Bob; Katana vote: Heidi holds, attacks Alice
+  Niaj (Tracker): target Heidi
+Katana: Heidi holds it and attacks Alice.
+(to Alice) Moderator (private): Night 3 result: You guessed that Heidi is the Pharmacist. Your guess was wrong. You were also attacked with the Katana tonight, and you died.
+(to Bob) Moderator (private): You were role-blocked last night.
+(to Niaj) Moderator (private): Night 3 result: You tracked Heidi. Heidi visited Alice.
+(to Mallory) Moderator (private): Night 3 result: You role-blocked Bob.
+(to Heidi) Moderator (private): Night 3 result: You attacked Alice with the Katana. Your attack succeeded. You still hold the Katana.
+(to Carol, Heidi, Ivan, Mallory) Moderator (private): Yakuza actions on Night 3: Heidi kept the Katana and used it to attack Alice. Mallory (Pharmacist) role-blocked Bob. Carol and Ivan did not act. Heidi still holds the Katana.
+[Moderator summary] Night 3: Heidi kept the Katana and attacked Alice (Standard against no defense), so Alice died. Alice's Oracle guess of Heidi as Pharmacist was wrong (Heidi is the Mortician); she was told the result and the Katana attack notice. Mallory role-blocked Bob, who has no night action; Bob was told he was blocked. Niaj tracked Heidi and saw her visit Alice. No tokens were spent. All Yakuza were told each other's actions. Alive: Bob, Frank, Niaj (Village, 3) and Carol, Heidi, Ivan, Mallory (Yakuza, 4). The game goes on.
+
+===== DAY 4 =====
+Alice died (killed by Katana). Their role was Oracle. Last will: 'Alice - Oracle.\nN1: Frank - Vanilla Villager (CORRECT). Frank is confirmed true Vanilla Villager.\nN2: Carol (guessed Ex-Con) - Role-blocked (no result).\nMortician used 2 cleans (N1 Grace, N2 Dave).\nHeidi publicly stated I was role-blocked N2 before I ever revealed it—Heidi is either Party Animal or Yakuza (Pharmacist/teammate).'
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Bob (public): Alice’s uncleaned Oracle will strongly supports Frank’s Vanilla claim. More importantly, she says Heidi knew she was role-blocked on N2 before Alice disclosed it. Heidi, did you block Alice yourself? If not, explain how you learned it. This could fit a Party Animal, but it could also point to Yakuza knowledge. I’m nominating Heidi so we can hear her answer; the slip is serious, not conclusive.
+Bob nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Bob, Frank, Niaj; No - Carol, Heidi, Ivan, Mallory.
+The nomination of Heidi failed (3 Yes).
+Carol (public): Alice's will itself leaves open that Heidi personally role-blocked her; Bob converted that unresolved alternative into a nomination before hearing her answer. A question is fair, but it isn't proof. I'll nominate Bob for pushing an execution on ambiguous evidence.
+Carol nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Carol, Ivan, Mallory; No - Frank, Heidi, Niaj, Bob.
+The nomination of Bob failed (3 Yes).
+Frank (public): Heidi, you still haven't answered the one checkable lead: how did you know Alice was role-blocked on N2 before she spoke? Did you block her yourself, yes or no? Until someone gives a checkable fact, I won't vote to hang anyone.
+[Claim] Heidi: Party Animal. N2: role-blocked Alice.
+Heidi (public): The Alice block was me: I am the Party Animal and I role-blocked Alice on Night 2. That is exactly how I knew, so Bob's evil-knowledge case collapses; a Village blocker explains it fully. Bob keeps turning ambiguity into nominations before answers. I nominate Bob.
+Heidi nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Heidi, Ivan, Mallory, Bob, Carol; No - Niaj, Frank.
+Bob is put on trial (5 Yes).
+[Claim] Bob: Vanilla Villager; no night action. Role-blocked N1 and N3.
+Bob (public): I am a Vanilla Villager, as my will says; I have no night action or information. Carol’s claim that I pushed for an execution misstates what I did: I nominated Heidi to ask how she knew Alice was blocked, explicitly said the slip was serious but not conclusive, and voted No on my own nomination. Heidi has now offered a plausible explanation—that she was the blocker. That may be true; it doesn’t prove her alignment, but it does answer the question I raised. A nomination requests a trial; it isn’t a verdict. No one has given a concrete fact that makes me Yakuza. Please vote Innocent, and assess Heidi’s claim separately from my guilt.
+Carol (public): Alice’s will confirms Frank’s Vanilla result, not Bob’s claim; Bob’s role remains unverified. He turned Heidi’s unexplained knowledge into a nomination before hearing her answer, and now calls that harmless. Heidi’s blocker explanation is plausible; Bob offers no independent basis for treating her as Yakuza. I think Guilty is warranted.
+Frank (public): I'm leaning Innocent on Bob. The only case against him is Heidi's Night 2 knowledge, and Heidi now gives a Party Animal block that fits Alice's will. Bob's nomination of Heidi was a question, not a verdict. Heidi's Day 3 push on Erin also landed on the real Serial Killer, which counts for something. Carol, you called Heidi's answer plausible, so why does Bob still need a trial?
+Heidi (public): Frank: Bob's nomination of me was a question, yet he voted Yes on his own nomination—panic, not town play. My Party Animal block on Alice N2 explains the slip, as Alice's will allows. With Erin dead, Yakuza remain; Bob fits. Vote Guilty.
+(to Heidi, Ivan) Heidi -> Ivan (private): Vote Guilty on Bob. Confirm.
+Ivan (public): Heidi's Party Animal answer fits Alice's will, which removes the knowledge-based case against her. Bob, the open question is why you nominated Heidi on a slip you now call serious but not conclusive, then argued against Carol's push. I want a concrete answer on that, not another vote-count defense.
+Mallory (public): Bob says he voted No on his own nomination, but the revealed nomination tallies list him Yes—both on Heidi’s nomination of him and on his nomination of Heidi. That is a checkable contradiction, not just a disagreement about whether nominations are harmless. His explanation doesn’t match the votes; I’m treating that as a reason to vote Guilty.
+[Claim] Niaj: Tracker. N1: Bob no visit. N2: Alice no visit. N3: Heidi visited Alice (Alice killed by Katana).
+Niaj (public): Stop. I am the Tracker, and Heidi is caught red-handed. Here is my log:
+N1: Bob -> Did not visit anyone.
+N2: Alice -> Did not visit anyone.
+N3: Heidi -> Visited Alice!
+
+Alice was killed by the Katana last night, and Heidi visited her. Bob also claimed he was role-blocked on N3, not Alice—so Heidi cannot claim she was blocking Alice as Party Animal. Heidi is Yakuza and dealt the Katana kill to Alice.
+
+Everyone, vote INNOCENT on Bob right now. Once Bob is acquitted, we nominate and execute Heidi today.
+Bob (public): There is no vote contradiction. On Carol’s nomination of me, I voted No, as the tally shows. When Heidi nominated me, I was listed Yes; and when I nominated Heidi, I was the nominator and therefore Yes by default. I never claimed otherwise. I asked how Heidi knew Alice was blocked; her Party Animal claim offers a plausible answer, not proof of alignment. Niaj’s Tracker result says Heidi visited Alice on N3, but a visit alone doesn’t distinguish a block from the Katana attack, or prove Heidi was the holder. That is a reason to scrutinize Heidi, not evidence I’m Yakuza. I’m Vanilla and have no night action; my N1 and N3 blocks are consistent with that.
+Trial votes on Bob: Guilty - Carol, Heidi, Ivan, Mallory; Innocent - Bob, Frank, Niaj.
+Bob is executed by hanging (4 Guilty of 7 votes; 4 needed).
+Bob died (executed by hanging). Their role was Vanilla Villager. Last will: 'Bob — Vanilla Villager. I have no night action or independent night information; I was role-blocked N1 and N3. On Carol’s nomination of me I voted No; on Heidi’s nomination of me I was listed Yes, and I was also Yes by default as nominator of Heidi. Niaj’s N3 Tracker result shows Heidi visited Alice, but does not establish that Heidi held the Katana. Judge the evidence and trial votes separately.'
+
+===== NIGHT 4 =====
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): I suggest we move the Katana to Ivan and attack Niaj. His Tracker claim makes him our urgent threat; removing him leaves us positioned to control tomorrow. Mallory, block Niaj so he can’t report a result. Heidi and I have no actions. Moving the Katana also avoids another direct visit result implicating Heidi if Niaj survives. If the holder change lacks a majority, keep Heidi as holder and still attack Niaj.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Confirming Carol’s plan: I vote Ivan as holder and Niaj as target. Ivan holds Katana and attacks Niaj; Mallory role-blocks Niaj; Carol and I take no action. This hides my N3 visit and removes the only claimed Tracker before he can press the slip again. If Niaj is blocked and killed, no N4 result can implicate us. Tomorrow 5 alive: 4 Yakuza + Frank (confirmed Vanilla). We can nominate and hang Frank with 4 votes; win. If any vote splits, fallback: I keep Katana and attack Niaj. Everyone confirm target Niaj and holder Ivan.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Confirming Carol's plan: I vote Ivan as new Katana holder and Niaj as the attack target. Mallory, please block Niaj and confirm. If the holder move gets 3 votes, I hold the Katana and attack Niaj; if not, Heidi keeps it and attacks Niaj. Heidi and Carol take no other actions. Each of us should post our holder and target votes so we can count 3 of 4 before dawn.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Confirmed: I vote for Ivan to hold the Katana and Niaj as the attack target. I’ll role-block Niaj tonight. Ready.
+(to Carol, Heidi, Ivan, Mallory) Carol (Yakuza chat): Confirmed: Ivan holds the Katana and attacks Niaj; Mallory blocks Niaj. That gives us unanimous votes for both choices. I have no other action. Ready.
+(to Carol, Heidi, Ivan, Mallory) Heidi (Yakuza chat): Confirming unanimously: Ivan holds the Katana and attacks Niaj; Mallory role-blocks Niaj; Carol and I take no action. Fallback if the holder vote somehow fails: I keep the Katana and still attack Niaj. Reasoning: Niaj's Tracker claim is the only live threat, and removing him prevents both an N4 result and any D5 push. After Niaj dies we are 5 alive = 4 Yakuza + Frank; tomorrow we nominate Frank, 4 Yes of 5 passes (need 3), then 4 Guilty of 5 hangs him and all-living-Yakuza wins. Play it quiet tomorrow and don't overpush before the hang. Ready to lock.
+(to Carol, Heidi, Ivan, Mallory) Ivan (Yakuza chat): Ivan confirms the plan: I vote Ivan as the new Katana holder and Niaj as the attack target. Mallory, please role-block Niaj tonight. Carol and Heidi take no other actions. If the holder move fails to get 3 votes, Heidi keeps the Katana and attacks Niaj, and I'll back that. Niaj's Tracker claim is our only live threat, so removing him is worth it. Tomorrow, 5 alive means 4 Yakuza plus Frank. Nobody nominates early or alone. We wait for the Day to open, then all four vote Yes on Frank together, so a 3-of-5 nomination passes and 4 Guilty hangs him. Ready.
+(to Carol, Heidi, Ivan, Mallory) Mallory (Yakuza chat): Confirmed: I vote Ivan as Katana holder and Niaj as the attack target. I’ll role-block Niaj tonight. That gives us unanimous votes; ready.
+Night actions:
+  Carol (Puppeteer): no role action; Katana vote: Ivan holds, attacks Niaj
+  Heidi (Mortician): no role action; Katana vote: Ivan holds, attacks Niaj
+  Ivan (Grunt): no role action; Katana vote: Ivan holds, attacks Niaj
+  Mallory (Pharmacist): target Niaj; Katana vote: Ivan holds, attacks Niaj
+  Niaj (Tracker): target Ivan
+Katana: Ivan holds it and attacks Niaj.
+(to Niaj) Moderator (private): You were role-blocked last night, so your tracking had no effect. You were attacked with the Katana and you died.
+(to Ivan) Moderator (private): You held the Katana and attacked Niaj. Your attack succeeded.
+(to Mallory) Moderator (private): You role-blocked Niaj. (Your role uses no tokens.)
+(to Carol, Heidi, Ivan, Mallory) Moderator (private): Yakuza actions last night: Ivan held the Katana and used it to attack Niaj. Mallory role-blocked Niaj. Carol and Heidi took no action.
+[Moderator summary] Night 4: Mallory (Pharmacist) role-blocked Niaj, so Niaj's track on Ivan had no effect. Ivan kept the Katana and attacked Niaj (Standard vs None): Niaj dies to the Katana. Notices sent: Niaj (role-blocked + Katana attack), Ivan (success), Mallory (result), Yakuza action summary. Living: Carol, Frank, Heidi, Ivan, Mallory. The Yakuza now hold 4 of 5 seats, and Frank is the only Village player left. The win check is left to code.
+
+===== DAY 5 =====
+Niaj died (killed by Katana). Their role was Tracker. Last will: 'Niaj - Tracker.\nN1: Bob -> Did not visit anyone.\nN2: Alice -> Did not visit anyone.\nN3: Heidi -> Visited Alice (Alice died to Katana).\nHeidi is caught red-handed as the Katana killer.'
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Frank (public): Heidi, answer two yes/no questions. (1) Niaj's log says you visited Alice on N3. Was that a Party Animal block or a Katana visit? (2) On N2, did you block Alice yourself, and how did you learn the result? Carol, Ivan and Mallory: name one checkable fact, beyond Heidi's claim, behind your Guilty vote on Bob. No nomination from me yet.
+[Claim] Heidi: Party Animal. N2: role-blocked Alice. N3: role-blocked Alice.
+Heidi (public): Frank: Party Animal block both nights; yes I blocked Alice N2, hence my knowledge; Niaj's N3 visit was that block. I nominate Frank.
+Heidi nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Heidi, Ivan, Mallory, Carol; No - Frank.
+Frank is put on trial (4 Yes).
+Frank (public): Frank here, Vanilla Villager with no night action. Alice's Oracle will guessed Frank Vanilla on N1, which is the only confirmed role info in this game. My case against me is a Day 1 volunteered claim I've explained, plus votes I've tied to reasons. Heidi nominated me right after I asked her two questions. Her story has grown: Day 4 was a Night 2 block on Alice, and Day 5 adds Night 3, where she calls Niaj's logged visit a block. That fits the Tracker log, but it doesn't rule out a Katana visit on Alice from someone else. Heidi: if you blocked Alice on N3, who visited Alice that night? Ivan, Mallory, Carol: name one checkable fact against me that isn't Heidi's nomination. If you have none, vote Innocent.
+Heidi (public): Frank is confirmed Vanilla by Alice's Oracle; his defense is only questions. My blocks are on record. Vote Guilty.
+Ivan (public): Frank: your defense is still questions. Alice's will confirms you are Vanilla, but it does not explain your unprompted Day 1 claim. Your only case against Heidi is a question she already answered on the record: Party Animal blocks on Alice N2 and N3. Niaj's log fits a block visit. I'm voting Guilty: nothing checkable clears you, and the Village should stop chasing questions.
+Mallory (public): The Oracle result confirms Frank’s role, but it doesn’t make his accusation against Heidi conclusive. Niaj’s log establishes a visit, not which action caused it, and Heidi’s explanation fits that observation. Frank has offered no independent evidence to resolve it. I’ll vote Guilty.
+Carol (public): Alice’s will reports a successful Oracle guess, rather than a public reveal of Frank’s role. His volunteered Vanilla claim and his effort to turn this trial back onto Heidi are still fair to weigh. I’m voting Guilty.
+Frank (public): Heidi's timeline doesn't hold together. She claimed a Night 2 block on Alice, then a Night 3 block too, yet Alice still died to the Katana that night. A block stops Alice's action; it doesn't stop a Katana visit, so someone else visited Alice on N3. Heidi, if you blocked her, who was the Katana visitor? Ivan, Mallory, Carol: your Guilty votes rest on Heidi's claim and on my questions, which she never answered directly. Nobody has shown a checkable fact against me, and Alice's Oracle guessed my role correctly. I'm voting Innocent and will judge the vote on evidence.
+Trial votes on Frank: Guilty - Carol, Heidi, Ivan, Mallory; Innocent - Frank.
+Frank is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Frank died (executed by hanging). Their role was Vanilla Villager. Last will: "I am Frank, a Vanilla Villager with no night action and no night information. Alice's Oracle will confirmed this. My votes are my only evidence. Day 1: I voted No on my own nomination. Day 2: I voted Innocent on Carol, because the only evidence was a Sheriff Evil result that her Ex-Con claim fully explains. Day 3: I voted Innocent on Erin, because the case against her was a voting pattern with no checkable fact. Day 4: I voted Innocent on Bob, because the case against him was Heidi's Night 2 knowledge, which her Party Animal claim answers. Heidi's Party Animal claim (blocking Alice on N2) is unverified. Niaj's Tracker log says Heidi visited Alice on N3, which fits a Katana visit as well as a block. Trust players who give checkable reasons and follow through on them. Be wary of trials pushed on thin reads, and of anyone who repeats an accusation without new evidence. Look for the Yakuza and the Katana holder among those who push trials without evidence."
+The game is over. Winners: Carol, Heidi, Ivan, Mallory.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Heidi, Ivan, Mallory
+Cost by player (USD):
+  Alice (Oracle)            $0.2252   32 calls  gemini-3.8-flash
+  Bob (Vanilla Villager)    $0.0488   36 calls  gpt-6-luna
+  Carol (Puppeteer)         $0.0644   51 calls  gpt-6-luna
+  Dave (Sheriff)            $0.0299   22 calls  gpt-6-luna
+  Erin (Serial Killer)      $0.0455   32 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.0653   42 calls  claude-haiku-5.5
+  Grace (Lookout)           $0.0531   12 calls  gpt-6-luna-pro
+  Heidi (Mortician)         $0.3032   53 calls  deepseek-v4.1-flash
+  Ivan (Grunt)              $0.0827   50 calls  claude-haiku-5.5
+  Judy (Medic)              $0.0359   12 calls  deepseek-v4.1-flash
+  Mallory (Pharmacist)      $0.2207   50 calls  gpt-6-luna-pro
+  Niaj (Tracker)            $0.2415   39 calls  gemini-3.8-flash
+  Moderator                 $0.9567   11 calls  claude-opus-5.5
+  Night checks              $0.3178    4 calls  claude-opus-5.5
+  Strategy review           $0.2797    1 calls  claude-opus-5.5
+  Log review                $0.2628    1 calls  claude-opus-5.5
+  Total                     $3.2333  448 calls
