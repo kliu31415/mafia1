@@ -117,7 +117,8 @@ class Moderator:
              + (" If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and "
                 "then continue with your best interpretation." if FLAG_TOOL in self.tools else "")),
             # Cached so the phase's later steps, which resend it, read it from the cache.
-            {"role": "user", "content": [cache_block(f"{instructions}\n\nCurrent full state (call get_state to "
+            {"role": "user", "content": [cache_block(f"{instructions}\n\nCurrent state, summarized:\n"
+             f"{self.game.state_summary()}\n\nCurrent full state (call get_state to "
              f"refresh after changes):\n{json.dumps(self.game.full_state())}\n\nPublic history so far:\n"
              f"{self.game.history_for('__moderator_public__')}")]},
         ]

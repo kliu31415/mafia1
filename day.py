@@ -79,7 +79,7 @@ def run_day(game: Game, players: Players) -> None:
         return
     game.puppets, game.puppets_next = game.puppets_next, {}
     for puppet, puppeteer in list(game.puppets.items()):
-        # A Puppeteer who died overnight can't act any more (rules R12), so the puppeting lapses.
+        # A Puppeteer who died overnight can't act any more, so the puppeting lapses (rules R21).
         if game.player(puppet).alive and game.player(puppeteer).alive:
             game.emit("You are being puppeted today: you can't chat or see private messages, but you can "
                       "still nominate and vote.", [puppet])

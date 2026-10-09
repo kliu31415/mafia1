@@ -184,3 +184,15 @@ def test_a_players_reason_is_logged_but_never_returned_to_the_game(game_factory)
     game, players = game_factory(["Vanilla Villager", "Grunt"], client)
     assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}) == {"vote": True}
     assert "Erin's vote was odd." in game.log.path.read_text(encoding="utf-8")
+
+
+def test_the_moderator_gets_a_readable_state_summary(game_factory):
+    game, _ = game_factory(["Clerk", "Medic", "Vanilla Villager", "Grunt", "Prosecutor"])
+    game.katana_holder = "Alice"
+    game.kill("Bob", "Katana")
+    game.rigged_day = game.day + 1
+    game.prosecutions.append("Carol")
+    summary = game.state_summary()
+    assert "seat 1: Alice (Clerk, Yakuza)" in summary and "holds the Katana" in summary
+    assert "Dead: Bob (Medic" in summary and "seat 2" not in summary
+    assert f"Clerk's rig on day {game.day + 1}" in summary and "Carol is prosecuted next day" in summary

@@ -105,6 +105,11 @@ then all results happen together. So investigations that give their result at th
 Seer's random pair) draw from and report on everyone alive when the night began, including players who die that
 night.
 
+R21 (Effects that outlast their user)
+An effect set up at night for the following Day (e.g. a Clerk's rig, a Prosecutor's prosecution) still happens if
+its user dies that night, unless it needs its user to act during that Day (e.g. a Puppeteer writing the puppet's
+messages, a Ballot Stuffer's doubled vote); those lapse. Any token spent on it is gone either way (R18).
+
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
 1. Remove actions of role-blocked players (R9). Party Animal, Pharmacist and Veteran can't be role-blocked.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
