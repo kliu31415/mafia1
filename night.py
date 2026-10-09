@@ -62,9 +62,13 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         katana = tally_katana(game, actions)
     game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
     game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
+    # Without the players' private "thoughts": the moderator doesn't need them, and a prompt full of other
+    # models' reasoning looks like distillation to Anthropic's filter, which blocked Opus moderator requests
+    # ("duplicating model outputs", game_20261009_084630_739772 night 3).
+    submitted = {name: {k: v for k, v in a.items() if k != "thoughts"} for name, a in actions.items()}
     instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
-        f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
+        f"{json.dumps(submitted, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
         "Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, role-blocks R9, "
         "attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator frames). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "

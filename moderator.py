@@ -73,6 +73,12 @@ MODERATOR_CALL_ATTEMPTS = 3
 MODERATOR_RETRY_WAIT_S = 30
 
 
+def filter_blocked(reply: LLMReply) -> bool:
+    """An answer a provider's filter refused, e.g. Anthropic's against "duplicating model outputs", which
+    blocked two Opus moderator requests in a row then let the third through (game_20261009_084630_739772)."""
+    return not reply.content and not reply.tool_calls and "content_filter" in (reply.stop_note or "")
+
+
 class Moderator:
     def __init__(self, game: Game, client: LLMClient, players: Players, model: Model, rules: str,
                  flag_issues: bool = False, effort: str | None = None, fallback: ModelSpec | None = None):
@@ -158,8 +164,15 @@ class Moderator:
         few times, since the game can't go on without its moderator; then the game stops (resumable)."""
         for attempt in range(MODERATOR_CALL_ATTEMPTS):
             try:
+                model = self.model
                 reply = self.client.chat(self.model, messages, tools=self.tools, effort=self.effort)
                 self.note_filter_block(reply)
+                if filter_blocked(reply):
+                    if self.model is not model:  # just switched to the fallback, which gets the request now
+                        return self.chat(messages)
+                    # Retried with the same messages: appending the empty answer and a nudge to end the phase
+                    # could get the phase ended unresolved.
+                    raise RuntimeError(f"blocked by a content filter ({reply.stop_note})")
                 return reply
             except Exception as e:
                 if attempt == MODERATOR_CALL_ATTEMPTS - 1:
@@ -171,8 +184,7 @@ class Moderator:
         raise AssertionError("unreachable")
 
     def note_filter_block(self, reply: LLMReply) -> None:
-        blocked = not reply.content and not reply.tool_calls and "content_filter" in (reply.stop_note or "")
-        self.filter_blocks = self.filter_blocks + 1 if blocked else 0
+        self.filter_blocks = self.filter_blocks + 1 if filter_blocked(reply) else 0
         if self.filter_blocks < FILTER_BLOCKS_BEFORE_SWITCH or not self.fallback or self.fallback.model == self.model:
             return
         old = self.model.short
