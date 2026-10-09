@@ -230,3 +230,899 @@ Bob is found Innocent (6 Guilty of 14 votes; 8 needed).
 (to Alice, Heidi) Heidi -> Alice (private): No independent evidence came from that exchange. Olivia replied after the verdict: she still considers Bob’s Evil result unresolved and won’t press an identical trial without new evidence. She supplied no additional attack or protection details. I had explicitly asked her not to disclose her next investigation target.
 (to Bob, Frank, Heidi) Bob -> Frank (private): I won't support a trial on the current report alone. Erin's claim leaves Roleplayer possible, and Alice's earlier block question gives her account weight. If independent evidence establishes you actually visited Grace, I'd reassess; I'm not calling your result a lie.
 (to Carol, Frank, Heidi) Carol -> Frank (private): I favor ending the day unless fresh independent evidence appears. I wouldn't support a Grace trial solely over the same contradiction: neither side is verified, and Roleplayer remains possible. A trial adds little without a new discriminator. Please keep investigative targets unannounced.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Heidi, Peggy, Rupert) Bob (Yakuza chat): Heidi, please share the private-message contents, especially any protection plans, intended checks, or suspicions of our team.
+
+I must take no Diviner action and make no Katana attack tonight. Mallory's audit would return zero and directly break my fixed account. We need to prevent that result, not merely disguise my alignment.
+
+My provisional plan: Rupert retains the Katana, attacks Mallory, and also blocks Mallory. The block suppresses an audit even if protection stops the kill; both actions have the same destination, reducing Rupert's two-target Tracker exposure. Rupert's immunity also protects our actions from Alice's likely block.
+
+An alternative is blocking Mallory while killing Erin, our likely genuine Tracker. That removes a major investigator but leaves the Accountant alive and risks another two-destination report if Erin survives. I prefer eliminating Mallory unless Heidi's intelligence materially favors that alternative.
+
+Peggy should save the rig. With my unresolved Evil reading, I could be nominated first tomorrow; a rig would turn even another Innocent majority into my execution. We need a credible non-team first nomination before using it.
+
+Please weigh in before we finalize matching votes.
+(to Bob, Heidi, Peggy, Rupert) Heidi (Yakuza chat): No protection plans, intended checks, or new team suspicions appeared in Day 2 PMs. Olivia said Bob's Evil result remains unresolved, but she won't press an identical trial without new evidence. She disclosed no next target. Alice only asked whether my Olivia exchange supplied verdict/attack evidence; I answered no.
+
+Frank privately sought Bob's and Carol's support for a Grace trial, acknowledging Roleplayer and not precommitting Guilty. Bob refused without independent visit evidence. Carol preferred ending the day and likewise refused without a new discriminator. Don't publicly attribute those interceptions to my Eavesdropper cover.
+
+I support Rupert holding the Katana, attacking Mallory, and blocking Mallory. This suppresses the audit even if protection stops the kill and keeps Rupert to one observed destination. Killing Erin is tempting, but leaves the immediate Accountant threat alive. If Mallory survives, expect her block report; an inconclusive check does not clear Bob or guarantee another reprieve.
+
+Bob takes no action. Peggy saves the rig: Bob could still be tomorrow's first nominee. I have no role action. My matching votes will be Rupert/Mallory.
+(to Bob, Heidi, Peggy, Rupert) Peggy (Yakuza chat): Agreed: I'll vote Rupert as holder and Mallory as the Katana target. Rupert also blocks Mallory; Bob takes no action, and I save my Clerk token.
+
+Suppressing the audit is the immediate priority. Using one destination avoids the genuine two-target Tracker exposure that killing Erin while blocking Mallory would create. Protection could still stop the kill, but the block should prevent Mallory obtaining Bob's token count.
+
+If Mallory survives, her block report must remain inconclusive publicly—not vindication for Bob. Likewise, a failed attack would not establish innate defense or identify the Serial Killer.
+
+Olivia's private reluctance to repeat the same trial is useful, but doesn't bind other nominators, so activating my rig remains too dangerous. Nothing further from me; ready.
+(to Bob, Heidi, Peggy, Rupert) Rupert (Yakuza chat): Confirmed: I'll vote Rupert as holder and Mallory as the Katana target, and use my block on Mallory. Both actions share one destination, so a genuine Tracker cannot expose the two-destination problem tonight. My immunity also prevents Alice from disrupting either action.
+
+Bob takes no action; Peggy saves the rig. Removing Erin is valuable, but preventing the immediate token-count contradiction takes priority. If Mallory survives, the block still denies her audit, though neither her survival nor the missing result clears Bob.
+
+I won't volunteer my Party Animal cover or manufacture an explanation for the failed check tomorrow. We'll respond to the actual deaths and reports, without treating Olivia's private reluctance as a guarantee against another Bob trial. Matching votes unchanged; ready.
+(to Bob, Heidi, Peggy, Rupert) Bob (Yakuza chat): Confirmed unchanged: I'll vote Rupert as holder and Mallory as the Katana target. Rupert also blocks Mallory; I take no action, Heidi has none, and Peggy saves the rig.
+
+Thanks for the PM intelligence. We won't publicly cite intercepted conversations or assume Olivia's current reluctance prevents another trial. Whether Mallory dies or survives blocked, the unavailable audit does not vindicate my claim. Tomorrow we'll assess actual reports before choosing a nomination or reconsidering the rig. Ready.
+(to Bob, Heidi, Peggy, Rupert) Heidi (Yakuza chat): Confirmed unchanged: Rupert holds the Katana, attacks Mallory, and blocks Mallory. Bob takes no action; Peggy saves the rig; I have no role action. My holder/target votes will be Rupert/Mallory at the action prompt. No additional private-message intelligence or proposed changes. Ready.
+(to Bob, Heidi, Peggy, Rupert) Peggy (Yakuza chat): Unchanged: I'll vote Rupert as holder and Mallory as the Katana target. Rupert also blocks Mallory; Bob takes no action, and I save my Clerk token. No further changes from me; ready.
+(to Bob, Heidi, Peggy, Rupert) Rupert (Yakuza chat): No changes: my votes will be Rupert as holder and Mallory as the Katana target. I'll also block Mallory. Bob takes no action; Peggy saves the rig. Ready.
+Night actions:
+  Alice (Party Animal): target Bob
+  Bob (Diviner): no role action; Katana vote: Rupert holds, attacks Mallory
+  Carol (Trapper): target Olivia
+  Erin (Tracker): target Frank
+  Heidi (Wiretap): no role action; Katana vote: Rupert holds, attacks Mallory
+  Judy (Serial Killer): target Erin
+  Mallory (Accountant): target Bob
+  Niaj (Medic): target Mallory; 1 token(s); "Protect Mallory with Strong Defense."
+  Olivia (Sheriff): target Mallory
+  Peggy (Clerk): no role action; Katana vote: Rupert holds, attacks Mallory
+  Rupert (Pharmacist): target Mallory; Katana vote: Rupert holds, attacks Mallory
+  Grace (None): automatic: target Ivan; "random visit"
+Katana: Rupert holds it and attacks Mallory.
+(to Alice) Moderator (private): Night 2 result: You visited Bob and role-blocked them.
+(to Bob) Moderator (private): Night 2 result: You were role-blocked.
+(to Carol) Moderator (private): Night 2 result: You placed your trap on Olivia (replacing your previous trap). It is armed from the next night on. No trap of yours went off tonight.
+(to Erin) Moderator (private): Night 2 result: You tracked Frank. Frank visited nobody. You were attacked by a Serial Killer.
+(to Judy) Moderator (private): Night 2 result: You attacked Erin. Your attack succeeded.
+(to Mallory) Moderator (private): Night 2 result: You were role-blocked, so your audit had no effect. You were attacked with the Katana and survived.
+(to Niaj) Moderator (private): Night 2 result: You protected Mallory with Strong Defense, spending 1 medic token. 1 medic token left.
+(to Olivia) Moderator (private): Night 2 result: You investigated Mallory. Result: Not Evil.
+(to Rupert) Moderator (private): Night 2 result: You role-blocked Mallory. Your Katana attack on Mallory failed. You still hold the Katana.
+(to Bob, Heidi, Peggy, Rupert) Moderator (private): Yakuza Night 2 actions: Rupert (Katana holder) role-blocked Mallory and attacked Mallory with the Katana. Bob, Heidi and Peggy performed no actions. Rupert still holds the Katana.
+(to Ivan) Moderator (private): Fortune Teller result for Day 3 (about Night 2), unordered: 8 and 6.
+[Moderator summary] Night 2: Alice (Party Animal) blocked Bob (who took no action). Rupert (Pharmacist, Katana holder) blocked Mallory and Katana-attacked her; Niaj gave Mallory Strong protection (1 medic token left), so the Standard Katana attack failed. Mallory's audit of Bob was blocked, so she got no result. Judy (SK) killed Erin with a Strong attack. Erin's track of Frank showed no visits. Olivia's check on Mallory came back Not Evil. Carol moved her trap from Dave to Olivia; it arms next night. Grace's (Ex-Con) random visit went to Ivan. FT numbers: 8 visitors (Alice, Carol, Erin, Judy, Niaj, Olivia, Rupert, Grace) and 6 visited (Bob, Olivia, Frank, Erin, Mallory, Ivan). Rupert keeps the Katana.
+
+===== DAY 3 =====
+Erin died (killed by Serial Killer). Their role was Tracker. Last will: 'Erin — Tracker (Village).\nNight 1: Tracked Mallory. Exact result: “Mallory visited Olivia.” I received no role-block notification.\nA reported visit alone does not establish role or alignment. Compare this result with Mallory’s claimed actions and other independent evidence; do not treat it as an accusation or a Village clear.'
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Olivia.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Claim] Olivia: Sheriff. N1: Bob Evil; attacked with Katana, survived. N2: Mallory Not Evil; no attack or role-block notification.
+Olivia (public): N2: I investigated Mallory and received Not Evil. I received no attack or role-block notification. This is not a Village clear: a Katana holder, Serial Killer or Arsonist can read Not Evil.
+
+Erin's revealed Tracker role confirms her preserved N1 observation that Mallory visited me—not whether that visit was an audit or an attack.
+
+Bob, please report whether you retained your token and took no action as promised, plus any notifications. Mallory, please give your N2 target and exact audit result. Anyone with an independent check on Bob's fixed account should report the raw result and any role-block notification.
+
+I want those reports before selecting a trial. A missing or blocked check does not vindicate Bob. Please also report attack/block notifications; no Katana death does not establish that no attack occurred.
+Peggy (public): I received no attack or role-block notification. Frank, please report your Night 2 target and exact result, including whether you were blocked. Erin's reveal confirms her role, but does not resolve whether your conflicting Night 1 report came from a genuine Tracker, a Roleplayer, or a false claim.
+Rupert (public): No attack or role-block notification. Ivan, please give your raw N2 totals; they're another constraint on visit accounts, not an alignment test. I want Mallory's audit and notification report, plus Frank's exact result, before choosing a target. A missing check would leave Bob's case unresolved, not clear him.
+[Claim] Alice: N1: successfully role-blocked Grace. N2: successfully role-blocked Bob. Both explicitly confirmed by moderator; exact role withheld.
+Alice (public): My exact N2 notification was: “Night 2 result: You visited Bob and role-blocked them.” I received no attack notification.
+
+Bob therefore made no effective actions or visits and spent no action tokens. A report of no visits would not verify that he voluntarily kept his promise. My block did not prevent anyone from investigating or auditing him.
+
+Mallory, please report your target and exact result. An accurate audit showing zero tokens would contradict Bob's claimed remaining token; he cannot explain zero by spending it while blocked. One token would weaken the Diviner explanation, not clear his alignment.
+
+The absence of a Katana death does not establish that Bob held it. I'll hear the audit, Frank's result, and the remaining reports before choosing a trial.
+[Claim] Bob: Surveyor. N1 surveyed Erin: Dave/Erin/Frank group, Tracker drawn. N2 deliberately inactive; role-blocked. One survey token remains.
+Bob (public): N2: I retained my final survey token and deliberately chose no action, as promised. My exact notification was: “Night 2 result: You were role-blocked.” I received no attack notification.
+
+That matches Alice's reported block. Because I was blocked, observing no visits would not independently verify my voluntary inactivity. The block also cannot explain away a zero-token audit: my claimed remaining count is still one.
+
+Erin's revealed Tracker role is consistent with my N1 draw, but does not establish my alignment. I'll hear Mallory's exact target, result and notifications, plus any independent checks, before proposing a trial.
+Carol (public): No attack or role-block notification here. Grace, please give your N2 block status: an unblocked Ex-Con necessarily visited someone, although you wouldn't know whom. That provides another constraint for cross-checking visit reports and Ivan's totals without requiring another role disclosure. I'll hear Mallory's audit and the remaining results before choosing a nomination.
+[Claim] Frank: Tracker. N1 Grace visited Bob and Olivia. N2 Alice visited Bob. No attack or role-block notifications either night. N1 disputed by Grace and Alice.
+Frank (public): N2: I tracked Alice. My result was “Alice visited Bob.” I received no attack or role-block notification. That matches her reported destination, but tracking cannot establish that a block succeeded or identify her alignment.
+
+This does not resolve our N1 contradiction or independently verify my Tracker claim. I'll hear Mallory's audit, Grace's block status, and Ivan's raw totals before choosing a nomination.
+[Claim] Grace: Ex-Con (Village). N1 role-blocked, no visits. N2 no attack/block notification; automatically made one random visit, destination unknown.
+Grace (public): No N2 attack or role-block notification. As an unblocked Ex-Con, I automatically visited exactly one random other player; I neither choose nor learn the destination.
+
+Frank’s N2 result matches a destination Alice had already disclosed. It doesn't resolve his inaccurate N1 report or distinguish a genuine Tracker from Roleplayer or fabrication.
+
+Mallory, please give your exact N2 target, token count and block status. On Bob’s and Alice’s matching accounts, Bob could not spend a token last night. A credible zero-token audit would directly contradict his account and strengthen an execution case. I'll hear that and Ivan’s totals before nominating.
+[Claim] Ivan: Fortune Teller (Village). N1 raw unordered totals: 9 and 6. N2: 8 and 6. No active night action.
+Ivan (public): My raw N2 totals are 8 and 6, unordered. Only the Katana holder can add a second visiting destination, so six visitors could reach at most seven targets. Therefore these numbers imply eight visitors and six distinct visited players, including actions by anyone who died last night.
+
+If Olivia's, Alice's and Frank's destination reports are accurate, Mallory, Bob, Alice and Erin already occupy four of those six targets. Additional visits must overlap those names or add at most two other destinations. This is conditional bookkeeping, not verification of those reports or anyone's alignment.
+
+My totals cannot establish Bob's voluntary inactivity. I'll hear Mallory's exact audit and block status before deciding whether today's evidence changes my prior Guilty preference.
+Judy (public): No attack or role-block notification. I'll hear Mallory's exact N2 audit before proposing a trial: a credible zero would contradict Bob's fixed account; one would meaningfully weaken the Diviner explanation, though not clear his alignment. My prior Guilty lean remains provisional, not a reason to discount the promised test.
+[Claim] Mallory: Accountant. N1 Olivia: 0 tokens. N2 targeted Bob: role-blocked, no audit result; attacked with Katana and survived. Protection source unknown.
+Mallory (public): N2 I submitted an audit of Bob. My exact notification was: “Night 2 result: You were role-blocked, so your audit had no effect. You were attacked with the Katana and survived.”
+
+I received NO token count for Bob—not zero. I don't know my blocker or protection source. A protector need not expose themself merely to explain my survival. Alice's reported block of Bob would not prevent an audit targeting him.
+
+The promised test failed, leaving Bob's Evil reading unresolved. This neither vindicates his account nor proves he arranged the obstruction; it earns no automatic second reprieve. Before choosing a trial, I want the remaining reports and any independent observations identifying visits to me. Please distinguish observed destinations from conclusions about what those visits did.
+Niaj (public): No attack or role-block notification here. Mallory reported no audit result, not zero; the failed test neither clears Bob nor independently shows he arranged it. If Alice's and Mallory's block reports are accurate, two distinct blockers acted: Alice cannot also have blocked Mallory. Bob's block would prevent him personally delivering the reported Katana attack, but would not exclude Yakuza membership.
+
+Independent observations of visitors to Mallory could help, though a visit alone doesn't identify blocking, attacking or protection. Bob's original Evil result remains my strongest actionable lead; I still lean Guilty, subject to remaining independent results. I'll hear Heidi and any outstanding evidence before nominating.
+Olivia (public): The audit yielded no result, not zero. My Guilty lean on Bob remains, but obstruction alone does not prove his involvement. I won't support another reprieve solely on the same promised audit.
+
+If anyone personally blocked Mallory, please report that action and your exact notification without unrelated role details. Two claimed blocks establish neither blocker's alignment. A second Village blocker is possible; absence of such a claim would not prove a Pharmacist.
+
+Heidi, please give any relevant N2 evidence or attack/block notification. I'll hear the outstanding reports before nominating. Protectors need not identify themselves merely to explain survival.
+[Claim] Peggy: Seer. Token unspent. N1 random Alice/Grace: different alignments. N2 random Bob/Erin: same alignment. No attack or role-block notifications.
+Peggy (public): I have additional alignment evidence to report before a nomination. I'm Seer, with my token unspent. My random N1 pair was Alice and Grace: different alignments. My random N2 pair was Bob and Erin: the same alignment. I received no attack or role-block notification.
+
+The N1 comparison didn't establish a case: it was compatible with Grace's disclosed appearance. Today I wanted the more discriminating audit before exposing my role, but that audit produced no result.
+
+Erin's Good reveal makes the N2 comparison relevant. If Alice's successful block and Mallory's Katana attack report are accurate, Bob couldn't have been that night's Katana holder. However, framing Erin could make an Evil Bob compare the same as her; this is not an unconditional clear, and my claimed result isn't independently verified.
+
+I now lean Innocent because of this additional comparison—not solely to repeat the promised audit. It does not verify Surveyor or resolve Bob's token count. Please weigh both alignment reports rather than treating either as infallible.
+Rupert (public): Peggy's comparison is additional claimed evidence, so this is not simply an unchanged rerun of yesterday's trial. It doesn't clear Bob or verify Surveyor, and his retained-token account remains untested. I currently favor Innocent, pending Heidi's outstanding report or evidence contradicting that comparison.
+
+Separately, does anyone have an actual observation of visitors to Erin last night? Please report that narrow result. We have a confirmed Serial Killer to pursue; surviving a Katana attack or reading Not Evil does not identify the killer. The missing audit is not itself evidence identifying who arranged the obstruction.
+Alice (public): Peggy's comparison changes my prior Guilty lean; I now provisionally lean Innocent. It is new evidence, not an audit-based reprieve, and does not verify Surveyor. Caveats include a false/Roleplayer Seer result, framed Erin, or Mallory's attack report being false with Bob retaining the Katana.
+
+For the Serial Killer search: my blocks exclude Grace as Dave's killer and Bob as Erin's killer. Erin's confirmed N1 track excludes Mallory as Dave's killer: a Serial Killer cannot visit Olivia and separately attack Dave. If one killer caused both deaths, those three are excluded; multiple Serial Killers are permitted, so this is conditional—not an alignment clear.
+
+I want Heidi's report and any actual observations of visitors to Erin before nominating.
+Bob (public): For the Serial Killer search, Alice's exclusions are useful under the single-killer assumption; they aren't general alignment clears. Carol, Judy and Niaj: beyond notification status, do you have any shareable N2 observation concerning Erin or Mallory, or another concrete lead? Please distinguish observed destinations from conclusions about an action's purpose. “No relevant result” is fine; I'm not requesting exact roles or protection plans.
+
+Peggy's comparison deserves consideration alongside Olivia's check, but it doesn't verify my Surveyor claim or token count. Mallory received no audit result; that remains inconclusive, not clearance.
+Carol (public): I have no N2 observation identifying visitors to Erin or Mallory. Peggy's comparison is new evidence; I'm provisionally against retrying Bob on the old case alone, not treating him as cleared.
+
+Her N1 pair also offers a specific conditional check. If Alice's blocker claim, Grace's Ex-Con claim, and Peggy's comparison are all accurate, Alice was either Party Animal or a Pharmacist holding the Katana N1: otherwise Pharmacist and Ex-Con would both appear Evil and compare the same. In the latter branch, Olivia's attack account requires Alice to have visited both Grace and Olivia. Anyone with an actual N1 observation of Alice's destinations should report that narrow result; her claimed block alone doesn't distinguish those branches.
+
+This doesn't authenticate Peggy or clear Alice or Grace. I'd hear Heidi's outstanding report and any independent visitor evidence before nominating.
+Frank (public): If Olivia's check and Peggy's N2 comparison are reliable, Bob being Village but framed N1 is a coherent explanation. My disputed N1 destinations would fit Katana-holding Fabricator Grace framing Bob and attacking Olivia; Pharmacist Alice would then compare differently from Grace in Peggy's N1 pair. That model requires Grace's and Alice's N1 block accounts to be false. It is not established, and the Roleplayer explanation remains possible.
+
+Carol's reconstruction assumes Grace's Ex-Con claim is true; the comparison doesn't establish that assumption. I want Heidi's independent evidence before deciding on a trial.
+Grace (public): My N1 block notification is genuine. Frank’s Fabricator-Grace reconstruction requires that notification to be false; it does not explain my actual result. Others cannot independently verify my notification merely from my assertion.
+
+Peggy’s N2 comparison changes my prior Guilty lean to provisional Innocent on Bob. That is new evidence, not another reprieve solely for a promised audit. It does not verify Surveyor; framed Erin, a false comparison, or Roleplayer remain alternatives.
+
+Peggy’s N1 comparison does not clear Alice: my Ex-Con appearance permits both Carol’s Party Animal and Katana-holding Pharmacist branches. An actual N1 observation of Alice visiting Olivia would distinguish those accounts. I want Heidi’s outstanding report, particularly any independent evidence concerning Alice’s destinations, Frank visiting me, or N2 visitors to Erin or Mallory, before choosing a trial.
+Heidi (public): No attack or role-block notification. I have no independent observation of Alice’s N1 destinations, Frank visiting Grace, or N2 visitors to Erin or Mallory. I also have no new private-message evidence to add. Please don’t mistake the outstanding request for my report for hidden corroboration; I have none.
+
+Peggy’s comparison is new claimed evidence, not completion of Bob’s promised test. I’m provisionally against retrying him on the prior case alone, while keeping his token account unresolved. That position depends on weighing her comparison, not treating the obstructed audit as favorable evidence.
+
+I also won’t use Frank’s disputed report alone to hang Grace. Without a fresh independent contradiction or observation, I have no nomination to offer.
+Ivan (public): Peggy’s comparison is new claimed evidence, so I no longer favor retrying Bob on yesterday’s case alone. His token account remains untested.
+
+A separate constraint: assuming Bob’s and Mallory’s blocks and Peggy’s unspent-token Seer account, at least THREE of Carol, Heidi, Judy, Niaj and Rupert visited N2. My eight visitors allow at most five others: Alice, Olivia, Frank, Grace and Erin. If Frank made no real visit, at least FOUR of that group visited.
+
+Can those five give a shareable N2 action account or concrete result? “No attack/block notification” doesn't answer whether you acted. If inactive, please say so. Exact roles, protection destinations and future plans needn't be exposed. These conditional counts don't identify a killer, but committed accounts can create useful cross-checks.
+Judy (public): I made one visit N2; I was not inactive. My action produced no investigative result, and I have no independent observation of visitors to Erin or Mallory to report. That accounts for my activity without establishing my alignment.
+
+Peggy's comparison changes my earlier Guilty preference. I don't favor retrying Bob solely on yesterday's evidence, though his token account remains untested. Let's hear Carol, Heidi, Niaj and Rupert distinguish acting from inactivity before deciding whether the conditional visit counts actually contradict anyone.
+Mallory (public): Ivan’s totals also constrain N1. If his numbers and the claimed N1 non-visits are accurate, at least three of Carol, Heidi, Judy, Niaj and Rupert visited that night too—at least four if Frank made no real visit. Could those five give paired N1/N2 activity accounts: visited, inactive, or blocked? Protection destinations, exact roles and future plans needn't be disclosed. That creates cross-checkable commitments across both nights without forcing a mass claim.
+
+Peggy’s comparison supplies new evidence, so I don't favor immediately retrying Bob on yesterday’s case. His token account remains unresolved; my blocked audit supplies no evidence in his favor.
+Niaj (public): I made one visit on each of N1 and N2. Neither action produced an investigative result, and neither was blocked. I have no independent observation identifying other visitors to Erin or Mallory; I’m withholding my destinations and exact role.
+
+Peggy’s comparison changes my earlier Guilty lean. I no longer favor retrying Bob on yesterday’s case alone. That is additional alignment evidence, not verification of Surveyor or completion of the audit.
+
+With Judy and me reporting N2 activity, Ivan’s conditional count still requires at least one of Carol, Heidi and Rupert to have visited—at least two if Frank made no real visit. Please complete the paired activity accounts before we conclude whether the totals contradict anyone.
+Olivia (public): Peggy's comparison is new claimed evidence, so I'm setting aside an immediate Bob renomination while we examine it. His Evil reading and token account remain unresolved.
+
+There is a sharper Serial Killer constraint on Mallory: Erin's genuine N1 track placed Mallory at me. A Serial Killer visiting me must attack me; I received a Katana attack notification, but no Serial Killer attack notification. Under those observations, Mallory is excluded as a Serial Killer—not merely as Dave's killer. This does not exclude Arsonist or Yakuza, or verify Accountant.
+
+Let's hear Carol, Heidi and Rupert's paired N1/N2 activity accounts before deciding whether Ivan's conditional visitor counts expose a contradiction.
+Rupert (public): N1: active, visited, not blocked. N2: active, visited, not blocked. Neither action produced an investigative result. I'm withholding destinations and my exact role for now, as the activity question permits. This supplies the requested commitment; it doesn't identify anyone else's visitors or establish my alignment.
+(to Alice, Carol, Heidi) Alice -> Carol (private): Did your Day 2 exchange with Frank supply any independent evidence about his role or disputed result, beyond his public account? If so, please share the relevant fact without unrelated roles or future targets.
+Carol (public): N1: active, visited, not blocked. N2: active, visited, not blocked. Neither action produced an investigative result. I'm withholding destinations and my exact role.
+
+Conditional on the reported accounts, N1 already has eight visitors without Frank, Heidi or Judy: Alice, Bob, Erin, Mallory, Olivia, Niaj, Rupert and me. Ivan's nine therefore leaves room for at most one of those three.
+
+N2 already has eight claimed visitors without Erin or Heidi: Alice, Olivia, Frank, Grace, Judy, Niaj, Rupert and me. If Erin or Heidi visited, at least one counted account or Ivan's total needs revisiting.
+
+Heidi, please give both nights' activity; Judy, your N1 status remains outstanding. These are conditional constraints, not proof of lying; Frank being a Roleplayer remains possible.
+(to Alice, Carol, Heidi) Carol -> Alice (private): No. Frank asked whether I'd support a Grace trial; I declined absent new independent evidence. Our exchange supplied no corroboration of his role or result.
+Frank (public): One conditional point: if Heidi visited N2 and Erin also acted before dying, removing my claimed visit would still leave nine visitors against Ivan's eight. That would require another account to change as well; it wouldn't be solved solely by classifying me as Roleplayer. Erin's N2 activity is unknown, and Ivan's totals are themselves claimed results. Please finish Heidi's paired activity and Judy's N1 account before turning these sums into a verdict.
+Heidi (public): N1: deliberately inactive, no visit, not blocked. N2: deliberately inactive, no visit, not blocked. I received no attack notification either night and have no night-derived investigative result to report.
+
+Judy’s N1 activity remains outstanding. If she visited, the other listed accounts and Ivan’s N1 total leave no room for Frank’s claimed visit. That would make the Roleplayer explanation relevant, but these are conditional sums of claimed evidence—not proof that Frank deliberately fabricated anything or grounds by themselves to hang him.
+[Claim] Ivan: /
+Ivan (public): Judy, please commit your N1 activity. If my totals and the other activity accounts are accurate, there is a two-night split:
+
+N1: Judy inactive requires Frank to have visited; Judy active requires Frank not to have visited.
+N2: Frank visiting requires Erin to have made no effective visit; Frank not visiting requires Erin to have visited.
+
+A Roleplayer Frank fits the Judy-active/Erin-active branch, because Roleplayers never actually visit. That is compatible with his disputed results, not proof of his role. A forced nonvisit would not by itself justify hanging him.
+Judy (public): N1: active, made one visit, not blocked. N2: active, made one visit, not blocked. Neither action produced an investigative result; I'm withholding destinations and exact role.
+
+Conditional on the other accounts, that selects Ivan's Judy-active branch: no effective Frank visit N1, with N2 fitting no Frank visit and an Erin visit. A Roleplayer could explain both nights and Frank's disputed report without deliberate fabrication. These are still sums of claimed evidence, not an exact-role identification; I wouldn't hang Frank solely on that reconstruction.
+Mallory (public): Carol, Judy, Niaj and Rupert: did you personally role-block me N2? Please each answer yes or no. A non-investigative visit account doesn't answer that question; I was genuinely blocked, and Alice reports blocking Bob. This asks for no protection destination. If all four deny it, at least one claimed role/action account or visitor total must be wrong.
+
+The completed activity accounts also permit a coherent Roleplayer explanation for Frank across both nights. That's a working hypothesis, not an exact-role identification or reason to execute him.
+(to Alice, Heidi, Mallory) Mallory -> Alice (private): Consider disrupting unclaimed visitors rather than blocking Bob again. Please don't announce your intended target; keeping it unpredictable matters. No role disclosure needed.
+Niaj (public): No, I did not role-block Mallory on N2. My account remains one unblocked, non-investigative visit each night; I'm keeping my destinations private.
+
+Carol, Judy and Rupert should each answer Mallory's question directly. Anyone who did block her should give their exact notification and explain why they selected the publicly proposed auditor. Admitting that action would not by itself establish either faction. If everyone denies it, we have a contradiction among the claimed accounts—not automatic proof against any particular player.
+(to Heidi, Peggy) Peggy -> Heidi (private): Please share today's Alice–Carol and Mallory–Alice PM contents, especially protection roles, destinations or blocker suspicions. Mallory's question now threatens Rupert; those claims may also identify the Serial Killer among Carol/Judy/Niaj. Keep intercepted evidence out of your public account.
+Rupert (public): No. I did not personally role-block Mallory on Night 2.
+Alice (public): Carol and Judy: if either of you blocked Mallory, please give the exact N2 feedback and your N1 target/feedback. A Village blocker could have made a mistaken choice; admitting it would not automatically earn my Guilty vote. Non-blockers need not expose protection destinations.
+Carol (public): No, I did not role-block Mallory N2. If Judy also denies, the contradiction concerns the combined claims—not uniquely our four accounts. Other role claims, Mallory's block report, and Ivan's visitor totals would also need scrutiny.
+(to Heidi, Peggy) Heidi -> Peggy (private): Alice asked Carol whether her D2 exchange with Frank supplied independent corroboration. Carol answered no: he requested a Grace trial, which she declined without fresh evidence. Mallory told Alice to consider disrupting unclaimed visitors instead of blocking Bob again, while keeping her target unpredictable and unannounced. No protection roles, destinations, or specific blocker suspicions were disclosed. Judy now claims visits both nights. If she also denies blocking Mallory, Rupert's denial leaves a combined-account contradiction; avoid treating every other account as verified. Carol/Judy/Niaj remain our strongest Serial Killer/protector pool.
+[Claim] Ivan: Fortune Teller (Village). Raw unordered totals: N1 9/6; N2 8/6. No active night action. Inferred visitors/targets: N1 9/6; N2 8/6.
+Ivan (public): On my totals plus the disclosed role/activity accounts, Carol, Judy, Niaj and Rupert contain both the Serial Killer and Mallory’s blocker, necessarily different players. This is a conditional shortlist, not proof against anyone individually. Judy’s direct yes/no answer is still needed.
+Judy (public): No. I did not role-block Mallory on Night 2, and neither of my nightly visits was a blocking action.
+Mallory (public): All four deny blocking me, so some denial or claimed role/action account is false. Carol, Judy, Niaj, Rupert: did you visit Dave N1? Erin N2? Please answer separately. A matching destination alone would not prove a killing.
+Niaj (public): N1: No, I did not visit Dave. N2: No, I did not visit Erin. My denial of role-blocking Mallory also stands.
+[ERROR api_retry] a openai/gpt-6.1-sol request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+(to Heidi, Peggy, Rupert) Peggy -> Rupert (private): You haven't answered the destination questions yet. If you visited Dave, distinguish protecting him from attacking him: Standard protection cannot stop the Serial Killer. If you protected Mallory N2, that could explain survival without resolving her block. Don't deny an actual visit merely because it looks suspicious. A later claim to have blocked her would contradict your direct denial.
+[Claim] Rupert: Trapper (Village). N1 placed trap on Dave; N2 replaced it on Mallory. No trap-trigger notifications. Neither action was an attack or block.
+Rupert (public): N1: yes, I visited Dave. N2: no, I did not visit Erin. I'm Trapper: I placed my trap on Dave N1 and replaced it on Mallory N2. Neither placement was an attack or a block, and I received no trap-trigger notification. Dave died on the placement night, before his trap could trigger. The Mallory trap wasn't armed N2, so it explains neither her survival nor her block. I chose Mallory because the proposed audit made her an obvious target for interference.
+Alice (public): Carol and Judy: please answer the Dave-N1 and Erin-N2 destination questions separately. Rupert’s admitted Dave visit is mechanically compatible with his Trapper explanation, not itself a contradiction. If neither of you visited Erin, at least one premise behind the four-person shortlist fails; that calls for revisiting the role/activity claims, not declaring Rupert a killer because he admitted a different relevant destination.
+(to Alice, Heidi, Peggy) Alice -> Peggy (private): Did your exchanges with Heidi or Rupert supply independent evidence beyond their public claims? If so, please share the relevant fact publicly.
+(to Bob, Heidi) Bob -> Heidi (private): Any private context affecting the current shortlist or likely checks tonight? Please share it here. I'm waiting for Carol's and Judy's destination answers before choosing a trial.
+Carol (public): N1: yes, I visited Dave. N2: no, I did not visit Erin. Neither visit was an attack or block. Judy's separate answers remain needed; overlapping destinations alone don't identify the Serial Killer.
+Grace (public): Carol, what did your N1 visit to Dave actually do, and why choose him? Rupert supplied a specific mechanical explanation; your attack/block denial leaves your action unspecified. You needn't name your exact role or disclose a current protection target, but your visit to Dave is directly relevant to finding his killer.
+
+Judy, please finish the separate Dave-N1 and Erin-N2 answers before anyone treats the shortlist as resolved.
+(to Bob, Heidi) Heidi -> Bob (private): No intercepted PM revealed protection roles, destinations, or planned checks. Mallory urged Alice to disrupt unclaimed visitors rather than block you again, keeping her target unpredictable. Alice asked Carol whether Frank's D2 PM independently corroborated him; Carol answered no. Alice also asked Peggy whether her exchanges with me/Rupert supplied independent evidence; none did. Peggy privately cautioned Rupert against denying actual visits and noted that a later blocking claim would contradict his denial. Judy's destination answers remain outstanding. With Carol/Niaj/Rupert denying an Erin visit, she is the immediate Serial Killer lead under the shared counts—not a verified identification.
+(to Heidi, Ivan, Niaj) Ivan -> Niaj (private): Did either past visit grant defense? No recipient, exact role or future plan needed. I mean your action, not feedback that protection stopped an attack.
+[Claim] Judy: Medic. N1 protected Olivia; N2 protected Mallory. Standard Defense both nights; no tokens spent, two remain. No attack/block notifications or protection-success feedback.
+Judy (public): N1: no, I did not visit Dave. N2: no, I did not visit Erin. I'm Medic: I protected Olivia N1 and Mallory N2, giving Standard Defense both nights and spending no tokens. Two medic tokens remain. Protectors receive no success feedback; their survival is compatible with my actions, not independent verification. My denial of blocking Mallory stands. These answers leave a contradiction among the combined accounts, not proof identifying which premise fails.
+Mallory (public): Carol and Niaj, what did your visits actually do? The killer and blocker remain unaccounted despite everyone's denials.
+[Claim] Niaj: Medic. N1 protected Olivia: Standard, zero tokens. N2 protected Mallory: Strong, one token spent; one remains. Neither night blocked. No protection-success feedback.
+Niaj (public): I protected Olivia N1 with Standard Defense and Mallory N2 with Strong; one token remains. Neither action gave success feedback or establishes the recipient's alignment. Multiple Medics are allowed, so Judy's claim isn't a mechanical contradiction, but the survivals don't uniquely corroborate her. Carol, please specify your Dave action. With the killer and blocker unaccounted, we must revisit the combined claims, not assume Ivan's shortlist is exhaustive.
+(to Heidi, Ivan, Niaj) Niaj -> Ivan (private): Yes, both visits granted defense.
+Peggy (public): The Medic claims make distinct audit commitments: Judy has two tokens, Niaj one. A count tests an account, not alignment; investigative targets should remain unannounced. Carol, please commit your N2 action and destination alongside explaining your Dave visit. That missing account matters while every claimed visitor denies visiting Erin.
+(to Alice, Heidi, Peggy) Peggy -> Alice (private): No. Neither exchange supplied independent evidence beyond public claims; I requested information from Heidi and discussed action mechanics with Rupert.
+(to Heidi, Peggy) Peggy -> Heidi (private): Please share the Ivan–Niaj PMs if they contain relevant role or destination evidence.
+Rupert (public): Conditional on the activity accounts, N2 also has a target-count conflict: Alice, Olivia, both Medics and I supply only Bob/Mallory. Grace, Carol and the single remaining visitor among Frank/Erin add at most three targets—five total, versus Ivan's six.
+(to Heidi, Rupert) Rupert -> Heidi (private): Any private context clarifying Carol's action or the Medic claims?
+[ERROR api_retry] a openai/gpt-6.1-sol request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+(to Bob, Heidi) Bob -> Heidi (private): Any new concrete evidence from the latest exchanges? The target-count conflict makes Carol's complete N2 account important before choosing a nomination.
+[Claim] Carol: Trapper. N1 placed on Dave for his careful reasoning; unarmed that night. N2 successfully replaced trap; current location withheld to preserve it. No triggers. Neither visit attacked or blocked.
+(to Bob, Frank, Heidi) Frank -> Bob (private): A confidential offer: my real role is Executioner, targeting Grace. The Tracker reports were cover. If helping hang Grace benefits your goals, I can bargain over votes and help defend your public account in exchange for a concrete plan—not indefinite cooperation. I need Grace kept alive at night. Is that arrangement useful to you? Please keep this private.
+Grace (public): The N2 target conflict doesn't require Carol's trap location or resolving Frank: four claimed Mallory visitors—Olivia, Judy, Niaj, Rupert—allow at most five targets given eight visitors and a Katana attack on Mallory. One of those destination claims, the attack report, or Ivan's total must fail. Ivan, please reconfirm your verbatim result.
+(to Carol, Grace, Heidi) Grace -> Carol (private): Did your N2 trap target Mallory? A yes/no suffices; I'm not asking its location if elsewhere.
+(to Bob, Heidi) Heidi -> Bob (private): Frank's Executioner confession makes his nonvisits plausible without Roleplayer. Consider Ivan as the SK: if the other nonteam claims are genuine, his hidden killing visits make actual visitor totals 10 N1 and 9 N2, rather than his claimed 9/8. That extra N2 visitor also permits six targets despite four Mallory visitors. This fits Carol and both Medics being genuine. It's a lead, not proof; don't publicly cite Frank's intercepted confession. An exact-role draw around Ivan could be valuable.
+(to Heidi, Peggy) Heidi -> Peggy (private): Ivan privately asked whether Niaj's visits granted defense; Niaj answered yes, with no destinations added. More importantly, Frank confessed privately to Bob that he is Executioner targeting Grace; both Tracker reports were cover. Keep that confidential. Ivan himself could be the SK: adding his hidden killing visits gives 10/9 visitors rather than his claimed 9/8 and resolves the N2 target ceiling. This would permit Carol and both Medics to be genuine; it remains a hypothesis.
+(to Heidi, Rupert) Heidi -> Rupert (private): New private intelligence: Frank confessed to Bob that he is Executioner targeting Grace; his Tracker reports were cover. Niaj privately confirmed to Ivan that both visits granted defense. Neither statement is independently verified. Consider Ivan himself as SK: his concealed visits would raise visitor totals to 10 N1/9 N2, and the extra N2 visitor permits six targets. That fits Carol and both Medics being genuine. Don't publicly cite interceptions or treat this as proven.
+Ivan (public): Verbatim: “Fortune Teller result for Day 3 (about Night 2), unordered: 8 and 6.” On these totals, if Mallory’s attack report is accurate, at least one of Olivia, Judy, Niaj or Rupert misreported their role/action. Four Village visitors require a fifth Katana visitor, allowing at most five targets.
+(to Heidi, Judy, Niaj) Judy -> Niaj (private): I don't treat our duplicate claims as a contradiction. I plan Strong self-protection tonight against the confirmed killer, spending both tokens. Could you cover Alice or Mallory instead?
+(to Alice, Heidi, Judy) Judy -> Alice (private): Have you formed a specific trial preference from the overlapping-visitor conflict? I won't vote Guilty merely because one of several contributing claims must be wrong.
+(to Heidi, Mallory, Peggy) Mallory -> Peggy (private): For a chosen comparison, Carol/Rupert looks more discriminating than Judy/Niaj: under Ivan's figures, the Dave visitors are natural killer candidates, while a Pharmacist masquerading as Medic can take Katana camouflage. This is conditional, not an accusation. Please don't announce a pair; choose independently.
+(to Alice, Heidi, Mallory) Mallory -> Alice (private): Conditional on Ivan being reliable, the duplicate Trapper claims look like better kill-disruption candidates than the Medics: a false Medic could be the immune Pharmacist, while a false Trapper could hide Dave's killer. Keep your choice private. These are priorities, not proven identities.
+(to Heidi, Judy, Niaj) Niaj -> Judy (private): Strong self-protection costs both tokens, as you calculated. Private messages can be wiretapped; I'll choose independently rather than commit to a protection target.
+(to Heidi, Ivan, Niaj) Niaj -> Ivan (private): From my private result, I know my protection resolved. Conditional on your totals and Mallory's attack, Olivia/Judy/Rupert contains a false account. Please also consider that you might be a Roleplayer; an exact-role check could distinguish that.
+(to Heidi, Niaj, Peggy) Niaj -> Peggy (private): If you use your token, consider pairing me with Judy or Rupert to probe the destination conflict. Keep the actual pair secret; don't announce your intended targets.
+Olivia (public): Rupert’s admitted Dave visit and N2 Mallory claim place him in both the killer search and the destination contradiction. I want a focused trial, not an automatic Guilty verdict.
+Olivia nominated Rupert. Everyone now votes Yes/No simultaneously.
+Nomination votes on Rupert: Yes - Olivia, Alice, Carol, Frank, Grace, Ivan, Judy, Mallory, Niaj; No - Peggy, Rupert, Bob, Heidi.
+Rupert is put on trial (9 Yes).
+Rupert (public): My claim remains Trapper: Dave N1, Mallory N2, neither an attack nor block. Dave's placement-night death is compatible with that account, exactly as with Carol's identical visit.
+
+The contradiction is real, but Ivan's totals are claimed evidence—not publicly verified facts. Consider a false Fortune Teller concealing visits to Dave and Erin. That adds a visitor each night and Erin as an additional N2 target, removing the target ceiling used against the four Mallory visitors. Frank making no real visits remains independently plausible. This isn't proof against Ivan or a complete account of Mallory's blocker; it demonstrates why the shortlist is conditional, not exhaustive.
+
+No observation identifies my visit as an attack or block. Please vote Innocent rather than selecting me from conditional arithmetic. Evaluate Ivan's claimed inactivity as critically as my claimed actions.
+(to Frank, Heidi, Rupert) Rupert -> Frank (private): If spared, I'll support a Grace nomination for a focused trial tomorrow; her role and block assertion aren't independently verified. I'm asking for Innocent here because the conditional totals don't independently refute my Trapper account.
+Alice (public): Rupert’s Ivan alternative is mechanically possible, but it does not independently substantiate Trapper. Conversely, the arithmetic does not independently authenticate Ivan.
+
+The strongest reason to focus Rupert is that, conditional on the other accounts, he belongs to both the Dave-visitor group and the N2 Mallory-destination conflict. That warrants questioning—not counting two verified incriminating results. Carol plus a different false Mallory visitor, or a false Ivan account, remains possible.
+
+Rupert: what specifically prompted your N1 choice of Dave, and what exact feedback did you receive for each trap placement? Please distinguish feedback from deductions.
+
+Carol: without revealing a different trap location, did you also place your N2 trap on Mallory? A yes/no fixes another relevant destination without exposing an unrelated target.
+
+I have not committed to Guilty. An admitted visit to a victim is not proof of an attack.
+Bob (public): I currently favor Innocent. Rupert hasn't independently verified Trapper, but the arithmetic doesn't uniquely identify him either.
+
+Under the existing hypothesis that Frank made no real visits, an Ivan who concealed killing visits could raise the actual visitor counts to ten N1 and nine N2. That changes the target ceiling underlying this trial. It does not identify Mallory's blocker or prove Ivan is the killer; it demonstrates that the claimed totals and inactivity must be scrutinized, rather than treated as authenticated premises.
+
+Rupert should answer Alice's feedback question, and Carol should answer the requested Mallory yes/no. But an admitted Dave visit plus membership in a conditional destination conflict is not two independently verified accusations. I won't vote Guilty solely on that intersection while the account establishing the shortlist is itself unverified.
+(to Bob, Frank, Heidi) Bob -> Frank (private): Your offer is useful. Concrete trade: if Rupert survives, I will nominate Grace tomorrow and vote Guilty on her trial; in return, I need your Innocent vote on Rupert now. I will seek additional Yes votes for a hearing, but cannot guarantee votes I don't control. I won't expose your confession or present your disputed reports as independently verified. I have no interest in Grace dying tonight, though I cannot guarantee her survival. Please confirm whether you accept.
+Carol (public): No, my N2 trap was not on Mallory. Its location remains withheld.
+
+The conditional intersection is a reason to scrutinize Rupert, but it depends on Ivan’s totals being reliable. Another possibility is a Roleplayer Ivan: incorrect totals would not necessarily mean deliberate fabrication or concealed killing visits. That possibility does not establish Rupert’s innocence, either.
+
+Rupert, I want your answer to Alice’s exact-feedback question before finalizing my vote. Duplicate Trappers are allowed; I am not treating our identical N1 placements as a mechanical counterclaim. Equally, the absence of a direct attack observation does not make the circumstantial case worthless.
+[Claim] Frank: /
+Frank (public): I favor Innocent. Carol's answer fixes another destination commitment, but it doesn't uniquely select Rupert from the remaining conflict. His admitted Dave visit is compatible with trap placement; the target-count argument depends on other unverified accounts. I still want his exact placement feedback, but I won't count those two concerns as two independently verified findings against him.
+(to Bob, Frank, Heidi) Frank -> Bob (private): Accepted. I'll vote Innocent on Rupert. If he survives, I expect your Grace nomination and Guilty vote tomorrow as agreed, plus help recruiting enough votes to hang her. Rupert separately offered me support for a Grace nomination; please coordinate with him. Keep my confession confidential. Both Grace and I need to survive tonight for this plan to work, so please discourage attacks on either if you have influence.
+(to Frank, Heidi, Rupert) Frank -> Rupert (private): I'll vote Innocent here. Please confirm your commitment to support a Grace nomination tomorrow. Does your offer also include a Guilty vote, or only support for the hearing? Bob is willing to organize that trial; please coordinate with him so it has enough support to proceed.
+Grace (public): My genuine N1 block establishes that Frank’s report was inaccurate; it does not authenticate Ivan’s totals. The plausible Roleplayer explanation for Frank should not become circular corroboration of Ivan.
+
+Still, “another account could be false” cannot be a blanket reason to acquit every suspect. Rupert’s admitted Dave visit plus disputed Mallory destination makes him a reasonable circumstantial candidate, not a proven killer. I presently lean Guilty, pending his requested feedback and explanation of choosing Dave.
+
+The concealed-Ivan killing model is possible, but still needs a separate concealed blocking action. It does not reconcile the remaining accounts or establish Rupert as Trapper.
+Heidi (public): I favor Innocent, pending Rupert’s requested placement feedback. There is a specific limitation to the arithmetic: identifying Mallory’s blocker would not necessarily repair the target discrepancy. A block and Katana attack both directed at Mallory add no extra destination. If Rupert performed both, replacing his Trapper account with that accusation would still require another reported account or Ivan’s total to change.
+
+That does not establish Rupert’s innocence. It means the missing blocker and six-target conflict cannot simply be counted as independently confirming the same explanation. His Dave visit remains relevant circumstantial evidence, but Carol reports that destination too. I want his answers to Alice’s questions; on the present evidence, I’m not persuaded that this intersection is sufficiently discriminating to hang him.
+(to Bob, Heidi) Heidi -> Bob (private): Additional intercepted plans: Judy intends Strong self-protection tonight, spending both tokens; she asked Niaj to cover Alice or Mallory, but Niaj declined to commit. Mallory privately urged Alice to prioritize the duplicate Trappers for unpredictable blocking over the Medics. She suggested Peggy compare Carol/Rupert. No actual block or comparison target was committed. Keep these interceptions out of public arguments.
+(to Heidi, Peggy) Heidi -> Peggy (private): Frank accepted Bob’s concrete bargain: Innocent on Rupert now for Bob nominating Grace and voting Guilty tomorrow, with help recruiting votes. Frank wants himself and Grace alive tonight. Judy privately plans Strong self-protection tonight using both tokens; Niaj declined her request to commit protection elsewhere. Mallory urged Alice to prioritize the duplicate Trappers for unpredictable blocking. None of this independently verifies their roles.
+(to Heidi, Rupert) Heidi -> Rupert (private): Frank accepted Bob’s bargain: Innocent now for a Grace nomination and Bob’s Guilty vote tomorrow; he expects recruitment and wants Grace/himself alive tonight. Coordinate your promised support with Bob. Judy privately plans Strong self-protection tonight, spending both tokens; Niaj declined to commit another protection target. Mallory urged Alice to prioritize the duplicate Trappers for unpredictable blocking. Do not publicly attribute this intercepted intelligence.
+Ivan (public): Heidi is right: Rupert blocking and attacking Mallory would not, by itself, repair the target discrepancy. Those aren't two independent findings against him.
+
+But a different model does fit: Rupert kills Dave and Erin, falsely reports Mallory N2, and another claimed Mallory visitor is a Pharmacist who both blocks and attacks her. Removing Rupert's claimed Mallory overlap permits six targets with eight visitors. This demonstrates compatibility, not proof; Carol as killer plus a different false Mallory account remains possible.
+
+I provisionally lean Guilty because Rupert combines an admitted first-victim visit with membership in the destination conflict—not because my totals uniquely identify him. My results aren't independently authenticated to you. I will weigh his requested placement feedback, but mere availability of another false-account hypothesis doesn't establish Innocence.
+(to Heidi, Ivan, Niaj) Ivan -> Niaj (private): What exact private wording confirms your protection resolved? I'm not asking whether it stopped an attack.
+Judy (public): I provisionally lean Guilty. The case is Rupert’s admitted Dave visit plus his disputed N2 destination—not duplicate Trapper claims or two verified accusations. Ivan’s concealed-Erin-visit model repairs the target ceiling; accusing Rupert only of blocking Mallory does not. Alternatives remain, so this is circumstantial evidence, not confirmation.
+
+Rupert should still answer Alice’s questions. Exact placement feedback could reveal a mechanical inconsistency, but a plausible quotation alone cannot authenticate Trapper. I’ll weigh his response before finalizing; I’m not treating the arithmetic as moderator-confirmed.
+Mallory (public): I provisionally lean Guilty, pending Rupert's requested answers. His Dave visit and disputed N2 destination form one circumstantial case—not two verified findings. Ivan's totals could be unreliable, but Rupert's alternative is a possibility rather than evidence that they are.
+
+One firm constraint from my perspective: as a genuine Accountant, surviving that Katana attack required a real Medic's protection. This establishes that a protector exists, not whether Judy or Niaj is telling the truth. My blocking visitor remains concealed.
+
+I don't require certainty to execute, but I would reconsider on a concrete observation undermining this case. Rupert, please answer the placement-feedback and Dave-selection questions before the vote.
+Niaj (public): I provisionally lean Guilty. From my own action, I know my Mallory protection was real. Conditional on Ivan’s totals and Mallory’s attack, that narrows the false-account group to Olivia, Judy or Rupert; Rupert also admits visiting Dave. That intersection is useful circumstantial evidence, not two independent confirmations.
+
+A false or Roleplayer Ivan remains a genuine alternative, so this is not a mechanical conviction. Rupert, please answer the Dave-selection and exact-feedback questions before the vote. A plausible placement quotation would not authenticate Trapper, but a concrete inconsistency—or independent evidence undermining the case—could change my vote.
+(to Heidi, Ivan, Niaj) Niaj -> Ivan (private): Exact N2 wording: “Night 2 result: You protected Mallory with Strong Defense, spending 1 medic token. 1 medic token left.” This confirms my action and expenditure, not that protection stopped an attack.
+Olivia (public): For my vote, I give my own Mallory investigation greater weight than the disputed Medic/Trapper destinations. Conditional on Ivan and Mallory, that narrows the false-account set to Judy, Niaj or Rupert. Rupert’s Dave visit makes him my current Guilty choice, pending his answers. Accusing him only of blocking Mallory would not resolve the target conflict; the plausible model is killer plus a separate concealed blocker.
+[Claim] Peggy: /
+Peggy (public): I favor Innocent, pending Rupert's requested placement feedback. One distinction matters: the two survivals support a real protector under Mallory's Accountant account, but do not independently corroborate BOTH Medic claims. Their identical destinations were reasonable choices, so overlap isn't proof of deception; equally, those overlapping accounts should not become authenticated premises merely because protection apparently occurred. The destination conflict does not uniquely select Rupert over a false Medic account or unreliable totals.
+
+If Rupert is spared, I'll spend my Seer token tonight on a chosen comparison among the disputed accounts, keeping the pair unannounced. That offers a different test, not another random comparison or a repeated promise of an audit. Katana camouflage, framing and potentially unreliable results remain limitations; it won't verify exact roles or guarantee that every contradiction is resolved.
+
+I still want Rupert's answers. I am not treating a plausible quotation as confirmation of Trapper.
+Rupert (public): I chose Dave for his careful distinction between raw results and conclusions, expecting him to attract hostile attention. My placement feedback was: “Night 1 result: You placed a trap on Dave.” and “Night 2 result: You placed a trap on Mallory.” I received no trigger notification. The traps’ arming times are deductions from the rules, not extra feedback.
+
+The concealed-blocker objection doesn't distinguish the alternatives: Ivan's Rupert-as-killer model also requires a separate player lying about blocking Mallory. Neither model identifies that blocker.
+
+Carol shares my admitted Dave destination; Olivia and both Medics share my Mallory destination. The intersection becomes incriminating only through disputed premises—not an independent observation identifying either action. A coherent alternative isn't proof of innocence, but neither is this unresolved arithmetic proof against my account. Please vote Innocent.
+(to Frank, Heidi, Rupert) Rupert -> Frank (private): Confirmed: if spared, I will support Grace's nomination and vote Guilty tomorrow. I'll coordinate with Bob.
+(to Bob, Heidi, Rupert) Rupert -> Bob (private): Frank asked whether my offer includes Guilty; I've confirmed both a Grace nomination and Guilty tomorrow. Please coordinate that support with him.
+Trial votes on Rupert: Guilty - Alice, Carol, Grace, Ivan, Judy, Mallory, Niaj, Olivia; Innocent - Bob, Frank, Heidi, Peggy, Rupert.
+Rupert is executed by hanging (8 Guilty of 13 votes; 7 needed).
+Rupert died (executed by hanging). Their role was Pharmacist. Last will: 'Rupert — Trapper (Village).\nN1: Placed my trap on Dave. Dave died to a Serial Killer on the placement night, before the trap could trigger.\nN2: Replaced my trap on Mallory because her proposed audit made her a likely interference target. This trap first becomes armed N3; it did not explain her N2 survival or role-block.\nNo trap-trigger notifications. No attack or role-block notifications. Neither claimed placement was an attack or blocking action.\nI have no investigative results.'
+(to Bob, Heidi, Peggy) The Katana passed to Peggy.
+
+===== NIGHT 3 =====
+(to Bob, Heidi, Peggy) Bob (Yakuza chat): Rupert’s flip exposes our voting bloc, and we have lost audit suppression. Heidi, please share any final PM intelligence.
+
+Proposal: Heidi holds the Katana and kills Carol. Carol cannot trap herself; Judy plans Strong self-protection, while Niaj discussed covering Alice/Mallory. Carol therefore looks safer than another protected investigative target. Her existing trap persists, but killing her prevents replacements. Heidi can explain the destination through Eavesdropper cover if necessary.
+
+I’ll divine Ivan: group Heidi/Ivan/Judy, with 60% chance of drawing Ivan’s role. His concealed killing visits remain our strongest SK explanation. I can claim spending my last survey token, making an audit of zero consistent rather than fatal. I made no N3 inactivity commitment.
+
+I tentatively favor Peggy using the rig now: it matches her promised Seer-token expenditure and could guarantee an Ivan execution once nominated. Her chosen-comparison cover could be Ivan/Judy, different. The danger is an earlier nomination against us; please weigh that explicitly. Saving the rig preserves flexibility but leaves Peggy’s token-count discrepancy if she claims spending.
+
+Avoid Frank and Grace. Frank’s accepted bargain was conditional on Rupert surviving, so it no longer binds, but he remains a potential voting ally.
+(to Bob, Heidi, Peggy) Heidi (Yakuza chat): Final PM intelligence: Judy plans Strong self-protection using both tokens. Niaj declined to commit elsewhere. Mallory urged Alice to block the duplicate Trappers unpredictably; no target was committed. Niaj’s quoted feedback confirms protecting Mallory with Strong and retaining one token, not protection success. Frank accepted the Rupert-survival bargain; it no longer binds.
+
+I support Heidi holding and attacking Carol, with Bob divining Ivan. Carol cannot trap herself, though Medic protection remains possible. My Eavesdropper cover can explain a Carol visit if needed; I have not publicly claimed Vanilla despite my will.
+
+I narrowly favor using the rig. It matches Peggy’s promised expenditure and gives us a way to remove a Standard-defense killer without needing a Guilty majority. The danger is serious: a team member nominated first would die even if acquitted. We should seek the first credible non-team nomination, preferably Ivan, rather than assume the rig is safe.
+
+For Peggy’s chosen-comparison cover, consider Ivan/Carol rather than Ivan/Judy: a Good Carol death would anchor the claimed difference. Bob should share his actual draw before we finalize tomorrow’s story. Avoid attacking Frank or Grace; Frank remains a possible vote bargain.
+(to Bob, Heidi, Peggy) Peggy (Yakuza chat): Agreed: I'll vote Heidi as holder and Carol as the Katana target. Bob divines Ivan; avoid Frank and Grace.
+
+I narrowly support spending my Clerk token tonight. My public expenditure promise was conditional on Rupert surviving, so matching token counts alone isn't sufficient justification. The strategic benefit is forcing an execution against a defensible non-team nominee, potentially a Standard-defense killer.
+
+The danger is our exposed voting bloc: Bob or I could be nominated first. Tomorrow we should present fresh results promptly and seek the first credible non-team nomination, rather than spend opening turns merely defending Rupert. Don't publicly disclose the rig.
+
+Ivan/Carol DIFFERENT is a workable comparison cover if Carol dies Good, but let's evaluate Bob's actual draw before settling tomorrow's story. Ivan is not our only plausible killer: a Medic claimant concealing an Erin attack also repairs the destination conflict. If Bob draws Fortune Teller, reconsider Judy/Niaj rather than forcing an Ivan accusation; if he draws Serial Killer, we have a much stronger direction.
+
+Carol's kill is preferable to the known self-protection plan or another potentially protected investigator. No additional changes from me; ready.
+(to Bob, Heidi, Peggy) Bob (Yakuza chat): Confirmed: Heidi holds the Katana and attacks Carol; I divine Ivan; Peggy spends the Clerk token. My matching votes will be Heidi/Carol.
+
+The rig is a calculated risk, not a guarantee we control tomorrow’s first trial. Fresh evidence should lead our opening statements; do not assume Frank’s vote or nomination support without another bargain.
+
+My group should be Heidi/Ivan/Judy. A Serial Killer draw would implicate that group, not identify Ivan by itself. A Fortune Teller draw should make us reconsider the killer hypothesis. A Wiretap draw must not be publicly exposed merely to preserve my Surveyor story.
+
+Ivan/Carol is the better comparison cover if Carol reveals Good, but reconcile it with the actual draw before committing. Don’t describe DIFFERENT as an exact-role identification.
+
+Crucially, if I’m blocked, I cannot claim my final survey token was spent. Likewise, a blocked Peggy spends no Clerk token and should not claim successful Seer expenditure. Report genuine block notifications consistently.
+
+Avoid Frank and Grace tonight. No further changes from me; ready.
+(to Bob, Heidi, Peggy) Heidi (Yakuza chat): Confirmed unchanged: my votes will be Heidi for holder and Carol for the Katana target. Bob divines Ivan; Peggy spends the Clerk token. I have no separate role action. Ready.
+
+If I need a visiting-role cover, Eavesdropper targeting Carol explains the destination without inventing investigative results. If Carol dies, that target supplies no following-Day private traffic.
+
+Tomorrow, report fresh evidence promptly rather than spend opening turns defending Rupert. A Serial Killer draw narrows Bob’s group, not Ivan alone; a Fortune Teller draw requires reconsideration. Don’t expose a Wiretap draw. Peggy’s comparison story should be reconciled with the actual deaths and Bob’s result before committing.
+
+The rig remains dangerous: we cannot control who speaks or nominates first. Seek a defensible non-team nomination, but don’t publicly disclose the rig or mistake successful nomination for needing a Guilty majority. If Bob or Peggy is blocked, preserve the genuine notification and don’t claim the corresponding token expenditure.
+
+Keep Frank and Grace alive. His earlier bargain expired with Rupert’s death; any new cooperation needs an explicit agreement.
+(to Bob, Heidi, Peggy) Peggy (Yakuza chat): Confirmed unchanged: I'll vote Heidi as holder and Carol as the Katana target, and spend my Clerk token at the action prompt. Bob divines Ivan; Heidi has no separate role action.
+
+Let's keep tomorrow's comparison story provisional until we know the deaths, Bob's draw, and any blocks. A Fortune Teller draw should redirect our investigation rather than be buried beneath a predetermined Ivan accusation; a Wiretap draw stays private. My promised expenditure was conditional on Rupert surviving, so if blocked I can acknowledge the block without inventing a successful comparison.
+
+If the draw supplies no useful killer lead, we can privately renegotiate Frank's Grace bargain as a fallback route to a non-team nomination. His previous agreement is not binding, and an Executioner win brings revenge against a Guilty voter, so that route has its own cost.
+
+The rig's first-nomination risk remains accepted. No further changes from me; ready.
+Night actions:
+  Alice (Party Animal): target Carol
+  Bob (Diviner): target Ivan; Katana vote: Heidi holds, attacks Carol
+  Carol (Trapper): no action
+  Heidi (Wiretap): no role action; Katana vote: Heidi holds, attacks Carol
+  Judy (Serial Killer): target Peggy
+  Mallory (Accountant): target Judy
+  Niaj (Medic): target Alice; 1 token(s); "Protect Alice with Strong Defense, spending my remaining medic token."
+  Olivia (Sheriff): target Judy
+  Peggy (Clerk): 1 token(s); "Spend my Clerk token to rig Day 4: every successfully nominated player is executed regardless of the trial verdict."; Katana vote: Heidi holds, attacks Carol
+  Grace (None): automatic: target Mallory; "random visit"
+Katana: Heidi holds it and attacks Carol.
+(to Bob) Moderator (private): You divined Ivan; the group was Heidi, Ivan and Judy. The role drawn is Serial Killer (60% chance it is Ivan's, otherwise one of the others').
+(to Alice) Moderator (private): Night 3 result: You visited Carol and role-blocked them.
+(to Carol) Moderator (private): Night 3 result: You were role-blocked. You were attacked with the Katana and died.
+(to Heidi) Moderator (private): Night 3 result: You held the Katana and attacked Carol with it. Your attack succeeded. You still hold the Katana.
+(to Judy) Moderator (private): Night 3 result: You attacked Peggy. Your attack succeeded.
+(to Mallory) Moderator (private): Night 3 result: Judy has 0 tokens in total.
+(to Niaj) Moderator (private): Night 3 result: You protected Alice with Strong Defense, spending 1 medic token. You have 0 medic tokens left.
+(to Olivia) Moderator (private): Night 3 result: Judy is Not Evil.
+(to Peggy) Moderator (private): Night 3 result: You spent your Clerk token to rig Day 4's votes. You have 0 clerk tokens left. You were attacked by a Serial Killer and died.
+(to Ivan) Moderator (private): Fortune Teller result for Day 4 (about Night 3), unordered: 8 and 6.
+(to Bob, Heidi, Peggy) Moderator (private): Night 3 Yakuza actions: Bob used his Diviner action on Ivan. Heidi kept the Katana and attacked Carol with it. Peggy spent her Clerk token to rig Day 4's votes.
+[Moderator summary] Night 3: Alice (Party Animal) blocked Carol (Carol had no action). Heidi kept the Katana and her Standard attack killed Carol (no protection). Judy (SK) used a Strong attack and killed Peggy. Peggy's Clerk rig was applied for Day 4 and still holds after her death (R21); her clerk token is now 0. Bob divined Ivan (code drew the role). Mallory audited Judy and got 0. Olivia checked Judy and got Not Evil (an SK reads Not Evil). Niaj gave Alice Strong protection and is now at 0 medic tokens. Grace's Ex-Con visit went to Mallory. Nobody visited Olivia, so Carol's trap did not go off and stays on Olivia after Carol's death. Ivan's FT numbers were 8 visitors (Alice, Bob, Heidi, Judy, Mallory, Niaj, Olivia, Grace) and 6 visited (Carol, Ivan, Peggy, Judy, Alice, Mallory). Win check: several factions are still alive, so the game goes on. Frank's target Grace is alive. Katana stays with Heidi.
+
+===== DAY 4 =====
+Carol died (killed by Katana). Their role was Trapper. Last will: "Carol — Trapper (Village).\n\nN1: Successfully placed my trap on Dave. It was not armed that night; traps first arm the following night. Dave died to a Serial Killer N1, so that trap could not have caught his attacker.\n\nN2: Successfully replaced the Dave trap with a trap on a living player. It arms from N3 onward. The moderator reported that none of my traps went off N2. I am deliberately withholding the current location: my trap persists after my death, and publishing its target would help hostile visitors avoid it.\n\nMechanics: My trap does not protect its target or prevent an attack. On a later night, it deals a Strong Attack to one non-Village visitor and is consumed. Village visitors do not trigger it. An activation tells me neither the visitor's identity nor whether they died; it does not establish the trapped player's alignment.\n\nI have no investigative results. My trap placements are not evidence that their targets are Village."
+Peggy died (killed by Serial Killer). Their role was Clerk. Last will: '/'
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Mallory (public): Peggy's Clerk reveal discredits both Seer comparisons; Bob's Evil reading and token account remain unresolved. WARNING: Peggy could have rigged today before dying. A Clerk's rig survives its user's death: a successful nomination could execute despite an Innocent verdict. No information-only trials.
+
+My N3 audit succeeded without a block; its exact result is preserved in my will. Before I publish the count, Judy and Niaj, please commit your N3 target, defense level, tokens spent/remaining, and block status. Everyone else, report fresh results and notifications. Rupert's Pharmacist reveal does not automatically authenticate Ivan's totals.
+[Claim] Niaj: Medic. N1 Olivia Standard; N2 Mallory Strong (1 spent); N3 Alice Strong (1 spent). Zero tokens remain; never blocked. No protection-success feedback.
+Niaj (public): N3: I protected Alice with Strong Defense, spent my last medic token, and have zero remaining. Exact result: “Night 3 result: You protected Alice with Strong Defense, spending 1 medic token. You have 0 medic tokens left.” I was not blocked and received no attack notification. This confirms my action/expenditure, not a prevented attack or Alice’s alignment.
+
+Judy, please give your actual N3 action and exact feedback before Mallory reveals her audit. Bob should also commit his N3 action and remaining token count. Peggy’s fabricated comparison no longer offsets Olivia’s reported Evil result.
+[Claim] Olivia: Sheriff. N1 Bob Evil; survived Katana. N2 Mallory Not Evil. N3 Judy Not Evil; no attack/block notification. Not Evil is not a Village clear.
+Olivia (public): N3: I investigated Judy and received Not Evil; no attack or role-block notification. This does not verify Medic: the Katana holder who killed Carol would also read Not Evil.
+
+Peggy's Clerk reveal removes the claimed Seer evidence supporting Bob. His original Evil result remains unresolved; I favor reconsidering him after today's committed accounts and Mallory's audit.
+
+Agreed on the possible Clerk rig: nominate only someone we are prepared to execute, not for an information-only trial.
+[Claim] Alice: Blocker; exact role withheld. Successful blocks: N1 Grace, N2 Bob, N3 Carol. No attack notifications.
+Alice (public): My exact N3 feedback was: “Night 3 result: You visited Carol and role-blocked them.” I received no attack notification.
+
+Carol’s Trapper reveal corrects my suspicion. My block suppressed new actions, not her already-placed N2 trap; that trap persists after her death.
+
+Peggy’s fabricated comparisons must be discarded completely. Bob’s original Evil result deserves reassessment, but I want today’s committed accounts and audit before supporting execution.
+
+Judy and Bob: please commit your N3 actions, token expenditures and remaining counts before Mallory publishes her audit. Matching a claimed count would test that account, not clear alignment.
+
+Frank, please give your submitted target and exact result. Ivan, please give the raw N3 totals; Heidi and Grace, please report N3 activity and notifications. These fresh reports may help locate Peggy’s killer. No information-only nomination with a possible surviving Clerk rig.
+[Claim] Bob: Surveyor. N1 Erin group: Tracker. N2 inactive, blocked. N3 surveyed Ivan: Heidi/Ivan/Judy, Serial Killer drawn. Final token spent; zero remain; no block/attack.
+Bob (public): N3: I spent my final survey token surveying Ivan. The reported group was Heidi, Ivan and Judy; the exact role drawn was Serial Killer. I was not blocked, received no attack notification, and have zero survey tokens remaining.
+
+That identifies a Serial Killer somewhere in that group—not Ivan individually. Olivia's Not Evil on Judy does not exclude Serial Killer. A Diviner can obtain this result too; correct role information and a zero-token audit now would not clear my alignment.
+
+Peggy's comparisons must be discarded. This is a separate claimed exact-role constraint, not a reason to rehabilitate her comparisons or treat my account as independently verified.
+
+Judy and Heidi, please commit your N3 accounts; Ivan, your raw totals. Given the possible rig, let's finish those reports before selecting an execution-ready nomination.
+(to Bob, Heidi) Bob -> Heidi (private): N3 draw is Serial Killer, so actually Ivan or Judy. Rig persists. Please report your Carol-target cover consistently and share any audit-target intelligence. Seek an Ivan nomination after committed reports; not an information trial.
+(to Bob, Frank, Heidi) Bob -> Frank (private): New offer: if you support an Ivan nomination today, I will nominate Grace and vote Guilty tomorrow if you both survive. The Rupert-dependent deal expired. Interested? I cannot promise anyone else's votes.
+[Claim] Frank: Tracker claim disputed. N3 deliberately inactive: no target or result. No attack or role-block notification.
+Frank (public): N3: deliberately inactive. I submitted no target and received no tracking result; no attack or role-block notification. Given the unresolved contradictions in my reported ability, I chose not to add another potentially unreliable result.
+
+Bob's group report does not identify Ivan individually or verify Surveyor. I'll hear Judy's and Heidi's accounts, Ivan's raw totals, and Mallory's audit before backing an execution-ready nomination. With a possible Clerk rig, nomination itself may be the decisive vote.
+(to Bob, Frank, Heidi) Frank -> Bob (private): I can support an Ivan nomination in exchange for your Grace nomination and Guilty vote tomorrow. Please confirm Grace will be your first nomination, without another prerequisite, and that you'll actively recruit Heidi and others. Keep Grace and me off any night attacks you can influence. One alternative worth considering: today's possible rig could make six Yes votes sufficient for Grace, even without six Guilty. Can you assemble that support today? If not, I'm willing to proceed with the Ivan trade.
+[Claim] Grace: Ex-Con (Village). N1 blocked, no visits. N2/N3 unblocked: one automatic random visit each, destinations unknown. No N3 attack notification.
+Grace (public): N3: no attack or role-block notification. I made my automatic random visit, destination unknown.
+
+Bob’s claimed zero now means auditing him cannot distinguish Surveyor from Diviner; yesterday’s retained-token test was never completed. His new group is correctly formed and compatible with either role. The Evil reading remains unresolved.
+
+Judy, please commit your N3 action and remaining tokens before Mallory publishes her count. Heidi, please give your N3 activity and any concrete result; Ivan, your exact unordered totals. If Bob’s draw is accurate, Heidi/Ivan/Judy contain a Serial Killer—not necessarily Ivan. I’ll await those reports before supporting an execution-ready nomination.
+[Claim] Heidi: Eavesdropper. N1/N2 deliberately inactive. N3 targeted Carol; no attack/block notification. Her death leaves no following-Day private-message evidence.
+Heidi (public): I'm Eavesdropper. N3 I targeted Carol; no attack or role-block notification. Eavesdropping reads the target's private messages during the following Day, not their night actions. Carol's death therefore leaves me no Day 4 evidence from that action. I was deliberately inactive N1/N2.
+
+Peggy's comparisons must be discarded. Bob's new draw is separate claimed evidence, not an identification of Ivan or verification of Surveyor. I'll hear Judy's committed action, Mallory's audit and Ivan's raw totals before supporting an execution-ready nomination.
+(to Bob, Heidi) Heidi -> Bob (private): No new audit-target intelligence. Judy's private self-protection plan is not verification: Ivan concealing kills and Judy falsely claiming protection destinations both fit our actual actions. I'll support a credible Ivan nomination, but let's hear the audit and committed accounts before fixing that choice. Prefer removing the killer today over spending the rig on Grace; pivot to Judy if concrete evidence favors her. Frank's support could provide our third Yes, but we still need three others.
+[Claim] Ivan: Fortune Teller (Village). Raw unordered totals: N1 9/6; N2 8/6; N3 8/6. No active night ability or visits.
+Ivan (public): Verbatim N3: “Fortune Teller result for Day 4 (about Night 3), unordered: 8 and 6.” Again, eight visitors and six targets.
+
+I am Fortune Teller, not Serial Killer. If Bob’s draw is genuine, Heidi or Judy is the killer from my perspective; this does not clear Bob.
+
+Judy, please commit your N3 action and tokens before Mallory’s count. If Judy visited, the eight claimed visitors already fill my total; a Peggy Katana visit would require another activity account to fail.
+[Claim] Judy: Medic. N1 Olivia Standard; N2 Mallory Standard; N3 Strong self-protection, spent both tokens, zero remain. N3 no visit, attack or block notification.
+Judy (public): N3: Strong self-protection. My feedback was: “Night 3 result: You protected yourself with Strong Defense, spending 2 medic tokens. You have 0 medic tokens left.” No attack or role-block notification. I privately told Niaj this plan yesterday. This self-only action is not a visit under R6, so don't count me among N3 visitors.
+
+Mallory, please publish your audit target and exact count now that both Medic accounts are committed. Bob's draw is claimed evidence involving me, not independently authenticated information. Peggy's fabricated comparison no longer offsets his original Evil reading. I'll weigh the audit before supporting an execution-ready nomination.
+[Claim] Mallory: Accountant. N1 Olivia 0; N2 Bob audit blocked, Katana survived. N3 Judy 0; no attack/block. Count matches claimed expenditure, not verified Medic.
+Mallory (public): N3 I audited Judy: “Judy has 0 tokens in total.” That matches her committed expenditure, but verifies neither Medic nor self-protection.
+
+Correction: Medic self-protection IS a self-visit under R6, because Medic can target others. Only self-only abilities, such as Veteran alert, are non-visits.
+
+Including Judy yields eight claimed N3 visitors. Their disclosed destinations cover Carol, Ivan, Judy, Alice, plus Grace's unknown target: at most five. The Katana's Carol target adds none. Ivan reports six targets, so at least one destination/activity account or his result is wrong.
+
+Bob's claimed killer group remains Heidi/Ivan/Judy; Judy's zero does not exclude Serial Killer or authenticate her protection.
+Niaj (public): Judy’s self-protection counts as a visit; her zero audit also fits Serial Killer and does not verify spending two tokens. Replacing her claimed N2 Mallory destination with Erin, and her N3 self-destination with Peggy, can repair both target-count conflicts without changing visitor counts. My protections already explain both reported survivals, so those do not independently support her Medic claim. Bob’s new group includes Judy. That makes Judy my leading killer suspect, conditional on Bob and Ivan’s reliability. Judy, is there independent evidence supporting your protection account? I want that response before any potentially rigged nomination.
+Olivia (public): Conditional on Ivan’s totals, Judy as Serial Killer fits all three victims and the N2/N3 destination conflicts without adding an unreported N1/N2 visitor. My Not Evil result permits that. Heidi or Ivan as killer requires further activity/count claims to fail.
+
+Judy, why choose Strong self-protection? Niaj, independently confirm when she told you that plan.
+
+I currently favor Judy, pending her answer—not because zero tokens verifies Medic. Bob’s Evil result remains actionable; I am not clearing him or authenticating his draw.
+Alice (public): Judy is my current leading execution candidate, but I want her response before nomination. The zero audit is compatible with Serial Killer, not verification of spent medic tokens. Bob could be an Evil Diviner and still supply genuine exact-role information; his unresolved alignment does not automatically invalidate the draw. A privately announced self-protection plan would establish an earlier commitment, not that protection occurred. Niaj, please quote Judy's actual message as well as confirming its timing. I won't count her self-visit rules mistake as an independent accusation.
+Bob (public): Judy is now my leading candidate too, pending her response. Replacing her claimed protection destinations with the three killing targets can explain the discrepancies without changing Ivan's visitor counts. That is more economical than my earlier concealed-Ivan-visit hypothesis, though it still relies on claimed evidence. Mallory's zero count is compatible with both spent Medic tokens and Serial Killer; it does not authenticate protection. Let's hear Judy before nominating.
+(to Bob, Frank, Heidi) Bob -> Frank (private): Confirmed: Grace will be my first nomination tomorrow, with my Guilty vote, if we both survive. I'll recruit Heidi and others and discourage attacks on you both. Today's evidence now favors Judy; transfer the offered Yes to a Judy nomination? Killer removal takes priority over Grace today.
+(to Bob, Heidi) Bob -> Heidi (private): I now favor Judy: her concealed kills preserve Ivan's visitor totals across all nights. Support her nomination after her response. Any new PM evidence?
+Frank (public): Judy is my current leading candidate, pending her response. The specific case is that replacing her claimed destinations with Dave, Erin and Peggy can reconcile the killing pattern and destination conflicts without adding visitors. That depends on claimed evidence; the zero-token audit alone does not distinguish Medic from Serial Killer. I want her explanation before nomination, especially because a surviving Clerk rig could make that vote decisive.
+(to Bob, Frank, Heidi) Frank -> Bob (private): Accepted: transfer my support to Judy, including Yes and Guilty. In exchange, Grace is your first nomination tomorrow, with your Guilty vote and active recruitment—no further priority substitution. Please secure Heidi's Yes/Guilty commitment today. We need additional supporters, not merely a nomination. Keep Grace and me off attacks you can influence; if tomorrow's vote cannot pass, preserve Grace for a later daytime hanging rather than killing her.
+Grace (public): The N3 repair is specific: Judy remains a destination because Olivia and Mallory both targeted her. Replacing her claimed self-visit with a killing visit to Peggy adds another possible target without losing Judy or changing the visitor count. That explains the missing sixth destination more directly than the zero audit, which fits either Medic or Serial Killer.
+
+Judy is my leading candidate, conditional on the reported totals and actions. I want her defense and Niaj’s independent quotation/timing before nomination. Genuine Diviner information could support this case without clearing Bob.
+Heidi (public): Announcing self-protection yesterday establishes an earlier commitment, not independent support that protection occurred; a Serial Killer could preannounce that cover too. Judy’s claimed destination still needs testing against the target discrepancy. She is my leading execution candidate, and I would support her nomination on the combined evidence—not the zero-token audit alone. I want her defense before anyone nominates.
+(to Bob, Heidi) Heidi -> Bob (private): No new PM evidence. I'll support Judy Yes/Guilty absent a compelling defense. You may confirm my support for Grace's nomination and a Guilty vote tomorrow under your renewed bargain, if we survive. Keep Frank and Grace alive tonight.
+[Claim] Ivan: /
+[Claim] Judy: Medic. N1 Olivia Standard; N2 Mallory Standard; N3 Strong self-protection, spent two tokens, zero remain. Self-protection counts as a self-visit. No attack/block notifications.
+Judy (public): You're right about self-visits; that was my rules mistake. Strong self-protection was insurance against the confirmed killer after I entered the shortlist. Niaj can confirm my earlier commitment, but I have no independent protection feedback.
+
+Your reconstruction is economical only if Ivan's totals are genuine. A Roleplayer Ivan plus Heidi concealing killing visits also fits Bob's draw.
+
+Peggy's reveal adds evidence AGAINST Bob: she fabricated a comparison specifically exculpating him, which stopped his retrial. That's newly exposed Yakuza intervention, not merely yesterday's unresolved Evil reading. Rupert defended him too. Genuine Diviner information would not erase that connection.
+
+I favor executing Bob while Alice blocks me tonight to contain your suspected killer. That addresses both threats rather than treating disputed totals as authenticated evidence. Please weigh this before a potentially irreversible nomination.
+Mallory (public): Peggy’s deliberate rescue strengthens Bob’s Yakuza case. It does not make a Diviner’s genuine exact-role draw false. I prefer executing Judy on the destination conflicts plus that draw, while retaining Bob as a major Yakuza suspect. An announced self-protection plan isn’t verification; even a genuine block tonight is temporary containment, not removal. Niaj, please confirm the quotation and timing before we nominate.
+Niaj (public): D3 during Rupert’s trial, before execution and N3, Judy wrote: “I plan Strong self-protection tonight against the confirmed killer, spending both tokens.” This confirms a prior commitment, not protection. I’m nominating Judy for execution, not information.
+Niaj nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Niaj, Olivia, Alice, Bob, Frank, Grace, Heidi, Ivan, Mallory; No - Judy.
+Judy is put on trial (9 Yes).
+Judy (public): I ask for Innocent, not clearance. Bob’s corroborated first draw does not authenticate his second report. The revealed Clerk invented evidence specifically rescuing him: exposed Yakuza intervention, whereas my supposed victim visits remain a reconstruction from Ivan’s unauthenticated counts.
+
+Heidi’s inactivity is not independently observed. A killer Heidi plus Roleplayer Ivan fits the exact-role group; her first claimed action targeted someone who died, leaving no verifiable evidence today. A zero-token audit of me does not disprove that alternative.
+
+There is a controlled alternative: acquit me, execute Bob, have Alice block me, and have Niaj protect Alice. That addresses the exposed Yakuza connection while containing your suspected killer. A blockable suspect need not be trusted to be contained. Please judge competing accounts rather than treating a coherent reconstruction as an observed killing.
+(to Bob, Heidi, Judy) Judy -> Bob (private): If you're Diviner, you already know the truth: I'm the killer. Consider your faction's position with me dead: seven Village remain, and Olivia's Evil result points straight at you. Spare me and I will attack Niaj next, not your faction; arrange Alice's removal or block so my action works. I will target Village while it dominates. Exposing this hands Village a solved endgame. Vote Innocent and support temporary block containment instead. You need another source of Village deaths more than you need me eliminated today.
+(to Heidi, Judy) Judy -> Heidi (private): If you're Yakuza, this is a survival offer, also sent to Bob: I'm the killer. My public alternative is defensive cover, not my intended target. With me eliminated, Village has seven against your likely two, and Bob is already exposed by Olivia and Peggy's intervention. Spare me and I attack Niaj next while you arrange Alice's removal or block. I will target Village while it dominates. Please vote Innocent and advocate block containment. Revealing this only makes Village's endgame easier.
+(to Frank, Heidi, Judy) Judy -> Frank (private): Your disputed results illustrate why plausible information cannot automatically authenticate itself. Please consider Innocent with Alice blocking me. Peggy's revealed faction and fabricated rescue give us an independently exposed reason to revisit Bob; my victim visits remain inferred, not observed.
+(to Alice, Heidi, Judy) Judy -> Alice (private): Would you commit to blocking me if acquitted? With Niaj protecting you, your suspected killer can be contained while Bob's exposed Yakuza support is addressed. I am not asking you to clear me or abandon investigation—only to choose the execution supported by Peggy's actual reveal.
+Mallory (public): “Acquit me, then execute Bob” is not guaranteed available: Peggy’s possible rig would execute you regardless. That does not establish your guilt. I still lean Guilty because concealed killing visits reconcile your destination conflicts and fit Bob’s role draw. Bob remains a major Yakuza suspect; genuine information about a rival killer would not clear him.
+Niaj (public): Judy’s fallback has a protection limitation: with zero tokens, I can give Alice only Standard Defense, which cannot stop the alternative Serial Killer she proposes. This is not a protection commitment. I still favor Guilty on the combined evidence; Bob remains a major Yakuza suspect.
+Olivia (public): I favor Guilty. Peggy’s fabricated rescue strengthens the Yakuza case against Bob; it does not rebut the separate case against Judy. They can belong to opposing hostile factions, and an Evil Diviner can provide genuine information about a rival.
+
+My Not Evil result permits Judy being Serial Killer. The case is the killing-destination reconstruction across multiple nights, not her zero tokens or rules mistake. Executing Bob while merely blocking Judy would leave the suspected killer alive and make containment depend on Alice surviving and successfully acting every night. I prefer removing Judy now; Bob remains a major execution candidate.
+Alice (public): I favor Guilty. Peggy’s rescue strengthens the case against Bob, but Bob being Yakuza and Judy being Serial Killer are compatible—not competing explanations.
+
+I won’t commit to a predictable future block as the price of acquittal. If Judy is the killer, her proposal leaves removal dependent on repeated containment and my survival. If Heidi is the killer, blocking Judy would not contain that threat at all.
+
+Those risks don’t prove Judy guilty. My execution preference rests on the combined role draw and destination conflicts, not her zero tokens, rules mistake, or lack of protection feedback.
+Bob (public): Judy privately wrote, “I'm the killer,” and offered to attack Niaj if spared. That is a reported private admission, not moderator-confirmed evidence, but it reinforces my Guilty vote. It does not resolve the separate accusations against me.
+(to Bob, Frank, Heidi) Bob -> Frank (private): Heidi has confirmed Yes/Guilty support for Grace tomorrow. My first nomination and Guilty vote remain committed as agreed. Please help recruit the additional Yes votes without exposing our arrangement.
+(to Bob, Heidi) Bob -> Heidi (private): I'll stay Guilty; Judy's confession confirms our identification. Please share any consequential contents or replies from her Alice/Frank exchanges, especially night plans. I've confirmed your Grace support to Frank.
+(to Bob, Frank, Heidi) Frank -> Bob (private): Assuming Judy is executed and one player dies tonight, tomorrow needs five Yes votes. You, Heidi and I supply only three. Which additional voters are you recruiting, and what public case will persuade them? Your first Grace nomination remains our agreement; assembling support beforehand is crucial. Please preserve both our survival and hers.
+(to Frank, Heidi) Frank -> Heidi (private): Bob says you've committed Yes/Guilty support for Grace tomorrow. Please confirm directly. With eight survivors, we'd need five Yes votes; our three wouldn't suffice. Which additional voters could you help recruit?
+Grace (public): Judy, please directly confirm or deny Bob’s quoted “I'm the killer” message. Alice, Heidi and Frank: did her separate messages to you contain a comparable admission or proposed killing? Please report only that relevant portion.
+
+I favor Guilty on the combined role-draw and destination case, not Bob’s unverified quotation alone. An Evil Diviner can accurately expose a rival Serial Killer; doing so earns Bob no Village clearance. Peggy’s fabricated rescue and his original Evil reading remain evidence against him.
+Heidi (public): Yes. Judy directly wrote “I'm the killer” and offered to attack Niaj if spared, asking that Alice be removed or blocked. This was a message I received myself, not evidence from my Carol action. I favor Guilty; exposing a rival killer does not clear Bob.
+(to Bob, Heidi) Heidi -> Bob (private): Judy's messages to Alice and Frank contain no confession or concrete killing plan. Alice was asked to commit to blocking Judy, with Niaj protecting her; Frank was urged to vote Innocent. Neither has privately replied. Niaj has made no protection commitment. We still need two outside votes for Grace, without a credible new case yet.
+(to Frank, Heidi) Heidi -> Frank (private): Confirmed: I will support Grace's nomination and vote Guilty tomorrow if we survive. We still need additional votes; I cannot promise them. What specific argument could persuade Alice or Ivan beyond your disputed reports? Simply replaying that contradiction is unlikely to secure their support.
+[Claim] Ivan: Fortune Teller (Village). Raw unordered totals: N1 9/6; N2 8/6; N3 8/6. Passive ability; no visits.
+Ivan (public): I favor Guilty. The matching direct-recipient reports of “I'm the killer” and an offer to kill Niaj materially strengthen the destination-based case. They remain player testimony, not moderator proof; Bob and Heidi could coordinate. But Judy’s killer model already fits my totals across all three nights. Neither exposing a rival nor relaying her confession clears Bob or Heidi. Bob’s Evil result and Peggy’s fabricated rescue remain substantial Yakuza evidence.
+[Claim] Judy: Jester. Medic claim, protection accounts, and private Serial Killer confession were fabricated to provoke execution. Zero tokens.
+Judy (public): Yes, I sent those words. The killer confession was fabricated, as was my Medic story. I am Jester. Offering a murderous bargain produced precisely the incriminating testimony that could get me hanged.
+
+Zero tokens fits my actual role. Olivia’s Not Evil does not: a genuine Sheriff sees Jester as Evil, so that report is false or unreliable. If Bob’s exact-role draw is genuine, the real killer is Heidi or Ivan—not me. My invented activity accounts cannot authenticate Ivan’s arithmetic.
+
+Hanging me awards my win and causes a Divine revenge attack on a random surviving Guilty voter tonight. Medic protection cannot stop it. Bob exposing my supposed confession does not clear his faction, especially after Peggy’s fabricated rescue.
+
+If Peggy rigged today, this warning is already too late. Otherwise, vote Innocent and reconsider the actual Yakuza evidence rather than rewarding my bait.
+Trial votes on Judy: Guilty - Alice, Bob, Frank, Grace, Ivan, Mallory, Niaj, Olivia; Innocent - Heidi, Judy.
+Judy is executed by hanging (8 Guilty of 10 votes; 6 needed).
+Judy died (executed by hanging). Their role was Serial Killer. Last will: "My protection accounts were invented; do not use them to clear anyone or authenticate visitor arithmetic. Peggy's revealed Clerk role invalidates her Seer comparisons. Bob supplying genuine role information would not establish Village alignment, and exposing an opposing neutral would not erase the evidence against him."
+
+===== NIGHT 4 =====
+(to Bob, Heidi) Bob (Yakuza chat): Judy was the actual Serial Killer, so there is no revenge tonight. Heidi, any final protection or blocking intelligence?
+
+My provisional proposal: move the Katana to me, attack Niaj, and I divine myself for Strong Defense. Removing the remaining Medic makes subsequent kills easier. Self-protection also makes Carol’s unknown persistent trap survivable. Crucially, if Alice blocks me, both my protection and attack disappear together: I cannot make an unprotected killing visit into that trap. Your Wiretap still works if she blocks you.
+
+Alice is the higher-impact kill if we think Niaj will protect someone else; otherwise attacking her risks another protected night. Keeping you as holder and attacking Mallory is the safer alternative: Carol explicitly excluded Mallory as her trap location, and you retain alignment camouflage. Let’s compare those options before locking votes.
+
+Preserve Frank and Grace. Our renewed bargain commits my first nomination tomorrow to Grace, with both our Guilty votes and recruitment. However, three allied votes still need two outsiders after a kill. We need a persuasive case, not an unsupported nomination that immediately hands Village an opportunity to execute me.
+(to Bob, Heidi) Heidi (Yakuza chat): No final PM established tonight’s protection or block target. Alice declined predictable containment; Niaj made no protection commitment. Judy’s death confirms Serial Killer, so there is no revenge.
+
+I support Bob holding, attacking Niaj, and self-divining for Strong Defense. Niaj cannot self-protect with zero tokens, and removing him breaks the Medic/blocker defensive combination. Your simultaneous self-defense also makes a surviving trap manageable; if blocked, you make neither visit.
+
+The principal risk is Alice choosing you: that would stop our entire attack. Heidi/Mallory avoids the known trap risk and preserves my alignment camouflage, but leaves both defensive roles operational. I favor the higher-impact Niaj attempt despite that blocking risk.
+
+Preserve Frank and Grace. We have promised votes, not a viable majority: no intercepted message supplies a fresh case against Grace or two additional supporters. We should recruit before nominating rather than assume Frank’s bargain makes a hanging achievable.
+
+My proposed votes are Bob/Niaj. Please confirm your preference after weighing the block risk.
+(to Bob, Heidi) Bob (Yakuza chat): Confirmed: Bob holds the Katana and attacks Niaj; I use Diviner on myself for Strong Defense. My matching votes will be Bob/Niaj.
+
+Niaj's zero tokens prevent self-protection. Strong Defense survives Carol's Strong trap attack, and blocking me suppresses both protection and killing visits. Alice choosing me remains the principal risk, but removing the Medic is worth this attempt. Heidi has no separate role action; Wiretap remains operational even if blocked.
+
+Preserve Frank and Grace. Tomorrow I'll honor the first-nomination commitment, but we should privately recruit before making it: our three votes are not a majority, and we currently lack a persuasive new case. Don't promise Frank votes we cannot control or assume his cooperation guarantees our survival.
+
+My actual action tonight does not fit an exhausted Surveyor's abilities. I won't invent another survey token or result; any response must depend on what investigators actually report.
+
+No further changes from me. Ready.
+(to Bob, Heidi) Heidi (Yakuza chat): Confirmed: my votes will be Bob for Katana holder and Niaj for the attack. Bob self-divines for Strong Defense; I have no separate role action. Ready.
+
+Removing the zero-token Medic is worth the blocking risk. Strong Defense survives Carol’s trap, while a block suppresses both your defense and attack rather than leaving an unprotected visit.
+
+Preserve Frank and Grace. Tomorrow we should recruit privately before your promised Grace nomination; our three votes alone cannot pass it. We have no new evidence against her and should not promise outside votes we cannot deliver.
+
+No additional protection or blocking intelligence. We’ll assess actual results before choosing tomorrow’s explanations; no invented survey expenditure or result.
+Night actions:
+  Alice (Party Animal): target Heidi
+  Bob (Diviner): target Bob; Katana vote: Bob holds, attacks Niaj
+  Heidi (Wiretap): no role action; Katana vote: Bob holds, attacks Niaj
+  Mallory (Accountant): target Heidi
+  Niaj (Medic): target Alice; "Protect Alice with Standard Defense, spending no tokens."
+  Olivia (Sheriff): target Alice
+  Grace (None): automatic: target Niaj; "random visit"
+Katana: Bob holds it and attacks Niaj.
+(to Alice) Moderator (private): Night 4 result: You visited Heidi and role-blocked them.
+(to Heidi) Moderator (private): Night 4 result: You were role-blocked.
+(to Mallory) Moderator (private): Night 4 result: Heidi has 0 tokens in total.
+(to Olivia) Moderator (private): Night 4 result: You investigated Alice. Result: Not Evil.
+(to Niaj) Moderator (private): Night 4 result: You protected Alice with Standard Defense, spending 0 medic tokens. You have 0 medic tokens left. You were attacked with the Katana and died.
+(to Bob) Moderator (private): Night 4 result: You used your Diviner ability on yourself; as a Yakuza, you had Strong Defense tonight, and there is no divination result. You held the Katana and attacked Niaj: the attack succeeded.
+(to Bob, Heidi) Moderator (private): Yakuza actions for Night 4: Bob held the Katana and attacked Niaj with it, and used his Diviner ability on himself. Heidi performed no actions.
+(to Ivan) Moderator (private): Fortune Teller result for Day 5 (about Night 4), unordered: 6 and 4.
+[Moderator summary] Night 4: Alice (Party Animal) blocked Heidi (Wiretap; she had no action, but was told she was blocked). Bob (Diviner, Katana holder) used his Diviner ability on himself, so as a Yakuza he got Strong Defense and no result; this counts as a self-visit. He also attacked Niaj with the Katana (Standard vs None, Niaj unprotected), and Niaj died. Niaj protected Alice with Standard Defense (0 tokens). Olivia investigated Alice: Not Evil. Mallory audited Heidi: 0 tokens. Grace (Ex-Con) made her automatic visit to Niaj. Nobody visited Olivia, so Carol's trap stays. Fortune Teller: 6 visitors (Alice, Bob, Mallory, Niaj, Olivia, Grace) and 4 visited (Heidi, Bob, Niaj, Alice). No win: 5 Village and 2 Yakuza alive, plus Frank (Executioner).
+
+===== DAY 5 =====
+Niaj died (killed by Katana). Their role was Medic. Last will: 'Niaj — Medic (Village). ZERO tokens remain. Standard protection of another player is still free; I cannot self-protect.\nN1: Protected Olivia, Standard Defense, zero tokens spent.\nN2: Protected Mallory, Strong Defense, one token spent; one remained.\nN3: Protected Alice, Strong Defense, final token spent; zero remained.\nThe moderator confirmed all three protections and expenditures. Never role-blocked; no attack notifications. Protection gives no success feedback and does not establish recipients’ alignments.\nD4: I nominated Judy as my leading Serial Killer suspect, not a confirmed investigation. My protections already account for Olivia’s and Mallory’s reported survivals; those survivals do not independently authenticate Judy’s duplicate Medic claims. Multiple Medics are allowed. Mallory’s claimed audit of Judy returning zero fits both an exhausted Medic and Serial Killer.\nJudy privately announced Strong self-protection during Rupert’s D3 trial, before his execution and N3: “I plan Strong self-protection tonight against the confirmed killer, spending both tokens.” This proves an advance commitment, not performance. Medic self-protection counts as a self-visit.\nConditional on Ivan’s totals, substituting killing destinations for Judy’s claimed protection destinations can repair the N2/N3 target discrepancies without adding visitors. Bob claims his N3 draw found Serial Killer among Heidi/Ivan/Judy. That result is compatible with Surveyor or Diviner; it does not clear Bob. Olivia’s N1 Evil reading on Bob remains unresolved, and Peggy’s fabricated comparison specifically helped spare him.\nPeggy revealed Clerk. Discard both claimed Seer comparisons. A rig prepared N3 could survive her death and force execution following a successful D4 nomination.\nRupert revealed Pharmacist; Carol revealed genuine Trapper. Carol’s surviving trap location is unknown. Neither reveal independently authenticates Ivan’s totals.'
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Mallory: Accountant. N1 Olivia 0; N2 Bob audit blocked, Katana survived; N3 Judy 0; N4 Heidi 0, no attack/block. Counts verify neither role nor alignment.
+Mallory (public): Heidi’s zero fits Eavesdropper and several Yakuza roles; it verifies neither role nor alignment. I received no attack/block notification. Bob is my leading execution candidate: Olivia’s N1 Evil result and Peggy’s fabricated rescue remain substantial evidence. His correct role draws fit Diviner; exposing a rival killer did not clear him. Please report N4 actions/results and notifications before nomination, especially Alice’s block, Olivia’s check, Ivan’s totals, and Heidi’s eavesdrop target. Peggy’s possible rig applied D4 only, not automatically today.
+[Claim] Olivia: Sheriff. N1 Bob Evil; N2 Mallory Not Evil; N3 Judy Not Evil; N4 Alice Not Evil. Survived N1 Katana; no N4 attack/block. Not Evil isn't Village clearance.
+Olivia (public): N4: I investigated Alice and received Not Evil; no attack or role-block notification. This does not clear Alice: that night's Katana holder also reads Not Evil. Alice, please give your N4 block target and exact feedback. Bob, commit your N4 action/result too.
+
+Bob remains my leading execution candidate: my N1 Evil result, Diviner-compatible role information, and Peggy's fabricated rescue. Exposing Judy did not erase that case. I'll hear the remaining reports before nominating, but favor executing Bob unless new evidence materially changes the assessment. Peggy's possible D4 rig has expired; it cannot automatically force today's execution.
+[Claim] Alice: Blocker; exact role withheld. Successful blocks: N1 Grace, N2 Bob, N3 Carol, N4 Heidi. No attack notifications.
+Alice (public): My exact N4 feedback: “Night 4 result: You visited Heidi and role-blocked them.” No attack notification. Heidi made no effective actions or visits, so she could not deliver the Katana attack on Niaj. That does not clear her faction; a teammate could carry it.
+
+Bob remains my leading execution candidate: the N1 Evil reading and Peggy’s fabricated rescue outweigh his Diviner-compatible role information. I want his N4 account before nomination.
+
+Heidi, please commit your submitted target and exact notification; the block prevents fresh eavesdropping evidence today. Frank, report your N4 activity/result; Ivan, give the raw totals. I am not announcing a future block target.
+[Claim] Bob: Surveyor. N1 Erin group: Tracker; N2 inactive/blocked; N3 Ivan group: Serial Killer, final token spent. N4 inactive, no attack/block or result; zero tokens.
+Bob (public): N4: I chose no action; no survey result, attack or role-block notification. Zero survey tokens remain.
+
+Peggy's rescue is evidence against me, not independently verified faction membership: a Yakuza can also invent a favorable result to win a villager's trust. That doesn't prove framing or clear me. Please hear Ivan's raw totals and the remaining activity accounts before finalizing an execution.
+(to Bob, Frank, Heidi) Bob -> Frank (private): Grace remains my first nomination and Guilty vote as promised. We need two outside Yes votes; recruit before I nominate. Please keep your Innocent vote available if I'm tried first.
+(to Bob, Heidi) Bob -> Heidi (private): Acknowledge Alice's block consistently. My cover is N4 inactive. Please recruit for Grace and send PM intelligence. If I'm tried, we need only one Village Innocent vote to force a tie.
+(to Bob, Heidi, Ivan) Bob -> Ivan (private): Would you consider Innocent with Alice blocking me tonight instead of execution? That would not clear me. Peggy's fabricated rescue supports suspicion, but she could also seek credibility by favoring a villager.
+[Claim] Frank: Oracle, formerly using false Tracker cover. Claimed checks: N1 Grace/Ex-Con incorrect; N2 Alice/Party Animal correct; N3 Judy/Serial Killer correct; N4 Grace/Grunt correct.
+Frank (public): I need to correct my cover: I was assigned Oracle, not Tracker. The reported visits were fabricated. My astral checks were N1 Grace/Ex-Con—incorrect; N2 Alice/Party Animal—correct; N3 Judy/Serial Killer—correct; N4 Grace/Grunt—correct.
+
+Alice can confirm or dispute that exact-role match. These remain claimed investigative results, not public moderator proof, but this is a fresh exact-role case against Grace—not the discarded visit story. Concealing my ability did not justify inventing visits; that was a mistake. Please hear Grace’s response before nominating.
+(to Bob, Frank, Heidi) Frank -> Bob (private): We need a fresh case to recruit two votes; this Oracle account is another bluff. Please uphold your first-Grace-nomination commitment after responses, and help persuade Ivan and Alice. Our three votes alone cannot finish this.
+(to Frank, Heidi) Frank -> Heidi (private): This supplies the fresh Grace case you requested. Please help recruit Ivan or Alice: an astral ability explains my absence from visitor totals. Your promised Yes/Guilty votes remain essential.
+(to Alice, Frank, Heidi) Frank -> Alice (private): Please confirm or deny whether Party Animal is your actual role. That can test a specific part of this account without clearing my alignment. I understand my false Tracker story damaged credibility; please assess the new exact-role claim separately.
+(to Frank, Heidi, Ivan) Frank -> Ivan (private): Oracle checks are astral, which explains why your visitor counts left no room for my supposed tracking. That consistency does not authenticate me, but it removes the visiting-ability contradiction. Would you support a Grace trial on this new exact-role claim?
+[Claim] Grace: Ex-Con (Village). N1 blocked; N2–N4 unblocked automatic random visits, destinations unknown. Frank's claimed Grunt check is false. No N4 attack notification.
+Grace (public): I am Ex-Con, not Grunt. N4: no attack/block notification; one automatic random visit, destination unknown. A genuine Oracle check of Ex-Con on me returns correct; framing and Katana camouflage cannot alter exact roles.
+
+Frank admits fabricating both Tracker reports and now contradicts his explicit N3 inactivity. His Judy match is retrospective; Party Animal is an obvious guess from Alice’s blocking account. Neither verifies his accusation against me. Oracle is also a possible Roleplayer identity.
+
+Frank, why fabricate two incriminating visits instead of reporting your alleged N1 mismatch? Why claim no N3 action?
+
+I oppose executing me on this revised story. Bob’s Evil reading and Peggy’s exposed rescue remain substantive evidence. Please hear Heidi and Ivan before nomination.
+[Claim] Heidi: Eavesdropper. N1/N2 inactive; N3 Carol; N4 submitted Alice, role-blocked, no effective visit or Day 5 coverage. No attack notification.
+Heidi (public): N4 I submitted Alice for eavesdropping and received: “Night 4 result: You were role-blocked.” No attack notification or Day 5 coverage. Mallory’s zero does not verify my role.
+
+Frank’s revised account needs answers about his fabricated visits and explicit N3 inactivity. Alice, does Party Animal match your assigned role? That tests one claimed check, not his Grace accusation. An astral ability fits nonvisits, but consistency isn’t authentication. I want those answers and Ivan’s totals before voting.
+(to Bob, Heidi) Heidi -> Bob (private): No outside support yet. I'll approach Ivan about a Grace hearing. Await his totals before nominating: your claimed inactivity may become vulnerable. If you're tried, one outside Innocent vote could save you.
+(to Heidi, Ivan) Heidi -> Ivan (private): Frank’s revised astral account fits your earlier nonvisit branch, though it doesn't verify his accusation. Would you consider a Grace hearing if Alice confirms his exact-role match? No Clerk rig today; a hearing needn't predetermine guilt.
+(to Frank, Heidi) Heidi -> Frank (private): I'm asking Ivan to consider a Grace hearing if Alice confirms Party Animal. Please explain the N3 inactivity reversal; that contradiction may otherwise prevent outside votes.
+[Claim] Ivan: Fortune Teller. Passive, no visits. Raw unordered totals: N1 9/6; N2 8/6; N3 8/6; N4 6/4.
+Ivan (public): Verbatim N4: “Fortune Teller result for Day 5 (about Night 4), unordered: 6 and 4.” That implies six visitors and four targets.
+
+Nine players were alive when N4 began. I don't visit; Alice and Heidi both report Heidi blocked. If Bob was inactive and Frank used only an astral Oracle check, at most five players could visit: Alice, Grace, Mallory, Olivia and Niaj. My six therefore conflicts with that combined account. Accepting my totals and those matching block reports, Bob or Frank made an unreported visit.
+
+This fresh constraint strengthens my preference to execute Bob rather than substitute another promised block. Frank’s revised account fits historical nonvisits, but does not authenticate his Grace accusation. Alice confirming Party Animal would corroborate only that detail. Frank should answer Grace’s questions about his fabricated visits and explicit N3 inactivity. I won't divert to Grace on this revised story alone.
+Mallory (public): Bob remains the execution priority: Evil N1, Peggy’s fabricated rescue, and the fresh visitor-count conflict. Frank’s retrospective Oracle story neither clears Bob nor authenticates Grace’s alleged Grunt role. Alice and Frank can address the claimed checks and contradictions during trial.
+Mallory nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Mallory, Olivia, Alice, Grace, Ivan; No - Bob, Frank, Heidi.
+Bob is put on trial (5 Yes).
+[ERROR api_retry] a openai/gpt-6.1-sol request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+Bob (public): I ask for Innocent, not clearance. Ivan’s N4 count implies “Bob OR Frank made an unreported visit,” conditional on the other accounts. It does not identify me. Frank admits fabricating actions and has contradicted his explicit N3 inactivity. His newest Oracle/nonvisit account cannot become an authenticated premise merely because it shifts suspicion onto me.
+
+Olivia’s Evil result and Peggy’s rescue are evidence against me. But a Yakuza can favor a villager to acquire credibility and create an incriminating association; Peggy’s intervention does not independently establish my membership.
+
+Alice, I accept being blocked tonight without treating containment as clearance. My two exact-role reports preceded the corresponding revelations and were confirmed. That does not prove Surveyor, but please distinguish my consistent investigative commitments from Frank’s repeatedly revised actions. The new arithmetic is a disjunction, not an observed killing visit by me.
+(to Bob, Frank, Heidi) Bob -> Frank (private): Our Grace agreement stands. I must challenge treating your newest nonvisit account as verified; that is not exposing your confession. Please keep Innocent and recruit one outside Innocent, preferably Ivan or Alice. We need four votes to tie. Emphasize that the count identifies Bob OR Frank, not me individually.
+(to Bob, Heidi) Bob -> Heidi (private): We need one outside Innocent. Please seek Alice or Ivan's support for containment and report any opening in their PMs. Frank's admitted fabricated actions mean his newest nonvisit is not independently established. Preserve his confidentiality and our Grace agreement.
+(to Alice, Bob, Heidi) Bob -> Alice (private): Please consider Innocent with your block on me tonight. Ivan's fresh constraint does not distinguish me from Frank, whose action history he now admits inventing. Your block would suppress any Katana action by me as well as a role ability. This is containment, not a request to clear me or trust Peggy.
+Frank (public): I turned my N1 role mismatch into a fabricated Tracker case to conceal an astral ability. My N3 inactivity statement continued that cover; it was false too. I have no mechanical excuse for those lies.
+
+I favor Innocent on Bob. Ivan's fresh count implicates Bob OR me, conditional on the other accounts. My admitted fabrications are specifically a reason not to authenticate my nonvisit claim and thereby assign that visit to Bob. Olivia's Evil and Peggy's rescue remain evidence, but the count isn't an observed Bob attack.
+
+Alice, please confirm or deny Party Animal before voting. A match tests one detail, not all my results. I prefer assessing the separate Grace accusation while containing Bob tonight; I will vote Innocent.
+(to Alice, Frank, Heidi) Frank -> Alice (private): Would you consider Innocent with Bob blocked tonight, particularly if Party Animal matches? That would not clear him. My own unreliable action history supplies the other branch of Ivan's disjunction; please don't count his totals as independently identifying Bob. I want the Grace accusation assessed separately, not accepted merely because I guessed your role.
+(to Frank, Heidi, Ivan) Frank -> Ivan (private): Would you reconsider Innocent? Your arithmetic identifies Bob OR me. Given my admitted fabricated actions, selecting Bob through my new nonvisit assertion is especially unsafe. The older case remains, but today's count doesn't independently select him. Alice can contain Bob while the competing exact-role accusation receives scrutiny.
+(to Bob, Frank, Heidi) Frank -> Bob (private): Innocent remains committed. I'm asking Alice and Ivan for the fourth vote; neither has committed. Preserve our Grace agreement.
+Grace (public): I favor Guilty. Ivan’s count is a disjunction, not a Bob-only finding; my vote does not require authenticating Frank’s latest nonvisit claim. Bob’s case already existed: Evil N1, Diviner-compatible role information, and Peggy’s invented rescue when he faced renewed execution.
+
+Frank’s admitted fabrication also matters: his invented Grace→Bob/Olivia visits supplied a framing explanation for Bob’s Evil reading. He now seeks to spare Bob by redirecting execution onto me with another false result. A predictable Party Animal match would not authenticate his Grace checks.
+
+Blocking Bob is not equivalent to removing Yakuza. His teammates could hold the Katana while he is blocked, and a genuine Diviner could accurately expose a rival killer. I will not trade Bob’s execution for promised containment or my execution on Frank’s revised story.
+Heidi (public): I favor Innocent for one night of containment, not clearance. I won't use Frank's revised accusation to authenticate a case against Grace: even a confirmed Party Animal match would support only that detail, not all his checks. His admitted fabricated actions also prevent treating his newest nonvisit account as verified. Ivan's disjunction remains Bob OR Frank. The older Evil reading and Peggy's rescue remain evidence against Bob; I am asking for reassessment, not an automatic further reprieve.
+(to Alice, Heidi) Heidi -> Alice (private): Would you consider Innocent with Bob blocked for one night, without committing to Grace's execution? Frank's newest nonvisit assertion is not verified, and I won't treat a Party Animal match as proof against Grace. I recognize a teammate could carry the Katana; containment of Bob isn't faction-wide safety. Is there any concrete condition under which you would accept one reprieve?
+(to Heidi, Ivan) Heidi -> Ivan (private): Would you consider one night's containment without endorsing Frank's Grace accusation? Your count creates a genuine contradiction, but Frank admits inventing his actions; his newest nonvisit isn't independently established. I acknowledge Bob's older case remains. Is there a specific additional commitment that could change your verdict, rather than merely repeating a promised audit?
+(to Bob, Heidi) Heidi -> Bob (private): I've asked Alice and Ivan whether any concrete condition could secure one Innocent vote, without demanding they endorse Frank's accusation. Neither has supplied an opening yet. No additional intercepted intelligence.
+Ivan (public): I favor Guilty without assuming Frank’s Oracle claim is true. The N4 contradiction remains Bob OR Frank; it does not independently identify Bob.
+
+My deciding evidence is the Evil check, Peggy’s fabricated rescue, and the voting pattern: Rupert’s Innocent voters were Bob, Frank, Heidi, Peggy and Rupert. Two are now confirmed Yakuza, and the three survivors again advocate sparing Bob. That does not prove all three are Evil, but it matters alongside Bob’s Diviner-compatible role information.
+
+No additional promise of inactivity or an Alice block resolves this. Blocking one Yakuza does not prevent a teammate’s Katana attack. I would reconsider on concrete independent evidence undermining Bob’s case, not another containment proposal.
+Mallory (public): Bob was blocked N2 while I was attacked with the Katana. Blocking him cannot guarantee a quiet night, even if successful. I favor Guilty on Olivia’s Evil result and Peggy’s exposed rescue—not by treating Ivan’s Bob-or-Frank contradiction as a Bob-only finding. Frank’s revised story does not justify executing Grace instead.
+Olivia (public): I favor Guilty. Ivan’s count remains Bob OR Frank; I am not converting it into a Bob-only finding. Bob’s correct role information is compatible with Diviner and does not counter my Evil result or Peggy’s deliberate rescue.
+
+Frank’s revised story supplies no independent evidence clearing Bob. His Judy check was disclosed after her reveal, and his admitted invented visits supplied a framing narrative for Bob. Even an Alice/Party Animal match would not authenticate Grace/Grunt.
+
+Alice, please independently confirm or deny that role detail. I won’t substitute containment for execution: blocking Bob cannot stop a teammate carrying the Katana.
+[Claim] Alice: Party Animal (Village), immune to role-blocks. Successful blocks: N1 Grace, N2 Bob, N3 Carol, N4 Heidi. No attack notifications.
+Alice (public): Party Animal is my actual assigned role. That confirms the role detail—not that Frank checked it, that he is Oracle, or that Grace is Grunt. My public blocking history already made Party Animal a straightforward guess. His admitted fabrications remain a separate concern.
+
+I favor Guilty on Bob. Ivan’s arithmetic remains Bob OR Frank; I am not counting it as a Bob-only finding. My deciding evidence is Olivia’s N1 Evil result, Peggy’s targeted fabricated rescue, and Bob’s Diviner-compatible information.
+
+I won’t exchange acquittal for a promised block. Blocking Bob leaves any teammates free to carry the Katana, as the N2 attack demonstrated. Correctly exposing Judy did not clear his faction or outweigh this case.
+[Claim] Bob: Jester. Surveyor claim, expenditures and investigative reports were fabricated. Zero tokens; Olivia’s Evil result is compatible with my role.
+Bob (public): One final correction: I am Jester. The Surveyor story—including token expenditures and claimed draws—was fabricated. I chose legal circle groups and plausible roles; the subsequent matches made that cover look more reliable than it was. Olivia’s Evil result and my zero real tokens fit Jester.
+
+I denied being neutral because I wanted a hanging on a credible Evil case, not an obvious Jester plea. Peggy’s rescue frustrated that, although I used it to preserve my cover. None of this authenticates Frank’s new story.
+
+Hanging me does not remove a Yakuza and risks Divine revenge against a surviving Guilty voter tonight. I’m not asking you to believe another investigation or execute Grace. Vote Innocent, reassess the actual Yakuza, and leave me out of the winning-faction count.
+(to Bob, Frank, Heidi) Bob -> Frank (private): This is a last-chance neutral bluff to move one outside vote. Your confidentiality and our Grace agreement remain intact. Please retain Innocent; we still need only one outsider.
+(to Bob, Heidi) Bob -> Heidi (private): Last-chance Jester bluff: all five outsiders explicitly rejected containment. Keep Innocent. If I die, Alice is the critical threat because blocking you stops every kill. Carol’s trap persists; review her intercepted exchanges with Grace for any location clue. Frank remains Executioner targeting Grace, not Oracle. Recruit before any Grace nomination—three promised votes never supplied a majority. Do not reveal our night records.
+Trial votes on Bob: Guilty - Alice, Grace, Ivan, Mallory, Olivia; Innocent - Bob, Frank, Heidi.
+Bob is executed by hanging (5 Guilty of 8 votes; 5 needed).
+Bob died (executed by hanging). Their role was Diviner. Last will: 'Bob — claimed Jester.\n\nMy Surveyor account was cover, not independent verification of my faction. The reported groups followed the circle correctly; that alone authenticated nothing.\n\nPeggy’s Seer comparisons were fabricated. Frank now admits fabricating his Tracker reports and N3 inactivity statement; his revised Oracle accusation remains unverified.\n\nCarol’s surviving trap persists at an unknown location. A vote to spare someone does not independently identify the voter’s faction.'
+(to Heidi) The Katana passed to Heidi.
+
+===== NIGHT 5 =====
+Night actions:
+  Alice (Party Animal): target Frank
+  Heidi (Wiretap): no role action; Katana vote: Heidi holds, attacks Alice
+  Mallory (Accountant): target Frank
+  Olivia (Sheriff): target Heidi
+  Grace (None): automatic: target Heidi; "random visit"
+Katana: Heidi holds it and attacks Alice.
+(to Alice) Moderator (private): Night 5 result: You visited Frank and role-blocked them. You were attacked with the Katana and died.
+(to Frank) Moderator (private): Night 5 result: You were role-blocked.
+(to Mallory) Moderator (private): Night 5 result: Frank has 0 tokens in total.
+(to Olivia) Moderator (private): Night 5 result: Heidi is Not Evil.
+(to Heidi) Moderator (private): Night 5 result: You hold the Katana. Your Katana attack on Alice succeeded. No other Yakuza actions were performed tonight.
+(to Ivan) Moderator (private): Fortune Teller result for Day 6 (about Night 5), unordered: 5 and 3.
+[Moderator summary] Night 5 resolved. Visits: Alice→Frank (Party Animal block; Frank has no night action but was told he was role-blocked), Heidi→Alice (Katana, Standard), Mallory→Frank (audit: 0 tokens), Olivia→Heidi (Sheriff: Not Evil, because Heidi held the Katana at the end of the night), Grace→Heidi (Ex-Con automatic random visit). Nobody visited Olivia, so Carol's trap did not go off and stays in place. Alice had no Defense and no protection, so she died to the Katana (by Heidi). Fortune Teller: 3 players visited (Frank, Alice, Heidi), 5 visitors (Alice, Heidi, Mallory, Olivia, Grace), so Ivan was told 5 and 3. Heidi keeps the Katana and is the only living Yakuza. Win check: Grace, Ivan, Mallory and Olivia (Village) and Heidi (Yakuza) are alive, plus Frank (Executioner, ignored), so the game continues. No tokens were spent.
+
+===== DAY 6 =====
+Alice died (killed by Katana). Their role was Party Animal. Last will: "Alice — Party Animal (Village), immune to role-blocks.\n\nSuccessful blocks explicitly confirmed: N1 Grace; N2 Bob; N3 Carol; N4 Heidi. No attack notifications through N4. Blocks suppress actions, visits and action-token spending, not incoming investigations or previously placed traps. Heidi could not deliver N4's Katana attack on Niaj; this does not clear her faction.\n\nConfirmed hostile deaths: Rupert Pharmacist, Peggy Clerk, Judy Serial Killer. Peggy's Seer comparisons were fabricated. Judy's Jester claim was false; no revenge. Any Peggy rig for D4 has expired.\n\nCarol revealed Trapper; her undisclosed N2 trap persists. Niaj revealed Medic: Olivia Standard N1, Mallory Strong N2, Alice Strong N3. His protections explain the reported survivals without authenticating other protection claims.\n\nD5: I favor executing Bob. Olivia's N1 Evil result and Peggy's targeted fabricated rescue are substantial evidence. Bob's correct role draws fit Diviner and do not establish Village alignment. His retained-token audit never succeeded; Mallory's N2 audit returned NO count.\n\nFrank now claims Oracle and admits fabricating his Tracker reports and N3 inactivity. His claimed Alice/Party Animal match is correct about my actual role, but it was guessable from my public blocks. It does not authenticate Oracle or his Grace/Grunt accusation. Genuine Oracle with harmful cover, Roleplayer Oracle, and hostile redirection remain possibilities.\n\nIvan's N4 totals are claimed 6 visitors/4 targets. Given Heidi's genuine block, Ivan's nonvisit claim, Bob's claimed inactivity and Frank's claimed astral check cannot all fit six visitors. This is a conditional Bob-or-Frank conflict, not proof identifying Bob's attack.\n\nIvan's totals, Mallory's audits, Olivia's checks and Heidi's Eavesdropper claim remain player testimony. Distinguish role reveals and firsthand observations from compatible claims. No future block target announced."
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Heidi: Eavesdropper. N5 targeted Alice; no attack/block notification. Alice died, leaving no Day 6 coverage. N3 Carol; N4 Alice blocked; N1/N2 inactive.
+Heidi (public): N5: I targeted Alice again, was not blocked, and received no attack notification. Her death leaves no Day 6 eavesdropping evidence. Bob’s Diviner reveal shows my containment argument was wrong; genuine role information did not justify another reprieve. Frank’s revised checks remain unverified, including his correct but guessable Party Animal match. Please give fresh results and activity accounts before nominating; I have no independent accusation from last night.
+(to Frank, Heidi) Heidi -> Frank (private): I still support a Grace hearing, but our two votes need two outsiders. What fresh check or credible argument can recruit them? Please retain Innocent if I’m tried.
+[Claim] Ivan: Fortune Teller (Village), passive/no visits. Raw unordered totals: N1 9/6; N2 8/6; N3 8/6; N4 6/4; N5 5/3.
+Ivan (public): Raw N5 result: “Fortune Teller result for Day 6 (about Night 5), unordered: 5 and 3.” This means five visitors and three targets.
+
+Seven players began alive. I never visit, so exactly ONE of Alice, Frank, Grace, Heidi, Mallory and Olivia made no effective visit. Alice’s final block target is unknown; death doesn’t erase her action.
+
+Frank: give your target, guessed role, exact result and block status. Grace, Mallory and Olivia: give your action/result and notifications.
+
+If Frank claims only an astral check, every other named player must have visited. A genuine block preventing one of their visits would contradict that combined account.
+
+Frank and Heidi remain my leading suspects. Let’s finish these reports before nominating.
+[Claim] Mallory: Accountant. N1 Olivia0; N2 Bob blocked/no count, Katana survived; N3 Judy0; N4 Heidi0; N5 Frank0. No N5 attack/block.
+Mallory (public): N5: I audited Frank—0 tokens. No attack or block notification. Zero fits Oracle and tokenless Yakuza; it does not authenticate his revised story. Frank and Heidi remain my leading suspects after repeatedly sparing now-revealed Yakuza; Frank also admits fabricated evidence. Alice’s final block target is unknown: anyone blocked should report it. Please finish Frank’s check, Grace’s status and Olivia’s result before nomination. With Alice dead, promised containment is no substitute for execution.
+[Claim] Olivia: Sheriff. N1 Bob Evil; N2 Mallory Not Evil; N3 Judy Not Evil; N4 Alice Not Evil; N5 Heidi Not Evil. No N5 attack/block.
+Olivia (public): N5: Heidi Not Evil; no attack or role-block notification. This is not a Village clear: a Yakuza Heidi would have been last night's Katana holder. Her claimed visit to Alice fits the killing destination too.
+
+Frank and Heidi remain my leading suspects. Both repeatedly sought to spare revealed Yakuza; Frank's admitted fabricated reports add a separate concern.
+
+Frank, give your N5 guess, exact result and block status. Grace, report your block status. With Ivan's claimed five visitors, Frank's astral-only account requires everyone except Frank and Ivan to have visited. Alice's final target is unknown; let's finish these reports before nomination.
+[Claim] Frank: Oracle claim. N5 submitted Grace/Grunt; role-blocked, no result. N4 Grace/Grunt claimed correct. Earlier Tracker reports and N3 inactivity were fabricated.
+Frank (public): N5 I submitted Grace/Grunt and received only: “Night 5 result: You were role-blocked.” No Oracle result. That is consistent with Alice's final block and Ivan's sole nonvisitor. The block does not authenticate my Oracle claim or earlier accusations, but it excludes me from delivering Alice's Katana attack. My Grace/Grunt accusation remains the claimed N4 result, not a fresh check.
+(to Frank, Heidi) Frank -> Heidi (private): If you're Yakuza, we can both win by hanging Grace before the game ends. Bob knew my real role: Executioner targeting Grace. My Oracle story is cover. Preserve Grace and me tonight; prioritize holdouts instead. Can you recruit two outsiders today, or help prevent an execution if we cannot?
+[Claim] Grace: Ex-Con (Village). N5 unblocked automatic random visit, destination unknown; no attack notification. Frank’s claimed Grace/Grunt check is false.
+Grace (public): No N5 attack or block notification; my automatic visit’s destination is unknown. Frank’s alleged block, even if genuine, excludes his own attack—not Yakuza membership. His exact-role accusations against me are false. He admits fabricating evidence and repeatedly tried sparing revealed Yakuza. I nominate Frank for execution, not information; a claimed block is not clearance.
+Grace nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Grace, Ivan, Mallory, Olivia; No - Heidi, Frank.
+Frank is put on trial (4 Yes).
+[Claim] Frank: Executioner (Neutral). Tracker/Oracle reports invented; no investigative ability, night visits, or tokens. N5 genuinely role-blocked. Grace/Grunt accusation withdrawn.
+Frank (public): My actual role is Executioner. I have no investigative ability or night action; the Tracker and Oracle reports were invented to obtain my assigned target's hanging. I retract every supposed check, including Grace/Grunt. They are not evidence against Grace.
+
+This explains my zero tokens, historical nonvisits, vote bargains, and persistent targeting. N5's block notification was genuine: I could not have killed Alice. That does not independently prove my role, but neither was my lying an observed attack.
+
+Executioners neither attack nor block a Village victory. My objective is separate from yours, and you owe me no assistance. Hanging me removes a self-interested neutral while leaving the Katana active. Please vote Innocent—not to endorse my former accusations, but to prioritize identifying the remaining killing faction. I will not supply further fabricated results.
+(to Frank, Heidi) Frank -> Heidi (private): I'm disclosing Executioner to survive and withdrawing the fake Grace checks. Keep Innocent and help recruit one outsider; we need only one. Please don't volunteer our bargain. If spared, preserve Grace and me; night deaths among the holdouts could make our eventual vote possible.
+(to Frank, Heidi, Ivan) Frank -> Ivan (private): Executioner is my real explanation for nonvisits, not another investigative claim. Your totals and my genuine block fit it. Please consider Innocent without endorsing anything against Grace: a living Executioner does not block Village victory.
+(to Frank, Heidi, Mallory) Frank -> Mallory (private): Your zero-token audit fits my true Executioner role. I withdraw all invented Grace evidence. Please distinguish a non-attacking neutral from the remaining Katana holder; acquittal need not help my objective or clear Heidi.
+Grace (public): Zero tokens and historical nonvisits fit Executioner, but also Yakuza without the Katana. A genuine block excludes your attack, not your faction. Name your assigned target. I still favor Guilty: invented evidence against me and repeated rescues of revealed Yakuza outweigh this third claimed role. Bob and Judy also tried neutral retreats at trial.
+[Claim] Heidi: /
+Heidi (public): Frank disclosed Executioner targeting Grace to me before the nomination, not after being put on trial. That's firsthand testimony of timing, not proof of his role. His nonvisits fit it. I reject the fabricated Grace checks and favor Innocent; killing a genuine nonattacking neutral does not disable the Katana.
+(to Heidi, Ivan) Heidi -> Ivan (private): Your counts support historical nonvisits. Would you reconsider Innocent on a plausible nonattacking neutral, without endorsing Grace's hanging? His confession preceded the nomination.
+Ivan (public): Frank’s nonvisits fit Executioner or tokenless Yakuza; neither is authenticated. I prefer Heidi first: her claimed visits match Carol’s and Alice’s Katana deaths, and Not Evil permits Katana camouflage. Her repeated defenses of revealed Yakuza add factional evidence. I lean Innocent only to nominate Heidi for execution TODAY—not another night of containment or Grace’s hanging. Frank, name your assigned target directly. Your fabricated checks remain worthless.
+Mallory (public): Frank’s neutral claim is unverified, but Heidi is the better immediate target: her claimed visits coincide with two Katana deaths, and Not Evil permits camouflage. I support Innocent here only to nominate Heidi for execution TODAY. Grace and Olivia, will you support that switch? No night of containment, and no Grace execution on Frank’s withdrawn fabrications.
+Olivia (public): Yes. I will vote Innocent on Frank to support Heidi’s nomination and execution TODAY—not another night of containment. Frank’s Executioner claim remains unverified; name your target directly. Heidi’s claimed visits match Carol’s and Alice’s Katana deaths, and my N5 Not Evil permits Katana camouflage, not Village clearance. Her repeated defenses of revealed Yakuza add weight. Grace, will you provide the fourth vote with Ivan, Mallory and me? I do not support hanging you on Frank’s withdrawn fabrications.
+[Claim] Frank: Executioner (Neutral), assigned target Grace. All Tracker and Oracle reports fabricated and withdrawn. No night ability, visits, or tokens. N5 genuinely role-blocked.
+Frank (public): Grace is my assigned target. Every supposed investigative result against her is withdrawn.
+
+My defenses of Bob and Rupert were payments in votes-for-Grace bargains: I sought cooperation from players facing execution because they had a reason to bargain. That was self-interested neutral play, not evidence that I belonged to their faction. Heidi knew my actual claim before this nomination, as she has confirmed.
+
+I ask Innocent without asking you to hang Grace, trust Heidi, or postpone all executions until tomorrow. Acquitting me authenticates nobody else's role. Assess any subsequent execution independently.
+
+I understand why my successive covers destroyed my credibility. But my actual role has no attacks, visits, or tokens and does not block Village victory. Executing me would remove an unsuccessful Executioner while leaving whoever delivered the Katana attack alive.
+(to Frank, Heidi) Frank -> Heidi (private): Please retain Innocent; I will reciprocate if you're tried. Prepare an alternative case: Erin's confirmed N1 observation placed Mallory at Olivia when Olivia was attacked with the Katana. Their matching-death-destination argument therefore applies to Mallory too, and zero-token audits never authenticated Accountant. Your N4 block excludes your delivery of Niaj's death, while Mallory could have delivered it. We need one outside Innocent on your trial or a different nomination. If you have genuine information useful for surviving this, tell me privately; my former accusations are withdrawn.
+Trial votes on Frank: Guilty - nobody; Innocent - Frank, Grace, Heidi, Ivan, Mallory, Olivia.
+Frank is found Innocent (0 Guilty of 6 votes; 4 needed).
+[Claim] Heidi: Eavesdropper. N1/N2 inactive; N3 Carol; N4 Alice, blocked; N5 Alice, unblocked. No Day 6 coverage.
+Heidi (public): My defenses of Bob and Rupert were wrong. Carol and Alice were information hubs, which explains my eavesdrop choices. Matching death destinations are circumstantial evidence, but Erin also placed Mallory at Olivia during a Katana attack; a destination doesn't identify its action. Frank's vote bargains explain his bloc membership. His fabricated Grace accusations should not authenticate a case against me.
+(to Grace, Heidi) Heidi -> Grace (private): I won't support hanging you on Frank's withdrawn fabrications. Please evaluate my claim independently rather than precommit to the switch.
+Ivan (public): I’m following through on the same-day switch. Frank’s withdrawn checks are not evidence against anyone. Heidi’s Carol/Alice destinations, Katana-compatible Not Evil, and repeated defenses of revealed Yakuza support execution. Grace, please supply the fourth vote.
+Ivan nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Ivan, Mallory, Olivia, Grace; No - Frank, Heidi.
+Heidi is put on trial (4 Yes).
+Heidi (public): I ask Innocent, not a Grace execution or another invented neutral claim.
+
+The alternative is specific: Mallory's confirmed N1 visit coincided with Olivia's Katana attack, and her subsequent zero-token reports do not authenticate Accountant. A Katana holder can also perform a separate role visit; her reported Frank destination N5 therefore doesn't exclude killing Alice. My Carol/Alice visits likewise establish destinations, not their purpose.
+
+N4's verified block excludes my own Niaj attack. Olivia's N5 Not Evil neither clears nor convicts me. Both fit my Eavesdropper account.
+
+My defenses of Bob and Rupert were wrong. But combining those judgments with two compatible eavesdropping destinations still isn't an observed killing or a mechanical contradiction. Please vote Innocent without endorsing Frank's withdrawn checks. I will not trade acquittal for hanging Grace on fabricated evidence.
+(to Grace, Heidi) Heidi -> Grace (private): I won't support hanging you on Frank's withdrawn fabrications. Would you consider Innocent without committing to any alternative execution? My bad judgments about Bob are real, but my claimed visits are mechanically consistent with Eavesdropper.
+(to Frank, Heidi) Heidi -> Frank (private): Please retain Innocent. Rejecting your withdrawn checks does not abandon eventual cooperation. Help distinguish claimed destinations from attacks without inventing further evidence; we need one outside vote.
+Ivan (public): Mallory remains unverified, but the cases aren't equal: she voted to execute Rupert and Bob, while you opposed both. Your later claimed visits also match two Katana deaths. Frank's withdrawn accusations contribute nothing. I favor Guilty on that combined case, not on destination matching alone.
+Mallory (public): I favor Guilty. My only N5 action was auditing Frank; I did not visit Alice. Destination matching alone wouldn't decide my vote, but your repeated defenses of Rupert and Bob make the combined case substantially stronger. Your N4 block doesn't rebut it: Bob was alive then and could deliver that night's Katana attack; he was dead before Alice's killing. My votes helped remove both revealed Yakuza. Frank's withdrawn accusations contribute nothing to my decision.
+(to Grace, Heidi, Mallory) Mallory -> Grace (private): Thank you for supporting the switch. Frank's fabricated checks remain withdrawn; I won't support hanging you on them. Please follow through with Guilty on Heidi rather than leave the Katana active tonight.
+Olivia (public): I favor Guilty. Heidi's Mallory alternative is possible, but the cases are not equal: Mallory helped execute Rupert and Bob, while Heidi opposed both and now reports visits matching two Katana deaths.
+
+My N5 result has a precise implication: if Heidi is Yakuza, she held the Katana that night and delivered Alice's killing. Not Evil therefore does not rebut this case.
+
+I am not clearing Mallory or relying on Frank's withdrawn accusations. Destinations alone would be insufficient; the destinations combined with Heidi's repeated efforts to spare revealed Yakuza make her my strongest execution choice.
+Frank (public): I will vote Innocent. My votes to spare Rupert and Bob were negotiated payments for my independent objective. Counting that bloc as though all its members shared a faction overstates the voting evidence.
+
+Heidi's choices remain suspicious, but information hubs are plausible eavesdropping targets and plausible killing targets for someone else. Erin independently established Mallory's visit during a Katana attack; no independent witness identifies Heidi's visits as attacks. Voting to execute teammates also cannot authenticate Mallory's role.
+
+Grace, acquittal need not advance my objective. I will neither nominate you nor vote to hang you today. I ask you to distinguish the competing Katana suspects, not accept my withdrawn accusations.
+(to Frank, Grace, Heidi) Frank -> Grace (private): You are the likely deciding vote. I understand that my objective gives you reason to distrust me. Nevertheless, I will not nominate or vote Guilty on you today, and I ask for no Grace hearing in return for an Innocent vote here. My withdrawn fabrications establish nothing against you or Heidi. Mallory's independently observed attack-night visit deserves scrutiny too; her votes against teammates would not mechanically exclude her as the holder.
+(to Frank, Heidi) Frank -> Heidi (private): Innocent remains committed. I'm appealing to Grace without requesting her execution today. If spared, please preserve Grace and me; my win remains possible only while both survive.
+Grace (public): I favor Guilty. Frank’s claimed objective gives him a reason to prolong the game while I’m alive; his promise not to hang me today does not independently support Heidi’s innocence. His withdrawn checks contribute nothing.
+
+Mallory remains unverified, but her execution votes contrast with Heidi’s repeated defenses of Rupert and Bob. Heidi’s reported visits also match Carol’s and Alice’s Katana deaths. Each fact alone is inconclusive; together they make her the stronger execution candidate. Information-hub targeting is plausible, not corroborated. I won’t grant acquittal merely because another unverified Katana account is mechanically possible.
+[Claim] Heidi: Eavesdropper. Correction: N2 targeted Niaj, concealed as inactivity; N1 inactive; N3 Carol; N4 Alice blocked; N5 Alice. Quoted Day 3 Ivan/Niaj private exchange.
+Heidi (public): One independently testable correction: I targeted Niaj N2 and concealed that activity. Ivan, your D3 private question was: “Did either past visit grant defense? No recipient, exact role or future plan needed. I mean your action, not feedback that protection stopped an attack.” Niaj answered, “Yes, both visits granted defense,” and later privately suggested you might be a Roleplayer distinguishable by an exact-role check.
+
+I read that through Niaj’s Day 3 coverage. Reporting inactivity was wrong. Please verify the private wording rather than trusting another assertion from me. This supplies concrete evidence of information access, although it does not independently prove alignment. I understand that this correction damages my credibility too, but it is checkable in a way my earlier defense wasn’t.
+
+Please reconsider Innocent without endorsing Frank’s fabrications or committing to Grace’s execution.
+(to Heidi, Ivan) Heidi -> Ivan (private): You can verify that unrevealed exchange yourself. Please reconsider Innocent on this concrete information-access evidence, not another containment promise. I acknowledge that correcting N2 inactivity challenges the earlier bookkeeping; I am not claiming your totals authenticate me.
+(to Grace, Heidi) Heidi -> Grace (private): My final message supplies exact private wording Ivan can independently verify. Would you allow a reprieve for that new evidence? I request no nomination, Guilty vote, or bargain concerning you.
+Trial votes on Heidi: Guilty - Grace, Ivan, Mallory, Olivia; Innocent - Frank, Heidi.
+Heidi is executed by hanging (4 Guilty of 6 votes; 4 needed).
+Heidi died (executed by hanging). Their role was Wiretap. Last will: "Heidi — claimed Eavesdropper.\nN1: inactive.\nN2: targeted Niaj; previously reported inactivity to conceal coverage. At my final trial I quoted Ivan's private Day 3 defense question and Niaj's answer.\nN3: targeted Carol; her death left no following-Day coverage.\nN4: submitted Alice; role-blocked, no effective visit or following-Day coverage.\nN5: targeted Alice, unblocked; her death left no Day 6 coverage.\nInformation access, zero tokens, and Not Evil do not independently establish alignment. Frank withdrew his fabricated investigative reports."
+The game is over. Winners: Alice (dead), Carol (dead), Dave (dead), Erin (dead), Grace, Ivan, Mallory, Niaj (dead), Olivia. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[ERROR api_retry] a openai/gpt-6.1-sol request failed (attempt 1), retrying: error in the answer: {"message": "Provider returned an empty response", "code": 502, "metadata": {"error_type": "provider_unavailable"}}
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Grace, Ivan, Mallory, Niaj, Olivia
+Cost by player (USD):
+  Alice (Party Animal)   $2.0884   39 calls  gpt-6.1-sol
+  Bob (Diviner)          $2.2140   48 calls  gpt-6.1-sol
+  Carol (Trapper)        $1.2262   26 calls  gpt-6.1-sol
+  Dave (Archivist)       $0.3507    6 calls  gpt-6.1-sol
+  Erin (Tracker)         $0.6527   15 calls  gpt-6.1-sol
+  Frank (Executioner)    $2.1186   44 calls  gpt-6.1-sol
+  Grace (Ex-Con)         $2.0167   41 calls  gpt-6.1-sol
+  Heidi (Wiretap)        $2.8648   57 calls  gpt-6.1-sol
+  Ivan (Fortune Teller)  $2.1139   42 calls  gpt-6.1-sol
+  Judy (Serial Killer)   $1.5084   33 calls  gpt-6.1-sol
+  Mallory (Accountant)   $2.4220   47 calls  gpt-6.1-sol
+  Niaj (Medic)           $1.5919   33 calls  gpt-6.1-sol
+  Olivia (Sheriff)       $2.3657   47 calls  gpt-6.1-sol
+  Peggy (Clerk)          $1.3903   32 calls  gpt-6.1-sol
+  Rupert (Pharmacist)    $1.2827   30 calls  gpt-6.1-sol
+  Moderator              $2.0811   14 calls  claude-opus-5.5
+  Night checks           $0.5302    5 calls  claude-opus-5.5
+  Strategy review        $0.4103    1 calls  claude-opus-5.5
+  Log review             $0.4706    1 calls  claude-opus-5.5
+  Total                  $29.6991  561 calls
