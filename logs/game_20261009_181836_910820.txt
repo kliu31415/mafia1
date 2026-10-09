@@ -124,3 +124,37 @@ Nobody died last night.
 [Night check] Night 1: correct
 Speaking order today goes around the circle in seat order, starting with Dave.
 15 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Dave (public): No death N1. With 15 alive, that's a signal, not nothing: someone's kill was blocked, protected, or never fired. If you were role-blocked, you were told so — say it, because a block usually lands on an active role. Trackers, Lookouts, Sheriffs, Medics, Vigilantes: a failed or blocked action is our best lead; share it.
+
+Reads: Mallory's Ex-Con claim is mechanically consistent, and I currently lean Village on her. Carol's three opening PMs and thin answer remain the main oddity, but not vote-worthy alone. Peggy and Grace pressed me and Frank for a 'concrete reason' while giving little substance themselves — I'll watch that.
+
+I'm not nominating today; I'd rather hear claims and night results first.
+(to Dave, Frank) Dave -> Frank (private): On N1: I have a check that clears someone who's already claimed publicly. Holding it for now — no point painting a target. My actionable read: Peggy/Grace pressed us hardest for substance while giving little themselves, which is a classic Evil pattern. Who are you looking at?
+Erin (public): No personal results. A no-death night alone doesn't distinguish protection, roleblock, or a missing kill. Let's hear concrete results before building a case.
+[Claim] Frank: Sheriff. N1: Grace - Not Evil.
+Frank (public): Claiming Sheriff. N1: Grace — Not Evil. Keep in mind that the Katana holder, Serial Killer, and Arsonist also appear Not Evil to Sheriff checks, so it does not clear her across the board, but she is unlikely to be standard Yakuza. Grace pushed me yesterday, which is why I checked her.
+(to Dave, Frank) Frank -> Dave (private): I'm coming forward as Sheriff — Grace came back Not Evil. If you have an info role, be wary of Ritualist if you reveal exact roles, but don't hold back critical info if a wagon starts.
+Grace (public): Frank, your Not Evil result on me is consistent with me being Good. I hold a night result that contradicts Mallory's Ex-Con claim, so her claim is false. Frank, what was your N1 target besides me, and why did you call Mallory's Ex-Con claim something that 'reads Evil regardless'?
+Heidi (public): Frank's claim is consistent with independent evidence that he visited Grace N1; that confirms only a visit, not his role or action. Grace, give the exact result and mechanic contradicting Mallory's forced Ex-Con visit—what did you observe?
+[Claim] Ivan: Surveyor. N1: Bob, Carol, Dave group; one is Puppeteer, identity unknown.
+Ivan (public): I have a Surveyor result: N1 I surveyed Bob, Carol, and Dave; one of the three has the exact role Puppeteer, but I don’t know which. It’s a lead on the group, not grounds to single anyone out. Grace, what result contradicts Mallory’s claim?
+Judy (public): Ivan's result narrows it to Bob, Carol, and Dave but doesn't identify the Puppeteer; it's a lead for follow-up, not yet a vote. Grace, please give the exact result and why it contradicts the Ex-Con's automatic visit, rather than just the conclusion. No blind nomination yet.
+Mallory (public): For clarity, I wasn’t role-blocked N1, so my automatic Ex-Con visit happened; I simply don’t learn whom. Grace, give the exact result and target. A valid Tracker on me should see one visit, not none. Ivan’s Puppeteer lead is separate: Bob, Carol, and Dave should address it.
+Niaj (public): No nomination from me today. Frank's Sheriff claim (Grace Not Evil) and Ivan's Surveyor claim (a Puppeteer among Bob, Carol and Dave) are the two checkable leads. I want Frank and Ivan to keep reporting results, and Grace to give her exact result, before anyone votes.
+(to Judy, Niaj) Niaj -> Judy (private): Frank claims Sheriff on Grace, Ivan claims Surveyor on Bob/Carol/Dave. I may guess one at night with a token. No nominations from us today unless I say so.
+Olivia (public): Grace, state your exact role and result regarding Mallory so town can verify the mechanic. Ivan's Surveyor ping puts a Puppeteer among Bob, Carol, and Dave—Carol and Dave already spoke, but Bob has yet to speak today. Let's hear Grace's specifics and Bob's response before pushing any nomination.
+Peggy (public): On N1 I role-blocked Carol, so whatever her night action was, it did nothing. Carol, what role would that have been? Frank, name your N1 target besides Grace. Ivan's group is Bob, Carol and Dave, so Bob should answer before any votes.
+Rupert (public): Grace, please give the exact result and how it contradicts Mallory’s claim. If you tracked Mallory, say whom she visited; an unblocked Ex-Con must visit someone. Peggy, what role-block action did you use on Carol? Carol, what action was stopped? Bob should address Ivan’s lead.
+Alice (public): Bob is up next and needs to address Ivan's Surveyor ping on {Bob, Carol, Dave}. Grace, please state your exact role and result regarding Mallory before we speculate. Also, Peggy, please clarify whether your roleblock claim is Party Animal. Let's see what Bob says before considering any nomination.
+Bob (public): Bob here. Ivan's Surveyor ping lands on me, so first things first: I am not the Puppeteer — I have no night action and no role-block notice from N1. That puts the Puppeteer at Carol or Dave, and town should get a check on both rather than hang off a group ping alone.
+
+Grace: give the exact role, target and result on Mallory, not just the conclusion, so we can actually test the Ex-Con mechanic.
+
+Frank: was Grace your only N1 check, and did you learn anything else?
+
+Note that Frank's Not Evil on Grace does not clear her: the Katana holder, the Serial Killer and the Arsonist all read Not Evil, so Grace could still be the N1 Katana holder.
+
+Peggy's N1 block on Carol matters — a Puppeteer blocked that night spends no token, so Carol showing no puppet today is consistent with her being the Puppeteer, not clearing.
+
+Holding my vote until Grace answers.
+[ERROR player_error] Carol (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): "acker.\n\nHmm, actually let me keep it vague-ish but claim Tracker. Risk of counter-claim. Let me weigh: if a real Tracker exists and counters, I'm in a 1v1 and likely hanged. If no Tracker, I'm safer ("

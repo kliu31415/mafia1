@@ -1,0 +1,46 @@
+Setup:
+  Alice    seat 1  Arsonist          deepseek/deepseek-v4.1-flash
+  Bob      seat 2  Medic             openai/gpt-6-luna-pro
+  Carol    seat 3  Puppeteer         google/gemini-3.8-flash
+  Dave     seat 4  Mortician         anthropic/claude-haiku-5.5
+  Erin     seat 5  Archivist         anthropic/claude-haiku-5.5
+  Frank    seat 6  Sheriff           openai/gpt-6-luna
+  Grace    seat 7  Veteran           google/gemini-3.8-flash
+  Heidi    seat 8  Seer              openai/gpt-6-luna-pro
+  Ivan     seat 9  Vigilante         anthropic/claude-haiku-5.5
+  Judy     seat 10 Accountant        deepseek/deepseek-v4.1-flash
+  Mallory  seat 11 Ballot Stuffer    openai/gpt-6-luna
+  Katana starts with Carol
+Tips from past games given to: Bob (tips/tips.md), Dave (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Heidi.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Heidi (public): Everyone should give one named suspect with a concrete reason as discussion develops. Track votes separately, and don't treat nominating someone as proof they deserve a Guilty vote.
+Ivan (public): Ivan here. No reads yet, so I won't name anyone on first impressions. I'll track who votes against their own stated reads, and I'd like each player to give one concrete reason for any suspect they name.
+Judy (public): No reads yet. I'll add one caution: early role claims are cheap for the Yakuza, so judge people by vote records and reasons, not claims. I'll be tracking who pushes trials without evidence.
+Mallory (public): Agreed: I'll track concrete reasons and vote alignment before supporting any trial.
+Alice (public): Agreed on tracking vote records over claims. I'll hold off naming a suspect until someone's votes contradict their stated read. On Day 1, I'm more suspicious of silent players than loud ones.
+(to Alice, Bob) Alice -> Bob (private): Bob—no reads yet. I'll compare notes with you as the day goes; ping me if you spot votes contradicting a stated read.
+Carol (public): I agree with focusing on voting consistency over early claims. Alice reaching out to Bob privately right away is worth keeping in mind, but let's hear from the rest of the circle first.
+Dave (public): Dave here, no hard reads yet. Alice's early PM to Bob is the only concrete thing so far; Alice, what was it about?
+Erin (public): Erin here, no reads yet. Dave's question is fair: Alice, what was the PM to Bob about? I'll track whether answers match vote records.
+Frank (public): Alice's PM is a weak lead, not proof; Alice and Bob should explain its context. Dave and Erin are both pressing it, so I'll watch whether their reasons are independent. For now, let's name suspects only with concrete reasons and avoid rushing a trial.
+Grace (public): Agreed with Frank. Alice's PM is curious, but Dave and Erin jumping on it in lockstep is equally notable. Let's hear Alice and Bob's explanation before drawing conclusions.
+Ivan (public): Still no nomination from me. Alice and Bob, the Alice-to-Bob PM is the only concrete lead so far, so please say what it was about before we test anyone's votes.
+Judy (public): Alice and Bob still owe the circle the PM's content. A private greeting isn't trial-worthy, but refusing to give context is worse than the message itself. Dave, Erin and Ivan all pressed the same point—fine if independent, notable if not. I won't vote Yes for a trial today without a concrete reason.
+Mallory (public): The PM is a lead to ask about, not a reason to hang. Alice and Bob, please give context; Dave, Erin, and Ivan, what independent concern do you have beyond the PM?
+Alice (public): The PM to Bob was exactly what I said publicly: no reads yet, I offered to compare notes on votes that contradict a player's stated read. No hidden content, nothing to quote. Meanwhile four people pressed a harmless greeting as if it were evidence — that eagerness is more worth tracking than the message. Let's get real reads on the board; I'll name a suspect once I see someone's votes clash with their words.
+(to Alice, Bob) Alice -> Bob (private): Just a nothing ping originally, but the pile-on from Dave/Erin/Ivan in near-lockstep is the first real signal. Don't defend me too loudly — being seen as a pair makes us both targets. Track their votes; I'll do the same.
+Bob (public): One added data point: Alice's second PM to me shifted from comparing votes to advising me not to defend her too loudly because we'd look paired. That's not proof, but it makes her managing appearances a mild concern. Dave, Erin, Ivan: give your own named suspect and reason beyond the PM.
+Carol (public): Bob being upfront about Alice's coaching makes Bob look genuine here. Alice worrying about looking paired on Day 1 is definitely self-conscious, but let's see how Erin and Dave respond before turning mild optics into a trial.
+Dave (public): Bob's account is more specific than Alice's, but it's still tone. I need a vote contradicting a read before any Yes from me.
+Frank (public): The key issue now is the second PM: Alice, did you send that advice about looking paired? Bob, why raise it only after Alice spoke? Both accounts are worth testing, but neither alone proves alignment. Dave, Erin, Ivan: name an independent suspect.
+Grace (public): Bob being candid about Alice's advice leans town for him. Alice, did you send that coaching message, and if so, why worry about optics so early? I agree we shouldn't rush a trial, but Alice's explanation will be telling.
+Heidi (public): Alice, the unresolved point is Bob's specific account of your second PM advising him not to defend you too loudly. Your earlier explanation addressed the first PM, not this one. Did you send it? Bob, confirm whether that captures the wording. This is now my main lead, not proof.
+Ivan (public): Alice, give a direct yes or no: did you send Bob the 'don't defend me too loudly' PM? Bob, quote the exact wording if you can. I'll judge by vote records, not tone.
+Judy (public): Short version: Alice, you explained the first PM but never answered the second. Did you send the 'don't defend me too loudly' message — yes or no? If no, that's the first concrete contradiction today and I'd put a Yes on a trial over tone alone. Bob, quote the wording if you can so we can compare directly. Everyone: note who dodges this question.
+(to Grace, Judy) Judy -> Grace (private): Judy here. You and Frank are reading this sensibly — judging reasons over tone. Want to compare vote-tracking notes this day? I won't back a trial on optics, but Alice's unanswered second PM needs a direct answer before anything else.
+Mallory (public): The unresolved question is still whether Alice sent that second PM. Bob should quote its wording as closely as he can, and Alice should answer directly. The account is worth checking, but not proof by itself.
+Alice (public): Yes — I sent it: 'don't defend me too loudly, being seen as a pair makes us both targets.' Nothing about roles, no coordination scheme. I answered the first PM and ducked this one, so Judy's right that I dodged; that was optics, not a role. It was a slip. From here I'll judge today by vote records, not tone.
+(to Alice, Frank) Alice -> Frank (private): Frank — your read that Dave/Erin/Ivan pressed my PM in near-lockstep matches mine. Not accusing yet; track their votes with me and I'll reciprocate.
