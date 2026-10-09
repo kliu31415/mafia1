@@ -200,7 +200,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
                     f"games of this variant; use your own judgment):\n\n{tips}")
     earlier, current = game.history_split(p.name)
     own = f"\n\n---\n\nSeating order (clockwise): {order}.\n{role_briefing(game, p)}"
-    if earlier:
+    if earlier and not context:  # the post-game context has the whole game already
         own += ("\n\n---\n\nEverything you have seen in earlier phases (this phase's events are in the "
                 "next message):\n" + "\n".join(earlier))
     system = rules_system(rules, [cache_block(general), cache_block(own),
@@ -208,7 +208,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
     notepad = p.notepad or "(empty)"
     nights = night_history(game, p)
     seen = "\n".join(current) or "(nothing yet)"
-    user = ((f"What you have seen this phase so far:\n{seen}\n\n---\n\n" if earlier
+    user = (("" if context else f"What you have seen this phase so far:\n{seen}\n\n---\n\n" if earlier
              else f"Everything you have seen so far:\n{seen}\n\n---\n\n")
             + f"Public ledger (a summary of public facts so far):\n{game.public_ledger()}\n\n"
             + (f"Your night history (what you submitted each night, and your private results):\n{nights}\n\n"

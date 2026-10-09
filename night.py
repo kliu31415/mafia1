@@ -37,7 +37,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     for p in game.alive():
         if p.name not in actions and (auto := logic(p.role).automatic_action(game, p)) is not None:
             actions[p.name] = {**auto, "automatic": True}
-    game.log.write("night_actions", day=game.day, actions=actions, roles={p.name: p.role for p in actors})
+    game.log.write("night_actions", day=game.day, actions=actions,
+                   roles={name: game.player(name).role for name in actions})
 
     katana = tally_katana(game, actions)
     revote: dict[str, str | None] = {}  # Yakuza -> target, if there was a revote

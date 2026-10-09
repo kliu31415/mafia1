@@ -245,7 +245,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "nothing to add.\n" if trial else "")
             + (f"Your public message this turn is free up to {free_words} words; beyond that you "
                "pay only for the extra length.\n" if free_words else "")
-            + ("You may also replace your last will (free; null keeps it), e.g. to match a claim you make "
+            + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; null keeps it), e.g. to "
+               "match a claim you make "
                "today. It's shown to everyone if you die.\n" if writer is p else "")
             + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
                f"{CLAIM_WORDS} words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: "
@@ -294,7 +295,11 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
 
     if writer is p and isinstance(will := out.get("last_will"), str) and will.strip():
         p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
-    if isinstance(claim := out.get("claim"), str) and claim.strip():  # a Puppeteer may set the puppet's
+        if p.last_will != will:  # Sol's wills were cut 40 times unnoticed (game_20261009_152409_117630)
+            game.emit(f"(Program note: your last will was over {LAST_WILL_WORDS} words, so it was cut to its "
+                      f"first {LAST_WILL_WORDS}.)", [p.name])
+    # A claim with no letters or digits (Sol wrote "/" for "no change") keeps the old one.
+    if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim):  # a Puppeteer may set the puppet's
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
         if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message

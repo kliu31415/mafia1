@@ -280,3 +280,18 @@ def test_half_the_budget_left_carries_into_the_next_day(game_factory):
     assert budget["Alice"] == 4.0 + BUDGET_PER_ROUND
     assert budget["Bob"] == 1.0 + BUDGET_PER_ROUND
     assert budget["Carol"] == BUDGET_PER_ROUND
+
+
+def test_a_symbol_only_claim_keeps_the_old_one_and_a_cut_will_says_so(game_factory):
+    # Sol wrote "/" for "no change" and wills over the cap (game_20261009_152409_117630).
+    def decide(name, task, schema):
+        if name == "Alice" and "claim" in schema["properties"]:
+            return {"claim": "Sheriff" if "Day 1," in task else "/", "last_will": "word " * 400}
+        return None
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
+    run_day(game, players)
+    game.day = 2
+    run_day(game, players)
+    assert [c for _, c in game.claim_record["Alice"]] == ["Sheriff"]
+    assert game.player("Alice").last_will.count("word") == 300
+    assert any("your last will was over 300 words" in e.text for e in game.events if e.visible_to == {"Alice"})

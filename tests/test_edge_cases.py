@@ -678,3 +678,14 @@ def test_the_post_game_reveal_shows_each_private_message_once(game_factory):
     game.emit("Alice -> Bob (private): hi", ["Alice", "Bob"])
     game.emit("Alice sent Bob a private message.", ["Carol", "Dave", "Erin"], kind="notice")
     assert "hi" in full_log(game) and "sent Bob a private message" not in full_log(game)
+
+
+def test_post_game_prompts_carry_the_history_once(game_factory):
+    from feedback import post_game_context
+    from players import player_messages
+    game, _ = game_factory(TOWN4_GRUNT)
+    game.emit("Alice (public): day one remark", cat="chat", speaker="Alice", message="day one remark")
+    game.phase = "night"
+    game.emit("night happened")
+    text = str(player_messages(game, game.player("Alice"), "(rules)", "?", context=post_game_context(game)))
+    assert text.count("day one remark") == 1

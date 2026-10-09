@@ -64,7 +64,7 @@ Message prices during this trial (1.00x):
   400 words: public 11.67, private 2.92
   800 words: public 30.33, private 7.58
 This is a trial turn: prices are 1x whatever the round, and you also get a trial-only budget of 2.00, spent before your regular budget. Unspent trial budget is lost when this turn ends, but don't speak just to use it up: say nothing if you have nothing to add.
-You may also replace your last will (free; null keeps it), e.g. to match a claim you make today. It's shown to everyone if you die.
+You may also replace your last will (free, max 300 words; null keeps it), e.g. to match a claim you make today. It's shown to everyone if you die.
 You may also set your claim (free, max 30 words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
 Dave is on trial. This turn is only for discussion: after everyone has spoken, all players vote Guilty/Innocent in a separate, simultaneous vote.
 
