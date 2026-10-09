@@ -3,7 +3,7 @@
 import json
 from typing import Any
 
-from players import (LAST_WILL_SCHEMA, STR, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
+from players import (LAST_WILL_SCHEMA, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
 from events import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import logic
@@ -232,7 +232,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
             + extra)
-    fallback: dict[str, Any] = {"thoughts": "", "public_message": None, "private_messages": [], "nominate": None}
+    fallback: dict[str, Any] = {"public_message": None, "private_messages": [], "nominate": None}
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
         out = players.ask(p, task, schema, fallback)
@@ -246,7 +246,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
                              "can't chat, but you may nominate a player for trial (or null). Nominating costs "
                              f"{nomination_fee:.2f} from your budget ({p.speaking_budget:.2f}).")
-            nominate_schema = obj(thoughts=STR, nominate=nullable(name_enum(game.alive_names())))
+            nominate_schema = obj(nominate=nullable(name_enum(game.alive_names())))
             out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None})["nominate"]
     # A puppet's own nomination is private: the Puppeteer revising the messages neither sees nor pays for it.
     planned = total_cost(out if writer is p else {**out, "nominate": None})
@@ -329,7 +329,7 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     task = (f"{nominator.name} nominated {nominee}. Vote true (Yes) to put them on trial, false (No) "
             "otherwise. Voting is simultaneous: you can't see anyone else's vote, and all votes are "
             f"revealed publicly once everyone has voted. {nominator.name} votes Yes automatically.")
-    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"thoughts": "", "vote": False}) for v in others])
+    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in others])
     yes_voters = [nominator.name] + [v.name for v, o in zip(others, outs) if o["vote"]]
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
@@ -374,7 +374,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
             "simultaneous: you can't see anyone else's vote, and all votes are revealed publicly once "
             "everyone has voted.")
-    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"thoughts": "", "vote": False}) for v in voters])
+    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters])
     guilty = [v.name for v, o in zip(voters, outs) if o["vote"]]
     innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
     game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "

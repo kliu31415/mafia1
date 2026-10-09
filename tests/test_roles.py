@@ -427,9 +427,9 @@ def test_medic_briefing_spells_out_token_costs(game_factory):
     assert "yourself with Standard Defense costs 1 token" in role_briefing(game, game.player("Alice"))
 
 
-def test_ask_player_answer_is_kept_in_the_players_history_and_hides_their_thoughts(game_factory):
+def test_ask_player_answer_is_kept_in_the_players_history_and_hides_their_notepad(game_factory):
     def decide(name, task, schema):
-        return {"thoughts": "secret plan", "answer": "ignite"} if name == "Alice" and "answer" in schema["properties"] \
+        return {"notepad": "secret plan", "answer": "ignite"} if name == "Alice" and "answer" in schema["properties"] \
             else None
     game, players = game_factory(["Arsonist", "Vanilla Villager", "Grunt"], ScriptedClient(decide))
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")

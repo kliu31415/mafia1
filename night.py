@@ -48,7 +48,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         yakuza_chat(game, players, 1, "Agree on the Katana holder and target before the revote. "
                     + katana_majority_note(game))
         names = game.alive_names()
-        revote_schema = obj(thoughts=STR, katana_vote_holder=name_enum([y.name for y in yakuza]),
+        revote_schema = obj(katana_vote_holder=name_enum([y.name for y in yakuza]),
                             katana_vote_target=nullable(name_enum(names)))
         outs = players.ask_many([(y, "Revote on the Katana holder and the Katana target (or null). "
                                   + katana_majority_note(game),
@@ -62,13 +62,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         katana = tally_katana(game, actions)
     game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
     game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
-    # Without the players' private "thoughts": the moderator doesn't need them, and a prompt full of other
-    # models' reasoning looks like distillation to Anthropic's filter, which blocked Opus moderator requests
-    # ("duplicating model outputs", game_20261009_084630_739772 night 3).
-    submitted = {name: {k: v for k, v in a.items() if k != "thoughts"} for name, a in actions.items()}
     instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
-        f"{json.dumps(submitted, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
+        f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
         "Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, role-blocks R9, "
         "attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator frames). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "
@@ -121,7 +117,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
     """Free Yakuza chat in seat order (rules R8). Ends early once everyone says they're ready."""
     yakuza = game.yakuza()
     names = [y.name for y in yakuza]
-    schema = obj(thoughts=STR, message=nullable(STR), ready=BOOL)
+    schema = obj(message=nullable(STR), ready=BOOL)
     for rnd in range(1, rounds + 1):
         ready = []
         for y in yakuza:
@@ -129,7 +125,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
                 y, f"It is Night {game.day}. Yakuza chat, round {rnd} of at most {rounds}. {topic} "
                 f"Send a message (max {YAKUZA_MESSAGE_WORDS} words; longer is truncated) or null. Set "
                 "ready=true if you have nothing more to discuss; chat ends when everyone is ready.",
-                schema, {"thoughts": "", "message": None, "ready": True})
+                schema, {"message": None, "ready": True})
             if (msg := out.get("message") or "").strip():
                 if word_count(msg) > YAKUZA_MESSAGE_WORDS:
                     msg = truncate_words(msg, YAKUZA_MESSAGE_WORDS)

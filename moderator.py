@@ -250,7 +250,7 @@ class Moderator:
                 # Kept in the player's history, so later turns show what they chose.
                 text = f"The moderator asked you: {args['question']} You answered: {out['answer']}"
                 g.emit(f"Moderator (private): {text}", [p.name], cat=RESULT, message=text)
-                return {"answer": out["answer"]}  # not the player's private thoughts
+                return {"answer": out["answer"]}  # not the player's notepad
             case "end_phase":
                 return {"ok": True}
             case "flag_issue":

@@ -127,7 +127,7 @@ def test_an_answer_that_breaks_its_schema_is_an_error_and_still_costs(tmp_path):
     from llm import schema_errors
     from players import VOTE_SCHEMA
     from tests.conftest import ScriptedClient
-    assert schema_errors({"thoughts": "", "vote": "yes"}, VOTE_SCHEMA) == ["answer.vote should be boolean, not \"yes\""]
+    assert schema_errors({"vote": "yes"}, VOTE_SCHEMA) == ["answer.vote should be boolean, not \"yes\""]
     assert schema_errors({"to": "Zed"}, {"anyOf": [{"type": "string", "enum": ["Bob"]}, {"type": "null"}]})
 
     class OffSchema(ScriptedClient):  # a provider that ignores strict structured output

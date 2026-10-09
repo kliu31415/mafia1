@@ -165,27 +165,14 @@ def test_a_filtered_moderator_answer_is_retried_unchanged(game_factory, monkeypa
     assert client.moderator_prompts[0] == client.moderator_prompts[2]  # no empty answer or nudge appended
 
 
-def test_the_moderator_never_sees_players_thoughts(game_factory):
-    client = FilteringClient(lambda name, task, schema: {"thoughts": f"SECRET-{name}", "act": True,
-                                                         "target": "Bob"} if name else None)
-    game, players = game_factory(["Vigilante", "Vanilla Villager", "Grunt", "Grunt"], client)
-    for p in game.players:
-        p.model = Model.GPT_6_LUNA  # Claude players have no thoughts field
-    mod = Moderator(game, client, players, Model.HAIKU_5_5, "(rules)")
+def test_no_player_answer_has_a_thoughts_field(game_factory):
+    """Written-out reasoning in an answer looks like distillation to Anthropic's filter (gamelog v23)."""
+    schemas = []
+    game, players = game_factory(["Vigilante", "Vanilla Villager", "Grunt", "Grunt"],
+                                 ScriptedClient(lambda name, task, schema: schemas.append(schema)))
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     game.phase = "night"
     run_night(game, players, mod)
-    prompt = json.dumps(client.moderator_prompts[0])
-    assert '\\"target\\": \\"Bob\\"' in prompt and "SECRET" not in prompt
-
-
-def test_claude_players_answer_without_a_thoughts_field(game_factory):
-    schemas = {}
-
-    def decide(name, task, schema):
-        schemas[name] = schema
-    game, players = game_factory(["Vanilla Villager", "Grunt"], ScriptedClient(decide))
-    game.player("Bob").model = Model.GPT_6_LUNA
     for p in game.players:
         players.ask(p, "Vote.", VOTE_SCHEMA, {"vote": False})
-    assert "thoughts" not in schemas["Alice"]["properties"] and "thoughts" not in schemas["Alice"]["required"]
-    assert "thoughts" in schemas["Bob"]["properties"]
+    assert schemas and not any("thoughts" in json.dumps(s) for s in schemas)

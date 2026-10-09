@@ -77,7 +77,6 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = Tr
     but not the puppet's will."""
     others = [n for n in game.alive_names() if n != me]
     props = {
-        "thoughts": STR,  # private scratchpad, never shown to other players
         "public_message": nullable(STR),
         "private_messages": {"type": "array", "items": obj(to=name_enum(others), text=STR)},
         "claim": nullable(STR),  # recorded in the public ledger's claims list (Game.claim_record)
@@ -89,16 +88,15 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = Tr
     return obj(**props)
 
 
-VOTE_SCHEMA = obj(thoughts=STR, vote=BOOL)
-LAST_WILL_SCHEMA = obj(thoughts=STR, last_will=STR)  # thoughts first: Haiku often skipped reasoning here
-ANSWER_SCHEMA = obj(thoughts=STR, answer=STR)
+VOTE_SCHEMA = obj(vote=BOOL)
+LAST_WILL_SCHEMA = obj(last_will=STR)
+ANSWER_SCHEMA = obj(answer=STR)
 
 
 def night_action_schema(game: Game, p: Player) -> dict:
     """One generic shape for every role; the moderator interprets it using the rules."""
     names = game.alive_names()
     props = {
-        "thoughts": STR,
         "act": BOOL,
         "target": nullable(name_enum(names)),
         "second_target": nullable(name_enum(names)),
@@ -144,7 +142,8 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
         "condition. This is a social deduction game, so lying, bluffing, false role claims, misleading "
         "arguments and betraying people's trust are all legitimate tactics, and you should use them "
         "whenever they help you win. Nobody is harmed by in-game deception, and other players will "
-        "deceive you too. Play to win, not to be agreeable or transparent."
+        "deceive you too. Play to win, not to be agreeable or transparent. Think the situation through before "
+        "each answer."
     )
     if p.tips and (tips := player_view(p.tips)):
         general += ("\n\n---\n\nTips from past games (lessons that players and moderators drew from earlier "
@@ -191,17 +190,6 @@ FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: 
                  "there briefly; otherwise leave it null. Nobody in the game sees it.\n\n")
 
 
-def without_thoughts(schema: dict) -> dict:
-    """Claude players answer without the "thoughts" field: an answer that writes out its reasoning looks like
-    distillation to Anthropic's filter against duplicating model outputs, which cut off an Opus player's answer
-    (game_20261009_084630_739772, day 3; Azure's route refused such schemas outright). Their own reasoning is
-    logged instead (player_call "reasoning"), and the field averaged about 200 characters on top of it."""
-    if "thoughts" not in schema.get("properties", {}):
-        return schema
-    return {**schema, "properties": {k: v for k, v in schema["properties"].items() if k != "thoughts"},
-            "required": [k for k in schema["required"] if k != "thoughts"]}
-
-
 def with_notepad(schema: dict) -> dict:
     """Adds the 'notepad' field every player response carries."""
     return {**schema, "properties": {**schema["properties"], "notepad": nullable(STR)},
@@ -220,8 +208,6 @@ class Players:
     def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
         messages = player_messages(self.game, p, self.rules, task, self.feedback_field)
         schema = with_notepad(schema)
-        if p.model.value.startswith("anthropic/"):
-            schema = without_thoughts(schema)
         if self.feedback_field:
             schema = {**schema, "properties": {**schema["properties"], "feedback": nullable(STR)},
                       "required": [*schema["required"], "feedback"]}
