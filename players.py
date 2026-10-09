@@ -187,10 +187,11 @@ def night_history(game: Game, p: Player) -> str:
 
 
 # A short why for each answer, for the logs: many models' reasoning comes back only summarized or not at all
-# (OpenAI's Sol and Luna return a summary on about 1 call in 8). One sentence after the decision rather than a
-# "thoughts" scratchpad, which Anthropic's filter reads as distillation (gamelog v23).
-REASON_NOTE = ("Every response also has a 'reason' field: one short sentence saying why you chose this answer. "
-               "It is kept in the game's records only; nobody in the game sees it.")
+# (OpenAI's Sol and Luna return a summary on about 1 call in 8). A short why after the decision rather than a
+# "thoughts" scratchpad before it, which Anthropic's filter likely reads as distillation (gamelog v23).
+REASON_NOTE = ("Every response also has a 'reason' field: why you chose this answer, usually in one short "
+               "sentence, or a few when the choice was complicated. It is kept in the game's records only; "
+               "nobody in the game sees it.")
 
 FEEDBACK_NOTE = ("Every response also has a 'feedback' field, outside the game: if a rule or this "
                  "interface is confusing, seems broken, or stops you doing something you want, say so "

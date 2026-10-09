@@ -311,7 +311,7 @@ def flat_messages(messages: list[dict]) -> list[dict]:
 # on every call (36/36 test calls; at medium effort Sonnet 5.5 didn't reason at all). Claude returns summarized
 # thinking, Gemini thought summaries, Grok/Qwen/Kimi their reasoning text. OpenAI (Sol, Luna) returns only
 # encrypted reasoning, plus a summary on about 1 call in 8 even with reasoning.summary "auto" or "detailed",
-# so players give a one-sentence "reason" with every answer (players.REASON_NOTE) for the logs.
+# so players give a short "reason" (a sentence, a few for complicated choices) with every answer (players.REASON_NOTE) for the logs.
 
 
 def flat_nullable_enums(schema: Any) -> Any:
