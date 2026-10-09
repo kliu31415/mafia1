@@ -568,3 +568,19 @@ def test_a_cleaned_death_still_shows_its_cause(game_factory):
     game.kill("Alice", "Vigilante")
     reveal = next(e.text for e in game.events if e.text.startswith("Alice died"))
     assert "(Vigilante)" in reveal and "Vanilla Villager" not in reveal  # rules R12
+
+
+def test_problems_players_and_the_moderator_report_are_listed_for_review(tmp_path):
+    import alerts
+    log = tmp_path / "game_20261009_000000_1.jsonl"
+    log.write_text("\n".join(json.dumps(r) for r in [
+        {"t": 1, "kind": "player_feedback", "player": "Erin", "feedback": "I can see Bob's nomination"},
+        {"t": 2, "kind": "moderator_flag", "issue": "R8: can the Katana move without an attack?"},
+        {"t": 3, "kind": "review", "issues": [{"kind": "harness bug", "severity": "high", "description": "leak"},
+                                              {"kind": "other", "severity": "low", "description": "typo"}]},
+        {"t": 4, "kind": "result"}]) + "\n", encoding="utf-8")
+    [g] = alerts.unreviewed(tmp_path)
+    assert g["kinds"] == {"player_feedback": 1, "moderator_flag": 1, "review_issue": 1}
+    assert "Bob's nomination" in alerts.describe([g])
+    alerts.ack(tmp_path, ["all"])
+    assert alerts.unreviewed(tmp_path) == []

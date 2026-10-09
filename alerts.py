@@ -1,7 +1,8 @@
 """Errors from games that nobody has reviewed yet, so they get looked at without anyone reading logs.
 
 Every error a game runs into is logged with alert: true (GameLog.error). This lists the games in logs/
-whose errors haven't been marked reviewed, plus games that stopped with no result and no crash record
+whose errors haven't been marked reviewed (and problems the moderator flagged, players reported in their
+feedback field, or the post-game log review rated high severity), plus games that stopped with no result and no crash record
 (the process was killed). Claude Code runs `--hook` when a session starts in this folder
 (.claude/settings.json), so Claude sees new errors and brings them up; a finished game also prints a
 reminder line while any are unreviewed. Reviewed errors are kept in logs/alerts_reviewed.json (by when
@@ -28,6 +29,8 @@ LOG_DIR = Path(__file__).resolve().parent / "logs"
 REVIEWED_FILE = "alerts_reviewed.json"
 STOPPED_AFTER_S = 3600  # a log with no result, untouched this long, belongs to a game that was killed
 SAMPLES_PER_KIND = 2
+# Not errors, but problems players, the moderator or the log review noticed (bugs, leaks, rules gaps): listed too.
+FEEDBACK_MARKS = (b'"kind": "moderator_flag"', b'"kind": "player_feedback"', b'"kind": "review"')
 
 
 def scan(path: Path) -> dict:
@@ -39,7 +42,7 @@ def scan(path: Path) -> dict:
     lines = data.split(b"\n")
     errors, unreadable = [], 0
     for i, line in enumerate(lines):
-        if b'"alert": true' not in line:
+        if b'"alert": true' not in line and not any(m in line for m in FEEDBACK_MARKS):
             continue
         try:
             r = json.loads(line)
@@ -47,13 +50,21 @@ def scan(path: Path) -> dict:
             if i < len(lines) - 1 or stale:  # a running game's last line may be half-written
                 unreadable += 1
             continue
-        if isinstance(r, dict) and r.get("alert"):
+        if not isinstance(r, dict):
+            continue
+        if r.get("alert"):
             errors.append(r)
+        elif r.get("kind") in ("moderator_flag", "player_feedback"):  # players and the moderator saw a problem
+            errors.append({**r, "error": r.get("issue") or f"{r.get('player')}: {r.get('feedback')}"})
+        elif r.get("kind") == "review":  # the post-game log review's serious findings
+            errors += [{"t": r.get("t"), "kind": "review_issue", "id": f"{r.get('t')}:review_issue:{n}",
+                        "error": f"{i.get('kind')}: {i.get('description')}"}
+                       for n, i in enumerate(r.get("issues") or []) if isinstance(i, dict) and i.get("severity") == "high"]
     kinds = Counter(str(r.get("kind")) for r in errors)
     samples: list[str] = []
     for kind in kinds:
         samples += [f"{kind}: {str(r.get('error'))[:300]}" for r in errors if r.get("kind") == kind][:SAMPLES_PER_KIND]
-    ids = [f"{r.get('t')}:{r.get('kind')}" for r in errors]
+    ids = [r.get("id") or f"{r.get('t')}:{r.get('kind')}" for r in errors]
     stopped = not finished and not kinds["crash"] and stale
     if stopped:
         ids.append("stopped")
@@ -140,10 +151,13 @@ def ack(log_dir: Path, which: list[str], prefix: str = "game") -> list[str]:
     return names
 
 
-HOOK_INTRO = ("mafia1 games have errors nobody has reviewed yet (from alerts.py; each is logged with alert: true "
-              "in the game's JSONL, at the top of its HTML view and feedback report). Before anything else in "
-              "your first reply, tell Kevin about them in a few lines: which games, which kinds of errors, and "
-              "what probably caused them (read the logs if that's quick). New kinds of errors matter most. "
+HOOK_INTRO = ("mafia1 games have errors or problem reports nobody has reviewed yet (from alerts.py: errors are "
+              "logged with alert: true; moderator_flag, player_feedback and high-severity review_issue entries are "
+              "problems the moderator, players or the post-game log review noticed; all are in the game's feedback "
+              "report). Before anything else in your first reply, tell Kevin about them in a few lines: which games, "
+              "which kinds, and what probably caused them (read the logs if that's quick). New kinds matter most; "
+              "a report that points at a real bug (e.g. a player seeing information they shouldn't) is worth "
+              "checking in the code and fixing. "
               "Once he has seen them, mark them reviewed with `uv run alerts.py --ack all` (or the game ids).")
 
 

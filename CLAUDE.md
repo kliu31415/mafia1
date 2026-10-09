@@ -94,7 +94,8 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   that breaks it is a `player_error`, retried and then replaced by the fallback. Moderator ops that apply but
   look wrong (e.g. killing a dead player) come back to the moderator as notes and are `moderator_warning`s.
 - Errors get looked at even in games Kevin runs himself: `uv run alerts.py` lists games in `logs/` with errors
-  nobody has reviewed (and games killed without a result), and a SessionStart hook in `.claude/settings.json`
+  nobody has reviewed (and games killed without a result, moderator flags, players' feedback-field reports and
+  high-severity log-review issues, since those often point at bugs such as a leak), and a SessionStart hook in `.claude/settings.json`
   puts that list in Claude's context when a session starts in this folder. When it does, tell Kevin first
   (which games, which kinds, likely cause), then `uv run alerts.py --ack all` once he has seen them. Finished
   games also print a reminder line while anything is unreviewed. A new error kind needs no registration;
