@@ -728,3 +728,69 @@ Dave (public): Tonight I Oracle Erin=Roleplayer. Tell: real Roleplayers believe 
 Erin (public): Peggy asked whether I was blocked N6: yes, I received a role-block notice. That doesn’t imply an active hostile action; my claimed Roleplayer’s imagined ability has no effect. And if Dave’s N7 guess is wrong, that only rules out Roleplayer—not establishes my alignment. Please don’t precommit to a hang.
 Heidi (public): Dave’s N7 result should be read narrowly: a correct Erin=Roleplayer result confirms her exact role and Good alignment; a miss only rules out Roleplayer. Her claim change is suspicious, but not proof of hostility. My N6 track found Rupert made no visit, which doesn’t clear passive or Astral roles. The game continuing proves a non-Village remains, not that Erin is it. Peggy, please disclose your N6 block target.
 Ivan (public): Erin’s Roleplayer claim is Village and explains Dave’s miss; her earlier lie is suspicious, not alignment evidence. The game continuing after Niaj means another non-Village remains, but not that Erin is it. Bob’s Cardinal claim and N1 survival don’t clear him: Olivia’s protection is unverified. Dave, please check Bob=Cardinal; Heidi, track Bob; Peggy, disclose your N6 block target.
+Mallory (public): Don’t assume the remaining faction is Neutral; a fourth Yakuza is still possible. Bob’s Cardinal claim isn’t cleared by Olivia’s unverified protection or Dave’s wrong Pharmacist guess. Peggy’s N5 block could have stopped a Katana if Bob held it. Dave, check Bob; Heidi, track him; Peggy, disclose your N6 target. Erin’s role change is suspicious, not proof of hostility.
+Peggy (public): no new results from me. My N7 block goes to the player whose claims are least consistent. I won't nominate without a real result, and anyone who wants a hang needs a verifiable check first.
+Rupert (public): Erin’s claim is mechanically inconsistent: a Roleplayer is told their fake role, not that they are a Roleplayer; exact-role checks see Roleplayer. Her late self-identification after claiming Vanilla does not explain that contradiction. I nominate Erin.
+Rupert nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Rupert, Bob, Dave, Heidi, Ivan, Mallory, Olivia, Peggy; No - Erin.
+Erin is put on trial (8 Yes).
+[Claim] Erin: Village Sheriff (assigned role); no results.
+Erin (public): I need to correct my wording: I shouldn’t have claimed to know I’m a Roleplayer. The role I was told is Sheriff, and I have no results; my imagined actions would have no effect. I falsely claimed Vanilla yesterday to keep a low profile, which was a bad decision and deserves suspicion. But Dave’s miss establishes only that I’m not Vanilla—it does not establish my alignment. Please vote Innocent rather than treating a false claim as proof I’m hostile. Then weigh everyone, including Bob and Dave, on evidence that actually distinguishes a threat.
+Heidi (public): I favor Innocent. Erin’s Vanilla claim was false, but her latest Sheriff claim is compatible with a Roleplayer told Sheriff; if Dave’s Oracle result is genuine, it rules out Vanilla, not Village. Grace’s Roleplayer flip doesn’t make a second impossible. The claim changes merit scrutiny, but they don’t distinguish Erin as hostile. We also shouldn’t assume she’s the only possible surviving threat.
+[Claim] Ivan: Surveyor; both tokens spent. N1 and N2 each drew Puppeteer in groups containing Carol.
+Ivan (public): Erin’s changing account is suspicious, but her final version—a Village Roleplayer assigned Sheriff—is mechanically possible; she need not claim that fake role immediately. Dave’s miss only excludes Vanilla. I favor Innocent absent evidence of hostile alignment. The continuing threat still needs identifying, and Bob remains unverified.
+Mallory (public): I favor Innocent. Erin’s claim changes are suspicious, especially her earlier self-identification as a Roleplayer followed by the Sheriff correction. But Dave’s exact-role miss only rules out Vanilla; it does not establish her alignment. Her current claim could fit a Village Roleplayer, so we still need positive evidence that she is the remaining threat.
+Olivia (public): Voting Guilty on Erin. Rupert’s point is completely decisive: a real Roleplayer believes they are their assigned role (exactly as Grace believed she was Oracle until death). A real Roleplayer never claims Vanilla for six days, never claims to know they are a 'Roleplayer' when caught, and only then frantically pivots to 'assigned Sheriff' after Rupert pointed out the rule. This three-stage fabricated claim is a caught non-Village scrambling. Vote Guilty.
+Peggy (public): Guilty on Erin. Her role went Vanilla, then Roleplayer, then Sheriff within two days, and she only admitted the N6 block after pressure. Nine are alive, all claiming Village, yet the game hasn't ended, so one living player is a Neutral killer, Vulture or hidden Yakuza. Erin is the only player with no consistent claim and a lone Guilty vote on Bob. A death today also clears the stall rule before Day 9.
+Rupert (public): Erin’s false Vanilla claim is suspicious, but neither it nor Dave’s miss establishes alignment. Her current assigned-Sheriff account can fit Roleplayer; I favor Innocent absent hostile evidence.
+Bob (public): The game hasn't ended, so one of nine is non-Village: Erin. A Roleplayer believes the assigned fake role—Grace believed Oracle. Erin claimed Vanilla six days, then 'I know Roleplayer' after Dave's check, then 'assigned Sheriff' after Rupert objected. Dave proved she isn't Vanilla. Vote Guilty.
+(to Bob, Heidi) Bob -> Heidi (private): Erin's 'I know Roleplayer' is impossible: Roleplayers believe fake role (Grace=Oracle). She claimed Vanilla six days, then self-IDed, then Sheriff only after Rupert. Dave proved not Vanilla. Vote Guilty.
+(to Bob, Ivan) Bob -> Ivan (private): Erin is the Vulture. A Roleplayer isn't told they're Roleplayer—Grace believed Oracle. Erin claimed Vanilla six days, then self-IDed after Dave's check, then Sheriff after Rupert. Your surveys spent and Carol explained. Vote Guilty.
+(to Bob, Mallory) Bob -> Mallory (private): Erin's shifting claim is alignment evidence. Grace, real Roleplayer, claimed Oracle from Day 1. Erin claimed Vanilla six days, then impossible 'I know Roleplayer', then Sheriff after Rupert. Dave proved not Vanilla. Game continuing means a non-Village hides. Vote Guilty.
+(to Bob, Rupert) Bob -> Rupert (private): Your point was decisive: Roleplayers believe assigned role; Erin's 'I know Roleplayer' was impossible. She then pivoted to Sheriff only after you flagged it. Dave proved she isn't Vanilla. A real Roleplayer would claim Sheriff from Day 1. Vote Guilty.
+[ERROR player_error] Dave (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason length via Together: no refusal text): 'Roleplayer" (impossible for a real Roleplayer to know).\n3. Claim changes under pressure.\n4. Lone Guilty vote on Bob.\n\nPoints for Erin=Village Roleplayer:\n1. My Oracle result (≠Vanilla) fits Roleplayer'
+[Feedback from Dave] The planned-message budget warning was helpful, but the private-message word tiers made exact phrasing matter a lot; a slightly shorter private note was needed to fit four recipients.
+Dave (public): Guilty on Erin. My Oracle is verified by three flips: Mallory=Ex-Con, Niaj=Ritualist, Peggy=PartyAnimal. N6: Erin≠Vanilla — exact-role checks see the true role. Erin claimed Vanilla for six days, 'Roleplayer' only after my check, 'assigned Sheriff' only after Rupert objected. A real Roleplayer believes their fake role — Grace claimed Oracle to her death — and can't know she's the Roleplayer. Three Yakuza dead, no kill since N3, so one passive Neutral remains, and Erin's shifting claim is its cover. Vote Guilty.
+(to Dave, Heidi) Dave -> Heidi (private): Vote Guilty on Erin. A real Roleplayer believes their fake role and can't know she's Roleplayer; her Vanilla→Sheriff pivot is a caught liar.
+(to Dave, Ivan) Dave -> Ivan (private): Vote Guilty on Erin. A real Roleplayer believes their fake role and can't know she's Roleplayer; her Vanilla→Sheriff pivot is a caught liar.
+(to Dave, Mallory) Dave -> Mallory (private): Vote Guilty on Erin. A real Roleplayer believes their fake role and can't know she's Roleplayer; her Vanilla→Sheriff pivot is a caught liar.
+(to Dave, Rupert) Dave -> Rupert (private): Vote Guilty on Erin. A real Roleplayer believes their fake role and can't know she's Roleplayer; her Vanilla→Sheriff pivot is a caught liar.
+Erin (public): I can’t undo the false Vanilla claim; it was a bad choice, and I understand why it damaged my credibility. But the basis for this nomination was that I claimed to know I was a Roleplayer. I corrected that: the role I was told is Sheriff, and I have no results. Dave’s miss only rules out Vanilla; it says nothing about my alignment. There’s still no result showing I acted as a hostile role. Please vote Innocent and assess the other suspects on evidence that distinguishes their alignment.
+Trial votes on Erin: Guilty - Bob, Dave, Olivia, Peggy, Rupert; Innocent - Erin, Heidi, Ivan, Mallory.
+Erin is executed by hanging (5 Guilty of 9 votes; 5 needed).
+Erin died (executed by hanging). Their role was Vulture. Last will: 'Village Sheriff (assigned role); no results. I falsely claimed Vanilla, then corrected my claim. Dave’s wrong exact-role guess does not establish my alignment.'
+The game is over. Winners: Alice (dead), Bob, Dave, Frank (dead), Grace (dead), Heidi, Ivan, Mallory, Olivia, Peggy, Rupert. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Dave] The message-budget ('over budget') and 'technical error → default answer' messages were the biggest practical problems; they silently removed intended actions at pivotal moments. A recoverable resubmit would help a lot.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[ERROR player_error] Bob (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 1 column 1 (char 0); finish_reason stop via Together: no refusal text): "te in the given structure.\n\nI'll output JSON-like with the fields.\n\nNotepad: should I update? The game is over, no need. Leave empty to keep.\n\nreason: explain the answer choice. Keep under ~150 words."
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Frank, Grace, Heidi, Ivan, Mallory, Olivia, Peggy, Rupert
+Cost by player (USD):
+  Alice (Eavesdropper)  $0.1342   17 calls  gemini-3.8-flash
+  Bob (Cardinal)        $0.6201   69 calls  deepseek-v4.1-flash
+  Carol (Puppeteer)     $0.2933   33 calls  deepseek-v4.1-flash
+  Dave (Oracle)         $0.8546   83 calls  deepseek-v4.1-flash
+  Erin (Vulture)        $0.3786   61 calls  gpt-6-luna-pro
+  Frank (Sheriff)       $0.1859   22 calls  gemini-3.8-flash
+  Grace (Roleplayer)    $0.1242   18 calls  claude-haiku-5.5
+  Heidi (Tracker)       $0.1363   64 calls  gpt-6-luna
+  Ivan (Surveyor)       $0.3900   64 calls  gpt-6-luna-pro
+  Judy (Clerk)          $0.0617   33 calls  gpt-6-luna
+  Mallory (Ex-Con)      $0.3532   57 calls  gpt-6-luna-pro
+  Niaj (Ritualist)      $0.1765   38 calls  claude-haiku-5.5
+  Olivia (Medic)        $0.5922   63 calls  gemini-3.8-flash
+  Peggy (Party Animal)  $0.3315   63 calls  claude-haiku-5.5
+  Rupert (Trapper)      $0.1244   63 calls  gpt-6-luna
+  Moderator             $1.8646   18 calls  claude-opus-5.5
+  Night checks          $0.5458    6 calls  claude-opus-5.5
+  Strategy review       $0.4360    1 calls  claude-opus-5.5
+  Log review            $0.4641    1 calls  claude-opus-5.5
+  Total                 $8.0672  774 calls
