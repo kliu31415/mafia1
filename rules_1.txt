@@ -81,7 +81,8 @@ effect. By default, effects are announced publicly at the start of the next Day;
 
 R7 (Optional actions)
 Every ability is optional ("may") unless its role says "must": any player may choose not to act at Night, not to
-use a Day ability, and not to spend a token.
+use a Day ability, and not to spend a token. Effects a role has automatically, with no choice (e.g. the
+Ex-Con's nightly visit), aren't optional and always happen.
 
 R6 (Visits)
 - When A performs an action on B, A visits B, unless the action is an Astral Visit.
