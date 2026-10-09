@@ -151,7 +151,8 @@ def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
     holder = next((h for h in set(holders) if h and majority(holders.count(h), len(yakuza))), None)
     target = next((t for t in set(targets) if t and majority(targets.count(t), len(yakuza))), None)
     if target is None and majority(targets.count(None), len(yakuza)):
-        # They agreed not to attack. Whether the Katana can still change hands is unsettled (R8), so it stays.
+        # They agreed not to attack; the Katana still moves if a majority agreed on a holder (rules R8).
+        game.katana_holder = holder or game.katana_holder
         return {"attack": None, "holder": game.katana_holder, "note": "the Yakuza agreed not to attack"}
     if holder is None or target is None:
         return {"attack": None, "holder": game.katana_holder, "note": "no majority agreement; no attack"}

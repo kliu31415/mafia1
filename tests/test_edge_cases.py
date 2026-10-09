@@ -496,13 +496,15 @@ def test_a_blank_start_of_day_will_keeps_the_will(game_factory):
 def test_yakuza_who_agree_not_to_attack_get_no_revote(game_factory):
     def decide(name, task, schema):
         if "katana_vote_target" in schema["properties"]:
-            return {"katana_vote_holder": "Dave", "katana_vote_target": None, "act": False}
+            return {"katana_vote_holder": "Dave", "katana_vote_target": None, "act": False}  # holder was Carol
         return {"message": "   "} if "message" in schema["properties"] else None
     game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"], ScriptedClient(decide))
+    game.katana_holder = "Carol"
     from night import run_night
     run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
     assert not any("no majority" in e.text for e in game.events)
     assert not any(t.startswith("Revote") for _, t in players.client.asked)
+    assert game.katana_holder == "Dave"  # they agreed to move it without attacking (rules R8)
     assert not any("(Yakuza chat):" in e.text for e in game.events)  # a blank message isn't posted
 
 
@@ -558,3 +560,11 @@ def test_the_puppeteer_never_sees_the_puppet_s_nomination(game_factory):
     chat_turn(game, players, game.player("Bob"), rnd=1, can_nominate=True)
     assert any(name == "Erin" and "WARNING" in task for name, task in client.asked)
     assert not any(name == "Erin" and "Carol" in task.split("WARNING")[-1] for name, task in client.asked)
+
+
+def test_a_cleaned_death_still_shows_its_cause(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Vigilante", "Vanilla Villager", "Mortician"])
+    game.player("Alice").status[Status.CLEANED] = True
+    game.kill("Alice", "Vigilante")
+    reveal = next(e.text for e in game.events if e.text.startswith("Alice died"))
+    assert "(Vigilante)" in reveal and "Vanilla Villager" not in reveal  # rules R12

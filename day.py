@@ -19,7 +19,7 @@ PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
 FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round costs ROUND_COST_GROWTH times the previous
 ROUND_COST_GROWTH = 1.5
-MAX_DAY_ROUNDS = 10  # rules R16; the day also ends after a full go-around in which nobody sends a public message
+MAX_DAY_ROUNDS = 8  # rules R16; the day also ends after a full go-around in which nobody sends a public message
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 # Each player's turn in a trial is priced at 1x whatever the round, and comes with a trial-only budget
 # that is spent before their regular budget. Unspent trial budget is lost when the turn ends.

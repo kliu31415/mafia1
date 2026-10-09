@@ -62,7 +62,7 @@ ROLES: dict[str, RoleInfo] = {
                       notes="moderator records the rig; code executes regardless of the vote"),
     "Diviner": RoleInfo(Alignment.EVIL, "Yakuza", True, acts_at_night=True),
     "Mortician": RoleInfo(Alignment.EVIL, "Yakuza", True, tokens={"mortician": 2}, acts_at_night=True,
-                          tested=True, notes="clean via status 'cleaned'; code hides the reveal"),
+                          tested=True, notes="clean via status 'cleaned'; code hides role and will in the reveal (cause shown)"),
     # Neutral
     "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False, defense="Standard", acts_at_night=True),
     "Arsonist": RoleInfo(Alignment.NEUTRAL, "Neutral", False, defense="Standard", acts_at_night=True,

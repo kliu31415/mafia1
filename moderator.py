@@ -27,7 +27,7 @@ def apply_changes_tool(role_op_docs: list[str]) -> dict:
         "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
         "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
-        "the dawn reveal then hides the role, will and cause. Night deaths are revealed at dawn with "
+        "the dawn reveal then hides the role and will (the cause is still shown). Night deaths are revealed at dawn with "
         "the last will as it is then, so the order of ops within a night doesn't matter."
         + (" Ops for roles in this game, whose effects code carries out: " + " | ".join(role_op_docs)
            if role_op_docs else ""),

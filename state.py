@@ -199,7 +199,7 @@ class Game:
     def reveal_death(self, name: str, cause: str) -> None:
         self.emit(self.death_reveal(name, cause), cat=DEATH)
         p = self.player(name)
-        what = "role cleaned by a Mortician" if p.status.get(Status.CLEANED) else f"{p.role}, {cause}"
+        what = f"role cleaned by a Mortician, {cause}" if p.status.get(Status.CLEANED) else f"{p.role}, {cause}"
         self.death_record.append(f"Day {self.day} {self.phase}: {name} ({what})")
 
     def public_ledger(self) -> str:
@@ -221,7 +221,7 @@ class Game:
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
         if p.status.get(Status.CLEANED):
-            return f"{name} died. Their role and last will were cleaned by a Mortician."
+            return f"{name} died ({cause}). Their role and last will were cleaned by a Mortician."  # rules R12
         reveal = f"{name} died ({cause}). Their role was {p.role}."
         if p.last_will:
             reveal += f" Last will: {p.last_will!r}"

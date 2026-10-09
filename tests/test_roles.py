@@ -171,7 +171,7 @@ def test_every_role_survives_a_mock_game(role, tmp_path, monkeypatch):
 
 # --- Mortician, Fabricator, Katana --------------------------------------------------------------
 
-def test_mortician_clean_hides_role_and_will(game_factory):
+def test_mortician_clean_hides_role_and_will_but_not_the_cause(game_factory):
     game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Mortician", "Grunt"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     game.player("Alice").last_will = "I am the Sheriff."
@@ -182,7 +182,7 @@ def test_mortician_clean_hides_role_and_will(game_factory):
     game.announce_dawn()
     reveal = next(e.text for e in game.events if e.cat == "death")
     assert "cleaned by a Mortician" in reveal and "Vanilla Villager" not in reveal and "Sheriff" not in reveal
-    assert "Katana" not in reveal and "Vanilla" not in game.death_record[0]
+    assert "(Katana)" in reveal and "Vanilla" not in game.death_record[0]  # the cause still shows (rules R12)
 
 
 def test_forged_will_shows_at_dawn_even_if_set_after_the_kill(game_factory):
