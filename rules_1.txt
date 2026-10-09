@@ -236,6 +236,12 @@ Vigilante
   Tokens: 3 vigilante tokens.
   Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong.
 
+Veteran
+  Tokens: 3 alert tokens.
+  Night: may spend a token to go on alert (not a visit, R6). While on alert you have Basic Defense, you can't be
+  role-blocked, and you deal a Strong Attack to every player who visits you that night, whatever their faction
+  (a role-blocker who visits you is attacked too). Astral Visits aren't visits, so they aren't attacked.
+
 Misc
 
 Prosecutor
