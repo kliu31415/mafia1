@@ -356,6 +356,24 @@ def test_alerts_handle_torn_lines_running_games_and_new_errors_after_a_resume(tm
     assert not any(g["game"] == "mock_lessons" for g in alerts.unreviewed(tmp_path, "mock"))
 
 
+def test_alerts_in_progress_stay_listed_apart_until_acked_and_new_errors_reopen_them(tmp_path):
+    import alerts
+    err = lambda t: json.dumps({"t": t, "kind": "player_error", "alert": True, "error": "x"})  # noqa: E731
+    a, b = tmp_path / "game_20261009_000000_1.jsonl", tmp_path / "game_20261009_000000_2.jsonl"
+    for log in (a, b):
+        log.write_text(err(1) + "\n" + json.dumps({"t": 2, "kind": "result"}) + "\n", encoding="utf-8")
+    alerts.mark_in_progress(tmp_path, [a.stem], "waiting on Kevin")
+    new, wip = alerts.split_in_progress(tmp_path, alerts.unreviewed(tmp_path))
+    assert [g["game"] for g in new] == [b.stem] and [(g["game"], g["note"]) for g in wip] == [(a.stem, "waiting on Kevin")]
+    assert "waiting on Kevin" in alerts.describe(new, wip)
+    assert alerts.ack(tmp_path, ["all"]) == [b.stem]  # "all" leaves in-progress games alone
+    assert alerts.pending_line(tmp_path) is None  # only an in-progress game is left
+    a.write_text(err(1) + "\n" + err(5) + "\n", encoding="utf-8")  # a new error makes it new again
+    assert [g["game"] for g in alerts.split_in_progress(tmp_path, alerts.unreviewed(tmp_path))[0]] == [a.stem]
+    alerts.ack(tmp_path, [a.stem])
+    assert alerts.unreviewed(tmp_path) == [] and alerts.load_json(tmp_path / alerts.IN_PROGRESS_FILE) == {}
+
+
 def test_tips_skip_unfinished_games_and_repeated_ops_and_keep_the_sheet_when_the_new_one_is_empty(tmp_path):
     import tips
     from llm import ModelSpec

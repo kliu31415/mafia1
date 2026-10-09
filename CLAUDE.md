@@ -99,7 +99,9 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   nobody has reviewed (and games killed without a result, moderator flags, players' feedback-field reports and
   high-severity log-review issues, since those often point at bugs such as a leak), and a SessionStart hook in `.claude/settings.json`
   puts that list in Claude's context when a session starts in this folder. When it does, tell Kevin first
-  (which games, which kinds, likely cause), then `uv run alerts.py --ack all` once he has seen them. Finished
+  (which games, which kinds, likely cause). Ack what's fully handled (fixed, settled, or noise) yourself with
+  `uv run alerts.py --ack GAME ...`, without asking, and say so; mark what's still being discussed with
+  `--wip GAME ... --note "what's pending"` (listed apart, not re-reported) and ack it once resolved. Finished
   games also print a reminder line while anything is unreviewed. A new error kind needs no registration;
   anything that goes through `game.log.error` shows up everywhere above.
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`); add one
