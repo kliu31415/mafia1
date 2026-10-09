@@ -2,6 +2,7 @@
 
 import json
 import re
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
@@ -253,6 +254,11 @@ def with_common_fields(schema: dict, feedback_field: bool, text: dict | None = N
     return {**schema, "properties": {**schema["properties"], **extra}, "required": [*schema["required"], *extra]}
 
 
+# The kinds of player decisions, logged as "step" on player_call, player_error and player_fallback records.
+STEPS = ("will", "day_turn", "trial_turn", "budget_revision", "puppet_nomination", "nomination_vote", "trial_vote",
+         "yakuza_chat", "night_action", "katana_revote", "ask_player", "debrief", "lessons")
+
+
 class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""
 
@@ -266,7 +272,12 @@ class Players:
         self.feedback_field = feedback_field
         self.shared = shared
 
-    def ask(self, p: Player, task: str, schema: dict, fallback: dict) -> dict:
+    def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None) -> dict:
+        """step: what kind of decision this is (one of STEPS), and rnd the chat round if there is one; logged
+        with day, phase and latency on every call record, so analysis never has to parse the task's wording."""
+        assert step in STEPS, step
+        where = {"step": step, "day": self.game.day, "phase": self.game.phase,
+                 **({"round": rnd} if rnd is not None else {})}
         wanted = with_common_fields(schema, self.feedback_field)
         # Post-game questions (debrief, lessons) have fields of their own and keep their own schema.
         shared = self.shared and set(schema["properties"]) <= set(SHARED_FIELDS)
@@ -275,8 +286,10 @@ class Players:
                                    self.feedback_field)
         for attempt in range(2):
             reply: LLMReply | None = None
+            started = time.monotonic()
             try:
                 reply = self.client.chat(p.model, messages, schema=sent, effort=p.effort)
+                latency = round(time.monotonic() - started, 2)
                 out = answer_json(reply, sent)
                 if shared:
                     out = fit_answer(out, wanted)
@@ -288,9 +301,10 @@ class Players:
                     if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
                         self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
                                        f"to its first {cap}.)", [p.name])
-                self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
+                self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
-                                    usage=reply.usage, notepad_before=before, notepad_after=after)
+                                    usage=reply.usage, latency_s=latency, notepad_before=before,
+                                    notepad_after=after)
                 if isinstance(fb := out.pop("feedback", None), str) and fb.strip():
                     self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase,
                                         player=p.name, role=p.role, feedback=fb)
@@ -301,7 +315,8 @@ class Players:
             except Exception as e:  # a bad answer, or a request that failed after its retries
                 error = str(e) if isinstance(e, (json.JSONDecodeError, RuntimeError)) else f"{type(e).__name__}: {e}"
                 self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {error}",
-                                    player=p.name, model=p.model.value, attempt=attempt, task=task,
+                                    player=p.name, model=p.model.value, attempt=attempt, **where, task=task,
+                                    latency_s=round(time.monotonic() - started, 2),
                                     **({"output": reply.content, "reasoning": reply.reasoning, "cost": reply.cost,
                                         "usage": reply.usage} if reply else {}))  # a failed answer still costs
                 if reply and reply.content:  # tell the model what was wrong, so the retry isn't the same answer
@@ -310,13 +325,13 @@ class Players:
                                             "Answer again with JSON that follows the schema exactly."}]
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
-                            player=p.name, model=p.model.value, task=task, fallback=fallback)
+                            player=p.name, model=p.model.value, **where, task=task, fallback=fallback)
         # Tell the player, so they don't believe their own choice happened (Heidi thought she had saved a
         # token on purpose after a failed Night 1 answer, game_20261009_084630_739772).
         self.game.emit(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
                        f"technical error, so the default was used instead: {json.dumps(fallback)}.)", [p.name])
         return fallback
 
-    def ask_many(self, jobs: list[tuple[Player, str, dict, dict]]) -> list[dict]:
+    def ask_many(self, jobs: list[tuple[Player, str, dict, dict]], *, step: str) -> list[dict]:
         with ThreadPoolExecutor(max_workers=max(1, len(jobs))) as pool:  # a round waits for its slowest call
-            return list(pool.map(lambda j: self.ask(*j), jobs))
+            return list(pool.map(lambda j: self.ask(*j, step=step), jobs))

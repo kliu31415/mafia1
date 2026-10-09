@@ -174,7 +174,7 @@ def test_no_player_answer_has_a_thoughts_field(game_factory):
     game.phase = "night"
     run_night(game, players, mod)
     for p in game.players:
-        players.ask(p, "Vote.", VOTE_SCHEMA, {"vote": False})
+        players.ask(p, "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote")
     assert schemas and not any("thoughts" in json.dumps(s) for s in schemas)
     assert all("reason" in s["required"] for s in schemas)
 
@@ -182,7 +182,7 @@ def test_no_player_answer_has_a_thoughts_field(game_factory):
 def test_a_players_reason_is_logged_but_never_returned_to_the_game(game_factory):
     client = ScriptedClient(lambda name, task, schema: {"vote": True, "reason": "Erin's vote was odd."})
     game, players = game_factory(["Vanilla Villager", "Grunt"], client)
-    assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}) == {"vote": True}
+    assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote") == {"vote": True}
     assert "Erin's vote was odd." in game.log.path.read_text(encoding="utf-8")
 
 

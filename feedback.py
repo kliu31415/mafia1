@@ -73,7 +73,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     game.log.write("section", title=POST_GAME_SECTIONS["debrief"])
     task = debrief_task(game)
     fallback = {k: "" for k in DEBRIEF_QUESTIONS}
-    outs = players.ask_many([(p, task, DEBRIEF_SCHEMA, fallback) for p in game.players])
+    outs = players.ask_many([(p, task, DEBRIEF_SCHEMA, fallback) for p in game.players], step="debrief")
     for p, out in zip(game.players, outs):
         game.log.write("debrief", who=p.name, role=p.role, model=p.model.value, answers=out)
 
@@ -142,7 +142,8 @@ def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
             "applies to (a role, a faction, or 'everyone').")
     outs = players.ask_many([(p, task + TIPS_FEEDBACK_TASK, with_tips_feedback(LESSONS_SCHEMA),
                               {"lessons": [], "tips_feedback": []})
-                             if p.tips else (p, task, LESSONS_SCHEMA, {"lessons": []}) for p in game.players])
+                             if p.tips else (p, task, LESSONS_SCHEMA, {"lessons": []}) for p in game.players],
+                            step="lessons")
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:
         for p, out in zip(game.players, outs):

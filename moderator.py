@@ -123,10 +123,11 @@ class Moderator:
              f"{self.game.history_for('__moderator_public__')}")]},
         ]
         for _ in range(MAX_MODERATOR_STEPS):
+            started = time.monotonic()
             reply = self.chat(messages)
-            self.game.log.write("moderator_call", model=self.model.value, content=reply.content,
-                                reasoning=reply.reasoning, tool_calls=reply.tool_calls, cost=reply.cost,
-                                usage=reply.usage)
+            self.game.log.write("moderator_call", model=self.model.value, day=self.game.day, phase=self.game.phase,
+                                content=reply.content, reasoning=reply.reasoning, tool_calls=reply.tool_calls,
+                                cost=reply.cost, usage=reply.usage, latency_s=round(time.monotonic() - started, 2))
             messages.append(reply.message)
             if not reply.tool_calls:
                 if not reply.content:  # e.g. refused or cut off; a reply in words only is just nudged
@@ -247,7 +248,7 @@ class Moderator:
             case "ask_player":
                 p = g.player(args["player"])
                 out = self.players.ask(p, f"The moderator asks: {args['question']}", ANSWER_SCHEMA,
-                                       {"answer": ""})
+                                       {"answer": ""}, step="ask_player")
                 # Kept in the player's history, so later turns show what they chose.
                 text = f"The moderator asked you: {args['question']} You answered: {out['answer']}"
                 g.emit(f"Moderator (private): {text}", [p.name], cat=RESULT, message=text)

@@ -87,7 +87,7 @@ def test_an_empty_notepad_keeps_the_notepad_and_a_retry_says_what_was_wrong(game
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: next(answers, None)))
     schema = {"type": "object", "properties": {}, "required": []}
     for _ in range(2):
-        players.ask(game.player("Alice"), "Note something.", schema, {})
+        players.ask(game.player("Alice"), "Note something.", schema, {}, step="day_turn")
     assert game.player("Alice").notepad == "plan"
 
     class OnceBroken(ScriptedClient):
@@ -102,7 +102,7 @@ def test_an_empty_notepad_keeps_the_notepad_and_a_retry_says_what_was_wrong(game
     client = OnceBroken()
     game, players = game_factory(TOWN4_GRUNT, client)
     from players import VOTE_SCHEMA
-    players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False})
+    players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote")
     assert "couldn't be used" in client.calls[1][-1]["content"] and "answer.vote" in client.calls[1][-1]["content"]
 
 
@@ -624,7 +624,7 @@ def test_death_reveal_says_who_or_what_killed():
 def test_a_cut_notepad_tells_its_owner(game_factory):
     long = " ".join(["word"] * (NOTEPAD_WORDS + 5))
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: {"notepad": long}))
-    players.ask(game.player("Alice"), "Note something.", {"type": "object", "properties": {}, "required": []}, {})
+    players.ask(game.player("Alice"), "Note something.", {"type": "object", "properties": {}, "required": []}, {}, step="day_turn")
     assert "notepad was over" in game.history_for("Alice") and "notepad was over" not in game.history_for("Bob")
 
 

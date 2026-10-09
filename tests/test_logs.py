@@ -35,7 +35,7 @@ def test_player_calls_log_the_notepad_before_and_after(game_factory):
                                  ScriptedClient(lambda name, task, schema: {"notepad": next(writes)}))
     alice = game.players[0]
     for _ in range(2):
-        players.ask(alice, "Say something.", {"type": "object", "properties": {}, "required": []}, {})
+        players.ask(alice, "Say something.", {"type": "object", "properties": {}, "required": []}, {}, step="day_turn")
     game.log.close()
     calls = [json.loads(line) for line in game.log.path.read_text(encoding="utf-8").splitlines()]
     calls = [r for r in calls if r["kind"] == "player_call"]
@@ -93,3 +93,21 @@ def test_role_summaries_match_the_rules():
     stale = stale_roles()
     assert not stale, (f"rules_1.txt changed for {', '.join(stale)}: check their `summary` in roles/__init__.py, then "
                        f"run: uv run role_summaries.py " + " ".join(f'"{r}"' for r in stale))
+
+
+def test_every_call_record_says_what_step_it_was_and_how_long_it_took(tmp_path, monkeypatch):
+    import json
+    from llm import MockClient
+    from players import STEPS
+    from roles import DEFAULT_SETUP
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    path = mafia.play_game(MockClient(2), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed=2, debrief=True,
+                           lessons=True)
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    calls = [r for r in records if r["kind"] == "player_call"]
+    assert all(r["step"] in STEPS and r["day"] >= 1 and r["phase"] in ("day", "night") and r["latency_s"] >= 0
+               for r in calls)
+    steps = {r["step"] for r in calls}
+    assert {"will", "day_turn", "night_action", "debrief", "lessons"} <= steps
+    assert all("round" in r for r in calls if r["step"] in ("day_turn", "yakuza_chat"))
+    assert all("latency_s" in r and "day" in r for r in records if r["kind"] == "moderator_call")

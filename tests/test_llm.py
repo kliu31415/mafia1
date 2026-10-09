@@ -10,6 +10,14 @@ REFUSAL = {"provider": "Azure", "choices": [{"finish_reason": "content_filter", 
     "role": "assistant", "content": None, "refusal": "This request was blocked."}}], "usage": {"cost": 0}}
 
 
+def refusing(bodies: list[dict]):
+    """A stand-in for OpenRouterClient._post that records each request body and answers with REFUSAL."""
+    def post(body: dict) -> dict:
+        bodies.append(body)
+        return REFUSAL
+    return post
+
+
 def test_claude_goes_only_to_anthropic_and_a_refusal_is_logged_with_its_reason(tmp_path, monkeypatch):
     client = OpenRouterClient("test-key")
     bodies: list[dict] = []
@@ -20,7 +28,8 @@ def test_claude_goes_only_to_anthropic_and_a_refusal_is_logged_with_its_reason(t
     monkeypatch.setattr(client, "_post", post)
     game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], client)  # type: ignore[arg-type]
     out = players.ask(game.player("Alice"), "Vote.", {"type": "object", "properties": {}, "required": [],
-                                                      "additionalProperties": False}, {"fallback": True})
+                                                      "additionalProperties": False}, {"fallback": True},
+                      step="trial_vote")
     assert out == {"fallback": True}
     assert bodies[0]["provider"] == {"order": ["Anthropic"], "allow_fallbacks": False}
     game.log.close()
@@ -71,7 +80,7 @@ def test_a_failed_request_falls_back_instead_of_stopping_the_game(tmp_path):
             raise urllib.error.URLError("connection reset")
     game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], DownClient())  # type: ignore[arg-type]
     out = players.ask(game.player("Alice"), "Vote.", {"type": "object", "properties": {}, "required": []},
-                      {"fallback": True})
+                      {"fallback": True}, step="trial_vote")
     assert out == {"fallback": True}
     assert game.log.error_counts == {"player_error": 2, "player_fallback": 1}
     assert "couldn't be used" in game.history_for("Alice") and "couldn't be used" not in game.history_for("Bob")
@@ -136,7 +145,7 @@ def test_an_answer_that_breaks_its_schema_is_an_error_and_still_costs(tmp_path):
             reply = super().chat(model, messages, **kw)
             return dataclasses.replace(reply, content=json.dumps({"vote": "Zed"}), cost=0.01)
     game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], OffSchema())  # type: ignore[arg-type]
-    assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}) == {"vote": False}
+    assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote") == {"vote": False}
     game.log.close()
     from gamelog import usage_by_caller
     [alice, _] = usage_by_caller(game.log.path, [{"name": "Alice", "model": "m"}, {"name": "Bob", "model": "m"}])
@@ -155,13 +164,13 @@ def test_an_answer_with_no_cost_is_an_error(tmp_path):
 def test_prompts_cache_what_repeats_and_other_models_get_plain_text(tmp_path, monkeypatch):
     client = OpenRouterClient("test-key")
     bodies: list[dict] = []
-    monkeypatch.setattr(client, "_post", lambda body: bodies.append(body) or REFUSAL)
+    monkeypatch.setattr(client, "_post", refusing(bodies))
     game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], client)  # type: ignore[arg-type]
     game.emit("Day 1 chat.")
     game.phase = "night"
     game.emit("Night 1 news.")
     schema = {"type": "object", "properties": {}, "required": [], "additionalProperties": False}
-    players.ask(game.player("Alice"), "Act.", schema, {})
+    players.ask(game.player("Alice"), "Act.", schema, {}, step="night_action")
     system, user = bodies[0]["messages"]
     cached = [b["text"] for b in system["content"] if "cache_control" in b]
     # The rules alone (shared with every call), then the general instructions, then Alice's own part,
@@ -171,7 +180,7 @@ def test_prompts_cache_what_repeats_and_other_models_get_plain_text(tmp_path, mo
     assert "cache_control" not in bodies[0]
 
     game.player("Alice").model = Model.GPT_6_LUNA  # other makers cache on their own and get plain strings
-    players.ask(game.player("Alice"), "Act.", schema, {})
+    players.ask(game.player("Alice"), "Act.", schema, {}, step="night_action")
     assert isinstance(bodies[-1]["messages"][0]["content"], str)
     assert bodies[-1]["messages"][0]["content"] == text_of(system["content"])
 
@@ -179,7 +188,7 @@ def test_prompts_cache_what_repeats_and_other_models_get_plain_text(tmp_path, mo
 def test_each_model_has_its_own_default_effort(monkeypatch):
     client = OpenRouterClient("test-key")
     bodies: list[dict] = []
-    monkeypatch.setattr(client, "_post", lambda body: bodies.append(body) or REFUSAL)
+    monkeypatch.setattr(client, "_post", refusing(bodies))
     client.chat(Model.SONNET_5_5, [])
     client.chat(Model.QWEN_3_8_MAX, [])  # high runs past the token cap
     client.chat(Model.QWEN_3_8_MAX, [], effort="low")  # a spec's own effort wins
@@ -192,8 +201,8 @@ def test_each_model_has_its_own_default_effort(monkeypatch):
 def test_gemini_gets_nullable_enums_in_the_form_it_accepts(monkeypatch):
     client = OpenRouterClient("test-key")
     bodies: list[dict] = []
-    monkeypatch.setattr(client, "_post", lambda body: bodies.append(body) or REFUSAL)
-    schema = {"type": "object", "properties": {"role": {"anyOf": [{"type": "string", "enum": ["Medic", "Seer"]},
+    monkeypatch.setattr(client, "_post", refusing(bodies))
+    schema: dict = {"type": "object", "properties": {"role": {"anyOf": [{"type": "string", "enum": ["Medic", "Seer"]},
                                                                  {"type": "null"}]}},
               "required": ["role"], "additionalProperties": False}
     client.chat(Model.GEMINI_3_8_FLASH, [], schema=schema)
@@ -227,9 +236,9 @@ def test_live_games_send_one_schema_for_every_in_game_question(tmp_path):
     players.shared = True
     game.player("Carol").alive = False
     alice, bob = game.player("Alice"), game.player("Bob")
-    assert players.ask(alice, "Vote.", VOTE_SCHEMA, {"vote": False}) == {"vote": True}
-    assert players.ask(alice, "Will.", LAST_WILL_SCHEMA, {"last_will": "x"}) == {"last_will": ""}
-    players.ask(alice, "Talk.", day_turn_schema(game, "Alice", can_nominate=True), {})
-    assert players.ask(bob, "Act.", night_action_schema(game, bob), {"act": False}) == {"act": False}  # fallback
+    assert players.ask(alice, "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote") == {"vote": True}
+    assert players.ask(alice, "Will.", LAST_WILL_SCHEMA, {"last_will": "x"}, step="will") == {"last_will": ""}
+    players.ask(alice, "Talk.", day_turn_schema(game, "Alice", can_nominate=True), {}, step="day_turn")
+    assert players.ask(bob, "Act.", night_action_schema(game, bob), {"act": False}, step="night_action") == {"act": False}  # fallback
     assert all(s == sent[0] for s in sent) and len(sent) == 5  # the night action was asked twice
     assert "Answer in these fields: vote" in players.client.asked[0][1]  # type: ignore[attr-defined]

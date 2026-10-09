@@ -90,7 +90,8 @@ def run_day(game: Game, players: Players) -> None:
     task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
             "to ALL players, including other factions, so think about what each of them would learn from it. "
             "An empty answer keeps your current will.")
-    outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()])
+    outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()],
+                            step="will")
     for p, out in zip(game.alive(), outs):
         will = out["last_will"]
         if not will.strip():  # blank means no change, as on day turns
@@ -225,6 +226,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                          for i, (to, t) in enumerate(planned_messages(out)))
 
     writer = game.player(game.chat_controller(p.name))
+    step = "trial_turn" if trial else "day_turn"
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
             f"up to {BUDGET_MAX:g}, and it resets each day. You may send one public message and any "
@@ -255,21 +257,22 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     fallback: dict[str, Any] = {"public_message": None, "private_messages": [], "nominate": None}
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
-        out = players.ask(p, task, schema, fallback)
+        out = players.ask(p, task, schema, fallback, step=step, rnd=rnd)
         out = drop_own_name(out, p.name, writer.model)
     else:
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
         schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
-        out = players.ask(writer, task, schema, fallback)
+        out = players.ask(writer, task, schema, fallback, step=step, rnd=rnd)
         out = drop_own_name(out, p.name, writer.model)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
                              "can't chat, but you may nominate a player for trial (or null). Nominating costs "
                              f"{nomination_fee:.2f} from your budget ({p.speaking_budget:.2f}).")
             nominate_schema = obj(nominate=nullable(name_enum(game.alive_names())))
-            out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None})["nominate"]
+            out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None},
+                                         step="puppet_nomination", rnd=rnd)["nominate"]
     # A puppet's own nomination is private: the Puppeteer revising the messages neither sees nor pays for it.
     planned = total_cost(out if writer is p else {**out, "nominate": None})
     if planned > available() + 1e-9:
@@ -282,7 +285,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         game.log.write("budget_warning", player=p.name, planned=planned, budget=available())
         nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
-        out = players.ask(writer, task + warning, schema, out)
+        out = players.ask(writer, task + warning, schema, out, step="budget_revision", rnd=rnd)
         out = drop_own_name(out, p.name, writer.model)
         if writer is not p:
             out["nominate"] = nominee
@@ -355,7 +358,7 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     task = (f"{nominator.name} nominated {nominee}. Vote true (Yes) to put them on trial, false (No) "
             "otherwise. Voting is simultaneous: you can't see anyone else's vote, and all votes are "
             f"revealed publicly once everyone has voted. {nominator.name} votes Yes automatically.")
-    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in others])
+    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in others], step="nomination_vote")
     yes_voters = [nominator.name] + [v.name for v, o in zip(others, outs) if o["vote"]]
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
@@ -404,7 +407,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
             "simultaneous: you can't see anyone else's vote, and all votes are revealed publicly once "
             "everyone has voted.")
-    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters])
+    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters], step="trial_vote")
     guilty = [v.name for v, o in zip(voters, outs) if o["vote"]]
     innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
     game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "

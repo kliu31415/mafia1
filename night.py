@@ -33,7 +33,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             task += (" Also vote on who should hold the Katana and who the Katana should attack (or null). "
                      + katana_majority_note(game))
         jobs.append((p, task, night_action_schema(game, p), {"act": False}))
-    actions = dict(zip([p.name for p in actors], players.ask_many(jobs)))
+    actions = dict(zip([p.name for p in actors], players.ask_many(jobs, step="night_action")))
     for p in game.alive():
         if p.name not in actions and (auto := logic(p.role).automatic_action(game, p)) is not None:
             actions[p.name] = {**auto, "automatic": True}
@@ -57,7 +57,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                                   + katana_majority_note(game),
                                   revote_schema, {"katana_vote_holder": game.katana_holder or y.name,
                                                  "katana_vote_target": None})
-                                 for y in yakuza])
+                                 for y in yakuza], step="katana_revote")
         for y, out in zip(yakuza, outs):
             actions[y.name].update(katana_vote_holder=out["katana_vote_holder"],
                                    katana_vote_target=out["katana_vote_target"])
@@ -130,7 +130,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
                 y, f"It is Night {game.day}. Yakuza chat, round {rnd} of at most {rounds}. {topic} "
                 f"Send a message (max {YAKUZA_MESSAGE_WORDS} words; longer is truncated) or null. Set "
                 "ready=true if you have nothing more to discuss; chat ends when everyone is ready.",
-                schema, {"message": None, "ready": True})
+                schema, {"message": None, "ready": True}, step="yakuza_chat", rnd=rnd)
             if (msg := out.get("message") or "").strip():
                 if word_count(msg) > YAKUZA_MESSAGE_WORDS:
                     msg = truncate_words(msg, YAKUZA_MESSAGE_WORDS)

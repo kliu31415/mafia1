@@ -54,7 +54,10 @@ from records import read_records, safe_print
 # 26: "section" records (title) before each post-game step, so log views show them as named sections
 # 27: chat and pm events a Puppeteer wrote have a "puppeteer" field; night_actions include automatic actions
 #     (the Ex-Con's random visit), marked "automatic": true
-LOG_VERSION = 27
+# 28: player_call, player_error and player_fallback have step (players.STEPS), day, phase and round (chat turns and
+#     Yakuza chat); player_call, player_error and moderator_call have latency_s (seconds the call took, retries
+#     included); moderator_call has day and phase; "resume" has at ("day" or "night": the checkpoint's phase)
+LOG_VERSION = 28
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
