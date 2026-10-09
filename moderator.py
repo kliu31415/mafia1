@@ -23,7 +23,7 @@ def tool(name: str, description: str, **params: dict) -> dict:
 def apply_changes_tool(role_op_docs: list[str]) -> dict:
     return tool(
         "apply_changes", "Apply state changes. Ops: {op:'kill', player, cause, by, katana} (by = the "
-        "killer's name if a player killed them; katana = true for the Katana attack; cause = the public wording) | "
+        "killer's name if a player killed them; katana = true for the Katana attack; cause = the killer's role or weapon, e.g. 'Katana' or 'Vigilante'; it's revealed as 'X died (killed by <cause>)') | "
         "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
         "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "

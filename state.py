@@ -1,6 +1,7 @@
 """Game state: players, visibility-aware events, deaths and win checks."""
 
 import random
+import re
 from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Any
@@ -63,6 +64,16 @@ class Event:
 
     def visible(self, name: str) -> bool:
         return self.visible_to is None or name in self.visible_to
+
+
+def death_cause(cause: str) -> str:
+    """The public cause of death as worded in a reveal: a bare killer's role or weapon ("Katana", "Vigilante",
+    "Jester's revenge") becomes "killed by Katana"; a cause that is already a phrase ("executed by hanging",
+    "killed by the Vigilante") is kept."""
+    cause = cause.strip() or "killed"
+    if re.match(r"(killed|executed|shot|burned|burnt|poisoned|attacked|died|hanged|murdered|struck)\b", cause, re.I):
+        return cause
+    return f"killed by {cause}"
 
 
 @dataclass
@@ -220,6 +231,7 @@ class Game:
 
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
+        cause = death_cause(cause)
         if p.status.get(Status.CLEANED):
             return f"{name} died ({cause}). Their role and last will were cleaned by a Mortician."  # rules R12
         reveal = f"{name} died ({cause}). Their role was {p.role}."

@@ -585,7 +585,7 @@ def test_a_cleaned_death_still_shows_its_cause(game_factory):
     game.player("Alice").status[Status.CLEANED] = True
     game.kill("Alice", "Vigilante")
     reveal = next(e.text for e in game.events if e.text.startswith("Alice died"))
-    assert "(Vigilante)" in reveal and "Vanilla Villager" not in reveal  # rules R12
+    assert "(killed by Vigilante)" in reveal and "Vanilla Villager" not in reveal  # rules R12
 
 
 def test_problems_players_and_the_moderator_report_are_listed_for_review(tmp_path):
@@ -602,3 +602,12 @@ def test_problems_players_and_the_moderator_report_are_listed_for_review(tmp_pat
     assert "Bob's nomination" in alerts.describe([g])
     alerts.ack(tmp_path, ["all"])
     assert alerts.unreviewed(tmp_path) == []
+
+
+def test_death_reveal_says_who_or_what_killed():
+    from state import death_cause
+    assert death_cause("Katana") == "killed by Katana"
+    assert death_cause("Jester's revenge") == "killed by Jester's revenge"
+    assert death_cause("executed by hanging") == "executed by hanging"
+    assert death_cause("killed by the Vigilante") == "killed by the Vigilante"
+    assert death_cause(" ") == "killed"

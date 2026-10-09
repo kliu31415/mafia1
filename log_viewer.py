@@ -119,12 +119,12 @@ CSS = """
   --village:#1a7f37; --yakuza:#c62828; --neutral:#b45309;
   /* event colors avoid the faction hues (green, red, amber) */
   --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#a21caf; --c-nom:#2563eb; --c-vote:#0891b2;
-  --c-death:#1f2937; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; --c-error:#dc2626; }
+  --c-death:#9f1239; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; --c-error:#dc2626; }
 @media (prefers-color-scheme: dark) { :root {
   --bg:#141416; --fg:#ececf0; --muted:#9a9aa2; --line:#2c2c30; --call:#1e1e22; --code:#1a1a1d;
   --village:#4ade80; --yakuza:#f87171; --neutral:#fbbf24;
   --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#e879f9; --c-nom:#60a5fa; --c-vote:#22d3ee;
-  --c-death:#f3f4f6; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; --c-error:#f87171; } }
+  --c-death:#fb7185; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; --c-error:#f87171; } }
 * { box-sizing:border-box; }
 body { background:var(--bg); color:var(--fg); font:14px/1.55 system-ui, sans-serif; margin:0 auto;
        max-width:1000px; padding:0 16px 40px; }
@@ -140,7 +140,7 @@ details.phase > summary { font-weight:650; font-size:16px; cursor:pointer; paddi
 details.phase.night > summary { color:var(--c-hidden); }
 .ev { padding:3px 0 3px 10px; margin:1px 0; border-left:3px solid var(--c); white-space:pre-wrap;
       overflow-wrap:anywhere; }
-.ev.death { font-weight:600; } .ev.system, .ev.hidden { color:var(--muted); }
+.ev.death { font-weight:600; color:var(--c-death); background:color-mix(in srgb, var(--c-death) 7%, transparent); } .ev.system, .ev.hidden { color:var(--muted); }
 .badge { display:inline-block; font-size:11px; font-weight:600; line-height:1; padding:3px 6px; margin-right:6px;
          border-radius:4px; color:var(--c); border:1px solid var(--c); vertical-align:1px; white-space:nowrap; }
 .chat { --c:var(--c-chat); } .pm { --c:var(--c-pm); } .yak { --c:var(--c-yak); } .nom { --c:var(--c-nom); }
@@ -462,7 +462,7 @@ def render_html(jsonl_path: Path) -> Path:
                        f"{esc(r.get('player', ''))}</summary>{pre('Details', r)}</details>")
         elif k == "result":
             start_phase("Game over")
-            line("death", "Winners", name(", ".join(r["winners"] or []) or "nobody"))
+            line("result", "Winners", name(", ".join(r["winners"] or []) or "nobody"))
             if "usage" in r:  # LOG_VERSION 10+
                 out.append(usage_html(r["usage"]))
             else:
