@@ -120,7 +120,7 @@ def tokens_left(p: Player) -> str:
 
 
 def role_briefing(game: Game, p: Player) -> str:
-    lines = [f"You are {p.name} (seat {p.seat})."]
+    lines = [f"You are {p.name} (seat {p.seat + 1} of {len(game.players)}, counting from 1)."]  # p.seat counts from 0
     lines.append(f"Your role is {logic(p.role).shown_role(p)}.")
     if p.tokens:
         lines.append(f"You have {tokens_left(p)}.")

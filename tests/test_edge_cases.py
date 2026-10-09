@@ -500,7 +500,7 @@ def test_a_roleplayer_looks_exactly_like_their_fake_role(game_factory):
     logic("Roleplayer").setup(game, rp)
     assert rp.tokens == ROLES[rp.status[Status.FAKE_ROLE]].tokens
     rp.status[Status.FAKE_ROLE], rp.tokens = "Seer", dict(seer.tokens)  # setup picks at random; pin it
-    assert role_briefing(game, rp).replace("Alice (seat 0)", "Bob (seat 1)") == role_briefing(game, seer)
+    assert role_briefing(game, rp).replace("Alice (seat 1 of", "Bob (seat 2 of") == role_briefing(game, seer)
     rp.status[Status.FAKE_ROLE] = "Fortune Teller"  # gets results at dawn; never asked for a night action
     assert not logic("Roleplayer").acts_at_night(rp)
 
