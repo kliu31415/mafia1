@@ -196,3 +196,27 @@ def test_a_game_can_update_the_tips_when_it_ends(tmp_path, monkeypatch):
 
 def test_every_model_has_a_strength():
     assert set(tips.STRENGTH) == set(Model)
+
+
+def test_parallel_builds_of_one_sheet_take_turns(tmp_path, monkeypatch):
+    import threading
+    import time
+    sheet, order = tmp_path / "tips.md", []
+
+    def slow_build(name):
+        with tips.locked(sheet):
+            order.append(f"{name} start")
+            time.sleep(0.2)
+            order.append(f"{name} end")
+    threads = [threading.Thread(target=slow_build, args=(n,)) for n in "ab"]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert [o.split()[1] for o in order] == ["start", "end", "start", "end"]
+    assert not sheet.with_name("tips.md.lock").exists()
+    # A lock left by a process that died is taken over.
+    sheet.with_name("tips.md.lock").touch()
+    monkeypatch.setattr(tips, "LOCK_STALE_S", -1)
+    with tips.locked(sheet):
+        pass

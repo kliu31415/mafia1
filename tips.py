@@ -31,9 +31,13 @@ import argparse
 import glob
 import hashlib
 import json
+import os
 import random
 import re
+import time
 from collections import Counter
+from collections.abc import Iterator
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
@@ -366,11 +370,55 @@ class NoNewGames(Exception):
     pass
 
 
+LOCK_WAIT_S = 3600  # how long a build waits for another process's build of the same sheet
+LOCK_STALE_S = 1800  # a lock older than this was left by a process that died, and is taken over
+
+
+@contextmanager
+def locked(path: Path) -> Iterator[None]:
+    """Only one process at a time builds a given sheet (games running in parallel each update the tips
+    when they finish): a lock file next to it, created atomically, works across processes and OSes."""
+    lock = path.with_name(path.name + ".lock")
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    deadline = time.time() + LOCK_WAIT_S
+    while True:
+        try:
+            os.close(os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+            break
+        except FileExistsError:
+            try:
+                if time.time() - lock.stat().st_mtime > LOCK_STALE_S:
+                    lock.unlink(missing_ok=True)
+                    continue
+            except FileNotFoundError:
+                continue
+            if time.time() > deadline:
+                raise TimeoutError(f"{lock} is still held by another build after {LOCK_WAIT_S}s") from None
+            time.sleep(1)
+    try:
+        yield
+    finally:
+        lock.unlink(missing_ok=True)
+
+
+def write_atomic(path: Path, text: str) -> None:
+    """So a game starting meanwhile never reads a half-written sheet."""
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
+
+
 def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
           include_mock: bool = False, fresh: bool = False) -> Path:
     """Updates the notebook beside the sheet `out` with each game it doesn't have yet (in log order),
     then rewrites the sheet from it. Earlier versions of both go to <out dir>/history/. `fresh` starts
-    a new notebook."""
+    a new notebook. Safe to run from several processes at once: builds of the same sheet take turns."""
+    with locked(out):
+        return _build(paths, out, client, spec, max_words, include_mock, fresh)
+
+
+def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
+           include_mock: bool, fresh: bool) -> Path:
     nb_path = notebook_path(out)
     nb = new_notebook() if fresh or not nb_path.exists() else json.loads(nb_path.read_text(encoding="utf-8"))
     games = [g for p in sorted(paths, key=lambda p: p.name) if p.stem not in nb["games"] and (g := read_game(p))
@@ -396,9 +444,9 @@ def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_
               f"build`, from the {active} active entries of {nb_path.name} ({len(nb['games'])} games). Players never "
               "see this preamble; they see every section below. Earlier versions are in history/.\n\n")
     out.parent.mkdir(parents=True, exist_ok=True)
-    nb_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False), encoding="utf-8")
-    nb_path.with_suffix(".md").write_text(render_notebook(nb), encoding="utf-8")
-    out.write_text(header + body, encoding="utf-8")
+    write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
+    write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
+    write_atomic(out, header + body)
     print(f"Tips: {out} ({len(body.split())} words) from {nb_path.name} ({active} active entries, "
           f"{len(nb['games'])} games; {len(games)} new); cost ${cost:.2f}")
     return out
