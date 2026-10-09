@@ -334,7 +334,7 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
               f"No - {', '.join(no_voters) or 'nobody'}.", cat=VOTE)
-    passed = majority(len(yes_voters), len(game.alive()))
+    passed = majority(len(yes_voters), len(game.alive()))  # rules R4: majority of all votes counted (one each; no abstentions)
     log_vote(game, "nomination", nominator.name, nominee, yes_voters, no_voters, "passed" if passed else "failed")
     game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}; "
                             f"No - {', '.join(no_voters) or 'nobody'}; {'passed' if passed else 'failed'}")

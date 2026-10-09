@@ -48,12 +48,14 @@ Chat:
 Nominations:
 - Any player may publicly nominate someone, including themself. All chat stops at once.
 - Everyone votes Yes/No at the same time; nobody sees another vote before casting their own. The nominator votes
-  Yes by default; abstaining counts as No. Once all votes are in, every vote is revealed.
-- If a majority of living players vote Yes, the nominee goes on trial.
+  Yes by default. There are no abstentions: a player who doesn't vote counts as voting No. Once all votes are in,
+  every vote is revealed.
+- If a majority of all votes counted are Yes, the nominee goes on trial.
 Trials:
 - The nominee says the first public message and may defend themself; others may chat publicly and privately.
-- Then everyone votes Guilty/Innocent at the same time (abstaining counts as Innocent); every vote is revealed.
-- If a majority of living players vote Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
+- Then everyone votes Guilty/Innocent at the same time (no abstentions: a player who doesn't vote counts as voting
+  Innocent); every vote is revealed.
+- If a majority of all votes counted are Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
   ends immediately.
 - If three nominations pass (failed ones don't count) and all three trials end Innocent, the Day ends.
 - Some roles can change how votes are counted. If an announced vote total doesn't match the revealed votes,
@@ -96,7 +98,9 @@ they were role-blocked.
 
 R10 (Simultaneous night resolution)
 All night actions happen at the same time. Think of it as two steps: first everyone attempts their actions,
-then all results happen together.
+then all results happen together. So investigations that give their result at the end of the night (e.g. the
+Seer's random pair) draw from and report on everyone alive when the night began, including players who die that
+night.
 
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
 1. Remove actions of role-blocked players (R9). Party Animal and Pharmacist can't be role-blocked.
@@ -194,8 +198,9 @@ Lookout
 
 Seer
   Tokens: 1 seer token.
-  Night: at the end of every night, you are told two random living players other than yourself, and whether their
-  alignments (Good/Neutral/Evil) are the same (alignment check, R19). Instead, you may spend a token to choose the
+  Night: at the end of every night, you are told two random players other than yourself who were alive when the
+  night began (players who die that night count, R10), and whether their alignments (Good/Neutral/Evil) are the
+  same (alignment check, R19). Instead, you may spend a token to choose the
   two living players yourself (not including yourself).
 
 Fortune Teller

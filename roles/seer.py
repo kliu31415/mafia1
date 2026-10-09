@@ -5,5 +5,5 @@ from roles.base import RoleLogic, register
 
 @register("Seer")
 class Seer(RoleLogic):
-    night_note = ("The Seer learns about two random living players other than themself each night (random_choice), "
+    night_note = ("The Seer learns about two random players other than themself each night (random_choice) from those alive when the night began, including anyone who died that night (rules R10), "
                   "unless they spent a token to choose them.")
