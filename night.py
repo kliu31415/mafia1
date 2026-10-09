@@ -43,7 +43,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         # No majority: show the votes, one more round of chat, then a Katana-only revote.
         votes = "; ".join(f"{y.name}: holder {actions[y.name].get('katana_vote_holder')}, target "
                           f"{actions[y.name].get('katana_vote_target')}" for y in yakuza)
-        game.emit(f"The Katana vote had no majority, so there would be no attack. Votes: {votes}.",
+        game.emit(f"The Katana vote had no majority on a target, so there would be no attack. Votes: {votes}.",
                   [y.name for y in yakuza])
         yakuza_chat(game, players, 1, "Agree on the Katana holder and target before the revote. "
                     + katana_majority_note(game))
@@ -52,7 +52,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                             katana_vote_target=nullable(name_enum(names)))
         outs = players.ask_many([(y, "Revote on the Katana holder and the Katana target (or null). "
                                   + katana_majority_note(game),
-                                  revote_schema, {"katana_vote_holder": y.name, "katana_vote_target": None})
+                                  revote_schema, {"katana_vote_holder": game.katana_holder or y.name,
+                                                 "katana_vote_target": None})
                                  for y in yakuza])
         for y, out in zip(yakuza, outs):
             actions[y.name].update(katana_vote_holder=out["katana_vote_holder"],
@@ -139,8 +140,10 @@ def katana_majority_note(game: Game) -> str:
     cancelled the attack."""
     n = len(game.yakuza())
     need = n // 2 + 1
-    return (f"There is no attack unless at least {need} of the {n} living Yakuza vote for the same Katana "
-            "holder and the same target" + (" (with two of you, both must agree)" if n == 2 else "") + ".")
+    both = " (with two of you, both must agree)" if n == 2 else ""
+    return (f"There is no attack unless at least {need} of the {n} living Yakuza vote for the same target{both}. "
+            f"The holder vote is separate: the Katana moves only if at least {need} vote for the same new holder, "
+            "and otherwise the current holder keeps it and makes any attack.")
 
 
 def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
@@ -152,11 +155,10 @@ def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
     targets = [actions.get(y, {}).get("katana_vote_target") for y in yakuza]
     holder = next((h for h in set(holders) if h and majority(holders.count(h), len(yakuza))), None)
     target = next((t for t in set(targets) if t and majority(targets.count(t), len(yakuza))), None)
-    if target is None and majority(targets.count(None), len(yakuza)):
-        # They agreed not to attack; the Katana still moves if a majority agreed on a holder (rules R8).
-        game.katana_holder = holder or game.katana_holder
+    # The two choices are separate: a holder majority moves the Katana whatever happens to the attack.
+    game.katana_holder = holder or game.katana_holder
+    if target is not None:
+        return {"attack": target, "holder": game.katana_holder, "attack_level": "Standard"}
+    if majority(targets.count(None), len(yakuza)):
         return {"attack": None, "holder": game.katana_holder, "note": "the Yakuza agreed not to attack"}
-    if holder is None or target is None:
-        return {"attack": None, "holder": game.katana_holder, "note": "no majority agreement; no attack"}
-    game.katana_holder = holder
-    return {"attack": target, "holder": holder, "attack_level": "Standard"}
+    return {"attack": None, "holder": game.katana_holder, "note": "no majority on a target; no attack"}

@@ -397,6 +397,17 @@ def test_katana_needs_a_majority_and_gets_one_revote(game_factory):
     assert katana[-1]["result"]["attack"] == "Alice" and game.katana_holder == "Carol"
 
 
+def test_katana_holder_and_target_majorities_are_separate(game_factory):
+    from night import tally_katana
+    game, _ = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt", "Grunt"])
+    game.katana_holder = "Carol"
+    votes = {y: {"katana_vote_holder": y, "katana_vote_target": "Alice"} for y in ("Carol", "Dave", "Erin")}
+    assert tally_katana(game, votes) == {"attack": "Alice", "holder": "Carol", "attack_level": "Standard"}  # rules R8
+    votes = {y: {"katana_vote_holder": "Dave", "katana_vote_target": t} for y, t in
+             (("Carol", "Alice"), ("Dave", "Bob"), ("Erin", None))}
+    assert tally_katana(game, votes)["attack"] is None and game.katana_holder == "Dave"
+
+
 def test_yakuza_are_told_that_two_of_them_must_both_agree_on_the_katana(game_factory):
     client = ScriptedClient()
     game, players = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"], client)
