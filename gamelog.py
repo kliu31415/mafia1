@@ -51,7 +51,8 @@ from records import read_records, safe_print
 #     Anthropic's filter, which blocked Opus calls in game_20261009_084630_739772; see "reasoning" instead
 # 24: player_call outputs have "reason", a sentence or a few on why the player chose that answer (players.REASON_NOTE)
 # 25: claims are "event" records with cat "claim" (fields speaker, claim), shown in players' history, instead of "claim" records
-LOG_VERSION = 25
+# 26: "section" records (title) before each post-game step, so log views show them as named sections
+LOG_VERSION = 26
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

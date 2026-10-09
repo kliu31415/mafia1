@@ -67,6 +67,8 @@ def text_line(r: dict) -> str | None:
         case "tips":
             return "Tips from past games given to: " + (", ".join(f"{n} ({f})" for n, f in tips_files(r).items())
                                                         or "nobody")
+        case "section":
+            return f"\n===== {r['title'].upper()} ====="
         case "resume":
             return f"[Resumed from the checkpoint at the start of day {r['day']}]"
         case "result":
@@ -474,6 +476,8 @@ def render_html(jsonl_path: Path) -> Path:
         elif k in ("budget_warning", "message_dropped", "nomination_dropped", "player_error", "moderator_error"):
             out.append(f"<details class='call'><summary>{esc(k.replace('_', ' '))}: "
                        f"{esc(r.get('player', ''))}</summary>{pre('Details', r)}</details>")
+        elif k == "section":  # post-game steps (feedback.POST_GAME_SECTIONS)
+            start_phase(r["title"])
         elif k == "result":
             start_phase("Game over")
             line("result", "Winners", name(", ".join(r["winners"] or []) or "nobody"))

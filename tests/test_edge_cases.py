@@ -622,3 +622,19 @@ def test_a_cut_notepad_tells_its_owner(game_factory):
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: {"notepad": long}))
     players.ask(game.player("Alice"), "Note something.", {"type": "object", "properties": {}, "required": []}, {})
     assert "notepad was over" in game.history_for("Alice") and "notepad was over" not in game.history_for("Bob")
+
+
+def test_the_notepad_cap_grows_with_the_player_count(game_factory):
+    from players import notepad_words
+    game, _ = game_factory(TOWN4_GRUNT)
+    assert notepad_words(game) == NOTEPAD_WORDS
+    game, _ = game_factory(TOWN4_GRUNT + ["Vanilla Villager"] * 7)  # 12 players
+    assert notepad_words(game) == 400
+
+
+def test_feedback_prompts_show_dead_players_the_whole_game(game_factory):
+    from feedback import debrief_task
+    game, _ = game_factory(TOWN4_GRUNT)
+    game.emit("Grunt (Yakuza chat): secret plan", ["Erin"])
+    game.kill("Alice", "Katana")
+    assert "secret plan" in debrief_task(game) and "secret plan" not in debrief_task(game, with_log=False)

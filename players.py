@@ -12,7 +12,12 @@ from state import Game, Player
 from tips import player_view
 
 
-NOTEPAD_WORDS = 300  # longer notepads are truncated
+NOTEPAD_WORDS = 300  # longer notepads are truncated; the cap grows with the player count (notepad_words)
+
+
+def notepad_words(game: Game) -> int:
+    """Room for a short line per player plus plans: 300 words was tight with 12 players."""
+    return max(NOTEPAD_WORDS, 25 * len(game.players) + 100)
 
 
 # Scripts written without spaces (Chinese, Japanese, Thai, ...) count one word per character, and a run of
@@ -164,7 +169,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
                if nights else "")
             + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
             f"Your private notepad (only you can see it; it carries over between turns):\n{notepad}\n\n"
-            f"Every response has a 'notepad' field: set it to replace your notepad (max {NOTEPAD_WORDS} "
+            f"Every response has a 'notepad' field: set it to replace your notepad (max {notepad_words(game)} "
             "words; longer is truncated), or null (or an empty string) to keep it as is. Use it for plans, "
             "suspicions and "
             "anything you want to remember. A useful habit: one brief line per other player (their claim, "
@@ -229,10 +234,11 @@ class Players:
                 before = p.notepad
                 after = before
                 if isinstance(note := out.get("notepad"), str) and note.strip():  # "" keeps it, like null
-                    after = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
+                    cap = notepad_words(self.game)
+                    after = truncate_words(note, cap) if word_count(note) > cap else note
                     if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
-                        self.game.emit(f"(Program note: your notepad was over {NOTEPAD_WORDS} words, so it was cut "
-                                       f"to its first {NOTEPAD_WORDS}.)", [p.name])
+                        self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
+                                       f"to its first {cap}.)", [p.name])
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage, notepad_before=before, notepad_after=after)

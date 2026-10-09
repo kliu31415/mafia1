@@ -65,7 +65,8 @@ Trials:
 Voting Yes or Guilty on yourself is allowed.
 
 R16 (Day length)
-Day chat goes around the circle in turns. Besides the endings in R4, the Day ends when a full round passes in
+Day chat goes around the circle in turns. Each Day the program picks a random living player to speak first;
+turns then go around the circle from them in the same order every round. Besides the endings in R4, the Day ends when a full round passes in
 which nobody sends a public message or nominates, except that anyone sent a private message during that round
 first gets one last turn. The Day also ends after at most 8 rounds.
 
@@ -171,7 +172,7 @@ R8 (Yakuza and the Katana)
 - At the end of the night, each Yakuza learns what actions the other Yakuza performed, but not their results
   (e.g. whether the Pharmacist's block worked).
 - If the holder dies, the Katana passes to a random living Yakuza, if any; a holder who dies at night passes it on
-  after that night's results.
+  after that night's results. The living Yakuza are told who holds it now (and so learn that the holder died).
 
 ==================================================================================================
 PART 6: ROLES

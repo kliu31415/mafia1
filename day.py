@@ -124,6 +124,8 @@ def run_day(game: Game, players: Players) -> None:
     start = game.rng.choice(game.alive()).seat
     game.emit(f"Speaking order today goes around the circle in seat order, starting with "
               f"{game.players[start].name}.")
+    n_alive = len(game.alive())  # players asked for the day's numbers (game_20261009_084630_739772)
+    game.emit(f"{n_alive} players are alive, so a nomination needs {n_alive // 2 + 1} Yes votes (rules R4).")
     for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
