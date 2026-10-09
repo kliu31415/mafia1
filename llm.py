@@ -46,6 +46,8 @@ class Model(str, Enum):
     # limit (unparsable, minutes per call), so they were dropped. DeepSeek V4.1 Flash does the same less often:
     # 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together; 36 replays of
     # that game's turns all parsed on Together, DeepInfra and Fireworks, so it isn't one provider's grammar.
+    # In game_20261009_164356_960898 it also twice wrote its thinking as plain text in the answer, with no JSON,
+    # until the token limit (no reasoning returned): the schema isn't always enforced. The retry usually parses.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
 
