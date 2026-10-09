@@ -2,9 +2,10 @@
  "games": [
   "game_20261009_004910_895267",
   "game_20261009_100017_447818",
-  "game_20261009_101825_928470"
+  "game_20261009_101825_928470",
+  "game_20261009_055144_260309"
  ],
- "next_id": 46,
+ "next_id": 55,
  "entries": [
   {
    "id": "t1",
@@ -74,13 +75,18 @@
   {
    "id": "t4",
    "audience": "Yakuza",
-   "tip": "Assume the real holder of any role you fake-claim is alive and will post the same night history. Never claim a role (especially Medic) that a living Lookout or Tracker result can contradict. Prefer Vanilla or a claim no living player can check, or kill the info role first.",
+   "tip": "Assume the real holder of any role you fake-claim is alive, and that token counts can be checked. A Vanilla claim is unsafe if you hold tokens, so prepare a story that fits what a token check would show. If your claim is broken, don't switch to another power role a living player can counterclaim. Never claim a role that a living Lookout or Tracker result can contradict.",
    "status": "active",
    "support": [
     {
      "game": "game_20261009_004910_895267",
      "weight": 0.78,
      "note": "Frank fake-claimed Medic after Mallory's Lookout saw him visit Dave. That made a 1v1 against the real Medic Grace, and Carol shot Frank."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Moderator and Niaj: both of Carol's and Niaj's fake claims collapsed against living real role holders."
     }
    ],
    "against": [],
@@ -88,6 +94,12 @@
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "edited",
+     "old": "Assume the real holder of any role you fake-claim is alive and will post the same night history. Never claim a role (especially Medic) that a living Lookout or Tracker result can contradict. Prefer Vanilla or a claim no living player can check, or kill the info role first.",
+     "note": "Heidi's audit showed Carol held 1 token, which broke her Vanilla claim. Carol switched to Archivist and the real Archivist Erin counterclaimed. Niaj switched from Vanilla to Medic and lost to the real Medic Judy plus Frank's track showing he never visited."
     }
    ]
   },
@@ -101,6 +113,11 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.78,
      "note": "Frank called Grace the Katana attacker, then voted No on her nomination. Carol shot him that night, citing it in her will."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Bob, Erin and Ivan: the read/vote mismatches around Carol and Mallory drove the discussion to concrete points."
     }
    ],
    "against": [],
@@ -121,6 +138,11 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.78,
      "note": "Ivan never acted on N1-N4 and cast no Katana vote on N4, so Bob's kill on Carol failed. Blocking Grace on N1 or N2 would likely have landed kills."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Alice and Carol: the team confirmed holder and target each night, and no attack was lost to a missed vote."
     }
    ],
    "against": [],
@@ -176,6 +198,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Frank protected claimed Sheriff Alice every night and stopped the N1 Katana."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Judy protected from N1. She saved Heidi on N1 and Erin on N6, which secured the 3-1 endgame."
     }
    ],
    "against": [],
@@ -227,6 +254,11 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.63,
      "note": "Alice and Grace both flagged overclaiming during the Medic dispute."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Judy never claimed a confirmed save, and her claim stayed credible through two trials. Bob and the moderator agreed."
     }
    ],
    "against": [],
@@ -340,7 +372,7 @@
   {
    "id": "t16",
    "audience": "Yakuza",
-   "tip": "Don't vote as a block with an exposed teammate. Spread your votes, and sometimes vote with town against a doomed teammate to protect your own read.",
+   "tip": "Don't vote as a block with an exposed teammate. Once a teammate is clearly doomed, vote Guilty with the town. Plan the whole team's vote record across trials in night chat rather than improvising each trial, because lone Innocent votes on a teammate who later flips become the main case against you.",
    "status": "active",
    "support": [
     {
@@ -357,6 +389,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Dave, Bob and Heidi all voted Guilty on Alice on D3 while every villager voted Innocent. After Dave's flip, Bob was hanged on that vote record."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Moderator, Alice, Bob, Frank and Grace: Mallory's repeated Innocent votes on flipped Yakuza got her hanged, while Alice's Guilty votes protected her."
     }
    ],
    "against": [],
@@ -364,6 +401,12 @@
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "edited",
+     "old": "Don't vote as a block with an exposed teammate. Spread your votes, and sometimes vote with town against a doomed teammate to protect your own read.",
+     "note": "Mallory was the only voter besides Carol to vote Innocent at Carol's execution, then voted Innocent on Niaj, and was hanged on D6. Alice voted Guilty on both and survived to the final day. Niaj noted that distancing must be coordinated across trials."
     }
    ]
   },
@@ -397,6 +440,11 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.78,
      "note": "Frank's visit to Dave was seen by Mallory and became the main evidence against him."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Niaj: Frank was killed the night he claimed Tracker, and the Katana stayed with unclaimed members."
     }
    ],
    "against": [],
@@ -442,6 +490,11 @@
      "game": "game_20261009_100017_447818",
      "weight": 0.4,
      "note": "At 4 alive, Erin's consistent Lookout claim was hanged over a PM-direction slip while Carol (Yakuza) survived. That mislynch lost the game."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Dave, Heidi and Grace: correcting false 'contradictions' (optional Medic actions, a Tracker seeing visits rather than actions) kept true claims alive."
     }
    ],
    "against": [],
@@ -553,6 +606,11 @@
      "game": "game_20261009_100017_447818",
      "weight": 0.16,
      "note": "Dave: long rounds of 'no nomination from me' let the Yakuza pick off Village roles. Name a concrete behavior and set a deadline."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Grace: stated daily reads made the later voting patterns easy to compare."
     }
    ],
    "against": [],
@@ -573,9 +631,20 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.63,
      "note": "Bob went from four days of 'no nomination' to pushing Heidi right after Frank flipped."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Ivan and Mallory: the timing of Carol's late Archivist claim and Mallory's will drew useful scrutiny."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Frank: Ivan's late Oracle claim was true, and suspicion over its timing helped get him hanged. Vote patterns, not timing, found the Yakuza."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_004910_895267",
@@ -585,8 +654,8 @@
   },
   {
    "id": "t27",
-   "audience": "Vanilla Villager",
-   "tip": "Keep a running tally of every trial vote and every position change, so you can cite vote data crisply when you are accused.",
+   "audience": "Village",
+   "tip": "Keep a running ledger of every trial vote and announced total, plus each night's deaths, blocks and reported visits. Revisit it after every flip, and cross-check claims against it daily.",
    "status": "active",
    "support": [
     {
@@ -600,6 +669,12 @@
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "edited",
+     "old": "Keep a running tally of every trial vote and every position change, so you can cite vote data crisply when you are accused.",
+     "note": "Dave, Judy and Erin: Judy's and Niaj's competing Medic claims stayed open for days because nobody tracked blocks and visits, while the vote ledger exposed Mallory."
     }
    ]
   },
@@ -633,6 +708,11 @@
      "game": "game_20261009_004910_895267",
      "weight": 0.47,
      "note": "Erin, Grace and Dave all noted the PM graph being used as evidence."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Erin and Ivan: Erin's audit-request PM to Heidi became a public point of suspicion."
     }
    ],
    "against": [],
@@ -703,9 +783,20 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Frank claimed Medic privately and Alice acknowledged it in public on D3. The Yakuza killed Frank that night."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Frank held his Tracker claim until D4 and tracked unblocked until then. Bob agreed."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Erin: hiding early made late claims look retrofitted. Her example was Yakuza Carol's Vanilla lie, so this is weak evidence against."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_100017_447818",
@@ -743,6 +834,11 @@
      "game": "game_20261009_100017_447818",
      "weight": 0.4,
      "note": "Carol voted Innocent on Bob with Bob and Grace, and both had messaged her. Her post-hoc Roleplayer claim got her acquitted, and the Village lost."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Moderator, Heidi, Judy, Dave, Grace and Carol: Mallory's Innocent votes on Carol and Niaj, both of whom flipped Yakuza, built the case that hanged her."
     }
    ],
    "against": [],
@@ -823,6 +919,11 @@
      "game": "game_20261009_100017_447818",
      "weight": 0.16,
      "note": "Frank's reflection."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Heidi: say so when a Yes vote is only to hear someone out, and judge guilt fresh at the verdict."
     }
    ],
    "against": [],
@@ -883,6 +984,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.16,
      "note": "Alice, Carol and Grace tracked the Dave/Bob/Heidi triangle and their joint push on Alice. After Dave flipped, Bob was hanged 4-1 on the vote record."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Frank and Grace: the Carol/Judy/Niaj bloc that voted Yes on Bob kept resurfacing as an alignment signal."
     }
    ],
    "against": [],
@@ -923,6 +1029,11 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.4,
      "note": "Alice survived the N1 Katana and was blocked every night. Grace and Frank read this as the Yakuza hunting a real Sheriff and kept her alive."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Grace: Judy, who was blocked on N4-N5, was the real Medic."
     }
    ],
    "against": [],
@@ -963,12 +1074,197 @@
      "game": "game_20261009_101825_928470",
      "weight": 0.16,
      "note": "The N1 Katana on Alice failed to Frank's protection. Heidi's reflection."
+    },
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Heidi survived the N1 Katana to Judy's protection. The Yakuza switched targets, then blocked Judy on N4-N5 and landed kills. Alice, Carol, Niaj and the moderator all reported this helped."
     }
    ],
    "against": [],
    "history": [
     {
      "game": "game_20261009_101825_928470",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t46",
+   "audience": "Yakuza",
+   "tip": "In the endgame, don't send the Katana at the player the Medic publicly claims to guard. Block or kill the Medic, or hit an unprotected target.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "On N6 Alice attacked Erin, whom Judy had publicly claimed protecting. Judy protected her again, the attack failed, and the Village reached a 3-1 final day."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t47",
+   "audience": "Everyone",
+   "tip": "Get the mechanics right before calling something a contradiction. Night actions are optional unless a role says 'must'. Two players can claim the same role unless the rules make it unique. Count living players as of the right moment. A false 'contradiction' costs the accuser credibility.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Erin claimed a Medic must act every night, was corrected, and was later tried. Mallory's archive miscount was itself wrong. Bob, Dave, Heidi, Judy and Grace said the same."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t48",
+   "audience": "Village",
+   "tip": "When announced trial totals don't match the revealed votes, record which side got the extra vote in each trial. Then find the one player whose votes line up with every manipulation, and combine that with any token or claim evidence before hanging.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Heidi saw an extra Innocent at Carol's trial and an extra Guilty at Ivan's, matching Carol's own votes, plus Carol's 1-token audit. Carol was hanged and flipped Ballot Stuffer. Frank, Erin, Dave and Judy agreed."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t49",
+   "audience": "Yakuza",
+   "tip": "Never name living teammates in your last will. Write it as a plausible Village player would.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Mallory's will said 'Alice is our Grunt', and that was the whole case that hanged Alice on D7. Frank and Alice noted it too."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t50",
+   "audience": "Village",
+   "tip": "Don't hang a power-role claimant just because the claim came late or is hard to verify, especially when the result fits the accused's own admissions. Before voting, ask who is pushing the trial and who benefits.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Ivan's true Oracle result (Niaj is not Vanilla) was answered with a Yakuza-led nomination by Alice and a doubled vote. Ivan was hanged, the Village's worst mistake."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t51",
+   "audience": "Yakuza",
+   "tip": "Combine public partial-role results with your private knowledge of your team to locate Neutrals and other threats, then kill them.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.4,
+     "note": "Dave's survey of Alice/Bob/Carol revealed a Vulture. Alice and Carol were Yakuza, so the Yakuza killed Bob, the Vulture, on N3."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t52",
+   "audience": "Village",
+   "tip": "A will that names a living player is a lead, not a verdict. Check the named player's own vote record and claims before hanging on it the same day.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Grace and Mallory: the case on Alice came from Mallory's will alone. It was correct this time, but thin evidence."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t53",
+   "audience": "Mortician",
+   "tip": "Save your clean token for a kill that is likely to land. A clean only hides the role and will of someone who dies; it doesn't help an attack succeed, and it is wasted if the target survives.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Niaj's reflection."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t54",
+   "audience": "Medic",
+   "tip": "Log every protection target and any tokens spent in your will each day. A complete record lets others check your claim against Tracker results if a counterclaim appears.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261009_055144_260309",
+     "weight": 0.16,
+     "note": "Frank: the Judy vs Niaj Medic dispute was settled by matching Judy's claimed visits against his track."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261009_055144_260309",
      "change": "added"
     }
    ]
