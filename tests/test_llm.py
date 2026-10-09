@@ -186,3 +186,16 @@ def test_each_model_has_its_own_default_effort(monkeypatch):
     assert resolve_effort(ModelSpec(Model.QWEN_3_8_MAX), None).effort == "medium"
     assert resolve_effort(ModelSpec(Model.QWEN_3_8_MAX), "xhigh").effort == "xhigh"  # --effort
     assert resolve_effort(ModelSpec(Model.OPUS_5_5, "low"), "xhigh").effort == "low"
+
+
+def test_gemini_gets_nullable_enums_in_the_form_it_accepts(monkeypatch):
+    client = OpenRouterClient("test-key")
+    bodies: list[dict] = []
+    monkeypatch.setattr(client, "_post", lambda body: bodies.append(body) or REFUSAL)
+    schema = {"type": "object", "properties": {"role": {"anyOf": [{"type": "string", "enum": ["Medic", "Seer"]},
+                                                                 {"type": "null"}]}},
+              "required": ["role"], "additionalProperties": False}
+    client.chat(Model.GEMINI_3_8_FLASH, [], schema=schema)
+    client.chat(Model.HAIKU_5_5, [], schema=schema)  # Claude rejects the flat form
+    sent = [b["response_format"]["json_schema"]["schema"]["properties"]["role"] for b in bodies]
+    assert sent == [{"type": ["string", "null"], "enum": ["Medic", "Seer", None]}, schema["properties"]["role"]]

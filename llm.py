@@ -281,6 +281,22 @@ def flat_messages(messages: list[dict]) -> list[dict]:
     return [{**m, "content": text_of(m["content"])} if "content" in m else m for m in messages]
 
 
+def flat_nullable_enums(schema: Any) -> Any:
+    """Gemini rejects (HTTP 400) a nullable enum written as anyOf [enum, null] once the enum has more than
+    about 20 values (e.g. guessed_role, a role name), but takes {"type": ["string", "null"], "enum": [..., null]}.
+    Claude rejects that form, so only Gemini's requests get it (checked 2026-10-09)."""
+    if isinstance(schema, list):
+        return [flat_nullable_enums(x) for x in schema]
+    if not isinstance(schema, dict):
+        return schema
+    options = schema.get("anyOf")
+    if (isinstance(options, list) and len(options) == 2 and {"type": "null"} in options and len(schema) == 1):
+        enum = next(o for o in options if o != {"type": "null"})
+        if set(enum) == {"type", "enum"} and isinstance(enum["type"], str):
+            return {"type": [enum["type"], "null"], "enum": [*enum["enum"], None]}
+    return {k: flat_nullable_enums(v) for k, v in schema.items()}
+
+
 RETRY_CODES = (408, 429, 500, 502, 503, 504)  # HTTP statuses (or error codes in an answer) worth retrying
 
 
@@ -313,6 +329,8 @@ class OpenRouterClient:
         if tools:
             body["tools"] = tools
         if schema:
+            if model.value.startswith("google/"):
+                schema = flat_nullable_enums(schema)
             body["response_format"] = {
                 "type": "json_schema",
                 "json_schema": {"name": schema_name, "strict": True, "schema": schema},
