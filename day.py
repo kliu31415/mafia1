@@ -347,7 +347,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             counts[pair] = counts.get(pair, 0) + 1
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
-                      [q.name for q in game.players if q.name not in (p.name, to, *readers)], kind="notice")
+                      [q.name for q in game.alive() if q.name not in (p.name, to, *readers)], kind="notice")
     return public, nominee
 
 
