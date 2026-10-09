@@ -305,8 +305,8 @@ def test_resuming_keeps_the_crash_night_check_errors_and_costs_and_survives_a_to
     result = out[-1]
     assert result["errors"]["crash"] == 1 and result["errors"]["night_check_issue"] == 1
     assert result["errors"]["log_error"] == 1  # the torn line
-    replayed = next(u for u in result["usage"] if u["who"] == "Replayed after a crash")
-    assert replayed["cost"] == 0.5 and result["cost"][Model.HAIKU_5_5.value] == pytest.approx(0.5)
+    resume = next(r for r in out if r["kind"] == "resume")
+    assert resume["cut_cost"] == 0.5 and result["cost"][Model.HAIKU_5_5.value] == pytest.approx(0.5)
 
 
 def test_cli_rejects_settings_that_cant_work(monkeypatch, capsys):
@@ -351,7 +351,7 @@ def test_alerts_handle_torn_lines_running_games_and_new_errors_after_a_resume(tm
     assert g["kinds"] == {"crash": 1, "api_retry": 1}
     (tmp_path / "game_20261009_000000_2.jsonl").write_text('{"t": 1, "kind": "setup"}\n{"t": 2\n', encoding="utf-8")
     os.utime(tmp_path / "game_20261009_000000_2.jsonl", (0, 0))
-    assert "unreadable log line" in alerts.describe(alerts.unreviewed(tmp_path))
+    assert "probably killed" in alerts.describe(alerts.unreviewed(tmp_path))
     (tmp_path / "mock_lessons.jsonl").write_text("{}\n", encoding="utf-8")
     assert not any(g["game"] == "mock_lessons" for g in alerts.unreviewed(tmp_path, "mock"))
 
@@ -392,17 +392,14 @@ def test_tips_skip_unfinished_games_and_repeated_ops_and_keep_the_sheet_when_the
     assert out.read_text(encoding="utf-8") == before and "empty sheet" in errors[0]
 
 
-def test_a_tips_build_never_deletes_a_lock_another_build_took_over(tmp_path, monkeypatch):
+def test_a_tips_build_flags_a_lock_another_build_took_over(tmp_path, monkeypatch):
     import tips
     monkeypatch.setattr(tips, "LOCK_STALE_S", -1)  # every lock looks stale
     errors: list[str] = []
     with tips.locked(tmp_path / "tips.md", lambda kind, summary, **d: errors.append(summary)) as touch:
         with tips.locked(tmp_path / "tips.md", lambda kind, summary, **d: errors.append(summary)):
-            touch()  # the first build notices it lost the lock
-        lock = tmp_path / "tips.md.lock"
-        assert not lock.exists()  # the second build removed its own lock...
-        lock.write_text("someone else", encoding="utf-8")
-    assert lock.read_text(encoding="utf-8") == "someone else"  # ...and the first doesn't remove a third's
+            pass
+        touch()  # the first build notices it lost the lock
     assert any("took over" in e for e in errors) and any("taken over by another build" in e for e in errors)
 
 
@@ -425,3 +422,85 @@ def test_stats_says_what_it_skipped_when_no_games_are_left(tmp_path):
     write_log(tmp_path / "game_a.jsonl", game_records()[:-1])
     games, skipped = stats.load_games(stats.log_files([tmp_path]))
     assert stats.report(games, skipped) == "No finished games found. Skipped: 1 unfinished."
+
+
+# --- Sweep 2 -----------------------------------------------------------------------------------------
+
+def test_the_moderator_cant_remove_a_status_key_role_code_reads(game_factory):
+    game, players = game_factory(["Executioner", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").status[Status.TARGET] = "Bob"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="set by code"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "set_status", "player": "Alice", "key": "target",
+                                                    "value": None}]})
+    assert Status.TARGET in game.player("Alice").status
+
+
+def test_a_checkpoint_resumes_from_the_log_next_to_it(tmp_path, monkeypatch):
+    """A checkpoint copied from another machine (sync_logs) names a log path that doesn't exist here."""
+    import shutil
+
+    from checkpoint import load
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "cloud")
+    real_run_night = mafia.run_night
+
+    def crash_on_night_2(game, *args):
+        if game.day == 2:
+            raise RuntimeError("stopped")
+        real_run_night(game, *args)
+    monkeypatch.setattr(mafia, "run_night", crash_on_night_2)
+    with pytest.raises(RuntimeError):
+        mafia.play_game(MockClient(3), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 3)
+    monkeypatch.setattr(mafia, "run_night", real_run_night)
+    pc = tmp_path / "pc"
+    shutil.copytree(tmp_path / "cloud", pc)
+    shutil.rmtree(tmp_path / "cloud")
+    [ckpt_path] = pc.glob("*.ckpt")
+    ckpt = load(ckpt_path)
+    assert mafia.play_game(MockClient(3), **ckpt["play_args"], resume=ckpt) == ckpt_path.with_suffix(".jsonl")
+
+
+def test_katana_decisions_are_scored_from_the_revote(tmp_path):
+    import stats
+    from tests.test_stats import game_records, write_log
+    recs = game_records()
+    next(r for r in recs if r["kind"] == "katana")["revote_targets"] = {"Erin": "Bob"}  # first voted Alice
+    g = stats.load_game(write_log(tmp_path / "game_a.jsonl", recs))
+    assert g is not None
+    assert not any(d["kind"] == "katana_target" for d in g["decisions"])  # the attack on Alice wasn't Erin's vote
+
+
+def test_a_roleplayer_looks_exactly_like_their_fake_role(game_factory):
+    from players import role_briefing
+    from roles import ROLES, logic
+    game, players = game_factory(["Roleplayer", "Seer", "Vanilla Villager", "Grunt"])
+    rp, seer = game.player("Alice"), game.player("Bob")
+    logic("Roleplayer").setup(game, rp)
+    assert rp.tokens == ROLES[rp.status[Status.FAKE_ROLE]].tokens
+    rp.status[Status.FAKE_ROLE], rp.tokens = "Seer", dict(seer.tokens)  # setup picks at random; pin it
+    assert role_briefing(game, rp).replace("Alice (seat 0)", "Bob (seat 1)") == role_briefing(game, seer)
+    rp.status[Status.FAKE_ROLE] = "Fortune Teller"  # gets results at dawn; never asked for a night action
+    assert not logic("Roleplayer").acts_at_night(rp)
+
+
+def test_a_blank_start_of_day_will_keeps_the_will(game_factory):
+    from day import run_day
+    game, players = game_factory(VILLAGE5 + ["Grunt"], ScriptedClient(
+        lambda name, task, schema: {"last_will": ""} if "last_will" in schema["properties"] and
+        task.startswith("Write") else None))
+    game.player("Alice").last_will = "I am the Sheriff."
+    run_day(game, players)
+    assert game.player("Alice").last_will == "I am the Sheriff."
+
+
+def test_yakuza_who_agree_not_to_attack_get_no_revote(game_factory):
+    def decide(name, task, schema):
+        if "katana_vote_target" in schema["properties"]:
+            return {"katana_vote_holder": "Dave", "katana_vote_target": None, "act": False}
+        return {"message": "   "} if "message" in schema["properties"] else None
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"], ScriptedClient(decide))
+    from night import run_night
+    run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
+    assert not any("no majority" in e.text for e in game.events)
+    assert not any(t.startswith("Revote") for _, t in players.client.asked)
+    assert not any("(Yakuza chat):" in e.text for e in game.events)  # a blank message isn't posted

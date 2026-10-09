@@ -57,7 +57,7 @@ CORE_OPS: dict[str, tuple[set[str], set[str]]] = {
     "set_katana": ({"player"}, set()),
     "set_last_will": ({"player", "text"}, set()),
 }
-CODE_STATUS_KEYS = {v for k, v in vars(Status).items() if not k.startswith("_")}
+CODE_STATUS_KEYS = {v for k, v in vars(Status).items() if not k.startswith("_") and isinstance(v, str)}
 
 FLAG_TOOL = tool("flag_issue", "Report a problem with the game itself without stopping it: an ambiguous or "
                  "contradictory rule, a tool or piece of state you're missing, or anything that looks "
@@ -265,6 +265,8 @@ class Moderator:
             if op == "set_status":
                 if not isinstance(c["key"], str):
                     raise bad("key must be text")
+                if c["key"] in Status.SET_AT_SETUP:
+                    raise bad(f"{c['key']!r} is set by code at setup and can't be changed")
                 if isinstance(c.get("value"), str) and c["value"].strip().lower() in ("true", "false"):
                     raise bad("use JSON true/false for the value, not a string")
                 if c["key"] not in CODE_STATUS_KEYS:

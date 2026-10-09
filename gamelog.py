@@ -38,10 +38,11 @@ from records import read_records, safe_print
 #     error kinds moderator_warning, api_error, harness_error, setup_error; player answers that break their
 #     schema are player_errors
 # 16: settings have setup: {"kind": "fixed"}, or {"kind": "random", "players", "pool"} for --roles random:N
-# 17: "resume" has replayed_cost (cost of the calls cut from the log) and unreadable_lines; a resumed game
-#     keeps earlier nights' night_check records; "night_effects_undone" record (a revenge kill reverted a
+# 17: "resume" has cut_cost (cost of the calls cut from the log, still in the result's cost) and
+#     unreadable_lines; a resumed game keeps earlier nights' night_check records; "night_effects_undone" record (a revenge kill reverted a
 #     night's will forgery or cleaning); new error kind log_error (unreadable log lines)
-LOG_VERSION = 17
+# 18: "katana" has revote_targets (Yakuza -> target in the revote, or null when there was none)
+LOG_VERSION = 18
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
@@ -151,13 +152,6 @@ def usage_by_caller(path: Path, players: list[dict]) -> list[dict]:
         if r["kind"] in ("player_error", "player_fallback") and r.get("player") in rows:
             key = "failed_calls" if r["kind"] == "player_error" else "fallbacks"
             rows[r["player"]][key] = rows[r["player"]].get(key, 0) + 1
-        if r["kind"] == "resume" and r.get("replayed_cost"):  # paid for, then cut from the log and replayed
-            row = rows.setdefault("Replayed after a crash", {"who": "Replayed after a crash", "kind": "post_game",
-                                                             "models": []})
-            for model, cost in r["replayed_cost"].items():
-                row["cost"] = row.get("cost", 0.0) + cost
-                if model not in row["models"]:
-                    row["models"].append(model)
         who = caller_of(r)
         if who is None:
             continue

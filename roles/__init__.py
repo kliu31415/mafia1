@@ -44,7 +44,8 @@ ROLES: dict[str, RoleInfo] = {
                            tested=True, notes="moderator records the prosecution; code runs the trial next day"),
     "Party Animal": RoleInfo(Alignment.GOOD, "Misc", False, acts_at_night=True),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False, acts_at_night=True,
-                           notes="code assigns the fake role; moderator invents its results"),
+                           notes="code assigns the fake role (with its tokens and night prompts); "
+                           "moderator invents its results"),
     "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True, notes="random visit each night"),
     "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
                          notes="curse resolved by code at the next dawn"),

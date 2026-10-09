@@ -113,7 +113,7 @@ def test_setup_hooks_assign_executioner_target_and_roleplayer_fake_role(tmp_path
     assert ROLES[rp.status[Status.FAKE_ROLE]].category == "Investigative"
     assert f"Your target is {exe.status[Status.TARGET]}." in role_briefing(game, exe)
     briefing = role_briefing(game, rp)
-    assert f"Your role is {rp.status[Status.FAKE_ROLE]}." in briefing and "Roleplayer" not in briefing
+    assert f"Your role is {rp.status[Status.FAKE_ROLE]} (Good)." in briefing and "Roleplayer" not in briefing
 
 
 def test_moderator_night_notes_cover_roles_in_the_game(game_factory):

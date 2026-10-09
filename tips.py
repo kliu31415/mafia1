@@ -36,7 +36,6 @@ import os
 import random
 import re
 import time
-import uuid
 from collections import Counter
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
@@ -395,13 +394,10 @@ def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[
     LOCK_STALE_S was left by a build that died, and is taken over."""
     lock = path.with_name(path.name + ".lock")
     lock.parent.mkdir(parents=True, exist_ok=True)
-    token = f"{os.getpid()} {uuid.uuid4()}"  # ours, so we never delete a lock another build took over
     deadline = time.time() + LOCK_WAIT_S
     while True:
         try:
-            fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-            os.write(fd, token.encode())
-            os.close(fd)
+            os.close(os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
             break
         except FileExistsError:
             try:
@@ -415,23 +411,17 @@ def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[
             if time.time() > deadline:
                 raise TimeoutError(f"{lock} is still held by another build after {LOCK_WAIT_S}s") from None
             time.sleep(1)
-    def ours() -> bool:
-        try:
-            return lock.read_text(encoding="utf-8") == token
-        except OSError:
-            return False
 
     def touch() -> None:
-        if ours():
+        try:
             os.utime(lock)
-        else:
+        except OSError:  # rare: another build thought ours was stale; just flag it
             on_error("tips_error", f"{lock} was taken over by another build while this one ran; their "
                      "notebook writes may overwrite each other", lock=str(lock))
     try:
         yield touch
     finally:
-        if ours():
-            lock.unlink(missing_ok=True)
+        lock.unlink(missing_ok=True)
 
 
 def write_atomic(path: Path, text: str) -> None:

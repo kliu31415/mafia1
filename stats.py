@@ -82,8 +82,10 @@ def log_files(paths: Iterable[Path]) -> list[Path]:
         if p.is_dir():
             out += sorted(f for f in [*p.glob("game_*.jsonl"), *p.glob("mock_*.jsonl")]
                           if f.name != "mock_lessons.jsonl")
-        elif p.suffix == ".jsonl":
+        elif p.suffix == ".jsonl" and p.exists():
             out.append(p)
+        else:
+            raise SystemExit(f"{p} is not a folder or a .jsonl game log")
     return out
 
 
@@ -135,6 +137,7 @@ def decisions(records: list[dict], players: dict[str, dict]) -> list[dict]:
                     "target": target, "target_role": players[target]["role"], "good": good})
 
     katana = {r["day"]: (r.get("result") or {}).get("attack") for r in records if r["kind"] == "katana"}
+    revotes = {r["day"]: r["revote_targets"] for r in records if r["kind"] == "katana" and r.get("revote_targets")}
     for r in records:
         if r["kind"] == "vote" and r["nominee"] in players:
             nominee, day = r["nominee"], r["day"]
@@ -173,8 +176,9 @@ def decisions(records: list[dict], players: dict[str, dict]) -> list[dict]:
             if target in players:
                 info = ROLES.get(players[target]["role"])
                 power = bool(info and info.alignment is Alignment.GOOD and info.category in POWER_CATEGORIES)
-                for name, a in actions.items():
-                    if name in players and a.get("katana_vote_target") == target:
+                votes = revotes.get(day) or {n: a.get("katana_vote_target") for n, a in actions.items()}
+                for name, vote in votes.items():
+                    if name in players and vote == target:
                         add(name, "katana_target", day, target, power, roles.get(name))
     return out
 

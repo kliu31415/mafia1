@@ -47,7 +47,6 @@ Usage:
 
 import argparse
 import hashlib
-import pickle
 import random
 import subprocess
 import time
@@ -68,7 +67,6 @@ from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
 from players import Players
-from records import read_records
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from setups import POOLS, parse_random_roles, random_setup
 from events import PHASE
@@ -305,17 +303,13 @@ def resume_log(game: Game, log: GameLog, resume: dict, client: LLMClient, check_
             or (r["kind"] in ("night_check", "night_check_issue", "night_check_error") and r["night"] < game.day)]
     for r in kept:
         log.write_raw(r)
-    # None of the cut calls' costs were in the checkpoint's; the replayed ones are paid for again.
+    # The cut calls were paid for but aren't in the checkpoint's cost (the per-caller usage leaves them out).
     cut_cost: dict[str, float] = {}
     for r in log.cut_records:
         if r.get("cost") and (model := r.get("model") or r.get("judge")):
             cut_cost[model] = cut_cost.get(model, 0) + float(r["cost"])
-    replayed = {m: c for m, c in cut_cost.items()}
-    for r in kept:
-        if r.get("cost") and (model := r.get("model") or r.get("judge")):
-            replayed[model] -= float(r["cost"])
     log.write("resume", day=game.day, cut_records=len(log.cut_records), unreadable_lines=log.cut_unreadable,
-              replayed_cost={m: round(c, 6) for m, c in replayed.items() if c > 1e-9})
+              cut_cost=round(sum(cut_cost.values()), 6))
     print(f"Resuming {log.path.stem} at day {game.day}")
     for model, cost in list(resume["cost"].items()) + list(cut_cost.items()):
         client.total_cost[model] = client.total_cost.get(model, 0) + cost
@@ -326,10 +320,6 @@ def resume_log(game: Game, log: GameLog, resume: dict, client: LLMClient, check_
     if log.cut_unreadable:
         log.error("log_error", f"{log.cut_unreadable} unreadable line(s) after the checkpoint were dropped "
                   "(probably half-written when the game stopped)")
-    nights_checked = {r["night"] for r in read_records(log.path)[0] if r["kind"] == "night_check"}
-    if check_nights and game.day > 1 and game.day - 1 not in nights_checked:
-        log.error("night_check_error", f"night {game.day - 1}'s check was lost when the game stopped",
-                  night=game.day - 1)
 
 
 def write_views(log: GameLog, close: bool = False) -> Path | None:
@@ -412,7 +402,7 @@ def main() -> None:
     if args.resume:
         try:
             ckpt = load_checkpoint(Path(args.resume))
-        except (OSError, ValueError, EOFError, pickle.UnpicklingError) as e:
+        except Exception as e:  # e.g. damaged, or pickled on another OS
             ap.error(f"can't resume from {args.resume}: {type(e).__name__}: {e}")
         saved = ckpt["play_args"]
         if args.no_update_tips:  # the other options are the game's own

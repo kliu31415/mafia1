@@ -58,7 +58,8 @@ def test_logs_go_from_the_cloud_to_the_pc_without_touching_main(machines):
 
 def test_shared_files_are_merged_and_pushes_from_two_machines_both_land(machines):
     a, b = machines["cloud"], machines["pc"]
-    for repo, game, reviewed in ((a, "game_a", {"game_a": 2, "old": 1}), (b, "game_b", {"old": 3})):
+    for repo, game, reviewed in ((a, "game_a", {"game_a": ["1:crash"], "old": ["2:api_retry"]}),
+                                     (b, "game_b", {"old": ["5:player_error"], "older": 3})):
         logs = repo.root / "logs"
         logs.mkdir()
         (logs / f"{game}.jsonl").write_text("{}\n")
@@ -70,7 +71,8 @@ def test_shared_files_are_merged_and_pushes_from_two_machines_both_land(machines
     logs = a.root / "logs"
     assert (logs / "game_b.jsonl").exists()
     assert (logs / "lessons.jsonl").read_text().splitlines() == ['{"game": "game_a"}', '{"game": "game_b"}']
-    assert json.loads((logs / "alerts_reviewed.json").read_text()) == {"game_a": 2, "old": 3}
+    assert json.loads((logs / "alerts_reviewed.json").read_text()) == {"game_a": ["1:crash"], "old": ["2:api_retry", "5:player_error"],
+                                                                 "older": []}
 
 
 def test_tips_published_on_the_pc_reach_cloud_games(machines):

@@ -5,8 +5,7 @@ whose errors haven't been marked reviewed, plus games that stopped with no resul
 (the process was killed). Claude Code runs `--hook` when a session starts in this folder
 (.claude/settings.json), so Claude sees new errors and brings them up; a finished game also prints a
 reminder line while any are unreviewed. Reviewed errors are kept in logs/alerts_reviewed.json (by when
-each happened), so a game that gets new errors later (e.g. it was resumed) shows up again. Each log's
-scan is cached in logs/alerts_cache.json until the log changes, so the hook stays fast.
+each happened), so a game that gets new errors later (e.g. it was resumed) shows up again.
 
 Usage:
     uv run alerts.py                 # list games with unreviewed errors
@@ -27,21 +26,20 @@ from records import safe_print
 
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 REVIEWED_FILE = "alerts_reviewed.json"
-CACHE_FILE = "alerts_cache.json"
 STOPPED_AFTER_S = 3600  # a log with no result, untouched this long, belongs to a game that was killed
 SAMPLES_PER_KIND = 2
 
 
 def scan(path: Path) -> dict:
     """A game log's problems: an id for each (its error records' times, "stopped" if it stopped silently,
-    "unreadable:<n>" for lines that aren't JSON), counts per kind and a few samples."""
+    "unreadable:<n>" for error lines that aren't JSON), counts per kind and a few samples."""
     data = path.read_bytes()
     finished = b'"kind": "result"' in data
     stale = time.time() - path.stat().st_mtime >= STOPPED_AFTER_S
     lines = data.split(b"\n")
     errors, unreadable = [], 0
     for i, line in enumerate(lines):
-        if not line.strip() or (b'"alert": true' not in line and not stale and i < len(lines) - 1):
+        if b'"alert": true' not in line:
             continue
         try:
             r = json.loads(line)
@@ -89,27 +87,16 @@ def game_logs(log_dir: Path, prefix: str) -> list[Path]:
     return sorted(p for p in log_dir.glob(f"{prefix}_*.jsonl") if re.match(rf"{prefix}_\d", p.name))
 
 
-def unreviewed(log_dir: Path, prefix: str = "game", update_cache: bool = True) -> list[dict]:
+def unreviewed(log_dir: Path, prefix: str = "game") -> list[dict]:
     """Games (oldest first) with problems that weren't marked reviewed."""
     reviewed = load_json(log_dir / REVIEWED_FILE)
-    cache = load_json(log_dir / CACHE_FILE)
-    out, changed = [], False
+    out = []
     for path in game_logs(log_dir, prefix):
-        st = path.stat()
-        key = f"{st.st_size}:{st.st_mtime_ns}"
-        entry = cache.get(path.name)
-        if not (entry and entry.get("key") == key and entry.get("finished")):  # only finished logs stop changing
-            entry = {"key": key, **scan(path)}
-            cache[path.name], changed = entry, True
-        old = reviewed.get(entry["game"])
-        seen = set(old) if isinstance(old, list) else set()
-        if any(i not in seen for i in entry["ids"]):
-            out.append(entry)
-    if changed and update_cache:
-        try:
-            save_json(log_dir / CACHE_FILE, cache)
-        except OSError:
-            pass  # only a cache: the next run scans again
+        g = scan(path)
+        old = reviewed.get(g["game"])
+        seen = set(old) if isinstance(old, list) else set()  # an old-format entry (a count) counts as nothing
+        if any(i not in seen for i in g["ids"]):
+            out.append(g)
     return out
 
 

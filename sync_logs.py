@@ -11,7 +11,7 @@ sheet and don't update it (--no-update-tips); `pull` on the PC adds their lesson
 same `tips.py build` a PC game runs when it ends) and publishes the new sheet for later cloud games.
 
 Files merged rather than copied: logs/lessons.jsonl (lines from every machine, each kept once) and
-logs/alerts_reviewed.json (a game counts as reviewed up to the highest count any machine reviewed).
+logs/alerts_reviewed.json (a problem counts as reviewed once any machine reviewed it).
 Mock games, lock and temporary files are never synced.
 
 Usage:
@@ -48,10 +48,12 @@ def merge_lessons(ours: bytes, theirs: bytes) -> bytes:
 
 
 def merge_reviewed(ours: bytes, theirs: bytes) -> bytes:
-    """Game id -> issue count when reviewed; the higher count wins (it was reviewed further)."""
-    merged: dict[str, int] = json.loads(theirs or b"{}")
-    for game, n in json.loads(ours or b"{}").items():
-        merged[game] = max(n, merged.get(game, 0))
+    """Game id -> the ids of its problems reviewed (alerts.py); either side's review counts."""
+    merged: dict[str, list] = {}
+    for side in (theirs, ours):
+        for game, ids in json.loads(side or b"{}").items():
+            ids = ids if isinstance(ids, list) else []  # an old-format count means nothing now
+            merged[game] = sorted(set(merged.get(game, [])) | set(ids))
     return json.dumps(merged, indent=1, sort_keys=True).encode()
 
 
@@ -230,8 +232,9 @@ def main() -> None:
             print(f"Copied {len(written)} files into {log_dir}" + "".join(f"\n  {w.name}" for w in written))
             for name in kept:
                 print(f"  kept {name}: the local copy differs from the branch's (not overwritten)")
-            games = sorted(w for w in written if w.name.startswith("game_") and w.suffix == ".jsonl")
-            if games and not args.no_tips:
+            # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
+            games = sorted(log_dir.glob("game_*.jsonl"))
+            if any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written) and not args.no_tips:
                 update_tips(games, tips_dir, args.tips_model)
             if not args.no_tips:
                 changed = put_tips(repo, tips_dir)

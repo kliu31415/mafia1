@@ -27,6 +27,7 @@ class Status:
     CLEANED = "cleaned"  # Mortician: the death reveal hides role and will
     TARGET = "target"  # Executioner's target
     FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
+    SET_AT_SETUP = (TARGET, FAKE_ROLE)  # role hooks read these directly, so the moderator can't change them
 
 
 class RoleLogic:
@@ -47,6 +48,10 @@ class RoleLogic:
     def shown_role(self, p: Player) -> str:
         """The role the player is told they have."""
         return f"{p.role} ({p.info.alignment.value})"
+
+    def acts_at_night(self, p: Player) -> bool:
+        """Whether the player is asked for a night action (Yakuza always are, for the Katana vote)."""
+        return p.info.acts_at_night
 
     def briefing(self, game: Game, p: Player) -> list[str]:
         """Extra sentences for the player's role briefing (shown in every prompt)."""

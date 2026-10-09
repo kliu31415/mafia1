@@ -22,7 +22,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                     "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. "
                     + katana_majority_note(game))
 
-    actors = [p for p in game.alive() if p.info.acts_at_night or p.info.alignment is Alignment.EVIL]
+    actors = [p for p in game.alive() if logic(p.role).acts_at_night(p) or p.info.alignment is Alignment.EVIL]
     jobs = []
     for p in actors:
         task = (f"It is Night {game.day}. Choose your night action for your role, following the rules. "
@@ -35,8 +35,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.log.write("night_actions", day=game.day, actions=actions, roles={p.name: p.role for p in actors})
 
     katana = tally_katana(game, actions)
+    revote: dict[str, str | None] = {}  # Yakuza -> target, if there was a revote
     yakuza = game.yakuza()
-    if katana["attack"] is None and len(yakuza) > 1:
+    if katana.get("note", "").startswith("no majority") and len(yakuza) > 1:
         # No majority: show the votes, one more round of chat, then a Katana-only revote.
         votes = "; ".join(f"{y.name}: holder {actions[y.name].get('katana_vote_holder')}, target "
                           f"{actions[y.name].get('katana_vote_target')}" for y in yakuza)
@@ -54,9 +55,10 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         for y, out in zip(yakuza, outs):
             actions[y.name].update(katana_vote_holder=out["katana_vote_holder"],
                                    katana_vote_target=out["katana_vote_target"])
+            revote[y.name] = out["katana_vote_target"]
         katana = tally_katana(game, actions)
     game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
-    game.log.write("katana", day=game.day, result=katana)
+    game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
     instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
@@ -121,7 +123,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
                 f"Send a message (max {YAKUZA_MESSAGE_WORDS} words; longer is truncated) or null. Set "
                 "ready=true if you have nothing more to discuss; chat ends when everyone is ready.",
                 schema, {"thoughts": "", "message": None, "ready": True})
-            if msg := out.get("message"):
+            if (msg := out.get("message") or "").strip():
                 if word_count(msg) > YAKUZA_MESSAGE_WORDS:
                     msg = truncate_words(msg, YAKUZA_MESSAGE_WORDS)
                 game.emit(f"{y.name} (Yakuza chat): {msg}", names, cat=YAKUZA_CHAT, speaker=y.name, message=msg)
@@ -148,6 +150,9 @@ def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
     targets = [actions.get(y, {}).get("katana_vote_target") for y in yakuza]
     holder = next((h for h in set(holders) if h and majority(holders.count(h), len(yakuza))), None)
     target = next((t for t in set(targets) if t and majority(targets.count(t), len(yakuza))), None)
+    if target is None and majority(targets.count(None), len(yakuza)):
+        # They agreed not to attack. Whether the Katana can still change hands is unsettled (R8), so it stays.
+        return {"attack": None, "holder": game.katana_holder, "note": "the Yakuza agreed not to attack"}
     if holder is None or target is None:
         return {"attack": None, "holder": game.katana_holder, "note": "no majority agreement; no attack"}
     game.katana_holder = holder
