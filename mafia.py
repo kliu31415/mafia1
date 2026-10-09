@@ -28,6 +28,7 @@ Code layout:
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
     sync_logs.py   moves logs from cloud games to the PC (and the tips sheet back) through the `logs` branch
+    role_summaries.py checks each role's one-line hover summary against its paragraph in rules_1.txt
     tests/         offline scenario and hidden-information tests (uv run pytest)
 
 Usage:

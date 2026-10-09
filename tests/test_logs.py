@@ -85,3 +85,11 @@ def test_every_role_has_an_icon_in_the_html_log(game_factory):
     page = render_html(game.log.path).read_text(encoding="utf-8")
     assert "class='n Village ic i-medic' title='Medic (Village): Night: protect" in page
     assert ".i-medic { --icon:url(" in page
+
+
+def test_role_summaries_match_the_rules():
+    """A role's rules paragraph changed since its summary was checked: update the summary if needed, then record it."""
+    from role_summaries import stale_roles
+    stale = stale_roles()
+    assert not stale, (f"rules_1.txt changed for {', '.join(stale)}: check their `summary` in roles/__init__.py, then "
+                       f"run: uv run role_summaries.py " + " ".join(f'"{r}"' for r in stale))

@@ -55,7 +55,8 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   update `notes` when its handling changes.
 - Adding or changing a role can touch all of these; check each one:
   1. `roles/__init__.py`: `ROLES` entry (alignment, category, Sheriff result, `summary` (one line shown when
-     hovering the role's icon in the HTML log), defense, tokens, `acts_at_night`, `tested`, `notes`).
+     hovering the role's icon in the HTML log; a test fails when the role's rules paragraph changes, until
+     `uv run role_summaries.py ROLE` records that the summary was checked), defense, tokens, `acts_at_night`, `tested`, `notes`).
   2. `roles/<role>.py`: effects that code carries out, as hooks from `roles/base.py` (setup, briefing,
      deaths, dawn, ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core
      code calls hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to
