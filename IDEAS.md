@@ -14,8 +14,11 @@ night actions already run in parallel.
   pile-ons, a tie-break rule for multiple nominations in one round, and less of the real-time reaction
   reading that Mafia relies on.
 - **Parallel trial discussion.** The accused speaks first, then everyone else comments at once.
-  Saves about 30%. Small loss: trial comments are mostly people explaining their vote, so few
-  replies to each other are lost.
+  Trial turns were 31% and 20% of play time in two 12-player games (2026-10-09), so this saves 10-18
+  minutes a game. Punted (Kevin, 2026-10-09) as too big a change in play: trial comments build on each
+  other (64-80% name an earlier commenter, e.g. "Mallory's question is the key one"), and nearly every
+  player speaks (97 of 101 trial turns, ~55 words each). Two batches would keep part of that chain and save
+  about half the trial time.
 - **Chat in 2-3 batches per round.** Each batch sees what earlier batches said. Chat 2-3x faster
   while keeping most back-and-forth. Together with parallel trials: roughly 21 min -> 8 min.
 - **Several games at once** (e.g. a `--games N` flag, with a `--budget $X` that stops starting new
