@@ -47,7 +47,9 @@ class Model(str, Enum):
     # 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together; 36 replays of
     # that game's turns all parsed on Together, DeepInfra and Fireworks, so it isn't one provider's grammar.
     # In game_20261009_164356_960898 it also twice wrote its thinking as plain text in the answer, with no JSON,
-    # until the token limit (no reasoning returned): the schema isn't always enforced. The retry usually parses.
+    # until the token limit (no reasoning returned). Every successful call returned its reasoning separately, with
+    # up to ~16k output tokens, so these look like thinking that ran into the cap before it closed (~5% of calls,
+    # more on later days). The retry usually parses; low effort might avoid it but wasn't tried.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
 
