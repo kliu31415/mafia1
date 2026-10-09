@@ -165,6 +165,37 @@ def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
         assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist")
 
 
+def test_vulture_wins_alone_at_dawn_once_few_enough_are_left(game_factory):
+    roles = ["Vulture", "Jester"] + ["Vanilla Villager"] * 7 + ["Grunt"]  # 10 players: threshold max(2, 2) = 2
+    game, players = game_factory(roles, ScriptedClient())
+    game.personal_winners.append("Bob")  # e.g. a Jester who already won
+    for name in ["Carol", "Dave", "Erin", "Frank", "Grace", "Heidi", "Ivan"]:
+        game.kill(name, "Katana")
+    game.run_dawn_hooks()  # Alice, Bob, Judy: 3 alive
+    assert game.check_winner() is None
+    game.kill("Bob", "Katana")
+    run_day(game, players)  # Alice and Judy: 2 alive at the start of the day
+    assert game.check_winner() == ["Alice", "Bob"]
+    assert any("is the Vulture" in e.text for e in game.events)
+
+
+def test_a_dead_vulture_never_wins(game_factory):
+    game, _ = game_factory(["Vulture", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.kill("Alice", "Katana")
+    game.kill("Bob", "Katana")
+    game.run_dawn_hooks()
+    assert game.sole_winner is None
+
+
+def test_unique_roles_appear_at_most_once(tmp_path):
+    import random
+    from gamelog import GameLog
+    from state import setup_game
+    with pytest.raises(ValueError, match="Vulture"):
+        setup_game(["Vulture", "Vulture", "Grunt", "Vanilla Villager"], [Model.HAIKU_5_5], random.Random(1),
+                   GameLog(tmp_path / "t.jsonl"))
+
+
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     game, _ = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"])
     assert game.katana_holder == "Alice"

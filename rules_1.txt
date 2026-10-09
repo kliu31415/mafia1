@@ -353,3 +353,10 @@ Executioner
   the trial who is still alive (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
   Guilty, nothing happens.
   If your target dies any other way, you become a Jester.
+
+Vulture
+  Unique: at most one Vulture per game.
+  Win: alone, if you are alive at the start of a Day (after the night's deaths) and max(floor(N/4), 2) or fewer
+  players are alive, counting yourself, where N is the number of players at the start of the game. The game then
+  ends at once and everyone else loses (Jester and Executioner wins already earned still count, R1).
+  Night: none.

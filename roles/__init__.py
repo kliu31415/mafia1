@@ -18,6 +18,7 @@ class RoleInfo:
     defense: str = "None"
     tokens: dict[str, int] = field(default_factory=dict)
     acts_at_night: bool = False  # submits a night action, which the LLM moderator resolves
+    unique: bool = False  # at most one player in a game may have this role
     tested: bool = False  # seen working in at least one live (API) game; update when it first is
     notes: str = ""  # implementation notes for --list-roles
 
@@ -76,6 +77,8 @@ ROLES: dict[str, RoleInfo] = {
     "Wiretap": RoleInfo(Alignment.EVIL, "Yakuza", True,
                         notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),
     # Neutral
+    "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False, unique=True,
+                        notes="code checks the living count at each dawn and ends the game when it wins"),
     "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False, defense="Standard", acts_at_night=True),
     "Arsonist": RoleInfo(Alignment.NEUTRAL, "Neutral", False, defense="Standard", acts_at_night=True,
                          notes="douses tracked as player status"),
@@ -107,6 +110,6 @@ def role_status_table() -> str:
 
 # Role files register their hooks when imported.
 from roles import (accountant, archivist, arsonist, cardinal, clerk, eavesdropper, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
-                   medic, prosecutor, puppeteer, roleplayer, seer, trapper, veteran, wiretap)
+                   medic, prosecutor, puppeteer, roleplayer, seer, trapper, veteran, vulture, wiretap)
 
 assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"

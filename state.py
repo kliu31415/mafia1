@@ -90,6 +90,7 @@ class Game:
     pending_announcements: list[str] = field(default_factory=list)
     pending_deaths: list[tuple[str, str]] = field(default_factory=list)  # (name, cause), revealed at dawn
     personal_winners: list[str] = field(default_factory=list)  # Jester / Executioner
+    sole_winner: str | None = None  # a player whose win ends the game at once, everyone else losing (Vulture)
     pending_revenge: list[tuple[str, list[str]]] = field(default_factory=list)  # (source, Guilty voters)
     role_state: dict[str, Any] = field(default_factory=dict)  # per-game state of role hooks (roles/*.py)
     prosecutions: list[str] = field(default_factory=list)  # players put on trial when the next day starts
@@ -258,6 +259,8 @@ class Game:
     def check_winner(self) -> list[str] | None:
         """Rules R1. Called at the start of each day. Returns the winning player names, or None.
         Jester / Executioner wins are personal: they don't end the game, but are added at the end."""
+        if self.sole_winner:  # Jester / Executioner wins already earned still count (R1)
+            return [self.sole_winner] + self.personal_winners
         alive = self.alive()
         blocking = {p.faction for p in alive if logic(p.role).blocks_win}
         if len(blocking) <= 1:
@@ -300,6 +303,8 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
         raise ValueError(f"{len(roles)} roles but {len(models)} models")
+    if repeated := sorted({r for r in roles if ROLES[r].unique and roles.count(r) > 1}):
+        raise ValueError(f"at most one player may have each of these roles: {', '.join(repeated)}")
     models = [models[i % len(models)] for i in range(len(roles))]  # cycle models over the seats
     names = PLAYER_NAMES[:len(roles)]
     shuffled = roles[:]
