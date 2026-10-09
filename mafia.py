@@ -222,8 +222,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         ckpt_path.unlink(missing_ok=True)
         stage = "after the game (in the post-game steps)"
         duration = time.time() - started  # the game itself, without the feedback steps below
-        winner_names = ", ".join(game.winners or []) or "nobody"
-        game.emit(f"The game is over. Winners: {winner_names}.")
+        game.emit(f"The game is over. {game.winners_line()}")
         print(f"Winners: {game.winners}")
 
         def step(label: str, run: Callable[[], object]) -> None:

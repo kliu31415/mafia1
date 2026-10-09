@@ -229,3 +229,9 @@ def test_yakuza_are_told_that_two_of_them_must_both_agree_on_the_katana(game_fac
     run_night(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"))
     yakuza_tasks = [task for name, task in client.asked if name in ("Alice", "Bob")]
     assert yakuza_tasks and all("both must agree" in task for task in yakuza_tasks if "Katana" in task)
+
+
+def test_medic_briefing_spells_out_token_costs(game_factory):
+    from players import role_briefing
+    game, _ = game_factory(["Medic", "Grunt"])
+    assert "yourself with Standard Defense costs 1 token" in role_briefing(game, game.player("Alice"))

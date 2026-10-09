@@ -68,3 +68,14 @@ def test_rule_citations_in_code_exist_in_the_rules():
     for path in [*root.glob("*.py"), *root.glob("roles/*.py")]:
         cited = set(re.findall(r"\b(R\d{1,2})\b", path.read_text(encoding="utf-8")))
         assert cited <= labels, f"{path.name} cites {sorted(cited - labels)}, which aren't in rules_1.txt"
+
+
+def test_winners_line_marks_dead_winners(game_factory):
+    game, _ = game_factory(["Grunt", "Grunt", "Vanilla Villager"])
+    game.player("Alice").alive = False
+    game.winners = ["Alice", "Bob"]
+    assert game.winners_line() == "Winners: Alice (dead), Bob. Dead players still win with their side."
+    game.winners = ["Bob"]
+    assert game.winners_line() == "Winners: Bob."
+    game.winners = []
+    assert game.winners_line() == "Winners: nobody."

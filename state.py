@@ -247,6 +247,12 @@ class Game:
             return [p.name for p in self.players if faction and p.faction == faction] + self.personal_winners
         return None
 
+    def winners_line(self) -> str:
+        """"Winners: ..." for game text. Dead winners are marked, so they don't read as survivors."""
+        names = [f"{n} (dead)" if not self.player(n).alive else n for n in self.winners or []]
+        line = f"Winners: {', '.join(names) or 'nobody'}."
+        return line + " Dead players still win with their side." if "(dead)" in line else line
+
     def public_state(self) -> dict:
         return {
             "day": self.day,

@@ -45,7 +45,7 @@ def night_replay(game: Game) -> str:
 def debrief_task(game: Game) -> str:
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
     questions = "\n".join(f"- {k}: {q}" for k, q in DEBRIEF_QUESTIONS.items())
-    return (f"The game is over. Winners: {', '.join(game.winners or []) or 'nobody'}. Everyone's roles: {roles}.\n\n"
+    return (f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
             f"What happened each night (now revealed):\n{night_replay(game)}\n\n"
             "We're improving this game and the program that runs it. Out of character now, answer from "
             "your own experience of playing it. Be specific and concrete, and write 'none' where you have "
@@ -117,7 +117,7 @@ def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
     games (tips.py) say which of those went well or badly. Saved to the game log; lessons are also
     appended to `lessons_file` (one JSON object per tip, across all games) for later analysis."""
     roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
-    task = (f"The game is over. Winners: {', '.join(game.winners or []) or 'nobody'}. Everyone's roles: "
+    task = (f"The game is over. {game.winners_line()} Everyone's roles: "
             f"{roles}.\n\nIf you played this game again, what tips and tricks do you wish you'd known? "
             "Give 1-5 concrete, reusable lessons (not a recap of this game), each with a topic and who it "
             "applies to (a role, a faction, or 'everyone').")
