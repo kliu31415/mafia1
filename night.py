@@ -62,8 +62,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
-        "Resolve all actions simultaneously per the rules (R10; visits R6, role-blocks R9, attack vs defense R3, "
-        "investigation results, Katana holder appearing Good to alignment checks, Fabricator framing, etc). Use apply_changes "
+        "Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, role-blocks R9, "
+        "attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator frames). Use apply_changes "
         "for deaths and token/status changes, tell() for each private result, and end_phase when done. "
         "Deaths you apply are announced publicly at dawn automatically, including the kill's cause, so "
         "make the cause just the source as the rules allow it to be known (e.g. 'Katana', 'Vigilante', "
