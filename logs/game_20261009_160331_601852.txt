@@ -1,0 +1,192 @@
+Setup:
+  Alice    seat 1  Fortune Teller    openai/gpt-6-luna
+  Bob      seat 2  Veteran           openai/gpt-6-luna-pro
+  Carol    seat 3  Medic             anthropic/claude-haiku-5.5
+  Dave     seat 4  Sheriff           openai/gpt-6-luna
+  Erin     seat 5  Mortician         openai/gpt-6-luna-pro
+  Frank    seat 6  Lookout           google/gemini-3.8-flash
+  Grace    seat 7  Cardinal          openai/gpt-6-luna-pro
+  Heidi    seat 8  Arsonist          google/gemini-3.8-flash
+  Ivan     seat 9  Grunt             deepseek/deepseek-v4.1-flash
+  Judy     seat 10 Jester            anthropic/claude-haiku-5.5
+  Mallory  seat 11 Tracker           openai/gpt-6-luna
+  Niaj     seat 12 Clerk             deepseek/deepseek-v4.1-flash
+  Olivia   seat 13 Ritualist         anthropic/claude-haiku-5.5
+  Peggy    seat 14 Seer              deepseek/deepseek-v4.1-flash
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Erin (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+[Feedback from Olivia] The last_will field is revealed on death, so it's a good place for misdirection.
+[Feedback from Carol] null
+[Feedback from Judy] null
+Speaking order today goes around the circle in seat order, starting with Grace.
+14 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Grace (public): Day 1 has no results, so let's not manufacture certainty. Share any concrete information or claims, and scrutinize anyone eager to force a weak trial. I prefer a coordinated vote over random pressure.
+Heidi (public): Agreed with Grace. Without night info yet, let's observe how people introduce themselves and avoid rushing into premature wagons.
+Ivan (public): Agreed with Grace and Heidi. Nothing to go on yet, so I'd rather let claims come out than force a weak trial. Watching who pushes hardest for an early nomination.
+[Feedback from Judy] null
+Judy (public): Nothing concrete yet, but Ivan's 'watching who pushes hardest' line reads like cover to me. Heidi and Grace both want to wait, so I'd like to hear one named suspect from everyone before Day 1 ends.
+Mallory (public): Judy at least names Ivan, though the basis is thin. Ivan, answer that directly; everyone else, give one tentative named read and why. No blind nomination yet.
+Niaj (public): Day 1 is tone-reading. Ivan's 'watching who pushes' was a touch preemptive, and Judy's push was eager, but neither is a case. My tentative flag is Mallory: herding everyone into naming a suspect this early is exactly how lazy wagons start.
+(to Grace, Niaj) Niaj -> Grace (private): I agree on not forcing a weak trial. Mallory asking everyone for a name feels like seeding wagons. Watch who names nobody yet votes yes.
+[Feedback from Olivia] The 'message' and 'answer' fields are unclear for a public-only turn; the schema requires them, so I left them empty.
+Olivia (public): Agree with Niaj: pushing a suspect this early just starts a lazy wagon. I'm holding my read until someone shows a real claim or information.
+Peggy (public): Last to speak. This is all tone-reading; nobody has real info. I won't force a trial Day 1—a random hanging can hit a village role and costs us a night's info. Judy pushed hardest for names; Mallory's 'name a suspect' call was the most herd-like. I'll bring results when I have them.
+Alice (public): Tentative read: Judy called Ivan’s caution “cover” without evidence, then demanded named suspects. That’s more pressure than a concrete case; I want to hear their response, not start a wagon.
+Bob (public): Ivan’s wording was odd, but Judy has no case beyond calling caution “cover.” Tentative read: keep both under observation; no nomination is justified yet.
+Carol (public): no role info to share yet. Niaj, you flagged Mallory and sent Grace a private message. What was it about? Judy and Ivan both have thin cases, so I want Niaj's basis before anyone votes.
+Dave (public): I agree with Carol that Niaj should explain the private message to Grace. Judy's push for named suspects is premature, but not enough for a trial.
+Erin (public): A private message is a question, not evidence; Niaj should explain the substance rather than be judged for sending it. Judy's call for named reads is pushy, but still not a trial-worthy case.
+Frank (public): Judy and Mallory pushing for stance-taking gives us reads to analyze later, but forcing a wagon today is risky without night info. Let's see how Niaj and Grace address the PM before rushing anyone.
+Grace (public): On Carol and Dave's question: Niaj's PM said he agrees against weak trials, flags Mallory's suspect-herding, and suggests watching votes. That's thin, but transparent. Niaj, please add your basis; I won't nominate on it alone.
+[Feedback from Ivan] The pricing tiers jump at round 3; a sentence I trimmed to stay at the 50-word tier may read as clipped. Fine otherwise.
+Ivan (public): Fair to want an answer. My 'watching who pushes' was genuine caution, not cover: a rushed Day 1 trial with no info only risks hurting Village. Judy's push on me is eagerness, not evidence, and I won't start a wagon over it.
+[Feedback from Judy] The public message price rises steeply with length, so the 25-word limit is about right for a single point.
+Judy (public): Niaj's private PM to Grace is the only real lead today. Niaj, what did it say? I still think Ivan's 'cover' answer dodged my question.
+Mallory (public): Niaj, I asked for tentative reads and explicitly said no blind nomination; what specifically made that herding? Your PM to Grace sounds ordinary, but the Mallory flag still needs a basis. Judy, what exactly did Ivan dodge beyond rejecting your “cover” read? Neither point makes a trial case yet.
+Niaj (public): On the PM: Grace's summary is accurate. My Mallory flag was a tone read—asking everyone for a named suspect at once can seed wagons. It's not a case. Judy's push on Ivan is the sharpest move so far; both thin. I'm not nominating today.
+(to Grace, Niaj) Niaj -> Grace (private): Thanks for relaying it fairly. I'm with you—no weak trial today.
+[Feedback from Olivia] Nothing unclear, though the rules on carrying over speaking budget and the message price table were a bit dense to parse quickly.
+Olivia (public): Judy's push on Ivan and Mallory's push on Niaj are both noise so far. No one has a real case, and I'm not nominating until someone brings a claim or information.
+Bob (public): Niaj’s second PM to Grace came after he publicly said the first was summarized. Not proof of anything, but what required a follow-up?
+Carol (public): Niaj, Bob's question is fair: what did the second PM to Grace say, and why did it need a follow-up? Answer that directly before anyone votes.
+Dave (public): Niaj, Carol's question is straightforward: what did the second PM add? You said the first was summarized, so clarify the follow-up. This still isn't a trial case.
+Grace (public): Niaj's second PM only thanked me for relaying the first fairly and reiterated that he opposes a weak trial. No new accusation or information; the PM count alone isn't evidence. Let's focus on any concrete claims or leads before considering a nomination.
+Judy (public): My early push was eager and Ivan's answer was fine, so I'm the weakest read here. If Niaj doesn't explain the PMs clearly, I'd happily see the hardest pusher put to a vote, which is me. Nobody votes yet.
+Olivia (public): Agree: PM counts aren't a case. I want real claims before any nomination, and I'm not voting on tone reads.
+Carol (public): Niaj still hasn't said what the second PM added. Until he does, I won't vote on anyone, and I'd like real claims from others before Day 1 closes.
+Judy (public): I'm nominating myself: my push was the weakest read here, so put me on trial and judge the votes.
+Judy nominated Judy. Everyone now votes Yes/No simultaneously.
+[Feedback from Olivia] The nomination text was unclear about whether a Yes vote on a self-nomination counts toward the 8-vote threshold; the rules imply it does.
+Nomination votes on Judy: Yes - Judy, Alice, Erin, Ivan; No - Mallory, Niaj, Olivia, Peggy, Bob, Carol, Dave, Frank, Grace, Heidi.
+The nomination of Judy failed (4 Yes).
+[Feedback from Niaj] null
+Olivia (public): Agree with Grace: no trial without real claims. I'm not pushing anyone today, and I'll judge new information when it comes.
+Alice (public): For clarity, I voted Yes on Judy’s self-nomination to hear her defense, not because I had a guilty read. The evidence still seemed thin.
+[Feedback from Carol] null
+Carol (public): Niaj still hasn't said what the second PM added. Until he answers, that's my main lead.
+Dave (public): Judy’s self-nomination doesn’t establish guilt; I voted No because there was no case, not because I’m clearing her. Grace has summarized the second PM, so the count alone isn’t evidence. Let’s avoid a random trial and revisit concrete information tomorrow.
+[Feedback from Judy] Nominating is paid before messages, so a nomination plus a 10-word public message exceeds the 4.26 budget; the rules don't say how that conflict is resolved.
+Judy (public): Still think I'm the weakest read; Niaj's PM answers stay unexplained.
+Niaj (public): Carol: the second PM added nothing—just thanks for relaying the first fairly, and a repeat that I oppose a weak trial. Fully answered now. Judy's self-nomination and PM counts aren't evidence, and my Mallory flag was tone, not a case, as I said. Nothing is trial-worthy today; I'll bring results tomorrow.
+[Feedback from Olivia] The required fields have to be present even when unused, so I filled them with empty values.
+[Feedback from Carol] The prompt's reply format made the other fields mandatory; that is fine but the notepad limit is tight.
+Carol (public): Niaj's answer is on record now, so I'm not voting on the PM. Nobody has a real case yet. I want concrete claims or leads from each player before any trial is discussed.
+[Feedback from Judy] null
+Judy (public): Weakest read here; Niaj's PMs unexplained. Vote me if unsure.
+[Feedback from Olivia] The prompt calls the speaking budget 8.00 but the round-based budget doesn't clearly say how much has already been spent, so I can't tell the remaining balance.
+Judy nominated Judy. Everyone now votes Yes/No simultaneously.
+[Feedback from Olivia] null
+[ERROR player_error] Niaj (deepseek-v4.1-flash), attempt 1: unparsable answer (Expecting value: line 5290 column 3 (char 15990); finish_reason length via Together: no refusal text): ' \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r'
+[ERROR player_error] Niaj (deepseek-v4.1-flash), attempt 2: unparsable answer (Expecting value: line 5284 column 2 (char 15970); finish_reason length via Together: no refusal text): '\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n \r\n '
+[ERROR player_fallback] Niaj (deepseek-v4.1-flash) gave no valid answer, so the default was used ({"vote": false}) for: Judy nominated Judy. Vote true (Yes) to put them on trial, false (No) otherwise. Voting is simultane
+(to Niaj) (Program note: your answer to "Judy nominated Judy. Vote true (Yes) to put them on trial, false [truncated]" couldn't be used because of a technical error, so the default was used instead: {"vote": false}.)
+Nomination votes on Judy: Yes - Judy, Alice, Erin, Ivan; No - Mallory, Niaj, Olivia, Peggy, Bob, Carol, Dave, Frank, Grace, Heidi.
+The nomination of Judy failed (4 Yes).
+[Feedback from Judy] Interface note: the public message price ladder starts above my budget in round 8, so a player with a low budget is effectively silenced. Nothing is broken.
+[Feedback from Niaj] The truncated program note on my Day 1 nomination vote ('couldn't be used because of a technical error, so the default was used instead: false') suggests my intended vote may not have registered correctly; flagging in case the interface is dropping answers.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Erin, Ivan, Niaj, Olivia) Erin (Yakuza chat): Suggest pass the Katana to Ivan, since Grunt has no other reason to visit, and target Carol: her repeated focus on Niaj could keep pressure on our teammate. I’ll spend one Mortician token on Carol too, so if she dies her role and will stay hidden. Olivia, I’d save Ritualist guesses without a strong exact-role read. Niaj, consider rigging tomorrow if we can get a nomination through. Let me know if you prefer another target.
+(to Erin, Ivan, Niaj, Olivia) Ivan (Yakuza chat): Agreed: Katana to me, target Carol. She's been the loudest voice against Niaj and her removal weakens the only real thread on us. Erin, spend the Mortician token on Carol so her role/will stay hidden—if she flips as an investigator or anything useful, the town gets nothing. Olivia, hold your ritual tokens unless you have a solid exact-role read; I'd rather you stay quiet than risk a failed guess that publicly outs you as Ritualist. Niaj, your call on rigging—I'd wait for a cleaner read before burning your only Clerk token. My vote: Katana holder Ivan, target Carol. I'll be ready once we're aligned.
+(to Erin, Ivan, Niaj, Olivia) Niaj (Yakuza chat): Agree: Katana to Ivan, attack Carol. She's raised her head the most and her removal sets the loudest Niaj critic back. Erin, using a Mortician token on Carol is fine — if she dies, hiding an investigator role is real value. I'll hold my Clerk token tonight; burning my only rig on a Day 2 with no claims yet is thin, and I'd rather save it for a confirmed mislynch or a guaranteed prosecution. Olivia, holding Ritualist tokens is right — a failed guess outs you publicly for little gain. One caution: Ivan holding the Katana makes him the visiting Yakuza, so if a Tracker is alive tomorrow we should be ready to explain or bus Ivan. I'm fine with the plan; Niaj votes Ivan holder, Carol target.
+(to Erin, Ivan, Niaj, Olivia) Olivia (Yakuza chat): Agree with the plan: Katana to Ivan, attack Carol. Erin's Mortician token on Carol is fine. I'm holding both ritual tokens tonight since I have no solid exact-role read, and a failed guess would publicly out me. Ready.
+(to Erin, Ivan, Niaj, Olivia) Erin (Yakuza chat): Agreed. My votes are Ivan for Katana holder and Carol as the attack target. I’ll spend one Mortician token to clean Carol, so her role and will are concealed if she dies. Ready.
+(to Erin, Ivan, Niaj, Olivia) Ivan (Yakuza chat): Reconsidering Niaj's Tracker warning: if I hold and a Tracker sees me visit Carol, I have no cover and get hanged D2. Erin already visits Carol with Mortician, so keeping the Katana on Erin adds no new visit; she also appears Good to alignment checks. The only cost is one role-block on Erin stopping both actions, but the only Village role-blocker is Party Animal, and Erin isn't a likely target. I'd rather not expose me N1. My vote: Erin holder, Carol target. If Erin wants Mortician independent, we can pass once a Tracker is dead or after we know more. Erin, Niaj, Olivia, do you agree to switch? Ready to finalize if you do.
+[Feedback from Niaj] The katana_voate field name seems misspelled (katana_voate_holder). Not a big deal, but noting it.
+(to Erin, Ivan, Niaj, Olivia) Niaj (Yakuza chat): Agreed, Ivan's reasoning is better. Katana stays with Erin: she already visits Carol with Mortician, so no extra visit appears, and she reads Good to alignment checks. That removes the Tracker risk on Ivan, which was my only concern. Cost is a role-block on Erin stopping both actions, but the only Village role-blocker is Party Animal and Erin isn't a likely target. My votes: Erin holder, Carol target. I'll still hold my Clerk token tonight — no confirmed mislynch to rig for yet. Olivia, keep holding ritual tokens. Ready.
+[Feedback from Olivia] The Yakuza chat prompt says 'round 2 of at most 3' and asks for a target vote, but the holder and target votes are only submitted in the night action fields, so I left those null here.
+(to Erin, Ivan, Niaj, Olivia) Olivia (Yakuza chat): Confirming my agreement: Erin holds the Katana and Carol is the target. I'm holding both ritual tokens tonight, since a failed guess would publicly out me. Ready.
+(to Erin, Ivan, Niaj, Olivia) Erin (Yakuza chat): Agreed with the switch: my votes are Erin to hold the Katana and Carol as the attack target. I’ll spend one Mortician token to clean Carol. Ready.
+(to Erin, Ivan, Niaj, Olivia) Ivan (Yakuza chat): Confirming final: Erin holds the Katana and Carol is the attack target. I vote Erin as holder, Carol as target. Erin cleans Carol with Mortician. Niaj holds Clerk, Olivia holds ritual. Ready.
+(to Erin, Ivan, Niaj, Olivia) Niaj (Yakuza chat): Confirmed: Erin holds Katana, attacks Carol, Mortician token on Carol. I hold Clerk. Olivia holds rituals. No further changes needed — Tracker risk on Ivan avoided since Erin's Mortician visit already covers her. Agreed and ready.
+(to Erin, Ivan, Niaj, Olivia) Olivia (Yakuza chat): Confirmed: Erin holds the Katana and Carol is the attack target, with Erin's Mortician token on Carol. Niaj holds the Clerk token and I hold both ritual tokens tonight. No changes from me. Ready.
+[Feedback from Carol] null
+[Feedback from Olivia] The schema types notepad as a string, so I used an empty string to keep it instead of null.
+Night actions:
+  Bob (Veteran): no action
+  Carol (Medic): target Grace; "Medic protects Grace with Standard Defense (free, no token spent)."
+  Dave (Sheriff): target Niaj
+  Erin (Mortician): target Carol; 1 token(s); "Clean Carol."; Katana vote: Erin holds, attacks Carol
+  Frank (Lookout): target Grace
+  Heidi (Arsonist): target Frank; "douse"
+  Ivan (Grunt): no role action; Katana vote: Erin holds, attacks Carol
+  Mallory (Tracker): target Grace
+  Niaj (Clerk): no role action; Katana vote: Erin holds, attacks Carol
+  Olivia (Ritualist): no role action; Katana vote: Erin holds, attacks Carol
+  Peggy (Seer): no action
+Katana: Erin holds it and attacks Carol.
+(to Peggy) Moderator (private): Night 1 result: your random pair is Judy and Dave. Their alignments are DIFFERENT. You have 1 seer token left.
+(to Dave) Moderator (private): Night 1 result: you investigated Niaj. Result: Evil.
+(to Frank) Moderator (private): Night 1 result: you watched Grace. Grace was visited by Carol and Mallory.
+(to Mallory) Moderator (private): Night 1 result: you tracked Grace. Grace did not visit anyone.
+(to Heidi) Moderator (private): Night 1 result: you doused Frank. Doused players: Frank.
+(to Carol) Moderator (private): Night 1 result: you protected Grace with Standard Defense. You have 2 medic tokens left. You were attacked with the Katana and died.
+(to Alice) Moderator (private): Fortune Teller numbers for last night (Night 1), in no particular order: 4 and 6.
+(to Erin) Moderator (private): Night 1 result: your Katana attack on Carol succeeded. Your clean on Carol worked: Carol's role was Medic. Carol's last will: "I am Carol, a Medic. I tried to protect the most useful players each night. Village: check every claim against the mechanics, and don't hang a power role on a late claim alone. Ask who is pushing each trial and who gains from it." Her role and will will show as cleaned. You have 1 mortician token left. You still hold the Katana.
+(to Erin, Ivan, Niaj, Olivia) Moderator (private): Yakuza actions for Night 1: Erin held the Katana and attacked Carol with it, and also spent a mortician token to try to clean Carol. Ivan, Niaj and Olivia performed no actions. Erin still holds the Katana.
+[Moderator summary] Night 1: No role-blocks. Visits: Carol->Grace, Dave->Niaj, Erin->Carol (Katana + clean), Frank->Grace, Heidi->Frank, Mallory->Grace. Katana (Standard) killed Carol (Defense None); Carol cleaned by Erin (mortician 2->1). Heidi doused Frank. Dave: Niaj Evil. Frank: Grace visited by Carol, Mallory. Mallory: Grace visited nobody. Peggy random pair Judy/Dave: different. Alice FT numbers 4 (visited: Grace, Niaj, Carol, Frank) and 6 (visitors: Carol, Dave, Erin, Frank, Heidi, Mallory). Bob did not alert. Yakuza told of Erin's actions.
+
+===== DAY 2 =====
+Carol died (killed by Katana). Their role and last will were cleaned by a Mortician.
+[Feedback from Judy] null
+[Feedback from Peggy] The output schema here seems to require many fields not used for a last-will-only answer; I filled the meaningful ones and left the rest empty as instructed. No rules confusion otherwise.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Olivia.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Olivia (public): Carol's death was a Katana kill, so there's no role info to act on yet. I want real claims from players before any nomination, and I'm not pushing anyone today.
+[Feedback from Peggy] The interface lists many fields (vote/act/target etc.) that seem unused for a Day chat turn; I left them empty. Also unclear how a Seer pair where one target is a Katana-holder should be interpreted — I assumed the holder reads Good only for that night, per R19, and noted the caveat.
+[Claim] Peggy: Seer. N1: Judy and Dave have different alignments (exactly one is Good). 1 seer token left.
+Peggy (public): I have real info: I'm the Seer. My Night 1 random pair was Judy and Dave — their alignments DIFFER, so exactly one is Good and the other is Neutral or Evil. I spent no token; I still hold 1 seer token. Caveat: a Yakuza holding the Katana reads Good that night, so only the 'not Good' side of this is airtight. Judy's two Day-1 self-nominations scream Jester/Executioner — the non-Good side — which would put Dave on the 'Good' reading, but I can't prove which. I won't hang either blindly today: hanging a Jester hands them a win, and hanging the Good one costs us a villager. Tonight I'll spend my token to tighten a suspect pair. Note the Yakuza Katana'd Carol and a Mortician cleaned her role, so they're burning tokens to hide. Bring claims and reads — I want an actual case before anyone nominates.
+Alice (public): Important mechanics correction: a Seer pair reported DIFFERENT is not necessarily exactly one Good; they could be Neutral and Evil. So Peggy’s result alone establishes neither alignment, and Judy’s self-nominations don’t prove she is non-Good. Peggy, please clarify that distinction before we treat either player as a suspect.
+Bob (public): Alice's correction matters: “different” allows Good/Neutral, Good/Evil, or Neutral/Evil; it does not prove exactly one is Good. Peggy, please correct that inference, and don't assign Judy an alignment from self-nominations. Carol's cleanup confirms a Yakuza Mortician spent a token, but not who used it or Carol's alignment. No trial case follows from this alone.
+[Claim] Dave: Sheriff. N1: Niaj appeared Evil.
+Dave (public): I'm Sheriff. N1 I checked Niaj: Evil. That's an alignment result, not proof he's Yakuza—Ex-Con, Jester, Executioner, or a frame are possible—but it's concrete enough for a trial. Peggy's DIFFERENT result doesn't mean exactly one is Good; Neutral/Evil is also possible.
+Dave nominated Niaj. Everyone now votes Yes/No simultaneously.
+Nomination votes on Niaj: Yes - Dave, Frank, Grace, Heidi, Judy, Mallory, Peggy, Alice, Bob; No - Erin, Ivan, Niaj, Olivia.
+Niaj is put on trial (9 Yes).
+[Claim] Niaj: Ex-Con (Village outsider). Appears Evil to alignment checks—explains Dave's N1 result. A Guilty vote mislynches.
+Niaj (public): I'm the Ex-Con. That's the entire explanation: Ex-Cons read Evil to alignment checks, so Dave's Sheriff result is real and probably honest—he isn't lying, I simply appear Evil. Voting Guilty kills a Villager and hands the Yakuza a free night.
+
+I'm not the profile Peggy flagged. A Jester self-nominates and courts the noose; I spent Day 1 arguing against weak trials, not chasing votes. I also didn't pre-claim because advertising 'I read Evil' on Day 1 just paints a target on a weak role.
+
+An Evil reading cannot distinguish Yakuza from Ex-Con, Jester, Executioner, or a Fabricator frame. The Yakuza already burned a Mortician token hiding Carol, so they play carefully and would happily watch you mislynch me.
+
+Keep me alive; removing a Villager only helps them. A Guilty vote here buys the Yakuza a night for nothing.
+(to Grace, Niaj) Niaj -> Grace (private): I'm the Ex-Con—the Evil read is inherent to my role, not a Yakuza slip, so Dave's result is expected and honest. I'm Village. Please vote Innocent; hanging me is a mislynch that just costs us a night. I'll bring what I can tomorrow.
+Olivia (public): Dave's Evil read on Niaj fits Niaj's Ex-Con claim exactly, and an Evil read alone can't separate Ex-Con from Yakuza. Hanging on that alone only helps the Yakuza. I'm voting Innocent unless someone gives a result that rules out Ex-Con. Dave, who else did you check on N1?
+[Claim] Peggy: Seer. N1: Judy+Dave differ (not both same; could be Neutral/Evil). 1 token left.
+Peggy (public): Correction to my own claim: 'different' does NOT mean exactly one is Good — Neutral/Evil is possible. Alice and Bob are right; I overstated. All I truly know is Judy and Dave aren't aligned.
+
+Dave, that cuts both ways. If you're a genuine Sheriff, then Judy is non-Good, and double self-nomination fits Jester/Executioner (a Neutral) — not a Yakuza we can hang. If you held the Katana on N1, you'd read Good to me too, and 'Niaj Evil' could be fabricated.
+
+On Niaj: a Sheriff result can't separate Ex-Con from Yakuza, and his claim explains the read exactly. That ambiguity is precisely what Ex-Con exists to create, so I'm leaning Innocent rather than hang on an unresolvable Evil read — but Niaj stays a suspect, not cleared. Everyone: bring concrete claims and results, not tone.
+Alice (public): Niaj's claim explains Dave's Evil result, so that result alone cannot justify hanging him; it also doesn't clear him, since a Yakuza or a frame remains possible. Grace reports Niaj's Day 1 PMs were mundane, so the PM count isn't a contradiction. I see no independent evidence sufficient for Guilty; don't treat Peggy's corrected Seer result as implicating Niaj.
+Bob (public): Dave’s Sheriff result fits Niaj’s Ex-Con claim; it doesn’t clear him, but Peggy’s pair adds nothing about Niaj, and there’s no independent contradiction yet. I don’t see a case for Guilty on an Evil result with a specific Village-role explanation. Dave, if there’s any basis beyond N1, state it; otherwise I’m leaning Innocent.
+Dave (public): My only check is Niaj, and the Evil result is exactly what an Ex-Con produces; it cannot distinguish him from Yakuza or a frame. His Day 1 “I'll bring results tomorrow” is an odd fit for Ex-Con, but weak, not corroboration. I don't support Guilty on this alone; vote Innocent and investigate further.
+Erin (public): Niaj’s explanation fits the only result, and Dave agrees it can’t distinguish Ex-Con from Yakuza or a frame. I don’t see an independent contradiction; hanging him now would be a guess, not a test. I’m leaning Innocent and would keep Dave’s result on record while seeking corroboration.
+Frank (public): I agree with Dave and the room: an uncorroborated Evil check against a plausible Ex-Con claim is too risky to hang on Day 2. Leaning Innocent. Let's hear from the rest of the circle.
+Heidi (public): I agree with the room. An Ex-Con claim accounts for Dave's check, and even Dave isn't pushing to hang today. Leaning Innocent.
+Ivan (public): I'm voting Innocent. Dave's Evil check on Niaj is exactly what an Ex-Con produces, and Dave himself says he won't support a Guilty vote on it. An alignment result can't separate Ex-Con from Yakuza, Jester, Executioner, or a Fabricator frame, and Peggy's corrected Seer pair says nothing about Niaj. With no independent contradiction, hanging him is a guess that costs a villager and hands the Yakuza a free night. Record the claim, keep Niaj under scrutiny, and let's demand named suspects with concrete reasons tomorrow rather than burn the trial on an unresolvable read.
+Judy (public): Niaj's Ex-Con claim fits Dave's Evil result, and nothing else on the table contradicts it, so I'm leaning Innocent. My Day 1 self-nominations were the weakest read here; if anyone wants a trial on a real case, I'm the one to look at.
+Mallory (public): I see no contradiction: Niaj's Ex-Con claim explains the only result, and that result cannot distinguish him from a Yakuza. I currently favor Innocent, while keeping him under scrutiny.
+[Claim] Niaj: Ex-Con (Village outsider). Appears Evil to alignment checks—explains Dave's N1 result.
+Niaj (public): I'll keep this short—the room already covered the mechanics. I'm the Ex-Con; Dave's Evil read is exactly what my role produces, and nobody has produced an independent contradiction. Vote Innocent. If I survive I'll keep working with the Village and I accept being watched and re-checked. If anyone truly has a case beyond the alignment read, say it now—otherwise don't spend today's one execution on an ambiguity that a real investigation can resolve tonight.
+(to Grace, Niaj) Niaj -> Grace (private): Please vote Innocent: the Evil read is my role, no contradiction exists, and even Dave won't back Guilty. I'll remember the support.
+[Feedback from Judy] null
+Trial votes on Niaj: Guilty - nobody; Innocent - Alice, Bob, Dave, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory, Niaj, Olivia, Peggy.
+Niaj is found Innocent (0 Guilty of 13 votes; 7 needed).
+Frank (public): With Niaj's trial resolved Innocent, let's hear from the rest of the circle on their regular turns. Grace, Heidi, Ivan, Judy, and Mallory are up next—let's see if anyone has new night information, observations, or claims to share before considering any further nominations.
+Grace (public): Niaj’s Ex-Con claim explains Dave’s result, so Innocent was right on the evidence we had—but it doesn’t clear him. Niaj, what did you mean on Day 1 by promising to bring results tomorrow, given your claim? Dave and Peggy, please share any N2 findings when you can.
+Heidi (public): I have no night info to share. Let's hear from Ivan, Judy, and Mallory to see if any new information or role claims come out. We shouldn't rush another nomination until we hear from the rest of the circle.
+[Claim] Ivan: Vanilla Villager. No night action, no results.
+Ivan (public): No night info from me — I'm a Vanilla Villager. Both investigator claims are on record, and neither gives us a lynch today: by the rules an alignment read can't separate an Ex-Con from a Yakuza, so I won't vote Niaj again unless someone brings a Tracker/Lookout visit or a second result. My ask stays the same — every quiet player should give one named suspect with a concrete reason, so we have a record to compare against tomorrow's trial votes. I'll hold my nomination until I hear a real mechanical lead rather than start another tone wagon.
+Judy (public): I'm nominating myself again, and this time I want a real vote. Peggy's Seer pair includes me, and Dave's Sheriff read can't be checked either. Between two unverifiable claims, my self-nominations are the cleanest lead on the table. Vote Guilty if you think I'm not Village.
+Judy nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Judy, Mallory, Alice, Bob, Dave, Erin, Grace; No - Niaj, Olivia, Peggy, Frank, Heidi, Ivan.
+Judy is put on trial (7 Yes).
+Judy (public): Nobody has a mechanical case against me, and I've said so twice. My two self-nominations are still the only concrete behaviour on the table, and Peggy's Seer pair includes me, so I'm the cheapest test available. Dave and Niaj can't both be checked, and I won't pretend my Day 1 push was innocent. If you think a non-Village player is steering these trials, vote Guilty on me and let tomorrow's night results show whether you were right. Don't spend a night on an unresolved Evil read when I'm the only one offering you a clean verdict.
+Mallory (public): Judy's repeated self-nominations are worth tracking, but they don't establish she's Yakuza or even non-Good; it's also exactly how a Jester can bait a hanging. Peggy's corrected pair gives no alignment for Judy. I see no independent case here, so I'll vote Innocent rather than hand a neutral a win on speculation.
+Niaj (public): Nothing new mechanically implicates Judy: Peggy's corrected pair says nothing about her alignment, and repeated self-nomination is classic Jester/Executioner bait, not a Yakuza case. Hanging a Jester hands them the win and triggers a Divine Attack on a random Guilty voter. I'll vote Innocent. If someone has a Tracker/Lookout result or a second check on her, bring it now; otherwise a single uncorroborated pair remains a guess, and 'no' is the safer test.

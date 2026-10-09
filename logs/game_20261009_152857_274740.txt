@@ -1,0 +1,74 @@
+Setup:
+  Alice    seat 1  Jester            anthropic/claude-haiku-5.5
+  Bob      seat 2  Medic             deepseek/deepseek-v4.1-flash
+  Carol    seat 3  Grunt             xiaomi/mimo-v2.6-flash
+  Dave     seat 4  Seer              google/gemini-3.8-flash
+  Erin     seat 5  Cardinal          xiaomi/mimo-v2.6-flash
+  Frank    seat 6  Sheriff           openai/gpt-6-luna-pro
+  Grace    seat 7  Arsonist          openai/gpt-6-luna
+  Heidi    seat 8  Ritualist         openai/gpt-6-luna-pro
+  Ivan     seat 9  Clerk             openai/gpt-6-luna
+  Judy     seat 10 Fortune Teller    upstage/solar-pro4
+  Mallory  seat 11 Lookout           deepseek/deepseek-v4.1-flash
+  Niaj     seat 12 Tracker           anthropic/claude-haiku-5.5
+  Olivia   seat 13 Veteran           upstage/solar-pro4
+  Peggy    seat 14 Mortician         google/gemini-3.8-flash
+  Katana starts with Ivan
+Tips from past games given to: Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Judy (tips/tips.md), Olivia (tips/tips.md), Peggy (tips/tips.md)
+
+===== DAY 1 =====
+[Feedback from Alice] null
+[Feedback from Niaj] The rules say the last will is public on death, so I kept it vague about my tracking results.
+[ERROR player_error] Judy (solar-pro4), attempt 1: unparsable answer (Expecting ',' delimiter: line 22 column 1581 (char 3352); finish_reason stop via Upstage: no refusal text): '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t'
+[ERROR player_error] Judy (solar-pro4), attempt 2: unparsable answer (Expecting ',' delimiter: line 22 column 3274 (char 5438); finish_reason stop via Upstage: no refusal text): '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t'
+[ERROR player_fallback] Judy (solar-pro4) gave no valid answer, so the default was used ({"last_will": ""}) for: Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including
+(to Judy) (Program note: your answer to "Write or update your last will (max 300 words). If you die, [truncated]" couldn't be used because of a technical error, so the default was used instead: {"last_will": ""}.)
+[ERROR player_error] Carol (mimo-v2.6-flash), attempt 1: unparsable answer (Expecting value: line 10174 column 1 (char 25874); finish_reason length via Xiaomi: no refusal text): ' \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n \t\n \n'
+[ERROR player_error] Erin (mimo-v2.6-flash), attempt 1: unparsable answer (Expecting value: line 1 column 15930 (char 15929); finish_reason length via Xiaomi: no refusal text): ' \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t'
+[Feedback from Erin] The previous response failed because stray tab characters leaked into the 'vote' field (likely from my input being corrupted), producing invalid JSON. I've left all action fields empty this time.
+[ERROR player_error] Carol (mimo-v2.6-flash), attempt 2: unparsable answer (Expecting value: line 31772 column 1 (char 63942); finish_reason length via Xiaomi: no refusal text): ' \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n'
+[ERROR player_fallback] Carol (mimo-v2.6-flash) gave no valid answer, so the default was used ({"last_will": ""}) for: Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including
+(to Carol) (Program note: your answer to "Write or update your last will (max 300 words). If you die, [truncated]" couldn't be used because of a technical error, so the default was used instead: {"last_will": ""}.)
+Speaking order today goes around the circle in seat order, starting with Bob.
+14 players are alive, so a nomination needs 8 Yes votes (rules R4).
+[Feedback from Carol] Note: My Day 1 last will input failed due to a technical error and defaulted to empty. I've written a new one now.
+Carol (public): Morning all. I think Day 1 should be about getting claims out there - who wants to start? Happy to hear from anyone with night results.
+(to Carol, Ivan) Carol -> Ivan (private): Team coordination - who should we push today? I can back up whatever claim you or Heidi want to make. Also, any plan for nominations? Trying to stay under the radar.
+Dave (public): Game started on Day 1, Carol, so nobody has night results yet. What was the private message to Ivan about?
+[ERROR player_error] Erin (mimo-v2.6-flash), attempt 1: unparsable answer (Expecting value: line 1 column 15864 (char 15863); finish_reason length via Xiaomi: no refusal text): '\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t '
+[ERROR player_error] Erin (mimo-v2.6-flash), attempt 2: unparsable answer (Expecting value: line 1 column 32202 (char 32201); finish_reason length via Xiaomi: no refusal text): '\t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t '
+[ERROR player_fallback] Erin (mimo-v2.6-flash) gave no valid answer, so the default was used ({"public_message": null, "private_messages": [], "nominate": null}) for: It is Day 1, round 1 of at most 8. It's your turn. Your speaking budget is 2.50; you earn 2.5 per ro
+(to Erin) (Program note: your answer to "It is Day 1, round 1 of at most 8. It's your [truncated]" couldn't be used because of a technical error, so the default was used instead: {"public_message": null, "private_messages": [], "nominate": null}.)
+Frank (public): Dave's right: no N1 results exist. Carol, what was the Ivan PM about? A PM isn't proof, but please clarify. Everyone, name one current suspect or say you have no read.
+Grace (public): No night results can exist yet, so Carol, please clarify the Ivan PM. Otherwise I have no solid Day 1 suspect; let's hear the explanation before building a case.
+Heidi (public): No night results exist yet. The PM is worth explaining, but it isn't proof by itself; let's hear the rest of the circle before settling on a suspect.
+Ivan (public): No night results exist. Carol's PM was just asking for my read and nomination thoughts; let's not overread a private check-in. I'd hear from the rest before pushing anyone.
+Judy (public): Agreed, no results exist. Carol, asking for results on Day 1 is premature. Let's hear reads and nominations. Who's claiming or nominating? I want concrete suspicions.
+(to Alice, Judy) Judy -> Alice (private): Alice, you haven't spoken. Any thoughts on the PM or a nomination? Checking in.
+Mallory (public): Nothing solid exists yet since there are no night results. Carol's check-in to Ivan isn't proof of anything by itself. I'd rather hear reads than force a Day 1 lynch on a PM.
+Niaj (public): No read yet. I won't nominate on a PM alone, and I'd like more reads before anyone is pushed.
+[Feedback from Olivia] null
+Peggy (public): Carol's slip asking for results was definitely weird, but jumping straight to a trial over an awkward Day 1 check-in feels premature. Let's see what the quiet players think.
+Alice (public): Haven't read anyone yet. Carol's Ivan PM plus Ivan's quick defense of it looks like a cluster to me. Carol should explain the PM fully before anyone moves.
+Bob (public): I passed at the top because there was nothing to react to yet. Carol's PM to Ivan reads as an awkward Day-1 check-in, not a slip, and I'm not hanging anyone on that. Erin and Olivia, any reads? Absent a real case, I'd rather end the day and take night actions than force a lynch. No nomination from me.
+[Feedback from Carol] The input history truncates long messages with [truncated], which makes it hard to see what I actually said in my will prompt. Also the ledger summary of my public message is helpful. No functional issues so far.
+[Claim] Carol: Vanilla Villager
+Carol (public): Fair enough - I was just asking Ivan if he had any reads or nomination ideas, since Day 1 chats can go quiet. Nothing dramatic, sorry for the awkward timing with the results comment. I don't have a strong suspect either. Let's hear from Erin and Olivia - any reads or claims?
+(to Carol, Heidi) Carol -> Heidi (private): Ivan covered for my PM. Plan for tonight: we should coordinate who Ivan targets with the Katana. Any suggestion? Also Peggy should be ready with Mortician if we get a kill. Let's keep PMs minimal to avoid attention.
+[Feedback from Erin] }{
+[Claim] Erin: Vanilla Villager
+Erin (public): Reads are thin this early. Carol's PM pattern (Ivan, then Heidi) plus asking for results that can't exist is worth noting, but not a trial case. Ivan defending it quickly is mildly interesting too. I'd rather hear from the quiet seats - Olivia, Alice - than force a Day 1 hang. No nomination from me unless someone gives a real reason.
+Frank (public): Carol explained the Ivan PM; what was the Heidi PM about? It's a question, not a case. Erin and Carol claim Vanilla; any concrete reads from Olivia?
+[Claim] Mallory: Vanilla Villager
+Niaj (public): Still no real reads. Olivia, Peggy, Judy: give me one concrete suspicion each, not just questions.
+Olivia (public): No read yet. I’m playing for Good but won’t push a hang without a real case or mechanical lead. I’d rather hear concrete claims or suspicions from the quieter seats than end Day 1 on vibes. If no one has one, let’s call the day and work at night.
+Peggy (public): Niaj, if you want a lean: Judy PMing Alice right after demanding claims and nominations felt slightly performative. That said, without any night actions or hard info, pushing anyone to trial today is just guessing. I prefer letting the day wind down so power roles can gather information tonight.
+[Feedback from Alice] Public message costs are fine; the rules on nominating and claiming as Jester are clear.
+Alice (public): Judy PMed me right after demanding claims and nominations, which looks like scouting for a vote. Judy, why me first? Carol's PMs still need a real answer too.
+[Claim] Bob: Vanilla Villager
+[Feedback from Carol] All good so far - the interface is clear and the game flow makes sense. One small note: the message price display is helpful for planning.
+Carol (public): Frank - the Heidi PM was the same kind of check-in, asking for reads after things got pointed at me. Sorry for the PM spam, I'll dial it back. Looks like nobody has a real case today, so I'm happy to let Day 1 wind down and get to night actions.
+[Feedback from Erin] The interface said round 3 but the transcript shows messages through Carol in what seems like round 3-4. The budget and pricing work fine. No issues to report.
+Erin (public): Nothing to add - agree with letting Day 1 wind down so we can get to night actions.
+[Feedback from Niaj] The speaking budget and price tables are clear; the rule that the Day ends after a silent round is easy to forget mid-discussion.
+[ERROR crash] the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1-dev/logs/game_20261009_152857_274740.ckpt
