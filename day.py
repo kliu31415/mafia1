@@ -14,9 +14,10 @@ from state import Game, Player, majority
 
 # Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
 # times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
-# to BUDGET_MAX; the budget resets to 0 each day.
+# to BUDGET_MAX; at the start of each day, CARRY_SHARE of what's left carries over.
 BUDGET_PER_ROUND = 2.5
 BUDGET_MAX = 8.0
+CARRY_SHARE = 0.5
 MESSAGE_BASE_COST = 1.0
 PRIVATE_COST_FACTOR = 0.25
 MAX_MESSAGE_WORDS = 800
@@ -26,7 +27,7 @@ MAX_DAY_ROUNDS = 8  # rules R16; the day also ends after a full go-around in whi
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 # Each player's turn in a trial is priced at 1x whatever the round, and comes with a trial-only budget
 # that is spent before their regular budget. Unspent trial budget is lost when the turn ends.
-TRIAL_BUDGET = 3.0
+TRIAL_BUDGET = 2.0
 MIN_TRUNCATED_WORDS = 3  # a message truncated below this is dropped instead
 MAX_TRIALS_PER_DAY = 3
 NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budget; deters spam
@@ -99,7 +100,7 @@ def run_day(game: Game, players: Players) -> None:
         p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
 
     for p in game.alive():
-        p.speaking_budget = 0.0
+        p.speaking_budget *= CARRY_SHARE
     trials = 0
     # Prosecutions happen when nominations would start, before any chat. Round 1's budget is paid
     # out first so others can speak at the trial.
@@ -107,7 +108,7 @@ def run_day(game: Game, players: Players) -> None:
     game.prosecutions.clear()
     if prosecuted:
         for p in game.alive():
-            p.speaking_budget = BUDGET_PER_ROUND
+            p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
     for name in prosecuted:
         if trials >= MAX_TRIALS_PER_DAY or not game.player(name).alive:
             break
@@ -229,7 +230,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     step = "trial_turn" if trial else "day_turn"
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
-            f"up to {BUDGET_MAX:g}, and it resets each day. You may send one public message and any "
+            f"up to {BUDGET_MAX:g}; at the start of each day, half of what you have left "
+            "carries over. You may send one public message and any "
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "
             f"the contents), or nothing. The transcript already shows who sent each message, so there's "
             "no need to start a message with your own name. Messages are "

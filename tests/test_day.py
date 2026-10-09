@@ -261,3 +261,22 @@ def test_each_day_states_the_living_count_and_nomination_threshold(game_factory)
     game, players = game_factory(TOWN4_GRUNT)
     run_day(game, players)
     assert any(e.text.startswith("5 players are alive, so a nomination needs 3 Yes votes") for e in game.events)
+
+
+def test_half_the_budget_left_carries_into_the_next_day(game_factory):
+    import re
+    from day import BUDGET_PER_ROUND
+    seen: dict[str, str] = {}
+
+    def decide(name, task, schema):
+        if "Your speaking budget is" in task:
+            seen.setdefault(name, task)
+        return None
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
+    game.player("Alice").speaking_budget = 8.0
+    game.player("Bob").speaking_budget = 2.0
+    run_day(game, players)
+    budget = {n: float(m[1]) for n, t in seen.items() if (m := re.search(r"budget is ([\d.]+)", t))}
+    assert budget["Alice"] == 4.0 + BUDGET_PER_ROUND
+    assert budget["Bob"] == 1.0 + BUDGET_PER_ROUND
+    assert budget["Carol"] == BUDGET_PER_ROUND
