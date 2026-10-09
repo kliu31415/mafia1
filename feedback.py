@@ -12,6 +12,7 @@ from log_viewer import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
 from state import Game
+from tips import player_view
 
 DEBRIEF_QUESTIONS = {
     "confusing_rules": "Which rules, or parts of your instructions, were confusing or ambiguous?",
@@ -147,12 +148,16 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
     `lessons_file` alongside the players' lessons (source "moderator"). If some players had tips from
     past games (tips.py), it also says which of those tips went especially well or badly."""
     with_tips = [p for p in game.players if p.tips]
+    sheets: dict[str, list[str]] = {}  # tips text -> who had it
+    for p in with_tips:
+        sheets.setdefault(p.tips, []).append(p.name)
     tips_task = ("" if not with_tips else
-                 f"\n\nThese players were given the tips sheet below from past games (each saw the sections for "
-                 f"everyone, their faction and their role): {', '.join(p.name for p in with_tips)}. Also list the "
-                 "tips that clearly mattered this game, for better or worse: helped, hurt (followed and it "
-                 "backfired, or opponents exploited it), or wrong (false or against the rules), and why, citing "
-                 f"what happened. Leave it empty if none mattered.\n\n{with_tips[0].tips}")
+                 "\n\nSome players were given tips from past games. Also list the tips that clearly mattered "
+                 "this game, for better or worse: helped, hurt (followed and it backfired, or opponents exploited "
+                 "it), or wrong (false or against the rules), and why, citing what happened. Leave it empty if "
+                 "none mattered."
+                 + "".join(f"\n\nTips given to {', '.join(names)}:\n\n{player_view(text)}"
+                           for text, names in sheets.items()))
     messages = [
         {"role": "system", "content": f"{rules}\n\n---\n\nYou moderated this game and saw everything, "
          "including hidden events and night actions. Now analyze it as a strategy coach."},

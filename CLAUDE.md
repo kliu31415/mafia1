@@ -71,7 +71,8 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in
   game logs into `tips/tips.md`, a living document: later runs revise it with only the new games, including
   what players who had the tips and the moderator said went well or badly with them (`tips_feedback`); `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
-  system prompts. Each player sees only the sections for everyone, their faction and their role. The
+  system prompts, and `--player-tips WHO=FILE|none,...` sets each player's or model's file. Players see
+  every section (all factions and roles). The models learn collectively: one file pools every model's lessons. The
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
   Lessons are weighted by their author's model strength and the game's average (`STRENGTH` in `tips.py`,
   1-5, kept by hand; a new model needs an entry there).

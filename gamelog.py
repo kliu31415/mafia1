@@ -28,7 +28,9 @@ import log_viewer
 #     and tips_for; result players have tips (whether that player had them)
 # 12: "tips" record has shown (the sections each player with tips saw); lessons records of players with tips,
 #     and the strategy_review when anyone had tips, have tips_feedback (tip, verdict helped/hurt/wrong, why)
-LOG_VERSION = 12
+# 13: "tips" record: players, files (player -> tips file), sha256 and texts (per file), instead of one file,
+#     sha256, text and shown; settings have player_tips ([who, file or null] pairs)
+LOG_VERSION = 13
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

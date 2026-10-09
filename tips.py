@@ -1,12 +1,13 @@
 """Tips from past games, a program feature rather than a rule: `build` distills the players' lessons
 and the moderator's strategy reviews saved in game logs (--lessons) into a Markdown tips file, and
 `mafia.py --tips FILE` puts that file into chosen players' system prompts, so games with experienced
-and fresh players can be compared.
+and fresh players can be compared. The models learn collectively: one tips file pools every model's
+lessons, to make the strongest player possible.
 
 A tips file is Markdown with one `## <heading>` section per audience: "Everyone", a faction
 ("Village", "Yakuza", "Neutral") or a role name. Text before the first section is notes for whoever
-edits the file and is never shown to players. A player sees "Everyone", their faction's section and
-their current role's section; a section with any other heading goes to everyone. Hand edits are fine.
+edits the file and is never shown to players. Players see every section, the way an experienced player
+knows how every role tends to play, not only their own. Hand edits are fine.
 
 `build` keeps the tips file as a living document, the way a player's notes grow over many games: run
 again after more games, it revises the file with only the new games (their lessons, plus what players
@@ -16,8 +17,9 @@ version in history/. --fresh rebuilds from scratch.
 Usage:
     uv run tips.py build                                # revise tips/tips.md with new logs/game_*.jsonl
     uv run tips.py build logs/game_2026100* --out tips/early.md --max-words 600
-    uv run tips.py show tips/tips.md --role Medic       # what a Medic would see
+    uv run tips.py show tips/tips.md                    # what players see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
+    uv run mafia.py --player-tips Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none
 """
 
 import argparse
@@ -31,10 +33,9 @@ from datetime import datetime
 from pathlib import Path
 
 from llm import LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, answer_json, load_api_key, parse_model_spec
-from roles import ROLES, Alignment
+from roles import ROLES
 
 ROOT = Path(__file__).resolve().parent
-FACTIONS = {Alignment.GOOD: "Village", Alignment.EVIL: "Yakuza"}  # anything else is "Neutral"
 HEADINGS = ["Everyone", "Village", "Yakuza", "Neutral", *ROLES]
 FALLBACKS_TO_DISTRUST = 3  # a player with this many fallback answers barely played (e.g. a provider bug)
 
@@ -60,10 +61,6 @@ def lesson_weight(author: int, game_average: float) -> float:
     return round((author / 5) * (game_average / 5), 2)
 
 
-def faction_of(role: str) -> str:
-    return FACTIONS.get(ROLES[role].alignment, "Neutral") if role in ROLES else "Neutral"
-
-
 # ---------------------------------------------------------------------------------------------
 # Reading tips files (used by players.py)
 # ---------------------------------------------------------------------------------------------
@@ -81,12 +78,9 @@ def sections(text: str) -> dict[str, str]:
     return {h: body.strip() for h, body in out.items() if body.strip()}
 
 
-def tips_for_role(text: str, role: str) -> str:
-    """The parts of a tips file a player with this role sees, as Markdown."""
-    audience = {"Everyone", faction_of(role), role}
-    known = set(HEADINGS)
-    return "\n\n".join(f"## {h}\n{body}" for h, body in sections(text).items()
-                       if h in audience or h not in known)
+def player_view(text: str) -> str:
+    """What players see of a tips file: every section, without the preamble."""
+    return "\n\n".join(f"## {h}\n{body}" for h, body in sections(text).items())
 
 
 def choose_players(names: list[str], models: list[str], who: str, rng: random.Random) -> list[str]:
@@ -101,6 +95,36 @@ def choose_players(names: list[str], models: list[str], who: str, rng: random.Ra
         raise ValueError(f"--tips-for: {sorted(unknown)} match no player name or model in this game "
                          f"(players {names}, models {sorted(set(models))})")
     return [n for n, m in zip(names, models) if n in wanted or m in wanted]
+
+
+def parse_player_tips(spec: str) -> list[tuple[str, Path | None]]:
+    """'Alice=tips/a.md,gpt-6-luna=none' -> [("Alice", Path("tips/a.md")), ("gpt-6-luna", None)]."""
+    out: list[tuple[str, Path | None]] = []
+    for item in filter(None, (i.strip() for i in spec.split(","))):
+        who, sep, file = item.partition("=")
+        if not sep or not who.strip() or not file.strip():
+            raise ValueError(f"--player-tips: expected WHO=FILE or WHO=none, got {item!r}")
+        out.append((who.strip(), None if file.strip().lower() == "none" else Path(file.strip())))
+    return out
+
+
+def assign_tips(names: list[str], models: list[str], tips: Path | None, tips_for: str,
+                player_tips: list[tuple[str, Path | None]], rng: random.Random) -> dict[str, Path]:
+    """Each player's tips file: `tips` for the players `tips_for` picks, then `player_tips` (player names
+    or models, each with a file or None for no tips); a player's name wins over their model."""
+    out = dict.fromkeys(choose_players(names, models, tips_for, rng), tips) if tips else {}
+    unknown = {w for w, _ in player_tips} - set(names) - set(models)
+    if unknown:
+        raise ValueError(f"--player-tips: {sorted(unknown)} match no player name or model in this game "
+                         f"(players {names}, models {sorted(set(models))})")
+    for who, file in sorted(player_tips, key=lambda x: x[0] in names):  # models first, then names
+        for n, m in zip(names, models):
+            if who in (n, m):
+                if file:
+                    out[n] = file
+                else:
+                    out.pop(n, None)
+    return {n: out[n] for n in names if out.get(n)}
 
 
 def file_digest(text: str) -> str:
@@ -204,8 +228,10 @@ def distill(client: LLMClient, spec: ModelSpec, rules: str, games: list[dict], m
          "barely playing, or from games with many program errors, count for less.\n"
          "- Each tip is one or two concrete sentences a player can act on.\n"
          "- Use one section per audience: 'Everyone', a faction ('Village', 'Yakuza', 'Neutral'), or a "
-         "role name. A player sees only Everyone, their faction and their own role, so put a tip where "
-         "its reader will act on it. Leave out sections with nothing useful.\n"
+         "role name. Every player sees the whole sheet, so a section also tells the other side how that "
+         "role or faction tends to play (e.g. a Villager reading the Yakuza section learns their usual "
+         "tricks); include tips on spotting and countering each side. Leave out sections with nothing "
+         "useful.\n"
          f"- At most {max_words} words in total; drop the weakest tips first."},
     ]
     reply = client.chat(spec.model, messages, schema=DISTILL_SCHEMA, schema_name="tips", effort=spec.effort)
@@ -263,12 +289,11 @@ def main() -> None:
     b.add_argument("--fresh", action="store_true", help="rebuild from all the games instead of revising --out "
                    "with games it doesn't have yet")
     b.add_argument("--mock", action="store_true", help="no API calls (random tips), and read mock_*.jsonl logs")
-    s = sub.add_parser("show", help="print what a player with a given role would see")
+    s = sub.add_parser("show", help="print what players see of a tips file")
     s.add_argument("file")
-    s.add_argument("--role", required=True, choices=list(ROLES))
     args = ap.parse_args()
     if args.cmd == "show":
-        print(tips_for_role(Path(args.file).read_text(encoding="utf-8"), args.role))
+        print(player_view(Path(args.file).read_text(encoding="utf-8")))
         return
     patterns = args.logs or [str(ROOT / "logs" / ("mock_*.jsonl" if args.mock else "game_*.jsonl"))]
     excluded = {e.strip() for e in args.exclude.split(",") if e.strip()}

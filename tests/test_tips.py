@@ -31,13 +31,10 @@ Never shown to players.
 """
 
 
-def test_a_player_sees_only_their_own_audiences():
-    medic = tips.tips_for_role(TIPS, "Medic")
-    assert "Count the votes" in medic and "Trust Sheriff" in medic and "Shown to everyone" in medic
-    assert "Claim Medic" not in medic and "Vote with the crowd" not in medic and "Never shown" not in medic
-    grunt = tips.tips_for_role(TIPS, "Grunt")
-    assert "Claim Medic" in grunt and "Vote with the crowd" in grunt and "Trust Sheriff" not in grunt
-    assert "Count the votes" in tips.tips_for_role(TIPS, "Jester") and "Claim" not in tips.tips_for_role(TIPS, "Jester")
+def test_players_see_every_section_but_not_the_preamble():
+    view = tips.player_view(TIPS)
+    assert all(t in view for t in ["Count the votes", "Trust Sheriff", "Claim Medic", "Vote with the crowd"])
+    assert "Never shown" not in view and view.startswith("## Everyone")
 
 
 def test_tips_go_into_the_system_prompt_of_players_who_have_them(game_factory):
@@ -45,7 +42,7 @@ def test_tips_go_into_the_system_prompt_of_players_who_have_them(game_factory):
     game.player("Alice").tips = TIPS
     alice = player_messages(game, game.player("Alice"), "(rules)", "task")[0]["content"]
     bob = player_messages(game, game.player("Bob"), "(rules)", "task")[0]["content"]
-    assert "Tips from past games" in alice and "Trust Sheriff" in alice and "Claim Medic" not in alice
+    assert "Tips from past games" in alice and "Trust Sheriff" in alice and "Claim Medic" in alice
     assert "Tips from past games" not in bob
 
 
@@ -59,6 +56,20 @@ def test_choosing_who_gets_tips():
         tips.choose_players(names, models, "Zed", random.Random(0))
 
 
+def test_choosing_each_players_tips_file(tmp_path):
+    names, models = ["Alice", "Bob", "Carol", "Dave"], ["opus-5.5", "haiku-5.5", "opus-5.5", "haiku-5.5"]
+    a, b = tmp_path / "a.md", tmp_path / "b.md"
+    spec = tips.parse_player_tips(f"Carol=none, haiku-5.5={b},Bob={a}")
+    assert spec == [("Carol", None), ("haiku-5.5", b), ("Bob", a)]
+    # --tips a.md for everyone, then the Haiku players get b.md, except Bob (named) keeps a.md; Carol gets none.
+    assert tips.assign_tips(names, models, a, "all", spec, random.Random(0)) == {"Alice": a, "Bob": a, "Dave": b}
+    assert tips.assign_tips(names, models, None, "all", [("Dave", a)], random.Random(0)) == {"Dave": a}
+    with pytest.raises(ValueError, match="Zed"):
+        tips.assign_tips(names, models, None, "all", [("Zed", a)], random.Random(0))
+    with pytest.raises(ValueError, match="WHO=FILE"):
+        tips.parse_player_tips("Alice")
+
+
 def test_a_game_logs_who_had_tips_and_how_they_went(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     tips_file = tmp_path / "tips.md"
@@ -67,20 +78,25 @@ def test_a_game_logs_who_had_tips_and_how_they_went(tmp_path, monkeypatch):
 
     def decide(name, task, schema):
         return {"tips_feedback": feedback} if "tips_feedback" in schema["properties"] else None
-    path = mafia.play_game(ScriptedClient(decide), [Model.HAIKU_5_5, Model.GPT_6_LUNA], Model.HAIKU_5_5,
-                           TOWN4_GRUNT, seed=1, tips=tips_file, tips_for="gpt-6-luna", lessons=True)
+    other = tmp_path / "other.md"
+    other.write_text("## Everyone\n- Older advice.\n", encoding="utf-8")
+    client = ScriptedClient(decide)
+    path = mafia.play_game(client, [Model.HAIKU_5_5, Model.GPT_6_LUNA], Model.HAIKU_5_5, TOWN4_GRUNT, seed=1,
+                           tips=tips_file, tips_for="gpt-6-luna", player_tips=[("Alice", other)], lessons=True)
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     record = next(r for r in records if r["kind"] == "tips")
     result = next(r for r in records if r["kind"] == "result")
     luna = sorted(p["name"] for p in result["players"] if p["model"] == Model.GPT_6_LUNA.value)
-    assert record["players"] == luna and record["text"] == TIPS
-    assert sorted(p["name"] for p in result["players"] if p["tips"]) == luna
-    assert sorted(record["shown"]) == luna and all("Count the votes" in t for t in record["shown"].values())
+    assert "Alice" not in luna
+    had = sorted(["Alice", *luna])
+    assert sorted(record["players"]) == had and sorted(p["name"] for p in result["players"] if p["tips"]) == had
+    assert record["files"] == {"Alice": str(other), **{n: str(tips_file) for n in luna}}
+    assert record["texts"] == {str(tips_file): TIPS, str(other): other.read_text(encoding="utf-8")}
     html = path.with_suffix(".html").read_text(encoding="utf-8")
-    assert all("Tips for <" in html and name in html for name in luna)
+    assert html.count("Tips for <") == len(had) and "Older advice" in html and "Claim Medic" in html
     # Only players with tips (and the moderator's review) are asked how the tips went.
     lessons = {r["who"]: r for r in records if r["kind"] == "lessons"}
-    assert all(lessons[n].get("tips_feedback") == (feedback if n in luna else None) for n in lessons)
+    assert all(lessons[n].get("tips_feedback") == (feedback if n in had else None) for n in lessons)
     assert next(r for r in records if r["kind"] == "strategy_review")["tips_feedback"] == feedback
     assert "Caught a Grunt" in path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
 
@@ -128,7 +144,7 @@ def test_building_a_tips_file_from_game_logs(tmp_path):
     assert "1 new games, 1 in all" in text  # the game without lessons is skipped
     assert text.index("## Everyone") < text.index("## Medic") and "## Yakuza" not in text
     assert "- Protect a claimed Sheriff. (seen in 2 games)" in text
-    assert tips.tips_for_role(text, "Medic").startswith("## Everyone\n- Count the votes.")
+    assert tips.player_view(text).startswith("## Everyone\n- Count the votes.")
 
     # Run again after another game: the file is revised with only the new game, and the old one is kept.
     newer = tmp_path / "game_20261010_000000_3.jsonl"

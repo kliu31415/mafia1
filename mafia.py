@@ -60,7 +60,7 @@ from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from events import PHASE
 from state import setup_game
-from tips import choose_players, file_digest, tips_for_role
+from tips import assign_tips, file_digest, parse_player_tips
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -92,15 +92,17 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               seed: int | None, debrief: bool = False, flag_issues: bool = False,
               feedback_field: bool = False, review: bool = False, lessons: bool = False,
               max_days: int | None = None, check_nights: bool = False, checkpoint: bool = True,
-              resume: dict | None = None, tips: Path | None = None, tips_for: str = "all") -> Path:
+              resume: dict | None = None, tips: Path | None = None, tips_for: str = "all",
+              player_tips: list[tuple[str, Path | None]] | None = None) -> Path:
     """checkpoint: save the game at the start of each day to logs/<game>.ckpt (deleted when the game
     finishes). resume: a loaded checkpoint (checkpoint.load) to continue instead of starting a game.
     tips: a tips file (tips.py) put into the system prompt of the players tips_for picks (see
-    tips.choose_players); resumed games keep the tips they started with."""
+    tips.choose_players); player_tips then sets (or, with None, removes) each named player's or model's
+    tips file. Resumed games keep the tips they started with."""
     play_args = {"models": models, "moderator_model": moderator_model, "roles": roles, "seed": seed,
                  "debrief": debrief, "flag_issues": flag_issues, "feedback_field": feedback_field,
                  "review": review, "lessons": lessons, "max_days": max_days, "check_nights": check_nights,
-                 "tips": tips, "tips_for": tips_for}
+                 "tips": tips, "tips_for": tips_for, "player_tips": player_tips}
     mod = moderator_model if isinstance(moderator_model, ModelSpec) else ModelSpec(moderator_model)
     specs = [m if isinstance(m, ModelSpec) else ModelSpec(m) for m in models]
     rules = RULES_PATH.read_text(encoding="utf-8")
@@ -127,18 +129,19 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                     "seed": seed, "max_days": max_days, "effort": getattr(client, "effort", None),
                     "mock": isinstance(client, MockClient), "mod_flags": flag_issues,
                     "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint,
-                    "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None}
+                    "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None,
+                    "player_tips": [[w, str(f) if f else None] for w, f in player_tips or []]}
         started = time.time()
         game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
-        if tips:
-            text = tips.read_text(encoding="utf-8")
-            # Its own RNG, so choosing who gets tips doesn't change the rest of a seed's game.
-            chosen = choose_players([p.name for p in game.players], [p.model.short for p in game.players],
-                                    tips_for, random.Random(f"tips|{seed}"))
+        # Its own RNG, so choosing who gets tips doesn't change the rest of a seed's game.
+        files = assign_tips([p.name for p in game.players], [p.model.short for p in game.players], tips,
+                            tips_for, player_tips or [], random.Random(f"tips|{seed}"))
+        if files:
+            texts = {str(f): f.read_text(encoding="utf-8") for f in set(files.values())}
             for p in game.players:
-                p.tips = text if p.name in chosen else ""
-            log.write("tips", file=str(tips), sha256=file_digest(text), players=chosen, text=text,
-                      shown={p.name: tips_for_role(text, p.role) for p in game.players if p.tips})
+                p.tips = texts[str(files[p.name])] if p.name in files else ""
+            log.write("tips", players=list(files), files={n: str(f) for n, f in files.items()},
+                      sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
     if isinstance(client, OpenRouterClient):
         client.on_retry = lambda model, attempt, error: log.error(
             "api_retry", f"a {model} request failed (attempt {attempt + 1}), retrying: {error[:300]}",
@@ -288,6 +291,9 @@ def main() -> None:
     ap.add_argument("--tips-for", default="all", metavar="WHO", help="who gets --tips: all (default), half (a "
                     "random half of the seats, for comparing experienced and fresh players), or comma-separated "
                     "player names (Alice, ...) and models (e.g. opus-5.5)")
+    ap.add_argument("--player-tips", default="", metavar="WHO=FILE,...", help="per player or model, which tips "
+                    "file to give (or none), applied after --tips/--tips-for; a name wins over a model, e.g. "
+                    "opus-5.5=tips/tips.md,Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none")
     fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
                     "--moderator models on the rules (graded by the moderator model)")
     args = ap.parse_args()
@@ -313,8 +319,13 @@ def main() -> None:
         ap.error(str(e))
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
-    if args.tips and not args.tips.is_file():
-        ap.error(f"--tips: no such file {args.tips}")
+    try:
+        player_tips = parse_player_tips(args.player_tips)
+    except ValueError as e:
+        ap.error(str(e))
+    for f in [args.tips] + [f for _, f in player_tips]:
+        if f and not f.is_file():
+            ap.error(f"no such tips file {f}")
     if args.rules_quiz:
         path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
@@ -322,7 +333,8 @@ def main() -> None:
     play_game(client, models, moderator, roles, seed, debrief=args.debrief,
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
               lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
-              checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for)
+              checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
+              player_tips=player_tips)
 
 
 if __name__ == "__main__":

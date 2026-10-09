@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from roles import ROLES, Alignment
+from tips import player_view
 
 
 def text_line(r: dict) -> str | None:
@@ -52,13 +53,19 @@ def text_line(r: dict) -> str | None:
         case "night_check":
             return f"[Night check] {describe_check(r)}"
         case "tips":
-            return f"Tips from past games ({r['file']}) given to: {', '.join(r['players']) or 'nobody'}"
+            return "Tips from past games given to: " + (", ".join(f"{n} ({f})" for n, f in tips_files(r).items())
+                                                        or "nobody")
         case "resume":
             return f"[Resumed from the checkpoint at the start of day {r['day']}]"
         case "result":
             cost = "\n".join(usage_lines(r["usage"])) if "usage" in r else f"Cost: {r['cost']}"  # LOG_VERSION 10+
             return f"\n===== GAME OVER =====\nWinners: {', '.join(r['winners'] or []) or 'nobody'}\n{cost}"
     return None
+
+
+def tips_files(r: dict) -> dict[str, str]:
+    """Player -> tips file of a "tips" record (LOG_VERSION 13+ has files; 11-12 had one file for all)."""
+    return r.get("files") or dict.fromkeys(r["players"], r.get("file", "?"))
 
 
 def describe_check(r: dict) -> str:
@@ -318,11 +325,13 @@ def render_html(jsonl_path: Path) -> Path:
             out.append(f"<table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr>"
                        f"{rows}</table><div class='muted'>Katana starts with {name(str(r.get('katana')))}</div>")
         elif k == "tips":
-            out.append(f"<div class='muted'>Tips from past games ({esc(r['file'])}) given to: "
-                       f"{esc(', '.join(r['players']) or 'nobody')}</div>")
-            for who, shown in r.get("shown", {}).items():  # LOG_VERSION 12+: the sections each player saw
+            files = tips_files(r)
+            out.append(f"<div class='muted'>Tips from past games given to: {esc(', '.join(r['players']) or 'nobody')}"
+                       "</div>")
+            for who, file in files.items():
+                shown = player_view(r["texts"][file]) if "texts" in r else r.get("shown", {}).get(who, "")
                 out.append(f"<details class='call'><summary>Tips for {name(who)} ({esc(roles.get(who, '?'))}, "
-                           f"{esc(models.get(who, '?'))})</summary><pre>{esc(shown)}</pre></details>")
+                           f"{esc(models.get(who, '?'))}): {esc(file)}</summary><pre>{esc(shown)}</pre></details>")
         elif k == "event":
             if is_phase_start(r):
                 start_phase(r["text"].removesuffix(" begins."))

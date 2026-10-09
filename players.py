@@ -8,7 +8,7 @@ from events import RESULT
 from llm import LLMClient, answer_json
 from roles import Alignment, ROLES, logic
 from state import Game, Player
-from tips import tips_for_role
+from tips import player_view
 
 
 NOTEPAD_WORDS = 300  # longer notepads are truncated
@@ -102,7 +102,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
         "deceive you too. Play to win, not to be agreeable or transparent. "
         f"Seating order (clockwise): {order}.\n{role_briefing(game, p)}"
     )
-    if p.tips and (tips := tips_for_role(p.tips, p.role)):
+    if p.tips and (tips := player_view(p.tips)):
         system += ("\n\n---\n\nTips from past games (lessons that players and moderators drew from earlier "
                    f"games of this variant; use your own judgment):\n\n{tips}")
     notepad = p.notepad or "(empty)"
