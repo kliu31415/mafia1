@@ -162,7 +162,7 @@ def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
     for seed in range(40):
         game.rng = random.Random(seed)
         logic("Roleplayer").setup(game, game.player("Alice"))
-        assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist")
+        assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist", "Surveyor")
 
 
 def test_vulture_wins_alone_at_dawn_once_few_enough_are_left(game_factory):
@@ -217,6 +217,26 @@ def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
     guilty.clear()
     guilty.update({"Bob", "Carol", "Erin"})
     assert run_trial(game, players, game.player("Bob"), "Dave", 1) == "executed"  # 3 of 5, not 3 of 6
+
+
+def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
+    from roles.surveyor import survey_group
+    game, players = game_factory(["Surveyor", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
+    game.phase = "night"
+    assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]  # skips Alice, wraps around
+    game.kill("Carol", "Katana")  # died tonight: still in the group (alive at the start of the night)
+    assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "survey", "player": "Bob", "by": "Alice"}]})
+    result = next(e for e in game.events if e.cat == "result")
+    assert result.visible_to == {"Alice"} and "You surveyed Frank, Bob and Carol." in result.text
+    assert any(role in result.text for role in ("Jester", "Vanilla Villager", "Medic"))
+    assert game.player("Alice").tokens["survey"] == 1
+    for name in ["Carol", "Dave", "Erin"]:
+        game.player(name).alive, game.player(name).death = False, None  # died on earlier days
+    assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob"]  # two others alive
+    game.player("Frank").alive, game.player("Frank").death = False, None
+    assert survey_group(game, "Alice", "Bob") == ["Bob"]
 
 
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
