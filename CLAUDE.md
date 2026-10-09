@@ -61,6 +61,13 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   record's fields, bump `LOG_VERSION` in `gamelog.py` (it's written in the "setup" record).
 - Night checks (`night_check.py`, on by default) log a judge model's verdict on each night's moderator
   resolution as "night_check" records; they never change the game.
+- Anything that goes wrong (a failed or empty LLM answer, a fallback, an API retry, a moderator tool
+  error, a failed post-game step, a crash) goes through `game.log.error(kind, summary, ...)`, never a
+  bare `write` or a silent `except`. It's logged with `alert: true`, counted in the result record, listed
+  at the top of the feedback report and printed as an `ALERT ...` line. When running a live game, watch
+  its output for `ALERT` lines and tell Kevin about new kinds of errors as they happen.
+- Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`); add one
+  there for a new maker.
 - Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
   Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
   `mafia.py`), so a stuck game can't run forever.

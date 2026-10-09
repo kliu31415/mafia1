@@ -118,8 +118,11 @@ class Moderator:
                 try:
                     args = json.loads(call["function"].get("arguments") or "{}")
                     result = self.dispatch(name, args)
-                except Exception as e:  # report tool errors back to the moderator
+                except Exception as e:  # report tool errors back to the moderator, and to whoever runs the game
                     result = {"error": f"{type(e).__name__}: {e}"}
+                    self.game.log.error("moderator_tool_error", f"{name} failed on day {self.game.day} "
+                                        f"{self.game.phase}: {result['error']}", tool=name,
+                                        args=call["function"].get("arguments"))
                 self.game.log.write("moderator_tool", name=name, args=call["function"].get("arguments"),
                                     result=result)
                 transcript.append({"tool": name, "args": call["function"].get("arguments"),
@@ -127,7 +130,8 @@ class Moderator:
                 messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
                 if name == "end_phase":
                     return transcript
-        self.game.log.write("moderator_error", error="step limit reached")
+        self.game.log.error("moderator_error", f"the moderator hit its step limit ({MAX_MODERATOR_STEPS}) "
+                            f"without ending the phase, day {self.game.day} {self.game.phase}")
         transcript.append({"tool": "(none)", "result": "the moderator hit its step limit without ending the phase"})
         return transcript
 

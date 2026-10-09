@@ -10,6 +10,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from enum import Enum
+from collections.abc import Callable
 from typing import Any, Protocol
 
 
@@ -51,6 +52,21 @@ MODEL_SHORT_NAMES = {
     Model.GEMINI_3_8_FLASH: "gemini-3.8-flash",
     Model.HAIKU_5_5: "haiku-5.5",
     Model.GPT_6_LUNA: "gpt-6-luna",
+}
+
+
+# The one OpenRouter provider each model maker's models use: the maker's own endpoint (all support
+# structured outputs, tools and reasoning; checked 2026-10-09). Letting OpenRouter pick caused trouble:
+# its Azure route for Claude refuses any output schema with a "thoughts" field as distillation (Ivan's
+# player_errors in game_20261009_004910_895267). Moonshot's own Kimi endpoint costs more than the
+# cheapest hosts ($3/$15 vs about $0.75/$13 per million tokens), which run quantized versions.
+PROVIDERS = {
+    "anthropic": "Anthropic",
+    "openai": "OpenAI",
+    "google": "Google AI Studio",
+    "x-ai": "xAI",
+    "qwen": "Alibaba",
+    "moonshotai": "Moonshot AI",
 }
 
 
@@ -114,6 +130,14 @@ class LLMReply:
     stop_note: str | None = None
 
 
+def answer_json(reply: LLMReply) -> Any:
+    """The JSON answer of a structured-output call. An empty answer raises RuntimeError saying why
+    (a refusal, the token limit, ...), rather than a bare JSON error."""
+    if not reply.content:
+        raise RuntimeError(f"empty answer ({reply.stop_note or 'no reason given'})")
+    return json.loads(reply.content)
+
+
 class LLMClient(Protocol):
     """What game code needs from a client: OpenRouterClient, MockClient, or a test's scripted client."""
 
@@ -135,6 +159,8 @@ class OpenRouterClient:
         self.retries = retries
         self.total_cost: dict[str, float] = {}
         self.cost_lock = threading.Lock()  # chat() is called from several threads
+        # Told about each retried request (model, attempt, what failed); the game logs it as an error.
+        self.on_retry: Callable[[str, int, str], None] | None = None
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
              schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
@@ -149,10 +175,7 @@ class OpenRouterClient:
             # Claude needs an opt-in for caching (other providers cache automatically). The top-level
             # field caches the prompt up to the last block, 5-minute TTL.
             body["cache_control"] = {"type": "ephemeral"}
-            # Only Anthropic's own endpoint: OpenRouter's Azure route refuses any request whose output
-            # schema has a "thoughts" field, as distillation (seen 2026-10-09; Ivan's player_errors in
-            # game_20261009_004910_895267).
-            body["provider"] = {"order": ["Anthropic"], "allow_fallbacks": False}
+        body["provider"] = {"order": [PROVIDERS[model.value.split("/")[0]]], "allow_fallbacks": False}
         if tools:
             body["tools"] = tools
         if schema:
@@ -198,15 +221,20 @@ class OpenRouterClient:
             except urllib.error.HTTPError as e:
                 detail = e.read().decode("utf-8", "replace")[:500]
                 if e.code in (408, 429, 500, 502, 503, 504) and attempt < self.retries:
-                    time.sleep(2 ** (attempt + 1))
+                    self._retrying(body, attempt, f"HTTP {e.code}: {detail}")
                     continue
                 raise RuntimeError(f"OpenRouter HTTP {e.code}: {detail}") from None
-            except (urllib.error.URLError, TimeoutError):
+            except (urllib.error.URLError, TimeoutError) as e:
                 if attempt < self.retries:
-                    time.sleep(2 ** (attempt + 1))
+                    self._retrying(body, attempt, f"{type(e).__name__}: {e}")
                     continue
                 raise
         raise AssertionError("unreachable")
+
+    def _retrying(self, body: dict, attempt: int, error: str) -> None:
+        if self.on_retry:
+            self.on_retry(body["model"], attempt, error)
+        time.sleep(2 ** (attempt + 1))
 
 
 class MockClient:

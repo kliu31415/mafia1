@@ -10,7 +10,7 @@ import json
 from concurrent.futures import Future, ThreadPoolExecutor
 
 from gamelog import GameLog
-from llm import LLMClient, Model
+from llm import LLMClient, Model, answer_json
 from players import STR, obj
 
 ISSUE_KINDS = ["wrong death", "missed death", "wrong result", "missing result", "leaked information",
@@ -58,12 +58,18 @@ class NightChecker:
         try:
             reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check",
                                      effort=self.effort)
-            out = json.loads(reply.content or "")
+            out = answer_json(reply)
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
                            verdict=out["verdict"], issues=out["issues"], cost=reply.cost, **in_play)
+            for issue in out["issues"]:
+                if issue["severity"] == "high":  # changed who lives or what someone learned
+                    self.log.error("night_check_issue", f"night {night}: {issue['description']}",
+                                   night=night, issue=issue)
         except Exception as e:  # a failed check must never stop the game
             self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
                            verdict="failed", issues=[], error=f"{type(e).__name__}: {e}", **in_play)
+            self.log.error("night_check_error", f"the night {night} check failed: {type(e).__name__}: {e}",
+                           night=night)
 
     def finish(self) -> None:
         """Wait for the remaining checks (call before the log is closed)."""

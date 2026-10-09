@@ -2,10 +2,11 @@
 and a report collecting everything (including moderator flags and in-game feedback) per game."""
 
 import json
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
-from llm import LLMClient, Model, ModelSpec
+from llm import LLMClient, Model, ModelSpec, answer_json
 from moderator import Moderator
 from players import STR, Players, obj
 from state import Game
@@ -54,7 +55,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
                                   effort=moderator.effort)
     game.log.write("debrief", who="moderator", role="Moderator", model=moderator.model.value,
-                   answers=json.loads(reply.content or "{}"), cost=reply.cost)
+                   answers=answer_json(reply), cost=reply.cost)
 
 
 def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
@@ -68,7 +69,7 @@ def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log
         {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}"},
     ]
     reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
-    game.log.write("review", model=model.value, issues=json.loads(reply.content or "{}").get("issues", []),
+    game.log.write("review", model=model.value, issues=answer_json(reply).get("issues", []),
                    cost=reply.cost)
 
 
@@ -122,7 +123,7 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
          "Cover good and evil play, and ignore problems with the rules or the program."},
     ]
     reply = client.chat(model, messages, schema=STRATEGY_SCHEMA, schema_name="strategy_review", effort=effort)
-    out = json.loads(reply.content or "{}")
+    out = answer_json(reply)
     lessons = out.get("lessons", [])
     game.log.write("strategy_review", model=model.value, summary=out.get("summary", ""), lessons=lessons,
                    cost=reply.cost)
@@ -134,7 +135,7 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
 
 
 def write_report(jsonl_path: Path) -> Path | None:
-    """Collect night checks, moderator flags, in-game feedback, debriefs, lessons, the strategy review
+    """Collect errors, night checks, moderator flags, in-game feedback, debriefs, lessons, the strategy review
     and the review into
     <game>_feedback.md."""
     records = [json.loads(line) for line in jsonl_path.read_text(encoding="utf-8").splitlines() if line]
@@ -145,9 +146,21 @@ def write_report(jsonl_path: Path) -> Path | None:
     lessons = [r for r in records if r["kind"] == "lessons"]
     strategy = [r for r in records if r["kind"] == "strategy_review"]
     checks = sorted((r for r in records if r["kind"] == "night_check"), key=lambda r: r["night"])
-    if not (flags or in_game or debriefs or reviews or lessons or strategy or checks):
+    errors = [r for r in records if r.get("alert")]
+    if not (errors or flags or in_game or debriefs or reviews or lessons or strategy or checks):
         return None
     out = [f"# Feedback for {jsonl_path.stem}\n"]
+    if errors:
+        counts = Counter(r["kind"] for r in errors)
+        out.append("## Errors (things to fix)\n")
+        out.append(", ".join(f"{n} {k}" for k, n in counts.most_common()) + "\n")
+        shown: Counter[tuple[str, str]] = Counter()
+        for r in errors:  # the first few of each kind per player; the JSONL has them all (alert: true)
+            source = (r["kind"], r.get("player", ""))
+            shown[source] += 1
+            if shown[source] <= 3:
+                out.append(f"- {r['kind']}: {r['error']}")
+        out.append("")
     if checks:
         out.append(f"## Night checks (judge: {checks[0]['judge'].split('/')[-1]})\n")
         for r in checks:

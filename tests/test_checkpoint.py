@@ -46,6 +46,9 @@ def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
     [ckpt_path] = (tmp_path / "stopped").glob("*.ckpt")
     ckpt = load(ckpt_path)
     assert ckpt["game"].day == 2
+    crash = json.loads(ckpt_path.with_suffix(".jsonl").read_text(encoding="utf-8").splitlines()[-1])
+    assert crash["kind"] == "crash" and crash["alert"] and "laptop went to sleep" in crash["error"]
+    assert f"--resume {ckpt_path}" in crash["error"]
 
     monkeypatch.setattr(mafia, "run_night", real_run_night)
     resumed = mafia.play_game(MockClient(seed), **ckpt["play_args"], resume=ckpt)

@@ -38,7 +38,8 @@ import hashlib
 import random
 import subprocess
 import time
-from collections.abc import Sequence
+import traceback
+from collections.abc import Callable, Sequence
 from datetime import datetime
 from pathlib import Path
 
@@ -108,6 +109,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         for model, cost in resume["cost"].items():
             client.total_cost[model] = client.total_cost.get(model, 0) + cost
         started = time.time() - resume["elapsed_s"]
+        log.error_counts = resume["error_counts"]
     else:
         rng = random.Random(seed)
         prefix = "mock" if isinstance(client, MockClient) else "game"  # mock games say random filler text
@@ -119,6 +121,10 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                     "feedback_field": feedback_field, "check_nights": check_nights, "checkpoint": checkpoint}
         started = time.time()
         game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
+    if isinstance(client, OpenRouterClient):
+        client.on_retry = lambda model, attempt, error: log.error(
+            "api_retry", f"a {model} request failed (attempt {attempt + 1}), retrying: {error[:300]}",
+            model=model, attempt=attempt)
     players = Players(game, client, rules, feedback_field=feedback_field)
     moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
     if resume:
@@ -130,60 +136,73 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
         print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}")
     ckpt_path = log.path.with_suffix(".ckpt")
 
-    while game.day <= max_days:
-        if checkpoint:
-            save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
-                            moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
-                            client={"mock": isinstance(client, MockClient),
-                                    "effort": getattr(client, "effort", None)})
-        # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
-        # i.e. after the day's execution and after the night's (simultaneous) deaths.
-        if game.phases_without_death >= STALL_LIMIT:
-            game.winners, end_reason = [], "stall"
-            game.emit("Nobody died for three days and three nights. Everyone loses.")
-            break
-        print(f"Day {game.day}...")
-        deaths_before = game.death_count()
-        run_day(game, players)
-        if (winners := game.check_winner()) is not None:
-            game.winners, end_reason = winners, "win"
-            break
-        print(f"Night {game.day}...")
-        run_night(game, players, moderator, checker)
-        if (winners := game.check_winner()) is not None:
-            # Reveal the night's deaths at a proper dawn before the game ends.
-            game.phase = "day"
-            game.emit(f"Day {game.day} begins.", cat=PHASE)
-            game.announce_dawn()
-            game.winners, end_reason = winners, "win"
-            break
-        if game.death_count() == deaths_before:
-            game.phases_without_death += 2
-    else:
-        game.winners, end_reason = [], "day_limit"
-        game.emit(f"The game reached its limit of {max_days} days, a safeguard of this program rather "
-                  "than a rule, so it ends with no winner.")
+    try:
+        while game.day <= max_days:
+            if checkpoint:
+                save_checkpoint(ckpt_path, game, play_args=play_args, cost=dict(client.total_cost),
+                                moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
+                                error_counts=dict(log.error_counts),
+                                client={"mock": isinstance(client, MockClient),
+                                        "effort": getattr(client, "effort", None)})
+            # The stall rule (R14) is checked when a day begins; a winner (R1) is checked after every death,
+            # i.e. after the day's execution and after the night's (simultaneous) deaths.
+            if game.phases_without_death >= STALL_LIMIT:
+                game.winners, end_reason = [], "stall"
+                game.emit("Nobody died for three days and three nights. Everyone loses.")
+                break
+            print(f"Day {game.day}...")
+            deaths_before = game.death_count()
+            run_day(game, players)
+            if (winners := game.check_winner()) is not None:
+                game.winners, end_reason = winners, "win"
+                break
+            print(f"Night {game.day}...")
+            run_night(game, players, moderator, checker)
+            if (winners := game.check_winner()) is not None:
+                # Reveal the night's deaths at a proper dawn before the game ends.
+                game.phase = "day"
+                game.emit(f"Day {game.day} begins.", cat=PHASE)
+                game.announce_dawn()
+                game.winners, end_reason = winners, "win"
+                break
+            if game.death_count() == deaths_before:
+                game.phases_without_death += 2
+        else:
+            game.winners, end_reason = [], "day_limit"
+            game.emit(f"The game reached its limit of {max_days} days, a safeguard of this program rather "
+                      "than a rule, so it ends with no winner.")
+    except BaseException as e:  # log it for whoever runs the game, then stop as before
+        log.error("crash", f"the game stopped on day {game.day} {game.phase}: {type(e).__name__}: {e}"
+                  + (f"; continue it with: uv run mafia.py --resume {ckpt_path}" if ckpt_path.exists() else ""),
+                  traceback=traceback.format_exc())
+        raise
 
     duration = time.time() - started  # the game itself, without the feedback steps below
     winner_names = ", ".join(game.winners or []) or "nobody"
     game.emit(f"The game is over. Winners: {winner_names}.")
     print(f"Winners: {game.winners}")
+
+    def step(label: str, run: Callable[[], object]) -> None:
+        """A step after the game; one that fails is logged as an error and the rest still run."""
+        print(f"{label}...")
+        try:
+            run()
+        except Exception as e:
+            log.error("feedback_error", f"{label} failed: {type(e).__name__}: {e}", step=label,
+                      traceback=traceback.format_exc())
+
+    lessons_file = LOG_DIR / ("mock_lessons.jsonl" if isinstance(client, MockClient) else "lessons.jsonl")
+    text_log = log.path.with_suffix(".txt")
     if debrief:
-        print("Debriefing players and moderator...")
-        run_debrief(game, players, moderator)
+        step("Debriefing players and moderator", lambda: run_debrief(game, players, moderator))
     if lessons:
-        print("Collecting lessons from players...")
-        lessons_file = LOG_DIR / ("mock_lessons.jsonl" if isinstance(client, MockClient) else "lessons.jsonl")
-        run_lessons(game, players, lessons_file)
-        print("Collecting the moderator's strategy review...")
-        run_strategy_review(game, client, mod.model, rules, log.path.with_suffix(".txt"), lessons_file,
-                            effort=mod.effort)
+        step("Collecting lessons from players", lambda: run_lessons(game, players, lessons_file))
+        step("Collecting the moderator's strategy review",
+             lambda: run_strategy_review(game, client, mod.model, rules, text_log, lessons_file, effort=mod.effort))
     if checker:
-        print("Waiting for night checks...")
-        checker.finish()
+        step("Waiting for night checks", checker.finish)
     if review:
-        print("Reviewing the log...")
-        run_review(game, client, mod.model, rules, log.path.with_suffix(".txt"), effort=mod.effort)
+        step("Reviewing the log", lambda: run_review(game, client, mod.model, rules, text_log, effort=mod.effort))
     faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
     winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
     if end_reason == "win" and winning_faction is None:
@@ -195,10 +214,12 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
               players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "start_role": p.start_role,
                         "final_role": p.role, "faction": p.faction, "alive": p.alive,
                         "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
-                        "death": p.death} for p in game.players])
+                        "death": p.death} for p in game.players],
+              errors=dict(log.error_counts))
     log.close()
     ckpt_path.unlink(missing_ok=True)
     print(f"Cost by model: {client.total_cost}")
+    print(f"Errors: {log.error_counts} (see the top of the feedback report)" if log.error_counts else "Errors: none")
     print(f"Logs: {log.path} (+ .txt, .html)")
     if report := write_report(log.path):
         print(f"Feedback: {report}")

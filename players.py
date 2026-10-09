@@ -3,7 +3,7 @@
 import json
 from concurrent.futures import ThreadPoolExecutor
 
-from llm import LLMClient
+from llm import LLMClient, answer_json
 from roles import Alignment, ROLES, logic
 from state import Game, Player
 
@@ -135,9 +135,7 @@ class Players:
         for attempt in range(2):
             try:
                 reply = self.client.chat(p.model, messages, schema=schema, effort=p.effort)
-                if not reply.content:
-                    raise RuntimeError(f"empty answer ({reply.stop_note})")
-                out = json.loads(reply.content)
+                out = answer_json(reply)
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage)
@@ -148,7 +146,11 @@ class Players:
                     p.notepad = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
                 return out
             except (json.JSONDecodeError, RuntimeError) as e:
-                self.game.log.write("player_error", player=p.name, attempt=attempt, error=str(e))
+                self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {e}",
+                                    player=p.name, model=p.model.value, attempt=attempt, task=task)
+        self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
+                            f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
+                            player=p.name, model=p.model.value, task=task, fallback=fallback)
         return fallback
 
     def ask_many(self, jobs: list[tuple[Player, str, dict, dict]]) -> list[dict]:
