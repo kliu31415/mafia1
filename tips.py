@@ -254,6 +254,18 @@ def notebook_view(nb: dict) -> str:
     return ("\n".join(live) or "(empty)") + ("\n\nRetired entries:\n" + "\n".join(retired) if retired else "")
 
 
+def record(e: dict, kind: str, game: str, weight: float, note: str) -> None:
+    """Adds a support or report to an entry. One game counts once for (or against) an entry, however many
+    lessons say so: a second one from the same game merges into the first (the higher weight, both notes)."""
+    same = next((x for x in e[kind] if x["game"] == game), None)
+    if same is None:
+        e[kind].append({"game": game, "weight": weight, "note": note})
+        return
+    same["weight"] = max(same["weight"], weight)
+    if note and note not in same["note"]:
+        same["note"] = f"{same['note']}; {note}" if same["note"] else note
+
+
 def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
     """Carries out the model's ops on the notebook; returns how many were skipped (an unknown id, an
     empty tip)."""
@@ -264,10 +276,14 @@ def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
         kind, note = op["op"], op["note"].strip()
         weight = max(0.0, min(1.0, w)) if isinstance(w, (int, float)) and math.isfinite(w) else 0.0
         if kind == "add":
-            if not op["tip"].strip() or any(e["tip"] == op["tip"].strip() for e in nb["entries"]):
-                skipped += 1  # empty, or the same tip added twice
+            tip = op["tip"].strip()
+            if not tip:
+                skipped += 1
                 continue
-            added = {"id": f"t{nb['next_id']}", "audience": op["audience"], "tip": op["tip"].strip(), "status": "active",
+            if same := next((e for e in nb["entries"] if e["tip"] == tip), None):
+                record(same, "support", game, weight, note)  # the same tip added twice: its evidence still counts
+                continue
+            added = {"id": f"t{nb['next_id']}", "audience": op["audience"], "tip": tip, "status": "active",
                  "support": [{"game": game, "weight": weight, "note": note}], "against": [],
                  "history": [{"game": game, "change": "added"}]}
             nb["next_id"] += 1
@@ -278,12 +294,8 @@ def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
         if e is None:
             skipped += 1
             continue
-        if kind in ("support", "against") and any(x["game"] == game for x in e[kind]):
-            skipped += 1  # one game counts once for (or against) an entry, however many lessons say so
-        elif kind == "support":
-            e["support"].append({"game": game, "weight": weight, "note": note})
-        elif kind == "against":
-            e["against"].append({"game": game, "weight": weight, "note": note})
+        if kind in ("support", "against"):
+            record(e, kind, game, weight, note)
         elif kind == "edit" and op["tip"].strip():
             e["history"].append({"game": game, "change": "edited", "old": e["tip"], "note": note})
             e["tip"], e["audience"] = op["tip"].strip(), op["audience"]
@@ -467,8 +479,8 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
         print(f"  {g['game']}: {applied} notebook changes" + (f" ({skipped} invalid ones skipped)" if skipped else ""))
         if skipped and not g["mock"]:  # a mock game's tips model answers at random, so it often makes these
             on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes for {g['game']} "
-                     "(an unknown entry id, an empty or repeated tip, a second support or report from the same "
-                     "game, or retiring a retired entry); they were skipped", game=g["game"], skipped=skipped)
+                     "(an unknown entry id, an empty tip, or retiring a retired entry); they were skipped",
+                     game=g["game"], skipped=skipped)
         # Saved after each game, so a failure later keeps (and doesn't pay again for) the games before it.
         write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
         touch()  # still alive: other builds wait instead of taking over the lock

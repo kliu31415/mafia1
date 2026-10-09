@@ -395,10 +395,14 @@ def test_tips_skip_unfinished_games_and_repeated_ops_and_keep_the_sheet_when_the
     nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
     assert nb["games"] == ["game_20261001_000000_1"] and len(nb["entries"]) == 1  # unfinished: not yet
     entry = nb["entries"][0]
-    assert tips.apply_ops(nb, [op("support", id=entry["id"], weight=1.0)] * 3 + [op("restore", id=entry["id"]),
-                                                                               op("support", weight=float("nan"),
-                                                                                  id=entry["id"])], "g2") == 4
-    assert len(entry["support"]) == 2  # g1's add, then one from g2
+    assert entry["support"][0]["weight"] == 0.5  # the repeated add merged into the first
+    supports = [op("support", id=entry["id"], weight=0.3, note="Alice saw it."),
+                op("support", id=entry["id"], weight=1.0, note="Bob too."),
+                op("support", id=entry["id"], weight=1.0, note="Bob too."),
+                op("support", weight=float("nan"), id=entry["id"])]
+    assert tips.apply_ops(nb, supports + [op("restore", id=entry["id"])], "g2") == 1  # only the restore
+    assert len(entry["support"]) == 2  # g1's add, then one from g2 with the higher weight and both notes
+    assert entry["support"][1] == {"game": "g2", "weight": 1.0, "note": "Alice saw it.; Bob too."}
 
     class EmptySheet(TipsClient):
         def chat(self, model, messages, *, schema_name="response", **kw):
