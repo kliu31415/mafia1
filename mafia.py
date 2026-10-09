@@ -65,6 +65,8 @@ from tips import assign_tips, build as build_tips, file_digest, parse_player_tip
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
 LOG_DIR = ROOT / "logs"
+DEFAULT_TIPS = ROOT / "tips" / "tips.md"  # the players' sheet --update-tips keeps up to date after each game
+MOCK_TIPS = LOG_DIR / "mock_tips" / "tips.md"  # mock games' random lessons stay out of the real notebook
 
 
 # Safeguard against games that never end (not a rule from rules_1.txt): by default a game stops
@@ -296,9 +298,10 @@ def main() -> None:
     ap.add_argument("--tips-for", default="all", metavar="WHO", help="who gets --tips: all (default), half (a "
                     "random half of the seats, for comparing experienced and fresh players), or comma-separated "
                     "player names (Alice, ...) and models (e.g. opus-5.5)")
-    ap.add_argument("--update-tips", metavar="FILE", type=Path, help="after the game, add its lessons to the "
-                    "notebook of this tips sheet and rewrite the sheet (tips.py build; needs --lessons), e.g. "
-                    "tips/tips.md")
+    ap.add_argument("--update-tips", metavar="FILE", type=Path, default=DEFAULT_TIPS, help="after the game, add "
+                    "its lessons to the notebook of this tips sheet and rewrite the sheet (tips.py build; needs "
+                    f"--lessons); default {DEFAULT_TIPS.relative_to(ROOT)}, or {MOCK_TIPS.relative_to(ROOT)} for --mock")
+    ap.add_argument("--no-update-tips", action="store_true", help="don't update the tips after the game")
     ap.add_argument("--player-tips", default="", metavar="WHO=FILE,...", help="per player or model, which tips "
                     "file to give (or none), applied after --tips/--tips-for; a name wins over a model, e.g. "
                     "opus-5.5=tips/tips.md,Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none")
@@ -325,6 +328,8 @@ def main() -> None:
         moderator = parse_model_spec(args.moderator)
     except ValueError as e:
         ap.error(str(e))
+    update_tips = (None if args.no_update_tips
+                   else MOCK_TIPS if args.mock and args.update_tips == DEFAULT_TIPS else args.update_tips)
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
     try:
@@ -342,7 +347,7 @@ def main() -> None:
               flag_issues=args.mod_flags, feedback_field=args.feedback_field, review=args.review,
               lessons=args.lessons, max_days=args.max_days, check_nights=args.check_nights,
               checkpoint=args.checkpoint, tips=args.tips, tips_for=args.tips_for,
-              player_tips=player_tips, update_tips=args.update_tips)
+              player_tips=player_tips, update_tips=update_tips)
 
 
 if __name__ == "__main__":

@@ -72,7 +72,7 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   game logs: each new game updates a verbose notebook (`tips/tips_notebook.json`/`.md`: every tip with its
   evidence, weights and reports against it, changed only through small ops) and the short sheet players get
   (`tips/tips.md`) is rewritten from it. Feedback from players who had tips and the moderator (`tips_feedback`)
-  counts as evidence. `mafia.py --update-tips tips/tips.md` does this after each game; `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
+  counts as evidence. games do this when they end, by default (`--no-update-tips` to skip; mock games use `logs/mock_tips/`); `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
   system prompts, and `--player-tips WHO=FILE|none,...` sets each player's or model's file. Players see
   every section (all factions and roles). The models learn collectively: one file pools every model's lessons. The
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
