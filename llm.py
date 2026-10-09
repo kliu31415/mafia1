@@ -43,7 +43,9 @@ class Model(str, Enum):
     # 3.5 Lightning and Command A+ (claimed their role and announced their target in public chat on Day 2),
     # Mistral Large 4 ($0.01 a call, about 70 s). Solar Pro 4 and MiMo V2.6 Flash passed the test but in their
     # first game (2026-10-09) often filled strict-schema answers with runs of tabs or whitespace up to the token
-    # limit (unparsable, minutes per call), so they were dropped.
+    # limit (unparsable, minutes per call), so they were dropped. DeepSeek V4.1 Flash does the same less often:
+    # 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together; 36 replays of
+    # that game's turns all parsed on Together, DeepInfra and Fireworks, so it isn't one provider's grammar.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
 
