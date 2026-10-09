@@ -26,7 +26,7 @@ def records(path):
 
 
 def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch):
-    seed = 7
+    seed = 1  # any seed whose mock game has a death and lasts 2+ days (the mock reads the rules text)
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "full")
     full = mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
     assert not full.with_suffix(".ckpt").exists()  # deleted once the game finishes
