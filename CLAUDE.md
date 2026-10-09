@@ -67,6 +67,9 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   at the top of the feedback report and of the HTML view (each error is also marked in red where it
   happened, and in the .txt as `[ERROR kind]`), and printed as an `ALERT ...` line. When running a live game,
   watch its output for `ALERT` lines and tell Kevin about new kinds of errors as they happen.
+- Player answers are checked against their schema (`players.schema_errors`) before the game uses them; one
+  that breaks it is a `player_error`, retried and then replaced by the fallback. Moderator ops that apply but
+  look wrong (e.g. killing a dead player) come back to the moderator as notes and are `moderator_warning`s.
 - Errors get looked at even in games Kevin runs himself: `uv run alerts.py` lists games in `logs/` with errors
   nobody has reviewed (and games killed without a result), and a SessionStart hook in `.claude/settings.json`
   puts that list in Claude's context when a session starts in this folder. When it does, tell Kevin first

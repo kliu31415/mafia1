@@ -97,3 +97,11 @@ def test_an_empty_moderator_answer_is_an_error(game_factory):
     game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"], client)
     Moderator(game, client, players, Model.HAIKU_5_5, "(rules)").run_phase("Resolve.")
     assert game.log.error_counts == {"moderator_error": 1}
+
+
+def test_killing_a_dead_player_is_a_warning(game_factory):
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.kill("Bob", "Katana")
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    out = mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Bob"}]})
+    assert "already dead" in out["notes"][0] and game.log.error_counts == {"moderator_warning": 1}

@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
 from events import RESULT
-from llm import LLMClient, answer_json
+from llm import LLMClient, LLMReply, answer_json
 from roles import Alignment, ROLES, logic
 from state import Game, Player
 from tips import player_view
@@ -28,6 +28,44 @@ def nullable(schema: dict) -> dict:
 
 def obj(**props: dict) -> dict:
     return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
+
+
+JSON_TYPES = {"object": dict, "array": list, "string": str, "boolean": bool, "null": type(None)}
+
+
+def schema_errors(value: object, schema: dict, path: str = "answer") -> list[str]:
+    """Where a JSON answer breaks its schema (the subset our schemas use: type, enum, properties, required,
+    additionalProperties, items, anyOf, minimum, maximum). Providers are asked for strict structured output,
+    but one that ignores it would otherwise feed the game an unknown name or a missing field."""
+    if "anyOf" in schema:
+        options = [schema_errors(value, s, path) for s in schema["anyOf"]]
+        return [] if any(not e for e in options) else min(options, key=len)
+    t = schema.get("type")
+    if t == "integer":
+        ok = isinstance(value, int) and not isinstance(value, bool)
+    elif t == "number":
+        ok = isinstance(value, (int, float)) and not isinstance(value, bool)
+    else:
+        ok = t is None or isinstance(value, JSON_TYPES[t]) and not (t != "boolean" and isinstance(value, bool))
+    if not ok:
+        return [f"{path} should be {t}, not {json.dumps(value)[:60]}"]
+    if "enum" in schema and value not in schema["enum"]:
+        return [f"{path} is {json.dumps(value)[:60]}, not one of {schema['enum']}"]
+    if isinstance(value, (int, float)) and not schema.get("minimum", value) <= value <= schema.get("maximum", value):
+        return [f"{path} is {value}, outside {schema.get('minimum')}..{schema.get('maximum')}"]
+    errors = []
+    if isinstance(value, dict):
+        props = schema.get("properties", {})
+        errors += [f"{path} is missing {k!r}" for k in schema.get("required", []) if k not in value]
+        if schema.get("additionalProperties") is False:
+            errors += [f"{path} has an unknown field {k!r}" for k in value if k not in props]
+        for k, v in value.items():
+            if k in props:
+                errors += schema_errors(v, props[k], f"{path}.{k}")
+    if isinstance(value, list) and "items" in schema:
+        for i, v in enumerate(value):
+            errors += schema_errors(v, schema["items"], f"{path}[{i}]")
+    return errors
 
 
 STR = {"type": "string"}
@@ -158,9 +196,12 @@ class Players:
             schema = {**schema, "properties": {**schema["properties"], "feedback": nullable(STR)},
                       "required": [*schema["required"], "feedback"]}
         for attempt in range(2):
+            reply: LLMReply | None = None
             try:
                 reply = self.client.chat(p.model, messages, schema=schema, effort=p.effort)
                 out = answer_json(reply)
+                if errors := schema_errors(out, schema):
+                    raise RuntimeError(f"the answer doesn't match its schema: {'; '.join(errors[:5])}")
                 before = p.notepad
                 after = before
                 if isinstance(note := out.get("notepad"), str):
@@ -177,7 +218,9 @@ class Players:
             except Exception as e:  # a bad answer, or a request that failed after its retries
                 error = str(e) if isinstance(e, (json.JSONDecodeError, RuntimeError)) else f"{type(e).__name__}: {e}"
                 self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {error}",
-                                    player=p.name, model=p.model.value, attempt=attempt, task=task)
+                                    player=p.name, model=p.model.value, attempt=attempt, task=task,
+                                    **({"output": reply.content, "reasoning": reply.reasoning, "cost": reply.cost,
+                                        "usage": reply.usage} if reply else {}))  # a failed answer still costs
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, task=task, fallback=fallback)

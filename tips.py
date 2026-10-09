@@ -371,12 +371,17 @@ class NoNewGames(Exception):
     pass
 
 
+def print_alert(kind: str, error: str, **data: Any) -> None:
+    """How `uv run tips.py build` reports errors (a game's own build logs them with GameLog.error)."""
+    print(f"ALERT {kind}: {error}", flush=True)
+
+
 LOCK_WAIT_S = 3600  # how long a build waits for another process's build of the same sheet
 LOCK_STALE_S = 1800  # a lock older than this was left by a process that died, and is taken over
 
 
 @contextmanager
-def locked(path: Path) -> Iterator[None]:
+def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[None]:
     """Only one process at a time builds a given sheet (games running in parallel each update the tips
     when they finish): a lock file next to it, created atomically, works across processes and OSes."""
     lock = path.with_name(path.name + ".lock")
@@ -389,6 +394,8 @@ def locked(path: Path) -> Iterator[None]:
         except FileExistsError:
             try:
                 if time.time() - lock.stat().st_mtime > LOCK_STALE_S:
+                    on_error("tips_error", f"took over {lock}, left for over {LOCK_STALE_S}s by a build that "
+                             "probably crashed", lock=str(lock))
                     lock.unlink(missing_ok=True)
                     continue
             except FileNotFoundError:
@@ -409,18 +416,13 @@ def write_atomic(path: Path, text: str) -> None:
     os.replace(tmp, path)
 
 
-def print_alert(kind: str, error: str, **data: Any) -> None:
-    """How `uv run tips.py build` reports errors (a game's own build logs them with GameLog.error)."""
-    print(f"ALERT {kind}: {error}", flush=True)
-
-
 def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
           include_mock: bool = False, fresh: bool = False, on_error: Callable[..., None] = print_alert) -> Path:
     """Updates the notebook beside the sheet `out` with each game it doesn't have yet (in log order),
     then rewrites the sheet from it. Earlier versions of both go to <out dir>/history/. `fresh` starts
     a new notebook. Safe to run from several processes at once: builds of the same sheet take turns.
     on_error(kind, summary, **fields) is told about problems that don't stop the build (GameLog.error)."""
-    with locked(out):
+    with locked(out, on_error):
         return _build(paths, out, client, spec, max_words, include_mock, fresh, on_error)
 
 
@@ -486,6 +488,8 @@ def main() -> None:
     paths = {Path(p) for pat in patterns for p in (glob.glob(pat) or [pat])}
     paths = {p for p in paths if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
     client = MockClient(0) if args.mock else OpenRouterClient(load_api_key())
+    if isinstance(client, OpenRouterClient):
+        client.on_error = print_alert
     try:
         build(sorted(paths), Path(args.out), client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
               fresh=args.fresh)

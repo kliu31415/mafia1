@@ -33,7 +33,10 @@ import log_viewer
 #     sha256, text and shown; settings have player_tips ([who, file or null] pairs)
 # 14: new error kinds checkpoint_error, viewer_error, tips_error (and moderator_error for an empty answer);
 #     a resumed game keeps the crash record that stopped it, counted in the result's errors
-LOG_VERSION = 14
+# 15: player_error has output, reasoning, cost and usage when an answer arrived (and counts in usage); new
+#     error kinds moderator_warning, api_error, harness_error, setup_error; player answers that break their
+#     schema are player_errors
+LOG_VERSION = 15
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
@@ -117,8 +120,8 @@ TOKEN_FIELDS = ["prompt_tokens", "cached_tokens", "completion_tokens", "reasonin
 
 def caller_of(record: dict) -> str | None:
     """Whose call a record is: a player's name, "Moderator", a post-game step, or None (not a call)."""
-    if record["kind"] == "player_call":
-        return record["player"]
+    if record["kind"] == "player_call" or (record["kind"] == "player_error" and "cost" in record):
+        return record["player"]  # a failed answer that was paid for counts too
     if record["kind"] == "debrief" and record.get("who") == "moderator":
         return "Moderator"
     return CALLER_BY_KIND.get(record["kind"]) if "cost" in record else None
@@ -127,7 +130,8 @@ def caller_of(record: dict) -> str | None:
 def usage_by_caller(path: Path, players: list[dict]) -> list[dict]:
     """Cost, calls and tokens of each player (in seat order), the moderator, and each post-game step
     that made calls, read from a log's records so far. players: {name, model, role} per player.
-    A player's failed calls (player_error, no cost) and fallback answers (player_fallback) are counted too."""
+    A player's failed calls (player_error; a failed answer that was paid for is also in calls and cost) and
+    fallback answers (player_fallback) are counted too."""
     rows: dict[str, dict] = {p["name"]: {"who": p["name"], "kind": "player", "role": p.get("role"),
                                          "models": [p["model"]]} for p in players}
     for line in path.read_text(encoding="utf-8").splitlines():

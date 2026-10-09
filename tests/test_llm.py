@@ -119,3 +119,31 @@ def test_unreviewed_errors_are_listed_until_acknowledged(tmp_path, monkeypatch, 
     with log.open("a", encoding="utf-8") as f:  # a new error in a reviewed game brings it back
         f.write(json.dumps({"t": 3, "kind": "crash", "alert": True, "error": "boom"}) + "\n")
     assert [g["game"] for g in alerts.unreviewed(tmp_path)] == [log.stem]
+
+
+def test_an_answer_that_breaks_its_schema_is_an_error_and_still_costs(tmp_path):
+    import dataclasses
+    from players import VOTE_SCHEMA, schema_errors
+    from tests.conftest import ScriptedClient
+    assert schema_errors({"thoughts": "", "vote": "yes"}, VOTE_SCHEMA) == ["answer.vote should be boolean, not \"yes\""]
+    assert schema_errors({"to": "Zed"}, {"anyOf": [{"type": "string", "enum": ["Bob"]}, {"type": "null"}]})
+
+    class OffSchema(ScriptedClient):  # a provider that ignores strict structured output
+        def chat(self, model, messages, **kw):
+            reply = super().chat(model, messages, **kw)
+            return dataclasses.replace(reply, content=json.dumps({"vote": "Zed"}), cost=0.01)
+    game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], OffSchema())  # type: ignore[arg-type]
+    assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}) == {"vote": False}
+    game.log.close()
+    from gamelog import usage_by_caller
+    [alice, _] = usage_by_caller(game.log.path, [{"name": "Alice", "model": "m"}, {"name": "Bob", "model": "m"}])
+    assert alice["calls"] == alice["failed_calls"] == 2 and alice["cost"] == 0.02 and alice["fallbacks"] == 1
+
+
+def test_an_answer_with_no_cost_is_an_error(tmp_path):
+    client = OpenRouterClient("test-key")
+    errors: list[str] = []
+    client.on_error = lambda kind, summary, **data: errors.append(kind)
+    client._post = lambda body: {"choices": [{"message": {"content": "{}"}}], "usage": {}}  # type: ignore[method-assign]
+    client.chat(Model.GPT_6_LUNA, [])
+    assert errors == ["api_error"]

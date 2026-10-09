@@ -135,7 +135,10 @@ def answer_json(reply: LLMReply) -> Any:
     (a refusal, the token limit, ...), rather than a bare JSON error."""
     if not reply.content:
         raise RuntimeError(f"empty answer ({reply.stop_note or 'no reason given'})")
-    return json.loads(reply.content)
+    try:
+        return json.loads(reply.content)
+    except json.JSONDecodeError as e:  # e.g. cut off at the token limit
+        raise RuntimeError(f"unparsable answer ({e}; {reply.stop_note}): {reply.content[-200:]!r}") from None
 
 
 class LLMClient(Protocol):
@@ -159,8 +162,9 @@ class OpenRouterClient:
         self.retries = retries
         self.total_cost: dict[str, float] = {}
         self.cost_lock = threading.Lock()  # chat() is called from several threads
-        # Told about each retried request (model, attempt, what failed); the game logs it as an error.
-        self.on_retry: Callable[[str, int, str], None] | None = None
+        # Told about problems that don't stop a request: on_error(kind, summary, **fields), e.g. a retry.
+        # The game logs them with GameLog.error.
+        self.on_error: Callable[..., None] | None = None
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
              schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
@@ -186,9 +190,14 @@ class OpenRouterClient:
         data = self._post(body)
         if "error" in data:
             raise RuntimeError(f"OpenRouter error from {model.value}: {data['error']}")
+        if not data.get("choices"):
+            raise RuntimeError(f"OpenRouter answer from {model.value} has no choices: {json.dumps(data)[:300]}")
         choice = data["choices"][0]
         msg = choice["message"]
-        usage = data.get("usage", {})
+        usage = data.get("usage") or {}
+        if usage.get("cost") is None and self.on_error:  # the cost tables would quietly undercount
+            self.on_error("api_error", f"a {model.value} answer reported no cost, so it counts as $0",
+                          model=model.value, usage=usage)
         cost = float(usage.get("cost") or 0)
         with self.cost_lock:
             self.total_cost[model.value] = self.total_cost.get(model.value, 0) + cost
@@ -232,8 +241,9 @@ class OpenRouterClient:
         raise AssertionError("unreachable")
 
     def _retrying(self, body: dict, attempt: int, error: str) -> None:
-        if self.on_retry:
-            self.on_retry(body["model"], attempt, error)
+        if self.on_error:
+            self.on_error("api_retry", f"a {body['model']} request failed (attempt {attempt + 1}), retrying: "
+                          f"{error[:300]}", model=body["model"], attempt=attempt)
         time.sleep(2 ** (attempt + 1))
 
 

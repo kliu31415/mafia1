@@ -145,6 +145,8 @@ class Moderator:
                 return g.full_state()
             case "apply_changes":
                 notes = self.check_changes(args["changes"])
+                for note in notes:  # applied anyway, but likely a moderator mistake
+                    g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
                 for c in args["changes"]:
                     if c["op"] in self.op_roles:
                         self.op_roles[c["op"]].apply_op(g, c)
@@ -206,6 +208,8 @@ class Moderator:
             for key in ("player", "by"):
                 if key in c and c[key] not in {p.name for p in self.game.players}:
                     raise ValueError(f"change {i} ({c['op']}): no player named {c[key]!r}; nothing was applied")
+            if c["op"] == "kill" and not self.game.player(c["player"]).alive:
+                notes.append(f"change {i} (kill): {c['player']} is already dead, so it does nothing")
             if c["op"] == "set_tokens" and not str(c["value"]).lstrip("-").isdigit():
                 raise ValueError(f"change {i} (set_tokens): value must be an integer; nothing was applied")
             if c["op"] == "set_status" and c["key"] not in CODE_STATUS_KEYS:

@@ -63,7 +63,7 @@ from players import Players
 from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
 from events import PHASE
 from state import setup_game
-from tips import assign_tips, build as build_tips, file_digest, parse_player_tips
+from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -143,7 +143,11 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                     "tips": str(tips) if tips else None, "tips_for": tips_for if tips else None,
                     "player_tips": [[w, str(f) if f else None] for w, f in player_tips or []]}
         started = time.time()
-        game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **game_meta(rules, settings)})
+        meta = game_meta(rules, settings)
+        game = setup_game(roles, specs, rng, log, meta={"game_id": log.path.stem, **meta})
+        if meta["git_commit"] is None:  # analysis across games groups them by code version
+            log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
+                      "game's code version isn't recorded")
         # Its own RNG, so choosing who gets tips doesn't change the rest of a seed's game.
         files = assign_tips([p.name for p in game.players], [p.model.short for p in game.players], tips,
                             tips_for, player_tips or [], random.Random(f"tips|{seed}"))
@@ -154,9 +158,7 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
             log.write("tips", players=list(files), files={n: str(f) for n, f in files.items()},
                       sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
     if isinstance(client, OpenRouterClient):
-        client.on_retry = lambda model, attempt, error: log.error(
-            "api_retry", f"a {model} request failed (attempt {attempt + 1}), retrying: {error[:300]}",
-            model=model, attempt=attempt)
+        client.on_error = log.error
     players = Players(game, client, rules, feedback_field=feedback_field)
     moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort)
     if resume:
@@ -376,6 +378,8 @@ def main() -> None:
         if f and not f.is_file():
             ap.error(f"no such tips file {f}")
     if args.rules_quiz:
+        if isinstance(client, OpenRouterClient):
+            client.on_error = print_alert  # the quiz has no game log
         path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return

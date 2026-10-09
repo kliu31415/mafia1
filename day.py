@@ -273,15 +273,22 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             nominee = None
     public = False
     for i, (to, text) in enumerate(planned_messages(out)):
-        if to is not None and to not in game.alive_names():
+        if to is not None and to not in game.alive_names():  # the schema only offers living players
+            game.log.error("harness_error", f"{p.name}'s private message went to {to!r}, who isn't a living "
+                           "player; it was not sent", player=p.name, to=to)
             continue
         words = min(word_count(text), MAX_MESSAGE_WORDS)
         while words > 0 and cost_of(i, to, words) > available() + 1e-9:
             words -= 1
+        where = ("Your " if writer is p else f"{p.name}'s ") + ("public message" if to is None
+                                                               else f"private message to {to}")
         if words == 0 or (words < word_count(text) and words < MIN_TRUNCATED_WORDS):
             game.log.write("message_dropped", player=p.name, to=to, words=word_count(text))
+            game.emit(f"{where} was not sent: over budget.", [writer.name])
             continue
         if words < word_count(text):
+            if words < min(word_count(text), MAX_MESSAGE_WORDS):
+                game.emit(f"{where} was cut to {words} words to fit the budget.", [writer.name])
             text = truncate_words(text, words)
         spend(cost_of(i, to, words))
         if to is None:

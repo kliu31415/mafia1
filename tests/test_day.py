@@ -186,3 +186,14 @@ def test_claims_are_listed_in_the_ledger_with_earlier_ones_they_changed_from(gam
     run_day(game, players)
     assert "- Alice: Day 2: Medic. N1: protected Bob (earlier: Day 1: Vanilla Villager)" in game.public_ledger()
     assert list(game.claim_record) == ["Alice"]  # null claims change nothing
+
+
+def test_a_message_over_budget_is_cut_or_dropped_and_the_sender_is_told(game_factory):
+    from day import chat_turn
+    msg = {"public_message": "word " * 60, "private_messages": [{"to": "Carol", "text": "psst " * 60}]}
+    game, players = game_factory(VILLAGE5, ScriptedClient(lambda name, task, schema: msg if name == "Alice" else None))
+    game.player("Alice").speaking_budget = 0.5
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
+    told = [e.text for e in game.events if e.visible_to == {"Alice"}]  # public words cost more than private ones
+    assert "Your public message was not sent: over budget." in told
+    assert any(t.startswith("Your private message to Carol was cut to") for t in told)
