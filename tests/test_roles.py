@@ -139,19 +139,20 @@ def test_archivist_sees_three_quarters_of_the_others_alive_at_night_start_once(g
                                   "Jester", "Sheriff", "Medic", "Pharmacist"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     game.phase = "night"
-    mod.dispatch("apply_changes", {"changes": [{"op": "archive", "by": "Alice"},
-                                               {"op": "kill", "player": "Bob", "cause": "Katana"}]})
+    # The kill comes first: Bob died tonight but still counts.
+    mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Bob", "cause": "Katana"},
+                                               {"op": "archive", "by": "Alice"}]})
     with pytest.raises(ValueError, match="no archive token"):
         mod.dispatch("apply_changes", {"changes": [{"op": "archive", "by": "Alice"}]})
-    game.announce_dawn()
-    game.run_dawn_hooks()
     result = next(e for e in game.events if e.cat == "result")
     assert result.visible_to == {"Alice"}
     assert "6 of the roles of the 8 other players" in result.text  # Bob died tonight but counts: N = 8
     shown = result.fields["message"].split(": ", 1)[1].rstrip(".").split(", ")
     pool = ["Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester", "Sheriff", "Medic", "Pharmacist"]
     assert len(shown) == 6 and all(shown.count(r) <= pool.count(r) for r in shown)
-    game.run_dawn_hooks()  # nothing more the next dawn
+    assert result.phase == "night"  # a night result, not a dawn one
+    game.announce_dawn()
+    game.run_dawn_hooks()  # nothing more at dawn
     assert sum(e.cat == "result" for e in game.events) == 1
 
 

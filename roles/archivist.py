@@ -4,7 +4,6 @@ began (those who died that night count)."""
 from events import RESULT
 from roles.base import RoleLogic, register
 
-PENDING = "archive_uses"  # game.role_state: Archivists who consulted the archive tonight
 SHARE = 0.75  # rules: floor(0.75 * N) of the other players alive when the night began
 
 
@@ -12,9 +11,9 @@ SHARE = 0.75  # rules: floor(0.75 * N) of the other players alive when the night
 class Archivist(RoleLogic):
     roleplayer_can_fake = False  # code draws the sample
     night_note = ("An Archivist who spent their token (and wasn't role-blocked): use the archive op, which spends "
-                  "the token; code shows them the sampled roles at dawn.")
+                  "the token; code shows them the sampled roles at once, as a night result.")
     ops = {"archive": ({"by"}, set(), "{op:'archive', by}: the Archivist `by` consults the archive (spends their "
-                                      "token; code draws and tells the roles at dawn)")}
+                                      "token; code draws and tells the roles at once)")}
 
     def check_op(self, game, change):
         by = game.player(change["by"])
@@ -25,20 +24,16 @@ class Archivist(RoleLogic):
         return None
 
     def apply_op(self, game, change):
-        game.player(change["by"]).tokens["archive"] -= 1
-        game.role_state.setdefault(PENDING, []).append(change["by"])
-
-    def at_dawn(self, game):
-        for name in game.role_state.pop(PENDING, []):
-            if not game.player(name).alive:  # died the same night: the result is never read
-                continue
-            others = [p for p in game.players if p.name != name and (p.alive or died_tonight(game, p))]
-            drawn = game.rng.sample(others, int(len(others) * SHARE))
-            roles = ", ".join(sorted(p.role for p in drawn)) or "none"
-            text = (f"The archive shows {len(drawn)} of the roles of the {len(others)} other players who were alive "
-                    f"when the night began: {roles}.")
-            game.emit(f"Moderator (private): {text}", [name], cat=RESULT, message=text)
-
+        # Told at once, like other night results. The sample is everyone alive when the night began, so it's
+        # the same whether the moderator applies the night's kills before or after this op.
+        by = game.player(change["by"])
+        by.tokens["archive"] -= 1
+        others = [p for p in game.players if p is not by and (p.alive or died_tonight(game, p))]
+        drawn = game.rng.sample(others, int(len(others) * SHARE))
+        roles = ", ".join(sorted(p.role for p in drawn)) or "none"
+        text = (f"The archive shows {len(drawn)} of the roles of the {len(others)} other players who were alive "
+                "when the night began (including any who died tonight): " + roles + ".")
+        game.emit(f"Moderator (private): {text}", [by.name], cat=RESULT, message=text)
 
 def died_tonight(game, p) -> bool:
     """Rules (Archivist): N counts players who died this night."""

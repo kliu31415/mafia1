@@ -57,7 +57,7 @@ ROLES: dict[str, RoleInfo] = {
     "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False,
                           summary="Once (token): at dawn, sees 75% of the other players' roles, random and without names.",
                           tokens={"archive": 1}, acts_at_night=True,
-                          notes="moderator records the use with the archive op; code draws the sample at dawn"),
+                          notes="moderator records the use with the archive op; code draws the sample and tells it at once"),
     "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False,
                          summary="Token: survey a player; learns one random role among them and their two neighbors.",
                          tokens={"survey": 2}, acts_at_night=True,
