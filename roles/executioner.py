@@ -33,7 +33,7 @@ class Executioner(RoleLogic):
             me.alive = False  # leaves the game; not a death
             me.status[Status.LEFT] = True
             game.emit(f"{me.name} was the Executioner, whose target was {dead.name}. They win and leave the game."
-                      + (f" Last will: {me.last_will!r}" if me.last_will else ""), cat=DEATH)  # rules R12
+                      + (f" Their last will (written by them): \"{me.last_will}\"" if me.last_will else ""), cat=DEATH)  # rules R12
             game.death_record.append(f"Day {game.day}: {me.name} (Executioner) won and left the game")
             for q in game.alive():  # leaving counts as a death, e.g. for an Executioner targeting this one
                 logic(q.role).on_other_death(game, q, me, None)

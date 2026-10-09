@@ -254,7 +254,7 @@ class Game:
             return f"{name} died ({cause}). Their role and last will were cleaned by a Mortician."  # rules R12
         reveal = f"{name} died ({cause}). Their role was {p.role}."
         if p.last_will:
-            reveal += f" Last will: {p.last_will!r}"
+            reveal += f" Their last will (written by them): \"{p.last_will}\""
         return reveal
 
     def resolve_revenge(self) -> None:

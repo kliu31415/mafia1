@@ -50,7 +50,7 @@ def text_line(r: dict) -> str | None:
             res = r["result"]
             if res.get("attack"):
                 return f"Katana: {res['holder']} holds it and attacks {res['attack']}."
-            return f"Katana: no attack ({res.get('note', 'no target')}); {res.get('holder')} holds it."
+            return f"Katana: no attack ({res.get('note', 'no target')}); {res.get('holder') or 'nobody'} holds it."
         case "moderator_tool" if r["name"] == "end_phase":
             summary = tool_args(r["args"]).get("summary", "")
             return f"[Moderator summary] {summary}"

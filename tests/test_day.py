@@ -286,11 +286,14 @@ def test_a_symbol_only_claim_keeps_the_old_one_and_a_cut_will_says_so(game_facto
     # Sol wrote "/" for "no change" and wills over the cap (game_20261009_152409_117630).
     def decide(name, task, schema):
         if name == "Alice" and "claim" in schema["properties"]:
-            return {"claim": "Sheriff" if "Day 1," in task else "/", "last_will": "word " * 400}
+            return ({"claim": "Sheriff", "last_will": "word " * 400} if "Day 1," in task
+                    else {"claim": "/" if "Day 2," in task else "null", "last_will": "null"})
         return None
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
     run_day(game, players)
     game.day = 2
+    run_day(game, players)
+    game.day = 3
     run_day(game, players)
     assert [c for _, c in game.claim_record["Alice"]] == ["Sheriff"]
     assert game.player("Alice").last_will.count("word") == 300
