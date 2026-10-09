@@ -74,6 +74,7 @@ def test_a_failed_request_falls_back_instead_of_stopping_the_game(tmp_path):
                       {"fallback": True})
     assert out == {"fallback": True}
     assert game.log.error_counts == {"player_error": 2, "player_fallback": 1}
+    assert "couldn't be used" in game.history_for("Alice") and "couldn't be used" not in game.history_for("Bob")
 
 
 def test_errors_show_in_the_html_and_text_views(tmp_path):

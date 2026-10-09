@@ -615,3 +615,10 @@ def test_death_reveal_says_who_or_what_killed():
     assert death_cause("executed by hanging") == "executed by hanging"
     assert death_cause("killed by the Vigilante") == "killed by the Vigilante"
     assert death_cause(" ") == "killed"
+
+
+def test_a_cut_notepad_tells_its_owner(game_factory):
+    long = " ".join(["word"] * (NOTEPAD_WORDS + 5))
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: {"notepad": long}))
+    players.ask(game.player("Alice"), "Note something.", {"type": "object", "properties": {}, "required": []}, {})
+    assert "notepad was over" in game.history_for("Alice") and "notepad was over" not in game.history_for("Bob")

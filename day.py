@@ -383,7 +383,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     # votes counted, and the announced totals include the extra votes without saying whose they are.
     weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
     guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
-    tally = f"{guilty_votes} Guilty of {total_votes} votes"
+    tally = f"{guilty_votes} Guilty of {total_votes} votes; {total_votes // 2 + 1} needed"  # rules R4: a majority
     if total_votes != len(voters):
         tally += ("; these totals don't match the revealed votes because a role manipulated the count on purpose "
                   "(rules R4), not because of an error")

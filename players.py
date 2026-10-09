@@ -230,6 +230,9 @@ class Players:
                 after = before
                 if isinstance(note := out.get("notepad"), str) and note.strip():  # "" keeps it, like null
                     after = truncate_words(note, NOTEPAD_WORDS) if word_count(note) > NOTEPAD_WORDS else note
+                    if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
+                        self.game.emit(f"(Program note: your notepad was over {NOTEPAD_WORDS} words, so it was cut "
+                                       f"to its first {NOTEPAD_WORDS}.)", [p.name])
                 self.game.log.write("player_call", player=p.name, model=p.model.value, task=task,
                                     output=out, reasoning=reply.reasoning, cost=reply.cost,
                                     usage=reply.usage, notepad_before=before, notepad_after=after)
@@ -253,6 +256,10 @@ class Players:
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, task=task, fallback=fallback)
+        # Tell the player, so they don't believe their own choice happened (Heidi thought she had saved a
+        # token on purpose after a failed Night 1 answer, game_20261009_084630_739772).
+        self.game.emit(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
+                       f"technical error, so the default was used instead: {json.dumps(fallback)}.)", [p.name])
         return fallback
 
     def ask_many(self, jobs: list[tuple[Player, str, dict, dict]]) -> list[dict]:
