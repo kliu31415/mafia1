@@ -1,0 +1,520 @@
+Setup:
+  Alice    seat 0  Grunt             openai/gpt-6-luna
+  Bob      seat 1  Vulture           anthropic/claude-haiku-5.5
+  Carol    seat 2  Ballot Stuffer    openai/gpt-6-luna
+  Dave     seat 3  Surveyor          openai/gpt-6-luna
+  Erin     seat 4  Archivist         anthropic/claude-haiku-5.5
+  Frank    seat 5  Tracker           anthropic/claude-haiku-5.5
+  Grace    seat 6  Eavesdropper      anthropic/claude-haiku-5.5
+  Heidi    seat 7  Accountant        openai/gpt-6-luna
+  Ivan     seat 8  Oracle            anthropic/claude-haiku-5.5
+  Judy     seat 9  Medic             openai/gpt-6-luna
+  Mallory  seat 10 Pharmacist        anthropic/claude-haiku-5.5
+  Niaj     seat 11 Mortician         openai/gpt-6-luna
+  Katana starts with Alice
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Erin.
+Erin (public): Erin here. No information yet, so I won't claim anything today. Day 1 is for reads, and I'd like everyone to name one player they find most suspicious and why, even if it's thin.
+Frank (public): Frank here. No information yet, so no claim. My thin read is Mallory, who has said nothing so far. I'd like every player to name a suspect with a reason.
+Grace (public): Grace here, no claim yet. Thin read: Judy, who hasn't spoken. I'll watch PM clusters.
+Heidi (public): No solid suspect yet; Mallory and Judy have not had their turns, so silence isn't evidence. I'll judge whether people offer specific, consistent reads after everyone speaks.
+Ivan (public): Ivan here, no claim yet. Thin read: Dave, who hasn't named any suspect or given a reason. I want to see his reasoning.
+Judy (public): Grace's Judy read came before I had a turn, so it's a weak basis. My thin suspicion is Grace; I'd like to hear her reasoning and see everyone name a suspect.
+Mallory (public): Mallory here, no claim. Frank's read on me is thin. I'd name Ivan: he piled onto Dave without reasoning, so I want his case first.
+Niaj (public): Thin read: Dave has been named by several people, but hasn't had his turn yet. I'd like to hear his own suspect and reasoning before judging.
+Alice (public): Thin read: Ivan's Dave accusation was just that he hadn't named a suspect before Dave got a turn. That's weak evidence; I'll wait to hear Dave's case.
+Bob (public): Bob here, no claim. Thin read: Ivan, for piling onto Dave's read without reasoning, same as Mallory noted. I'd like Ivan to explain his Dave case.
+Carol (public): My thin read is Ivan: he called Dave out before Dave had a turn, then hasn’t explained the basis. Let’s hear Dave’s own read first.
+Dave (public): My thin read is Ivan: he called me out before I’d had a turn, but hasn’t explained why. Several people independently flagged that timing. I’m not treating it as strong evidence yet; Ivan, what was your actual basis?
+Erin (public): Erin here, still no claim. Reads so far are all thin. Ivan and Dave have each given a basis to the other, so I want Ivan to answer Dave's question directly before anyone votes. I'm watching for specific, checkable reasoning.
+Frank (public): Frank: Ivan, answer Dave's question directly. Mallory deflected my read onto Ivan without giving her own reasoning, so I'm still watching her.
+Grace (public): Grace: Judy's silence isn't really a read. Mallory deflected Frank's read onto Ivan without giving her own reasoning, so I'm watching her. Ivan, please answer Dave.
+Heidi (public): Ivan, please answer Dave directly: what was your basis for naming him? Several people repeating the same timing point isn't independent evidence. Everyone else, give an independent read rather than just joining a wagon.
+Ivan (public): Ivan: Direct answer to Dave: my basis was thin. He was the only player who hadn't given a reason for a suspect when I spoke, and I wanted to hear it. Dave, what's your suspect and why? Mallory's deflection onto me also needs a real reason.
+Judy (public): Ivan answered directly, and his basis was thin, so I’m not treating the initial accusation as much. My strongest thin read is Mallory: she redirected Frank’s suspicion to Ivan without explaining her own. Mallory, what’s your actual case?
+Mallory (public): Mallory: my case is Ivan. He named Dave with no basis and admitted it. Judy, your Mallory read only repeats Frank's, so give a new reason or name another suspect.
+Niaj (public): Ivan admitted his basis was thin, but the repeated pile-on still isn't independent evidence. Mallory's redirect is worth noting, not enough by itself to nominate. I'd rather hear one genuinely separate case before a trial.
+Alice (public): Ivan answered, and his basis was weak but straightforward. I wouldn't treat the repeated comments about him as independent evidence; I'd rather hear a distinct case before anyone nominates.
+Bob (public): Bob: Still no claim. Ivan's Dave basis was thin, but I agree with Niaj and Alice: I want a distinct case before anyone nominates.
+Carol (public): My read remains Ivan, but only weakly. Mallory has now stated her basis, so let’s hear genuinely independent reads rather than recycle the same points.
+Dave (public): My weakest-to-moderate read is Mallory: she initially redirected Frank’s suspicion before offering her own case. She has since explained it, so that’s not enough to nominate. Ivan answered directly and I’m downgrading that point; I’d like to hear genuinely independent reads.
+Erin (public): Erin: Independent read: Mallory. She accused Ivan of a baseless Dave pile-on, yet Dave's pile-on was the same basis as Ivan's. Her deflection was the first move. No claim from me; I'm watching for specific reasons from everyone.
+Frank (public): Frank: No nomination yet. Mallory and Ivan both have thin reasons, so I want a new, separate case from anyone who hasn't given one. Judy and Bob, your reads?
+Grace (public): Grace: no nomination yet. Bob and Judy, please give your reads.
+Heidi (public): The Mallory/Ivan discussion is still mostly recycled D1 noise; I don't support a trial on it. Bob and Judy, name your strongest suspect with a reason that hasn't already been stated. Carol and Niaj's Vanilla claims are unverified and don't change my read.
+Ivan (public): Ivan: Distinct read: Judy has only repeated Grace's name and hasn't given her own reasons. Bob, your Ivan read is the same pile-on. Judy and Bob, please name a suspect with reasons not already given.
+Judy (public): My strongest read is still Mallory, weakly: her first response redirected Frank’s suspicion to Ivan without a distinct reason, though she later explained her case. Ivan, your summary of my reads is off: I first named Grace and asked for her reasoning, then named Mallory separately. Bob, please give your own read.
+Mallory (public): Mallory: No nomination yet. Frank and Judy both pushed my name without new evidence. Frank, give a distinct reason, not just a repeat of your first read.
+Niaj (public): A distinct, still-low-confidence concern: Ivan described Judy's earlier reads inaccurately—she had named Mallory separately, not just repeated Grace. That isn't trial-worthy alone; I'd like to hear Frank's independent read too.
+Alice (public): The Mallory/Ivan discussion is still low-confidence and mostly recycled. Ivan’s summary of Judy seems inaccurate, but a correction isn’t proof. Frank and Bob, give a genuinely separate strongest read—or say you don’t have one; no need to force a nomination.
+Bob (public): Bob: still no claim and no nomination from me. Ivan, Mallory and Judy's reads are all thin, so I want a distinct case before anyone is nominated.
+Carol (public): My distinct, low-confidence read is Bob: he has repeatedly asked others for independent cases but still hasn’t named his own suspect. That’s not trial-worthy alone. Mallory has now explained her read, so I wouldn’t overstate the initial redirect.
+Dave (public): My weak independent read is Bob: he has repeatedly asked others for distinct suspects without naming one himself. Carol has now noticed the same pattern, so I’m not treating it as strong evidence; Bob, do you have a suspect of your own?
+Erin (public): Erin: No nomination from me. Bob still hasn't named a suspect after several requests. Bob, please give one with reasons so we can compare.
+Frank (public): Frank: No nomination from me. Bob, name your suspect.
+Grace (public): Grace: No nomination from me. Bob, name your suspect.
+Heidi (public): Bob, you’ve had several chances to name your own strongest suspect and still haven’t. Please give one with a specific reason; this is a concern, not yet a case for trial.
+Ivan (public): Ivan: Bob still hasn't given a suspect with reasons. Bob, name one, or say you have none.
+Judy (public): My strongest concern is Bob: he’s had several direct requests to name a suspect and still hasn’t. If he has no read, he can say so. Ivan’s summary of my earlier reads was inaccurate, but that alone isn’t a trial case.
+Mallory (public): Mallory: Judy has now named Grace, Mallory, then Bob. Judy, which read is yours, and why?
+Niaj (public): Judy’s reads shifted, but each had a stated basis; that isn’t a contradiction. Bob’s repeated refusal to name a suspect is the clearer concern, though still weak. Let’s hear his answer.
+Alice (public): Bob’s repeated failure to name a suspect after several direct requests is my clearest concern, though it’s still weak evidence. Bob, please give your own read; I’m not pushing for a trial on this alone.
+Bob (public): Bob: My read is Judy. She named Grace, then Mallory, then me, each with a shifting reason. No nomination from me yet.
+Carol (public): Bob has named Judy now, but only after repeated prompts. His accusation is thin; a trial could get clearer answers, though this remains low-confidence.
+Carol nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Carol, Judy, Niaj; No - Dave, Erin, Frank, Grace, Heidi, Ivan, Mallory, Alice, Bob.
+The nomination of Bob failed (3 Yes).
+Dave (public): Bob’s read on Judy is still thin: he frames her changing reads as unexplained, though she gave a reason each time. I’m noting that, not pushing a trial on it.
+Erin (public): Erin: No nomination from me. Bob has now given a reason for Judy, so I want Judy to answer it directly before anyone votes.
+Frank (public): Frank: No nomination from me. Judy, answer Bob's question directly: why did your suspect change from Grace to Mallory to Bob?
+Grace (public): Grace: still no nomination. I'm waiting for Judy's answer to Bob before I vote on anyone.
+Heidi (public): I voted No on Bob. His read on Judy was thin, but Carol, Judy, and Niaj voted Yes; please explain what made a trial worthwhile despite calling the case weak.
+Ivan (public): Ivan: No nomination. Judy, answer Bob's question directly.
+Judy (public): They were separate, weak reads based on new events, not unexplained reversals. I voted Yes on Bob to hear him out after repeated prompts, not because I thought the case was strong.
+Mallory (public): Mallory: Judy's three shifting reads are fair to question, but I'd want a clearer case than that before any trial. Still no nomination from me.
+Alice (public): Bob has at least named a suspect now. His reasoning is thin, but I’d rather move on and see whether anyone develops a checkable case.
+Bob (public): Bob: No nomination from me. I'm waiting on Judy's answer.
+Carol (public): I voted Yes to hear Bob explain himself, not because his case was strong. Now that he answered, I don't support another push on it.
+Dave (public): The Bob nomination was weak by the proponents’ own accounts. Carol, Judy, and Niaj, what specifically made a trial worthwhile? Everyone else, name your strongest current suspect and why, even if confidence is low.
+Erin (public): Erin: No nomination. Judy, answer Bob's question directly.
+Frank (public): Frank: Still no nomination from me. Judy hasn't answered Bob's question; I'm watching that.
+Grace (public): Grace: No nomination from me. I'm holding my read until Judy answers Bob directly.
+Heidi (public): Niaj, what specifically justified your Yes on Bob? Judy and Carol explained their votes; I haven't heard your rationale.
+Ivan (public): Ivan: No nomination. Niaj, Heidi asked what specifically justified your Yes on Bob. Judy still owes a direct answer on her shifting reads.
+Judy (public): Niaj's question: I voted Yes to hear Bob answer after repeated prompts, not because his case was strong. Bob's delayed read remains a low-confidence concern, not a trial case.
+Mallory (public): Mallory: I agree Judy still owes Bob a direct answer. Judy, answer him, then we can judge her reads. No nomination from me.
+Niaj (public): I voted Yes because Bob had repeatedly declined to name a suspect; a trial could clarify whether he had an actual read. It was a low-confidence information vote, not a guilty read. I agree the case is weak, so I’m not pushing further.
+Alice (public): No new case has emerged; I favor ending Day without another weak trial.
+Bob (public): Bob: No nomination from me. I agree with ending the Day without another weak trial.
+Carol (public): I agree Bob’s case is weak; my Yes was information-seeking, not a guilty read. No further trial from me.
+Dave (public): Carol, you initiated the Bob trial despite calling the case weak, then dropped it; what made Bob worth a trial over other concerns?
+Mallory (public): Mallory: agreed, no trial. Judy, answer Bob.
+Niaj (public): No new case has emerged; I agree the failed Bob trial shouldn't be recycled. Let's end Day without another weak nomination.
+Erin (public): Erin: Agreed, no nomination from me. I'm holding my reads until a checkable case appears.
+Heidi (public): Carol's nomination of Bob was weak by her own account. I want that noted, but I don't support recycling it or pushing another trial today.
+Judy (public): No further trial is justified today. My Bob Yes was information-seeking; track Carol's nomination without treating it as alignment evidence.
+Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Alice, Carol, Mallory, Niaj) Alice (Yakuza chat): Recommend keeping me as Katana holder and attacking Heidi tonight. I have no separate role action.
+(to Alice, Carol, Mallory, Niaj) Carol (Yakuza chat): Agreed: keep Alice as holder and attack Heidi. I’ll spend one ballot token tonight so my vote counts twice in tomorrow’s trial votes. Niaj, consider cleaning Heidi if the attack lands; Mallory, block whoever seems most likely to interfere with the kill or investigate.
+(to Alice, Carol, Mallory, Niaj) Mallory (Yakuza chat): Mallory: Confirmed. Alice holds the Katana and it hits Heidi. I'll block Frank tonight, since he's pushed hardest against me and could be investigating. Please submit the same holder and target.
+(to Alice, Carol, Mallory, Niaj) Niaj (Yakuza chat): Agreed: Alice keeps the Katana and attacks Heidi. I’ll spend one mortician token to try to clean Heidi tonight.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Heidi
+  Carol (Ballot Stuffer): 1 token(s); "Spend 1 ballot token so my vote counts twice in Guilty/Innocent trial votes tomorrow."; Katana vote: Alice holds, attacks Heidi
+  Dave (Surveyor): target Bob; 1 token(s); "Spend 1 survey token to survey Bob."
+  Erin (Archivist): no action
+  Frank (Tracker): target Mallory; "Tracking Mallory to see whom she visits."
+  Grace (Eavesdropper): target Mallory; "Eavesdropping on Mallory for the following Day."
+  Heidi (Accountant): target Carol; "Audit Carol’s total token count at the end of the night."
+  Ivan (Oracle): target Niaj; guessed role Vanilla Villager; "Oracle guess: Niaj is a Vanilla Villager."
+  Judy (Medic): target Heidi; "Protect Heidi with Standard Defense."
+  Mallory (Pharmacist): target Frank; "Pharmacist role-block on Frank for Night 1."; Katana vote: Alice holds, attacks Heidi
+  Niaj (Mortician): target Heidi; 1 token(s); "Attempt to clean Heidi if she dies tonight."; Katana vote: Alice holds, attacks Heidi
+Katana: Alice holds it and attacks Heidi.
+(to Dave) Moderator (private): You surveyed Alice, Bob and Carol. One of them, chosen at random, has the role Vulture.
+(to Frank) Moderator (private): You were role-blocked last night. Your action had no effect.
+(to Heidi) Moderator (private): You were attacked last night with the Katana, but you survived. Audit result: Carol has 1 token in total.
+(to Ivan) Moderator (private): Oracle result: your guess was wrong. Niaj is not a Vanilla Villager.
+(to Alice, Carol, Mallory, Niaj) Moderator (private): Yakuza night report: Alice kept the Katana and attacked Heidi. Carol spent a ballot token, so her trial votes count twice today. Mallory role-blocked Frank. Niaj spent a mortician token to try to clean Heidi.
+(to Alice) Moderator (private): Your Katana attack on Heidi failed.
+[Moderator summary] Night 1: Mallory blocked Frank. Alice's Katana attack (Standard) on Heidi was stopped by Judy's Standard protection, so no deaths. Carol stuffed the ballot (1 token left). Dave surveyed Bob (1 token left). Grace eavesdrops on Mallory. Heidi audited Carol: 1 token. Ivan's Oracle guess (Niaj = Vanilla) was wrong. Niaj spent a mortician token on Heidi, who didn't die (1 left). Erin took no action.
+
+===== DAY 2 =====
+(to Grace) You are eavesdropping on Mallory today: you'll read every private message they send or receive.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Alice.
+Alice (public): No deaths overnight, which could have several explanations; I wouldn’t treat it as proof of anyone’s role. I still want to understand why Carol, Judy, and Niaj voted Yes on Bob after calling the case weak. Everyone should name their strongest suspect today and give a specific reason.
+Bob (public): Bob: No claim and no nomination from me. Agreed that a quiet night proves nothing. Let's find one checkable case before any trial.
+Carol (public): My strongest concern remains Bob: after repeated prompts he gave a thin read on Judy, then agreed there was no checkable case. I’m not pushing a trial on that alone. No death overnight is inconclusive; everyone should give a specific current suspect and reason.
+Dave (public): Carol, this is still the same weak Bob case from yesterday, not new evidence. He eventually named a suspect, and you said that alone wasn’t enough to push a trial. What’s your strongest current suspect based on something new? Everyone else, please give an independent read too.
+Erin (public): Erin: No new information. Bob's Judy read is weak; I'd like Carol to name a suspect with a new reason, not repeat Bob. I'm still holding my token for a better night.
+Frank (public): Frank: No claim, no nomination. Carol, name a suspect with a new reason rather than repeating Bob.
+Grace (public): Grace: no resolved information yet from my read. Carol, give a new suspect reason, not the same Bob case.
+Heidi (public): I am the Accountant. N1 audit: Carol had 1 token. That contradicts her Vanilla claim; a Philanthropist cannot give a Vanilla player a usable token. I support a trial.
+Ivan (public): Ivan: Niaj's Vanilla claim is contradicted by my N1 result. Carol's Vanilla is contradicted by Heidi's audit. Both lied.
+Judy (public): Carol, Heidi’s N1 audit of one token conflicts with your Vanilla claim; please explain. Ivan, state your exact N1 result on Niaj.
+Judy nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Judy, Alice, Dave, Erin, Frank, Grace, Heidi, Ivan; No - Mallory, Niaj, Bob, Carol.
+Carol is put on trial (8 Yes).
+Carol (public): I lied about being Vanilla: I’m the Archivist. I held my one archive token on N1, so Heidi’s claimed audit result is consistent with that. I kept quiet about having a power role on D1 to avoid drawing attention. That result alone doesn’t establish I’m evil; please vote Innocent and let me use the archive if I survive.
+Dave (public): Heidi’s audit is consistent with Carol’s claim if she saved her archive token: an Archivist starts with one, and Carol says she wants to use it if she survives. The Vanilla lie is suspicious, but I don’t see a mechanical contradiction here; I currently lean Innocent.
+Erin (public): Erin here: I am the Archivist, with my one archive token still unused. Carol claims to be the Archivist too, which is impossible if I'm the only one. Her Vanilla lie on Day 1 and her false Archivist claim both point to a Yakuza or Neutral player. I'm voting Guilty.
+Frank (public): Frank: Carol and Erin can't both be the only Archivist, so one is lying. Carol lied about Vanilla on D1 and revealed only once nominated. Erin's counterclaim also came only at trial. Erin, why didn't you claim earlier? Carol, what did you do with your archive on N1? I'm leaning Guilty on Carol unless she gives a stronger answer.
+Grace (public): Grace: I have no resolved information yet. Carol and Erin both claim the only Archivist, so one is lying. Heidi's audit of 1 token fits Carol. Erin, why did you wait until Carol's trial to claim? Carol, what exactly did you do with your archive on N1? I'm not voting until both answer.
+Heidi (public): My audit establishes only that Carol had 1 token; it does not identify her role. Her Archivist claim is consistent with that result, and the rules don’t say Archivist is unique. The earlier Vanilla claim is suspicious, but Erin’s counterclaim alone doesn’t resolve it. Please give checkable archive details.
+Ivan (public): Ivan: I lean Guilty on Carol. Her Vanilla lie on D1 is unexplained, and Heidi's 1-token audit fits an Archivist but doesn't prove it. Erin's Archivist counterclaim also came only at trial. Carol and Erin should each say what they archived on N1 and explain why they stayed quiet on D1. Separately, Niaj's Vanilla claim is contradicted by my N1 result, so he needs to answer for it.
+Judy (public): Archivist isn't stated to be unique, so the counterclaim alone doesn't resolve this. Heidi's audit confirms one token, not Carol's role. Carol's Vanilla lie is suspicious; I'd like a checkable archive result, but on what's known so far I'm leaning Innocent.
+Mallory (public): Mallory: Carol's Vanilla lie on Day 1 is bad and she owes a real answer. But Erin's Archivist counterclaim also came only at trial, and both claims are unverifiable. Heidi's audit shows one token, which fits either claim, so there's no mechanical contradiction yet. Two conflicting unverified claims shouldn't decide a hanging on their own. I'm leaning Innocent unless someone shows a checkable result. Erin, what did you archive on N1, and did you consult it?
+Niaj (public): Heidi’s audit identifies a token count, not a role: Carol could have one left after spending a token, just as an Archivist could. The rules don’t make Archivist unique. Carol’s D1 Vanilla claim is suspicious, but Erin’s counterclaim alone doesn’t resolve it. I lean Innocent absent a checkable contradiction. Ivan, please state your exact N1 result on me.
+Alice (public): Heidi’s audit gives a token count, not an exact role, and Archivist isn’t stated to be unique. Carol’s Vanilla lie is suspicious, but her claim that she kept the archive token fits the reported count. I’d want a demonstrated contradiction before voting Guilty.
+Bob (public): Bob: Carol's Day 1 Vanilla claim was a lie she admits, and her Archivist claim is as unverifiable as Erin's. I lean Guilty on that lie alone. Carol, what did you archive on N1, and what did the archive show you?
+Trial votes on Carol: Guilty - Bob, Erin, Ivan, Niaj; Innocent - Alice, Carol, Dave, Frank, Grace, Heidi, Judy, Mallory.
+Carol is found Innocent (4 Guilty of 13 votes; these totals don't match the revealed votes because a role manipulated the count on purpose (rules R4), not because of an error).
+Mallory (public): Mallory: Carol was acquitted. Erin, what did your archive show on N1, and why did you claim only at trial? Heidi, what was your N1 audit target's exact result?
+Niaj (public): Ivan, you say your N1 result contradicts my Vanilla claim; state the exact result and what check produced it. A token count alone can't identify my role. My claim hasn't changed.
+Alice (public): Ivan, you’ve twice said Niaj’s claim is contradicted; state your exact result and what check produced it. Without that, we can’t evaluate the accusation. Who is your strongest suspect otherwise?
+Bob (public): Bob: No nomination. I agree with Alice: Ivan must state his exact N1 result and check. Carol and Erin remain unverified.
+Carol (public): My account is unchanged: I saved my archive token on N1, so Heidi’s count of 1 is consistent with my claim; I have no archive result to report. Erin also says hers is unused, so the token count doesn’t distinguish us. Ivan, please state your exact check and result on Niaj.
+Dave (public): I’m the Surveyor. N1 I surveyed Bob: my group was Alice, Bob, Carol, and the revealed role was Vulture. Exactly one of those three is the Vulture, but I don’t know which. Keep all three in focus; this alone doesn’t justify a hang.
+Erin (public): Erin: Dave's Surveyor group (Alice, Bob, Carol) contains one Vulture, which is checkable later. I still hold my archive token and will consult it, then post only resolved results.
+Frank (public): Frank: Erin, you say your archive is unused and you'll post only resolved results. Consult it and tell us what it showed, or what you chose not to do, before anyone votes. Dave, your Alice/Bob/Carol group is checkable later, so I'm keeping it open. No nomination from me.
+Grace (public): Grace: no resolved info yet. Erin, consult your archive and post the actual result. Dave, your Alice/Bob/Carol group is checkable later, so keep it open.
+Heidi (public): Mechanical point: 12 living players voted on Carol, but 13 votes were counted. The four revealed Guilty votes match the announced count, so an Innocent vote was doubled—consistent with the Yakuza Ballot Stuffer using a token. That narrows the search to the Innocent voters, but doesn’t identify who cast the doubled vote. Ivan, please state your exact N1 result and check on Niaj.
+Ivan (public): Ivan: I am the Oracle. My N1 guess was that Niaj is a Vanilla Villager, and the result was WRONG, so Niaj is not a Vanilla Villager. Niaj, your Vanilla claim is false. Explain your real role. I'm open to a Niaj trial if the Village agrees.
+Judy (public): Ivan's exact Oracle claim is now evaluable: if true, Niaj isn't Vanilla, but that alone doesn't show alignment. Niaj, give your actual role and explain the original claim. Carol's D1 Vanilla lie remains concerning; Heidi's count of 1 fits an Archivist and isn't a role check. Carol and Erin, please give archive details.
+Mallory (public): Mallory: Ivan, your Oracle claim rests only on a guess at Niaj that you say was wrong, and you came forward only after Carol's trial. Ask for a checkable detail first. Erin, post your archive result once you consult it. Dave, your Vulture group stays open. No nomination from me.
+Niaj (public): Ivan's late Oracle claim is unverified; a wrong guess only excludes Vanilla if his result is genuine, not alignment. My Day 1 Vanilla claim was a cover: I'm Medic, and protected Heidi N1. I got no feedback on whether that stopped an attack. Ivan should offer another checkable detail before we hang anyone.
+Alice (public): Ivan’s late Oracle claim gives us only an unverifiable wrong guess, not a checkable result. He used it to accuse Niaj, whose protection claim is at least consistent with Heidi surviving N1. I support hearing Ivan explain why we should trust this claim over other possibilities.
+Alice nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: Yes - Alice, Bob, Carol, Dave, Grace, Heidi, Judy, Mallory, Niaj; No - Erin, Frank, Ivan.
+Ivan is put on trial (9 Yes).
+Ivan (public): Ivan: I am the Oracle, and my N1 guess was that Niaj is a Vanilla Villager. The result said WRONG, so Niaj is not Vanilla. Niaj was publicly Vanilla on Day 1 and switched to Medic only after I named him; a Medic who protected Heidi is consistent with Heidi surviving, so that alone doesn't clear him. My claim can be checked against Niaj's role: if Niaj is Medic, he should be able to show a Medic-consistent history. I'm not claiming Niaj is Evil from the result alone, only that his Day 1 Vanilla claim was false. Carol was caught in a Vanilla lie too, and she was acquitted with a 4-to-8 vote, so I won't push that further. I'm voting Innocent on myself only if the Village asks for a check on Niaj first; I'd rather see Niaj answer directly.
+Judy (public): Ivan’s result, if genuine, only says Niaj isn’t Vanilla—not that he’s evil. Niaj has admitted his Vanilla claim was a cover, so that result doesn’t establish alignment. Ivan’s late Oracle claim is suspicious, but we have no contradiction proving it false. I lean Innocent on Ivan for now; keep Niaj’s claim under scrutiny too.
+Mallory (public): Mallory: Ivan's Oracle claim is a guess he says was wrong, with no checkable detail, and it surfaced only after Carol's trial. He used it to accuse Niaj, who is now claiming Medic. I'm voting Guilty on Ivan.
+Niaj (public): Ivan’s only result is an unverifiable wrong guess, which rules out Vanilla if genuine but says nothing about alignment. My Vanilla claim was a cover, as I’ve admitted. I’m leaning Guilty because Ivan’s late Oracle claim gives us no checkable reason to trust his accusation.
+Alice (public): Ivan's explanation hasn't added a checkable detail: the wrong Vanilla guess only restates what Niaj admitted, and says nothing about alignment. Still, after making a late Oracle claim and using it to start a role trial, I don't have enough reason to trust him. I'm leaning Guilty; don't treat that as proof on Niaj.
+Bob (public): Bob: Ivan's Oracle result is consistent with Niaj admitting his Vanilla claim was false, so it isn't disproven. Niaj's Medic claim is also unverified. I lean Innocent on Ivan for now and want Niaj's protection history explained before any hang.
+Carol (public): I’m voting Guilty. Ivan’s Oracle claim surfaced only after he repeatedly pressed Niaj; its sole result is an unverifiable wrong guess whose only implication, if true, is what Niaj already admitted. He has no independent checkable result, yet pushed a trial on that basis. That isn’t proof, but the timing and opportunistic accusation warrant Guilty.
+Dave (public): Ivan’s claimed result only says Niaj isn’t Vanilla, which Niaj has already admitted; it says nothing about alignment. The late claim and trial push are suspicious, but don’t prove Ivan is lying or evil. I lean Innocent unless someone can point to a real contradiction.
+Erin (public): Erin: I'm leaning Guilty on Ivan. His Oracle claim surfaced late, rests on one unverifiable wrong guess, and was used immediately to start a trial on Niaj. Niaj's Medic claim fits Heidi surviving N1. I'll consult my archive at night and post only the resolved result.
+Frank (public): Frank: I'm leaning Innocent on Ivan. His Oracle guess and Niaj's Medic claim are both unverifiable, and nothing mechanical contradicts either yet. Niaj, which night did your Medic protection cover Heidi, and what did you learn about the Vanilla lie? Erin, why did you vote Guilty on both Carol and Ivan with an unverified claim?
+Grace (public): Grace: I have no resolved PM information to share yet. On Ivan, his Oracle result only excludes Vanilla for Niaj, which Niaj already admitted, so it doesn't establish alignment. I need a stronger reason before a Guilty vote.
+Heidi (public): Ivan's late Oracle claim is unverified, but its stated result only excludes Vanilla for Niaj, which Niaj already admitted; it says nothing about alignment. Ivan overstated that as a contradiction, then clarified. I don't see enough to hang him, so I'll vote Innocent and keep the claim under scrutiny.
+Trial votes on Ivan: Guilty - Alice, Bob, Carol, Judy, Mallory, Niaj; Innocent - Dave, Erin, Frank, Grace, Heidi, Ivan.
+Ivan is executed by hanging (7 Guilty of 13 votes; these totals don't match the revealed votes because a role manipulated the count on purpose (rules R4), not because of an error).
+Ivan died (executed by hanging). Their role was Oracle. Last will: "Ivan (Good), Oracle. Night 1 guess: Niaj is a Vanilla Villager. Result: WRONG, Niaj is not a Vanilla Villager. Niaj publicly claimed Vanilla Villager on Day 1 then Medic on Day 2; treat Niaj as a prime suspect. Trust Erin, Frank, Grace, Heidi and Alice's No votes on Bob as Village-leaning. Judy, Carol and Niaj voted Yes on Bob; watch that bloc."
+
+===== NIGHT 2 =====
+(to Alice, Carol, Mallory, Niaj) Alice (Yakuza chat): I recommend Alice keeps the Katana and we attack Dave tonight. His Surveyor result puts Alice, Bob, and Carol under scrutiny, so removing him limits follow-up. Heidi’s failed attack may have been protected; I wouldn’t retry her blindly. Niaj, consider cleaning Dave if the attack lands. I have no separate action.
+(to Alice, Carol, Mallory, Niaj) Carol (Yakuza chat): Agreed: Alice holds the Katana and attacks Dave. Niaj, please try to clean Dave if he dies. Mallory, consider blocking Heidi; her claimed N1 audit result of 1 token for me conflicts with my token being spent that night. I have no separate night action.
+(to Alice, Carol, Mallory, Niaj) Mallory (Yakuza chat): Mallory: Agreed. Alice holds the Katana and attacks Dave. I'll block Heidi, since her Accountant audit on Carol is the biggest threat. Please submit the same holder and target.
+(to Alice, Carol, Mallory, Niaj) Niaj (Yakuza chat): Agreed: Alice holds the Katana and attacks Dave; I’ll vote for that. Dave’s Surveyor result puts Alice and Carol under scrutiny, so removing him is a good priority. I have no Mortician token left to clean him. Mallory blocking Heidi makes sense.
+(to Alice, Carol, Mallory, Niaj) Alice (Yakuza chat): Confirmed: Alice keeps the Katana and attacks Dave. Mallory blocks Heidi. I have no separate action. Ready.
+(to Alice, Carol, Mallory, Niaj) Carol (Yakuza chat): Confirmed: Alice keeps the Katana and attacks Dave. Mallory blocks Heidi; Niaj has no Mortician token left to spend. I’m ready.
+(to Alice, Carol, Mallory, Niaj) Mallory (Yakuza chat): Mallory: Confirmed. Alice holds the Katana and attacks Dave. I block Heidi. Nothing more from me.
+(to Alice, Carol, Mallory, Niaj) Niaj (Yakuza chat): Agreed: Alice holds the Katana and attacks Dave. I have no Mortician token left, so no other action from me. Ready.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Dave
+  Carol (Ballot Stuffer): no role action; Katana vote: Alice holds, attacks Dave
+  Dave (Surveyor): target Mallory; 1 token(s); "Spend 1 survey token to survey Mallory."
+  Erin (Archivist): 1 token(s); "Consulting the archive on Night 2."
+  Frank (Tracker): target Niaj; "Tracking Niaj to see whom he visits."
+  Grace (Eavesdropper): target Niaj; "Eavesdropping on Niaj for the following Day."
+  Heidi (Accountant): target Judy; "Audit Judy’s total token count at the end of the night."
+  Judy (Medic): target Heidi; "Protect Heidi with Standard Defense."
+  Mallory (Pharmacist): target Heidi; "Pharmacist role-block on Heidi. Katana vote: holder Alice, target Dave."; Katana vote: Alice holds, attacks Dave
+  Niaj (Mortician): no role action; Katana vote: Alice holds, attacks Dave
+Katana: Alice holds it and attacks Dave.
+(to Dave) Moderator (private): You surveyed Judy, Mallory and Niaj. One of them, chosen at random, has the role Mortician.
+(to Heidi) Moderator (private): You were role-blocked last night. Your action had no effect.
+(to Frank) Moderator (private): Tracker result: Niaj did not visit anyone last night.
+(to Alice, Carol, Mallory, Niaj) Moderator (private): Yakuza night summary: Alice kept the Katana and attacked Dave with it. Mallory role-blocked Heidi. Carol and Niaj did not use any night actions.
+(to Alice) Moderator (private): Your Katana attack on Dave succeeded.
+[Moderator summary] Night 2: Alice held the Katana and killed Dave (Standard vs None). Mallory role-blocked Heidi, so her audit of Judy didn't happen and she was told. Judy protected Heidi (Standard, no token). Dave surveyed Mallory (group Judy/Mallory/Niaj; token spent; resolved by code). Erin consulted the archive. Grace is eavesdropping on Niaj for Day 3. Frank tracked Niaj: no visits. Yakuza were told each other's actions; Alice was told her attack succeeded. 10 players alive, no win.
+
+===== DAY 3 =====
+Dave died (killed by Katana). Their role was Surveyor. Last will: "D1: Carol nominated Bob; Yes votes were Carol, Judy, and Niaj; the nomination failed. Carol, Judy, and Niaj described their Yes votes as information-seeking. Bob named Judy after repeated prompts. Ivan's initial read on Dave was thin, and his summary of Judy's reads was inaccurate.\nN1: Surveyor result: Alice, Bob, and Carol were the group; the revealed role was Vulture. Exactly one is the Vulture, but I do not know which.\nD2: Ivan claims Oracle; his claimed wrong guess that Niaj was Vanilla is consistent with Niaj admitting his Vanilla claim was false, but gives no alignment information. I lean Innocent absent stronger evidence."
+(to Erin) Moderator (private): The archive shows 6 of the 9 other living players' roles: Accountant, Grunt, Medic, Mortician, Pharmacist, Tracker.
+(to Grace) You are eavesdropping on Niaj today: you'll read every private message they send or receive.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+Heidi (public): Carol's Innocent-on-self/Guilty-on-Ivan votes and 1 N1 token fit Ballot Stuffer.
+Heidi nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Heidi, Judy, Bob, Erin, Frank, Grace; No - Mallory, Niaj, Alice, Carol.
+Carol is put on trial (6 Yes).
+Carol (public): Heidi’s audit gives a token count, not an exact role; one token doesn’t prove I’m a Ballot Stuffer. My Archivist claim is unchanged, and the rules don’t say Archivist is unique. Erin said she would consult her archive on N2, so her actual result is the most useful comparison—please ask her to give it. The extra trial vote shows a Ballot Stuffer acted, but doesn’t alone identify which Innocent voter was doubled. I voted Guilty on Ivan because his late Oracle claim had no checkable result, not because I knew his role. I ask you to vote Innocent unless there’s a concrete contradiction.
+Erin (public): Erin: I'm the Archivist. My N2 archive (end of Night 2, 9 living others) showed 6 roles: Accountant, Grunt, Medic, Mortician, Pharmacist, Tracker. Grunt, Pharmacist and Mortician are Yakuza roles, so Yakuza are alive among the survivors. Heidi's Accountant and Niaj's Medic fit the draw. Carol lied about Vanilla on Day 1 and claimed Archivist only at trial, after I had claimed it. I'm voting Guilty.
+Frank (public): Frank: I lean Guilty on Carol. She admitted a Day 1 Vanilla lie, sat in the Yes-on-Bob bloc with Judy and Niaj, and only revealed Archivist at trial. Erin's archive claim is unverifiable and conflicts with Carol's Archivist claim, so I'm not using it to clear either of them. Carol, if you're the Archivist, what did you do with your token on N2?
+Grace (public): Grace: I have no resolved PM information yet. Carol admitted a false Day 1 Vanilla claim and revealed Archivist only at trial. Erin's archive result is unverifiable but fits the draw. Carol, what exactly did you archive on N2? Without a checkable answer I lean Guilty.
+Heidi (public): I’m voting Guilty. Carol’s votes line up with both manipulations: she voted Innocent on her own trial, where an extra Innocent was counted, and Guilty on Ivan, where an extra Guilty was counted. Her one token after N1 fits a Ballot Stuffer who spent one token for Day 2 and the other for Day 3. Not proof alone, but it’s a strong explanation alongside her false Vanilla claim.
+Judy (public): Carol’s votes match both manipulated trial totals: Innocent on her own trial, where an extra Innocent was counted, and Guilty on Ivan, where an extra Guilty was counted. Heidi’s N1 audit of one token also fits a Ballot Stuffer who spent a token for Day 2. That isn’t an exact-role check, but it’s a strong combined case. I’m voting Guilty.
+Mallory (public): Mallory: Carol's trial rests on a token count and an Archivist claim nobody can check. Erin's archive list doesn't settle Carol's role either way. I'm voting Innocent unless someone shows a real contradiction, not just the same count again.
+Niaj (public): I’ll vote Innocent. The extra trial votes show that someone used a Ballot Stuffer token; they don’t identify who. Heidi’s token count also isn’t an exact-role check, and Erin’s archive sample could omit roles. Carol’s Vanilla lie is suspicious, but I don’t see a mechanical contradiction that proves she’s the Ballot Stuffer.
+Alice (public): Carol’s Day 1 Vanilla lie is suspicious, and the one-token audit plus the doubled votes on both trials make the Ballot Stuffer explanation fit her particularly well. Those clues still aren’t an exact-role check, and Erin’s archive is unverifiable, but together they’re enough that I’m leaning Guilty.
+Bob (public): Bob: I have no night action and no hidden information to report. Carol's Day 1 Vanilla lie is admitted, and she revealed Archivist only at trial. Erin's archive list is unverifiable but, if true, conflicts with Carol's Archivist claim. Heidi's one-token audit fits either claim. On the record I lean Guilty on Carol; I'd like Carol to explain why she hid her role on Day 1.
+Trial votes on Carol: Guilty - Alice, Bob, Erin, Frank, Grace, Heidi, Judy, Niaj; Innocent - Carol, Mallory.
+Carol is executed by hanging (8 Guilty of 10 votes).
+Carol died (executed by hanging). Their role was Ballot Stuffer. Last will: 'Carol — Archivist. I saved my archive token on N1 and have no result to report. I falsely claimed Vanilla on D1 to avoid exposing a power role. Heidi’s N1 audit found 1 token, consistent with my claim. Archivist is not stated to be unique; Erin’s counterclaim surfaced only at my trial. She said her archive token was unused and planned to consult it—compare any N2 result she reports.'
+
+===== NIGHT 3 =====
+(to Alice, Mallory, Niaj) Alice (Yakuza chat): Dave’s result narrows the Vulture to Alice or Bob, and I know Alice is Grunt, so Bob is the Vulture. We should attack Bob tonight to remove that threat. Recommend Mallory take the Katana and attack Bob; Alice holding it again risks making the Dave result more suspicious. Niaj, clean Bob if you still have a Mortician token. Mallory, if you can also block, target a likely investigator—Heidi or Erin.
+(to Alice, Mallory, Niaj) Mallory (Yakuza chat): Mallory: Agreed on Bob as the Vulture, since Alice is our Grunt and Carol is dead. I'll take the Katana tonight and attack Bob. I'll block Heidi, since her Accountant role is the active threat. Alice, submit Mallory as holder and Bob as target. Niaj, submit the same vote.
+(to Alice, Mallory, Niaj) Niaj (Yakuza chat): Agreed: Mallory holds the Katana and attacks Bob. I’ll submit the same vote. I have no Mortician token left for another action. Ready.
+(to Alice, Mallory, Niaj) Alice (Yakuza chat): Confirmed: Mallory holds the Katana and attacks Bob. I’m submitting the same holder and target; I have no separate action. Ready.
+(to Alice, Mallory, Niaj) Mallory (Yakuza chat): Mallory: Confirmed. I hold the Katana and attack Bob, since he's the Vulture by elimination: Alice is our Grunt and Carol is dead. I'll block Heidi. Alice and Niaj, submit me as holder and Bob as target.
+(to Alice, Mallory, Niaj) Niaj (Yakuza chat): Confirmed: Mallory holds the Katana and attacks Bob. Mallory blocks Heidi. I’m submitting the same holder and target; I have no other action.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Mallory holds, attacks Bob
+  Erin (Archivist): no action
+  Frank (Tracker): target Judy; "Tracking Judy to see whom she visits."
+  Grace (Eavesdropper): target Judy; "Eavesdropping on Judy for the following Day."
+  Heidi (Accountant): target Mallory; "Audit Mallory’s total token count at the end of the night."
+  Judy (Medic): target Erin; "Protect Erin with Standard Defense."
+  Mallory (Pharmacist): target Heidi; "Pharmacist role-block on Heidi. Katana vote: holder Mallory, target Bob."; Katana vote: Mallory holds, attacks Bob
+  Niaj (Mortician): no role action; Katana vote: Mallory holds, attacks Bob
+Katana: Mallory holds it and attacks Bob.
+(to Heidi) Moderator (private): You were role-blocked last night. Your action had no effect.
+(to Frank) Moderator (private): Tracking result: Judy visited Erin last night.
+(to Alice, Mallory, Niaj) Moderator (private): Yakuza night report: Mallory held the Katana and attacked Bob with it. Mallory also role-blocked Heidi. Alice performed no action. Niaj performed no action.
+(to Mallory) Moderator (private): Your Katana attack on Bob succeeded.
+[Moderator summary] Night 3: Mallory (Pharmacist, Katana holder) role-blocked Heidi (audit on Mallory failed) and killed Bob (Vulture, Defense None) with the Standard Katana attack. Judy protected Erin (Standard, no token spent; Erin was not attacked). Frank tracked Judy and saw her visit Erin. Grace eavesdrops on Judy for Day 4. Erin and Niaj had no tokens to use; Alice had no action. Still alive: Alice, Erin, Frank, Grace, Heidi, Judy, Mallory, Niaj. 3 Yakuza and 5 Village, so the game goes on.
+
+===== DAY 4 =====
+Bob died (killed by Katana). Their role was Vulture. Last will: "I am Bob, a Vulture (Neutral). I win if I am alive at the start of a Day with 3 or fewer players alive. I have no night action. Village: be careful with unverified claims; Carol and Erin both claim Archivist, Niaj claims Medic after a Vanilla claim, Heidi claims Accountant, and Dave (dead) claimed Surveyor and Vulture group Alice/Bob/Carol. Ivan's Oracle claim was unverified and he was hanged. Judy, Carol and Niaj voted Yes on my nomination; watch that bloc."
+(to Grace) You are eavesdropping on Judy today: you'll read every private message they send or receive.
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Niaj.
+Niaj (public): Erin is my strongest concern: her archive sample is unverifiable, and her claim emerged during Carol’s trial. Explain why we should trust it.
+Niaj nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Niaj, Alice, Mallory; No - Erin, Frank, Grace, Heidi, Judy.
+The nomination of Erin failed (3 Yes).
+Alice (public): Niaj’s nomination failed, but Erin’s archive list gives roles without names, so it doesn’t identify anyone or clear anyone. The claim surfaced during Carol’s trial and remains hard to verify. Erin, what is your strongest suspect now, and what does your result actually tell us about them?
+Erin (public): Erin: Niaj's nomination of me gave no checkable reason. My archive result stands. Niaj, which night did your Medic protection cover whom, and did you spend any tokens?
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, could your audit check Niaj's token count? A Medic should hold tokens unless spent. Let's compare.
+Frank (public): Frank: I'm the Tracker. N1 I was blocked. N2 I tracked Niaj and he visited no one. N3 I tracked Judy and she visited Erin. Erin's N2 list includes a Tracker, which fits me. Judy, why did you visit Erin?
+Grace (public): Grace: no resolved PM info to share yet. Judy, Frank's Tracker result says you visited Erin on N3. Why?
+Heidi (public): Frank’s N3 Tracker result says Judy visited Erin. Judy, what was your action? Erin’s private message asked me to audit Niaj’s tokens; I couldn’t—my N2 and N3 audits were both role-blocked. That result wouldn’t establish Medic anyway, but the repeated blocks are relevant. Everyone should explain their strongest suspect, especially Judy and Erin.
+Judy nominated Niaj. Everyone now votes Yes/No simultaneously.
+Nomination votes on Niaj: Yes - Judy, Erin, Frank, Grace, Heidi; No - Mallory, Niaj, Alice.
+Niaj is put on trial (5 Yes).
+Niaj (public): I claimed Medic on Day 2 and said I protected Heidi on N1; that is consistent with her surviving, though I received no feedback and can’t claim a confirmed save. Judy’s later Medic claim doesn’t prove mine false, and Frank’s Tracker result establishes a visit, not what action Judy performed. Erin’s archive list is an unnamed random sample: even if genuine, it doesn’t identify me or establish my alignment. Please don’t turn suspicion about an unverifiable sample into proof. I’m voting Innocent; look for a checkable contradiction before hanging me.
+Alice (public): Niaj’s protection claim is unverified, but not mechanically disproven: Judy also says she protected Heidi, and two Medics could choose the same target. Frank’s Tracker result shows Judy visited Erin, not what action she performed. I don’t think this is enough to hang Niaj.
+Erin (public): Erin: Niaj, Frank's Tracker result says you visited no one on N2. A Medic protects every night, so explain that. You also lied about Vanilla on D1, and Judy claims Medic too, so only one of you can be genuine. Give a checkable answer; I'm leaning Guilty unless you do.
+Frank (public): Frank: I'm voting Guilty on Niaj. My Tracker result shows Niaj visited no one on N2, which doesn't fit a nightly Medic. He lied about Vanilla on D1, and he was in the Yes-on-Bob bloc with Carol.
+Grace (public): Grace: My Judy eavesdrop shows no private messages from her today, only Erin to Heidi. Judy and Niaj both claim Medic and both say they protected Heidi on N1, so one claim is false. Niaj, why did you visit no one on N2 if you protect nightly? I'm undecided and leaning Innocent without a sharper contradiction.
+Heidi (public): Niaj’s Vanilla-to-Medic claim and Frank’s report that you visited no one on N2 are concerning. But Medic actions are optional, so the no-visit result isn’t a mechanical contradiction by itself. Please explain why you skipped it; I’m leaning Guilty, with that caveat.
+Judy (public): Frank's N2 no-visit result is not a hard contradiction: Medic actions are optional. I can confirm I protected Heidi N1/N2 and Erin N3, but got no feedback; that cannot verify Niaj. His admitted Vanilla cover and late Medic claim are suspicious, not proof. I nominated him to examine the claim, but lean Innocent absent a stronger contradiction.
+Mallory (public): Mallory: Niaj's case rests on Frank's N2 no-visit result, which an optional Medic action explains, and on Erin's archive sample, which names no one. Judy also claims Medic and protected Heidi on N1, so that is no contradiction either. We have no checkable result against Niaj, and I won't hang on unverifiable claims again. I'm voting Innocent unless someone shows a real contradiction.
+Trial votes on Niaj: Guilty - Erin, Frank, Heidi, Judy; Innocent - Alice, Grace, Mallory, Niaj.
+Niaj is found Innocent (4 Guilty of 8 votes).
+Mallory (public): Mallory: Erin's N2 archive said 9 living others, but only 8 were alive then, since Dave died that night. Erin, recount it.
+Niaj (public): N2 began with 11 alive; Dave’s death left 10, so there were 9 living players other than Erin at the archive check. That count isn’t a contradiction, but it also doesn’t authenticate her result. Keep assessing the claim independently.
+Alice (public): Niaj’s count is right: N2 began with 11 alive, and Dave’s death left 10, so Erin had 9 others. That doesn’t authenticate her sample. Frank’s result establishes Judy visited Erin N3; her protection claim is plausible, but I’d like the intended target clarified.
+Erin (public): Erin: Judy and Niaj both claim Medic and both say they protected Heidi N1. One of them is lying. Niaj, why did you visit no one on N2? Judy, why did you protect Erin N3? Answer directly.
+Frank (public): Frank: Judy and Niaj both claim Medic and both protected Heidi N1, so one is lying. Niaj visited no one on N2, which doesn't fit a nightly Medic. Judy, you visited Erin N3 per my track; what was that action? I'm tracking Judy again tonight and will post the visit.
+Grace (public): Grace: Resolved PM info: Judy sent no private messages today; the only PM is Erin to Heidi. Niaj's N2 no-visit is the clearest concrete mismatch so far, though Medic actions are optional. Niaj, what did you do on N2? Judy, what exactly did you protect on N3?
+Heidi (public): Correction: Medic actions are optional, so Niaj’s N2 no-visit is suspicious but not a mechanical contradiction. Erin called it mandatory. Given Carol flipped Yakuza, I want Erin’s claim and results scrutinized, especially that assertion.
+Judy (public): I voted Guilty on Niaj, but his N2 no-visit is not a contradiction: Medic actions are optional, and duplicate Medics are possible. I over-weighted his earlier Vanilla cover. Erin’s claim that a Medic must protect nightly is also incorrect; that weakens her accusation, though it doesn’t prove her role claim false. Let’s assess her independently.
+Mallory (public): Mallory: Erin's Archivist sample has already been caught with a count error, and she has voted Guilty on Carol and Ivan with no checkable proof. Erin, what did your N3 archive show, and what did you do that night? Judy, what exactly did you protect on N3?
+Niaj (public): Erin’s claim that a Medic must protect nightly was incorrect: actions are optional. My N2 no-visit is therefore not a mechanical contradiction, though I understand the suspicion. Erin, please answer directly: what did your N3 archive show, and why did you treat my skipped action as proof? Judy’s N3 visit is consistent with her stated protection.
+Alice nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Alice, Heidi, Judy, Mallory, Niaj; No - Erin, Frank, Grace.
+Erin is put on trial (5 Yes).
+Erin (public): Erin: I am the Archivist. My one archive token was spent on N2, and the result is an unnamed random sample of 6 roles from the 9 others alive, so it cannot identify anyone. It does show Grunt, Pharmacist and Mortician were alive at N2, so Yakuza were alive then. Carol, now confirmed as a Ballot Stuffer, falsely claimed Archivist only after my counterclaim, which fits my account being genuine. Heidi's Accountant and Frank's Tracker fit the sample. Judy and Niaj both claim Medic and both say they protected Heidi on N1, so one is lying. Judy, Niaj: which of you is the real Medic, and what exactly did you do on N1? I'm voting on the evidence, and I'd rather you check my claim against the Ballot Stuffer result than against my wording.
+Frank (public): Frank: I'm voting Innocent on Erin. Carol, a confirmed Ballot Stuffer, claimed Archivist only after Erin's counterclaim, which fits Erin being the real Archivist. Her sample matches my Tracker role and Heidi's Accountant. Judy and Niaj's Medic claims still need checking, and I'm tracking Judy again tonight.
+Grace (public): Grace: I'm leaning Innocent on Erin. Her archive sample fits Frank's Tracker and Heidi's Accountant, and Carol's false Archivist claim after Erin's counterclaim fits a Ballot Stuffer. Her 'Medic must act nightly' claim was wrong, but that's a mistake, not proof. Judy and Niaj's conflicting Medic claims are still open, and both should explain N1 precisely.
+Heidi (public): I’m leaning Innocent on Erin. Her archive count is consistent: 9 others alive at the end of N2, with 6 roles drawn; Accountant and Tracker match known roles, and Carol’s flip explains the false competing Archivist claim. The sample is unverifiable, and Erin was wrong that a Medic must act nightly, but neither point proves her claim false. I don’t see a concrete contradiction that warrants a hanging.
+Judy (public): I’m voting Innocent on Erin. Her N2 sample is unverifiable, but it fits known roles, and Carol’s flip as a Ballot Stuffer makes her competing Archivist claim consistent with Erin being genuine. Erin was wrong that Medics must act nightly; that doesn’t prove her claim false. I’m the Medic: I protected Heidi N1 and N2, then Erin N3, with Standard Defense. I received no feedback. Niaj’s claimed Medic doesn’t by itself settle this trial.
+Mallory (public): Mallory: I'm voting Guilty on Erin. Her Guilty votes on Carol and Ivan rested on nothing checkable, she miscounted her own archive sample, and she wrongly said Medics must act nightly to pressure Niaj. She also privately messaged Heidi to audit Niaj's tokens before her trial. Erin, why did you ask Heidi about Niaj?
+Niaj (public): I’m voting Guilty. Erin treated an optional Medic action as mandatory to push Niaj, then asked Heidi to audit him privately. Her archive sample names nobody, so it can’t identify who is lying. Her repeated overconfidence is concerning.
+Alice (public): Erin’s archive names no one, so it cannot identify a living Yakuza or settle anyone’s role. She also treated Niaj’s optional no-visit as a contradiction, then had to walk that back. Those overclaims drove suspicion without a checkable result. I’m voting Guilty; don’t mistake a plausible claim for verification.
+Trial votes on Erin: Guilty - Alice, Mallory, Niaj; Innocent - Erin, Frank, Grace, Heidi, Judy.
+Erin is found Innocent (3 Guilty of 8 votes).
+Erin (public): Erin: Archive sample places Grunt, Pharmacist and Mortician among Alice, Grace, Mallory, and whichever of Judy/Niaj is not the real Medic. Judy and Niaj: name each N1-N3 target and any block you got. Frank, your tonight track is the checkable test.
+Frank (public): Frank: Judy and Niaj both claim Medic and both protected Heidi N1, so one is lying. Each of you, name your exact N1 and N2 targets and any block you got.
+Grace (public): Grace: Judy and Niaj, give your exact N1-N3 targets and any blocks. Frank's tracks and Niaj's N2 no-visit are the checkable points. My Judy eavesdrop shows no PMs from Judy today.
+Heidi (public): Strongest suspect: Mallory. She voted Innocent on Carol at both trials, including the execution after Carol admitted lying about Vanilla and after the token-count and vote-manipulation evidence was laid out. That is more alignment-relevant than the unverifiable archive dispute. Mallory, explain both votes and name your strongest suspect. Niaj’s skipped N2 action remains suspicious, not a mechanical Medic contradiction.
+Judy (public): Mallory is my strongest suspect. On Carol’s execution, after her Vanilla lie and the vote-manipulation evidence, you were the only living voter besides Carol to vote Innocent. That doesn’t prove alignment, but it deserves an answer: who is your strongest suspect, and why did you spare Carol?
+Judy nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Judy, Niaj, Erin, Frank, Heidi; No - Mallory, Alice, Grace.
+Mallory is put on trial (5 Yes).
+Mallory (public): Mallory: I'm on trial for voting Innocent on Carol, and I'll stand by that. Carol's trial rested on a token count plus an Archivist claim nobody can check, and I said so at the time. Erin miscounted her own archive sample, wrongly said Medics must act nightly to pressure Niaj, and privately asked Heidi to audit Niaj before her trial. Heidi's case against Carol and now me rests on the same unverified accusations. Judy and Niaj both claim Medic, so one is lying, and neither has a checkable result. Grace and Frank: name one concrete contradiction in my own words or votes before you vote Guilty.
+(to Grace, Mallory) Mallory -> Grace (private): Grace, the only thing I've done wrong is vote Innocent on Carol, which rested on unverifiable claims. Erin's archive miscount and her private audit request to Heidi are the real concern. Please don't hang me on a count error.
+Niaj (public): Mallory’s Carol votes are a fair reason for suspicion, but they aren’t a contradiction by themselves. Her explanation—that she distrusted the unverified case—was stated at the time. I’ll vote Innocent; don’t treat a dissenting vote as proof of alignment.
+Alice (public): Mallory’s Innocent votes on Carol are damning in hindsight, but they aren’t a contradiction: she consistently argued that the token count and competing Archivist claims weren’t role checks. Carol’s flip makes that judgment look bad, not necessarily knowingly false. I see reason for suspicion, but not enough for Guilty on that alone. I’m voting Innocent.
+Erin (public): Erin: I'm voting Guilty on Mallory. She was the only living Innocent vote on Carol at the final trial, and Carol was confirmed as a Ballot Stuffer. Her Innocent on Niaj also fits shielding a Yakuza.
+Frank (public): Frank: I'm voting Guilty on Mallory. Her Innocent votes on Carol and Niaj, and her Guilty vote on Erin, all push the same way: away from Niaj and toward Erin. My N3 track of Judy visiting Erin fits Judy's Medic claim, and Niaj's N2 no-visit is still unexplained. Mallory, why did you vote Innocent on Niaj when his Medic claim was unresolved?
+Grace (public): Grace: Mallory's PM to me only asks not to be hanged on the count error, so no new contradiction. Her Carol and Niaj Innocent votes were stated openly at the time. Judy and Niaj's conflicting Medic claims are still unresolved, but neither proves Mallory is evil. I'm leaning Innocent on Mallory.
+Heidi (public): Mallory’s skepticism was stated at the time, but the pattern still matters: you voted Innocent on Carol at both trials, including the execution after her Vanilla lie and the token-count and vote-manipulation evidence were laid out. You were the only living voter besides Carol to spare her then. I’m voting Guilty; that’s not proof by itself, but it’s a strong reason to suspect you.
+Judy (public): Mallory’s skepticism was stated at the time, but you were the only living voter besides Carol to spare her at the execution, after the case strengthened. That’s strong alignment evidence. I’m voting Guilty; the Erin push doesn’t erase it.
+Trial votes on Mallory: Guilty - Erin, Frank, Heidi, Judy; Innocent - Alice, Grace, Mallory, Niaj.
+Mallory is found Innocent (4 Guilty of 8 votes).
+Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 4 =====
+(to Alice, Mallory, Niaj) Alice (Yakuza chat): Plan: Alice holds the Katana and attacks Frank. Mallory blocks Judy, who may protect the known Tracker. Niaj cleans Frank if he dies, to hide his role and will. Please submit the same Katana holder and target.
+(to Alice, Mallory, Niaj) Mallory (Yakuza chat): Mallory: Agreed. Alice holds the Katana and attacks Frank; I block Judy, whose Medic protection could save him. Niaj, if you have a Mortician token left, clean Frank; you said you had none on Day 2, so confirm the count. Submit Alice as holder and Frank as target.
+(to Alice, Mallory, Niaj) Niaj (Yakuza chat): Agreed: Alice holds the Katana and attacks Frank; Mallory blocks Judy. I have no Mortician token left and no other action. I’m submitting the same holder and target.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Frank
+  Erin (Archivist): no action
+  Frank (Tracker): target Niaj; "Tracking Niaj to see whom he visits."
+  Grace (Eavesdropper): target Niaj; "Eavesdropping on Niaj for the following Day."
+  Heidi (Accountant): target Mallory; "Audit Mallory's total token count at the end of the night."
+  Judy (Medic): target Frank; "Protect Frank with Standard Defense."
+  Mallory (Pharmacist): target Judy; "Pharmacist role-block on Judy for Night 4."; Katana vote: Alice holds, attacks Frank
+  Niaj (Mortician): no role action; Katana vote: Alice holds, attacks Frank
+Katana: Alice holds it and attacks Frank.
+(to Judy) Moderator (private): You were role-blocked last night. Your action had no effect.
+(to Frank) Moderator (private): Tracker result: Niaj visited no one last night.
+(to Heidi) Moderator (private): Accountant result: Mallory has 0 tokens in total.
+(to Frank) Moderator (private): You were attacked with the Katana.
+(to Alice, Mallory, Niaj) Moderator (private): Yakuza night report: Alice held the Katana and attacked Frank. Mallory role-blocked Judy. Niaj took no action.
+(to Alice) Moderator (private): Your Katana attack on Frank succeeded.
+[Moderator summary] Night 4: Mallory (Pharmacist) role-blocked Judy, so Judy's Standard protection on Frank never happened. Alice kept the Katana and attacked Frank (Standard vs. no defense), and Frank died. Frank's track: Niaj visited no one. Grace eavesdrops on Niaj for Day 5. Heidi's audit: Mallory has 0 tokens. Niaj took no action. Living: Alice, Erin, Grace, Heidi, Judy, Mallory, Niaj (3 Yakuza, 4 Village), so the game goes on. Alice still holds the Katana.
+
+===== DAY 5 =====
+Frank died (killed by Katana). Their role was Tracker. Last will: "Frank, Tracker (Good). Track results are visits only. N1 blocked; N2 tracked Niaj, no visit; N3 tracked Judy, visited Erin. Dead: Ivan (Oracle), Dave (Surveyor), Carol (Ballot Stuffer), Bob (Vulture). Trust Erin's archive only as far as it fits the board; watch Judy and Niaj."
+(to Grace) You are eavesdropping on Niaj today: you'll read every private message they send or receive.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Judy.
+Judy (public): I nominate Mallory: she alone besides Carol spared Carol’s execution, then voted Innocent on Niaj. N4, I was role-blocked protecting Frank.
+Judy nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Judy, Erin, Heidi; No - Mallory, Niaj, Alice, Grace.
+The nomination of Mallory failed (3 Yes).
+Mallory (public): Mallory: No nomination from me. Judy's nomination repeats my Carol vote, which I've explained. Erin, Grace, Heidi and Judy: give checkable results, not repeated accusations.
+Niaj (public): My strongest concern remains Erin: she treated an optional Medic action as mandatory, while her archive cannot identify anyone. That isn’t proof, but Mallory’s consistent, stated Innocent votes aren’t proof of guilt either. Before another nomination, everyone should name a current suspect and a specific reason.
+Alice (public): Mallory’s votes look bad in hindsight, but her skepticism about an unverified case was stated at the time. Erin’s claim that Niaj had to act nightly was also wrong, and her archive identifies no one. Neither point proves guilt; I’d rather compare everyone’s strongest current case before another trial.
+Erin (public): Erin: Frank's N3 track (Judy visited Erin) fits Judy's Medic claim, and her N1/N2 protection of Heidi is consistent with Heidi surviving. Niaj's N2 no-visit is the one Medic-claim mismatch so far, though Medic actions are optional. Mallory's Innocent votes on Carol and Niaj are my main concern. Alice and Grace, what are your reads on Niaj and Judy?
+Grace (public): Grace: No PMs from Niaj so far today. Judy and Niaj, state your N4 target and whether you were role-blocked, so we can compare the Medic claims.
+Heidi (public): Mallory remains my strongest suspect: she voted Innocent on Carol at both trials, including the execution. That’s not proof, but it’s alignment-relevant. Judy and Niaj, state your exact N4 target and any role-block; everyone, name your strongest suspect.
+Judy (public): Mallory was the only living voter besides confirmed Yakuza Carol to spare her execution. That’s not proof, but it’s my strongest alignment read; please reconsider.
+Judy nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Judy, Erin, Heidi; No - Mallory, Niaj, Alice, Grace.
+The nomination of Mallory failed (3 Yes).
+Mallory (public): Mallory: Judy and Niaj cannot both be the Medic, so their exact N1-N4 targets should be compared with Frank's track records. Erin's archive still names no one and her 'Medic must act nightly' claim was wrong. Grace and Heidi, give your current reads with reasons.
+Niaj nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Niaj, Alice, Grace, Mallory; No - Erin, Heidi, Judy.
+Judy is put on trial (4 Yes).
+Judy (public): I’m the Good Medic. Frank independently confirmed my N3 visit to Erin, and my N1–N4 actions are in my will: Heidi, Heidi, Erin, then Frank (role-blocked). I got no feedback, so I’m not claiming a save. Niaj’s N2 no-visit is allowed because Medic actions are optional, but his Vanilla-to-Medic switch is still unresolved. Two Medics are possible; my confirmed visit supports my claim, not his. Please vote Innocent. A guilty verdict would hang a Medic while the Yakuza are still making Katana kills.
+Mallory (public): Mallory: Judy's Medic claim surfaced only after Niaj was tried, and she was blocked the night Frank died, so her protection didn't save him. Her N1 protection of Heidi conflicts with Heidi's claimed Accountant audit path. Her claim is unverifiable, and she's pushing trials hard. I'm voting Guilty.
+Niaj (public): Frank’s track confirms Judy visited Erin, not that she protected her. Judy only claimed Medic after Niaj’s claim was under scrutiny, and her claimed history otherwise has no independent check. That doesn’t prove she’s lying, but I don’t think the claim merits a free pass. I’m voting Guilty.
+Alice (public): Frank’s result confirms Judy visited Erin, not that she protected her. Judy also treated Niaj’s optional N2 no-visit as evidence against him, then relied on her own unverified action history when challenged. Her claim may be true, but it shouldn’t shield her from scrutiny. I’m voting Guilty.
+Erin (public): Erin: Judy's N3 visit to me is confirmed by Frank's track, which fits her Medic claim. Niaj's Vanilla-to-Medic switch and skipped N2 visit are still unresolved. I'm voting Innocent on Judy and will keep watching Niaj.
+Grace (public): Grace: Judy's N4 role-block fits her Medic claim. Frank died that night to a Standard Katana, which a Standard Medic protection would have stopped, so a Yakuza blocker is the likely explanation. Frank's N3 track confirms her visit to Erin. Niaj, explain your skipped N2 Medic action. I'm voting Innocent on Judy unless a checkable contradiction appears.
+Heidi (public): Judy’s N3 visit to Erin is independently confirmed by Frank and fits her Medic claim. Her N4 role-block is consistent with being unable to protect Frank. The overlapping N1 protection claims and optional actions don’t establish a contradiction. I’m voting Innocent; her claim isn’t fully proven, but I don’t see a concrete reason to hang her.
+Trial votes on Judy: Guilty - Alice, Mallory, Niaj; Innocent - Erin, Grace, Heidi, Judy.
+Judy is found Innocent (3 Guilty of 7 votes).
+Alice (public): Judy survived, but that doesn’t verify her Medic claim. Frank confirmed a visit to Erin, not a protection; her other actions are unverified. She treated Niaj’s optional skipped action as suspicious, then relied on her own unverified history. Grace, you voted Yes on the nomination but Innocent at trial—what changed? Judy remains my strongest suspect.
+Alice nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Alice, Heidi, Mallory, Niaj; No - Erin, Grace, Judy.
+Judy is put on trial (4 Yes).
+Judy (public): I'm still the Good Medic. My N1–N4 targets were Heidi, Heidi, Erin, and Frank; I was role-blocked N4. Frank's N3 track independently confirms I visited Erin. That doesn't prove I protected her, but it matches my account, and I never claimed a save. Mallory's claim that my N1 protection conflicts with Heidi's audit is mistaken: Heidi audited Carol, and protection isn't an audit. Two Medics aren't prohibited, and Niaj's optional skipped action doesn't prove either of us is lying. Alice's renewed accusation adds no new contradiction. I admit my Guilty vote on Niaj was based on suspicion, not proof. Please vote Innocent.
+Mallory (public): Mallory: I'm voting Guilty on Judy. Her Medic claim surfaced only after Niaj was tried, and she has pushed Mallory twice while her own protection record can't be checked. Judy, you voted Guilty on Niaj for his skipped action, then called the same kind of skip proof of nothing when your own N4 was blocked. Explain why we should trust your history over anyone else's.
+Niaj (public): Frank confirmed Judy visited Erin, not that she protected her. Her N4 block explains why she couldn’t protect Frank, but none of her claimed protections can be independently verified. She treated my optional N2 skip as strong evidence against me, then asks us to accept her own unverified history. I’m voting Guilty.
+Alice (public): Frank confirmed Judy visited Erin, not that she protected her; the rest of her protection history is self-reported. Her accusation of Niaj leaned on his optional skipped action, while her own blocked night explains why Frank died. That may all be true, but the competing Medic claims remain unresolved. At seven alive, I’m voting Guilty.
+Erin (public): Erin: I'm voting Innocent on Judy. Frank's N3 track confirms she visited me, and a Medic fits my N2 sample, which had one among the living. Niaj has the Day 1 Vanilla lie and the skipped N2 action, so he is my stronger suspect. Mallory's Innocent votes on Carol and Niaj still need an answer. Alice, Grace and Mallory: who is your strongest Yakuza read, and why?
+Grace (public): Grace: Judy's N3 visit to Erin is confirmed by Frank's track, and her N4 block fits Frank dying to a Katana that a Medic protection would have stopped. Her claim is unproven but consistent. I'm voting Innocent on Judy and watching Niaj's Medic history.
+Heidi (public): I’m voting Innocent on Judy. Frank independently confirmed her N3 visit to Erin, and her N4 role-block is consistent with Frank dying to the Katana. That doesn’t prove she protected anyone, but there’s no concrete contradiction here. Mallory remains my strongest suspect: she spared Carol at both trials, including Carol’s execution.
+Trial votes on Judy: Guilty - Alice, Mallory, Niaj; Innocent - Erin, Grace, Heidi, Judy.
+Judy is found Innocent (3 Guilty of 7 votes).
+Erin (public): Erin: Judy's N3 visit to me fits her Medic claim, so I'm not voting her yet. Niaj has the Day 1 Vanilla lie, a skipped N2 action and a Medic claim that conflicts with Judy's. Niaj, which of you is the real Medic? Alice, why do you keep pushing Judy?
+Grace (public): Grace: No new resolved PM info from Niaj today. Niaj, explain your N2 no-visit and state your N4 target. Alice, what new evidence do you have against Judy?
+Heidi (public): Judy isn't proven, but Frank independently confirmed her N3 visit. Niaj's Medic claim has no corroboration beyond my N1 survival, which is also compatible with Judy protecting me; his admitted Vanilla cover and N2 no-visit are suspicious, not contradictions. Use our last trial on Niaj; explain N4.
+Heidi nominated Niaj. Everyone now votes Yes/No simultaneously.
+Nomination votes on Niaj: Yes - Heidi, Judy, Erin, Grace; No - Mallory, Niaj, Alice.
+Niaj is put on trial (4 Yes).
+Niaj (public): I understand why my Vanilla claim and later Medic claim look suspicious; I lied about Vanilla to conceal my role, and I own that. But there’s no mechanical contradiction here: Medic actions are optional, Frank’s track showed Judy visited Erin, not what she did, and the rules don’t say there can be only one Medic. I said I protected Heidi N1, but got no feedback and can’t claim I saved her. My N2–N4 no-visits are consistent with choosing not to act. Please don’t turn uncertainty into proof of guilt.
+Alice (public): I still distrust Niaj’s Day 1 Vanilla cover, but the concrete case is circumstantial: Medic actions are optional, and Frank’s track confirms Judy visited Erin, not what she did. Two Medic claims are possible. That leaves suspicion, not a mechanical contradiction; don’t treat uncertainty as proof.
+Erin (public): Erin: I'm voting Guilty on Niaj. He admitted a false Day 1 Vanilla claim, Frank's track shows he visited no one on N2, and his Medic claim can't be checked. Judy's Medic claim fits Frank's N3 track, so I'm not hanging her. Niaj, what was your N4 target, and what did you do on N1?
+Grace (public): Grace: Resolved PM info: Niaj has sent no private messages today so far. I'm voting Guilty on Niaj. He admitted a false Vanilla claim, his Medic history can't be checked, and Frank's track shows he visited no one on N2. Judy's N3 visit to Erin is confirmed and her N4 block fits Frank's Katana death, so her claim is more consistent. Niaj, explain your N2 no-visit and your N4 target.
+Heidi (public): Niaj’s Medic claim isn’t disproven by an optional no-visit, but it remains a late claim with no corroboration beyond my N1 survival, which Judy also says she explains. Judy’s N3 visit is confirmed, though that doesn’t prove protection. Given the false Vanilla cover and the live Yakuza threat, I’m voting Guilty on Niaj—not calling it a mechanical certainty.
+Judy (public): I’m voting Guilty. Niaj’s Vanilla-to-Medic switch, reported lack of visits on N2–N4, and repeated push against me are suspicious, though none alone proves he is lying. With the Katana threat still active, I think we need to act on the strongest case we have.
+Mallory (public): Mallory: Niaj's only confirmed problem is the Day 1 Vanilla claim he admitted, which doesn't establish alignment. Frank's track shows Judy visited Erin, not what she did, and Judy's Medic claim is just as unverifiable as Niaj's. Heidi and Erin keep pushing trials on unchecked claims. Before another hang, they should explain why. I'm voting Innocent.
+(to Grace, Mallory) Mallory -> Grace (private): Grace, the only solid point against Niaj is an admitted Vanilla lie, which is a cover, not proof of Evil. Judy's Medic claim is no better checked than his, and Erin's archive is still unverifiable. Please don't let Erin and Heidi's pressure decide a hang on claims nobody can check.
+Trial votes on Niaj: Guilty - Alice, Erin, Grace, Heidi, Judy; Innocent - Mallory, Niaj.
+Niaj is executed by hanging (5 Guilty of 7 votes).
+Niaj died (executed by hanging). Their role was Mortician. Last will: 'Niaj — I claimed Medic after my Day 1 Vanilla cover. My claimed history: N1 protected Heidi; I chose not to act N2, N3, or N4. Medic actions are optional. Judy also claims Medic; compare our claims and the public evidence independently. Frank tracked Judy visiting Erin N3, consistent with—but not proof of—her claimed protection. Erin’s archive sample and accusations remain unverified.'
+
+===== NIGHT 5 =====
+(to Alice, Mallory) Alice (Yakuza chat): Recommend Alice keeps the Katana and attacks Heidi, while Mallory role-blocks Judy to stop a possible protection. I’ll submit Alice as holder and Heidi as target.
+(to Alice, Mallory) Mallory (Yakuza chat): Mallory: Agreed. Alice holds the Katana and attacks Heidi. I block Judy so her possible Standard protection can't stop it. Alice, submit Alice as holder and Heidi as target, and I'll submit the same.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Heidi
+  Erin (Archivist): no action
+  Grace (Eavesdropper): target Judy; "Eavesdropping on Judy for the following Day."
+  Heidi (Accountant): target Judy; "Audit Judy’s total token count at the end of the night."
+  Judy (Medic): target Erin; "Protect Erin with Standard Defense."
+  Mallory (Pharmacist): target Judy; "Pharmacist role-block on Judy for Night 5. Katana vote: holder Alice, target Heidi."; Katana vote: Alice holds, attacks Heidi
+Katana: Alice holds it and attacks Heidi.
+(to Judy) Moderator (private): You were role-blocked tonight. Your action had no effect and no tokens were spent.
+(to Heidi) Moderator (private): Audit result: Judy has 2 tokens in total.
+(to Alice, Mallory) Moderator (private): Yakuza night report: Mallory role-blocked Judy. Alice held the Katana and attacked Heidi with it.
+(to Alice) Moderator (private): Your Katana attack on Heidi succeeded.
+[Moderator summary] N5: Mallory (Pharmacist) blocked Judy, so Judy's protection of Erin was cancelled. Alice (Katana holder) attacked Heidi with a Standard Attack against no Defense, and Heidi died. Heidi's simultaneous audit of Judy showed 2 tokens. Grace eavesdrops on Judy for Day 6. Alive: Alice, Erin, Grace, Judy, Mallory (2 Yakuza, 3 Village), so the game goes on.
+
+===== DAY 6 =====
+Heidi died (killed by Katana). Their role was Accountant. Last will: 'Heidi (Good), Accountant.\nN1: I audited Carol; she had 1 token. This was a token count, not a role check. Carol later flipped Yakuza Ballot Stuffer. I was attacked with the Katana and survived; Niaj says he protected me, but I received no confirmation.\nN2 and N3: I was role-blocked, so my audits had no effect. Erin privately asked me to audit Niaj, but I could not.\nN4: I audited Mallory; she had 0 tokens. This does not identify her role or alignment.\nCarol’s flip makes Mallory’s Innocent votes on Carol at both trials worth scrutiny, though they are not proof by themselves. Erin’s archive result fits known roles but is unverifiable; her claim that Medic actions were mandatory was wrong, not a proven lie. Frank’s Tracker result says Niaj visited no one N2 (Medic actions are optional) and Judy visited Erin N3. Judy claims Medic and says she protected Heidi N1/N2 and Erin N3. Niaj changed from Vanilla to Medic; his skipped N2 action is suspicious, not conclusive. Bob flipped Vulture.'
+(to Grace) You are eavesdropping on Judy today: you'll read every private message they send or receive.
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Judy.
+Judy (public): Mallory is my strongest Yakuza read: she alone spared Carol at the execution and repeatedly defended Niaj. The Katana remains active. Please vote Yes.
+Judy nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Judy, Erin; No - Mallory, Alice, Grace.
+The nomination of Mallory failed (2 Yes).
+Mallory (public): Mallory: No nomination from me. Erin and Judy each need to back their claims with checkable detail, not repeated accusations. Grace, what is your current read on Judy and Erin?
+Alice (public): Five alive means a bad hang decides it. Mallory’s defense of Carol is suspicious, but it was consistent at the time; there’s no mechanical proof she’s Yakuza. Judy’s nomination failed, so don’t treat that as proof either. Grace, what’s the strongest checkable case today? I favor scrutinizing the records before another trial.
+Erin (public): Erin: Mallory and Alice are my Yakuza reads. Judy's Medic claim fits Frank's track. Grace, your read?
+(to Erin, Grace) Erin -> Grace (private): Grace, which of Alice or Mallory do you think is Yakuza, and why?
+Grace (public): Grace: Resolved: Judy has sent no private messages today. Mallory's Innocent votes on Carol and Niaj were both against actual Yakuza, which favors her. Alice has pushed Judy and Niaj repeatedly; that's my Yakuza lean. Alice, name your checkable basis.
+(to Erin, Grace) Grace -> Erin (private): Grace: My lean is Alice over Mallory. Mallory's Carol and Niaj votes were both against real Yakuza, while Alice has pushed Judy and Niaj repeatedly. What checkable basis do you have for Judy?
+Judy (public): At five alive, we can’t afford to ignore the vote record. Mallory voted Innocent on both Carol and Niaj, who flipped Yakuza; Alice’s votes against me may simply be mistaken suspicion. That doesn’t prove Mallory’s alignment, but it’s my strongest concrete case. Please weigh it before shifting to Alice.
+Mallory (public): Mallory: Erin and Judy both claim roles, but neither has produced a verifiable result. I'm not nominating. Judy, you voted Guilty on Niaj for an optional skip, then excused your own blocked night. Erin, explain why you asked Heidi to audit Niaj privately.
+(to Grace, Mallory) Mallory -> Grace (private): Grace, Judy's case is thin and Erin's archive is unverifiable. Let's not hang a Village player on that.
+Alice (public): Judy has repeatedly recycled the same Carol-vote argument after Mallory explained it consistently. That is suspicion, not a contradiction. Grace, you call me Yakuza but haven’t named a checkable fact. At five alive, let’s stop treating repeated accusations as proof. Erin and Judy should say what concrete evidence distinguishes Mallory from a cautious villager.
+Erin (public): Erin: Mallory is my strongest read. Innocent on Carol and Niaj, both Yakuza, and she defended them. Heidi's N4 audit found her with 0 tokens. Nominating her; Judy's Medic claim fits the board.
+Erin nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Erin, Grace, Judy; No - Mallory, Alice.
+Mallory is put on trial (3 Yes).
+Mallory (public): Mallory: I voted Innocent on Carol and Niaj because each execution rested on unverifiable claims, and I said so at the time, not to protect anyone. Erin's archive miscount, her false 'Medics must act nightly' claim, and her private audit request to Heidi are the checkable problems. Judy's Medic claim is also unverifiable, though Frank's track fits her visit to Erin. Frank is dead, so ask Erin and Judy for specific, checkable details before anyone votes. Please don't hang me on count errors.
+Alice (public): Mallory’s votes on Carol look bad in hindsight, but they aren’t a contradiction; she explained her skepticism at the time. Heidi’s audit found zero tokens, which doesn’t identify Mallory’s role or alignment. I still haven’t heard a concrete lie or mechanical inconsistency from her—just a case built from votes that turned out badly. I’m voting Innocent.
+Erin (public): Erin: I'm voting Guilty on Mallory. Her Innocent votes on Carol and Niaj both spared confirmed Yakuza, and she keeps deflecting onto Judy and me instead of answering directly. That's not proof, but it's the strongest alignment read left.
+Grace (public): Grace: I'm voting Guilty on Mallory. Resolved: Judy sent no private messages today. Mallory privately asked me twice not to hang her, while voting Innocent on both confirmed Yakuza, Carol and Niaj. If Erin's N2 sample is genuine, Grunt and Pharmacist are among Alice, Judy and Mallory, and Judy's Medic claim fits Frank's track. Alice, why did you push Judy and Niaj?
+Judy (public): Mallory’s Innocent votes on both confirmed Yakuza, Carol and Niaj, are my strongest alignment evidence today. They aren’t proof, but her explanation doesn’t change the pattern. I’m leaning Guilty; don’t treat the case as mechanically certain.
+Trial votes on Mallory: Guilty - Erin, Grace, Judy; Innocent - Alice, Mallory.
+Mallory is executed by hanging (3 Guilty of 5 votes).
+Mallory died (executed by hanging). Their role was Pharmacist. Last will: "Mallory (Pharmacist, Yakuza). I role-blocked Frank on N1 and Heidi on N2 and N3, and Judy on N4 and N5. I held the Katana on N3 and killed Bob (Vulture). Alice is our Grunt; Niaj was our Mortician. Village: judge Judy's and Erin's claims on checkable evidence, not on repetition. Trust no single unverified role claim."
+
+===== NIGHT 6 =====
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Erin
+  Erin (Archivist): no action
+  Grace (Eavesdropper): target Alice; "Eavesdropping on Alice for the following Day."
+  Judy (Medic): target Erin; "Protect Erin with Standard Defense."
+Katana: Alice holds it and attacks Erin.
+(to Alice) Moderator (private): Night 6 result: You held the Katana and attacked Erin. Your attack did not succeed; Erin survived.
+(to Erin) Moderator (private): Night 6: You were attacked with the Katana tonight, but you survived.
+(to Grace) Moderator (private): Night 6: You are eavesdropping on Alice. Throughout Day 7 you will read the contents of every private message Alice sends or receives.
+[Moderator summary] Night 6: Alice (Grunt, sole Yakuza, Katana holder) attacked Erin with Standard Katana; Judy (Medic) protected Erin with free Standard Defense, so attack failed (Standard does not beat Standard). Grace eavesdrops on Alice for Day 7. Erin had no action (0 archive tokens). No deaths, no tokens spent. Alice told attack failed; Erin told she was attacked by Katana and survived; Judy given no feedback per R17. 4 alive: Alice, Erin, Grace, Judy.
+
+===== DAY 7 =====
+(to Grace) You are eavesdropping on Alice today: you'll read every private message they send or receive.
+[Night check] Night 6: correct
+Speaking order today goes around the circle in seat order, starting with Judy.
+Judy (public): Mallory flipped Pharmacist and named Alice as the Grunt in her will. That's the strongest direct evidence; we need to trial Alice today.
+Judy nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Judy, Erin, Grace; No - Alice.
+Alice is put on trial (3 Yes).
+Alice (public): I won’t pretend Mallory naming me isn’t serious. But check the whole record: I voted Guilty on Carol and Niaj, both confirmed Yakuza. I voted Innocent on Mallory because I thought the case against her was built on votes and uncertain claims; that was a bad read, not proof I knew her alignment. Erin and Judy are asking you to treat Mallory’s accusation as decisive, while Grace has given no checkable result against me. Judge my actual votes and the evidence, not just a teammate’s final accusation. I’m voting Innocent.
+Erin (public): Erin: I'm voting Guilty on Alice. Mallory's will names Alice as our Grunt, and my N2 sample included a Grunt. Alice pushed trials on Judy and me while defending confirmed Yakuza votes. Judy and Grace, please vote on the record.
+Grace (public): Grace: Guilty on Alice. Mallory's will names Alice as Grunt, which fits Erin's archive sample. Alice voted Innocent on Mallory and Guilty on Carol and Niaj, all confirmed Yakuza, then pushed trials on Judy and Niaj. My eavesdrop on Alice shows no private messages from her so far today.
+Judy (public): Mallory’s will is direct evidence from a confirmed Yakuza naming Alice as her teammate. It could be a frame, but we have no stronger lead, and the Katana threat continued after Mallory died. Alice’s guilty votes on Carol and Niaj don’t erase that evidence. I’m voting Guilty.
+Trial votes on Alice: Guilty - Erin, Grace, Judy; Innocent - Alice.
+Alice is executed by hanging (3 Guilty of 4 votes).
+Alice died (executed by hanging). Their role was Grunt. Last will: 'Alice — Day 7 update: My strongest concern is Erin. Her archive sample may be genuine, but it names no one; she repeatedly treated uncertain claims as strong evidence, including saying a Medic must act nightly, and pushed trials on that basis. She also privately asked Heidi to audit Niaj. Those points do not prove Erin is Yakuza, but they deserve scrutiny before treating her reads as confirmed. Judy’s tracked N3 visit confirms a visit, not a protection; her Medic claim remains plausible, not proven. Grace’s Eavesdropper claim has produced only uncheckable empty results. Reassess each player from the full record, not repeated accusations.'
+The game is over. Winners: Dave (dead), Erin, Frank (dead), Grace, Heidi (dead), Ivan (dead), Judy. Dead players still win with their side.
+
+===== GAME OVER =====
+Winners: Dave, Erin, Frank, Grace, Heidi, Ivan, Judy
+Cost by player (USD):
+  Alice (Grunt)           $0.1870   75 calls  gpt-6-luna
+  Bob (Vulture)           $0.0738   25 calls  claude-haiku-5.5
+  Carol (Ballot Stuffer)  $0.0497   29 calls  gpt-6-luna
+  Dave (Surveyor)         $0.0368   23 calls  gpt-6-luna
+  Erin (Archivist)        $0.3046   69 calls  claude-haiku-5.5
+  Frank (Tracker)         $0.1561   43 calls  claude-haiku-5.5
+  Grace (Eavesdropper)    $0.3030   69 calls  claude-haiku-5.5
+  Heidi (Accountant)      $0.1275   57 calls  gpt-6-luna
+  Ivan (Oracle)           $0.0639   22 calls  claude-haiku-5.5
+  Judy (Medic)            $0.1540   64 calls  gpt-6-luna
+  Mallory (Pharmacist)    $0.3087   71 calls  claude-haiku-5.5
+  Niaj (Mortician)        $0.1367   62 calls  gpt-6-luna
+  Moderator               $1.5593   16 calls  claude-opus-5.5
+  Night checks            $0.5827    6 calls  claude-opus-5.5
+  Strategy review         $0.3033    1 calls  claude-opus-5.5
+  Log review              $0.2870    1 calls  claude-opus-5.5
+  Total                   $4.6342  633 calls
