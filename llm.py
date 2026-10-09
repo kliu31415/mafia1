@@ -281,6 +281,24 @@ def flat_messages(messages: list[dict]) -> list[dict]:
     return [{**m, "content": text_of(m["content"])} if "content" in m else m for m in messages]
 
 
+# Structured outputs (strict JSON schemas) stay on for every call, by choice (2026-10-09): the schema is the
+# model's only description of an answer's format (prompts don't repeat it), and it limits fields such as a
+# vote, a target or a role guess to valid names, so near-misses ("Alice (dead)", "Medic?") don't cost a
+# retry, which in sequential speaking turns delays the whole game. schema_errors + one retry still check
+# every answer, so a provider without strict mode could fall back to a schema described in the prompt.
+# Providers that haven't played nice with strict schemas, found in live games and test calls:
+# - Azure (an OpenRouter route for Claude) refused any schema with a "thoughts" field as distillation and
+#   the player silently did nothing (game_20261009_004910_895267). Fixed by PROVIDERS pinning Anthropic.
+# - Gemini answers HTTP 400 "invalid argument" (no reason given) to anyOf [enum, null] once the enum has
+#   more than ~20 values; every night action failed (game_20261009_084630_739772). flat_nullable_enums.
+# - Claude rejects that flat form ({"type": ["string", "null"], "enum": [..., null]}), so only Gemini gets it;
+#   Grok, Qwen, Kimi, GLM and OpenAI accept both.
+# - Z.AI's own GLM endpoint doesn't support structured outputs at all; GLM goes through Together.
+# - Not a schema problem but looks like one: a model that reasons past max_tokens returns an empty or
+#   cut-off answer (Qwen 3.8 Max and nearly Gemini Flash at high effort; see MODEL_EFFORT).
+# Gemini's limit was found by testing (5-20 values fine, 30+ rejected); its error text never says why.
+
+
 def flat_nullable_enums(schema: Any) -> Any:
     """Gemini rejects (HTTP 400) a nullable enum written as anyOf [enum, null] once the enum has more than
     about 20 values (e.g. guessed_role, a role name), but takes {"type": ["string", "null"], "enum": [..., null]}.

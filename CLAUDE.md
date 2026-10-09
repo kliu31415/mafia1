@@ -113,6 +113,9 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
 - Reasoning effort: each model has a default (`MODEL_EFFORT` in `llm.py`: high, except Qwen and Gemini Flash at medium,
   since at high they run near or past the token cap); measured cost and time per turn at medium vs high are in the comment there.
   `model:effort` or `--effort` override it.
+- Player and moderator answers use strict JSON schemas (structured outputs). Some providers reject schema shapes
+  others accept; known cases and workarounds are in the comment above `flat_nullable_enums` in `llm.py`. When a
+  new model or a new schema field fails with HTTP 400 or empty answers, check there first.
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`; GLM uses Together,
   since Z.AI's endpoint lacks structured outputs); add one there for a new maker.
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in
