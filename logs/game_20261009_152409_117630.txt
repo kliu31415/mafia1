@@ -1,0 +1,191 @@
+Setup:
+  Alice    seat 1  Party Animal      openai/gpt-6.1-sol
+  Bob      seat 2  Diviner           openai/gpt-6.1-sol
+  Carol    seat 3  Trapper           openai/gpt-6.1-sol
+  Dave     seat 4  Archivist         openai/gpt-6.1-sol
+  Erin     seat 5  Tracker           openai/gpt-6.1-sol
+  Frank    seat 6  Executioner       openai/gpt-6.1-sol  {'target': 'Grace'}
+  Grace    seat 7  Ex-Con            openai/gpt-6.1-sol
+  Heidi    seat 8  Wiretap           openai/gpt-6.1-sol
+  Ivan     seat 9  Fortune Teller    openai/gpt-6.1-sol
+  Judy     seat 10 Serial Killer     openai/gpt-6.1-sol
+  Mallory  seat 11 Accountant        openai/gpt-6.1-sol
+  Niaj     seat 12 Medic             openai/gpt-6.1-sol
+  Olivia   seat 13 Sheriff           openai/gpt-6.1-sol
+  Peggy    seat 14 Clerk             openai/gpt-6.1-sol
+  Rupert   seat 15 Pharmacist        openai/gpt-6.1-sol
+  Katana starts with Heidi
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Olivia.
+15 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Olivia (public): Let's hear everyone before rushing a nomination. I don't want a forced mass role claim on Day 1; exact roles can feed a Ritualist. If you want someone tried, give a concrete reason and let them respond before nominating. Please keep accurate wills.
+Peggy (public): Let's keep accusations specific: quote the statement or vote you're questioning rather than just calling someone evasive. I'm willing to vote on a real case today, but an early nomination with no stated reason won't get my support.
+Rupert (public): Declining a role claim and dodging a concrete question are different things. The former is reasonable today; the latter deserves follow-up. If you suspect someone, ask the question before starting a vote.
+Alice (public): I’m not voting to hang someone just for withholding a role. What would make you support a Day 1 execution before we have night results? My threshold is a concrete contradiction or sustained evasion of a specific accusation—not mere quietness or an unpopular opinion. Stating that threshold now gives us something to compare against later votes.
+Bob (public): I'm not clearing anyone for agreeing with these opening standards; they're easy positions for either faction to take. I'd support an execution on a concrete inconsistency that survives clarification, not on a withheld role. Once there's a specific case, let's assess it independently rather than echo its nominator.
+Carol (public): I'd support a Day 1 execution only on a specific case that survives the accused's explanation—not awkward wording or withholding a role. Nobody has supplied that yet. If your read changes, identify the statement or behavior that changed it; we can then compare reasons with votes. Agreement with these opening standards isn't evidence of innocence.
+Dave (public): Nothing so far justifies a hanging, though a concrete case could change my mind. Tomorrow, distinguish results from conclusions: 'Not Evil' is not a Village clear, and a claimed result isn't independently verified merely because several people repeat it. Preserve exact results in your wills.
+Erin (public): We have standards, not a case. For the remaining speakers: has any particular opening actually raised your suspicion? Quote it if so; “no read yet” is better than inventing one. Agreement alone clears nobody.
+Frank (public): No specific suspicion yet. I'd distinguish a reasonable nomination from a justified execution: a trial can test a concrete concern without committing us to hang. For the remaining speakers, what unanswered question would you actually pursue rather than repeating the opening consensus?
+[Claim] Grace: Ex-Con (Village). Appear Evil to alignment checks; automatically visit a random other player nightly without learning whom. No investigative ability.
+Grace (public): I’m claiming Ex-Con before any night results: Village, but I appear Evil to alignment checks and automatically visit a random other player without learning whom. This is a liability disclosure, not a call for mass claims or a request to be cleared. An Evil result or unexplained visit from me needs context; independent evidence still matters. No concrete suspicion yet.
+Heidi (public): Grace's disclosure is context, not confirmation. Investigators should preserve raw results rather than just “matches the claim,” especially actual visit targets. I don't have a concrete suspect yet, and I won't support a hanging merely because someone has an inconvenient claim.
+[Claim] Ivan: /
+Ivan (public): No specific suspect yet. Grace's claimed random visit is not an alibi for visiting any particular target, including someone killed that night. Without a concrete case, I favor proceeding to Night 1.
+Judy (public): No concrete suspect yet. I favor reaching Night 1 rather than manufacturing a case. Tomorrow, report role-blocks alongside relevant results; a missing action can otherwise be mistaken for a contradiction.
+Niaj (public): No concrete suspect yet. I favor moving to night rather than using an unsupported trial to force claims.
+[Claim] Alice: /
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Heidi, Peggy, Rupert) Bob (Yakuza chat): Proposal: Rupert holds the Katana and attacks Olivia. His role-block immunity should also keep the Katana action safe from blocking; the tradeoff is two visible destinations if he also blocks. Olivia is a reasonable coordination-kill, although nobody has given us a strong role tell.
+
+Rupert could block Dave, whose emphasis on investigative results makes him a reasonable information-denial target. I'll divine Erin: the group should be Dave/Erin/Frank, giving us information on three unknown non-Yakuza. My prepared cover is Surveyor, so I can truthfully report the group and role while pretending to spend one of two survey tokens.
+
+I lean toward Peggy saving the rig tonight. We have no established case to steer tomorrow's first nomination, and a rig could backfire if an investigator catches one of us. Once we have a plausible town target, it becomes much safer.
+
+Heidi, any preference on the kill or holder? Everyone please confirm a common holder and target before submitting votes.
+(to Bob, Heidi, Peggy, Rupert) Heidi (Yakuza chat): Agreed: I'll vote Rupert as holder and Olivia as the attack target. Pharmacist immunity protects his Katana action from role-blocks too. Blocking Dave is reasonable; the extra visible destination is a risk, but information denial is worth it tonight.
+
+Bob's Erin divination and Surveyor cover fit well. Peggy should save the rig until we have a defensible non-team nomination; tomorrow could otherwise open with a case against us.
+
+My prepared cover is Eavesdropper. Passing the Katana keeps a killing visit away from that cover. There were no private messages today, so I have no additional role intelligence. Tomorrow I'll collect all private traffic for us, but any public evidence I disclose must stay consistent with having eavesdropped on just one player.
+(to Bob, Heidi, Peggy, Rupert) Peggy (Yakuza chat): Agreed: I'll vote Rupert as holder and Olivia as the attack target. Save my Clerk token tonight; without a defensible nomination, the rig risks guaranteeing an execution against us instead. Rupert blocking Dave and Bob divining Erin both make sense.
+
+I'll prepare a Seer cover but won't volunteer it unnecessarily. Its passive results involve no visits, and its initial one token matches my current count. We can reassess tomorrow after the deaths, Bob's result, and Heidi's private-message intelligence. Any claimed alignment comparison needs to account for Rupert appearing Good while holding the Katana and Grace appearing Evil if her Ex-Con claim is genuine.
+
+One caution: Rupert's two destinations are a real Tracker liability. If that happens, we should evaluate the actual report before committing to a cover that cannot explain it.
+(to Bob, Heidi, Peggy, Rupert) Rupert (Yakuza chat): Confirmed: I'll vote myself as Katana holder and Olivia as the attack target, and block Dave. Save Peggy's rig tonight; Bob's Erin divination is agreed.
+
+My prepared cover is Party Animal, matching my actual block, visit, and role-block immunity. I won't volunteer it without a reason, but Dave reporting a block gives me a consistent action to claim if needed. That cover cannot explain two destinations: if a credible Tracker catches both visits, don't tie yourselves to defending an impossible explanation. We can assess the actual report before responding.
+
+Heidi's Eavesdropper cover and Bob's Surveyor cover look workable. Keep public disclosures limited to what those claimed roles could genuinely know.
+(to Bob, Heidi, Peggy, Rupert) Bob (Yakuza chat): Confirmed: I'll submit Rupert for Katana holder and Olivia for the attack. I'll divine Erin, producing the Dave/Erin/Frank group. Rupert blocks Dave; Peggy saves the rig.
+
+Let's avoid volunteering our covers tomorrow without a reason. Preserve flexibility until we see deaths and investigative reports, and don't manufacture support for one another. If Rupert is tracked to two destinations, assess the report rather than forcing a Party Animal explanation.
+
+My Surveyor cover also has an Accountant vulnerability: after one claimed survey I should have one token, but Diviner actually has zero. I'll keep the claim restrained and account for that if an audit surfaces. No further changes from me.
+(to Bob, Heidi, Peggy, Rupert) Heidi (Yakuza chat): Confirmed unchanged: Rupert holds the Katana and attacks Olivia. I have no active night action. I'll keep my Eavesdropper cover unclaimed unless needed and collect tomorrow's private-message intelligence for our next night chat. No further changes from me; ready.
+(to Bob, Heidi, Peggy, Rupert) Peggy (Yakuza chat): No changes: Rupert holds the Katana and attacks Olivia; I save my Clerk token. Ready.
+(to Bob, Heidi, Peggy, Rupert) Rupert (Yakuza chat): Unchanged: Rupert for holder, Olivia for the Katana attack, and Dave for my block. Ready; I'll submit those at the action prompt.
+Night actions:
+  Alice (Party Animal): target Grace
+  Bob (Diviner): target Erin; Katana vote: Rupert holds, attacks Olivia
+  Carol (Trapper): target Dave
+  Dave (Archivist): 1 token(s); "Consult the archive."
+  Erin (Tracker): target Mallory
+  Heidi (Wiretap): no role action; Katana vote: Rupert holds, attacks Olivia
+  Judy (Serial Killer): target Dave
+  Mallory (Accountant): target Olivia
+  Niaj (Medic): target Olivia
+  Olivia (Sheriff): target Bob
+  Peggy (Clerk): no role action; Katana vote: Rupert holds, attacks Olivia
+  Rupert (Pharmacist): target Dave; Katana vote: Rupert holds, attacks Olivia
+  Grace (None): automatic: target Peggy; "random visit"
+Katana: Rupert holds it and attacks Olivia.
+(to Bob) Moderator (private): You divined Erin; the group was Dave, Erin and Frank. The role drawn is Tracker (60% chance it is Erin's, otherwise one of the others').
+(to Alice) Moderator (private): Night 1 result: You visited Grace and role-blocked them.
+(to Grace) Moderator (private): Night 1 result: You were role-blocked.
+(to Carol) Moderator (private): Night 1 result: You placed your trap on Dave. It would be armed from the next night on.
+(to Dave) Moderator (private): Night 1 result: You were role-blocked; your archive token was not spent (1 archive token left). You were attacked by a Serial Killer and died.
+(to Erin) Moderator (private): Night 1 result: You tracked Mallory. Mallory visited Olivia.
+(to Judy) Moderator (private): Night 1 result: You attacked Dave. Your attack succeeded.
+(to Mallory) Moderator (private): Night 1 result: You audited Olivia. Olivia has 0 tokens in total.
+(to Niaj) Moderator (private): Night 1 result: You protected Olivia (Standard Defense, no token spent). You have 2 medic tokens left.
+(to Olivia) Moderator (private): Night 1 result: You investigated Bob. Result: Evil. You were also attacked with the Katana tonight, but you survived.
+(to Rupert) Moderator (private): Night 1 result: You role-blocked Dave. Your Katana attack on Olivia failed; Olivia survived. You still hold the Katana.
+(to Bob, Heidi, Peggy, Rupert) Moderator (private): Yakuza night summary (Night 1): Rupert holds the Katana and attacked Olivia with it; Rupert also used his Pharmacist role-block on Dave. Bob used his Diviner ability on Erin. Heidi and Peggy performed no actions.
+(to Ivan) Moderator (private): Fortune Teller result for Night 1 (read at the start of Day 2): your two numbers are 9 and 6.
+[Moderator summary] Night 1: Alice (Party Animal) blocked Grace (the Ex-Con's automatic visit to Peggy didn't happen). Rupert (Pharmacist, Katana holder) blocked Dave, so the archive wasn't used and the token wasn't spent. Rupert's Standard Katana attack on Olivia was stopped by Niaj's Standard protection. Judy (Serial Killer) made a Strong attack on Dave, who died (cause: Serial Killer). Carol trapped Dave (not yet armed; Dave is dead). Bob divined Erin (code result). Erin tracked Mallory and saw a visit to Olivia. Mallory audited Olivia and got 0 tokens. Olivia got Evil on Bob. Fortune Teller numbers: 6 visited, 9 visitors. Peggy did not rig. No win reached.
+
+===== DAY 2 =====
+Dave died (killed by Serial Killer). Their role was Archivist. Last will: 'Dave — Archivist (Village).\nDay 1: No investigative results yet; my archive token is unspent.\nArchive results reveal a random sample of exact roles, without player names. They establish which roles exist, not who holds them.'
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Judy.
+14 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Judy (public): I received no role-block or attack notification. The lack of a Katana death doesn't establish whether an attack was attempted or stopped. Please share actionable results and attack/block reports, keeping observations separate from conclusions; that doesn't require a mass role claim. I'll assess those reports before backing a nomination.
+Mallory (public): Dave’s death confirms a Serial Killer, who reads Not Evil to a Sheriff and has Standard Defense—enough to survive the Katana or Basic/Standard Vigilante shots. A failed attack could matter, but protection and other defenses remain possible explanations. I have no incriminating result to report; my exact result is preserved in my will.
+Niaj (public): No attack or role-block notification here. Mallory, can your result supply a useful constraint without exposing your exact role? A non-incriminating result may still help cross-check another report. I'll wait for the remaining reports before proposing a target.
+[Claim] Olivia: Sheriff. N1: investigated Bob, received Evil. Attacked with the Katana and survived; protection source unknown.
+Olivia (public): I'm Sheriff. Night 1: I investigated Bob and received Evil. Bob, please give your claim and explanation before anyone nominates you. Evil is not a confirmed Yakuza identification: framing, Ex-Con, Jester, and Executioner are alternatives. Independent evidence or relevant visit results would help assess this.
+
+I was also attacked with the Katana and survived. I received no role-block notification and don't know the protection source. This establishes a Katana attempt despite no Katana death. A protector need not expose themself just to corroborate me. Let's hear Bob and the remaining reports before a nomination.
+Peggy (public): Bob should answer with his role and exact Night 1 action/result before a nomination; merely listing possible explanations for an Evil reading won't resolve the case. I'll weigh that response against the remaining reports. Olivia's survival is consistent with protection or innate defense, so it doesn't independently verify her Sheriff claim or alignment.
+Alice (public): Grace, did you receive a role-block notification last night? Please report the exact notification if so; it affects how we interpret any visit results involving your Ex-Con claim. I received no attack notification. I'll assess Bob after he gives his claim and Night 1 account.
+[Claim] Bob: Surveyor. N1 surveyed Erin; group Dave, Erin, Frank; exact role drawn: Tracker. One survey token remains.
+Bob (public): I'm Surveyor. N1 I surveyed Erin; the reported group was Dave, Erin, Frank, and the exact role drawn was Tracker. I have one survey token left and received no attack or role-block notification. Dave's Archivist reveal leaves Erin or Frank as that Tracker; the result doesn't identify which.
+
+I'm not Ex-Con or a neutral. An accurate Evil check on me would require framing; a false claim or Roleplayer result is also possible, but I have no evidence establishing any of those explanations. I'm not accusing Olivia simply for reporting it. My visit to Erin can be cross-checked, although matching visits wouldn't prove alignment. Please hear remaining results before a nomination, and don't force Erin and Frank to expose roles solely to validate my group result.
+Carol (public): I received no attack or role-block notification. Bob’s reported group fits the circle, but even a verified visit and correct Tracker draw wouldn't establish that he's Village: a Diviner can obtain that same group and role information. That isn't evidence Bob is a Diviner; it limits what corroboration would prove. Let's hear the remaining reports before nominating. Anyone with evidence contradicting the Tracker result should flag it without exposing unrelated exact roles.
+Erin (public): Mallory, can you give your Night 1 target and the exact result you received, rather than only “no incriminating result”? If your action produced no investigative result, please state that explicitly. You can keep your exact role private for now. I'd like a committed account before further conclusions or a nomination. I received no attack or role-block notification.
+[Claim] Frank: Tracker. N1 tracked Grace: visited Bob and Olivia. No attack or role-block notification.
+Frank (public): I'm Tracker. N1 I tracked Grace; my result listed visits to Bob and Olivia. I received no attack or role-block notification. An Ex-Con makes one random visit, not two, so this contradicts Grace's claimed mechanics.
+
+Grace, please answer Alice's block question and explain that mismatch. Visiting Olivia is relevant to her reported Katana attack, but tracking doesn't reveal what either visit did. Bob's Tracker draw is consistent with my claim, not independent verification of it. I'd like Grace's response and any independent visit evidence before a nomination.
+[Claim] Grace: Ex-Con (Village). N1: role-blocked; automatic visit suppressed, so no visits. Blocker unknown.
+Grace (public): The exact notification was: “Night 1 result: You were role-blocked.” Under R9, my automatic Ex-Con visit was suppressed: I visited nobody. A blocked Katana holder also cannot attack or visit. Framing cannot alter Tracker results.
+
+Frank’s report and my account therefore cannot both be accurate. A false claim or a Roleplayer result could explain this; the contradiction alone doesn’t distinguish them. Frank, please confirm that both names were in your actual result.
+
+Alice, did you have specific evidence prompting your question about my block before Frank’s report? Please share any relevant portion without exposing unrelated information. Independent evidence concerning my block or visits would help. I want the remaining reports before a nomination.
+Heidi (public): Frank's reported visit to Bob could be relevant to Olivia's Evil result, but it isn't proof of framing. Conversely, if Grace's block is independently corroborated, that particular link disappears and Frank's reported visits become unreliable—not evidence that a blocked Grace somehow attacked. Alice, can you independently corroborate the block? Frank, please recheck that Grace was your submitted target and both names were returned. I received no attack or role-block notification. I want those answers before selecting a nomination; Bob's group result alone doesn't resolve his Evil reading.
+Ivan (public): If Frank's two-target result is genuine, Grace wasn't merely an Ex-Con with an unfortunate random destination: under these rules, two distinct visits require a Katana holder also using a visiting role ability. That would contradict both her role claim and her claimed block. But that's conditional on Frank's result being reliable.
+
+Alice, distinguish a block you attempted from evidence it succeeded; a Pharmacist is immune. Frank should confirm the exact target and returned names. I received no attack or block notification. Let's finish the outstanding reports before choosing a nomination.
+Judy (public): If Olivia's attack report and Frank's visit list are accurate, a Pharmacist explanation for Grace's block immunity would require Bob to have been blocked; he reports none. A Fabricator holding the Katana fits those two visits and could produce Bob's Evil reading. That's a conditional reconstruction, not confirmation or a clear for Bob. Alice's account matters before we choose between these competing claims.
+[Claim] Mallory: Accountant (Village). N1 audited Olivia: 0 total tokens at night's end. No attack or role-block notification.
+Mallory (public): My Night 1 target was Olivia, and my exact result was: “Olivia has 0 tokens in total.” I'm Accountant; I received no attack or role-block notification. Audits count remaining tokens after that night's spending, not role or alignment. Zero fits Sheriff but does not verify her claim, her Evil result on Bob, or her reported Katana attack; Roleplayers also register as zero.
+
+Before nominating, I want Frank to reconfirm his submitted target and returned names, and Alice to give her relevant Night 1 account. The Grace–Frank contradiction is more specific than Bob's Evil reading alone, but we still need those answers to assess it.
+[Claim] Alice: N1: visited Grace and successfully role-blocked her; moderator explicitly confirmed both. Exact role withheld.
+Alice (public): I can corroborate Grace's block. My exact notification was: “Night 1 result: You visited Grace and role-blocked them.” That confirms a successful block, not merely an attempt. It prompted my question before Frank spoke.
+
+Under R9, Grace had no visits, including any Katana action. This doesn't verify her Ex-Con claim or alignment, but Frank's visit list cannot be accurate. It cannot connect Grace to Bob's Evil result or Olivia's attack.
+
+Frank, please reconfirm your submitted target and verbatim result. A fabricated report and a Roleplayer result remain different possibilities. Even if accurate, Bob's Tracker draw could refer to Erin rather than validate Frank. Erin, can you confirm or deny being Tracker without naming an alternative role? I'll wait for these answers before nominating.
+Bob (public): One important distinction: exact-role draws show Roleplayer as Roleplayer, not its imagined role. So if Frank is a Roleplayer, my reported Tracker must be Erin, given Dave's Archivist reveal. Erin's narrow confirmation or denial matters without requiring an alternative role claim.
+
+Alice's corroboration means Frank's visit list cannot presently establish that Grace framed me. It neither clears Grace's alignment nor resolves my Evil reading. I'll wait for Erin's answer and Frank's verbatim reconfirmation before choosing a trial.
+Carol (public): Alice asking about a block before Frank's report gives her account some credibility, but her quoted notification is still an unverified claim—not a public moderator confirmation. A genuine Tracker facing coordinated false claims remains possible.
+
+Erin's answer is a constraint, not a verdict: if she isn't Tracker, Bob's draw and Frank being a Roleplayer cannot both be true; if she is Tracker, that only permits the Roleplayer explanation. It doesn't establish it or clear Bob. I'm waiting for Frank's reconfirmation and Erin's narrow answer before nominating.
+[Claim] Erin: Tracker (Village). N1 tracked Mallory: Mallory visited Olivia. No attack or role-block notification.
+Erin (public): Yes: I am Tracker. Night 1 I tracked Mallory; my result was “Mallory visited Olivia.” No attack or role-block notification.
+
+Mallory committed to auditing Olivia before I disclosed this. The destination matches, but tracking cannot distinguish an audit from another action, including the Katana, and does not clear Mallory.
+
+My role makes Bob's Tracker draw possible, but does not verify his claimed Surveyor action or alignment; Diviner remains an alternative. It also permits—not establishes—the explanation that Frank is a Roleplayer. Multiple genuine Trackers are possible.
+
+Frank, please reconfirm your submitted target and verbatim result. Alice's block report is still a claim, not public moderator proof; we should not declare your report false solely by treating it as verified.
+Frank (public): Confirmed: I selected Grace, and my result reported Grace visiting Bob and Olivia—both names, not an inferred second visit. I am not correcting either the target or the destinations.
+
+Alice's claimed successful block directly conflicts with that. Her earlier question gives her account credibility, but isn't independent verification of its contents. Erin's claim permits a Roleplayer explanation for me; it doesn't establish one. Coordinated false block claims remain possible too, though I have no independent evidence establishing that.
+
+I won't nominate while treating either explanation as proven. Please keep this contradiction separate from Bob's Evil reading: neither currently clears Grace or Bob.
+Grace (public): If anyone independently observed whether Frank visited me N1, please report that narrow fact without unrelated names. A real, unblocked Tracker visits its target; a Roleplayer does not. Reliable evidence of a visit would exclude the Roleplayer explanation, but wouldn't clear Frank's alignment. Erin's claim makes Bob's draw compatible with Frank being a Roleplayer. I therefore won't support hanging Frank solely over his impossible result. Bob's Evil reading remains a separate unresolved case; Frank's report cannot establish that I framed him.
+(to Heidi, Olivia) Heidi -> Olivia (private): Are you leaning toward a Bob trial, or waiting for a specific cross-check? I'm keeping the Grace–Frank contradiction separate. Please don't share your intended next investigation target.
+[Claim] Ivan: Fortune Teller (Village). N1 raw unordered totals: 9 and 6, counting distinct visitors and distinct visited players. No active night action.
+Ivan (public): I'm Fortune Teller. My raw N1 numbers are 9 and 6, unordered. Under the listed visit mechanics, six visitors cannot reach nine distinct players; only the Katana holder can add a second visiting target. Thus this implies nine visitors and six visited players.
+
+The reported actions already cover six destinations: Bob, Erin, Olivia, Mallory, Grace and Dave, the Serial Killer's victim. Conditional on those destination reports being truthful, every additional visit must overlap that set. This constrains further accounts but doesn't decide Grace versus Frank: either account can fit with overlapping visits. Independent witnesses should report their actual observations, not merely whether someone's role claim seems plausible.
+Judy (public): My current trial preference is Bob, absent new independent evidence. His Surveyor account is possible, but a Diviner can produce the same group and role report, and no actual frame on Bob has been established. That makes Olivia's Evil result actionable, not an automatic Guilty vote.
+
+I would not hang Frank solely over this contradiction: Erin's claim leaves a plausible Village Roleplayer explanation, while Alice's block remains claimed evidence. Anyone with an independent observation materially affecting Bob's case should report it before a nomination. We don't need every unknown role exposed to choose a trial.
+[Claim] Mallory: /
+Mallory (public): I'm nominating Bob for a trial, not treating the Evil reading as a predetermined Guilty verdict. His role information is compatible with Diviner, and the competing accounts have not resolved whether framing occurred. During the trial, please report any independent observation that materially changes his case. Alice's block account and Frank's visit report remain conflicting claims; neither should silently become an established fact.
+Mallory nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Mallory, Niaj, Olivia, Peggy, Rupert, Alice, Carol, Erin, Frank, Grace, Ivan, Judy; No - Bob, Heidi.
+Bob is put on trial (12 Yes).
+Bob (public): Please don't count “Diviner can produce that result” as a second incriminating result. It means my corroboration cannot distinguish factions—not that my action contradicted my claim. I committed the group and Tracker draw before either Tracker claimed.
+
+Olivia's Evil check is the actual case. I'm not disputing her attack or inventing proof of framing, and I won't use Frank's disputed report to accuse Grace. But a real frame produces exactly this situation; requiring me to identify an unseen Fabricator makes a framed villager unable to defend themselves.
+
+I ask for Innocent, not a clear. If spared, I'll spend my final survey token and report the raw group/result early tomorrow. An exact-role test of Surveyor could distinguish my claim from Diviner, without anyone announcing their investigative role now. Please don't treat the absence of an identified framer as proof that no frame occurred.
+Carol (public): Bob, if spared, will you retain your final survey token rather than spend it? An unblocked Accountant audit should then return one under your Surveyor account, whereas a Diviner has zero. That is more discriminating than another group draw. It wouldn't exclude every alternative role, and a claimed audit would still require scrutiny—not automatically clear you. Olivia's Evil result remains evidence, but the Diviner-compatible survey is a limitation on your corroboration, not a second independent incriminating result.
+Erin (public): Bob, I support retaining your final token rather than making another survey. If you take no action, a genuine Surveyor should make no visit; an independently observed visit would need explaining, while no visit would not clear you.
+
+My track corroborates Mallory's destination, not her Accountant role, so a future audit would remain claimed evidence—not automatic verification. I'm provisionally leaning Innocent to pursue those checks. Your early, correct Tracker draw is meaningful, though compatible with Diviner. Olivia's Evil result remains unresolved; neither the disputed framing account nor a promise of testing clears you.
+Frank (public): Absent new independent evidence, I lean Innocent and support retaining the token. An audit can distinguish Bob's stated Surveyor account from the Diviner alternative, though one token wouldn't establish his exact role or alignment.
+
+My disputed result should not establish that Grace framed Bob; equally, rejecting that result doesn't eliminate framing by someone else. Bob, please explicitly commit before the vote to keeping your token and taking no action tonight, so tomorrow's reports can test a fixed account rather than another compatible group draw.

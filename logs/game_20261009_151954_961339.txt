@@ -1,0 +1,27 @@
+Setup:
+  Alice    seat 1  Sheriff           openai/gpt-6.1-sol
+  Bob      seat 2  Accountant        openai/gpt-6.1-sol
+  Carol    seat 3  Pharmacist        openai/gpt-6.1-sol
+  Dave     seat 4  Medic             openai/gpt-6.1-sol
+  Erin     seat 5  Party Animal      openai/gpt-6.1-sol
+  Frank    seat 6  Serial Killer     openai/gpt-6.1-sol
+  Grace    seat 7  Archivist         openai/gpt-6.1-sol
+  Heidi    seat 8  Trapper           openai/gpt-6.1-sol
+  Ivan     seat 9  Ex-Con            openai/gpt-6.1-sol
+  Judy     seat 10 Executioner       openai/gpt-6.1-sol  {'target': 'Dave'}
+  Mallory  seat 11 Clerk             openai/gpt-6.1-sol
+  Niaj     seat 12 Tracker           openai/gpt-6.1-sol
+  Olivia   seat 13 Fortune Teller    openai/gpt-6.1-sol
+  Peggy    seat 14 Wiretap           openai/gpt-6.1-sol
+  Rupert   seat 15 Diviner           openai/gpt-6.1-sol
+  Katana starts with Rupert
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+15 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Frank (public): Let's hear everyone before nominating; no need for full claims.
+[Claim] Ivan: Ex-Con (Village). Alignment checks read Evil. Every night I automatically visit a random other player; I neither choose nor learn whom.
+Ivan (public): Claiming early: an Evil check or random visit won't establish guilt.
+Mallory (public): Ivan's claim isn't confirmation. Let's hear everyone before picking a target.
+Olivia (public): Avoid unnecessary exact-role claims; potential Ritualists can exploit them.
+[ERROR crash] the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1-run/logs/game_20261009_151954_961339.ckpt

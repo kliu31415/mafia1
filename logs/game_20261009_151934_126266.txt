@@ -1,0 +1,31 @@
+Setup:
+  Alice    seat 1  Ritualist         anthropic/claude-opus-5.5
+  Bob      seat 2  Roleplayer        anthropic/claude-opus-5.5  {'fake_role': 'Fortune Teller'}
+  Carol    seat 3  Seer              anthropic/claude-opus-5.5
+  Dave     seat 4  Eavesdropper      anthropic/claude-opus-5.5
+  Erin     seat 5  Tracker           anthropic/claude-opus-5.5
+  Frank    seat 6  Vigilante         anthropic/claude-opus-5.5
+  Grace    seat 7  Fabricator        anthropic/claude-opus-5.5
+  Heidi    seat 8  Archivist         anthropic/claude-opus-5.5
+  Ivan     seat 9  Prosecutor        anthropic/claude-opus-5.5
+  Judy     seat 10 Ballot Stuffer    anthropic/claude-opus-5.5
+  Mallory  seat 11 Surveyor          anthropic/claude-opus-5.5
+  Niaj     seat 12 Executioner       anthropic/claude-opus-5.5  {'target': 'Frank'}
+  Olivia   seat 13 Wiretap           anthropic/claude-opus-5.5
+  Katana starts with Judy
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Judy.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Judy (public): Morning all. Investigators, please share results early so we can coordinate.
+Alice (public): Morning. Agree, claims early help. Watching votes closely today.
+Bob (public): Morning. Nothing to report on Day 1; I'll share info from tomorrow.
+Frank (public): Morning. No info yet; watching nominations and voting patterns closely.
+Grace (public): Morning. Nothing to report yet; watching who pushes nominations.
+Mallory (public): Morning. No info yet. Let's avoid a random Day 1 hanging; vote patterns will tell us more tomorrow.
+Niaj (public): Morning. No info yet. Agree, no random Day 1 hang. Noting that Frank and Grace both gave the same generic 'watching votes' line; I'll compare tomorrow.
+Olivia (public): Morning. No info yet. Niaj, generic Day 1 openers fit nearly everyone here; I'd watch votes instead.
+Carol (public): Morning. Nothing to share yet. Agree no random Day 1 hang; I'll watch votes and claims.
+Dave (public): Morning. No info yet. Agree no Day 1 hang. Watching who sends private messages today.
+Erin (public): Morning. No info yet. Agree no Day 1 hang; I'll be watching who pushes hard.
+[ERROR crash] the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1-run/logs/game_20261009_151934_126266.ckpt
