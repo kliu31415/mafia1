@@ -265,6 +265,13 @@ Party Animal
   Immune to role-blocks.
   Night: may visit one player, role-blocking them.
 
+Philanthropist
+  Tokens: 2 philanthropy tokens.
+  Night: may spend a token to hand another player one token of their own role's kind (e.g. a medic token to a
+  Medic; one kind chosen at random if their role has several). They are told a Philanthropist handed them a token.
+  If their role has no tokens, they are told they threw it away because they have no use for it, so it doesn't
+  count toward their tokens (e.g. for the Accountant). You are not told which happened.
+
 Outsiders (Village, but the role can hurt the Village)
 
 Roleplayer

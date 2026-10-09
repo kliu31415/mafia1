@@ -54,6 +54,9 @@ ROLES: dict[str, RoleInfo] = {
                         notes="moderator resolves the alert; night note lists its effects"),
     "Prosecutor": RoleInfo(Alignment.GOOD, "Misc", False, tokens={"prosecutor": 2}, acts_at_night=True,
                            tested=True, notes="moderator records the prosecution; code runs the trial next day"),
+    "Philanthropist": RoleInfo(Alignment.GOOD, "Misc", False, tokens={"philanthropy": 2}, acts_at_night=True,
+                               notes="moderator records the gift with the give_token op; code adds the token and "
+                               "tells the recipient"),
     "Party Animal": RoleInfo(Alignment.GOOD, "Misc", False, acts_at_night=True),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False, acts_at_night=True,
                            notes="code assigns the fake role (with its tokens and night prompts); "
@@ -115,6 +118,6 @@ def role_status_table() -> str:
 
 # Role files register their hooks when imported.
 from roles import (accountant, archivist, arsonist, ballot_stuffer, cardinal, clerk, eavesdropper, ex_con, executioner, fortune_teller, jester,  # noqa: E402, F401
-                   medic, prosecutor, puppeteer, roleplayer, seer, surveyor, trapper, veteran, vulture, wiretap)
+                   medic, philanthropist, prosecutor, puppeteer, roleplayer, seer, surveyor, trapper, veteran, vulture, wiretap)
 
 assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"

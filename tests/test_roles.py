@@ -239,6 +239,21 @@ def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
     assert survey_group(game, "Alice", "Bob") == ["Bob"]
 
 
+def test_philanthropist_hands_a_token_of_the_recipients_kind(game_factory):
+    game, players = game_factory(["Philanthropist", "Medic", "Vanilla Villager", "Grunt"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.phase = "night"
+    mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Bob", "by": "Alice"},
+                                               {"op": "give_token", "player": "Carol", "by": "Alice"}]})
+    assert game.player("Bob").tokens == {"medic": 3} and game.player("Carol").tokens == {}
+    assert game.player("Alice").tokens["philanthropy"] == 0
+    results = [e for e in game.events if e.cat == "result"]
+    assert [sorted(e.visible_to) for e in results] == [["Bob"], ["Carol"]]  # the Philanthropist learns nothing
+    assert "threw it away" in results[1].text
+    with pytest.raises(ValueError, match="no philanthropy token"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Bob", "by": "Alice"}]})
+
+
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     game, _ = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager"])
     assert game.katana_holder == "Alice"
