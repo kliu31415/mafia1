@@ -1,6 +1,6 @@
 """The day phase: nominations, trials, speaking budget and when the day ends."""
 
-from day import MAX_TRIALS_PER_DAY, TRIAL_BUDGET, message_cost, run_day, run_nomination, run_trial
+from day import MAX_TRIALS_PER_DAY, TRIAL_BUDGET, chat_turn, message_cost, run_day, run_nomination, run_trial
 from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, votes
 
 
@@ -236,3 +236,18 @@ def test_the_accused_speaks_first_and_last(game_factory):
     run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
     speakers = [e.fields["speaker"] for e in game.events if e.cat == "chat"]
     assert speakers[0] == speakers[-1] == "Bob" and speakers.count("Bob") == 2 and len(speakers) == 6
+
+
+def test_a_new_claim_shows_in_everyones_history_and_a_name_prefix_is_dropped(game_factory):
+    def decide(name, task, schema):
+        if "public_message" in schema["properties"] and name == "Alice":
+            return {"public_message": "Alice: I'm the Sheriff.", "claim": "Sheriff. N1: Bob Not Evil"}
+        return None
+    game, players = game_factory(VILLAGE5, ScriptedClient(decide))
+    game.player("Alice").speaking_budget = 8.0
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)  # the same claim isn't repeated
+    claims = [e for e in game.events if e.cat == "claim"]
+    assert len(claims) == 1 and claims[0].text == "[Claim] Alice: Sheriff. N1: Bob Not Evil"
+    assert "[Claim] Alice" in game.history_for("Bob")
+    assert [e.fields["message"] for e in game.events if e.cat == "chat"][0] == "I'm the Sheriff."

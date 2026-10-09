@@ -50,7 +50,8 @@ from records import read_records, safe_print
 # 23: player answers have no "thoughts" field (any model): written-out reasoning looks like distillation to
 #     Anthropic's filter, which blocked Opus calls in game_20261009_084630_739772; see "reasoning" instead
 # 24: player_call outputs have "reason", a sentence or a few on why the player chose that answer (players.REASON_NOTE)
-LOG_VERSION = 24
+# 25: claims are "event" records with cat "claim" (fields speaker, claim), shown in players' history, instead of "claim" records
+LOG_VERSION = 25
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

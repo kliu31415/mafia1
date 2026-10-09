@@ -124,12 +124,12 @@ CSS = """
   --bg:#ffffff; --fg:#1d1d1f; --muted:#6e6e73; --line:#e5e5ea; --call:#f5f5f7; --code:#fafafa;
   --village:#1a7f37; --yakuza:#c62828; --neutral:#b45309;
   /* event colors avoid the faction hues (green, red, amber) */
-  --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#a21caf; --c-nom:#2563eb; --c-vote:#0891b2;
+  --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#a21caf; --c-nom:#2563eb; --c-vote:#0891b2; --c-claim:#4f46e5;
   --c-death:#9f1239; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; --c-error:#dc2626; }
 @media (prefers-color-scheme: dark) { :root {
   --bg:#141416; --fg:#ececf0; --muted:#9a9aa2; --line:#2c2c30; --call:#1e1e22; --code:#1a1a1d;
   --village:#4ade80; --yakuza:#f87171; --neutral:#fbbf24;
-  --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#e879f9; --c-nom:#60a5fa; --c-vote:#22d3ee;
+  --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#e879f9; --c-nom:#60a5fa; --c-vote:#22d3ee; --c-claim:#818cf8;
   --c-death:#fb7185; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; --c-error:#f87171; } }
 * { box-sizing:border-box; }
 body { background:var(--bg); color:var(--fg); font:14px/1.55 system-ui, sans-serif; margin:0 auto;
@@ -150,7 +150,7 @@ details.phase.night > summary { color:var(--c-hidden); }
 .badge { display:inline-block; font-size:11px; font-weight:600; line-height:1; padding:3px 6px; margin-right:6px;
          border-radius:4px; color:var(--c); border:1px solid var(--c); vertical-align:1px; white-space:nowrap; }
 .chat { --c:var(--c-chat); } .pm { --c:var(--c-pm); } .yak { --c:var(--c-yak); } .nom { --c:var(--c-nom); }
-.vote { --c:var(--c-vote); } .death { --c:var(--c-death); } .result { --c:var(--c-result); }
+.vote { --c:var(--c-vote); } .death { --c:var(--c-death); } .claim { --c:var(--c-claim); } .result { --c:var(--c-result); }
 .hidden { --c:var(--c-hidden); } .system { --c:var(--c-system); } .error { --c:var(--c-error); }
 .ev.error { color:var(--c-error); }
 .errors { border:2px solid var(--c-error); border-radius:6px; padding:6px 12px; margin:8px 0; }
@@ -194,7 +194,7 @@ document.getElementById('collapse').addEventListener('click', () =>
 """
 
 CATEGORY_LABELS = {"chat": "Chat", "pm": "PM", "yak": "Yakuza chat", "nom": "Nomination", "vote": "Vote",
-                   "death": "Death", "result": "Result", "hidden": "Hidden info", "system": "System"}
+                   "death": "Death", "claim": "Claim", "result": "Result", "hidden": "Hidden info", "system": "System"}
 
 
 def esc(x: Any) -> str:
@@ -326,6 +326,8 @@ def classify(r: dict) -> tuple[str, str, str]:
             return "yak", "Yakuza chat", f"{r['speaker']}: {r['message']}"
         case "result":
             return "result", f"Result → {', '.join(vis)}", r["message"]
+        case "claim":
+            return "claim", "Claim", f"{r['speaker']}: {r['claim']}"
         case "announcement":
             return "result", "Announcement", r["message"]
         case "death" | "nom" | "vote":

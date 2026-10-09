@@ -1,11 +1,12 @@
 """The day phase: speaking budget, chat turns, nominations and simultaneous votes."""
 
 import json
+import re
 from typing import Any
 
 from players import (LAST_WILL_SCHEMA, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
                      truncate_words, word_count)
-from events import CHAT, DEATH, NOMINATION, PHASE, PM, VOTE
+from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import logic
 from state import Game, Player, majority
 
@@ -165,6 +166,15 @@ def run_day(game: Game, players: Players) -> None:
     game.emit("Discussion time is over. The day ends.")
 
 
+def drop_own_name(out: dict, name: str) -> dict:
+    """Strips a leading "Name:" from the public message: the transcript already names the speaker, and
+    Haiku kept writing it despite the prompt (game_20261009_084630_739772)."""
+    msg = out.get("public_message")
+    if isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
+        out = {**out, "public_message": msg[m.end():]}
+    return out
+
+
 def planned_messages(out: dict) -> list[tuple[str | None, str]]:
     """(recipient or None for public, text), public message first."""
     msgs: list[tuple[str | None, str]] = []
@@ -215,7 +225,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             "no need to start a message with your own name. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
             "so late messages are only worth it if important. The day ends after a full round where "
-            "nobody sends a public message.\n" + price_table(rnd, trial) + "\n"
+            "nobody sends a public message, so a message that only repeats what you already said keeps "
+            "the day going for everyone: if you have nothing new, send nothing.\n" + price_table(rnd, trial) + "\n"
             + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
                f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
                "lost when this turn ends, but don't speak just to use it up: say nothing if you have "
@@ -226,8 +237,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "today. It's shown to everyone if you die.\n" if writer is p else "")
             + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
                f"{CLAIM_WORDS} words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: "
-               "Bob Not Evil'. The public ledger lists every player's latest claim and any earlier ones they "
-               "changed from, as unverified claims.\n")
+               "Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, "
+               "and the public ledger lists every player's latest claim and any earlier ones they changed from, "
+               "as unverified claims.\n")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
                f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
                if can_nominate else "")
@@ -236,12 +248,14 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
         out = players.ask(p, task, schema, fallback)
+        out = drop_own_name(out, p.name)
     else:
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
         schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
         out = players.ask(writer, task, schema, fallback)
+        out = drop_own_name(out, p.name)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
                              "can't chat, but you may nominate a player for trial (or null). Nominating costs "
@@ -261,6 +275,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
         out = players.ask(writer, task + warning, schema, out)
+        out = drop_own_name(out, p.name)
         if writer is not p:
             out["nominate"] = nominee
 
@@ -269,8 +284,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if isinstance(claim := out.get("claim"), str) and claim.strip():  # a Puppeteer may set the puppet's
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
-        if not claims or claims[-1][1] != claim:  # logged so transcripts (and the log review) show claims
-            game.log.write("claim", day=game.day, player=p.name, claim=claim)
+        if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
+            game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim)
         if claims and claims[-1][0] == game.day:
             claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
         elif not claims or claims[-1][1] != claim:

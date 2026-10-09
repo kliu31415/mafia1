@@ -260,7 +260,9 @@ Veteran
   Tokens: 3 alert tokens.
   Night: may spend a token to go on alert (not a visit, R6). While on alert you have Standard Defense, you can't be
   role-blocked, and you deal a Strong Attack to every player who visits you that night, whatever their faction
-  (a role-blocker who visits you is attacked too). Astral Visits aren't visits, so they aren't attacked.
+  (a role-blocker who visits you is attacked too), however many there are. Astral Visits aren't visits, so they
+  aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how many, and whether
+  your attack on each of them succeeded, but nothing about who they were.
 
 Misc
 
