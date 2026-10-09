@@ -6,7 +6,7 @@ import re
 import time
 from typing import Any
 
-from llm import LLMClient, LLMReply, Model, clean_json
+from llm import LLMClient, LLMReply, Model, cache_block, clean_json, rules_system
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT, RESULT
 from roles import Alignment, RoleLogic, Status, logic
@@ -95,7 +95,7 @@ class Moderator:
         arguments and result, in order (for the night check)."""
         transcript: list[dict] = []
         messages = [
-            {"role": "system", "content": f"{self.rules}\n\n---\n\nYou are the omniscient moderator of "
+            rules_system(self.rules, "You are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
              "by calling tools. Be exact about the rules. Never reveal hidden information except "
              "as the rules allow. A private result contains only what the rules say its recipient "
@@ -103,10 +103,11 @@ class Moderator:
              "mention the Katana, framing or defenses to an investigator), and never name an attacker "
              "or reveal roles beyond what the rules allow."
              + (" If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and "
-                "then continue with your best interpretation." if FLAG_TOOL in self.tools else "")},
-            {"role": "user", "content": f"{instructions}\n\nCurrent full state (call get_state to "
+                "then continue with your best interpretation." if FLAG_TOOL in self.tools else "")),
+            # Cached so the phase's later steps, which resend it, read it from the cache.
+            {"role": "user", "content": [cache_block(f"{instructions}\n\nCurrent full state (call get_state to "
              f"refresh after changes):\n{json.dumps(self.game.full_state())}\n\nPublic history so far:\n"
-             f"{self.game.history_for('__moderator_public__')}"},
+             f"{self.game.history_for('__moderator_public__')}")]},
         ]
         for _ in range(MAX_MODERATOR_STEPS):
             reply = self.chat(messages)

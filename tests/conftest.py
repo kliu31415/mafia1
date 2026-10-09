@@ -8,7 +8,7 @@ from collections.abc import Callable, Collection
 import pytest
 
 from gamelog import GameLog
-from llm import LLMReply, Model
+from llm import LLMReply, Model, flat_messages
 from players import Players
 from roles import ROLES, Alignment
 from state import Game, setup_game
@@ -51,6 +51,7 @@ class ScriptedClient:
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
              schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
+        messages = flat_messages(messages)
         if tools:
             self.efforts.append(("moderator", effort))
             name, args = self.moderator_calls.pop(0) if self.moderator_calls else ("end_phase", {"summary": ""})

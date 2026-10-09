@@ -8,7 +8,7 @@ import pytest
 import mafia
 import tips
 from tests.conftest import TOWN4_GRUNT, ScriptedClient
-from llm import LLMReply, Model, ModelSpec
+from llm import LLMReply, Model, ModelSpec, text_of
 from players import player_messages
 
 TIPS = """# Notes for whoever edits this
@@ -40,8 +40,8 @@ def test_players_see_every_section_but_not_the_preamble():
 def test_tips_go_into_the_system_prompt_of_players_who_have_them(game_factory):
     game, players = game_factory(TOWN4_GRUNT)
     game.player("Alice").tips = TIPS
-    alice = player_messages(game, game.player("Alice"), "(rules)", "task")[0]["content"]
-    bob = player_messages(game, game.player("Bob"), "(rules)", "task")[0]["content"]
+    alice = text_of(player_messages(game, game.player("Alice"), "(rules)", "task")[0]["content"])
+    bob = text_of(player_messages(game, game.player("Bob"), "(rules)", "task")[0]["content"])
     assert "Tips from past games" in alice and "Trust Sheriff" in alice and "Claim Medic" in alice
     assert "Tips from past games" not in bob
 

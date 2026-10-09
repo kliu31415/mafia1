@@ -207,6 +207,37 @@ class LLMClient(Protocol):
         ...
 
 
+# Makers whose models cache only prompt prefixes ending at a cache_block (checked 2026-10-09: without
+# one, Claude wrote the cache on every call and never read it, and Gemini didn't cache at all).
+CACHE_MARKERS = ("anthropic", "google")
+
+
+def cache_block(text: str) -> dict:
+    """A text block that ends a cacheable prompt prefix. Claude caches a prefix only if it ends exactly
+    where an earlier call marked one (at most 4 marks per request, 5-minute TTL), so mark the ends of
+    parts that many calls repeat: the rules (shared by players, moderator and judge), then each
+    caller's stable parts. Models of makers outside CACHE_MARKERS get plain strings (flat_messages):
+    they cache on their own (OpenAI only the system message, so stable text goes there)."""
+    return {"type": "text", "text": text, "cache_control": {"type": "ephemeral"}}
+
+
+def rules_system(rules: str, rest: str | list[dict]) -> dict:
+    """A system message that starts with the rules, cached on their own so every call can share them."""
+    tail = [{"type": "text", "text": f"\n\n---\n\n{rest}"}] if isinstance(rest, str) else rest
+    return {"role": "system", "content": [cache_block(rules), *tail]}
+
+
+def text_of(content: Any) -> Any:
+    """A message's content as one string, if it's a list of text blocks."""
+    if isinstance(content, list) and all(isinstance(b, dict) and b.get("type") == "text" for b in content):
+        return "".join(b["text"] for b in content)
+    return content
+
+
+def flat_messages(messages: list[dict]) -> list[dict]:
+    return [{**m, "content": text_of(m["content"])} if "content" in m else m for m in messages]
+
+
 RETRY_CODES = (408, 429, 500, 502, 503, 504)  # HTTP statuses (or error codes in an answer) worth retrying
 
 
@@ -233,10 +264,8 @@ class OpenRouterClient:
             "reasoning": {"effort": effort or self.effort},
             "usage": {"include": True},
         }
-        if model.value.startswith("anthropic/"):
-            # Claude needs an opt-in for caching (other providers cache automatically). The top-level
-            # field caches the prompt up to the last block, 5-minute TTL.
-            body["cache_control"] = {"type": "ephemeral"}
+        if model.value.split("/")[0] not in CACHE_MARKERS:
+            body["messages"] = flat_messages(messages)  # others cache prefixes by themselves
         body["provider"] = {"order": [PROVIDERS[model.value.split("/")[0]]], "allow_fallbacks": False}
         if tools:
             body["tools"] = tools
@@ -325,6 +354,7 @@ class MockClient:
 
     def chat(self, model: Model, messages: list[dict], *, tools: list[dict] | None = None,
              schema: dict | None = None, schema_name: str = "response", effort: str | None = None) -> LLMReply:
+        messages = flat_messages(messages)
         rng = random.Random(f"{self.seed}|{model.value}|{json.dumps(messages, sort_keys=True)}")
         tool_calls = []
         content = None

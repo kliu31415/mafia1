@@ -10,7 +10,7 @@ import json
 from concurrent.futures import Future, ThreadPoolExecutor
 
 from gamelog import GameLog
-from llm import LLMClient, Model, answer_json
+from llm import LLMClient, Model, answer_json, rules_system
 from players import STR, obj
 
 ISSUE_KINDS = ["wrong death", "missed death", "wrong result", "missing result", "leaked information",
@@ -47,8 +47,8 @@ class NightChecker:
                 "moderator, carries out Jester/Executioner revenge and dawn effects, so don't expect those. "
                 "Verdict 'correct' if there are no mistakes, 'unsure' if the rules are ambiguous for what "
                 "happened (describe it as an issue of kind 'other').")
-        messages = [{"role": "system", "content": f"{self.rules}\n\n---\n\nYou audit an LLM moderator's "
-                     "resolution of one night of this game. Be precise and only report real mistakes."},
+        messages = [rules_system(self.rules, "You audit an LLM moderator's "
+                     "resolution of one night of this game. Be precise and only report real mistakes."),
                     {"role": "user", "content": user}]
         alive = [p for p in before["players"] if p["alive"]]
         in_play = {"alive": len(alive), "roles_in_play": sorted(p["role"] for p in alive)}  # for analysis

@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
 from events import RESULT
-from llm import LLMClient, LLMReply, answer_json
+from llm import LLMClient, LLMReply, answer_json, cache_block, rules_system
 from roles import Alignment, ROLES, logic
 from state import Game, Player
 from tips import player_view
@@ -134,22 +134,33 @@ def role_briefing(game: Game, p: Player) -> str:
 
 
 def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field: bool = False) -> list[dict]:
+    # Ordered from most to least shared, for prompt caching (llm.cache_block): the rules (every call),
+    # then the general instructions and tips (players with the same tips), then this player's briefing
+    # and everything they saw in earlier phases (all their calls this phase). The system message holds
+    # all of it because OpenAI caches only the system message.
     order = ", ".join(f"{q.name}{'' if q.alive else ' (dead)'}" for q in game.players)
-    system = (
-        f"{rules}\n\n---\n\nYou are a player in this game. Your only goal is to win by your role's win "
+    general = (
+        "\n\n---\n\nYou are a player in this game. Your only goal is to win by your role's win "
         "condition. This is a social deduction game, so lying, bluffing, false role claims, misleading "
         "arguments and betraying people's trust are all legitimate tactics, and you should use them "
         "whenever they help you win. Nobody is harmed by in-game deception, and other players will "
-        "deceive you too. Play to win, not to be agreeable or transparent. "
-        f"Seating order (clockwise): {order}.\n{role_briefing(game, p)}"
+        "deceive you too. Play to win, not to be agreeable or transparent."
     )
     if p.tips and (tips := player_view(p.tips)):
-        system += ("\n\n---\n\nTips from past games (lessons that players and moderators drew from earlier "
-                   f"games of this variant; use your own judgment):\n\n{tips}")
+        general += ("\n\n---\n\nTips from past games (lessons that players and moderators drew from earlier "
+                    f"games of this variant; use your own judgment):\n\n{tips}")
+    earlier, current = game.history_split(p.name)
+    own = f"\n\n---\n\nSeating order (clockwise): {order}.\n{role_briefing(game, p)}"
+    if earlier:
+        own += ("\n\n---\n\nEverything you have seen in earlier phases (this phase's events are in the "
+                "next message):\n" + "\n".join(earlier))
+    system = rules_system(rules, [cache_block(general), cache_block(own)])
     notepad = p.notepad or "(empty)"
     nights = night_history(game, p)
-    user = (f"Everything you have seen so far:\n{game.history_for(p.name)}\n\n---\n\n"
-            f"Public ledger (a summary of public facts so far):\n{game.public_ledger()}\n\n"
+    seen = "\n".join(current) or "(nothing yet)"
+    user = ((f"What you have seen this phase so far:\n{seen}\n\n---\n\n" if earlier
+             else f"Everything you have seen so far:\n{seen}\n\n---\n\n")
+            + f"Public ledger (a summary of public facts so far):\n{game.public_ledger()}\n\n"
             + (f"Your night history (what you submitted each night, and your private results):\n{nights}\n\n"
                if nights else "")
             + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
@@ -162,7 +173,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             "Evil; voted Guilty on Dave D2; leaning Yakuza\". Keep lines short so they all fit.\n\n"
             + (FEEDBACK_NOTE if feedback_field else "")
             + f"---\n\n{task}")
-    return [{"role": "system", "content": system}, {"role": "user", "content": user}]
+    return [system, {"role": "user", "content": user}]
 
 
 def night_history(game: Game, p: Player) -> str:
@@ -235,5 +246,5 @@ class Players:
         return fallback
 
     def ask_many(self, jobs: list[tuple[Player, str, dict, dict]]) -> list[dict]:
-        with ThreadPoolExecutor(max_workers=8) as pool:
+        with ThreadPoolExecutor(max_workers=max(1, len(jobs))) as pool:  # a round waits for its slowest call
             return list(pool.map(lambda j: self.ask(*j), jobs))

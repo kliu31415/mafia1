@@ -155,11 +155,17 @@ class Game:
                        visible_to=sorted(vis) if vis is not None else "all", cat=cat, **fields)
 
     def history_for(self, name: str) -> str:
-        lines = []
-        for e in self.events:
-            if e.visible(name):
-                lines.append(f"[Day {e.day} {e.phase}] {e.text}")
-        return "\n".join(lines) if lines else "(nothing yet)"
+        earlier, current = self.history_split(name)
+        return "\n".join(earlier + current) or "(nothing yet)"
+
+    def history_split(self, name: str) -> tuple[list[str], list[str]]:
+        """What `name` has seen, as lines from earlier phases and lines from the current one. Earlier
+        phases don't change, so prompts can cache them (llm.cache_block)."""
+        lines = [(e.day, e.phase, f"[Day {e.day} {e.phase}] {e.text}") for e in self.events if e.visible(name)]
+        start = len(lines)
+        while start and lines[start - 1][:2] == (self.day, self.phase):
+            start -= 1
+        return [x[2] for x in lines[:start]], [x[2] for x in lines[start:]]
 
     # --- state changes ----------------------------------------------------------------------
 

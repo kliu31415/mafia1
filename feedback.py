@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 from events import RESULT
-from llm import LLMClient, Model, ModelSpec, answer_json
+from llm import LLMClient, Model, ModelSpec, answer_json, rules_system
 from log_viewer import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
@@ -64,7 +64,7 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
                        + e.text for e in game.events)
     flags = "\n".join(f"- {f}" for f in moderator.flags) or "(none)"
     messages = [
-        {"role": "system", "content": f"{moderator.rules}\n\n---\n\nYou were the moderator of this game."},
+        rules_system(moderator.rules, "You were the moderator of this game."),
         {"role": "user", "content": f"Everything that happened (with who could see each event):\n{events}\n\n"
          f"Issues you flagged during the game:\n{flags}\n\n{task}\nAnswer as the moderator: also cover "
          "rules you had to interpret, and tools or state you were missing."},
@@ -79,10 +79,10 @@ def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log
                effort: str | None = None) -> None:
     """An outside model reads the whole human-readable log and lists problems it sees."""
     messages = [
-        {"role": "system", "content": f"{rules}\n\n---\n\nYou review logs of LLMs playing this game, which "
+        rules_system(rules, "You review logs of LLMs playing this game, which "
          "is run by a program plus an LLM moderator. Find problems: rules ambiguities, program bugs, "
          "moderator mistakes, prompt problems, and places players seemed confused about the rules or "
-         "interface. Ignore ordinary bad strategy."},
+         "interface. Ignore ordinary bad strategy."),
         {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}"},
     ]
     reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
@@ -160,8 +160,8 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
                  + "".join(f"\n\nTips given to {', '.join(names)}:\n\n{player_view(text)}"
                            for text, names in sheets.items()))
     messages = [
-        {"role": "system", "content": f"{rules}\n\n---\n\nYou moderated this game and saw everything, "
-         "including hidden events and night actions. Now analyze it as a strategy coach."},
+        rules_system(rules, "You moderated this game and saw everything, "
+         "including hidden events and night actions. Now analyze it as a strategy coach."),
         {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}\n\n"
          "Write a short summary of why the game went the way it did (the decisive plays and mistakes), "
          "then 3-8 general strategy lessons: things to do or to avoid that would help a player of this "
@@ -323,7 +323,7 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
     problems: list[str] = []
     for spec in dict.fromkeys(specs):
         parsed = quiz_answer(client, spec, [
-            {"role": "system", "content": f"{rules}\n\n---\n\nAnswer questions about the rules above."},
+            rules_system(rules, "Answer questions about the rules above."),
             {"role": "user", "content": f"Answer each question in one or two sentences, in order:\n{questions}"},
         ], answer_schema, "quiz", f"{spec}'s answers", problems)
         answers = [parsed.get(f"q{i + 1}", "") for i in range(len(QUIZ))]

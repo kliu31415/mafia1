@@ -106,6 +106,10 @@ publishes the sheet when it updates it, so cloud games get it without a pull.
   `--wip GAME ... --note "what's pending"` (listed apart, not re-reported) and ack it once resolved. Finished
   games also print a reminder line while anything is unreviewed. A new error kind needs no registration;
   anything that goes through `game.log.error` shows up everywhere above.
+- Prompt caching: a prompt starts with what many calls repeat (the rules, via `llm.rules_system`), and ends
+  each stable part with `llm.cache_block`; Claude and Gemini cache only up to those marks, and OpenAI only the
+  system message, so a player's stable text (briefing, earlier phases' history) goes there. Check `cached_tokens`
+  in `player_call` usage after changing a prompt's layout.
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`); add one
   there for a new maker.
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in

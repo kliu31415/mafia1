@@ -2,7 +2,7 @@
 
 import json
 
-from llm import PROVIDERS, Model, OpenRouterClient
+from llm import PROVIDERS, Model, OpenRouterClient, text_of
 from tests.conftest import make_game
 
 REFUSAL = {"provider": "Azure", "choices": [{"finish_reason": "content_filter", "message": {
@@ -148,3 +148,27 @@ def test_an_answer_with_no_cost_is_an_error(tmp_path):
     client._post = lambda body: {"choices": [{"message": {"content": "{}"}}], "usage": {}}  # type: ignore[method-assign]
     client.chat(Model.GPT_6_LUNA, [])
     assert errors == ["api_error"]
+
+
+def test_prompts_cache_what_repeats_and_other_models_get_plain_text(tmp_path, monkeypatch):
+    client = OpenRouterClient("test-key")
+    bodies: list[dict] = []
+    monkeypatch.setattr(client, "_post", lambda body: bodies.append(body) or REFUSAL)
+    game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], client)  # type: ignore[arg-type]
+    game.emit("Day 1 chat.")
+    game.phase = "night"
+    game.emit("Night 1 news.")
+    schema = {"type": "object", "properties": {}, "required": [], "additionalProperties": False}
+    players.ask(game.player("Alice"), "Act.", schema, {})
+    system, user = bodies[0]["messages"]
+    cached = [b["text"] for b in system["content"] if "cache_control" in b]
+    # The rules alone (shared with every call), then the general instructions, then Alice's own part,
+    # which ends with what she saw in earlier phases; the current phase is in the uncached user message.
+    assert len(cached) == 3 and cached[0] == "(rules)" and "Day 1 chat." in cached[2]
+    assert "Night 1 news." in user["content"] and "Day 1 chat." not in user["content"]
+    assert "cache_control" not in bodies[0]
+
+    game.player("Alice").model = Model.GPT_6_LUNA  # other makers cache on their own and get plain strings
+    players.ask(game.player("Alice"), "Act.", schema, {})
+    assert isinstance(bodies[-1]["messages"][0]["content"], str)
+    assert bodies[-1]["messages"][0]["content"] == text_of(system["content"])
