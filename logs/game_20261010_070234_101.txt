@@ -1,0 +1,31 @@
+Setup:
+  Alice    seat 1  Fabricator        anthropic/claude-haiku-5.5
+  Bob      seat 2  Clerk             openai/gpt-6-luna
+  Carol    seat 3  Vanilla Villager  anthropic/claude-haiku-5.5
+  Dave     seat 4  Cardinal          openai/gpt-6-luna
+  Erin     seat 5  Medic             google/gemini-3.8-flash
+  Frank    seat 6  Scout             anthropic/claude-haiku-5.5
+  Grace    seat 7  Executioner       google/gemini-3.8-flash  {'target': 'Judy'}
+  Heidi    seat 8  Surveyor          google/gemini-3.8-flash
+  Ivan     seat 9  Puppeteer         anthropic/claude-haiku-5.5
+  Judy     seat 10 Archivist         openai/gpt-6-luna
+  Mallory  seat 11 Arsonist          openai/gpt-6-luna
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Frank here. Nothing to go on yet, so I won't vote on soft reads. I'll hold my votes until there are visits or results to check claims against.
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+Grace (public): Agreed with Frank on avoiding hasty votes today. Let's hear from everyone first and see how discussions develop.
+Heidi (public): Checking in. Agreed that random lynches without data hurt town today. Let's hear from everyone around the circle before deciding if there is anything worth probing.
+Ivan (public): Ivan here. Agree with Frank and Grace: no lynch without data. I want visits or results before I vote, and I'll judge claims by what they can be checked against.
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+Judy (public): The repeated no-lynch stance isn't evidence by itself. I'd like everyone to explain what would change their mind, and note who avoids taking a position as the day develops.
+Mallory (public): Judy's point is fair: let's track who changes their position when evidence arrives, rather than treating caution alone as either guilt or innocence.

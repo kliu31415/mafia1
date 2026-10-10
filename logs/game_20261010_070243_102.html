@@ -1,0 +1,1137 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Mafia game game_20261010_070243_102</title><style>
+:root { color-scheme: light dark;
+  --bg:#ffffff; --fg:#1d1d1f; --muted:#6e6e73; --line:#e5e5ea; --call:#f5f5f7; --code:#fafafa;
+  --village:#1a7f37; --yakuza:#c62828; --neutral:#b45309;
+  /* event colors avoid the faction hues (green, red, amber) */
+  --c-chat:#9ca3af; --c-pm:#7c3aed; --c-yak:#a21caf; --c-nom:#2563eb; --c-vote:#0891b2; --c-claim:#4f46e5;
+  --c-death:#9f1239; --c-result:#0f766e; --c-hidden:#64748b; --c-system:#9ca3af; --c-error:#dc2626; }
+@media (prefers-color-scheme: dark) { :root {
+  --bg:#141416; --fg:#ececf0; --muted:#9a9aa2; --line:#2c2c30; --call:#1e1e22; --code:#1a1a1d;
+  --village:#4ade80; --yakuza:#f87171; --neutral:#fbbf24;
+  --c-chat:#6b7280; --c-pm:#a78bfa; --c-yak:#e879f9; --c-nom:#60a5fa; --c-vote:#22d3ee; --c-claim:#818cf8;
+  --c-death:#fb7185; --c-result:#2dd4bf; --c-hidden:#94a3b8; --c-system:#6b7280; --c-error:#f87171; } }
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--fg); font:14px/1.55 system-ui, sans-serif; margin:0 auto;
+       max-width:1000px; padding:0 16px 40px; }
+h1 { font-size:20px; margin:16px 0 4px; } .muted { color:var(--muted); }
+.controls { position:sticky; top:0; z-index:1; background:var(--bg); padding:8px 0;
+            border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; }
+.legend { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:8px 0; }
+details.phase { border-top:1px solid var(--line); padding:6px 0; }
+/* the browser skips rendering phases that are off screen (they stay searchable with Ctrl+F); each
+   phase's estimated height is set inline so the scrollbar is about right before it is first drawn */
+details.phase { content-visibility:auto; }
+details.phase > summary { font-weight:650; font-size:16px; cursor:pointer; padding:4px 0; }
+details.phase.night > summary { color:var(--c-hidden); }
+.ev { padding:3px 0 3px 10px; margin:1px 0; border-left:3px solid var(--c); white-space:pre-wrap;
+      overflow-wrap:anywhere; }
+.ev.death { font-weight:600; color:var(--c-death); background:color-mix(in srgb, var(--c-death) 7%, transparent); } .ev.system, .ev.hidden { color:var(--muted); }
+.badge { display:inline-block; font-size:11px; font-weight:600; line-height:1; padding:3px 6px; margin-right:6px;
+         border-radius:4px; color:var(--c); border:1px solid var(--c); vertical-align:1px; white-space:nowrap; }
+.chat { --c:var(--c-chat); } .pm { --c:var(--c-pm); } .yak { --c:var(--c-yak); } .nom { --c:var(--c-nom); }
+.vote { --c:var(--c-vote); } .death { --c:var(--c-death); } .claim { --c:var(--c-claim); } .result { --c:var(--c-result); }
+.hidden { --c:var(--c-hidden); } .system { --c:var(--c-system); } .error { --c:var(--c-error); }
+.ev.error { color:var(--c-error); }
+.errors { border:2px solid var(--c-error); border-radius:6px; padding:6px 12px; margin:8px 0; }
+.errors summary { cursor:pointer; font-weight:650; color:var(--c-error); }
+.errors ul { margin:4px 0; padding-left:20px; } .no-errors { margin:8px 0; }
+.n { font-weight:650; } .n.Village { color:var(--village); } .n.Yakuza { color:var(--yakuza); }
+.n.Neutral { color:var(--neutral); }
+/* role icons (roles/icons/*.svg) in full color, each on a badge tinted by faction: each role's class sets --icon */
+.n.Village { --tint:#dcfce7; --edge:#4ade80; } .n.Yakuza { --tint:#fee2e2; --edge:#f87171; }
+.n.Neutral { --tint:#fef3c7; --edge:#fbbf24; }
+.n.ic::before { content:""; display:inline-block; width:1.35em; height:1.35em; margin-right:3px; vertical-align:-0.35em;
+  border-radius:5px; border:1px solid var(--edge); background:var(--icon) center/80% no-repeat, var(--tint); }
+body.no-icons .n.ic::before { display:none; }
+details.call { background:var(--call); border-radius:6px; margin:2px 0 2px 24px; padding:2px 8px; }
+details.call > summary { cursor:pointer; color:var(--muted); font-size:13px; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:8px;
+      white-space:pre-wrap; word-break:break-word; font-size:12px; max-height:500px; overflow:auto; }
+table { border-collapse:collapse; } td, th { padding:2px 12px 2px 0; text-align:left; }
+details.usage { border-bottom:1px solid var(--line); padding:3px 0; } details.usage > summary { cursor:pointer; }
+div.usage.total { font-weight:650; padding:3px 0 3px 16px; }
+.usage .who { display:inline-block; width:240px; } .usage .model { display:inline-block; width:200px; }
+.usage .cost { display:inline-block; width:80px; text-align:right; margin-right:14px; font-variant-numeric:tabular-nums; }
+details.usage table { margin:4px 0 8px 16px; }
+body.no-calls details.call { display:none; } body.no-hidden .ev.hidden { display:none; }
+body.no-hidden .ev.error { display:none; }
+.i-accountant { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%224%22%20y%3D%222.5%22%20width%3D%2216%22%20height%3D%2219%22%20rx%3D%222%22%20fill%3D%22%23e5e7eb%22/%3E%3Crect%20x%3D%226.5%22%20y%3D%225%22%20width%3D%2211%22%20height%3D%224%22%20rx%3D%220.5%22%20fill%3D%22%23a7f3d0%22/%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2212.5%22%20r%3D%221%22%20fill%3D%22%23475569%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212.5%22%20r%3D%221%22%20fill%3D%22%23475569%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2212.5%22%20r%3D%221%22%20fill%3D%22%23475569%22/%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2216.5%22%20r%3D%221%22%20fill%3D%22%23475569%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2216.5%22%20r%3D%221%22%20fill%3D%22%23475569%22/%3E%3Crect%20x%3D%2215%22%20y%3D%2215.5%22%20width%3D%222%22%20height%3D%224%22%20rx%3D%220.5%22%20fill%3D%22%23f59e0b%22/%3E%3C/svg%3E"); }
+.i-archivist { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223%22%20y%3D%224%22%20width%3D%224%22%20height%3D%2216%22%20rx%3D%220.5%22%20fill%3D%22%23b45309%22/%3E%3Crect%20x%3D%227.5%22%20y%3D%223%22%20width%3D%224%22%20height%3D%2217%22%20rx%3D%220.5%22%20fill%3D%22%231d4ed8%22/%3E%3Crect%20x%3D%2212%22%20y%3D%225%22%20width%3D%223.5%22%20height%3D%2215%22%20rx%3D%220.5%22%20fill%3D%22%23047857%22/%3E%3Cpath%20d%3D%22M16%206.5l3.5-1%202.5%2014-3.5%201z%22%20fill%3D%22%237c3aed%22/%3E%3Cpath%20d%3D%22M2%2020.5h20%22/%3E%3C/svg%3E"); }
+.i-arsonist { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%201.5c1.2%203.8%206.8%206.5%206.8%2012.6a6.8%206.8%200%200%201-13.6%200c0-3.4%201.6-5.1%202.8-6.2.4%202.2%201.3%203.4%202.2%203.9C9.7%207.6%2010.9%204.4%2012%201.5z%22%20fill%3D%22%23f97316%22/%3E%3Cpath%20d%3D%22M12%2021a3%203%200%200%201-3-3c0-1.9%201.8-3.3%203-4.8%201.2%201.5%203%202.9%203%204.8a3%203%200%200%201-3%203z%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E"); }
+.i-ballot-stuffer { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223.5%22%20y%3D%2211%22%20width%3D%2217%22%20height%3D%2210%22%20rx%3D%221%22%20fill%3D%22%23475569%22/%3E%3Cpath%20d%3D%22M8%2013h8%22%20stroke%3D%22%230f172a%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M7.5%203.5h5.5v9.5H7.5z%22%20fill%3D%22%23f8fafc%22%20transform%3D%22rotate%28-8%2010%208%29%22/%3E%3Cpath%20d%3D%22M11%202.5h5.5V12H11z%22%20fill%3D%22%23fef3c7%22/%3E%3Cpath%20d%3D%22M12.5%206l1.2%201.4%202-2.4%22%20fill%3D%22none%22%20stroke%3D%22%23b91c1c%22/%3E%3C/svg%3E"); }
+.i-cardinal { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5.5%2021.5V10L12%202l6.5%208v11.5z%22%20fill%3D%22%23dc2626%22/%3E%3Cpath%20d%3D%22M12%208.5v9M9%2011.5h6%22%20stroke%3D%22%23facc15%22%20stroke-width%3D%222.2%22/%3E%3Cpath%20d%3D%22M5.5%2019h13%22%20stroke%3D%22%23facc15%22/%3E%3C/svg%3E"); }
+.i-cartographer { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2.5%205l6-2%207%202%206-2v16l-6%202-7-2-6%202z%22%20fill%3D%22%23fde68a%22/%3E%3Cpath%20d%3D%22M8.5%203v16M15.5%205v16%22%20stroke%3D%22%23b45309%22%20stroke-width%3D%220.9%22/%3E%3Cpath%20d%3D%22M5.5%208l5%204%206-5M10.5%2012l-4%204M17%2014l2%203%22%20stroke%3D%22%230f766e%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%225.5%22%20cy%3D%228%22%20r%3D%221.5%22%20fill%3D%22%23dc2626%22/%3E%3Ccircle%20cx%3D%2210.5%22%20cy%3D%2212%22%20r%3D%221.5%22%20fill%3D%22%23dc2626%22/%3E%3Ccircle%20cx%3D%2216.5%22%20cy%3D%227%22%20r%3D%221.5%22%20fill%3D%22%23dc2626%22/%3E%3Ccircle%20cx%3D%226.5%22%20cy%3D%2216%22%20r%3D%221.5%22%20fill%3D%22%23dc2626%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2214%22%20r%3D%221.5%22%20fill%3D%22%232563eb%22/%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2217%22%20r%3D%221.5%22%20fill%3D%22%232563eb%22/%3E%3C/svg%3E"); }
+.i-census-taker { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%224%22%20y%3D%223%22%20width%3D%2213%22%20height%3D%2218%22%20rx%3D%221.5%22%20fill%3D%22%23fef3c7%22/%3E%3Cpath%20d%3D%22M8%203v-1h5v1%22%20fill%3D%22%239ca3af%22/%3E%3Cpath%20d%3D%22M7%208h2M7%2012h2M7%2016h2%22%20stroke%3D%22%2316a34a%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M11%208h3M11%2012h3%22%20stroke%3D%22%23dc2626%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M11%2016h3%22%20stroke%3D%22%232563eb%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M17%2015l3-3%201.5%201.5-3%203h-1.5z%22%20fill%3D%22%23f59e0b%22/%3E%3C/svg%3E"); }
+.i-clerk { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8%2012.5V3h8v9.5%22%20fill%3D%22%23ffffff%22/%3E%3Cpath%20d%3D%22M10%206h4M10%208.5h3%22%20stroke%3D%22%2316a34a%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M2.5%2011h19v10.5h-19z%22%20fill%3D%22%233b82f6%22/%3E%3Cpath%20d%3D%22M7%2014.5h10%22%20stroke%3D%22%231e3a8a%22%20stroke-width%3D%222%22/%3E%3C/svg%3E"); }
+.i-diviner { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14.5%202.5A9%209%200%201%200%2021.5%2015a7.5%207.5%200%200%201-7-12.5z%22%20fill%3D%22%23fde047%22/%3E%3Cpath%20d%3D%22M19%202.5c.3%201.9.8%202.4%202.7%202.8-1.9.4-2.4.9-2.7%202.8-.3-1.9-.8-2.4-2.7-2.8%201.9-.4%202.4-.9%202.7-2.8z%22%20fill%3D%22%23a855f7%22/%3E%3C/svg%3E"); }
+.i-eavesdropper { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M7%209a5%205%200%200%201%2010%200c0%203-3%204-3%207a3%203%200%200%201-6%200%22%20fill%3D%22%23fcd9b6%22/%3E%3Cpath%20d%3D%22M10%209a2%202%200%200%201%204%200c0%201.5-2%202-2%203.5%22%20fill%3D%22none%22/%3E%3Cpath%20d%3D%22M19%206.5c1%201.2%201.5%202.5%201.5%204M20.5%204c1.5%201.8%202.2%204%202.2%206.5%22%20fill%3D%22none%22%20stroke%3D%22%233b82f6%22%20stroke-width%3D%221.2%22/%3E%3C/svg%3E"); }
+.i-ex-con { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2215%22%20r%3D%224.5%22%20fill%3D%22%23e5e7eb%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222.6%22/%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2215%22%20r%3D%224.5%22%20fill%3D%22%23e5e7eb%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222.6%22/%3E%3Crect%20x%3D%224.5%22%20y%3D%227.5%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%221%22%20fill%3D%22%239ca3af%22/%3E%3Crect%20x%3D%2216.5%22%20y%3D%227.5%22%20width%3D%223%22%20height%3D%223%22%20rx%3D%221%22%20fill%3D%22%239ca3af%22/%3E%3Cellipse%20cx%3D%229.5%22%20cy%3D%226.5%22%20rx%3D%222.2%22%20ry%3D%221.4%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%221.6%22/%3E%3Cellipse%20cx%3D%2214.5%22%20cy%3D%226.5%22%20rx%3D%222.2%22%20ry%3D%221.4%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%221.6%22/%3E%3C/svg%3E"); }
+.i-executioner { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3.5%2021.5%2016%206%22%20stroke%3D%22%2392400e%22%20stroke-width%3D%222.4%22/%3E%3Cpath%20d%3D%22M12.5%203.5c2.5-.5%205%20.5%207.5%203l-5%205c-1.5-1-3.5-1.5-5.5-1.5z%22%20fill%3D%22%239ca3af%22/%3E%3Cpath%20d%3D%22M20%206.5c1.5%202.5%201.8%205%201%207.5l-5-.5%22%20fill%3D%22%23d1d5db%22/%3E%3C/svg%3E"); }
+.i-fabricator { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M20.5%202.5C13%203.5%207.5%209%205.5%2017l3%201.2c3.2-6.4%207.5-10.2%2012-15.7z%22%20fill%3D%22%23f5f5f4%22/%3E%3Cpath%20d%3D%22M8%2014.5c2.8-4%206-7.5%2010-10.5%22%20stroke%3D%22%239ca3af%22%20stroke-width%3D%221%22/%3E%3Cpath%20d%3D%22M5.5%2017%203.5%2022l3-3.8z%22%20fill%3D%22%231d4ed8%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2220%22%20r%3D%221.8%22%20fill%3D%22%231d4ed8%22%20stroke%3D%22none%22/%3E%3C/svg%3E"); }
+.i-fortune-teller { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6%2018.5h12l-1.5%203h-9z%22%20fill%3D%22%2392400e%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2210.5%22%20r%3D%227.5%22%20fill%3D%22%23c4b5fd%22/%3E%3Cpath%20d%3D%22M8.5%207.5a4%204%200%200%201%203.5-2%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.6%22/%3E%3Ccircle%20cx%3D%2213.5%22%20cy%3D%2212%22%20r%3D%221.3%22%20fill%3D%22%237c3aed%22%20stroke%3D%22none%22/%3E%3C/svg%3E"); }
+.i-generic { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%224%22%20fill%3D%22%23d1d5db%22/%3E%3Cpath%20d%3D%22M4%2021c0-4.4%203.6-7%208-7s8%202.6%208%207z%22%20fill%3D%22%239ca3af%22/%3E%3C/svg%3E"); }
+.i-grunt { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%202l8.5%203.2v6.3c0%205.3-3.7%209-8.5%2010.5-4.8-1.5-8.5-5.2-8.5-10.5V5.2z%22%20fill%3D%22%2364748b%22/%3E%3Cpath%20d%3D%22M12%202.5v19%22%20stroke%3D%22%23cbd5e1%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M4%209.5h16%22%20stroke%3D%22%23cbd5e1%22%20stroke-width%3D%222%22/%3E%3C/svg%3E"); }
+.i-jester { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%2020.5%202%208l6%204.5L12%204l4%208.5L22%208l-1%2012.5z%22%20fill%3D%22%238b5cf6%22/%3E%3Cpath%20d%3D%22M12%204l4%208.5L22%208l-1%2012.5h-9z%22%20fill%3D%22%2322c55e%22/%3E%3Cpath%20d%3D%22M3%2020.5h18%22/%3E%3Ccircle%20cx%3D%222.5%22%20cy%3D%226.5%22%20r%3D%221.7%22%20fill%3D%22%23facc15%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%223%22%20r%3D%221.7%22%20fill%3D%22%23facc15%22/%3E%3Ccircle%20cx%3D%2221.5%22%20cy%3D%226.5%22%20r%3D%221.7%22%20fill%3D%22%23facc15%22/%3E%3C/svg%3E"); }
+.i-lookout { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3.5%2013%206%204.5h3.5l1%208M20.5%2013%2018%204.5h-3.5l-1%208%22%20fill%3D%22%23374151%22/%3E%3Crect%20x%3D%2210%22%20y%3D%2210%22%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23374151%22/%3E%3Ccircle%20cx%3D%226.5%22%20cy%3D%2215.5%22%20r%3D%224.5%22%20fill%3D%22%23374151%22/%3E%3Ccircle%20cx%3D%2217.5%22%20cy%3D%2215.5%22%20r%3D%224.5%22%20fill%3D%22%23374151%22/%3E%3Ccircle%20cx%3D%226.5%22%20cy%3D%2215.5%22%20r%3D%222.6%22%20fill%3D%22%2360a5fa%22%20stroke%3D%22none%22/%3E%3Ccircle%20cx%3D%2217.5%22%20cy%3D%2215.5%22%20r%3D%222.6%22%20fill%3D%22%2360a5fa%22%20stroke%3D%22none%22/%3E%3C/svg%3E"); }
+.i-medic { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8.5%202.5h7v6h6v7h-6v6h-7v-6h-6v-7h6z%22%20fill%3D%22%23ef4444%22/%3E%3C/svg%3E"); }
+.i-mortician { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8.5%201.5h7l3.5%206.5-3.5%2014.5h-7L5%208z%22%20fill%3D%22%2378350f%22/%3E%3Cpath%20d%3D%22M12%206.5v8M9%209.5h6%22%20stroke%3D%22%23fbbf24%22%20stroke-width%3D%222%22/%3E%3C/svg%3E"); }
+.i-oracle { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M11%201.5c.8%205.2%202%207%207.5%208.4-5.5%201.3-6.7%203.2-7.5%208.4-.8-5.2-2-7.1-7.5-8.4C9%208.5%2010.2%206.7%2011%201.5z%22%20fill%3D%22%23fbbf24%22/%3E%3Cpath%20d%3D%22M18.5%2015c.4%202.5%201%203.2%203.5%203.7-2.5.5-3.1%201.2-3.5%203.8-.4-2.6-1-3.3-3.5-3.8%202.5-.5%203.1-1.2%203.5-3.7z%22%20fill%3D%22%2360a5fa%22/%3E%3C/svg%3E"); }
+.i-party-animal { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%202.5%204.5%2021h15z%22%20fill%3D%22%23ec4899%22/%3E%3Cpath%20d%3D%22M8%2012.5l7.3%201.5M6.2%2017l11.2%201.8%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221.8%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%222.5%22%20r%3D%221.7%22%20fill%3D%22%23facc15%22/%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%2215%22%20r%3D%22.9%22%20fill%3D%22%23facc15%22%20stroke%3D%22none%22/%3E%3Ccircle%20cx%3D%2213.5%22%20cy%3D%229.5%22%20r%3D%22.9%22%20fill%3D%22%2322d3ee%22%20stroke%3D%22none%22/%3E%3C/svg%3E"); }
+.i-pharmacist { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22rotate%28-45%2012%2012%29%22%3E%3Cpath%20d%3D%22M12%207.5H6a4.5%204.5%200%200%200%200%209h6z%22%20fill%3D%22%23ef4444%22/%3E%3Cpath%20d%3D%22M12%207.5h6a4.5%204.5%200%200%201%200%209h-6z%22%20fill%3D%22%23ffffff%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2218%22%20r%3D%221.3%22%20fill%3D%22%2322c55e%22/%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2215%22%20r%3D%221.1%22%20fill%3D%22%2322c55e%22/%3E%3C/svg%3E"); }
+.i-philanthropist { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2.5%2016.5c2-1%204-1.2%206-.3l3%201.3c1%20.4%201%201.7-.1%201.8l-3.4.2M2.5%2021l3-1.2c1-.4%202-.4%203%200l3.5%201.2c1%20.3%202%20.2%202.9-.3l6-3.6c.9-.6.3-2-.8-1.6l-4.6%201.6%22%20fill%3D%22%23fcd9b6%22/%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%227.5%22%20r%3D%224.5%22%20fill%3D%22%23fbbf24%22/%3E%3Cpath%20d%3D%22M14%205.3v4.4M12.3%207.5h3.4%22%20stroke%3D%22%2392400e%22/%3E%3C/svg%3E"); }
+.i-profiler { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2021c0-4%203-6%206-6s6%202%206%206z%22%20fill%3D%22%2364748b%22/%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%229.5%22%20r%3D%224%22%20fill%3D%22%23e2e8f0%22/%3E%3Ctext%20x%3D%229%22%20y%3D%2212%22%20font-size%3D%226%22%20font-family%3D%22sans-serif%22%20stroke%3D%22none%22%20fill%3D%22%237c3aed%22%3E%3F%3C/text%3E%3Cpath%20d%3D%22M17%203.5h4M17%206h4M17%208.5h4%22%20stroke%3D%22%237c3aed%22%20stroke-width%3D%221.6%22/%3E%3C/svg%3E"); }
+.i-prosecutor { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M13.2%2010.8%204.5%2019.5a1.4%201.4%200%200%200%202%202l8.7-8.7z%22%20fill%3D%22%23b45309%22/%3E%3Crect%20x%3D%2210.5%22%20y%3D%224%22%20width%3D%228%22%20height%3D%225.5%22%20rx%3D%221%22%20transform%3D%22rotate%2845%2014.5%206.75%29%22%20fill%3D%22%2378350f%22/%3E%3Crect%20x%3D%222.5%22%20y%3D%2221%22%20width%3D%2210%22%20height%3D%221.5%22%20rx%3D%22.5%22%20fill%3D%22%2378350f%22/%3E%3C/svg%3E"); }
+.i-puppeteer { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M7%203.5v9.5M17%203.5v9.5M12%203.5v4%22%20stroke%3D%22%239ca3af%22%20stroke-width%3D%221%22/%3E%3Crect%20x%3D%223.5%22%20y%3D%222%22%20width%3D%2217%22%20height%3D%222.5%22%20rx%3D%221%22%20fill%3D%22%2392400e%22/%3E%3Cpath%20d%3D%22M8%2018.5l-2%203.5M16%2018.5l2%203.5M7%2013l5%201%205-1%22%20stroke-width%3D%221.8%22/%3E%3Cpath%20d%3D%22M9%2012.5h6v6.5H9z%22%20fill%3D%22%23f472b6%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2210%22%20r%3D%222.5%22%20fill%3D%22%23fcd9b6%22/%3E%3C/svg%3E"); }
+.i-ritualist { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8.5%209.5h7v11h-7z%22%20fill%3D%22%23f5f5f4%22/%3E%3Cpath%20d%3D%22M12%209.5V7.5%22/%3E%3Cpath%20d%3D%22M12%201.5c2%202%202.2%204.2%200%206-2.2-1.8-2-4%200-6z%22%20fill%3D%22%23f97316%22/%3E%3Cpath%20d%3D%22M4%2022h16l-1.5-2h-13z%22%20fill%3D%22%237c2d12%22/%3E%3Cpath%20d%3D%22M8.5%2012h7%22%20stroke%3D%22%23dc2626%22%20stroke-width%3D%221.6%22/%3E%3C/svg%3E"); }
+.i-roleplayer { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3.5%203.5h17V11a8.5%208.5%200%200%201-17%200z%22%20fill%3D%22%23c084fc%22/%3E%3Cpath%20d%3D%22M7%209.5c1-1%202.5-1%203.5%200M13.5%209.5c1-1%202.5-1%203.5%200%22%20stroke%3D%22%233b0764%22%20stroke-width%3D%221.8%22/%3E%3Cpath%20d%3D%22M8%2014a4.5%203.5%200%200%200%208%200z%22%20fill%3D%22%233b0764%22/%3E%3C/svg%3E"); }
+.i-scout { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%2210%22%20r%3D%226%22%20fill%3D%22%23bae6fd%22/%3E%3Cpath%20d%3D%22M13.5%2014.5l6%206%22%20stroke%3D%22%2378350f%22%20stroke-width%3D%222.6%22/%3E%3Ccircle%20cx%3D%226.5%22%20cy%3D%228.5%22%20r%3D%221.4%22%20fill%3D%22%23dc2626%22/%3E%3Ccircle%20cx%3D%2211.5%22%20cy%3D%228%22%20r%3D%221.4%22%20fill%3D%22%2316a34a%22/%3E%3Ccircle%20cx%3D%229%22%20cy%3D%2212.5%22%20r%3D%221.4%22%20fill%3D%22%237c3aed%22/%3E%3Cpath%20d%3D%22M3%2021l2-2M21%203l-2%202%22%20stroke%3D%22%230ea5e9%22%20stroke-width%3D%221.2%22/%3E%3C/svg%3E"); }
+.i-seer { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M1.5%2012S5.3%205%2012%205s10.5%207%2010.5%207-3.8%207-10.5%207S1.5%2012%201.5%2012z%22%20fill%3D%22%23ffffff%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%224.2%22%20fill%3D%22%232563eb%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221.8%22%20fill%3D%22%23111827%22/%3E%3Ccircle%20cx%3D%2213.3%22%20cy%3D%2210.6%22%20r%3D%22.8%22%20fill%3D%22%23ffffff%22%20stroke%3D%22none%22/%3E%3C/svg%3E"); }
+.i-serial-killer { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M21%203%209.5%2014.5l-2.5-2.5C10%207.5%2015%204.5%2021%203z%22%20fill%3D%22%23e5e7eb%22/%3E%3Cpath%20d%3D%22M9.5%2014.5%207%2012l-1.6%201.6%202.5%202.5z%22%20fill%3D%22%236b7280%22/%3E%3Cpath%20d%3D%22M6.6%2015%202.5%2019.1a1.6%201.6%200%200%200%202.3%202.3L9%2017.4z%22%20fill%3D%22%23111827%22/%3E%3Ccircle%20cx%3D%2216.5%22%20cy%3D%2217%22%20r%3D%221.2%22%20fill%3D%22%23dc2626%22%20stroke%3D%22none%22/%3E%3Ccircle%20cx%3D%2218.5%22%20cy%3D%2220.5%22%20r%3D%22.9%22%20fill%3D%22%23dc2626%22%20stroke%3D%22none%22/%3E%3C/svg%3E"); }
+.i-sheriff { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%202l2.9%206%206.6.9-4.8%204.5%201.2%206.6L12%2016.8%206.1%2020l1.2-6.6-4.8-4.5%206.6-.9z%22%20fill%3D%22%23facc15%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222%22%20fill%3D%22%23b45309%22/%3E%3C/svg%3E"); }
+.i-smuggler { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%2212%22%20r%3D%223%22%20fill%3D%22%23f59e0b%22/%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2212%22%20r%3D%223%22%20fill%3D%22%238b5cf6%22/%3E%3Cpath%20d%3D%22M6%207.5Q12%202.5%2018%207.5%22%20fill%3D%22none%22%20stroke%3D%22%23dc2626%22%20stroke-width%3D%221.8%22/%3E%3Cpath%20d%3D%22M18%207.5l-2.6-.3M18%207.5l-.6-2.5%22%20stroke%3D%22%23dc2626%22%20stroke-width%3D%221.8%22/%3E%3Cpath%20d%3D%22M18%2016.5Q12%2021.5%206%2016.5%22%20fill%3D%22none%22%20stroke%3D%22%232563eb%22%20stroke-width%3D%221.8%22/%3E%3Cpath%20d%3D%22M6%2016.5l2.6.3M6%2016.5l.6%202.5%22%20stroke%3D%22%232563eb%22%20stroke-width%3D%221.8%22/%3E%3C/svg%3E"); }
+.i-surveyor { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2013l-5%209M12%2013l5%209M12%2013v9%22%20stroke%3D%22%2378350f%22%20stroke-width%3D%221.6%22/%3E%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%2212%22%20height%3D%225%22%20rx%3D%221.5%22%20fill%3D%22%23facc15%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%228.5%22%20r%3D%221.6%22%20fill%3D%22%2393c5fd%22/%3E%3Cpath%20d%3D%22M12%2011v2%22%20/%3E%3Cpath%20d%3D%22M4%203.5h3M17%203.5h3M10.5%203.5h3%22%20stroke%3D%22%230ea5e9%22%20stroke-width%3D%221.2%22/%3E%3C/svg%3E"); }
+.i-tracker { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M7%202.5c-1.8%200-2.7%202.1-2.7%204.7S5%2011.7%207%2011.7s2.7-1.9%202.7-4.5S8.8%202.5%207%202.5z%22%20fill%3D%22%23a16207%22/%3E%3Cpath%20d%3D%22M4.9%2013.5h4.2v2a2.1%202.1%200%200%201-4.2%200z%22%20fill%3D%22%23a16207%22/%3E%3Cpath%20d%3D%22M17%208c1.8%200%202.7%202.1%202.7%204.7s-.7%204.5-2.7%204.5-2.7-1.9-2.7-4.5S15.2%208%2017%208z%22%20fill%3D%22%23ca8a04%22/%3E%3Cpath%20d%3D%22M14.9%2019h4.2v.5a2.1%202.1%200%200%201-4.2%200z%22%20fill%3D%22%23ca8a04%22/%3E%3C/svg%3E"); }
+.i-trapper { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2.5%2012.5a9.5%207.5%200%200%200%2019%200z%22%20fill%3D%22%239ca3af%22/%3E%3Cpath%20d%3D%22M2.5%2012.5l2.4-3.2%202.4%203.2%202.4-3.2%202.3%203.2%202.3-3.2%202.4%203.2%202.4-3.2%202.4%203.2z%22%20fill%3D%22%23ffffff%22/%3E%3Cpath%20d%3D%22M12%2020v2.5%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222%22/%3E%3C/svg%3E"); }
+.i-vanilla-villager { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2010V21h14V10%22%20fill%3D%22%23fde68a%22/%3E%3Cpath%20d%3D%22M2.5%2011.5%2012%203l9.5%208.5z%22%20fill%3D%22%23b45309%22/%3E%3Cpath%20d%3D%22M10%2021v-5.5h4V21z%22%20fill%3D%22%2378350f%22/%3E%3Crect%20x%3D%2214.8%22%20y%3D%2212.5%22%20width%3D%222.5%22%20height%3D%222.5%22%20fill%3D%22%237dd3fc%22/%3E%3C/svg%3E"); }
+.i-veteran { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3.5%2012.5c0-5%203.8-8.5%208.5-8.5s8.5%203.5%208.5%208.5z%22%20fill%3D%22%234d7c0f%22/%3E%3Cpath%20d%3D%22M2%2012.5h20v2H2z%22%20fill%3D%22%23365314%22/%3E%3Cpath%20d%3D%22M12%206.5l.9%201.9%202%20.2-1.5%201.4.4%202-1.8-1-1.8%201%20.4-2-1.5-1.4%202-.2z%22%20fill%3D%22%23fbbf24%22%20stroke-width%3D%220.8%22/%3E%3Cpath%20d%3D%22M6%2017l6%203.5%206-3.5%22%20fill%3D%22none%22%20stroke%3D%22%23b91c1c%22%20stroke-width%3D%222%22/%3E%3C/svg%3E"); }
+.i-vigilante { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%228.5%22%20fill%3D%22%23fecaca%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%224.5%22%20fill%3D%22%23ffffff%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222%22%20fill%3D%22%23dc2626%22/%3E%3Cpath%20d%3D%22M12%201v5.5M12%2017.5V23M1%2012h5.5M17.5%2012H23%22/%3E%3C/svg%3E"); }
+.i-vulture { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2%2013c3-1%205-4%206.5-6.5L12%209l3.5-2.5C17%209%2019%2012%2022%2013c-3%20.5-5%200-7-1l-3%204-3-4c-2%201-4%201.5-7%201z%22%20fill%3D%22%2357534e%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%226%22%20r%3D%222.2%22%20fill%3D%22%23fca5a5%22/%3E%3Cpath%20d%3D%22M12%208v1.5%22%20stroke%3D%22%23f59e0b%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M10%209.5c.6.6%203.4.6%204%200%22%20fill%3D%22none%22%20stroke%3D%22%23e7e5e4%22%20stroke-width%3D%221.2%22/%3E%3C/svg%3E"); }
+.i-wiretap { --icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%231f2937%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%2014a8%208%200%200%201%2016%200%22%20fill%3D%22none%22%20stroke-width%3D%222%22/%3E%3Crect%20x%3D%222.5%22%20y%3D%2213%22%20width%3D%225%22%20height%3D%228%22%20rx%3D%222%22%20fill%3D%22%23475569%22/%3E%3Crect%20x%3D%2216.5%22%20y%3D%2213%22%20width%3D%225%22%20height%3D%228%22%20rx%3D%222%22%20fill%3D%22%23475569%22/%3E%3Cpath%20d%3D%22M12%206v4M10%208h4%22%20stroke%3D%22%23ef4444%22%20stroke-width%3D%221.6%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2215%22%20r%3D%221.5%22%20fill%3D%22%23ef4444%22/%3E%3C/svg%3E"); }</style></head><body><h1>Mafia game game_20261010_070243_102</h1><div class='legend'><span class='badge chat'>Chat</span><span class='badge pm'>PM</span><span class='badge yak'>Yakuza chat</span><span class='badge nom'>Nomination</span><span class='badge vote'>Vote</span><span class='badge death'>Death</span><span class='badge claim'>Claim</span><span class='badge result'>Result</span><span class='badge hidden'>Hidden info</span><span class='badge system'>System</span><span class='n Village'>Village</span> <span class='n Yakuza'>Yakuza</span> <span class='n Neutral'>Neutral</span></div><div class='controls'><label><input type='checkbox' id='showcalls' checked> Model details</label><label><input type='checkbox' id='showhidden' checked> Hidden night info</label><label><input type='checkbox' id='showicons' checked> Role icons</label><span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span><span class='muted'>Untick both to read it like a player would.</span></div><details class='errors' open><summary>25 errors: 21 api_retry, 2 player_error, 1 player_fallback, 1 crash</summary><ul><li><a href='#error-0'>api_retry</a>: a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X</li><li><a href='#error-1'>api_retry</a>: a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X</li><li><a href='#error-2'>api_retry</a>: a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X</li><li><a href='#error-14'>player_error</a>: Alice (gpt-6-luna), attempt 1: OpenRouter HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit</li><li><a href='#error-19'>player_error</a>: Alice (gpt-6-luna), attempt 2: OpenRouter HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit</li><li><a href='#error-20'>player_fallback</a>: Alice (gpt-6-luna) gave no valid answer, so the default was used ({&quot;last_will&quot;: &quot;&quot;}) for: Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including</li><li><a href='#error-24'>crash</a>: the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1/logs/game_20261010_070243_102.ckpt</li></ul><div class='muted'>18 more like these are marked in red below.</div></details><details style='contain-intrinsic-size:auto 648px' class='phase ' open><summary>Setup</summary><table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr><tr><td><span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span></td><td>1</td><td>Cartographer</td><td>openai/gpt-6-luna</td><td class='muted'></td></tr><tr><td><span class='n Yakuza ic i-puppeteer' title='Puppeteer (Yakuza): Token: puppet a non-Yakuza player and chat in their place for the next Day.'>Bob</span></td><td>2</td><td>Puppeteer</td><td>google/gemini-3.8-flash</td><td class='muted'></td></tr><tr><td><span class='n Village ic i-oracle' title='Oracle (Village): Night: guess one player&#x27;s exact role, learn whether it was right.'>Carol</span></td><td>3</td><td>Oracle</td><td>openai/gpt-6-luna</td><td class='muted'></td></tr><tr><td><span class='n Village ic i-vanilla-villager' title='Vanilla Villager (Village): No night action.'>Dave</span></td><td>4</td><td>Vanilla Villager</td><td>openai/gpt-6-luna</td><td class='muted'></td></tr><tr><td><span class='n Village ic i-accountant' title='Accountant (Village): Night: audit one player, learn their total token count.'>Erin</span></td><td>5</td><td>Accountant</td><td>openai/gpt-6-luna</td><td class='muted'></td></tr><tr><td><span class='n Yakuza ic i-smuggler' title='Smuggler (Yakuza): Token: swap two players for the night, so every action aimed at one lands on the other. Immune to role-blocks.'>Frank</span></td><td>6</td><td>Smuggler</td><td>anthropic/claude-haiku-5.5</td><td class='muted'></td></tr><tr><td><span class='n Village ic i-vigilante' title='Vigilante (Village): Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack.'>Grace</span></td><td>7</td><td>Vigilante</td><td>google/gemini-3.8-flash</td><td class='muted'></td></tr><tr><td><span class='n Neutral ic i-arsonist' title='Arsonist (Neutral): Night: douse a player, or ignite all doused players with a Strong Attack. Wins alone.'>Heidi</span></td><td>8</td><td>Arsonist</td><td>google/gemini-3.8-flash</td><td class='muted'></td></tr><tr><td><span class='n Village ic i-fortune-teller' title='Fortune Teller (Village): Each Day: two unlabeled numbers, how many players were visited and how many visited last night.'>Ivan</span></td><td>9</td><td>Fortune Teller</td><td>anthropic/claude-haiku-5.5</td><td class='muted'></td></tr><tr><td><span class='n Yakuza ic i-clerk' title='Clerk (Yakuza): Token: rig the next Day so anyone successfully nominated is executed.'>Judy</span></td><td>10</td><td>Clerk</td><td>anthropic/claude-haiku-5.5</td><td class='muted'></td></tr><tr><td><span class='n Village ic i-vanilla-villager' title='Vanilla Villager (Village): No night action.'>Mallory</span></td><td>11</td><td>Vanilla Villager</td><td>anthropic/claude-haiku-5.5</td><td class='muted'></td></tr></table><div class='muted'>Katana starts with <span class='n Yakuza ic i-puppeteer' title='Puppeteer (Yakuza): Token: puppet a non-Yakuza player and chat in their place for the next Day.'>Bob</span></div><div class='muted'>Tips from past games given to: Alice, Bob, Carol, Dave, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory</div><details class='call'><summary>Tips for <span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span> (Cartographer, gpt-6-luna): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Yakuza ic i-puppeteer' title='Puppeteer (Yakuza): Token: puppet a non-Yakuza player and chat in their place for the next Day.'>Bob</span> (Puppeteer, gemini-3.8-flash): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Village ic i-oracle' title='Oracle (Village): Night: guess one player&#x27;s exact role, learn whether it was right.'>Carol</span> (Oracle, gpt-6-luna): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Village ic i-vanilla-villager' title='Vanilla Villager (Village): No night action.'>Dave</span> (Vanilla Villager, gpt-6-luna): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Village ic i-accountant' title='Accountant (Village): Night: audit one player, learn their total token count.'>Erin</span> (Accountant, gpt-6-luna): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Yakuza ic i-smuggler' title='Smuggler (Yakuza): Token: swap two players for the night, so every action aimed at one lands on the other. Immune to role-blocks.'>Frank</span> (Smuggler, claude-haiku-5.5): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Village ic i-vigilante' title='Vigilante (Village): Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack.'>Grace</span> (Vigilante, gemini-3.8-flash): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Neutral ic i-arsonist' title='Arsonist (Neutral): Night: douse a player, or ignite all doused players with a Strong Attack. Wins alone.'>Heidi</span> (Arsonist, gemini-3.8-flash): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Village ic i-fortune-teller' title='Fortune Teller (Village): Each Day: two unlabeled numbers, how many players were visited and how many visited last night.'>Ivan</span> (Fortune Teller, claude-haiku-5.5): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Yakuza ic i-clerk' title='Clerk (Yakuza): Token: rig the next Day so anyone successfully nominated is executed.'>Judy</span> (Clerk, claude-haiku-5.5): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details><details class='call'><summary>Tips for <span class='n Village ic i-vanilla-villager' title='Vanilla Villager (Village): No night action.'>Mallory</span> (Vanilla Villager, claude-haiku-5.5): tips/tips.md</summary><pre>## Everyone
+- A visit shows a destination, not an action: tracks and watches can&#x27;t tell protection from framing or a Katana hit. A corroborated Lookout&#x27;s lone other visitor to a victim is near-proof; don&#x27;t let the &#x27;Lookout can&#x27;t see himself&#x27; caveat acquit a repeat visitor. (seen in 12 games)
+- Keep votes consistent with your stated reads, and explain any change before voting. A read/vote mismatch is a lead to check against claims and results, never a reason to hang or shoot alone. (seen in 10 games)
+- Before voting Guilty, name one concrete contradiction in claims, votes or mechanical results. Remember a contradiction alone doesn&#x27;t separate a Yakuza from a Jester who wants the hang. (seen in 10 games)
+- Get the mechanics right before calling a contradiction: actions are optional and roles can repeat, unless a full role census plus flips proves a role exists exactly once. (seen in 9 games)
+- Write each night&#x27;s planned target and all results into your will, labelled as plans, so your death still yields information. (seen in 7 games)
+
+## Village
+- Map early PM clusters and co-nominations; a group that DMs then pushes together is a likely bloc. Require votes or a mechanical result before hanging on a PM link, since Jesters and Executioners also leave PM trails. (seen in 14 games)
+- After a Yakuza flips, top suspects are those who voted No on their nomination, voted Innocent when it could have saved them, or PM&#x27;d them. A Guilty vote clears no one. (seen in 12 games)
+- Weigh contradictions in a player&#x27;s own premises far above awkward wording. Before a hang, ask what separates a lie from a mistake, a frame, a Roleplayer or a Jester. (seen in 12 games)
+- Don&#x27;t hint at your power role on Day 1. While a Ritualist may live, never name a living player&#x27;s exact role in public or in your will. (seen in 12 games)
+- Keep Serial Killers and Arsonists in the pool after Yakuza die; a Not Evil read or Vanilla claim doesn&#x27;t clear them, and a failed kill can mean innate Defense. (seen in 8 games)
+- A power-role claimant who survives a Katana attack or is blocked night after night is likely real. (seen in 8 games)
+- Investigators and Medics: never announce tonight&#x27;s target publicly or by PM; it tells the Pharmacist whom to block and the Katana where to strike. (seen in 6 games)
+- Once an archive or survey list is public, do slot math daily; a claim that duplicates a once-listed role or overflows unseen slots marks a liar. (seen in 5 games)
+- If an announced trial total exceeds the revealed votes, a Ballot Stuffer exists among the voters on the larger side; pick them out by stance/ballot mismatch. (seen in 4 games)
+- If the nominee may be a Jester, prefer not hanging; if you must, agree on a bare Guilty majority and keep confirmed power roles off the Guilty side. (seen in 4 games)
+
+## Yakuza
+- Bus a doomed teammate with Yes and Guilty. But first do the vote math in night chat: if your Innocents (plus a doubled vote) can save them, defend them. Futile lone Innocents hang you later. (seen in 15 games)
+- Fake-claim only a role whose token count matches yours and that no living holder, Lookout or Tracker can contradict; never report more results than its tokens allow. (seen in 11 games)
+- Never put team plans in daytime PMs and don&#x27;t PM teammates on Day 1; Eavesdroppers and Wiretaps read them, and PM triangles become the town&#x27;s case. (seen in 10 games)
+- After a failed Katana, assume protection or innate Defense: kill or block the protector, or hang the survivor, rather than retrying blindly. (seen in 9 games)
+- Give the Katana to a low-value member with a cover story ready, and move it the same night a Lookout or Tracker names the holder. (seen in 7 games)
+- Every member submits the agreed holder, target and actions every night; with two alive, one missing vote cancels the kill. (seen in 6 games)
+- Never flatly deny a visit that could have been seen; agree a cover action in night chat and admit it at once. (seen in 5 games)
+- Spend one-shot tokens (rig, puppet, clean) on a decisive day; a dead Yakuza&#x27;s unused token is wasted. (seen in 4 games)
+
+## Neutral
+- If innate Defense saves you, deny being attacked or pick one consistent claim at once; switching claims under pressure gets you hanged. (seen in 3 games)
+
+## Sheriff
+- Post every target and result in your first speech after getting it, and counterclaim at once with your full log if someone copies your role. (seen in 8 games)
+- The Katana holder reads Not Evil that night, so a Not Evil result clears nothing; say so when posting, and in the endgame rely on votes instead. (seen in 13 games)
+
+## Medic
+- Protect likely Katana targets, analysts then claimed investigators. Once you&#x27;ve claimed Medic, self-protect with a token instead of repeating a predictable protection. (seen in 11 games)
+- You get no save feedback; say the target&#x27;s survival is consistent with your protection, never that you confirmed a save. (seen in 4 games)
+
+## Vigilante
+- Shoot only on a mechanical lead (claim conflict, Evil check against an unverifiable claim, flipped teammate&#x27;s links), never a soft read; a hidden Cardinal costs two Good lives. Use Basic shots. (seen in 6 games)
+
+## Clerk
+- Rig on a set night for a non-teammate who can pass a nomination but not a Guilty vote; never when a teammate is the likely nominee, and don&#x27;t hoard it. (seen in 4 games)
+
+## Arsonist
+- Ignite once 3+ living players are doused or the moment you&#x27;re suspected; Arsonists who kept dousing were hanged with no kills. (seen in 3 games)</pre></details></details><details style='contain-intrinsic-size:auto 7252px' class='phase ' open><summary>Day 1</summary><div class='ev error' id='error-0'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0
+}</pre></details></div><div class='ev error' id='error-1'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0
+}</pre></details></div><div class='ev error' id='error-2'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0
+}</pre></details></div><div class='ev error' id='error-3'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0
+}</pre></details></div><div class='ev error' id='error-4'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1
+}</pre></details></div><div class='ev error' id='error-5'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1
+}</pre></details></div><div class='ev error' id='error-6'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1
+}</pre></details></div><div class='ev error' id='error-7'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1
+}</pre></details></div><details class='call'><summary><span class='n Village ic i-vanilla-villager' title='Vanilla Villager (Village): No night action.'>Mallory</span> (Vanilla Villager, claude-haiku-5.5) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0003</summary><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Day 1 start; writing a brief, harmless last will since I have no night action to report.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;Mallory (Vanilla Villager). I have no night power. Keep an eye on anyone who pushes early nominations with thin evidence.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 15402,
+ &quot;completion_tokens&quot;: 211,
+ &quot;total_tokens&quot;: 15613,
+ &quot;cost&quot;: 0,
+ &quot;is_byok&quot;: true,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 14625,
+  &quot;cache_write_tokens&quot;: 99,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.000331925,
+  &quot;upstream_inference_prompt_cost&quot;: 0.000226425,
+  &quot;upstream_inference_completions_cost&quot;: 0.0001055
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 0,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><details class='call'><summary><span class='n Yakuza ic i-clerk' title='Clerk (Yakuza): Token: rig the next Day so anyone successfully nominated is executed.'>Judy</span> (Clerk, claude-haiku-5.5) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0005</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>Since Judy&#x27;s last will would be exposed publicly if she dies, I need to keep it neutral and village-leaning without hinting at her Yakuza role. I&#x27;ll draft the JSON response with an empty public message, no private messages, and a vague but safe last will statement.
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Day 1 opening: write a neutral last will that reveals no team information.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;I have no night results yet. Judge players by their votes and checkable claims, not by speeches. Watch who pushes hard for early nominations.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 15484,
+ &quot;completion_tokens&quot;: 479,
+ &quot;total_tokens&quot;: 15963,
+ &quot;cost&quot;: 0,
+ &quot;is_byok&quot;: true,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 14625,
+  &quot;cache_write_tokens&quot;: 181,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.000476175,
+  &quot;upstream_inference_prompt_cost&quot;: 0.000236675,
+  &quot;upstream_inference_completions_cost&quot;: 0.0002395
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 273,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><details class='call'><summary><span class='n Yakuza ic i-smuggler' title='Smuggler (Yakuza): Token: swap two players for the night, so every action aimed at one lands on the other. Immune to role-blocks.'>Frank</span> (Smuggler, claude-haiku-5.5) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0005</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>Since my last will becomes public if I die, I need to keep it vague and avoid revealing I&#x27;m Yakuza or Smuggler — just a generic, harmless message. I&#x27;ll leave the other fields empty for this phase since only the last will matters right now.
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Writing a neutral last will that reveals nothing about my role.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;Frank&#x27;s last will: I trust the village to vote on evidence, not early pressure. Watch who pushes hardest for a hang before any contradiction appears.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 15486,
+ &quot;completion_tokens&quot;: 545,
+ &quot;total_tokens&quot;: 16031,
+ &quot;cost&quot;: 0,
+ &quot;is_byok&quot;: true,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 14625,
+  &quot;cache_write_tokens&quot;: 183,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.000509425,
+  &quot;upstream_inference_prompt_cost&quot;: 0.000236925,
+  &quot;upstream_inference_completions_cost&quot;: 0.0002725
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 337,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><details class='call'><summary><span class='n Village ic i-fortune-teller' title='Fortune Teller (Village): Each Day: two unlabeled numbers, how many players were visited and how many visited last night.'>Ivan</span> (Fortune Teller, claude-haiku-5.5) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0005</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>I need to update my last will carefully, since it&#x27;s revealed publicly on death but shouldn&#x27;t give away my Fortune Teller role. I&#x27;ll keep it vague, something like claiming to be a Good villager and urging suspicion without naming specifics that expose me.
+
+I&#x27;ll fill out the rest of the response fields empty or neutral, leaving the notepad as is, and compose the reasoning to match this cautious approach.
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Writing a neutral last will that reveals nothing about my role.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;Ivan (Village). I have no information to share yet. Watch which players push early nominations and which pairs keep messaging each other privately.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 15401,
+ &quot;completion_tokens&quot;: 589,
+ &quot;total_tokens&quot;: 15990,
+ &quot;cost&quot;: 0,
+ &quot;is_byok&quot;: true,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 14625,
+  &quot;cache_write_tokens&quot;: 98,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.0005208,
+  &quot;upstream_inference_prompt_cost&quot;: 0.0002263,
+  &quot;upstream_inference_completions_cost&quot;: 0.0002945
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 388,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><div class='ev error' id='error-8'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 2
+}</pre></details></div><details class='call'><summary><span class='n Neutral ic i-arsonist' title='Arsonist (Neutral): Night: douse a player, or ignite all doused players with a Strong Attack. Wins alone.'>Heidi</span> (Arsonist, gemini-3.8-flash) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0036</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>**Defining Game Parameters**
+
+My game begins on Day 1 as Heidi, a Neutral Arsonist. Standard defense and I appear Not Evil to the Sheriff. My win condition is solitary. Nightly, I can douse a player or ignite (astral visit). That is, I&#x27;ve got my will-writing prompt.
+
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Setting an initial town-friendly cover will (Vanilla Villager) since deaths in this game hide true roles and only show cause of death and last will. Claiming a basic town role minimizes disruption and avoids boxing myself into an unverifiable power role if killed early.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;Heidi - Vanilla Villager. Focused on reading Day interactions and voting patterns.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>Role: Arsonist. Standard Defense. Reads Not Evil to Sheriff.
+Strategy: Blend in as Town/Vanilla Villager. Douse quietly, avoid drawing Tracker/Lookout attention. Ignite when 3+ targets are doused or if cornered.
+Doused list: none yet.</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 9899,
+ &quot;completion_tokens&quot;: 567,
+ &quot;total_tokens&quot;: 10466,
+ &quot;cost&quot;: 0.0036155333333333334,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 9371,
+  &quot;cache_write_tokens&quot;: 9371,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.0036155333333333334,
+  &quot;upstream_inference_prompt_cost&quot;: 0.0014892833333333333,
+  &quot;upstream_inference_completions_cost&quot;: 0.00212625
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 281,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><details class='call'><summary><span class='n Yakuza ic i-puppeteer' title='Puppeteer (Yakuza): Token: puppet a non-Yakuza player and chat in their place for the next Day.'>Bob</span> (Puppeteer, gemini-3.8-flash) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0035</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>**Analyzing Character Dynamics**
+
+I&#x27;m currently focused on the initial prompt: crafting a last will. Bob, the Puppeteer, holds the katana, while Frank (Smuggler) and Judy (Clerk) are teammates. The special rule about hidden role/alignment upon death is crucial. Considering how to write Bob&#x27;s will, given his potential evil alignment, and the implications of concealing crucial information.
+
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Setting an initial Vanilla Villager fake claim in my last will. Since roles and alignments are hidden on death in this game setup, having a townie will ensures that if I am eliminated, my faction alignment remains obscured and does not compromise Frank or Judy.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;Bob - Vanilla Villager. Watching voting patterns, early wagons, and suspicious PM clusters. If I died at night, check whoever pushed odd early reads.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>Teammates: Frank (Smuggler, 2 tokens), Judy (Clerk, 1 token). Bob (Puppeteer, 1 token, starts with Katana). Game rule: Roles and alignments are NOT revealed upon death! Wills and cause of death only. Maintain innocent Town cover.</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 9950,
+ &quot;completion_tokens&quot;: 540,
+ &quot;total_tokens&quot;: 10490,
+ &quot;cost&quot;: 0.0035202333333333334,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 9422,
+  &quot;cache_write_tokens&quot;: 9422,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.0035202333333333334,
+  &quot;upstream_inference_prompt_cost&quot;: 0.0014952333333333333,
+  &quot;upstream_inference_completions_cost&quot;: 0.002025
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 240,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><div class='ev error' id='error-9'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 2
+}</pre></details></div><div class='ev error' id='error-10'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 2
+}</pre></details></div><div class='ev error' id='error-11'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 2
+}</pre></details></div><details class='call'><summary><span class='n Village ic i-vigilante' title='Vigilante (Village): Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack.'>Grace</span> (Vigilante, gemini-3.8-flash) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0042</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>**Crafting Last Will**
+
+I&#x27;m a Vigilante in a game where only cause of death and last will are revealed upon death, and it&#x27;s Day 1. I need to write my last will. The goal here is to craft a will that can be useful to the town. This is the first will, and I want it to be as useful as possible.
+
+
+**Analyzing Will Utility**
+
+I&#x27;ve been examining the utility of revealing my Vigilante role in my last will, considering I&#x27;m hidden upon death. Dying Night 1 confirms I&#x27;m town, and revealing my role and potential night actions is beneficial to the town. There seems to be no downside to writing &quot;Grace - Vigilante&quot; since our roles aren&#x27;t revealed upon death. I&#x27;m finalizing &quot;Grace - Vigilante. N1: No shot planned.&quot; and I&#x27;ll update it each night with my plans. I&#x27;m also confirming that the Ritualist won&#x27;t gain any information from a dead player&#x27;s will.
+
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>Setting initial last will for Day 1. With death roles hidden in this setup, revealing Vigilante upon death helps Village confirm my role and slot if I am killed.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;Grace - Vigilante. N1: No shot.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>Grace (Vigilante, 3 tokens). D1: observe claims, avoid revealing power role, track voting patterns.</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 9907,
+ &quot;completion_tokens&quot;: 734,
+ &quot;total_tokens&quot;: 10641,
+ &quot;cost&quot;: 0.004242716666666667,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 9379,
+  &quot;cache_write_tokens&quot;: 9379,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.004242716666666667,
+  &quot;upstream_inference_prompt_cost&quot;: 0.0014902166666666667,
+  &quot;upstream_inference_completions_cost&quot;: 0.0027525
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 507,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><div class='ev error' id='error-12'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 3
+}</pre></details></div><div class='ev error' id='error-13'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 3
+}</pre></details></div><details class='call'><summary><span class='n Village ic i-vanilla-villager' title='Vanilla Villager (Village): No night action.'>Dave</span> (Vanilla Villager, gpt-6-luna) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0015</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>**Establishing a baseline**
+
+I think I should establish a baseline since no specific direction is given. I’ll start with something straightforward: “I am Vanilla Villager,” which is truthful and sets the tone. I want to avoid prematurely orienting the conversation in one direction or another, keeping things standard for now. It feels essential to remain open and flexible at this point. This way, I can adapt as we discuss further.</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>There is no information to record beyond my role and the importance of tracking votes. The will is truthful but gives no unnecessary tactical details. I’ll assess claims and voting behavior as the day develops.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;I am a Vanilla Villager; I have no night action or results. Day 1 has no claims, votes, or other evidence yet. If I die, use the public record of claims and votes as it develops; a Guilty vote alone does not clear anyone, and a No/Innocent vote on a Yakuza may be worth revisiting if one is revealed.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 9906,
+ &quot;completion_tokens&quot;: 437,
+ &quot;total_tokens&quot;: 10343,
+ &quot;cost&quot;: 0.001456675,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 0,
+  &quot;cache_write_tokens&quot;: 9903,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.001456675,
+  &quot;upstream_inference_prompt_cost&quot;: 0.001238175,
+  &quot;upstream_inference_completions_cost&quot;: 0.0002185
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 230,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><details class='call'><summary><span class='n Village ic i-oracle' title='Oracle (Village): Night: guess one player&#x27;s exact role, learn whether it was right.'>Carol</span> (Oracle, gpt-6-luna) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0016</summary><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>No result exists yet, so the will records my role and establishes that the log is currently empty. Naming my own role matters if I die and my will is revealed; I avoid naming any other living player&#x27;s exact role. I will update the log with future guesses and results.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;I am the Oracle (Good). Day 1: no results yet. I will record each guessed player and whether the exact-role guess was correct after each night. Do not treat an unverified claim as confirmed.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 9904,
+ &quot;completion_tokens&quot;: 666,
+ &quot;total_tokens&quot;: 10570,
+ &quot;cost&quot;: 0.001570925,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 0,
+  &quot;cache_write_tokens&quot;: 9901,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.001570925,
+  &quot;upstream_inference_prompt_cost&quot;: 0.001237925,
+  &quot;upstream_inference_completions_cost&quot;: 0.000333
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 477,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><details class='call'><summary><span class='n Village ic i-accountant' title='Accountant (Village): Night: audit one player, learn their total token count.'>Erin</span> (Accountant, gpt-6-luna) · Write or update your last will (max 300 words). If you die, it is revealed to ALL players, · $0.0014</summary><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>There is no information to preserve yet. Keep my role hidden, especially from a possible Ritualist, and use the will as a neutral placeholder until I can record meaningful results.</pre><div class='muted'>Output</div><pre>{
+ &quot;last_will&quot;: &quot;No verified information yet. I will update this will with night targets and results, clearly distinguishing plans from completed actions.&quot;,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>Erin: Accountant (Good); keep role and token audits private. Record claims, vote patterns, and any audit results; will label plans separately from results.</pre><div class='muted'>Task prompt</div><pre>Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 9904,
+ &quot;completion_tokens&quot;: 345,
+ &quot;total_tokens&quot;: 10249,
+ &quot;cost&quot;: 0.001410425,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 0,
+  &quot;cache_write_tokens&quot;: 9901,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.001410425,
+  &quot;upstream_inference_prompt_cost&quot;: 0.001237925,
+  &quot;upstream_inference_completions_cost&quot;: 0.0001725
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 164,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><div class='ev error' id='error-14'><span class='badge'>Error: player_error</span><span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span> (gpt-6-luna), attempt 1: OpenRouter HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-RateLimit-Reset&quot;:&quot;1791615840000&quot;},&quot;limit_source&quot;:&quot;openrouter_new_account&quot;,&quot;remedy_hint&quot;:&quot;New accounts are temporarily limited for this model. Please retry shortly.&quot;,&quot;provider_name&quot;:null}},&quot;user_id&quot;:&quot;user_3KOfOs4TO0<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;player&quot;: &quot;Alice&quot;,
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0,
+ &quot;step&quot;: &quot;will&quot;,
+ &quot;day&quot;: 1,
+ &quot;phase&quot;: &quot;day&quot;,
+ &quot;task&quot;: &quot;Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.&quot;,
+ &quot;latency_s&quot;: 35.9
+}</pre></details></div><div class='ev error' id='error-15'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0
+}</pre></details></div><div class='ev error' id='error-16'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1
+}</pre></details></div><div class='ev error' id='error-17'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 2
+}</pre></details></div><div class='ev error' id='error-18'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 3
+}</pre></details></div><div class='ev error' id='error-19'><span class='badge'>Error: player_error</span><span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span> (gpt-6-luna), attempt 2: OpenRouter HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-RateLimit-Reset&quot;:&quot;1791615840000&quot;},&quot;limit_source&quot;:&quot;openrouter_new_account&quot;,&quot;remedy_hint&quot;:&quot;New accounts are temporarily limited for this model. Please retry shortly.&quot;,&quot;provider_name&quot;:null}},&quot;user_id&quot;:&quot;user_3KOfOs4TO0<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;player&quot;: &quot;Alice&quot;,
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1,
+ &quot;step&quot;: &quot;will&quot;,
+ &quot;day&quot;: 1,
+ &quot;phase&quot;: &quot;day&quot;,
+ &quot;task&quot;: &quot;Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.&quot;,
+ &quot;latency_s&quot;: 36.46
+}</pre></details></div><div class='ev error' id='error-20'><span class='badge'>Error: player_fallback</span><span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span> (gpt-6-luna) gave no valid answer, so the default was used ({&quot;last_will&quot;: &quot;&quot;}) for: Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;player&quot;: &quot;Alice&quot;,
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;step&quot;: &quot;will&quot;,
+ &quot;day&quot;: 1,
+ &quot;phase&quot;: &quot;day&quot;,
+ &quot;task&quot;: &quot;Write or update your last will (max 300 words). If you die, it is revealed to ALL players, including other factions, so think about what each of them would learn from it. An empty answer keeps your current will.&quot;,
+ &quot;fallback&quot;: {
+  &quot;last_will&quot;: &quot;&quot;
+ }
+}</pre></details></div><div class='ev system'><span class='badge'>→ Alice</span>(Program note: your answer to &quot;Write or update your last will (max 300 words). If you die, [truncated]&quot; couldn&#x27;t be used because of a technical error, so the default was used instead: {&quot;last_will&quot;: &quot;&quot;}.)</div><div class='ev system'>Speaking order today goes around the circle in seat order, starting with <span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span>.</div><div class='ev system'>11 players are alive, so a nomination needs 6 Yes votes (rules R4).</div><div class='ev error' id='error-21'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 0
+}</pre></details></div><div class='ev error' id='error-22'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 1
+}</pre></details></div><div class='ev error' id='error-23'><span class='badge'>Error: api_retry</span>a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {&quot;error&quot;:{&quot;message&quot;:&quot;Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.&quot;,&quot;code&quot;:429,&quot;metadata&quot;:{&quot;headers&quot;:{&quot;X-RateLimit-Limit&quot;:&quot;20&quot;,&quot;X-RateLimit-Remaining&quot;:&quot;0&quot;,&quot;X-Rate<details class='call'><summary>Details</summary><div class='muted'>Fields</div><pre>{
+ &quot;model&quot;: &quot;openai/gpt-6-luna&quot;,
+ &quot;attempt&quot;: 2
+}</pre></details></div><details class='call'><summary><span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span> (Cartographer, gpt-6-luna) · It is Day 1, round 1 of at most 8. It&#x27;s your turn. Your speaking budget is 2.50; you earn  · $0.0015</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>**Ensuring proper formatting**
+
+I’m thinking about keeping it simple, like saying “No results yet.” I don’t need to provide a nomination or a claim, so those can be null. Other fields can have their defaults filled out. I need to ensure the JSON schema includes all the necessary fields. The public message would stay at 23 words, and I won’t fill in private, vote, or answer since those seem irrelevant for now. I want to stick to strict fields!</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>I have no results or evidence to support a nomination on the opening turn. A short call for concrete reads helps start discussion without exposing my role or inviting unfounded role claims. I’ll assess later statements and preserve my mapping tokens for nights where a useful target emerges.</pre><div class='muted'>Output</div><pre>{
+ &quot;public_message&quot;: &quot;No role claim from me today. Let’s hear concise reads and any concrete evidence; avoid locking a vote before we know what case is being made.&quot;,
+ &quot;private_messages&quot;: [],
+ &quot;claim&quot;: null,
+ &quot;last_will&quot;: null,
+ &quot;nominate&quot;: null,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>(empty)</pre><div class='muted'>Notepad after</div><pre>Day 1: no information yet. Avoid revealing Cartographer or naming exact roles publicly; track claims, votes, and any PM patterns.</pre><div class='muted'>Task prompt</div><pre>It is Day 1, round 1 of at most 8. It&#x27;s your turn. Your speaking budget is 2.50; you earn 2.5 per round, carrying over up to 8; at the start of each day, 50% of what you have left carries over. You may send one public message and any number of private messages (everyone sees who you messaged, but only the recipient sees the contents), or nothing. The transcript already shows who sent each message, so there&#x27;s no need to start a message with your own name. Messages are capped at 800 words. Prices grow each round after round 3, so late messages are only worth it if important. The day ends after a full round where nobody sends a public message, so a message that only repeats what you already said keeps the day going for everyone: if you have nothing new, send nothing.
+Message prices this round (round 1, 1.00x; next round 1.00x):
+   10 words: public 1.17, private 0.29
+   25 words: public 1.43, private 0.36
+   50 words: public 1.90, private 0.47
+  100 words: public 2.92, private 0.73
+  200 words: public 5.33, private 1.33
+  400 words: public 11.67, private 2.92
+  800 words: public 30.33, private 7.58
+You may also replace your last will (free, max 300 words; null keeps it), e.g. to match a claim you make today. It&#x27;s shown to everyone if you die.
+You may also set your claim (free, max 30 words; null keeps it): a claimed role and night results, e.g. &#x27;Sheriff. N1: Bob Not Evil&#x27;. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player&#x27;s latest claim and any earlier ones they changed from, as unverified claims.
+You may nominate a player for trial, which stops chat for a vote. Nominating costs 1.00 from your budget this round and is paid before your messages.
+</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 10456,
+ &quot;completion_tokens&quot;: 437,
+ &quot;total_tokens&quot;: 10893,
+ &quot;cost&quot;: 0.001525425,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 0,
+  &quot;cache_write_tokens&quot;: 10453,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.001525425,
+  &quot;upstream_inference_prompt_cost&quot;: 0.001306925,
+  &quot;upstream_inference_completions_cost&quot;: 0.0002185
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 235,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><div class='ev chat'><span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span>: No role claim from me today. Let’s hear concise reads and any concrete evidence; avoid locking a vote before we know what case is being made.</div><details class='call'><summary><span class='n Yakuza ic i-puppeteer' title='Puppeteer (Yakuza): Token: puppet a non-Yakuza player and chat in their place for the next Day.'>Bob</span> (Puppeteer, gemini-3.8-flash) · It is Day 1, round 1 of at most 8. It&#x27;s your turn. Your speaking budget is 2.50; you earn  · $0.0038</summary><div class='muted' title='The model&#x27;s own thinking before it answered, as its provider returns it: summarized for Claude and Gemini, raw for Grok, Qwen and Kimi; OpenAI models (Sol, Luna) return it encrypted, with a summary only on about 1 call in 8. Not part of the answer; nobody in the game sees it.' style='cursor:help'>Reasoning (model&#x27;s thinking) ⓘ</div><pre>**Analyzing Game Dynamics**
+
+I&#x27;m focusing on the current game state: it&#x27;s Bob&#x27;s turn, Alice made a generic statement. I am Bob, the Puppeteer, and have an initial understanding of my team and the role assignments, all of which are secret. My priority is to maximize my evil team&#x27;s potential given this initial round.
+
+
+</pre><div class='muted' title='The &#x27;reason&#x27; field of the answer: the player&#x27;s own explanation of this choice, written after deciding. Logged only; nobody in the game, nor the moderator, sees it. A paragraph of up to ~150 words by default; a sentence or a few for models whose reasoning comes back in full or whose API filters strictly (Claude, Grok, Qwen, Kimi; llm.SHORT_REASON).' style='cursor:help'>Reason (private field) ⓘ</div><pre>It is Day 1 round 1. A short, standard village-oriented public message blends in naturally, establishes presence without drawing attention, and conserves speaking budget. No PMs on D1 to avoid eavesdroppers or linking teammates.</pre><div class='muted'>Output</div><pre>{
+ &quot;public_message&quot;: &quot;Agreed with Alice. Day 1 is best spent getting everyone on record and watching for forced interactions. Let&#x27;s hear from around the circle before jumping to conclusions.&quot;,
+ &quot;private_messages&quot;: [],
+ &quot;claim&quot;: null,
+ &quot;last_will&quot;: &quot;Bob - Vanilla Villager. Watching voting patterns, early wagons, and suspicious PM clusters. If I died at night, check whoever pushed odd early reads.&quot;,
+ &quot;nominate&quot;: null,
+ &quot;feedback&quot;: null
+}</pre><div class='muted'>Notepad before</div><pre>Teammates: Frank (Smuggler, 2 tokens), Judy (Clerk, 1 token). Bob (Puppeteer, 1 token, starts with Katana). Game rule: Roles and alignments are NOT revealed upon death! Wills and cause of death only. Maintain innocent Town cover.</pre><div class='muted'>Notepad after</div><pre>(unchanged)</pre><div class='muted'>Task prompt</div><pre>It is Day 1, round 1 of at most 8. It&#x27;s your turn. Your speaking budget is 2.50; you earn 2.5 per round, carrying over up to 8; at the start of each day, 50% of what you have left carries over. You may send one public message and any number of private messages (everyone sees who you messaged, but only the recipient sees the contents), or nothing. The transcript already shows who sent each message, so there&#x27;s no need to start a message with your own name. Messages are capped at 800 words. Prices grow each round after round 3, so late messages are only worth it if important. The day ends after a full round where nobody sends a public message, so a message that only repeats what you already said keeps the day going for everyone: if you have nothing new, send nothing.
+Message prices this round (round 1, 1.00x; next round 1.00x):
+   10 words: public 1.17, private 0.29
+   25 words: public 1.43, private 0.36
+   50 words: public 1.90, private 0.47
+  100 words: public 2.92, private 0.73
+  200 words: public 5.33, private 1.33
+  400 words: public 11.67, private 2.92
+  800 words: public 30.33, private 7.58
+You may also replace your last will (free, max 300 words; null keeps it), e.g. to match a claim you make today. It&#x27;s shown to everyone if you die.
+You may also set your claim (free, max 30 words; null keeps it): a claimed role and night results, e.g. &#x27;Sheriff. N1: Bob Not Evil&#x27;. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player&#x27;s latest claim and any earlier ones they changed from, as unverified claims.
+You may nominate a player for trial, which stops chat for a vote. Nominating costs 1.00 from your budget this round and is paid before your messages.
+</pre><div class='muted'>Usage</div><pre>{
+ &quot;prompt_tokens&quot;: 10608,
+ &quot;completion_tokens&quot;: 585,
+ &quot;total_tokens&quot;: 11193,
+ &quot;cost&quot;: 0.0037899,
+ &quot;is_byok&quot;: false,
+ &quot;prompt_tokens_details&quot;: {
+  &quot;cached_tokens&quot;: 9422,
+  &quot;cache_write_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0,
+  &quot;video_tokens&quot;: 0
+ },
+ &quot;cost_details&quot;: {
+  &quot;upstream_inference_cost&quot;: 0.0037899,
+  &quot;upstream_inference_prompt_cost&quot;: 0.00159615,
+  &quot;upstream_inference_completions_cost&quot;: 0.00219375
+ },
+ &quot;completion_tokens_details&quot;: {
+  &quot;reasoning_tokens&quot;: 253,
+  &quot;image_tokens&quot;: 0,
+  &quot;audio_tokens&quot;: 0
+ }
+}</pre></details><div class='ev chat'><span class='n Yakuza ic i-puppeteer' title='Puppeteer (Yakuza): Token: puppet a non-Yakuza player and chat in their place for the next Day.'>Bob</span>: Agreed with <span class='n Village ic i-cartographer' title='Cartographer (Village): Every night: learns the sizes of the night&#x27;s visit groups (visits linking players either way). Token: learns the names in one player&#x27;s group.'>Alice</span>. Day 1 is best spent getting everyone on record and watching for forced interactions. Let&#x27;s hear from around the circle before jumping to conclusions.</div><div class='ev error' id='error-24'><span class='badge'>Error: crash</span>the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1/logs/game_20261010_070243_102.ckpt<details class='call'><summary>Details</summary><div class='muted'>Traceback</div><pre>Traceback (most recent call last):
+  File &quot;/home/user/mafia1/mafia.py&quot;, line 258, in play_game
+    end_reason = run_game(game, players, moderator, checker, config.day_limit, save, resume)
+  File &quot;/home/user/mafia1/mafia.py&quot;, line 325, in run_game
+    run_day(game, players)
+    ~~~~~~~^^^^^^^^^^^^^^^
+  File &quot;/home/user/mafia1/day.py&quot;, line 171, in run_day
+    if p.alive and turn(p, rnd):
+                   ~~~~^^^^^^^^
+  File &quot;/home/user/mafia1/day.py&quot;, line 157, in turn
+    public, nominee = chat_turn(game, players, p, rnd, can_nominate=trials &lt; MAX_TRIALS_PER_DAY,
+                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                extra=extra)
+                                ^^^^^^^^^^^^
+  File &quot;/home/user/mafia1/day.py&quot;, line 275, in chat_turn
+    out = players.ask(p, task, schema, fallback, step=step, rnd=rnd)
+  File &quot;/home/user/mafia1/players.py&quot;, line 323, in ask
+    reply = self.client.chat(p.model, messages, schema=sent, effort=effort)
+  File &quot;/home/user/mafia1/llm.py&quot;, line 494, in chat
+    data = self._post(body)
+  File &quot;/home/user/mafia1/llm.py&quot;, line 537, in _post
+    data = json.loads(self._read(req).decode(&quot;utf-8&quot;))
+                      ~~~~~~~~~~^^^^^
+  File &quot;/home/user/mafia1/llm.py&quot;, line 571, in _read
+    while chunk := resp.read(1 &lt;&lt; 16):
+                   ~~~~~~~~~^^^^^^^^^
+  File &quot;/usr/lib/python3.13/http/client.py&quot;, line 488, in read
+    return self._read_chunked(amt)
+           ~~~~~~~~~~~~~~~~~~^^^^^
+  File &quot;/usr/lib/python3.13/http/client.py&quot;, line 621, in _read_chunked
+    while (chunk_left := self._get_chunk_left()) is not None:
+                         ~~~~~~~~~~~~~~~~~~~~^^
+  File &quot;/usr/lib/python3.13/http/client.py&quot;, line 603, in _get_chunk_left
+    chunk_left = self._read_next_chunk_size()
+  File &quot;/usr/lib/python3.13/http/client.py&quot;, line 554, in _read_next_chunk_size
+    line = self.fp.readline(_MAXLINE + 1)
+  File &quot;/usr/lib/python3.13/socket.py&quot;, line 723, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File &quot;/usr/lib/python3.13/ssl.py&quot;, line 1315, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File &quot;/usr/lib/python3.13/ssl.py&quot;, line 1149, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyboardInterrupt
+</pre></details></div></details><script>
+const toggle = (id, cls) => {
+  const box = document.getElementById(id);
+  const apply = () => document.body.classList.toggle(cls, !box.checked);
+  box.addEventListener('change', apply); apply();
+};
+toggle('showcalls', 'no-calls');
+toggle('showhidden', 'no-hidden');
+toggle('showicons', 'no-icons');
+document.getElementById('expand').addEventListener('click', () =>
+  document.querySelectorAll('details.call').forEach(d => d.open = true));
+document.getElementById('collapse').addEventListener('click', () =>
+  document.querySelectorAll('details.call').forEach(d => d.open = false));
+</script></body></html>

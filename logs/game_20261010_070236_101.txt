@@ -1,0 +1,32 @@
+Setup:
+  Alice    seat 1  Fabricator        anthropic/claude-haiku-5.5
+  Bob      seat 2  Clerk             openai/gpt-6-luna
+  Carol    seat 3  Vanilla Villager  anthropic/claude-haiku-5.5
+  Dave     seat 4  Cardinal          openai/gpt-6-luna
+  Erin     seat 5  Medic             google/gemini-3.8-flash
+  Frank    seat 6  Scout             anthropic/claude-haiku-5.5
+  Grace    seat 7  Executioner       google/gemini-3.8-flash  {'target': 'Judy'}
+  Heidi    seat 8  Surveyor          google/gemini-3.8-flash
+  Ivan     seat 9  Puppeteer         anthropic/claude-haiku-5.5
+  Judy     seat 10 Archivist         openai/gpt-6-luna
+  Mallory  seat 11 Arsonist          openai/gpt-6-luna
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Frank here. I have no information yet. Let's not nominate on Day 1 without a concrete reason. Please share anything you learned overnight, and I'll do the same.
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+Grace (public): Nothing overnight on my end either. Let's hear from everyone around the circle, especially anyone with actionable info.
+Heidi (public): Checking in. Since Day 1 starts before any night actions occur, there won't be night info yet. Let's hear introductions from the rest of the circle.
+Ivan (public): Ivan here, nothing overnight on my end either. I agree with Frank: no Day 1 nomination without a concrete reason. Let's hear everyone's first read, and anyone with a real result should post it early.
+Judy (public): Agreed, there’s no overnight information yet. Let’s hear everyone’s first statements, then weigh any nomination against actual evidence rather than suspicion alone.
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR player_error] Mallory (gpt-6-luna), attempt 1: OpenRouter HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-RateLimit-Reset":"1791615840000"},"limit_source":"openrouter_new_account","remedy_hint":"New accounts are temporarily limited for this model. Please retry shortly.","provider_name":null}},"user_id":"user_3KOfOs4TO0
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+Alice (public): Alice here. Nothing overnight on my end either. I agree with no Day 1 nomination without a real lead, so let's hear everyone's first read before anyone commits.
+Bob (public): Same here—no overnight results. Let's hear from Carol, Dave, Erin, and Mallory, and focus on specific contradictions rather than forcing a Day 1 vote.

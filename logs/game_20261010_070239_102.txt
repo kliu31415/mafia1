@@ -1,0 +1,34 @@
+Setup:
+  Alice    seat 1  Cartographer      openai/gpt-6-luna
+  Bob      seat 2  Puppeteer         google/gemini-3.8-flash
+  Carol    seat 3  Oracle            openai/gpt-6-luna
+  Dave     seat 4  Vanilla Villager  openai/gpt-6-luna
+  Erin     seat 5  Accountant        openai/gpt-6-luna
+  Frank    seat 6  Smuggler          anthropic/claude-haiku-5.5
+  Grace    seat 7  Vigilante         google/gemini-3.8-flash
+  Heidi    seat 8  Arsonist          google/gemini-3.8-flash
+  Ivan     seat 9  Fortune Teller    anthropic/claude-haiku-5.5
+  Judy     seat 10 Clerk             anthropic/claude-haiku-5.5
+  Mallory  seat 11 Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 50 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"50","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+Alice (public): No results yet; keep power-role targets private. Let's hear concrete reads and vote reasoning before anyone pushes a trial.
+Bob (public): Agreed with Alice. Day 1 is about establishing baselines and observing interactions. Let's hear from the table before jumping to conclusions.
+Carol (public): Let's hear the rest; after initial reads, state what evidence would change your mind. I'll track stated positions against any later votes.
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR player_error] Dave (gpt-6-luna), attempt 1: OpenRouter HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-RateLimit-Reset":"1791615840000"},"limit_source":"openrouter_new_account","remedy_hint":"New accounts are temporarily limited for this model. Please retry shortly.","provider_name":null}},"user_id":"user_3KOfOs4TO0
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+Dave (public): I’ll wait to hear everyone before pushing a Day 1 trial. Please give an initial read and say what evidence would change it.
+[ERROR crash] the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1/logs/game_20261010_070239_102.ckpt

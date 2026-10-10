@@ -1,0 +1,35 @@
+Setup:
+  Alice    seat 1  Fabricator        anthropic/claude-haiku-5.5
+  Bob      seat 2  Clerk             openai/gpt-6-luna
+  Carol    seat 3  Vanilla Villager  anthropic/claude-haiku-5.5
+  Dave     seat 4  Cardinal          openai/gpt-6-luna
+  Erin     seat 5  Medic             google/gemini-3.8-flash
+  Frank    seat 6  Scout             anthropic/claude-haiku-5.5
+  Grace    seat 7  Executioner       google/gemini-3.8-flash  {'target': 'Judy'}
+  Heidi    seat 8  Surveyor          google/gemini-3.8-flash
+  Ivan     seat 9  Puppeteer         anthropic/claude-haiku-5.5
+  Judy     seat 10 Archivist         openai/gpt-6-luna
+  Mallory  seat 11 Arsonist          openai/gpt-6-luna
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Frank here. I have no night information yet, so I'm not claiming anything. Let's wait for real reads before anyone gets nominated.
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+[ERROR api_retry] a google/gemini-3.8-flash request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/google/gemini-3.8-flash-20260902. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","
+Grace (public): Agreed with Frank. Let's hear from everyone and get a discussion going before considering any nominations.
+Heidi (public): Agreed. Since we start on Day 1 with no prior night phase, there are no night results yet. Let's hear from the rest of the circle and observe reactions.
+Ivan (public): Ivan here, no night info yet. Agree with Frank and Grace: let's hear every player's read before anyone gets nominated.
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR player_error] Judy (gpt-6-luna), attempt 1: OpenRouter HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-RateLimit-Reset":"1791615840000"},"limit_source":"openrouter_new_account","remedy_hint":"New accounts are temporarily limited for this model. Please retry shortly.","provider_name":null}},"user_id":"user_3KOfOs4TO0
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 2), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+[ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
+Judy (public): Let's hear from everyone before nominating. So far we've mostly echoed agreement; I'd like to hear concrete reads or reasons once the rest have had a turn.
+Mallory (public): Let's hear Alice through Erin before concluding; then I want actual positions, not just agreement about waiting.
