@@ -659,3 +659,29 @@ The game is over. Winners: Bob, Carol (dead), Ivan (dead). Dead players still wi
 [Feedback from Carol] The notepad 375-word cap and the lack of a per-turn summary of Katana history made long games hard to track.
 [Feedback from Grace] The public ledger and game log show duplicated nomination entries and some inconsistent Pharmacist/Katana information; the interface also made it hard to track budget and living-player slot math during play.
 [Feedback from Mallory] The Day 8 ledger lists repeated identical nomination entries and the rules do not say whether a self-nomination that fails still counts against the three-nomination cap; clarifying that would help.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol, Ivan
+Cost by player (USD):
+  Alice (Prosecutor)  $0.1532   72 calls  claude-haiku-5.5
+  Bob (Grunt)         $0.2607  115 calls  claude-haiku-5.5
+  Carol (Diviner)     $0.0746   40 calls  claude-haiku-5.5
+  Dave (Lookout)      $0.0911   47 calls  claude-haiku-5.5
+  Erin (Ex-Con)       $0.1432   70 calls  claude-haiku-5.5
+  Frank (Jester)      $0.1843   78 calls  claude-haiku-5.5
+  Grace (Archivist)   $0.2566   95 calls  claude-haiku-5.5
+  Heidi (Tracker)     $0.0603   35 calls  claude-haiku-5.5
+  Ivan (Pharmacist)   $0.2061   90 calls  claude-haiku-5.5
+  Judy (Seer)         $0.0464   28 calls  claude-haiku-5.5
+  Mallory (Oracle)    $0.1201   60 calls  claude-haiku-5.5
+  Moderator           $2.5175   21 calls  claude-opus-5.5
+  Night checks        $0.5029    8 calls  claude-opus-5.5
+  Strategy review     $0.4013    1 calls  claude-opus-5.5
+  Log review          $0.3462    1 calls  claude-opus-5.5
+  Total               $5.3644  761 calls
