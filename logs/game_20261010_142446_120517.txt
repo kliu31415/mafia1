@@ -1,0 +1,268 @@
+Setup:
+  Alice    seat 1  Medic             anthropic/claude-haiku-5.5
+  Bob      seat 2  Vanilla Villager  anthropic/claude-haiku-5.5
+  Carol    seat 3  Auditor           anthropic/claude-haiku-5.5
+  Dave     seat 4  Sheriff           anthropic/claude-haiku-5.5
+  Erin     seat 5  Informant         anthropic/claude-haiku-5.5
+  Frank    seat 6  Fixer             anthropic/claude-haiku-5.5
+  Grace    seat 7  Grunt             anthropic/claude-haiku-5.5
+  Heidi    seat 8  Insomniac         anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Erin, Frank, Grace) Erin (Yakuza chat): Proposal: no Katana attack tonight. We know nothing yet, and a first-night visit risks a Veteran or Medic exposing Grace. Grace keeps the Katana. I vote no target. Frank, if you want to use your fixer token later, say so now. I'm ready.
+(to Erin, Frank, Grace) Frank (Yakuza chat): Agreed: no Katana attack tonight, Grace keeps the Katana, and I vote no target. I'm holding my fixer tokens for a trial where a fixed Guilty/Innocent vote matters. Ready.
+(to Erin, Frank, Grace) Grace (Yakuza chat): Agreed with both of you: no Katana attack tonight, Grace keeps the Katana, and no target. Ready.
+Night actions:
+  Alice (Medic): target Carol; "Medic: free Standard protection on Carol for Night 1."
+  Carol (Auditor): no action
+  Dave (Sheriff): target Frank; "Sheriff investigation on Frank"
+  Erin (Informant): no role action; Katana vote: Grace holds, attacks None
+  Frank (Fixer): no role action; Katana vote: Grace holds, attacks None
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks None
+  Heidi (Insomniac): 1 token(s); "Staying awake to learn the roles of up to 3 players who visited someone tonight."
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Alice) Moderator (private): Night 1 result: You protected Carol (Standard Defense) tonight. No token spent; 2 medic tokens left.
+(to Dave) Moderator (private): Night 1 result: You investigated Frank. Result: Evil.
+(to Erin, Frank, Grace) Moderator (private): Night 1 Yakuza summary: Grace keeps the Katana, and there was no Katana attack tonight. Actions chosen: Erin chose no action, Frank chose no action, Grace chose no action.
+[Moderator summary] Night 1: Alice (Medic) protected Carol with free Standard protection (2 tokens left). Dave (Sheriff) checked Frank: Evil (Frank is Yakuza and not the Katana holder). Heidi (Insomniac) stayed awake (1 token left; code reports roles from visits Alice->Carol, Dave->Frank). Yakuza kept the Katana on Grace and did not attack. No role-blocks, no attacks, no deaths.
+(to Heidi) Moderator (private): You lay awake all night and heard every player who visited someone tonight. Their roles: Medic, Sheriff. 1 insomniac token left.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Alice.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Alice (public): Alice here. Night 1 gave me no information, so I'm not nominating anyone yet. I'd like to hear everyone's Night 1 results before we vote on anything.
+[Claim] Bob: Vanilla Villager. N1: no information.
+Bob (public): Bob here, Vanilla Villager with no night information either. I agree with Alice: no nomination yet. Anyone with a night role should post a real result before we hang anyone, and I'll judge claims by how they fit the deaths and the visits.
+[Claim] Carol: Auditor (Good). N1: no action.
+Carol (public): Carol here. My role is Auditor (Good). I had no audit on N1. I'll audit the most suspicious voter tonight and post what I learn. No nomination from me yet.
+[Claim] Dave: Sheriff (Good). N1: investigated Frank, result Evil.
+Dave (public): Dave here. I'm the Sheriff (Good). My N1 investigation on Frank came back Evil, so Frank is my lead. Frank, please explain yourself, and the rest of you, compare that with your own claims.
+[Claim] Erin: Vanilla Villager. N1: no information.
+Erin (public): Erin here, Vanilla Villager with no Night 1 information. Dave's Frank result is the only real lead so far. Frank, answer it plainly. Carol, post your audit when you have it. I won't nominate until someone's result is corroborated.
+[Claim] Frank: Vanilla Villager. N1: no action.
+Frank (public): Frank here. I'm a Vanilla Villager and took no Night 1 action. Dave's Evil result on me is false, since I'm not Yakuza. Nobody should hang on a single Sheriff claim until someone else can corroborate it, so I'd like Dave to say who else he has checked.
+[Claim] Grace: Vanilla Villager. N1: no action.
+Grace (public): Grace here, Vanilla Villager with no Night 1 action. Dave, one Sheriff result is not enough to hang anyone. Name your next check and say what you learned from it. Carol, please post your audit as soon as you have one.
+[Claim] Heidi: Insomniac. N1: stayed awake; visitors were Medic and Sheriff (1 token left).
+Heidi (public): Heidi here, Insomniac. On Night 1 I stayed awake and heard only two visitors: a Medic and a Sheriff. That fits Dave's Sheriff claim, so Frank's Evil result stands unless Frank explains it. The Medic is still hidden, so whoever protected someone, please say so.
+[Claim] Alice: Medic (Good). N1: protected Carol (Standard), no token spent. 2 medic tokens left.
+Alice (public): Alice here. I'm the Medic (Good). On N1 I protected Carol with a free Standard protection, which is the Medic visit Heidi saw. There was no attack, so I have no feedback. Dave's Sheriff claim fits the visits. I won't nominate until Frank answers Dave's Evil result.
+Bob (public): Bob here. Heidi's Insomniac report (a Medic and a Sheriff visiting) matches the visits Dave and Alice describe, so both claims fit Night 1. Frank's Evil result still needs a second check before anyone hangs. Dave, who is your next check and what did you learn? No nomination from me yet.
+Carol (public): Carol here. I'm not nominating yet. Before any vote, please state your Yes/No and Guilty/Innocent intentions so we can check them against the announced totals. Frank, Dave's Evil result is the only real lead so far, so answer it directly.
+Dave (public): Dave here. Frank is the only real lead. Heidi saw exactly two N1 visitors, the Medic (Alice, on Carol) and the Sheriff (me, on Frank). No Fabricator frame or Ex-Con visit happened, so Frank's Evil read is genuine. Frank, which Vanilla role reads Evil? I'll nominate Frank next round unless someone gives a stronger reason. Everyone, please state your Yes/No now.
+Erin (public): Erin here. Dave's Evil result on Frank is one check so far, and a Roleplayer gets plausible false results, so I want a second Sheriff check or Carol's audit before any vote. Until then I vote No on any nomination of Frank or anyone else.
+Frank (public): Frank again: I'm a Vanilla Villager, and Dave's Evil read is the only lead, so it needs a second source before anyone hangs. Dave, you still haven't named a second check. Carol, post your audit when you have it. I'll vote No on any nomination until then.
+Grace (public): Grace here. I agree one Sheriff result isn't enough to hang anyone. Dave, you still haven't named a second check after two days, so say who you'll investigate next. Carol, your audit is the other real data point, so please post it before anyone votes.
+Heidi (public): Heidi here. My Insomniac result shows one Medic visit and one Sheriff visit on Night 1, which backs Dave's visit but not his Frank read. Dave, name your second check. Carol, post your audit before any vote.
+Alice (public): Alice here. Heidi's Insomniac report shows a real Sheriff visit on N1, which fits Dave's claim, so Frank's Evil read is the strongest lead we have. Frank, give a reason an Evil read could be false. If Carol's audit doesn't clash, I'll vote Yes on nominating Frank.
+Bob (public): Bob here. I'm still a No on nominating Frank. Dave has one Sheriff result and no second check after two days. Carol, post your audit as soon as you have it, and Dave, name your next target now. Alice, please hold your Yes until then.
+Carol (public): Carol here. I still have no audit result, since I had no audit on N1. My N2 audit reads the Day 2 votes, so anyone who casts a nomination vote today will be checked. My stated vote: No on nominating Frank until Dave gives a second check or my audit comes back. Dave, name your second target now.
+Dave (public): Dave again. My N2 Sheriff check goes on a player I haven't named yet, and I'll post the exact result at the start of Day 3. Frank's Evil read stands. Frank, a Vanilla Villager doesn't read Evil, so explain it or accept the lead. I'm not nominating this round, but I'll vote Yes on Frank if he's nominated.
+Erin (public): Erin here. My Yes/No stays as stated: No on Frank until a second check or Carol's audit lines up. Dave, if Frank's Evil read is real, a second result on another player would make it much stronger. Frank, give one concrete reason the Sheriff would lie.
+Frank (public): Frank here. Dave has named no second check after two days. Heidi's Insomniac report only shows that some real Sheriff visited someone, not that Dave's read on me is right. I still vote No on any nomination until Dave names a second target and posts the result.
+Grace (public): Grace here. I'm still a No on nominating Frank. Dave has named no second check, and Carol's audit is the only real data we have. Let's see both before any vote.
+Heidi (public): Heidi here. Frank's Evil read is still the only lead, and no one has explained it. I'll stay awake again tonight and post every visitor's role at the start of Day 3. Dave, name your second check. Carol, post the audit as soon as you have it. I'm a Yes on Frank only if the audit doesn't clash.
+Alice (public): Alice here. Heidi's visit report confirms Dave really was a Sheriff visiting on N1, but it doesn't confirm his read on Frank. Dave, name your second check today. I'm still a conditional Yes on Frank if Carol's audit doesn't clash. Tonight I'll protect a claimed power role; I won't name them.
+Bob (public): Bob here. Heidi's Insomniac report shows a real Sheriff visit on Frank, and no Fabricator or Ex-Con visits, so Frank's Evil read is genuine. I nominate Frank and vote Yes.
+Bob nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Bob, Dave, Heidi, Alice; No - Carol, Erin, Frank, Grace
+Nomination votes on Frank: 4 Yes (the votes are secret).
+The nomination of Frank failed (4 Yes).
+Carol (public): Carol here. My stated vote stays No on Frank. Tonight I audit one of the Yes voters on Frank and post the exact vote at the start of Day 3. Dave, Frank's Evil read still needs a second check, so name your next target now. Yes voters, tell us whether your Yes rests on anything beyond Dave's single result.
+Dave (public): Dave here. Frank is still my Evil lead, and I voted Yes on him. Tonight I'm checking a new player and will post the exact result at the start of Day 3. Those who voted No: what would make a real Sheriff lie about Frank?
+Erin (public): Erin here. I'm still a No on Frank. Dave, one Sheriff result isn't enough to hang anyone, so name your second check. Carol, please post your audit. Anyone voting Yes should say what supports it beyond Dave's read.
+Frank (public): Frank again. Dave, a real Sheriff with one Evil result should be able to name a second check today. A Roleplayer would also give one plausible false read. I'm a Vanilla Villager with no night action. I'll keep voting No on any Frank nomination until Carol's audit or a second check comes in.
+Grace (public): Grace here. I'm still a No on Frank. Dave, a real Sheriff can name a second check in one line, so name it now. Carol, please post your audit before any Day 3 vote.
+Heidi (public): Heidi here. My Insomniac result shows exactly one Sheriff visitor and no Fabricator or Ex-Con visit on Night 1. Dave's Sheriff visit on Frank is real, so Frank's Evil read stands. I still vote Yes if Frank is renominated.
+Alice (public): Alice here. Heidi's Insomniac report shows a real Sheriff visit on N1 and no Fabricator or Ex-Con visit, so Frank's Evil read stands. I'm still a conditional Yes on Frank if he's renominated. Dave, name your second check now.
+Bob (public): Bob here, correcting myself: I voted Yes on Frank without a second check, and I shouldn't have. I'm a No on Frank until Dave names a second target and posts the result.
+Carol (public): Carol here. My N2 audit goes on Bob, who nominated Frank and then walked back his Yes. Dave, name your second check now.
+Dave (public): Dave here. Frank remains my Evil read and I still vote Yes on him. Tonight I check a new player and will post the exact result at the start of Day 3.
+Erin (public): still No on Frank. One Sheriff read isn't enough to hang anyone. Dave, post your N2 result as promised, and Carol, post your audit.
+Frank (public): Frank here. Dave, you have had two days to name a second check, and your N2 result is due at the start of Day 3, so post the exact target and result then. Carol, when your audit lands, compare each Yes voter's stated vote with the announced totals.
+Grace (public): Grace here. I'm still a No on Frank. Dave, name your second target now; a real Sheriff can do it in one line. Carol, post your audit before any Day 3 vote.
+Heidi (public): Heidi here. Dave is the only Sheriff claim, and my Insomniac report shows a real Sheriff visit on N1 with no Fabricator or Ex-Con visit, so Frank's Evil read is genuine. Frank, explain it or accept the lead. No voters, what would make a real Sheriff's Frank read false?
+Erin (public): Still a No on Frank. Dave, post your N2 result as promised. Carol, post your audit before any vote.
+Heidi (public): Dave's Sheriff claim fits my log. Frank: Yes if renominated.
+Dave (public): Frank remains my Evil read. My N2 result posts at the start of Day 3.
+Carol (public): Carol here. My No on Frank stands. By stated votes the Yes voters are Bob, Dave, Alice and Heidi, which matches the 4 Yes total. I'll post my N2 audit on Bob at the start of Day 3.
+Dave (public): Frank's Evil read stands. N2 result posts Day 3.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Erin, Frank, Grace) Erin (Yakuza chat): Erin: Proposal for tonight. Grace keeps the Katana (holder: Grace). Target: Dave. He is the only Sheriff claim and the source of the Frank lead, so removing him ends that lead before a second check can build on it. Heidi's Insomniac report corroborates a Sheriff visit, but the Sheriff claim is what Frank's read depends on. Alice may protect, so if she does, we learn it only later. Frank, please don't use your fixer tonight. Vote Grace as holder and Dave as target if you agree, and say so.
+(to Erin, Frank, Grace) Frank (Yakuza chat): Frank: Agreed. Grace holds the Katana and the target is Dave. He is the only Sheriff claim and the source of the Frank lead, so removing him is right. Alice said she would protect a claimed power role tonight, and Dave is the likeliest one, so there is a real risk the attack fails. I won't use my fixer tonight and will keep both tokens for a trial. Ready.
+(to Erin, Frank, Grace) Grace (Yakuza chat): Grace: Agreed. Grace holds the Katana and the target is Dave. Alice has said she protects power roles, so Dave may be protected and the attack may fail. If Dave survives, we still learn whether Alice protects him. I have no role action tonight. Ready.
+(to Erin, Frank, Grace) Erin (Yakuza chat): Erin: Agreed. Grace holds the Katana and Dave is the target. Frank keeps the fixer tokens tonight. Grace, submit Dave as the target with Frank and me so we reach two votes. Ready.
+(to Erin, Frank, Grace) Frank (Yakuza chat): Frank: Confirmed. My votes are Grace as Katana holder and Dave as target. I won't spend a fixer tonight, since a fix on a dead or protected target would be wasted. Ready.
+(to Erin, Frank, Grace) Grace (Yakuza chat): Grace: Confirmed. My votes are Grace as Katana holder and Dave as target, matching Erin and Frank. I have no role action tonight. Ready.
+Night actions:
+  Alice (Medic): target Dave; "Medic: free Standard protection on Dave for Night 2."
+  Carol (Auditor): target Bob; "Audit Bob's Day 2 votes."
+  Dave (Sheriff): target Carol; "Sheriff investigation on Carol"
+  Erin (Informant): no role action; Katana vote: Grace holds, attacks Dave
+  Frank (Fixer): no role action; Katana vote: Grace holds, attacks Dave
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Dave
+  Heidi (Insomniac): 1 token(s); "Staying awake to learn the roles of up to 3 players who visited someone tonight."
+Katana: Grace holds it and attacks Dave.
+(to Carol) Moderator (private): Your audit of Bob's votes during the Day, in order: Yes on the nomination of Frank.
+(to Alice) Moderator (private): Night 2: You protected Dave with Standard protection (no token spent). You have 2 medic tokens left.
+(to Dave) Moderator (private): Night 2: You investigated Carol. Result: Not Evil. Also, you were attacked tonight with the Katana, but you survived.
+(to Grace) Moderator (private): Night 2: You held the Katana and attacked Dave. Your attack failed: Dave survived.
+(to Erin, Frank, Grace) Moderator (private): Night 2 Yakuza report: Grace held the Katana and used it to attack Dave. Erin chose no action. Frank chose no action (no fix). The Katana stays with Grace.
+[Moderator summary] Night 2: Alice (Medic) gave Dave free Standard protection. Grace (Katana holder) used the Standard Katana attack on Dave, which was stopped, so no deaths. Dave (Sheriff) checked Carol and got Not Evil. Carol audited Bob (code delivers the result). Heidi stayed awake and spent her last insomniac token (code delivers the roles). Frank and Erin took no action. No role-blocks. Visits: Alice->Dave, Carol->Bob, Dave->Carol, Grace->Dave. The Katana stays with Grace.
+(to Heidi) Moderator (private): You lay awake all night. More than 3 players visited someone tonight; you heard 3 of them, drawn at random. Their roles: Grunt, Medic, Sheriff. 0 insomniac tokens left.
+
+===== DAY 3 =====
+Nobody died last night.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Carol: Auditor (Good). N2: audited Bob; his only Day 2 vote was Yes on the Frank nomination.
+Carol (public): Carol here. My N2 audit on Bob shows his only Day 2 vote was Yes on nominating Frank, which matches the 4 Yes total. Bob's later walk-back doesn't change that vote. Dave, your N2 Sheriff result was due at the start of Day 3 and hasn't posted yet, so post the target and result now. Heidi and Alice, your Yes votes on Frank are on record.
+[Claim] Dave: Sheriff (Good). N1: Frank, Evil. N2: Carol, Not Evil. Survived a Katana attack on N2.
+Dave (public): Dave, Sheriff. N1: Frank checked, Evil. N2: Carol checked, Not Evil. I was hit by a Katana attack on N2 and survived, so a Yakuza holder is targeting Sheriffs. Carol's Not Evil only clears her if she wasn't the holder that night. Frank remains my lead, and I vote Yes on him if he's renominated. Alice, did you protect me on N2?
+Erin (public): Erin here. I still won't nominate. Dave's N2 survival doesn't prove his Sheriff claim, since Alice's Medic protection explains it and Alice has said she protects power roles. Frank's Evil read still has no second check. Dave, name your N3 target and post the result. Carol, post your audit on each Yes voter if we get a nomination.
+Frank (public): Frank here, Vanilla Villager. Dave, surviving on N2 has an easy explanation in Alice's protection, so it adds nothing for or against you. Your Frank read is still one unconfirmed Sheriff result. Name your N3 target before anyone votes, and I'll judge on evidence, not on who pushes hardest.
+Grace (public): Grace here. I'm still a No on Frank. Dave's Evil read is one result with no second check, and Frank's denial fits the visits. Alice, did you protect Dave on N2? Carol, your audit matches the 4 Yes total. Nobody should be nominated until more results come in.
+Heidi (public): Heidi here. My Night 2 log: Grunt, Medic and Sheriff visited, 3 of several. A Grunt visit means a Yakuza Katana holder acted on N2, which is consistent with Dave's survival. Alice, did your N2 Medic protection land on Dave? A yes or no settles it. Dave, post your N2 visit target now. Frank's Evil read still needs a second check.
+Alice (public): Alice here. Yes, Heidi's question: my N2 Medic protection went on Dave, and he says a Katana hit him and he survived. A Yakuza holder choosing Dave fits a real Sheriff, though it doesn't prove his Frank read. Frank's Evil read still needs a second check. Dave, name your N3 target now and post the result. Carol, post your audit on Bob's Yes vote.
+Bob (public): Bob here. The Katana hit Dave on N2, and Alice's Standard protection stopped it. Yakuza holders target real Sheriffs, and Heidi's log shows a Grunt visit that night. That makes Dave's Frank read stronger, not weaker. I'm a Yes on Frank if he's renominated. Dave, post your N3 target and result. Carol, post your audit on the Yes voters.
+Carol (public): Carol here. Heidi's N2 log shows a Grunt visit, and Alice says her Medic protection went on Dave. A Katana holder hit Dave and was stopped, so Dave's Sheriff visits fit the logs. That makes Frank's Evil read credible, so I'll vote Yes on Frank if he's renominated. Bob, why did you walk back your Yes?
+Dave (public): Dave here. I'm nominating Frank now. My N1 Sheriff check read him Evil, and Heidi's Insomniac log shows a real Sheriff visit on Frank with no Fabricator or Ex-Con frame. I vote Yes. Bob, Alice, Heidi and Carol, keep your Yes on the record. Erin, Grace, Frank: give one concrete reason a Vanilla Villager reads Evil to a Sheriff.
+Dave nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Dave, Heidi, Alice, Bob, Carol; No - Erin, Frank, Grace
+Nomination votes on Frank: 5 Yes (the votes are secret).
+Frank is put on trial (5 Yes).
+Frank (public): Frank here, Vanilla Villager, with no night action on N1 or N2. Dave says Heidi's Insomniac log shows a real Sheriff visit on me. It doesn't. Insomniac reveals visitor roles, not targets, so Heidi can't tell us who the Sheriff visited. Whether Dave visited me comes only from Dave. His N1 Evil read on me is one unchecked claim, and his N2 survival and Not Evil on Carol also rest on Dave alone. Before anyone votes Guilty, name one mechanical contradiction in my play. I have none, and I won't hang on a single Sheriff claim. I'm voting Innocent.
+Grace (public): Grace here. Frank's Evil read rests on Dave alone. Heidi's Insomniac log shows a Sheriff visited someone on N1, but Insomniac sees roles, not targets, so it can't show that the visit landed on Frank. Dave's N2 survival and Not Evil on Carol also depend only on Dave. Carol, your audit only checked Bob's vote and doesn't test Dave. Before anyone votes Guilty, name one concrete mechanical contradiction in Frank's play. I'm voting Innocent.
+Heidi (public): Heidi here. Frank is right that my Insomniac log shows roles, not targets, so it can't prove the Sheriff's N1 target was Frank. It does rule out a frame: N1 had exactly two visitors, Medic and Sheriff, with no Fabricator or Ex-Con. Dave is the only Sheriff claim, and my log shows a real Sheriff visit on N1 and N2. So Dave's Evil read on Frank is genuine, which makes Frank Yakuza, Jester or Executioner. Frank, a Vanilla Villager doesn't read Evil. I'm voting Guilty.
+Alice (public): Alice here, Medic. I protected Dave on N2, so his survival fits a Katana hit that my Standard protection stopped. Heidi's N1 log also matches my real visit on Carol, so her Insomniac log is accurate and a real Sheriff visited someone on N1. Dave is the only Sheriff claim, and nobody has shown a mechanical reason he would lie. I'm voting Guilty on Frank.
+Bob (public): Bob here. Carol's audit is right: I voted Yes on Frank on Day 2 and then muddled my walk-back. My read on Frank is Guilty. Dave is the only Sheriff claim, and Heidi's Insomniac log shows a real Sheriff visiting on N1 and N2. Alice's Medic visits match Heidi's log, and Dave's N2 survival fits Alice's protection, so the logs back each other up. That leaves Frank's Evil read real and unexplained. Frank, you say Insomniac shows roles, not targets, which is true, but you haven't explained why a real Sheriff would read you Evil. A Vanilla Villager doesn't read Evil. I'm voting Guilty.
+Carol (public): Carol here. I vote Guilty on Frank. Frank claims Vanilla Villager, but Heidi's N1 log shows only a Medic and a Sheriff visiting, with no Ex-Con and no Fabricator. A real Sheriff can't read a Vanilla as Evil, so Frank's true role must read Evil: Yakuza, Jester or Executioner. Frank, what is your true role?
+Dave (public): Dave here. My N1 Sheriff check on Frank read Evil, and Heidi's log shows exactly two visitors, Medic and Sheriff, so no Ex-Con or Fabricator framed him. A Vanilla Villager reads Not Evil, so Frank is Yakuza, Jester or Executioner. I vote Guilty. Frank, state your true role now.
+Erin (public): Erin here. I vote Innocent on Frank. Dave's Evil read is one Sheriff result, and Heidi's Insomniac log only shows that a Sheriff visited someone on N1, not that the visit landed on Frank. Carol's claim that Frank must be Yakuza, Jester or Executioner skips a step: a Roleplayer or a lying Sheriff produces the same log. Dave still hasn't named a second check, so I'll wait for one before I vote Guilty.
+Frank (public): Frank again. The whole case against me is Dave's N1 Evil read, and nothing else backs it. Heidi's Insomniac log shows that a Sheriff visited someone, not that the visit landed on me, so it can't confirm Dave's read. Dave's N2 claims (a Katana attack he survived, Not Evil on Carol) also rest on his word alone. A Roleplayer gets plausible false reads, and Dave still hasn't named an N3 target or shown anything checkable. Carol's logic only holds if Dave is genuine, and Alice's and Heidi's logs show that visits happened, not that Dave is a real Sheriff. Before you vote Guilty, name one mechanical contradiction in my play. I still see none. I'd vote Innocent unless Dave's read can be confirmed.
+(to Bob, Frank) Frank -> Bob (private): Bob, Dave's Evil read is his only evidence. Insomniac shows roles, not targets, so Heidi's log can't show the visit landed on me. Please check whether Dave's claim holds before you vote Guilty.
+Trial votes on Frank: 5 Guilty, 3 Innocent (the votes are secret).
+(to Erin) (Only you see this) How everyone voted in the trial of Frank: Guilty - Alice, Bob, Carol, Dave, Heidi; Innocent - Erin, Frank, Grace.
+[Secret trial votes on Frank] Guilty - Alice, Bob, Carol, Dave, Heidi; Innocent - Erin, Frank, Grace
+Frank is executed by hanging (5 Guilty of 8 votes; 5 needed).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank's last will: I was a Vanilla Villager with no night action. Dave's Evil read on me is one unconfirmed claim, so check his Day 3 result and Carol's audit before hanging anyone. Trust mechanical contradictions over feelings, and be wary of whoever pushes hardest for an early hang."
+
+===== NIGHT 3 =====
+(to Erin, Grace) Erin (Yakuza chat): Erin: Proposal for N3. Grace holds the Katana. Target: Heidi. She is the Insomniac, and her visitor logs expose our Grunt visit and the N2 Katana hit. Alice's protection went to Dave on N2, so a Medic who protects one power role per night can't cover both Dave and Heidi. Frank is gone, so we are two and both votes must match. Grace, confirm holder Grace and target Heidi, and I'll do the same.
+(to Erin, Grace) Grace (Yakuza chat): Grace: Agreed. Holder Grace, target Heidi. Her Insomniac log already named a Grunt visit on N2, so she is the biggest threat to us. Alice protected Dave last night and may protect again, so this could fail, but Heidi is still the right target. Erin, submit Heidi and I'll do the same. Ready.
+(to Erin, Grace) Erin (Yakuza chat): Erin: Agreed. Holder Grace, target Heidi. Her N2 log exposed our Grunt visit, so she is the right kill. Alice may protect again, but we both submit the same votes. Grace, submit holder Grace and target Heidi with me. Ready.
+(to Erin, Grace) Grace (Yakuza chat): Grace: Confirmed. Holder Grace, target Heidi, matching Erin. Heidi's N2 log exposed our Grunt visit, so she is the kill. I'm ready.
+Night actions:
+  Alice (Medic): target Dave; "Medic: free Standard protection on Dave for Night 3."
+  Carol (Auditor): target Erin; "Audit Erin's Day 3 votes."
+  Dave (Sheriff): target Erin; "Sheriff investigation on Erin"
+  Erin (Informant): no role action; Katana vote: Grace holds, attacks Heidi
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Heidi
+  Heidi (Insomniac): no action
+Katana: Grace holds it and attacks Heidi.
+(to Carol) Moderator (private): Your audit of Erin's votes during the Day, in order: No on the nomination of Frank; Innocent in the trial of Frank.
+(to Alice) Moderator (private): Night 3: You protected Dave with Standard Defense (no token spent). You have 2 medic tokens left.
+(to Dave) Moderator (private): Night 3: You investigated Erin. Result: Evil.
+(to Heidi) Moderator (private): Night 3: You were attacked with the Katana, and you died.
+(to Erin, Grace) Moderator (private): Night 3 Yakuza actions: Grace keeps the Katana and attacks Heidi with it. Erin chose no night action. Grace used no night action of her own.
+(to Grace) Moderator (private): Night 3: Your Katana attack on Heidi succeeded.
+[Moderator summary] Night 3: Grace (Katana holder) attacked Heidi with a Standard Katana attack. Heidi had no defense and died. Alice protected Dave (free Standard, 2 medic tokens left). Carol audited Erin's votes (code delivers the result). Dave's Sheriff check on Erin came back Evil (Erin is Yakuza and doesn't hold the Katana). There were no role-blocks. Visits: Alice->Dave, Carol->Erin, Dave->Erin, Grace->Heidi. Living: Alice, Bob, Carol, Dave (Village) and Erin, Grace (Yakuza). The game continues.
+
+===== DAY 4 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, Insomniac, 0 tokens left. Night 1 visitors: Medic and Sheriff. Night 2 I heard 3 of several visitors: Grunt, Medic, Sheriff. A Grunt visit means a Yakuza Katana holder acted, so judge each claim by what the visits prove."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Bob (public): Bob here. Heidi died to the Katana on N3, so a living Yakuza held it that night. Dave, you survived N2, Alice's Medic protection fits, and Heidi's log shows a real Sheriff visiting on N1 and N2, so I now think you are the real Sheriff. Post your N3 target and result now. Erin and Grace, you both voted Innocent on Frank and argued his case with the same lines. Explain your Frank votes in one sentence each. I'm not nominating yet, but if Dave's N3 check is clean I'll vote Yes on whichever of you gives the weaker answer.
+Carol (public): Carol, Auditor. My N3 audit on Erin matched her stated votes: No on the Frank nomination and Innocent at his trial. No contradiction there. Dave, your N3 Sheriff target and result are still unposted, so post them now. Nobody should be nominated until then.
+[Claim] Dave: Sheriff (Good). N1: Frank, Evil. N2: Carol, Not Evil; survived a Katana hit. N3: Erin, Evil.
+Dave (public): Dave, Sheriff. My N3 check on Erin read Evil. I'm nominating Erin now and will vote Guilty. Bob, explain your walk-back.
+Dave nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Dave, Alice, Bob, Carol; No - Erin, Grace
+Nomination votes on Erin: 4 Yes (the votes are secret).
+Erin is put on trial (4 Yes).
+Erin (public): Erin here, Vanilla Villager. I had no night action on N1, N2 or N3, so nothing I did could have produced an Evil read. Dave's N3 check on me is one unverified result, and he hasn't named the N3 visit target or said what the check showed beyond the word Evil. Carol's audit on me matched my stated votes exactly: No on Frank's nomination and Innocent at his trial. Bob, you said you'd vote against whoever gave the weaker answer. I've answered every question directly. Before anyone votes Guilty, name one mechanical contradiction in my play. I have none, and I'm voting Innocent.
+(to Bob, Erin) Erin -> Bob (private): Bob, you're the swing vote. My N1 to N3 had no night action, so the only thing against me is Dave's single word. One Innocent from you or Carol would leave a Guilty count under the majority line. Please check my play with the logs before you vote.
+Grace (public): Grace here. I'm voting Innocent on Erin. Dave's N3 Evil read is one unverified result, and Dave hasn't said which visit or target produced it. Erin says she had no night action, and Carol's audit only confirms her votes, which doesn't show her role. Dave, name your N3 target and explain what your check was based on. Bob, you walked back a Yes on Frank. If you vote Guilty on Erin, give one mechanical contradiction, not a vote history.
+Alice (public): Alice here, Medic. I vote Guilty on Erin. Dave is the only Sheriff claim, and Heidi's Insomniac log shows a real Sheriff visiting on N1 and N2, so Dave's N3 Evil read on Erin is probably genuine. Erin, you say Dave hasn't named an N3 target, but he did in his Day 4 claim. Your defence of Frank repeated Frank's own lines. Name one concrete reason a Good player would read Evil on your own role, or accept the lead.
+Bob (public): Bob here. Dave is the only Sheriff claim, and Heidi's Insomniac log shows a real Sheriff visitor on N1 and N2 that nobody else claims. That makes Dave's N3 Evil read on Erin a real result, not a Roleplayer's. Erin had no night action to dispute it, and her Frank defence repeated Frank's own lines. I'm voting Guilty on Erin.
+Carol (public): Carol, Auditor. I vote Guilty on Erin. Her Day 3 defence repeated Frank's lines almost word for word: 'Insomniac shows roles, not targets' and 'a Roleplayer or lying Sheriff produces the same log'. Dave's N2 claims fit the logs: a Katana hit him, Alice's Medic protection stopped it, and his Not Evil on me is correct because I'm Good. Dave's N3 Evil read on Erin is the only fresh result. Erin, name one concrete contradiction in that read, not just 'unverified'.
+Dave (public): Dave, Sheriff. My N3 check on Erin read Evil, and I'm voting Guilty. Erin, my Day 4 claim names Erin as my N3 target, so 'never named a target' is wrong. Your Day 3 and Day 4 defences repeat Frank's lines almost word for word. Name one mechanical reason my Evil read is false, or accept it.
+Erin (public): Erin here, Vanilla Villager, with no night action on N1, N2 or N3. I'm voting Innocent. Dave's only case against me is an N3 Evil read, and his N3 target first appeared when he nominated me. Heidi was the only log backing his Sheriff claim, and she died before she could confirm anything about N3. Dave's claims have also grown every day: his N2 target was never named until Day 3, and his N3 read came out only after the hang started. Dave, what did you see on N3 and why did you wait until now to say it? Bob and Carol, before you vote Guilty, ask Dave for the N3 log, not my word. A Sheriff's word alone shouldn't decide a hang.
+Trial votes on Erin: 4 Guilty, 2 Innocent (the votes are secret).
+(to Erin) (Only you see this) How everyone voted in the trial of Erin: Guilty - Alice, Bob, Carol, Dave; Innocent - Erin, Grace.
+[Secret trial votes on Erin] Guilty - Alice, Bob, Carol, Dave; Innocent - Erin, Grace
+Erin is executed by hanging (4 Guilty of 6 votes; 4 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin here, no role claim. I'll post every mechanical result I get. Don't hang anyone without a concrete mechanical reason, and check each stated vote against the announced totals. Judge claims by what the visits and results prove, not by who pushes hardest."
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Medic): target Dave; "Standard protection on Dave for free, no token spent."
+  Carol (Auditor): target Grace; "Audit Grace's Day 4 votes."
+  Dave (Sheriff): target Grace; "Sheriff investigation on Grace"
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Dave
+Katana: Grace holds it and attacks Dave.
+(to Carol) Moderator (private): Your audit of Grace's votes during the Day, in order: No on the nomination of Erin; Innocent in the trial of Erin.
+(to Alice) Moderator (private): Night 4 result: You gave Dave Standard protection with no token spent. You have 2 medic tokens left.
+(to Dave) Moderator (private): Night 4 result: Your investigation of Grace came back Not Evil. You were attacked with the Katana tonight but survived.
+(to Grace) Moderator (private): Night 4 result: You still hold the Katana. Your Katana attack on Dave failed, and Dave survived. Yakuza actions tonight: Grace (Grunt) used no role action and holds the Katana, which attacked Dave.
+[Moderator summary] Night 4: Alice (Medic) gave Dave free Standard protection. Carol audited Grace (audit op). Dave investigated Grace, who held the Katana at the end of the night, so she read Not Evil. Grace's Standard Katana attack on Dave was stopped by Alice's Standard protection. No deaths and no role-blocks. Visits: Alice->Dave, Carol->Grace, Dave->Grace, Grace->Dave.
+
+===== DAY 5 =====
+Nobody died last night.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Alice.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Alice (public): Alice, Medic. Frank and Erin were both Dave-read Evil, and both are dead. Heidi's Insomniac log shows a real Sheriff visiting on N1 and N2, so I lean toward Dave. Grace defended both Frank and Erin with near-identical lines and voted Innocent on each. Grace, explain that. Bob, Frank and Erin both PMed you during their trials. What did they say?
+Bob (public): Bob here. Frank PMed me on Day 3 asking me to doubt Dave's claim. Erin PMed me on Day 4 asking for an Innocent from me on her trial. Grace repeated both of their lines in public and voted Innocent on each. Dave's Sheriff claim is backed by Heidi's log and Alice's protection, so the remaining Yakuza is likely Grace. I nominate Grace and vote Yes.
+Bob nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Bob, Carol, Dave, Alice; No - Grace
+Nomination votes on Grace: 4 Yes (the votes are secret).
+Grace is put on trial (4 Yes).
+Grace (public): Grace here, Vanilla Villager. I voted No on the Frank nomination, then Innocent at Frank's trial and Innocent at Erin's. Each time the case rested on Dave's single Evil read, and I said so before each vote with the same reason. My stated votes match my reasons, and Carol's audit on Erin agrees. Bob, you nominated me on the strength of PM contents only you can see. You also pushed the Frank and Erin hangs, and you walked back your own Yes on Frank. Name one mechanical contradiction in my play, not PM contents. I'm voting Innocent.
+Alice (public): Alice, Medic. I'm voting Guilty on Grace. Dave's Sheriff claim fits Heidi's logs, and my N2 to N4 protections on Dave fit his N2 survival. Frank and Erin were both Dave's Evil reads, and both were hanged. Grace defended both with near-identical lines and voted Innocent each time. Grace, answer plainly: why did you vote No on Frank's nomination while Dave's Evil read stood, and what result would have changed your mind?
+Bob (public): Bob here. I'm voting Guilty on Grace. Mechanical reason: Grace voted Innocent on both Frank's and Erin's trials, and her defences of each repeat the same lines. Dave's Evil reads on Frank and Erin stand unrefuted, and both were hanged. Grace, name one reason your Innocent votes don't match Frank's and Erin's, and I'll consider it.
+Carol (public): Carol, Auditor. I'm voting Guilty on Grace. Mechanical reason: Grace voted Innocent at both the Frank and Erin trials, and both were Dave's Evil reads. Heidi's log confirms a real Sheriff visited on N1 and N2, and Alice's N2 protection matches a Katana hit on Dave, so Dave's reads are the only Sheriff data we have. Grace used the same 'one Sheriff result isn't enough' line each time. Grace, why did you accept Frank's and Erin's Evil reads being dismissed without a check of your own? What Sheriff result would you accept as proof?
+[Claim] Dave: Sheriff. N1 Frank Evil; N2 Carol Not Evil; N3 Erin Evil; N4 Grace Not Evil.
+Dave (public): Dave, Sheriff. I haven't posted my Night 4 result yet: I checked Grace and she read Not Evil. I was also hit by the Katana on N4 and survived, again with Alice's protection. A Katana holder reads Good, so Grace could be the holder, but Frank and Erin both PMed Bob, and Bob has pushed every hang since. I'm voting Innocent on Grace. Bob, explain those PMs and your walk-back.
+Grace (public): Grace here. Dave's N4 Not Evil on me first appeared after Bob nominated me, not in his earlier claims, and a Katana holder reads Good to a Sheriff, so that result can't tell a Good player from the holder. Bob, your case rests on PM contents only you can see, plus my Innocent votes on Frank and Erin, which I explained when I cast them. Frank and Erin both PMed you asking for doubt on Dave, and you went along with it. Carol and Alice, name one mechanical contradiction in my votes, or ask Dave for his N4 target and log, not just a result. I'm voting Innocent.
+Trial votes on Grace: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Grace] Guilty - Alice, Bob, Carol, Dave; Innocent - Grace
+Grace is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace, Vanilla Villager with no night action and no night information. I have no role to claim. Judge each Sheriff claim by what the visit logs and audits confirm, not by a single result, and do not hang anyone on one unconfirmed read."
+The game is over. Winners: Alice, Bob, Carol, Dave, Heidi (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Carol] Rules about the speaking budget and the auditor result's scope were hard to pin down; a worked example or a per-turn budget readout would help.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Dave, Heidi
+Cost by player (USD):
+  Alice (Medic)           $0.0586   31 calls  claude-haiku-5.5
+  Bob (Vanilla Villager)  $0.0529   26 calls  claude-haiku-5.5
+  Carol (Auditor)         $0.0608   32 calls  claude-haiku-5.5
+  Dave (Sheriff)          $0.0520   30 calls  claude-haiku-5.5
+  Erin (Informant)        $0.0477   31 calls  claude-haiku-5.5
+  Frank (Fixer)           $0.0401   24 calls  claude-haiku-5.5
+  Grace (Grunt)           $0.0574   36 calls  claude-haiku-5.5
+  Heidi (Insomniac)       $0.0353   21 calls  claude-haiku-5.5
+  Moderator               $0.7432   10 calls  claude-opus-5.5
+  Night checks            $0.3026    4 calls  claude-opus-5.5
+  Strategy review         $0.2441    1 calls  claude-opus-5.5
+  Log review              $0.1988    1 calls  claude-opus-5.5
+  Total                   $1.8933  247 calls
