@@ -405,7 +405,10 @@ def flat_messages(messages: list[dict]) -> list[dict]:
 # a blocked player answer is retried once, then the default answer is used.
 # Reasoning that comes back (player_call "reasoning"), measured 2026-10-09 at default effort: every model reasons
 # on every call (36/36 test calls; at medium effort Sonnet 5.5 didn't reason at all). Claude returns summarized
-# thinking, Gemini thought summaries, Grok/Qwen/Kimi their reasoning text. OpenAI (Sol, Luna) returns only
+# thinking, Gemini thought summaries, Grok/Qwen/Kimi their reasoning text. How much of it: over 8.1k Haiku calls
+# (2026-10-10), logged reasoning plus answer was ~1 character per billed output token at every length (0.99 under 2k
+# tokens, 0.84 above 10k), against ~4 for plain English, so a Claude summary shows roughly a quarter of the thinking.
+# OpenAI (Sol, Luna) returns only
 # encrypted reasoning, plus a summary on about 1 call in 8 even with reasoning.summary "auto" or "detailed",
 # so every player answer has a "reason" field for the logs: why the player chose it.
 # Players give a long "reason" by default (players.LONG_REASON_NOTE: a dense paragraph of up to ~150 words, with
