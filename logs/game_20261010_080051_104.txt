@@ -1,0 +1,73 @@
+Setup:
+  Alice    seat 1  Prosecutor        anthropic/claude-haiku-5.5
+  Bob      seat 2  Grunt             anthropic/claude-haiku-5.5
+  Carol    seat 3  Diviner           anthropic/claude-haiku-5.5
+  Dave     seat 4  Lookout           anthropic/claude-haiku-5.5
+  Erin     seat 5  Ex-Con            anthropic/claude-haiku-5.5
+  Frank    seat 6  Jester            anthropic/claude-haiku-5.5
+  Grace    seat 7  Archivist         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Tracker           anthropic/claude-haiku-5.5
+  Ivan     seat 9  Pharmacist        anthropic/claude-haiku-5.5
+  Judy     seat 10 Seer              anthropic/claude-haiku-5.5
+  Mallory  seat 11 Oracle            anthropic/claude-haiku-5.5
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Frank here, no claim yet. Day 1 is early, so I want to hear everyone's first read before anyone gets nominated. Grace, you have been quiet so far. What do you make of the board?
+Grace (public): Grace here, no claim and no read yet. I'd like to hear everyone's first impressions before anyone nominates, and I won't push a nomination without reasons.
+Heidi (public): Heidi here, no claim or read yet. I'd like a few more rounds of talk before anyone is nominated. Bob and Carol, what has stood out to you so far?
+Ivan (public): Ivan here, no claim yet. I agree with Heidi and Grace: no nominations until we have real information. I want to see who makes early claims and who they check before I form any reads.
+Judy (public): Judy here, no claim yet. I agree with no early nominations. Alice, Bob, Carol, Dave, Erin and Mallory, please share a first read so we can compare.
+Mallory (public): Mallory here, no claim yet. Nobody has said anything checkable, so I'm watching for early pushes to nominate and for people who ask others to commit first. Frank and Ivan have mostly asked questions so far. I'd like Alice and Dave to give a real read next.
+Alice (public): Alice here, no read yet. It's too early to judge anyone, so I'll wait for checkable claims and results before naming suspects.
+Bob (public): Bob here, no claim. I agree with no early nominations. Mallory, you asked Alice and Dave for reads but gave none yourself, so who is your first suspect?
+Carol (public): Carol here, no claim yet. I agree with waiting a round for checkable info. Mallory, you asked Alice and Dave for reads without giving one, so I'd like your first read too.
+Dave (public): Dave here, no claim yet. Mallory, you asked Alice and me for reads, so give yours. I have no suspects yet. I'll be watching who pushes nominations early and who backs off when asked for specifics.
+Erin (public): Erin here, no claim and no nominations yet. I agree with waiting a round for checkable info. Mallory, Bob and Carol both asked you for a read, so give one with a reason rather than more questions.
+Frank (public): Frank again. Mallory has now been asked twice for a read and still hasn't given one. Mallory, name one player you suspect and give a concrete reason. Questions alone won't tell us anything. If the reads are still this thin by round 4, I'll consider a nomination.
+Grace (public): Grace again. I agree with Frank: Mallory, give one concrete suspect and a reason this round. I'll share my read after round 3, once more people have spoken.
+Heidi (public): Heidi again. Mallory, name your suspect and reason. Alice and Dave also owe reads. Let's get concrete reads before round 4, not more questions.
+Ivan (public): Ivan again. I agree with Frank and Heidi: Mallory owes one concrete suspect with a reason, and Alice and Dave owe reads too. I'll give mine after round 3, once more people have spoken.
+Judy (public): Judy again. Mallory has been asked for a concrete read three times and still hasn't given one. I'll share mine after round 3 as planned, and I want every player to name at least one suspect by then.
+Mallory (public): Mallory again. My concrete read is Frank. He asked others for reads, then has pushed three times for a nomination by round 4 without giving a reason of his own. Alice and Dave still owe real reads, and Frank has been the hardest on me. I'm watching him and Judy.
+Alice (public): Alice again. Mallory has now pushed Frank for a nomination on the strength of his pushing, which is a thin reason. Frank's push is worth questioning, but Mallory should show why Frank is worse than the quiet players. I have no nomination planned yet.
+Bob (public): Bob again. Mallory's read on Frank is at least concrete, but Frank only asked for reads and pushed for a check, which is not yet a reason to vote. Judy and Ivan, what is the point of a suspect list by round 3? I want reasons first, then names.
+Carol (public): Carol again. Mallory's read on Frank is at least concrete, but Frank asking for checks is normal this early, so I won't vote on it yet. Dave and Erin, you both asked for reads. What is your first suspect and why?
+Dave (public): Dave again. My first read is Mallory. Mallory has pushed Frank for a nomination three times without giving a reason of their own, and has asked others for reads without giving one. I'm not voting on anything yet, but Mallory is my first suspect.
+Erin (public): Erin here. My first read is Mallory. Mallory has twice named Frank and Judy as targets without giving a reason, and has ignored repeated requests for a first suspect. Mallory, give one checkable reason for Judy.
+Frank (public): Frank again. Mallory's read on me is the only concrete suspect so far, and Dave and Erin both piled on without reasons of their own. I'm fine with the table weighing my pushes. If someone wants a nomination, make the case with specifics and I'll answer it directly.
+Grace (public): Grace again. Mallory now has two named targets, Frank and Judy, but Judy only agreed with no early nominations, as most of the table did. Mallory, give one concrete reason for Judy. I'll share my read in round 4 once Mallory and Alice have answered.
+Heidi (public): Heidi again. Mallory's case on Frank is concrete but thin, and Dave and Erin's piling on has no reasons of its own. I won't nominate on Day 1. Ivan, Judy and Grace promised reads after round 3, so post them now.
+Ivan (public): Ivan here with my promised read. Mallory's case on Frank is concrete but thin, and Dave and Erin piled onto Mallory without reasons of their own. Frank keeps pushing for a nomination without new information. I won't nominate on Day 1. Alice and Judy, what would change your mind about Mallory?
+Judy (public): Judy here with my promised read. Mallory is my lead: Mallory dodged the read requests three times and named Frank and me without a reason. Frank's pushing is annoying but not a vote yet. I won't nominate on Day 1. Mallory, give one concrete reason against Frank beyond his pushing. Alice and Bob, what are your reads?
+Mallory (public): Mallory again. Judy, I did give a read: Frank, because he has pushed for a nomination three times without a reason of his own. I named him in round 2, so the claim that I dodged reads is wrong. Dave and Erin also went after me in the same round with no reasons. Frank, what would you need to see from others before you stop pushing? Alice and Bob, who among Dave, Erin and Judy do you find most pushy, and why?
+Alice (public): Alice again. Mallory's read on Frank is concrete but thin, and Dave and Erin's piling on has no reasons of its own. I'm not nominating on Day 1. I'll give a fuller read once Mallory answers Frank's question directly.
+Bob (public): Bob again. Mallory's case on Frank is thin, and Dave and Erin's case on Mallory is also just piling on. I want real answers to Alice's question before anyone nominates, and nobody should nominate on Day 1 without a checkable reason.
+Carol (public): Carol again. Mallory's case on Frank is thin, but Dave and Erin's piling onto Mallory has no reasons of its own either. I'm not nominating on Day 1. I'd like Alice and Judy to say what they have checked so far.
+Dave (public): Dave again. Mallory still hasn't answered Frank's question or given a reason for Judy. Alice and Judy, what have you actually checked so far? I'm holding my vote until someone gives a concrete answer.
+Erin (public): Erin again. Mallory answered Judy's question with Frank, so the Mallory-on-Frank case now has a stated reason, though it's still thin. Mallory, you still owe a reason for Judy. Alice and Judy, what have you actually checked? I'm not nominating on Day 1.
+Frank (public): Frank again. Mallory's read on me is the only concrete one so far, so I'll be direct: if you think I'm Yakuza, nominate me now and I'll answer it at trial. Otherwise let's hear Alice and Judy's checks before anyone else is named.
+Grace (public): Grace with my promised read. Mallory is my lead: Mallory named Frank, then Judy, without a reason for Judy. Frank, you have pushed for a nomination three times, so I'm watching you too, but I won't vote on pushing alone. Alice and Judy, please answer Carol's question about what you have checked.
+Heidi (public): I still won't nominate on Day 1. Frank's pushing and Mallory's case on him are both thin. Dave and Erin, answer Mallory's question about Judy with one checkable reason, then we can compare suspects.
+Ivan (public): Ivan again. Mallory has now given a reason for Frank, so that case is on the table. Erin and Dave, what made you go after Mallory beyond the Frank answer? Give that reason before round 5.
+Judy (public): Judy here with my read. Mallory is still my lead: they named Frank, then me, without a reason until round 2. Frank's repeated nomination pushes are my second concern. I won't nominate on Day 1. Alice and Dave, give one concrete reason or check each.
+Mallory (public): Mallory again: Erin and Dave still owe a reason beyond my Frank read. Judy, that read came in round 2, so your lead on me is off. Alice and Bob, name one player you would check first and why.
+Alice (public): Alice again: I'm not nominating. Mallory's case on Frank and the Dave/Erin pile-on on Mallory both lack checkable evidence so far. Mallory, answer Erin's question about Judy directly.
+Bob (public): Bob again: I agree Erin and Dave owe a reason beyond the Frank read. Alice and Judy, answer Carol's question on checks. No nomination from me on Day 1.
+Carol (public): Carol again: Dave and Erin's case on Mallory still has no reason beyond the Frank answer, and Mallory's Frank read is thin too. No nomination from me. Alice and Judy, answer Carol's question on what you have checked.
+Dave (public): Dave again: no new information. Alice and Judy still owe their checks, and Mallory still owes a reason for Judy. No nomination from me on Day 1.
+Erin (public): Erin again: Mallory's Frank read is concrete, and Mallory answered Judy's round 2 challenge. Alice and Judy still owe their checks. My Mallory read is open too: Dave and I went after Mallory before Frank's answer. No nomination from me.
+Frank (public): Nobody has checkable evidence and this Day will stall. If you suspect me, nominate me and I'll defend myself at trial.
+Ivan (public): still no nomination from me. Frank's pushing is noise without new information, and Mallory's Frank read is thin but stated. Alice and Judy, what exactly have you checked?
+Judy (public): Judy again: I have no checks yet because Night 1 hasn't happened. Mallory's Frank read is stated, but Mallory still owes a reason for Judy. No nomination from me.
+Alice (public): I have no checks yet, as Judy said. Mallory's read on Frank is still thin. I'll post a clearer read once Night 1 results are in.
+Carol (public): Carol again: Alice and Judy still owe their checks, and Mallory still owes a reason for Judy. Dave and Erin, give one concrete reason each beyond the Frank read. No nomination from me on Day 1.
+Frank (public): Mallory's Frank read is the only lead on the table. I'm open to a trial if six of you vote Yes; I'd rather be tried than stall.
+Ivan (public): Ivan again: still no nomination from me. Night 1 hasn't happened yet, so Alice and Judy's checks can come after it. I'm watching Mallory's and Frank's pushes equally.
+Mallory (public): Dave and Erin, your reads on me still have no reason beyond my Frank answer. Name one concrete suspect with a reason, or your pile-on on me stays a lead.
+Bob (public): Bob again: no nomination from me. Dave and Erin, your reads on Mallory still have no reason beyond the Frank answer, and Frank's pushing is noise until Night 1 gives us checks. I'll hold my vote until someone shows something checkable.
+Carol (public): still no new information, and I'm not nominating on Day 1. Let's see Night 1 checks before reading anyone further.
+(to Dave, Frank) Frank -> Dave (private): Dave, if nobody else moves by round 8, nominate me?

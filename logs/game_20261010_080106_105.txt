@@ -1,0 +1,58 @@
+Setup:
+  Alice    seat 1  Medic             anthropic/claude-haiku-5.5
+  Bob      seat 2  Archivist         anthropic/claude-haiku-5.5
+  Carol    seat 3  Smuggler          anthropic/claude-haiku-5.5
+  Dave     seat 4  Veteran           anthropic/claude-haiku-5.5
+  Erin     seat 5  Grunt             anthropic/claude-haiku-5.5
+  Frank    seat 6  Accountant        anthropic/claude-haiku-5.5
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5
+  Heidi    seat 8  Fortune Teller    anthropic/claude-haiku-5.5
+  Ivan     seat 9  Vanilla Villager  anthropic/claude-haiku-5.5
+  Judy     seat 10 Lookout           anthropic/claude-haiku-5.5
+  Mallory  seat 11 Clerk             anthropic/claude-haiku-5.5
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Heidi.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Heidi (public): Heidi here, no reads yet. I'd rather hear everyone's first takes before anyone commits to a nomination.
+Ivan (public): Ivan here, Vanilla Villager, no reads yet. Agree we hear everyone out before any nomination, and I'll watch who pushes early votes.
+Judy (public): Judy here, no reads yet. Agree we hear everyone out before any nomination. I'll be watching who pushes early and who starts PM triangles.
+Mallory (public): Mallory here, no reads yet. Agree with hearing everyone out first. I'd like to hear Alice, Bob and Carol before anyone commits to a nomination.
+Alice (public): Alice here, no reads yet. Agreed, let's hear everyone out before any nomination. Bob, Carol, please give your first takes.
+Bob (public): Bob here, no reads yet. Agreed, we hear everyone out first. I have no information until the first night resolves, so I won't push a nomination today and will watch who rushes one.
+Carol (public): Carol here, no reads yet. Agreed, no rush. I'd like to hear Dave, Erin and Frank before anyone nominates.
+Dave (public): Dave here, no reads yet. Agreed on hearing everyone out first. I'll note who pushes nominations early.
+Erin (public): Erin here, no reads yet. Agreed on hearing everyone out first. Frank and Grace, I'd like your first takes.
+Frank (public): Frank here, no reads yet. Agreed on hearing everyone out before any nomination. Grace, I'd like your first take.
+Grace (public): Grace here, Vanilla Villager, no reads yet. Agreed on hearing everyone out first. I'll note who pushes nominations early and who builds PM pairs.
+Ivan (public): Ivan again, still no reads. I agree with no nominations until we have night results. Anyone who pushes a nomination early should explain why.
+Mallory (public): Mallory again, still no reads. I agree with waiting for night results. Anyone pushing a nomination before then should say what they are basing it on.
+Bob (public): no reads yet. Before the Day closes, everyone should name one concrete thing they will check tonight, so the first night gives us something to compare.
+Carol (public): Carol here, still no reads. Tonight I'll check whether anyone's Day 1 chat pattern or nomination habits look coordinated, and I'll share my list once results land.
+Dave (public): nothing new yet. I'll hold any nomination until night results and watch who pushes early.
+Erin (public): Erin, still no reads. Agree with waiting for night results before any nomination.
+Grace (public): still no reads. I agree no nominations until we have night results. After the first night I'll share my observations on PM pairs and early nomination pushes.
+Ivan (public): still no reads. Any player with a night role, please say what you plan to check tonight so we can compare results in the morning.
+Mallory (public): Mallory here, still nothing new. I'll hold any nomination until night results and would like to see concrete night plans from Frank and Dave.
+Carol (public): Carol, still no reads. Frank and Dave, what are your concrete night plans? I'd like to compare them with results in the morning.
+Dave (public): I won't nominate today. I have a night action, but I won't post targets publicly, since that tells whoever is hunting where to strike. I'll share any results I get at the start of Day 2.
+Erin (public): Erin here, still no reads. I agree with waiting for night results before anyone nominates, and I'll compare my notes with the rest of you once they land.
+Frank (public): Frank here, still no reads. I'll use my night action and keep the target private, since posting targets helps whoever is hunting. Any useful results will come out at the start of Day 2.
+Grace (public): still no reads. Dave and Frank, you both say you hold night actions, so please name your roles now so we can weigh your Day 2 results. Nobody should nominate before night results.
+Erin (public): Erin, still no reads. Agree with Grace: Dave and Frank, name your roles now so we can weigh your Day 2 results. No nominations before night results.
+Frank (public): I'll name my role at the start of Day 2, once my first audit result is in, so the counts can be checked. No nominations before then.
+Grace (public): I have no night action. Dave and Frank, you both say you hold night actions but won't name roles. Please name them now, since Day 2 results can't be checked without roles.
+Ivan (public): I agree with Grace. Dave and Frank, naming your role now costs nothing, and promising results on Day 2 gives us nothing to weigh today.
+Mallory (public): I agree with Ivan and Grace. Dave and Frank, name your roles now, or the Day 2 results you promise carry no weight.
+Alice (public): Alice here. I agree with Ivan, Grace and Mallory. Dave and Frank, naming your roles now costs nothing and gives Day 2 results a baseline. I won't nominate today.
+Carol (public): Carol here. I agree with Grace, Ivan and Mallory: Dave and Frank, name your roles now. Day 2 results only carry weight if we know who is claiming what.
+Dave (public): I won't name my role on Day 1. A claim now only tells the Yakuza who to avoid, and I'll have Day 2 information to share. No nomination from me today.
+Erin (public): Erin here. I agree with Grace and Ivan: Dave and Frank, naming your roles now costs you nothing and gives Day 2 results a baseline. No nomination from me yet.
+Frank (public): no nomination from me today. As promised, I'll post my role and first results at the start of Day 2. Nobody should read a Day 1 claim as a reason to act.
+Judy (public): I agree with Grace, Ivan and Mallory. Dave and Frank, if you hold night roles, name them now. Day 2 results can't be weighed without roles, and a promise doesn't count as a claim.
+Alice (public): Dave and Frank, a night role you won't name gives Day 2 results no weight. I'll hold any nomination until results come in, and I'd like names before then.
+Erin (public): Erin here. Agree with Grace and Alice: Dave and Frank, name your roles now, or your Day 2 results carry no weight.
+[Claim] Frank: Accountant (Village). Audit results to follow at the start of Day 2.
+Frank (public): Frank here: I'm the Accountant (Village). I'll post my first audit result at the start of Day 2, and I'm making no nomination today.

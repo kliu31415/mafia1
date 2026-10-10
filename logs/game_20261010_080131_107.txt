@@ -1,0 +1,64 @@
+Setup:
+  Alice    seat 1  Scout             anthropic/claude-haiku-5.5
+  Bob      seat 2  Lookout           anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Executioner       anthropic/claude-haiku-5.5  {'target': 'Judy'}
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Diviner           anthropic/claude-haiku-5.5
+  Heidi    seat 8  Clerk             anthropic/claude-haiku-5.5
+  Ivan     seat 9  Fabricator        anthropic/claude-haiku-5.5
+  Judy     seat 10 Jester            anthropic/claude-haiku-5.5
+  Mallory  seat 11 Fortune Teller    anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Carol (public): Carol here. I have no information yet and won't claim a role on Day 1. Judge everyone by votes, consistency and provable mechanics, not by early claims.
+Dave (public): Dave here, no claim yet. I'm watching who pushes early nominations and who votes against them. Let's see the votes before we decide anything.
+Erin (public): Erin here, Vanilla Villager, no night action and no information yet. I won't push a nomination without a concrete contradiction in claims, votes or results. Carol and Dave, which early nominations are you watching for?
+Frank (public): Frank here, Vanilla Villager, no night action and no information yet. I agree with Erin: no early nominations without a concrete contradiction in claims, votes or results. I'll judge by votes and what players say as they say it.
+Grace (public): Grace here, no claim yet. I agree with Erin and Frank: no early nominations without a concrete contradiction in claims, votes or results. I'll read the votes and claims as they come in.
+Heidi (public): Heidi here, no claim yet. I agree with Erin, Frank and Grace: no early nominations without a concrete contradiction in claims, votes or results.
+[Claim] Ivan: Vanilla Villager. No night results yet.
+Ivan (public): Ivan here, Vanilla Villager, no night action or information yet. I agree: no early nominations without a concrete contradiction. Alice, Bob, Judy and Mallory, have you said anything that stood out to you yet?
+Judy (public): Judy here, no claim. Five of you have pledged no nominations until a contradiction appears, but nobody has named one yet. A quiet Day suits anyone hiding something, so I'd rather someone name a concrete suspect now than wait.
+Mallory (public): Mallory here, no claim yet. I agree: no early nominations without a concrete contradiction. Judy, which player's words or votes make you want a nomination now?
+Alice (public): Alice here, no claim yet. I agree with the no-early-nomination line. Judy, name the player whose words or votes worry you and say what they said.
+Bob (public): Bob here, no claim yet. Judy, nobody has a contradiction yet, so a nomination now would be a guess. I'll judge by votes and by what people say once they start committing to positions.
+Carol (public): Still no contradiction from anyone, so I won't nominate yet. I'll vote on a concrete reason, not on who talks most.
+Dave (public): Judy is the only player pushing for a nomination without naming a contradiction. Judy, which exact words or votes are you watching?
+Erin (public): Judy, you've asked for a nomination twice without naming a contradiction. Name the exact words or votes you mean, or let's wait for evidence.
+Grace (public): I agree with waiting. Early votes without evidence just hand the table a guess, so I'll judge on claims and results as they come.
+Judy (public): Judy again. Nobody has named a real contradiction, including me, so I won't pretend otherwise. Dave's 'watching who pushes' line is vague, and so is my own push. If the table wants a nomination today, I'd happily stand trial on this evidence-free case; a quiet Day only gives Yakuza cover.
+Mallory (public): Mallory here. Judy, offering yourself for trial on no evidence reads oddly. Is that a real push, or a bid to be hanged?
+Bob (public): Bob here, still no claim. Judy, offering yourself for a hanging with no evidence is a strange move, and Mallory's question deserves an answer. I'll wait for real votes and claims before nominating anyone.
+Carol (public): Carol here. Judy has offered herself for a hanging twice without naming a contradiction, and Dave and Erin's questions still have no answer. I'm not voting on a push like that. I'll wait for real claims, votes or results before I nominate anyone.
+Dave (public): Judy has asked twice to be tried, so I'm taking her up on it. I nominate Judy. The vote will show who wants a real test and who doesn't.
+Dave nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Dave, Judy; No - Erin, Frank, Grace, Heidi, Ivan, Mallory, Alice, Bob, Carol.
+The nomination of Judy failed (2 Yes).
+Erin (public): Erin again, with something new. Judy has asked twice to be hanged, and a Jester wins only by being hanged. Judy, is that a real wish for a trial, or a way to get hanged? Dave, you voted Yes on her nomination. Was that for new evidence, or only to take up her offer?
+Frank (public): Frank here. Judy voted Yes on her own nomination after asking twice to be tried. That fits a Jester who wants the hanging, but it isn't proof. Judy, do you want to be hanged, and would you vote Guilty on yourself? I won't nominate on this alone; I want a second contradiction first.
+Grace (public): Grace again. Frank's point stands: Judy voting Yes on herself fits a Jester who wants the hanging, but Dave's nomination was also a guess. Dave, did you nominate only to take up her offer, or do you have a real read?
+Heidi (public): Heidi again. Dave's nomination answered Judy's offer, not a contradiction, and the failed vote shows the table won't hang on that alone. Until someone brings a claim, a vote pattern or a result, I'd rather we stop pushing nominations.
+Ivan (public): Ivan again. I agree with Heidi: no more nominations without a claim, vote pattern or result. Dave, Judy's offer alone was not a reason to nominate, so let's keep to evidence.
+Judy (public): Judy again. Fair hits on my offer, and I'll stop pleading for a trial. But a Day with no votes helps Yakuza hide. Nobody has yet given a concrete reason to clear anyone, so I'll vote on evidence like everyone else.
+Carol (public): Carol again. Judy offered herself twice and then voted Yes on herself. I want a concrete reason before anyone nominates. Dave, beyond taking up her offer, what is your read?
+Erin (public): Dave, you still haven't said what new evidence your Judy nomination rests on. Judy, is your Yes on yourself a Jester tell or a real wish to be tried?
+Frank (public): Frank again. Dave, Judy's offer isn't a contradiction, so name the new evidence behind your nomination. Judy, Erin's question about your Yes on yourself is still unanswered.
+Ivan (public): Dave's nomination rested on Judy's offer, not on evidence. Judy's Yes on herself is the only odd vote so far, so I'd like her answer before anyone nominates again.
+Judy (public): Nobody has answered Dave's new-evidence question, and nine of you voted No on my trial without giving a reason. A quiet Day still shelters Yakuza. If anyone has a real read, name it now.
+Carol (public): Carol again: Judy, Erin's and Dave's questions are still open. Your Yes on yourself is the only odd vote so far, so say whether you would vote Guilty on yourself. Nobody should nominate before that answer.
+Dave (public): Dave again. Judy has asked for a trial twice and voted Yes on herself, and nobody has pinned down whether she would vote Guilty on herself. Judy, answer that directly. I'll vote on your answer and on any real claim or result that comes up.
+Erin (public): Judy, answer directly. Would you vote Guilty on yourself? A yes or no settles the question Dave, Carol and I have asked.
+Frank (public): Frank again. Judy has been asked directly twice and still hasn't answered whether she would vote Guilty on herself. Dave, Judy's offer alone is still not evidence, so name your read. I'm still not nominating without a contradiction.
+Grace (public): Still no contradiction from anyone. Judy, answer Erin's question directly: would you vote Guilty on yourself? Until someone gives a real reason, I won't nominate.
+Ivan (public): Ivan again. Judy, a direct yes or no on whether you would vote Guilty on yourself would help me. Until someone brings a real claim or result, I won't nominate.
+Judy (public): yes, I would vote Guilty on myself. That is my direct answer.
+Carol (public): Judy would vote Guilty on herself and has offered herself twice, so a hang could hand her a Jester win. I won't vote Guilty without a concrete contradiction from someone.
+Dave (public): Judy has asked for a trial twice and now says she would vote Guilty on herself. I still want a concrete contradiction before anyone nominates, but if one appears, I'll vote on Judy's case, not on the offer.
+Frank (public): Frank again. Judy has now said she would vote Guilty on herself, so a hang could be a Jester win. I still see no contradiction, so I won't nominate or vote Guilty without one.
+Judy (public): nominate me if you want a test; I'll vote Guilty on myself.

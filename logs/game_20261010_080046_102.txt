@@ -1,0 +1,56 @@
+Setup:
+  Alice    seat 1  Cartographer      anthropic/claude-haiku-5.5
+  Bob      seat 2  Puppeteer         anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Accountant        anthropic/claude-haiku-5.5
+  Frank    seat 6  Smuggler          anthropic/claude-haiku-5.5
+  Grace    seat 7  Vigilante         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Arsonist          anthropic/claude-haiku-5.5
+  Ivan     seat 9  Fortune Teller    anthropic/claude-haiku-5.5
+  Judy     seat 10 Clerk             anthropic/claude-haiku-5.5
+  Mallory  seat 11 Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Alice (public): Greetings, Alice here. I have no information yet, so I won't make claims or accusations on Day 1. Please keep your claims tied to real results and check votes before anyone is hanged.
+Bob (public): Bob here. I have no results yet either. Let's not hang anyone on Day 1 without a vote or a mechanical result to point at. I'll share anything real as it comes.
+[Claim] Dave: Vanilla Villager. No night action, no results.
+Dave (public): Dave here, Vanilla Villager with no night action and no results. I agree with Alice and Bob: no Day 1 hangs without a vote or mechanical evidence. I'll be watching for early PM blocs.
+Erin (public): Erin here, no claims or reads yet. Agree: no Day 1 hang without a vote or a mechanical result. I'll be tracking who pushes hard early.
+Frank (public): Frank here, no claims or reads yet. I agree with the others: no Day 1 hang without a vote or a mechanical result. Let's hear everyone out before anyone is nominated.
+Grace (public): Grace here, no claims or reads yet. I agree with no Day 1 hang without a vote or a mechanical result. I'll watch who pushes nominations early.
+Heidi (public): Heidi here, no claims or reads yet. I agree: no Day 1 hang without a vote or a mechanical result.
+Ivan (public): Ivan here, no claims or reads yet. I agree: no Day 1 hang without a vote or a mechanical result. I'll track PM clusters and co-nominations as they appear.
+Judy (public): Judy here, no claims or reads yet. I agree: no Day 1 hang without a vote or a mechanical result. I'll be watching who pushes early nominations.
+Mallory (public): Mallory here, Vanilla Villager, no results. Agreed on no blind Day 1 hang. Any nomination should come with a stated reason, and every Guilty vote should name one concrete contradiction.
+Bob (public): Nothing new from me yet. I'll share reads once there are votes or real results to point at.
+Frank (public): still no reads. I agree with holding nominations until we have votes or real results to weigh. Nobody should be pushed on vibes alone.
+Judy (public): Nothing new from me. I'd rather see what the first night reveals before anyone is nominated.
+Mallory (public): nothing new. Since PM counts are public, anyone who has sent or received a private message should say so, so we can see whether clusters are forming.
+Dave (public): No PMs sent or received by me so far, in answer to Mallory.
+Judy (public): No PMs sent or received by me, answering Mallory.
+Bob (public): No PMs sent or received by me either. Still agree: no nomination without votes or real results.
+Frank (public): Frank here. Nothing new from me. I still have no reads, and I'd like real votes or results before anyone is nominated.
+Erin (public): Erin here. No PMs sent or received by me either, answering Mallory. Still no reads.
+Mallory (public): Carol, you haven't posted yet. Please give your claim or say you have none, so we can count everyone in.
+Carol (public): Carol here. No claim yet. I have a night role but no results, so there is nothing to share until Night 1 resolves.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Frank, Judy) Bob (Yakuza chat): Proposal: Katana stays with Bob (holder vote: Bob). Target: Carol, who claimed a night role. Please vote Carol so the Katana lands. I won't use my Puppeteer token tonight. Frank, if you swap, keep it off Carol. Judy, hold your rig for a later Day.
+(to Bob, Frank, Judy) Frank (Yakuza chat): Frank agrees: Katana stays with Bob, target Carol. I won't swap tonight unless a threat appears. Judy, please confirm your vote on Carol so we have two matching votes.
+(to Bob, Frank, Judy) Judy (Yakuza chat): Confirmed: Katana stays with Bob, target Carol. I'm on board. No swap or rig from me tonight; I'm holding my clerk token for a later Day.
+Night actions:
+  Alice (Cartographer): no action
+  Bob (Puppeteer): no role action; Katana vote: Bob holds, attacks Carol
+  Carol (Oracle): target Dave; guessed role Vanilla Villager
+  Erin (Accountant): target Carol; "Audit Carol's token count"
+  Frank (Smuggler): no role action; Katana vote: Bob holds, attacks Carol
+  Grace (Vigilante): no action
+  Heidi (Arsonist): target Frank; "Douse Frank."
+  Judy (Clerk): no role action; Katana vote: Bob holds, attacks Carol
+Katana: Bob holds it and attacks Carol.

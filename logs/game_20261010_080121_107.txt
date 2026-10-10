@@ -1,0 +1,68 @@
+Setup:
+  Alice    seat 1  Scout             anthropic/claude-haiku-5.5
+  Bob      seat 2  Lookout           anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Executioner       anthropic/claude-haiku-5.5  {'target': 'Judy'}
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Diviner           anthropic/claude-haiku-5.5
+  Heidi    seat 8  Clerk             anthropic/claude-haiku-5.5
+  Ivan     seat 9  Fabricator        anthropic/claude-haiku-5.5
+  Judy     seat 10 Jester            anthropic/claude-haiku-5.5
+  Mallory  seat 11 Fortune Teller    anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Carol (public): Carol here. No reads yet. Early on I'm watching who pushes nominations before anyone has information, and who sends private messages right away.
+Dave (public): Dave here. No reads yet, same as Carol. I want to see who pushes nominations early and how votes line up before I commit to anything.
+Erin (public): Erin here, Village, no reads yet. I'd rather hear more speeches before any nomination. Watch who rushes votes and who sends early private messages.
+Frank (public): Frank here, Village, no reads yet. I agree with the others: hear everyone out before any nomination. I'll note who pushes votes early and who starts sending private messages.
+Grace (public): Grace here, no reads yet. I agree with hearing more speeches before any nomination. I'll watch who rushes votes.
+Heidi (public): Heidi here, no reads yet. Agree with hearing everyone out before any nomination. I'll be watching who pushes votes early and who gets cagey when asked to explain themselves.
+Ivan (public): Ivan here, no reads yet. I agree with hearing everyone out before any nomination. I'll watch who pushes votes early and who goes quiet when asked to explain.
+Judy (public): Judy here, no reads yet. Carol, Dave, Erin, Frank, Grace, Heidi and Ivan all posted nearly the same line about hearing everyone out first. That's either a coordinated block or a copied script, and I want to see who breaks from it first.
+Mallory (public): Mallory here, Village, no reads yet. Judy has a fair point about the matching lines, but a cautious Village would say the same. I'll hear Alice and Bob before I weigh in on anything.
+Alice (public): Alice here, Village, no reads yet. I agree with hearing more before any nomination. I'll share Scout results when I have them.
+Bob (public): Bob here, Village, no reads yet. I agree nobody should nominate before we've heard everyone. Judy's point about the matching lines is worth tracking.
+Dave (public): Dave here. Judy's point about the matching lines is fair, but copied wording also fits nervous Village. I'll wait for more reads before nominating anyone.
+(to Dave, Judy) Dave -> Judy (private): Your line-matching point was sharp. Let's compare reads once more speeches are in.
+Erin (public): Erin here. Dave, you PM'd Judy on Day 1 before any read existed, and Judy has been calling out the matching lines. What did you send her, and why her? I'm not nominating yet, but I want that answered before votes start.
+Frank (public): Frank here. I back Erin's question. Dave, what did you send Judy, and why her? Judy, would you share the contents? I'm not nominating until that's answered.
+Grace (public): Grace here. I agree with Erin and Frank: Dave, what did you send Judy and why her? Judy, sharing the contents would settle it. I'm not nominating until that's answered.
+Heidi (public): Heidi here. I want Dave's answer on the Judy PM, and Judy's reply too, before any vote. Nobody should be hanged on one PM alone.
+Ivan (public): Ivan here. I agree with Erin, Frank and Heidi. Dave, what did you send Judy and why her? Judy, your reply would help too. I'm not nominating until we have answers.
+Judy (public): Dave, the PM you sent me is the only real lead we have, and it went to me, so I'm glad to be looked at. Share what it said or stop pretending it was about the lines. I also think the copied opening could be me stirring things, so don't clear me yet. If Dave keeps dodging next round, I'd nominate him.
+Mallory (public): Dave, I'd like your answer on the Judy PM too. Alice, you said you'd share Scout results. Share them now, or explain why you're holding them back.
+[Claim] Alice: Scout. No night results yet.
+Alice (public): Alice here. Mallory, I have no Scout results yet because no night has passed. I'll post my three names once the first night resolves. Dave, I'd still like your answer on the Judy PM.
+Bob (public): Bob here. Dave, I still want your answer on the Judy PM before any vote. Alice, I'll judge your Scout claim once results post.
+Dave (public): Dave here. My PM to Judy said her line-matching point was sharp and proposed comparing reads after more speeches. That is all it says, and I have no objection to Judy sharing it. Judy, you have pushed for my nomination without giving a read of your own. Why are you in a hurry to nominate me?
+Erin (public): Erin here. Dave has answered the Judy PM: he says it was about her line-matching point and proposed comparing reads. Judy, you've pushed for Dave's nomination without giving a read of your own, so give one now. Alice, when your Scout results post, list all three names with the night number. I'm not nominating yet.
+Frank (public): Frank here. Dave's answer on the Judy PM is enough for now, and Judy should share her side. Judy, you've pushed for Dave's nomination without giving a read of your own, so give one now. Alice, post your Scout names once Night 1 resolves. I'm not nominating yet.
+Grace (public): Grace here. Dave's answer on the Judy PM is enough for now. Judy, Erin asked you for a read, and you still haven't given one. Give it before anyone nominates. Alice, post your Scout names with the night number once Night 1 resolves.
+Heidi (public): Heidi here. Agreed that Dave's PM answer is enough for now. Judy still owes a read, and Alice's three Scout names after Night 1 are the first real data. No nomination from me yet.
+Ivan (public): Ivan here. Agreed, Judy still owes a read. Alice, post your three Scout names with the night number once Night 1 resolves. No nomination from me yet.
+Judy (public): Judy here. Dave's PM answer still doesn't explain why he singled me out before any reads existed. Alice, post your three Scout names once Night 1 resolves. I'm not nominating yet.
+Mallory (public): Mallory here. Judy, you've pushed for Dave's nomination twice without a read of your own, so give one now or stop pushing. Alice, post the three Scout names with the night number once Night 1 resolves. No nomination from me until we have that data.
+Alice (public): Alice here. My Scout results come after Night 1 resolves, and I'll post all three names with the night number. Judy, you still owe the read Erin asked for.
+Bob (public): Bob here. Dave's PM answer and Judy's silence are both weak signals, so I'm not nominating on them yet. Alice, your three Scout names after Night 1 are the first real data. Judy, give the read Erin asked for.
+Dave (public): Dave here. Judy has pushed my nomination twice with no read of her own. Judy, give your read now, or I'll back a nomination of you.
+Erin (public): Erin here. Judy still owes the read Erin asked for, and Dave has answered the PM. Alice, your Scout names come after Night 1, as you said. I'm not nominating yet.
+Frank (public): Frank here. I'm still not nominating. Alice's Scout names after Night 1 are the first real data, and Judy still owes the read Erin asked for.
+Grace (public): Grace here. Judy still hasn't given the read Erin asked for, and pushing a nomination without one is worth tracking. Alice, post your three Scout names once Night 1 resolves. No nomination from me yet.
+Heidi (public): Heidi here. Judy has pushed Dave's nomination twice without a read, and Dave has answered the PM. I'm waiting for Alice's Night 1 Scout names before any vote.
+Judy (public): Dave's answer is on the record, and I accept the PM was about my line-matching point. My push on him was weak, so I'm dropping it. Alice, if your three Scout names look wrong after Night 1, I'd nominate you on Day 2.
+Mallory (public): Mallory here. No nomination from me until Alice's Scout names post after Night 1. Judy, your Dave push has cooled, so I'm not reading it as a lead either way.
+Dave (public): Dave here. Judy's concession is fair. I'm holding any nomination until Alice's Scout names post after Night 1, and I'll judge those names first.
+Frank (public): Frank here. Judy's concession is noted, and I'm holding my vote. Alice, post your three Scout names with the night number once Night 1 resolves.
+Ivan (public): Ivan here. Judy's concession is fair. Agreed: hold votes until Alice's Scout names post after Night 1, then judge them.
+Judy (public): Judy here. I'll judge Alice's three Scout names once Night 1 posts. If they look wrong, I'm nominating Alice on Day 2.
+Dave (public): Dave here. I'm holding votes until Alice's three Scout names post after Night 1, then I'll judge them.
+Heidi (public): Heidi here. Judy's concession is noted. I'm holding my vote until Alice's Night 1 Scout names post, then I'll judge them against everyone's reads.
+Ivan (public): Ivan here. Agreed, no nomination until Alice's Night 1 Scout names post. Alice, post all three names with the night number. Judy, your read is still missing.
+Judy (public): Carol, Ivan and Grace, name who you'd nominate first if Alice's Night 1 names look wrong. Copied openings still need a read.
+Carol (public): Carol here. I won't name a pre-chosen target. If Alice's Night 1 Scout names look wrong, I'll judge the nomination on what they show, not on a name picked in advance.
+Grace (public): Grace here. I won't name a pre-chosen target either. Once Alice's Night 1 Scout names post, I'll judge any nomination on what they show.

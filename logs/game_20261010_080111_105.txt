@@ -1,0 +1,90 @@
+Setup:
+  Alice    seat 1  Medic             anthropic/claude-haiku-5.5
+  Bob      seat 2  Archivist         anthropic/claude-haiku-5.5
+  Carol    seat 3  Smuggler          anthropic/claude-haiku-5.5
+  Dave     seat 4  Veteran           anthropic/claude-haiku-5.5
+  Erin     seat 5  Grunt             anthropic/claude-haiku-5.5
+  Frank    seat 6  Accountant        anthropic/claude-haiku-5.5
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5
+  Heidi    seat 8  Fortune Teller    anthropic/claude-haiku-5.5
+  Ivan     seat 9  Vanilla Villager  anthropic/claude-haiku-5.5
+  Judy     seat 10 Lookout           anthropic/claude-haiku-5.5
+  Mallory  seat 11 Clerk             anthropic/claude-haiku-5.5
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Heidi.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Heidi (public): Heidi here. I have no information yet, so I'm holding my read until votes and nominations show something concrete.
+Ivan (public): Ivan here, Vanilla Villager, no night info either. I won't nominate on Day 1 without a concrete lead. Watch who pushes an early hang without evidence.
+Judy (public): Judy here, no information yet. I won't nominate on Day 1 without a concrete lead, and I'd like to see who pushes a quick hang.
+Mallory (public): Mallory here, no night info. I agree with Ivan and Judy: no Day 1 nomination without a concrete lead. Let's hear everyone's first reads before anyone pushes a trial.
+Alice (public): Alice here, Medic, no night info yet. Agree with Ivan, Judy and Mallory: no Day 1 nomination without a concrete lead. I'll judge by votes and what people actually do.
+Bob (public): Bob here, Village, no night info yet. Agree with no Day 1 nomination without a concrete lead.
+Carol (public): Carol here, Village, no night info yet. I agree with no Day 1 nomination without a concrete lead. Let's see who pushes a hang and read the votes first.
+Dave (public): Dave here, Village. Agree with no Day 1 nomination without a concrete lead. I'll judge by votes and actual mechanics.
+[Claim] Erin: Vanilla Villager
+Erin (public): Erin here, Vanilla Villager, no night info. I agree: no Day 1 nomination without a concrete lead. Let's hear early reads from everyone.
+Frank (public): Frank here, Village, no night info. Agree: no Day 1 nomination without a concrete lead. I'll be watching for early pushes and for anyone who goes quiet on reads.
+Grace (public): Grace here, Vanilla Villager, no night info. I agree with no Day 1 nomination without a concrete lead. I'll watch who pushes early and who votes Innocent for whom.
+Ivan (public): Alice claimed Medic. Medic can self-protect, so no need to name night targets publicly. Everyone else, please give one concrete read before round 3.
+Judy (public): Still no concrete read from me, so no nomination. Before round 3, I'd like each player to name one specific player they're watching and why, rather than just agreeing with the group.
+Mallory (public): Mallory here. No hard read yet. Judy asked for one, so I'm watching Heidi: she gave no read on round 1 and just said she's holding it. Heidi, please name one player you're watching before round 3.
+[Claim] Alice: Medic
+Alice (public): Alice here. Mallory's read on Heidi rests only on Heidi saying nothing in round 1, which describes most of the table. I'd rather hear Heidi's actual view before anyone builds a case. No nomination from me yet.
+Bob (public): Bob here. Agree Mallory's read on Heidi is thin, since silence in round 1 describes most of the table. I want concrete reads before any nomination, and I'm not nominating today.
+Carol (public): Carol here. Agree Mallory's read on Heidi is thin, since silence in round 1 describes most of the table. I want Heidi's actual view before anyone pushes. No nomination from me.
+Erin (public): Erin here. Agree with Alice and Bob that silence in round 1 isn't a read. Heidi, what's your actual view? No nomination from me yet; I'll vote on concrete evidence only.
+Frank (public): Frank here. Agree with no Day 1 nomination. Heidi hasn't given a view yet, and Mallory's read on her is thin. I'd like Heidi and Mallory to say what concrete information would change their minds. No nomination from me.
+Grace (public): Grace here. My concrete read is Mallory: she pushed a read on Heidi only after Judy asked for one, and it rests on silence. Mallory, what evidence would change your mind? Heidi, please name one player you're watching.
+Heidi (public): Heidi here. Concrete read as asked: I'm watching Mallory. She pushed a case on my silence right after Judy asked for reads, and Grace's point stands. I'm not voting for anyone today; I'll share anything concrete as it comes.
+Ivan (public): Ivan here. Heidi and Mallory are now accusing each other, and Heidi has answered Mallory's read. I still have no hard contradiction, so I'm not nominating today. Mallory, does Heidi's answer change your read, and what specific thing would you need to see from her?
+Judy (public): Judy here. Mallory and Heidi are trading the same thin silence argument, so neither case moves me yet. I'm not nominating. Mallory and Heidi, instead of more reads on each other, name the player you'd vote Guilty on right now and give one concrete reason.
+Mallory (public): Mallory here. Fair point from Grace and Judy: my read on Heidi rested on silence, so I'm dropping it. No nomination from me. I'll vote Guilty only on a concrete contradiction in claims, votes or results.
+Carol (public): Carol here. Agree the Heidi/Mallory silence argument is thin and I'm dropping it. No concrete contradiction yet, so no nomination from me. I'll vote on claims, votes and results once they show something.
+Erin (public): Erin here. Still no concrete contradiction, so no nomination from me. I'll vote on claims, votes and results once they show something real.
+Heidi (public): Heidi here. No nomination from me. I'm also dropping my read on Mallory, since it rested on silence too. I'll vote only on claims, votes and results that show something concrete.
+Ivan (public): Ivan here. Still no concrete contradiction, so no nomination from me. Alice, keep your Medic protection target private. Anyone holding a real result should share it now rather than later.
+Mallory (public): Mallory here. Still no concrete contradiction in claims, votes or results, so no nomination from me. I'll vote only on evidence that shows something real.
+Dave (public): Dave here. No nomination from me. I still have no concrete contradiction in claims, votes or results, so I'm holding my vote until something checkable appears.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Erin, Mallory) Carol (Yakuza chat): Carol: Proposal for Night 1: no Katana attack, Katana stays with Erin, and I won't swap tonight. We have no information on targets, and an early kill now shows our hand for no gain. Mallory, hold the rig too. Object this round if you disagree.
+(to Carol, Erin, Mallory) Erin (Yakuza chat): Erin agrees with Carol's plan: no Katana attack tonight, Katana stays with me, no swap. An early kill shows our hand for no gain. Mallory, hold the rig.
+(to Carol, Erin, Mallory) Mallory (Yakuza chat): Mallory agrees with Carol and Erin: no Katana attack tonight, Katana stays with Erin, no swap. I'll hold my rig token for now. Ready.
+(to Carol, Erin, Mallory) Carol (Yakuza chat): Carol agrees: no Katana attack tonight, Katana stays with Erin, no swap, and Mallory holds the rig. Ready.
+(to Carol, Erin, Mallory) Erin (Yakuza chat): Erin agrees with the plan: no Katana attack tonight, Katana stays with me, no swap, and Mallory holds the rig. Ready.
+(to Carol, Erin, Mallory) Mallory (Yakuza chat): Mallory agrees with the plan: no Katana attack tonight, Katana stays with Erin, no swap, and I hold my clerk token. Ready.
+Night actions:
+  Alice (Medic): target Carol; "Standard protection on Carol at no token cost."
+  Bob (Archivist): 1 token(s); "Consulting the archive."
+  Carol (Smuggler): no role action; Katana vote: Erin holds, attacks None
+  Dave (Veteran): 1 token(s); "Going on alert, spending 1 of 3 alert tokens. No target."
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks None
+  Frank (Accountant): target Alice; "Audit Alice: her Medic claim implies 2 tokens (at most 2 after tonight's spending)."
+  Judy (Lookout): target Heidi; "Lookout watch on Heidi"
+  Mallory (Clerk): no role action; Katana vote: Erin holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Erin holds it.
+(to Bob) Moderator (private): The archive shows 7 of the roles of the 10 other players who were alive when the night began (including any who died tonight): Grunt, Veteran, Accountant, Fortune Teller, Vanilla Villager, Lookout, Medic.
+(to Alice) Moderator (private): Night 1 result: You protected Carol (Standard Defense, no token spent). You have 2 medic tokens left.
+(to Dave) Moderator (private): Night 1 result: You went on alert. Nobody visited you tonight. You have 2 alert tokens left.
+(to Frank) Moderator (private): Night 1 result: Your audit shows that Alice has 2 tokens in total.
+(to Judy) Moderator (private): Night 1 result: You watched Heidi. Nobody visited Heidi tonight.
+(to Heidi) Moderator (private): Fortune Teller numbers for Night 1 (which number is which isn't said): 3 and 3.
+(to Carol, Erin, Mallory) Moderator (private): Yakuza night summary: Erin keeps the Katana and there was no Katana attack. Carol (Smuggler) chose no action. Erin (Grunt) has no action of her own. Mallory (Clerk) chose no action.
+[Moderator summary] Night 1: No deaths. Alice protected Carol (Standard, no token). Bob consulted the archive (code did it). Dave went on alert (2 tokens left) and nobody visited him. Frank audited Alice and got 2 tokens. Judy watched Heidi and saw no visitors. Yakuza: Katana stays with Erin, no attack; Carol and Mallory did nothing. Visits: Alice->Carol, Frank->Alice, Judy->Heidi. Fortune Teller numbers: 3 and 3.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Frank here. Still no nomination from me. I hold a night result that I'll share when it can be checked against a concrete claim, not before. Anyone pushing a hang should name the contradiction they're relying on.
+Grace (public): Grace here. No new information and no nomination from me. Frank, share your result when you can tie it to a checkable claim. Until then, I want concrete contradictions before any hang.
+Heidi (public): Heidi here. No new information to add and no nomination from me. Frank, if your result can be tied to a checkable claim, please post it. I'd rather judge on concrete data than on silence.
+Ivan (public): Ivan here. Frank, your night result is the only concrete information on the table, so please post it with a checkable claim. Nobody died Night 1, which fits either a Medic save or a quiet Yakuza team. No nomination from me yet.
+Judy (public): Judy here. I also hold a Night 1 result and will post it with a checkable claim once I can tie it to a concrete log. Frank and Ivan, when you post results, name the player you checked or watched so the claims can be verified. No nomination from me.
+Mallory (public): Mallory here. Frank and Judy both say they hold Night 1 results. Please name the player you checked or watched and the result, so we can test it. No nomination from me.
+Alice (public): Alice here. Frank and Judy both say they hold Night 1 results. Please each post the player you checked or watched and the exact result, so we can compare them. I'm not nominating yet.

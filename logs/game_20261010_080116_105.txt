@@ -1,0 +1,76 @@
+Setup:
+  Alice    seat 1  Medic             anthropic/claude-haiku-5.5
+  Bob      seat 2  Archivist         anthropic/claude-haiku-5.5
+  Carol    seat 3  Smuggler          anthropic/claude-haiku-5.5
+  Dave     seat 4  Veteran           anthropic/claude-haiku-5.5
+  Erin     seat 5  Grunt             anthropic/claude-haiku-5.5
+  Frank    seat 6  Accountant        anthropic/claude-haiku-5.5
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5
+  Heidi    seat 8  Fortune Teller    anthropic/claude-haiku-5.5
+  Ivan     seat 9  Vanilla Villager  anthropic/claude-haiku-5.5
+  Judy     seat 10 Lookout           anthropic/claude-haiku-5.5
+  Mallory  seat 11 Clerk             anthropic/claude-haiku-5.5
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Heidi.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Heidi (public): Heidi here. I have no information yet, so I won't name anyone today. I'm watching who nominates early and who votes No on their own nomination.
+Ivan (public): Ivan here, Village with no night role, so I have no information either. I'll judge nominations and votes on evidence, not soft reads, and I'd like anyone who nominates to say why.
+Judy (public): Judy here, Village, no night information yet. I agree with Ivan: nominations and votes should rest on evidence, not soft reads.
+Mallory (public): Mallory here, no night role and no information yet. I agree with Ivan and Judy: no nominations on soft reads today. I'd rather see the evidence build up before anyone goes to trial.
+Alice (public): Alice here, no night information yet. I agree with Ivan, Judy and Mallory: no nominations on soft reads today. I'll watch who pushes early and who PMs whom.
+Carol (public): Carol here, no night information yet. I agree with Ivan, Judy, Mallory and Alice: no nominations on soft reads today. I'll watch who pushes early and who votes No on their own nomination.
+Dave (public): Dave here, no night information yet. I agree: no nominations on soft reads today. I'll judge claims and votes on evidence as they come in.
+Erin (public): Erin here, no night information yet. I agree with the evidence-first approach. I'll wait for real claims and vote records before backing any nomination.
+Frank (public): Frank here, Village, no night information yet. Agreed: no nominations without evidence. I'll track PM clusters and vote records.
+Grace (public): Grace here, Village, no night information. I agree with no soft-read nominations on Day 1. If anyone has a role with night results, please state it early with the night and target, so claims can be checked against each other.
+Heidi (public): I have no night information and won't nominate on Day 1. I'll wait for real claims and vote records before backing anyone.
+Mallory (public): Agreed: evidence first. I'm holding my read until real claims or vote records appear.
+Carol (public): Carol again: still no soft-read nominations today. Night 1 should give us real information, so anyone with a night result should post it with the night and target, and we can check claims against each other.
+Erin (public): agreed, no Day 1 nominations without claims or vote records. I'll post any night result I get, with the night and target.
+Mallory (public): still agreed on no Day 1 nominations without evidence. Night 1 results will matter most, so anyone with a result should post it with the night and target, and we can check claims against each other.
+Carol (public): still no Day 1 nominations from me. Anyone with a Night 1 result, please post the target and result so we can line up the claims.
+Mallory (public): nothing new from me. Still no Day 1 nominations without evidence; I'll weigh any Night 1 results when they're posted.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Erin, Mallory) Carol (Yakuza chat): Night 1 proposal: Erin keeps the Katana, no attack tonight, and I make no swap. With no information yet, a Night 1 kill only draws suspicion onto us. Object now if you disagree.
+(to Carol, Erin, Mallory) Erin (Yakuza chat): Agree with Carol: no attack tonight and no swap. Erin keeps the Katana. I vote holder Erin, target none. Ready.
+(to Carol, Erin, Mallory) Mallory (Yakuza chat): Agree with Carol and Erin: no attack and no swap tonight, and Erin keeps the Katana. I'm holding my Clerk token for a later Day on a non-teammate. Ready.
+Night actions:
+  Alice (Medic): target Bob; "Medic protects Bob with Standard Defense at no token cost."
+  Bob (Archivist): 1 token(s); "Consulting the archive for a role census."
+  Carol (Smuggler): no role action; Katana vote: Erin holds, attacks None
+  Dave (Veteran): no action
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks None
+  Frank (Accountant): target Erin; "Audit Erin"
+  Judy (Lookout): target Mallory
+  Mallory (Clerk): no role action; Katana vote: Erin holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Erin holds it.
+(to Bob) Moderator (private): The archive shows 7 of the roles of the 10 other players who were alive when the night began (including any who died tonight): Grunt, Veteran, Accountant, Fortune Teller, Vanilla Villager, Lookout, Medic.
+(to Alice) Moderator (private): Night 1 result: You protected Bob with Standard Defense. You have 2 medic tokens left.
+(to Frank) Moderator (private): Night 1 result: You audited Erin. Erin has 0 tokens in total.
+(to Judy) Moderator (private): Night 1 result: You watched Mallory. Nobody visited Mallory tonight.
+(to Heidi) Moderator (private): Fortune Teller result for Night 1 (read at the start of Day 2): your two numbers are 3 and 3.
+(to Carol, Erin, Mallory) Moderator (private): Yakuza Night 1 summary: Carol chose no action, Erin chose no action, and Mallory chose no action. The Katana stays with Erin and made no attack.
+[Moderator summary] Night 1: Alice (Medic) protected Bob (Standard, no token). Bob (Archivist) consulted the archive (token spent via archive op). Frank (Accountant) audited Erin: 0 tokens. Judy (Lookout) watched Mallory: no visitors. Yakuza took no actions; Katana stays with Erin, no attack. Dave did not alert; Carol did not swap; Mallory did not rig. Visits: Alice->Bob, Frank->Erin, Judy->Mallory. Fortune Teller Heidi: 3 and 3. No deaths, no role-blocks.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Frank: Accountant. N1: audited Erin, 0 tokens total.
+Frank (public): Frank here. I'm sharing my Night 1 result as Accountant: I audited Erin and she had 0 tokens in total at the end of the night. So Erin holds no token roles, unless she spent every token that night. Any token-role claim on Erin should square with that count.
+Grace (public): Grace here, Vanilla Villager with no night results. Thanks Frank, Erin at 0 tokens is useful. One claim alone proves little, so anyone with a Night 1 result or a token role should post it with the target, and I'll weigh it against votes. No nomination from me yet.
+[Claim] Heidi: Fortune Teller. N1 numbers: 3 and 3 (3 visited, 3 visitors).
+Heidi (public): Heidi here. I'm claiming Fortune Teller. My Night 1 numbers were 3 and 3: three players visited someone, and three players visited anyone. I'll post my numbers each morning from Night 2. Frank's Erin audit is one claim to weigh with the others.
+Ivan (public): Ivan here. Two claims so far: Frank's Accountant audit of Erin (0 tokens) and Heidi's Fortune Teller numbers (3 and 3). Neither contradicts anything yet. Erin, if you hold no token role, that fits Frank's audit. Heidi, your Night 2 numbers will be the first real check. I still won't nominate without a mechanical lead.
+Judy (public): Judy here. I hold a Night 1 result but won't reveal it yet. I'm not nominating on Day 2 without a mechanical lead. Heidi, please post your Night 2 numbers first thing so they can be checked against the Night 2 results.
+Mallory (public): Mallory here. Frank's Erin audit (0 tokens) fits Erin being a token-less role, so it's a useful first data point. Heidi, your Night 2 numbers will be the first real check on your claim. Judy, if your Night 1 result is a role-check, posting the target and result would help us line up claims. No nomination from me yet.
+Alice (public): Alice here, Medic-no-claim for now: I have no new information beyond my Night 1 protection. I won't nominate without a mechanical lead. Heidi, please post your Night 2 numbers as promised, and Judy, post your Night 1 result when you're ready.
+Bob (public): Bob here. My Night 1 result is an archive census of the 10 other players, showing 7 roles: Grunt, Veteran, Accountant, Fortune Teller, Vanilla Villager, Lookout, Medic. Three roles are not on it. Frank's Accountant, Heidi's Fortune Teller and Alice's Medic all fit. Veteran and Lookout are unclaimed, so any claim of them should be checked. No nomination from me yet.
+Carol (public): Carol here. Bob's census can be checked against the claims: Frank's Accountant and Alice's Medic fit, and Heidi's Fortune Teller fits too. Veteran and Lookout are still unclaimed, so whoever holds them should say so. I still have no mechanical lead and won't nominate on Day 2.
+Dave (public): Dave here, Village, no night information to post yet. I agree with the evidence-first line. Heidi's Night 2 numbers and Judy's result are the next checks. Bob, your census leaves Grunt, Veteran and Lookout unaccounted for, and I'm holding my role until it matters. No nomination from me.

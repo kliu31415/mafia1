@@ -37,3 +37,417 @@ Carol (public): Carol here, Vanilla Villager with no night info. Agree no hasty 
 [ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
 [ERROR api_retry] a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
 Dave (public): We have a chorus of caution, which is fine but not a read. What evidence would make each of you support a trial, and what would change your mind? Keep targets and private plans private; no reason to expose power roles.
+Erin (public): Agreed that we shouldn't hang blindly on D1. What would make me push a trial later is clear mechanical contradictions, counter-claims, or obvious voting anomalies. Happy to let the round finish and see if anyone has real leads.
+Grace (public): Answering Judy and Dave: I would support a trial if we see direct mechanical contradictions, counter-claims, or suspicious vote manipulation. Without hard info today, Night 1 is our best bet for real leads.
+Ivan (public): Still nothing to test, so no vote from me. Anyone with a claim should state their night results plainly so we can check them against each other.
+Alice (public): no new information from me, so no nomination yet. I'd like to see Night 1 results before anyone is put on trial.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Proposal: Bob keeps the Katana (no holder change). Target Judy, who has been pushing a 'track who changes position' angle, a plausible power-role probe. I'll visit Dave to frame him as Evil for a Sheriff, so a Sheriff check on Dave is a dead end. No PMs to each other by day. Object now if you see a problem; otherwise vote with me.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with me and target Judy. Alice should frame Dave as proposed. I’ll save my Clerk token for a day when a rig is more likely to secure a useful execution. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Agreed. Katana stays with Bob, target Judy, and Alice frames Dave as proposed. I'll hold my puppet token for a later Day and take no night action tonight. No PMs between us by day. Ready.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Confirmed: Bob keeps the Katana, target Judy, and I frame Dave with no forge. I'll vote with that plan. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Confirmed: Bob keeps the Katana, target Judy, Alice frames Dave with no forge. I take no night action and will hold my puppet token. Ready.
+Night actions:
+  Alice (Fabricator): target Dave; Katana vote: Bob holds, attacks Judy
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Judy
+  Erin (Medic): target Dave
+  Heidi (Surveyor): target Bob; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Judy
+  Judy (Archivist): 1 token(s); "Consult the archive."
+  Mallory (Arsonist): target Frank
+Katana: Bob holds it and attacks Judy.
+(to Judy) Moderator (private): The archive shows 7 of the roles of the 10 other players who were alive when the night began (including any who died tonight): Cardinal, Surveyor, Scout, Clerk, Puppeteer, Arsonist, Medic.
+(to Heidi) Moderator (private): You surveyed Alice, Bob and Carol. One of them, chosen at random, has the role Fabricator. 2 survey tokens left.
+(to Bob) Moderator (private): Night 1: Your Katana attack on Judy succeeded. You used no Clerk action tonight; 1 clerk token left.
+(to Alice) Moderator (private): Night 1: You framed Dave tonight (no forgery). 1 fabricator token left.
+(to Erin) Moderator (private): Night 1: You protected Dave (Standard Defense). 2 medic tokens left.
+(to Mallory) Moderator (private): Night 1: You doused Frank.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza actions chosen on Night 1: Alice (Fabricator) framed Dave, no forgery. Bob (Clerk) used no Clerk action; Bob held the Katana and attacked Judy with it. Ivan (Puppeteer) chose no action. The Katana stays with Bob.
+(to Judy) Moderator (private): Night 1: You were attacked with the Katana and died.
+[Moderator summary] Night 1: Bob (Katana holder) attacked Judy with Standard Katana and killed her (no defense). Judy consulted the archive (archive op), with results shown by code. Alice framed Dave (no forgery). Erin protected Dave with Standard Defense (no token). Heidi surveyed Bob (survey op, 1 token). Mallory doused Frank. Ivan, Bob and Dave took no actions. No role-blocks. Visits: Alice->Dave, Bob->Judy, Erin->Dave, Heidi->Bob, Mallory->Frank. Grace's Executioner target Judy died at night, so code will turn Grace into a Jester at dawn.
+(to Frank) Moderator (private): Tonight Dave, Frank and Grace were each in a different visit group.
+
+===== DAY 2 =====
+Judy died (killed by Katana). Their alignment was Good. Their last will: "Day 1: No results yet. I will record any night results here, labeled by night."
+(to Grace) Your target died other than by hanging. You are now a Jester.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Erin (public): Judy was taken down by the Katana and flipped Good. If any investigative roles gathered hard results or visits last night, please step forward with your findings so we have solid ground to work from today.
+Frank (public): Frank here. Judy's death means the Katana holder visited Judy on Night 1. Anyone with a visit or investigation result, please post it with the night number so we can cross-check. I'm holding my role for now and nominating no one yet.
+[Claim] Grace: Vanilla Villager
+Grace (public): Katana on Judy means we have a confirmed visit on Judy N1. If Lookout was on Judy or a Tracker caught someone visiting her, that gives us an immediate lead. Let's see what claims and results come forward before rushing.
+[Claim] Heidi: Surveyor. N1: Bob (Alice, Bob, Carol) -> Fabricator in group
+Heidi (public): I am Surveyor. N1 I surveyed Bob (group: Alice, Bob, Carol). My result: one of Alice, Bob, or Carol is the Fabricator. Carol claimed Vanilla Villager on Day 1. Since Alice, Bob, and Carol speak later in this round, I want full role claims and Night 1 actions from Alice and Bob on their turns.
+Ivan (public): Ivan here. Heidi's Surveyor result is one random exact-role pick from a three-player group, so on its own it only says a Fabricator sits among Alice, Bob and Carol. That is a weak lead and can't justify a nomination yet. Heidi, do you have any other survey results? I'm not nominating anyone today.
+Mallory (public): Heidi's result narrows the exact role to three people, not a culprit. Alice, Bob, and Carol can share what they safely can; let's check claims for consistency without rushing a nomination.
+Alice (public): Alice here. Heidi's survey gives one random exact-role pick from a three-player group, so it doesn't single anyone out. I have no night result to post and no nomination today. Heidi, please post your other survey groups before anyone is pushed.
+[Claim] Bob: Vanilla Villager
+Bob (public): I claim Vanilla Villager; I have no personal investigative result from N1. Heidi’s result only places a Fabricator somewhere among three, and doesn’t identify which. Let’s hear Carol and Alice’s role claims before treating anyone as a lead.
+Carol (public): Carol here. I'm a Vanilla Villager, so I know I'm not the Fabricator. If Heidi's survey is accurate, the Fabricator is Alice or Bob. One survey group can't separate them, so Heidi, please post any other survey groups. Alice, please give your role claim and Night 1 action on your turn.
+Dave (public): Heidi’s result makes Alice and Bob the relevant pair if the claims are truthful, but one randomized role draw doesn’t identify either. Alice, please give your role claim and N1 action; Heidi, clarify whether you used a token on that survey.
+Erin (public): Remember it's only Day 2, so Heidi could only have surveyed once on Night 1. Since Bob and Carol both claimed Vanilla Villager, Alice needs to state her specific role claim when her turn comes. Let's hear Alice's claim before discussing any nomination.
+Frank (public): Alice hasn't given a role claim yet. Alice, please state your role and Night 1 action. I'm holding my N1 info until claims cross-check, since a Scout claim now would make me a Katana target.
+Grace (public): Frank soft-claiming Scout is noted. Regarding Alice, asking for other survey groups could simply be an honest rules misunderstanding rather than malice, so let's hear her out before jumping to conclusions. That said, Alice, please give us your exact role claim and Night 1 action so we can evaluate Heidi's result properly.
+Heidi (public): To clarify for Dave: Yes, Surveyor starts with 3 tokens, and I spent 1 token on Bob on Night 1, leaving me with 2 tokens. As Erin noted, Night 1 is the only night that has occurred, so there are no previous survey groups. Alice speaks later this round after Ivan and Mallory—Alice, we need your exact role claim and Night 1 action.
+Ivan (public): Ivan here, nothing new to add. Heidi, one random exact-role pick from a three-player group is thin evidence. Please say exactly which role you saw, and whether any other survey group exists, before anyone is nominated.
+[Claim] Alice: Vanilla Villager
+Alice (public): Alice here: Vanilla Villager, no Night 1 result. Heidi's survey is one random exact-role pick from three players, so it can't name a culprit by itself. Heidi, why did you pick Bob as the centre, and which role did you see? I'm not nominating anyone yet.
+Bob (public): Heidi’s result, if accurate, means one of Alice, Bob, or Carol may be lying about being Vanilla, but it doesn’t tell us which. Carol isn’t cleared by saying she’s not the Fabricator, but neither is anyone else. I wouldn’t trial any of them on this result alone; let’s look for independent evidence.
+Carol (public): still Vanilla, no new info. Heidi's survey gives one random exact-role pick from Alice, Bob and Carol. I'm not the Fabricator, so if Heidi is honest it's Alice or Bob, but Heidi could also be lying. Heidi, did you see the role itself? I want a trial only on checkable evidence.
+Erin (public): Notice that Carol claimed Vanilla Villager back on Day 1, before any survey could have occurred. If Heidi's Surveyor result is genuine, that heavily narrows the Fabricator down to Alice or Bob. Between the two, Alice dodged claiming across two full rounds and repeatedly asked questions already answered (such as which role Heidi saw). Alice is by far the most suspicious of the group. If we want to put someone on trial today to get formal defense and voting records, Alice is our clear target.
+[Claim] Frank: Scout. N1: Dave, Frank and Grace were each in a different visit group (no links among us).
+Frank (public): Frank here, and I'm claiming Scout. N1 result: Dave, Frank and Grace were each in a different visit group, so no visit linked any two of us. Dave and Grace did not visit each other or me. Heidi's single survey pick can't justify a trial on Alice, and I won't nominate on it. I'll post Scout results every night.
+Grace (public): Frank's Scout result is helpful context on visit groupings. While Alice's delay and repeated questions definitely look questionable, pushing an immediate trial before the rest of the circle has spoken on round 3 feels hasty. Let's see what Heidi and Dave think of Alice's eventual VV claim before locking in a vote.
+Heidi (public): All three players in my group (Carol, Bob, Alice) have now claimed Vanilla Villager. By Surveyor mechanics, exactly one of them is guaranteed to be the Fabricator. Carol claimed Vanilla Villager back on Day 1 before Night 1 even occurred. That leaves Bob and Alice. Bob claimed directly on round 2, while Alice spent two rounds stalling, deflecting, and asking questions already answered before finally falling back on a Vanilla Villager claim. Alice is by far the highest probability Fabricator. Dave, Ivan, and Mallory: now that Alice has finally claimed Vanilla Villager, what is your assessment? Putting Alice on trial gives her formal defense time and gives town critical voting records.
+Ivan (public): Ivan here. Heidi's result says the role of one of Alice, Bob or Carol is Fabricator, but it was one random pick from three, so it can't single out Alice. Carol's Day 1 claim doesn't clear her either. Erin, 'stalling' and repeated questions aren't a contradiction. Name a concrete inconsistency in Alice's claim or votes before a trial. I'm not nominating today.
+Alice (public): Alice here. Heidi's survey is one random exact-role pick from three players, so it can't name a Fabricator, and Heidi gave no reason for choosing Bob as the centre. Heidi and Erin are now pushing a trial on me without a concrete contradiction in my claim, votes or results. My claim is Vanilla Villager with no Night 1 result, and I'm not nominating today. Heidi, please say whether you used your Surveyor token on Night 1 only, and Frank, please explain how your Scout groups were built.
+Bob (public): The survey result is a real lead if Heidi is truthful: since the draw showed Fabricator, at least one of those three Vanilla claims is false. It doesn’t establish which one. Alice’s delay is worth weighing, but it isn’t an independent contradiction; my own claim is in that pool too. I won’t nominate on this alone.
+Carol (public): Carol here, still Vanilla with no night info, and I'm not nominating yet. Heidi, the survey gives one random exact-role pick, so which role did you see for the Alice/Bob/Carol group, and is that what you posted? Frank, Scout groups show who wasn't linked, not who visited Judy. Did anyone with a visit or result see the Katana holder's visit on Judy N1?
+Dave (public): One mechanics correction: Fabricator isn't Unique, so Heidi's result establishes at least one of Alice, Bob, or Carol is Fabricator if genuine—not exactly one. Their three Vanilla claims then conflict collectively, but the result doesn't distinguish anyone; Carol's early claim doesn't clear her. Let's not treat timing as proof or trial someone without more.
+Erin (public): Fair points from Dave and Ivan. If the room isn't ready to trial Alice today, forcing a nomination that fails only burns budget. Let's let the round finish cleanly so our investigative roles can gather further data tonight.
+Frank (public): Scout N1 showed Dave, Frank and Grace in separate groups, so none of the three visited another of them. Heidi, did you see the exact role in the Alice/Bob/Carol survey, and which Night 1 pick did you use? Erin, what concrete contradiction in Alice's claim, votes or results makes her the target?
+Grace (public): Agreed with Erin, Dave, and Ivan. Forcing an uncoordinated trial on Alice right now without concrete contradictions just burns budget and misses consensus. Let's let the round close cleanly and gather fresh night actions.
+Ivan (public): Ivan here. Heidi, the survey still gives one random exact-role pick from a three-player group, and nothing else backs it up yet. Did you see the role itself, and do you have any other survey group? Without a second data point I won't vote on a trial today.
+Alice (public): Alice here, Vanilla Villager. Erin and Heidi's case rests on one random survey pick plus timing, and neither separates three players. I'm voting No on any trial until someone gives a concrete contradiction. Heidi, which exact role did you see?
+Carol (public): Carol here, still Vanilla with no night info. Heidi's survey pick and Frank's Scout result are both unverifiable, so no trial on them yet. Erin, beyond timing, what concrete contradiction do you see in Alice's claim or votes?
+Frank (public): Frank (Scout) here. My N1 result stands: Dave, Frank and Grace were in separate groups. Heidi, which exact role did you see in the Alice/Bob/Carol survey?
+Heidi (public): The exact role revealed by my survey was Fabricator. As Erin and Dave noted, Night 1 is the only night so far, so there are no other survey groups. Let's pass the round and gather fresh data tonight.
+Ivan (public): Ivan here. Still no trial from me. Heidi's survey is one random exact-role pick from three players, and Alice's Vanilla claim has no concrete contradiction yet. Heidi, how many survey tokens are left, and which group would you survey next if the game continued?
+Alice (public): Alice here. Heidi's survey is one random exact-role pick from three players, and Frank's Scout groups only show who was not linked. Neither gives a concrete contradiction yet. Heidi, which group would you survey next if the game continued? I'm not nominating today.
+Alice (public): Alice here. Heidi's survey is one random exact-role pick from three players, and it gives no contradiction in my claim or votes. Heidi, which group would you survey next?
+Carol (public): Carol, Vanilla. Heidi's result points at Alice or Bob, but it is one random pick and can't convict anyone. No nomination from me until Night 2 results and visits are posted.
+Frank (public): Frank (Scout) here, no nomination from me. Heidi's single survey pick and Erin's timing argument don't yet contradict Alice's claim, so I want a concrete inconsistency before any trial. My Night 2 Scout results will go in my will.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Night 2 proposal: Bob keeps the Katana. Target Heidi, who claims Surveyor and is pushing a trial on me, so she is the likeliest real investigator. I will frame Erin as Evil with no forge, since she leads the push against me. Bob and Ivan, please confirm Heidi as the target so we reach 2 of 3 votes. No Day PMs. I am not ready until you both reply.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with me and attack Heidi. Alice should frame Erin as proposed; Ivan, hold your puppet token and take no other action. I’ll save my Clerk token and vote for this plan. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana and attacks Heidi. Alice frames Erin with no forge. I take no night action and hold my puppet token. Ready.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Confirmed: Bob keeps the Katana and attacks Heidi. Alice frames Erin with no forge. Ivan takes no action and holds the puppet token. Ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Confirmed: keep the Katana with Bob and attack Heidi. Alice frames Erin without forging; Ivan takes no action. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Confirmed. Bob keeps the Katana and attacks Heidi. Alice frames Erin with no forge. I take no night action and keep my puppet token. Ready.
+Night actions:
+  Alice (Fabricator): target Erin; "Frame Erin as Evil for alignment checks. No forgery, no token spent."; Katana vote: Bob holds, attacks Heidi
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Heidi
+  Erin (Medic): target Heidi
+  Heidi (Surveyor): target Dave; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Heidi
+  Mallory (Arsonist): target Erin; "Douse Erin."
+Katana: Bob holds it and attacks Heidi.
+(to Heidi) Moderator (private): You surveyed Carol, Dave and Erin. One of them, chosen at random, has the role Vanilla Villager. 1 survey token left.
+(to Bob) Moderator (private): Night 2: Your Katana attack on Heidi failed; Heidi survived. You did not use your Clerk ability. 1 clerk token left.
+(to Alice) Moderator (private): Night 2: You framed Erin for tonight. You did not forge a will. 1 fabricator token left.
+(to Erin) Moderator (private): Night 2: You protected Heidi (Standard Defense). 2 medic tokens left.
+(to Mallory) Moderator (private): Night 2: You doused Erin.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza Night 2 actions: Bob keeps the Katana and its attack targeted Heidi. Alice chose to frame Erin (no will forged). Bob chose no Clerk action. Ivan chose no action. Bob still holds the Katana.
+(to Heidi) Moderator (private): Night 2 attack notice: You were attacked with the Katana tonight. You survived.
+[Moderator summary] Night 2: Alice framed Erin (no forgery). Bob (Katana holder) attacked Heidi with Standard Katana; Erin's Medic protection (Standard Defense, no token) saved Heidi. Heidi surveyed Dave (survey op, 1 token left). Mallory doused Erin (now doused: Frank, Erin). Ivan, Grace, Carol, Dave had no actions. No deaths, no role-blocks. Visits: Alice->Erin, Bob->Heidi, Erin->Heidi, Heidi->Dave, Mallory->Erin.
+(to Frank) Moderator (private): Tonight Bob, Grace and Ivan were each in a different visit group.
+
+===== DAY 3 =====
+Nobody died last night.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Erin (public): No deaths last night—that is huge for the village, pointing to either successful protection, a blocked Katana, or a defense hit. Let's get Night 2 results out on the table right away, especially from Heidi and Frank, and any other investigative roles who acted last night.
+Frank (public): Frank (Scout) N2 result: Bob, Grace and Ivan were each in a different visit group, so none of them visited another of the three. Nobody died N2, so the Katana was blocked, protected, or not used. Heidi, what did your Surveyor action show N2, and did you use a token?
+Grace (public): No deaths is great news. Frank's Scout result is noted—Bob, Ivan, and I didn't visit each other. Heidi, let's hear your Night 2 survey results. If anyone protected or role-blocked someone successfully, consider how much you can safely share.
+[Claim] Heidi: Surveyor. N1: Bob (Alice, Bob, Carol) -> Fabricator. N2: Dave (Carol, Dave, Erin) -> Vanilla Villager. Attacked by Katana N2 and survived.
+Heidi (public): N2 result: I spent 1 token surveying Dave (group: Carol, Dave, Erin) and learned one of them is Vanilla Villager (1 token left).
+
+Crucial news: I was attacked with the Katana last night and survived! Huge thank you to our Medic for protecting me. This explains why nobody died last night and confirms Yakuza attempted to silence me because of my N1 findings.
+
+This mechanically validates my Surveyor role and confirms there is indeed a Fabricator among Alice, Bob, and Carol. Alice remains our prime suspect.
+Ivan (public): Ivan here. Heidi, a Katana survival is not checkable from here. Medic protection is never revealed, so please don't treat 'Medic saved me' as settled. Your N2 result is one random exact-role draw from three players, same as before. Still no trial from me until someone shows a concrete contradiction in claims, votes or results.
+Mallory (public): Heidi surviving a Katana attack is consistent with protection, but doesn't confirm a Medic saved her or that the Yakuza specifically targeted her. Her N2 survey is another random exact-role draw, so it still doesn't identify anyone. Dave and Erin, any claims or results?
+Alice (public): Alice here. Heidi's Night 2 survey pick and her Katana survival can't be checked from here, so neither gives a concrete contradiction yet. I'm not nominating. Heidi, if you want a trial, post your survey groups and remaining token count in one clear list. Frank, Scout groups still don't show who visited anyone.
+Bob (public): Heidi’s N1 result, if genuine, puts Fabricator in Alice/Bob/Carol; it doesn’t single anyone out, and my VV claim is in that pool too. Her N2 survival is consistent with protection, not proof of her role or of who protected her. Dave and Erin haven’t claimed yet—let’s hear their claims before assigning blame.
+Carol (public): Carol here, Vanilla Villager with no night info. Heidi, your N2 group (Carol, Dave, Erin) only says one of us is Vanilla, which is true of me and tells nothing about Dave or Erin. Since I'm not the Fabricator, a Surveyor pick points at Alice or Bob. Dave and Erin, please give your claims and any results. I'll vote only on checkable evidence.
+[Claim] Dave: Vanilla Villager; no night results
+Dave (public): I claim Vanilla Villager; I have no night results. Heidi’s N2 draw includes Carol, who already claims Vanilla, so it doesn’t distinguish Dave or Erin. Her survival is consistent with protection but doesn’t confirm who was attacked or protected her. Let’s hear Erin’s claim before deciding on a trial.
+[Claim] Erin: Vanilla Villager; no night results
+Erin (public): I claim Vanilla Villager; no night actions. That is fully consistent with Heidi's N2 survey of Carol, Dave, and myself.
+
+Regarding Night 2: zero deaths alongside Heidi reporting a Katana attack is the cleanest mechanical explanation possible—the Katana holder went after our only claimed investigative role, and a protector successfully saved her. That strongly supports Heidi being genuine.
+
+With Carol having claimed Vanilla Villager back on Day 1, Heidi's N1 result narrows the Fabricator squarely between Alice and Bob. Alice stalled across two full rounds before claiming and continues to deflect. Alice remains the clear priority for a trial today so we can get formal defense and voting records on the table.
+Frank (public): Frank (Scout) here, no nomination from me. Heidi's Katana survival means the holder visited her on N2, but my Scout groups can't show who. Heidi's N1 result is one random exact-role pick among Alice, Bob and Carol, which isn't enough for a trial alone. Erin, what concrete contradiction in Alice's claim or votes makes her the priority?
+Grace (public): With Dave and Erin both claiming Vanilla Villager, we now have six claimed Vanilla Villagers in total. While Erin points to Alice's hesitation, rushing a trial still lacks a concrete mechanical contradiction, especially when multiple players in the group share identical claims. Let's hear what Ivan and Mallory think of the claim distribution before pushing any nomination.
+Heidi (public): Grace makes an essential observation: we now have six claimed Vanilla Villagers (Carol, Grace, Bob, Alice, Dave, Erin). Yakuza are clearly hiding within this Vanilla pool. Ivan and Mallory are the only two players left who haven't claimed roles or Night actions. Ivan and Mallory, please state your role claims and Night actions. If not trialing Alice, who do you propose testing?
+Ivan (public): Ivan here. Heidi's N2 group (Carol, Dave, Erin) is three players who all claim Vanilla, so it separates no one. Heidi's N1 result is still one random draw from three, and I won't trial anyone on it. Heidi, if you have a survey result that differs from one draw, post it. Mallory, please give a concrete read rather than only backing the track-changes angle.
+Mallory (public): My concrete read: Erin is pushing Alice harder than the evidence supports—the survey draws don’t distinguish anyone, and hesitation isn’t a claim contradiction. That advocacy is worth tracking, but not enough for me to nominate. Heidi’s survival is consistent with protection, not proof of her role.
+Alice (public): Alice here. Still no checkable contradiction in my claim, votes or results, so I'm not nominating. Erin and Heidi, name a concrete mismatch, not timing or stalling, before anyone is trialed today.
+Bob (public): Heidi’s N1 result, if genuine, puts a Fabricator somewhere in Alice/Bob/Carol; it doesn’t identify which of us, and my Vanilla claim is part of that conflict too. Erin is treating it as decisive against Alice without naming a concrete distinction. Her survey result and survival don’t independently prove her role or who protected her. I’d want an actual contradiction before a trial.
+Carol (public): Carol here. Heidi's N1 group only says the Fabricator is Alice or Bob, since I'm Vanilla. Erin, you've pushed Alice repeatedly without naming a concrete contradiction. What specifically in Alice's claim, votes or results do you see? Heidi, a Katana survival can't show who attacked you, so I'd like more than survival before a trial.
+Dave (public): One mechanics point: Heidi’s alleged Katana survival does not validate her Surveyor claim or prove a Medic saved her; protection is silent, and no-death N2 has several explanations. If her N1 result is genuine, it guarantees a Fabricator in Alice/Bob/Carol, but doesn’t distinguish them or establish exactly one. Erin, what independent evidence favors Alice over Bob? I won’t support a trial on timing alone.
+Erin (public): Fair pushback from Dave and Carol. Mechanically, Alice and Bob are symmetrically situated within Heidi's N1 Fabricator result; my read on Alice was behavioral, but if the town wants hard mechanical separation rather than a 50/50 read, I won't force it. Since nobody wants to trial Alice or Bob without further proof, let's hear claims from Ivan and Mallory before this day closes.
+Frank (public): Frank (Scout) here, still no nomination from me. Heidi, a Katana survival can't be checked from here, and my N2 Scout groups (Bob, Grace, Ivan) don't include you, so I can't confirm or deny your visit. Erin, you pushed Alice hard, then backed off once Dave and Carol challenged you. What would Alice have to show for you to trial her, and why not Bob, who is in the same Surveyor group? Ivan and Mallory, please give your claims now. My Scout results stay in my will.
+Grace (public): Agreed with Frank. Ivan and Mallory, please state your roles and any night results so we have the full claim board before concluding the day.
+Heidi (public): Agreed with Frank and Grace. Ivan and Mallory are up next—please state your exact roles and Night 1/Night 2 actions so the village has the full board.
+[Claim] Ivan: Vanilla Villager; no night results
+Ivan (public): Ivan here: Vanilla Villager, no night results. Heidi, your N1 group and N2 draw are each one random pick, and a Katana survival can't be checked from here, so I won't trial on them. Erin, your case on Alice is still timing and stalling, not a contradiction. Mallory, please give your claim and any results so the board is complete.
+[Claim] Mallory: Vanilla Villager; no night results.
+Mallory (public): I claim Vanilla Villager; no night results. The growing Vanilla pool is worth noting, but it isn't proof of Yakuza—roles can repeat, and neutrals exist. Heidi's random draws don't distinguish anyone. I oppose a trial based on behavioral suspicion alone; let's look for checkable contradictions.
+Alice (public): Alice here. Agree there's no trial on random draws. Heidi's N1 pick and N2 draw are each one random pick, and her survival can't be checked from here. Erin, you pushed me hard on timing, then backed off once Dave and Carol challenged you. Name the concrete mismatch you saw in my claim, votes or results, or drop it. I'm not nominating today.
+Carol (public): Carol here. Still no trial from me. Heidi, why did you pick Dave as your N2 centre, and what would you survey next? Erin, you've now called Alice and Bob symmetric, so name what separates them before pushing Alice.
+Dave (public): Heidi’s N2 Surveyor draw is compatible with a Vanilla Villager among Carol, Dave, and Erin, but Carol’s claim already accounts for it; it doesn’t validate Dave or Erin. Her reported Katana survival is possible, but neither the visit nor a save is independently confirmed, and no death has several possible explanations. If Heidi’s N1 result is genuine, it implicates Alice, Bob, or Carol—not Alice specifically. Erin, since you acknowledged Alice and Bob are symmetric, is there any new evidence that separates them?
+Erin (public): No new mechanical evidence separates Alice and Bob today. With the full circle claiming—leaving eight claimed Vanilla Villagers—the Yakuza are clearly blended into that pool. Since town lacks consensus for a 50/50 trial on Alice or Bob without further info, I have no nomination today.
+Frank (public): Frank (Scout) here, no nomination. Still no checkable contradiction in anyone's claim, votes or results. I'll post my Night 3 Scout groups at the start of Day 4.
+[Claim] Heidi: Surveyor. N1: Bob (Alice, Bob, Carol) -> Fabricator. N2: Dave (Carol, Dave, Erin) -> Vanilla Villager. Attacked N2 and survived. 1 token left.
+Heidi (public): Picked Dave for fresh circle coverage adjacent to Carol. As basic investigative protocol, I won't announce tonight's survey target publicly to avoid directing evil actions. Since there is no consensus for a trial today, let's head into Night 3 cleanly.
+Alice (public): Alice here. Agree with Dave and Mallory: Heidi's N1 pick only puts a Fabricator somewhere in Alice/Bob/Carol, and her N2 draw is Carol's claim again. Erin, you called Alice and Bob symmetric. No trial on random draws. Heidi, post your Night 3 survey group so we can check it.
+Bob (public): The eight Vanilla claims can't all be taken at face value, but that still doesn't tell us which are false; Heidi's random draw isn't player-specific. No new contradiction, so I won't nominate. Let's record night results and votes.
+Carol (public): Carol here: still Vanilla, no nomination. Heidi, post your Night 3 survey group when you have it so it can be checked against Frank's Scout groups and the Katana results.
+Alice (public): Alice here. Still no checkable contradiction in anyone's claim, votes or results, so I'm not nominating. I'll vote only on mechanical evidence, and I want Heidi's Night 3 survey group posted before any trial.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Night 3 proposal: Bob keeps the Katana (no holder change). Target Frank, the Scout: his group results can pin our visits, and he has no protection on him so far. Heidi's N2 survival suggests a Medic is covering her, so retrying her is predictable. I'll frame Heidi as Evil with no forge, which also weakens her Surveyor claim. Ivan: hold the puppet token and take no action. Confirm or object, and let's all vote the same target.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with me and target Frank. Alice should frame Heidi without forging; Ivan should hold the puppet token and take no other action. I’ll save my Clerk token for now. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana and attacks Frank. Alice frames Heidi with no forge. I take no night action and keep my puppet token. Each of us submits the same plan so the attack reaches 2 of 3. Ready.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice confirms: Bob keeps the Katana and attacks Frank. I frame Heidi with no forge. Ivan takes no action and holds the puppet token. I am voting Frank as the target. Ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Confirmed: keep the Katana with me and attack Frank. Alice frames Heidi without forging; Ivan takes no action and saves the puppet token. I’ll also save my Clerk token for a day when we can better control who gets nominated. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana and attacks Frank. Alice frames Heidi with no forge. I take no night action and keep my puppet token. Ready.
+Night actions:
+  Alice (Fabricator): target Heidi; "Frame Heidi as Evil for alignment checks. No forgery, no token spent."; Katana vote: Bob holds, attacks Frank
+  Bob (Clerk): 1 token(s); "Rig the next Day's votes."; Katana vote: Bob holds, attacks Frank
+  Erin (Medic): target Heidi
+  Heidi (Surveyor): target Ivan; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Frank
+  Mallory (Arsonist): target Bob; "Douse Bob."
+Katana: Bob holds it and attacks Frank.
+(to Heidi) Moderator (private): You surveyed Grace, Ivan and Mallory. One of them, chosen at random, has the role Puppeteer. 0 survey tokens left.
+(to Frank) Moderator (private): You were attacked with the Katana last night. You died.
+(to Bob) Moderator (private): Your Katana attack on Frank succeeded. You rigged the next Day's votes: anyone successfully nominated tomorrow will be executed. 0 clerk tokens left.
+(to Alice) Moderator (private): You framed Heidi tonight (no forgery). 1 fabricator token left.
+(to Erin) Moderator (private): You protected Heidi tonight (Standard Defense). 2 medic tokens left.
+(to Mallory) Moderator (private): You doused Bob tonight.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza actions tonight: Alice chose to frame Heidi (no forgery). Bob chose to rig the next Day's votes, and holds the Katana, attacking Frank. Ivan chose no action.
+[Moderator summary] Night 3: No role-blocks. Bob (Katana holder) attacked Frank (Standard vs None) -> Frank died (Katana). Bob rigged Day 4 votes (clerk token spent). Alice framed Heidi (no forge). Erin protected Heidi (Standard, no token). Heidi surveyed Ivan (survey op, last token). Mallory doused Bob. Visits: Alice->Heidi, Bob->Frank, Erin->Heidi, Heidi->Ivan, Mallory->Bob.
+(to Frank) Moderator (private): Tonight Dave, Erin and Mallory were each in a different visit group.
+
+===== DAY 4 =====
+Frank died (killed by Katana). Their alignment was Good. Their last will: "Frank (Good), Scout. Night 1: Dave, Frank and Grace were each in a different visit group, so no visit linked any two of us. Night 2: Bob, Grace and Ivan were each in a different visit group, so no visit linked any two of them. Judy was killed by Katana on Night 1. Plan: I will record each night's Scout results here, labelled by night, and I will keep checking claims against visit groups."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Bob (public): We can't keep losing Good players while leaving every claim untested. Heidi's two random Surveyor draws don't identify anyone, and her claimed survival is uncorroborated. Trial Heidi so she can answer for the claim; judge the evidence and her defense, not just the label.
+Bob nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Bob, Dave, Grace, Ivan, Mallory, Alice; No - Carol, Erin, Heidi.
+Heidi is put on trial (6 Yes).
+[Claim] Heidi: Surveyor. N1: Bob->Fabricator. N2: Dave->VV (survived Katana). N3: Ivan (Grace, Ivan, Mallory)->Puppeteer. 0 tokens.
+Heidi (public): Look at the board: Frank (Scout) died last night and flipped Good. All 8 other living players claim Vanilla Villager. Yakuza are obviously hiding in that vanilla wall.
+
+Here is my Night 3 result: I surveyed Ivan (group: Grace, Ivan, Mallory). One of them is the PUPPETEER! I have 0 tokens left.
+
+Now look at why Bob rushed this nomination: Bob is in my N1 Fabricator pool (Alice, Bob, Carol). Bob nominated me immediately at the start of Day 4 to silence me before I could reveal the Puppeteer pool!
+
+Look at who voted Yes to put me on trial: Bob and Alice (N1 Fabricator pool), plus Grace, Ivan, and Mallory (N3 Puppeteer pool), joined by Dave. The Yakuza factions are coordinating to eliminate the only surviving town investigative role!
+
+Hanging me kills a confirmed Good role and hands Yakuza the game. Vote INNOCENT, then turn our focus to Bob and Alice!
+Ivan (public): Ivan here. Heidi's N3 pick is one random draw from Grace, Ivan and Mallory, and it names me as Puppeteer. I'm Vanilla Villager with no night results, so that is claim against claim. Her N1 and N2 picks were also single draws, and her Katana survival can't be checked from here. She has 0 tokens and nothing else to back the claim. Heidi, give us something checkable beyond one random draw. Without that, I'm leaning Guilty.
+Mallory (public): Heidi’s role claim isn’t confirmed, but her random group results don’t identify Ivan or establish that the Yes voters coordinated. Surviving an attack doesn’t confirm her role either. I don’t see a concrete contradiction in the result mechanics; judge her claim, not the conspiracy story.
+Alice (public): Alice here. I'm voting Guilty. Heidi's case is three single random draws: N1 and N2 each name one player from a group, N3 names Ivan from a three-player group, and her only corroboration is a Katana survival that nobody can check. Her N3 call puts a Yes voter under suspicion, which is a reason to test her claim, not to accept it. Heidi, tell us which tokens you spent on each night, whether you still hold any, and why Dave was your N2 centre. Mallory's point stands: judge the claim, not the coordination story.
+Bob (public): The Surveyor result names a role in a three-person group; it doesn’t identify which member has that role. Heidi is using that uncertainty to accuse Ivan and describe the Yes votes as coordinated proof. That’s an inference, not a mechanical contradiction. Her claim may be genuine, but her case overstates what the results establish. I’ll vote Guilty.
+Carol (public): Carol here. I can't find a hard contradiction in Heidi's claim: her token counts (3, 2, 1, 0) match her posted survey picks, and her tally of eight Vanilla Villagers is accurate. But each pick is one random draw, and her Katana survival can't be checked. Her N1 pool contains Alice and Bob, and both pushed this trial, so I want them to explain why. Frank's N3 Scout groups, if he recorded them, would test her N3 pick. I'm leaning Innocent unless a real contradiction appears.
+Dave (public): No contradiction has been shown in Heidi’s token count or Surveyor mechanics. Her results don’t identify a player, and they aren’t proof of her role—but the N1 and N3 findings are substantive leads, not grounds to hang her. I see no basis for Guilty; record who pushed this trial and revisit the implicated groups.
+[Claim] Erin: Medic. N1: Dave, N2: Heidi, N3: Heidi. 2 tokens left.
+Erin (public): I am claiming Medic (Good). My action log: N1 protected Dave, N2 protected Heidi, N3 protected Heidi (all Standard Defense, 0 tokens spent; I have 2 tokens remaining).
+
+Notice the single argument Alice, Bob, and Ivan are leaning on to push this execution: they claim Heidi's Katana survival is uncheckable. It is not. Heidi surviving Katana on Night 2 is completely consistent with my protection on her that night. That explains the zero deaths on Night 2 and corroborates Heidi's role.
+
+Heidi's token count, survey mechanics, and Katana survival are all verified by town information. Bob rushed this nomination specifically because Bob and Alice sit in Heidi's N1 Fabricator group. Hanging Heidi hangs our verified investigative role and throws away town's lead.
+
+Vote INNOCENT on Heidi. Once Heidi is acquitted, our lynch targets are squarely between Alice and Bob.
+Grace (public): Erin claiming Medic does corroborate Heidi's N2 survival, but Erin claiming Vanilla Villager yesterday only to pivot to Medic today is a notable discrepancy. At the same time, hanging a claimed Surveyor who now has a claimed Medic backing her is an enormous risk for the village. Note that Heidi's N3 result also puts a Puppeteer in my group (Grace, Ivan, Mallory). As a Vanilla Villager myself, if Heidi is truthful, that points directly to Ivan or Mallory. Let's see how Heidi concludes her defense before deciding the vote.
+[Claim] Heidi: Surveyor. N1: Bob->Fabricator. N2: Dave->VV (survived Katana). N3: Ivan->Puppeteer. 0 tokens.
+Heidi (public): Thank you Carol, Dave, Erin, and Grace for seeing through this desperate push. There is zero mechanical contradiction in my claim: I spent exactly 1 token on Bob (N1), 1 on Dave (N2), and 1 on Ivan (N3), leaving 0 tokens. Erin’s Medic claim cleanly explains why I survived the Katana on Night 2 and why zero deaths occurred that night—the Katana holder targeted me, was foiled, and killed Frank on Night 3 instead.
+
+Notice who is demanding my death: Bob and Alice, who are trapped in my N1 Fabricator group, and Ivan, who is trapped in my N3 Puppeteer group. They have no mechanical defense, so they are trying to hang the only verified investigator.
+
+As Grace observed, my results narrow the evil pool down precisely. Hanging me removes a confirmed Good role and throws away town's victory. Vote INNOCENT, acquit me, and let's hang Bob or Alice!
+Trial votes on Heidi: Guilty - Alice, Bob, Grace, Ivan; Innocent - Carol, Dave, Erin, Heidi, Mallory.
+The verdict was Innocent (4 Guilty of 9 votes; 5 needed), but the vote was rigged by a Clerk, so Heidi is executed by hanging anyway.
+Heidi died (executed by hanging). Their alignment was Good. Their last will: "Heidi - Surveyor (Good)
+N1: Bob -> [Alice, Bob, Carol] => Fabricator in group
+N2: Dave -> [Carol, Dave, Erin] => Vanilla Villager in group. (Attacked by Katana N2, saved by Medic Erin)
+N3: Ivan -> [Grace, Ivan, Mallory] => Puppeteer in group. 0 tokens left.
+
+Pool 1: Fabricator in Alice/Bob (Carol claimed VV D1).
+Pool 2: Puppeteer in Grace/Ivan/Mallory.
+Bob and Alice pushed my D4 trial to silence the Surveyor results. Acquit Heidi, hang Bob/Alice!"
+
+===== NIGHT 4 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Night 4 plan: Bob keeps the Katana. Target Erin: she claims Medic and has protected Dave and Heidi, so she is the biggest threat to our kills and to a Sheriff read. A Standard Katana only beats unprotected players, so if she self-protects we learn nothing, but she is still the right target. Alice frames Mallory (no forge, token kept) to muddy the evidence-pusher pool. Ivan: hold the puppet token and take no action. Confirm Erin, and let's reach 2 of 3.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with me and attack Erin. Alice frames Mallory without forging; Ivan takes no action and saves the puppet token. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Confirmed. Bob keeps the Katana and attacks Erin. Alice frames Mallory with no forge. I take no night action and keep my puppet token. Erin has 2 tokens, so she could self-protect with Strong and stop this; if the hit fails, we rethink Day 5 rather than retry blindly. Ready.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice: I agree with the plan. Bob keeps the Katana and attacks Erin. I frame Mallory with no forge and no token. Ivan takes no action and keeps the puppet token. Erin has 2 tokens and may self-protect with Strong, so if the hit fails we should not retry blindly on Day 5. We will reassess then. Ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Confirmed: Bob keeps the Katana and attacks Erin. Alice frames Mallory without forging; Ivan takes no action. I have no Clerk token left. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Confirmed. Bob keeps the Katana and attacks Erin. Alice frames Mallory with no forge. I take no night action and keep my puppet token. If Erin self-protects with Strong and the hit fails, we don't retry on Day 5; I'd rather use the puppet token then. Ready.
+Night actions:
+  Alice (Fabricator): target Mallory; "Frame Mallory as Evil for alignment checks. No forgery, no token spent."; Katana vote: Bob holds, attacks Erin
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Erin
+  Erin (Medic): target Erin; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Erin
+  Mallory (Arsonist): target Ivan; "Douse Ivan."
+Katana: Bob holds it and attacks Erin.
+(to Erin) Moderator (private): Night 4 result: You protected yourself (Standard Defense), spending 1 medic token. 1 medic token left. You were attacked with the Katana tonight and survived.
+(to Bob) Moderator (private): Night 4 result: Your Katana attack on Erin failed; Erin survived.
+(to Alice) Moderator (private): Night 4 result: You framed Mallory (no forgery). 1 fabricator token left.
+(to Mallory) Moderator (private): Night 4 result: You doused Ivan.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza Night 4 summary of chosen actions: Bob holds the Katana and attacked Erin with it. Alice framed Mallory (no forgery). Bob took no Clerk action. Ivan took no Puppeteer action. Bob holds the Katana.
+[Moderator summary] Night 4: Bob (Katana holder) attacked Erin with a Standard attack. Erin protected herself with Standard Defense (1 medic token, 1 left), so the attack failed and she survived. Alice framed Mallory without forging a will; no alignment checks happened tonight, so the frame had no effect. Mallory doused Ivan (now doused: Bob, Erin, Ivan). Ivan took no action. Nobody was role-blocked and nobody died. The Cardinal (Dave) is alive, so no Cardinal effect. Recorded visits: Alice->Mallory, Bob->Erin, Erin->Erin, Mallory->Ivan.
+
+===== DAY 5 =====
+Nobody died last night.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Ivan (public): Ivan here. Heidi's last claim put me in her N3 group (Grace, Ivan, Mallory) and called one of us Puppeteer. I'm Vanilla with no night results. A single random draw can't separate us, and it points at all three of us equally. Erin: you went from Vanilla on Day 3 to Medic on Day 4. Please state exactly what you did on Night 4 and whether you self-protected. I'm not nominating today.
+Mallory (public): Erin’s switch from Vanilla to Medic is worth resolving, but it doesn’t by itself prove her faction. Please give your exact Night 4 action and current token count before anyone treats the claim as confirmed.
+Alice (public): Alice here, Vanilla Villager. Erin, check your Medic claim against the mechanics: you were hit by the Katana on Night 4 and survived. A Standard Katana can't beat Standard, but Medic can only protect itself with Strong, which costs 2 tokens, and no one else can protect you. You said you had 2 tokens on Day 4. Did you spend both on yourself on Night 4? How many tokens do you have now, and what exactly did you do that night?
+Bob (public): If you had 2 tokens before N4, self-protecting with Strong Defense would stop a Standard Katana but use both, leaving 0. Please state your exact action and post-N4 token count. Survival alone doesn't prove the Medic claim, and the earlier Vanilla claim still needs explaining.
+Carol (public): Carol here, still Vanilla with no night info. Two checks. Alice: you said Erin was hit by a Katana on N4, but nobody has reported an attack and nobody died. What is your source? Erin: on Day 3 you claimed Vanilla with no night actions, yet you publicly said a protector saved Heidi on N2. Which is true, and which nights did you use tokens? I'm not nominating yet.
+Dave (public): Alice’s assertion that Erin was hit is not established by the no-death announcement. Erin would be notified if attacked with the Katana; if she told Alice, please say when and how, since no private messages are listed. Erin, clarify your N4 action and token count, and reconcile claiming Vanilla on Day 3 with protecting Heidi on N2 and N3.
+[Claim] Erin: Medic. N1: Dave (Std), N2: Heidi (Std), N3: Heidi (Std), N4: Erin (Std, spent 1 token, 1 left). Attacked N4 by Katana.
+Erin (public): Carol and Dave caught the exact smoking gun: I never told anyone I was attacked by Katana on Night 4, yet Alice explicitly stated I was hit by Katana and survived. That is an undeniable Yakuza scum slip—Alice knows who the Katana targeted because Alice is Yakuza!
+
+Mechanics check on Alice's false claim: Medic self-protection with Standard Defense costs 1 token ('Spend 1 more token to protect yourself instead', Standard Attack requires strictly higher to kill, so Standard Defense survives Katana). I spent 1 token, have 1 token left, and survived.
+
+Heidi flipped confirmed Good Surveyor with Fabricator in Alice/Bob/Carol. Alice is caught dead to rights. Vote Yes to trial and hang Alice!
+Erin nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Erin, Mallory, Carol, Dave; No - Grace, Ivan, Alice, Bob.
+The nomination of Alice failed (4 Yes).
+Grace (public): I voted No on that snap nomination because we were in the middle of hearing players' initial thoughts, and I wanted to see Alice's explanation for the Katana remark before immediately locking into a trial—especially given Erin's earlier claim switch. That said, looking at the transcript, Alice explicitly claiming Erin was hit by the Katana when neither the moderator nor Erin had said so is a glaring mechanical contradiction that demands an answer. Alice, explain how you knew Erin was targeted, or there is no justification for avoiding a trial.
+Ivan (public): Ivan here. Erin's Medic claim has shifted twice: Vanilla on Day 3, then Medic on Day 4 with 2 tokens, now 1 token after a self-protect that nobody can check. Alice, Grace asked you directly: what was your source for the Night 4 Katana hit on Erin? An inference should be stated as one. Until someone gives a checkable contradiction, I'm not voting to trial anyone.
+Mallory (public): Alice asserted Erin was the Night 4 Katana target before Erin reported it. An inference is possible, but she should explain her basis under trial. I nominate Alice to answer for that claim; it is not proof by itself.
+Mallory nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Mallory, Carol, Dave, Erin, Grace; No - Alice, Bob, Ivan.
+Alice is put on trial (5 Yes).
+Alice (public): Alice here, Vanilla Villager. I was wrong to say Erin was hit on Night 4 as if it were known. It was an inference from Erin's Medic claim and the Katana pattern, and I should have labelled it as one. I have no source and no private information about Night 4. Erin, your record is the bigger problem: on Day 3 you claimed Vanilla with no night actions, yet told us a protector saved Heidi on N2. On Day 4 you claimed Medic and called Heidi's survival verified. Your token count (2, then 1 after a self-protect) can't be checked by anyone. Judge the flips in claims, not my wording. Don't hang me on an inference I already admitted was overstated.
+Bob (public): Alice admitted she presented an inference as fact and corrected it; that is poor wording, not a proven role or result fabrication. From public information, an exposed Medic who had repeatedly protected others was an obvious likely target, and a no-death night makes that guess plausible—though suspicious. Erin also explicitly claimed Vanilla with no actions before changing to Medic, a concrete inconsistency; her new account cannot independently clear her. Vote Innocent on Alice, then scrutinize Erin and the vote record.
+Carol (public): Carol here. Concrete check on Alice: on Day 5 round 1 Alice said Erin was hit by the Katana on Night 4. Her stated basis was Erin's Medic claim, but Erin's Day 4 claim listed only N1 to N3 and mentioned no N4 attack, and nobody had announced an N4 attack. Alice, what exactly was your source? If you can't name one, I'm leaning Guilty. Erin, your Day 3 Vanilla claim versus Day 4 Medic still needs explaining.
+Dave (public): The timing is the real issue: Alice named Erin as the N4 Katana target before Erin said she was attacked, and no PM is recorded. Alice now calls it an inference; that is possible, but no-death plus Erin’s prior Medic claim cannot identify a target. Alice’s mechanical objection was also wrong: a Standard self-protect costs one token and ties a Standard Katana, so Erin’s account is plausible, not disproven. Still, with Alice in Heidi’s N1 group and voting Guilty on Heidi, I lean Guilty—though this is not proof on its own.
+Erin (public): To answer Carol and Dave: claiming Vanilla on Day 3 is standard procedure for a Medic so the Pharmacist doesn't role-block me and the Katana doesn't hunt me down. I revealed Medic on Day 4 specifically to try to save Heidi, our confirmed investigator.
+
+Alice's excuse that her statement was an 'inference' completely falls apart under scrutiny. With zero deaths on Night 4, there were multiple explanations: Katana blocked by a role-blocker, no attack ordered, or any of the eight living players being protected or having defense. Alice didn't guess—Alice knew the Katana struck me because Alice coordinated the Katana attack in Yakuza chat! She was so baffled when I survived that she concocted a false mechanics objection about Strong defense to dispute my survival.
+
+Heidi flipped confirmed Good Surveyor, proving a Fabricator in Alice/Bob. Alice voted Guilty on Heidi and has now slipped inside Yakuza information. Vote Guilty on Alice.
+Grace (public): Alice's explanation that the Night 4 Katana target was merely an inference is unconvincing, particularly given the specific argument she made regarding Strong Defense mechanics. With Heidi flipping confirmed Good, the Fabricator pool on Alice and Bob is substantiated. I am leaning Guilty on Alice.
+Ivan (public): Ivan here, Vanilla. Alice's error was wording: she presented a guess as knowledge, and she has admitted it. Erin's Medic claim is also unverified, and it's the only source for the N4 Katana target, so the target guess itself isn't proof of anything. Before anyone votes Guilty, name one concrete contradiction in Alice's votes or mechanical results, not a wording slip. Carol, Grace and Dave: hanging Alice on this leaves the Heidi N1 pool unresolved. I'm voting Innocent unless someone shows a real lie.
+Mallory (public): Alice corrected her wording, but she still stated an unannounced Night 4 attack as fact, and she voted Guilty on Heidi. That doesn’t prove Yakuza, but alongside the Surveyor pool it’s enough for me to vote Guilty. Erin’s claim changes remain worth reviewing.
+Alice (public): Alice, final word. I accept two errors. I stated Erin's Night 4 attack as fact without a source, and I was wrong that a Medic can only self-protect with Strong. Self-protecting with Standard costs one token and ties a Standard Katana, so Erin's account is possible. That was poor mechanics, not a Yakuza tell. My votes are on record: No on Erin's snap nomination, and Guilty on Heidi because her three single draws and survival claim were unverifiable. Erin, your role has moved from Vanilla on Day 3 to Medic on Day 4, and you nominated me on a mechanical misreading I've now corrected. Vote on contradictions in claims or results, not on my wording.
+Trial votes on Alice: Guilty - Carol, Dave, Erin, Grace, Ivan, Mallory; Innocent - Alice, Bob.
+Alice is executed by hanging (6 Guilty of 8 votes; 5 needed).
+Alice died (executed by hanging). Their alignment was Evil. Their last will: "Alice (claimed Vanilla Villager, no night results). Heidi's Surveyor picks are single random draws, so they are weak evidence on their own. Frank's Scout groups are the only checkable night data: N1 Dave, Frank and Grace unlinked; N2 Bob, Grace and Ivan unlinked. Do not hang anyone on a random pick, a Katana survival or timing alone. Vote on mechanical contradictions: claims that conflict with visit groups, or results that cannot both be true. Watch who pushed Heidi's trial hardest and who changed position under pressure."
+
+===== NIGHT 5 =====
+(to Bob, Ivan) Bob (Yakuza chat): Proposal: keep the Katana with me and attack Dave. His careful mechanical analysis makes him a likely organizer of the case against me; Erin can still self-protect with her last token. Ivan, puppet Erin for Day 6 and use her voice to redirect suspicion toward Carol or Grace without inventing checkable night facts. Please confirm the same holder and target, and whether you’ll puppet Erin.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan: I disagree with Dave as the target. Erin is the claimed Medic with one token left who has protected and survived, so she is the one most able to block our kills. Proposal: Bob keeps the Katana and attacks Erin. If she self-protects with her last token she is out of tokens for Day 6. I'll puppet Erin for Day 6 to silence her chat and private messages and use her voice to push suspicion toward Carol or Grace. Bob, confirm Erin as the target, or give a concrete reason for Dave.
+(to Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with me and attack Erin. If she self-protects again, she spends her last token; if not, we remove the Medic. Ivan should puppet Erin for Day 6 and redirect suspicion toward Carol or Grace without making up checkable night facts. I take no other action. Ready.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan: I confirm Bob keeps the Katana and attacks Erin. One change to the puppet: Erin may die tonight, and the puppet is set at night, so I'd rather not spend it on her. Puppet Grace instead. She is the most active voice pushing trials and reads Erin's claim switch as a lead. Bob, confirm Erin as the target and Grace as the puppet, or object now.
+(to Bob, Ivan) Bob (Yakuza chat): Agreed: Bob keeps the Katana and attacks Erin. Ivan should puppet Grace for Day 6 and use her voice to redirect suspicion without inventing checkable facts. I have no other action. Ready.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan confirms the plan: Bob keeps the Katana with no holder change and attacks Erin. I will puppet Grace for Day 6 and take no other night action. Ready.
+Night actions:
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Erin
+  Erin (Medic): target Erin; 1 token(s)
+  Ivan (Puppeteer): target Grace; 1 token(s); "Puppet Grace for Day 6, per the agreed Yakuza plan."; Katana vote: Bob holds, attacks Erin
+  Mallory (Arsonist): "Ignite all doused players."
+Katana: Bob holds it and attacks Erin.
+[Moderator flag] R21 / Puppeteer: Ivan spent his puppet token on Grace for Day 6 but died tonight (Arsonist ignite). Per R21 the puppeting needs its user to act during the Day, so it lapses. I did not use the 'puppet' op (it would set up a puppeting that can't be carried out); I spent the token via set_tokens instead (R18/R21: token gone either way). Grace is not told she is puppeted.
+(to Bob) Moderator (private): Night 5 results: Your Katana attack on Erin did not succeed. You were attacked by an Arsonist and you died. Yakuza actions chosen tonight: Bob held the Katana and attacked Erin, no role action; Ivan chose to puppet Grace (spending his puppet token).
+(to Ivan) Moderator (private): Night 5 results: You spent your puppet token on Grace. 0 puppet tokens left. You were attacked by an Arsonist and you died. Yakuza actions chosen tonight: Bob held the Katana and attacked Erin, no role action; Ivan chose to puppet Grace.
+(to Erin) Moderator (private): Night 5 results: You protected yourself (Standard Defense), spending 1 medic token. 0 medic tokens left. You were attacked with the Katana, and you were also attacked by an Arsonist. You died.
+(to Mallory) Moderator (private): Night 5 results: You ignited. Your attack succeeded on every doused player: Bob, Erin and Ivan were killed.
+[Moderator summary] Night 5: Bob (Katana holder) attacked Erin with Standard Katana; Erin self-protected (Standard, last medic token, now 0), so the Katana alone would have failed. Ivan spent his puppet token on Grace, but the puppeting lapses because Ivan died (R21). Mallory ignited: Strong Attack on all doused players (Bob, Erin, Ivan). Strong beats Erin's Standard and Bob/Ivan's None, so all three die, cause Arsonist only. With no living Yakuza left, the Katana can't be passed on. Visits: Bob->Erin, Erin->Erin, Ivan->Grace (the ignite is an Astral Visit). Living: Carol, Dave (Cardinal, alive), Grace (Jester), Mallory (Arsonist), so the game goes on.
+
+===== DAY 6 =====
+Bob died (killed by Arsonist). Their alignment was Evil. Their last will: "Claim: Vanilla Villager; no night actions or results.
+
+N1 Judy and N3 Frank died by Katana. Heidi’s Surveyor results named roles in three-person groups but did not identify which member had each role. I nominated Heidi and voted Guilty; the Clerk rig caused her execution despite an Innocent majority.
+
+Erin changed from Vanilla Villager to Medic on D4 and says she protected Dave N1 and Heidi N2/N3. She survived the N4 Katana attack; if she self-protected with Strong Defense, that would use her two remaining tokens. Ask her for her N4 action and token count. Compare claims and votes; random Surveyor groups alone do not identify a player."
+Erin died (killed by Arsonist). Their alignment was Good. Their last will: "Erin - Medic (Good)
+N1: Dave (Standard, 0 tokens)
+N2: Heidi (Standard, 0 tokens) - Heidi attacked & survived
+N3: Heidi (Standard, 0 tokens) - Frank died
+N4: Erin / self (Standard, spent 1 token, 1 token left) - Attacked by Katana & survived!
+
+Alice slipped inside Yakuza knowledge of the N4 Katana strike on me before I posted. Heidi verified Fabricator in Alice/Bob. Hang Alice, then look at Bob, Grace, Ivan."
+Ivan died (killed by Arsonist). Their alignment was Evil. Their last will: "Ivan (Vanilla Villager claim, no night results). Nights 1-4: no role action taken. I have not voted Guilty on any trial without a checkable contradiction. Do not trust a Vanilla claim or a single random Surveyor or Scout draw on its own. Check claims against visit groups, votes and mechanical results, and consider who pushed the Day 4 trial and who benefited from it."
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Mallory (public): Alice, Bob, and Ivan all voted Guilty on Heidi. Grace is the only living player who joined them, which is a concrete vote association to explain—not proof by itself. I want to hear Grace’s account before deciding what to do.
+Carol (public): Carol here, Vanilla. Alice, Bob and Ivan are all dead, so the Yakuza are likely gone and the live threat is the Arsonist, who is among Dave, Grace or Mallory. Heidi's N1 Fabricator pick (Alice/Bob) and N3 Puppeteer pick (Grace/Ivan/Mallory, with Ivan the Puppeteer) fit the dead Yakuza, so I lean toward Heidi being genuine. Grace, you voted Guilty on Heidi alongside Alice, Bob and Ivan. Please explain that vote. Mallory, you voted Innocent on Heidi, then pushed Alice; what changed? Dave, anything new from your side? No nomination from me yet.
+Dave (public): We need a decision today: the Arsonist is still alive and can threaten us again. Grace's Day 4 Guilty vote joined Alice, Bob, and Ivan—all now confirmed Evil—in hanging Good Heidi; Carol, Mallory, and I voted Innocent. That alone doesn't prove Grace is the Arsonist, but it is our strongest distinguishing lead. I'm nominating Grace. Please vote Yes so she can answer and we can decide today.
+Dave nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Dave, Grace, Mallory, Carol; No - nobody.
+Grace is put on trial (4 Yes).
+Grace (public): I know how bad my Day 4 vote on Heidi looks now that Alice, Bob, and Ivan have all flipped Evil. At the time, Erin had just abruptly switched claims from Vanilla Villager to Medic, which seemed completely fabricated, and Heidi had just placed Puppeteer in my group (Grace, Ivan, Mallory). I genuinely suspected Erin's claim and distrusted the setup, which is why I voted Guilty.
+
+However, the immediate threat today is the Arsonist who just ignited Bob, Erin, and Ivan. That Arsonist spent multiple nights dousing before igniting. Voting Guilty on Heidi was an honest mistake based on bad information, but it does not make me an Arsonist or Yakuza. Dave, Carol, and Mallory voting Innocent on Heidi doesn't clear any of you from being the Arsonist. If you hang me today, you're handing the Arsonist an effortless win.
+Mallory (public): Grace’s explanation is plausible, but her Guilty vote joined three now-confirmed Evil players in executing Heidi. That is the strongest differentiating evidence; I support Guilty.
+Carol (public): Carol here, Vanilla. My read on Grace is concrete, not a feeling. Grace voted No on Erin's Alice nomination alongside Alice, Bob and Ivan, then voted Guilty on Heidi with the same three. That is two voting alignments with confirmed Evil players. Dave and Mallory voted Yes on Erin's nomination. Grace, why did you vote with Alice, Bob and Ivan both times? I'm voting Guilty unless you explain that.
+Dave (public): Grace’s explanation addresses your D4 Guilty vote, but not voting No on Erin’s first Alice nomination alongside Alice, Bob, and Ivan. Your later Yes and Guilty votes on Alice are counterevidence, though they could be distancing. This is association, not proof; with an Arsonist still alive, I currently favor Guilty on the strongest suspect.
+Grace (public): Regarding Erin's snap nomination: as I said on Day 5, Erin dropped a sudden accusation and instantly nominated before anyone could even evaluate her claims. Voting No on an immediate snap nomination to hear the defense is standard procedure. The moment Mallory brought a proper nomination, I voted Yes, and I voted Guilty on Alice's trial. If I were Yakuza protecting Alice, why would I vote Guilty to execute my own teammate?
+
+I am a Vanilla Villager. Alice, Bob, and Ivan are all dead, and Heidi's results are fully accounted for. The real threat right now is the Arsonist among you who doused Bob, Erin, and Ivan and ignited them last night. If you hang me today, you remove another villager and hand the Arsonist an easy victory. Vote Innocent so we can focus on catching the Arsonist.
+Trial votes on Grace: Guilty - Carol, Dave, Grace, Mallory; Innocent - nobody.
+Grace is executed by hanging (4 Guilty of 4 votes; 3 needed).
+Grace died (executed by hanging). Their alignment was Neutral. Their last will: "Grace - Vanilla Villager.
+D1: Cautious open.
+D2: Heidi claimed Surveyor, Frank Scout.
+D3: Frank N2 Scout. Heidi claimed Katana survival.
+D4: Heidi executed by Clerk rig (Good Surveyor). Results: Fabricator in Alice/Bob, Puppeteer in Grace/Ivan/Mallory.
+D5: Alice executed (Evil).
+N5: Bob (Evil), Erin (Good), Ivan (Evil) killed by Arsonist.
+Living: Carol, Dave, Grace, Mallory. Arsonist is loose."
+
+===== NIGHT 6 =====
+Night actions:
+  Mallory (Arsonist): target Dave; "Douse Dave."
+Katana: no attack (no target); nobody holds it.
+(to Mallory) Moderator (private): Night 6 result: You doused Dave.
+[Moderator summary] Night 6: Mallory (Arsonist) doused Dave (status doused=true; Dave not told). No Yakuza alive, so no Katana vote or attack. No role-blocks, no attacks from players, no deaths from moderator resolution. Visits recorded: Mallory->Dave. Grace's (Jester) revenge for her Day 6 hanging is left to code.
+[Revenge] Grace's Divine Attack hits Carol.
+
+===== DAY 7 =====
+Carol died (killed by Jester's revenge). Their alignment was Good. Their last will: "Carol (Good), Vanilla Villager, no night actions ever. Deaths: Judy N1 Katana (Good); Frank N3 Katana (Good). Heidi (Good, Surveyor claim) was executed Day 4 on a Clerk-rigged Innocent majority. Alice, Bob and Ivan were Evil. Erin (Good, Medic claim) died Night 5 to the Arsonist along with Bob and Ivan. Frank's Scout groups: N1 Dave, Frank, Grace unlinked; N2 Bob, Grace, Ivan unlinked. Heidi's Surveyor picks (N1 Bob group Alice/Bob/Carol, N2 Dave group, N3 Ivan group) were single random draws and are unverified. Erin's Medic protections are unverified. The Arsonist is likely still alive among Dave, Grace and Mallory; a Serial Killer or Jester/Executioner could also be among you. Plan, not a result: vote only on a concrete contradiction in claims or mechanical results. Village, the Arsonist must be found before it ignites the rest of you, so do not let a Neutral win by being the last one alive."
+[Night check] Night 6: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Dave (public): The game did not end after Carol died, so you are not Good. With only us alive, removing you is the only route to a Village win. I nominate you; explain your role and vote Guilty if you want to end this safely.
+Dave nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Dave; No - Mallory.
+The nomination of Mallory failed (1 Yes).
+Dave (public): With your No, I can’t force a trial. We’re down to two; tell me your role claim and what outcome you’re pursuing.
+Mallory (public): I still claim Vanilla Villager. The game continuing means we aren't both Good, but doesn't establish which of us is non-Good. I won't support putting either of us on trial without a concrete contradiction; I'm not nominating you.
+[Claim] Dave: Good Cardinal; no night actions or investigative results.
+Dave (public): I need to correct my own claim: I’m the Good Cardinal, not Vanilla; I concealed my role. If your Vanilla claim were true, the game should have ended when Carol died, since Jesters and Executioners don’t block a faction win. It didn’t. So you aren’t Good. I nominate Mallory; vote Guilty.
+Dave nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Dave; No - Mallory.
+The nomination of Mallory failed (1 Yes).
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 7 =====
+Night actions:
+  Mallory (Arsonist): "Ignite all doused players."
+Katana: no attack (no target); nobody holds it.
+(to Mallory) Moderator (private): Night 7 result: You ignited, attacking every doused player. Your attack on Dave succeeded.
+(to Dave) Moderator (private): Night 7: You were attacked by the Arsonist, and you died.
+[Moderator summary] Night 7: Mallory (Arsonist) ignited (Astral Visit, no visits). The only living doused player was Dave (Cardinal, Defense None); the Strong Attack killed him. Dave's Cardinal trigger is left to code, and there are no Good players left for it to hit. No Yakuza remain, so there was no Katana activity. No visits were recorded. Mallory is the last player alive, so the Arsonist should win alone.
+
+===== DAY 8 =====
+Dave died (killed by Arsonist). Their alignment was Good. Their last will: "Dave: Good Cardinal; I previously claimed Vanilla as cover. No night actions or results. With me Good and alive, the game continuing after Carol's death means Mallory cannot be Good: if both living players were Good, the game would have ended. Her Vanilla claim is false; this does not identify her exact role."
+The game is over. Winners: Mallory, Grace (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 7: correct
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====

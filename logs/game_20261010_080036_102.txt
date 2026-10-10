@@ -1,0 +1,83 @@
+Setup:
+  Alice    seat 1  Cartographer      anthropic/claude-haiku-5.5
+  Bob      seat 2  Puppeteer         anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Accountant        anthropic/claude-haiku-5.5
+  Frank    seat 6  Smuggler          anthropic/claude-haiku-5.5
+  Grace    seat 7  Vigilante         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Arsonist          anthropic/claude-haiku-5.5
+  Ivan     seat 9  Fortune Teller    anthropic/claude-haiku-5.5
+  Judy     seat 10 Clerk             anthropic/claude-haiku-5.5
+  Mallory  seat 11 Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Alice (public): Alice here, no claim yet. I want to hear everyone's read on early PM traffic before anyone gets nominated. Let's not hang anyone on Day 1 without a real lead.
+Bob (public): Bob here, no claim yet. Agree nobody should go up without a real lead. Early PM traffic is noisy, so I want to see who pushes a nomination on a vibe alone and who waits for a result or a contradiction.
+Carol (public): Carol here, no claim yet. Agree nobody should go up on vibes. I'll watch who pushes a nomination without a lead and who waits for a result or contradiction.
+Dave (public): Dave here, no special role to share. Agreed: no vibe nominations. I'll track who pushes early and who DMs whom.
+Erin (public): Erin here, no claim yet. Agreed on no vibe nominations. I'll judge on votes and results.
+Frank (public): Frank here, no claim yet. Agreed on no vibe nominations. I'll be looking at who pushes for an early hang without a reason, and who waits for a result or a contradiction.
+Grace (public): Grace here, no claim yet. Agreed on no vibe nominations. I'll track early PM pairs and which claims line up with later results.
+Heidi (public): Heidi here, no claim yet. Agreed on no vibe nominations. I'll wait for real information before I push anyone, and I'd like to see who volunteers a concrete lead early.
+Ivan (public): Ivan here, no claim yet. Agreed on no vibe nominations. I'd rather hear concrete reads than PM stories, so if anyone has a real lead, post it with the evidence.
+Judy (public): Judy here, no claim. Agreed on no vibe nominations. I'll wait for a concrete lead, a result, or a clear contradiction before I vote on anyone.
+Mallory (public): Mallory here, Vanilla Villager with no night info. Agree no vibe nominations. Before anyone pushes a nomination, please name the concrete lead behind it.
+Alice (public): still no concrete lead from me, so I won't nominate today. I'm watching who pushes early without evidence.
+Bob (public): agreed, no nominations without a concrete result or contradiction. Anyone with a real lead, post the claim or mechanical detail it rests on, not just a PM impression.
+Carol (public): Still no nomination from me. I'm waiting for a result or a concrete contradiction, and I'll note who pushes a vibe nomination.
+Dave (public): Nobody has posted a concrete lead yet. Any Day 1 nomination without a result or a contradiction is a coin flip that could cost a Good life, so I'll vote No on one.
+Erin (public): Erin here, still no claim. Nobody has a concrete lead, so I won't nominate on Day 1. Anyone with a real result, post the mechanical detail behind it.
+Frank (public): Frank here. Still no claim. Agreed, no nomination without a result or contradiction, and I'd like to see who posts one first.
+Grace (public): agreed, no Day 1 nomination without a result or contradiction. Anyone holding a night result, post it now with the night it came from so we can cross-check it.
+Heidi (public): Heidi here, still no claim. Agreed on no vibe nominations. I'll post a concrete read once I have real information, and I'm watching who pushes early without one.
+Judy (public): still no concrete lead from me, so no nomination. I'll vote only on results or a clear contradiction.
+Mallory (public): no Day 1 nomination from me. Anyone holding a Night 1 result (Sheriff, Seer, Tracker, Lookout and so on), post the target and result now. A specific check beats PM impressions.
+Bob (public): no new info from me, and I agree with no nomination without a result. Let's all hold Night 1 results until Day 2 so claims can be checked against each other.
+Dave (public): Dave, Vanilla, no night info. Bob, why hold Night 1 results until Day 2? Nothing is announced before then, so that just delays checks. Anyone with a real Night 1 result, post it now.
+Frank (public): I agree with Dave. Anyone holding a Night 1 result should post the target and outcome now, and I'll vote only on checkable claims.
+Grace (public): no Night 1 result to post, so I can't cross-check anything yet. I agree with Dave: holding results until Day 2 only delays checks, so anyone with a real Night 1 result should post the target and outcome now.
+Heidi (public): I have no Night 1 result to post. I agree with Dave and Grace that anyone holding a real result should post it now. I'll vote only on checkable claims and on who keeps pushing nominations without one.
+Ivan (public): Ivan, no claim yet. Bob, holding Night 1 results until Day 2 only helps whoever has a fake or an unchecked result. I agree with Dave and Grace: post any real Night 1 result now, and I'll weigh claims on how checkable they are.
+Judy (public): still no lead from me and no nomination. I'll vote only on real results or a clear contradiction.
+Mallory (public): Mallory again: nobody has posted a result, so we're just repeating ourselves. Anyone with a power role, claim now and give your Night 1 target and result so Day 2 has something to check.
+Bob (public): I withdraw my hold-results idea, Dave is right. I have no Night 1 result to post, and I won't nominate today. I'll vote only on checkable claims.
+Grace (public): Reminder: no night has passed yet, so nobody can hold a real Night 1 result. Anything posted now is only a claim, not a check.
+Mallory (public): Correction from me: no night has passed yet, so nobody has a Night 1 result. I'm not nominating today. Day 2 is when results can be checked, so let's wait for them.
+Bob (public): nothing new from me. No nomination today, and I'll look at Night 1 results once they're posted on Day 2.
+Ivan (public): agreed, no Day 1 nomination without a result. Day 2 is when we can check claims against each other, so I'll weigh them on that.
+Bob (public): Nothing new from me. No nomination today; I'll weigh Day 2 claims and results when they come in.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Frank, Judy) Bob (Yakuza chat): Proposal: no attack tonight. Night 1 kills give the town a free look at the Katana, and we have no information yet. Katana stays with Bob. No swaps, no Clerk rig, no puppet. Judy and Frank, please confirm, and we save tokens for a Day when they matter.
+(to Bob, Frank, Judy) Frank (Yakuza chat): Frank agrees with Bob's plan: no attack tonight, Katana stays with Bob, no swaps, no Clerk rig, no puppet. We keep tokens for a Day when they matter. I have nothing more to add.
+(to Bob, Frank, Judy) Judy (Yakuza chat): Judy agrees: no attack tonight, Katana stays with Bob, no swaps, no rig, no puppet. I'm keeping my clerk token for a later Day that matters. Nothing more from me.
+Night actions:
+  Alice (Cartographer): no action
+  Bob (Puppeteer): no role action; Katana vote: Bob holds, attacks None
+  Carol (Oracle): target Dave; guessed role Vanilla Villager
+  Erin (Accountant): target Mallory
+  Frank (Smuggler): no role action; Katana vote: Bob holds, attacks None
+  Grace (Vigilante): no action
+  Heidi (Arsonist): target Alice; "Douse Alice"
+  Judy (Clerk): no role action; Katana vote: Bob holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
+(to Carol) Moderator (private): Night 1 result: You guessed that Dave is a Vanilla Villager. Your guess was correct.
+(to Erin) Moderator (private): Night 1 result: You audited Mallory. Mallory has 0 tokens in total.
+(to Heidi) Moderator (private): Night 1 result: You doused Alice.
+(to Ivan) Moderator (private): Fortune Teller numbers for Night 1 (you aren't told which is which): 2 and 2.
+(to Bob, Frank, Judy) Moderator (private): Yakuza Night 1 summary: Bob keeps the Katana, and the Katana attacked no one. Actions chosen: Bob (Puppeteer) used no puppet token; Frank (Smuggler) made no swap; Judy (Clerk) did not rig the vote.
+[Moderator summary] Night 1: No deaths. Heidi (Arsonist) doused Alice (status doused set). Carol (Oracle) guessed Dave = Vanilla Villager, correct (Astral). Erin audited Mallory: 0 tokens. Yakuza: Bob keeps Katana, no attack, no Yakuza actions. Alice used no map token (code sends group sizes). Visits: Erin->Mallory, Heidi->Alice. Ivan FT numbers: 2 and 2.
+(to Alice) Moderator (private): Tonight's visit groups have sizes 2, 2, 1, 1, 1, 1, 1, 1, 1.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Carol.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 1: correct
+Carol (public): I hold a Night 1 result that confirms Dave is a Vanilla Villager, so Dave's claim checks out. I'm not revealing my role yet and I'm not nominating anyone today.

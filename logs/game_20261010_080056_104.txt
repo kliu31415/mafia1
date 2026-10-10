@@ -1,0 +1,69 @@
+Setup:
+  Alice    seat 1  Prosecutor        anthropic/claude-haiku-5.5
+  Bob      seat 2  Grunt             anthropic/claude-haiku-5.5
+  Carol    seat 3  Diviner           anthropic/claude-haiku-5.5
+  Dave     seat 4  Lookout           anthropic/claude-haiku-5.5
+  Erin     seat 5  Ex-Con            anthropic/claude-haiku-5.5
+  Frank    seat 6  Jester            anthropic/claude-haiku-5.5
+  Grace    seat 7  Archivist         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Tracker           anthropic/claude-haiku-5.5
+  Ivan     seat 9  Pharmacist        anthropic/claude-haiku-5.5
+  Judy     seat 10 Seer              anthropic/claude-haiku-5.5
+  Mallory  seat 11 Oracle            anthropic/claude-haiku-5.5
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Frank here, no information yet. Day 1 nominations on bare reads are close to coin flips, so I'd like to hear claims and see who pushes early before I commit to a vote.
+Grace (public): Grace here, no claim yet. I'm holding my information until I see more votes and claims, and I'm watching who pushes early nominations.
+Heidi (public): Heidi here, no claim yet. Bare-read nominations on Day 1 are premature; I'll wait for claims and results before voting.
+Ivan (public): Ivan here, no claim yet. I agree with Frank and Heidi: no nominations on bare reads. I want claims first.
+Judy (public): Judy here, no claim yet. I agree with Frank, Grace, Heidi and Ivan: no bare-read nominations on Day 1. I'd like to hear what people make of the night results once they come out.
+Mallory (public): Mallory here, no claim yet. I agree with the wait: no bare-read nominations on Day 1. I want to see claims and night results first.
+Alice (public): Alice here, no claim yet. I agree with the wait: no bare-read nominations on Day 1. I'll look for claims and night results before I vote.
+Bob (public): Bob here, no claim yet. Agreed: no bare-read nominations today. I want claims and night results first.
+Carol (public): Carol here, no claim yet. Agreed, no bare-read nominations today. I'll hold my read until claims and night results come out.
+Dave (public): Dave here, no claim yet. I agree with waiting for claims and night results. I'll watch who pushes early nominations and who backs them.
+Erin (public): Erin here, no claim yet. I agree with waiting for claims and night results before any nomination. I'll judge by votes and results.
+Frank (public): Frank again. Eleven people have now agreed to wait, and that uniform stance gives cover to whoever is hiding. Without claims, Day 1 resolves nothing. Who will commit to a role claim first, so the rest of us have something to test?
+Ivan (public): Ivan here, still no claim. Agreed that nobody should nominate on bare reads. Anyone with a real night result, please post it before we commit to a nomination.
+Mallory (public): Mallory here, still no claim. I'll post my night result as soon as I have one. Anyone with a real result, please share it now, since nobody can test claims without them. No nominations on bare reads yet.
+Mallory nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Mallory; No - Alice, Bob, Carol, Dave, Erin, Frank, Grace, Heidi, Ivan, Judy.
+The nomination of Alice failed (1 Yes).
+Alice (public): Alice here. Mallory, you said we should make no bare-read nominations, then nominated me with no information. Why? What do you actually suspect, and on what basis?
+Bob (public): Bob here. I agree with Alice. Mallory, you argued for no bare-read nominations, then nominated Alice with no information. What was your basis? If it was a gut read, say so and we can move on.
+Carol (public): Carol here. Agree with Alice and Bob: Mallory's bare-read nomination of Alice contradicts the no-nominations stance. Mallory, please give your actual basis. I still have no claim to share yet.
+Dave (public): Dave here, no claim yet. Mallory is the only one who has pushed a nomination, and it came right after arguing for no bare-read nominations. Mallory, if your answer doesn't give a concrete basis, I'll count that as a mark against you and will look closely at who backs your pushes.
+Erin (public): Erin here, no claim yet. Mallory, you still haven't given a basis for nominating Alice right after arguing against bare-read nominations. Until you do, I count that push as a mark against you. I'm not nominating anyone on bare reads, and I want night results posted before anyone votes.
+Frank (public): Frank again. Mallory's nomination of Alice still has no basis, but the pile-on against Mallory is fast too. Eleven 'no claim yet' posts in a row, with nobody offering a result, means the day is going nowhere. I won't vote on feelings. Mallory, post your result now or stop calling it coming.
+Grace (public): no result to post yet, and I won't nominate on bare reads. Mallory, post your basis for the Alice nomination or your night result.
+Heidi (public): Heidi again. Mallory still hasn't given a basis for nominating Alice right after arguing against bare-read nominations. I have no result yet, and I won't claim a role until I have something checkable.
+Ivan (public): Agreed, Mallory owes Alice a real basis for the nomination. Mallory, answer her directly before anyone piles on.
+Judy (public): Judy here, still no claim. I agree Mallory owes Alice a real basis for that nomination. I'm not voting on bare reads, and I'll post any night result I hold once there is one to check.
+Mallory (public): Fair challenge. My basis was thin. I nominated Alice to force the day to move and to see who would rush to defend or pile on, which contradicts my own no-bare-read stance. That was a mistake, and I'll own it. I have no result yet, and I won't push another nomination without a checkable basis.
+Bob (public): Mallory's answer doesn't explain the nomination. Still no checkable result from anyone, so I won't vote on feelings. Claims with results, please.
+Carol (public): Carol here. Mallory's admission explains the Alice nomination but gives no real lead. I still have no claim, and nobody should nominate until someone posts a checkable result.
+Dave (public): Dave here, no claim and no result yet. Mallory's admission is noted, but I still want Night 1 results posted before anyone votes. I won't nominate today.
+Frank (public): Looking at the day so far: Mallory's Alice nomination was weak, but so is the pattern of everyone demanding results while posting none. Dave and Erin have been pushing hardest on Mallory without offering a read of their own. Who has actually pushed a concrete suspicion of someone other than Mallory?
+Grace (public): I have no claim to post yet. Mallory's Alice nomination is my only concrete mark so far, and I'll want to see Night 1 results before I push anyone.
+Heidi (public): Nothing new from me. Night 1 will give us the first checkable data, so I'd rather we wait for it than nominate on feelings. Mallory's basis is still thin.
+Mallory (public): Mallory here, still no claim. I'm not nominating again today. I'll post any Night 1 result I get, and I'd ask everyone to hold votes until results are out.
+Alice (public): Alice here. The day is stalling: Mallory's Alice nomination had no basis, and nobody has posted a checkable result. I won't vote on feelings. If you hold a Night 1 result, post it now so we have something to test before any Day 2 vote.
+Erin (public): Erin here, still no claim and no result. Mallory's Alice push has no checkable basis yet, and nobody has posted a Night 1 result to test. I won't vote until someone does.
+Frank (public): Dave and Erin keep pushing Mallory without any read of their own. Before anyone pushes another nomination, the pusher should explain the basis first.
+Ivan (public): Ivan here, still no claim. Mallory's answer was thin, but I won't vote on a bare push. Dave and Erin, you've both pressed Mallory hard. Who else do you suspect, and on what basis?
+Alice (public): Alice here. Noted Mallory's admission. I won't vote on bare reads, and I'm holding my role until results are out. Post Night 1 results, then we vote.
+Bob (public): Bob here, still no claim. Mallory's Alice nomination is the only concrete action so far, and it's been explained. Night 1 results are the only thing that can separate people, so I'd like anyone holding one to post it before we vote.
+Carol (public): Carol here. Still no nominations until Night 1 results are posted and checked.
+Dave (public): Dave here. Frank, you asked others for reads, then pressed Dave and Erin for pushing Mallory, but you haven't named a suspect of your own. Give your read on Mallory or anyone else, with a basis.
+Erin (public): Erin here. Frank, you've asked others for reads several times but haven't named a suspect yourself. Name one with a basis, or stop pressing Dave and me.
+Frank (public): Dave and Erin pushed Mallory hardest while offering no read of their own. Dave, what is your basis beyond Mallory's nomination?
+Ivan (public): Ivan here. Mallory's Alice nomination was thin and Mallory has admitted it. I won't pile onto Dave or Erin over that. We need Night 1 results before any vote.
+Judy (public): Judy here. Nothing new to add. I won't nominate until Night 1 results are out, and I'll post my result as soon as I have one.
+Alice (public): Alice here. Quick check on the Night 1 talk: Day 1 comes before any night, so nobody can hold a Night 1 result yet. Anyone posting one now is either mistaken or lying, so judge those claims with that in mind. I won't vote on bare reads today.
+Bob (public): Bob here. Agree with Alice: there is no Night 1 yet, so nobody can hold a result. I won't vote on bare reads. Frank, Dave and Erin, stop trading pushes and give actual reads.
+Carol (public): Carol here. Agree with Alice and Bob: there is no Night 1 yet, so no results exist. I won't nominate on bare reads today and will judge Day 2 on claims and votes.
+Dave (public): Dave here. Frank has asked for reads several times and pressed Dave and Erin, but hasn't named a suspect of his own. I'm noting that. No nominations from me until Night 1 results exist.

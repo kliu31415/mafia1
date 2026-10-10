@@ -41,3 +41,416 @@ Carol (public): Carol here, Vanilla Villager, no night info. I agree no nominati
 [ERROR api_retry] a openai/gpt-6-luna request failed (attempt 3), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
 [ERROR api_retry] a openai/gpt-6-luna request failed (attempt 4), retrying: HTTP 429: {"error":{"message":"Rate limit exceeded: new-account-rpm/openai/gpt-6-luna-20260922. Rate limit reached: new accounts are limited to 20 requests per minute for this model. Please retry shortly.","code":429,"metadata":{"headers":{"X-RateLimit-Limit":"20","X-RateLimit-Remaining":"0","X-Rate
 Dave (public): No useful read yet. Carol's Vanilla claim gives us nothing to verify; I wouldn't treat it as evidence either way. Let's hear tentative reads with reasons.
+Erin (public): Agreed that empty echoing doesn't help. Carol claiming Vanilla unprompted this early is an odd choice, though not necessarily malicious—just unverifiable as Dave noted. I like Bob's push for players to take actual stances. Let's see who steps up in round 2 with genuine reads.
+Frank (public): no claim yet, and no nomination from me today. Carol's unprompted Vanilla claim is unverifiable but not suspicious by itself. I'll judge on who pushes votes without a reason once real information starts coming in.
+Grace (public): Following Bob's prompt: tentative town-lean on Bob for pushing us toward actual stances. Carol's unprompted vanilla claim feels slightly awkward but isn't necessarily evil. Judy also noted the echoing earlier, so I'm keen to see who Judy focuses on this round.
+Heidi (public): I also lean slight town on Bob for pushing past the echo chamber. Carol claiming Vanilla unprompted doesn't strike me as evil-motivated; evil rarely volunteers VT unprompted on Day 1 without pressure. I'm keen to see Ivan and Judy take concrete stances next.
+Ivan (public): Tentative read so far: Grace and Heidi have echoed each other closely and have mostly backed Bob. Before anyone is nominated, I'd like Dave, Erin and Mallory to each name one player they find suspicious and why.
+Judy (public): Tentative town lean: Bob, because he pushed for reasoned stances rather than more agreement about waiting. Mild concern: Grace and Heidi landed on similar reads, but that may just be reasonable consensus; I want distinct reasons before treating the echo as meaningful. No nomination yet.
+Mallory (public): My tentative concern remains Carol's early Vanilla claim, though it isn't evidence and Dave was right to call it unverifiable. Grace and Heidi agreeing is weak signal, not a case. I'd rather hear independently stated suspicions than nominate on either.
+Alice (public): Alice, round 2: Carol's unprompted Vanilla claim is the only concrete claim so far. Carol, why volunteer it on Day 1 with nothing to back it? Still no nomination from me.
+Bob (public): Tentative town lean: Dave, for resisting treating a claim as evidence. Mild concern Alice is pressing Carol on the same thin point; let's hear Carol's explanation, then reassess.
+Carol (public): Carol again. I claimed Vanilla because people asked for reads and I'd rather be clear than look like I'm hiding something, not as a bid for trust. Concrete read: Alice has pressed me twice on the same point, and Ivan asked others for suspicions without naming any himself. Tentative town lean: Dave, for not treating my claim as evidence. No nomination from me.
+Dave (public): Carol's explanation sounds plausible, and the claim still isn't evidence either way. Alice is repeating a thin point; Ivan asked others to name suspicions without offering one himself. Mild concerns only—I'd like Ivan to give a concrete read.
+Erin (public): Town-lean on Dave for keeping a measured perspective and Bob for steering the discussion. My main mild concern is Ivan, who called out Grace and Heidi for echoing but then tasked others with naming suspicions without putting forward any reads of his own. Alice also feels a bit tunnel-visioned on Carol's claim. I want to hear Ivan's actual suspicions next.
+Frank (public): Erin's point stands. Ivan asked others for suspicions without naming one, so Ivan, give one player and a reason. Grace and Heidi echoing is a mild concern; I'd like their next reads to differ. No nomination from me.
+Grace (public): Fair point from Frank. To state my own reads independently: Ivan deflecting questions onto others while offering no stance of his own is definitely concerning, so I want Ivan to name specific reads next. Alice focusing so heavily on Carol's unprompted claim feels a bit narrow, whereas Carol's explanation seemed straightforward. No nomination from me.
+Heidi (public): To give my own distinct view: Alice fixating on Carol's unprompted claim feels performative—it's an easy, low-risk target that avoids taking stands on anyone else. As for Ivan, he speaks right next, so I want to see his actual suspects and reasoning rather than him simply assigning homework to others.
+Ivan (public): Ivan, concrete read as requested: Grace. I asked for independent suspicions, and she answered by pressing me to name reads, then Heidi repeated the same 'Ivan deflecting' line almost word for word. That's a mild lean only. I'm not nominating anyone today.
+Judy (public): Ivan's read of Grace is still thin: several players asked him for concrete suspicions after he requested them from others. Heidi's similar criticism could be echo, but isn't proof of coordination. No nomination from me.
+Mallory (public): Ivan finally named Grace, but the case still seems to be echo-counting rather than a concrete contradiction. Alice's focus on Carol is similarly thin. No nomination from me; I'd like everyone to say who they'd actually vote guilty on.
+Alice (public): Alice, concrete read: Mallory and Erin both pressed Carol's Vanilla claim, and Mallory now asks for Guilty votes before any case exists. I want Mallory to name one concrete contradiction. No nomination from me.
+Bob (public): I wouldn't vote Guilty on anyone based on today's points so far. Alice's repeat focus on Carol is still thin; Ivan did give a read when pressed. I'll wait for a concrete inconsistency rather than vote on echoing.
+Carol (public): Carol, round 3: Concrete read: Alice has pressed me three times on the same point and dismissed Ivan's case on Grace without offering a Guilty case of her own. Tentative town lean: Erin, who keeps asking for concrete reads. No nomination from me; I want a real contradiction first.
+Dave (public): We're circling the same weak points. I wouldn't vote Guilty on anyone: there's no concrete contradiction yet. Alice's persistent focus on Carol and Ivan's thin read on Grace are mild concerns, not cases. Let's not turn repetition into a hang.
+Erin (public): Agreed with Dave. There is no contradiction warranting a trial today, and Alice mischaracterizes my stance on Carol—I simply agreed it was unverifiable, not scummy. I'm opposed to nominating anyone today; let's head into night and get actual mechanical info.
+Ivan (public): no nomination from me. I still want a concrete contradiction before any Guilty vote, and I'll keep my mild read on Grace unless she gives me something new.
+Carol (public): Carol, round 4: still no nomination from me. Alice and Ivan are both building cases from repetition, not contradictions. My town lean stays on Dave and Erin. Anyone who wants a hang should name a specific claim that conflicts with a vote or result.
+Alice (public): I'll drop the Carol point since it's gone in circles. No nomination from me. Anyone with a concrete contradiction should name it before any vote.
+Carol (public): Carol, round 6: no nomination from me. I'll vote Innocent on any trial that lacks a concrete claim-versus-result contradiction, and I'll look at night results before anyone is hanged.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Proposal for Night 1: no attack, since a Night 1 death would only point at us. Katana stays with Bob (no holder move). I'll visit Erin with my Fabricator frame, no forged will, so Erin reads Evil to alignment checks and town spends Day 2 on an analytical player. Bob, if you want a Clerk rig, hold it for a later Day. Ivan, please don't spend your puppet yet. Reply with objections; otherwise I'll lock this in.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): I disagree with no attack: leaving all 11 alive gives town a full information night without any pressure. Keep the Katana with Bob and target Dave, who has been measured and broadly trusted; removing a steady voice is less tied to the Carol dispute. Alice can frame Erin as proposed, which may create a false Sheriff lead if she is checked. I’ll hold the Clerk token until we see how Day 2 develops.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: I back Alice's plan. No attack on Night 1, since a Night 1 death points straight at us. Bob keeps the Katana. Alice frames Erin with no forged will. Bob, hold the Clerk rig for a later Day. I'll keep my puppet token for a Day where it matters, and I'll send no PMs on Day 1. If Bob still wants Dave, make the case with a concrete reason, but I'm voting no attack tonight.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice: I'm locking in no attack tonight. Alice and Ivan already form a majority for no target, so no kill happens unless one of you votes for a target too. A Night 1 death on Dave gains us nothing and points straight at us, since Day 2 would have a fresh death and a Katana-style trail with no information to hide behind. Katana stays with Bob, no holder move. My Fabricator frame on Erin goes ahead with no forged will. Bob, please hold the Clerk token. Ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): I still think removing Dave would be better than giving town a completely quiet night, but Alice and Ivan have the majority on no attack, so I’ll align with that. Keep the Katana with me; Alice frames Erin as planned, no forged will. I’m ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: agreed. No attack tonight, Bob keeps the Katana, Alice's Erin frame goes ahead with no forged will. I'm holding my puppet token for a later Day and sending no PMs. Ready.
+Night actions:
+  Alice (Fabricator): target Erin; Katana vote: Bob holds, attacks None
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks None
+  Erin (Medic): target Dave
+  Heidi (Surveyor): target Carol; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks None
+  Judy (Archivist): 1 token(s)
+  Mallory (Arsonist): target Dave; "Douse Dave."
+Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
+(to Heidi) Moderator (private): You surveyed Bob, Carol and Dave. One of them, chosen at random, has the role Clerk. 2 survey tokens left.
+(to Judy) Moderator (private): The archive shows 7 of the roles of the 10 other players who were alive when the night began (including any who died tonight): Surveyor, Scout, Cardinal, Puppeteer, Arsonist, Executioner, Clerk.
+(to Alice) Moderator (private): Night 1 result: You framed Erin (you didn't forge a will). 1 fabricator token left.
+(to Erin) Moderator (private): Night 1 result: You protected Dave, giving him Standard Defense tonight. 2 medic tokens left.
+(to Mallory) Moderator (private): Night 1 result: You doused Dave.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza night 1 summary: Alice chose to frame Erin (no will forgery). Bob chose no action. Ivan chose no action. The Katana stays with Bob, and there was no Katana attack tonight.
+[Moderator summary] Night 1: No attacks, no deaths, no role-blocks. Alice (Fabricator) framed Erin, no forgery. Erin (Medic) protected Dave (Standard, no token). Heidi surveyed Carol (survey op, token spent). Judy consulted the archive (archive op). Mallory doused Dave (status doused). The Yakuza kept the Katana with Bob and made no attack; Bob and Ivan didn't act. Visits: Alice->Erin, Erin->Dave, Heidi->Carol, Mallory->Dave.
+(to Frank) Moderator (private): Tonight Dave, Frank and Grace were each in a different visit group.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Erin (public): Good morning all. Nobody died last night, which is great news. If anyone has investigative reports—such as a Sheriff, Seer, Tracker, or Lookout result—please share them early so town has concrete information to work with today. Let's see what information exists before jumping into speculation.
+[Claim] Frank: Scout. N1: Dave, Frank and Grace were each in different visit groups (none linked to each other).
+Frank (public): Frank, Scout. Night 1 result: Dave, Frank and Grace were each in a different visit group, so none of the three visited or was visited by another of them. Nobody died, so no kill to work from yet. I'll post each night's Scout result and won't nominate on echoes alone.
+Grace (public): Noted Frank's Scout claim and result. I'm in one of those separate groups. Let's see what other investigative reports come out from the rest of the circle before analyzing connections.
+Heidi (public): Noted Frank's Scout claim. With no deaths last night, protection or a block likely occurred. I'd like to hear if anyone else has reports to share, and especially hear from the rest of the circle—Ivan, Judy, Mallory, Alice, Bob, Carol, and Dave—before drawing conclusions.
+Ivan (public): Noted Frank's Scout claim. Nothing in it conflicts with anything yet. I'd like Dave, Judy, Mallory and Carol to say whether they have any night result, and I'll hold my vote until we see a second report or a real contradiction.
+Judy (public): A no-death night alone doesn't establish protection or blocking; no kill, a failed attack against defense, or other interference are all possible. Frank's Scout report is a useful grouping snapshot, not an alignment or faction read. Let's hear the remaining reports before treating anyone as cleared or pushing a trial.
+Mallory (public): No result to share. A no-death night is ambiguous, and Frank's Scout snapshot isn't an alignment read. Let's hear the remaining players before treating anyone as cleared.
+Alice (public): Alice here. Frank's Scout report is one data point, and it doesn't clear or convict anyone yet. I'd like to hear from any other investigator before anyone is nominated. No nomination from me.
+Bob (public): Judy is right that no death doesn't establish protection or a block; no attack is another possibility. Frank's grouping is useful but not an alignment read. Anyone with a concrete result should share the result and its limits.
+Carol (public): Carol, Vanilla. Frank's Scout result is useful but unverifiable, so I'll track it against later nights. Scout results can be checked against deaths and attacks. No nomination from me yet.
+Dave (public): Frank's Scout result says those three were in separate visit groups; it doesn't give an alignment read or clear anyone. Likewise, no death doesn't establish protection or a block. I have no result to add. Please share any concrete results with their limits, and avoid announcing tonight's intended targets.
+Erin (public): Agreed with Dave's reminder not to discuss future night targets. With Frank being the only investigative claim and no contradictions or deaths to work from, there is no basis for a nomination today unless someone has a concrete mechanical lead to share.
+Grace (public): Agreed with Erin. With no other reports or leads today, let's head to night cleanly without forcing nominations.
+[Claim] Heidi: Surveyor. N1: Surveyed Carol -> {Bob, Carol, Dave} has Clerk.
+Heidi (public): I need to step forward: I am Surveyor. On Night 1, I surveyed Carol, which formed the group of Bob, Carol, and Dave. My mechanical result revealed that one role in that group is Clerk.
+
+Clerk is a Yakuza role, which means there is a guaranteed Yakuza among Bob, Carol, and Dave. Carol has claimed Vanilla Villager, while Bob and Dave have both claimed no night results. I'm bringing this forward now so town can scrutinize this three-player pool and demand full accounts, rather than letting Day 2 pass with no action.
+Ivan (public): Heidi, your Surveyor result says a Clerk is in {Bob, Carol, Dave} but doesn't say whose. Who do you think it is, and why? One survey result is a weak basis for a trial, so I won't vote on it yet. Dave, do you have any role or result to add to Heidi's group?
+[Claim] Judy: Archivist. N1 archive: seven unnamed roles—Surveyor, Scout, Cardinal, Puppeteer, Arsonist, Executioner, Clerk.
+Judy (public): My N1 archive independently sampled seven unnamed roles: Surveyor, Scout, Cardinal, Puppeteer, Arsonist, Executioner, and Clerk. This confirms Clerk exists in the roster, but names no holder and doesn’t establish that Clerk is in {Bob, Carol, Dave}; it also doesn’t independently verify Heidi’s group result. The three should explain their claims and actions, but this alone isn’t grounds for a blind guilty vote.
+Mallory (public): Heidi’s result, if accurate, puts a Yakuza-role clue in a three-person pool, but it doesn’t identify the holder; Judy’s archive only supports that Clerk exists. Bob, Carol, and Dave should each state their role and any relevant night account. Then we can test the claim before voting.
+[Claim] Alice: Sheriff. N1: Erin -> Evil.
+Alice (public): Alice, claiming Sheriff. N1 investigation: Erin reads Evil. I'll post every result with its source. Heidi's Surveyor group ({Bob, Carol, Dave}) is checkable, so Carol and Dave should each state their night account before anyone votes.
+[Claim] Bob: Vanilla Villager. N1: no night action.
+Bob (public): Heidi’s result identifies a three-person pool, not the holder; Judy’s archive confirms Clerk is in the roster, not Heidi’s specific draw. Carol has claimed Vanilla, so Dave should state his role and account. Alice’s Erin result is a separate lead to examine; Erin should have a chance to answer it.
+Carol (public): Carol, Vanilla. I'm not the Clerk, so Heidi's Surveyor pool (Bob, Carol, Dave) points at Bob or Dave. Dave, you haven't stated a role or Night 1 action yet; please do. Erin, please answer Alice's Evil read on you. Heidi, Judy, Frank, Alice: any further concrete results, with their limits?
+Dave (public): My N1 account: I chose no night action. That isn't a role claim; optional actions make it weak evidence. Frank's report only says I was in a different visit group from him and Grace, not that I was unvisited. Heidi's result, if accurate, puts a Clerk somewhere in {Bob, Carol, me}; it doesn't identify the holder. Let's hear Erin answer Alice before deciding on a trial.
+[Claim] Erin: Medic. N1: Dave (Standard Defense, 2 tokens left).
+Erin (public): I am claiming Medic. On Night 1, I protected Dave with Standard Defense (0 tokens spent, 2 tokens remaining). I am 100% Good.
+
+Alice's claim against me is false, and everyone should look closely at the timing and setup: Judy's archive explicitly confirmed that Executioner exists in this game. Fake-claiming Sheriff on Day 2 with an 'Evil' check on your target is the textbook Executioner play to get a townie hanged. Alternatively, Alice is Yakuza trying to deflect attention away from the fact that Heidi and Judy just mechanically pinned a Clerk into {Bob, Carol, Dave}.
+
+Town has a concrete Yakuza role isolated in Bob, Carol, and Dave. Do not fall for an Executioner push or Yakuza distraction. We should be pressing {Bob, Carol, Dave}, not hanging a protective role.
+Frank (public): Frank, Scout (Good). No nomination from me. Alice's Sheriff read (Erin Evil) and Erin's Medic claim directly conflict, so one of them is lying or mistaken. Neither can be checked yet. Erin's Executioner suggestion is speculation, not evidence. I'll post my Night 2 Scout result on Day 3 and vote on what it and any deaths or attacks show.
+Grace (public): Alice vs Erin is a direct contradiction, though framing or an Ex-Con interaction are always mechanical possibilities to keep in mind before rushing. Dave, since Erin claimed protecting you and Heidi’s survey puts Clerk in {Bob, Carol, Dave}, please give your full role claim so town can properly assess that pool.
+Heidi (public): Dave, dodging a role claim by stating you chose no night action while sitting in a pool mechanically confirmed to hold a Clerk is completely unacceptable. Both Bob and Carol have claimed Vanilla Villager; you need to state your full role claim on your turn.
+
+Regarding Alice versus Erin: notice that Judy's archive confirmed Executioner exists in this game. A Day 2 Sheriff claim pushing an 'Evil' check on a claimed Medic is textbook Executioner behavior. Rushing to execute a claimed Medic while Executioner is in play would be a huge mistake for town. Our concrete lead is the Clerk inside {Bob, Carol, Dave}. Dave, we need your full claim.
+Ivan (public): Alice's Sheriff read (Erin Evil) and Erin's Medic claim cannot both be true, so neither should be treated as settled. Erin, you called Alice's claim a textbook Executioner play and declared yourself '100% Good' on Day 2. Please explain why you protected Dave, why you claimed now, and what the result looked like to you. Dave, please give your full role claim as Heidi asked.
+Judy (public): My archive confirms Clerk exists in the roster, but it doesn't verify Heidi's placement; her result still doesn't identify who in {Bob, Carol, Dave} has that role. Dave should give a role claim. Alice and Erin remain unresolved: an Executioner being in the roster doesn't discredit Alice's Sheriff claim, and Alice's result alone doesn't settle Erin's alignment. Let's hear Alice's full account and Erin's explanation without treating either claim as proven.
+Mallory (public): Erin’s Medic claim doesn’t refute Alice’s check: Erin could truly read Evil, be an Evil-reading Neutral, be an Ex-Con, or have been framed. But one check still isn’t enough to hang, and the archive’s Executioner result doesn’t prove Alice is one. Dave should give a role claim; weigh both accounts without rushing to Guilty.
+[Claim] Alice: Sheriff. N1: Erin Evil.
+Alice (public): Alice, Sheriff, sticking to my N1 result: Erin reads Evil. Erin's Medic claim directly conflicts with it, and 'I'm 100% Good' plus calling my claim a textbook Executioner play is pressure, not proof. Dave still hasn't given a role, and he sits in Heidi's Clerk pool. I'm not nominating today. Night 2 results and any deaths will test both claims.
+Bob (public): Dave is now the only person in Heidi’s three-person pool who hasn’t given a role claim; that’s a reason to ask him, not proof he is Clerk. My Vanilla/no-action account is unchanged, and Carol has also claimed Vanilla. Judy’s archive only says Clerk exists somewhere. Dave, please give a specific role claim and any result; then weigh it against the pool without treating a three-person draw as an ID.
+Carol (public): Carol, Vanilla. Heidi's Night 1 pool is Bob, Carol and Dave, and I'm not the Clerk, so the Clerk is Bob or Dave. Dave, give a plain role claim, not just 'no action'. Erin, your Medic claim and Alice's Sheriff read directly conflict. What would Night 2 need to show for you to accept Alice's check? No nomination from me yet.
+[Claim] Dave: Cardinal. N1: no night action.
+Dave (public): To answer the repeated requests: I am Cardinal and took no action N1. Heidi’s result identifies a three-person pool, not me. If I die, a random living Good player is hit by a Divine attack that night or the following night, so please don’t treat this unresolved result as enough to execute anyone. Erin’s claimed protection on me is consistent, but I received no confirmation. Alice and Erin remain unresolved.
+Erin (public): To answer Ivan: 1) I protected Dave because his measured Day 1 approach made him a valuable town presence. 2) I claimed because Alice directly pushed an Evil check on me; staying silent under a false accusation hands an easy win to an Executioner. 3) Medics receive no save feedback (R17)—the moderator only confirms the protection was applied and tokens remaining.
+
+Critically, Dave claimed Cardinal, which Judy's archive explicitly confirmed exists in the setup! Executing Dave risks a Divine retaliation on town. If Dave is Cardinal, Heidi's mechanical survey proves the Clerk is either Bob or Carol, both hiding behind Vanilla claims. Between Bob/Carol containing a confirmed Yakuza Clerk and Alice matching the confirmed Executioner, town has distinct leads to focus on. Do not hang Medic.
+Frank (public): no nomination from me. Alice's and Erin's claims still conflict, so I'll judge them on the Night 2 results and any attacks.
+Grace (public): Dave claiming Cardinal aligns with Judy's archive, making a Dave trial far too risky. That narrows the Clerk suspect pool down to Bob and Carol. No nomination from me.
+Heidi (public): Note that Dave claimed Cardinal only after Judy revealed it in the archive, making it a convenient cover claim, though hanging Dave is too dangerous. That leaves Bob and Carol as prime Clerk candidates. With Clerk potentially having rigged today, I agree we should avoid blind nominations and head to Night 2.
+Ivan (public): no nomination from me. Alice's Sheriff read and Erin's Medic claim conflict, so Night 2 results should decide it before anyone votes. A blind hang today is a coin flip.
+Judy (public): My archive confirms roles exist, not who holds them: Cardinal doesn't verify Dave, just as Clerk alone doesn't verify Heidi's placement. Her Surveyor result is the only evidence placing Clerk in that trio. Erin's Executioner theory doesn't rebut Alice's Sheriff result; that result is also not conclusive without considering framing or Ex-Con.
+Alice (public): Alice, Sheriff: my N1 result on Erin (Evil) stands. Erin, a Medic protecting Dave gives no feedback, so how do you know it worked? Night 2 results will test both claims.
+Carol (public): Carol, Vanilla. No nomination from me. Heidi's pool leaves Bob or Dave as the Clerk, and Alice vs Erin needs Night 2 results. Dave, your Cardinal claim is unverified, so explain your N1 account plainly. I'll vote Innocent on any trial without a concrete contradiction.
+[Claim] Frank: Scout. N1: Dave, Frank and Grace were each in a different visit group (none linked to each other).
+Frank (public): Frank, Scout, still no nomination. Night 2 results will test Alice's Sheriff read against Erin's Medic claim, and Heidi's Clerk pool against Dave's Cardinal claim. I'll post my Scout result when it arrives.
+Ivan (public): no nomination from me. Night 2 results should test Alice's Sheriff read against Erin's Medic claim. Dave's Cardinal claim is unverified, and Heidi's pool still leaves Bob or Dave as the Clerk. I want those accounts tested before any vote.
+Judy (public): The live mechanical disputes are Alice’s Sheriff result on Erin and Heidi’s Surveyor result in Bob/Carol/Dave. Neither identifies a specific role-holder. Erin’s argument that Alice must be an Executioner because that role appeared in my archive does not rebut the result. I won’t nominate on these claims alone; please keep the framing/Ex-Con possibility and the limits of Heidi’s result in view.
+Alice (public): Alice, Sheriff, unchanged: Erin reads Evil on N1. Erin's Medic claim can't be checked until Night 2 results come out, so I won't nominate today.
+Bob (public): Heidi’s result places a Clerk in a three-person pool but doesn’t identify anyone. Dave’s Cardinal claim fits a role in Judy’s archive, but that doesn’t verify it. Erin’s Medic claim doesn’t settle Alice’s Sheriff result either; I wouldn’t force a trial on these unverified claims today.
+Carol (public): Carol, Vanilla. Heidi's pool means Bob or Dave holds the Clerk. No nomination from me until Night 2 results come out.
+Ivan (public): no nomination from me. Alice's Sheriff read and Erin's Medic claim both stay open until Night 2 shows deaths or attacks. Anyone pushing a trial before then is moving faster than the evidence.
+Dave (public): I am Cardinal, so I am not Clerk. If Heidi’s Surveyor result is genuine, Bob or Carol must be Clerk; her random role draw doesn’t distinguish them. Neither Vanilla claim clears them, and Judy’s archive doesn’t verify the placement. I won’t nominate on this alone; Alice and Erin remain unresolved.
+Judy (public): Erin's logic that Executioner appears in my archive is not evidence that Alice is Executioner. It also doesn't rebut Alice's Evil result. That result isn't conclusive given framing or Ex-Con, but it's the only direct alignment check here. Don't treat either claim as certain; I won't nominate on this alone.
+Alice (public): Alice, Sheriff: my N1 result on Erin (Evil) stands. Erin's Medic claim and Dave's Cardinal claim can't be checked until Night 2 results come out, so I'm not nominating today.
+Alice (public): Alice, Sheriff: my N1 result on Erin (Evil) stands. I'm not nominating today. Night 2 results should decide between Erin's Medic claim and my check.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice, N2 proposal: Katana stays with Bob (no holder move). Attack target: Erin, since her Medic claim contradicts my Sheriff read and Katana is Standard vs Erin's no Defense. Avoid Dave: Erin claims protecting him, so the attack would fail. I frame Carol with no forged will. Bob, confirm Erin as target. Ivan, keep the puppet for later. Object within this round, otherwise I'm ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with Bob and target Erin. Her N1 protection doesn't persist, so she should have no defense tonight. Alice frames Carol as proposed; I'll save my Clerk token. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Agree with the plan: Katana stays with Bob, Standard attack on Erin, Alice frames Carol with no forged will, and we avoid Dave. If Erin self-protects with a Strong Defense, the attack fails and we lose nothing, so no change is needed. I'm keeping my puppet token for Day 3. Ready.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice: Confirming the plan. Katana stays with Bob (no holder move). Katana target is Erin, Standard. I frame Carol with no forged will. All three of us submit Erin as the target and Bob as holder. Ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Confirming: Bob holds the Katana and Erin is the attack target. I’m taking no other action and saving my Clerk token. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: agree with the plan. Bob keeps the Katana, Standard attack on Erin, Alice frames Carol with no forged will. I'm taking no puppet action tonight and keeping my token for Day 3. Ready.
+Night actions:
+  Alice (Fabricator): target Carol; "Fabricator visit on Carol to frame her as Evil, no forged will. Katana stays with Bob, Standard attack on Erin."; Katana vote: Bob holds, attacks Erin
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Erin
+  Erin (Medic): target Erin; 1 token(s); "Protecting myself with Standard Defense (cost: 1 token)."
+  Heidi (Surveyor): target Mallory; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Erin
+  Judy (Archivist): no action
+  Mallory (Arsonist): target Ivan; "Douse Ivan."
+Katana: Bob holds it and attacks Erin.
+(to Heidi) Moderator (private): You surveyed Judy, Mallory and Alice. One of them, chosen at random, has the role Archivist. 1 survey token left.
+(to Alice) Moderator (private): Night 2 result: You framed Carol tonight (no will forged). 1 fabricator token left.
+(to Bob) Moderator (private): Night 2 result: Your Katana attack on Erin did not succeed. You still have 1 clerk token.
+(to Erin) Moderator (private): Night 2 result: You protected yourself with Standard Defense. 1 medic token left. You were attacked tonight with the Katana, and you survived.
+(to Mallory) Moderator (private): Night 2 result: You doused Ivan.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza night summary (Night 2): The Katana stays with Bob, who used it to attack Erin. Alice framed Carol (no will forged). Bob used no Clerk action. Ivan used no Puppeteer action.
+[Moderator summary] Night 2: Katana (Bob) Standard attack on Erin blocked by Erin's Standard self-protection (medic 2->1). Alice framed Carol (no forge). Heidi surveyed Mallory (survey op, code result). Mallory doused Ivan (Ivan now doused; Dave already doused). No deaths. Visits: Alice->Carol, Bob->Erin, Erin->Erin, Heidi->Mallory, Mallory->Ivan.
+(to Frank) Moderator (private): Tonight Frank, Grace and Ivan were each in a different visit group.
+
+===== DAY 3 =====
+Nobody died last night.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Erin: Medic. N1: Dave (Standard). N2: Erin (self, Standard, 1 token left). Attacked with Katana N2 and survived.
+Erin (public): Good morning. Nobody died last night because I self-protected with Standard Defense (1 token spent, 1 token remaining), was attacked with the Katana, and survived! Any Lookout who watched me or Tracker who saw someone visit me has the Katana holder. This mechanically corroborates my Medic claim and invalidates Alice's Day 2 accusation—Alice is either the Executioner confirmed in Judy's archive trying to push her target, or Yakuza. Let's hear all Night 2 reports—Frank, Heidi, Judy, Alice, and any other investigative results—before considering nominations.
+Frank (public): Frank, Scout. My Night 2 result: Frank, Grace and Ivan were each in a different visit group, none linked. Scout shows groups only, so it doesn't settle Alice versus Erin. Erin, if the Katana hit you, its holder visited you; a Lookout or Tracker report on that would be decisive. I'm not nominating today.
+Grace (public): Noted Frank's result. If Erin was attacked by the Katana, any Tracker or Lookout information on Erin will be critical today. Also, keep the stall rule in mind: we cannot afford to drift without resolving leads. Let's hear Heidi's, Judy's, and Alice's Night 2 reports before deciding our direction.
+[Claim] Heidi: Surveyor. N1: Carol -> {Bob, Carol, Dave} has Clerk. N2: Mallory -> {Judy, Mallory, Alice} has Archivist. (1 token left)
+Heidi (public): Night 2 result: I surveyed Mallory, which formed the group of Judy, Mallory, and Alice. My mechanical result revealed that one role in that group is Archivist.
+
+This mechanically confirms Judy's Archivist claim from Day 2. Because Judy's archive is authentic, we know the roles she pulled are real: Surveyor (me), Scout (Frank), Cardinal (Dave), Puppeteer, Arsonist, Executioner, and Clerk.
+
+With Dave as Cardinal, the Clerk in my Night 1 group ({Bob, Carol, Dave}) is definitely either Bob or Carol—both of whom are hiding behind Vanilla claims. Furthermore, Judy's archive confirming Executioner lends heavy weight to Erin's survival today and casts severe suspicion on Alice as an Executioner pushing a fake Sheriff check. Let's hear Alice's and Judy's Night 2 reports before moving to a trial on Bob or Carol.
+Ivan (public): Erin surviving a Katana hit is a real mechanical signal, so I won't push Erin without more. Heidi, your Surveyor pool puts Clerk in Bob/Carol/Dave, yet you named Dave and Carol as suspects. Dave's Cardinal and Carol's Vanilla are both unverified, so explain why the pool points at a role rather than a holder. Alice's Sheriff read on Erin still conflicts with Erin's Medic claim; I want Night 3 results before any vote.
+Judy (public): Heidi’s N2 result is consistent with my Archivist claim, but it still doesn’t identify who in the N1 Clerk pool holds that role. Alice’s N1 Evil result remains unresolved; the archive only confirms Executioner exists, not that Alice is one. Erin’s reported Katana hit and survival fit a Medic claim but aren’t publicly corroborated. Any Tracker or Lookout who saw Erin’s visitors should report.
+Mallory (public): Erin’s account is consistent with surviving the hit, but the hit itself doesn’t prove her Medic claim; Alice’s N1 check also needs context. Alice, please share your N2 result and whether Erin still reads Evil. Any Tracker or Lookout who saw Erin’s visitors should report. The archive confirms roles exist, not who holds them.
+Alice (public): Alice, Sheriff, unchanged: Erin reads Evil on N1. Erin's Medic claim is unverified, and a self-protect survival doesn't show who attacked her or why. Heidi's pool and Judy's Archivist claim both need checking. No nomination from me until Night 3 results come out.
+Bob (public): Erin’s account is compatible with a Medic and protection, but survival alone doesn’t prove her role; Alice’s N1 check also isn’t definitive given possible framing or other appearance effects. A Tracker or Lookout report on Erin’s visitors could help. Heidi’s N1 result still identifies a pool, not the Clerk’s holder. I don’t see a decisive contradiction yet.
+Carol (public): Carol, Vanilla. I'm not the Clerk, so Heidi's Night 1 pool (Bob, Carol, Dave) points at Bob or Dave. Erin's Katana survival is a real mechanical point: the Yakuza spent their attack on a claimed Medic, which fits Erin being Good and makes Alice's Evil read on her look false or framed. Alice, what did your Night 2 result show? I'm not nominating today, and I'll vote Innocent unless someone shows a concrete claim-versus-result contradiction.
+Dave (public): Heidi, your N2 result names a group but doesn’t identify who is Archivist; Judy’s archive confirms roles exist, not that Alice is Executioner. Please correct those inferences. Alice, what was your N2 result? Erin’s reported Katana survival is consistent with Medic, but doesn’t settle the N1 check; any Tracker or Lookout on her visitors should report.
+Erin (public): Notice the elephant in the room: Alice claimed Sheriff, yet completely failed to provide a Night 2 investigation result. Real Sheriffs act every night and post their results immediately. Why did Alice dodge Night 2 entirely? Furthermore, look at Judy's verified archive: Executioner is in the setup, not Jester. Alice cannot be a Jester baiting an execution. She is either the Executioner whose assigned target is me—explaining why she fabricated an Evil check on me Day 2 and has no real investigation mechanics—or a Yakuza member caught without a cover story. Alice, state who you investigated on Night 2 and what result you received right now.
+Frank (public): Frank, Scout. Heidi's Night 2 survey on Mallory fits the seating: Judy, Mallory and Alice are Mallory's neighbours, so Alice is in the group that holds Archivist. Alice, you still haven't posted a Night 2 result, so please give it. Erin, a Katana survival is only your claim until Night 3 results or a Tracker or Lookout report comes in. No nomination from me.
+Grace (public): Alice definitely needs to provide her Night 2 investigation result immediately. A real Sheriff investigates every night and reports the target and finding at the start of the day. With the stall rule pressure mounting, we cannot afford evasiveness. Let's see Alice's account before deciding our next move.
+Heidi (public): Alice completely dodging an N2 investigation result is a massive red flag for a claimed Sheriff. If you were role-blocked, say so; otherwise, failing to produce an N2 target or check points directly to a fabricated claim. I will hold off on nominating so Ivan, Judy, Mallory, and Alice speak next. Alice must give her N2 account immediately, and Bob and Carol need to address which of them is the Clerk. With zero deaths across two days and nights, the stall rule is an active threat—we cannot let Day 3 end without a trial.
+Ivan (public): no nomination from me. Erin surviving a Katana hit is a real signal, but a self-protect survival doesn't prove the Medic claim. Alice needs to post her Night 2 result with its target, since she has been asked three times. Heidi, Bob and Carol are one Clerk pool, so name the holder you think it is and why. I want Night 3 results before any vote.
+Judy (public): Two corrections: Sheriff actions are optional, so Alice’s missing N2 report is not itself a contradiction; she should still say whether she checked someone, was blocked, or abstained. Heidi’s N2 result places an Archivist somewhere in {Judy, Mallory, Alice}; it doesn’t identify Judy. My archive confirms roles in the setup, not who holds them. Erin’s claimed Katana survival fits a Medic claim, but remains uncorroborated. Let’s compare the actual N2 accounts before treating any of these claims as certain.
+[Claim] Alice: Sheriff. N1: Erin Evil. N2: Carol Evil.
+Alice (public): Alice, Sheriff. My N2 check was on Carol: Evil. Carol, your Vanilla claim now has an Evil read against it, so explain your N2 night. Erin's Katana survival is one data point. With Erin reading Evil from N1 and Carol reading Evil from N2, both claims need checking before anyone is hanged.
+Bob (public): Alice has now given an N2 result, so the missing-result concern is answered, though the claim remains unverified. Erin’s reported survival is consistent with protection but doesn’t independently identify the attacker. Framing could affect either Evil check, and Heidi’s Surveyor result still names only a pool—not a specific holder. Let’s not treat any one of these claims as certainty.
+Carol (public): Carol, Vanilla Villager, no night action. Alice's N2 read of me as Evil is false unless I was framed by a Fabricator, so one of Alice's two checks is wrong or she is lying. Erin's Katana survival and Heidi's pool both need Night 3 results or a Tracker/Lookout report before anyone is nominated. No nomination from me.
+Dave (public): Alice has now supplied her N2 result, so the missing-report concern is resolved. Two Evil reads still aren’t decisive: framing could explain either one, but doesn’t clear Erin or Carol. Heidi’s Clerk result identifies only a pool, and a live Clerk may have rigged today’s trials. Avoid a blind nomination; weigh concrete evidence first.
+Erin (public): Notice how Alice handled Night 2: she completely ignored reporting until pressed by multiple players, then conveniently produced an 'Evil' check on Carol—the easiest possible target already under suspicion from Heidi's Clerk pool. That is pure opportunistic fabrication.
+
+Also, consider the mechanics: Alice claimed I read Evil on N1. Yet on N2, the Katana attacked me. Yakuza don't spend their kill on an Evil player; they attacked me precisely because I claimed Medic on Day 2. My Katana survival mechanically proves I am Good and completely disproves Alice's accusation.
+
+With Dave claiming Cardinal, Heidi's mechanical result isolates Clerk directly between Bob and Carol. Alice's convenient late read on Carol looks like an Executioner or Yakuza scrambling to stay relevant. Between Bob and Carol, one is a confirmed Yakuza Clerk—we need to hold them accountable, but beware that a Clerk rig could execute on nomination, so we must be deliberate with our votes.
+Frank (public): Frank, Scout. My N2 result is unchanged: Frank, Grace and Ivan were in separate groups. Alice now reads Erin Evil (N1) and Carol Evil (N2), while Erin says she was Katana-attacked and survived. I want a Tracker or Lookout report on Erin's visitors before any nomination, and Heidi should name the basis for the Clerk pool before anyone is voted on.
+Grace (public): Alice producing an Evil check on Carol only after being pressed three times definitely feels reactive, but Carol also sits squarely in Heidi's mechanical Clerk pool. If we consider a nomination today, remember that Clerk could have rigged, meaning a passed nomination immediately executes. Between Carol and Bob, who does the rest of the circle find more credible?
+Heidi (public): I am nominating Carol. Between Bob and Carol, one is guaranteed to be the Clerk from my N1 Survey ({Bob, Carol, Dave}), given Dave's Cardinal claim. On top of that, Alice reported an Evil check on Carol from N2. Carol sits at the intersection of our two primary mechanical leads. Furthermore, with zero deaths across two full cycles, we cannot risk drifting into Day 4 and triggering the stall rule. Let's put Carol on trial and resolve this.
+Heidi nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Heidi, Ivan, Mallory, Alice, Bob, Dave, Erin, Frank, Grace; No - Judy, Carol.
+Carol is put on trial (9 Yes).
+Carol (public): Carol, Vanilla Villager, no night action on N1 or N2, and I'm not the Clerk. Alice's N2 Evil read on me is false. Her N1 read on Erin also conflicts with the mechanics: if Erin's Katana survival is true, a Yakuza attacked a self-protecting Medic, which is what a Good player looks like. Alice's two Evil checks can't both be right about Good players. Heidi's Clerk pool still includes Bob and Dave. It names a group, not a holder, so it doesn't convict me. I'll vote Innocent unless someone shows a concrete claim-versus-result contradiction against me. Night 3 results matter more than this trial.
+Dave (public): Heidi's Surveyor result, if accurate, places Clerk in {Bob, Carol, Dave}. I know my own role is Cardinal, so that narrows it to Bob or Carol—not specifically Carol. Alice's N2 Evil check is additional evidence against Carol, though framing remains possible. Carol's Vanilla claim doesn't resolve this, nor does Bob's. I currently lean Guilty because the leads make Carol more suspicious, but this is not proof. If a Clerk rigged today, an Innocent vote won't prevent execution.
+Erin (public): Between Bob and Carol, Heidi's survey and Dave's Cardinal claim isolate the Clerk to that pair. Even setting aside Alice's suspicious claim, Carol has at least a 50% chance of being the Yakuza Clerk. With zero deaths across two full cycles, the stall rule makes inaction dangerous. If Carol flips Vanilla, Bob is mechanically confirmed as the Clerk for tomorrow. I will be voting Guilty.
+Frank (public): Frank, Scout (Good). Mechanical point: the Katana hit Erin on N2. A Yakuza holder doesn't normally attack a Yakuza, so Alice's N1 Evil read on Erin looks wrong unless Erin is an Ex-Con or framed. Carol's only direct evidence is Alice's N2 Evil check, and Heidi's pool still includes Bob and Dave. I won't vote Guilty on the pool alone. Carol, explain your N2 night, and let's see Night 3 results before anyone is hanged.
+Grace (public): I lean Guilty on Carol. While Bob remains an alternative in Heidi's Clerk pool, Carol sits at the intersection of Heidi's survey and Alice's investigation. More urgently, with zero deaths across the first two cycles, failing to execute risks triggering the stall rule if tonight also sees no deaths. Taking the shot on the mechanically narrowed Clerk pool is town's best path today.
+Heidi (public): I am voting Guilty. Mechanically, Dave's Cardinal claim narrows my N1 Clerk survey strictly down to Bob or Carol. On top of that 50% baseline, Alice checked Carol Evil on N2. Most critically, the stall rule is an existential threat: with zero deaths across the first two days and nights, failing to hang today risks total defeat. Executing Carol provides vital certainty—if Carol flips Vanilla, Bob is confirmed Clerk tomorrow.
+Ivan (public): Ivan, Vanilla-claimed Carol, Guilty. Alice's N2 Evil check is the only direct alignment evidence on Carol, and Heidi's pool still puts the Clerk on Bob or Carol. Carol says Alice's two checks can't both be right, but Alice's N1 read on Erin is already contradicted by the Katana hit, so that argument doesn't clear Carol. If Carol flips Good, Bob is the next Clerk lead and we'll know more by Day 4.
+Judy (public): To be precise: my archive gives roles in the setup, not identities. Heidi’s N2 group includes me and is compatible with her Surveyor claim, but neither it nor the N1 group names a holder; Dave’s post-archive claim doesn’t independently narrow that pool. Alice’s Evil result on Carol is relevant, though framing remains possible and the late report doesn’t disprove it. Erin’s reported survival supports her account but doesn’t clear Carol. I lean Guilty on the combined pool and check, not with certainty. If Carol flips Good, Bob is not mechanically confirmed; Dave’s claim isn’t verified.
+Mallory (public): I’ll vote Guilty based on the combined pool and Alice’s Evil check, not because Heidi’s survey identifies Carol—it doesn’t. If Carol flips Good, Bob isn’t confirmed; Dave’s Cardinal claim is also unverified. Erin’s reported survival doesn’t resolve the case against Carol.
+Alice (public): Alice, Sheriff. Carol is the only player with a direct alignment check against them: my N2 check read Carol Evil. Carol says Alice's two checks can't both be right, but a Good player can be framed, and Erin reading Evil from N1 also has a framing explanation. Carol's Vanilla claim and 'not the Clerk' don't explain a Good Vanilla reading Evil. Carol's pushback on the Clerk pool, which names Bob and Dave, is also not an alibi. I'm voting Guilty.
+Bob (public): I lean Guilty, but not because Heidi’s result identifies Carol—it only places a Clerk somewhere in a pool, and Dave’s claim is unverified. Alice’s Evil check is relevant but not conclusive given the possibility of framing. Taken together, they make Carol a reasonable trial vote, not a certainty. If she flips Good, don’t treat that as mechanically confirming Bob; reassess the whole pool.
+Carol (public): Carol, Vanilla Villager, no night action on N1 or N2. Alice's N2 Evil read on me is the only alignment check against me, and it conflicts with her own N1 Evil read on Erin, which Erin's Medic claim and Katana survival contradict. One of Alice's two checks is wrong or she is lying. Heidi's survey names a group, not a holder, and Dave's Cardinal claim only narrows that group to Bob or Carol. Bob is the other half of that pool and is also leaning Guilty on me. Before a hang, name a concrete contradiction in what I've said or done; I've given none. I'm voting Innocent.
+Trial votes on Carol: Guilty - Alice, Bob, Dave, Erin, Grace, Heidi, Ivan, Judy, Mallory; Innocent - Carol, Frank.
+Carol is executed by hanging (9 Guilty of 11 votes; 6 needed).
+Carol died (executed by hanging). Their role was Vanilla Villager. Their last will: "Carol, Vanilla Villager. N1 and N2: no night action. Alice's Evil reads on me (N2) and Erin (N1) are false or framed; Erin's Medic claim fits the Katana attack on her. Trust no one who pushes early nominations without evidence."
+
+===== NIGHT 3 =====
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice, N3 proposal: Katana stays with Bob (no holder move). Target Heidi: her Surveyor results are the main mechanical threat to us, and she has no Defense. Skip Erin, who may spend her last Medic token on herself, and skip Dave (Cardinal). I'll frame Grace with no forged will so my N3 Sheriff read can come back Evil. Ivan, hold the puppet for Day 4. Bob, hold the Clerk rig for a day we need it. Vote Heidi as target, Bob as holder.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Agreed: keep the Katana with Bob and attack Heidi. Alice should frame Grace as proposed. I’ll save the Clerk rig for now; with the Clerk pool pointing at me after Carol’s flip, rigging tomorrow could backfire if town nominates me. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: agree with the plan. Bob keeps the Katana, Standard attack on Heidi, Alice frames Grace with no forged will. I'm taking no puppet action tonight and holding my token for Day 4. Ready.
+(to Alice, Bob, Ivan) Alice (Yakuza chat): Alice: agreed. Katana stays with Bob, Standard attack on Heidi, and I frame Grace with no forged will. My Sheriff check on Grace will read Evil from the frame, which matches my claim. Vote Heidi and Bob, and I'm ready.
+(to Alice, Bob, Ivan) Bob (Yakuza chat): Confirmed: Bob holds the Katana and attacks Heidi. Alice frames Grace with no will forgery; I take no Clerk action, and Ivan saves the puppet. Ready—please submit the agreed votes.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: agreed. Bob holds the Katana, Standard attack on Heidi, Alice frames Grace with no forged will. Heidi's Surveyor results are the live threat, so the attack stands. I'm submitting Heidi as target and Bob as holder. Ready.
+Night actions:
+  Alice (Fabricator): target Grace; "Fabricator visit on Grace to frame her as Evil, no forged will."; Katana vote: Bob holds, attacks Heidi
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Heidi
+  Erin (Medic): target Heidi; "Protecting Heidi with Standard Defense (cost: 0 tokens)."
+  Heidi (Surveyor): target Grace; 1 token(s)
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Heidi
+  Judy (Archivist): no action
+  Mallory (Arsonist): target Bob; "Douse Bob."
+Katana: Bob holds it and attacks Heidi.
+(to Heidi) Moderator (private): You surveyed Frank, Grace and Ivan. One of them, chosen at random, has the role Executioner. 0 survey tokens left.
+(to Bob) Moderator (private): Your Katana attack on Heidi failed: Heidi survived. You still hold the Katana. You did not use your own role's action (1 clerk token left).
+(to Alice) Moderator (private): You visited Grace and framed her for the night. You did not forge a will (1 fabricator token left).
+(to Erin) Moderator (private): You protected Heidi with Standard Defense (no token spent). 1 medic token left.
+(to Mallory) Moderator (private): You doused Bob.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza actions chosen last night: Alice (Fabricator) framed Grace, no forged will. Bob (Clerk) held the Katana and attacked Heidi with it; he chose no Clerk action. Ivan (Puppeteer) chose no action. Bob holds the Katana.
+(to Heidi) Moderator (private): Attack notice: you were attacked with the Katana last night, but you survived.
+[Moderator summary] Night 3: No role-blocks. Bob (Katana holder) attacked Heidi with Standard Katana; Erin's Standard protection on Heidi saved her (no deaths). Alice framed Grace (no checks affected, no forge). Heidi surveyed Grace (survey op, 0 survey tokens left). Mallory doused Bob (Bob now doused). Visits: Alice->Grace, Bob->Heidi, Erin->Heidi, Heidi->Grace, Mallory->Bob. Notices sent: Heidi attack survived, Bob attack failed, Alice/Erin/Mallory results, Yakuza action summary.
+(to Frank) Moderator (private): Tonight Dave, Grace and Ivan were each in a different visit group.
+
+===== DAY 4 =====
+Nobody died last night.
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Bob (public): Carol's flip means Alice's N2 Evil result was either affected by framing or was wrong; it doesn't by itself tell us which. Heidi's Surveyor result identifies a pool, not a holder, and Judy's unnamed archive doesn't verify Dave's Cardinal claim. Please share Alice's N3 result and any concrete account of how Heidi survived last night before we choose another trial.
+Dave (public): My Cardinal role and Carol’s flip narrow Heidi’s N1 Surveyor pool, {Bob, Carol, Dave}: if her result is genuine, Bob is the Clerk. Bob claims Vanilla, so that is a direct claim/result conflict worth testing. Her N2 result doesn’t identify Judy as Archivist, and Judy’s archive doesn’t either. I nominate Bob.
+Dave nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Dave, Erin, Frank, Grace, Heidi, Judy; No - Ivan, Mallory, Alice, Bob.
+Bob is put on trial (6 Yes).
+[Claim] Bob: Vanilla Villager. N1–N3: no night action.
+Bob (public): I am Vanilla Villager and took no night action N1–N3; that claim is unchanged. I voted Guilty on Carol and was wrong—her flip proves my read was bad, not that I’m the Clerk. Heidi’s result names a three-person group, not its Clerk. Dave narrows it to me only by treating his own unverified Cardinal claim as fact; he claimed it after Judy’s archive showed Cardinal exists. Judy’s archive names no holders. Alice’s Evil check on Carol also led us to hang a Vanilla, so it shouldn’t be treated as proof. I’m not asking you to accept my claim blindly; I’m asking you not to execute on a chain of unverified assumptions. Vote Innocent and test the claims further.
+Dave (public): I will vote Guilty. The concrete contradiction is Bob’s Vanilla claim against Heidi’s Surveyor result: if her result is genuine, one of {Bob, Carol, Dave} is Clerk. Carol flipped Vanilla, and I know my own Cardinal role, leaving Bob. My claim is not independently verified, and Heidi could be lying, so this is conditional evidence—not certainty. Bob’s mistaken Guilty vote on Carol is not itself proof.
+[Claim] Erin: Medic. N1: Dave (Standard). N2: Erin (self, Standard). N3: Heidi (Standard). 1 token left.
+Erin (public): I will be voting Guilty on Bob. The mechanical case is clear: Heidi's N1 Surveyor result placed Clerk into {Bob, Carol, Dave}, which Judy's archive independently corroborated by confirming Clerk is in the setup. Carol has already flipped Vanilla Villager, and Dave claimed Cardinal—another role confirmed by Judy's archive that town cannot afford to test due to Divine retaliation. That leaves Bob as the only viable candidate for Clerk. Hiding behind a Vanilla claim does not overcome a verified mechanical pool.
+Frank (public): Frank, Scout (Good). My Scout results can't touch Bob, so this is pool logic. Heidi's N1 survey puts a Clerk in {Bob, Carol, Dave}. Carol flipped Vanilla, so if the survey is genuine the Clerk is Bob or Dave. Dave's Cardinal claim fits Judy's archive but is unverified; if it's true, Bob is the Clerk and his Vanilla claim is a lie. I lean Guilty on Bob, not with certainty. Alice: you voted No on Bob's nomination after your Carol Evil read got a Good Vanilla executed. Explain why Carol read Evil. Dave and Heidi: give any detail that could separate a true claim from a lie.
+Grace (public): I'm leaning Guilty on Bob. Carol's Vanilla flip combined with Heidi's survey leaves Bob as the clear focal point of the Clerk pool unless Dave fabricated Cardinal. Given the lack of a counter-lead and Bob offering only an unverified VT claim, testing Bob is town's cleanest mechanical move today. If Bob flips Good, we immediately re-examine Dave and the survey results.
+[Claim] Heidi: Surveyor. N1: Carol -> {Bob, Carol, Dave} has Clerk. N2: Mallory -> {Judy, Mallory, Alice} has Archivist. N3: Grace -> {Frank, Grace, Ivan} has Executioner. (0 tokens left)
+Heidi (public): Two crucial mechanical updates from Night 3:
+
+1. I received an attack notice that I was attacked with the Katana last night and survived. This directly confirms Erin's Medic protection on me. Erin is verified Good, and Alice's N1 'Evil' check on Erin is completely discredited.
+
+2. My N3 survey on Grace revealed that {Frank, Grace, Ivan} contains Executioner. Because Executioner is locked to that trio, Alice CANNOT be the Executioner! Alice fabricated two consecutive Evil checks on Good players (Erin and Carol) and voted No on Bob's nomination today to protect him. Alice is unequivocally Yakuza.
+
+3. With Carol flipped Vanilla Villager and Dave claiming Cardinal, my N1 survey isolates Clerk directly to Bob. Bob's Vanilla claim is a confirmed lie. I will be voting Guilty on Bob.
+Ivan (public): Innocent on Bob. Heidi's Clerk pool has been Carol's pool, then Bob's, and each time it names whoever is on trial. Dave's Cardinal claim is only as good as Heidi's survey, so the chain is unverified. Heidi also says Executioner is in {Frank, Grace, Ivan}. I can say I'm not the Executioner, so that trio result is wrong for at least one person. Before hanging Bob, let's get a result that names a holder, not another pool.
+Judy (public): I was wrong to vote Guilty on Carol; a pool is not an identity. Heidi reported Clerk in {Bob, Carol, Dave} before my archive was public, and Carol flipped Vanilla. If Heidi is truthful, that leaves Bob or Dave. Dave’s Cardinal claim is not verified by my archive, so this is not a mechanical identification—but Bob’s Vanilla claim is unverified too. This remains our strongest concrete lead, and I lean Guilty, not with certainty.
+Mallory (public): Heidi's first result only places a Clerk in a three-person group. After Carol's flip, Bob is singled out only if Heidi's result is genuine and Dave's unverified Cardinal claim is true; neither assumption is independently established. Bob's Vanilla claim may be false, but that isn't proven. I lean Innocent rather than treating a conditional chain as certainty.
+[Claim] Alice: Sheriff. N1: Erin Evil. N2: Carol Evil. N3: Grace Evil.
+Alice (public): Alice, Sheriff. N3 check: Grace reads Evil. On Bob: Heidi's Surveyor pool has moved from Carol to Bob, and her N3 pool puts Executioner in {Frank, Grace, Ivan}. Dave's Cardinal claim is also unverified. Before a hang, name a holder with a concrete result, not another pool. I'm voting Innocent.
+Bob (public): Heidi’s N1 report, if genuine, puts Clerk in {Bob, Carol, Dave}; Carol’s flip reduces that to me or Dave only if Dave’s self-claimed Cardinal is accepted. Judy’s archive confirms Cardinal exists, not that Dave is one—he claimed only after that role was revealed. That unverified step is being treated as certainty. My Vanilla/no-action account is unchanged; my Guilty vote on Carol was wrong, but it isn’t proof of my role. Heidi’s N2 and N3 reports also name groups, not holders. Please vote Innocent, then seek independent verification of the competing claims instead of executing on a chain of assumptions.
+Trial votes on Bob: Guilty - Dave, Erin, Frank, Grace, Heidi, Judy; Innocent - Alice, Bob, Ivan, Mallory.
+Bob is executed by hanging (6 Guilty of 10 votes; 6 needed).
+Bob died (executed by hanging). Their role was Clerk. Their last will: "I claimed Vanilla Villager and reported no role action N1–N3. I voted Guilty on Carol; her flip shows she was Village, not that Heidi's Surveyor pool identified a specific Clerk. Alice's N2 Evil result on Carol may have been wrong or affected by framing, so weigh it alongside her other reports rather than treating it as settled. Dave's Cardinal claim is not verified by an unnamed archive. Reassess using concrete results and contradictions."
+(to Alice, Ivan) The Katana passed to Ivan.
+
+===== NIGHT 4 =====
+(to Alice, Ivan) Alice (Yakuza chat): Alice: Ivan holds the Katana, so no holder move. Standard attack on Heidi: she is a live Surveyor who named me Yakuza, and she has 0 tokens. Erin's last token could protect her again, so the attack may fail, but Heidi is still the biggest threat. I'll frame Judy with no forged will; Judy's Archivist claim is Village-leaning, so an Evil read there helps us. Ivan, confirm holder Ivan, target Heidi, and say if you object. Puppet stays for Day 5.
+(to Alice, Ivan) Ivan (Yakuza chat): Ivan: I agree with Alice's plan. Ivan keeps the Katana, Standard attack on Heidi (her Surveyor pool named Alice, so she is the live threat), and Alice frames Judy with no forged will. My puppet stays unused for Day 5. No objections. Ready.
+(to Alice, Ivan) Alice (Yakuza chat): Alice: I agree with Ivan's plan. Ivan keeps the Katana, Standard attack on Heidi, and I frame Judy with no forged will. Erin may use her last token to protect Heidi again, so the attack could fail; we accept that. Ivan, keep the puppet for Day 5 and send no PMs. Both of us submit Heidi and Ivan as holder. Ready.
+(to Alice, Ivan) Ivan (Yakuza chat): Ivan: agreed. I keep the Katana as holder, Standard attack on Heidi, and Alice frames Judy with no forged will. Erin's Standard protection costs no tokens, so she can cover Heidi again; we accept that risk. Ivan stays silent on the puppet for Day 5. I'll submit Heidi as target and Ivan as holder. Ready.
+Night actions:
+  Alice (Fabricator): target Judy; "Fabricator visit on Judy to frame her as Evil, no forged will."; Katana vote: Ivan holds, attacks Heidi
+  Erin (Medic): target Erin; 1 token(s); "Protecting myself with Standard Defense (cost: 1 token)."
+  Heidi (Surveyor): no action
+  Ivan (Puppeteer): no role action; Katana vote: Ivan holds, attacks Heidi
+  Judy (Archivist): no action
+  Mallory (Arsonist): target Judy; "Douse Judy."
+Katana: Ivan holds it and attacks Heidi.
+(to Heidi) Moderator (private): You were attacked with the Katana last night and died.
+(to Ivan) Moderator (private): Night 4 result: Your Katana attack on Heidi succeeded. You did not use your own role's action (1 puppet token left).
+(to Alice) Moderator (private): Night 4 result: You framed Judy (no will forged). 1 fabricator token left.
+(to Alice, Ivan) Moderator (private): Yakuza actions tonight: Alice (Fabricator) chose to frame Judy, without forging a will. Ivan (Puppeteer) chose no role action. Ivan holds the Katana and it was aimed at Heidi.
+(to Erin) Moderator (private): Night 4 result: You protected yourself with Standard Defense. 0 medic tokens left.
+(to Mallory) Moderator (private): Night 4 result: You doused Judy.
+[Moderator summary] Night 4: Ivan (Katana holder) used a Standard Katana attack on Heidi, who had no Defense, so Heidi died (Katana). Alice framed Judy (no forged will, 1 token kept). Erin self-protected with Standard Defense (1 token spent, 0 left). Mallory doused Judy. No role-blocks, traps or Cardinal trigger. Visits: Alice->Judy, Erin->Erin, Ivan->Heidi, Mallory->Judy. Game continues: Alice, Dave, Erin, Frank, Grace, Ivan, Judy and Mallory are alive.
+(to Frank) Moderator (private): Tonight Alice, Erin and Frank were each in a different visit group.
+
+===== DAY 5 =====
+Heidi died (killed by Katana). Their role was Surveyor. Their last will: "Heidi - Surveyor (0 tokens left).
+N1: Carol -> {Bob, Carol, Dave} has Clerk.
+N2: Mallory -> {Judy, Mallory, Alice} has Archivist.
+N3: Grace -> {Frank, Grace, Ivan} has Executioner.
+N3: Attacked by Katana and survived (protected by Medic Erin).
+Key deductions:
+- Bob is Clerk (Carol flipped VT, Dave Cardinal).
+- Erin is confirmed Medic.
+- Executioner is in {Frank, Grace, Ivan}, so Alice is NOT Executioner; Alice is Yakuza.
+- Alice voted No on Bob's nomination."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Frank (public): Frank, Scout. Heidi died to the Katana on Night 4. My N4 Scout result: Alice, Erin and Frank were in separate groups, so none of us visited another of us that night. Erin, what did your Medic action do on N4, and did it reach Heidi? Alice, why did Carol and Grace read Evil on your checks? I'm not nominating yet.
+Grace (public): Heidi's death confirms how threatening her mechanical results were to the Yakuza. Bob flipping Clerk fully vindicates her findings. Alice voting No on Bob's nomination and Innocent on his trial—alongside the false checks on Carol and Erin—leaves Alice with no credible defense. Let's hear from Erin and Alice before deciding our next steps.
+Ivan (public): Ivan, Puppeteer, no night info to share. On Heidi: her three results named pools, and her N3 pool put Executioner in Frank/Grace/Ivan. I'm not the Executioner, so at least part of that claim is wrong. On Alice: her Sheriff reads have been Erin Evil, Carol Evil and Grace Evil. Erin has survived two Katana hits, and Carol flipped Good. I want Alice to explain the Carol and Grace checks before I vote on anyone. No nomination from me yet.
+Judy (public): Alice’s Carol Evil check led to a Vanilla execution; then she opposed Bob’s nomination and voted Innocent on him, and Bob flipped Clerk. Framing is possible, but that combination warrants a trial. I nominate Alice so we can test her full account.
+Judy nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Judy, Mallory, Dave, Erin, Frank, Grace; No - Alice, Ivan.
+Alice is put on trial (6 Yes).
+Alice (public): Alice, Sheriff, on trial. My checks are unchanged: N1 Erin Evil, N2 Carol Evil, N3 Grace Evil. Erin's Medic claim fits the Katana survival, but a Good Medic can still be framed, and a framed player reads Evil. Carol's Vanilla flip means one of my reads is wrong or was framed, and Grace is the same open question. I voted No on Bob's nomination and Innocent on his trial because Heidi's Surveyor results named pools, not holders, and a pool is not a holder. Judy's Archivist and Dave's Cardinal are also unverified. Name a concrete contradiction in my results, not my nomination record, and let's test Erin's Medic claim with Night 5 results before anyone is hanged.
+Dave (public): The strongest case is Alice’s behavior around Bob: she voted No on his nomination and Innocent on his trial, and Bob flipped Clerk. Her objection that the pool named no holder ignored that Carol’s Vanilla flip and my true Cardinal role identified Bob. Carol’s flip also contradicts Alice’s Evil check; framing is possible, but the combined record warrants Guilty.
+[Claim] Erin: Medic. N1: Dave (Standard). N2: Erin (self, Standard). N3: Heidi (Standard). N4: Erin (self, Standard, 0 tokens left).
+Erin (public): To answer Frank: On Night 4, I self-protected with Standard Defense (spending my final token, 0 left), anticipating the Katana would come back for me after I saved Heidi on Night 3. That is why Heidi was unprotected.
+
+I am 100% voting Guilty on Alice. Alice's entire record is fraudulent: she fabricated an 'Evil' read on Carol (who flipped Vanilla Villager), pushed an 'Evil' read on me (when Yakuza attacked me on Night 2 and Heidi on Night 3), and actively defended Bob by voting No on his nomination and Innocent on his trial—and Bob flipped Clerk. That is textbook Yakuza collusion.
+
+Also, everyone please note that Ivan literally claimed 'Puppeteer' today. Puppeteer is an explicit Yakuza role from Judy's archive. Alice is guaranteed Yakuza, Ivan has outed as Yakuza, and Alice must be executed right now.
+[ERROR player_error] Frank (haiku-5.5), attempt 1: unparsable answer (Unterminated string starting at: line 1 column 713 (char 712); finish_reason length via Anthropic: no refusal text): 'last_will":"","nominate":null,"vote":false,"answer":"","act":false,"target":null,"second_target":null,"guessed_role":null,"tokens_to_spend":0,"details":"","katana_vote_holder":null,"katana_vote_target'
+[Claim] Frank: Scout. N1: Dave, Frank and Grace in separate groups. N2: Frank, Grace and Ivan separate. N3: Dave, Grace and Ivan separate. N4: Alice, Erin and Frank separate.
+Frank (public): Frank, Scout (Good). I'm voting Guilty on Alice, and here is the concrete contradiction. Alice reads Erin Evil on N1, but Erin was then attacked by the Katana on N2 and survived. Yakuza don't spend their Katana on their own, so that read is contradicted by a mechanical result. Alice's N2 Carol Evil read led to a Vanilla execution. Then Alice voted No on Bob's nomination and Innocent on his trial, and Bob flipped Clerk. Ivan's Puppeteer claim is unverified, so I'm not treating it as an outing. Erin's N4 account and Alice's three Evil reads still need Night 5 results, but the Erin contradiction is enough for my vote.
+Grace (public): I am voting Guilty on Alice. Beyond the false Evil checks on Carol and Erin, her voting record on Bob—voting No on his nomination and Innocent on his trial—is active defense of a confirmed Clerk. Ivan claiming Puppeteer is another glaring lead for tomorrow, but executing Alice today is straightforward.
+Ivan (public): Ivan here. I'm voting Innocent on Alice. The Erin contradiction isn't proven. Alice's N1 Erin Evil is one alignment check, and a framed or Ex-Con player reads Evil. Erin being attacked on N2 doesn't show she is Good, since a Yakuza attack only shows a holder chose a target. Carol's flip is also consistent with a frame on N2, and Alice's No vote on Bob was a stated reason, not proof. Before hanging a Sheriff claimant, let's see Night 5 results and check who is actually making concrete contradictions.
+Judy (public): Alice, Carol’s flip makes your N2 Evil result false unless you posit an unproven frame. More importantly, you voted No on Bob’s nomination and Innocent at trial; he flipped Clerk. Erin’s Katana survival alone proves little, but your false check plus defending Bob is enough for my Guilty vote.
+Mallory (public): Alice’s Carol Evil check conflicts with Carol’s Vanilla flip unless Carol was framed, and Alice then opposed Bob’s nomination and voted Innocent on him before he flipped Clerk. Those facts make me lean Guilty, though they don’t prove her faction by themselves.
+Alice (public): Alice, Sheriff, final word. Please vote on the Executioner lead, not on my Bob vote, which I've already explained. Heidi's N3 survey put Executioner in {Frank, Grace, Ivan}. Ivan has now claimed Puppeteer, so the Executioner is Frank or Grace. An Executioner wins only when their target hangs while they are alive. Carol and Bob were both hanged and neither Frank nor Grace left the game, so the target is someone still alive. Grace has voted Guilty on Carol, Bob and me, and called my hanging straightforward. Grace, who is your target? Dave and Mallory, weigh that pattern before voting Guilty. My checks are unchanged, and I'm not asking you to trust the Sheriff claim blindly.
+(to Alice, Mallory) Alice -> Mallory (private): Mallory, your own note says the case doesn't prove a faction. Heidi's Executioner pool plus Grace's Guilty record on Carol, Bob and me points at Grace or Frank. Please don't add a Guilty vote on the Bob/Carol logic alone.
+Trial votes on Alice: Guilty - Dave, Erin, Frank, Grace, Judy, Mallory; Innocent - Alice, Ivan.
+Alice is executed by hanging (6 Guilty of 8 votes; 5 needed).
+Alice died (executed by hanging). Their role was Fabricator. Their last will: "Alice, claimed Sheriff. Checks: N1 Erin Evil, N2 Carol Evil, N3 Grace Evil. Heidi's N3 pool put Executioner in {Frank, Grace, Ivan}; Ivan claims Puppeteer, so check Frank and Grace. Grace voted Guilty on Carol, Bob and Alice. Judy claims Archivist and Dave claims Cardinal; both are unverified. Heidi's pools named groups, not holders. Vote on concrete contradictions, not pools."
+
+===== NIGHT 5 =====
+Night actions:
+  Erin (Medic): target Frank; "Protecting Frank with Standard Defense (cost: 0 tokens)."
+  Ivan (Puppeteer): target Grace; 1 token(s); "Puppet Grace for Day 6 with my last puppet token."; Katana vote: Ivan holds, attacks Erin
+  Judy (Archivist): no action
+  Mallory (Arsonist): "Ignite all doused players."
+Katana: Ivan holds it and attacks Erin.
+[Moderator flag] R21 / Puppeteer: Ivan spent his puppet token on Grace on Night 5, but Ivan dies tonight (Arsonist ignite). Under R21 the puppeting lapses because Ivan has to write Grace's messages during the Day. The token is spent either way. I applied the puppet op as the instructions require. Code should not puppet Grace on Day 6 (or tell her she is puppeted), since the user is dead. The game will probably end at dawn anyway.
+(to Erin) Moderator (private): Night 5 result: You protected Frank with Standard Defense. You have 0 medic tokens left. You were attacked with the Katana tonight and you died.
+(to Ivan) Moderator (private): Night 5 result: You spent your puppet token to puppet Grace for Day 6 (0 puppet tokens left). Yakuza actions tonight: Ivan held the Katana and attacked Erin, and also puppeted Grace. Your Katana attack on Erin succeeded. You were attacked by an Arsonist tonight and you died. No living Yakuza remain to take the Katana.
+(to Mallory) Moderator (private): Night 5 result: You ignited. Your attacks on Dave, Ivan and Judy all succeeded.
+(to Dave) Moderator (private): Night 5: You were attacked by an Arsonist tonight and you died.
+(to Judy) Moderator (private): Night 5: You were attacked by an Arsonist tonight and you died.
+[Moderator summary] Night 5: Erin protected Frank (Standard Defense, 0 tokens). Ivan held the Katana, attacked Erin and puppeted Grace (token spent; the puppeting lapses because Ivan died, flagged). Mallory ignited, a Strong Attack on the doused Dave, Ivan and Judy. Deaths: Erin (Katana, by Ivan), Dave, Ivan and Judy (Arsonist, by Mallory). Dave was the Cardinal, so code deals his Divine Attack on a random living Good player (only Frank is left). Grace's target Judy died, so code turns Grace into a Jester. No Yakuza remain. Visits: Erin->Frank, Ivan->Grace, Ivan->Erin.
+(to Frank) Moderator (private): Tonight Dave, Grace and Mallory were each in a different visit group.
+
+===== DAY 6 =====
+Erin died (killed by Katana). Their role was Medic. Their last will: "Erin - Medic (0 tokens left).
+N1: Dave (Standard Defense).
+N2: Erin (self-protect Standard Defense) - Attacked by Katana & survived.
+N3: Heidi (Standard Defense) - Heidi attacked by Katana & survived.
+N4: Erin (self-protect Standard Defense). 0 tokens left.
+
+Key facts:
+- Bob flipped Clerk (Yakuza). Alice defended Bob with No/Inno votes.
+- Alice's fake checks (Erin, Carol, Grace) prove she is Yakuza. Hang Alice.
+- Ivan claimed Puppeteer (Yakuza role from archive!). Ivan is Yakuza."
+Dave died (killed by Arsonist). Their role was Cardinal. Their last will: "Dave — Cardinal. N1: no action. If I die, a random living Good player is dealt a Divine Attack that night or the following night.
+
+Heidi’s N1 Surveyor result placed Clerk in {Bob, Carol, Dave}; Carol flipped Vanilla, Bob flipped Clerk, and I know I am Cardinal. That confirms the result was consistent with the true Clerk being Bob. My Cardinal claim is true.
+
+Alice voted No on Bob’s nomination and Innocent on his trial, despite Bob being the Clerk. That makes Alice a strong Yakuza suspect, though it is not proof. Her N2 Evil check on Carol conflicts with Carol’s Vanilla flip unless Carol was framed. Her N3 Evil check on Grace is consistent with Grace being the Executioner, if Heidi’s N3 survey result was genuine. Don’t treat either result as conclusive by itself.
+
+Erin’s claimed Medic protection of Dave N1 and self-protection against the N2 Katana attack are plausible; Heidi’s claimed N3 protection and N4 Katana death do not independently prove Erin’s role. Reassess using votes and new results, not the archive or Surveyor pools as proof of a specific holder."
+Ivan died (killed by Arsonist). Their role was Puppeteer. Their last will: "Ivan, Puppeteer. I have no proven information. Heidi's Surveyor results each named a three-person pool and never a holder, so a pool alone is not a lead. Erin's Medic claim fits surviving Katana attacks on N2 and N3 and has not been contradicted by any Lookout or Tracker report. Judy's Archivist claim and Dave's Cardinal claim are unverified. Before any Guilty vote, look for a concrete contradiction between a claim and a mechanical result."
+Judy died (killed by Arsonist). Their role was Archivist. Their last will: "Judy — Archivist. My N1 archive sampled seven unnamed roles: Surveyor, Scout, Cardinal, Puppeteer, Arsonist, Executioner, and Clerk. The archive confirms roles in the setup, not who holds them.
+
+Heidi’s N1 group result was accurate: Bob flipped Clerk and Carol flipped Vanilla, so the group did not identify the holder by itself. Her later group results likewise did not identify individuals.
+
+Alice reported Erin Evil, Carol Evil, and Grace Evil. Carol flipped Vanilla, so that check was wrong or affected by framing. Alice voted Guilty on Carol, then No on Bob’s nomination and Innocent at his trial; Bob flipped Clerk. This is a strong reason to scrutinize Alice, not conclusive proof by itself. Erin’s protection account is consistent with Heidi’s report that she survived an attack. My Guilty votes on Carol and Bob were mistaken on Carol and correct on Bob."
+Frank died (killed by Cardinal's curse). Their role was Scout. Their last will: "Frank, Village Scout (Good). Scout results show groups only, not roles or alignments. N1: Dave, Frank, Grace separate. N2: Frank, Grace, Ivan separate. N3: Dave, Grace, Ivan separate. N4: Alice, Erin, Frank separate. Heidi's Surveyor pools: N1 {Bob, Carol, Dave} Clerk; N2 {Judy, Mallory, Alice} Archivist; N3 {Frank, Grace, Ivan} Executioner. I am not the Executioner. Trust votes and mechanical results over pool talk. Alice's Evil reads on Erin and Carol conflict with the Katana attack on Erin and Carol's Vanilla role."
+The game is over. Winners: Mallory.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 5: correct
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Mallory
+Cost by player (USD):
+  Alice (Fabricator)        $0.0912   46 calls  claude-haiku-5.5
+  Bob (Clerk)               $0.0635   40 calls  gpt-6-luna
+  Carol (Vanilla Villager)  $0.0432   26 calls  claude-haiku-5.5
+  Dave (Cardinal)           $0.0563   33 calls  gpt-6-luna
+  Erin (Medic)              $0.3120   39 calls  gemini-3.8-flash
+  Frank (Scout)             $0.0743   36 calls  claude-haiku-5.5
+  Grace (Executioner)       $0.2734   35 calls  gemini-3.8-flash
+  Heidi (Surveyor)          $0.2729   33 calls  gemini-3.8-flash
+  Ivan (Puppeteer)          $0.0899   47 calls  claude-haiku-5.5
+  Judy (Archivist)          $0.0734   38 calls  gpt-6-luna
+  Mallory (Arsonist)        $0.0660   38 calls  gpt-6-luna
+  Moderator                 $1.4871   17 calls  claude-opus-5.5
+  Night checks              $0.4549    5 calls  claude-opus-5.5
+  Strategy review           $0.3086    1 calls  claude-opus-5.5
+  Log review                $0.3638    1 calls  claude-opus-5.5
+  Total                     $4.0306  435 calls

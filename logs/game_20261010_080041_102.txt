@@ -1,0 +1,86 @@
+Setup:
+  Alice    seat 1  Cartographer      anthropic/claude-haiku-5.5
+  Bob      seat 2  Puppeteer         anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Accountant        anthropic/claude-haiku-5.5
+  Frank    seat 6  Smuggler          anthropic/claude-haiku-5.5
+  Grace    seat 7  Vigilante         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Arsonist          anthropic/claude-haiku-5.5
+  Ivan     seat 9  Fortune Teller    anthropic/claude-haiku-5.5
+  Judy     seat 10 Clerk             anthropic/claude-haiku-5.5
+  Mallory  seat 11 Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Alice (public): Alice here. I have no claim and no reads yet. I'd like to hear everyone's first thoughts before anyone is nominated.
+Bob (public): Bob here. No claim and no reads yet. Day 1 is too early to nominate anyone on nothing, so I'd like to hear specifics from people before we start voting.
+Carol (public): Carol here. No claim and no reads yet. Agree with Alice and Bob: no nominations on nothing. I'll watch first claims and PM patterns before forming reads.
+Dave (public): Dave here, Vanilla Villager, no night action. Agree no Day 1 nominations on nothing. I'll watch who pushes early votes and who DMs whom.
+Erin (public): Erin here. No claim and no reads yet. Agree no Day 1 nominations on nothing. I'll watch who pushes early votes and who DMs whom.
+Frank (public): Frank here, no claim yet. Agree no Day 1 nominations on nothing. Anyone with a concrete read should state it with the evidence.
+Grace (public): Grace here, no claim yet. Agree no Day 1 nominations on nothing. I'll watch who pushes early votes and who DMs whom, and I'll judge trials on concrete contradictions.
+Heidi (public): Heidi here, no claim and no reads yet. Agree with the no-nomination-on-nothing line. I'll watch who pushes early votes and who PMs whom.
+Ivan (public): Ivan here, no claim and no reads yet. I agree with no Day 1 nominations on nothing. I'd like people to answer direct questions about their first reads.
+Judy (public): Judy here, no claim and no reads yet. Agree with waiting before any nomination. I'd like anyone with a claim to state it now, with what they plan to do tonight.
+Mallory (public): Mallory here, Vanilla Villager, no night action and no information. I agree with waiting. Anyone with a power role, please keep tonight's targets private and bring checkable results to the Day, not guesses.
+Bob (public): still no read. I agree with waiting. Any claimant, please give your results with a clear night number so we can check them against each other.
+Dave (public): no new read yet. Anyone who has sent or received a Day 1 private message, please say so publicly so we can map the clusters before any nomination.
+Frank (public): Frank again, still no claim or read. I agree: no nomination until there are checkable results. Night 1 claimants, post your results with the night number after tonight.
+Dave (public): still no new read. Reminder: if nobody dies for three Nights and three Days, everyone loses, so we can't wait forever. Claimants, post your Night 1 results on Day 2 so we have something to vote on.
+Erin (public): still no read. Agree nobody should be nominated until Night 1 results are in, and I'd rather see concrete results than guesses.
+Judy (public): Judy here. Agree we should wait for Night 1 results before any vote. I'll post a concrete read once there is something to check.
+Dave (public): still no new read. Night 1 claimants, post your results at the start of Day 2 so we have something checkable before any vote.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Frank, Judy) Bob (Yakuza chat): Night 1 plan from Bob: no Katana attack tonight, so we keep our power intact and avoid revealing a kill this early. Katana stays with me (Bob). Frank and Judy: hold your swaps and rig for a later Day. I will not use my puppet token on Night 1. Vote target: none. Object now if you disagree.
+(to Bob, Frank, Judy) Frank (Yakuza chat): Frank agrees with Bob's plan: no Katana attack tonight, Katana stays with Bob, no target. I'm holding my swaps for a later Day. Ready.
+(to Bob, Frank, Judy) Judy (Yakuza chat): Judy agrees with Bob and Frank: no Katana attack tonight, Katana stays with Bob, no target. I won't use my clerk token tonight and I'm holding it for a later Day. No teammate PMs on Day 1. Ready.
+Night actions:
+  Alice (Cartographer): no action
+  Bob (Puppeteer): no role action; Katana vote: Bob holds, attacks None
+  Carol (Oracle): target Ivan; guessed role Vanilla Villager; "Oracle guess on Ivan as Vanilla Villager (plan recorded for will)."
+  Erin (Accountant): target Heidi
+  Frank (Smuggler): no role action; Katana vote: Bob holds, attacks None
+  Grace (Vigilante): no action
+  Heidi (Arsonist): target Bob; "Douse Bob"
+  Judy (Clerk): no role action; Katana vote: Bob holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
+(to Carol) Moderator (private): Night 1 result: You guessed that Ivan is a Vanilla Villager. Your guess was wrong.
+(to Erin) Moderator (private): Night 1 result: You audited Heidi. At the end of the night, Heidi has 0 tokens in total.
+(to Heidi) Moderator (private): Night 1 result: You doused Bob.
+(to Ivan) Moderator (private): Fortune Teller, start of Day 2: your two numbers for last night are 2 and 2 (you aren't told which is which: one is how many players were visited, the other how many players visited anyone).
+(to Bob, Frank, Judy) Moderator (private): Yakuza, Night 1 summary: Bob chose no Puppeteer action. Frank chose no swap. Judy chose not to rig the vote. The Katana stays with Bob, and by your vote there was no Katana attack.
+[Moderator summary] Night 1: No attacks, no deaths. Carol (Oracle) guessed Ivan = Vanilla Villager: wrong (Astral). Erin (Accountant) audited Heidi: 0 tokens. Heidi (Arsonist) doused Bob (status doused). Yakuza: no actions, Katana stays with Bob, no attack. Visits: Erin->Heidi, Heidi->Bob. Fortune Teller Ivan told 2 and 2. Alice spent no map token; code sends group sizes.
+(to Alice) Moderator (private): Tonight's visit groups have sizes 3, 1, 1, 1, 1, 1, 1, 1, 1.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Carol (public): nothing checkable to share yet. I'll post any real result once it's useful for a vote.
+Dave (public): nobody died Night 1, so no kill happened. Any Night 1 claimant, post your results now. I still won't nominate without checkable results.
+Erin (public): no new read yet. I'm holding my Night 1 result until there's a vote it can actually settle, since info roles are night targets. I won't nominate today.
+Frank (public): Frank here. Nothing new from me. I still want checkable Night 1 results before any vote, and I won't nominate on nothing.
+Ivan (public): Ivan here. I have a Night 1 numeric result, but it's ambiguous on its own, so I'm holding it for now. I won't nominate until we have more results to compare.
+Judy (public): Judy here. Still no read. Ivan, when you're ready, please state your Night 1 numeric result and what it measures. We can check it against other claims before anyone is nominated. I won't nominate on nothing.
+Mallory (public): Mallory here, Vanilla Villager, still no read. Ivan, please say what your Night 1 number measures and what it is, so we can check it against other claims. No nomination from me until we have something checkable.
+Alice (public): Alice here. I hold a Night 1 result about visit links, not alignment. I'll state it with a claim once there's a second night to compare against. No nomination from me today.
+Bob (public): Bob here, still no claim or read. Ivan and Alice, please state your Night 1 results plainly, with what each one measures, so we can compare them before anyone votes.
+Carol (public): Carol here. I also hold a Night 1 result, but it's a role-specific check that could expose a living player, so I'll share it with a claim once there's a second night to compare. No nomination from me today.
+Dave (public): Dave here, still Vanilla Villager. Ivan, Alice and Carol all say they hold Night 1 results, but none has stated one plainly. Please post them now with what each measures, so we have something to weigh before any vote. No nomination from me yet.
+Erin (public): I still hold my Night 1 result, an audit (a token count, not alignment). Ivan, Alice and Carol: please name the role your Night 1 result came from, and say what it reports. If that is too exposing, say what it measures in general terms. We can't vote on numbers nobody can place.
+Frank (public): Frank here. Ivan, Alice, Carol and Erin: each of you, please name your role and the player you acted on or audited for Night 1, so we can cross-check the results. No nomination from me today.
+Grace (public): Grace here. Four of you now claim Night 1 results (Ivan, Alice, Carol, Erin), and none has named a role plus a target. Name your role and who you acted on, or I'll treat each claim as unverified. No nomination from me today.
+Heidi (public): Heidi here, no claim. Grace's point stands: Ivan, Alice, Carol and Erin, name your role and target, or your numbers can't be weighed. No nomination from me today.
+[Claim] Ivan: Fortune Teller. N1 numbers: 2 and 2 (visited count and visitor count, order unknown).
+Ivan (public): Ivan here, and I'm claiming Fortune Teller. My Night 1 numbers are 2 and 2: one is how many players were visited, the other how many players visited anyone. I can't tell which is which. I'll post my Night 2 numbers at the start of Day 3. Alice, Carol and Erin, please name your roles too.
+Judy (public): Judy here. Ivan, a Fortune Teller claim with 2 and 2 on a night with no kill is hard to check on its own. Alice, Carol and Erin, please name your roles and targets as Grace asked, or the four Night 1 results stay unweighed. No nomination from me today.
+Mallory (public): Mallory here, still Vanilla. Alice, Carol and Erin: name your role and target as Grace and Frank asked, or your Night 1 results stay unweighed. Ivan: when you post Night 2 numbers, say which of your two numbers is the visited count.
+[Claim] Alice: Cartographer. N1 visit groups: 3,1,1,1,1,1,1,1,1
+Alice (public): Alice here. I'm claiming Cartographer, which matches the visit-link result I mentioned earlier. Night 1 visit groups were 3,1,1,1,1,1,1,1,1: one linked group of three players, and everyone else was alone. I have 2 map tokens left and will post group sizes each night. I can't tell who is in the group of three yet, so I won't nominate on it.

@@ -1,0 +1,64 @@
+Setup:
+  Alice    seat 1  Scout             anthropic/claude-haiku-5.5
+  Bob      seat 2  Lookout           anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Executioner       anthropic/claude-haiku-5.5  {'target': 'Judy'}
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Diviner           anthropic/claude-haiku-5.5
+  Heidi    seat 8  Clerk             anthropic/claude-haiku-5.5
+  Ivan     seat 9  Fabricator        anthropic/claude-haiku-5.5
+  Judy     seat 10 Jester            anthropic/claude-haiku-5.5
+  Mallory  seat 11 Fortune Teller    anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Carol (public): Carol here. No claim yet. I'd rather not give Day 1 information away. Watch for early PM clusters and who pushes nominations.
+Dave (public): Dave here, no claim yet. Like Carol, I'd rather gather information before pushing anyone to trial. I'll be watching who pushes nominations and who sends early private messages.
+Erin (public): Erin here, Vanilla Villager with no night action. I agree with Carol and Dave: no early nominations. I'll watch who sends early PMs and who pushes for a trial.
+Frank (public): Frank here, Vanilla Villager with no night action. Agree no early nominations. I'll watch who pushes for trials and who sends early PMs.
+Grace (public): Grace here, no claim yet. Agree with no early nominations. I'll judge who pushes for votes and who pushes trials early.
+Heidi (public): Heidi here, no claim yet. Agree with no early nominations. I'll watch who pushes trials and who starts PM clusters.
+Ivan (public): Ivan here, no claim yet. Agree we shouldn't rush nominations on Day 1. I'll be watching who pushes trials early and who asks the most questions.
+[Claim] Judy: Vanilla Villager
+Judy (public): Judy here, Vanilla Villager. Seven of us posted nearly the same no-nomination line, and nobody has given a real read yet. I won't vote on thin evidence, but I want to hear who is actually reasoning about this.
+Mallory (public): Mallory here, no claim yet. I agree with no early nominations. Judy, you volunteered a Vanilla claim unprompted; I'm noting that. Let's see who asks real questions.
+Alice (public): Alice here, no claim yet. I agree with no early nominations. Judy, you volunteered a Vanilla claim unprompted on Day 1, which is worth remembering. I'm listening for real reasoning, not copied lines.
+Bob (public): Bob here, no claim yet. Judy, nobody asked for your role on Day 1, so why did you volunteer it? I'd like to hear what made you feel the need to say it.
+Carol (public): Judy's unprompted Vanilla claim is the only real signal so far. Judy, what made you feel you needed to say it on Day 1? I'll judge answers to that, not speed.
+Dave (public): Judy, you were the only one to volunteer a role unprompted, and when Carol and Bob asked why, you dodged. Please answer that directly before I form a read on you.
+Erin (public): Judy, you were asked twice why you volunteered your role on Day 1 and haven't given a direct reason. Please answer that before anyone weighs you.
+Frank (public): Judy still hasn't given a direct reason for volunteering her role on Day 1. I'm not nominating anyone until she answers that, and I'd like to hear from players who have actually reasoned about Day 1 information.
+Grace (public): Agree with Frank: Judy still owes a direct reason for volunteering her role. No nominations until that's answered.
+Heidi (public): Heidi here, no claim. Agree with Grace and Frank: Judy still owes a direct answer on why she volunteered her role. I'm holding nominations until she answers.
+Ivan (public): Ivan here, still no claim. Judy's answer is fair to ask for, but I'd rather see whether she responds directly than pile on before we have real reads. Nobody should nominate until someone gives a concrete reason.
+Judy (public): Direct answer: I volunteered Vanilla because a plain claim costs nothing on Day 1, and I'd rather be questioned now than look like I'm hiding something. I'm not pushing a nomination yet, but I won't hide behind silence either. Ask me something specific.
+Mallory (public): Mallory here. Judy's reason is plausible, but a Vanilla claim on Day 1 gives the Village nothing to check. I'm not nominating yet. Judy, if Frank's suspicion of you grows, what would you need to see from others to change your vote?
+Alice (public): Judy, your answer was plausible but generic. Concrete question: which specific player's Day 1 behavior worries you most, and what exactly did they do?
+Bob (public): Bob here. Judy's answer was generic and didn't address why she volunteered Vanilla on Day 1. I'd like her to answer Alice's specific question before anyone nominates.
+Carol (public): Judy's answer still doesn't say why a plain Vanilla claim was needed on Day 1. Judy, what would you expect that claim to protect you from? Until someone gives a concrete read, I'm not nominating.
+Dave (public): Judy's answer is still generic. A Vanilla claim costs nothing, which is exactly why an unprompted one is suspicious. Unless she names a specific threat she was guarding against, I'm leaning toward nominating her.
+Erin (public): Erin here. Dave, a generic Vanilla claim is weak evidence, but it isn't a crime. I want a concrete contradiction from Judy's own words or from someone's actions before anyone is nominated. I'm not nominating yet.
+Frank (public): Agree with Erin. Dave, 'a Vanilla claim costs nothing' is a reason to doubt it, not a contradiction. Judy's answer is consistent with her own words so far. I want a concrete contradiction before any nomination, so I'm not nominating yet.
+Grace (public): Grace here. Agree with Erin and Frank: a Vanilla claim alone isn't a contradiction. Dave, you're leaning toward nominating Judy. Beyond the claim itself, what has Judy actually done today that makes you push a trial?
+Heidi (public): Heidi here. Dave, Judy's answer is thin but consistent so far. I want a concrete contradiction in her own words or actions before anyone is nominated, so I'm not nominating yet.
+Ivan (public): Ivan here. Judy's answer was consistent enough for me. Dave, what has Judy actually done on Day 1 that makes you want a trial? A Vanilla claim alone isn't enough.
+Judy (public): Judy here. Dave, if you think I'm the problem, put a nomination on the table. I'd rather the Village test my Vanilla claim at a trial than let the day stall on talk. I still have no real read on anyone, so I'm not nominating yet.
+Mallory (public): Mallory here. Dave, pushing a Judy trial on a Vanilla claim alone isn't new evidence. Judy's answers have been consistent so far. I want a concrete contradiction before anyone is nominated, so tell us what specifically you see.
+Alice (public): Still no nomination from me. Dave, name a concrete contradiction in Judy's words or actions, or drop the push.
+Dave (public): Judy, you say a Vanilla claim costs nothing, but you still haven't said what you'd do if the Village found your claim false. Answer that directly and I'll stop pushing. Until then I'm keeping a nomination ready for later.
+Erin (public): Erin here. Still no nomination from me. Dave, you've asked Judy the same question twice. Name a concrete contradiction in her words or actions, or drop the push.
+Frank (public): Still no nomination from me. Dave has pressed the same question twice, and I've seen no concrete contradiction from Judy yet.
+Grace (public): Grace here. Agree with Erin and Frank: Dave's repeated question isn't a contradiction. I'm not nominating Judy today; Day 1 information is too thin for a trial.
+Heidi (public): Heidi here. Still no nomination from me. Dave, you've asked Judy the same question twice. If you want a trial, name the concrete contradiction you see; otherwise we're just looping on the same line.
+Ivan (public): Ivan here. Agree with Grace and Heidi: no nomination on thin Day 1 info. Dave, Judy has answered your question twice, so name a concrete contradiction or drop the push.
+Judy (public): Dave, if you think my Vanilla claim is false, nominate me and let the vote decide. I won't argue it further.
+Mallory (public): Still no nomination from me. Dave, Judy has answered your question, so name a concrete contradiction or drop the push. Judy's Vanilla claim is unverified, but it isn't a contradiction.
+Dave (public): My concrete point on Judy is that she has never said what she would do if the Village found her Vanilla claim false. I'm not nominating yet, but that unanswered question is why I'm still on her.
+Ivan (public): Ivan here. Dave, Judy's answers have been consistent and a Vanilla claim alone isn't a contradiction. I'm not nominating on Day 1 information.
+Judy (public): Judy here. Dave has asked the same question three times and nobody has moved to a vote. Dave, if you believe I'm Yakuza, nominate me now and let the Village decide. I won't argue it further.
+Dave (public): Judy's invitation is fair. Her unprompted Vanilla claim is still the only concrete thing we have, so if no real reason emerges by Day 2, I'll nominate her.
+Judy (public): Dave, if you think I'm Yakuza, nominate me now. I'd rather the Village vote than let the day stall.

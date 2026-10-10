@@ -1,0 +1,58 @@
+Setup:
+  Alice    seat 1  Prosecutor        anthropic/claude-haiku-5.5
+  Bob      seat 2  Grunt             anthropic/claude-haiku-5.5
+  Carol    seat 3  Diviner           anthropic/claude-haiku-5.5
+  Dave     seat 4  Lookout           anthropic/claude-haiku-5.5
+  Erin     seat 5  Ex-Con            anthropic/claude-haiku-5.5
+  Frank    seat 6  Jester            anthropic/claude-haiku-5.5
+  Grace    seat 7  Archivist         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Tracker           anthropic/claude-haiku-5.5
+  Ivan     seat 9  Pharmacist        anthropic/claude-haiku-5.5
+  Judy     seat 10 Seer              anthropic/claude-haiku-5.5
+  Mallory  seat 11 Oracle            anthropic/claude-haiku-5.5
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Frank (public): Nobody has claimed anything yet. I want Mallory to explain why they're quiet before we nominate anyone.
+Grace (public): Grace here. I have no information yet, so I won't nominate on Day 1 without results. I'd like to hear everyone's read first, starting with who is pushing for a quick nomination and why.
+Heidi (public): Heidi here, no results yet. I agree with Grace: no Day 1 nomination without information. Alice and Bob, what are your first reads?
+Ivan (public): Ivan here, no information yet either. I agree with Grace and Heidi: no Day 1 nomination without results. Frank, why push Mallory this early? Let's hear more reads first.
+Judy (public): Judy here, no results yet and no claim on Day 1. I agree with no nomination without information. Mallory, Frank asked why you've been quiet, so please answer that before anyone pushes a vote.
+Mallory (public): Mallory here. I've been quiet because I have no results to share and I'd rather watch how people push before I talk. Frank, you singled me out on Day 1 with no evidence, so explain what you're basing that on before anyone is nominated.
+Alice (public): Alice here. I agree there should be no Day 1 nomination without information. Frank, you named Mallory with no stated basis, so explain that. Mallory, a quiet first day is not evidence by itself. I'll be watching who pushes nominations early and why.
+Bob (public): Bob here, no results yet. I agree with no Day 1 nomination without information. Frank, you named Mallory with no stated basis, so give one. Mallory, answer Frank's question directly. Let's hear more reads before anyone is nominated.
+Carol (public): Carol here, no results and no claim yet. I agree there should be no Day 1 nomination without information. Frank, you named Mallory with no basis, so I want your reasoning before anyone is pushed. I'll be watching who keeps pushing early nominations.
+Erin (public): Erin here, no results yet. I agree with no Day 1 nomination without information. Frank, what is your actual basis for pushing Mallory? Let's hear that answer before anyone is nominated.
+Frank (public): Frank here. My basis was only Mallory's silence, which is thin, and I admit that. But Alice, Bob, Carol and Erin all posted nearly the same line at me. Alice, why did you pin me so fast without a read on anyone else?
+Grace (public): Grace here. Frank, silence alone is a weak basis, and you've admitted that. Mallory has answered, so the question now is whether you have anything beyond it. I'm not nominating anyone until someone has a result or a concrete contradiction.
+Heidi (public): Heidi here, still no results, so I won't nominate. Frank, your basis is thin and you've admitted it. Mallory, I'd like your read on who pushed too fast. Let's wait for information before anyone is voted.
+Ivan (public): Ivan here. Dave hasn't posted a read yet. Dave, what do you make of Frank's push on Mallory, and whose answers have you found most convincing so far?
+Judy (public): Judy here. Still no results, so I won't nominate. Dave, you've been asked twice now. Give us your read on Frank's push and who you find convincing.
+Mallory (public): Mallory again: I still have no results and won't nominate without information. Dave has been asked twice by Ivan and Judy, so Dave, please answer with your read on Frank's push and who you find convincing.
+Alice (public): Alice here. Dave has been asked twice and still hasn't answered, so Dave, give your read on Frank's push now. Frank's basis was thin, but I want to know who is steering toward a nomination and why.
+Bob (public): Bob here. Still no results, so I agree with waiting. Frank's case rests on silence alone, so drop it unless you have more. Dave, your answer matters more than anyone's push right now.
+Carol (public): Carol here. I agree no Day 1 nomination without results. Dave has been asked twice, so please answer. Frank, your push on Mallory still rests on nothing new.
+Dave (public): Dave here. Frank's push on Mallory rests only on silence, which Frank admits, so I won't back a nomination on that. Frank, bring a real read or drop it. I find Grace's and Heidi's wait-for-information stance most sensible, and I have no results to share yet.
+Frank (public): Frank again. Dave's answer repeats Grace and Heidi, which adds nothing. My push on Mallory was weak and I admit it. If someone shows a concrete contradiction in how I've played, I'll nominate myself to test it. Until then, Dave, tell us which of Alice's or Erin's lines you find off.
+Grace (public): Grace here. Nobody has results yet, so no nomination today. Dave, name one concrete line from Alice or Erin that you find off. Otherwise I'd rather we wait for Night 1 results.
+Ivan (public): Ivan here. Frank has pushed Mallory twice on silence alone. Dave, please name the concrete line from Alice or Erin you find off, as Grace asked. Otherwise let's wait for Night 1 results.
+Mallory (public): Mallory here, still no results and no nomination from me. Dave has now been asked three times, so please just name one concrete line from Alice or Erin that you find off. Frank, your push is still silence-only, so drop it or bring a real read.
+Alice (public): Alice here. Frank, my reason for pressing you was that you named Mallory with no basis, and you still have no second reason. Dave, you say Frank's push is weak, but you haven't named a concrete problem with Frank either. Let's wait for Night 1 results as Grace suggested.
+Carol (public): Carol here. Agreed, no nomination without Night 1 results. Dave, you still haven't named a concrete line from Alice or Erin, so please do that. Frank's push stays silence-only unless he brings more.
+Dave (public): Dave here. Concrete point: Alice, Bob, Carol and Erin posted near-identical lines at Frank within minutes. I'll watch whether that group keeps pushing together. No nomination until Night 1 results.
+Erin (public): Erin here. Dave, we all pressed Frank for the same reason, his silence-only push, so matching lines are not a bloc. Naming four players for echoing each other isn't a concrete contradiction. Let's wait for Night 1 results.
+Frank (public): Frank again. Dave's bloc point is fair, so I'll accept it as a read on Alice. My own push on Mallory was thin, and I'm now the most suspicious player here on that basis alone. If nobody brings a result by Night 1, I'll nominate myself and let the town decide.
+Ivan (public): Ivan here. Frank, self-nominating before any results would only hand the town a Day 1 hang on silence. Let's see Night 1 results first.
+Mallory (public): I agree no nomination before Night 1 results. Dave's bloc point is weak, since four players echoing one line is not a contradiction. Frank is still the only one who has named a target.
+Alice (public): Alice here. Agreed: no Day 1 nomination without Night 1 results. Frank, if you self-nominate with no new information, I'll vote No.
+Bob (public): Bob here. Agreed, no Day 1 nomination before Night 1 results. Frank, if you self-nominate with no new information, I'll vote No.
+Frank (public): Frank here. Alice and Bob, you've both pledged No on any self-nomination I make, so the Day 1 question is settled. Alice still owes an answer on why she pinned me first, and that is the question I'd want answered before Night 1.
+Ivan (public): Ivan here. No nomination today; we wait for Night 1 results as agreed. Frank, Alice has answered your question, so let's move on.
+Bob (public): Bob here. Dave, four players pressing the same silence-only push on Frank is not a bloc. I want a concrete contradiction before anyone is nominated, and I'll wait for Night 1 results.
+Carol (public): Carol here. Agreed, no nomination before Night 1 results. Dave, the bloc point is four players echoing one line, not a contradiction. Name a concrete problem with Frank or drop it.
+Frank (public): Frank here. I'm still the most suspicious name on my own silence-only push. If no result appears by Night 1, I stand by self-nominating.
+Ivan (public): Ivan here. Agreed: no Day 1 nomination before Night 1 results. Frank, a self-nomination on silence alone would only hand the town a Day 1 hang, so let's wait for results.
+[Feedback from Frank] The nomination cost (3.00) exceeds my 2.60 budget, so I can't nominate this round; the minimum public message also costs more than I have.
