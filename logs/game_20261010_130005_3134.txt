@@ -381,3 +381,138 @@ Alice (public): Alice, Scout, voting Guilty on Dave. Mechanically, Dave was a si
 Bob (public): Bob, Coroner, plainly: Guilty on Dave. My Night 3 exact result says Judy was Ritualist, so Judy was Yakuza. Ivan then died to a Katana on Night 3, so a living Yakuza still holds the blade. Dave voted Innocent on Judy and on Erin, and Heidi's Night 1 Sheriff check reads Dave Evil. Dave claims no visits on Nights 1 to 3, which fits a hidden Yakuza or Ex-Con. Dave, if you are Good, name who you think killed Ivan.
 Carol (public): Carol, voting Innocent on Dave. The Guilty case is one Sheriff read, Heidi's Night 1 Evil, plus the fact that Dave made no visits. A no-visit record fits an Ex-Con's hidden random visit just as well as a Good player. Frank's Oracle hits and Bob's Coroner read are claims nobody can check yet. Erin was acquitted without a visit-level result, and Dave deserves the same standard. Before anyone votes Guilty, I want a result that puts Dave on a Katana or Ex-Con visit.
 Dave (public): Dave, plainly: I visited nobody on Nights 1 to 3 and I have no role that can hit anyone. The Guilty case against me is Heidi's Night 1 Sheriff read, which nobody can check, plus the fact that I made no visits. A no-visit record fits many players, and it is not a Katana result. Ivan died on a night where the only mechanical clue is a group map from Niaj that names no visit. The Village already acquitted Erin on the same kind of argument. Before you hang a second player, ask for a visit-level result that actually names a visitor to Ivan or to me.
+Trial votes on Dave: 7 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Alice, Bob, Frank, Grace, Heidi, Mallory, Niaj; Innocent - Carol, Dave, Erin
+Dave is executed by hanging (7 Guilty of 10 votes; 6 needed).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave, Village-minded. I had no night action on Nights 1 to 3 and submitted no role action. Judge claims by hard results: visit logs, group sizes, token audits and exact-role checks. Heidi's Sheriff read on me is one claim, and Mallory's Seer pair names Erin, which is also one claim. Check both against Night 4 results before any trial. Niaj's group needs names and visits, not sizes alone. Ivan's Medic protection story cannot be verified from his own word. Vote on evidence, not on slips or on who pushed a nomination hardest."
+
+===== NIGHT 4 =====
+(to Carol, Erin) Carol (Yakuza chat): Carol: Holder stays Erin, target Heidi. She is the Sheriff who read Dave Evil, and Ivan's Medic protection is gone, so she has no cover tonight. Frank's Oracle hits and Bob's Coroner read are the next threats. Erin, submit holder Erin and target Heidi, no swap needed. No daytime PMs. Ready.
+(to Carol, Erin) Erin (Yakuza chat): Erin: agreed. Holder stays Erin, target Heidi, no swap, no puppet, no daytime PMs. Ready.
+Night actions:
+  Bob (Coroner): target Dave; 1 token(s); "Examining Dave, who was executed on Day 4 before this night began, as Coroner."
+  Carol (Puppeteer): no role action; Katana vote: Erin holds, attacks Heidi
+  Erin (Smuggler): no role action; Katana vote: Erin holds, attacks Heidi
+  Frank (Oracle): target Erin; guessed role Wiretap; "Oracle guess: Erin is a Wiretap."
+  Grace (Surveyor): no action
+  Heidi (Sheriff): target Niaj; "Sheriff investigation of Niaj."
+  Mallory (Seer): no action
+  Niaj (Cartographer): no action
+Katana: Erin holds it and attacks Heidi.
+(to Bob) Moderator (private): You examined Dave: their role was Wiretap. 1 coroner token left.
+(to Heidi) Moderator (private): Night 4 result: You investigated Niaj: Not Evil. You were attacked by the Katana tonight and you died.
+(to Frank) Moderator (private): Night 4 result: You guessed that Erin is a Wiretap. Your guess was wrong.
+(to Mallory) Moderator (private): Night 4 Seer result (random pair): Heidi and Carol have different alignments. You have 0 seer tokens.
+(to Erin) Moderator (private): Night 4 result: You held the Katana and attacked Heidi. Your attack succeeded. Yakuza actions tonight: Carol chose no action. Erin chose no swap (2 swap tokens left) and, holding the Katana, attacked Heidi.
+(to Carol) Moderator (private): Night 4 Yakuza actions: Carol chose no action (1 puppet token left). Erin chose no swap and, holding the Katana, attacked Heidi.
+[Moderator summary] Night 4: Katana (holder Erin, by Carol+Erin vote) attacked Heidi (Standard vs None) — Heidi died. Heidi's Sheriff check on Niaj: Not Evil. Frank's Oracle guess Erin=Wiretap: wrong. Bob examined Dave (Coroner, token spent via op). Mallory random pair Heidi/Carol: different. No swap, no map, no survey. Visits: Erin->Heidi, Heidi->Niaj. Game continues (Village 6, Yakuza 2 alive).
+(to Niaj) Moderator (private): Tonight's visit groups have sizes 3, 1, 1, 1, 1, 1, 1.
+(to Alice) Moderator (private): Tonight Bob, Erin and Mallory were each in a different visit group.
+
+===== DAY 5 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, Sheriff (Good). N1: Dave Evil. N2: Mallory Not Evil; I was Katana-attacked and survived. N3: Erin Not Evil. Dave remains my lead on the N1 Evil result. Judge claims by mechanical results, group sizes and visit logs, not by single claims or single slips."
+Speaking order today goes around the circle in seat order, starting with Grace.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Night check] Night 4: correct
+Grace (public): Grace, Surveyor. Dave's death leaves the Wiretap in Carol or Erin only if Dave wasn't it, and Heidi's Dave Evil read makes him the likely one. Erin and Frank, state your Night 3 visit targets in one sentence. No nomination yet.
+Mallory (public): Mallory, Seer, plainly. My N4 random pair was Heidi and Carol, and they have different alignments. Heidi claimed Sheriff and reads Good, so Carol is not Good. My N1 pair Niaj/Erin differed, and Erin matches Frank's Oracle read as Good, so Niaj is not Good. Carol and Niaj are my read. Carol, state your N3 and N4 actions in one sentence. Niaj, your Cartographer claim needs checkable names. No nomination from me yet.
+Niaj (public): Niaj, Cartographer, Good. N4 sizes were 3,1,1,1,1,1,1: Heidi's killer and one other player sit in her 3-group, and everyone else had no visit that night. Mallory's N4 pair (Heidi and Carol differ) puts Carol not Good if Heidi is Good. Carol, Erin and Frank: one sentence each on your N3 and N4 targets. Mallory: your N1 and N3 pairs can't both hold alongside Frank's Oracle hits, so which one do you stand by?
+Alice (public): Alice, Scout, plainly. My N4 result: Bob, Erin and Mallory were each in different groups, so Heidi's 3-group holds at most one of them. Niaj's 3-group is Heidi, her Katana killer and one other. Anyone in that group, state your N4 target in one sentence. I'm not nominating yet, and I want that answer before any hang.
+Bob (public): Bob, Coroner: my exams showed Judy (Ritualist) and Dave (Wiretap) were Yakuza, and Ivan's N3 Katana killer had to visit Ivan from Niaj's 5-group. Frank and Mallory are confirmed Good by Oracle and Seer, and Heidi's N3 check was on Erin, so Erin is the one unexplained candidate. Mallory's N4 pair also puts Carol not Good. Erin and Carol, state your N3 and N4 visits in one sentence. I vote Yes on Erin unless she names a visit to Ivan.
+Carol (public): Carol, no nomination. Heidi's Katana visitor on N4 has to sit in her 3-group, so the third member visited Heidi or the holder. Niaj, you have that group size: name the third member and their N4 target in one sentence. I'm voting Innocent on Erin again unless a visit-level result puts her on a kill.
+Erin (public): Erin, Village-facing: no night action on Nights 1 to 4 and no nomination. Niaj, your N4 3-group holds Heidi, her killer and one other: who is the third, and did Heidi's Sheriff check reach them? Frank, Mallory's N3 pair put you with Erin, so state plainly which players your Oracle guesses targeted. I vote No on any nomination until a visit-level result names someone.
+Frank (public): Frank, Oracle, Good. My N4 guess on Erin as Wiretap was wrong, so Erin isn't Wiretap. Mallory's N3 pair put Erin on my alignment, which is Good, so Erin is Good. Her N1 pair Niaj/Erin differs, so Niaj is not Good. Her N4 pair Heidi/Carol differs, and Heidi reads Good, so Carol is not Good. Niaj and Carol: state your N4 visits in one sentence each.
+Grace (public): Grace, Surveyor, Good. Mallory's N3 pair put Erin and Frank on one alignment, so if Erin is not Good, Frank is not Good either. Mallory's N1 pair (Niaj and Erin differ) makes Erin not Good, since Niaj is the only Cartographer option left after Judy's Ritualist result. Frank's Oracle hits rest on Mallory's word alone. Frank, state your N3 visit in one sentence. Carol and Erin, one sentence each on your N4 targets.
+[ERROR player_error] Mallory (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+[ERROR effort_fallback] Mallory (haiku-5.5): answer cut off at max_tokens at high effort, retrying at medium
+Mallory (public): Mallory, Seer, plainly: my N4 random pair was Heidi and Carol, and their alignments differ. Heidi is Sheriff, her Not Evil results on me and Erin match Frank's Oracle hits and my own checks, so Heidi reads Good and Carol is not Good. Carol has also voted Innocent on Judy, Dave and Erin, and Bob's exams put Judy and Dave in Yakuza. I'm nominating Carol now.
+Mallory nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Mallory, Niaj, Alice, Bob, Frank, Grace; No - Carol, Erin
+Nomination votes on Carol: 6 Yes (the votes are secret).
+Carol is put on trial (6 Yes).
+Carol (public): Carol, Village-facing, on trial. I used no night action on Nights 1 to 4 and hold no role result, so there is nothing for Mallory's pair to check against. Mallory's N4 pair is random, and her N2 account already changed from a chosen Ivan/Bob pair to a random one with no action. Heidi's Sheriff read is dead and unverifiable, so a random pair against Heidi is not a hang. My votes stand: Innocent on Judy, Erin and Dave, and No on nominations until a visit-level result. Niaj, name the third member of your N4 3-group and their target. Frank, give your N3 visit in one sentence. Don't hang on a pair.
+Erin (public): Erin, Village-facing: I vote Innocent on Carol. Mallory's N4 pair (Heidi and Carol) is a random pair, not a visit result, so it can't show Carol's alignment. Carol's trial rests on pairs and on her Innocent votes, which are not mechanical results. Niaj, you still haven't named the third member of your N4 3-group. Nobody should hang on a pair read before Night 5 results.
+Frank (public): Frank, Oracle, Good. I'm voting Guilty on Carol. My Oracle result confirms Mallory as a real Seer, and her random Night 4 pair put Heidi and Carol on different alignments. Heidi's Sheriff reads (Dave Evil, Mallory and Erin Not Evil) all fit a Good Heidi, so Carol is not Good. Carol voted Innocent on Judy and Dave, both Yakuza by Bob's Coroner exams, and has never named a night target. That is the record of a teammate giving cover. Erin's trial rested on pairs; Carol's rests on a Seer result plus that voting record.
+Grace (public): Grace, Surveyor, Good, voting Guilty on Carol. Mallory's N4 random pair put Heidi and Carol on different alignments, and Heidi's Sheriff record reads Good, so Carol is not Good. Carol voted Innocent on Judy and Dave, both Yakuza by Bob's exams. Erin is not Good by Mallory's N1 pair, since Niaj is the Cartographer by my N2 survey. Carol, name your N4 target in one sentence.
+Mallory (public): Mallory, Seer, plainly: I vote Guilty on Carol. My Night 4 random pair was Heidi and Carol, and their alignments differ. Heidi's Sheriff checks match my own results and Frank's Oracle hits, so she reads Good, which makes Carol not Good. Carol also voted Innocent on Judy and Dave, both Yakuza by Bob's Coroner exams. Niaj and Frank, state your Night 4 visits plainly before Night 5.
+Niaj (public): Niaj, Cartographer, Good. I vote Guilty on Carol. Mallory's N4 pair puts Carol not Good, and Frank and Grace also read her not Good. Carol voted Innocent on Judy, Dave and Erin. Bob's exams make Judy and Dave Yakuza, and Mallory's Night 1 pair makes Erin not Good. Carol, you claim no night action on Nights 1 to 4. Name your N4 target in one sentence and say whether you were in Heidi's 3-group. Heidi's killer had to sit with her, and Alice's result clears Erin, Bob and Mallory of that group.
+Alice (public): Alice, Scout, voting Guilty on Carol. Mallory's random Seer pair put Heidi and Carol on different alignments. Heidi was Katana-attacked twice, which fits her not being Yakuza, so she reads Good and Carol is not Good. Carol also voted Innocent on Judy and Dave, the two players Bob's Coroner exams put in Yakuza. Frank's Oracle hits confirm Mallory as Seer, and Mallory's N3 pair ties Erin to Frank's Good alignment, so Erin's acquittal stands. Niaj: name the third member of your N4 3-group, since your map is the only thing placing anyone near Heidi's killer.
+Bob (public): Bob, Coroner, plainly: Guilty on Carol. Carol voted Innocent on Judy and Dave, both Yakuza by my exact exams. Mallory's Seer pair puts Carol not Good, and Heidi, attacked by the Katana twice, is not Yakuza and reads Good. Carol, name your N4 target in one sentence.
+Carol (public): Carol, Village-facing, on trial. I used no night action on Nights 1 to 4 and hold no role result. Mallory's N4 pair (Heidi and Carol) is random, so it cannot show my alignment. Her Night 2 account changed from a chosen Ivan/Bob pair to a random one with no action, and her N1 and N3 pairs can't both hold beside Frank's Oracle hits. Niaj has named no member of any group, and has pushed Erin, Dave and now me to trial. Nobody has a visit-level result on me. I voted Innocent on Judy for the Ritualist slip she explained, and on Dave because one Sheriff read was the only case. Before you vote Guilty, ask Niaj for the names in the N4 3-group, and don't hang on a pair.
+Trial votes on Carol: 6 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Alice, Bob, Frank, Grace, Mallory, Niaj; Innocent - Carol, Erin
+Carol is executed by hanging (6 Guilty of 8 votes; 5 needed).
+Carol died (executed by hanging). Their role isn't revealed. Their last will: "Carol, Village. I have no role information to pass on. Judge claims by visit-level results, not group sizes or single slips. Frank's Oracle hits have been consistent with other reports, so test them against the next night result. Niaj's map and Mallory's changing Night 2 account both need a checkable visit. Bob's Coroner read on Judy is unverified until a second result backs it. Do not hang anyone on one claim. Good luck to the Village."
+
+===== NIGHT 5 =====
+Night actions:
+  Bob (Coroner): target Carol; 1 token(s); "Examining Carol, who was executed on Day 5 before this night began, as Coroner."
+  Erin (Smuggler): no role action; Katana vote: Erin holds, attacks Niaj
+  Frank (Oracle): target Niaj; guessed role Cartographer; "Oracle guess: Niaj is the Cartographer."
+  Grace (Surveyor): no action
+  Mallory (Seer): no action
+  Niaj (Cartographer): no action
+Katana: Erin holds it and attacks Niaj.
+(to Bob) Moderator (private): You examined Carol: their role was Puppeteer. 0 coroner tokens left.
+(to Frank) Moderator (private): Night 5 result: you guessed that Niaj is the Cartographer. Your guess was right.
+(to Mallory) Moderator (private): Night 5 result: your random pair was Grace and Erin. Their alignments are the same. You have 0 seer tokens left.
+(to Niaj) Moderator (private): Night 5: you were attacked with the Katana, and you died.
+(to Erin) Moderator (private): Night 5 result: you kept the Katana and it attacked Niaj. The attack succeeded. You chose no Smuggler action, so you still have 2 swap tokens. You are the only living Yakuza, so there are no teammate actions to report.
+[Moderator summary] Night 5: Erin (the only Yakuza left) kept the Katana and attacked Niaj with Standard vs. no Defense, so Niaj died (Katana). Bob examined Carol (examine op; code reports the result and his 0 tokens). Frank's Oracle guess (Niaj = Cartographer) was right. Mallory's random pair was Grace and Erin: same alignment, since Erin held the Katana at the end of the night and so appeared Good. Erin used no swap. No role-blocks. The only visit was Erin to Niaj. Still alive: Alice, Bob, Erin, Frank, Grace, Mallory. No win yet.
+(to Niaj) Moderator (private): Tonight's visit groups have sizes 2, 1, 1, 1, 1, 1.
+(to Alice) Moderator (private): Tonight Erin, Frank and Grace were each in a different visit group.
+
+===== DAY 6 =====
+Niaj died (killed by Katana). Their role isn't revealed. Their last will: "Niaj: Village Cartographer, claim unchanged. Map results: N1 sizes 4,1,1,1,1,1,1,1,1. N2 sizes 5,1,1,1,1,1,1,1; Mallory's group was Grace, Heidi, Ivan, Judy, Mallory. N3 sizes 5,2,1,1,1,1; Erin's group was Erin, Frank, Heidi, Ivan, Mallory. N4 sizes 3,1,1,1,1,1,1, with the group unnamed (I had no token left). Any claimed group must match these sizes and names. A Katana killer visits its victim from inside the victim's group. Trust mechanical results over claims and slips. Hang on contradictions, not vibes."
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Bob (public): Bob, Coroner, Good. I nominate Erin and vote Guilty. My exact results put Judy (Ritualist), Dave (Wiretap) and Carol (Puppeteer) in Yakuza, and Erin voted Innocent on all three. Erin's no-action record and Heidi's Night 3 Not Evil read on her fit a Katana holder, who reads Good that night. Niaj's Night 3 group put Ivan's killer among Erin, Frank, Heidi and Mallory, and Erin is the only one with no claim.
+Bob nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Bob, Frank, Grace, Alice; No - Erin, Mallory
+Nomination votes on Erin: 4 Yes (the votes are secret).
+Erin is put on trial (4 Yes).
+Erin (public): Erin, plainly: voting Innocent. I have no role result to post, and nobody has a visit-level result naming me. Heidi's Night 3 Sheriff check read me Not Evil. Mallory's Night 3 pair put Frank on my alignment, so Frank is either Evil or an Ex-Con who reads Evil, which makes his Oracle claim the thing to test, not my trial. Mallory also changed her Night 2 account from a chosen Ivan/Bob pair to a random pair with no action. Before anyone votes Guilty, name a visit that reaches me. I'll vote on that.
+Frank (public): Frank, Oracle, Good. I'm voting Guilty on Erin. Mallory's Night 1 pair (Niaj vs Erin) only holds if Erin isn't Good, and Niaj is Good by my confirmed Night 5 Oracle hit. Her Night 3 pair (Erin with me, Good) fits Erin as the Night 3 Katana holder, who reads Good that night. Ivan's Night 3 killer had to visit him from inside Niaj's group. Heidi and Mallory visited Erin, I claim no visit, and Erin is the likeliest visitor to Ivan. My Night 4 guess that Erin is Wiretap was wrong. Erin's Innocent votes on Judy, Dave and Carol match Yakuza cover, per Bob's exams.
+Grace (public): Grace, Surveyor, voting Guilty on Erin. Mallory's N1 pair (Niaj vs Erin, different alignments) puts Erin not Good. My N2 survey plus Bob's Judy-Ritualist exam make Niaj the Cartographer and Good, so Erin is Yakuza or Neutral. Erin is the likeliest N3 Ivan killer: she sits inside Niaj's N3 group, Heidi and Mallory both visited her, and she names no visit. Erin, name the visit you think reached Ivan on N3. Frank, your Oracle guesses only count if you state your Night 5 target in one sentence.
+[ERROR player_error] Mallory (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+[ERROR effort_fallback] Mallory (haiku-5.5): answer cut off at max_tokens at high effort, retrying at medium
+Mallory (public): Mallory, Seer, voting Innocent on Erin. My N3 chosen pair put Erin and Frank on the same alignment, and my N5 random pair put Erin with Grace on the same alignment. Frank's Oracle hits on me and Ivan have been right, so Frank reads Good, which makes Erin Good. My N1 pair put Niaj on the other side from Erin, so Niaj was not Good. Nobody has a visit-level result on Erin. Guilty needs one.
+Alice (public): Alice, Scout, voting Guilty on Erin. Niaj died to the Katana on Night 5, so a living Yakuza held the blade that night. Judy, Dave and Carol are all dead, so the only living Yakuza candidate at Night 5 is Erin. Erin, if you did not hold the Katana on Night 5, name the living Yakuza who did. Frank and Grace being in other groups on my Night 5 Scout result does not clear them of anything; it only means the holder was not in their group.
+Bob (public): Bob, Coroner, Good, voting Guilty on Erin. Niaj was Cartographer and Good, so Mallory's Night 1 pair puts Erin not Good. Erin is the only unclaimed living player, and the Katana killed Niaj on Night 5, so a living Yakuza held it. Judy, Dave and Carol are all Yakuza and dead.
+Erin (public): Erin, plainly: I'm voting Innocent. Nobody has a visit-level result naming me. Niaj's Night 3 five-group is a chain of deductions, and it includes Frank, who says he visited nobody and whose Oracle claim is only his word. Mallory's Night 2 account changed from a chosen pair to a random one, and her Night 4 pair is random. Guilty needs a visit-level result, not pairs or group sizes. My night record stays as posted: no role action on Nights 1 to 5.
+Trial votes on Erin: 5 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Alice, Bob, Frank, Grace, Mallory; Innocent - Erin
+Erin is executed by hanging (5 Guilty of 6 votes; 4 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin, Village-facing, with no proven role. Mechanical facts: Mallory's Night 1 pair (Niaj and Erin differ) and Night 4 pair (Heidi and Carol differ) both fit the claimed roles of Niaj and Heidi. Mallory's Night 3 pair puts Frank in the same alignment as Erin, so by that pair Frank reads Evil to a Seer. Frank's Oracle claim cannot be checked against any visit-level result. Test it before trusting his guesses, and consider that an Evil-reading Ex-Con claiming a role is possible. Bob's Coroner read on Judy is one claim until a second result backs it. Alice's Scout groups and Grace's Wiretap read stand on their own. Do not hang anyone on group sizes or pair reads alone. Good luck to the Village."
+The game is over. Winners: Alice, Bob, Frank, Grace, Heidi (dead), Ivan (dead), Mallory, Niaj (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Judy] The lessons and tips_feedback fields were not asked for here, so I left them empty.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Frank, Grace, Heidi, Ivan, Mallory, Niaj
+Cost by player (USD):
+  Alice (Scout)        $0.1301   44 calls  claude-haiku-5.5
+  Bob (Coroner)        $0.1347   47 calls  claude-haiku-5.5
+  Carol (Puppeteer)    $0.1071   50 calls  claude-haiku-5.5
+  Dave (Wiretap)       $0.0852   44 calls  claude-haiku-5.5
+  Erin (Smuggler)      $0.1388   57 calls  claude-haiku-5.5
+  Frank (Oracle)       $0.1261   48 calls  claude-haiku-5.5
+  Grace (Surveyor)     $0.1591   48 calls  claude-haiku-5.5
+  Heidi (Sheriff)      $0.1012   36 calls  claude-haiku-5.5
+  Ivan (Medic)         $0.0540   26 calls  claude-haiku-5.5
+  Judy (Ritualist)     $0.0598   30 calls  claude-haiku-5.5
+  Mallory (Seer)       $0.1496   50 calls  claude-haiku-5.5
+  Niaj (Cartographer)  $0.1524   43 calls  claude-haiku-5.5
+  Moderator            $1.3903   18 calls  claude-opus-5.5
+  Night checks         $0.3765    5 calls  claude-opus-5.5
+  Strategy review      $0.3524    1 calls  claude-opus-5.5
+  Log review           $0.3384    1 calls  claude-opus-5.5
+  Total                $3.8555  548 calls
