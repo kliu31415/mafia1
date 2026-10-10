@@ -8,12 +8,13 @@ from pathlib import Path
 
 from events import RESULT
 from llm import LLMClient, Model, ModelSpec, answer_json, rules_system
-from log_viewer import describe_action
+from texts import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
 from records import read_records
 from state import Game
-from tips import player_view, print_alert
+from texts import player_view
+from tips import print_alert
 
 DEBRIEF_QUESTIONS = {
     "confusing_rules": "Which rules, or parts of your instructions, were confusing or ambiguous?",

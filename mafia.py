@@ -19,6 +19,7 @@ Code layout:
     night.py       Yakuza chat, night actions, Katana vote
     moderator.py   LLM moderator and its tools
     gamelog.py     JSONL log plus live .txt; log_viewer.py renders .txt/.html
+    texts.py       plain-text views shared by game code and the viewer: night actions, tips as players see them
     records.py     lenient JSONL reading (skips damaged lines) and console-safe printing
     gamelogs.py    reading game logs for analysis: which files are games, setup/result, players across log versions
     checkpoint.py  saves the game each day and night so a stopped game can continue (--resume)

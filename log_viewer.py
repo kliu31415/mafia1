@@ -23,7 +23,7 @@ from typing import Any
 from gamelogs import faction_of
 from records import read_records
 from roles import ROLES
-from tips import player_view
+from texts import describe_action, player_view
 
 
 def text_line(r: dict) -> str | None:
@@ -97,27 +97,6 @@ def describe_check(r: dict) -> str:
     head = f"Night {r['night']}: {r['verdict']}" + (f" ({r['error']})" if r.get("error") else "")
     issues = "; ".join(f"[{i['severity']}, {i['rule']}, {i['kind']}] {i['description']}" for i in r["issues"])
     return f"{head}. {issues}" if issues else head
-
-
-def describe_action(a: dict) -> str:
-    if a.get("automatic"):  # drawn by code, e.g. the Ex-Con's random visit (RoleLogic.automatic_action)
-        return f"automatic: {describe_action({**a, 'automatic': False})}"
-    if not a.get("act") and not a.get("katana_vote_holder"):
-        return "no action"
-    parts = []
-    if a.get("act"):
-        for key in ("target", "second_target", "guessed_role"):
-            if a.get(key):
-                parts.append(f"{key.replace('_', ' ')} {a[key]}")
-        if a.get("tokens_to_spend"):
-            parts.append(f"{a['tokens_to_spend']} token(s)")
-        if a.get("details"):
-            parts.append(f'"{a["details"]}"')
-    else:
-        parts.append("no role action")
-    if a.get("katana_vote_holder"):
-        parts.append(f"Katana vote: {a['katana_vote_holder']} holds, attacks {a.get('katana_vote_target')}")
-    return "; ".join(parts)
 
 
 # ---------------------------------------------------------------------------------------------

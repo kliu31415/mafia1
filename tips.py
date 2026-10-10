@@ -47,6 +47,7 @@ from llm import (DEFAULT_STRENGTH, LLMClient, MockClient, ModelSpec, OpenRouterC
                  model_strength, parse_model_spec)
 from records import read_records, safe_print
 from roles import ROLES
+from texts import player_view
 
 ROOT = Path(__file__).resolve().parent
 HEADINGS = ["Everyone", "Village", "Yakuza", "Neutral", *ROLES]
@@ -66,26 +67,8 @@ def lesson_weight(author: int, game_average: float) -> float:
 
 
 # ---------------------------------------------------------------------------------------------
-# Reading tips files (used by players.py)
+# Choosing who gets tips (what players see of a tips file is texts.player_view)
 # ---------------------------------------------------------------------------------------------
-
-def sections(text: str) -> dict[str, str]:
-    """Heading -> body for each `## ` section; text before the first one is dropped."""
-    out: dict[str, str] = {}
-    heading = None
-    for line in text.splitlines():
-        if line.startswith("## "):
-            heading = line[3:].strip()
-            out.setdefault(heading, "")
-        elif heading is not None:
-            out[heading] += line + "\n"
-    return {h: body.strip() for h, body in out.items() if body.strip()}
-
-
-def player_view(text: str) -> str:
-    """What players see of a tips file: every section, without the preamble."""
-    return "\n\n".join(f"## {h}\n{body}" for h, body in sections(text).items())
-
 
 def choose_players(names: list[str], models: list[str], who: str, rng: random.Random) -> list[str]:
     """Which players get tips. who: "all", "half" (a random half, rounded down, picked with rng), or

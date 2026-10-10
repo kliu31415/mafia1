@@ -6,13 +6,12 @@ import time
 from typing import Any
 from concurrent.futures import ThreadPoolExecutor
 
-import log_viewer
 from events import RESULT
 from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, default_effort, lower_effort,
                  rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
 from state import Game, Player
-from tips import player_view
+from texts import describe_action, player_view
 
 
 NOTEPAD_WORDS = 300  # longer notepads are truncated; the cap grows with the player count (notepad_words)
@@ -233,7 +232,7 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
 def night_history(game: Game, p: Player) -> str:
     """p's submitted action each night and the moderator's private results to p, in one place (players
     lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
-    lines = [f"- Night {night}: you submitted {log_viewer.describe_action(actions[p.name])}"
+    lines = [f"- Night {night}: you submitted {describe_action(actions[p.name])}"
              for night, actions in game.night_actions.items()
              if p.name in actions and not actions[p.name].get("automatic")]  # e.g. the Ex-Con isn't told its visit
     lines += [f"- Day {e.day} {e.phase}, result: {e.fields.get('message', e.text)}" for e in game.events
