@@ -1,0 +1,193 @@
+Setup:
+  Alice    seat 0  Mortician         anthropic/claude-haiku-5.5
+  Bob      seat 1  Sheriff           openai/gpt-6-luna
+  Carol    seat 2  Medic             openai/gpt-6-luna
+  Dave     seat 3  Grunt             anthropic/claude-haiku-5.5
+  Erin     seat 4  Pharmacist        anthropic/claude-haiku-5.5
+  Frank    seat 5  Jester            openai/gpt-6-luna
+  Grace    seat 6  Vigilante         openai/gpt-6-luna
+  Heidi    seat 7  Executioner       anthropic/claude-haiku-5.5  {'target': 'Mallory'}
+  Ivan     seat 8  Lookout           openai/gpt-6-luna
+  Judy     seat 9  Tracker           anthropic/claude-haiku-5.5
+  Mallory  seat 10 Vanilla Villager  anthropic/claude-haiku-5.5
+  Niaj     seat 11 Vanilla Villager  openai/gpt-6-luna
+  Katana starts with Alice
+Judy (public): Judy here, I'm the Tracker. I'll track someone tonight and share what I learn. Let's avoid blind nominations today.
+Niaj (public): Judy's Tracker claim is unconfirmed; let's hear others before deciding. Please share suspicions or plans, and don't treat a Day 1 claim as proven.
+Mallory (public): Mallory here, vanilla villager with no info. I agree with avoiding blind nominations today. I'd like to hear Judy's tracking results before anyone is nominated.
+Heidi (public): Heidi here. I agree with waiting for Judy's tracking results before any nomination. Judy, who are you tracking tonight?
+(to Ivan, Judy) Ivan -> Judy (private): Who do you plan to track? I can choose a complementary watch target.
+Carol (public): Judy’s result comes tomorrow, so it can’t resolve today’s uncertainty. Let’s hear from the remaining players; if there’s no concrete case, no-lynch is reasonable. Don’t treat a Day 1 claim as confirmed, and Judy, use your judgment about whether to share your target.
+Frank (public): For transparency, I'm Yakuza. I have no interest in pretending otherwise. I nominate myself for trial; decide what to do with that.
+Frank nominated Frank. Voting Yes/No proceeds clockwise.
+Frank votes Yes on the nomination of Frank.
+Grace votes Yes on the nomination of Frank.
+Heidi votes Yes on the nomination of Frank.
+Ivan votes Yes on the nomination of Frank.
+Judy votes Yes on the nomination of Frank.
+Mallory votes Yes on the nomination of Frank.
+Niaj votes Yes on the nomination of Frank.
+Alice votes Yes on the nomination of Frank.
+Bob votes Yes on the nomination of Frank.
+Carol votes Yes on the nomination of Frank.
+Dave votes Yes on the nomination of Frank.
+Erin votes Yes on the nomination of Frank.
+Frank is put on trial (12 Yes).
+Frank (public): I have no defense: I’m Yakuza. Don’t waste time on a fake claim or let me talk you out of it. Vote Guilty and hang me; then use the next day to find the rest.
+Grace (public): Frank admitted he’s Yakuza. Guilty is clear; hang him, then use tomorrow to identify the remaining threats.
+Heidi (public): Heidi here. Frank's admission is enough; I vote Guilty.
+Ivan (public): Frank admitted Yakuza; guilty is correct. Let's use tomorrow's claims carefully.
+(to Ivan, Judy) Ivan -> Judy (private): I can watch your target tonight; let me know whom you plan to track.
+Judy (public): Judy here: Tracker. Vote Guilty on Frank.
+(to Judy, Mallory) Mallory -> Judy (private): Judy, who did you track tonight? Thanks.
+Alice (public): Alice here. I agree Frank's Guilty. Judy, please share who you tracked tonight once you have results.
+(to Alice, Dave) Alice -> Dave (private): Alice here. Proposing Judy as tonight's Katana target. Agree?
+(to Alice, Erin) Alice -> Erin (private): Alice here. Proposing Judy as tonight's Katana target. Agree?
+Bob (public): Frank’s direct Yakuza admission is enough for Guilty. I have no night result yet; let’s use tomorrow’s information to find the rest.
+(to Carol, Judy) Carol -> Judy (private): Frank’s admission is decisive. I’ll prioritize protecting you tonight; please share your tracking result tomorrow.
+Dave (public): Dave here, villager. Frank's admission is enough; I vote Guilty.
+(to Alice, Dave) Dave -> Alice (private): Agreed on Judy tonight.
+Erin (public): Erin here. Guilty on Frank is clear. Judy's Tracker claim is unverified, so no blind nominations until we have real information.
+(to Alice, Erin) Erin -> Alice (private): Agreed on Judy tonight. I'll role-block Judy so her tracking fails and her claim stays murky.
+Frank votes Guilty on Frank.
+Grace votes Guilty on Frank.
+Heidi votes Guilty on Frank.
+Ivan votes Guilty on Frank.
+Judy votes Guilty on Frank.
+Mallory votes Guilty on Frank.
+Niaj votes Guilty on Frank.
+Alice votes Guilty on Frank.
+Bob votes Guilty on Frank.
+Carol votes Guilty on Frank.
+Dave votes Innocent on Frank.
+Erin votes Innocent on Frank.
+Frank is executed by hanging (10 Guilty).
+Frank died (executed by hanging). Their role was Jester. Last will: 'Day 1: I have no results or confirmed information yet. I’m keeping my reads to myself until I hear more, so don’t treat this as a cleared or confirmed player.'
+
+===== NIGHT 1 =====
+(to Alice, Dave, Erin) Alice (Yakuza chat): Alice: Frank was the Jester, so we're only three: me, Dave, Erin. Plan: I keep the Katana and Standard-attack Judy tonight. Erin, roleblock Judy so her tracking fails. I'll also use my mortician token on Judy so I learn her role if she dies. Please confirm with a vote on Judy.
+(to Alice, Dave, Erin) Dave (Yakuza chat): Dave here: agreed. Alice holds the Katana and Standard-attacks Judy tonight. Erin, please roleblock Judy so her track fails. Alice, mortician on Judy is fine. Let's lock in the vote.
+(to Alice, Dave, Erin) Erin (Yakuza chat): Erin here. Agreed: Alice keeps the Katana and Standard-attacks Judy tonight. I'm roleblocking Judy so her track fails. I vote yes on Judy. Ready to lock in.
+(to Bob) Moderator (private): Night 1 result: Dave is Evil.
+(to Ivan) Moderator (private): Night 1 result: Judy was visited by Alice, Carol, and Erin.
+(to Judy) Moderator (private): Night 1: You received no tracking result tonight. You were attacked by a Katana tonight, but you survived.
+(to Alice) Moderator (private): Night 1: Your Katana attack on Judy failed. Judy survived.
+(to Alice, Dave, Erin) Moderator (private): Night 1 Yakuza actions: Alice kept the Katana and attacked Judy with it, and also used a mortician token to clean Judy. Erin role-blocked Judy. Dave performed no action.
+[Moderator summary] N1: Alice (Katana) Standard-attacked Judy, plus mortician clean on Judy (mortician 2->1). Erin roleblocked Judy, so Judy's track on Ivan failed. Carol gave Judy Strong Defense (medic 2->1), so Judy survived and no clean happened. Bob checked Dave: Evil. Ivan watched Judy and saw visits from Alice, Carol and Erin. Grace did nothing. No deaths from these actions. Frank's Jester revenge is left to code.
+[Revenge] Frank's Divine Attack hits Heidi.
+Heidi died (Divine Attack). Their role was Executioner. Last will: "I am Heidi, the Executioner. My target is Mallory. I win if Mallory is hanged during the day while I am alive. Vote carefully and watch for Mallory's allies."
+Dave (public): Dave here, villager. Heidi's will is worth weighing, but I want Judy's results before any nomination.
+(to Alice, Dave) Dave -> Alice (private): Judy survived the attack and Erin's block. Do you know why? Did someone protect her?
+Ivan (public): I’m the Lookout. I watched Judy: Alice, Carol, and Erin visited her. Judy, please share your tracking result; visitors, explain your visits.
+(to Ivan, Judy) Ivan -> Judy (private): Who did you track, and what was your result?
+Erin (public): Erin here. Ivan's Lookout claim is new, so let's hear Judy's results before anyone is nominated. I'm not confirming or denying any visit yet.
+(to Alice, Erin) Erin -> Alice (private): Ivan's Lookout claim names us. Let's stay quiet and not confirm visits. Your plan?
+Niaj (public): Judy, please share whom you tracked and the result now. Ivan says Alice, Carol, and Erin visited you; each should explain their visit. Heidi’s will naming Mallory as her Executioner target is not evidence that Mallory is Yakuza.
+Grace (public): Judy, please share your exact tracking result now: who you tracked and who they visited. Ivan says Alice, Carol, and Erin visited you; each should explain their visit. Frank was Jester, so his Yakuza claim and the guilty votes aren’t alignment evidence. Let’s verify these claims before nominating.
+Judy (public): Judy here. Night 1 I got no tracking result, so I have nothing to share yet. I was hit by a Katana and survived, so a Yakuza is active. Ivan's Lookout claim is unverified. No nominations until we have tonight's results.
+Alice (public): Alice here. No nominations until we have verified results. Ivan's and Judy's claims both need checking.
+(to Alice, Erin) Alice -> Erin (private): Stay quiet on visits. I propose Ivan as tonight's Katana target. Agree?
+(to Alice, Dave) Alice -> Dave (private): Stay quiet on visits. Proposing Ivan tonight. Agree?
+Mallory (public): Mallory: Judy, if a Katana hit you and you survived, what protected you? Ivan, what did your Lookout see on Night 1 exactly? Let's get specifics before any nomination.
+Carol (public): I visited Judy Night 1 to protect her as the Medic. That matches Ivan’s visitor result and explains how she survived a Katana hit. Alice and Erin should also account for their visits; this alone doesn’t fully clear Ivan.
+Bob (public): I’m the Sheriff. Night 1 I investigated Dave and got Evil. Dave, please explain. This result could be affected by a Fabricator or an Evil-appearing outsider, but warrants a trial.
+Bob nominated Dave. Voting Yes/No proceeds clockwise.
+Bob votes Yes on the nomination of Dave.
+Carol votes Yes on the nomination of Dave.
+Dave votes No on the nomination of Dave.
+Erin votes No on the nomination of Dave.
+Grace votes Yes on the nomination of Dave.
+Ivan votes Yes on the nomination of Dave.
+Judy votes Yes on the nomination of Dave.
+Mallory votes Yes on the nomination of Dave.
+Niaj votes Yes on the nomination of Dave.
+Alice votes No on the nomination of Dave.
+Dave is put on trial (7 Yes).
+Dave (public): Dave here, and I'm a Village Grunt with no night role. I'm not Yakuza. I did nothing on Night 1 and I have no visits to explain. Bob's Sheriff result is one unverified claim, and Ivan's Lookout claim is another, so please don't hang a villager on either alone. Bob, what exactly did you check and when? Judy, did anyone else on the Village side see anything that would explain a Yakuza read on me? I'd like a second check before any vote.
+(to Alice, Erin) Erin -> Alice (private): Erin here. Dave is on trial. Let's vote No and stay quiet on visits. Reply if you disagree.
+(to Carol, Ivan) Ivan -> Carol (private): If your Medic claim is genuine, consider protecting Bob tonight: he is the exposed Sheriff and may be a Yakuza target.
+(to Ivan, Judy) Ivan -> Judy (private): Was your tracking result explicitly blocked, or did you choose not to track? That distinction could help us interpret Night 1 visitors.
+(to Carol, Judy) Judy -> Carol (private): Carol, did you protect me Night 1 as Medic? Please confirm.
+(to Ivan, Judy) Judy -> Ivan (private): Ivan, what exactly did your Lookout see Night 1?
+(to Bob, Mallory) Mallory -> Bob (private): Bob, Mallory here. Before the trial vote, what exactly did you check on Dave, and did you check anyone else on Night 1?
+(to Bob, Niaj) Niaj -> Bob (private): A single Sheriff result could be Ex-Con or Fabricator, but Dave’s claim is weak too. Did you check only Dave? I lean Innocent without corroboration.
+(to Alice, Dave) Alice -> Dave (private): Stay calm. I'll vote Innocent. Don't reveal anything.
+(to Bob, Niaj) Bob -> Niaj (private): I checked only Dave on Night 1; my Sheriff result was Evil. His claim of being a “Village Grunt” is contradictory—Grunt is Yakuza. Please weigh that before voting.
+(to Bob, Mallory) Bob -> Mallory (private): I checked only Dave on Night 1, and the Sheriff result was Evil. “Village Grunt” is contradictory since Grunt is a Yakuza role. I have no other check.
+(to Carol, Judy) Carol -> Judy (private): Yes, I protected you Night 1; my visit explains why you survived the Katana. Ivan’s visitor result matches my visit.
+(to Bob, Carol) Carol -> Bob (private): I can protect you tonight with Standard Defense. Your Sheriff result on Dave is concerning, but consider the possibility of a Fabricator or an Evil-appearing outsider.
+Bob votes Guilty on Dave.
+Carol votes Guilty on Dave.
+Dave votes Innocent on Dave.
+Erin votes Innocent on Dave.
+Grace votes Guilty on Dave.
+Ivan votes Guilty on Dave.
+Judy votes Guilty on Dave.
+Mallory votes Guilty on Dave.
+Niaj votes Guilty on Dave.
+Alice votes Innocent on Dave.
+Dave is executed by hanging (7 Guilty).
+Dave died (executed by hanging). Their role was Grunt. Last will: "Dave (Yakuza Grunt): I am Yakuza and I will not reveal my allies. Keep the village guessing; vote with the crowd to avoid suspicion, and watch for Judy's results and any Executioner target claims."
+
+===== NIGHT 2 =====
+(to Alice, Erin) Alice (Yakuza chat): Alice: Agree on Ivan tonight. I keep the Katana and Standard-attack Ivan; he's the Lookout who named us. Erin, please roleblock Bob (Sheriff) so his check fails, or roleblock Carol if you think she's the bigger threat. I'll use my mortician token on Ivan to confirm his role if he dies. Reply agree to lock in.
+(to Alice, Erin) Erin (Yakuza chat): Erin: Agree on Ivan with the Katana (Standard). Carol claims Medic and saved Judy Night 1, so she could protect Ivan and block our Standard attack. I'll roleblock Carol so her protection fails. Bob's Sheriff claim is a concern too, but Ivan's kill matters more tonight. Alice, please keep the Katana and attack Ivan.
+(to Alice, Erin) Alice (Yakuza chat): Alice: Agreed. Dave is dead, so we are two: me and Erin. I keep the Katana and Standard-attack Ivan tonight. Erin, roleblock Carol so any Medic protection fails. Mortician on Ivan as planned. Reply agree to lock in.
+(to Alice, Erin) Erin (Yakuza chat): Erin: Agreed. Alice keeps the Katana and Standard-attacks Ivan tonight. I'm roleblocking Carol so any Medic protection fails. Alice, please lock in your mortician token on Ivan as planned. We're two Yakuza now, so keep the chat tight and avoid visit confirmations.
+(to Alice) Moderator (private): Night 2 results: Yakuza actions tonight — Alice used the Katana on Ivan and spent a Mortician token to clean Ivan; Erin role-blocked Carol. Your Katana attack on Ivan succeeded. Ivan has been cleaned. His role was Lookout. His last will: "I am Ivan, the Lookout. Night 1 I watched Judy and saw Alice, Carol, and Erin visit her. Judy claimed Tracker, but these visits do not confirm her claim. Frank was revealed as a Jester, so his Yakuza admission was false; Heidi's death and reveal are consistent with the Jester's post-hanging attack. Heidi was an Executioner whose target was Mallory, so treat that target claim cautiously rather than as evidence against Mallory."
+(to Bob) Moderator (private): Night 2 result: Erin is Evil.
+(to Grace) Moderator (private): Night 2 result: Your attack on Erin succeeded. You have 1 vigilante token left.
+(to Judy) Moderator (private): Night 2 result: Ivan visited Bob.
+[Moderator summary] Night 2: Erin (Pharmacist) role-blocked Carol, so Carol's Strong protection on Bob failed and her medic token was not spent. Alice's Katana did a Standard attack on Ivan (no defense), and Ivan died, cleaned by Mortician (Alice's token is now 0, and she was told he was the Lookout and given his will). Grace's Vigilante did a Standard attack on Erin (no defense), and Erin died (Grace has 1 token left). Bob checked Erin and got Evil (she didn't hold the Katana and wasn't framed). Judy tracked Ivan and saw him visit Bob. Ivan's lookout result would have been no visitors, but he is dead so it wasn't sent. Alice keeps the Katana.
+Ivan died (Katana attack (Standard); cleaned by Mortician). Their role was Lookout. Last will: 'I am Ivan, the Lookout. Night 1 I watched Judy and saw Alice, Carol, and Erin visit her. Judy claimed Tracker, but these visits do not confirm her claim. Frank was revealed as a Jester, so his Yakuza admission was false; Heidi’s death and reveal are consistent with the Jester’s post-hanging attack. Heidi was an Executioner whose target was Mallory, so treat that target claim cautiously rather than as evidence against Mallory.'
+Erin died (Vigilante attack (Standard)). Their role was Pharmacist. Last will: 'Erin, Pharmacist (Yakuza). I will keep my role hidden and avoid blind nominations. If I die, the remaining Yakuza should keep the Katana chain alive, stay quiet on night roleblocks, and blend in with Village claims until we can safely take control of the vote.'
+Carol (public): Dave and Erin were both confirmed Yakuza. Bob’s Sheriff result on Dave was accurate, and Ivan’s visitor list matched my visit to Judy. Judy, please share your Night 2 tracking result; Bob, share your latest Sheriff result so we can choose an informed target.
+(to Carol, Judy) Carol -> Judy (private): Please share your Night 2 tracking result publicly as soon as you can; it may identify our next target.
+(to Bob, Carol) Carol -> Bob (private): Please share your Night 2 Sheriff result publicly. Your correct result on Dave gives it weight.
+Mallory (public): Mallory here, vanilla villager. Dave and Erin are confirmed Yakuza. Judy and Bob, please share your Night 2 results. Alice, Ivan's list had you visiting Judy on Night 1, so please explain that visit. No nominations until we have results.
+Alice (public): Alice here. I agree we should wait for Judy's and Bob's results before any nomination. I'll explain my Night 1 visit once the results are out.
+Grace (public): I am the Vigilante: I spent two tokens to shoot Erin Night 2; she was confirmed Pharmacist/Yakuza, so I have one token left. Bob, share your Night 2 Sheriff result; Judy, explain why you had no tracking result. Alice, account for your Night 1 visit to Judy. We should use the confirmed leads, not rush a blind vote.
+Bob (public): My Night 2 Sheriff result: Erin was Evil, confirmed by her reveal as Yakuza Pharmacist. Erin’s roleblock could explain Judy getting no tracking result Night 1. Alice, please explain your Night 1 visit to Judy; Carol claimed Medic, and Ivan confirmed you also visited. Let’s resolve that before nominating.
+(to Bob, Carol) Bob -> Carol (private): Carol, please protect me tonight so I can investigate the remaining Yakuza.
+Niaj (public): Alice, please explain your Night 1 visit to Judy. Erin’s roleblock could explain Judy’s missing result, but it doesn’t explain your visit. What did you do?
+(to Judy, Niaj) Niaj -> Judy (private): Could you share your Night 2 tracking result, including whom you tracked and who they visited?
+Judy (public): Judy: Night 2 I tracked Ivan. The result was that Ivan visited Bob. Bob, please explain what happened with that visit. Alice, please still explain your Night 1 visit to me.
+Carol (public): Ivan visiting Bob is consistent with his Lookout action and doesn’t implicate Bob. Bob’s result on Dave was confirmed. Alice, please explain your Night 1 visit to Judy; Carol’s Medic visit is accounted for, but yours remains unexplained.
+(to Bob, Carol) Carol -> Bob (private): I can protect you tonight.
+Niaj (public): Alice’s Night 1 visit to Judy is unexplained; Carol’s Medic visit and Erin’s roleblock are accounted for. Alice may have delivered the Katana attack Judy survived. Let’s hear her explanation.
+Niaj nominated Alice. Voting Yes/No proceeds clockwise.
+Niaj votes Yes on the nomination of Alice.
+Alice votes No on the nomination of Alice.
+Bob votes Yes on the nomination of Alice.
+Carol votes Yes on the nomination of Alice.
+Grace votes Yes on the nomination of Alice.
+Judy votes Yes on the nomination of Alice.
+Mallory votes Yes on the nomination of Alice.
+Alice is put on trial (6 Yes).
+Alice (public): Alice here. My Night 1 visit to Judy was a Mortician action. I used a token on her so I'd learn her role if she died, to check her Tracker claim. She survived, so I learned nothing. I did not attack anyone Night 1 and I'm not hiding any visit. Judy, your Tracker claim should be checked against Erin's roleblock and your Night 2 result on Ivan. Bob, please confirm your Sheriff check on Erin. I'd like a vote based on verified information, not on one visit.
+Bob (public): Guilty. Mortician is a Yakuza role, not a Village role. Alice’s claim confirms she’s Yakuza; hang her.
+(to Carol, Judy) Carol -> Judy (private): Alice’s Mortician claim confirms Yakuza. Vote Guilty.
+(to Carol, Grace) Carol -> Grace (private): Alice’s Mortician claim confirms Yakuza. Vote Guilty.
+Grace (public): Alice’s Mortician claim confirms she’s Yakuza. I vote Guilty; there’s no Village Mortician role.
+Judy (public): Judy: Mortician is a Yakuza role, and Ivan was cleaned by a Mortician. Alice's claim fits Yakuza. I vote Guilty.
+Mallory (public): Mallory: Alice claimed Mortician, which is a Yakuza role, and Ivan's Lookout saw her visit Judy. I'm voting Guilty unless she gives a verifiable reason.
+Niaj (public): Alice claimed Mortician, a Yakuza-only role, and Ivan was cleaned by a Mortician. Guilty is clear; vote to execute her.
+Niaj votes Guilty on Alice.
+Alice votes Innocent on Alice.
+Bob votes Guilty on Alice.
+Carol votes Guilty on Alice.
+Grace votes Guilty on Alice.
+Judy votes Guilty on Alice.
+Mallory votes Guilty on Alice.
+Alice is executed by hanging (6 Guilty).
+Alice died (executed by hanging). Their role was Mortician. Last will: "Alice, Village Mortician. I want Judy's and Bob's claims verified before any nomination. Keep tracking visits and votes carefully, and don't let a single unverified claim decide an execution. Stay calm and vote on evidence."
+
+===== NIGHT 3 =====
+(to Bob) Moderator (private): Night 3 result: Carol is Not Evil.
+(to Grace) Moderator (private): Night 3 result: Your Basic attack on Carol succeeded. You have 0 vigilante tokens remaining.
+(to Judy) Moderator (private): Night 3 result: Niaj did not visit anyone.
+[Moderator summary] Night 3: No Yakuza remain alive (Alice, Dave, Erin dead), so there was no Katana action. Bob (Sheriff) checked Carol: Not Evil. Carol (Medic) gave Bob Standard Defense; nobody attacked Bob. Grace (Vigilante) spent her last token on a Basic attack on Carol. Carol had no defense and died. Judy (Tracker) tracked Niaj, who visited no one. Survivors are Bob, Grace, Judy, Mallory and Niaj, all Village, so the Village should win at dawn.
+
+===== GAME OVER =====
+Winners: Bob, Carol, Grace, Ivan, Judy, Mallory, Niaj, Frank
+Cost: {'anthropic/claude-haiku-5.5': 0.11027820000000002, 'openai/gpt-6-luna': 0.06821459500000003, 'anthropic/claude-opus-5.5': 0.32199839999999996}

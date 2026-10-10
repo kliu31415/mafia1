@@ -1,0 +1,209 @@
+Setup:
+  Alice    seat 0  Sheriff           openai/gpt-6-luna
+  Bob      seat 1  Fabricator        openai/gpt-6-luna
+  Carol    seat 2  Pharmacist        openai/gpt-6-luna
+  Dave     seat 3  Medic             anthropic/claude-haiku-5.5
+  Erin     seat 4  Lookout           anthropic/claude-haiku-5.5
+  Frank    seat 5  Vanilla Villager  openai/gpt-6-luna
+  Grace    seat 6  Grunt             anthropic/claude-haiku-5.5
+  Heidi    seat 7  Vigilante         anthropic/claude-haiku-5.5
+  Katana starts with Grace
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Carol.
+Carol (public): Day 1, let's hear initial reads and see whether anyone has a concrete lead before nominating.
+Dave (public): Dave here. No info yet, so I won't nominate blind on Day 1. Let's see who gives specific, checkable reads.
+Erin (public): Erin here. No reads yet, so no nomination from me today. I'll watch for concrete leads.
+Frank (public): Carol, Dave, and Erin all sensibly avoid a blind nomination, but we still need reads. After hearing the next speakers, please give one tentative lean and a reason we can revisit.
+Grace (public): Grace here. No nomination from me on Day 1. I'm leaning toward nobody yet, but I'll pick a tentative read once people give specific, checkable claims.
+Heidi (public): Heidi here. No nomination from me on Day 1. I want specific, checkable claims before I lean anywhere.
+Alice (public): No concrete lead from my side yet. Bob, please give a tentative read with a reason we can revisit; then we’ll have more than a circle of people waiting for someone else to commit.
+Bob (public): Tentative lean Frank: he asks others to commit but hasn't offered his own read. Weak read; I’ll revise if he gives a concrete rationale.
+Carol (public): Tentative read: no strong lean yet. Bob at least gave a revisable reason; Frank’s request for commitment is fair, but we need more than that before treating either as evidence.
+Dave (public): Dave here. Still no checkable info, so no nomination from me. Next round I want each player to name one specific behavior they're watching.
+Erin (public): Erin: I'm tracking who pushes nominations early and who shifts reads without a reason. Specific claims and consistent logic will matter most.
+Frank (public): Fair criticism from Bob: I prompted commitment before offering my own. Tentative lean Bob for turning that into a suspicion without offering a stronger read himself; weak and revisable. I’d like each of us to state one actual lean next.
+Grace (public): Grace: Bob's and Frank's mutual reads are both weak. I'm watching Alice and Heidi for concrete reasons before leaning anywhere.
+Heidi (public): Heidi: Bob and Frank are trading weak reads on each other. I lean nobody yet and will back whoever makes the first concrete, checkable claim.
+Alice (public): Grace, you said you were watching Alice and Heidi for concrete reasons, but haven’t named any. What specific behavior are you tracking? Tentative lean on you for now, weak and revisable.
+Bob (public): Frank did answer my criticism with a read, so I’m downgrading that suspicion. Alice’s push on Grace is worth tracking, but I’d like to hear Grace’s response before treating it as evidence.
+Carol (public): Grace did name Alice and Heidi as players she was watching, so Alice's claim that she hadn't named anyone doesn't quite land. Weak lean Alice for now; I'd like to hear Grace's answer before firming that up.
+Dave (public): Dave: Still no nomination from me. Grace, please name one specific behavior you're tracking in Alice or Heidi, and Bob, say what would clear Frank.
+Erin (public): Erin: Still no nomination from me. Grace has named Alice and Heidi, so she should now give one concrete behavior for each. Alice's pressure on Grace is worth watching.
+Frank (public): My slight, revisable lean is Carol: she defended Grace by saying Grace named Alice and Heidi, but Alice was asking for specific behaviors, not just names. That’s a small misread, not a case. Grace should answer that question directly; Bob updating his read after my reply is a positive.
+Grace (public): Grace: Concrete answer: I'm tracking Alice for pressing me before offering her own read, and Heidi for giving no lean at all. Tentative lean Alice, revisable.
+Heidi (public): Heidi: Grace gave concrete reasons. Alice pressing Grace for specifics is a checkable behavior, so I weakly lean Alice. Still no nomination from me.
+Alice (public): Fair, Grace: pressing you before offering my own read is observable, and my lean on you was weak. I’ve heard your answer. Heidi’s lack of a lean is also weak evidence; let’s hear one specific, revisable read from each of us before considering a nomination.
+Bob (public): Alice's pressure on Grace was weak, but she's now echoed a similar lean after others raised it. I'd like her to explain why her initial push deserves more weight.
+Bob nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Bob, Carol, Grace; No - Dave, Erin, Frank, Heidi, Alice.
+The nomination of Alice failed (3 Yes).
+Carol (public): The failed vote doesn't settle much. I voted yes because Alice's pressure on Grace was observable, but it's still weak evidence; I'd rather hear her response than force the issue. The no votes aren't alignment tells on their own.
+Dave (public): Dave: No nomination from me. Bob, you made the Alice nomination on weak evidence. Alice, please answer Bob's question about your initial push.
+Erin (public): Erin: Still no nomination. Alice, answer Bob's question about your initial push. Bob, say what answer would satisfy you.
+Frank (public): I still think Bob’s nomination was premature: Alice’s pressure on Grace was observable, but weak, and her later reply acknowledged it. Bob, what specific answer from Alice would change your read? Slight, revisable lean Bob for pushing a trial on this thin case.
+Grace (public): Grace: Alice's reply was reasonable, and I'm reconsidering my Yes vote on her. Bob, what specific answer would clear her for you?
+(to Carol, Grace) Grace -> Carol (private): Keep your head down today. Let's not push hasty nominations, and we can talk more on Night 1.
+Heidi (public): Heidi: Grace, you voted Yes on Alice and now say you're reconsidering. Are you still leaning Alice? Not nominating today.
+Alice (public): My initial push was to turn “watching” into specific, checkable behavior, not to claim that Grace was suspicious for its own sake. She answered, and I updated; I don’t have a strong lean on her. Bob’s nomination on that thin basis is worth noting, but not enough for me to push another trial. Grace, are you still leaning me?
+Bob (public): Alice’s answer resolves my question: she wanted specific, checkable behavior and updated after Grace answered. I over-weighted her later echoing the concern. My nomination was a weak pressure test, and I’ll own that; I don’t support another trial without stronger evidence.
+Carol (public): Alice answered Bob's question, and Bob owned the weak nomination. I don't see enough here for another trial; let's keep tracking specific, revisable reads.
+Dave (public): Dave: Still no nomination from me. I'm holding my Medic tokens for Night 1 and will explain any protection choice I make.
+Erin (public): Erin: No nomination. Bob's early push on Alice was thin; I'm watching whether Grace's private note to Carol becomes a pattern.
+Frank (public): Update: Bob owning the weak nomination lowers my slight concern about him. My Carol lean remains very weak. Grace’s private note to Carol is worth clarifying, not treating as evidence by itself—Grace, was it related to the vote or your read?
+Grace (public): The note to Carol was just about not rushing nominations like Bob's. I'm still open on Alice, and I'm watching Bob's pushes.
+Heidi (public): Heidi: No nomination. Still watching Grace's Carol note and early pushes.
+Alice (public): No stronger evidence has emerged, so I won't push another trial. Let’s keep our reads revisable and avoid turning weak Day 1 exchanges into a case.
+Carol (public): Bob's weak nomination has been addressed; let's not force another trial without new evidence. Frank, what would shift your tentative read on Carol?
+Dave (public): Dave: No nomination. Holding my Medic tokens for Night 1; I'll protect based on whoever looks most at risk, and I'll explain the choice afterward.
+Erin (public): Erin: Still no nomination; watching Grace-Carol and Bob's pushes.
+Frank (public): Carol, my lean softens if you agree the issue was naming players versus naming behaviors; otherwise it's a minor misread, not a nomination case.
+Grace (public): Grace: No nomination from me. Still watching Bob's pushes and Frank's shifting reads.
+(to Carol, Grace) Grace -> Carol (private): Stay quiet today. Let Bob's pushes draw the heat. Night 1 plan soon.
+Alice (public): No nomination from me; let's end today without manufacturing a case.
+Bob (public): Nothing new changes my read; I agree there’s no stronger basis for another trial. My Alice nomination was a weak pressure test, and I’ve updated after her answer. Let’s close without forcing it.
+Dave (public): Dave: No nomination. Night 1 protection explained after.
+Heidi (public): Heidi: No nomination from me. Still watching Grace's private notes to Carol.
+(to Bob, Carol) Bob -> Carol (private): Block Dave tonight; I’ll frame Alice to muddy investigations.
+(to Bob, Frank) Frank -> Bob (private): What was the purpose of your private message to Carol?
+(to Bob, Frank) Bob -> Frank (private): I asked Carol whether Alice deserved follow-up after my nomination; I wanted her read before deciding whether to push again.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Carol, Grace) Bob (Yakuza chat): Plan: Grace keeps the Katana and attacks Dave. Carol blocks Dave as discussed. I’ll frame Alice tonight to muddy investigations. Dave’s public Medic claim makes him a useful target, and the block should stop any protection action.
+(to Bob, Carol, Grace) Carol (Yakuza chat): Agreed: Grace keeps the Katana and attacks Dave. I’ll role-block Dave to stop his Medic action. Bob frames Alice as planned.
+(to Bob, Carol, Grace) Grace (Yakuza chat): Agreed: Grace keeps the Katana and Standard-attacks Dave. Carol, please role-block Dave so his Medic action fails. Bob frames Alice as planned. I'm ready to close chat after this.
+(to Bob, Carol, Grace) Bob (Yakuza chat): Agreed. Grace keeps the Katana and attacks Dave; Carol blocks Dave; I frame Alice. Ready to close.
+(to Bob, Carol, Grace) Carol (Yakuza chat): Confirmed: Grace keeps the Katana and Standard-attacks Dave; I’ll role-block Dave, and Bob frames Alice. Ready to close.
+(to Bob, Carol, Grace) Grace (Yakuza chat): Confirmed: I keep the Katana and Standard-attack Dave. Carol, role-block Dave. Bob frames Alice. Ready to close.
+Night actions:
+  Alice (Sheriff): target Bob; "Investigate Bob."
+  Bob (Fabricator): target Alice; second target Dave; 1 token(s); "Frame Alice for investigative roles tonight. Forge Dave's last will as: "Medic. Night 1: I protected Alice.""; Katana vote: Grace holds, attacks Dave
+  Carol (Pharmacist): target Dave; "Role-block Dave."; Katana vote: Grace holds, attacks Dave
+  Dave (Medic): no action
+  Erin (Lookout): target Grace; "Lookout action: watch Grace to learn who visits her tonight."
+  Grace (Grunt): target Dave; "Katana Standard attack on Dave; keep Katana with Grace."; Katana vote: Grace holds, attacks Dave
+  Heidi (Vigilante): no action
+Katana: Grace holds it and attacks Dave.
+(to Alice) Moderator (private): Night 1 result: Bob is Evil.
+(to Erin) Moderator (private): Night 1 result: Nobody visited Grace tonight.
+(to Dave) Moderator (private): You were role-blocked tonight. You were attacked with a Katana.
+(to Bob, Carol, Grace) Moderator (private): Yakuza actions for Night 1: Bob framed Alice and spent his fabricator token to forge Dave's last will ("Medic. Night 1: I protected Alice."). Carol role-blocked Dave. Grace kept the Katana and attacked Dave with it.
+(to Grace) Moderator (private): Your Katana attack on Dave succeeded.
+[Moderator summary] Night 1: Grace (Katana holder) Standard-attacked Dave (Medic, no defense, also role-blocked by Carol; Dave had chosen not to act) -> Dave dies, cause Katana. Bob framed Alice (no effect on anyone's results) and spent his token forging Dave's will -> 'Medic. Night 1: I protected Alice.' Alice (Sheriff) checked Bob -> Evil (Bob isn't the Katana holder). Erin (Lookout) watched Grace -> no visitors. Heidi did nothing. Katana stays with Grace.
+
+===== DAY 2 =====
+Dave died (Katana). Their role was Medic. Last will: 'Medic. Night 1: I protected Alice.'
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Grace.
+Grace (public): Grace: Dave died to my Katana in the night and left a Medic will saying he protected Alice. We can't verify that, so let's treat it as an unconfirmed claim and ask any Sheriff, Tracker, or Lookout to speak up.
+Heidi (public): Heidi: Grace, you said Dave died to 'my Katana'. That reads like a Katana holder speaking, or a deliberate bluff. Explain that wording now. Until then I'm holding my shots for a clear Yakuza tell.
+Alice (public): I am Sheriff. Night 1 I investigated Bob: Evil. This is a direct result, not a read. I nominate Bob. Grace's “my Katana” wording also needs explaining.
+Alice nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Alice, Carol, Erin, Frank, Grace, Heidi; No - Bob.
+Bob is put on trial (6 Yes).
+Bob (public): I’m a Vanilla Villager. Alice’s claim is an unverified night result, not proof the rest of you can independently check right now. Dave’s will is unverified too; don’t let it lend extra weight to her accusation. Please vote Innocent, then scrutinize Alice’s claim and seek corroboration before executing me.
+Carol (public): Alice’s result is serious if she’s truly Sheriff, but we have only her claim and one result; a Roleplayer can receive false investigative results. That doesn’t clear Bob, but an Innocent vote preserves a chance to test her claim and compare further evidence before an irreversible execution.
+Erin (public): Erin: Alice's Sheriff result is the only hard information we have, and Bob's answer is mostly 'unverified'. Bob also pushed a weak Day 1 nomination and privately messaged Carol and Frank. I'm leaning Guilty on Bob. Grace, explain why you said Dave died to 'my Katana' before anyone told you the cause.
+Frank (public): Alice’s Sheriff result is the strongest concrete evidence we have, and Bob offers no counterclaim or specific reason to doubt it. A Roleplayer is possible, but that alone isn’t enough to spare him. I’ll vote Guilty; if Bob flips Village, we should reassess Alice. Grace’s “my Katana” wording also needs an explanation.
+Grace (public): Grace: Alice's result is a single unverified claim, and Bob has denied it. Before an irreversible execution, I'd rather keep Bob alive and gather more information. I'm voting Innocent for now and will revisit if new evidence appears.
+Heidi (public): Heidi: I'm voting Guilty on Bob. Alice's Sheriff result is the only hard info, and Bob's reply is just a denial. Grace, you said Dave died to 'my Katana' before anyone revealed the cause. Explain that directly.
+Alice (public): I stand by my Sheriff result: Bob investigated Evil. A possible Roleplayer is a caveat, not evidence that this result is false, and Bob has offered no counterclaim. I’m voting Guilty. Separately, Grace, please explain why you called Dave’s Katana “my Katana”; that wording is suspicious, but it doesn’t change my result on Bob.
+Trial votes on Bob: Guilty - Alice, Erin, Frank, Heidi; Innocent - Bob, Carol, Grace.
+Bob is executed by hanging (4 Guilty).
+Bob died (executed by hanging). Their role was Fabricator. Last will: 'Vanilla Villager. Day 1: I nominated Alice on weak evidence, heard her explanation, and backed off. Frank privately asked why I messaged Carol; I told him I wanted her read on Alice. No actionable information yet.'
+
+===== NIGHT 2 =====
+(to Carol, Grace) Carol (Yakuza chat): Grace keeps the Katana and Standard-attacks Alice. I’ll role-block Alice to stop her investigation tonight. With Bob confirmed Yakuza, Alice is the clearest threat; let's avoid drawing extra attention in the morning.
+(to Carol, Grace) Grace (Yakuza chat): Agreed: Grace keeps the Katana and Standard-attacks Alice tonight. Carol, role-block Alice so her Sheriff investigation fails. I'll stay quiet in public today and avoid private messages. Ready to close.
+Night actions:
+  Alice (Sheriff): target Grace; "Investigate Grace."
+  Carol (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Grace holds, attacks Alice
+  Erin (Lookout): target Grace; "Lookout action: watch Grace to learn who visits her tonight."
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Alice
+  Heidi (Vigilante): target Grace; 1 token(s); "Basic attack on Grace with one vigilante token."
+Katana: Grace holds it and attacks Alice.
+(to Alice) Moderator (private): You were role-blocked tonight. Your investigation did not happen. You were also attacked with a Katana, and the attack killed you.
+(to Erin) Moderator (private): Lookout result for Night 2: Heidi visited Grace.
+(to Heidi) Moderator (private): Your Basic attack on Grace succeeded. You have 2 vigilante tokens left.
+(to Grace) Moderator (private): Your Katana attack on Alice succeeded. You were attacked by a Vigilante, and the attack killed you.
+(to Carol, Grace) Moderator (private): Yakuza night actions: Carol (Pharmacist) role-blocked Alice. Grace held the Katana and attacked Alice.
+(to Carol) Moderator (private): The previous Katana holder has died, so the Katana now passes to you, Carol.
+[Moderator summary] Night 2: Carol role-blocked Alice, so Alice's investigation of Grace didn't happen. Grace used the Katana (Standard) on Alice, who had no Defense, and killed her. Heidi spent 1 token on a Basic shot at Grace, who had no Defense, and killed her; Heidi has 2 tokens left. Erin watched Grace and saw only Heidi visit. Alice's blocked action wasn't a visit. The Katana passes to Carol, the only Yakuza left. Alive: Carol (Yakuza), Erin, Frank, Heidi (Village). The game continues.
+
+===== DAY 3 =====
+Alice died (Katana). Their role was Sheriff. Last will: 'Sheriff. Night 1: investigated Bob — Evil. Dave (Medic) died to the Katana; his will says he protected Alice.'
+Grace died (Vigilante). Their role was Grunt. Last will: "I am a loyal villager. I did not trust hasty nominations, and I thought Bob's push on Alice was premature. Watch for claims that come with checkable details, and vote on evidence rather than pressure."
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+Frank (public): Carol is my nomination. Bob was confirmed Yakuza by Alice’s result, and Carol voted Innocent on him alongside Grace, also confirmed Yakuza. That vote alone isn't proof, but among remaining players it is the clearest alignment evidence. Carol, explain your Innocent vote and what changed your mind, if anything.
+Frank nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Frank, Heidi, Erin; No - Carol.
+Carol is put on trial (3 Yes).
+Carol (public): I’m a Roleplayer, told I was Sheriff. Night 1 I got Alice as Evil. That made Alice’s claim against Bob hard to weigh: either my result was false, hers was wrong, or something had distorted mine. I chose caution on the trial; Bob’s flip showed Alice was right, and I was wrong. I understand why my Innocent vote looks bad, especially beside Grace’s, but it isn’t proof we were aligned. Please judge my explanation and the actual evidence, not just the vote pairing.
+Erin (public): Erin: Carol, you voted Innocent with Grace and Bob, both now confirmed Yakuza, and you messaged Grace and Bob privately. Your Roleplayer claim can't be checked. I'm voting Guilty.
+Frank (public): Carol’s Roleplayer claim could explain her Innocent vote, but it’s an unverifiable account offered after Bob’s Yakuza flip. She also privately messaged both Bob and Grace. Neither fact proves alignment alone, but together they leave a substantial concern; I’m voting Guilty.
+Heidi (public): Heidi: Bob's flip confirmed Alice as Village, so Carol's Night 1 result calling Alice Evil was false. That fits a Roleplayer, who is Village-aligned. I voted Yes to nominate her on weak grounds, and I'm now leaning Innocent. Erin and Frank, explain your certainty.
+Trial votes on Carol: Guilty - Erin; Innocent - Carol, Frank, Heidi.
+Carol is found Innocent (1 Guilty).
+Heidi (public): Heidi: Correction: Grace's revealed role was Grunt, which is Yakuza, so my night 2 shot hit a Yakuza. Carol is likely Village. Erin and Frank both pushed hard on Carol, and one of you still holds the Katana. Explain your certainty, and I'll decide my shot on evidence.
+Carol (public): Erin was the only Guilty vote on my trial. Frank raised concerns but voted Innocent, and Heidi also voted Innocent. That doesn't prove Erin is Yakuza, but her vote is the clearest concrete reason to scrutinize her now. I nominate Erin.
+Carol nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Carol, Frank, Heidi; No - Erin.
+Erin is put on trial (3 Yes).
+Erin (public): Erin here, and I'm claiming Lookout (Village). Night 1 I watched Grace: no visitors. Night 2: Heidi visited Grace, which fits Heidi's Vigilante shot on a Yakuza Grunt, so Heidi's account checks out against my result. Frank fits the Katana chain: Dave and Alice died to the Katana, and Frank pushed the Carol nomination and voted Guilty on Bob. I'm voting Innocent. Frank, why is it so urgent to remove a player who was cleared? Tonight I'll watch Frank.
+(to Erin, Heidi) Erin -> Heidi (private): Erin here. I claimed Lookout publicly because your Night 2 shot on Grace matches my result. Let's keep watching Frank together.
+Frank (public): Erin’s claim that Carol privately messaged Grace and Bob is contradicted by the ledger: those messages were from Grace and Bob to Carol. I voted Innocent on Carol’s trial, so my Yes to nominate her wasn’t a push to execute her. The message claim is the clearest specific concern to weigh.
+Heidi (public): Heidi: Erin, your Night 1 Lookout result says Grace had no visitors, but Grace claimed to be the Katana holder who killed Dave that night. You also reversed the ledger: Grace and Bob messaged Carol, not the other way. Those are checkable errors, and you pushed Carol alone. I'm voting Guilty.
+Carol (public): The ledger shows Grace and Bob messaged me, not that I messaged them. Erin reversed the senders while accusing me. That is a checkable falsehood, not evidence against Frank. I’m voting Guilty.
+Trial votes on Erin: Guilty - Carol, Frank, Heidi; Innocent - Erin.
+Erin is executed by hanging (3 Guilty).
+Erin died (executed by hanging). Their role was Lookout. Last will: "I am Erin, the Lookout (Village). I watched Grace on Night 1 (no visitors) and Night 2 (Heidi visited Grace). Grace was Yakuza and died to a Vigilante shot, which fits Heidi's account. Frank fits the Katana chain. I'm watching Frank next. Vote on checkable evidence."
+
+===== NIGHT 3 =====
+Night actions:
+  Carol (Pharmacist): target Heidi; "Role-block Heidi."; Katana vote: Carol holds, attacks Frank
+  Heidi (Vigilante): target Frank; 1 token(s); "Basic vigilante attack on Frank."
+Katana: Carol holds it and attacks Frank.
+(to Heidi) Moderator (private): You were role-blocked last night. Your action had no effect, and you used no tokens. You still have 2 vigilante tokens.
+(to Carol) Moderator (private): Night 3 Yakuza actions: Carol (Pharmacist) role-blocked Heidi. Carol used the Katana on Frank and keeps it. Your Katana attack on Frank succeeded.
+[Moderator summary] Night 3: Carol (Pharmacist) role-blocked Heidi, so Heidi's Basic Vigilante shot on Frank did nothing and used no token (she still has 2). Carol's Standard Katana attack killed Frank (Defense None). Carol keeps the Katana. Carol (Yakuza) and Heidi (Village) are left alive, so the game continues.
+
+===== DAY 4 =====
+Frank died (Katana). Their role was Vanilla Villager. Last will: 'I am Frank, a Vanilla Villager. The confirmed flips are Dave (Medic, killed by Katana), Bob (Fabricator, executed), Alice (Sheriff, killed by Katana), and Grace (Grunt, killed by Vigilante). Alice’s Sheriff result that Bob was Evil was corroborated by Bob’s Fabricator flip. I voted Guilty on Bob based on that result. Carol voted Innocent; Erin, Heidi, and I voted Guilty. That record is worth weighing, but votes alone do not prove anyone’s alignment. Dave’s will said he protected Alice Night 1; it does not establish Alice’s alignment by itself. The four living players are Carol, Erin, Heidi, and me. Use the confirmed flips and specific actions to evaluate the remaining players; avoid treating weak Day 1 exchanges as proof.'
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+Carol (public): Frank’s Katana death doesn’t establish alignment. His will cautioned against treating votes as proof. I won’t support a trial based on inference; let’s end today.
+Heidi (public): Heidi: Carol, your Innocent vote with Grace and Bob, plus your private messages, make you my top suspect. I'm deciding tonight.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Carol (Pharmacist): target Heidi; "Role-block Heidi."; Katana vote: Carol holds, attacks Heidi
+  Heidi (Vigilante): target Carol; 2 token(s); "Standard vigilante attack on Carol using two vigilante tokens."
+Katana: Carol holds it and attacks Heidi.
+(to Heidi) Moderator (private): You were role-blocked tonight.
+(to Carol) Moderator (private): Yakuza actions tonight: Carol (Pharmacist) role-blocked Heidi. Carol kept the Katana and attacked Heidi with it. Your Katana attack on Heidi succeeded.
+[Moderator summary] Night 4: Carol (Pharmacist, role-block immune) role-blocked Heidi, so Heidi's 2-token Vigilante shot on Carol had no effect (no visit, no tokens spent; Heidi keeps 2). Carol kept the Katana and made a Standard attack on Heidi (defense None), which killed her. Only Carol (Yakuza) is left alive, so the Yakuza win.
+
+===== DAY 5 =====
+Heidi died (Katana). Their role was Vigilante. Last will: "I am Heidi, a Vigilante with 2 tokens left. My Night 2 Basic shot killed Grace, who was a Yakuza Grunt. Alice (Sheriff) and Dave (Medic) were killed by the Katana, and Frank (Vanilla Villager) was also killed by the Katana. Bob's Evil result on him was correct, and Bob was confirmed Fabricator (Yakuza). Erin's Lookout claim was checkable on Grace, and her Day 3 claim that Carol messaged Grace and Bob was reversed from the ledger. Carol's Roleplayer claim is unverified but consistent with her Night 1 result. I suspect no Yakuza remains among the living, but I can't verify that. Vote on checkable evidence, not pressure."
+The game is over. Winners: Bob, Carol, Grace.
+[Night check] Night 4: correct
+
+===== GAME OVER =====
+Winners: Bob, Carol, Grace
+Cost by player (USD):
+  Alice (Sheriff)           $0.0168   18 calls  gpt-6-luna
+  Bob (Fabricator)          $0.0174   19 calls  gpt-6-luna
+  Carol (Pharmacist)        $0.0369   33 calls  gpt-6-luna
+  Dave (Medic)              $0.0205   13 calls  claude-haiku-5.5
+  Erin (Lookout)            $0.0483   25 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.0233   24 calls  gpt-6-luna
+  Grace (Grunt)             $0.0380   22 calls  claude-haiku-5.5
+  Heidi (Vigilante)         $0.0681   32 calls  claude-haiku-5.5
+  Moderator                 $0.5829    9 calls  claude-opus-5.5
+  Night checks              $0.2391    4 calls  claude-opus-5.5
+  Strategy review           $0.1364    1 calls  claude-opus-5.5
+  Log review                $0.1428    1 calls  claude-opus-5.5
+  Total                     $1.3706  201 calls

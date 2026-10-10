@@ -1,0 +1,330 @@
+Setup:
+  Alice    seat 0  Sheriff           anthropic/claude-haiku-5.5
+  Bob      seat 1  Pharmacist        openai/gpt-6-luna
+  Carol    seat 2  Lookout           anthropic/claude-haiku-5.5
+  Dave     seat 3  Fabricator        openai/gpt-6-luna
+  Erin     seat 4  Vigilante         openai/gpt-6-luna
+  Frank    seat 5  Medic             anthropic/claude-haiku-5.5
+  Grace    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Heidi    seat 7  Grunt             openai/gpt-6-luna
+  Katana starts with Heidi
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Bob.
+Bob (public): Morning. With no deaths or claims yet, I don't think a day-one random execution helps. Let's hear concise reads and useful information; avoid forcing power-role claims before there's evidence.
+Carol (public): Agree, no random execution today. I'm watching for anyone pushing early nominations.
+Dave (public): No evidence yet, so I’m also against a random execution. Let’s hear everyone’s reads before anyone pushes a nomination.
+(to Bob, Dave) Dave -> Bob (private): Agreed on no random execution. I’ll keep my public contribution low-key; let’s avoid drawing attention today.
+(to Dave, Heidi) Dave -> Heidi (private): No random execution push from me. Keep a low profile today; we can coordinate our night plans later.
+Erin (public): No basis for a random execution yet. Dave, can you share the purpose of those early DMs? Let’s also hear from Alice, Frank, Grace, and Heidi before settling reads.
+Frank (public): Frank here. Agree no random execution yet. I want to hear concrete reads before anyone nominates, especially from people who have been quiet so far.
+Grace (public): Grace here, Vanilla Villager. Agree no random execution yet. Dave, what were your DMs to Bob and Heidi about? I want concrete reads before anyone nominates.
+Heidi (public): No evidence for a trial yet. I'd like to hear Alice before we draw conclusions; no useful role claims are warranted this early.
+(to Bob, Heidi) Heidi -> Bob (private): I propose we attack Alice tonight and keep the Katana with me. Please agree unless you have a better target.
+(to Dave, Heidi) Heidi -> Dave (private): I propose we attack Alice tonight and keep the Katana with me. Please agree unless you have a better target.
+Alice (public): Alice here, Sheriff. I'll investigate one player each night and report results at the start of each day. No results yet. Dave and Heidi, your DMs to Bob look coordinated, so what were they about? Others, please share reads.
+Bob (public): Alice's claim is noted; no need to expose more. I'll weigh any results against behavior, and still see no case for a day-one execution.
+(to Bob, Heidi) Bob -> Heidi (private): Agreed: attack Alice and keep the Katana with you. I'll role-block her tonight.
+(to Bob, Dave) Bob -> Dave (private): Heidi plans to attack Alice; I’ll role-block her. If you use your forgery token, consider forging a will that says Alice investigated me as Not Evil.
+Carol (public): Carol here. Alice, noted. Dave, Heidi and Bob, your DM triangle is the only real pattern so far, so please each briefly say what it was about before anyone nominates.
+Dave (public): My DMs were brief check-ins about avoiding an unsupported trial and hearing reads. No role information was exchanged. I’m happy to discuss concrete reads now.
+(to Bob, Dave) Dave -> Bob (private): Please block Alice rather than Heidi: blocking Heidi stops her Katana action. Keep the attack on Alice; I’ll try to forge Alice’s will to say she investigated you as Not Evil.
+(to Dave, Heidi) Dave -> Heidi (private): Stick with attacking Alice and keeping the Katana, if Bob agrees. I’ve asked him not to block you, since that would stop the attack.
+Erin (public): Dave says they were check-ins, but the repeated DMs among three still look coordinated. Did anyone form concrete reads from them? Alice's claim deserves tracking, not automatic trust.
+Frank (public): Frank here. Still reading. Alice, please share your first Sheriff result when you have one. The Dave, Bob and Heidi DM triangle is worth watching, but no nominations yet.
+Grace (public): Grace here. Alice, thanks for claiming Sheriff; please share your first result. Dave, Bob and Heidi, I still want a clear explanation of those DMs.
+(to Alice, Grace) Grace -> Alice (private): Grace here, Vanilla Villager, and I'll back your Sheriff claim if your checks hold up. Who would you investigate first?
+Heidi (public): My DMs to Bob and Dave were checking in about day-one reads, not pushing a trial. Alice's claim is unverified; let's hear her result tomorrow before treating it as confirmed.
+(to Dave, Heidi) Heidi -> Dave (private): Keep the Katana with me; attack Alice. If possible, forge her will as Sheriff with a false guilty result on Carol.
+Alice (public): Alice: Night 1 I'll investigate Dave and report at dawn. Keep watching the DM triangle.
+(to Alice, Grace) Alice -> Grace (private): Thanks, Grace. I'll check Dave tonight and share the result at dawn.
+Bob (public): My DMs were quick check-ins about day-one reads, consistent with Dave's explanation; nothing role-related. I agree we should hear Alice's result tomorrow before considering a trial.
+Carol (public): Carol: No trial before Alice's Night 1 result. Dave, Bob and Heidi, the DM triangle still needs a clearer explanation than check-ins.
+Dave (public): I’ve explained the DMs as check-ins, and I’m happy to wait for Alice’s result before drawing conclusions. No case for a trial yet.
+(to Dave, Heidi) Dave -> Heidi (private): Alice announced N1 Dave, so a forged will saying Dave Not Evil would fit that claim better than a result on Carol.
+Erin (public): The DM triangle is worth tracking, but it isn’t proof. I’m not pushing a trial today; let’s hear independent reads and assess Alice’s result tomorrow without pre-committing.
+Frank (public): Frank: Still waiting on Alice's Night 1 result before forming reads. I won't nominate anyone until we have information.
+Grace (public): Grace: I still won't nominate without evidence. Alice's Dave check at dawn is our first hard info. Dave, Bob and Heidi: 'check-ins' is vague. Who sent the first DM, and what specifically was said?
+(to Dave, Heidi) Heidi -> Dave (private): Since Alice announced N1 Dave, if you forge her will, make it say Sheriff: N1 Dave Not Evil. Keep the Katana with me and attack Alice.
+Alice (public): Alice: Night 1 I'm checking Dave, and I'll post the result at dawn. Keep watching the Dave/Bob/Heidi DM triangle.
+Bob (public): Alice repeating her target doesn't strengthen the claim. Let's wait for the result, then assess it alongside the DM pattern rather than pre-committing.
+Carol (public): Carol: Still no trial before Alice's Dave result. Dave, Bob and Heidi, the DM triangle needs a real explanation, not just check-ins.
+Dave (public): I sent the first DMs to Bob and Heidi to discourage a random trial; later messages were follow-ups about reads after Alice claimed. The pattern merits scrutiny, but there’s still no basis to execute today. Let’s assess tomorrow’s information.
+Erin (public): Dave initiated the DMs, so Bob and Heidi repeating his explanation isn't independent corroboration. Still, that's not enough to nominate; let's evaluate Alice's result tomorrow.
+Frank (public): Frank: No trial until Alice's result is posted.
+Grace (public): Grace: Still no nomination from me. Alice's Dave result decides this. Dave started the DM triangle, so I'm watching him closely.
+Heidi (public): The DM pattern is worth tracking, but it isn’t enough by itself for a trial. Let’s hear Alice’s result tomorrow before deciding.
+Alice (public): Alice: Still on track to check Dave tonight and post the result at dawn. No trial until then.
+Carol (public): Carol: Still no trial before Alice's Dave result. Dave started the DM triangle, so I'll be watching closely.
+Dave (public): I initiated the DMs to discourage a random trial, then followed up after Alice named me. Let’s wait for her actual result before drawing conclusions.
+Erin (public): Dave's explanation now accounts for initiating the DMs, but the triangle still isn't independent evidence of guilt. Let's avoid a speculative trial; tomorrow we can compare Alice's result with everyone's behavior and claims.
+Frank (public): Frank: Agreed, no trial until Alice's Dave result is posted. I'll reassess then.
+Grace (public): Grace: No nomination until Alice's Dave result is posted.
+Heidi (public): We’ve gone over the same points several times. I’m fine waiting for Alice’s result tomorrow; I won’t nominate anyone today.
+Alice (public): Alice: Still checking Dave tonight; result at dawn. No nominations from me until then.
+(to Bob, Dave) Dave -> Bob (private): Don’t block Heidi; block Alice if you can. We need the Katana attack to go through.
+Frank (public): Frank: No nomination yet; awaiting Alice's dawn result.
+Grace (public): Grace: No nomination until Alice's Dave result is posted.
+Alice (public): Alice: No nominations from me. My Night 1 check on Dave is still pending.
+Bob (public): No new evidence; let's stop looping and assess results tomorrow.
+Carol (public): Carol: Still no trial until Alice's Dave result is posted.
+(to Bob, Dave) Dave -> Bob (private): Please agree Heidi holds the Katana and attacks Alice. Don’t block Heidi; blocking Alice is fine. I’ll forge Alice’s will if she dies.
+(to Dave, Heidi) Dave -> Heidi (private): Keep the Katana and attack Alice. If she dies, I’ll forge her will to say her announced check on Dave found Not Evil.
+Erin (public): We have no case for a D1 execution. Stop repeating the same points; let the day close and assess Alice’s Dave result tomorrow.
+Grace (public): Grace: Still waiting on Alice's Dave result. No nominations yet.
+(to Alice, Grace) Alice -> Grace (private): Thanks. I'll post my Dave result at dawn. Stay sharp.
+(to Alice, Carol) Carol -> Alice (private): Carol here. I'll watch the DM triangle tonight. Please post your Dave result at dawn and tell me privately how you chose Dave as your target.
+(to Bob, Dave) Dave -> Bob (private): Please don't block Heidi. Keep her holding the Katana and attack Alice; I'll forge Alice's will if she dies.
+(to Dave, Heidi) Dave -> Heidi (private): Keep the Katana and attack Alice if Bob agrees. I'll forge her will to say your announced Dave check was Not Evil.
+(to Alice, Frank) Frank -> Alice (private): Frank: Alice, what's your Dave result? I'd like to know before dawn.
+(to Alice, Grace) Grace -> Alice (private): Grace: Alice, please post your Dave result at dawn.
+(to Alice, Grace) Alice -> Grace (private): Grace: Still checking Dave tonight. Result at dawn. Stay close.
+(to Alice, Grace) Alice -> Grace (private): Alice: Dave check tonight. Result at dawn. Stay close.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Dave, Heidi) Bob (Yakuza chat): Agreed: Heidi keeps the Katana and attacks Alice. I’ll role-block Alice tonight to stop her investigation.
+(to Bob, Dave, Heidi) Dave (Yakuza chat): Agreed: Heidi keeps the Katana and attacks Alice; Bob role-blocks Alice. I’ll spend my forgery token to replace Alice’s will if she dies tonight, with: “Sheriff: N1 Dave — Not Evil.”
+(to Bob, Dave, Heidi) Heidi (Yakuza chat): Agreed: I keep the Katana and attack Alice. Bob role-blocks Alice; Dave forges her will to say her N1 check on Dave found Not Evil. Ready.
+Night actions:
+  Alice (Sheriff): target Dave; "Sheriff investigation on Dave."
+  Bob (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Heidi holds, attacks Alice
+  Carol (Lookout): target Dave; "Lookout: watching Dave to learn who visits him tonight."
+  Dave (Fabricator): target Alice; 1 token(s); "Frame Alice as Evil tonight and forge her will if she dies: “Sheriff: N1 Dave — Not Evil.”"; Katana vote: Heidi holds, attacks Alice
+  Erin (Vigilante): no action
+  Frank (Medic): target Alice; "Protect Alice with Standard Defense."
+  Heidi (Grunt): no role action; Katana vote: Heidi holds, attacks Alice
+Katana: Heidi holds it and attacks Alice.
+(to Alice) Moderator (private): You were role-blocked tonight; your investigation did not happen. You were also attacked with a Katana, but you survived.
+(to Carol) Moderator (private): Lookout result: nobody visited Dave tonight.
+(to Bob, Dave, Heidi) Moderator (private): Yakuza night summary: Bob (Pharmacist) role-blocked Alice. Dave (Fabricator) framed Alice and spent his token to forge Alice's last will. Heidi kept the Katana and attacked Alice with it.
+(to Heidi) Moderator (private): Your Katana attack on Alice failed.
+[Moderator summary] N1: Bob role-blocked Alice (Sheriff check on Dave cancelled, no visit). Dave framed Alice and forged her will (token spent; no effect since Alice survived; no investigator targeted Alice). Frank protected Alice (Standard). Heidi's Standard Katana attack on Alice was stopped by Frank's protection. Carol watched Dave: no visitors. Erin no action. No deaths.
+
+===== DAY 2 =====
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+Bob (public): No deaths is notable. Alice, did you get role-blocked or receive a result? Either way, a claim alone isn’t proof; let’s compare accounts before considering a trial.
+Carol (public): Carol: Alice, your Night 1 Dave result never came at dawn. Were you role-blocked, or did you get nothing? Bob, Heidi, Dave: what did today's DMs actually contain?
+Dave (public): Alice, please answer directly: were you role-blocked, and did you receive any result? No result could fit a block, but it doesn't confirm your claim either.
+Erin (public): Alice, please answer plainly: were you role-blocked, or did you get a result? If you got one, share it. No result alone proves nothing. Dave, Bob, and Heidi’s repeated DMs remain worth scrutinizing, but aren’t enough to execute anyone.
+Frank (public): Frank: Alice, no dawn result was announced. Were you role-blocked, and did you get a block message? A direct answer matters before anyone trusts your claim.
+Grace (public): Grace: Alice, were you role-blocked, or did you get a result? Answer plainly.
+Heidi (public): Alice, please answer directly: were you role-blocked? If not, share your result. Either way, no result alone proves the Sheriff claim.
+Alice (public): Alice: Yes, I was role-blocked on Night 1, so I got no Dave result. I was also hit by a Katana and survived, so someone protected me. I'm still the Sheriff and will post my next result honestly at dawn.
+Bob (public): Alice’s block claim is plausible, but it gives us no Dave result, so it neither clears nor condemns him. Her survival also doesn’t identify who protected her. Let’s compare independent reads before considering a trial.
+Carol (public): Carol: Alice, a block needs a Pharmacist or Party Animal, so tell us who blocked you if you can. I'm watching Heidi tonight. No nomination from me yet.
+Dave (public): Alice’s block explains the missing check but leaves us with no result; Carol’s no-visit report is also low-information. Let’s not treat either as proof or rush a trial.
+Erin (public): Alice's claimed block explains why Carol saw no visits to Dave; that consistency isn't proof. Any other N1 results or block notices? The DM triangle warrants scrutiny, not a trial alone.
+Frank (public): Frank: Alice surviving a Katana hit on N1 fits Village-useful Sheriff, since Yakuza usually hit a threat. Her block claim can't be verified yet, so it's still open. Dave, Bob and Heidi still need a concrete explanation of the DM triangle. Carol, please report any Lookout visits from Night 2 if you can.
+Grace (public): Grace: Yakuza hitting Alice with a Katana suggests she's a real threat. Carol, what exactly did your Lookout see on N1? Dave, Bob, Heidi: what did your DMs actually say?
+Heidi (public): Carol’s N1 report is consistent with Alice being blocked: a blocked investigation wouldn’t visit Dave. But it doesn’t verify either claim. Let’s hear any other N1 feedback before considering nominations.
+Alice (public): Alice: Sheriff. My Night 2 target is Heidi, not Dave. I'll post the result at dawn. Carol, please report any Night 2 visitors you see.
+(to Alice, Grace) Alice -> Grace (private): Alice: N2 target is Heidi. Result at dawn.
+Bob (public): Carol’s N1 report is consistent with Alice being blocked, but doesn’t identify the blocker or verify the Sheriff claim. Alice’s choice to check Heidi tonight gives us something to assess at dawn; let’s wait for that result before considering a trial.
+Carol (public): Carol: Tonight I'm watching Heidi as planned. Alice, you're also checking Heidi, so the two of us should expose the Night 2 visit pattern. I still have no nomination until I see those visitors. Dave, Bob and Heidi, stop repeating the same DM explanation and tell us what you're doing tonight.
+Dave (public): Carol's N1 result is compatible with Alice being blocked, but doesn't establish who blocked her or validate either claim. Let's compare the N2 results tomorrow; asking people to announce night actions now won't make them more reliable.
+Erin (public): Alice’s block claim and Carol’s no-visitor report fit together, but neither verifies the other. Alice and Carol have now publicly named their N2 targets, which gives the Yakuza useful information; let’s avoid announcing future actions. Compare the independent results tomorrow before considering a trial.
+Frank (public): Frank: Alice's Katana survival fits a real Sheriff being targeted. I still want Dave, Bob and Heidi to explain the DM triangle. No nomination from me today.
+Grace (public): Grace: No nomination from me. Dawn results on Heidi, from Alice's check and Carol's visitor report, are our next real evidence. Heidi, what did you do last night?
+Heidi (public): Alice’s block claim and Carol’s N1 report fit together, but neither confirms the other. Let’s treat both as unverified and assess the actual N2 results tomorrow before considering a trial.
+Alice (public): Alice: Still Sheriff. My N2 check on Heidi resolves at dawn, and I'll post it honestly. No nominations from me until then. Dave, Bob, Heidi: the DM triangle still needs a real explanation.
+Carol (public): Carol: Lookout. N1 on Dave showed no visitors. Tonight I'm watching Heidi, so we'll compare dawn results with Alice's check. No nomination from me yet.
+Erin (public): Alice, please stop announcing intended targets; those disclosures help the Yakuza and can compromise investigations. At dawn, share your exact result and any block feedback. Then compare it with Carol’s visitor report; no speculative trial yet.
+Frank (public): Frank: No nomination yet. Dawn results on Heidi from Alice and Carol are the next real evidence. Dave, Bob and Heidi, explain the DM triangle directly.
+Grace (public): Grace: No nomination from me. Heidi's dawn results decide this. Alice and Carol, post exact results; Heidi, state your night action.
+Heidi (public): Carol’s N1 report is consistent with Alice’s role-block account, but neither proves much independently. Let’s hear the exact N2 results at dawn rather than nominate speculatively.
+Alice (public): Alice: Heidi's Night 2 result posts at dawn. Carol, what did your Lookout see on Heidi? Dave, Bob, Heidi: explain your DM triangle.
+Dave (public): I started the DMs to coordinate a no-random-trial stance; nothing role-related was exchanged. We’ve covered this. Let’s compare the actual results tomorrow rather than repeat the same questions.
+Erin (public): The DM pattern remains suspicious but isn’t proof. I won’t support a speculative trial; tomorrow, compare Alice’s result with Carol’s visitor report and any block feedback.
+Frank (public): Frank: No nomination from me. Alice's Katana survival fits a real Sheriff being targeted. I'm waiting on the dawn results for Heidi from Alice and Carol before I weigh anything else.
+Grace (public): Grace: No nomination from me. Heidi's dawn results from Alice and Carol decide this. Heidi, state your night action.
+(to Carol, Grace) Grace -> Carol (private): Grace: Carol, when Heidi's result posts, will your visitor report and Alice's check line up? Post exact details.
+Heidi (public): I have no night-action result. Carol's exact visitor list is the independent evidence; a visit identifies contact, not alignment. Alice's Sheriff result may be vulnerable to framing, so let's hear both exact dawn reports before a trial.
+Alice (public): Alice: N2 check on Heidi resolves tonight; result at dawn.
+Carol (public): Carol: Lookout, watching Heidi tonight. Dawn results decide it.
+Frank (public): Frank: Alice's N1 Katana survival is real signal. Let's see the Heidi dawn results before any nomination.
+Grace (public): Grace: No nomination. Heidi's dawn results decide it.
+Alice (public): Alice: Heidi's Night 2 result posts at dawn. No nominations from me until then.
+Bob (public): Stop announcing night targets; it gives Yakuza free action information.
+Erin (public): Stop repeating; preserve future targets. Give exact dawn results once resolved.
+Frank (public): Frank: No nomination from me. Dawn results decide.
+Grace (public): Grace: No nomination. Heidi's dawn results decide it.
+(to Carol, Grace) Grace -> Carol (private): Carol: Did Heidi visit anyone or get visited on N2?
+(to Alice, Grace) Alice -> Grace (private): Alice: Stay close. I'll post my Heidi result at dawn.
+(to Carol, Grace) Carol -> Grace (private): Carol: Night 2 hasn't resolved yet. I'll post Heidi's exact visitor list at dawn, honestly, with no nomination before then.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Dave, Heidi) Bob (Yakuza chat): Let’s transfer the Katana to Dave and attack Carol; Carol is watching Heidi, so Heidi making the attack risks exposing her. I’ll block Alice again to suppress her Sheriff result. Dave can frame Alice as his free action if useful. Please agree on Dave holding and Carol as the target.
+(to Bob, Dave, Heidi) Dave (Yakuza chat): Agreed: I’ll hold the Katana and attack Carol, while Bob blocks Alice. I’ll use my free frame on Heidi in case Alice’s investigation gets through. I have no forgery token left. Ready.
+(to Bob, Dave, Heidi) Heidi (Yakuza chat): Agreed: Dave holds the Katana and attacks Carol; Bob blocks Alice. I have no separate action.
+(to Bob, Dave, Heidi) Bob (Yakuza chat): Confirmed: Dave holds the Katana and attacks Carol; I’ll role-block Alice. Dave can use his free frame on Heidi. Ready.
+(to Bob, Dave, Heidi) Dave (Yakuza chat): Katana plan stands: Dave holds and attacks Carol; Bob blocks Alice. One adjustment: Carol is watching Heidi, so framing Heidi could give her a visit to report. Since Alice is blocked, frame her instead if we use the free frame; otherwise skip it.
+(to Bob, Dave, Heidi) Heidi (Yakuza chat): Agreed: Dave holds the Katana and attacks Carol; Bob blocks Alice. Don’t frame Heidi while Carol is watching her—that gives her a visit to report. Skip the frame or frame Alice instead. I have no separate action.
+Night actions:
+  Alice (Sheriff): target Heidi; "Sheriff investigation on Heidi."
+  Bob (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Dave holds, attacks Carol
+  Carol (Lookout): target Heidi; "Lookout: watching Heidi tonight to learn who visits her."
+  Dave (Fabricator): target Alice; "Frame Alice as Evil tonight. No tokens spent."; Katana vote: Dave holds, attacks Carol
+  Erin (Vigilante): no action
+  Frank (Medic): target Alice; "Protect Alice with Standard Defense (free, no token)."
+  Heidi (Grunt): no role action; Katana vote: Dave holds, attacks Carol
+Katana: Dave holds it and attacks Carol.
+(to Alice) Moderator (private): You were role-blocked last night. Your investigation had no effect.
+(to Bob, Dave, Heidi) Moderator (private): Yakuza actions for Night 2: Bob role-blocked Alice. Dave framed Alice. Dave kept the Katana and attacked Carol with it. Heidi took no action.
+(to Dave) Moderator (private): Your Katana attack on Carol succeeded.
+[Moderator summary] Night 2: Bob (Pharmacist) role-blocked Alice, so her Sheriff check on Heidi did nothing and didn't count as a visit. Dave framed Alice, which had no effect because no investigator checked her. Frank gave Alice Standard protection. Dave kept the Katana and killed Carol with a Standard attack (she had no defense). Carol's Lookout watch on Heidi would have shown no visitors, but she died, so no result was sent. Erin and Heidi took no action. No tokens were spent. Alive: 4 Village vs 3 Yakuza, so the game continues.
+
+===== DAY 3 =====
+Carol died (Katana). Their role was Lookout. Last will: 'I was Carol, the Lookout (Good). Trust no one who pushes hasty nominations on Day 1. Watch the Dave/Bob/Heidi DM triangle and check who visits whom.'
+Speaking order today goes around the circle in seat order, starting with Bob.
+[Night check] Night 2: correct
+Bob (public): Carol’s will says to watch the triangle, not that anyone is guilty; nobody pushed a hasty D1 nomination. Alice, please give your exact N2 result and whether you were blocked. Your N1 block left no verifiable Sheriff result.
+Dave (public): Alice has twice announced targets but still has no Sheriff result for us to assess. We should put the claim to trial and hear whether she was blocked again last night.
+Dave nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Dave, Heidi, Bob; No - Erin, Frank, Grace, Alice.
+The nomination of Alice failed (3 Yes).
+Erin (public): Alice, give your exact N2 result now, including whether you were blocked. Dave’s failed nomination doesn’t resolve the claim either way. Bob and Heidi, explain your Yes votes and any evidence beyond suspicion. Carol’s missing N2 report must not be invented.
+Frank (public): Frank: I voted No on Alice. Dave started the DM triangle and pushed the early nomination, with Bob and Heidi following. Heidi, what did you do N2, and does Alice's dawn result on you ring true? I want Dave's reasons before any trial.
+(to Alice, Frank) Frank -> Alice (private): Frank here, I'm the Medic. I protected you N1 and N2. Post your Heidi result honestly at dawn; I'll stay quiet about my role for now.
+Grace (public): Grace: Carol's N1 no-visit report on Dave matches Alice's claimed Night 1 block, which is some corroboration for Alice. Dave nominated her on Day 3 with no new information, and that's suspicious given his DM triangle with Bob and Heidi. Alice, post your N2 result on Heidi now, since Carol's death leaves it as our only check.
+(to Alice, Grace) Grace -> Alice (private): Alice: Did your N2 check on Heidi resolve? Post it.
+Heidi (public): Alice has now claimed consecutive blocks, leaving zero results; that is convenient and unverified. Carol's death removes the promised cross-check. I voted Yes to hear her explanation, not because this proves guilt.
+Alice (public): Alice: I have zero Sheriff results, since N1 and N2 were both blocked, and I won't invent any. Carol's death shows the Yakuza are hunting the Sheriff. Dave nominated me on Day 3 with no new information, and Bob and Heidi followed. Explain that push before anyone else gets trialed.
+(to Alice, Frank) Alice -> Frank (private): Thanks for the protection claim. I'll keep it private for now. Tell me if anything about your N1 or N2 protection differs from my records.
+(to Alice, Grace) Alice -> Grace (private): Grace, I'm reading Dave's Day 3 nomination as the key tell. What's your read on Bob and Heidi's Yes votes?
+Bob nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Bob, Dave, Erin, Heidi; No - Frank, Grace, Alice.
+Alice is put on trial (4 Yes).
+Alice (public): Alice here. I am still a Sheriff with zero results: I was role-blocked on Night 1 and Night 2, and I will not invent a result. Someone with Pharmacist or Party Animal access blocked me twice, and the Katana hit me on Night 1. Yakuza usually target a real threat, so that is consistent with my claim. Look at the nomination pattern: Dave nominated me on Day 3 with no new information, then Bob and Heidi voted Yes. Bob then nominated me again, and Erin joined the Yes votes. Carol's will told us to watch the Dave/Bob/Heidi DM triangle, and that triangle has not been explained beyond vague check-ins. I will not announce my Night 3 target, but I will post the exact result honestly at dawn. Vote on evidence, and vote Innocent unless someone shows a concrete reason.
+Bob (public): Alice has offered a role claim and two block stories, but no result anyone can independently evaluate. Being attacked once doesn’t establish she’s Sheriff; a real Sheriff should be one of our most valuable sources. The D1 DM pattern and her repeated inability to produce information leave enough doubt to vote Guilty.
+Dave (public): I’ll vote Guilty. Two consecutive blocks leave us with no result, and Alice’s announced Night 1 and 2 targets gave the Yakuza useful information. Surviving one Katana hit isn’t proof she’s Sheriff; her claim remains unverified.
+Erin (public): I’m voting Innocent. Alice’s two blocks are unverifiable, but the case against her is too: Dave and Bob have offered no independent evidence, and Dave’s nomination followed by Bob’s repeat isn’t corroboration. Carol’s N1 no-visitor report on Dave is consistent with Alice’s N1 block; don’t invent Carol’s N2 result.
+Frank (public): Frank: I'm voting Innocent. Alice was hit by a Katana on N1 and survived, and Carol was killed by the same weapon. That fits a real threat, not a fake Sheriff. Dave, Bob and Heidi: your Guilty votes rest on her having no results, but blocked nights produce none. What concrete evidence do you have?
+Grace (public): Grace: Carol's N1 no-visit report on Dave matches Alice's N1 block. Alice was then hit by a Katana, and Carol, who could cross-check her, was killed by Katana. That looks like Yakuza hunting a real Sheriff. Dave, Bob and Heidi: what concrete evidence makes you vote Guilty? I'm voting Innocent.
+Heidi (public): I voted Yes to hear her defense, not because I had proof. Her N1 block fits Carol’s N1 no-visitor report; N2 is unverifiable, but missing results alone don’t prove fraud. I still distrust the claim, yet this trial hasn’t established guilt. I’ll vote Innocent.
+Trial votes on Alice: Guilty - Bob, Dave, Heidi; Innocent - Alice, Erin, Frank, Grace.
+Alice is found Innocent (3 Guilty).
+Dave (public): Alice was acquitted, and I accept the vote. I voted Guilty because she had no verifiable result, not because that proves she is lying. Carol’s will makes the DM pattern fair to scrutinize, but it isn’t proof either; let’s assess everyone’s evidence and votes carefully.
+Erin (public): Now that Alice is acquitted, let’s not re-run the same case. Alice, please share your exact N2 result and any block feedback. Dave, Bob, and Heidi: what concrete evidence supported your Guilty votes? The nomination and vote pattern merits scrutiny, but isn’t proof.
+Frank (public): Frank: Alice's N1 Katana survival and Carol's death both point to Yakuza hunting a real threat. Dave, Bob, Heidi: explain the DM triangle concretely, or it stays our main lead.
+Grace (public): Grace: Alice's acquittal stands, but Dave, Bob and Heidi still owe concrete evidence for their Guilty votes and an honest account of the DM triangle. Let's compare reasoning, not repeat claims.
+Heidi (public): I was wrong to treat missing results as enough for guilt; Alice’s acquittal was right. Let’s avoid another speculative nomination. Dave and Bob should explain their concrete basis, and Alice can share any actual result when she has one.
+Alice (public): Alice: Acquittal stands. My Night 3 check is set, and I will post the exact result at dawn. Dave, Bob and Heidi, give concrete reasons for your Guilty votes.
+Bob (public): I accept the acquittal and won't re-litigate it. My Guilty vote overread the missing results; it wasn't proof. Erin voted Yes on the second nomination, then Innocent at trial. I'd like her reasoning, then we should assess Alice's actual N3 result.
+Dave (public): I accept Alice’s acquittal; my vote wasn’t proof. Erin, your Yes on Bob’s nomination followed by Innocent at trial is worth explaining—were you seeking her defense, or did your view change? Let’s hear the answer without rushing another trial.
+Erin (public): I voted Yes on Bob’s nomination to let Alice give a defense after Dave’s first nomination failed—not because I had new evidence or had decided she was guilty. At trial, her N1 block fit Carol’s no-visitor report on Dave, and no contrary evidence emerged, so I voted Innocent. Alice, what exact N2 result or block notice did you receive? Dave and Bob, what evidence made guilt more likely than uncertainty?
+Frank (public): Frank: Alice's acquittal stands. Dave started the DM triangle and pushed the first nomination, so I want his concrete reasons. No nomination from me today.
+Grace (public): Grace: Dave, Bob and Heidi voted Guilty on thin evidence and pushed both nominations. Give concrete reasons. I'm waiting for Alice's N3 result at dawn before any nomination.
+(to Erin, Grace) Grace -> Erin (private): Grace: Erin, you and I both voted Innocent on evidence. Let's watch Dave, Bob and Heidi's next votes and nominations closely, and compare notes at dawn.
+Heidi (public): Erin’s explanation for the second Yes is plausible, and I accept that we overread Alice’s missing results as guilt. But acquittal doesn’t verify her Sheriff claim. Let’s stop re-litigating and judge her exact N3 result alongside any actual feedback tomorrow.
+Alice (public): Alice: Acquittal stands. Tonight I check one player from Dave, Bob or Heidi, and I won't name them. Result at dawn. Dave, Bob and Heidi: what concrete evidence made your Guilty votes reasonable? Frank, your Medic claim is noted.
+Bob (public): Erin’s explanation for the split vote is plausible, so I won’t treat that alone as guilt. Nor does Alice’s survival prove her claim. Let’s stop repeating the same case, get the exact N3 feedback tomorrow, and weigh it with actual evidence.
+Dave (public): Alice’s acquittal stands. Her explanation for having no results is plausible, though it doesn’t verify her claim. Let’s stop re-litigating and avoid another speculative trial today.
+Erin (public): Dave and Bob, your explanations still don’t give a concrete basis for voting Alice Guilty; Heidi said she lacked proof too. That pattern warrants scrutiny, not a verdict. Alice, please clarify whether you received explicit block notices on N1 and N2.
+Frank (public): Frank: No nomination from me. Dave, you started the DM triangle and the first nomination with no new info. Give concrete reasons. Alice's dawn result decides this.
+(to Alice, Frank) Frank -> Alice (private): Frank: I'm protecting you again tonight. Post your N3 result honestly at dawn.
+Grace (public): Grace: No nomination from me. Alice's N3 result at dawn decides it. Dave, Bob, Heidi: give concrete reasons for your Guilty votes.
+Heidi (public): I accept my vote was poorly supported. But we still need to test claims: Frank says Medic—who did he protect N1 and N2? Alice’s repeated blocks are possible, not corroboration. Let’s hear her exact N3 result before choosing.
+Alice (public): Alice: Night 3 result posts at dawn as promised. No nomination from me today. Dave, Bob and Heidi, explain your Guilty votes with concrete evidence.
+Bob (public): I won’t re-litigate Alice’s acquittal. Let’s hear her exact N3 result or block notice, without treating either as proof by itself. Frank, since you claimed Medic, please share your protection targets if you’re comfortable; we should weigh the claim carefully, not assume it’s confirmed.
+Dave (public): My Guilty vote was based on uncertainty, not concrete evidence; I accept that it was weak. Let’s hear Alice’s exact N3 result or block notice, then assess it alongside other evidence rather than keep re-litigating the trial.
+Erin (public): Dave admits his Guilty vote had no concrete basis; that matters, but it doesn't prove alignment. Alice, please clarify whether you got explicit block notices on N1 and N2, and share your exact N3 result or feedback when available. Carol’s N2 report remains unknown.
+Frank (public): Frank: Dave's nomination and Guilty vote still lack concrete reasons. Alice's N3 dawn result is the key check, so I'm not nominating today.
+Grace (public): Grace: No nomination from me. Alice's N3 dawn result decides it. Dave, Bob and Heidi still owe concrete reasons for their Guilty votes.
+(to Erin, Grace) Grace -> Erin (private): Grace: Agreed on waiting. Let's compare Alice's N3 result and watch Dave, Bob and Heidi's next votes.
+Heidi (public): I agree my Guilty vote was weak. Frank’s Medic claim could explain Alice’s survival, but it’s unverified too; let’s not turn that into another speculative case. Wait for Alice’s exact N3 result, then weigh it alongside the votes.
+Alice (public): Alice: Night 3 result posts at dawn as promised. Dave, Bob, Heidi: your Guilty votes still lack concrete evidence. Explain them.
+Bob (public): I’ve acknowledged my Guilty vote was weak and won’t repeat it. Let’s assess Alice’s actual N3 feedback tomorrow; I have no basis to nominate anyone else today.
+Erin (public): Alice, please give your exact N3 result and any explicit block feedback at dawn. Don’t disclose your next target; we need verifiable information, not another claim.
+Frank (public): Frank: No nomination from me. Alice's N3 dawn result decides it, and Dave still owes concrete reasons.
+(to Alice, Frank) Frank -> Alice (private): Frank: I'm planning to protect you again tonight. Post your N3 result honestly at dawn.
+Grace (public): Grace: No nomination. Alice's N3 result first.
+Heidi (public): I won't push another trial. My Guilty vote was weak; Alice's N3 result and any explicit block feedback are the next evidence. Frank's Medic claim remains unverified.
+Alice (public): Alice: No nomination from me. Night 3 result posts at dawn.
+(to Alice, Erin) Erin -> Alice (private): Please send your exact N3 result and say whether you received an explicit block notice. Also, did you receive explicit block notices on N1 and N2?
+(to Alice, Frank) Frank -> Alice (private): Frank: Protecting you again tonight with Standard. Post your N3 result at dawn. Who did you check, and was it Dave, Bob or Heidi?
+(to Erin, Frank) Frank -> Erin (private): Frank: I'm Medic and have protected Alice each night. Suspect Dave most, since he started the DMs and the first nomination. Can we watch for Bob and Heidi following him?
+(to Erin, Grace) Grace -> Erin (private): Grace: Let's keep watching Dave, Bob and Heidi's votes. We wait for Alice's N3 result before voting on anything.
+(to Frank, Grace) Grace -> Frank (private): Grace: Frank, if your Medic claim is real, whom did you protect on N1 and N2? Share it privately with me.
+(to Dave, Heidi) Heidi -> Dave (private): At night, consider killing Frank or Grace; Alice may be protected by Frank. Bob should block Alice again to suppress a result.
+(to Alice, Grace) Alice -> Grace (private): Grace: Night 3 check resolves at dawn. Keep watching Dave's votes.
+(to Erin, Grace) Erin -> Grace (private): Frank claims Medic, protected Alice nightly; this remains unverified.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+(to Bob, Dave, Heidi) Bob (Yakuza chat): I recommend Dave keep the Katana and attack Frank tonight; his Medic claim makes him the likeliest protector. I’ll role-block Alice again so she can’t check one of us. Dave, use your free frame on Alice to muddy any investigation of her. Please agree on Dave/Frank.
+(to Bob, Dave, Heidi) Dave (Yakuza chat): Agreed: I’ll hold the Katana and attack Frank. Bob blocks Alice; I’ll use my free frame on Alice. Ready.
+(to Bob, Dave, Heidi) Heidi (Yakuza chat): Agreed: Dave holds the Katana and attacks Frank; Bob blocks Alice, and Dave frames Alice. I have no separate action. Ready.
+(to Bob, Dave, Heidi) Bob (Yakuza chat): Confirmed: Dave holds the Katana and attacks Frank; I’ll role-block Alice. Dave can frame Alice with his free action. Ready.
+(to Bob, Dave, Heidi) Dave (Yakuza chat): Agreed: I hold the Katana and attack Frank; Bob blocks Alice. I’ll frame Alice tonight with my free action. Ready.
+(to Bob, Dave, Heidi) Heidi (Yakuza chat): Agreed: Dave holds the Katana and attacks Frank; Bob blocks Alice; Dave frames Alice with his free action. Frank’s Medic claim makes him a priority, and blocking Alice prevents another result. I have no separate action. Ready.
+Night actions:
+  Alice (Sheriff): target Dave; "Sheriff investigation on Dave."
+  Bob (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Dave holds, attacks Frank
+  Dave (Fabricator): target Alice; "Frame Alice to appear Evil to investigative roles tonight."; Katana vote: Dave holds, attacks Frank
+  Erin (Vigilante): target Dave; 1 token(s); "Use one vigilante token for a Basic attack on Dave."
+  Frank (Medic): target Alice; "Protect Alice with Standard Defense (free, no token)."
+  Heidi (Grunt): no role action; Katana vote: Dave holds, attacks Frank
+Katana: Dave holds it and attacks Frank.
+(to Alice) Moderator (private): You were role-blocked tonight. Your investigation had no result.
+(to Erin) Moderator (private): Your attack on Dave succeeded. You have 2 vigilante tokens left.
+(to Dave) Moderator (private): A Vigilante attacked you tonight. Your Katana attack on Frank succeeded.
+(to Frank) Moderator (private): You were attacked with a Katana tonight.
+(to Bob, Dave, Heidi) Moderator (private): Yakuza actions tonight: Bob role-blocked Alice. Dave framed Alice. Dave attacked Frank with the Katana. Heidi took no action.
+(to Bob, Heidi) Moderator (private): Dave died tonight, so the Katana passed to a random Yakuza member. Heidi now holds the Katana.
+[Moderator summary] N3: Bob (Pharmacist) role-blocked Alice, so her Sheriff check on Dave did nothing. Dave framed Alice, which had no effect. Frank gave Alice Standard protection, but no one attacked her. Erin used 1 Vigilante token (3->2) for a Basic attack on Dave; his defense was None, so he died. Dave held the Katana and dealt a Standard attack to Frank; his defense was None, so he died. Because Dave died, the Katana passed at random to Heidi. Alive: Alice, Bob, Erin, Grace (Village) and Heidi (Yakuza). The game continues.
+
+===== DAY 4 =====
+Dave died (Vigilante). Their role was Fabricator. Last will: 'I am a Village Vanilla Villager. I have no investigative results or special information. Alice’s Sheriff claim remains unverified: she has reported no result, and repeatedly announcing targets gives the Yakuza useful information. Carol’s death confirms she was a Lookout, but her will provides no Night 2 visitor results. Don’t treat the Day 1 DM pattern or anyone’s claim alone as proof; compare concrete evidence and voting behavior.'
+Frank died (Katana). Their role was Medic. Last will: "I am Frank, the Medic (Village). I protect players at night with my medic tokens and never reveal who I protected. Carol's death suggests the Yakuza are active. Watch the Dave/Bob/Heidi DM triangle, and do not trust any Sheriff claim without corroboration. Trust evidence over early nominations."
+Speaking order today goes around the circle in seat order, starting with Erin.
+[Night check] Night 3: correct
+Erin (public): Dave was confirmed as Yakuza, and his Village will was false. Bob joined him in pushing Alice’s execution and voted Guilty; that is our strongest lead. Alice, give your exact N3 result and any block feedback.
+Erin nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Erin, Grace, Alice; No - Heidi, Bob.
+Bob is put on trial (3 Yes).
+Bob (public): I understand why Dave’s reveal makes my vote suspicious. I was wrong to vote Guilty: Alice had no result and her repeated block claims were unverified, but uncertainty wasn’t a good reason to execute her. Dave’s guilt doesn’t automatically prove mine; Heidi also voted Guilty, and each of us should be judged on our own evidence and behavior. I claim Vanilla Villager and have no night results. Alice’s account is still unverified, but I won’t pretend that proves she’s lying. Please distinguish a bad vote from proof of coordination.
+Erin (public): I am the Village Vigilante. N3 I used a Basic shot on Dave; it succeeded, and he was confirmed Yakuza. Bob voted Guilty with Dave and helped push Alice despite no evidence. I vote Guilty.
+Grace (public): Grace: Dave's Yakuza reveal confirms the DM triangle was coordinated. Bob voted Guilty on Alice with Dave and Heidi, helped push her second nomination, and now only claims Vanilla with no explanation. I'm voting Guilty on Bob. Heidi still owes an explanation for her Guilty vote too.
+(to Erin, Grace) Grace -> Erin (private): Grace: I'm voting Guilty on Bob. Keep your Vigilante info safe. Alice's N3 check on Bob or Heidi may matter, so let's see if she posts it.
+Heidi (public): Dave being a Fabricator confirms his deceit, not Bob’s faction. My Guilty vote on Alice was poorly supported; that doesn’t establish coordination. Erin’s Vigilante claim is still a claim, and Dave’s death alone doesn’t identify the shooter. Alice still has no verifiable Sheriff result. Judge Bob independently; I’m voting Innocent.
+Alice (public): Alice: I'm voting Guilty on Bob. He co-pushed both Day 3 nominations against me and voted Guilty with Dave, who is now confirmed Yakuza. His Day 4 defense admits the vote was bad but gives no independent reason for it. Bob, explain why you pushed a second nomination with no new evidence.
+Trial votes on Bob: Guilty - Alice, Erin, Grace, Heidi; Innocent - Bob.
+Bob is executed by hanging (4 Guilty).
+Bob died (executed by hanging). Their role was Pharmacist. Last will: 'I am Bob, a Vanilla Villager. My Guilty vote on Alice was poorly supported; uncertainty was not proof. Dave’s revealed role makes my vote worth scrutinizing, but judge each living player on their own evidence and behavior.'
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Sheriff): target Heidi; "Sheriff investigation on Heidi."
+  Erin (Vigilante): target Heidi; 2 token(s); "Use two vigilante tokens for a Standard attack on Heidi."
+  Heidi (Grunt): no role action; Katana vote: Heidi holds, attacks Erin
+Katana: Heidi holds it and attacks Erin.
+(to Alice) Moderator (private): Night 4 result: Heidi is Not Evil.
+(to Erin) Moderator (private): Night 4: Your Standard attack on Heidi succeeded (2 vigilante tokens spent; 0 remaining). You were also attacked with a Katana.
+(to Heidi) Moderator (private): Night 4 Yakuza summary: Heidi (holding the Katana) used the Katana to attack Erin. Your Katana attack succeeded. You were also attacked by a Vigilante.
+[Moderator summary] Night 4: Alice (Sheriff) checked Heidi. Heidi held the Katana and attacked with it that night, so she showed Not Evil. Erin (Vigilante) spent 2 tokens on a Standard attack on Heidi (Defense None), and Heidi died. Heidi's Katana attack (Standard) on Erin (Defense None) killed Erin. Nobody was role-blocked. Alice and Grace are left, both Village, so the Village wins (R1). There is no Yakuza left to take the Katana.
+
+===== DAY 5 =====
+Heidi died (Vigilante). Their role was Grunt. Last will: 'I am a Vanilla Villager and have no night results. Dave’s death as a Fabricator confirms his Day 3 Vanilla claim was false, so weigh his actions and votes accordingly. Alice may be a real Sheriff, but after three nights she still has no result we can verify; don’t treat either her claim or the repeated blocks as proof. Compare today’s accounts and votes before deciding whom to trust.'
+Erin died (Katana). Their role was Vigilante. Last will: 'I am Erin, the Village Vigilante. On Night 3, I used one token for a Basic attack on Dave; it succeeded. Dave was revealed as the Yakuza Fabricator, so his will claiming to be a Village Vanilla Villager was false. I have two vigilante tokens remaining. Frank was revealed as the Village Medic; his claim that he protected Alice is consistent with her surviving the Night 1 Katana attack, though Alice’s Sheriff claim and results still need scrutiny. Do not assume Carol’s missing Night 2 report. Reassess the remaining players using concrete evidence and voting behavior, and avoid wasting the remaining shots on suspicion alone.'
+The game is over. Winners: Alice, Carol, Erin, Frank, Grace.
+[Night check] Night 4: correct
+
+===== GAME OVER =====
+Winners: Alice, Carol, Erin, Frank, Grace
+Cost by player (USD):
+  Alice (Sheriff)           $0.1001   42 calls  claude-haiku-5.5
+  Bob (Pharmacist)          $0.0568   44 calls  gpt-6-luna
+  Carol (Lookout)           $0.0447   23 calls  claude-haiku-5.5
+  Dave (Fabricator)         $0.0539   40 calls  gpt-6-luna
+  Erin (Vigilante)          $0.0491   41 calls  gpt-6-luna
+  Frank (Medic)             $0.0801   36 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0887   39 calls  claude-haiku-5.5
+  Heidi (Grunt)             $0.0614   46 calls  gpt-6-luna
+  Moderator                 $0.7240   11 calls  claude-opus-5.5
+  Night checks              $0.2624    4 calls  claude-opus-5.5
+  Strategy review           $0.1640    1 calls  claude-opus-5.5
+  Log review                $0.1756    1 calls  claude-opus-5.5
+  Total                     $1.8607  328 calls

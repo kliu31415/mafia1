@@ -1,0 +1,556 @@
+Setup:
+  Alice    seat 0  Vanilla Villager  moonshotai/kimi-k3
+  Bob      seat 1  Grunt             anthropic/claude-opus-5.5
+  Carol    seat 2  Vigilante         openai/gpt-6.1-sol
+  Dave     seat 3  Tracker           anthropic/claude-haiku-5.5
+  Erin     seat 4  Executioner       google/gemini-3.8-flash  {'target': 'Judy'}
+  Frank    seat 5  Fabricator        anthropic/claude-opus-5.5
+  Grace    seat 6  Medic             anthropic/claude-haiku-5.5
+  Heidi    seat 7  Vanilla Villager  qwen/qwen3.8-max-0902
+  Ivan     seat 8  Pharmacist        anthropic/claude-sonnet-5.5
+  Judy     seat 9  Sheriff           anthropic/claude-sonnet-5.5
+  Mallory  seat 10 Lookout           openai/gpt-6.1-sol
+  Niaj     seat 11 Arsonist          x-ai/grok-4.7
+  Katana starts with Frank
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Mallory.
+Mallory (public): Let's get everyone talking before nominations. I don't favor a blind execution, but I'll reconsider if discussion produces a concrete case. Please don't volunteer exact roles without a reason—Ritualists can exploit them. If you push someone today, explain the behavior you're reading rather than just naming a suspect.
+Niaj (public): Agreed—no blind execution. I'll hold any claim until there's a concrete reason to share it. If you have a behavioral read, put the reason out now so we can pressure-test it before anyone nominates.
+Alice (public): Agree with Mallory and Niaj: no blind execution and no early role claims—Ritualist makes exact claims dangerous. To make today useful despite no night results yet, I suggest two norms: (1) anyone who nominates must cite specific behavior, not vibes; (2) keep private-message traffic purposeful, since the PM graph is public evidence later—sudden quiet side-channels plus a pile-on is a pattern worth noting. Also remember the stall rule: endless no-lynch isn't safe. I'll be watching who avoids committing to any reads today.
+Carol (public): I'm not nominating on these openings, but I won't commit to a no-execution day before everyone speaks. Private messages aren't inherently suspicious; their timing matters only alongside claims and votes. For those still to speak: what would make you support a nomination today, and what would make you back off? Concrete answers give us more to compare later than another round of agreement.
+Dave (public): Dave here. No nomination yet. I want concrete reads from everyone before anyone is pushed, and I'll be noting who dodges.
+Erin (public): To Carol's question: I’d support a nomination today if someone pushes a flimsy, opportunistic bandwagon or contradicts basic mechanics. I’d back off if a nominee gives transparent, logical reasoning and stays open to scrutiny. Let’s hear from the rest of the circle first.
+Frank (public): Frank here. To Carol's question: I'd back a nomination if someone's claim contradicts mechanics or their votes don't match their stated reads. I'd back off without that. No blind execution from me today.
+Grace (public): Grace here. No nomination from me today. I want concrete behavioral reads before anyone is pushed.
+Heidi (public): Heidi here. To Carol's question: I'd back a nomination only if someone's story contradicts itself or they dodge every probe. Otherwise, let's gather info. No blind lynch from me.
+Ivan (public): Ivan here. No blind execution from me. I'll back a nomination only on concrete contradictions or dodging. Let's keep reads specific and watch who stays vague.
+Mallory (public): Carol's question was useful; repeated agreement gives us less to compare. Dave and Grace: is anyone's opening worth questioning, and why? Grace, does 'no nomination from me today' mean regardless of what emerges, or simply no case yet? Neither is an accusation. My answer: I'd support pressure over a meaningful contradiction, but a rules mistake alone isn't proof of evil. Bob and Judy haven't appeared in my transcript yet; that isn't evidence against them.
+Niaj (public): Bob and Judy are the only ones who haven't spoken. That's a gap, not a case. Dave and Grace, a short answer to Mallory is enough for me. I'm not treating silence or caution as guilt, and I still have no nomination.
+Alice (public): Bob, Judy: you're the only two we haven't heard from. Same question Carol posed—what would earn your nomination vote today, and what would make you back off? Short answers are fine; silence is the only bad look right now.
+Bob (public): Bob here. I'd back a nomination for a claim that contradicts mechanics, or someone whose vote doesn't match their stated reads. I'd back off if the nominee answers directly. Mild note: lots of near-identical openings; I'll compare who later shifts once night results exist. No nomination today.
+Carol (public): Alice, I disagree that silence is automatically a bad look; speaking order and opportunity matter. Bob's late appearance illustrates that. My tentative positive read is on Mallory's specific follow-up questions—not an alignment clear. Dave and Grace's generic answers deserve clarification, not a nomination yet. A rules mistake also needs context: an honest correction is different from repeatedly using it to justify an execution.
+Dave (public): Dave: Still no case. Mallory's specific questions were useful. I want night results before anyone is pushed, and I'll compare who shifts after them.
+Erin (public): Agreed with Carol's point—Judy hasn't had her turn in sequence yet, so let's allow everyone to cycle through before reading into timing. Still content to head into night without a rushed nomination.
+Frank (public): Frank: Mild read—Erin's answer to Carol was specific about what moves her, which I like. Waiting on Judy. No nomination; let's get night info.
+Grace (public): Grace: Still no case from me. Judy hasn't spoken yet, so I want her opening and the night results before anyone is pushed.
+Heidi (public): Heidi: Noted Bob's point about the near-identical openings—it's a fair observation, though I'd attribute it more to Day 1 caution than coordination. Carol's framework of comparing who shifts after night results is the right lens. Judy, whenever you're ready, the same question stands: what earns your nomination vote and what makes you back off? Otherwise, I'm content to head into night. No case, no nomination.
+Judy (public): Judy here. I'd back a nomination for contradictions or votes that don't match stated reads, and back off when the nominee answers directly. No nomination today; let's get night results and compare who shifts.
+Niaj (public): Judy answered in line with Bob. Still no case, no nomination. Night results will tell us more than another round of agreement.
+Alice (public): With Judy's answer in, everyone has now committed to roughly the same standard: nominate on contradictions or vote/read mismatches, back off on direct answers. Fine—that's our baseline. What matters tomorrow is follow-through: compare each person's night-result reactions against what they said today. Generic answers from Dave, Grace, Ivan, and Judy are noted but not accusations; consistency over time is the real test. Content to enter night without a nomination.
+Dave (public): Dave: No nomination from me. I want night results before anyone is pushed.
+Erin (public): Ready for night as well. Let's see what information turns up tomorrow.
+Grace (public): Grace: Still no case from me. Everyone's opening is generic so far, so I'll wait for night results before pushing anyone.
+Heidi (public): Heidi: Echoing the consensus—no case, no nomination. One small thing I'll be watching tomorrow: Alice flagged that we should compare night-result reactions against today's stated standards, and Bob noted the similar openings. Both are fair lenses, but I'll be most interested in who becomes *specific* first once we have actual information, versus who keeps hedging. Generic caution is fine today; indefinite vagueness won't be. Ready for night.
+Dave (public): Dave: No nomination from me. Night results first, then I compare who shifts.
+Dave (public): Dave: No nomination from me. Night results first.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Frank, Ivan) Bob (Yakuza chat): Bob here. Proposal: Frank keeps the Katana (holder reads Not Evil to Sheriff tonight, nice cover). Kill target: Alice. She's pushing PM-graph and vote-consistency analysis, which is exactly what exposes us later. Mallory is the alt if you prefer. Frank: frame Dave. He's repetitive and generic, an easy mis-hang if a Sheriff or Seer hits him. Ivan: roleblock Carol or Heidi (both analytical, could be investigative/medic). Or block Mallory if we hit Alice, in case Mallory is a Medic protecting leaders. I'll claim Vanilla if pressed. Let's avoid PMing each other in the day and not vote in lockstep. Objections?
+(to Bob, Frank, Ivan) Frank (Yakuza chat): Agree: I keep Katana, kill Alice. I'll frame Dave (no forge token spent—saving it for a claimed Sheriff/investigator later). Ivan: I'd block Mallory—she's the likeliest to be protected or be a power role, and blocking a medic protecting Alice helps the kill land. Day plan: I'm claiming Vanilla if pressed too, so Bob maybe hold off claiming unless needed—two Vanillas looks fine early though. No lockstep votes, no PMs between us.
+(to Bob, Frank, Ivan) Bob (Yakuza chat): Agreed on all points: Frank holds Katana, kill Alice, frame Dave (no forge), Ivan blocks Mallory. I'll hold off claiming unless pressed hard; if I must, Vanilla—two Vanillas is fine early. Tomorrow I'll soft-question Dave if a frame result surfaces, but not lead the charge. Ivan, if you have a different block preference, say so; otherwise I'm ready.
+(to Bob, Frank, Ivan) Frank (Yakuza chat): Confirmed: I hold Katana, kill Alice, frame Dave (no forge). Ivan blocks Mallory unless you prefer otherwise. Ready.
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Frank holds, attacks Alice
+  Carol (Vigilante): no action
+  Dave (Tracker): target Mallory; "Tracking Mallory to see who she visits tonight."
+  Frank (Fabricator): target Dave; "Frame Dave (no forge)"; Katana vote: Frank holds, attacks Alice
+  Grace (Medic): target Alice; 1 token(s); "Protect Alice with Standard defense using one medic token."
+  Ivan (Pharmacist): no action
+  Judy (Sheriff): no action
+  Mallory (Lookout): target Carol
+  Niaj (Arsonist): target Ivan; "Douse Ivan."
+Katana: Frank holds it and attacks Alice.
+(to Alice) Moderator (private): Last night you were attacked with a Katana, but you survived.
+(to Frank) Moderator (private): Your Katana attack on Alice did not succeed. Alice survived.
+(to Bob, Frank, Ivan) Moderator (private): Yakuza night summary: Frank kept the Katana and attacked Alice with it. Frank also framed Dave (no forge). Bob took no action. Ivan took no action.
+(to Dave) Moderator (private): Tracking result: Mallory visited Carol last night.
+(to Mallory) Moderator (private): Lookout result: nobody visited Carol last night.
+[Moderator summary] Night 1: Frank (Katana holder) used a Standard Katana attack on Alice; Grace's Medic protection gave Alice Standard Defense, so she survived. No token was spent (Standard protection is free; flagged). Frank framed Dave, but nobody investigated Dave, so it had no effect. Dave tracked Mallory and learned she visited Carol. Mallory watched Carol and saw no visitors. Niaj (Arsonist) doused Ivan. Carol, Ivan, Judy and Bob took no action. No deaths.
+
+===== DAY 2 =====
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Niaj.
+Niaj (public): No deaths overnight, so no case yet. Share night results if you have them; I'll compare them to yesterday's standard. No nomination.
+Alice (public): No deaths last night — that means either the Yakuza didn't strike, were role-blocked, or a defense held. If anyone has a result that explains it, weigh whether sharing helps town more than it exposes you; partial info is fine. Per yesterday's standard, I'm watching for contradictions, not pushing a case yet. No nomination.
+Bob (public): Bob: No result from me. A no-kill night is info itself—a protector or block may have worked. If that's you, consider a soft hint without exposing yourself. No nomination.
+Carol (public): A no-death night doesn't tell us which explanation occurred, and protection or blocking alone doesn't confirm the target's alignment. Bob, soft hints can still expose useful roles; I'd avoid requesting them unless there's actionable information to convey. Anyone notified of an attack or role-block can weigh reporting that without naming their exact role. Niaj, does 'no case yet' mean you personally have no evidence, or that you're discounting possible night results because nobody died? Let's hear those results before settling on another quiet day.
+Dave (public): Dave: I hold a Night 1 information point that I'll share when it matters. Watch the night visits, especially Mallory's. No nomination from me yet.
+Erin (public): Sheriff claim here: I investigated Judy last night and she returned Evil. I'm putting this out immediately so town has actionable direction. Let's finish the circle so Frank through Mallory can share their info, but Judy needs to take the stand today.
+Frank (public): Frank: Erin's claim is concrete and early, which costs her a lot if false. Judy, your answer first—do you have a counterclaim or explanation? Absent that, I'd support a trial.
+Grace (public): Grace: Erin's claim is one data point, and a Night 1 Evil result on Day 2 could be real or a frame. Judy should answer it, and Erin should explain why she picked Judy. I won't nominate on one result alone. Let's see how both respond before anyone votes.
+Heidi (public): Heidi here. Erin's claim is concrete and early—I take it seriously, but I need Judy's response before committing. Erin, why Judy Night 1? Day 1 gut read or something else?
+
+Dave, 'watch Mallory's visits' is oddly specific next to a withheld info point. If you have visit data, contextualize it now rather than letting it look like a secondary target forming.
+
+Judy, the floor is yours. Counterclaim or explain.
+Judy (public): I am the real Sheriff. Erin is lying: I was not investigated as Evil, because I'm Village. Erin's claim is a fake-Sheriff play to get a Village power role killed. I'll reveal my own results as they come. Don't hang me on one unverified claim; watch who else backs Erin so fast.
+Mallory (public): Judy, who did you investigate Night 1, and what result did you receive? You claim Sheriff but withhold the result precisely when it matters. Being Village doesn't rule out an Evil result: a Fabricator can frame you. Multiple Sheriffs can exist, and Roleplayers complicate claims, so a counterclaim alone doesn't prove Erin lied.
+
+Erin, why choose Judy?
+
+Dave, state your actual Night 1 observation about me, including the target, rather than insinuating. A visit alone isn't guilt. I'll hear these answers before nominating; Judy's missing result needs resolving now.
+Niaj (public): This is the first real contradiction, so it should be resolved before night. Judy: name your Night 1 target and result. Being Village does not block an Evil read if you were framed. Erin: why Judy, not a random pick? Dave: state the visit, or the hint looks like a second push. If Judy dodges the result, that is a case under yesterday's standard, but I want Erin's reason beside it. No nomination until those answers are out.
+Alice (public): Alice here. This Erin/Judy contradiction must be resolved today. Judy: name your Night 1 target and result — withholding it while claiming Sheriff is exactly the dodge we agreed to punish. Erin: explain why you picked Judy. One more angle: if Judy was framed by a Fabricator, then Judy had TWO visitors last night (Sheriff + Fabricator). If anyone watched or tracked Judy, that data settles a lot — weigh sharing it. Also note Dave's 'watch Mallory's visits' hint still needs substance, Dave. No nomination from me until Judy answers.
+Bob (public): Bob: Judy, a real Sheriff has a Night 1 result—name target and result now. If it's an Evil hit, that's huge; if you won't say, Erin's claim stands taller. Dave, same: name the visit you saw.
+Carol (public): Judy, give your Night 1 target and result now. Claiming Village doesn't establish what Erin could have seen; calling her a liar without considering framing is premature. Your withheld result is more concerning than the duplicate Sheriff claim.
+
+Alice, two visitors follow only if Erin really investigated and a Fabricator framed Judy. Visit evidence could support that explanation, but visitor counts alone won't settle it or identify their roles.
+
+Dave, disclose the actual observation about Mallory. Erin, explain your target choice. I'll judge the answers before nominating.
+Dave (public): Dave: My Night 1 info concerns a visit by Mallory. I won't name my role publicly yet, but I'm checking the Sheriff claim privately. No nomination from me.
+(to Dave, Erin) Dave -> Erin (private): Erin, I have Night 1 visit info on Mallory. Confirm your Judy result is real and I'll corroborate privately. Dave.
+Erin (public): On Day 1, Judy was the last to speak and gave a purely safe, carbon-copy answer, making her prime for an early check. A real Sheriff immediately provides their N1 target and result—withholding it while calling me a liar is pure panic. Let's hear what target and result Judy scrambles to claim on her turn.
+(to Dave, Erin) Erin -> Dave (private): Dave, 100% real. N1 Judy: Evil. What did you see Mallory do?
+Frank (public): Frank: Judy, target and result please, this turn. One caution for everyone: an Evil read with a weak counterclaim also fits Jester or Executioner, since both read Evil and gain from a hang. I want Judy's result before any vote.
+Grace (public): Grace: Judy and Erin both claim Sheriff, so one is lying. Judy, give your N1 target and result now; a second dodge makes a trial reasonable. Erin and Dave, you DM'd right after the claims. Explain that, and whether Dave's Mallory visit is real. No nomination from me yet.
+Heidi (public): Heidi: Frank's Jester/Executioner caution is the right lens—if Erin's Evil read is real, Judy could be Jester or Exe rather than Yakuza, and hanging her is their win. That doesn't mean we ignore it, but it changes urgency.
+
+Judy, we need your N1 target and result this turn. Withholding it while calling Erin a liar is the exact dodge we agreed to flag.
+
+Erin's reasoning (generic, last-to-speak pick) is thin but not implausible for N1.
+
+Dave, you DM'd Erin immediately after claims. Explain the timing publicly so it doesn't read as coordinating a pile-on. Your Mallory visit hint still needs substance.
+
+No nomination yet. Judy's answer decides.
+Ivan (public): Ivan: Judy has dodged her target and result across multiple prompts. By yesterday's standard that is a dodge, and I'd support a trial if she still won't answer. Erin's reasoning was thin but a real Sheriff claim early costs her a lot.
+Judy (public): Fine, answering: my Night 1 target was Erin, and she came back Evil. I held it because I wanted to see if she'd fake-claim Sheriff first. She did, and that is the Evil result confirming itself. Erin is the one to try today, not me.
+Judy nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Judy, Bob, Frank; No - Mallory, Niaj, Alice, Carol, Dave, Erin, Grace, Heidi, Ivan.
+The nomination of Erin failed (3 Yes).
+Mallory (public): I voted No because Judy's delayed reciprocal accusation is less credible than Erin's volunteered result—not because Erin is cleared. Judy, why would investigating Erin make you expect a fake Sheriff claim specifically? Your explanation sounds fitted to what happened afterward.
+
+Bob and Frank, what persuaded you to support Erin's trial? A Yes isn't automatically an execution vote, but explain your reasoning.
+
+Dave, name the target of my alleged visit. You've repeatedly implied significance without giving a checkable observation.
+
+I'm leaning toward a Judy trial. Duplicate Sheriff claims alone don't prove either is lying; framing and Roleplayers remain possible.
+Niaj (public): Judy answered, but the result looks fitted after Erin's claim, so I still weight Erin higher. A Judy trial fits our contradiction standard. An Evil read plus a hang push also fits Jester or Executioner, so a trial is not an automatic Guilty from me. Dave, name the visit. No nomination yet.
+Alice (public): I voted No on Erin because Judy's delayed mirror-claim is far less credible than Erin's volunteered result. Judy's 'I held my result to see if she'd fake-claim' is unfalsifiable and retrofitted — a real Sheriff leads with their Evil hit. That's the contradiction we agreed to act on. I'm nominating Judy. If she has an actual N1 read on someone else, she can give it on the stand.
+Alice nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Alice, Bob, Carol, Dave, Erin, Frank, Grace, Heidi, Mallory, Niaj; No - Ivan, Judy.
+Judy is put on trial (10 Yes).
+Judy (public): I'm Village and Sheriff, and I stand by my result: Erin read Evil. Think about what Erin's claim requires: she says I'm Evil, which is false, so she's lying or reading a frame. If she was framed, she'd not be a Sheriff investigating me. Either way, Erin's claim is the one that fails if my role flips Village when I'm hanged. A hang today costs Village a power role and gains nothing if I flip Village. Hold me one day: if I'm wrong, hang me tomorrow. Mallory, Alice, Niaj voted No on Erin fast and pushed my trial hard; ask why Erin's side is so protected. Bob, Frank, Ivan, thanks for listening.
+Mallory (public): Judy, being framed changes an investigative reading, not someone's ability to investigate. Both Sheriffs could receive Evil results without either lying, and your flipping Village would not by itself prove Erin evil.
+
+My concern is your sequence: you withheld your result, declared Erin a liar, then supplied a reciprocal Evil result after repeated requests. Why did your result make you anticipate a *Sheriff claim specifically*? Your defense hasn't answered that.
+
+I'm leaning Guilty on that behavior, not merely the duplicate claims. A promise to revisit tomorrow adds no evidence.
+
+Dave, before voting, please state the target of my alleged visit. Your insinuation remains uncheckable.
+Niaj (public): The fitted mirror-claim is enough for me to lean Guilty. Judy had multiple chances to lead with a result and instead built it after Erin's claim. Jester is the reason this isn't automatic, but her defense is trying to avoid the hang, which is the opposite of what a Jester wants. A Village flip still wouldn't make Erin evil by itself. Dave, the Mallory visit is still unnamed. I'm leaning Guilty.
+Alice (public): Voting Guilty. Judy's own sequence convicts her: withhold result, call Erin a liar, then produce a mirror-image Evil result only after repeated demands. Her 'I held it to bait a fake claim' is unfalsifiable and built backwards. Her pitch that Mallory, Niaj and I are 'protecting Erin' is a deflection — we voted No on Erin because Judy's claim was weaker, not to shield anyone. Note her own words: she begs 'hold me one day,' which no Jester does; that cuts against Jester, not for innocence. If she flips Village power role, we re-examine Erin hard tomorrow. But on behavior, the contradiction standard we all set says Guilty.
+Bob (public): Bob: To Mallory, I voted Yes on Erin because I wanted both claimants on the stand and answering. That vote wasn't a Guilty. Judy has now had her turn, and the order she gave things in reads as fitted after Erin's claim. I'm leaning Guilty. If she flips Village, we press Erin and Dave hard tomorrow.
+Carol (public): I'm leaning Guilty because Judy withheld her result, then supplied a reciprocal accusation with an explanation that doesn't account for expecting a Sheriff claim specifically. Her defense still hasn't resolved that sequence.
+
+But Alice and Niaj: asking to survive does not rule out Jester. A Jester can make an unconvincing defense deliberately; let's not turn that into reassurance. We must weigh that risk rather than pretend it's gone.
+
+If Judy flips Village, Erin deserves scrutiny, not automatic execution: framing and Roleplayer remain possible. Conversely, an Evil-aligned flip wouldn't clear everyone supporting this trial.
+
+Dave, you don't need to name your role to state whom Mallory visited. Give the actual observation, or stop presenting it as actionable evidence.
+Dave (public): Dave here. I'm the Tracker, and I'm answering the direct request. Night 1 I tracked Mallory: Mallory visited Carol. That's my only result. Mallory, confirm or explain that visit. Judy, your Erin-Evil result and Erin's Judy-Evil claim are still one-against-one, and I haven't decided my vote on your trial. Next night I'll track someone new, so watch where my track lands.
+Erin (public): I completely understand the Jester and Executioner concerns raised by Frank and Carol. However, town cannot afford to let a caught Evil result walk out of fear, especially when Judy's defense consisted of withholding info and retrofitting an accusation only after being cornered. Her plea to 'hold me one day' is a textbook delay tactic. I stand 100% by my result: Judy is Evil. If she somehow flips Village, you can put me on the stand first thing tomorrow. I am voting Guilty.
+Grace (public): Grace: I'm voting Innocent. Judy and Erin are a 1v1 Sheriff contradiction, and Judy's late answer is suspicious but not proof. Erin, why did you DM Dave right after claiming? Hanging a Sheriff claimant on this evidence risks losing a Village power role for nothing.
+Heidi (public): Heidi: I'm leaning Guilty, and I want to say why plainly rather than hiding behind uncertainty.
+
+Judy's sequence is the issue, not the duplicate claim itself. She had multiple prompts across several turns to lead with "I investigated Erin, got Evil." Instead she called Erin a liar, then produced the mirror result only after being cornered. Her explanation—that she withheld it to bait a fake Sheriff claim—doesn't survive scrutiny. Why would a Sheriff expect a *specific* counterclaim from their Evil read before even announcing their own? That's retrofitted reasoning, and it's the exact dodge standard we all committed to on Day 1.
+
+On the Jester/Executioner risk Frank and Carol raised: Judy is fighting hard to live, which is the opposite of what a Jester wants. A Jester either plays convincingly to get hanged or at minimum doesn't beg "hold me one day." I take the risk seriously, but her behavior pattern fits someone caught in a lie more than someone fishing for a rope.
+
+Grace, I hear you on the 1v1 concern, but it isn't truly symmetric. Erin volunteered her result immediately with reasoning. Judy withheld, deflected, then mirrored. That asymmetry is what breaks the tie for me.
+
+If Judy flips Village or any Good role, Erin goes under the microscope first thing tomorrow—Dave's Tracker result on Mallory also needs verification. But on behavior today, I'm voting Guilty.
+Trial votes on Judy: Guilty - Alice, Bob, Carol, Dave, Erin, Heidi, Mallory, Niaj; Innocent - Frank, Grace, Ivan, Judy.
+Judy is executed by hanging (8 Guilty).
+Erin was the Executioner, whose target was Judy. They win and leave the game.
+Judy died (executed by hanging). Their role was Sheriff. Last will: 'I am Judy, the Sheriff (Village). I have no investigation results yet. If I die, treat anyone who pushed hardest against Village leads with suspicion, and check who avoided committing to reads.'
+
+===== NIGHT 2 =====
+(to Bob, Frank, Ivan) Bob (Yakuza chat): Bob: Recap: Alice survived a Standard Katana hit. Ivan didn't block, and Mallory visited Carol, not Alice. So either a hidden Medic saved Alice, or Alice herself has Standard Defense (SK or Arsonist). Either way, no Katana on Alice again. Proposal: Frank keeps the Katana and kills Dave. He's the claimed Tracker and will track someone tonight. If he lands on Frank, we're exposed. Ivan: block Mallory. Dave's track result suggests she's a Medic protecting Carol, or maybe a Party Animal/Lookout; blocking her keeps the Dave kill safe. Frank: the Sheriff is dead, so framing matters less now. Frame Alice; if a Seer or Oracle exists, it builds a case on her for tomorrow. Save the forge. Day 3 plan: push suspicion onto Alice's survival and Mallory's Carol visit, and stay out of lockstep votes. Objections?
+(to Bob, Frank, Ivan) Frank (Yakuza chat): Frank: Agree on keeping the Katana, killing Dave, and Ivan blocking Mallory. One change: Dave is a claimed investigator, which is exactly what I saved the forge for. I'll forge his will and frame Mallory instead of Alice. Draft forged will: 'Dave - Tracker. N1: Mallory visited Carol. N2: tracked Mallory, she visited ME. If I die tonight, Mallory is Yakuza.' Mallory gets blocked, so she'll have no real result to counter with. She'll say 'I was roleblocked', which sounds like an excuse. Tomorrow, Bob and Ivan, push Mallory moderately but not in lockstep. I'll stay measured and point at the will. Also keep in mind Alice may be SK or Arsonist with Standard Defense, so don't let town clear her. If a Medic saves Dave, the forge fails and the token is lost, but it's worth it. Objections?
+(to Bob, Frank, Ivan) Bob (Yakuza chat): Bob: Agree with Frank's version: Katana stays with Frank, kill Dave, forge Dave's will, frame Mallory, and Ivan blocks Mallory. Small tweak to the will: Dave said publicly he'd 'track someone new', so word it as 'N2: tracked Mallory again since she's my top suspect; she visited ME.' That explains the repeat. Day 3: I'll open by asking Mallory to account for her N1 Carol visit and her N2 action. I won't lead the charge, I'll follow Frank's pointing at the will. Ivan, maybe vote with town on something early to break up our Innocent trio from yesterday (Frank and Ivan both voted Innocent on Judy). Also: if a Lookout was on Dave, they'd see Frank. So if anyone claims Lookout with Frank on Dave, we pivot to 'Lookout is lying, the will proves Mallory', and I'll back Frank. Ready.
+(to Bob, Frank, Ivan) Frank (Yakuza chat): Frank: Taking Bob's tweak. Final forged will: 'Dave - Tracker. N1: tracked Mallory, she visited Carol. N2: tracked Mallory again since she's my top suspect; she visited ME. If I die tonight, Mallory is Yakuza.' Plan: I keep the Katana and kill Dave, forge his will, and frame Mallory. Ivan, please actually block Mallory tonight. You took no action N1, and the forged will only works cleanly if her own night is a dud. If a Lookout claim puts me on Dave, Bob's pivot stands: the Lookout is lying and the will is the truth. Also agreed that Ivan should vote with town on something early tomorrow to break up the Innocent pattern. Ready.
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Frank holds, attacks Dave
+  Carol (Vigilante): no action
+  Dave (Tracker): target Mallory; "Tracking Mallory to see who she visits tonight."
+  Frank (Fabricator): target Mallory; second target Dave; 1 token(s); "Frame Mallory (target). Spend 1 fabricator token to forge Dave's last will (second_target). Forged will text: 'Dave - Tracker. N1: tracked Mallory, she visited Carol. N2: tracked Mallory again since she's my top suspect; she visited ME. If I die tonight, Mallory is Yakuza.'"; Katana vote: Frank holds, attacks Dave
+  Grace (Medic): target Dave; "Protect Dave with Standard Defense (no token spent)."
+  Ivan (Pharmacist): no action
+  Mallory (Lookout): target Dave
+  Niaj (Arsonist): target Frank; "Douse Frank."
+Katana: Frank holds it and attacks Dave.
+(to Dave) Moderator (private): Night 2 result: You tracked Mallory. Mallory visited Dave (you). Also, you were attacked with a Katana tonight, but you survived.
+(to Mallory) Moderator (private): Night 2 result: You watched Dave. Dave was visited by: Frank, Grace.
+(to Frank) Moderator (private): Night 2: Your Katana attack on Dave failed. Dave survived.
+(to Bob, Frank, Ivan) Moderator (private): Yakuza Night 2 actions: Frank (holding the Katana) attacked Dave with the Katana, framed Mallory, and spent a fabricator token to forge Dave's last will. Bob took no action. Ivan took no action. The Katana stays with Frank.
+(to Niaj) Moderator (private): Night 2: You doused Frank.
+[Moderator summary] Night 2: Katana (Frank) attacked Dave at Standard; Grace's Standard protection on Dave held, no death. Frank framed Mallory (no alignment investigator targeted her, no effect) and spent his fabricator token forging Dave's will (no effect since Dave survived); token now 0. Dave tracked Mallory -> Mallory visited Dave. Mallory watched Dave -> visitors Frank, Grace. Niaj doused Frank (doused: Ivan, Frank). Carol, Bob, Ivan no action. No deaths.
+[Revenge] Erin's Divine Attack hits Alice.
+
+===== DAY 3 =====
+Alice died (Executioner's revenge). Their role was Vanilla Villager. Last will: "I am Alice, Vanilla Villager (Good), no night actions. IMPORTANT: On Night 1 the Katana attacked ME and I survived — meaning someone (likely a Medic with Standard defense) protected me. I did not claim this publicly to avoid exposing the protector to the Ritualist. If I'm now dead, the Yakuza likely retried. Town: treat my death as confirmation that a protective role exists; don't hunt the protector. Day 1 notes: everyone committed to voting on contradictions/vote mismatches; hold Dave/Grace/Ivan/Judy (generic answers) and all bandwagon voters to that standard. Compare who shifted reads after night results. Beware Cardinal/Jester/Executioner traps before Guilty votes. Stall rule: 3 deathless days/nights = everyone loses, so don't stall forever. No PM traffic occurred Day 1 — use PM graph as evidence going forward."
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+Mallory (public): I voted Guilty on Judy and was wrong. Her Erin-Evil result fits the revealed Executioner; discard Erin's accusation, not Judy's result. Innocent voters aren't automatically cleared either.
+
+Dave, your N1 report that I visited Carol was accurate. That supports genuine visit information, not your alignment. Give your N2 target/result, any attack or role-block notification, and the substance of your messages with Erin.
+
+Anyone else notified of an attack or block: consider reporting it without naming your role. Alice died to Executioner's revenge, not Katana. Her will supports N1 protection but doesn't identify a protector.
+Niaj (public): Shared Guilty on Judy was wrong: she was Sheriff, Erin the Executioner. Innocent voters aren't cleared either. Alice lived a Night 1 Katana hit, so a protector exists — don't hunt them. Mallory confirmed Dave's Night 1 visit. Dave, give Night 2 and the Erin messages. No nomination.
+Bob (public): Bob: Agreed, Judy's result was real and Erin was the Exe. That makes Grace's Innocent vote look better in hindsight. Dave, you're the key today: your N2 track target and result, and whether you were attacked. No nomination yet.
+Carol (public): I voted Guilty and was wrong. Judy's claimed Erin-Evil result fits Executioner; her stale-looking will doesn't erase that. Innocent votes deserve consideration, not automatic clearance.
+
+Mallory, you've confirmed visiting me N1. Can you explain its purpose without unnecessarily naming your exact role? I received no attack or role-block notification; that doesn't establish your alignment.
+
+Dave, alongside your N2 result, explain what 'checking the Sheriff claim privately' actually meant and what Erin told you. Her claim wasn't verified merely by discussing it.
+
+Alice's death explains no Katana kill; we still don't know what happened to that attack N2.
+Dave (public): Dave: Night 2 I was Katana-attacked and survived, so the Yakuza are alive and something protected me. Mallory visited me that same night, which makes Mallory my main lead. Tonight I track someone new and will report results. No nomination from me yet.
+Frank (public): Frank: Dave's N2 lines up with his N1, which Mallory herself confirmed was accurate. Mallory, you visited Carol N1 and Dave N2. What were those visits? If you're protective, say so. Otherwise I'm leaning toward a nomination.
+Grace (public): Grace: Dave's Night 2 attack and survival are consistent with what I saw, so I believe his Tracker results. Mallory, you visited Carol and then Dave. Explain both visits. No nomination from me yet.
+(to Dave, Grace) Grace -> Dave (private): Grace here: I protected you N2. Keep your track results coming.
+Heidi (public): Heidi here. Two threads before anyone nominates.
+
+Dave: N2 account is consistent, but 'Mallory visited me' is a Tracker observation, not a conclusion. What did your PM with Erin actually contain? She's gone—no reason to stay vague.
+
+Mallory: visits to Carol N1, Dave N2. If protective, say so and explain why Dave still got hit. If not, explain both.
+
+Frank: visits without an attack result aren't guilt. Don't lynch a possible protector.
+
+Ivan: you shifted from hesitant to Guilty-lean mid-trial. What moved you?
+
+No nomination from me yet.
+Ivan (public): Ivan: Heidi, I voted Innocent on Judy, not Guilty. I only said I'd back a trial if she kept dodging, then she answered. Judy's result fit Exe. I find Mallory's Carol and Dave visits worth explaining; no nomination yet.
+Mallory (public): I'm Lookout. N1 I watched Carol: nobody visited her. N2 I watched Dave: Frank and Grace visited him. My visits were investigative, not attacks or protection.
+
+Dave, did you track me N2? State your actual target/result; Tracker doesn't report your own visitors automatically. Also answer what your Erin messages contained.
+
+If my result is reliable and Dave truly suffered a Katana attack, its attacker is among Frank and Grace. That does NOT make both evil; one could have protected him.
+
+Frank and Grace, independently explain your Dave visits. Grace, what exactly did you see that corroborates his attack and Tracker claim?
+Niaj (public): Mallory visiting Dave fits a Lookout watch, so it isn't a lead by itself. Dave: did you track her, or are you reporting visitors a Tracker wouldn't see? Name the actual N2 target and result. Frank and Grace: explain the Dave visits separately, plus any attack or block notice. Katana would be one visitor; the other can be protection or info. Grace, your PM to Dave today needs a public summary. No nomination until those answers.
+Bob (public): Bob: Mallory's result makes it one-of-two: Frank or Grace. Both should claim what they did to Dave, independently. Grace, you said 'consistent with what I saw' before Mallory posted anything, and then you DM'd Dave. What did you see, and how? No nomination until both answer.
+Carol (public): Protection doesn't stop an attack being attempted; it can explain survival. Heidi, a protector needn't explain why Dave still 'got hit.'
+
+If Mallory's Lookout result and Dave's attack report are accurate, Frank or Grace delivered the Katana attack. That is a conditional case, not confirmation of Mallory or grounds to condemn both.
+
+Frank and Grace, explain your actions on Dave independently. Grace, specify what you 'saw' before Mallory's claim and summarize your PM. Dave, explicitly name your N2 tracking target/result and explain the Erin exchange. Let's get these answers before nominating.
+Dave (public): Dave: Erin's DM to me said 'N1 Judy: Evil' and asked what I saw of Mallory; I DMed her first to ask for confirmation, so the timing wasn't coordination. Grace DM'd me 'I protected you N2.' If that's true, the Katana came from Frank, who also visited me. Grace, confirm publicly. Tonight I track a new target. No nomination.
+Frank (public): Frank: I'm claiming Medic, since Mallory's result forces it. N1 I protected Alice, which is why the Katana failed on her. N2 I protected Dave because he had just outed himself as Tracker and was the obvious target. No tokens spent; both were Standard protections. Grace's DM to Dave claiming she protected him is false. She's the Katana visitor. Note the order: she told Dave 'consistent with what I saw' BEFORE Mallory posted, getting ahead of a Lookout result she feared. Grace, who did you protect N1? Alice survived a Katana that night too. Explain that.
+Grace (public): Grace here, and I'm claiming Medic. I protected Alice N1 and Dave N2 with Standard defense, which is why the Katana failed on both. Frank, you claim the same two protections, which can't both be true. Your Medic claim is false. You also visited Dave N2 per Mallory's Lookout, and you're now pointing at me as the Katana visitor. Frank, explain that contradiction. Mallory, you visited Carol N1 and Dave N2, so explain those visits too.
+Heidi (public): Heidi: Two identical Medic claims — only one real. Frank, a real protector knowing her shield held explains Grace's pre-Mallory line; timing alone isn't proof. Grace, same logic applies to you. Neither claim is eliminated by that one detail.
+
+Dave: you still haven't given your N2 tracking target and result. Three asks, three deflections. That single answer breaks the Frank/Grace tie. Name it now.
+
+No nomination yet. Dave's N2 result is the deciding piece.
+Ivan (public): Ivan: Grace's 'consistent with what I saw' before any Lookout result is odd, but Frank's two protections also line up neatly. Dave's N2 track result is the tiebreaker; Dave, name it. No nomination from me yet.
+Mallory (public): Grace, I already explained both visits: Lookout watches, with results posted. What remains unanswered about them?
+
+Two Medics can exist; identical protections alone don't prove a liar. But if my result and Dave's Katana report are accurate, one of Frank/Grace attacked him, so both cannot have merely protected him.
+
+Heidi, Medics aren't automatically told their protection stopped an attack. Grace's wording needs explanation, not assumed confirmation.
+
+Dave: give your exact N2 tracking target and result now. Did you actually track me to yourself? Your result may help, but won't necessarily break this tie. Repeatedly promising tomorrow's track isn't answering today's question.
+Niaj (public): Dave: N2 track target and result, one sentence. 'Mallory visited me' counts only if you tracked Mallory.
+
+I am not nominating Frank or Grace. Alice's will shows a save, not who made it. Grace matching both of Frank's protections after he named them is the weaker sequence, but a possible real Medic is not a hang on a tie. Grace, what did you actually observe before Mallory spoke?
+
+No nomination.
+Bob (public): Bob: Grace, Medics aren't told whether their protection stopped an attack, as Mallory noted. So what did you 'see' before Mallory posted, that made Dave's attack 'consistent'? And your claim came after Frank named both protections, mirroring them exactly. Frank's claim at least fits Alice's will. Grace, explain the 'saw' line or I'm leaning toward a Grace trial.
+Carol (public): Bob, Grace's N2 protection claim wasn't copied from Frank: Dave publicly reported her PM claiming protection before Frank claimed Medic. Her N1 claim did follow Frank's.
+
+Also, Dave had already announced surviving a Katana attack before Grace said it was 'consistent with what I saw.' A Medic could mean it fits her protection, without receiving success feedback. Grace, clarify that wording and why you asked Mallory to explain watches she'd already explained.
+
+Dave, give your exact N2 tracking target and result—not another promise about tonight.
+
+The conditional Frank/Grace case matters, but neither identical claims nor that phrasing alone resolves it. No nomination yet.
+Dave (public): Dave: My N2 track was Mallory, and Mallory visited me. That matches Mallory's Lookout claim. Frank and Grace both claim Medic and both say the other is the Katana visitor. Frank and Grace, state exactly who you protected and why you think the other attacked. No nomination yet; tonight I track a new target and will report it.
+(to Dave, Grace) Dave -> Grace (private): Grace, what exactly did you observe before Mallory posted? Be specific.
+Frank (public): Frank: Dave's N2 track lines up with what I claimed: I protected Dave. Grace's story has three problems. First, she said 'consistent with what I saw' before Mallory posted, and a Medic sees nothing. Second, her N1 Alice claim came only after I'd named Alice. Third, she then deflected onto Mallory's already-explained visits. Dave, what did Grace's DM actually say, word for word? I'd support a Grace trial.
+Grace (public): Grace: I am the real Medic. I protected Alice N1 and Dave N2. Frank claims those exact same protections, so he is lying. Mallory's Lookout also put Frank on Dave N2. I'm nominating Frank.
+Grace nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Grace, Mallory, Carol, Dave; No - Heidi, Ivan, Niaj, Bob, Frank.
+The nomination of Frank failed (4 Yes).
+Heidi (public): Heidi: Frank nomination failing was right—two Medic claims need a tiebreaker before trial. Grace: explain 'consistent with what I saw' in one plain sentence. Medics get no attack feedback, so what did you see? Dave: track Frank or Grace tonight, not someone new. That result breaks this. No nomination today.
+Mallory (public): Heidi, tracking either claimant to a target won't distinguish protection from Katana; both involve visits. My Yes sought examination, not a settled Guilty. Frank, Dave tracking me validates neither your protection nor Grace's guilt. Grace, explain your wording; duplicate claims alone aren't proof. Dave, summarize your latest Grace PM. We still need an actual discriminator.
+Niaj (public): Grace, answer the wording: what did you see? Medics get no success ping. If you only meant Dave had already said he survived, say that. I'm closer to trying Grace than Frank — her Alice protection was named second — but that is not a clear on Frank. No nomination yet.
+Bob (public): Bob: Same as Niaj. I lean Grace over Frank on the wording and the claim order, but I won't hang a possible Medic on a tie. No nomination today. Dave, report tonight's track tomorrow.
+Carol (public): My Yes on Frank was for examination, not a settled Guilty. Grace's N2 protection claim preceded Frank's; only her N1 claim followed his. Neither claim order nor wording settles this. Does anyone have independent information distinguishing them? Tracking a claimant's visit alone won't. Grace, answer the outstanding questions rather than repeating that duplicate Medics prove a lie.
+Dave (public): Dave: Tonight I track Grace, and I'll report her visit target publicly tomorrow. No nomination.
+Frank (public): Frank: Fine with no nomination today. Dave tracking Grace is reasonable. I'll protect someone tonight and won't name them in advance.
+Grace (public): Grace: No nomination from me. Dave tracking me tonight is fine. Frank, your Medic claim copies mine, so explain the overlap. Dave, your Frank track result matters.
+Heidi (public): Heidi: Grace, you've dodged 'consistent with what I saw' across four prompts. Medics get no attack feedback. Say plainly: you meant inference from Dave's report, not observation. One sentence resolves it.
+
+Dave, publicly summarize your Grace PM. Tonight track Frank or Grace—whichever breaks the Medic tie. Not an outsider.
+
+Mallory's N2 Lookout remains our strongest independent data: Frank and Grace both visited Dave. One protected, one attacked. That frame holds unless Dave fabricated the Katana hit, which I don't believe.
+
+No nomination today. Grace's wording and Dave's track decide this.
+Niaj (public): Carol's correction stands: N2 claim order doesn't convict Grace. Her 'what I saw' line is still unanswered. Not a nomination from me.
+Dave (public): Dave: Still on plan. Tonight I track Grace and I'll report her visit target publicly tomorrow. No nomination from me.
+Grace (public): Grace: Frank's Medic claim copies my protections exactly, and Mallory's Lookout puts Frank on Dave N2. Frank, explain that overlap. Dave, a Frank track tonight would break the tie.
+(to Dave, Grace) Grace -> Dave (private): Grace: I'm the real Medic. Track Frank tonight if you can.
+Heidi (public): Grace: did you *observe* something, or infer from Dave's survival report? Medics get no attack feedback. Say which. Dave: summarize the Grace PM publicly. Track Grace tonight, no pivoting. No nomination yet.
+Niaj (public): No nomination. Grace still has not said what she saw.
+Grace (public): Frank, your Medic claim is false; I protected Dave N2 and Alice N1.
+Mallory nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Mallory, Niaj, Carol, Heidi; No - Bob, Dave, Frank, Grace, Ivan.
+The nomination of Grace failed (4 Yes).
+Carol (public): Frank, you called Grace the Katana attacker and supported her trial. Why vote No on her nomination? Dave, explain your No and Grace PMs.
+Dave (public): Dave: Still tracking Grace tonight; result public tomorrow. No nomination.
+Frank (public): Frank: Voted No to wait for Dave's Grace track tonight; mis-hanging the real Medic costs town.
+(to Dave, Grace) Grace -> Dave (private): Dave, track Frank tonight, not me. Frank's Medic claim copies mine, and I'll protect you again tonight. Keep this between us.
+(to Frank, Mallory) Mallory -> Frank (private): If you're Medic and believe Dave's Katana report, my visitor list makes Grace the attacker. Why does 'mis-hanging the real Medic' justify your No on Grace? Do you doubt Dave's report, my result, or your own accusation? Tracking Grace won't distinguish protection from Katana. Please explain this publicly or answer directly here.
+(to Carol, Mallory) Carol -> Mallory (private): What does Frank tell you privately? His No contradicts identifying Grace as the attacker; waiting for a track cannot distinguish Katana from Medic.
+(to Frank, Mallory) Frank -> Mallory (private): I believe your result and Dave's attack. But Grace could be a second Medic I can't rule out, so I voted No. If Dave's track shows her visiting nobody or someone odd tonight, I'll nominate her tomorrow myself.
+(to Dave, Grace) Grace -> Dave (private): Track Frank tonight, not me. I'll protect you again.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+(to Bob, Frank, Ivan) Bob (Yakuza chat): Bob: N3 plan proposal. Frank keeps the Katana. Ivan, you MUST block Grace tonight, two reasons. First, her protection fails, so our kill lands. Second, Dave is tracking Grace, so he'll report she visited no one, which undercuts her Medic claim. Grace will say she was roleblocked, but that sounds like an excuse next to Frank's story. Kill: Mallory. She's the Lookout, the only independent data against Frank, and she PM'd Frank late, so she's probing. Dead, she can't watch Frank's target or Grace. Frank: frame Grace if you like, in case a Seer or Oracle exists. The extra visit on Grace only matters if Mallory watched her, and she'll be dead. Tomorrow: Frank says 'I protected X' (pick someone plausible, e.g. Carol or Heidi). Ivan and I lean on the empty Grace track, not in lockstep. Alt kill if you object: Dave. Objections?
+(to Bob, Frank, Ivan) Frank (Yakuza chat): Frank: Agree, kill Mallory and Ivan blocks Grace. Ivan, this is critical. You've taken no action two nights running. Please actually submit the block on Grace tonight. If Grace isn't blocked, she can protect Mallory and Dave's track shows a real visit, which helps her claim. One tweak: pass the Katana to Bob tonight, and Bob attacks Mallory. Mallory or someone else may be watching or tracking me after my Medic claim. If my visit lands on Mallory, I'm done. Spreading the visits is safer. I'll frame Grace, which helps if a Seer or Oracle checks her. Tomorrow I'll say I protected Heidi, which can't be checked with Mallory dead. Bob, you take the Katana and hit Mallory. Tomorrow: lean on Grace's empty track, and I nominate her as I promised Mallory. Bob and Ivan, vote Yes, but don't post in lockstep. Objections?
+(to Bob, Frank, Ivan) Bob (Yakuza chat): Bob: Agreed. Katana to me, I attack Mallory. Ivan blocks Grace, Frank frames Grace. Ivan, please actually submit the block. If Grace protects Mallory, the kill fails a third time and we look toothless.
+
+One caution for tomorrow: do NOT let Grace actually get hanged. If she flips Medic, town reruns Mallory's N2 result (Frank + Grace on Dave, one attacked), and Frank is instantly exposed. Even with Mallory dead, her claim is on record. So, Frank, nominate her if you promised, but we should aim for trial pressure and an Innocent outcome, or better, steer tomorrow's hang elsewhere (Heidi or Niaj, whoever pushes Frank). I'll lean on the empty track to discredit her claim, not to rope her. Frank, say you protected Heidi, as planned. Ready once Ivan confirms.
+(to Bob, Frank, Ivan) Frank (Yakuza chat): Frank: Agreed on all of it. Katana goes to Bob, and Bob hits Mallory. Ivan blocks Grace, and I frame Grace. Good catch on not actually hanging Grace: if she flips Medic, Mallory's N2 result points straight at me. Tomorrow I'll press her empty track and nominate her for show, then argue on the stand for 'one more night of info', or we let the vote fail. If town wants a hang, steer it to whoever pushes me hardest (Heidi or Niaj). I'll claim I protected Heidi N3. Ivan, please confirm and submit the Grace block. Ready.
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Mallory
+  Carol (Vigilante): target Frank; 1 token(s); "Shoot Frank with a Basic attack using one vigilante token."
+  Dave (Tracker): target Grace; "Tracker night action: track Grace to see who she visits."
+  Frank (Fabricator): target Grace; "Frame Grace (no forge)."; Katana vote: Bob holds, attacks Mallory
+  Grace (Medic): target Dave; "Protect Dave with Standard defense for Night 3."
+  Ivan (Pharmacist): no action
+  Mallory (Lookout): target Carol
+  Niaj (Arsonist): target Heidi; "Douse Heidi."
+Katana: Bob holds it and attacks Mallory.
+(to Carol) Moderator (private): Night 3: Your Basic shot on Frank succeeded. You have 2 vigilante tokens left.
+(to Dave) Moderator (private): Night 3 Tracker result: Grace visited Dave.
+(to Mallory) Moderator (private): Night 3 Lookout result: Nobody visited Carol. You were attacked with a Katana.
+(to Frank) Moderator (private): Night 3: You were attacked by a Vigilante.
+(to Bob, Frank, Ivan) Moderator (private): Night 3 Yakuza actions: Bob (Katana holder) used the Katana to attack Mallory. Frank framed Grace. Ivan took no action.
+(to Bob) Moderator (private): Your Katana attack on Mallory succeeded.
+(to Niaj) Moderator (private): Night 3: You doused Heidi.
+(to Grace) Moderator (private): Night 3: You protected Dave with Standard Defense. No tokens spent; you have 2 medic tokens.
+[Moderator summary] Night 3: Bob (Katana) killed Mallory (Standard vs None, unprotected). Carol shot Frank with Basic (1 token, 2 left), killing the Fabricator. Frank framed Grace (nobody investigated her alignment). Grace protected Dave (Standard, no attack on him). Dave tracked Grace -> Dave. Mallory watched Carol -> no visitors. Niaj doused Heidi (doused: Ivan, Heidi; Frank dead). Ivan did nothing. Katana stays with Bob. Alive: Bob, Ivan (Yakuza), Carol, Dave, Grace, Heidi (Village), Niaj (Arsonist). No win yet.
+
+===== DAY 4 =====
+Mallory died (Katana). Their role was Lookout. Last will: "Mallory — Lookout (Village).\n\nN1: Watched Carol. Nobody visited Carol.\nN2: Watched Dave. Visitors: Frank and Grace.\n\nThese are visitor identities, not their actions or alignments. Neither result clears the watched player. Astral actions are invisible to Lookout. Alice's Executioner-revenge death was astral and does not explain either visit to Dave.\n\nDave claimed Tracker and reported tracking me to Carol N1. That target was correct. This supports his access to genuine visit information, but does not prove his role or alignment. He exchanged private messages with Erin D2; their contents deserve examination now that Erin is confirmed Executioner.\n\nI voted Guilty on Judy because I misread her delayed result as fabricated. Judy was actually Sheriff, and her reported Evil result on Erin was consistent with Erin being Executioner. Her will's 'no investigation results yet' may simply have been stale. Do not retain Erin's fraudulent accusation as evidence.\n\nJudy Guilty voters: Alice, Bob, Carol, Dave, Erin, Heidi, Mallory, Niaj. Innocent voters: Frank, Grace, Ivan, Judy. Neither group is automatically cleared or condemned. Examine independent reasoning rather than repeating the failed case.\n\nCarol's mechanics corrections and warning that survival pleas do not exclude Jester were useful, not an alignment clear.\n\nAlice's will reports surviving a Katana attack N1. That supports some protective effect, but does not identify a protector. Distinguish her confirmed Executioner-revenge death from a Katana kill."
+Frank died (Vigilante). Their role was Fabricator. Last will: "Frank - Vanilla Villager. No night actions, nothing to report. Day 2: I voted Innocent on Judy because a 1v1 Sheriff claim plus an Evil read also fit Jester/Executioner, and Erin turned out to be Executioner. Reads: Mallory pushed hard for Judy's hang and has an unexplained N1 visit to Carol per Dave. Check her. Dave's claims also need verification. If I die, look closely at whoever pushed hardest for my lynch or stayed quiet about it."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+Ivan (public): Ivan: Frank was a Fabricator, so his Medic claim was false and Grace's looks real. I was wrong to vote No on Grace. Bob also voted No on Grace, and Dave too. Dave, report your Grace track.
+Niaj (public): Frank flipping Fabricator kills his Medic claim and his Vanilla will. That makes Grace the more credible protector, and my Day 3 Yes on her was for a tie I no longer buy. Dave, your Night 3 Grace track is the open result — target and who she visited. No nomination.
+Bob (public): Bob: Frank flipped Fabricator, so I was wrong on Grace. My lean came from claim order and her wording, and I also said I wouldn't hang a possible Medic on a tie. Grace now reads as the real protector. Whoever shot Frank: great shot, stay hidden. Dave, give your Grace track. No nomination.
+Carol (public): Frank's flip disproves his Medic claim and strengthens Grace's, but doesn't mechanically clear her. A Fabricator can visit to frame, so Mallory's visitor list alone doesn't identify which visitor used the Katana. Dave's attack report also remains self-reported.
+
+Dave, give your exact N3 target/result and summarize the still-unexplained Grace PMs. Grace, whom did you protect N3, and did you receive any attack or block notice?
+
+Bob, Heidi, Ivan and Niaj: do you have actionable night information or notifications? Exact roles aren't necessary unless needed to explain evidence. Let's not make today another closed Frank/Grace debate.
+Dave (public): Dave: My Night 3 Tracker result: Grace visited me. That fits her Medic protection, which I'm glad to see. Frank was Yakuza and the Katana holder who likely killed Mallory, so the Katana has passed to a living Yakuza. I'm tracking tonight. No nomination.
+(to Dave, Grace) Dave -> Grace (private): Dave: Thanks for protecting me. Keep your protection plan and stay active.
+Grace (public): Grace: Frank was shot by a Vigilante, so a living Village shooter exists. The Katana still needs a Yakuza holder. Shooter, consider a claim. No nomination from me.
+(to Dave, Grace) Grace -> Dave (private): Grace: I will protect you again tonight. Keep tracking and report your targets publicly. Watch who tries to pin Katana on me.
+Heidi (public): Heidi: Frank flipped Fabricator—Grace's Medic stands, his will is Yakuza misdirection targeting Dave and dead Mallory. Discount it. Vigilante made a good call; stay hidden.
+
+Dave: four Grace PMs still unsummarized. Erin's you explained in a day. Summarize now—substance only.
+
+Grace: protect wisely tonight.
+
+Katana's with a living Yakuza. Carol, Niaj, Bob, Ivan: any N3 attacks, blocks, observations? Even 'nothing' narrows things.
+
+No nomination yet.
+Ivan (public): Ivan: No N3 notices for me, nothing to report. Dave's Grace track fits her Medic claim. Heidi, I'd hold for the Vigilante to reveal info rather than force a nomination today. No nomination.
+Niaj (public): Nothing from me overnight: no attack, no block, no result worth a claim. Dave's Grace visit fits Medic. Frank's will is Fabricator noise. No nomination.
+Bob (public): Bob: Nothing overnight for me: no attack, no block, no actions to report. Agree Frank's will is noise. Vigilante, stay hidden unless you need to stop a mis-hang. No nomination.
+Carol (public): Dave, Frank could have held the Katana, but his flip doesn't establish that. Your Grace track identifies a visit, not protection. Summarize your Grace PMs.
+
+Grace, whom did you protect N3? Please answer rather than requesting the shooter's claim; a Ritualist could exploit that disclosure.
+
+Heidi, you requested everyone else's notifications but haven't given your own. Any actionable information?
+
+Bob, Ivan, Niaj: name your strongest current suspect and why. 'No notices, no nomination' leaves us without direction. Frank's death gives us voting evidence to examine, not permission to clear everyone around him.
+Dave (public): Dave: Tonight I track a new target and will report the result publicly tomorrow. No nomination from me.
+Grace (public): Grace: Mallory's will says her Lookout watch on Carol N1 saw nobody, yet Dave tracked Mallory visiting Carol and Mallory confirmed that visit. Both can't be true. Carol, why did Mallory visit you N1? Also explain your Guilty on Judy and your Yes on Frank.
+(to Dave, Grace) Grace -> Dave (private): Grace: track Carol or Heidi tonight, not me. Mallory's will contradicts your Carol track.
+Heidi (public): Heidi: Grace, stop. You just claimed Lookout on top of Medic. Mallory watched Carol N1 and saw nobody; Dave tracked Mallory visiting Carol; Mallory confirmed it. You cannot be both Medic and Lookout. Pick one role or explain the contradiction plainly.
+
+Dave: five Grace PMs across two days, still unsummarized. Erin's you explained same-day. Summarize substance publicly or the secrecy reads as coordination.
+
+Ivan, Bob, Niaj: four days, still no reads from any of you. Frank's will targets Dave and dead Mallory—if anyone runs with that today, flag them. That's Yakuza misdirection.
+
+No nomination yet. Grace answers first.
+Ivan (public): Ivan: Grace, there's no contradiction. Mallory visited Carol as a Lookout, and nobody else visited Carol. Those fit together. Heidi, your Lookout-plus-Medic accusation is a stretch. Grace misread the will, which is a mistake, not proof of evil. Dave, please summarize the Grace PMs.
+Niaj (public): Carol: no living suspect I'd nominate. Ivan is right — Mallory visiting Carol to watch her, and reporting no other visitors, fit together. Heidi, that is not Grace claiming Lookout. Frank may have been the Katana holder who killed Mallory the night he died; his will is not a lead. Dave still owes a Grace PM summary, which is not a case by itself.
+Bob (public): Bob: Carol, fair ask. My top suspect is Heidi. On D3 she voted No on Frank's nomination but Yes on Grace's, which is exactly the Fabricator's side of that tie. Today she twisted Grace's will-reading mistake into 'claiming Lookout' to keep pressure on the real Medic. Heidi, why No on Frank but Yes on Grace? Not nominating yet.
+Carol (public): Bob's Heidi case merits an answer. Heidi, Grace did not claim Lookout; she misread Mallory's results. Explain your No on Frank, Yes on Grace, and today's accusation. You also still haven't answered whether you received any night notifications.
+
+Grace, Mallory visiting me to watch me is compatible with observing no visitors. I supported Frank's examination because his claim needed scrutiny; my Judy Guilty was a mistake already acknowledged. Answer your N3 protection target.
+
+Dave, another promise to track tonight does not answer what your Grace PMs contained. Repeatedly avoiding a straightforward summary is becoming a behavioral concern, not merely private-message traffic.
+Dave (public): Dave: Grace's PMs to me were all 'protect you, track X': first Frank, then Carol or Heidi, and after Mallory's will, Carol. Grace also misread the Lookout result. Tonight I track someone other than Grace and will report it tomorrow. No nomination.
+Grace (public): Grace: Nominating Heidi. She pressed a Lookout accusation on me after misreading Mallory's will, voted Yes on my trial while voting No on Frank, and has pushed hard on the protector Frank's flip confirmed. Heidi, explain why you attacked the real Medic's credibility so consistently.
+(to Dave, Grace) Grace -> Dave (private): Grace: Protecting you again tonight. Track Carol or Ivan, not me, and report publicly.
+Grace nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Grace, Bob, Carol, Dave; No - Heidi, Ivan, Niaj.
+Heidi is put on trial (4 Yes).
+Heidi (public): I'm on trial, so let me address the three charges directly.
+
+**No on Frank, Yes on Grace (D3):** Not a contradiction. Frank's nomination lacked a tiebreaker—two Medic claims needed Dave's track first. Grace's nomination came after six unanswered prompts on her wording. I voted to examine, not execute. Frank voted No on Grace for the same 'wait for Dave's track' reason I gave on him.
+
+**The Lookout accusation:** Grace's statement contradicted Mallory's will on its face. I asked for clarification. Ivan and Niaj correctly identified it as a misread, and I accept that correction. Grace is the real Medic—Frank flipped Fabricator. I will not press her further.
+
+**Bob's read:** You were passive four days, then suddenly I'm your top suspect the moment Frank flips. That timing is worth noting.
+
+Town: the Katana is with a living Yakuza. That's the case to build, not me.
+Niaj (public): I'm leaning Innocent. Heidi's No on Frank and Yes on Grace were both examine-not-execute, and she accepted the misread. Bob naming her the moment Frank flipped is noted, not a contradiction. This trial doesn't identify the living Katana holder.
+Bob (public): Bob: Heidi, I named you because Carol asked me directly for a suspect, not because of Frank's flip. Your defense skips the key point. On D3, Frank's Medic claim and Grace's were equally untested, yet you only pushed to examine Grace. Today you called a simple misread a 'Lookout claim' to keep doubt on her. That's the same side of the tie, twice. If the Katana is with a living Yakuza, the person who kept steering town off Frank fits best. I'm voting Guilty.
+Carol (public): Heidi, your defense still omits your own role, night actions and notifications despite repeated requests. You're facing execution; give that information now.
+
+Your vote asymmetry isn't a mechanical contradiction, but it matters: you demanded a track before examining Frank, then supported examining Grace even though tracking couldn't distinguish their actions. Accepting today's correction doesn't erase that pattern.
+
+Bob naming a suspect after I directly requested one is not suspicious timing by itself. I'm leaning Guilty, but want your claim and night history before deciding.
+Dave (public): Dave: Heidi, you pushed hardest against Grace, the likely real Medic, and voted No on Frank. I'm voting Guilty. Your night history was still never given.
+Grace (public): Grace: Heidi, you never gave your night history or notifications. You helped hang the real Sheriff, then pushed hardest against the real Medic after Frank flipped. That pattern fits Yakuza. I'm voting Guilty.
+(to Dave, Grace) Grace -> Dave (private): Grace: Track Ivan or Niaj tonight, not me. I'll protect you again.
+Trial votes on Heidi: Guilty - Bob, Carol, Dave, Grace; Innocent - Heidi, Ivan, Niaj.
+Heidi is executed by hanging (4 Guilty).
+Heidi died (executed by hanging). Their role was Vanilla Villager. Last will: "I am Heidi, a Vanilla Villager (Good). No night actions.\n\nDAY 2 RECAP: I voted Guilty on Judy based on her withheld-then-mirrored Sheriff claim. Judy flipped Village Sheriff. Erin was Executioner targeting Judy and left immediately. Both reads I backed were wrong in outcome, though Judy's behavior was genuinely suspicious.\n\nDAY 3 RECAP: Two Medic claims (Frank vs Grace). Mallory's Lookout N2 confirmed both visited Dave. Grace never answered 'consistent with what I saw' despite 6+ prompts. Dave tracked Grace N3; his result is priority.\n\nDAY 4 KEY FACTS:\n- Mallory (Lookout) killed by Katana N3. Her N2 result stands: Frank and Grace both visited Dave.\n- Frank died to Vigilante, flipped FABRICATOR. His last will is a LIE (claims Vanilla Villager). He was Yakuza and fabricated evidence. His Medic claim was false. He framed Grace or delivered the Katana.\n- Since Frank was Fabricator, Grace is almost certainly the real Medic. Her 'what I saw' was sloppy wording, not guilt.\n- Frank's will pushes suspicion at Mallory (dead, can't defend) and Dave. This is Yakuza misdirection from beyond the grave. Discount it entirely.\n- Vigilante who killed Frank is still active. Don't hunt them.\n\nREADS:\n- Dave: Tracker claim consistent across multiple verifications. Still solid. But summarize Grace PMs.\n- Grace: Likely real Medic given Frank's Fabricator flip. Was dodgy on wording but not evil.\n- Watch remaining players for who benefits from Frank's will misdirection.\n- Stall rule: multiple deathless cycles means pressure is high. Don't stall.\n\nI have no investigative role. Trust is earned through consistency, not claims."
+
+===== NIGHT 4 =====
+(to Bob, Ivan) Bob (Yakuza chat): Bob: N4 plan. I keep the Katana and attack Carol. She's the likeliest Vigilante: she voted Yes on Frank's nom and kept pressing, and Niaj voted No on Frank. She's also the most dangerous voice by day. Grace will most likely protect Dave (claimed Tracker) or herself, not Carol, so the kill should land. Ivan: please block DAVE tonight. He tracks someone every night, and if he lands on me on a kill night, we're done. Blocking him also leaves him with no result tomorrow. Tomorrow we'll be 2v3. We both vote No on any nomination of either of us, and steer the hang toward Niaj (Innocent on Heidi, 'no suspect' all game). Ivan, you've taken no action for three nights. Please actually submit the Dave block. Objections?
+(to Bob, Ivan) Bob (Yakuza chat): Bob: Ivan, confirming the plan. I hold the Katana and attack Carol; you block Dave. If you'd rather block Grace (so she can't save Carol), say so now. Otherwise Dave is the bigger threat, since a track on me on a kill night ends us. Tomorrow: vote No on any nomination of either of us, and push Niaj (Innocent on Heidi, no reads all game). Don't PM me. Ready unless you object.
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Carol
+  Carol (Vigilante): target Bob; 1 token(s); "Shoot Bob with a Basic attack."
+  Dave (Tracker): target Bob; "Tracker: I track Bob to see who he visits tonight."
+  Grace (Medic): target Dave; "Protect Dave with Standard Defense, no tokens spent."
+  Ivan (Pharmacist): no action
+  Niaj (Arsonist): target Bob; "Douse Bob."
+(to Bob, Ivan) The Katana vote had no majority, so there would be no attack. Votes: Bob: holder Bob, target Carol; Ivan: holder None, target None.
+Katana: no attack (no majority agreement; no attack); Bob keeps it.
+(to Carol) Moderator (private): Night 4 result: Your Basic attack on Bob succeeded. You have 1 vigilante token remaining.
+(to Dave) Moderator (private): Night 4 result: You tracked Bob. Bob did not visit anyone.
+(to Bob, Ivan) Moderator (private): Night 4 Yakuza summary: The Katana vote had no majority agreement, so there was no Katana attack and the Katana did not change hands. No Yakuza performed any action tonight (Bob: none; Ivan: no role-block).
+(to Ivan) Moderator (private): Bob died tonight. As the only remaining Yakuza member, you now hold the Katana.
+[Moderator summary] Night 4: Katana vote split (Bob voted Bob holder/Carol target, Ivan voted Ivan holder/no target), so no attack and no change of hands. Ivan took no action. Carol (Vigilante) shot Bob with a Basic attack (1 token spent, 1 left); Bob had no defense and died (Vigilante). Dave tracked Bob and learned he visited no one. Grace protected Dave at Standard with no tokens spent; there was no attack on him. Niaj doused Bob (status recorded; Bob is dead). After the night, the Katana passed to Ivan, the last Yakuza. Alive: Carol, Dave, Grace (Village), Ivan (Yakuza), Niaj (Arsonist). The game continues.
+
+===== DAY 5 =====
+Bob died (Vigilante). Their role was Grunt. Last will: "Bob - Vanilla Villager. No night actions, nothing to report on any night. Notes: Frank flipped Fabricator, so his Medic claim was a lie and Grace's Medic claim (Alice N1, Dave N2) is very likely real; Mallory's N2 Lookout result (Frank + Grace on Dave) fits Frank as the Katana visitor. I leaned Grace over Frank on D3 and was wrong; I voted No on both noms to wait for Dave's track. Remaining Yakuza are likely those who defended Frank or voted in step with him without reasons. Dave's N3 track on Grace should confirm her. Vigilante: don't shoot claimed roles; coordinate. Frank's fake Vanilla will was likely planned; any forged-looking wills deserve doubt."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+Carol (public): I'm the Vigilante: I shot Frank N3 and Bob N4. Both flipped Yakuza. I also wrongly supported Judy's and Heidi's executions; those mistakes stand.
+
+Dave: exact N4 tracking target/result, plus attack or block notices. Grace: N4 protection target and any notices; explicitly confirm your N3 target too. Ivan and Niaj: claim your roles and give your night histories now. With five alive, we need accountable claims, not another round of 'no case.'
+
+No Katana death doesn't mean shooting Bob canceled his attack—night actions resolve simultaneously. Neither Dave nor Grace is mechanically cleared.
+Dave (public): Dave: Night 4 I tracked Bob: no visits. Carol's Vigilante claim fits Frank and Bob dying. Grace protected me N2 and N3, so the living Yakuza is likely Ivan or Niaj. Ivan and Niaj, state your roles and night histories now. Tonight I track Ivan. No nomination yet.
+Grace (public): Grace: Carol's Vigilante claim fits both Frank and Bob flipping Yakuza, and I back it. The Katana is with Ivan or Niaj. Ivan and Niaj, state your roles and night histories now. No nomination from me yet.
+(to Dave, Grace) Grace -> Dave (private): Grace: Track Ivan tonight as planned. I'm protecting you again, and I'll report my protection publicly if needed.
+Ivan (public): Ivan: I'm a vanilla Villager, no night results, no notices. Niaj also has no results and has been vague all game; Niaj, claim your role. I'd rather not hang on pure claims, so no nomination yet.
+Niaj (public): Carol's two confirmed Yakuza shots are the real progress. I'm Vanilla: no actions, no attack or block. I stayed quiet because I had no result. Ivan's votes have been better than mine, so I'm not nominating a matching vanilla claim. Let Dave's Ivan track land. No nomination.
+Carol (public): Grace, you've again skipped the question: explicitly give your N3 and N4 protection targets and any attack/block notices. Frank's flip strengthens your claim; it doesn't confirm it.
+
+Dave, did you receive any N4 attack or block notice? If your Bob track is accurate, Bob did not deliver a Katana attack that night. His death wouldn't cancel an attempted attack.
+
+Ivan and Niaj: a track showing no visits cannot clear a Vanilla claim—a Yakuza without the Katana can stay home. Name your strongest suspect among all four others and explain why, rather than outsourcing today's decision to tomorrow's track.
+Dave (public): Dave: No attack or block notice for me on N4. Bob visited no one, per my track. Carol's Vigilante claim fits Frank and Bob both being Yakuza. Tonight I track Ivan; result public tomorrow. No nomination until then.
+Grace (public): Grace: Medic here, the real one. Tonight I protect Dave again with Standard defense. Carol's Vigilante shots killed two confirmed Yakuza, and I back that. Niaj, you've been silent all game and only offered a vanilla claim with no reads. Give me one concrete read on Ivan and one on Carol before tomorrow's vote.
+(to Dave, Grace) Grace -> Dave (private): Grace: Track Niaj tonight rather than Ivan. He's been silent all game. I'm protecting you again.
+Niaj (public): No attack, block, or night action. Vanilla, as claimed. Forced to name one: Ivan — no verifiable action, unlike Carol's confirmed Yakuza shots and Dave's matched tracks. A no-visit track still will not clear a stay-home role. Grace reads Medic after Frank's flip. I am not nominating.
+Carol (public): Grace, announcing tonight's protection does not answer your history. Give N3 target, N4 target, and attack/block notices explicitly. Why keep withholding these straightforward answers?
+
+I am not accepting an automatic Ivan-versus-Niaj choice. Frank's Fabricator visit could have been framing; his flip does not identify the N2 Katana attacker.
+
+Ivan, give your strongest suspect and reasoning, as Niaj now has.
+
+Grace, consider protecting me rather than automatically Dave: my shots are independently confirmed, and keeping the shooter alive matters. Dave, a no-visit Ivan result won't resolve this; please don't promise that it will.
+Dave (public): Dave: Carol's Vigilante claim fits the two Yakuza deaths, and Grace's protections fit my survival. Both are still unverified. Tonight I track Ivan as planned, and I'll post the result publicly tomorrow. No nomination from me.
+Grace (public): Grace: Carol's Vigilante claim fits both Yakuza deaths, so I'm not nominating her. Ivan and Niaj have given no concrete reads. Each of you, name one player you suspect and why.
+Niaj (public): I already named Ivan: no verifiable night action, unlike Carol's confirmed shots and Dave's matched tracks. That is not a nomination, and a no-visit result will not clear either vanilla claim. Grace, announcing tonight's Dave protection still does not give your N3 and N4 targets. I have nothing further to report. No nomination.
+Carol (public): Niaj already gave a suspect. Grace is my strongest concern because she repeatedly refuses her protection history while narrowing suspicion to the Vanilla claims. Dave has answered his N4 questions. Grace: why won't you disclose N3/N4 targets? Ivan, your strongest suspect remains unanswered.
+(to Carol, Niaj) Carol -> Niaj (private): Please assess Grace versus Dave independently. Her refusal concerns me; his corroborated visits aren't alignment proof. What explanation fits?
+Dave (public): Dave: Tonight I track Ivan as planned and will post the result tomorrow. No nomination from me until then.
+Grace (public): Grace: Tonight I protect Dave again with Standard defense. Carol's two Vigilante kills fit the Yakuza deaths, so I back her. The Katana is likely with Ivan or Niaj. Dave's Ivan track tomorrow should narrow it. No nomination from me.
+(to Dave, Grace) Grace -> Dave (private): Grace: I'm protecting you tonight. Track Ivan as announced and report the result.
+Niaj (public): Carol, answering your PM here so it isn't a side channel. Dave's matched tracks are visit info, not an alignment clear. Grace withholding N3/N4 is the open behavior issue, but I still won't nominate a likely Medic. Ivan, you still owe a suspect. No nomination.
+(to Carol, Grace) Carol -> Grace (private): Please protect me tonight; my last shot can still remove Yakuza. Answer privately if necessary: whom did you protect N3 and N4, and did you receive any attack or block notices?
+(to Carol, Dave) Carol -> Dave (private): Please assess Grace independently: what supports her Medic claim beyond Frank lying and her visiting you? Her missing protection history matters. If tracking Ivan, report the destination without treating no visits as clearance.
+(to Carol, Ivan) Carol -> Ivan (private): Who is your strongest suspect, and why? Please consider Dave and Grace too. Their claims aren't alignment clears, and you still haven't answered publicly.
+Dave (public): Dave: Tonight I track Ivan as planned and will post the result publicly tomorrow. No nomination from me until then.
+Grace (public): Grace: I'm protecting Dave again tonight, as planned. Ivan and Niaj: whichever of you holds the Katana, give one concrete night-behavior read on Carol or Dave now.
+Ivan (public): Ivan: Carol, my strongest suspect is Grace. She withholds her N3 and N4 targets and keeps steering at the two vanilla claims. Dave's matched tracks are real info, but that is not an alignment clear. No nomination.
+Niaj (public): Ivan, noted. Withholding N3/N4 still isn't enough for me to hang a likely Medic. Dave's track won't clear stay-home claims. No nomination.
+Carol nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Carol; No - Dave, Grace, Ivan, Niaj.
+The nomination of Grace failed (1 Yes).
+Dave (public): Dave: Tracking Ivan tonight as planned. Result public D6. No nomination.
+(to Dave, Grace) Grace -> Dave (private): Protecting you tonight as planned. Track Ivan and report it publicly tomorrow.
+(to Carol, Ivan) Carol -> Ivan (private): You named Grace your strongest suspect, then voted against examining her. Why? A trial isn't an execution. What evidence would change your vote, given her continued refusal to provide protection history?
+Dave (public): Dave: Tracking Ivan tonight; result public D6. No nomination.
+Grace (public): Grace: Protecting Dave again tonight. Ivan and Niaj, each name one concrete read.
+(to Dave, Grace) Grace -> Dave (private): Protecting you tonight. Track Ivan as planned and post it publicly.
+(to Dave, Grace) Grace -> Dave (private): Protecting you tonight. Track Ivan as planned and post the result.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Carol (Vigilante): target Ivan; 1 token(s); "Shoot Ivan with a Basic attack."
+  Dave (Tracker): target Ivan; "Tracker action: track Ivan and learn who he visits tonight."
+  Grace (Medic): target Dave; "Protect Dave with Standard defense tonight."
+  Ivan (Pharmacist): target Dave; "Role-block Dave"; Katana vote: Ivan holds, attacks Carol
+  Niaj (Arsonist): target Carol; "Douse Carol."
+Katana: Ivan holds it and attacks Carol.
+(to Dave) Moderator (private): You were role-blocked last night. Your action had no effect.
+(to Ivan) Moderator (private): Night 5 Yakuza actions: Ivan (Pharmacist) role-blocked Dave; Ivan used the Katana on Carol. Your Katana attack succeeded.
+(to Carol) Moderator (private): Your attack succeeded.
+[Moderator summary] N5: Ivan (Pharmacist) role-blocked Dave, so Dave's track on Ivan failed. Ivan's Katana (Standard) killed Carol, who was unprotected. Niaj doused Carol. Grace gave Dave Standard protection, but nobody attacked him. Carol's last token (Basic shot) killed Ivan (no defense). Ivan was the last Yakuza, so the Katana has nobody to pass to. Alive: Dave (Tracker), Grace (Medic), Niaj (Arsonist). The game goes on: Village vs Neutral Arsonist.
+
+===== DAY 6 =====
+Carol died (Katana). Their role was Vigilante. Last will: "Carol — Vigilante (Village).\nN1/N2: No shot.\nN3: Basic shot on Frank succeeded; he flipped Fabricator.\nN4: Basic shot on Bob succeeded; he flipped Grunt.\nOne vigilante token remains as of Day 5's beginning. Any later action supersedes this count.\n\nI shot Frank because he called Grace the Katana attacker, then opposed her nomination citing the risk of hanging the real Medic—contradicting his own claim. I shot Bob because he opposed examining Frank, then drove Heidi's execution after Frank's reveal. Neither shot implicates everyone sharing their votes.\n\nI wrongly voted Guilty on Judy and Heidi, both Village. Judy's Erin-Evil result fits Erin's Executioner reveal. Discard Erin's accusation. Alice died to Executioner's revenge, not Katana.\n\nConfirmed Lookout Mallory watched me N1 and saw no visitors; N2 she watched Dave and saw Frank and Grace. Dave's reported Katana attack N2 is self-reported. Frank could have visited to frame OR attack. Grace's Medic claim is strengthened by Frank's false claim, not mechanically confirmed.\n\nDave claimed tracks: N1 Mallory→Carol; N2 Mallory→Dave; N3 Grace→Dave. Mallory confirmed the first two destinations, supporting genuine visit information but not proving Dave's alignment. Demand his N4 target/result. His Grace PM summary was protection plus suggested tracking targets: Frank, then Carol/Heidi, later Carol.\n\nNo Katana death was announced N4. That alone neither clears Bob nor proves protection/blocking; simultaneous resolution means shooting an attacker does not cancel their attack.\n\nIvan and Niaj opposed Frank's nomination but correctly opposed Heidi's execution. Evaluate their explanations and night histories independently. Do not automatically clear Dave/Grace or condemn Ivan/Niaj. Bob's and Frank's Vanilla claims were false; their wills are adversarial, not reliable evidence."
+Ivan died (Vigilante). Their role was Pharmacist. Last will: 'I am Ivan, a Villager. I have no night results. Judge by votes and behavior, not claims.'
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Niaj.
+Niaj (public): Ivan was Pharmacist and died the night Carol was Katana'd, so that attack fits him. Frank and Bob were Yakuza. Grace never named N3 or N4; her Medic claim stays unconfirmed. Grace, give N3 through N5 targets now. Dave, post your N5 track. No nomination until both answers are public.
+Dave (public): Dave: Tonight I track Niaj and will post the destination publicly on Day 7. Niaj and Grace: each give one concrete read on the other. No nomination from me yet.
+Grace (public): Grace: Dave's Ivan track result should post first. Niaj, give one concrete read on Dave and one on me, with reasons. I'm protecting Dave tonight with Standard defense, and no nomination until Niaj answers.
+Niaj (public): Dave: Day 5 you promised Ivan's track today. He died the night Carol was Katana'd. Post N5 target and destination now. Skipping it to track me is the dodge.
+
+Grace: name N3 and N4 targets. Tonight's Dave protect is not that answer.
+
+No nomination until one of you still refuses.
+Dave (public): Dave: My N5 track was role-blocked, so I have no result to post. Tonight I track Niaj; destination public Day 7. Niaj, you've been silent all game; explain that.
+Grace (public): Grace: Niaj, you've given no night history in six days. Name one concrete read on Dave and explain your silence. Dave, say who you think blocked your N5 track, if you know. I'm protecting Dave again tonight. No nomination from me until Niaj answers.
+(to Dave, Grace) Grace -> Dave (private): Grace: Protecting you tonight. Track Niaj as planned.
+Niaj (public): Dave: your block fits Ivan. He was Pharmacist and died the same night the Katana killed Carol; a shot holder still completes that attack. Not a nomination.
+
+Grace: N3, N4, and N5 targets. Protecting Dave tonight is not a history.
+
+With three alive, two Yes hangs someone. At two, one No blocks every nomination and every Guilty. A wrong hang today cannot be corrected. I am not the unresolved claim, and I will not lone-nominate.
+Dave (public): Dave: Tonight I track Niaj, destination posted Day 7. Niaj, one concrete night history is owed. No nomination from me today.
+Grace (public): Grace: Niaj, you still owe a concrete night history and one read on Dave or me. Silence through six days is the behavior to explain. I'm protecting Dave again tonight. If Niaj stays empty today, I'll nominate him next day.
+(to Dave, Grace) Grace -> Dave (private): Grace: Track Niaj tonight and post it publicly. I'm protecting you.
+Niaj (public): Dave's no-result fits Ivan's Pharmacist block the night the Katana hit Carol. That is not a case on either of you. Grace still has not named N3 through N5. I will not lone-nominate at three; a wrong hang cannot be undone. No nomination.
+Dave (public): Dave: Tonight I track Niaj, destination public Day 7. No nomination from me today.
+Grace (public): Grace: Nominating Niaj. Six days in, he has given no night history and has dodged every request for a read on Dave or me. A silent vanilla claim plus a Katana-holder profile is the pattern we agreed to punish. Niaj, defend yourself on the stand. Dave, your N6 track on Niaj stays useful either way; I'm protecting you again tonight.
+Grace nominated Niaj. Everyone now votes Yes/No simultaneously.
+Nomination votes on Niaj: Yes - Grace, Dave; No - Niaj.
+Niaj is put on trial (2 Yes).
+Niaj (public): I am Vanilla. No night actions means there is no history to invent. I have answered every concrete ask: I named Ivan before he died, I explained Dave's block as Ivan's Pharmacist ability, and I voted Innocent on Heidi when that hang was wrong.
+
+Hanging me today is irreversible and uncheckable. Dave, you said you would track me tonight. That result is the discriminator you asked for. If I stay home, that fits Vanilla. If you hang me first, you throw the track away.
+
+At two players, one No blocks every nomination. If I flip Vanilla, you cannot hang whoever is actually left. Grace still has not named N3, N4, or N5. That is the open dodge, not a Villager with no actions.
+
+I am voting to live because a wrong hang cannot be corrected. Vote Innocent.
+Dave (public): Dave: Niaj has given no night history in six days, and the living Katana holder must be Grace or Niaj. Grace's protections match my survival. Voting Guilty on Niaj.
+Grace (public): Grace: Niaj has given no night history in six days and dodged every read request. Dave's N1 and N2 tracks match Mallory's Lookout notes, and his N3 track on me matches my protection. That leaves Niaj as the likely Katana holder. I'm voting Guilty.
+Trial votes on Niaj: Guilty - Dave, Grace; Innocent - Niaj.
+Niaj is executed by hanging (2 Guilty).
+Niaj died (executed by hanging). Their role was Arsonist. Last will: "Niaj — Vanilla Villager. No night actions and no attack or role-block notices on any night. That matches what I have said publicly.\n\nDay 2 I voted Guilty on Judy. She was Sheriff; Erin was the Executioner on her. Shared mistake, not a solo tell.\n\nFrank was Fabricator: his Medic claim and Vanilla will were false. Bob was Grunt; treat his will as Yakuza noise. Mallory was Lookout. Her stated visits stand — Carol had no Night 1 visitors; Frank and Grace both visited Dave Night 2. Heidi was Vanilla; I voted Innocent.\n\nCarol flipped Vigilante and died to the Katana. Ivan flipped Pharmacist and died to a Vigilante the same night. Those can be simultaneous: a Katana holder shot by a Vigilante still completes that night's attack. Do not treat either will as solving the living players.\n\nNo confirmed suspect among the living. If this will names a role, target, or finding I never stated, or appears under someone else's name, treat it as forged."
+The game is over. Winners: Alice, Carol, Dave, Grace, Heidi, Judy, Mallory, Erin.
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Grace, Heidi, Judy, Mallory, Erin
+Cost: {'anthropic/claude-haiku-5.5': 0.3893932750000001, 'anthropic/claude-sonnet-5.5': 2.8892332000000005, 'anthropic/claude-opus-5.5': 11.584619800000004, 'openai/gpt-6.1-sol': 2.3251889999999995, 'google/gemini-3.8-flash': 0.16713224999999995, 'qwen/qwen3.8-max-0902': 0.7577580000000002, 'x-ai/grok-4.7': 2.5544759999999997, 'moonshotai/kimi-k3': 0.290241335}

@@ -1,0 +1,254 @@
+Setup:
+  Alice    seat 0  Prosecutor        anthropic/claude-haiku-5.5
+  Bob      seat 1  Cardinal          anthropic/claude-haiku-5.5
+  Carol    seat 2  Jester            anthropic/claude-haiku-5.5
+  Dave     seat 3  Fortune Teller    anthropic/claude-haiku-5.5
+  Erin     seat 4  Seer              anthropic/claude-haiku-5.5
+  Frank    seat 5  Fabricator        anthropic/claude-haiku-5.5
+  Grace    seat 6  Vanilla Villager  openai/gpt-6-luna
+  Heidi    seat 7  Medic             openai/gpt-6-luna
+  Ivan     seat 8  Puppeteer         openai/gpt-6-luna
+  Judy     seat 9  Sheriff           openai/gpt-6-luna
+  Mallory  seat 10 Clerk             openai/gpt-6-luna
+  Katana starts with Mallory
+
+===== DAY 1 =====
+Heidi (public): Day 1 has no public information yet, so let’s avoid rushing a trial. If anyone has credible results or a concrete reason to suspect someone, share it.
+Erin (public): Agreed, no rush on Day 1. I'll keep my night information close and share it when it can actually help. Watch who pushes for early nominations.
+Grace (public): Erin's reference to “night information” stands out: we haven't had a night yet. What information are you holding?
+Ivan (public): Erin may simply have misspoken or meant information from outside the game. Let her clarify before treating it as evidence; no need to rush a trial.
+(to Frank, Ivan) Ivan -> Frank (private): Don’t overcommit: Erin’s “night information” could just be wording. Encourage clarification, and avoid an early trial.
+Mallory (public): Erin may have phrased that oddly, but it isn't evidence by itself. Better wait for actual night results; a rushed Day 1 vote risks taking out a villager.
+Dave (public): Agreed, no nominations on Day 1. Let's wait for real night results before anyone pushes a trial.
+Alice (public): Agreed, no trial on Day 1. I'm watching for consistent claims and contradictions.
+Frank (public): Agreed, no trial today. I'm watching who pushes early nominations.
+Carol (public): Ivan, what did you privately send Frank on Day 1? Coordinating before any night looks off to me.
+Bob (public): Agreed, no trial on Day 1. I'll share anything useful once we have real night results.
+Alice (public): Agreed, no trial on Day 1. Erin, what night information do you mean when no night has passed? Ivan, what did you send Frank? Let's get clear answers before anyone is nominated.
+Dave (public): Dave here. Agreed, no trial on Day 1. Erin and Ivan, please clarify your claims. I'm watching who pushes early nominations once real night results come in.
+Erin (public): Clarifying my wording: I meant I may have something useful after the first night, not that I have results now. Sorry for the confusion. Let's wait for real night results before anyone is nominated.
+Carol (public): Erin, you still haven't explained the 'night information' slip. Please give a straight answer before anyone is nominated. I'm not pushing a trial today, but vague hints shouldn't go unchallenged.
+Bob (public): Erin, please give Carol a straight answer about your night information.
+Judy (public): Erin’s clarification is plausible, though the wording was odd. Ivan, please explain the private message to Frank; it’s reasonable to ask, but not proof of anything. No need to force a Day 1 trial.
+Grace (public): Erin’s clarification makes sense, though I’ll keep the slip in mind. Ivan, please explain what you sent Frank; the private message is worth clarifying, but isn’t proof by itself.
+Ivan (public): I told Frank Erin’s wording might be a slip, but to let her clarify and avoid an early trial. It was the same point I made publicly, just redundant.
+Frank (public): Agreed, no trial on Day 1. Waiting for real night results before anyone is nominated.
+Grace (public): Ivan’s explanation is plausible, and Erin clarified her wording. No solid basis for a Day 1 trial; let’s wait for real results.
+Bob (public): Still waiting on night results; no trial today.
+Frank (public): Still waiting on real night results before anyone is nominated.
+Ivan (public): Nothing to add beyond my explanation: I messaged Frank to avoid a rushed trial over Erin’s wording, and she clarified. Let’s reassess after we have actual night results.
+Erin (public): No nomination from me today; waiting for night results before anyone is pushed.
+Alice (public): Alice here. Still no trial on Day 1. Once night results come in, I want clear role claims and reasons before any nomination.
+Carol (public): Ivan's private message to Frank still bugs me, and Erin's night-info slip is unresolved. Once night results come in, I'd support a trial on whoever dodges clear answers.
+Dave (public): Dave here. Still no trial on Day 1. Let's wait for night results, then judge claims and votes.
+Carol (public): Ivan and Erin still haven't given straight answers. Once night results arrive, I'll back a trial for whoever keeps dodging.
+Dave (public): Dave here. No trial today; we need night results first.
+Alice (public): Alice here. No trial until night results and clear role claims come in.
+Ivan (public): I explained: I urged Frank to avoid a rushed trial.
+Carol (public): Ivan and Erin, still no straight answers from either of you.
+Bob (public): Bob here. No Day 1 trial; we need night results first.
+Grace (public): No new evidence here; let's end Day 1 without a trial.
+A full round passed with no messages. The day ends.
+
+===== NIGHT 1 =====
+(to Frank, Ivan, Mallory) Frank (Yakuza chat): Frank here. Proposal: Mallory keeps the Katana and we Katana-attack Carol tonight; she's been driving the pressure on Ivan and Erin, so she's the most dangerous to us. I'll use my fabricator to frame Bob as Evil to investigators tonight to muddy any Sheriff reads. Ivan, if you have a puppet target, pick someone who isn't Carol so we don't telegraph. Mallory, please confirm you're in agreement and whether you want to use the Clerk token tonight; I'd hold it until we know who gets nominated.
+(to Frank, Ivan, Mallory) Ivan (Yakuza chat): Agreed: Mallory keeps the Katana and attacks Carol; hold the Clerk token for now. I’ll puppet Alice tonight rather than Carol, so we don’t spend the puppet on the attack target and can blunt her questions tomorrow.
+(to Frank, Ivan, Mallory) Mallory (Yakuza chat): Agreed: I’ll keep the Katana and attack Carol tonight. I’ll hold the Clerk token for now.
+Night actions:
+  Alice (Prosecutor): no action
+  Erin (Seer): no action
+  Frank (Fabricator): target Bob; "Fabricate Bob as Evil to investigators tonight. No token spent."; Katana vote: Mallory holds, attacks Carol
+  Heidi (Medic): target Carol; "Protect Carol with Standard Defense."
+  Ivan (Puppeteer): target Alice; "Puppet Alice for the following day."; Katana vote: Mallory holds, attacks Carol
+  Judy (Sheriff): target Ivan; "Investigate Ivan for alignment."
+  Mallory (Clerk): no role action; Katana vote: Mallory holds, attacks Carol
+Katana: Mallory holds it and attacks Carol.
+(to Judy) Moderator (private): Night 1 result: Ivan is Evil.
+(to Erin) Moderator (private): Night 1 Seer result: Heidi and Alice have the same alignment.
+(to Dave) Moderator (private): Fortune Teller result for Night 1: your two numbers are 4 and 5.
+(to Carol) Moderator (private): You were attacked with a Katana last night, but you survived.
+(to Mallory) Moderator (private): Your Katana attack on Carol failed. Carol survived.
+(to Frank, Ivan, Mallory) Moderator (private): Yakuza night summary: Mallory kept the Katana and attacked Carol with it. Frank framed Bob (no token spent). Ivan used his puppet token on Alice for tomorrow. Mallory did not use the Clerk token.
+[Moderator summary] Night 1: Mallory's Katana (Standard) attack on Carol failed because Heidi's Standard protection covered her (Carol's own defense is Basic). No deaths. Judy investigated Ivan and got Evil (he's Yakuza but not the Katana holder). Frank framed Bob, but nobody investigated Bob. Ivan spent his puppet token on Alice for Day 2. Erin's random Seer pair was Heidi and Alice: same alignment. Dave's Fortune Teller numbers: 4 players visited (Alice, Bob, Carol, Ivan) and 5 visitors (Frank, Heidi, Ivan, Judy, Mallory). Yakuza were told their actions.
+
+===== DAY 2 =====
+(to Alice) You are being puppeted today: you can't chat or see private messages, but you can still nominate and vote.
+Bob (public): Bob here. No deaths overnight. Erin and Ivan, please clarify before any trial.
+Heidi (public): No deaths is notable, but it doesn’t clear anyone. Erin clarified her slip, and Ivan gave a plausible explanation. Anyone with actual Night 1 information should share it.
+Alice (public): No deaths could mean protection or a failed attack; it doesn't clear anyone. Anyone with an alignment check, please share the target and result—especially if you checked Bob. Let’s compare actual results before nominating.
+Ivan (public): No result to share. No deaths could mean protection or an attack failing against defense; let’s hear actual claims before inferring anything from Bob.
+Judy (public): I’m the Sheriff: I investigated Ivan on Night 1 and he returned Evil. A frame is possible, but we should put him on trial. I nominate Ivan.
+Judy nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: Yes - Judy, Alice, Bob, Carol, Dave, Erin, Grace, Heidi; No - Mallory, Frank, Ivan.
+Ivan is put on trial (8 Yes).
+Ivan (public): I’m a Vanilla Villager. Judy’s Sheriff claim is the only evidence against me, and there’s no way to verify it from that result alone. My message to Frank was the same point I made publicly: don’t rush a Day 1 trial over Erin’s wording. Please vote Innocent; if Judy is genuine, we can still assess her claim and results tomorrow instead of executing on one unconfirmed check.
+Mallory (public): Judy’s result deserves scrutiny, but one Sheriff check isn’t independently verified. Ivan’s Day 1 explanation was consistent with the discussion, and no other result points to him. Unless anyone has corroboration or a counterclaim, I’d favor Innocent and reassess after another night.
+(to Heidi, Ivan) Alice -> Heidi (private): I voted yes to hear his defense, not pre-judge. One Sheriff result could be framed; I favor Innocent pending corroboration.
+(to Dave, Ivan) Alice -> Dave (private): A yes nomination vote only got us his defense. One unconfirmed Sheriff result seems thin grounds to execute; consider Innocent.
+Bob (public): Bob: Ivan's defense doesn't answer Judy's check. Guilty.
+Carol (public): Carol: Ivan's defense doesn't address Judy's check, so I lean Guilty. Alice's private messages to Heidi and Dave are worth asking about too.
+Dave (public): Dave: Ivan, Frank and Mallory all voted No on the nomination, and Mallory and Frank both defended Ivan. Judy's check is the only result we have, so I'm leaning Guilty. Alice, why did you privately push me toward Innocent?
+Erin (public): Erin: Judy's check is the only evidence against Ivan, and his PM to Frank is still unexplained. I'll vote after hearing his closing.
+Frank (public): Frank: Judy's single check is thin, and Ivan's explanation was consistent with Day 1. I'd vote Innocent unless more evidence appears.
+Grace (public): Judy has given a specific Sheriff result, and Ivan’s Vanilla claim doesn’t explain it. I’m leaning Guilty; scrutinize Frank and Mallory’s defenses too.
+(to Heidi, Ivan) Heidi -> Alice (private): Ivan’s Day 1 behavior is plausible, but Judy gave a specific Sheriff result. Without a counterclaim or concrete evidence of a frame, I’m currently leaning Guilty.
+Trial votes on Ivan: Guilty - Alice, Bob, Carol, Dave, Erin, Grace, Heidi, Judy; Innocent - Frank, Ivan, Mallory.
+Ivan is executed by hanging (8 Guilty).
+Ivan died (executed by hanging). Their role was Puppeteer. Last will: 'Day 1: Erin’s “night information” wording was odd, though she clarified. Carol kept pressing her and Ivan; that may be suspicion or just scrutiny. Ivan explained his private message to Frank consistently with his public comments. If I die, look closely at anyone using vague claims to force an early trial, and compare Alice’s behavior today with her Day 1 stance.'
+
+===== NIGHT 2 =====
+(to Frank, Mallory) Frank (Yakuza chat): Frank: Ivan's gone, so we are two. Judy's Sheriff read on Ivan was accurate, so she's the real threat. Mallory, keep the Katana and attack Judy tonight. I'll use my fabricator to frame Grace as Evil to any investigator, which sows doubt about Judy's reads and Grace's pressure. Mallory, confirm and hold the Clerk token.
+(to Frank, Mallory) Mallory (Yakuza chat): Agreed: I’ll keep the Katana and attack Judy tonight. Hold the Clerk token. Ready.
+Night actions:
+  Alice (Prosecutor): no action
+  Erin (Seer): target Frank; second target Mallory; 1 token(s); "Using my seer token to compare Frank and Mallory's alignments."
+  Frank (Fabricator): target Grace; "Fabricator framing: Grace appears Evil to all investigative roles tonight."; Katana vote: Mallory holds, attacks Judy
+  Heidi (Medic): target Judy; 1 token(s); "Protect Judy with Strong Defense."
+  Judy (Sheriff): target Mallory; "Investigate Mallory’s alignment."
+  Mallory (Clerk): no role action; Katana vote: Mallory holds, attacks Judy
+Katana: Mallory holds it and attacks Judy.
+(to Erin) Moderator (private): Seer result (token used): Frank and Mallory have the SAME alignment. You have 0 seer tokens left.
+(to Judy) Moderator (private): Investigation result: Mallory is Not Evil. Also, you were attacked tonight with a Katana, but you survived.
+(to Heidi) Moderator (private): You protected Judy with Strong Defense tonight (1 medic token spent; 1 remaining).
+(to Dave) Moderator (private): Fortune Teller result for Night 2: your two numbers are 3 and 4.
+(to Mallory) Moderator (private): Your Katana attack on Judy failed. Yakuza actions tonight: Frank framed Grace. Mallory attacked Judy with the Katana (Mallory keeps the Katana) and took no Clerk action.
+(to Frank) Moderator (private): Yakuza actions tonight: Frank framed Grace. Mallory attacked Judy with the Katana (Mallory keeps the Katana) and took no Clerk action.
+[Moderator summary] Night 2: Erin used seer token on Frank/Mallory -> same. Frank framed Grace (no investigator affected). Heidi Strong-protected Judy (medic 2->1). Mallory Katana (Standard) on Judy blocked by Strong Defense; Judy told attacked by Katana. Judy checked Mallory -> Not Evil (Katana holder). Dave FT: 3 visited (Grace, Judy, Mallory), 4 visitors (Frank, Heidi, Mallory, Judy). No deaths.
+
+===== DAY 3 =====
+Grace (public): Frank defended confirmed Yakuza Ivan and privately messaged him on Day 1. That’s suspicious, though not proof; I nominate Frank.
+Grace nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Grace, Heidi, Judy, Mallory, Alice, Bob, Carol, Dave, Erin; No - Frank.
+Frank is put on trial (9 Yes).
+Frank (public): Frank here. I'm a Villager, and I voted No on Ivan because one Sheriff check with no corroboration wasn't enough to execute on. That is the same reasoning I gave all of Day 1, when I pushed for no early trial and asked Erin and Ivan to clarify. Ivan's private message was about that same point, not a secret plan. Grace's case is that I defended Ivan and messaged him, but defending a player against a thin case and messaging a fellow villager about avoiding a rushed trial is not evidence of anything. I didn't push Judy's claim, and I haven't claimed anything beyond being a Villager. Grace nominated me on Day 3 after pushing hard on Day 1 and Day 2. Judy's Sheriff result matched Ivan's execution, so I'd like to hear her next claims before anyone votes on me. Vote based on the evidence, not on the nomination.
+Heidi (public): Frank’s explanation is plausible, but the confirmed Yakuza flip changes the context: he defended Ivan, voted No on his nomination, and had privately messaged him. That isn’t proof by itself, but it’s a meaningful pattern. I’m leaning Guilty; let’s judge him on that evidence, not just the Sheriff result.
+Judy (public): Ivan flipped Yakuza, so Frank’s No votes on his nomination and execution, plus his defense of him, are meaningful evidence. I’m not claiming that proves Frank is Yakuza. My N2 Sheriff check found Mallory Not Evil; it doesn’t clear Frank. I favor Guilty.
+Mallory (public): Judy’s accurate Ivan result is real evidence, but it doesn’t make every inference certain. Frank’s defense looks worse in hindsight, yet one No vote can be mistaken; don’t execute on association alone. His stance against rushing trials isn’t proof, but it’s worth weighing.
+Alice (public): Alice: Guilty. Frank defended confirmed Yakuza Ivan, voted No on his trial, and messaged him on Day 1. Mallory also defended Ivan, so I'm watching her.
+Bob (public): Bob: Frank defended confirmed Yakuza Ivan, voted No on his trial, and messaged him on Day 1. I vote Guilty.
+Carol (public): Carol: I voted to put Frank on trial, but his defense of Ivan was about Day 1 process, which is consistent. I'm less sure of the case now. Alice's private messages to Heidi and Dave still bother me, and I'd rather see her pressed than execute on association alone.
+Dave (public): Dave: Frank defended confirmed Yakuza Ivan and messaged him on Day 1. I vote Guilty.
+Erin (public): Erin, Seer: my Night 2 result says Frank and Mallory have the SAME alignment. Judy's check says Mallory is Not Evil, so Frank is Not Evil too. I'm voting Innocent.
+Trial votes on Frank: Guilty - Bob, Dave, Grace, Judy; Innocent - Alice, Carol, Erin, Frank, Heidi, Mallory.
+Frank is found Innocent (4 Guilty).
+Frank (public): Erin's Seer claim is convenient after her Day 1 'night information' slip. Judy's Sheriff read was accurate, but Erin needs scrutiny before anyone else is voted on.
+(to Frank, Mallory) Frank -> Mallory (private): Stay low and don't defend me. Erin's Seer claim is the threat; I'll keep pressure on her. Hold the Katana and the Clerk token.
+(to Erin, Judy) Judy -> Erin (private): My Sheriff result says Mallory is Not Evil, not necessarily Good; your result doesn't establish Frank is Good. Please share your exact N2 Seer result and whether you used your token or got a random pair.
+(to Carol, Mallory) Mallory -> Carol (private): Erin's claim conveniently clears Frank, and her Day 1 wording slip still deserves scrutiny. Judy's result on Mallory is one Sheriff check, not proof of Frank's alignment; don't let Erin's claim settle the case.
+(to Alice, Judy) Alice -> Judy (private): Judy, I'm treating your Sheriff read on Ivan as reliable. Who is your Night 3 check, and does your N2 result on Mallory still stand? Please keep me posted before we nominate anyone.
+(to Alice, Erin) Alice -> Erin (private): Erin, your Seer claim lines up with Judy's Mallory result. Were your two players random or chosen by you? Also, what did you mean by 'night information' on Day 1 when no night had passed?
+(to Erin, Judy) Erin -> Judy (private): Judy, my N2 token check: Frank and Mallory same alignment. N1 was random (Heidi and Alice). Let's compare notes.
+(to Alice, Erin) Erin -> Alice (private): N1 was a random pair (Heidi and Alice). N2 I chose Frank and Mallory with my token. Day 1 slip was just wording.
+(to Bob, Judy) Bob -> Judy (private): Bob here, Good. Your Ivan check looked solid. Let's compare Night 2 results before anyone else is pushed.
+(to Carol, Judy) Carol -> Judy (private): Judy, Erin's Seer claim clears Frank too conveniently after her Day 1 slip. Your Mallory check is the one hard result, so keep Erin under watch.
+Dave (public): Dave: Erin's Seer claim needs scrutiny; Judy's check verified.
+Bob (public): Bob: Judy's Sheriff check stands. Erin's Seer claim needs scrutiny, and Alice still owes answers on her private messages.
+(to Bob, Judy) Bob -> Judy (private): Bob here, Good. Let's compare notes on Night 2 and watch Erin's Seer claim. Who do you want to check next?
+Frank (public): Frank: Erin's Seer claim came right after her Day 1 'night information' slip, and her check happens to land on me and Mallory. Alice has also been PMing Heidi, Dave and Erin, and nobody has explained those messages. Alice, what did you send them?
+(to Frank, Mallory) Frank -> Mallory (private): Stay quiet and don't defend me. Hold the Katana and Clerk token.
+Mallory (public): Alice publicly said Guilty, but her revealed vote was Innocent—a concrete contradiction. Erin’s convenient claim also needs verification. Press Alice and Erin rather than treating Frank’s case as settled.
+Judy (public): Alice said publicly she voted Guilty on Frank, but the revealed vote was Innocent. Please explain the discrepancy; I nominate Alice.
+Judy nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Judy, Mallory, Bob, Carol, Dave, Erin, Frank, Grace, Heidi; No - Alice.
+Alice is put on trial (9 Yes).
+Alice (public): Alice here. Yes, my Frank trial chat said Guilty but my revealed vote was Innocent. That mismatch is my mistake and I own it. I was torn after Carol's point about Frank's Day 1 process and didn't reconcile my message with my vote. My Day 1 stance was consistent: no rushed trial, ask for clear claims. My private messages to Heidi and Dave were about process and avoiding early pushes, not coordination. Judy's Ivan check did verify, so I'm not dismissing her. But Erin's Seer claim arrived right after her 'night information' slip and conveniently lands on the players Judy's Sheriff read cleared, and Mallory defended Ivan and has been privately working with Carol and Frank. I'd rather we press Erin and Mallory before executing a Village player on a self-contradiction.
+Bob (public): Bob: Erin's Seer claim checks out with Frank's Innocent verdict and Judy's Mallory read. Alice's attacks on Erin look off. I vote Innocent.
+Carol (public): Carol: Alice's flip is a real contradiction, so I vote Guilty. My own early pressure on Ivan and Erin deserves scrutiny too.
+Dave (public): Dave: Alice's Guilty claim contradicted her revealed Innocent vote, and she pushed me and Heidi privately on Ivan. I vote Guilty.
+Erin (public): Erin, Seer: Alice's Guilty claim contradicted her revealed Innocent vote, and she pushed me hard on Day 3. My N1 pair Heidi/Alice shared an alignment, so Heidi matters too. I vote Guilty.
+(to Erin, Judy) Erin -> Judy (private): Judy, I'm voting Guilty on Alice. Let's keep watching Heidi (same alignment as Alice from my N1) and Grace, who pushed Frank.
+(to Frank, Mallory) Frank -> Mallory (private): Alice is our target. Vote Guilty with me.
+Grace (public): Owning the mismatch is better than denying it, but Alice’s public Guilty claim versus her revealed Innocent vote is a real contradiction, and the private messages remain unexplained. I favor Guilty. Let’s scrutinize Judy and Erin’s claims on their merits rather than let this trial redirect attention.
+Heidi (public): Erin’s stated N1 result pairs Alice and me as sharing an alignment. If her Seer claim is genuine, that weighs against Alice being Evil. The vote mismatch is real, but not conclusive; I lean Innocent and would scrutinize Erin’s claim independently.
+Mallory (public): Alice’s public Guilty claim contradicts her vote; that’s meaningful evidence. Vote Guilty.
+Trial votes on Alice: Guilty - Carol, Dave, Erin, Frank, Mallory; Innocent - Alice, Bob, Grace, Heidi, Judy.
+Alice is found Innocent (5 Guilty).
+Alice (public): Alice: I was just cleared. Erin's N1 pair puts Heidi and me on the same side. Mallory's Ivan defense and her Guilty vote on me both deserve scrutiny.
+Dave (public): Dave: Judy's check verified. Mallory, explain your Ivan defense.
+(to Carol, Judy) Carol -> Judy (private): Judy, I'm nominating myself. Vote on my case on the evidence.
+Carol nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Carol, Dave, Erin, Frank, Grace, Heidi, Judy, Mallory, Alice, Bob; No - nobody.
+Carol is put on trial (10 Yes).
+Carol (public): Carol: I self-nominated because I think I'm the most scrutinized player right now. I pushed hardest on Ivan and Erin on Day 1 and 2, and I still haven't explained why I kept pressing when no night had happened. I also voted to try Frank, then backed Judy's trial of Alice, and both trials ended with the vote going the other way. Judy's Ivan check is the only verified result we have, and it has tracked everything else, so I'm not sure my read on anyone is trustworthy. If you think my pressure was coordinated or just noisy, the safe move is to hang me and keep the trial pressure off the Village. Vote on the evidence, and if you're unsure, Guilty is the safer choice.
+(to Erin, Judy) Erin -> Judy (private): Voting Guilty on Carol. Let's keep watching Heidi and Grace.
+(to Frank, Mallory) Frank -> Mallory (private): Carol is a threat to us. Vote Guilty and hold the Katana and Clerk.
+(to Grace, Judy) Grace -> Judy (private): Carol's self-nomination and urging a Guilty vote look like possible Jester bait. Her behavior is suspicious, but I wouldn't reward the plea without stronger evidence.
+Heidi (public): Carol's self-nomination isn't evidence of guilt. She pressed Ivan, and Judy's result confirmed Ivan was Yakuza. I favor Innocent.
+(to Grace, Judy) Judy -> Grace (private): Agreed—don’t reward possible Jester bait without stronger evidence. Carol’s pressure on Ivan was consistent with my confirmed Sheriff result.
+Alice (public): Alice: Innocent. Carol pressed the right target, Ivan.
+Trial votes on Carol: Guilty - Carol, Erin, Frank, Mallory; Innocent - Alice, Bob, Dave, Grace, Heidi, Judy.
+Carol is found Innocent (4 Guilty).
+Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 3 =====
+(to Frank, Mallory) Frank (Yakuza chat): Frank: Judy's Sheriff read on Ivan was accurate, so she's the real threat. Mallory, keep the Katana and attack Judy tonight. I'll frame Erin as Evil to investigators, which makes her Seer claim look like a lie. Hold the Clerk token. Please confirm.
+(to Frank, Mallory) Mallory (Yakuza chat): Judy has survived both Katana attacks, so I suggest we switch the Katana to Erin tonight. Frank, frame Erin as planned. I’ll spend the Clerk token to rig tomorrow’s vote; if we can get Erin nominated, that gives us insurance if the vote starts turning against us. I’ll keep the Katana.
+(to Frank, Mallory) Frank (Yakuza chat): Frank: Judy surviving two attacks suggests protection, so repeating her is wasteful. Mallory keeps the Katana and attacks Erin tonight: her Seer claim is the lie that threatens us, and I'm already framing her. Hold the Clerk token; a public rig that fails gets announced and exposes us. Mallory, confirm the Erin attack.
+(to Frank, Mallory) Mallory (Yakuza chat): Confirmed: I keep the Katana and attack Erin. Frank frames Erin, and I’ll spend the Clerk token to rig tomorrow’s vote. Ready.
+(to Frank, Mallory) Frank (Yakuza chat): Frank: Confirmed. Mallory keeps the Katana and attacks Erin tonight. Don't spend the Clerk token. A rig makes whoever gets nominated die, and the village will nominate one of us first, so it is a liability. Hold it. Mallory, don't defend me publicly tomorrow and stay on the Erin/Alice pressure line.
+(to Frank, Mallory) Mallory (Yakuza chat): Agreed—I'll hold the Clerk token. I keep the Katana and attack Erin; Frank frames Erin. Ready.
+Night actions:
+  Alice (Prosecutor): target Mallory; 1 token(s); "Prosecuting Mallory for tomorrow's trial based on her Ivan defense, Guilty vote on me, and private coordination with Carol and Frank."
+  Erin (Seer): no action
+  Frank (Fabricator): target Erin; "Frank uses the Fabricator framing ability on Erin (appears Evil to investigators tonight). No token spent."; Katana vote: Mallory holds, attacks Erin
+  Heidi (Medic): target Judy; "Protect Judy with Standard Defense."
+  Judy (Sheriff): target Erin; "As Sheriff, investigate Erin for alignment."
+  Mallory (Clerk): no role action; Katana vote: Mallory holds, attacks Erin
+Katana: Mallory holds it and attacks Erin.
+(to Judy) Moderator (private): Night 3 result: Erin is Evil.
+(to Dave) Moderator (private): Night 3 Fortune Teller numbers: 3 and 5.
+(to Alice) Moderator (private): You spent 1 prosecutor token to prosecute Mallory. Mallory will go to trial when nominations start tomorrow. You have 1 prosecutor token left.
+(to Frank, Mallory) Moderator (private): Yakuza Night 3 actions: Mallory kept the Katana and attacked Erin with it. Frank framed Erin and spent no token. Mallory took no Clerk action.
+(to Mallory) Moderator (private): Your Katana attack on Erin succeeded.
+[Moderator summary] Night 3: Mallory, holding the Katana, made a Standard attack on Erin, whose defense was None, so Erin died (Katana). Frank framed Erin, so Judy's Sheriff check on Erin came back Evil. Heidi gave Judy Standard protection (no token spent). Alice prosecuted Mallory, so Mallory goes to trial on Day 4 (Alice's prosecutor tokens 2 -> 1). Erin died, so she gets no Seer pair. Dave's Fortune Teller numbers are 3 and 5: 3 players were visited (Mallory, Erin, Judy) and 5 players visited someone (Alice, Frank, Mallory, Heidi, Judy). The Yakuza were told each other's actions, and Mallory was told her attack succeeded.
+
+===== DAY 4 =====
+Erin died (Katana). Their role was Seer. Last will: "Erin (Seer). Night 1: Heidi and Alice share alignment. Night 2: Frank and Mallory share alignment. Judy's Sheriff claim on Ivan was confirmed by his Yakuza Puppeteer role, so Judy is likely genuine Sheriff. Watch Alice's private messages with Heidi and Dave, and Frank and Mallory's defense of Ivan. Vote carefully and seek corroboration before nominations."
+Mallory is being prosecuted and goes straight to trial.
+Mallory (public): I’m a Vanilla Villager. I understand the suspicion: I opposed Ivan and defended Frank, and Erin’s N2 pair says Frank and I share an alignment. But the pair only reports sameness, not which alignment. Erin’s further leap to “both Not Evil” relied on Judy’s N2 result on me, which can’t clear me: a Katana holder appears Not Evil to the Sheriff that night. I made bad calls about Ivan and Frank, but those calls aren’t proof of my alignment. Please vote Innocent and judge the evidence carefully.
+Alice (public): Alice: Mallory defended confirmed Yakuza Ivan, voted Guilty on me, and keeps PMing Frank. Judy's N2 Not Evil read doesn't clear her, since a Katana holder appears Not Evil. Guilty.
+Bob (public): Bob: Mallory defended confirmed Yakuza Ivan, pushed Alice's trial, and keeps PMing Frank. Judy's Not Evil read can't clear her. Guilty.
+Carol (public): Carol: Mallory defended Ivan, pushed Alice's trial, and keeps PMing Frank. Guilty. My own record of pressure is worth scrutiny too.
+Dave (public): Dave: Erin was killed by the Katana, which fits a genuine Seer. Her Frank/Mallory pair and Judy's verified N2 Not Evil read on Mallory point to Innocent. Voting Innocent.
+Frank (public): Frank: Mallory's Day 4 defense is weak on Ivan but the case is thin. Dave's point stands. Before executing, we should check who is simply piling on. Innocent.
+(to Frank, Mallory) Frank -> Mallory (private): I'm voting Innocent. Stay calm, don't overdefend, and keep the Katana and Clerk hidden.
+Grace (public): Erin’s pair only says Frank and Mallory share an alignment; Judy’s Not Evil read doesn’t clear Mallory if she held the Katana. Frank’s defense and their repeated PMs matter. I favor Guilty, while recognizing these clues aren’t conclusive alone.
+Heidi (public): Erin’s N2 result says Frank and Mallory match, not which alignment; Judy’s check doesn’t clear Mallory if she held the Katana. Mallory defended confirmed Yakuza Ivan and her repeated contact with Frank is concerning. I favor Guilty.
+Judy (public): My N3 Sheriff result called Erin Evil, but her Seer flip shows that result was unreliable—likely a frame. My N2 Not Evil on Mallory is not a clearance either: the Katana holder appears Not Evil. Erin’s pair links Mallory and Frank, and their repeated contact is concerning. I favor Guilty, but these are not certainties.
+Trial votes on Mallory: Guilty - Alice, Bob, Carol, Dave, Grace, Heidi, Judy; Innocent - Frank, Mallory.
+Mallory is executed by hanging (7 Guilty).
+Mallory died (executed by hanging). Their role was Clerk. Last will: 'Judy’s result on Ivan was corroborated, but that does not make every later inference certain. Erin’s Night 2 result says Frank and Mallory share an alignment; it does not identify that alignment. Also, a Sheriff sees the Katana holder as Not Evil that night, so Judy’s check on Mallory does not independently clear either of them. Weigh the actual results carefully, and don’t treat a matching pair as proof of Good.'
+(to Frank) The Katana passed to Frank.
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Prosecutor): target Frank; 1 token(s); "Prosecuting Frank, who defended Ivan and repeatedly PMed Mallory."
+  Frank (Fabricator): target Carol; "Fabricator frames Carol as Evil to investigators. Katana attack on Heidi, Frank keeps the Katana."; Katana vote: Frank holds, attacks Heidi
+  Heidi (Medic): target Judy; 1 token(s); "Protect Judy with Strong Defense."
+  Judy (Sheriff): target Frank; "Investigate Frank for alignment."
+Katana: Frank holds it and attacks Heidi.
+(to Judy) Moderator (private): Night 4 result: Frank is Not Evil.
+(to Dave) Moderator (private): Night 4 Fortune Teller numbers: 4 and 4.
+(to Frank) Moderator (private): Night 4 Yakuza actions: Frank (Fabricator) framed Carol. Frank kept the Katana and attacked Heidi. Your Katana attack succeeded.
+(to Alice) Moderator (private): You spent your last prosecutor token. Frank will be prosecuted tomorrow.
+[Moderator summary] Night 4: Frank (Fabricator, Katana holder) framed Carol and killed Heidi with a Standard Katana attack (Heidi had no defense).
+
+===== DAY 5 =====
+Heidi died (Katana). Their role was Medic. Last will: 'I am the Village Medic. I protected Carol on Night 1, then used a token to give Judy Strong Defense on Night 2; I had one token remaining afterward. Erin’s revealed Seer will reports that Alice and I share an alignment, and that Frank and Mallory share an alignment. Judy’s Sheriff result correctly found Ivan Evil, so her claim has strong support. Do not treat Frank’s Innocent verdict as a role reveal, but Erin’s result plus Judy’s Mallory check argues against Frank or Mallory being Evil. Alice’s vote mismatch is suspicious, but Erin’s result weighs against condemning her without more evidence. Reassess everyone against these results and the revealed flips.'
+Frank is being prosecuted and goes straight to trial.
+Frank (public): Frank here. I'm a Villager with no role claim. I voted No on Ivan because one Sheriff check wasn't enough to execute on, and I've argued for process since Day 1. Judy's Ivan result was verified, so I take her seriously. Mallory was the Katana holder on Night 2, which is why Judy's Not Evil read on her proves nothing either way. Heidi died to the Katana after she privately messaged Alice, and Alice has PMed Heidi, Dave, Erin and Judy while flipping her public vote on Frank. Carol pushed hardest on Ivan and Erin from Day 1, self-nominated, and was framed by name on Night 4. I'd look hard at those two before anyone else. Vote on the evidence.
+Grace (public): Frank’s defense repeats the same pattern: defended Ivan, voted No on him, and repeatedly contacted Mallory. Mallory’s flip proves she was Yakuza; Erin’s Seer result says she and Frank shared alignment, strongly implicating him. His Katana explanation only makes Judy’s check inconclusive, not him. Vote Guilty.
+Judy (public): My N4 Sheriff result was Frank Not Evil, but that does not clear him: the Katana holder appears Not Evil to the Sheriff, and Heidi died to the Katana that night. Erin’s N2 Seer result says Frank and Mallory shared an alignment; Mallory flipped Yakuza. That strongly points to Frank as Yakuza. Guilty.
+Alice (public): Alice: Guilty. Erin's Seer pair put Frank with Mallory, who was confirmed Yakuza. Frank also defended Ivan and kept PMing Mallory.
+Bob (public): Bob: Erin's Seer pair put Frank with Mallory, and Mallory was a Yakuza Clerk. Frank's Katana explanation only fits Night 4. Guilty.
+(to Bob, Judy) Bob -> Judy (private): Bob: Frank is likely Yakuza per Erin's pair plus Mallory. I'm voting Guilty. Let's keep Alice and Dave under watch.
+Carol (public): Carol: Voting Guilty on Frank. My early pressure on Ivan and Erin and my self-nomination still look suspicious, so keep me in mind for the next vote.
+Dave (public): Dave: Frank's defense of Ivan, his PMs with Mallory, and Erin's pair linking him to Mallory (a Yakuza Clerk) make Guilty the right vote.
+(to Dave, Judy) Dave -> Judy (private): Dave here: I'm the Fortune Teller. My numbers: N1 4,5; N2 3,4; N3 3,5; N4 4,4. Let's compare notes with your Sheriff reads.
+Trial votes on Frank: Guilty - Alice, Bob, Carol, Dave, Grace, Judy; Innocent - Frank.
+Frank is executed by hanging (6 Guilty).
+Frank died (executed by hanging). Their role was Fabricator. Last will: "Village, stay vigilant: Judy's Sheriff reads have been accurate and Erin's Seer claim was confirmed by her death reveal. Frank's defense and private messages with Ivan and Mallory are suspicious. Vote on verified results and beware of unsupported accusations."
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Erin, Grace, Heidi, Judy
+Cost: {'anthropic/claude-haiku-5.5': 0.31689734999999997, 'openai/gpt-6-luna': 0.12289901499999999, 'anthropic/claude-opus-5.5': 0.22749040000000004}

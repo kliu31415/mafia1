@@ -1,0 +1,161 @@
+Setup:
+  Alice    seat 0  Jester            anthropic/claude-haiku-5.5
+  Bob      seat 1  Lookout           openai/gpt-6-luna
+  Carol    seat 2  Sheriff           anthropic/claude-haiku-5.5
+  Dave     seat 3  Medic             openai/gpt-6-luna
+  Erin     seat 4  Grunt             openai/gpt-6-luna
+  Frank    seat 5  Vanilla Villager  openai/gpt-6-luna
+  Grace    seat 6  Pharmacist        anthropic/claude-haiku-5.5
+  Heidi    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Grace
+
+===== DAY 1 =====
+Heidi (public): Heidi here, vanilla Villager. No info yet, so let's watch for contradictions before nominating anyone.
+Bob (public): No actionable information yet. Let's hear initial claims and intentions before considering a Day 1 trial.
+Frank (public): I’m vanilla and have no information to offer yet. Let’s hear everyone’s initial thoughts and watch for inconsistencies before deciding whether a Day 1 trial is worthwhile.
+Erin (public): I'm vanilla as well. With no actionable information, let's hear from the remaining players before anyone pushes a trial.
+(to Erin, Grace) Erin -> Grace (private): No need to rush a trial. I'll claim vanilla with the others; let's see who speaks and coordinate the night target later.
+Alice (public): Alice here, no information yet. Erin's private message to Grace is worth watching.
+Dave (public): We still need Carol's opening. Let's hear from them before considering a Day 1 trial; there's no actionable information yet.
+(to Dave, Grace) Dave -> Grace (private): What did Erin say in her private message? Anything actionable or unusual?
+Carol (public): Carol here. I hold a night information role and will investigate tonight. Let's hold off on trials until I can share something useful.
+Grace (public): Agreed on no Day 1 trial. Carol, please share your role and first results when it's useful. Unverified claims shouldn't decide a trial yet.
+(to Erin, Grace) Grace -> Erin (private): Grace here: I'm Pharmacist, and I can block tonight. Let's keep quiet, avoid early trials, and see what Carol claims.
+Heidi (public): Heidi here. Carol, please state your claimed role and tonight's target clearly. Erin, Dave, and Grace have all sent private messages, so could you briefly say publicly what they were about?
+Erin (public): My message to Grace was just checking whether we agreed to hold off on a Day 1 trial. Nothing actionable; Dave can explain his own message.
+(to Erin, Grace) Erin -> Grace (private): Carol's information-role claim could be dangerous; consider making Carol our Katana target tonight.
+(to Erin, Grace) Grace -> Erin (private): Agreed. Tonight I'll block Carol, and we both vote Carol for the Katana attack. Keep your public claim as vanilla.
+Carol (public): Carol here, confirmed Sheriff. I investigate tonight and will report results when useful. No trial yet.
+Bob (public): No nomination from me today. Carol's claim is unverified; let's wait for results and avoid treating private-message traffic alone as evidence.
+(to Bob, Carol) Bob -> Carol (private): I’m Lookout and plan to watch you tonight. Please report your target and result tomorrow; I’ll share who visits you if useful.
+Frank (public): The private-message traffic involving Grace is worth clarifying, but it isn't evidence on its own. Dave and Grace, please briefly explain your messages. Carol, keep your target private tonight and share a clear result tomorrow.
+Dave (public): My message to Grace asked what Erin had said; there was no coordination or actionable information. I agree we should avoid a Day 1 trial. Carol, please share a clear result tomorrow.
+Alice (public): I'm not comfortable with Carol's unverified Sheriff claim yet. Carol, if you are Sheriff, investigate someone suspicious like Erin and report the result honestly.
+Carol (public): Carol here, Sheriff. I will investigate one player tonight and report the result on Day 2. No trial today.
+Grace (public): Grace here. No nomination from me yet. Carol's Sheriff claim is unverified, so I'd like to see the Day 2 result before any trial.
+Erin (public): My message to Grace was about holding off on a Day 1 trial. Carol's Sheriff claim is unverified; let's hear the result tomorrow before deciding whether to act.
+Alice (public): I nominate myself. I've been vague, and I'm uneasy about Carol's unverified Sheriff claim. If you think I'm Evil, vote me Guilty.
+Alice nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Alice, Grace; No - Bob, Carol, Dave, Erin, Frank, Heidi.
+The nomination of Alice failed (2 Yes).
+Heidi (public): Heidi here, vanilla. I want Carol's Day 2 result before any trial. Carol, name your investigated player publicly so we can check it. No nomination from me.
+Dave (public): No trial today. Carol should keep the target private tonight, then report both the target and result tomorrow so we can assess the claim.
+Frank (public): No nomination. The failed self-nomination tells us little; neither Alice nor Grace’s Yes vote is alignment evidence by itself. Carol, keep tonight’s target private and report the target and result tomorrow.
+Carol (public): Carol, Sheriff. I investigate tonight and will report my result on Day 2.
+Bob (public): Carol, keep your target private tonight and report both the target and result tomorrow. I’ll assess the claim alongside other evidence, not on the claim alone.
+Dave (public): No trial from me. Carol, keep your target private tonight and report target plus result tomorrow.
+Frank (public): No nomination from me. The private-message traffic and failed self-nomination are weak signals; let’s assess Carol’s result tomorrow alongside the other evidence.
+Grace (public): Grace: No nomination from me. Carol, report your target and result tomorrow.
+(to Erin, Grace) Grace -> Erin (private): Confirmed: I block Carol tonight and Katana her. Vote with me.
+Alice (public): Alice here: I'm suspicious, please vote me Guilty.
+Alice nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Alice, Carol, Grace; No - Bob, Dave, Erin, Frank, Heidi.
+The nomination of Alice failed (3 Yes).
+Heidi (public): Carol, please publicly name your Night 1 target now so the claim can be checked.
+Carol (public): Carol here: I investigate tonight and will publicly report my target and result on Day 2.
+Heidi (public): Carol, publicly name your Night 1 target now, please.
+Erin (public): Carol should keep her target private tonight and report the target and result tomorrow.
+(to Erin, Grace) Erin -> Grace (private): Alice suggested Carol investigate me. Block Carol and make sure we both select her for the Katana attack.
+Grace (public): Grace: No nomination from me. Carol, post your target and result clearly.
+(to Erin, Grace) Grace -> Erin (private): Confirmed: blocking Carol and Katana her. Stay vanilla.
+(to Alice, Grace) Alice -> Grace (private): Alice here: I'm not Evil. I want a trial on me, so if you think I'm suspicious, vote Guilty on my next nomination.
+(to Alice, Carol) Alice -> Carol (private): Alice here: if you think I'm suspicious, nominate me and vote Guilty. I'd like a trial on me.
+(to Erin, Grace) Grace -> Erin (private): Still blocking Carol and Katana her tonight. Stay vanilla.
+(to Erin, Grace) Erin -> Grace (private): Confirmed: I vote Carol for Katana. Block Carol.
+(to Carol, Heidi) Heidi -> Carol (private): Carol, privately: who did you investigate, and result?
+(to Carol, Heidi) Carol -> Heidi (private): I'll share my Night 1 target and result on Day 2.
+(to Alice, Grace) Alice -> Grace (private): Please vote me Guilty if I'm nominated again.
+(to Bob, Carol) Bob -> Carol (private): I’ll watch you tonight as planned. Please report your target and result tomorrow.
+A full round passed with no messages. The day ends.
+
+===== NIGHT 1 =====
+(to Erin, Grace) Erin (Yakuza chat): Confirmed: Grace keeps the Katana and we both vote to attack Carol. Grace blocks Carol; I have no separate action.
+(to Erin, Grace) Grace (Yakuza chat): Grace here, holding the Katana. Plan: I block Carol with my Pharmacist action and Katana Carol with a Standard attack. Erin, please confirm your vote for Carol so we both agree. No other actions from me.
+Night actions:
+  Bob (Lookout): target Carol; "Watch Carol tonight."
+  Carol (Sheriff): target Alice; "Sheriff investigation on Alice."
+  Dave (Medic): target Carol; 1 token(s); "Protect Carol with Strong Defense."
+  Erin (Grunt): no role action; Katana vote: Grace holds, attacks Carol
+  Grace (Pharmacist): target Carol; "Role-block Carol tonight and Katana Carol with a Standard attack. I keep the Katana."; Katana vote: Grace holds, attacks Carol
+Katana: Grace holds it and attacks Carol.
+(to Carol) Moderator (private): You were role-blocked tonight, so your Sheriff investigation had no effect. You were also attacked with a Katana tonight.
+(to Bob) Moderator (private): Lookout result for Carol: Carol was visited tonight by Dave and Grace.
+(to Grace) Moderator (private): Your Katana attack on Carol did not succeed. Your role-block on Carol was carried out.
+(to Erin) Moderator (private): Tonight Grace performed a role-block on Carol and a Katana attack on Carol. You performed no night action.
+[Moderator summary] Night 1: No deaths. Carol was role-blocked by Grace (Carol's Sheriff investigation had no effect). Grace's Katana attack (Standard) on Carol was stopped by Dave's Strong protection. Dave used 1 medic token (1 remaining). Bob's Lookout on Carol revealed visitors Dave and Grace. Carol was told of the role-block and Katana attack; Grace told the attack failed; Erin (Yakuza) told the actions performed by Grace.
+
+===== DAY 2 =====
+Dave (public): Carol, please report your Night 1 target and result now so we can assess your Sheriff claim.
+Erin nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Erin, Frank, Grace, Heidi, Alice, Bob, Dave; No - Carol.
+Carol is put on trial (7 Yes).
+Carol (public): Carol here, Sheriff. Night 1 I was role-blocked, so my investigation had no effect and I have no result to report yet. I was also hit by a Katana that night and survived, which means someone protected me. Yakuza targeting me suggests they see me as a threat. I'll investigate tonight and publicly report my target and result on Day 3. Please vote on what you've seen, not on my claim alone.
+Dave (public): Medic here: I protected Carol Night 1 with Strong Defense.
+Erin (public): Carol has no result, and the claimed roleblock/attack is unverified; a Sheriff claim alone shouldn't grant immunity. I will vote Guilty absent corroboration.
+Frank (public): I favor Innocent: no result is concerning, but role-blocking and a Katana attack are plausible, and Dave claims protection. Let’s judge Carol on the next report.
+Grace (public): Grace: Carol's account is consistent, but it's still unverified. Dave's Medic claim is unverified too. I lean Guilty until Carol gives a real target and result.
+(to Erin, Grace) Grace -> Erin (private): Grace: I'm voting Guilty on Carol. Push Guilty and try to win over Alice or Bob.
+Heidi (public): Heidi: I lean Innocent. Dave's Medic claim backs Carol's Katana story, and Erin's and Grace's rush to Guilty looks premature. Carol, post your Night 2 target and result clearly.
+Alice (public): Alice: Carol's Night 1 story is contradictory, and Dave's Medic claim doesn't fix that. I lean Guilty on Carol. I'm still suspicious of myself, so vote me if you agree.
+Bob (public): I watched Carol Night 1: Dave and Grace visited. Dave’s Medic claim is corroborated; Grace’s visit fits Carol’s role-block/attack account. I favor Innocent.
+Trial votes on Carol: Guilty - Alice, Erin, Grace; Innocent - Bob, Carol, Dave, Frank, Heidi.
+Carol is found Innocent (3 Guilty).
+Bob nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Bob, Carol, Dave, Frank, Heidi, Alice; No - Erin, Grace.
+Grace is put on trial (6 Yes).
+Grace (public): Grace here. I'm a vanilla Villager with no night role, and I'm not Yakuza. My Guilty vote on Carol came from her unverified Sheriff claim: she said she was role-blocked and attacked on Night 1 but has no result. Erin pushed that vote early, and I went along with it, which was a mistake on my part. Dave's Medic claim and the Katana story might both be true, and I'm not trying to hide anything. I'm not asking you to take my word for it. Watch what Carol reports on Day 3, and judge my votes by how the evidence develops. If you're uncertain, I'm open to a Day 3 vote informed by the Sheriff result.
+(to Carol, Heidi) Heidi -> Carol (private): Carol, Heidi here. Privately: which player did you plan to investigate tonight, and will you publicly report the target and result on Day 3 as promised?
+(to Alice, Frank) Alice -> Frank (private): Alice here: I'm not Yakuza, and I'd like a fair trial on me. If you suspect me, vote Guilty on my next nomination. Grace's account is weak.
+Carol (public): Carol: Bob's Lookout claim says Grace visited me Night 1, and Grace pushed the trial against me. I'm voting Guilty on Grace and will investigate her tonight.
+Trial votes on Grace: Guilty - Bob, Carol, Dave, Frank, Heidi; Innocent - Alice, Erin, Grace.
+Grace is executed by hanging (5 Guilty).
+Grace died (executed by hanging). Their role was Pharmacist. Last will: "Grace's last will: Village, I was Yakuza, loyal to my faction. Erin is my Yakuza partner; trust nothing said by Carol or Alice without evidence. Do not let the Village hang the Yakuza."
+(to Erin) The Katana passed to Erin.
+
+===== NIGHT 2 =====
+Night actions:
+  Bob (Lookout): target Carol; "Watch Carol."
+  Carol (Sheriff): target Erin; "Sheriff investigation on Erin."
+  Dave (Medic): target Carol; 1 token(s); "Protect Carol with Strong Defense, spending my last medic token."
+  Erin (Grunt): target Bob; "Use the Katana attack on Bob. No separate Grunt action."; Katana vote: Erin holds, attacks Bob
+Katana: Erin holds it and attacks Bob.
+(to Bob) Moderator (private): Lookout result for Carol: Dave visited Carol this night.
+(to Carol) Moderator (private): Sheriff result: Erin appears Not Evil.
+(to Erin) Moderator (private): Your Katana attack on Bob succeeded. The Katana remains with you.
+[Moderator summary] Night 2 resolved. Erin (Yakuza, Katana holder) attacked Bob with the Katana (Standard); Bob died (Katana). Carol's Sheriff investigation on Erin returned Not Evil (Katana holder appears Not Evil). Dave's Strong Defense protection went to Carol, who was not attacked. Bob's Lookout watch on Carol saw Dave's visit. Katana remains with Erin. Results were told privately to Bob, Carol, and Erin.
+
+===== DAY 3 =====
+Bob died (Katana). Their role was Lookout. Last will: 'I am Bob, the Good Lookout. Night 1 I watched Carol: Dave and Grace visited her. I cannot tell what they did or their alignments. Carol claimed Sheriff and should report her target and result. Treat all claims and this result as evidence to verify, not proof of guilt.'
+Alice (public): Alice: Grace was Yakuza and Bob was killed, so Carol and Dave need scrutiny. I'm suspicious enough to hang; vote me Guilty if you agree.
+Alice nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Alice, Carol, Erin, Frank, Heidi; No - Dave.
+Alice is put on trial (5 Yes).
+Alice (public): Alice here. I've been vague all game, I nominated myself repeatedly, and I've pushed for this trial. By the evidence, I look like the strongest reason to vote Guilty. Carol's Sheriff story has contradictions, Dave's Medic claim is unverified, and Grace's last will called Erin her partner, so Erin needs scrutiny too. But I'm the one who keeps drawing attention to myself, so if you're going to hang someone today, I'd suggest me. Vote Guilty if you think I'm Yakuza.
+Carol (public): Carol, Sheriff: Night 2 I investigated Erin and the result was Not Evil. A Yakuza holding the Katana at night also appears Not Evil, and Grace's will named Erin as her partner, so Erin needs scrutiny. I vote Guilty on Alice, who keeps pushing her own trial.
+Dave (public): I’m voting Innocent on Alice. Repeatedly pushing your own hanging looks like a possible Jester bait, and we shouldn’t take that risk. Erin remains the stronger lead given Grace’s will; Carol’s Not Evil result could fit Erin holding the Katana.
+Erin (public): I’m voting Innocent. Alice has repeatedly asked to be hanged, so executing her risks handing a neutral exactly the outcome they want. Grace’s will naming me is serious, but it isn’t a reason to ignore the possibility that Alice is baiting a guilty vote. Let’s not hang her today.
+Frank (public): I’m voting Innocent on Alice; repeated self-nominations make a Jester outcome plausible. Erin is the stronger lead: confirmed Yakuza Grace named her as a partner, and Carol’s Not Evil result could fit Erin holding the Katana.
+Heidi (public): Heidi: I'm voting Innocent on Alice. Her repeated self-nominations look like Jester bait, and a Jester hang would end the game against us. Erin is the stronger lead: Grace's will named her partner, and Carol's Not Evil result fits a Katana holder. Carol, please post your Night 2 target and result clearly.
+Trial votes on Alice: Guilty - Alice, Carol; Innocent - Dave, Erin, Frank, Heidi.
+Alice is found Innocent (2 Guilty).
+(to Alice, Erin) Erin -> Alice (private): Your repeated self-nominations make a Jester read plausible. Please stop pushing your own execution and focus on evidence; it only muddies today's decision.
+(to Dave, Heidi) Heidi -> Dave (private): Dave, Heidi here. Who did you protect Night 2, and how many medic tokens do you have left? Let's compare notes privately before voting.
+(to Carol, Heidi) Carol -> Heidi (private): Carol: my Night 2 check on Erin came back Not Evil. Grace's will names Erin as her partner, and Bob died to the Katana. A Katana holder appears Not Evil, so Erin fits. Let's push Erin next, and watch Dave's Medic claim.
+(to Dave, Heidi) Dave -> Heidi (private): I spent one token giving Carol Strong Defense on Night 1; I have one token left. Grace's confirmed Yakuza will named Erin, so she's our strongest lead.
+(to Erin, Frank) Frank -> Erin (private): Grace’s last will explicitly named you as her Yakuza partner. Carol’s Not Evil result does not clear you, since the Katana holder appears Not Evil. Please explain the will and your early push to execute Carol; the village needs a direct answer.
+Heidi (public): Heidi: Nominating Erin. Grace's will names her as partner, and Carol's Night 2 Not Evil result fits a Katana holder. Vote Guilty if you agree.
+Heidi nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Heidi, Alice, Carol, Dave, Frank; No - Erin.
+Erin is put on trial (5 Yes).
+Erin (public): I’m vanilla, as I’ve said. Grace’s will is damaging, but it’s a dead player’s accusation, not independent confirmation. My Guilty vote on Carol was a mistake: Bob and Dave’s accounts made her Night 1 story plausible, and I should have reconsidered. Carol’s Not Evil result doesn’t settle my alignment either way, especially given her explanation about the Katana. Please don’t let a rushed execution replace weighing the evidence. Alice has repeatedly pushed for her own hanging; that could be Jester bait, and a Guilty vote may hand her exactly what she wants. I’m asking for Innocent and a careful discussion of the remaining evidence.
+Frank (public): Grace was confirmed Yakuza, and her will named Erin as her partner. It can’t be dismissed as fabricated: Grace died by daytime execution, not that night. Erin also nominated Carol and voted Guilty on her. Alice may be Jester bait, but Erin is the stronger faction lead. I’m voting Guilty on Erin.
+Alice (public): Alice: Erin is the strongest lead given Grace's will, so I'm voting Guilty. I'll keep weighing Carol and Dave after this trial.
+Carol (public): Carol, Sheriff: Erin's Night 2 result was Not Evil, which fits a Katana holder given Grace's will naming her partner. I'm voting Guilty on Erin.
+Dave (public): Grace was confirmed Yakuza, and her will named Erin as her partner. Carol’s Not Evil result fits a Katana holder. I’m voting Guilty on Erin.
+Trial votes on Erin: Guilty - Carol, Dave, Frank, Heidi; Innocent - Alice, Erin.
+Erin is executed by hanging (4 Guilty).
+Erin died (executed by hanging). Their role was Grunt. Last will: "I claimed vanilla and have no night results. Grace's will names me, but a dead player's accusation is not proof; consider whether it could be a deliberate distancing play. Alice repeatedly tried to get herself hanged, then voted Guilty on Carol despite the weak case. Reassess her motives before treating Carol's Sheriff claim as false. Bob's report confirms Grace visited Carol, but not what Grace did or who else is guilty."
+
+===== GAME OVER =====
+Winners: Bob, Carol, Dave, Frank, Heidi
+Cost: {'anthropic/claude-haiku-5.5': 0.143543975, 'openai/gpt-6-luna': 0.06633755500000002}

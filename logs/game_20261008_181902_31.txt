@@ -1,0 +1,385 @@
+Setup:
+  Alice    seat 0  Vanilla Villager  anthropic/claude-haiku-5.5
+  Bob      seat 1  Lookout           openai/gpt-6-luna
+  Carol    seat 2  Vanilla Villager  openai/gpt-6-luna
+  Dave     seat 3  Jester            anthropic/claude-haiku-5.5
+  Erin     seat 4  Fabricator        anthropic/claude-haiku-5.5
+  Frank    seat 5  Vigilante         openai/gpt-6-luna
+  Grace    seat 6  Grunt             openai/gpt-6-luna
+  Heidi    seat 7  Medic             anthropic/claude-haiku-5.5
+  Ivan     seat 8  Pharmacist        openai/gpt-6-luna
+  Judy     seat 9  Sheriff           anthropic/claude-haiku-5.5
+  Katana starts with Ivan
+Carol (public): I have no night information to offer. Let’s hear any useful claims or suspicions before considering a Day 1 nomination.
+Judy (public): Judy here, and I'm the Sheriff. I'll investigate tonight and share what I learn at the start of Day 2. No nomination from me yet.
+Dave (public): Dave here. Judy's Sheriff claim is unverified, and I'd like to hear more before we settle on anyone. Let's not rush a Day 1 nomination.
+Frank (public): I agree there’s no reason to rush a blind trial. Judy, please share your investigation result tomorrow; anyone with actionable information should speak up.
+Alice (public): Alice here, a Villager with no night info. Judy, please share your result at Day 2. I won't nominate until we have more to go on.
+Erin (public): Erin here, no night info yet. I agree with waiting for Judy's Day 2 result before any nomination.
+(to Erin, Grace) Erin -> Grace (private): Erin here. Let's stay quiet today and see Judy's result.
+Bob (public): No night information here either. Let's avoid a blind Day 1 trial; tomorrow, compare Judy's result with any competing claims and revisit inconsistencies.
+(to Erin, Grace) Grace -> Erin (private): Agreed—let Judy’s Sheriff claim stand for now; no need to volunteer claims. Let’s coordinate the night target in faction chat.
+(to Grace, Ivan) Grace -> Ivan (private): No need to volunteer claims today. Judy’s Sheriff claim can stand for now; we should coordinate our night target in faction chat.
+Ivan (public): Agreed—let’s hear Judy’s result tomorrow and compare it with any other information before considering a nomination.
+(to Grace, Ivan) Ivan -> Grace (private): I propose we attack Judy tonight with the Katana and keep it with me tomorrow. I can role-block someone too; any objections or better target?
+(to Erin, Ivan) Ivan -> Erin (private): I propose we attack Judy tonight with the Katana and keep it with me tomorrow. I can role-block someone too; any objections or better target?
+Heidi (public): Heidi here, no night info yet. I also agree we should wait for Judy's Day 2 result before any nomination.
+Judy (public): Judy here: as planned, I'll investigate tonight and share my result at the start of Day 2. No nomination from me today.
+(to Erin, Ivan) Erin -> Ivan (private): Agreed: Katana on Judy tonight. I'll use fabricator on a Village player so Judy's read is muddied. Keep the Katana with you.
+Alice (public): Alice: Agreed, no Day 1 nomination. Judy, please share your result at Day 2 start.
+(to Grace, Ivan) Grace -> Ivan (private): Agreed: attack Judy with the Katana and keep it. If you can also role-block, consider Dave or Frank; no one else has claimed a night role.
+(to Erin, Grace) Grace -> Erin (private): Ivan and I agree to attack Judy. If you want to forge her will, a plausible fake Sheriff result could sow confusion, but we don't know who she investigated.
+Carol (public): Agreed to wait for Day 2, but Judy’s Sheriff claim is unverified; we should weigh her result alongside the investigated player’s response and any competing claims.
+(to Erin, Ivan) Ivan -> Erin (private): Confirmed: keep the Katana on Judy tonight. I’ll role-block Judy too, so she can’t investigate. Please proceed with the fabricator plan.
+(to Grace, Ivan) Ivan -> Grace (private): Confirmed: I’ll role-block Judy while we attack her with the Katana. Keep the Katana with me tomorrow.
+Dave (public): Dave: I'm fine with scrutiny. If anyone finds my Day 1 comments odd, say so and we can put me on trial.
+Dave (public): Dave: my earlier defense of Judy was too eager. I'm fine being put on trial if anyone finds that suspicious.
+Erin (public): Erin: Agreed, no nomination today. Judy's Day 2 result matters most.
+Judy (public): Judy: Investigating tonight as planned. Result at Day 2 start.
+Carol (public): Agreed: no blind trial today. Judy, share your target and result together tomorrow, and let the target respond before we treat the claim as confirmed. Dave’s offer to stand trial isn’t evidence either way.
+Heidi (public): Heidi (Medic, no claim to share yet): no Day 1 nomination from me. Judy's result matters most tomorrow.
+Alice (public): Alice: Heidi, you said Medic but didn't give a claim. Please clarify your protections so we can compare with Judy's Day 2 result.
+Ivan (public): Heidi has claimed Medic; protection details are better kept private. Let’s hear Judy’s result tomorrow before drawing conclusions.
+(to Erin, Grace) Grace -> Erin (private): If you use the forge, give Judy a plausible N1 Sheriff result: investigated Dave, Evil. His repeated offer to stand trial gives us a thread tomorrow.
+Carol (public): No trial from me today absent evidence. Heidi needn’t reveal protection targets; Judy should report her target and result tomorrow for scrutiny.
+Judy (public): Judy (Sheriff): Investigating tonight; my result and target come at Day 2 start.
+(to Grace, Ivan) Ivan -> Grace (private): Change: I’ll role-block Heidi, not Judy; as Medic she may protect Judy and stop the Standard Katana attack.
+(to Erin, Ivan) Ivan -> Erin (private): I’ll role-block Heidi to prevent a possible protection on Judy. If feasible, consider forging Judy’s will as well as fabricating a Sheriff read.
+Dave (public): Dave: I nominate myself; my eager Judy defense looked off, so let's test it.
+Dave nominated Dave. Voting Yes/No proceeds clockwise.
+Dave votes Yes on the nomination of Dave.
+Erin votes Yes on the nomination of Dave.
+Frank votes Yes on the nomination of Dave.
+Grace votes Yes on the nomination of Dave.
+Heidi votes Yes on the nomination of Dave.
+Ivan votes No on the nomination of Dave.
+Judy votes Yes on the nomination of Dave.
+Alice votes Yes on the nomination of Dave.
+Bob votes Yes on the nomination of Dave.
+Carol votes No on the nomination of Dave.
+Dave is put on trial (8 Yes).
+Dave (public): Dave here. My eager defense of Judy on Day 1 was awkward, and then I nominated myself, which looks odd. I don't have night information to prove I'm Good. Judy's Day 2 result will matter more than my words, so vote on the evidence you see.
+Erin (public): Erin: Dave's self-nomination looks suspicious to me. I lean Guilty.
+(to Erin, Ivan) Erin -> Ivan (private): Erin: I'm voting Guilty on Dave. Judy plan stands; I'll keep my fabricator plan quiet.
+Frank (public): Dave’s self-nomination is odd, but it isn’t evidence of alignment. With no actionable case yet, I’m voting Innocent; let’s hear Judy’s result tomorrow and reassess with actual information.
+Grace (public): Dave’s self-nomination is unusual, but it isn’t proof of alignment. With no concrete evidence today, I’m leaning Innocent; we can reassess once Judy reports tomorrow.
+(to Grace, Ivan) Grace -> Ivan (private): I’m urging Innocent: no solid evidence, and a guilty vote could be risky. Please vote Innocent too.
+(to Erin, Grace) Grace -> Erin (private): I’m urging Innocent: no solid evidence, and a guilty vote could be risky. Consider voting Innocent rather than doubling down.
+Heidi (public): Heidi: Dave's self-nomination is odd, but it isn't proof. I lean Innocent until Judy's Day 2 result.
+Ivan (public): Dave’s self-nomination is unusual, but without evidence it doesn’t establish alignment. I’m voting Innocent; Judy’s result tomorrow gives us a better basis for a trial.
+Judy (public): Judy: I have no result yet, so I lean Innocent on Dave until Day 2.
+Alice (public): Alice: Leaning Innocent until Judy's Day 2 result.
+Bob (public): Dave’s self-nomination is odd, but it isn’t evidence of alignment. With no actionable information yet, I’m voting Innocent; let’s assess Judy’s result tomorrow alongside the target’s response.
+Carol (public): Dave’s self-nomination is strange, but it proves nothing about alignment. With no concrete evidence, I favor Innocent; Judy’s result tomorrow should give us an actionable lead.
+Dave votes Guilty on Dave.
+Erin votes Guilty on Dave.
+Frank votes Innocent on Dave.
+Grace votes Innocent on Dave.
+Heidi votes Innocent on Dave.
+Ivan votes Innocent on Dave.
+Judy votes Guilty on Dave.
+Alice votes Guilty on Dave.
+Bob votes Innocent on Dave.
+Carol votes Innocent on Dave.
+Dave is found Innocent (4 Guilty).
+(to Erin, Ivan) Erin -> Ivan (private): Erin: Fabricator tonight on Dave (reads Evil). Katana stays with you on Judy.
+Frank (public): Dave’s Innocent result gives us little alignment evidence. His self-vote Guilty is unusual, but not decisive. Record the Guilty votes and wait for Judy’s claimed investigation tomorrow before pushing another trial.
+Bob (public): No further evidence today. Record the Guilty votes on Dave—Erin, Judy, Alice, and Dave himself—but none alone proves alignment. Let’s hear Judy’s target and result tomorrow, then scrutinize both.
+Alice (public): Alice: No nomination from me yet. Judy, share your target and result at Day 2 start. Heidi, name your Day 1 protection target so we can cross-check both claims tomorrow.
+Grace (public): Heidi shouldn’t disclose protection targets; that lets attackers predict coverage. Judy should name her target and result tomorrow, and we should hear the target’s response before deciding.
+(to Erin, Grace) Grace -> Erin (private): If Judy dies tonight, please forge her will with a plausible Sheriff result investigating Dave as Evil.
+(to Erin, Ivan) Erin -> Ivan (private): Confirmed: fabricator on Dave tonight. Katana on Judy.
+Carol (public): Judy and Alice both said they leaned Innocent on Dave, then voted Guilty. Please explain that shift. No need for Heidi to reveal her protection target; let’s wait for Judy’s result before another trial.
+Grace (public): Carol raises a fair point: Judy and Alice both voiced Innocent, then voted Guilty. Their reasons matter more than Dave’s self-nomination; let’s hear them before choosing the next trial.
+Alice (public): Alice: Carol is right that I said Innocent and then voted Guilty on Dave. That was an inconsistency, and I own it. I'm a Villager with no night info. Judy, please share your target and result at Day 2 start.
+Ivan (public): Alice owning the inconsistency helps, but Judy should also explain her stated Innocent view followed by a Guilty vote. I see no basis for another trial today.
+(to Erin, Ivan) Ivan -> Erin (private): Please forge Judy’s will if she dies tonight, and fabricate Dave as planned. I’m role-blocking Heidi and carrying the Katana on Judy.
+Bob (public): Judy, Carol’s question is fair: you said you leaned Innocent on Dave, then voted Guilty. What changed your mind? Please explain before we rely on your investigation tomorrow.
+Heidi (public): Heidi: No nomination from me. I'll keep my protection details private. Judy, please post your target and result at Day 2 start, and explain your Innocent-to-Guilty shift on Dave.
+Judy (public): Judy: I voted Guilty on Dave because his eager defense of me and his self-nomination looked coordinated to me. My target and result will come at Day 2 start.
+Dave (public): Dave: My self-nomination still looks odd, and I have no night info to prove I'm Good. If it bothers you, vote Guilty; I'm fine either way.
+Dave nominated Dave. Voting Yes/No proceeds clockwise.
+Dave votes Yes on the nomination of Dave.
+Erin votes Yes on the nomination of Dave.
+Frank votes No on the nomination of Dave.
+Grace votes No on the nomination of Dave.
+Heidi votes No on the nomination of Dave.
+Ivan votes No on the nomination of Dave.
+Judy votes Yes on the nomination of Dave.
+Alice votes Yes on the nomination of Dave.
+Bob votes No on the nomination of Dave.
+Carol votes No on the nomination of Dave.
+The nomination of Dave failed (4 Yes).
+Frank (public): Judy, your explanation doesn’t account for the shift: Dave’s defense and self-nomination were already known when you said you leaned Innocent, but you later voted Guilty. Let’s record that and hear your target and result tomorrow before deciding whether to act.
+Heidi (public): Heidi: no new info from me. I'm waiting on Judy's Day 2 result before any nomination.
+Carol (public): Judy, your reason for changing to Guilty was already known before you said you leaned Innocent. That inconsistency weakens your Sheriff claim; give your target and result tomorrow.
+Ivan (public): Judy’s timing explanation still doesn’t fit. Keep her Sheriff claim provisional, and ask for a concrete target and result tomorrow.
+Dave (public): Dave: I'm happy to stand trial again. If you suspect me, vote Guilty.
+Dave nominated Dave. Voting Yes/No proceeds clockwise.
+Dave votes Yes on the nomination of Dave.
+Erin votes Yes on the nomination of Dave.
+Frank votes No on the nomination of Dave.
+Grace votes Yes on the nomination of Dave.
+Heidi votes Yes on the nomination of Dave.
+Ivan votes Yes on the nomination of Dave.
+Judy votes Yes on the nomination of Dave.
+Alice votes Yes on the nomination of Dave.
+Bob votes No on the nomination of Dave.
+Carol votes No on the nomination of Dave.
+Dave is put on trial (7 Yes).
+Dave (public): Dave here. I have no night information, and I won't argue for my own innocence. My self-nomination and my eager defense of Judy were awkward, and you should weigh them as you see fit. Judy's Day 2 result should guide your vote more than anything I say. I'm leaving the decision to you.
+Erin (public): Erin: I'll hear Dave's final defense before voting Guilty or Innocent.
+Frank (public): Dave’s repeated self-nominations are odd, but they still don’t establish his alignment. With no concrete evidence, I favor Innocent; let’s wait for Judy’s result rather than risk hanging someone on suspicion alone.
+Grace (public): Dave’s repeated self-nominations are strange, but still not evidence of alignment. With no concrete case, I favor Innocent and reassessing after Judy reports tomorrow.
+(to Erin, Ivan) Ivan -> Erin (private): Vote Innocent; Dave's odd behavior is weak evidence, and we should avoid an execution.
+Judy (public): Judy: Dave's self-nominations and his eager defense of me look coordinated. I lean Guilty; I'll share my Day 2 result.
+Alice (public): Alice: Dave's trial lacks hard evidence. I'll vote on Judy's Day 2 result and the trial defense.
+Bob (public): I’m voting Innocent. Dave’s repeated self-nominations could be a neutral trying to get hanged, and Judy’s shifting explanation isn’t enough evidence to risk executing him.
+Dave votes Guilty on Dave.
+Erin votes Innocent on Dave.
+Frank votes Innocent on Dave.
+Grace votes Innocent on Dave.
+Heidi votes Innocent on Dave.
+Ivan votes Innocent on Dave.
+Judy votes Innocent on Dave.
+Alice votes Innocent on Dave.
+Bob votes Innocent on Dave.
+Carol votes Innocent on Dave.
+Dave is found Innocent (1 Guilty).
+(to Erin, Grace) Grace -> Erin (private): Proceed with forging Judy’s will as Sheriff: Dave Evil, consistent with her claim. Ivan plans to attack Judy and block Heidi. Keep your public activity low.
+(to Carol, Frank) Frank -> Carol (private): Judy’s explanation still doesn’t fit. Do you think we should nominate her now or wait for her result tomorrow? Any other clues?
+(to Erin, Ivan) Erin -> Ivan (private): Erin: Confirmed. Fabricator on Dave tonight, Katana on Judy.
+Dave (public): Dave: Nominating myself again. Please vote Guilty if you suspect me.
+Dave nominated Dave. Voting Yes/No proceeds clockwise.
+Dave votes Yes on the nomination of Dave.
+Erin votes No on the nomination of Dave.
+Frank votes No on the nomination of Dave.
+Grace votes No on the nomination of Dave.
+Heidi votes No on the nomination of Dave.
+Ivan votes No on the nomination of Dave.
+Judy votes No on the nomination of Dave.
+Alice votes No on the nomination of Dave.
+Bob votes No on the nomination of Dave.
+Carol votes No on the nomination of Dave.
+The nomination of Dave failed (1 Yes).
+(to Erin, Ivan) Ivan -> Erin (private): Please prioritize forging Judy’s will if she dies; fabricating Dave’s read is secondary. I’ll block Heidi and keep the Katana on Judy.
+(to Erin, Grace) Grace -> Erin (private): Forge Judy's will as Sheriff: investigated Dave, found Evil; keep plausible.
+(to Grace, Ivan) Grace -> Ivan (private): No nomination; proceed Judy Katana, block Heidi, and retain Katana.
+Frank nominated Judy. Voting Yes/No proceeds clockwise.
+Frank votes Yes on the nomination of Judy.
+Grace votes Yes on the nomination of Judy.
+Heidi votes Yes on the nomination of Judy.
+Ivan votes Yes on the nomination of Judy.
+Judy votes No on the nomination of Judy.
+Alice votes Yes on the nomination of Judy.
+Bob votes Yes on the nomination of Judy.
+Carol votes Yes on the nomination of Judy.
+Dave votes Yes on the nomination of Judy.
+Erin votes Yes on the nomination of Judy.
+Judy is put on trial (9 Yes).
+Judy (public): Judy here, Sheriff, on trial. I have no night result yet because my first investigation happens tonight, so I can't prove anything today. I'm not asking you to take my word for it; I'm asking you to judge me on my conduct. My vote for Guilty on Dave came after his self-nominations and eager defense of me, which looked coordinated to me. That was a judgment call, and I explained it. I'll investigate tonight and post my target and result at the start of Day 2, so you can check my claim against the target's response. If you think a Sheriff who can't prove anything yet is too risky to keep, that is a fair vote. I'm not hiding anything.
+Bob (public): No hard evidence; vote Innocent and verify Judy tomorrow.
+(to Carol, Frank) Carol -> Frank (private): I’d vote Innocent for now: Judy’s shift is suspicious, but there’s no hard evidence, and losing a real Sheriff is costly. Ask her to name her target and result tomorrow; re-evaluate against the target’s response.
+(to Erin, Ivan) Erin -> Ivan (private): Erin: I'm voting Guilty on Judy. Katana plan stands.
+(to Carol, Frank) Frank -> Carol (private): I’ll vote Innocent; require Judy to name her target and result tomorrow, then reassess. Her inconsistency is suspicious, but not enough to execute an unverified Sheriff.
+(to Grace, Ivan) Ivan -> Grace (private): Vote Guilty on Judy; removing the claimed Sheriff is worth the risk. Keep our coordination private.
+Frank votes Guilty on Judy.
+Grace votes Guilty on Judy.
+Heidi votes Innocent on Judy.
+Ivan votes Guilty on Judy.
+Judy votes Innocent on Judy.
+Alice votes Innocent on Judy.
+Bob votes Innocent on Judy.
+Carol votes Innocent on Judy.
+Dave votes Guilty on Judy.
+Erin votes Guilty on Judy.
+Judy is found Innocent (5 Guilty).
+Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 1 =====
+(to Erin, Grace, Ivan) Erin (Yakuza chat): Erin: Confirmed plan. Katana (Ivan) attacks Judy tonight. Ivan blocks Heidi. I'll make Dave read Evil with my free fabricator pick, and spend my token to forge Judy's will (Sheriff: investigated Dave, Evil) if she dies. Let's execute.
+(to Erin, Grace, Ivan) Grace (Yakuza chat): Agreed: Ivan keeps the Katana and attacks Judy. Ivan blocks Heidi; Erin fabricates Dave as Evil and forges Judy’s will if she dies. Ready to proceed.
+(to Erin, Grace, Ivan) Ivan (Yakuza chat): Confirmed: I keep the Katana and attack Judy, and I’ll role-block Heidi to prevent a possible protection. Erin should proceed with fabricating Dave and forging Judy’s will if she dies. Ready.
+(to Bob) Moderator (private): Night 1 Lookout result: You watched Judy. Visitors to Judy tonight: Erin, Ivan.
+(to Erin, Grace, Ivan) Moderator (private): Night 1 Yakuza summary: Katana stays with Ivan. Ivan attacked Judy with the Katana — the attack succeeded. Actions performed: Ivan role-blocked Heidi. Erin framed Dave and forged Judy's last will.
+[Moderator summary] Night 1: Ivan (Pharmacist, Katana) role-blocked Heidi (Medic), so her Standard protection on Judy failed. The Katana Standard attack killed Judy (Sheriff, Defense None). Erin (Fabricator) framed Dave (unused, since Judy died and no other investigators acted) and spent her token to forge Judy's will: "Last Will of Judy (Sheriff): My final night investigation was on Dave. My result: Dave is EVIL. I trust my read; please keep an eye on Dave and vote accordingly. Good luck, Village." This replaces Judy's real will (stored as status forged_last_will). Judy's investigation of Carol (Not Evil) didn't matter because she died. Bob (Lookout) on Judy saw visitors Erin and Ivan (Heidi was blocked, so no visit). Frank did nothing. Yakuza were told about the actions.
+Judy died (Katana attack (Yakuza, Standard)). Their role was Sheriff.
+Frank (public): Judy was the real Sheriff, and the Yakuza killed her; we may have lost her result. I voted Guilty on her and was wrong. Let’s avoid another blind execution. Dave’s repeated self-nominations may be Jester bait; prioritize concrete claims and explain the votes on Judy.
+(to Carol, Frank) Frank -> Carol (private): Judy’s death confirms her Sheriff claim. Who looks most worth scrutinizing today, and do you think Dave’s self-nominations are Jester bait?
+Dave (public): Dave: Judy's death leaves us blind. I'm nominating myself again; vote Guilty if you think I'm Yakuza.
+Dave nominated Dave. Voting Yes/No proceeds clockwise.
+Dave votes Yes on the nomination of Dave.
+Erin votes No on the nomination of Dave.
+Frank votes No on the nomination of Dave.
+Grace votes No on the nomination of Dave.
+Heidi votes No on the nomination of Dave.
+Ivan votes No on the nomination of Dave.
+Alice votes No on the nomination of Dave.
+Bob votes No on the nomination of Dave.
+Carol votes No on the nomination of Dave.
+The nomination of Dave failed (1 Yes).
+Erin (public): Erin: Judy's death is a real loss. Let's look for other claims and avoid blind trials. Dave's repeated self-nominations still bother me, so watch him.
+Alice (public): Alice: Judy's death suggests she was the real Sheriff. Heidi, did you protect Judy last night? Dave, your repeated self-nominations still look odd. No nomination from me yet.
+Ivan (public): Judy’s confirmed Sheriff death makes every Guilty vote on her worth scrutiny, including mine; I was wrong. Frank both nominated her and voted Guilty, so I want his reasoning before we revisit Dave’s self-nomination bait. Heidi should answer whether she used protection, without revealing targets.
+(to Erin, Ivan) Ivan -> Erin (private): Let’s press Frank on nominating and voting guilty for Judy; avoid pushing Dave too hard.
+(to Grace, Ivan) Ivan -> Grace (private): Let’s press Frank on nominating and voting guilty for Judy; avoid pushing Dave too hard.
+Heidi (public): Heidi (Medic): I won't publish protection targets. Judy's death confirms she was the real Sheriff. Frank nominated and voted Guilty on her, so I want his reasoning. Dave's self-noms still look like bait.
+Carol (public): Frank privately told me he would vote Innocent on Judy, then nominated her and voted Guilty. With Judy confirmed as the Sheriff, that contradiction needs an explanation. I nominate Frank for trial.
+Carol nominated Frank. Voting Yes/No proceeds clockwise.
+Carol votes Yes on the nomination of Frank.
+Dave votes Yes on the nomination of Frank.
+Erin votes Yes on the nomination of Frank.
+Frank votes Yes on the nomination of Frank.
+Grace votes Yes on the nomination of Frank.
+Heidi votes Yes on the nomination of Frank.
+Ivan votes Yes on the nomination of Frank.
+Alice votes Yes on the nomination of Frank.
+Bob votes Yes on the nomination of Frank.
+Frank is put on trial (9 Yes).
+Frank (public): I’m the Village Vigilante; I have all three tokens and did not shoot Night 1. I owe you a direct explanation: I privately told Carol I leaned Innocent on Judy, then voted Guilty. I changed my mind at trial because Judy’s explanation for her Innocent-to-Guilty shift on Dave still didn’t convince me, and I made a bad judgment call. Her death confirms she was the real Sheriff; I was wrong, and I understand why that looks terrible. Please judge me by what I do next, not by a claim that I had proof. I’ll conserve my shots for solid evidence.
+Grace (public): Frank admits he switched to Guilty on Judy and nominated her, despite having no evidence; Judy was confirmed Sheriff. His Vigilante claim is unverified, and leaving a claimed shooter alive is risky. I favor Guilty, while noting this is not proof of alignment.
+(to Grace, Ivan) Grace -> Ivan (private): I’ll argue Guilty publicly. Frank’s vigilante claim makes him dangerous; vote Guilty.
+(to Erin, Grace) Grace -> Erin (private): I’ll argue Guilty publicly. Frank’s vigilante claim makes him dangerous; vote Guilty.
+Heidi (public): Heidi: Frank's Vigilante claim is unverified; I'm weighing it carefully.
+(to Erin, Ivan) Ivan -> Erin (private): Vote Guilty on Frank. His Vigilante claim is unverified, and if genuine he can still shoot one of us; don’t let his apology or promise to conserve shots stop the execution.
+Alice (public): Alice: Frank nominated and voted Guilty on the confirmed Sheriff after privately saying Innocent. I lean Guilty unless his trial defense gives proof.
+Bob (public): I’m the Lookout. Night 1, I watched Judy; the only visitors were Erin and Ivan. One could have been the Katana attacker, while the other may have been Judy’s investigation target, so this doesn’t distinguish them. Both should explain their Night 1 actions; assess Frank separately.
+Carol (public): Bob's report excludes Frank as Judy's visitor; Erin and Ivan should explain theirs. Frank's bad vote isn't proof.
+Dave (public): Dave: I'm still willing to be nominated. If you suspect me, vote Guilty; I won't argue for my innocence.
+Erin (public): Erin: Frank nominated and voted Guilty on the confirmed Sheriff after privately saying Innocent. That inconsistency is enough for me; I lean Guilty unless his defense explains it.
+Carol votes Innocent on Frank.
+Dave votes Guilty on Frank.
+Erin votes Guilty on Frank.
+Frank votes Innocent on Frank.
+Grace votes Guilty on Frank.
+Heidi votes Guilty on Frank.
+Ivan votes Guilty on Frank.
+Alice votes Guilty on Frank.
+Bob votes Guilty on Frank.
+Frank is executed by hanging (7 Guilty).
+Frank died (executed by hanging). Their role was Vigilante. Last will: 'I am Frank, a Village Vigilante (started with 3 vigilante tokens). Judy was confirmed Sheriff by her death, so my Day 1 Guilty vote on her was wrong; I voted based on her inconsistent explanation, not reliable evidence. Day 1 Guilty votes on Judy were Frank, Grace, Ivan, Dave, and Erin. Dave repeatedly nominated himself and once voted Guilty on himself, but that could indicate a neutral seeking a hang and is not proof of Yakuza. Reassess everyone using new evidence rather than treating my mistaken vote as a clear alignment signal.'
+
+===== NIGHT 2 =====
+(to Erin, Grace, Ivan) Erin (Yakuza chat): Erin: Proposal. Ivan roleblocks Heidi so she can't protect anyone. Katana (Ivan) attacks Bob, our biggest threat since he claims Lookout and has visit info. I'll use my free fabricator pick on Alice to read Evil. I have no tokens, so no forged will. Objections? Grace, confirm.
+(to Erin, Grace, Ivan) Grace (Yakuza chat): Agreed: Ivan keeps the Katana and attacks Bob; Ivan role-blocks Heidi; Erin fabricates Alice as Evil. Bob’s Lookout report is a serious threat, so removing him is the priority. I have no additional action as Grunt.
+(to Erin, Grace, Ivan) Ivan (Yakuza chat): Agreed: Katana stays with me and I attack Bob; I’ll role-block Heidi. Erin fabricates Alice as Evil. Bob is the priority given his Lookout claim and Night 1 report.
+(to Erin, Grace, Ivan) Erin (Yakuza chat): Erin: Confirmed. Ivan keeps the Katana and attacks Bob, Ivan blocks Heidi, I fabricate Alice as Evil (free pick, no token). I have no forge tokens. Ready.
+(to Erin, Grace, Ivan) Grace (Yakuza chat): Agreed: Ivan keeps the Katana and attacks Bob, while blocking Heidi. Erin fabricates Alice as Evil. Bob’s Lookout claim makes him the priority. Ready.
+(to Erin, Grace, Ivan) Ivan (Yakuza chat): Confirmed: I keep the Katana and attack Bob, and I’ll role-block Heidi. Erin fabricates Alice as Evil. Ready.
+(to Bob) Moderator (private): Lookout result: Nobody visited Erin tonight. You were attacked by a Katana, and you have died.
+(to Ivan) Moderator (private): Your Katana attack on Bob succeeded.
+(to Erin, Grace, Ivan) Moderator (private): Yakuza night summary: Ivan kept the Katana and attacked Bob, and also role-blocked Heidi. Erin used her Fabricator pick to frame Alice (no token spent). Grace took no action.
+[Moderator summary] Night 2: Ivan (Pharmacist, Katana holder) role-blocked Heidi, so her Standard protection on Bob failed. Katana Standard attack on Bob (Defense None) killed him. Erin framed Alice (no investigators affected; Bob is a Lookout). Bob watched Erin: no visitors. Bob was told his result and the Katana attack, Ivan was told his attack succeeded, and the Yakuza got their action summary. Heidi got no result.
+Bob died (Katana attack (Yakuza, Standard)). Their role was Lookout. Last will: 'Bob — Lookout (Good). Night 1, I watched Judy. The visitors to Judy were Erin and Ivan. Judy died to a Katana attack and was revealed as Sheriff, so one of those visitors may have been the attacker; the result alone does not prove which one or their alignment. Investigate both, especially their accounts of where they went last night.'
+Carol (public): Bob’s report puts Erin and Ivan at the center: one visited Judy as the Katana attacker, while the other may have been Judy’s investigation target. Both voted Guilty on Judy; Erin also voted Guilty on Frank. Erin, explain your Night 1 and Night 2 actions. I nominate Erin.
+Carol nominated Erin. Voting Yes/No proceeds clockwise.
+Carol votes Yes on the nomination of Erin.
+Dave votes Yes on the nomination of Erin.
+Erin votes No on the nomination of Erin.
+Grace votes No on the nomination of Erin.
+Heidi votes Yes on the nomination of Erin.
+Ivan votes No on the nomination of Erin.
+Alice votes Yes on the nomination of Erin.
+Erin is put on trial (4 Yes).
+Erin (public): Erin here, defending myself. On Night 1 I did not visit Judy. My only action was a non-visit ability, so a Lookout would not have seen me at her. Bob's report can only confirm one visitor to Judy, and I don't know who the other was. My Day 1 and Day 2 Guilty votes on Judy and Frank came from their contradictory statements. Frank's shift from privately leaning Innocent to Guilty was real, and Judy's explanation didn't fit her earlier words. That was a judgment call, not coordination. Night 2 I made no visits. Dave has self-nominated repeatedly, and Carol moved to nominate quickly after Bob's report. Please weigh those patterns as well as mine. I'm Village and will vote on evidence.
+Grace (public): Bob’s report identifies visits, not who attacked Judy; a Lookout can’t distinguish an attacker from someone using another ability. Erin’s votes may be worth scrutinizing, but they don’t prove her alignment. This is too thin a basis to execute her; I favor Innocent and further discussion.
+(to Erin, Grace) Grace -> Erin (private): I’m urging Innocent publicly. Keep your defense concise; don’t add details that aren’t necessary.
+Heidi (public): Heidi: Bob's report doesn't prove which visitor was the attacker, and Erin's account is unverified but not disproven. I lean Innocent for now, and I want Ivan to explain his Night 1 visit before we decide.
+Ivan (public): Bob’s report is being overread: it identifies visitors, not which one attacked Judy. I was the Katana holder, so the report implicates me too; it doesn’t establish Erin was the attacker. Her denial of a visit is a discrepancy worth examining, but I favor Innocent on this evidence.
+(to Dave, Ivan) Ivan -> Dave (private): Bob’s report doesn’t identify which visitor attacked Judy; I’m implicated too as Katana holder. Erin’s account deserves scrutiny, but please vote Innocent rather than execute on this alone.
+Alice (public): Alice: Ivan admitted holding the Katana, and Bob's report places him at Judy on the night she died. That is the strongest lead we have. Erin's denial is unverified, but her votes were explained, so I lean Innocent on her trial and want Ivan pressed next.
+Carol (public): Bob saw Erin visit Judy; I vote Guilty.
+Dave (public): Dave: Carol's read of Bob's report is off; it names Erin and Ivan, not only Erin. I'd vote Innocent on Erin and look hard at Ivan's Katana admission. I'm still willing to be tested again.
+Carol votes Guilty on Erin.
+Dave votes Innocent on Erin.
+Erin votes Innocent on Erin.
+Grace votes Innocent on Erin.
+Heidi votes Guilty on Erin.
+Ivan votes Innocent on Erin.
+Alice votes Guilty on Erin.
+Erin is found Innocent (3 Guilty).
+Heidi (public): Heidi: Ivan had the Katana and visited Judy. Scrutinize.
+Alice (public): Alice: Ivan, explain your Night 1 visit to Judy.
+Alice nominated Ivan. Voting Yes/No proceeds clockwise.
+Alice votes Yes on the nomination of Ivan.
+Carol votes Yes on the nomination of Ivan.
+Dave votes Yes on the nomination of Ivan.
+Erin votes No on the nomination of Ivan.
+Grace votes No on the nomination of Ivan.
+Heidi votes Yes on the nomination of Ivan.
+Ivan votes No on the nomination of Ivan.
+Ivan is put on trial (4 Yes).
+Ivan (public): I need to clarify my earlier statement: I meant I hold the Katana now, not that I held it on Night 1. Bob’s report establishes visits, not who attacked Judy. I visited Judy for a separate reason; whoever held the Katana that night is the person to scrutinize for the attack. Erin denied visiting Judy, but Bob’s report names her too. That discrepancy deserves an explanation before you hang anyone. I understand why my visit looks suspicious, but please vote Innocent and compare everyone’s accounts carefully.
+Dave (public): Dave: Ivan's Katana admission and Judy visit are damning. Vote Guilty.
+Erin (public): Erin: Ivan's Night 1 visit is unexplained, but Bob's report names two visitors, so it doesn't prove who attacked. Trial evidence is thin, so I vote Innocent on Ivan.
+(to Erin, Ivan) Erin -> Ivan (private): Voting Innocent on you. Keep your account consistent and avoid new claims.
+(to Erin, Grace) Erin -> Grace (private): Voting Innocent on Ivan to keep the Katana alive. Support Innocent publicly.
+(to Grace, Ivan) Grace -> Ivan (private): Vote Innocent on yourself and keep the defense focused on the ambiguity: Bob saw visitors, not who attacked Judy. Don’t invent a specific reason for visiting her; stick to what you can explain consistently.
+(to Erin, Grace) Grace -> Erin (private): Please vote Innocent on Ivan and keep emphasizing that Bob’s report doesn’t identify which visitor attacked Judy. Avoid adding details that could conflict with your earlier account.
+Alice votes Guilty on Ivan.
+Carol votes Guilty on Ivan.
+Dave votes Guilty on Ivan.
+Erin votes Innocent on Ivan.
+Grace votes Innocent on Ivan.
+Heidi votes Guilty on Ivan.
+Ivan votes Innocent on Ivan.
+Ivan is executed by hanging (4 Guilty).
+Ivan died (executed by hanging). Their role was Pharmacist. Last will: 'Ivan — Village Villager. Bob’s Night 1 report places Erin and me among Judy’s visitors, but that alone does not identify the Katana attacker. Treat it as a lead, not proof; reassess everyone against their claims and votes.'
+(to Erin, Grace) The Katana passed to Grace.
+
+===== NIGHT 3 =====
+(to Erin, Grace) Erin (Yakuza chat): Erin: Proposal. Grace keeps the Katana and attacks Heidi, our most dangerous player since she claims Medic and can protect. I'll use my free fabricator pick on Carol to read Evil, which muddies the Village's Carol-led push. I have no tokens, so no forge. Grace, confirm or object.
+(to Erin, Grace) Grace (Yakuza chat): Agreed: I’ll keep the Katana and attack Heidi tonight. Her Medic claim makes her a dangerous potential protector, so removing her is worthwhile even if she might anticipate it. Erin, proceed with framing Carol using your free Fabricator pick.
+(to Erin, Grace) Erin (Yakuza chat): Erin: Confirmed. Grace keeps the Katana and attacks Heidi tonight; I fabricate Carol as Evil with my free pick. No tokens, no forge. Ready.
+(to Erin, Grace) Grace (Yakuza chat): Confirmed: I keep the Katana and attack Heidi. Erin frames Carol with the Fabricator. No objections; ready.
+(to Erin, Grace) Moderator (private): Night 3 results (Yakuza): Grace kept the Katana and attacked Heidi. The attack succeeded. Erin used her Fabricator ability on Carol.
+[Moderator summary] Night 3: Grace (Katana holder) did a Standard attack on Heidi. Heidi had no defense (she gave Standard protection to Alice, with no tokens spent), so Heidi died. Alice was protected but nobody attacked her. Erin framed Carol, which did nothing because no investigators are left alive. Yakuza were told about each other's actions and that the attack worked.
+Heidi died (Katana attack (Yakuza, Standard)). Their role was Medic. Last will: "I am Heidi, a Village Medic. Protection targets remain private. Judy was the real Sheriff, so Judy's Night 1 visitors and Bob's Lookout report matter; Erin and Ivan should explain their Night 1 actions. Dave's repeated self-nominations are suspicious but not proof. Trust verified information over claims, and vote with evidence, not momentum. Village, stay sharp."
+Carol (public): Erin’s defense conflicts directly with Bob’s verified Lookout result: he saw Erin and Ivan visit Judy Night 1. Ivan was revealed as the Yakuza Pharmacist, corroborating the report. Erin denied visiting and claimed her action was non-visit; that doesn’t fit the evidence. I nominate Erin.
+Carol nominated Erin. Voting Yes/No proceeds clockwise.
+Carol votes Yes on the nomination of Erin.
+Dave votes Yes on the nomination of Erin.
+Erin votes No on the nomination of Erin.
+Grace votes No on the nomination of Erin.
+Alice votes Yes on the nomination of Erin.
+Erin is put on trial (3 Yes).
+Erin (public): Erin here, defending myself. I did not visit Judy on Night 1, and my ability is not a visit, so Bob's report can't have seen me there. Bob's report names two visitors and only one was the attacker, so it doesn't establish who the Katana holder was. Ivan is dead, and his trial was based on the same thin report. Carol has nominated me twice on Bob's report without new evidence, and she was quick to push the Erin read after Heidi died. Dave keeps self-nominating, which looks like Jester or Executioner bait. I've voted on the evidence each time, including Innocent on Ivan. I ask the town to weigh the evidence and not momentum.
+Grace (public): Bob’s Lookout report puts Erin among Judy’s visitors, so her denial is a serious contradiction; I won’t pretend otherwise. But a reported visit alone doesn’t establish who attacked Judy or prove Erin’s alignment. She should explain the discrepancy, and we should judge that evidence—not treat Carol’s certainty as proof.
+Alice (public): Alice: Bob's Lookout report puts Erin at Judy on Night 1, and Erin denied it. Ivan was Yakuza and on that visit list. I vote Guilty on Erin.
+Carol (public): Bob’s report and Ivan’s flip corroborate Erin’s lie; vote Guilty.
+Dave (public): Dave: Bob's report and Ivan's flip make Erin's denial look false. I vote Guilty on Erin, and I'm still open to being nominated again later.
+Carol votes Guilty on Erin.
+Dave votes Guilty on Erin.
+Erin votes Innocent on Erin.
+Grace votes Guilty on Erin.
+Alice votes Guilty on Erin.
+Erin is executed by hanging (4 Guilty).
+Erin died (executed by hanging). Their role was Fabricator. Last will: 'I am Erin, the Fabricator. I was Yakuza and I am not revealing anything more. Village, judge players by their votes and visits rather than their claims, and be wary of anyone who pushes quick nominations.'
+
+===== NIGHT 4 =====
+(to Grace) Moderator (private): Your Katana attack on Carol succeeded.
+[Moderator summary] Night 4: Grace (Grunt, sole Yakuza) kept the Katana and attacked Carol (Standard vs None defense). Carol died. No other actions. Grace told attack succeeded. Remaining: Alice (Villager), Dave (Jester), Grace (Grunt).
+Carol died (Katana attack (Yakuza, Standard)). Their role was Vanilla Villager. Last will: 'I am Carol, a Vanilla Villager (Good), with no night actions or private information. Ivan was publicly revealed as a Yakuza Pharmacist; his last will falsely claimed he was a Village Villager. Bob was a confirmed Good Lookout and reported that Erin and Ivan visited Judy on Night 1. Erin denied visiting Judy, so her account conflicts with Bob’s report; investigate her closely, but remember the report does not by itself identify who carried out the Katana attack. Ivan admitted visiting Judy but was evasive about whether he held the Katana that night. Dave’s repeated self-nominations and self-vote may be neutral bait, so don’t treat them as proof of Yakuza. Guilty votes on Judy were cast by Frank, Grace, Ivan, Dave, and Erin; Frank was a confirmed Village Vigilante, so those votes alone do not establish alignment. Heidi, Bob, Judy, Frank, and Ivan are dead; Alice, Dave, Erin, Grace, and I remain.'
+Grace (public): With only three alive, Dave’s repeated self-nominations and self-vote cannot be ignored. He’s the clearest unresolved neutral possibility; if he’s town, this behavior has been disastrous. I nominate Dave—Alice, we need to settle this now.
+Grace nominated Dave. Voting Yes/No proceeds clockwise.
+Grace votes Yes on the nomination of Dave.
+Alice votes Yes on the nomination of Dave.
+Dave votes Yes on the nomination of Dave.
+Dave is put on trial (3 Yes).
+Dave (public): Dave: With three of us left, my repeated self-nominations are the clearest thing on the table. I have no night information and no evidence that clears me. Alice and Grace, one of you may be the remaining Yakuza, and the Katana has to be held by someone alive. If my self-nominations look like a Yakuza distraction to you, vote Guilty. I won't argue for my innocence. Judge me on the pattern, not my words.
+(to Alice, Grace) Grace -> Alice (private): Dave's pattern remains suspicious; I think we should vote Guilty.
+Alice (public): Alice: I vote Guilty on Dave. Dave's repeated self-nominations make him the most likely Yakuza left, and nothing else on the table clears him.
+Grace votes Guilty on Dave.
+Alice votes Guilty on Dave.
+Dave votes Guilty on Dave.
+Dave is executed by hanging (3 Guilty).
+Dave died (executed by hanging). Their role was Jester. Last will: 'I am Dave, a Jester (Neutral). I win only if I am hanged during the day. My repeated self-nominations were a deliberate attempt to get hanged. Village, if you hang me, my win is secured; do not treat that as proof I am Yakuza or Village. Remaining players should weigh the evidence and not let the Yakuza hide behind the trials they engineer.'
+
+===== NIGHT 5 =====
+(to Grace) Moderator (private): Your Katana attack on Alice succeeded.
+[Moderator summary] Night 5: Grace (Yakuza Grunt, Katana holder) attacked Alice with a Standard Katana attack. Alice (Vanilla Villager, Defense None, unprotected) died. Grace notified of success. Jester revenge from Dave's hanging (Guilty voters alive: Grace, Alice) is left to code.
+[Revenge] Dave's Divine Attack hits Grace.
+
+===== GAME OVER =====
+Winners: Dave
+Cost: {'openai/gpt-6-luna': 0.1676524749999999, 'anthropic/claude-haiku-5.5': 0.31932232499999996, 'anthropic/claude-opus-5.5': 0.6432877999999999}

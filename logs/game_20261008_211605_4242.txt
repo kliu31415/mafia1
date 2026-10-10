@@ -1,0 +1,125 @@
+Setup:
+  Alice    seat 0  Medic             anthropic/claude-haiku-5.5
+  Bob      seat 1  Cardinal          openai/gpt-6-luna
+  Carol    seat 2  Puppeteer         anthropic/claude-haiku-5.5
+  Dave     seat 3  Prosecutor        anthropic/claude-haiku-5.5
+  Erin     seat 4  Sheriff           openai/gpt-6-luna
+  Frank    seat 5  Jester            openai/gpt-6-luna
+  Grace    seat 6  Executioner       openai/gpt-6-luna  {'target': 'Erin'}
+  Heidi    seat 7  Grunt             anthropic/claude-haiku-5.5
+  Katana starts with Carol
+
+===== DAY 1 =====
+Carol (public): Let's hear everyone out before any nominations today.
+Dave (public): Dave here. Agreed on hearing everyone out. Village, please share any role info you have, even partial. I'd rather not nominate blindly on day 1.
+Frank (public): I don't see the point of waiting for role claims. We should put someone on trial and make a decision; sitting around all day helps nobody. I don't have anything useful to share myself.
+Erin (public): No actionable info yet. Frank, who specifically do you want tried, and why?
+Bob (public): Frank, you say trial matters but offer no target. Name a suspect and rationale; let's hear concise reads before nominating.
+Grace (public): Erin’s question to Frank is fair, but she’s also offering no read or useful info herself. Let’s put her on trial and hear a defense; we can judge whether she’s contributing or just steering the discussion.
+Grace nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Grace, Heidi, Frank; No - Alice, Bob, Carol, Dave, Erin.
+The nomination of Erin failed (3 Yes).
+Alice (public): Alice here. No blind noms. Frank and Grace pushed a trial with no reads; I want concrete suspicions first.
+Heidi (public): Heidi here. Agree no blind noms. I want Frank and Grace explaining why they're pushing trials so fast before we vote on anyone.
+(to Carol, Heidi) Heidi -> Carol (private): Lay low today. I'll follow your lead on votes.
+Carol (public): Carol here. I agree with Alice and Heidi: Frank and Grace, give a real reason for rushing a trial. I'm holding my vote until we have actual reads.
+(to Carol, Heidi) Carol -> Heidi (private): Stay quiet, no early noms. We'll pick a target together once there's real info.
+Alice (public): Alice: Frank and Grace, answer Carol and Heidi on why you rushed a trial. Dave, Bob, Carol: post any real reads. I'm not revealing roles yet, but I'll keep my night options open.
+Dave (public): Dave: Frank and Grace pushed the Erin nomination with no reads. Who has a concrete suspicion? I won't nominate blind.
+Erin (public): My no vote wasn’t a dodge; I had no actionable read. Grace nominated me for lacking one, but hasn’t explained her own push. Frank and Grace, give us concrete suspicions and reasoning.
+Grace (public): I wasn’t claiming hard evidence; I wanted to test Erin’s deflection. She challenged Frank for a target but offered no read herself. I’ll hear everyone’s actual suspicions before deciding whether to nominate again.
+Frank (public): I pushed for a trial because endless requests for “real reads” don’t create any. Erin was a test, not a certainty. I voted Yes because I wanted to hear her defense. If my approach is so suspicious, nominate me and make the case—otherwise let’s stop circling and name actual suspects.
+Heidi (public): Heidi: Frank and Grace's rush was odd, but Erin's deflection also needs a real read. Let's gather reads before any more votes.
+(to Carol, Heidi) Heidi -> Carol (private): Keeping a low profile. I'll back whatever target we agree on.
+Bob (public): Frank's willingness to be nominated isn't itself a read; Grace's test case was weak. Any actual suspicions? I'll oppose another trial without a stated case.
+Frank (public): Bob and Alice are setting the pace together: Alice attacked me and Grace for pushing a trial, then Bob backed her call to oppose another one. That’s enough for me to suspect Bob more than Erin. Let’s stop demanding perfect reads and test him.
+Dave (public): Dave: Frank and Grace voted Yes together on Erin and rushed the trial. Now Frank is pivoting onto Bob. Grace, what was your actual read on Erin? I'm not nominating until someone gives a real case.
+Heidi (public): Heidi: Frank's pivot onto Bob is a lot of heat on one thin reason. Bob's stance is fair. We still need real reads before any vote.
+(to Carol, Heidi) Heidi -> Carol (private): Following your lead. Frank is pushing hardest, so watch him.
+Bob (public): Frank, I’ll take your invitation: your pivot from Erin to Bob rested on coordination rhetoric, not evidence. Let’s test your case.
+Bob nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Bob, Carol, Dave, Erin, Frank, Grace, Heidi, Alice; No - nobody.
+Frank is put on trial (8 Yes).
+Frank (public): I’m a Vanilla Villager. I pushed for a trial because waiting for perfect reads gets us nowhere, and yes, my case on Bob was thin. But Bob’s answer to that was to put me straight on trial rather than explain why his own push is better. I don’t have night information to offer, and I’m not going to invent any. Judge the case as it is.
+Grace (public): Frank’s push on Bob was thin, but this trial hasn’t produced stronger evidence against Frank. His Vanilla claim is unverifiable, so I’m not treating it as proof either way. My earlier Erin nomination was also a weak test; we should judge this case on what we actually know.
+Heidi (public): Heidi: Frank's case is thin and Grace's Erin push was rushed too. Without new evidence I'm voting Innocent on Frank.
+Alice (public): Alice: Frank's rushed Erin push and thin Bob pivot still bother me. I'm leaning Guilty unless his defense gives a real reason.
+Bob (public): Frank’s baseless pivot onto Bob is worth remembering, but it doesn’t establish that he’s Yakuza. His Vanilla claim proves nothing either way. I’m leaning Innocent here rather than hang on thin evidence; keep pressure on both Frank and Grace for concrete reads tomorrow.
+Carol (public): Carol: Frank forced the Erin trial, then pivoted onto Bob with no evidence. That pattern of rushing trials is a real read. I'm leaning Guilty.
+Dave (public): Dave: Frank and Grace voted Yes together on Erin, then Frank pivoted to Bob with thin reasons. Frank's Vanilla claim can't be checked. I'm leaning Guilty. Grace, why did you push Erin with no read, and why did you follow Frank's rush?
+Erin (public): Frank’s rushed approach and thin pivot onto Bob are real concerns, but they aren’t enough to hang someone on Day 1. His willingness to face trial—and voting Yes on himself—doesn’t clear him either. I’m leaning Innocent; tomorrow we should revisit both Frank’s pivot and Grace’s unexplained push on me.
+Trial votes on Frank: Guilty - Alice, Carol, Dave, Frank; Innocent - Bob, Erin, Grace, Heidi.
+Frank is found Innocent (4 Guilty).
+Grace (public): Erin called Frank’s rushed pivot a real concern, yet voted Innocent; she has also demanded reads without offering one herself. I want to hear her explain that inconsistency.
+Grace nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Grace, Heidi, Bob, Carol; No - Alice, Dave, Erin, Frank.
+The nomination of Erin failed (4 Yes).
+Alice (public): Alice: Grace, you've pushed Erin twice with no read. Give a concrete suspicion or stop nominating. I won't nominate blind.
+Carol (public): Carol: Grace has pushed Erin twice with no real read. Grace, give a concrete suspicion or stop nominating blind.
+(to Carol, Heidi) Carol -> Heidi (private): Backing Alice on Grace's blind Erin pushes. Let's keep it quiet and not nominate today.
+Erin (public): Grace, I explained the distinction: Frank’s rushed pushes concerned me, but I didn’t think that was enough to hang him on Day 1. You’ve nominated me twice without giving a concrete reason beyond asking for reads. What specifically makes you suspect me?
+Alice (public): Alice: Grace has nominated Erin twice with no concrete read. Grace, give a real suspicion or stop pushing trials. I'm not nominating blind.
+Bob (public): Grace, the repeated Erin pushes still lack a concrete case. Please explain what specifically makes you suspect her; otherwise let’s stop recycling this nomination and compare actual reads.
+Grace (public): Erin scrutinizes others selectively: she criticized Frank, then excused him without offering an independent read.
+Grace nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Grace, Heidi, Erin; No - Alice, Bob, Carol, Dave, Frank.
+The nomination of Erin failed (3 Yes).
+Carol (public): Grace, stop nominating Erin without a real case.
+Heidi (public): Heidi: Agree with Carol. Grace, stop the blind Erin noms.
+Dave (public): Dave: Grace, your Erin noms still lack a real case. Explain or stop.
+(to Dave, Erin) Dave -> Erin (private): Dave here. Your reads have been consistent. Are you Village? Who do you trust?
+Erin (public): Grace has nominated me three times without a concrete alignment-based case, even after several people asked her to explain. That’s worth revisiting, but it isn’t proof. I’m more interested in how she and Heidi explain their coordination than in another blind trial.
+(to Dave, Erin) Erin -> Dave (private): Yes, I’m Village. I’m wary of Grace’s repeated weak pushes; your questioning has seemed reasonable so far. What are your current reads?
+Frank (public): I pushed a weak Erin trial, then pivoted to Bob without a real case. You were right to suspect me; I don’t have a convincing explanation. Let’s settle it—don’t let me coast.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Heidi, Alice, Carol, Dave, Erin; No - Grace, Bob.
+Frank is put on trial (6 Yes).
+Frank (public): I don’t have a stronger defense than before. I rushed Erin, pivoted onto Bob on thin grounds, and then made this about myself. You can call it bad judgment, but it’s also exactly the sort of disruptive play you shouldn’t excuse just because I’m speaking first. I won’t invent a role or pretend I have evidence. If you think my behavior is too damaging to leave in the game, vote Guilty; don’t spare me just because the case is uncomfortable.
+Heidi (public): Heidi: Frank admitted the rushed Erin push and the thin Bob pivot, and he offers no real defense. He's been disruptive all day. I'm voting Guilty.
+Alice (public): Alice: Frank has been disruptive and self-serving all day, and he admitted his case was empty. I'm voting Guilty. Grace, your Erin nominations still lack a real case.
+Bob (public): Frank’s conduct is suspicious, but his self-nomination and invitation to hang him make this trial especially poor evidence. I’m voting Innocent; revisit his and Grace’s behavior tomorrow.
+Carol (public): Carol: Frank has been disruptive and admitted his case was empty. I'm voting Guilty.
+Dave (public): Dave: Frank admitted his case was empty and has been disruptive all day. Guilty.
+Erin (public): Frank's self-nomination and invitation to hang him make this a poor alignment read; I lean Innocent, but his earlier pushes remain worth investigating tomorrow.
+Trial votes on Frank: Guilty - Alice, Carol, Dave, Frank, Heidi; Innocent - Bob, Erin, Grace.
+Frank is executed by hanging (5 Guilty).
+Frank died (executed by hanging). Their role was Jester. Last will: 'Day 1: No results yet. Track nominations and votes carefully; revisit anyone who pushes an easy execution without explaining their reasoning.'
+
+===== NIGHT 1 =====
+(to Carol, Heidi) Carol (Yakuza chat): Carol: I hold the Katana. I propose we attack Alice tonight. She's organizing the group and pushing the anti-Grace line. I'll keep the Katana with me and hold my puppet token. Heidi, confirm with a vote.
+(to Carol, Heidi) Heidi (Yakuza chat): Heidi: Agreed. Carol keeps the Katana and we attack Alice tonight. She's the one organizing the village bloc, so she's the right target. Carol, go ahead and confirm the vote.
+Night actions:
+  Alice (Medic): target Bob; "Protecting Bob with Standard Defense, no token spent."
+  Carol (Puppeteer): target Dave; 1 token(s); "Puppet Dave for Day 2. I keep the Katana and vote to attack Alice."; Katana vote: Carol holds, attacks Alice
+  Dave (Prosecutor): no action
+  Erin (Sheriff): target Grace; "Use Sheriff ability to investigate Grace."
+  Heidi (Grunt): no role action; Katana vote: Carol holds, attacks Alice
+Katana: Carol holds it and attacks Alice.
+(to Erin) Moderator (private): Your investigation result: Grace is Evil.
+(to Carol) Moderator (private): Your Katana attack on Alice succeeded.
+(to Carol, Heidi) Moderator (private): Yakuza night summary: Carol (holding the Katana) attacked Alice with the Katana and used a puppet token to puppet Dave for Day 2. Heidi performed no action. Carol keeps the Katana.
+[Moderator summary] Night 1: Alice (Medic) protected Bob (Standard, no token). Carol (Puppeteer, Katana holder) Katana-attacked Alice (Standard vs None) -> Alice dies; Carol puppets Dave for Day 2 (puppet token 1->0). Erin (Sheriff) investigated Grace (Executioner) -> Evil. Dave and Heidi took no action. Jester revenge for Frank left to code.
+[Revenge] Frank's Divine Attack hits Carol.
+(to Heidi) The Katana passed to Heidi.
+
+===== DAY 2 =====
+Alice died (Katana). Their role was Medic. Last will: 'I am Alice, a Medic. I have no confirmed allies yet. Trust those who protect the village and watch for the Yakuza hiding among quiet players.'
+Carol died (Jester's revenge). Their role was Puppeteer. Last will: "I am Carol. Trust nobody who pushes early nominations without reason. Watch the Katana holder's votes."
+(to Dave) You are being puppeted today: you can't chat or see private messages, but you can still nominate and vote.
+Bob (public): Carol was Yakuza and repeatedly privately messaged Heidi; Heidi also voted Guilty with Carol on Frank. Neither fact proves guilt alone, but together make Heidi my strongest suspect. Heidi, explain what Carol’s private contact was about.
+Bob nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Bob, Dave, Erin; No - Grace, Heidi.
+Heidi is put on trial (3 Yes).
+Heidi (public): Heidi here. Carol messaged me privately to stay quiet and avoid early nominations, and I agreed. That was the same position Alice, Bob and Dave took publicly, so it isn't a secret plot. I voted Guilty on Frank only after he admitted his case was empty and called himself disruptive. Grace has nominated Erin three times without a concrete read, and she's the one steering the trials. If you want a real suspect, look at who keeps pushing nominations. I'm voting Innocent on myself only if you can show me something concrete; otherwise judge the evidence, not the contact.
+(to Bob, Erin) Bob -> Erin (private): What evidence convinces you Heidi is Yakuza beyond Carol’s messages and the guilty vote?
+Dave (public): Dave: Heidi's contact with Carol was just advice to stay quiet, the same stance Alice, Bob and I took publicly. Grace has nominated Erin three times without a real case, and Heidi was one of the few who pushed back. Bob's case rests on a shared position, not evidence. I'm leaning Innocent.
+Erin (public): I’m the Sheriff. Night 1 I investigated Grace and got Evil. That’s our strongest alignment result; Grace’s repeated pushes on me fit it, though interference is possible. Heidi’s ties to Carol and backing Grace make her suspicious too. I’m leaning Guilty here, then we must pressure Grace.
+Grace (public): Erin’s result may be accurate without meaning I’m Yakuza—the Sheriff only reports Evil. Heidi’s link to Carol is also circumstantial, and her explanation is plausible. I’d vote Innocent for now; afterward, scrutinize Erin’s result and my repeated pushes rather than treating either as settled.
+Trial votes on Heidi: Guilty - Bob, Dave, Erin; Innocent - Grace, Heidi.
+Heidi is executed by hanging (3 Guilty).
+Heidi died (executed by hanging). Their role was Grunt. Last will: 'I was a loyal townsperson. Trust those who protect the village, and be wary of anyone who pushes nominations without a concrete case.'
+The game is over. Winners: Alice, Bob, Dave, Erin, Frank.
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Erin, Frank
+Cost: {'anthropic/claude-haiku-5.5': 0.10291449999999999, 'openai/gpt-6-luna': 0.04659185000000001, 'anthropic/claude-opus-5.5': 0.0935664}

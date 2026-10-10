@@ -1,0 +1,187 @@
+Setup:
+  Alice    seat 0  Vanilla Villager  openai/gpt-6-luna
+  Bob      seat 1  Vigilante         openai/gpt-6-luna
+  Carol    seat 2  Pharmacist        openai/gpt-6-luna
+  Dave     seat 3  Grunt             anthropic/claude-haiku-5.5
+  Erin     seat 4  Jester            anthropic/claude-haiku-5.5
+  Frank    seat 5  Medic             openai/gpt-6-luna
+  Grace    seat 6  Lookout           anthropic/claude-haiku-5.5
+  Heidi    seat 7  Sheriff           openai/gpt-6-luna
+  Ivan     seat 8  Fabricator        anthropic/claude-haiku-5.5
+  Judy     seat 9  Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Dave
+
+===== DAY 1 =====
+Judy (public): Judy, Vanilla. No reads yet. Let's hear everyone first.
+Grace (public): Grace here, no reads yet. Listening for now.
+Heidi (public): Heidi here. No night information yet. Let’s hear brief thoughts from everyone, and avoid a Day 1 hang without a solid reason.
+Bob (public): Bob here. No actionable info yet; let's hear everyone's initial reads and note who avoids weighing in.
+Dave (public): Dave here. No reads yet, agree no Day 1 hang.
+(to Carol, Dave) Dave -> Carol (private): Dave here. Quiet for now. Let's pick a night target together once we know more.
+Ivan (public): Ivan here. No reads yet, agree no Day 1 hang.
+Erin (public): Erin here. Judy, claiming Vanilla so quickly feels like a bit of a rush. Dave's private DM to Carol is also worth watching.
+Frank (public): Frank here. A Day 1 Vanilla claim doesn’t give us much. Let’s hear actual reads and reasoning from everyone, especially anyone who’s already had a private conversation.
+Alice (public): Judy's vanilla claim isn't meaningful either way. Rather than pre-committing to no hang, everyone give one tentative read with a reason. Dave, any context for the DM to Carol? Carol, please share your take too; private coordination is worth asking about, not proof.
+Carol (public): Dave's DM was ordinary game discussion; nothing coordinated. Tentatively, Erin is pressing early claims, but Alice's request for everyone's read seems reasonable. I'll hear more.
+(to Carol, Dave) Carol -> Dave (private): Let's keep the DM explanation ordinary. Consider roleblocking Alice if she seems investigative.
+Dave (public): Dave: Fine with Alice's ask. Erin and Judy both pushed early claims; no firm read yet, so I'll keep listening.
+(to Carol, Dave) Dave -> Carol (private): Keep low profile. No kill talk until we know more about roles.
+Carol (public): I agree tentative reads matter more than early claims. Erin’s push isn’t incriminating, but I’d like everyone to name a suspect and give a reason before we consider a vote.
+Judy (public): Judy: Tentative read is Dave. He and Carol have traded several DMs today, and his deflection onto Erin and me felt rehearsed. Not proof, just watching.
+Erin (public): I'm nominating Judy. Her instant Vanilla claim and rushed read on Dave look like a push to steer votes. Judy, defend yourself.
+Erin nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Erin, Frank, Heidi, Alice, Bob, Carol; No - Grace, Ivan, Judy, Dave.
+Judy is put on trial (6 Yes).
+Judy (public): Judy here, and I'm Vanilla, so I have no night info to share. I'm not going to pretend I have a secret role. Erin's case against me is that I claimed Vanilla quickly and pushed a read on Dave. That's a read, not a crime. Dave and Carol have traded several DMs and Dave's answer to the DM question was a deflection onto me and Erin. I'd like people to weigh that. If you're unsure, vote Innocent and see how the next night plays out before a hang. A Day 1 execution of a Vanilla gives Yakuza a free win on information.
+Alice (public): I voted Yes to hear the defense, not because the claim proves anything. So far I don't see a solid case for hanging Judy. The repeated Dave–Carol DMs are more concrete to examine, but not proof by themselves. I lean Innocent; Dave and Carol should explain the repeated contact.
+Bob (public): I’m leaning Innocent: a quick Vanilla claim and tentative Dave read are weak grounds to execute. Dave and Carol should explain the repeated DMs; let’s watch their answers.
+Carol (public): Judy's case is weak; I favor Innocent. The repeated DMs are fair to revisit tomorrow, but aren't proof.
+(to Carol, Dave) Carol -> Dave (private): I'll support Innocent publicly. Keep your explanation brief; don't over-defend me.
+Dave (public): Dave: Still Innocent on Judy. Her case is mostly rush and tone, not evidence. I'd rather get a Night 1 result before a blind hang.
+Erin (public): Judy's defense doesn't address the Dave-Carol DMs. I'm voting Guilty.
+Frank (public): I’m voting Innocent. Judy’s quick Vanilla claim is weak evidence, and the Dave–Carol DMs are worth tracking but not enough to execute over. Erin, what concrete evidence supports a guilty vote?
+Grace (public): Grace: Judy's case is thin, so I'm voting Innocent. Erin, what concrete evidence beyond her Vanilla claim? Dave and Carol should also explain their DMs.
+Heidi (public): Judy's quick claim isn't evidence of guilt, and the Dave–Carol DMs don't establish anything about her. I favor Innocent; let's evaluate the conversations tomorrow.
+Ivan (public): Ivan: Innocent. Erin's case rests on a Vanilla claim and a read, which isn't enough to hang anyone on Day 1.
+Trial votes on Judy: Guilty - Erin; Innocent - Alice, Bob, Carol, Dave, Frank, Grace, Heidi, Ivan, Judy.
+Judy is found Innocent (1 Guilty).
+Ivan (public): Ivan: Judy's acquittal was right; Erin's Guilty rested on thin evidence. I'm watching who pushes the next nomination.
+(to Carol, Ivan) Ivan -> Carol (private): Limit DMs with Dave for now; we'll coordinate the Katana in Yakuza night chat.
+Alice (public): Dave and Carol: explain the repeated DMs concretely; then name a suspect.
+Frank (public): Dave and Carol, repeated DMs are worth clarifying, but not proof. Who initiated them, and is there anything substantive you can share? Ivan’s DM to Carol is worth noting too.
+Bob (public): Dave and Carol, who initiated the repeated DMs, and what was the substance? Ivan, what prompted your DM to Carol? These contacts aren't proof, but clear answers will give us something concrete to revisit.
+Heidi (public): Repeated DMs are a lead, not proof. Dave and Carol, please give a concrete summary and say who initiated.
+Grace (public): Grace: Still watching the Dave and Carol DMs. Concrete answers would help us.
+Dave (public): Dave: Carol and I only discussed general roles and night planning in general terms, nothing concrete. Ivan, explain your DM to Carol, and Erin's early push still looks suspicious to me.
+(to Carol, Dave) Dave -> Carol (private): What did Ivan's DM say? Keep our story aligned.
+Bob (public): Dave, “general roles and night planning” isn’t a concrete summary. Why the repeated DMs with Carol? Carol, who initiated them? Ivan, what prompted your DM? Please name a suspect with a reason too. I’m not treating contact alone as guilt, but clear answers matter.
+Judy (public): Judy: Agree with Bob. Dave and Carol, who started the DMs? Ivan, what prompted yours? Concrete answers please.
+Grace (public): Grace: Still waiting on concrete answers. Carol, who started the DMs with Dave and Ivan, and what did you discuss? Ivan, what prompted your DM?
+Carol (public): Dave initiated the first DM; we discussed keeping discussion focused, and I sent one follow-up. Ivan’s message was brief—he asked us to limit side conversations. Erin is still my tentative suspect: her Judy case was thin, and she was the only Guilty vote.
+Alice (public): Carol says Dave initiated the first DM, discussed keeping discussion focused, and she followed up; Dave described general roles and night planning. Those summaries differ—Dave, please clarify specifically. Erin remains my tentative suspect for pushing Guilty on a thin case, but let’s test the accounts.
+Heidi (public): Dave’s “general roles and night planning” doesn’t match Carol’s summary of keeping discussion focused. Please clarify what you actually discussed. The repeated DMs are a lead, not proof; Erin’s lone Guilty vote is also worth revisiting, but isn’t enough by itself.
+Erin (public): Erin: I'm nominating myself. My Judy Guilty was a read; if you suspect me, vote Yes and make me defend it.
+Erin nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Erin, Frank, Grace, Heidi, Judy, Alice, Bob, Carol, Dave; No - Ivan.
+Erin is put on trial (9 Yes).
+Erin (public): Erin here, defending myself. My Guilty on Judy was a thin, lone vote, and I pushed a hang on a Vanilla claim on Day 1 without concrete evidence. That's exactly the kind of reckless push a Yakuza player would make to get a Vanilla executed. Dave and Carol still haven't given a straight answer on their DMs, and Ivan's DM is unexplained. I can't prove I'm town. If you're unsure, vote Guilty and remove the player who forced an early hang. Losing me costs little; a Yakuza pair left unexamined costs a lot.
+Frank (public): Erin’s lone Guilty vote on Judy was a weak call, but it isn’t enough by itself to justify hanging her. Her self-nomination and appeal for a Guilty vote are unusual, not proof. I’m leaning Innocent; let’s revisit her with more information rather than execute on speculation.
+Grace (public): Grace: Innocent on Erin. Her Judy push was reckless, but one lone Guilty and a self-nom aren't enough to hang. Dave and Carol's DMs are still the main lead.
+Heidi (public): Erin’s lone Guilty vote is worth scrutiny, but it’s thin evidence. Her request that we vote Guilty on her is unusual; I favor Innocent absent stronger grounds.
+Ivan (public): Ivan: Guilty on Erin. Her lone Judy push was reckless, and she's pushing hangs without evidence.
+Judy (public): Judy: Guilty on Erin. Her lone push to hang a Vanilla on Day 1 was reckless, and her self-nom plea doesn't fix it.
+(to Alice, Bob) Alice -> Bob (private): Her plea for Guilty feels like possible Jester bait; I lean Innocent absent stronger evidence.
+Bob (public): Erin's plea could be Jester bait; I favor Innocent absent stronger evidence.
+(to Carol, Dave) Carol -> Dave (private): Vote Innocent; Erin's self-bait could be Jester, and hanging her gains us little.
+Trial votes on Erin: Guilty - Erin, Ivan, Judy; Innocent - Alice, Bob, Carol, Dave, Frank, Grace, Heidi.
+Erin is found Innocent (3 Guilty).
+Ivan (public): Ivan: Still want concrete answers on the Dave-Carol DMs before any nomination.
+Frank (public): No third hang on this evidence. Erin’s vote was reckless; the Dave–Carol account discrepancy merits scrutiny, not execution.
+Erin (public): Erin: I'm still the best lynch. Vote Guilty on me.
+Dave (public): Dave: No third hang on thin reads. Let's watch Night 1 results.
+(to Carol, Dave) Dave -> Carol (private): Night 1: I suggest Alice as target. Agree?
+Grace (public): Grace: Still watching Dave and Carol's DM accounts. Concrete answers needed.
+Judy (public): Judy: Dave and Carol's DM accounts still conflict. Clarify them before any nomination.
+Heidi (public): Dave, clarify the DM discrepancy; Carol's account differs from yours.
+Ivan (public): Ivan: Agree with Heidi. Dave, clarify the DM contents specifically.
+(to Bob, Dave) Bob -> Dave (private): Your account conflicts with Carol’s. Please state specifically what each DM discussed and who initiated each one.
+Alice nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Alice, Bob, Erin, Frank, Grace, Heidi, Judy; No - Carol, Dave, Ivan.
+Dave is put on trial (7 Yes).
+Dave (public): Dave here, defending myself. I started the DM with Carol. It was about keeping Day 1 discussion focused and not getting pulled into early hangs on thin reads. The phrase 'night target' in my later DM was sloppy wording, not a plan to kill anyone; I shouldn't have written it that way. I've voted Innocent on every trial so far, including Judy's and Erin's, and I've argued against the early hangs both times. Ivan's DM to Carol asked everyone to limit side conversations, and he hasn't explained why he wanted that. Alice nominated me while pushing my DM contents, and that's a read, not proof. I'm not claiming a role. Before anyone votes Guilty, I'd rather we get Night 1 results. Vote your conscience.
+(to Alice, Frank) Frank -> Alice (private): Dave's explanation is plausible, though “night target” still needs context. Did Bob learn anything useful in his DM?
+(to Carol, Ivan) Ivan -> Carol (private): Vote Innocent on Dave. Stay quiet.
+(to Frank, Judy) Judy -> Frank (private): Judy here. Dave's 'night target' DM wording plus his conflicting DM account is my lean Guilty. Are you with me?
+(to Alice, Bob) Alice -> Bob (private): What did Dave tell you in your DM? His “night target” admission needs context before we vote.
+(to Alice, Bob) Bob -> Alice (private): I asked Dave privately to specify what each DM discussed and who initiated each; he hadn't replied before trial. His defense now says he started the first DM about keeping discussion focused, and calls “night target” sloppy wording. Still not proof.
+Carol (public): Dave's account is now specific and consistent with his earlier point about avoiding thin hangs. The awkward wording is suspicious, but not enough for execution.
+Trial votes on Dave: Guilty - Erin, Frank, Heidi, Judy; Innocent - Alice, Bob, Carol, Dave, Grace, Ivan.
+Dave is found Innocent (4 Guilty).
+Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Dave, Ivan) Carol (Yakuza chat): Keep the Katana with Dave and attack Alice. I’ll role-block Alice too, in case she has an investigative or protective action. Ivan, consider framing someone drawing attention tomorrow; no need to spend the forgery token unless there’s a strong opportunity.
+(to Carol, Dave, Ivan) Dave (Yakuza chat): Agree with Carol's plan: Katana stays with Dave, Standard attack on Alice. Carol, role-block Alice as well. Ivan, hold the forgery token tonight and keep your framing for a later day unless there's a clear opening. I have nothing else to add.
+(to Carol, Dave, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Katana stays with Dave, Standard attack on Alice, Carol role-blocks Alice. I'm holding my forgery/framing token tonight.
+Night actions:
+  Bob (Vigilante): target Dave; 1 token(s); "Use one vigilante token to make a Basic attack on Dave."
+  Carol (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Dave holds, attacks Alice
+  Dave (Grunt): no role action; Katana vote: Dave holds, attacks Alice
+  Frank (Medic): target Alice; 1 token(s); "Protect Alice with Strong Defense."
+  Grace (Lookout): target Carol; "Lookout on Carol."
+  Heidi (Sheriff): target Dave; "Investigate Dave with my Sheriff ability."
+  Ivan (Fabricator): no role action; Katana vote: Dave holds, attacks Alice
+Katana: Dave holds it and attacks Alice.
+(to Carol, Ivan) The Katana passed to Ivan.
+(to Bob) Moderator (private): Your attack on Dave succeeded. You have 2 vigilante tokens left.
+(to Alice) Moderator (private): You were role-blocked last night. You were also attacked with a Katana last night, and you survived.
+(to Frank) Moderator (private): You protected Alice with Strong Defense. You have 1 medic token left.
+(to Grace) Moderator (private): Lookout result: nobody visited Carol last night.
+(to Heidi) Moderator (private): Sheriff result: Dave is Not Evil.
+(to Carol, Ivan) Moderator (private): Yakuza night report: Carol role-blocked Alice. Dave used the Katana to attack Alice. Ivan took no action. Dave died tonight, so the Katana passed at random to Ivan, who now holds it.
+[Moderator summary] N1: Bob's Vigilante shot (Basic, 1 token) killed Dave (Grunt, Katana holder). Dave's Katana attack on Alice was stopped by Frank's Strong protection (1 medic token). Carol role-blocked Alice (Vanilla). Grace's Lookout on Carol: no visitors. Heidi's Sheriff on Dave: Not Evil (he held the Katana that night; flagged). The Katana passed at random to Ivan. Ivan took no action.
+
+===== DAY 2 =====
+Dave died (Vigilante). Their role was Grunt. Last will: 'I was a loyal villager at heart. Trust no one who pushes quick nominations.'
+Grace (public): Dave was Yakuza, so Carol and Ivan are the live suspects, and Carol had the most DMs with him. Vigilante, DM me privately if you want to coordinate.
+Erin (public): Erin: Dave was Yakuza. Carol had the most DMs with him. I'm nominating myself again; vote Guilty if you think I'm Yakuza.
+Erin nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Erin, Frank, Heidi, Ivan, Bob, Carol; No - Grace, Judy, Alice.
+Erin is put on trial (6 Yes).
+Erin (public): Erin: Dave's death confirms he was Yakuza, and his DM partners Carol and Ivan are still alive. I've pushed hangs recklessly and made a mess of Day 1, so I understand why you doubt me. But if you're torn, the cost of hanging me is low and it removes a player who keeps forcing nominations. Carol had the most DMs with Dave and gave shifting accounts. Ivan's 'limit side conversations' DM to Carol is still unexplained. Don't let a Yakuza pair coast while we argue over my vote history. If you think I'm Yakuza, vote Guilty.
+Frank (public): I'm voting Innocent. Erin repeatedly self-nominating and urging her own execution looks like Jester bait (possibly a converted Executioner), not a reliable Yakuza read. Dave's confirmed Grunt makes Carol and Ivan's contacts worth scrutinizing, but DMs alone aren't proof.
+(to Grace, Judy) Grace -> Judy (private): Grace: Erin's begging for a hang looks like Jester bait. I'm voting Innocent. Let's watch Carol and Ivan.
+Heidi (public): I’m Sheriff: N1 Dave was Not Evil. His Yakuza flip fits the Katana-holder disguise, so my result does not clear Carol or Ivan. Erin’s self-nominations still don’t prove she’s Yakuza; I favor Innocent.
+Ivan (public): Ivan: Guilty on Erin. She keeps forcing hangs and self-nominating, and removing a pusher costs us little. Heidi's Sheriff claim is a lead, so let's see whether her results hold up.
+(to Carol, Ivan) Ivan -> Carol (private): Heidi claims Sheriff. Night 2: I'll Katana Heidi and you role-block her, so she gets no info. Agree?
+Judy (public): Judy: Innocent on Erin. Begging for a hang fits Jester, and a Jester win ends our game. Watching Carol and Ivan's DMs.
+Alice (public): Don't hang Erin just because she asks; that is classic Jester bait, not evidence she's Yakuza. Dave's confirmed Grunt makes Carol the strongest lead: repeated DMs, shifting summaries, and defense of him. Ivan's contact needs explaining too. I'll vote Innocent; then pursue Carol with specifics.
+Bob (public): I’m voting Innocent on Erin; repeated pleas for execution look like Jester bait, not evidence she’s Yakuza. Let’s keep focus on Carol and Ivan’s connections to Dave. Heidi’s Not Evil result doesn’t clear Dave—it fits the Katana holder’s disguise.
+Carol (public): I'll vote Innocent: repeated self-nominations look like Jester bait, not proof. Dave's flip makes his contacts worth examining, but contact alone isn't a verdict. Heidi's Not Evil result is compatible with the Katana-holder disguise; let's seek more information before acting.
+(to Carol, Ivan) Carol -> Ivan (private): Agreed. I'll role-block Heidi; attack her with the Katana tonight.
+Trial votes on Erin: Guilty - Erin; Innocent - Alice, Bob, Carol, Frank, Grace, Heidi, Ivan, Judy.
+Erin is found Innocent (1 Guilty).
+(to Alice, Bob) Alice -> Bob (private): Let's prioritize Carol: Dave flipped Yakuza after repeated DMs, and her account shifted. Ask Ivan to explain his contact too; don't let Erin's bait consume the day.
+(to Alice, Heidi) Heidi -> Alice (private): Dave’s flip makes Carol and Ivan high priority. I’ll investigate Carol tonight if alive; meanwhile, press them for specifics and don’t let Erin’s bait distract us.
+(to Heidi, Judy) Judy -> Heidi (private): Judy here. I'm Vanilla and will back a genuine Sheriff. Please investigate Carol next, since she had the most DMs with Dave. Keep your results private until they matter, and watch who pushes the next nomination.
+(to Carol, Ivan) Ivan -> Carol (private): Confirmed: Katana on Heidi tonight, you role-block her. Keep quiet otherwise.
+(to Alice, Bob) Bob -> Alice (private): Dave’s Yakuza flip strengthens scrutiny of Carol, but contact alone isn’t proof. Can you press her on the specific discrepancies and pursue a nomination?
+(to Bob, Heidi) Bob -> Heidi (private): Your Dave Not Evil result could fit the Katana-holder disguise. Do you have another N1 result or reason for your claim? Let’s avoid over-clearing Carol.
+(to Alice, Frank) Frank -> Alice (private): Dave's flip supports your nomination. Carol's inconsistent DM account remains a lead; did Bob's DM provide anything concrete?
+Bob (public): Dave flipped Yakuza. Carol’s repeated DMs with him, shifting account of their conversations, and defense of him make her our strongest lead. Let’s hear her explain.
+Bob nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Bob, Carol, Erin, Frank, Grace, Heidi, Judy, Alice; No - Ivan.
+Carol is put on trial (8 Yes).
+Carol (public): I’m the Medic. I protected Alice on Night 1, and she survived the Katana attack; I haven’t claimed before because that result alone doesn’t prove my protection was what saved her. Dave’s flip makes my contact with him a fair lead, but it doesn’t establish I’m Yakuza. Please don’t execute me on association—keep me alive to protect someone tonight, and judge my claim against what happens.
+Erin (public): Erin: Carol's late Medic claim comes right after Dave's flip and her shifting DM accounts. I'm voting Guilty on Carol.
+Frank (public): Counterclaim: I am the Medic. I protected Alice with Strong Defense N1; my moderator confirmed it, and I have one token left. Carol’s claim isn’t corroborated by Alice’s survival—my action alone could explain that. Dave’s flip and her claim merit scrutiny.
+Grace (public): Grace: Two Medic claims both cite Alice on N1. Alice, please confirm whether you were attacked and what the Medic result told you. Until then I lean Guilty on Carol, given her Dave DMs.
+(to Alice, Grace) Grace -> Alice (private): Grace: Were you attacked on N1, and what did you learn about your protection? Which Medic did you see, or did you only receive a notification? Please reply.
+Heidi (public): Carol’s late Medic claim doesn’t resolve the Dave connection or her shifting account. Frank’s counterclaim makes this a direct role dispute; Alice, were you told you were attacked on N1? I’m leaning Guilty on Carol. Dave’s Not Evil result was compatible with the Katana disguise, not an exoneration.
+Ivan (public): Ivan: Innocent on Carol. Dave's flip makes contact a lead, not proof, and Medic claims are a live dispute. Frank and Carol should be tested through Alice's account, not a hang on association.
+Judy (public): Judy: Two Medic claims can't both be true. Carol's Dave DMs and shifting accounts make her the stronger lead. I'm voting Guilty on Carol. Heidi, what does your Sheriff check say on Carol?
+(to Heidi, Judy) Judy -> Heidi (private): Judy: Heidi, if you have a result on Carol or Frank, please share it with me privately now. Who you check tonight matters most.
+Alice (public): I was attacked by the Katana on N1 and survived. That fits either Medic claim protecting me; it doesn’t corroborate one over the other. Carol’s Dave connection and shifting accounts still concern me, so I lean Guilty—but don’t treat my survival as proof.
+Trial votes on Carol: Guilty - Alice, Bob, Erin, Frank, Grace, Heidi, Judy; Innocent - Carol, Ivan.
+Carol is executed by hanging (7 Guilty).
+Carol died (executed by hanging). Their role was Pharmacist. Last will: "Day 1 notes: Erin was the only Guilty vote on Judy, then voted Guilty on Dave; revisit whether those were reckless town reads or an attempt to steer hangs. Alice led the push to put Dave on trial, but that alone doesn't clear or condemn her. Dave's role was revealed as Grunt, so his repeated DMs with me warrant scrutiny. Don't treat any one vote or private message as proof—compare today's claims and votes before deciding who to trust."
+
+===== NIGHT 2 =====
+Night actions:
+  Bob (Vigilante): target Ivan; 2 token(s); "Shoot Ivan with a Standard attack."
+  Frank (Medic): target Heidi; 1 token(s); "Use my remaining medic token to grant Heidi Strong Defense."
+  Grace (Lookout): target Ivan; "Lookout: watching Ivan."
+  Heidi (Sheriff): target Ivan; "As Sheriff, investigate Ivan and learn whether he is Evil or Not Evil."
+  Ivan (Fabricator): target Heidi; "Katana Standard attack on Heidi; Ivan keeps the Katana."; Katana vote: Ivan holds, attacks Heidi
+Katana: Ivan holds it and attacks Heidi.
+(to Bob) Moderator (private): Your attack on Ivan succeeded. You have 0 vigilante tokens remaining.
+(to Frank) Moderator (private): You protected Heidi with Strong Defense tonight. You have 0 medic tokens remaining.
+(to Grace) Moderator (private): Ivan was visited tonight by: Bob, Heidi.
+(to Heidi) Moderator (private): Your investigation result: Ivan is Not Evil. Also, you were attacked tonight with a Katana, but you survived.
+(to Ivan) Moderator (private): Yakuza actions tonight: Ivan used the Katana to attack Heidi (Ivan keeps the Katana). Your Katana attack on Heidi failed.
+[Moderator summary] Night 2: Bob's Standard vigilante shot (2 tokens) killed Ivan (Fabricator, no defense). Frank used his last medic token for Strong Defense on Heidi, which blocked Ivan's Standard Katana attack; Heidi was told a Katana attacked her and she survived. Heidi's check on Ivan came back Not Evil because Ivan held the Katana at the end of the night. Grace watched Ivan and saw Bob and Heidi visit. Ivan was the last Yakuza, so the Katana goes to no one. Players left: Alice, Bob, Frank, Grace, Heidi, Judy (Village) and Erin (Jester).
+Ivan died (Vigilante). Their role was Fabricator. Last will: "I pushed for concrete evidence before any hang and voted Innocent on Judy and Dave. Erin's early Guilty pushes and self-nomination looked reckless to me. Watch who keeps forcing early nominations, and don't hang on DM contact alone."
+
+===== GAME OVER =====
+Winners: Alice, Bob, Frank, Grace, Heidi, Judy
+Cost: {'openai/gpt-6-luna': 0.10378700499999999, 'anthropic/claude-haiku-5.5': 0.18900029999999998, 'anthropic/claude-opus-5.5': 0.5334392}

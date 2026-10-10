@@ -1,0 +1,153 @@
+Setup:
+  Alice    seat 0  Pharmacist        openai/gpt-6-luna
+  Bob      seat 1  Sheriff           openai/gpt-6-luna
+  Carol    seat 2  Medic             anthropic/claude-haiku-5.5
+  Dave     seat 3  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 4  Grunt             anthropic/claude-haiku-5.5
+  Frank    seat 5  Vanilla Villager  openai/gpt-6-luna
+  Grace    seat 6  Lookout           openai/gpt-6-luna
+  Heidi    seat 7  Jester            anthropic/claude-haiku-5.5
+  Katana starts with Erin
+
+===== DAY 1 =====
+Grace (public): Let’s hear initial reads and any actionable claims; no need for a mass claim without evidence.
+Erin (public): Agree with Grace. No mass claims or early nominations without evidence. I'll watch who pushes for quick lynches.
+(to Alice, Erin) Erin -> Alice (private): Stay low today. I hold the Katana. Let's sync at night.
+Heidi (public): Agree no early lynches, but Dave has been quiet. Dave, what do you make of Erin's private message to Alice?
+Alice (public): Heidi, the public log shows only that a message happened, not its contents. It was routine. Dave, you’ve been quiet—any reads so far?
+Bob (public): A private message alone tells us nothing about its contents. Dave, please share your own reads; anyone with concrete concerns should explain them.
+Frank (public): A private message’s contents are unknowable from the public log, so it’s not evidence by itself. Dave, please share your own tentative reads; everyone else, name one suspicion and explain what prompted it.
+Carol (public): Carol here. I agree no early lynches without evidence. I'm watching who pushes hardest for nominations and whose reads shift once real information comes out.
+Dave (public): Dave here, Vanilla Villager, so no night info to share. My only read so far: everyone is asking for reads and nobody has named a concrete suspicion yet. I'm not nominating without evidence. I'll be watching who keeps pushing for early lynches and who dodges questions.
+Erin (public): Agree no early lynches. I want concrete reads from everyone before any nomination.
+(to Alice, Erin) Erin -> Alice (private): Stay low. I still hold the Katana. Let's sync on the night target when we wake.
+Alice (public): Nothing here warrants a nomination yet. Let’s wait for a concrete concern before putting anyone on trial.
+Dave (public): Dave: still no concrete reads. Erin has now PM'd Alice twice. Erin, what's the gist of those? I'm not nominating yet.
+Bob (public): The two PMs are worth asking about, but their existence alone tells us nothing about alignment. Erin can give a high-level summary if she wants. My tentative concern is Heidi’s initial framing of the PM as meaningful evidence; what were you trying to establish?
+Heidi (public): Bob, you keep attacking my framing but haven't offered a single read of your own. Fast accusations with no evidence are what I'd watch for.
+Frank (public): Heidi, Bob did give a read: concern about your treating the PMs as meaningful evidence. You can disagree, but “no read” isn’t accurate. What were you trying to establish by raising them? And what’s one suspicion of your own?
+Grace (public): Bob did give a read. Heidi, what were you trying to establish by raising Erin’s PMs, and who is your own suspicion?
+Carol (public): Heidi, Bob and Grace asked you a direct question about your Erin PM framing. Answer it plainly, then name your suspicion.
+Erin (public): Heidi, answer Bob and Grace's question plainly. I still want concrete evidence before any nomination.
+(to Alice, Erin) Erin -> Alice (private): Stay quiet today. Sync at night.
+Grace (public): The PMs alone aren’t evidence, but three messages between Erin and Alice are enough to ask for a game-relevant gist. Erin, anything to share? Heidi, please answer the questions about your framing too.
+Carol (public): Carol: Heidi still hasn't answered Bob and Grace's direct question. Heidi, answer plainly. I'm not nominating anyone yet.
+Alice (public): The messages were mundane check-ins; their metadata doesn’t tell us anything about alignment. Heidi’s question is fair, but let’s hear her rationale rather than turn the PMs themselves into a case.
+Dave (public): Dave: Heidi has dodged Bob and Grace's question twice. Heidi, answer it plainly. Erin, what was the gist of the three PMs to Alice? No nomination from me yet.
+Frank (public): Heidi, please answer plainly: what were you trying to establish by raising the PMs, and who do you suspect? The PMs themselves aren’t evidence. Erin can share a brief game-relevant gist if she chooses.
+Bob (public): Heidi, the concern isn’t that you asked about the PMs; it’s that you still haven’t explained what you were trying to establish or named a suspicion. Please answer both plainly. That’s my only tentative concern so far—not enough for me to nominate yet.
+Heidi (public): Heidi: Plainly, I raised the PMs to see who would explain them. My suspicion is Bob: he's pressed me for days without a real read, and that pattern looks coordinated. I'm nominating him.
+Heidi nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Heidi, Alice, Frank, Grace; No - Bob, Carol, Dave, Erin.
+The nomination of Bob failed (4 Yes).
+Bob (public): Heidi’s case against me was thin, but that isn’t proof of alignment. Alice, Frank, and Grace, what specifically made you vote Yes? I’m not pushing a trial without better evidence.
+Alice (public): I voted Yes to hear Bob’s response and test Heidi’s accusation, not because I had a strong case against him. The nomination failed, so we can move on; Heidi’s explanation and Bob’s questions are both worth weighing.
+Dave (public): Dave: Heidi's Bob nomination rested on thin reasoning, and Erin still hasn't said what her three PMs to Alice covered. Erin, what was the gist?
+Erin (public): Erin: The PMs were routine check-ins with Alice, nothing about alignment. I'm not nominating today, and Heidi's case against Bob was thin.
+(to Alice, Erin) Erin -> Alice (private): Stay quiet. Sync on the target at night.
+Heidi (public): Heidi: I've pushed hard, dodged questions, and built a thin case against Bob. That pattern looks suspicious, so I'm putting myself on trial. Vote as you see fit.
+Heidi nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Heidi, Alice, Carol, Dave, Erin, Frank, Grace; No - Bob.
+Heidi is put on trial (7 Yes).
+Heidi (public): Heidi here, on trial. I'll be plain: I pushed hard on Bob with a thin case, I dodged the PM question until forced, and I put myself on trial to look like I'm hiding something. Maybe that's a mafia move, maybe it's a player who's rattled. You get to decide. What I'd ask: don't let the Erin-Alice PMs slide. Three private messages in one day, and the gist still hasn't been given. If you think I'm Yakuza, vote Guilty. If you think the real problem is the PM silence, vote Innocent and press Erin.
+Alice (public): This defense doesn't resolve alignment, but a self-nomination after scrutiny could be Jester bait. I lean Innocent; reassess tomorrow.
+Bob (public): Heidi’s admissions confirm bad process, not Yakuza alignment. The self-nomination after a thin push could be Jester bait; I’m leaning Innocent rather than risk rewarding it. We can revisit Erin/Alice’s PM pattern tomorrow, but message metadata alone is not a case.
+Carol (public): Carol: I'm voting Innocent. Heidi's Bob push was thin and the self-nomination looks like Jester bait, not proof. Erin and Alice's PM pattern is still the thing to watch.
+Dave (public): Dave: Voting Innocent on Heidi. Her push was thin, but that's not hard evidence. Erin, give the PM gist before anyone is lynched.
+Erin (public): Erin: I'm voting Guilty. Heidi forced a thin nomination on Bob, then self-nominated. Pushing hard and then dodging the PM question is enough for me.
+(to Alice, Erin) Erin -> Alice (private): Heidi isn't ours. I'm voting Guilty. Let's push the PM-silence angle and keep tonight's target sync going.
+Frank (public): Heidi’s conduct is suspicious, but the self-nomination could be Jester bait. I don’t see enough evidence of alignment to justify a Guilty vote; I’m voting Innocent. Reassess tomorrow with more information.
+Grace (public): I’m voting Innocent. Heidi’s conduct is suspicious, but the thin push and self-nomination don’t establish Yakuza; this could be Jester bait. Erin’s Guilty rationale uses the same behavior others cite for Innocent, so I’d revisit that difference tomorrow.
+Trial votes on Heidi: Guilty - Erin, Heidi; Innocent - Alice, Bob, Carol, Dave, Frank, Grace.
+Heidi is found Innocent (2 Guilty).
+Grace (public): Erin was the only non-Heidi Guilty voter; her rationale treats the same thin push and self-nomination others saw as Jester risk as proof. Please explain.
+Carol (public): Carol: Grace is right. Erin, your Guilty vote on Heidi needs a reason beyond the same behavior others called Jester bait. I'm not nominating today.
+Frank (public): Erin, what made Heidi’s conduct evidence of Yakuza rather than possible Jester bait? You were the only non-Heidi Guilty voter. Alice and Erin, is there a game-relevant gist to the PMs?
+(to Bob, Erin) Bob -> Erin (private): What made Heidi's behavior evidence of Yakuza rather than Jester bait?
+(to Alice, Bob) Bob -> Alice (private): Could you share the game-relevant gist of your PMs with Erin?
+(to Bob, Grace) Bob -> Grace (private): Are you willing to nominate Erin if her explanation stays weak?
+(to Erin, Frank) Frank -> Erin (private): You were the only non-Heidi Guilty voter. What specific alignment evidence did you see, and has your view changed after hearing the Jester concern?
+Grace nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Grace, Heidi, Bob, Carol, Dave, Frank; No - Alice, Erin.
+Erin is put on trial (6 Yes).
+Erin (public): Erin here. My Guilty vote on Heidi was based on her pattern: she forced a thin nomination on Bob, then self-nominated to look innocent. I admit that was a harsh read, and I can see why others called it Jester bait. The PMs with Alice were routine check-ins, nothing about alignment. Grace nominated me right after I voted differently from the group, which looks like retaliation rather than evidence. I'd like to know why Grace and Frank think a Guilty vote on a player who self-nominated is worth a trial. Judge my conduct on its merits, not on the nomination timing. I'm asking everyone to vote with evidence, not pressure.
+(to Erin, Frank) Frank -> Erin (private): Your explanation still doesn't distinguish Yakuza from Jester bait. Was there any specific alignment evidence beyond Heidi's pattern? I'll weigh your answer in my vote.
+Alice (public): Erin's dissent alone isn't proof; I'll vote Innocent.
+Carol (public): Carol: Erin's PMs and harsh Heidi vote worry me. Guilty.
+Trial votes on Erin: Guilty - Bob, Carol, Dave, Grace; Innocent - Alice, Erin, Frank, Heidi.
+Erin is found Innocent (4 Guilty).
+(to Alice, Erin) Erin -> Alice (private): Stay quiet today. Tonight let's both agree on Grace for the Katana. Confirm when we wake.
+Heidi nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Heidi, Alice, Bob, Erin; No - Carol, Dave, Frank, Grace.
+The nomination of Heidi failed (4 Yes).
+(to Alice, Erin) Erin -> Alice (private): Grace tonight with the Katana. Confirm when we wake.
+(to Frank, Grace) Frank -> Grace (private): Erin's vote remains suspicious, but don't execute without alignment-specific evidence.
+(to Alice, Bob) Bob -> Alice (private): Erin's PMs: routine, or did you discuss game reads?
+(to Alice, Erin) Alice -> Erin (private): Agree, Grace tonight. I'll roleblock her to suppress any action.
+(to Grace, Heidi) Heidi -> Grace (private): Watch Erin and Alice's PMs. I'm not the real problem.
+A full round passed with no messages. The day ends.
+
+===== NIGHT 1 =====
+(to Alice, Erin) Alice (Yakuza chat): Agreed: Erin keeps the Katana and attacks Grace tonight. I’ll role-block Grace. Please confirm the Katana vote for Erin and the attack vote for Grace.
+(to Alice, Erin) Erin (Yakuza chat): Confirmed: Erin keeps the Katana and attacks Grace tonight. Alice, your roleblock on Grace is the plan. Ready.
+Night actions:
+  Alice (Pharmacist): target Grace; "Role-block Grace."; Katana vote: Erin holds, attacks Grace
+  Bob (Sheriff): target Erin; "Investigate Erin."
+  Carol (Medic): target Dave; "Protect Dave with Standard Defense."
+  Erin (Grunt): target Grace; "Katana Standard attack on Grace, with Erin keeping the Katana."; Katana vote: Erin holds, attacks Grace
+  Grace (Lookout): target Erin; "Watch Erin tonight and learn who visits her."
+Katana: Erin holds it and attacks Grace.
+(to Bob) Moderator (private): Your investigation result: Erin is Not Evil.
+(to Grace) Moderator (private): You were role-blocked tonight.
+(to Alice, Erin) Moderator (private): Yakuza night summary: Alice role-blocked Grace. Erin (Katana holder) attacked Grace with the Katana. Erin keeps the Katana.
+(to Erin) Moderator (private): Your Katana attack on Grace succeeded.
+[Moderator summary] Night 1: Alice (Pharmacist) role-blocked Grace, so Grace's Lookout watch on Erin did nothing. Erin kept the Katana and hit Grace with a Standard attack. Grace had no defense, since Carol protected Dave, so Grace died (cause: Katana). Bob investigated Erin and got Not Evil because she held the Katana. Carol's Standard protection on Dave cost no token. Yakuza were told their actions, and Erin was told the attack succeeded.
+
+===== DAY 2 =====
+Grace died (Katana). Their role was Lookout. Last will: 'Grace — Lookout (Good). No results yet; Day 1 has just begun. I will update this will with my watch targets and results each day.'
+Frank (public): Grace’s Good flip proves no one else’s alignment. Erin still owes a distinction between Yakuza evidence and Jester bait for her unique Guilty vote. I’m nominating Erin.
+Frank nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Frank, Heidi, Bob, Carol, Dave; No - Alice, Erin.
+Erin is put on trial (5 Yes).
+Erin (public): Erin here. I've avoided early nominations and only voted Guilty on Heidi because of her dodging and self-nomination, which I admitted was a harsh read. Frank nominated me right after Grace died, citing my Heidi vote, not any new evidence about my actions. Grace being Good tells us nothing about me. If you want to convict, name one concrete action I took that helped the Yakuza. I don't think you can. Vote Innocent unless you have evidence, and watch who keeps stacking trials on anyone who disagrees with the group.
+Heidi (public): Erin's defense is fair: Frank's timing was off. I'm voting Innocent. Still, my own pushing and self-nomination remain the most suspicious thing on the board, so watch me.
+Alice (public): Erin’s Day 1 Guilty vote was unusual, but it doesn’t establish alignment. Frank’s case still rests on that same vote, and Erin is asking for a concrete action. I’m voting Innocent for now; we can revisit with new evidence.
+Bob (public): I’m Sheriff. I investigated Erin Night 1: Not Evil. This does not clear her: the Katana holder appears Not Evil, and Grace died to Katana that night. That makes the exception salient, not conclusive. I’m voting Guilty.
+Carol (public): Carol: Bob's Sheriff result on Erin doesn't clear her, since the Katana holder reads Not Evil. Erin's PM pattern and her lone Heidi Guilty vote still bother me. I'm voting Guilty.
+Dave (public): Dave: Erin's Not Evil result fits the Katana-holder exception, and her unexplained PMs with Alice remain unanswered. Voting Guilty.
+Trial votes on Erin: Guilty - Bob, Carol, Dave, Frank; Innocent - Alice, Erin, Heidi.
+Erin is executed by hanging (4 Guilty).
+Erin died (executed by hanging). Their role was Grunt. Last will: 'I am Erin. I was a Yakuza Grunt. I trust no one who pushes hard for quick nominations. Alice and I were the Yakuza team; I hold no further secrets.'
+(to Alice) The Katana passed to Alice.
+
+===== NIGHT 2 =====
+Night actions:
+  Alice (Pharmacist): target Bob; "Role-block Bob."; Katana vote: Alice holds, attacks Bob
+  Bob (Sheriff): target Frank; "As Sheriff, investigate Frank and learn whether he is Evil or Not Evil."
+  Carol (Medic): target Bob; "Protect Bob with Standard Defense as Medic."
+Katana: Alice holds it and attacks Bob.
+(to Bob) Moderator (private): You were role-blocked last night. Your investigation had no effect.
+(to Bob) Moderator (private): You were attacked with a Katana last night, but you survived.
+(to Alice) Moderator (private): Night 2 Yakuza actions: Alice (Pharmacist) role-blocked Bob, and Alice used the Katana to attack Bob. Your Katana attack on Bob failed; Bob survived. You still hold the Katana.
+[Moderator summary] Night 2: Alice (Pharmacist, Katana holder) role-blocked Bob and Katana-attacked Bob (Standard). Bob (Sheriff) was role-blocked, so his investigation of Frank didn't happen and he got no result. Carol (Medic) gave Bob Standard Defense without spending a token. Standard attack vs Standard Defense means the attack failed. Bob was told he was role-blocked and survived a Katana attack. Alice was told her actions and that the attack failed. No deaths, no token changes.
+
+===== DAY 3 =====
+Carol (public): Carol: Bob, your Sheriff result on Erin is the only hard info we have. Explain how you're sure of it. Alice, Erin's will named you as her Yakuza teammate. Respond to that.
+Frank (public): Erin’s will names Alice as her Yakuza teammate; daytime execution rules out a nighttime forgery. Alice, explain that directly. Bob’s result fits the Katana-holder exception, but isn’t proof. I nominate Alice.
+Frank nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Frank, Heidi, Bob, Carol, Dave; No - Alice.
+Alice is put on trial (5 Yes).
+Alice (public): I’m the Vanilla Villager I claimed in my will. Erin’s will accuses me, but a confirmed Yakuza’s assertion isn’t independent proof; she could have left it to misdirect suspicion. The PMs were not proof of alignment either. Bob’s Sheriff result on Erin was explicitly inconclusive because she held the Katana. Frank led the push that got Erin executed, which doesn’t prove anything about him—but it’s a reason not to treat his accusation as settled fact. I ask you to vote Innocent and weigh evidence beyond Erin’s claim.
+Bob (public): Erin was executed by hanging during the day, so her will could not have been forged that night. She named Alice as her Yakuza teammate. Alice offers no evidence against that direct claim—only speculation about misdirection. I’m voting Guilty; everyone should convict.
+Carol (public): Carol: Erin's will names Alice as her Yakuza teammate, and Bob's Sheriff result fits Erin holding the Katana. Guilty on Alice.
+Dave (public): Dave: Guilty on Alice. Erin's will names her as Yakuza teammate, and Alice's defense only speculates about misdirection. Bob's Sheriff result on Erin fits the Katana holder, so it's consistent with the will.
+(to Frank, Heidi) Frank -> Heidi (private): Erin’s will came from a daytime execution, so night forgery cannot explain her naming Alice. That’s strong evidence; vote Guilty, while keeping Bob’s result unconfirmed.
+Heidi (public): Heidi: Erin's will is the only hard lead we have. Alice, why were you and Erin PMing three times in one day? I'm voting Guilty.
+Trial votes on Alice: Guilty - Bob, Carol, Dave, Frank, Heidi; Innocent - Alice.
+Alice is executed by hanging (5 Guilty).
+Alice died (executed by hanging). Their role was Pharmacist. Last will: 'I am a Vanilla Villager. Erin’s will naming me is an accusation from a confirmed Yakuza member, not independent proof. Review everyone’s conduct: Heidi voted Innocent on Erin’s trial, while Frank led the push that got Erin executed. Neither fact alone clears or condemns anyone. Bob’s Sheriff result on Erin was explicitly complicated by the Katana-holder exception; weigh the claim against the rest of the evidence.'
+The game is over. Winners: Bob, Carol, Dave, Frank, Grace.
+
+===== GAME OVER =====
+Winners: Bob, Carol, Dave, Frank, Grace
+Cost: {'anthropic/claude-haiku-5.5': 0.160460075, 'openai/gpt-6-luna': 0.078805225, 'anthropic/claude-opus-5.5': 0.1916972}
