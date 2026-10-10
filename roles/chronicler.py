@@ -21,13 +21,14 @@ class Chronicler(RoleLogic):
                             "tell the marked player.")
 
     def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
-        if target and target.status.get(Status.MARKED):
-            return f"{target.name} is already marked; marking them again would change nothing"
+        # Only the user's own marks: refusing another Chronicler's would tell them a second Chronicler exists.
+        if target and target.status.get(Status.MARKED) == by.name:
+            return f"{by.name} already marked {target.name}; marking them again would change nothing"
         return None
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
-        target.status[Status.MARKED] = by.name
+        target.status.setdefault(Status.MARKED, by.name)  # another Chronicler's earlier mark stays theirs
         game.tell([by.name], f"You marked {target.name}: if they die, at any time, their role will be revealed "
                              f"to everyone (unless a Mortician cleans them). {tokens_left_text(by, 'chronicler')}.")
 

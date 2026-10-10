@@ -301,7 +301,8 @@ Chronicler
   cause, the announcement of their death also reveals their true role to everyone (an exact-role check, R19: a
   Roleplayer shows as Roleplayer), and says they had been marked by a Chronicler (not by whom). A Mortician's
   clean beats the mark: a marked player who is cleaned has their role and will hidden, and the announcement says
-  they had been marked but the clean hid their role. You can't mark a player who is already marked.
+  they had been marked but the clean hid their role. You can't mark a player you already marked. Marking a
+  player another Chronicler already marked spends your token but adds nothing.
 
 Auditor
   Night: may audit one player other than yourself. You learn every vote they cast during the Day just before this

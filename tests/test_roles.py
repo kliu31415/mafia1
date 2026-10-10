@@ -956,7 +956,7 @@ def test_chronicler_mark_reveals_the_role_on_any_later_death_even_after_the_chro
     game.phase = "night"
     apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})
     assert told(game, "Alice")[-1].endswith("1 chronicler token left.") and not told(game, "Carol")
-    with pytest.raises(ValueError, match="already marked"):
+    with pytest.raises(ValueError, match="Alice already marked Carol"):
         apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})
     assert logic("Chronicler").briefing(game, game.player("Alice")) == ["Your marks on living players: Carol."]
     game.kill("Alice", "Katana")  # the mark outlives the Chronicler
