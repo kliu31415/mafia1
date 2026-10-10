@@ -2,6 +2,7 @@
 
 import json
 import random
+from pathlib import Path
 from collections import Counter
 
 import pytest
@@ -11,7 +12,9 @@ import stats
 from tests.conftest import ScriptedClient
 from llm import Model
 from roles import ROLES, Alignment
-from setups import parse_setup, players_for, random_setup, setup_note
+import role_power
+import setups
+from setups import balanced_setup, parse_setup, players_for, random_setup, setup_note
 
 
 def write_log(path, records):
@@ -109,16 +112,17 @@ def test_random_setups_follow_their_proportions():
 
 def test_parse_setup():
     assert parse_setup("Sheriff,Grunt") is None
-    assert parse_setup("random:8") == ("standard", 8) and parse_setup("standard") == ("standard", None)
-    assert 11 <= players_for("standard", None, 5) <= 15 and players_for("standard", 9, 5) == 9
+    assert parse_setup("random:8") == ("classic", 8) and parse_setup("standard") == ("standard", None)
+    assert players_for("standard", None, 5) == 13 and 11 <= players_for("classic", None, 5) <= 15
+    assert players_for("standard", 9, 5) == 9
     for bad in ("random:x", "standard:3"):
         with pytest.raises(ValueError):
             parse_setup(bad)
 
 
 def test_players_are_told_how_the_roles_were_chosen_but_not_the_list():
-    drawn = setup_note({"kind": "random", "name": "standard", "players": 12}, random_setup(12, random.Random(1)))
-    assert "12 players" in drawn and "standard setup: about 30% of the players are Yakuza" in drawn
+    drawn = setup_note({"kind": "random", "name": "classic", "players": 12}, random_setup(12, random.Random(1)))
+    assert "12 players" in drawn and "classic setup: about 30% of the players are Yakuza" in drawn
     hand = setup_note(None, ["Sheriff", "Medic", "Grunt", "Fixer", "Jester", "Vanilla Villager"])
     assert "picked by hand" in hand and "1 to 3 Yakuza, 0 to 2 Neutrals" in hand and "Sheriff" not in hand
 
@@ -133,3 +137,27 @@ def test_a_random_setup_game_is_logged_and_counted(tmp_path, monkeypatch):
     assert first["settings"]["setup"] == setup and first["settings"]["roles"] == roles
     g = stats.load_game(path)
     assert g is not None and g["setup"] == "random" and g["roles"] == sorted(roles)
+
+
+def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch):
+    monkeypatch.setattr(setups, "LOG_DIR", Path("/nonexistent"))  # no past games: the same draw everywhere
+    chances: list[float] = []
+    yakuza_counts: Counter = Counter()
+    for seed in range(100):
+        roles = balanced_setup(13, random.Random(seed))
+        assert len(roles) == 13 and all(r in ROLES for r in roles)
+        by = Counter(ROLES[r].alignment for r in roles)
+        yakuza_counts[by[Alignment.EVIL]] += 1
+        assert 2 <= by[Alignment.EVIL] <= 4 and by[Alignment.NEUTRAL] <= 3
+        village = [r for r in roles if ROLES[r].alignment is Alignment.GOOD]
+        assert sum(ROLES[r].category not in ("Outsider",) for r in village) >= 5
+        assert any(ROLES[r].category == "Investigative" for r in village)
+        assert sum(ROLES[r].category == "Outsider" for r in village) <= 2
+        assert max(Counter(r for r in roles if r != "Vanilla Villager").values()) == 1
+        chances.append(role_power.village_chance(roles))
+    assert yakuza_counts.most_common(1)[0][0] == 3
+    assert sum(0.4 <= c <= 0.6 for c in chances) >= 80  # most setups are roughly balanced
+
+
+def test_every_role_has_a_power():
+    assert set(role_power.POWER) == set(ROLES)

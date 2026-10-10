@@ -46,7 +46,7 @@ Usage:
     uv run tips.py build                                     # tips file from past games' lessons
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
-    uv run mafia.py --roles standard:8                       # a standard setup drawn for 8 players
+    uv run mafia.py --roles standard:8                       # a balanced standard setup scaled to 8 players
     uv run mafia.py --flips role --trial-votes public --nomination-votes public   # the old rules
     uv run stats.py                                          # win rates and decision skill across logs/
     uv run game_index.py build                               # logs/index.html: browse and filter every game
@@ -480,8 +480,8 @@ def main() -> None:
                     help="model[:effort] the moderator switches to for the rest of the game if a content filter "
                     "blocks it several times in a row, or 'none'")
     ap.add_argument("--roles", default="standard", help="a setup drawn from the seed: NAME (its usual player "
-                    f"count) or NAME:N for N players, NAME one of {', '.join(SETUPS)} (or random, the standard "
-                    "setup); or comma-separated role names (see setups.py)")
+                    f"count) or NAME:N for N players, NAME one of {', '.join(SETUPS)} (random means classic)"
+                    "; or comma-separated role names (see setups.py)")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,

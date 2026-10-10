@@ -5,7 +5,8 @@ role strength can be estimated across many mixes. Players never see the role lis
 (setup_note) describes how it was drawn: Kevin, Oct 10 2026, so they don't play blind, though without exact
 counts. A hand-picked list (--roles A,B,C) is described by rough faction counts instead.
 
-"standard" (the default; also "random") is described below:
+"standard" (the default, balanced by role_power.py) is balanced_setup; "classic" (also "random", the
+draw before Oct 10 2026) is described below:
 
 The rules don't say how setups are built (only that Village outnumbers Yakuza, R2), so these
 proportions are a choice of this program, modelled on DEFAULT_SETUP (10 players: 6 Village incl. two
@@ -18,9 +19,13 @@ Vanilla Villagers, 3 Yakuza, 1 Neutral):
 - Roles in EXCLUDED are never drawn.
 """
 
+import json
+import math
 import random
+from collections import Counter
 from collections.abc import Callable
 from dataclasses import dataclass
+from pathlib import Path
 
 from roles import ROLES, Alignment
 
@@ -39,9 +44,9 @@ class Setup:
 
 def parse_setup(text: str) -> tuple[str, int | None] | None:
     """(setup name, player count or None) from "NAME" or "NAME:N"; None if text isn't a named setup (a role list).
-    "random" is the standard setup."""
+    "random" is the classic setup (it was the random setup before "standard" existed)."""
     name, colon, n = text.partition(":")
-    name = "standard" if name == "random" else name
+    name = "classic" if name == "random" else name
     if name not in SETUPS:
         return None
     if colon and (not n.isdigit() or int(n) < MIN_PLAYERS):
@@ -100,10 +105,100 @@ def random_setup(n: int, rng: random.Random, pool: str = "all") -> list[str]:
     return village[:village_slots] + yakuza + neutrals
 
 
+YAKUZA_ODDS = {-1: 20, 0: 65, 1: 15}  # standard: Yakuza count around round(3/13 of the seats)
+NEUTRAL_ODDS = {0: 15, 1: 35, 2: 35, 3: 15}
+MAX_OUTSIDERS = 2  # standard
+MIN_VILLAGE = 5  # standard: non-Outsider Village roles, at least one Investigative
+BAND = 0.4  # standard: a setup counts as balanced when |role_power.score| <= BAND (Village win chance 40-60%)
+CANDIDATES = 60  # standard: Neutral and Village picks tried per setup
+LOG_DIR = Path(__file__).parent / "logs"  # past games, for role_uses
+
+
+def role_uses(log_dir: Path = LOG_DIR) -> Counter:
+    """Role -> how many live games in log_dir it was in (read from each log's first line, the setup record)."""
+    uses: Counter = Counter()
+    for path in sorted(log_dir.glob("game_*.jsonl")):
+        try:
+            with path.open(encoding="utf-8") as f:
+                setup = json.loads(f.readline())
+        except (OSError, ValueError):
+            continue
+        uses.update({p.get("role") for p in setup.get("players") or []} - {None})
+    return uses
+
+
+def balanced_setup(n: int, rng: random.Random, pool: str = "all") -> list[str]:
+    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4
+    (about 3/13 of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village
+    roles, the rest Good. With fewer Yakuza than usual their roles lean strong, with more they lean weak. Then
+    CANDIDATES random picks of the Neutral and Village roles are tried, and a random one within BAND of a
+    role_power.score of 0 is kept (with one Neutral fewer only if none is; else the closest): e.g. weaker
+    Village roles and more Outsiders against weak Yakuza. Every draw leans towards newer roles (not live-tested
+    yet) and roles in fewer past games (logs/), so a seed's setup can change as games are added."""
+    from role_power import POWER, score
+    allowed = [r for r, info in ROLES.items() if (pool == "all" or info.tested) and r not in EXCLUDED]
+    uses = role_uses()
+
+    def novelty(r: str) -> float:  # Kevin, Oct 10 2026: lean towards newer and less used roles
+        return (1.0 if ROLES[r].tested else 2.0) / math.sqrt(1 + uses[r] / 3)
+
+    def of(alignment: Alignment, *categories: str) -> list[str]:
+        return [r for r in allowed if ROLES[r].alignment is alignment
+                and (not categories or ROLES[r].category in categories)]
+
+    def weighted_order(roles: list[str], weight=lambda r: 1.0) -> list[str]:
+        """roles in a random order where heavier ones tend to come first (weighted sampling without replacement)."""
+        return sorted(roles, key=lambda r: -rng.random() ** (1 / (weight(r) * novelty(r))))
+
+    usual = max(1, round(n * 3 / 13))
+    shift = rng.choices(list(YAKUZA_ODDS), list(YAKUZA_ODDS.values()))[0]
+    n_yakuza = max(1, usual + shift)
+    lean = 0 if n_yakuza == usual else 3 if n_yakuza < usual else -3  # fewer Yakuza: stronger roles
+    yakuza = weighted_order(of(Alignment.EVIL), lambda r: math.exp(lean * (-POWER[r] - 0.95)))[:n_yakuza]
+    # The Village must outnumber the Yakuza (rules R2) and get its MIN_VILLAGE seats.
+    room = n - len(yakuza) - max(MIN_VILLAGE, len(yakuza) + 1)
+
+    wanted = max(0, min(rng.choices(list(NEUTRAL_ODDS), list(NEUTRAL_ODDS.values()))[0], room))
+
+    def candidate(n_neutrals: int) -> list[str]:
+        neutrals = weighted_order(of(Alignment.NEUTRAL))[:n_neutrals]
+        slots = n - len(yakuza) - len(neutrals)
+        village = weighted_order(of(Alignment.GOOD, "Investigative"))[:1]
+        rest = weighted_order([r for r in of(Alignment.GOOD, "Investigative", "Combat", "Misc") if r not in village])
+        outsiders = weighted_order(of(Alignment.GOOD, "Outsider"))[:MAX_OUTSIDERS]
+        while len(village) < slots:
+            roll = rng.random()
+            if len(village) >= MIN_VILLAGE and outsiders and roll < 0.2:
+                village.append(outsiders.pop(0))
+            elif roll < 0.45 or not rest:
+                village.append("Vanilla Villager")
+            else:
+                village.append(rest.pop(0))
+        return village + yakuza + neutrals
+
+    tried: list[tuple[float, list[str]]] = []
+    for n_neutrals in range(wanted, -1, -1):  # one Neutral fewer only when no pick is balanced enough
+        scored = [(abs(score(c)), c) for c in (candidate(n_neutrals) for _ in range(CANDIDATES))]
+        good = [c for s, c in scored if s <= BAND]
+        if good:
+            return rng.choice(good)
+        tried += scored
+    return min(tried, key=lambda x: x[0])[1]
+
+
 SETUPS = {
-    "standard": Setup(random_setup, (11, 15),
-                      "about 30% of the players are Yakuza (rounded, at least 1), each with a different Yakuza "
-                      "role; 0 to 2 are Neutral (at most 1 below 9 players), each a different Neutral role; the rest "
-                      "are Village, with at least one Investigative role, at most one Outsider, up to a third Vanilla "
-                      "Villagers, and every other Village role at most once."),
+    "standard": Setup(balanced_setup, (13, 13),
+                      "usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one "
+                      "more), each with a different Yakuza role; 0 to 3 Neutrals, usually 1 or 2, each a different "
+                      "Neutral role; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one "
+                      "of them Investigative), plus any mix of Village roles, Vanilla Villagers and up to 2 "
+                      "Outsiders. Every "
+                      "role but the Vanilla Villager appears at most once. The roles are picked so that the sides "
+                      "are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles, and newer "
+                      "roles come up more often."),
+    "classic": Setup(random_setup, (11, 15),
+                     "about 30% of the players are Yakuza (rounded, at least 1), each with a different Yakuza "
+                     "role; 0 to 2 are Neutral (at most 1 below 9 players), each a different Neutral role; the rest "
+                     "are Village, with at least one Investigative role, at most one Outsider, up to a third Vanilla "
+                     "Villagers, and every other Village role at most once."),
 }
