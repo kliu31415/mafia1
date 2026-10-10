@@ -528,7 +528,8 @@ def test_ex_con_visit_is_drawn_by_code_and_hidden_from_the_ex_con(game_factory):
     run_night(game, players, Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)"))
     action = game.night_actions[1]["Alice"]
     assert action["automatic"] and action["target"] in ("Bob", "Carol", "Dave")
-    assert "Alice" not in night_history(game, game.player("Alice"))
+    history = night_history(game, game.player("Alice"))
+    assert action["target"] not in history and "Night 1: your automatic action (random visit) was due" in history
 
 
 def test_trapper_is_told_whether_their_trap_still_stands(game_factory):

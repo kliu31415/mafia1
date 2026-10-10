@@ -200,7 +200,8 @@ SETUPS = {
                       "Neutral role; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one "
                       "of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to "
                       "2 Outsiders. Every "
-                      "role but the Vanilla Villager appears at most once. The roles are picked so that the sides "
+                      "role but the Vanilla Villager appears at most once (this setup never repeats one, though R2 "
+                      "allows it). The roles are picked so that the sides "
                       "are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles, and newer "
                       "roles come up more often."),
     "classic": Setup(random_setup, (11, 15),

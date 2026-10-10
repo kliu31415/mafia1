@@ -233,7 +233,7 @@ Seer
   pair isn't a visit. A role-block stops both.
 
 Fortune Teller
-  Day: at the start of each Day except the first, you get two numbers, each labeled: how many players were visited
+  Day: at the start of each Day (the first is Day 2), you get two numbers, each labeled: how many players were visited
   last night (a player visited several times counts once), and how many players visited anyone last night (a
   player who visited several players counts once). Self-visits (R6) count in both numbers.
   Example: A holds the Katana, attacks B and also uses their own role's action on C, D visits B, and E protects
