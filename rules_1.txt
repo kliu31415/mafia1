@@ -4,7 +4,8 @@ PART 1: THE GAME
 
 R1 (Overview and winning)
 You are playing a Mafia-style game with around 10 players (depending on setup), each in a faction. An omniscient
-moderator runs the game. The game alternates Day and Night phases, starting with Day 1.
+moderator runs the game. The game alternates Night and Day phases, starting with Night 1: there is no Day 1, so
+the first Day is Day 2 (players write their first will before Night 1).
 - For most roles, you win iff your faction wins. A faction typically wins iff it has players alive at the end.
 - The game ends as soon as all living players, ignoring Jesters and Executioners, belong to one faction. This is
   checked after every death; deaths that happen together at night are checked together.
@@ -89,8 +90,8 @@ places in the list, each named where the other would be; the roles, alignments a
 players', so the rest of the group can still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action landed on.
 
 R13 (Last wills)
-Players may write and update a last will at the beginning of each Day (except those who died the night before)
-and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
+Players may write and update a last will before Night 1, at the beginning of each Day (except those who died the
+night before) and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
 
 ==================================================================================================
 PART 3: THE NIGHT

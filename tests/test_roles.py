@@ -789,3 +789,15 @@ def test_the_roleplayer_rule_lists_exactly_the_roles_it_can_be():
     assert found
     listed = set(re.split(r", | and ", found[1]))
     assert listed == {r for r, i in ROLES.items() if i.category == "Investigative" and logic(r).roleplayer_can_fake}
+
+
+def test_a_game_starts_with_wills_and_night_1_without_a_day_1(tmp_path, monkeypatch):
+    # rules R1 (Kevin, Oct 10): no Day 1; players write a first will, then Night 1
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = ["Vanilla Villager", "Vanilla Villager", "Sheriff", "Medic", "Grunt", "Pharmacist"]
+    path = mafia.play_game(MockClient(3), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=3))
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    day1 = [r for r in records if r["kind"] == "player_call" and r.get("day") == 1 and r.get("phase") == "day"]
+    assert day1 and {r["step"] for r in day1} == {"will"}
+    texts = [r.get("text", "") for r in records if r["kind"] == "event"]
+    assert not any(t == "Day 1 begins." for t in texts) and any(t.startswith("There is no Day 1") for t in texts)

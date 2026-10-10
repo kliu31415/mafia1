@@ -69,7 +69,8 @@ from records import read_records, safe_print
 # 35: "effort_fallback" alert records (player, model, from_effort, to_effort, step, day, phase, round) when a
 #     player's answer was cut off at max_tokens and the retry uses one effort step lower; result usage rows of
 #     players have effort_fallbacks (how many)
-LOG_VERSION = 35
+# 36: games start with Night 1 (no Day 1, rules R1): day 1 has only the opening wills and Night 1
+LOG_VERSION = 36
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

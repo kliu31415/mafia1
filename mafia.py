@@ -67,7 +67,7 @@ from pathlib import Path
 
 import alerts
 import sync_logs
-from day import run_day
+from day import open_game, run_day
 from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
 from gamelog import GameLog, usage_by_caller
@@ -320,12 +320,15 @@ def run_game(game: Game, players: Players, moderator: Moderator, checker: NightC
                 game.winners = []
                 game.emit("Nobody died for three days and three nights. Everyone loses.")
                 return "stall"
-            print(f"Day {game.day}...")
             deaths_before = game.death_count()
-            run_day(game, players)
-            if (winners := game.check_winner()) is not None:
-                game.winners = winners
-                return "win"
+            if game.day == 1:  # rules R1: no Day 1
+                open_game(game, players)
+            else:
+                print(f"Day {game.day}...")
+                run_day(game, players)
+                if (winners := game.check_winner()) is not None:
+                    game.winners = winners
+                    return "win"
         save("night", deaths_before=deaths_before)  # deaths_before: for the stall count after the night
         print(f"Night {game.day}...")
         run_night(game, players, moderator, checker)

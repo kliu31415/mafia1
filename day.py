@@ -83,6 +83,28 @@ def price_table(rnd: int, trial: bool = False) -> str:
             f"{nxt:.2f}x):\n" + "\n".join(rows))
 
 
+def write_wills(game: Game, players: Players) -> None:
+    """Last wills, written at the beginning of each Day and before Night 1; also on day turns. Rules R13."""
+    task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
+            "to ALL players, including other factions, so think about what each of them would learn from it. "
+            "An empty answer keeps your current will.")
+    outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()],
+                            step="will")
+    for p, out in zip(game.alive(), outs):
+        will = out["last_will"]
+        if blank(will):  # blank (or a written-out null) means no change, as on day turns
+            continue
+        p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
+
+
+def open_game(game: Game, players: Players) -> None:
+    """There is no Day 1 (rules R1, Kevin Oct 10: in 38 live games it hanged someone twice, both Jesters, and was
+    otherwise a round of "no blind hang"). Players write a first will, then Night 1 starts."""
+    game.emit("There is no Day 1: the game starts with Night 1 (rules R1), and the first Day is Day 2. Nobody has "
+              "spoken yet, so Night 1 actions are chosen without any Day discussion.", cat=PHASE)
+    write_wills(game, players)
+
+
 def run_day(game: Game, players: Players) -> None:
     game.phase = "day"
     game.emit(f"Day {game.day} begins.", cat=PHASE)
@@ -101,18 +123,7 @@ def run_day(game: Game, players: Players) -> None:
         else:
             del game.puppets[puppet]
 
-    # Last wills, written at the beginning of each day (including day 1); also on day turns. Rules R13.
-    task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
-            "to ALL players, including other factions, so think about what each of them would learn from it. "
-            "An empty answer keeps your current will.")
-    outs = players.ask_many([(p, task, LAST_WILL_SCHEMA, {"last_will": p.last_will}) for p in game.alive()],
-                            step="will")
-    for p, out in zip(game.alive(), outs):
-        will = out["last_will"]
-        if blank(will):  # blank (or a written-out null) means no change, as on day turns
-            continue
-        p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
-
+    write_wills(game, players)
     for p in game.alive():
         p.speaking_budget *= CARRY_SHARE
     trials = 0
