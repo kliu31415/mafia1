@@ -119,7 +119,8 @@ def test_a_random_setup_game_is_logged_and_counted(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = random_setup(7, random.Random(1), "tested")
     setup = {"kind": "random", "players": 7, "pool": "tested"}
-    path = mafia.play_game(ScriptedClient(), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1, setup=setup)
+    path = mafia.play_game(ScriptedClient(),
+        mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1, setup=setup))
     first = json.loads(path.read_text(encoding="utf-8").splitlines()[0])
     assert first["settings"]["setup"] == setup and first["settings"]["roles"] == roles
     g = stats.load_game(path)

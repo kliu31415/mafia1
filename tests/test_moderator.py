@@ -41,8 +41,9 @@ def test_night_check_logs_the_judges_verdict(tmp_path, monkeypatch):
         return {"verdict": "errors", "issues": [issue]} if name is None and "verdict" in schema["properties"] else None
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
-    path = mafia.play_game(ScriptedClient(decide), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
-                           check_nights=True)
+    path = mafia.play_game(ScriptedClient(decide),
+        mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
+                         check_nights=True))
     checks = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()
               if '"night_check"' in line]
     assert checks and all(c["verdict"] == "errors" and c["issues"] == [issue] for c in checks)
@@ -83,8 +84,9 @@ def test_lessons_include_the_moderators_strategy_review(tmp_path, monkeypatch):
         return {"summary": "Village read the PMs.", "lessons": [lesson]} if "evidence" in str(schema) else None
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
-    path = mafia.play_game(ScriptedClient(decide), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
-                           lessons=True)
+    path = mafia.play_game(ScriptedClient(decide),
+        mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
+                         lessons=True))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     assert [r["lessons"] for r in records if r["kind"] == "strategy_review"] == [[lesson]]
     shared = [json.loads(line) for line in (tmp_path / "lessons.jsonl").read_text(encoding="utf-8").splitlines()]

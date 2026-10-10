@@ -81,8 +81,9 @@ def test_a_game_logs_who_had_tips_and_how_they_went(tmp_path, monkeypatch):
     other = tmp_path / "other.md"
     other.write_text("## Everyone\n- Older advice.\n", encoding="utf-8")
     client = ScriptedClient(decide)
-    path = mafia.play_game(client, [Model.HAIKU_5_5, Model.GPT_6_LUNA], Model.HAIKU_5_5, TOWN4_GRUNT, seed=1,
-                           tips=tips_file, tips_for="gpt-6-luna", player_tips=[("Alice", other)], lessons=True)
+    path = mafia.play_game(client,
+        mafia.GameConfig([Model.HAIKU_5_5, Model.GPT_6_LUNA], Model.HAIKU_5_5, TOWN4_GRUNT, seed=1,
+                         tips=tips_file, tips_for="gpt-6-luna", player_tips=[("Alice", other)], lessons=True))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     record = next(r for r in records if r["kind"] == "tips")
     result = next(r for r in records if r["kind"] == "result")
@@ -202,8 +203,9 @@ def test_older_logs_count_failed_last_attempts_as_fallbacks(tmp_path):
 def test_a_game_can_update_the_tips_when_it_ends(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     sheet = tmp_path / "tips" / "tips.md"
-    mafia.play_game(ScriptedClient(), [Model.HAIKU_5_5], Model.HAIKU_5_5, TOWN4_GRUNT, seed=1, lessons=True,
-                    update_tips=sheet)
+    mafia.play_game(ScriptedClient(),
+        mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, TOWN4_GRUNT, seed=1, lessons=True,
+                         update_tips=sheet))
     nb = json.loads(tips.notebook_path(sheet).read_text(encoding="utf-8"))
     assert len(nb["games"]) == 1 and sheet.exists()
 

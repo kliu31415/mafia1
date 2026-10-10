@@ -13,7 +13,7 @@ from roles import DEFAULT_SETUP, ROLES, Alignment, Status
 
 def mock_game_records(tmp_path, monkeypatch, seed: int) -> list[dict]:
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
-    path = mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
+    path = mafia.play_game(MockClient(seed), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed))
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
 
 

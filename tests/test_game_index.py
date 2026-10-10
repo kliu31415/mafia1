@@ -44,7 +44,7 @@ def test_filters():
 def test_index_lists_a_mock_game_and_stats_filters_it(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = ["Vanilla Villager", "Vanilla Villager", "Sheriff", "Grunt", "Pharmacist"]
-    path = mafia.play_game(MockClient(3), [Model.HAIKU_5_5], Model.OPUS_5_5, roles, seed=3)
+    path = mafia.play_game(MockClient(3), mafia.GameConfig([Model.HAIKU_5_5], Model.OPUS_5_5, roles, seed=3))
     assert game_index.load_summaries(tmp_path) == []  # mock games only on request
     [g] = game_index.load_summaries(tmp_path, include_mock=True)
     assert (g["game"], g["finished"], g["n_players"], g["mix"], g["frontier_share"]) == (path.stem, True, 5, "cheap", 0)

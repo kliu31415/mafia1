@@ -376,7 +376,8 @@ def test_every_role_survives_a_mock_game(role, tmp_path, monkeypatch):
     (with night checks) run with the role in play, and the game ends with a result."""
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = [role, "Vanilla Villager", "Vanilla Villager", "Sheriff", "Grunt", "Pharmacist"]
-    path = mafia.play_game(MockClient(7), [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=7, check_nights=True)
+    path = mafia.play_game(MockClient(7),
+        mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=7, check_nights=True))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     assert records[-1]["kind"] == "result"
     assert not [r for r in records if r["kind"] == "moderator_tool" and "error" in (r["result"] or {})]

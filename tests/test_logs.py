@@ -10,7 +10,7 @@ def test_logs_describe_the_game_and_its_votes(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     client = ScriptedClient(votes(guilty_for={"Bob"}, nominate={"Alice": "Bob"}))
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
-    path = mafia.play_game(client, [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1)
+    path = mafia.play_game(client, mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     setup = records[0]
     assert setup["kind"] == "setup" and len(setup["rules_sha256"]) == 16
@@ -61,7 +61,7 @@ def test_result_breaks_cost_down_by_player(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     client = PricedClient(votes(guilty_for={"Bob"}, nominate={"Alice": "Bob"}))
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
-    path = mafia.play_game(client, [Model.HAIKU_5_5], Model.SONNET_5_5, roles, seed=1)
+    path = mafia.play_game(client, mafia.GameConfig([Model.HAIKU_5_5], Model.SONNET_5_5, roles, seed=1))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     usage = {u["who"]: u for u in records[-1]["usage"]}
     for p in records[0]["players"]:
@@ -102,8 +102,9 @@ def test_every_call_record_says_what_step_it_was_and_how_long_it_took(tmp_path, 
     from players import STEPS
     from roles import DEFAULT_SETUP
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
-    path = mafia.play_game(MockClient(2), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed=2, debrief=True,
-                           lessons=True)
+    path = mafia.play_game(MockClient(2),
+        mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed=2, debrief=True,
+                         lessons=True))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     calls = [r for r in records if r["kind"] == "player_call"]
     assert all(r["step"] in STEPS and r["day"] >= 1 and r["phase"] in ("day", "night") and r["latency_s"] >= 0

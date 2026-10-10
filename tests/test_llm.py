@@ -59,7 +59,7 @@ def test_errors_are_alerted_counted_and_reported(tmp_path, monkeypatch, capsys):
         return reply
     monkeypatch.setattr(client, "chat", chat)
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
-    path = mafia.play_game(client, [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=3, review=True)
+    path = mafia.play_game(client, mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=3, review=True))
     out = capsys.readouterr().out
     assert "ALERT player_fallback: Bob" in out and "ALERT feedback_error: Reviewing the log failed" in out
     assert out.count("ALERT player_error: Bob") == 3  # then only logged

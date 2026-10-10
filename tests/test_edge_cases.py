@@ -281,7 +281,7 @@ def test_a_crash_while_setting_up_is_logged(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     monkeypatch.setattr(mafia, "Players", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("bad prompt")))
     with pytest.raises(RuntimeError):
-        mafia.play_game(MockClient(1), [Model.HAIKU_5_5], Model.HAIKU_5_5, ROLES5, 1)
+        mafia.play_game(MockClient(1), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, ROLES5, 1))
     [log] = tmp_path.glob("*.jsonl")
     assert "while setting it up: RuntimeError: bad prompt" in records(log)[-1]["error"]
 
@@ -290,7 +290,7 @@ def test_ctrl_c_after_the_game_is_logged_and_doesnt_leave_a_checkpoint(tmp_path,
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     monkeypatch.setattr(mafia, "run_lessons", lambda *a: (_ for _ in ()).throw(KeyboardInterrupt()))
     with pytest.raises(KeyboardInterrupt):
-        mafia.play_game(MockClient(1), [Model.HAIKU_5_5], Model.HAIKU_5_5, ROLES5, 1, lessons=True)
+        mafia.play_game(MockClient(1), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, ROLES5, 1, lessons=True))
     [log] = tmp_path.glob("*.jsonl")
     assert "after the game" in records(log)[-1]["error"] and not log.with_suffix(".ckpt").exists()
     assert log.with_suffix(".html").exists()
@@ -319,14 +319,14 @@ def test_resuming_keeps_the_crash_night_check_errors_and_costs_and_survives_a_to
         real_run_night(game, *args)
     monkeypatch.setattr(mafia, "run_night", crash_on_night_2)
     with pytest.raises(RuntimeError):
-        mafia.play_game(MockClient(seed), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
+        mafia.play_game(MockClient(seed), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed))
     [ckpt_path] = tmp_path.glob("*.ckpt")
     log = ckpt_path.with_suffix(".jsonl")
     with log.open("a", encoding="utf-8") as f:
         f.write('{"t": 1, "kind": "player_ca')  # the process died mid-write
     monkeypatch.setattr(mafia, "run_night", real_run_night)
     ckpt = load(ckpt_path)
-    mafia.play_game(MockClient(seed), **ckpt["play_args"], resume=ckpt)
+    mafia.play_game(MockClient(seed), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
     out = records(log)
     result = out[-1]
     assert result["errors"]["crash"] == 1 and result["errors"]["night_check_issue"] == 1
@@ -500,14 +500,15 @@ def test_a_checkpoint_resumes_from_the_log_next_to_it(tmp_path, monkeypatch):
         real_run_night(game, *args)
     monkeypatch.setattr(mafia, "run_night", crash_on_night_2)
     with pytest.raises(RuntimeError):
-        mafia.play_game(MockClient(3), [Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 3)
+        mafia.play_game(MockClient(3), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 3))
     monkeypatch.setattr(mafia, "run_night", real_run_night)
     pc = tmp_path / "pc"
     shutil.copytree(tmp_path / "cloud", pc)
     shutil.rmtree(tmp_path / "cloud")
     [ckpt_path] = pc.glob("*.ckpt")
     ckpt = load(ckpt_path)
-    assert mafia.play_game(MockClient(3), **ckpt["play_args"], resume=ckpt) == ckpt_path.with_suffix(".jsonl")
+    resumed = mafia.play_game(MockClient(3), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
+    assert resumed == ckpt_path.with_suffix(".jsonl")
 
 
 def test_katana_decisions_are_scored_from_the_revote(tmp_path):
