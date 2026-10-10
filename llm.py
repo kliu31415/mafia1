@@ -28,6 +28,7 @@ class Model(str, Enum):
     GPT_6_1_SOL = "openai/gpt-6.1-sol"
     # GEMINI_4_ARGON = "google/gemini-4-argon"  # Google's frontier model (Sep 30, 2026); not on OpenRouter as
     #     of 2026-10-09. When it is: uncomment, add it to MODEL_SHORT_NAMES and to STRENGTH in tips.py (5).
+    #     (It is already in TIERS.)
     GROK_4_7 = "x-ai/grok-4.7"
     QWEN_3_8_MAX_PRIME = "qwen/qwen3.8-max-prime"  # same weights as QWEN_3_8_MAX at twice the price
     QWEN_3_8_MAX = "qwen/qwen3.8-max-0902"
@@ -81,6 +82,41 @@ MODEL_SHORT_NAMES = {
     Model.DEEPSEEK_V4_1_FLASH: "deepseek-v4.1-flash",
     Model.GPT_6_LUNA_PRO: "gpt-6-luna-pro",
 }
+
+# Each model's tier today: frontier, mid or cheap. game_index.py and stats.py use it to find e.g. games that
+# mostly seated frontier models. Tiers are relative to the current frontier, so a model moves down as newer
+# ones come out (Gemini 3.1 Pro was frontier when released and is cheap-tier now). Re-check this list when a
+# new frontier model appears; old games then show under the new tiers, which is what filtering wants.
+# Keyed by id (not Model) so models dropped from the list, still in old logs, keep a tier.
+# Source, 2026-10-10: Artificial Analysis Intelligence Index v4.3.2 at max effort (artificialanalysis.ai,
+# changelog), the only index that scores nearly all of these on one recent scale; cutoffs frontier >= 50,
+# mid 44-49, cheap <= 43. LMArena text Elo agrees where it has the model (Opus 5.5 ~1503; Gemini 4 Argon #1).
+# No current social-deduction leaderboard (Werewolf, Mafia, Diplomacy arenas) covers these models, so this
+# is general capability; stats.py's per-model results here should replace it once there are enough games.
+TIERS = {
+    "anthropic/claude-opus-5.5": "frontier",  # 58, #1
+    "anthropic/claude-sonnet-5.5": "frontier",  # 56
+    "google/gemini-4-argon": "frontier",  # 53, #1 on LMArena (not on OpenRouter yet)
+    "openai/gpt-6.1-sol": "frontier",  # 52
+    "x-ai/grok-4.7": "mid",  # 46
+    "qwen/qwen3.8-max-0902": "mid",  # 45
+    "qwen/qwen3.8-max-prime": "mid",  # same weights as qwen3.8-max
+    "z-ai/glm-5.3": "mid",  # 44.8
+    "moonshotai/kimi-k3": "mid",  # 44
+    "anthropic/claude-haiku-5.5": "cheap",  # 43 at max, 38 at high (our default)
+    "google/gemini-3.8-flash": "cheap",  # 41 at high
+    "deepseek/deepseek-v4.1-flash": "cheap",  # 39
+    "openai/gpt-6-luna": "cheap",  # 38
+    "openai/gpt-6-luna-pro": "cheap",  # not scored; Luna's weights with more reasoning (a guess: near Luna)
+    "google/gemini-3.1-pro": "cheap",  # 30 (dropped from the model list)
+    "xiaomi/mimo-v2.6-flash": "cheap",  # dropped after one game
+    "upstage/solar-pro4": "cheap",  # dropped after one game
+}
+
+
+def model_tier(model_id: str) -> str:
+    """frontier, mid, cheap, or unknown for a model missing from TIERS."""
+    return TIERS.get(model_id, "unknown")
 
 
 # The one OpenRouter provider each model maker's models use: the maker's own endpoint (all support

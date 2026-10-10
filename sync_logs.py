@@ -147,9 +147,12 @@ class Repo:
         raise RuntimeError(f"git push to {self.remote} {self.branch} kept losing races with other pushes")
 
 
+LOCAL_FILES = ("index.html", "index_cache.json")  # game_index.py's page and cache: each machine builds its own
+
+
 def syncable(path: Path) -> bool:
-    """Game outputs worth keeping: not mock games, locks or half-written temporary files."""
-    return (path.is_file() and not path.name.startswith("mock")
+    """Game outputs worth keeping: not mock games, locks, half-written temporary files or the game index."""
+    return (path.is_file() and not path.name.startswith("mock") and path.name not in LOCAL_FILES
             and path.suffix not in (".lock", ".tmp") and not path.name.endswith(".ckpt.tmp"))
 
 
@@ -385,6 +388,7 @@ def main() -> None:
         elif args.cmd == "pull":
             if not catch_up(repo, log_dir, tips_dir, None if args.no_tips else args.tips_model):
                 print(f"No new logs on {repo.remote}/{repo.branch}")
+            rebuild_index(log_dir)
             if not args.no_tips and (tips_dir / "tips.md").exists():
                 commit_tips(repo, tips_dir)
             if not args.no_tips:
@@ -401,6 +405,16 @@ def main() -> None:
     except RuntimeError as e:
         print(f"ALERT sync_error: {e}", file=sys.stderr)
         sys.exit(1)
+
+
+def rebuild_index(log_dir: Path) -> None:
+    """Rebuilds log_dir/index.html (game_index.py) after logs were added; a failure is an ALERT, not raised."""
+    import game_index  # here: it imports llm, which the rest of this file doesn't need
+    try:
+        game_index.build(log_dir)
+    except Exception as e:
+        print(f"ALERT index_error: rebuilding {log_dir / game_index.INDEX} failed: {type(e).__name__}: {e}; "
+              "`uv run game_index.py build` retries", file=sys.stderr)
 
 
 def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None) -> list[Path]:

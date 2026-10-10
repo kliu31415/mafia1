@@ -8,6 +8,9 @@ Usage:
     uv run stats.py --decisions-by role     # decision skill per role instead of per model
     uv run stats.py --setup random          # only games with random setups (--roles random:N)
     uv run stats.py --csv out/              # games.csv, players.csv, decisions.csv for your own analysis
+    uv run stats.py --mix frontier          # the game index's filters (game_index.py): --model, --min-frontier,
+                                            # --mix, --moderator, --role, --winner, --players, --since, --until
+    uv run stats.py --min-frontier 0.7 --list   # the games that pass, instead of the stats
 
 Percentages come with a 95% Wilson interval in brackets: with few games the true rate can be anywhere
 in it. Games without a "result" record (stopped or crashed) are skipped; mock games only with
@@ -37,6 +40,7 @@ from collections import defaultdict
 from collections.abc import Iterable
 from pathlib import Path
 
+import game_index
 from llm import Model
 from records import read_records
 from roles import ROLES, Alignment, logic
@@ -114,13 +118,19 @@ def load_game(path: Path) -> dict | None:
         factions = {p["faction"] for p in players if p["won"]} & {"Village", "Yakuza"}
         winning = next(iter(factions), None)
     by_name = {p["name"]: p for p in players}
+    full_ids = {p["name"]: p["model"] for p in result["players"]} if "players" in result else result.get("models", {})
+    seat_models = [full_ids.get(p["name"]) or p.get("model", "?") for p in setup["players"]]
+    frontier_share, mix = game_index.mix_of(seat_models)
     game = {"game": game_id, "file": path.name, "date": game_id.split("_")[1] if "_" in game_id else "",
             "log_version": setup.get("log_version", 1), "mock": bool(settings.get("mock")),
             "setup": (settings.get("setup") or {}).get("kind", "fixed"), "players": players,
             "n_players": len(players), "days": result.get("days"), "winning_faction": winning,
             "end_reason": result.get("end_reason", "win" if winning else None),
             "cost": round(sum((result.get("cost") or {}).values()), 4), "duration_s": result.get("duration_s"),
-            "roles": sorted(p["role"] for p in players), "has_votes": any(r["kind"] == "vote" for r in records)}
+            "roles": sorted(p["role"] for p in players), "has_votes": any(r["kind"] == "vote" for r in records),
+            # the fields game_index.matches filters on
+            "models": seat_models, "frontier_share": frontier_share, "mix": mix,
+            "moderator": settings.get("moderator", ""), "winner": winning}
     game["decisions"] = [{"game": game_id, **d, "model": by_name[d["player"]]["model"]}
                          for d in decisions(records, by_name) if d["player"] in by_name]
     return game
@@ -290,7 +300,7 @@ def report(games: list[dict], skipped: dict[str, int], decisions_by: str = "mode
 def write_csv(games: list[dict], folder: Path) -> list[Path]:
     folder.mkdir(parents=True, exist_ok=True)
     game_fields = ["game", "file", "date", "log_version", "mock", "setup", "n_players", "days", "winning_faction",
-                   "end_reason", "cost", "duration_s", "roles"]
+                   "end_reason", "cost", "duration_s", "roles", "frontier_share", "mix", "moderator"]
     tables = {
         "games.csv": [{**{k: g[k] for k in game_fields}, "roles": ";".join(g["roles"])} for g in games],
         "players.csv": [{"game": g["game"], **p} for g in games for p in g["players"]],
@@ -309,7 +319,7 @@ def write_csv(games: list[dict], folder: Path) -> list[Path]:
 
 
 def load_games(paths: Iterable[Path], include_mock: bool = False, min_version: int = 0,
-               setup: str = "any") -> tuple[list[dict], dict[str, int]]:
+               setup: str = "any", filters: argparse.Namespace | None = None) -> tuple[list[dict], dict[str, int]]:
     games, skipped = [], {"unfinished": 0, "mock": 0, "filtered out": 0}
     for path in log_files(paths):
         g = load_game(path)
@@ -317,7 +327,8 @@ def load_games(paths: Iterable[Path], include_mock: bool = False, min_version: i
             skipped["unfinished"] += 1
         elif g["mock"] and not include_mock:
             skipped["mock"] += 1
-        elif g["log_version"] < min_version or setup not in ("any", g["setup"]):
+        elif (g["log_version"] < min_version or setup not in ("any", g["setup"])
+              or (filters is not None and not game_index.matches(g, filters))):
             skipped["filtered out"] += 1
         else:
             games.append(g)
@@ -332,8 +343,16 @@ def main() -> None:
     ap.add_argument("--setup", choices=["any", "fixed", "random"], default="any", help="only these setups")
     ap.add_argument("--decisions-by", choices=["model", "role"], default="model")
     ap.add_argument("--csv", type=Path, metavar="DIR", help="also write games.csv, players.csv, decisions.csv")
+    ap.add_argument("--list", action="store_true", help="list the games that pass the filters instead of the stats")
+    game_index.add_filter_args(ap)
     args = ap.parse_args()
-    games, skipped = load_games(args.paths, args.include_mock, args.min_version, args.setup)
+    games, skipped = load_games(args.paths, args.include_mock, args.min_version, args.setup, args)
+    if args.list:
+        print(table(["game", "players", "frontier", "mix", "winner", "days", "cost"],
+                    [[g["game"], str(g["n_players"]), f"{g['frontier_share']:.0%}", g["mix"], g["winner"] or "none",
+                      str(g["days"]), f"${g['cost']:.2f}"] for g in games]))
+        print(f"\n{len(games)} games; skipped " + ", ".join(f"{n} {k}" for k, n in skipped.items() if n))
+        return
     print(report(games, skipped, args.decisions_by))
     if args.csv:
         print("\nWrote " + ", ".join(str(p) for p in write_csv(games, args.csv)))

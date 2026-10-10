@@ -26,6 +26,7 @@ Code layout:
     setups.py      random setups (--roles random:N), for role strength across many role mixes
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
+    game_index.py  logs/index.html: every game in one filterable table (by model tier, winner, ...); or `serve`
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
     sync_logs.py   moves logs from cloud games to the PC (and the tips sheet back) through the `logs` branch
     role_summaries.py checks each role's one-line hover summary against its paragraph in rules_1.txt
@@ -43,6 +44,8 @@ Usage:
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
     uv run mafia.py --roles random:8                         # a random 8-player setup
     uv run stats.py                                          # win rates and decision skill across logs/
+    uv run game_index.py build                               # logs/index.html: browse and filter every game
+    uv run game_index.py serve                               # the same, always current, at localhost:8765
     uv run sync_logs.py pull                                 # cloud games' logs into logs/ (see sync_logs.py)
 """
 
@@ -525,10 +528,12 @@ def main() -> None:
 
 @contextmanager
 def synced(sync: bool, update_tips: Path | None) -> Iterator[None]:
-    """Runs a game, then (even if it crashed or was stopped) syncs it: see --sync and sync_logs.after_game."""
+    """Runs a game, then (even if it crashed or was stopped) adds it to the game index and syncs it: see --sync
+    and sync_logs.after_game."""
     try:
         yield
     finally:
+        sync_logs.rebuild_index(LOG_DIR)  # logs/index.html lists the game (game_index.py)
         if sync:
             sync_logs.after_game(LOG_DIR, DEFAULT_TIPS.parent if update_tips == DEFAULT_TIPS else None,
                                  sync_logs.in_cloud())

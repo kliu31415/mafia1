@@ -59,6 +59,12 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
 - `uv run stats.py` reads every finished live game in `logs/`: win rates by faction, model and role (with
   95% intervals), Village win rate with and without each role, and per-decision skill by model or role.
   Logs are on Kevin's PC; `--csv DIR` exports the tables.
+- `uv run game_index.py build` writes `logs/index.html`, one filterable table of every game (models by tier,
+  winner, cost, errors, tips) linking to each HTML log; games and `sync_logs.py pull` rebuild it, and
+  `uv run game_index.py serve` shows an always-current copy on localhost. `stats.py` takes the same filters
+  (`--mix frontier`, `--min-frontier 0.7`, `--model`, `--winner`, ...; `--list` lists the games). Model tiers
+  are `TIERS` in `llm.py`, relative to today's frontier: a new model needs an entry, and re-check the list
+  when a new frontier model comes out.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
   roles you give, in order).
