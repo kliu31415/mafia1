@@ -400,3 +400,65 @@ Carol (public): Carol, the real Oracle. My N4 result stands: Heidi is not a Trac
 Dave (public): Dave here, still Vanilla. Carol says her Night 4 Oracle guess shows Heidi is not a Tracker, which contradicts Heidi's Tracker claim. Heidi also flipped her Night 1-2 denial. Carol, name the exact role you guessed for Heidi and confirm the guess was wrong. Heidi, why did you deny any Night 1-2 action before claiming Tracker? I'm not nominating yet; I'll vote after both answers.
 [ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
 Grace (public): Grace here. Carol's Oracle hits on Ivan and Erin both check out, so I lean toward Carol being real. If she is, Heidi's Tracker claim is false and her Night 1-2 denial was a lie. Dave and Mallory, if Heidi is nominated again I'll vote Guilty. I'm not nominating this round.
+Heidi (public): Heidi here, still Tracker. Carol, you have said Heidi is not a Tracker three times but still haven't named the role you guessed for me on Night 4 or whether it was a hit. An Oracle result only counts if it names a role. Grace, you voted Yes on my nomination with Carol, and you PM'd Carol on Day 4. Dave and Mallory, I won't vote on a result nobody can check. Carol and Grace should answer these before anyone votes.
+[ERROR player_error] Mallory (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Mallory (public): Mallory, Vanilla. Carol, name the exact role you guessed for Heidi on Night 4 and your target. An Oracle result without a named role can't be checked, and Heidi still owes a reason for denying her Night 1-2 actions before claiming Tracker.
+Carol (public): Carol, real Oracle. Heidi is not a Tracker (N4 result), so her track claim is false. Night 5 target private; result Day 6. I'll vote Guilty on Heidi.
+Dave (public): Dave here, still Vanilla. Carol, you still haven't named the role you guessed for Heidi on Night 4 or said whether it hit. Oracle guesses are Astral Visits, so the Katana holder can't see them, and your 'exposed target' reason is wrong. Name the role and the result, or I stay No on Heidi. Grace, has your Vigilante fired yet? I'm not nominating.
+Grace (public): Grace here. I'm changing my lean on Heidi. Her Night 1-3 tracks (Bob, Frank, Judy) match those players' own no-action statements. Carol's Oracle hits on Ivan and Erin came after both had publicly claimed those roles, so they check nothing. Carol still hasn't named her Night 4 guess. Carol, name it now, or I'll nominate you.
+Heidi (public): Heidi, still Tracker. Carol's 'Heidi is not a Tracker' names no role and no target, so it checks nothing yet. Carol, name the role you guessed for Heidi on Night 4 and whether it hit. Grace, your Vigilante has fired at no one, so your lean on Carol's results is only a lean. Dave and Mallory: my Night 4 track on Mallory matches Mallory's own statement. I'm not nominating today.
+Mallory (public): Mallory, Vanilla. Carol, name the exact role you guessed for Heidi on Night 4 and your target; a result that names no role checks nothing. Grace, has your Vigilante fired at anyone yet? I'm not nominating today.
+[Claim] Carol: Oracle. N1 Ivan Vanilla (wrong). N2 Ivan Fortune Teller (right). N3 Erin Accountant (right). N4 Heidi Tracker (WRONG).
+Carol (public): Carol, real Oracle. My N4 guess was Heidi as Tracker, and it was WRONG, so Heidi is not a Tracker and her tracks are false. Dave, Mallory, Grace: vote Guilty if she is renominated.
+[ERROR player_error] Dave (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Dave (public): Dave here, still Vanilla. Carol says her N4 Oracle guess on Heidi was a wrong Tracker guess. Carol, whom did you visit on Night 4? Heidi, your N1-N2 denial still needs a reason. I'm not nominating yet.
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Grace (public): Grace, Vigilante. The Yakuza bloc voted Guilty on both Carol and Heidi, which makes both less likely to be Yakuza. Dave and Mallory, explain your No on Heidi. Carol, name your Night 4 target.
+Heidi (public): Heidi here, still Tracker. Carol, your Night 4 'Heidi not Tracker' names no target or result I can verify, and your Oracle hits on Ivan and Erin came after both had claimed those roles publicly. Grace, you voted Yes on the Heidi nomination and PM'd Carol on Day 4. Both of you, explain what those PMs said. I won't nominate today.
+[Feedback from Mallory] At 2.89 budget, the cheapest public message (10 words, 2.92) is unaffordable, so a player with this budget can only speak privately or stay silent; the price table may be worth showing before the budget runs short.
+Carol (public): Heidi is not a Tracker (my N4 result). Vote Guilty.
+Dave nominated Heidi. Everyone now votes Yes/No simultaneously.
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Nomination votes on Heidi: Yes - Dave, Carol; No - Grace, Heidi, Mallory.
+The nomination of Heidi failed (2 Yes).
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+(to Carol, Grace) Grace -> Carol (private): Carol, name your Night 4 target and the exact role you guessed for Heidi, and whether it hit. I'll vote on that answer.
+Heidi (public): Carol's Oracle guesses are checkable and I haven't found a contradiction yet. Grace, what did your Day 4 PMs to Carol and Erin say?
+Mallory (public): Mallory, Vanilla. Heidi's tracks fit Ivan's N1-2 numbers and Erin's audits, so I lean Innocent on her. Carol, your N4 Heidi result can't be checked by anyone; explain what would prove it. I'm not nominating today.
+(to Carol, Grace) Carol -> Grace (private): Grace: Heidi isn't a Tracker by my N4 Oracle result. Your Vigilante tokens are our best shot. Tonight, shoot Heidi if you're real, and I'll vote Guilty.
+[ERROR player_error] Dave (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+[Feedback from Dave] Budget is tight: a 10-word public message costs 3.51, more than I have, so I can only speak privately this round.
+(to Carol, Dave) Dave -> Carol (private): Carol, privately: which exact role and target was your Night 4 guess? Name them plainly.
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Grace (public): Grace here, Vigilante. Carol privately asked me to shoot Heidi tonight. I won't shoot on her word alone.
+Heidi (public): Carol asked Grace to shoot me. That's the lead.
+(to Dave, Mallory) Mallory -> Dave (private): Dave, Carol asked Grace to shoot Heidi, and Grace hasn't shot. I lean Heidi Innocent and Carol suspicious. Can we vote Carol Guilty if nominated?
+(to Carol, Grace) Carol -> Grace (private): Grace, Carol here, the real Oracle. My N4 guess says Heidi is not a Tracker, so her tracks and flip are false. If you are the real Vigilante and Good, Heidi is the strongest shot left. Dave and Mallory voting No doesn't clear her.
+Dave (public): Carol privately asked Grace to shoot Heidi, whose tracks check out. I lean Guilty on Carol if nominated.
+(to Grace, Mallory) Grace -> Mallory (private): Mallory, Carol asked me privately to shoot Heidi. I won't act on her word alone. Do you trust Carol or Heidi more, and why?
+(to Heidi, Mallory) Heidi -> Mallory (private): Heidi, privately. Carol asked Grace to shoot me, and Grace PM'd Carol and Erin on Day 4. If Carol is Yakuza, she wants me gone. Please vote No on any nomination of me, and push Carol and Grace to explain their PMs before anyone votes.
+Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Carol (Oracle): target Grace; guessed role Vigilante; "Oracle guess on Grace as Vigilante."
+  Grace (Vigilante): no action
+  Heidi (Arsonist): target Carol; "Douse Carol"
+Katana: no attack (no target); nobody holds it.
+(to Carol) Moderator (private): Night 5 result: your guess that Grace is a Vigilante was RIGHT.
+(to Heidi) Moderator (private): Night 5 result: you doused Carol.
+[Moderator summary] Night 5: Carol (Oracle) guessed Grace as Vigilante, which was correct (an Astral Visit). Heidi (Arsonist) doused Carol, and Carol is now marked doused. Grace took no action. With no Yakuza left alive, there was no Katana attack. No deaths. Visits: Heidi->Carol.
+
+===== DAY 6 =====
+Nobody died last night.
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Mallory (public): Mallory, Vanilla. Heidi's tracks fit Ivan's numbers and Erin's audits. Carol's N4 'Heidi not Tracker' names no target, and she asked Grace to shoot Heidi. I'm nominating Carol.
+Mallory nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Mallory, Dave, Grace, Heidi; No - Carol.
+Carol is put on trial (4 Yes).
+[Claim] Carol: Oracle. N1 Ivan Vanilla (wrong). N2 Ivan Fortune Teller (right). N3 Erin Accountant (right). N4 Heidi Tracker (WRONG). N5 Grace Vigilante (right).
+Carol (public): Carol, the real Oracle. My results: N1 Ivan as Vanilla (wrong). N2 Ivan as Fortune Teller (right). N3 Erin as Accountant (right; her audit of me showed 0 tokens, which fits). N4 Heidi as Tracker (WRONG, so Heidi's tracks are false). N5 Grace as Vigilante (right). I already admitted my Bob nomination was a mistake. Dave is right that Oracle guesses are Astral Visits, so my earlier exposure reason was wrong. Mallory: Heidi PM'd you on Day 5, then you defended her tracks and voted No on her nominations, and today you nominated the one player who exposed her. Heidi and Mallory look like one cluster, and killing the only confirmed check helps them. Vote Innocent so the Good Oracle and Vigilante can keep working.
+(to Carol, Grace) Carol -> Grace (private): Grace, you know you are the Vigilante, so my N5 guess on you (Vigilante) hit, which a fake Oracle could only do by luck. Heidi's Tracker claim is false by my N4 result. Shoot Heidi tonight if you are willing, and vote Innocent on me.
+Dave (public): Dave, Vanilla. I'm voting Guilty on Carol, on three concrete points. (1) On Day 3 she nominated Bob with no reason, withdrew without answering five players, and only called it a mistake after pressure. (2) She privately asked Grace to shoot Heidi. Heidi's tracks on Bob, Frank and Judy match what those players said about their own nights, so a Vigilante pushed toward a Tracker is a real harm to the Village. (3) Her N4 'Heidi not Tracker' is one check nobody else can verify, and her Oracle hits on Ivan and Erin only matched claims those two had already made publicly. Grace, don't shoot on Carol's word.

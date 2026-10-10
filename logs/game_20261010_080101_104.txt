@@ -491,3 +491,137 @@ Erin (public): Erin here, no new result. Bob and Ivan, state your role and your 
 (to Frank, Ivan) Frank -> Ivan (private): Ivan, you said you'd vote Guilty if I went to trial on the circle check. Vote Yes with me to test it now.
 (to Bob, Frank) Frank -> Bob (private): Bob, you said you'd vote Guilty if I went to trial on the circle check. Vote Yes with me to test it now.
 (to Erin, Frank) Frank -> Erin (private): Erin, you said you'd vote Guilty if I went to trial on the circle check. Vote Yes with me to test it now.
+[Feedback from Grace] My notepad recorded a budget of 3.41, but this turn's prompt shows 7.64. I went by the prompt.
+Ivan (public): Ivan here. Carol's Night 2 Jester draw and Frank's failed Diviner group both point at Frank as a Jester. A hanged Jester wins and his revenge kills a random Guilty voter, so I won't vote Yes on his self-nominations. Alice, name your Prosecutor target or drop the claim.
+Alice (public): Frank's private messages to Ivan, Bob and Erin are a concrete lead, since he's asking for votes. Erin, Bob and Ivan, what did Frank ask you? I have no target yet and will name one after Night 6 results.
+Bob (public): Bob here, no new result. I won't vote Frank up. Alice, name your Prosecutor target or drop the claim. Erin and Grace, post Night 6 results if you get any.
+Erin (public): Frank PMed me asking for a Yes vote. Bob and Ivan, state your roles and Night 4-5 actions now.
+Frank (public): Frank here. Yes, I PMed Ivan, Bob and Erin for Yes votes. Bob and Ivan, state your roles now or I'll vote on your silence.
+Ivan (public): Ivan here, no new result and no nomination from me. Frank's private requests for Yes votes fit a Jester hunting a hang, so I won't vote Yes on him. Erin and Grace, what would your Night 6 results need to show before you'd vote on anyone?
+[Feedback from Erin] The cheapest public message (10 words, 3.51) is above my 2.55 budget, so I can only speak privately this round.
+(to Bob, Erin) Erin -> Bob (private): Bob, you and Ivan are the only living players without a stated role. Privately, tell me your role and your Night 5 action. I'll weigh your answer against the Night 6 results before any vote.
+[Feedback from Frank] Budget of 2.73 blocks both public messages (3.51 minimum) and nominations (3.00), so my only option this round was a private message.
+(to Alice, Frank) Frank -> Alice (private): Alice, prosecute me on Day 7. It's a cheap test and I'm the Jester you suspect.
+[Feedback from Grace] My notepad says budget 3.41 but the prompt says 8.00; I went with the prompt's figure.
+Grace (public): Grace here. Bob and Ivan, state your role and Night 4-5 actions now. Frank's Jester-style pushes don't get my vote. Ivan is my top Yakuza read.
+Ivan (public): Ivan here, no new result and no nomination from me. Alice, name your Prosecutor target or drop the claim, and Night 6 results should decide the next vote.
+Alice (public): Ivan, you have refused to state a role for three Days, and Carol's Night 1 group put a Pharmacist on you. Bob, same question. Answer before Night 6 votes.
+(to Erin, Grace) Erin -> Grace (private): Grace, Erin here privately. I can't afford a public line this round. Please send me your Night 6 result before any vote. I won't vote on silence or Frank's self-nominations, and I'll only vote Guilty on a claim-result contradiction.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank; No - Grace, Ivan, Alice, Bob, Erin.
+The nomination of Frank failed (1 Yes).
+Discussion time is over. The day ends.
+
+===== NIGHT 6 =====
+(to Bob, Ivan) Bob (Yakuza chat): Bob: Night 6 plan. Katana stays with Bob (holder unchanged). Katana attack on Alice: she is the Prosecutor with 2 tokens, the one village role that can force a nomination on us, and she keeps pressing Ivan's role. Ivan, block Alice so she cannot set up a prosecution tonight; a prosecution set up before she dies still happens under R21, so the block is what matters. Bob makes no other visits. Ivan, reply agree or object; we both vote the same holder and target.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan agrees: Bob keeps the Katana with no holder change, the Katana attack goes on Alice, and I block Alice tonight so her prosecution can't be set up. Bob makes no other visits. We both vote holder Bob and target Alice. Ready.
+(to Bob, Ivan) Bob (Yakuza chat): Bob: I agree with the plan. Katana stays with Bob (no holder change), attack on Alice, Ivan blocks Alice so her Prosecutor cannot be set up. Bob makes no other visits. Both of us vote holder Bob and target Alice tonight. Ready.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan agrees with Bob's plan: Bob keeps the Katana with no holder change, the Katana attack goes on Alice, and I block Alice tonight so her Prosecutor can't be set up. Bob makes no other visits. We both vote holder Bob and target Alice. Ready.
+Night actions:
+  Alice (Prosecutor): no action
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Alice
+  Grace (Archivist): no action
+  Ivan (Pharmacist): target Alice; "Role-block Alice."; Katana vote: Bob holds, attacks Alice
+  Erin (Ex-Con): automatic: target Frank; "random visit"
+Katana: Bob holds it and attacks Alice.
+(to Alice) Moderator (private): You were role-blocked tonight. You were attacked with the Katana, and you died.
+(to Bob) Moderator (private): Night 6 result: You held the Katana and attacked Alice. The attack succeeded. Yakuza actions tonight: Bob held the Katana and attacked Alice; Ivan chose to role-block Alice.
+(to Ivan) Moderator (private): Night 6 result: You role-blocked Alice. Yakuza actions tonight: Bob held the Katana and attacked Alice; Ivan chose to role-block Alice.
+[Moderator summary] Night 6: Ivan (Pharmacist) role-blocked Alice (who took no action). Bob kept the Katana and attacked Alice (Standard vs None): Alice died, killed by Katana. Erin's Ex-Con visit landed on Frank. Visits: Ivan->Alice, Bob->Alice, Erin->Frank. Alice told she was blocked, attacked with the Katana and died; Bob told the attack succeeded; both Yakuza told each other's actions. Alive: Bob, Ivan (Yakuza), Erin, Grace (Village), Frank (Jester). No win yet.
+
+===== DAY 7 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice (Prosecutor, Good). I hold 2 prosecution tokens and have no night results. I was role-blocked on Night 5, so someone active was targeting me. Frank is a confirmed liar: his Diviner claim failed the circle check, and he has self-nominated repeatedly on silence, which is Jester-like, so do not hang him without a stronger reason. Ivan and Bob have never stated roles; Ivan sits in dead Carol's Night 1 group with a Pharmacist draw, so check him first. Erin's Ex-Con claim fits Judy's Night 1 pair if Carol read Good, and it is still testable. Carol's Judy visit on Night 2, from Heidi's track, is unexplained and is the main Katana lead. Vote Guilty only on a concrete contradiction, not on silence. Use my tokens only on a lead the living Village agrees on."
+[Night check] Night 6: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Ivan (public): Ivan here. Five are alive and Frank has self-nominated repeatedly after admitting a false Diviner claim, so he is a liar and possibly a Jester. I won't nominate on silence. Erin and Grace, what results do you hold for Night 7, and which of you would you test first? Bob, please state your role plainly.
+[Claim] Bob: Grunt. No night action, no results.
+Bob (public): Bob here. My role is Grunt, which has no night action, so I have no results to share. Ivan, I'm not hiding a Pharmacist claim; I'm just not in a position to reveal more. Erin and Grace hold the only claims that can be tested. Frank, a hanged Jester wins, so I won't vote Guilty on self-nominations alone.
+Erin (public): Erin here. Bob's Grunt claim is a Yakuza role, and Bob voted Innocent on Carol, our Katana-visit suspect, and defended her. Ivan sits in Carol's Night 1 group with a Pharmacist drawn, and Ivan still hasn't stated a role. Ivan and Bob, say plainly what you did on Nights 4 to 6. I'll vote Yes on whichever of you stays unclear.
+(to Erin, Grace) Erin -> Grace (private): Grace, Erin privately: I think Bob and Ivan are our Yakuza. If Ivan won't claim, let's nominate Bob or Ivan together and vote Guilty. Please share your Night 6 results with me.
+Frank (public): Frank here. Five are alive. Bob has claimed Grunt with no night action, and Ivan still hasn't stated a role or any Night 4 to 6 action. Erin and Grace hold the only live claims. I won't nominate myself again. If you think the Jester is the real threat, nominate me and vote Guilty on a concrete reason. Otherwise, test Ivan and Bob on their silence.
+Grace (public): Grace here. My only result is the Night 1 archive, already shared, and I have no Night 2 to 6 results, so nobody should wait on one from me. Ivan, you still haven't stated a role or your Night 4 to 6 actions. Answer plainly. I won't vote on silence or on Frank's self-nominations.
+(to Erin, Grace) Grace -> Erin (private): Erin, I have no Night 6 result. My only result is the Night 1 archive, already shared. I won't vote Guilty without a concrete contradiction.
+Ivan (public): Ivan here. I have no new result and I won't nominate on silence. Erin and Grace, post any Night 7 results you hold before anyone is put on trial.
+Erin (public): Erin here. I'm nominating Ivan. He has refused to state any role for seven Days. Carol's Diviner group put a Pharmacist on him, and the blocks on Dave, Mallory and Alice fit a Pharmacist. Ivan, state your role and Night 4-6 actions now, or vote Yes with me and Guilty.
+(to Erin, Grace) Erin -> Grace (private): Grace, I'm nominating Ivan now. Please vote Yes with me.
+Erin nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: Yes - Erin, Frank, Grace; No - Ivan, Bob.
+Ivan is put on trial (3 Yes).
+Ivan (public): Ivan here. Erin and Grace, the stated reason for this trial is that I haven't given a role or Night 4-6 actions. Bob also gave no role until today and was not nominated for it. Nobody has shown a concrete contradiction in my posts, and the only thing against me is a dead Diviner's Night 1 group. Frank has self-nominated again and again and admitted a false Diviner claim. A Jester wants a hang, so don't let his pushes decide who you vote on. If you have a concrete contradiction in my play, name it now. Otherwise I'm voting Innocent.
+Bob (public): Bob here. Ivan has not been caught in any contradiction. Erin's case rests on Carol's Night 1 Diviner group, but Carol's claims came from a player we now know was Yakuza, so that group can't place a Pharmacist on Ivan. Erin's own Ex-Con claim is also untested, and the trial was called for silence on roles. Frank has already admitted a false claim, and he voted Yes here without a new reason. I'm voting Innocent. Before anyone votes Guilty, name one concrete contradiction in Ivan's posts or results. If there isn't one, we should not hang a living player on a dead liar's group.
+Erin (public): Erin here. Bob wrote that Carol's claims came from a player "we now know was Yakuza", but Carol's role was never revealed. Only a teammate could know that. Ivan is the live Pharmacist read, since he's the one player who has never stated a role and the blocks on Dave, Mallory and Alice need an active blocker. I vote Guilty on Ivan.
+(to Erin, Grace) Erin -> Grace (private): Grace, Bob's line that Carol was known Yakuza is a leak only a teammate could know. Vote Guilty with me on Ivan.
+Frank (public): Frank here. I'm voting Guilty on Ivan. He has dodged stating a role and his Night 4 to 6 actions for seven Days, and he is the only living player in Carol's Night 1 Pharmacist group. Ivan, answer plainly before the vote.
+Grace (public): Grace here. I'm voting Guilty on Ivan. Carol's Night 1 Diviner group (Grace, Heidi, Ivan) drew a Pharmacist, and Grace and Heidi are not Pharmacists, so that Pharmacist is Ivan. Carol's Night 2 visit on Judy fits her holding the Katana. Ivan has never stated a role, and the blocks on Dave, Mallory and Alice fit an active Pharmacist.
+Ivan (public): Ivan here, final defense. The only case against me is Carol's dead Diviner group, which I can't question now. Erin nominated me with no result, right after three private messages to Grace this Day, and Grace's Guilty vote repeats Erin's read rather than adding a new one. Frank has voted Guilty on every trial and asked for a hang on silence for four Days. Erin, your Ex-Con read is untested, and Judy's pair is still open. Before anyone votes Guilty, name one concrete contradiction in my posts. I've asked for results all Day, and I'm voting Innocent.
+(to Grace, Ivan) Ivan -> Grace (private): Grace: Frank is the Jester on Carol's Night 2 draw and keeps asking for a hang. Hanging me leaves only Erin's Ex-Con word on the board. Please vote Innocent unless you have a result beyond Carol's group.
+Trial votes on Ivan: Guilty - Erin, Frank, Grace; Innocent - Bob, Ivan.
+Ivan is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan's will: I claim no role and publish no night actions. Frank is a confirmed liar: his Diviner claim failed the circle check, and his repeated self-nominations are Jester-like, so do not hang him on silence. Erin's Ex-Con read fits Judy's Night 1 pair only if Carol reads Good, so test it with Night results before trusting either side. Carol's Night 2 visit on Judy, from Heidi's track, is unexplained, so check who had the Katana and who passed it. Grace's archive still leaves Pharmacist and Grunt unclaimed among Bob, Frank and Ivan. Vote on concrete contradictions and mechanical results, not on silence or self-nominations."
+
+===== NIGHT 7 =====
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Erin
+  Grace (Archivist): no action
+  Erin (Ex-Con): automatic: target Grace; "random visit"
+Katana: Bob holds it and attacks Erin.
+(to Erin) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Bob) Moderator (private): Night 7 result: you kept the Katana and attacked Erin. The attack succeeded. No other Yakuza actions were taken tonight.
+[Moderator summary] Night 7: Bob (Grunt) kept the Katana and attacked Erin (Ex-Con, Defense None) with a Standard attack, so Erin died. Erin's automatic Ex-Con visit went to Grace. Grace (Archivist, 0 tokens) and Frank took no action, and nobody was role-blocked. Visits: Bob->Erin, Erin->Grace. Still alive: Bob (Yakuza), Frank (Jester), Grace (Village). The game goes on because Bob and Grace are in different factions, and the Jester is ignored for the win check.
+
+===== DAY 8 =====
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "Erin, Ex-Con (Good, appears Evil to alignment checks). I am Good. My nightly visits are random and I am never told whom they hit, so they clear and hit no one. Judy's Night 1 Seer pair (Carol and Erin differ) fits Erin reading Evil and Carol reading Good. Mallory's Night 3 Oracle guess that Erin is the Ex-Con was right. Carol claimed Diviner and was hanged; her Night 2 Judy visit comes only from Heidi's track, so Carol is the likeliest Katana holder that night. Frank claimed Diviner, the group failed the circle check, and he admits the claim was false; treat him as a liar and possibly a Jester, not a proven Yakuza, and do not hang him on self-nominations. Alice (Prosecutor) and Grace (Archivist) are the remaining Village claims. Bob and Ivan have never stated roles or Night 4-5 actions; the unclaimed Pharmacist and Grunt slots sit among Bob, Frank and Ivan. Do not vote on silence. Vote only on claims that fit results, and trust nobody who avoids plain answers about their own nightly visits."
+[Night check] Night 7: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Bob (public): Bob here. I won't nominate today. Frank's self-nominations are Jester-like, and a hanged Jester wins, so I won't vote Guilty on them without a concrete mechanical reason. Grace, state your current read and what you'd want the town to test.
+Frank (public): Frank here. Erin died to the Katana on Night 7, and only Bob is left alive among the Yakuza, so Bob is the likely holder. Bob, say plainly whether you held the Katana that night. Grace, I have no night role and no result, so if you doubt me, test me at trial rather than letting Bob's silence run the Day.
+(to Frank, Grace) Frank -> Grace (private): Grace, the Katana is most likely with Bob, the last Yakuza, and he will strike again on Night 8 unless the town acts today. I'm the only nominee who can go to trial right now. Vote Yes and Guilty on me; it's the cheapest test you have.
+Grace (public): Grace here. Bob claimed Grunt, a Yakuza role, and Erin died to the Katana on Night 7. Ivan is hanged, so Bob is the only living Yakuza and the likely holder. I'm nominating Bob for trial. Bob, if you're Village, say so plainly. Frank, you say you have no role, so you can't clear yourself either. Vote Yes and Guilty on Bob: he is the Yakuza we can hang. I won't vote Guilty on you.
+(to Frank, Grace) Grace -> Frank (private): Frank, I'm nominating Bob, our only living Yakuza. Vote Yes and Guilty on him with me. I won't vote Guilty on you.
+Grace nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Grace, Frank; No - Bob.
+Bob is put on trial (2 Yes).
+Bob (public): Bob here. I'm Grunt with no night action and no results, and I've said that since Day 7. Grace's nomination rests on Erin's death and my role, not on a contradiction in my posts. Erin's last will said Carol was the likeliest Katana holder on Night 2, and nobody has shown a Yakuza-linked result against me. Frank has admitted a false Diviner claim and has pushed Guilty votes all game. Grace, name one concrete contradiction in my posts or votes. I voted Innocent on Ivan for the same reason. Hanging a Grunt with no evidence fixes nothing.
+(to Bob, Frank) Bob -> Frank (private): Frank, think about the trial math. If I'm hanged, the game ends with you still alive, and a Jester who is alive at the end loses. Vote Innocent on me, then argue for your own hang on a real case if you want one.
+Frank (public): Frank here. I'm voting Innocent on Bob. Grace's case rests on Erin's death and Bob's Grunt claim, with no contradiction in his posts, and a hang now ends the game with only Grace and me alive. If you think I'm protecting him, nominate me tomorrow and vote Guilty. That is a test you can run.
+(to Frank, Grace) Frank -> Grace (private): Grace, I'm voting Innocent on Bob. If you think I'm protecting him, nominate me tomorrow and vote Guilty.
+Grace (public): Grace here. I'm voting Guilty on Bob. Concrete contradiction: on Day 7 Bob wrote that Carol's claims came from 'a player we now know was Yakuza'. Roles aren't revealed on death, so only a Yakuza could know that. Bob, how did you learn Carol's alignment?
+Bob (public): Bob here. My 'we now know was Yakuza' line was careless wording. Carol had claimed Diviner, and the public role list marks Diviner as a Yakuza role, so I was reacting to her claim, not a reveal. Roles aren't shown on death, and I have no night result on anyone. I voted Innocent on Ivan's trial for the same reason: no concrete contradiction. Grace's Guilty vote rests on that one line, and Frank has admitted a false claim. Vote on evidence, not on the wording of one post.
+(to Bob, Frank) Bob -> Frank (private): Frank, keep your Innocent vote on me as you said. If I'm hanged, only you and Grace are left, and a Village-only table is not a Jester win for you. Don't feed Grace's hang.
+Trial votes on Bob: Guilty - Grace; Innocent - Bob, Frank.
+Bob is found Innocent (1 Guilty of 3 votes; 2 needed).
+(to Bob, Frank) Bob -> Frank (private): Frank, if Grace nominates me again, vote No. Her case is thin, and a Village-only table with you alive is a fair result for you.
+Frank (public): Frank here. Only Grace, Bob and I are alive, so this vote matters. Grace, you have said my self-nominations are Jester-like, and that is fair. If you think I'm Yakuza, nominate me and vote Guilty. Bob, say plainly whether you held the Katana on Night 7.
+Grace (public): Grace here. I'm nominating Bob again. Erin died to the Katana on Night 7 and Bob is the only living Yakuza, so he almost certainly held it. Bob, say plainly where you were that night. Frank, you voted Yes on this nomination, so vote Guilty too or explain why Bob is Village.
+(to Frank, Grace) Grace -> Frank (private): Frank, if Bob is Village, a Guilty vote costs you nothing. If he's Yakuza, he kills me tonight. Vote Guilty with me.
+Grace nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Grace; No - Bob, Frank.
+The nomination of Bob failed (1 Yes).
+Frank (public): Frank here. I'm nominating myself again. Nobody has a result that clears me. A Jester hang doesn't end the game: Bob and Grace stay alive and nobody's plan changes. Bob, vote Yes and Guilty on me. Grace, if you find a real contradiction in Bob's play, you can still nominate him.
+(to Bob, Frank) Frank -> Bob (private): Bob, vote Yes and Guilty on me at trial. It costs you nothing: I'm no threat to you, and you and Grace stay alive as before.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank; No - Grace, Bob.
+The nomination of Frank failed (1 Yes).
+Grace (public): Grace here. I'm not nominating again today. Frank voted Innocent on Bob and No on his re-nomination, while Bob sent Frank three private messages today. Frank also says Bob is the Katana holder, so keeping Bob alive helps the Katana. Bob, if you're Village, name who you think targeted Erin and explain how you know your own night.
+(to Bob, Frank) Frank -> Bob (private): Bob, I'm nominating myself. Vote Yes and Guilty. If you're Yakuza, my hang lets you go after Grace tonight, and I win as the Jester. If you're Village, a Yes costs you nothing, since I'm no threat to you. Vote with me on this.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank; No - Grace, Bob.
+The nomination of Frank failed (1 Yes).
+(to Frank, Grace) Grace -> Frank (private): Frank, Bob is the last Yakuza and holds the Katana. He kills me tonight unless Bob hangs. Vote Guilty on him with me now.
+Grace nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Grace; No - Bob, Frank.
+The nomination of Bob failed (1 Yes).
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Grace; No - Bob.
+Frank is put on trial (2 Yes).
+Frank (public): Frank here. I'm the Jester, and I'll say so plainly: a hanged Jester wins. Nobody has a result that clears me, and I have no night role to show. Bob has voted Innocent on me and sent me several private messages arguing I should stay alive. Grace, Bob is the last Yakuza and holds the Katana. If he strikes you tonight with me alive, the Yakuza win. A Guilty vote on me is a real choice, not a wasted one, and it's the only trial result available today. Vote on the evidence, not on my self-nominations.
+Grace (public): Grace here. I'm voting Innocent on Frank. He says he is the Jester, and a hanged Jester wins at once, so a Guilty result hands Frank the game. Carol's Night 2 Diviner group (Frank, Grace, Heidi) drew a Jester. Grace and Heidi are not Jesters, so Frank is that Jester. Frank keeps pushing his own hang, which is what a Jester does. Bob, your Innocent vote fits protecting him, and I'd like you to explain it. Vote Innocent with me.
+Bob (public): Bob here. I'm voting Innocent on Frank. He says he is the Jester, and a hanged Jester wins at once, so a Guilty result hands him the game. Grace, your Diviner-group argument is circular, since it only works if Carol's claim is true. Vote Innocent.
+Frank (public): Frank, final defense. I've said plainly that I'm the Jester and I want the hang. Nothing I've posted is a verified result, so you should judge me on that. The question for your vote is who benefits from me staying alive. Bob voted Innocent on me, sent me three private messages arguing I should live, and claimed Grunt while never explaining his Night 4 to 6 actions. Bob's 'we now know was Yakuza' line about Carol came from someone who knew her alignment. Grace, you think Bob is the last Katana holder, so don't let his advice to me decide your vote. Vote Guilty on me.
+(to Frank, Grace) Frank -> Grace (private): Grace, Bob is the one arguing hardest for me to live. Vote Guilty and ask him why.
+Trial votes on Frank: Guilty - Frank; Innocent - Bob, Grace.
+Frank is found Innocent (1 Guilty of 3 votes; 2 needed).
+Grace (public): slots fit Ivan as Pharmacist, Carol as Diviner, Bob as Grunt, Frank as Jester. Bob is the last Yakuza and holds the Katana. Frank, I won't vote Guilty on you while the Jester revenge kills me.
+(to Frank, Grace) Frank -> Grace (private): Grace, nominate me and vote Guilty with me. Hanging the Jester wins my game. Revenge would hit a living Guilty voter tonight, so you should know that risk. Bob voted Innocent to keep me alive, and he is the Katana holder who may strike you whatever we do.

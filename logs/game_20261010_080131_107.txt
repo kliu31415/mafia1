@@ -386,3 +386,123 @@ Frank nominated Ivan. Everyone now votes Yes/No simultaneously.
 Nomination votes on Ivan: Yes - Frank, Mallory, Alice, Dave, Erin; No - Heidi, Ivan.
 Ivan is put on trial (5 Yes).
 Ivan (public): Ivan here, Vanilla Villager, with no night action on Nights 1-4. Mallory's Night 4 numbers are 1 visited and 1 visitor, so exactly one player visited Carol. Alice's Night 4 Scout result puts Erin, Heidi and me each in a different group, so I'm not linked to Carol's visitor. Mallory's Night 1 numbers fit the simplest reading, Bob visiting Judy and Grace visiting Dave, which means Judy visited nobody and her Sheriff check on me couldn't have happened. My Yes votes on Dave were a test of his self-nominations. With Dave now a Jester, a Yes helps him win, so I won't repeat it. Frank, you nominated me after PMing Heidi and Alice on Day 5. What did you ask them? Vote on the Scout groups and the 1/1 count, not on my old votes.
+Mallory (public): Mallory, FT. Ivan, your record is the concrete issue. Your Day 2 Yes on Judy came after Judy PM'd you asking for it. You called your Day 4 Yes on Dave a test and said you would not repeat it, then voted Yes on Dave's Day 5 self-nomination. Dave is the Executioner whose target died, so hanging him is a Jester win. Grace, a Diviner (a Yakuza role), was your Innocent. I'm voting Guilty unless you explain the Day 5 Yes and what Judy's PM asked.
+Alice (public): Alice, Scout. Ivan has a concrete contradiction. On Day 4 he voted Yes on Dave's self-nomination and said 'I won't repeat it', then voted Yes on Dave again on Day 5 without explaining. He also voted Innocent for Grace, a Yakuza Diviner and the Night 2 Katana holder, and Yes on Judy's trial after Judy PM'd him. My Scout groups don't clear him: Ivan was separate from Erin and Heidi on Night 4, which fits him as the holder visiting Carol. I'm leaning Guilty. Ivan, did you visit Bob on Night 3 or Carol on Night 4, yes or no?
+Dave (public): Dave here. Ivan has now answered that he had no visits, but he still hasn't said whether he visited Bob on N3 or Carol on N4. His Yes votes on my nominations helped push a possible Jester toward a hanging, which is an odd Yakuza move, so I can't read them as Yakuza coordination. My vote on his trial depends on whether his visit answers hold up against Mallory's and Alice's numbers.
+Erin (public): Erin, Vanilla. I'm voting Guilty on Ivan. Concrete contradiction: on Day 4 he wrote that his Yes on Dave's self-nomination 'was a test, and I won't vote Yes on him again', then voted Yes on Dave again on Day 5 without explaining. He also voted Innocent for Grace, whose Katana visit Bob's watch and Mallory's numbers pointed to, and he still hasn't answered directly whether he visited Bob on N3 or Carol on N4. A checkable answer from him would change my vote.
+Frank (public): Guilty on Ivan. Concrete reasons: he voted Innocent for Grace, whose Diviner group results match Carol's Oracle claim, then voted Yes on Dave's self-nomination on Days 4 and 5 after saying he would not repeat it. Ivan, explain the Day 5 Yes. Anyone with a checkable answer, post it before the vote.
+Heidi (public): Heidi here. I'm voting Innocent on Ivan. Frank's and Erin's Guilty case rests on Ivan's Yes votes on Dave's self-nominations and Judy's trial. Those votes came while Judy and Dave were pushing hangings, and a PM from a Jester is not proof of Yakuza. Mallory's 1/1 and Alice's groups still leave Erin, Frank, Ivan and me possible as the holder, so nobody has a checkable link to Ivan. Frank, you PM'd me on Day 5 and then nominated Ivan. Alice and Mallory, say what your Guilty votes rest on beyond Ivan's Yes votes.
+Ivan (public): Ivan, Vanilla. Three points for the vote. One: Alice's Scout groups don't clear me. Her own reading says the Night 4 holder could be me, and nobody has a visit showing me at Carol or Bob. Two: my Day 5 Yes on Dave was a mistake, and I won't repeat it. Three: Frank nominated me right after two PMs to Heidi and Alice on Day 5, and hasn't said what they asked. Dave, you and I both voted Innocent on Grace. Vote on my case: no visits, and no checkable link to any attack.
+(to Dave, Ivan) Ivan -> Dave (private): Dave, a hang on me doesn't win you anything. Vote Innocent on my case and I'll stop voting Yes on your nominations.
+Trial votes on Ivan: Guilty - Alice, Erin, Frank, Mallory; Innocent - Dave, Heidi, Ivan.
+Ivan is executed by hanging (4 Guilty of 7 votes; 4 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan, Vanilla Villager as claimed, with no night results. I submitted no night actions and had no visits on Nights 1-4. On record: Yes on Judy's Day 2 nomination; Innocent on Grace because her trial rested on one Lookout watch revealed only after Judy died. Carol's Oracle reads can't be checked by any visit, so weigh them lightly. Judge by votes, checkable claims and mechanical results, and check Alice's and Mallory's Night 4-5 numbers against each other."
+
+===== NIGHT 5 =====
+Night actions:
+  Heidi (Clerk): no role action; Katana vote: Heidi holds, attacks Alice
+Katana: Heidi holds it and attacks Alice.
+(to Alice) Moderator (private): Last night you were attacked with the Katana. You died.
+(to Heidi) Moderator (private): Night 5 result: you kept the Katana and attacked Alice with it. Your attack succeeded. You did not use your Clerk ability, so you still have 1 clerk token.
+(to Mallory) Moderator (private): Your Fortune Teller numbers for last night (which number is which isn't given): 1 and 1.
+[Moderator summary] Night 5: Heidi (Clerk, sole Yakuza) kept the Katana and attacked Alice (Standard vs None), so Alice died (Katana, by Heidi). Heidi used no Clerk token (1 left). Only visit: Heidi->Alice. Mallory's FT numbers: 1 and 1. No role-blocks, no Jester revenge pending (Ivan, hanged on Day 5, was the Fabricator). Still alive: Dave (Jester), Erin, Frank, Mallory (Village), Heidi (Yakuza), so the game goes on.
+(to Alice) Moderator (private): Tonight Alice, Dave and Erin were each in a different visit group.
+
+===== DAY 6 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice, Scout (claimed). Scout results: N1 Carol, Grace and Judy in separate groups; N2 Erin, Frank and Grace separate; N3 Alice, Carol and Ivan separate; N4 Erin, Heidi and Ivan separate. Mallory's N4 Fortune Teller numbers (1 and 1) put the Katana holder on Carol alone. Bob's N2 watch (Grace as Judy's only other visitor) and Grace's Yakuza-role Diviner claim fit Grace as an earlier Katana holder. Judy's Sheriff claim (Ivan Evil) and Carol's Oracle claims are unverified. Check who visited Bob on N3 before trusting any claim."
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Heidi (public): Heidi here. No new result and no nomination from me this round. I'll vote on checkable numbers and visit results when they post, not on pushes or PMs.
+Mallory (public): Mallory, FT. My N4 and N5 numbers are both 1/1, so the only visit each night was the Katana holder's: Carol on N4, Alice on N5. Anyone who claims a visit on N4 or N5 is contradicted by that. Frank and Heidi, did you visit anyone on N4 or N5, yes or no? Erin has already denied visits on N1-4. Dave is a Jester, so nobody should vote Guilty on him.
+(to Heidi, Mallory) Mallory -> Heidi (private): Heidi, Carol PMed you on Day 4. Did that message say anything about the holder or about her Oracle results? Answer directly, it may matter for the vote.
+Dave (public): Dave here. I'm nominating myself again and will vote Guilty on myself. Mallory's Night 5 numbers (1 visited, 1 visitor) mean the living Katana holder visited Alice, so the holder is Erin, Frank, Heidi or Mallory. A trial is the only test left, so vote on this case, not on Carol's untestable Oracle reads.
+(to Dave, Heidi) Dave -> Heidi (private): Heidi, Dave here. Please vote on my trial today, not on speeches. You're one of the four candidates for the living holder, so answer directly: did you visit anyone on Night 4 or Night 5?
+Dave nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Dave; No - Erin, Frank, Heidi, Mallory.
+The nomination of Dave failed (1 Yes).
+Erin (public): Erin, Vanilla. Mechanics: Dave is a Jester, not Yakuza, and I visited nobody. The living Katana holder is Frank, Heidi or Mallory. Mallory's N5 1/1 says the holder hit Alice, so Mallory is either the holder or a real Fortune Teller. Frank and Heidi, answer directly: did you visit Carol on N4 or Alice on N5? Mallory, did you visit anyone on N5 yourself? No nomination from me until these answers come in.
+Frank (public): Frank, Vanilla. Living non-Jester candidates for the holder are Erin, Heidi and Mallory. Mallory's 1/1 numbers fit her as holder too, since a holder's own visit counts in Fortune Teller numbers. Heidi, yes or no: did you visit Bob on N3 or Carol on N4? No nomination until that is answered.
+Heidi (public): I did not visit Bob on N3 or Carol on N4, and I have no role night action. Frank, Mallory's 1/1 numbers only count visits, so they can't tell us who the visitor was. Mallory, did your FT numbers on N4 and N5 include any visit by you?
+Heidi nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Heidi, Dave; No - Mallory, Erin, Frank.
+The nomination of Dave failed (2 Yes).
+Mallory (public): Mallory, FT. Night 5 was 1/1, so one visitor hit Alice, and that visitor is Yakuza. Erin says she visited nobody. Heidi denied only N3 and N4, not N5, and Frank hasn't answered either. I'm nominating Heidi. Don't vote Guilty on Dave; he's a Jester now.
+(to Frank, Mallory) Mallory -> Frank (private): Frank, yes or no: did you visit Alice on Night 5?
+Mallory nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Mallory, Frank; No - Dave, Erin, Heidi.
+The nomination of Heidi failed (2 Yes).
+Dave (public): Dave here. Frank still hasn't answered whether he visited Carol on Night 4 or Alice on Night 5, and Mallory's Night 5 1/1 count points to a living visitor who hit Alice. Nominating myself again is the only trial on the table, so vote on that case, not on Carol's untestable Oracle reads.
+Dave nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Dave; No - Erin, Frank, Heidi, Mallory.
+The nomination of Dave failed (1 Yes).
+Erin (public): Erin again. Night 5 numbers (1 visited, 1 visitor) put the living Katana holder on Alice alone, so the holder is alive and is Frank, Heidi or Mallory. Ivan was alive on Nights 3 and 4 and could have held the Katana before his hanging, which would mean the holder inherited it from him. Heidi denied only N3 and N4. Frank hasn't answered any visit question. Mallory's 2/2 and 1/1 counts match Bob's and Grace's visits, so I'm treating her as the real Fortune Teller for now. Dave is a Jester, so don't vote him. I'm not nominating this round.
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, you denied N3 and N4 but not N5. Did you visit Alice on Night 5? Yes or no.
+Frank (public): Frank, Vanilla: I visited nobody on any night. Heidi, yes or no: did you visit Alice on Night 5? You answered N3 and N4 but not N5. Mallory, your N5 1/1 needs one visitor, so was that you? No nomination from me yet.
+Mallory (public): Mallory, FT. Heidi, you denied visits on N3 and N4 but skipped N5. Today you also nominated Dave after warning on Day 5 against hanging him. Frank, you denied every night, so answer Mallory's N5 question too. Did either of you visit Alice on Night 5? Yes or no. Dave is a Jester, so don't vote him.
+(to Heidi, Mallory) Mallory -> Heidi (private): Heidi, you still haven't said whether you visited Alice on Night 5. Also, what did Carol's Day 4 PM to you say about the Katana holder or her Oracle results?
+Dave (public): Dave here. I'm nominating myself again. I have no night action, so the only test of my Judy pushes is a Guilty vote. Heidi still hasn't answered N5, and Mallory's 1/1 count is still open. Vote on that, not on Oracle reads.
+(to Dave, Frank) Dave -> Frank (private): Frank, Dave. Heidi's skipped N5 answer and my Judy pushes are the only checkable reads left. A Guilty vote on me is a real test.
+Dave nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Dave; No - Erin, Frank, Heidi, Mallory.
+The nomination of Dave failed (1 Yes).
+Erin (public): Erin, Vanilla. Mallory's N1 and N2 counts fit Bob's watch and Grace's divines exactly, so her numbers are the best checkable data we have. If she's honest, the living holder is Frank or Heidi. Heidi, you denied N3 and N4 and skipped N5, which is the night the holder visited Alice. Answer it now, yes or no. Frank, you denied every night. I'll vote on the next nomination once both answer.
+(to Erin, Mallory) Erin -> Mallory (private): Mallory, did you visit Carol on N4 or Alice on N5 yourself? Yes or no, please.
+Frank (public): Frank, Vanilla. Heidi, you denied visits on N3 and N4 but skipped N5, the night Alice died to the holder. Yes or no: did you visit Alice on Night 5? Mallory, yes or no: did you visit anyone on Night 5? Your Fortune Teller count can't say who the visitor was.
+Mallory (public): Mallory, FT. The Katana holder visited Alice on N5, and Dave is a Jester, so the holder is Erin, Frank or Heidi. Heidi still hasn't answered whether she visited Alice on N5, and Frank's blanket denial can't be checked. Heidi, answer that directly now. I'll vote Guilty on whoever keeps dodging.
+Dave (public): Heidi and I voted Yes on me, while Erin, Frank and Mallory voted No. Erin, Frank, Mallory: if you think my Judy pushes were Yakuza-driven, vote Guilty on me at the next trial.
+Erin (public): Holder alive on N5 must be Frank or Heidi if Mallory's 1/1 is honest. Heidi denied N3 and N4 but skipped N5, and Frank denied every night. My vote: Guilty on whichever of them won't answer 'did you visit Alice on N5' yes or no before the next nomination.
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, you skipped N5. Did you visit Alice on Night 5, yes or no?
+Frank (public): I'm nominating Heidi. She denied N3 and N4 but still hasn't answered whether she visited Alice on N5. 'No role night action' doesn't answer that, since a Katana holder needs no role. Heidi, yes or no.
+Frank nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Frank, Mallory, Dave, Erin; No - Heidi.
+Heidi is put on trial (4 Yes).
+Heidi (public): Heidi, Vanilla Villager, in my defense: I have not visited anyone on any night and I have no role night action. Erin asked about Night 5, but Mallory's 1/1 count only shows one visitor and doesn't name them. The useful check is Frank. He denied every night, nominated me on Day 6 right after Dave PM'd him, and he PM'd Alice on Day 4 before she died to the Katana. Frank, what did you tell Alice? Dave is a Jester who wants a hanging, so his PMs to Frank are a reason to doubt Frank, not me. Vote on this trial with that in mind.
+(to Erin, Heidi) Heidi -> Erin (private): Erin, Frank's nomination of me is the only fresh push, and his Day 4 PM to Alice before she died is the link to check. Vote Innocent on me and press him on it.
+[ERROR player_error] Mallory (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Mallory (public): Mallory, FT. Guilty on Heidi. On Day 5 she warned against hanging Dave, then nominated him on Day 6. She also never said whether she visited Alice on N5 or what Carol's Day 4 PM said.
+Dave (public): Dave here. Heidi has now denied visits on every night, including Night 5, which answers Erin's question. Mallory's Night 5 count of 1/1 shows one visit but names no visitor, so it can't convict Heidi alone. Frank's blanket denials and his PMs to Alice and Heidi still need an answer. I'm leaning Innocent on Heidi unless someone shows a contradiction to her denials.
+[ERROR player_error] Erin (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Erin (public): Erin, Vanilla. Heidi, you denied N3 and N4, and you denied N5 only after three asks. Frank, you denied every night and PM'd Alice on Day 4 before she died. I'm leaning Guilty on Heidi unless Frank explains that PM.
+Frank (public): Frank, Vanilla. I'm leaning Guilty on Heidi. The Night 5 holder is Erin, Heidi or Mallory. Heidi's three visit denials can't be checked, and she nominated Dave, a Jester seeking a hanging. My Day 4 PM to Alice was a Scout question, not a plan. Heidi, what did Carol's Day 4 PM say?
+Heidi (public): Heidi, last word. I'm Vanilla on the record and have no night role, so my defense rests on mechanics. Mallory's N4 and N5 counts are each 1 visited and 1 visitor, with no names, so they can't say who the visitor was, including whether it was Mallory herself. Frank denied every night, PM'd Alice on Day 4 before she died, and then nominated me right after Dave's PM. Frank, explain that PM. Erin and Dave, don't convict on a count that names nobody.
+(to Erin, Heidi) Heidi -> Erin (private): Erin: Frank's Day 4 PM to Alice is still unexplained, and he nominated me right after Dave PM'd him. Mallory's unnamed count can't convict anyone. Vote Innocent and make Frank answer what he asked Alice.
+Trial votes on Heidi: Guilty - Dave, Frank, Mallory; Innocent - Erin, Heidi.
+Heidi is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Heidi died (executed by hanging). Their role isn't revealed. Their last will: "Heidi's last will: I make no role claim and have no night results I can prove. I submitted no night action on any night. Judge by checkable things only. Carol's Oracle results and Judy's Sheriff claim cannot be checked by any visit, so don't hang on them alone. Bob's Lookout watch on Judy (Grace as her only other visitor on Night 2) is the one visit-based result that has been tested against a death. Mallory's Fortune Teller numbers and Alice's Scout groups are the other checkable results, so test each night's numbers against the visits they imply. Dave's Judy nominations and self-nominations were never explained by evidence, so ask what he discussed privately with Grace and Ivan before trusting him. Ivan's votes on Judy, Grace and Dave also need a plain answer. Vote on evidence, not on who pushes hardest."
+The game is over. Winners: Alice (dead), Bob (dead), Carol (dead), Erin, Frank, Mallory. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Dave] Nothing else to report beyond the answers above.
+[Feedback from Mallory] The Fortune Teller count rule and self-nomination repetition were the main confusions; logs also showed duplicate Day 6 nomination entries.
+[Feedback from Erin] The lessons field name in my schema is misspelled as ' lessons' in the template I was given, so I left it empty as instructed; the other fields were used as requested.
+[Feedback from Judy] The ledger repeats some nomination entries on Day 6 (Dave nominated himself with identical votes twice); the interface may be duplicating records.
+[Feedback from Grace] The public ledger shows duplicate Dave self-nomination entries and the Diviner role placement in the Yakuza section was confusing; these need checking in the program.
+[Feedback from Alice] The notepad cap of 375 words and the replace-only behaviour made it hard to keep a long running read on every player; an append or per-player field would help. Scout group sizes were not reported to me, only 'separate', which limited my analysis.
+[Feedback from Bob] Several public logs looked duplicated or inconsistent (repeated Day 6 Dave nominations; Night 3 Lookout result differing from my submitted plan), and the schema forces many fields to be empty for this answer, which is fine here.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Erin, Frank, Mallory
+Cost by player (USD):
+  Alice (Scout)             $0.1212   49 calls  claude-haiku-5.5
+  Bob (Lookout)             $0.0566   33 calls  claude-haiku-5.5
+  Carol (Oracle)            $0.0939   45 calls  claude-haiku-5.5
+  Dave (Executioner)        $0.1089   53 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)   $0.1517   64 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.1356   61 calls  claude-haiku-5.5
+  Grace (Diviner)           $0.0699   36 calls  claude-haiku-5.5
+  Heidi (Clerk)             $0.1592   74 calls  claude-haiku-5.5
+  Ivan (Fabricator)         $0.1188   61 calls  claude-haiku-5.5
+  Judy (Jester)             $0.0375   22 calls  claude-haiku-5.5
+  Mallory (Fortune Teller)  $0.1800   62 calls  claude-haiku-5.5
+  Moderator                 $1.4339   16 calls  claude-opus-5.5
+  Night checks              $0.2638    5 calls  claude-opus-5.5
+  Strategy review           $0.3229    1 calls  claude-opus-5.5
+  Log review                $0.3225    1 calls  claude-opus-5.5
+  Total                     $3.5763  583 calls

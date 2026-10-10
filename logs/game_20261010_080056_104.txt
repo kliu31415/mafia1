@@ -440,3 +440,136 @@ Nomination votes on Frank: Yes - Frank, Alice, Bob; No - Ivan, Mallory, Erin.
 The nomination of Frank failed (3 Yes).
 Mallory (public): Mallory here, no new result. Frank's self-nominations have failed for want of a check, so I won't vote Guilty on them. Alice, Bob and Ivan: you backed my Day 4 nomination or voted Guilty on me on Day 2, and that vote rested on Frank's invented read. Name one checkable reason for it. I'll post my Night 5 result when it's out.
 Alice (public): Grace's archive puts Pharmacist and Grunt among Bob, Frank and Ivan, and Dave is Good. So two of those three are Yakuza. Frank's confessed lie and six self-nominations are the strongest lead, but a Jester hunting the hang fits too. I'll vote on checkable results at the next nomination.
+Bob (public): Bob here, no new result. Frank's confessed invented Sheriff claim is the one checkable lie on the table, and he has nominated himself six times. Mallory's Oracle claim, Erin's Ex-Con claim and Judy's Seer split are still unverified. I won't vote Guilty without a mechanical reason. Mallory and Erin, post your Night 5 results when you have them.
+Erin (public): Erin here. Frank has self-nominated six times after confessing an invented Sheriff claim. That looks like a Jester hunting the hang, and a hanged Jester wins outright, so I'm voting No on him again. Yakuza are among Alice, Bob, Frank, Ivan and Mallory (Pharmacist and Grunt). Alice, Bob and Ivan: name the checkable result behind your Day 4 votes on Mallory.
+(to Erin, Ivan) Erin -> Ivan (private): Ivan, what did Frank's private message to you say? Post it if it wasn't a Yakuza coordination attempt.
+(to Alice, Frank) Frank -> Alice (private): Alice, the only checkable item on the table is my confessed lie. A Guilty vote on me is the test you asked for, and it costs you nothing to check.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Alice, Bob; No - Ivan, Mallory, Erin.
+The nomination of Frank failed (3 Yes).
+Ivan (public): Ivan here, no new result and no nomination from me. Answering Erin: Frank's private message to me only asked for a Guilty vote on himself as a 'mechanical check'. I won't vote Guilty on self-nominations. Night 5 results should decide the next vote.
+Mallory (public): I'm nominating Alice. She led the Day 4 push on me without a result, and Bob and Ivan backed it. Alice, answer with a checkable reason.
+Mallory nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: Yes - Mallory, Bob, Ivan; No - Alice, Erin, Frank.
+The nomination of Alice failed (3 Yes).
+Alice (public): Alice here, no new result. Grace's archive put Pharmacist and Grunt among Bob, Frank and Ivan, so two of those three are Yakuza. Bob and Ivan, you both backed Mallory's nomination of me with no result. Give one checkable reason for that vote, or say you have none.
+Bob (public): Bob here, no new result and no nomination from me. Frank's self-nominations have failed six times, so a seventh adds nothing. Mallory's Oracle claim is still unrefuted, and Erin's Ex-Con claim is still unverified. I'll vote on Night 5 checks, not on who pushes.
+Erin (public): Erin here. Frank confessed an invented Sheriff claim and has self-nominated seven times, which fits a Jester hunting the hang. A hanged Jester wins, so don't hang him by accident. Grace's archive leaves Pharmacist and Grunt alive, and Mallory and Frank don't fit them, so two of Alice, Bob and Ivan are likely Yakuza. Post checkable Night 5 results.
+(to Frank, Ivan) Frank -> Ivan (private): Ivan, please vote Yes and Guilty on me. It's the only mechanical test on the table, and a Yes costs you nothing.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Bob; No - Ivan, Mallory, Alice, Erin.
+The nomination of Frank failed (2 Yes).
+Ivan (public): Ivan here, no new result and no nomination from me. I'm still voting No on Frank's self-nominations, since they give no mechanical check. Anyone holding a Night 5 result should post it before the next vote.
+Mallory (public): Mallory here, no new result. Night 5 checks first.
+Alice (public): Alice here, no new result. Frank's confessed fake Sheriff claim, repeated self-nominations and requests for Guilty votes fit a Jester hunting the hang. If Frank is Jester, Pharmacist and Grunt are Bob and Ivan, who both backed Mallory's push on me. Night 5 results should settle it.
+Erin (public): Erin here, no new result. I'm still voting No on Frank's self-nominations. Alice, Bob and Ivan, name the checkable Night 4 result behind your Day 4 votes on Mallory.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Bob; No - Ivan, Mallory, Alice, Erin.
+The nomination of Frank failed (2 Yes).
+[Feedback from Alice] Schema requires strings for claim and last_will, so 'null keeps it' is not usable; I repeated the current will and left claim empty.
+Bob (public): Bob here, no new result. I'm not nominating today. Night 5 checks should decide the next vote.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Bob; No - Ivan, Mallory, Alice, Erin.
+The nomination of Frank failed (2 Yes).
+Erin (public): Frank's self-noms add nothing. Bob and Ivan backed Mallory's push on Alice with no result. Name a Night 4 check, or I'm voting No again.
+Alice (public): Alice here, no new result. Bob and Ivan both backed Mallory's Day 4 nomination of me, and Bob's Day 2 Guilty vote on Mallory rested on Frank's invented read. Give one checkable reason for that backing before the next vote.
+Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+(to Bob, Ivan) Bob (Yakuza chat): Bob: Proposal. Target Mallory with the Katana. Bob keeps it, no holder move. Mallory is the Oracle, and a Grunt guess naming Bob is our biggest exposure. Mallory has Defense None, so the Katana kills. Ivan, block Mallory again, since an Oracle guess still resolves after death. Bob takes no action. No Day PMs. Vote Mallory.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana with no holder move and attacks Mallory, the Oracle. I block Mallory with the Pharmacist to stop the Oracle guess. Bob takes no action. No Day PMs. Ready.
+(to Bob, Ivan) Bob (Yakuza chat): Bob: Confirmed. Bob keeps the Katana with no holder move and attacks Mallory. Ivan blocks Mallory with the Pharmacist. Bob takes no action. No Day PMs. Ready.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana with no holder move and attacks Mallory. I block Mallory with the Pharmacist to stop the Oracle guess. Bob takes no action. No Day PMs. Ready.
+Night actions:
+  Alice (Prosecutor): target Ivan; 1 token(s); "Spending a prosecutor token on Ivan for Day 6. Ivan voted Innocent on Carol, a confirmed Yakuza, and co-backed the nominations against me."
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Mallory
+  Ivan (Pharmacist): target Mallory; Katana vote: Bob holds, attacks Mallory
+  Mallory (Oracle): target Frank; guessed role Pharmacist; "Oracle guess: Frank is Pharmacist."
+  Erin (Ex-Con): automatic: target Alice; "random visit"
+Katana: Bob holds it and attacks Mallory.
+(to Mallory) Moderator (private): You were role-blocked tonight, so your Oracle guess had no effect and you get no result. You were also attacked with the Katana, and you died.
+(to Alice) Moderator (private): You spent a prosecutor token on Ivan. Ivan will go to trial when nominations would start tomorrow (Day 6). 1 prosecutor token left.
+(to Ivan) Moderator (private): You role-blocked Mallory. Your block did not fail because of role-block immunity.
+(to Bob) Moderator (private): Your Katana attack on Mallory succeeded.
+(to Bob, Ivan) Moderator (private): Yakuza night summary: the Katana stayed with Bob, and Bob used it to attack Mallory. Bob used no role action. Ivan (Pharmacist) chose to role-block Mallory.
+[Moderator summary] Night 5: Ivan (Pharmacist) role-blocked Mallory, so her Oracle guess (Frank = Pharmacist) had no effect. Bob kept the Katana and attacked Mallory (Standard attack vs no Defense), and Mallory died (Katana, Good). Alice prosecuted Ivan for Day 6 and has 1 token left. Erin's Ex-Con visit went to Alice. Visits: Alice->Ivan, Bob->Mallory, Ivan->Mallory, Erin->Alice. Alive: Alice, Bob, Erin, Frank, Ivan. No win yet.
+
+===== DAY 6 =====
+Mallory died (killed by Katana). Their alignment was Good. Their last will: "Mallory's will (Oracle, Good). Results: N1 guess Dave=Grunt was wrong, so Dave is not Grunt. N2 guess Judy=Seer was right, so Judy's Seer result stands: Carol and Erin differ. N3 and N4 I was role-blocked and got no results. A block on a Good Oracle points at a living Pharmacist or Party Animal, so check who could block. N1 Heidi tracked me and saw no visit, which fits an Oracle's Astral guess. Carol was Yakuza (executed Evil) and pushed Guilty on me while holding an unposted N1 result, so discount it. Frank confessed his Sheriff claim and N1 result were invented: treat him as Yakuza or Jester. Grace's archive showed Pharmacist and Grunt, both Yakuza, still alive among Alice, Bob, Frank and Ivan. The Katana is held by a living Yakuza. Erin's Ex-Con claim fits Judy's split only if Carol held the Katana at the end of N1; test it against visit results. Vote on mechanics and checkable results, not on who pushes hardest."
+[Night check] Night 5: correct
+Ivan is being prosecuted and goes straight to trial.
+[Claim] Ivan: Party Animal. N1 blocked Dave; N2 Judy; N3-5 Mallory.
+Ivan (public): Ivan here, on trial. I'm claiming Party Animal, a Village role: I can't be role-blocked, and I block one player a night. My blocks were Dave N1, Judy N2 and Mallory N3, N4, N5, each with no result beyond the block. That fits Mallory's will, which says a block on a Good Oracle points at a Pharmacist or Party Animal. If I'm Party Animal, the living Pharmacist is someone else, and Alice and Frank are the only two left who could hold it. Frank's Sheriff claim was a confessed lie, and Alice has pressed hardest on Bob and me without a result. Judy's Carol/Erin split rests on Erin's unverified Ex-Con claim, so don't hang anyone on it alone. Vote on mechanics: my block claims can be checked against Mallory's will and the visits it lists.
+Alice (public): Alice here. Ivan's Party Animal claim doesn't clear him. His blocks land on exactly the investigators: Dave (likely Lookout) on N1, Judy (Seer) on N2, and Mallory (Oracle) on N3 to N5. That is a Pharmacist pattern, and Mallory's will says a block on a Good Oracle points at a Pharmacist or Party Animal. His slot line also ignores Bob, who is alive. He backed my Day 4 nomination of Mallory and Mallory's Day 5 nomination of me, with no checkable result. The only blocks on record are Mallory's N3 and N4, and nobody can verify N5. I'm voting Guilty on Ivan. Bob and Erin, if you have a checkable reason to clear him, post it before the vote.
+Bob (public): Bob here. Alice's case against Ivan is a pattern, not a check. Blocks on Dave, Judy and Mallory fit a Party Animal as well as a Pharmacist, and Mallory's will names both roles, so it doesn't single Ivan out. You're right that my slot line ignores me, and I'm alive. I hold no Pharmacist claim and no results. Alice, your Day 4 nomination of Mallory and your Day 5 push on me came with no checkable result either. I'm voting Innocent unless someone shows a mechanical contradiction in Ivan's claim. Frank and Erin, explain your Day 5 votes before you vote Guilty on Ivan.
+Erin (public): Erin here. I'm voting Guilty on Ivan. His blocks land on Dave (N1), Judy (N2) and Mallory (N3-5), which are Good investigators. A Good Party Animal blocking known Village investigators is a self-harming pattern, while a Pharmacist stopping checks on the Yakuza fits it. His slot line also leaves out Bob, who is alive, so his reasoning has an error. Mallory's will confirms blocks on N3 and N4 but not who made them. I can't clear Ivan on his word, so I'm voting Guilty unless someone gives a mechanical reason.
+Frank (public): Frank here. I'm voting Guilty on Ivan. His blocks hit Dave, Judy and Mallory, the three Good investigators, and Mallory's will confirms blocks on its N3 and N4. A Party Animal who only blocks Village investigators fits a Pharmacist better. Ivan's slot line also skips Bob, as Erin and Alice noted. Ivan's claim has no check beyond Mallory's will, so I won't clear him on it.
+Ivan (public): Ivan here, on trial as Party Animal. My blocks were Dave N1, Judy N2 and Mallory N3-5, and Mallory's will confirms blocks on N3 and N4. Those are the only block results on record, and they fit a Party Animal who blocks players they think are Evil as well as a Pharmacist. Erin's and Alice's claim that a Good Party Animal would never block Village investigators assumes I knew who was Good, and I did not. Frank confessed his Sheriff claim was invented, and that invented read sent a Good Oracle to trial. Bob has no Pharmacist claim and no results. Before you vote Guilty, ask what a Guilty vote gains the Village. It removes one of five living players and leaves the Katana holder alive, with no mechanical check against anyone.
+Trial votes on Ivan: Guilty - Alice, Erin, Frank; Innocent - Bob, Ivan.
+Ivan is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Ivan died (executed by hanging). Their alignment was Evil. Their last will: "Ivan (Party Animal claim). My blocks: Dave N1, Judy N2, Mallory N3-5. No results. Frank's Sheriff claim was a confessed lie. Judy's Carol/Erin split rests on Erin's unverified Ex-Con claim. Vote on visits and mechanics, not on who pushes hardest."
+
+===== NIGHT 6 =====
+Night actions:
+  Alice (Prosecutor): target Bob; 1 token(s); "Prosecute Bob for Day 7."
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Alice
+  Erin (Ex-Con): automatic: target Frank; "random visit"
+Katana: Bob holds it and attacks Alice.
+(to Alice) Moderator (private): Night 6 result: You prosecuted Bob. He will go to trial when the next Day starts. 0 prosecutor tokens left. You were attacked with the Katana and you died.
+(to Bob) Moderator (private): Night 6 result: You held the Katana and attacked Alice. The attack succeeded. Yakuza actions tonight: Bob held the Katana and attacked Alice. You chose no other action.
+(to Erin) Moderator (private): Night 6 result: You made your automatic nightly visit to a random player. As always, you are not told whom.
+[Moderator summary] Night 6: No role-blocks. Alice (Prosecutor) prosecuted Bob and spent her last token; the trial still runs on Day 7 under R21. Bob (Grunt) kept the Katana and made a Standard attack on Alice, who had Defense None, so she died (cause Katana). Erin (Ex-Con) automatically visited Frank. Visits: Alice→Bob, Bob→Alice, Erin→Frank. Living: Bob (Yakuza), Erin (Village), Frank (Jester), so the game continues. Results sent to Alice (prosecution done, attacked and died), Bob (attack succeeded, his Yakuza actions), and Erin (neutral visit line with no target).
+
+===== DAY 7 =====
+Alice died (killed by Katana). Their alignment was Good. Their last will: "Alice (Village, Good). No role claim. My votes: Innocent on Mallory (Day 2), Innocent on Frank (Day 2), Guilty on Carol (Day 3) over her unexplained Judy visit. Frank's Sheriff claim and Night 1 result were confessed as invented, so he is my top suspect for Yakuza or Jester. Bob and Ivan both voted Guilty on Mallory on Day 2 resting on Frank's invented read, then backed Mallory's Day 4 nomination of me with no checkable result. Check them first. Mallory's Oracle claim (Dave not Grunt, role-blocked Night 3) is uncontradicted. Erin's Ex-Con claim fits Judy's Seer pair but is unverified. Trust mechanical results and visits over pushes, and do not hang on single results or self-nominations."
+[Night check] Night 6: correct
+Bob is being prosecuted and goes straight to trial.
+Bob (public): Bob here, on trial. I have no role claim and no night results, so I can't prove anything about myself. The checkable facts are these. Frank confessed that his Sheriff claim and Night 1 result were invented, and that lie sent a Good Oracle to trial. He then nominated himself seven times to invite Guilty votes, which is what a Jester hunting the hang does. A hanged Jester wins outright, so Guilty votes on him need a mechanical reason. Erin's Ex-Con claim is the only thing that explains Judy's Carol/Erin split, and nothing has contradicted it. My Day 2 Guilty vote on Mallory rested on Frank's read, which he has since confessed was false, and I have withdrawn it. Judge me on checkable facts. I have no visit or result that points at anyone, and I'd rather the table test Frank's claims than hang a player on pushes.
+(to Bob, Erin) Bob -> Erin (private): Erin, your Ex-Con claim and Judy's split are the only mechanical lead we have. Frank is the confessed liar. If I hang, you are left alone with Frank's word. Vote Innocent on me and let us test Frank on tonight's results.
+Erin (public): Erin here. Bob, your private message asks me for Innocent, but your record points the other way. You voted Guilty on Mallory on Day 2 on Frank's read, backed Alice's Day 4 nomination of Mallory with no result, and voted Innocent on Ivan, who was Evil. Frank's invented Sheriff claim is a confirmed lie, but his repeated self-nominations look like a Jester hunting the hang, so I won't vote Guilty on him without a mechanical check. I'm voting Guilty on Bob. Bob, if you are Good, name the result behind your Day 4 backing of Alice's nomination.
+Frank (public): Frank here. Three players are alive, so hanging Bob leaves only Erin and ends the game at once. A Guilty vote that decides the whole game needs more than a push. Erin, post the mechanical result behind your Ex-Con claim and your Guilty vote on Bob. I'm voting Innocent.
+Bob (public): Bob here, on trial. I have no role claim and no results, so I can't prove I'm Good. Erin's Guilty push rests on an Ex-Con claim with no visit or result ever shown, and on my Day 2 vote, which I withdrew once Frank's Sheriff read was confessed false. Frank has confessed one invented claim and asked for Guilty votes on himself seven times, which is a Jester pattern, so a Guilty vote on me is not a mechanical check either. Neither Erin nor Frank has posted a result that points at anyone. I'm asking for Innocent until someone shows a concrete mechanic that places me as the Evil player.
+(to Bob, Frank) Bob -> Frank (private): Frank, keep your Innocent. If the game goes on, I'll vote Guilty when you next nominate yourself, so you get the trial you keep asking for.
+Trial votes on Bob: Guilty - Erin; Innocent - Bob, Frank.
+Bob is found Innocent (1 Guilty of 3 votes; 2 needed).
+Speaking order today goes around the circle in seat order, starting with Bob.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Bob (public): Bob here. I'm not nominating today. Frank and Erin both rest on claims or pushes with no checkable result, so I'll vote on mechanics only. Post any result you hold before the next trial.
+Erin (public): I'm nominating Bob. Alice's prosecutions hit Ivan and then Bob, Bob defended Ivan on Day 6, and Frank's 'hanging Bob leaves only Erin' is a miscount, since Frank would still be alive. Frank, vote on Bob's record.
+Erin nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Erin; No - Frank, Bob.
+The nomination of Bob failed (1 Yes).
+Frank (public): Frank nominating myself again. I have no role result to show, so a vote is the only test. Bob, you told me you'd vote Guilty on my next self-nomination; this is that nomination. Erin, you call me your top suspect, so vote on that.
+(to Bob, Frank) Frank -> Bob (private): Bob, you said you'd vote Guilty on my next self-nomination. This is it. Vote Yes and Guilty.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Bob; No - Erin.
+Frank is put on trial (2 Yes).
+Frank (public): Frank, final defence. I hold no role and no result. My Sheriff claim and N1 read were a confessed lie, so nothing I say can clear me, and I won't argue for Innocent. Erin's Ex-Con claim has no visit or result behind it, and she voted Guilty on Bob with no mechanical check, so her case is a push. Bob, you told me you'd vote Guilty on my next self-nomination. This is that nomination. Vote on the record.
+(to Bob, Frank) Frank -> Bob (private): Bob, you said you'd vote Guilty on my next self-nomination, and this is it. Keep that word.
+Bob (public): Bob here. I'm voting Innocent on Frank. His Sheriff claim was confessed false, and he has nominated himself seven times asking for Guilty votes. That is a Jester hunting the hang, and a hanged Jester wins outright. Erin's Guilty case on me rests on an Ex-Con claim with no visit shown, and I won't hang a player on a self-nomination.
+[ERROR player_error] Erin (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Erin (public): Erin here, voting Innocent on Frank. Frank has nominated himself seven times and keeps asking for Guilty votes, which is what a Jester hunting the hang does, and a hanged Jester wins outright. Nothing mechanical ties him to the Yakuza. Bob and I are the only other living players, so I want a checkable Yakuza link before anyone hangs him.
+Frank (public): Frank, final word. My Sheriff claim and Night 1 result were a confessed lie, and I have no real result that could clear me. Erin's Guilty push on Bob rested on an Ex-Con claim that no visit or result has ever supported, and Erin has now voted Innocent on me with no mechanical check either. Bob's Innocent vote rests on the same untested claims. If you're Village, the checkable fact on the table is my confessed lie, and acquitting me leaves it unanswered. Vote on the record: Guilty is the test I've asked for all along.
+Trial votes on Frank: Guilty - Erin, Frank; Innocent - Bob.
+Frank is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Frank died (executed by hanging). Their alignment was Neutral. Their last will: "Frank's will: my Sheriff claim and my Night 1 result (Mallory Evil) were invented to push the Mallory trial. I held no real role, no night action, no tokens and no information, so treat my self-nominations as pushes, not evidence. Judy's Seer split (Carol and Erin differ) is the only Seer evidence on the table. Erin's Ex-Con claim is a poor fit for it: Carol was Evil, and an Ex-Con reads Evil, so a true Ex-Con Erin would match Carol unless Carol held the Katana at the end of Night 1, which was never verified. Erin is my top suspect for Yakuza. Erin also voted Guilty on Ivan without a mechanical check. Bob and Ivan both backed Mallory's Day 4 nomination of Alice on no result, and Bob's Day 2 Guilty vote on Mallory rested on my invented read. Check visits and Night 6 and 7 results before any vote, and don't hang on self-nominations or on single results."
+
+===== NIGHT 7 =====
+Night actions:
+  Bob (Grunt): target Erin; Katana vote: Bob holds, attacks Erin
+  Erin (Ex-Con): automatic: target Bob; "random visit"
+Katana: Bob holds it and attacks Erin.
+(to Erin) Moderator (private): Night 7: You were attacked with the Katana. You died.
+(to Bob) Moderator (private): Night 7: Yakuza actions chosen tonight: Bob kept the Katana and used it to attack Erin. Your Katana attack on Erin succeeded. You have no tokens.
+[Moderator summary] Night 7: Bob (Grunt, Katana holder) attacked Erin (Ex-Con, Defense None) with the Standard Katana attack, and Erin died. Erin's automatic Ex-Con visit landed on Bob. There were no role-blocks. Visits: Bob->Erin, Erin->Bob. Frank's Jester revenge is left to code (the only living Guilty voter was Erin). Only Bob is left alive, so the Yakuza should win.
+[Revenge] Frank's Divine Attack hits Erin.
+
+===== DAY 8 =====
+Erin died (killed by Katana). Their alignment was Good. Their last will: "Erin (Good, claims Ex-Con, reads Evil to alignment checks). I have no results: my nightly visit is random and I am never told the target, so I hold no information on anyone. Judy's Night 1 Seer split (Carol and Erin differ) fits Carol holding the Katana at the end of Night 1, since she then read Good. Carol was Yakuza and was executed as Evil. Ivan was Evil and was executed on Day 6. Frank confessed that his Sheriff claim and Night 1 result were invented, so treat him as Yakuza or a Jester hunting the hang. Bob voted Guilty on Mallory on Day 2 on Frank's invented read, then backed Mallory's Day 4 nomination of Alice and Frank's self-nominations without a checkable result; check him against his own Day 4 and Day 5 votes. Grace's archive showed Pharmacist and Grunt among the living, so the remaining Yakuza are likely among Bob and Frank. Trust visits, mechanical results and votes over pushes or self-nominations. Do not hang anyone on a single read."
+The game is over. Winners: Bob, Carol (dead), Ivan (dead), Frank (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 7: correct
+[Feedback from Alice] The per-night submission and prosecutor-token flow was hard to track, and repeated identical nomination log lines in Day 4 and Day 5 looked like a logging error.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
