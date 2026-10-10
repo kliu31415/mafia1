@@ -116,7 +116,7 @@ def run_day(game: Game, players: Players) -> None:
     for p in game.alive():
         p.speaking_budget *= CARRY_SHARE
     trials = 0
-    # Prosecutions happen when nominations would start, before any chat. Round 1's budget is paid
+    # Prosecutions happen at the start of the Day, before any chat (rules: Prosecutor). Round 1's budget is paid
     # out first so others can speak at the trial.
     prosecuted = [n for n in dict.fromkeys(game.prosecutions) if game.player(n).alive]
     game.prosecutions.clear()

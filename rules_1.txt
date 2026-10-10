@@ -112,6 +112,8 @@ R6 (Visits)
 - A player whose role can target others but who targets themself shows as visiting themself.
 - A player whose action can only affect themself does not show as visiting anyone.
 - An action that targets no player (e.g. the Clerk's rig) is not a visit.
+- A player who visits the same target with several actions in one night is one visitor to that target: anything
+  that lists, counts or reacts to visitors (a watch, a Veteran's alert, a trap) treats them once.
 
 R9 (Role-blocks)
 A role-blocked player's actions that night have no effect, exactly as if they had chosen not to act: no visit,
@@ -336,17 +338,17 @@ Vigilante
 Veteran
   Tokens: 3 alert tokens.
   You can't be role-blocked.
-  Night: may spend a token to go on alert (not a visit, R6). While on alert you have Standard Defense and you deal
-  a Strong Attack to every player who visits you that night, whatever their faction
-  (a role-blocker who visits you is attacked too), however many there are. Astral Visits aren't visits, so they
-  aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how many, and whether
-  your attack on each of them succeeded, but nothing about who they were.
+  Night: may spend a token to go on alert (not a visit, R6, so nothing that reacts to visits counts it). While on
+  alert you have Standard Defense and you deal a Strong Attack to every player who visits you that night, whatever
+  their faction (a role-blocker who visits you is attacked too), however many there are. Astral Visits aren't
+  visits, so they aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how
+  many, and whether your attack on each of them succeeded, but nothing about who they were.
 
 Misc
 
 Prosecutor
   Tokens: 2 prosecutor tokens.
-  Night: may spend a token to prosecute someone. The next Day, when nominations would start, the moderator
+  Night: may spend a token to prosecute someone. At the start of the next Day, before anyone speaks, the moderator
   announces that someone is being prosecuted; this counts as a successful nomination and they go to trial. It
   counts toward the Day's three-nomination limit, an execution ends the Day as usual, and it can combine with a
   Clerk's rig. If the trial needs a "nominator", the moderator picks a random player.
