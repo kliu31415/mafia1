@@ -17,6 +17,9 @@ from state import Game, setup_game
 def pytest_addoption(parser):
     parser.addoption("--update-prompts", action="store_true",
                      help="rewrite the prompt snapshots in tests/prompts/ (test_prompts.py) instead of comparing")
+    parser.addoption("--update-versions", action="store_true",
+                     help="record the current log and checkpoint fields in tests/versions.json (test_versions.py), "
+                     "after bumping LOG_VERSION or CHECKPOINT_VERSION")
 
 
 # decide(player name, or None for a non-player call such as the night check, task, schema) -> the fields

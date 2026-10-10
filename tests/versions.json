@@ -1,0 +1,40 @@
+{
+ "log_version": 39,
+ "log": {
+  "budget_warning": ["budget", "planned", "player"],
+  "cardinal": ["victim"],
+  "death": ["cause", "day", "katana", "killer", "killer_role", "killer_roles", "killers", "phase", "player", "role"],
+  "debrief": ["answers", "cost", "model", "role", "usage", "who"],
+  "katana": ["day", "result", "revote_targets"],
+  "left": ["day", "phase", "player"],
+  "lessons": ["lessons", "model", "role", "tips_feedback", "who"],
+  "message_dropped": ["player", "to", "words"],
+  "moderator_call": ["content", "cost", "day", "latency_s", "model", "phase", "reasoning", "tool_calls", "usage"],
+  "moderator_flag": ["day", "issue", "phase"],
+  "moderator_tool": ["args", "name", "result"],
+  "night_actions": ["actions", "day", "roles"],
+  "night_check": ["cost", "error", "issues", "judge", "night", "usage", "verdict"],
+  "night_effects_undone": ["day", "player", "undone"],
+  "nomination_dropped": ["budget", "nominee", "player"],
+  "player_call": ["cost", "effort", "latency_s", "model", "notepad_after", "notepad_before", "output", "player", "reasoning", "task", "usage"],
+  "player_feedback": ["day", "feedback", "phase", "player", "role", "step"],
+  "result": ["cost", "days", "duration_s", "end_reason", "errors", "models", "players", "roles", "usage", "winners", "winning_faction"],
+  "resume": ["at", "cut_cost", "cut_records", "day", "unreadable_lines"],
+  "revenge": ["source", "victim"],
+  "review": ["cost", "issues", "model", "usage"],
+  "section": ["title"],
+  "setup": ["katana", "log_version", "players"],
+  "strategy_review": ["cost", "lessons", "model", "summary", "tips_feedback", "usage"],
+  "tell_held": ["day", "players"],
+  "tips": ["files", "players", "sha256", "texts"],
+  "tips_update": ["cost", "model"],
+  "visits": ["day", "visits"],
+  "vote": ["day", "nominator", "nominee", "outcome", "prosecuted", "reversed", "secret", "stage", "votes", "weights"]
+ },
+ "checkpoint_version": 5,
+ "checkpoint": {
+  "Game": ["players", "rng", "log", "day", "phase", "events", "katana_holder", "phases_without_death", "winners", "pending_announcements", "pending_deaths", "personal_winners", "sole_winner", "pending_revenge", "role_state", "prosecutions", "rigged_day", "puppets_next", "puppets", "death_record", "vote_record", "votes", "pm_record", "night_actions", "night_visits", "claim_record", "rule_settings"],
+  "Player": ["name", "seat", "model", "role", "effort", "alive", "tokens", "status", "last_will", "notepad", "tips", "speaking_budget", "start_role", "death"],
+  "Event": ["day", "phase", "text", "visible_to", "cat", "fields", "notice"]
+ }
+}
