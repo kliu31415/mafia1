@@ -1,0 +1,237 @@
+Setup:
+  Alice    seat 1  Prosecutor        anthropic/claude-haiku-5.5
+  Bob      seat 2  Vanilla Villager  openai/gpt-6-luna
+  Carol    seat 3  Surveyor          anthropic/claude-haiku-5.5
+  Dave     seat 4  Eavesdropper      openai/gpt-6-luna
+  Erin     seat 5  Philanthropist    openai/gpt-6-luna
+  Frank    seat 6  Clerk             openai/gpt-6-luna
+  Grace    seat 7  Puppeteer         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Census Taker      anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Bob.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Bob (public): No information yet. Share concise reads and explain any vote; avoid exposing power roles or night targets. Let’s not hang anyone on a weak Day 1 hunch.
+Carol (public): Carol here. No reads yet. I want to hear first impressions from everyone before anyone is nominated.
+Erin (public): Agreed—let’s hear everyone’s first impressions before nominating. Please explain any specific suspicion and keep power-role claims and night targets private.
+Frank (public): No concrete basis to vote yet. Let’s hear everyone’s initial impressions, then focus on specific inconsistencies rather than force a Day 1 vote.
+Grace (public): Grace here. No real reads yet, and I agree with no Day 1 hang. I'd rather see specific claims or contradictions develop before anyone votes. Who has something concrete to point at?
+Heidi (public): Heidi here. No reads yet and no Day 1 hang. I'll raise specific contradictions as they appear.
+Alice (public): Alice here. No reads yet. I'll judge on specific contradictions in claims, votes and mechanical results, and I agree nobody should hang on Day 1 without them.
+Dave (public): These openings are uniformly cautious, which is not evidence either way. Before we coast, does anyone have a concrete read or a reason to test a nomination?
+Erin (public): A nomination without a named concern gives us little. Dave, who specifically would you test, and what would you ask? Otherwise, let's avoid forcing a weak trial.
+Grace (public): still no concrete reads. Dave's point stands, but I want a named concern before anyone is tested. Watch who pushes nominations without reasons.
+Heidi (public): Dave asked for concrete reads, and so far nobody has made a checkable claim. I'll wait for a specific statement or contradiction before voting for anyone.
+Alice (public): Still no checkable claims, so I won't nominate yet. Dave, name the specific player and reason you want tested, and anyone with a concrete read should state it now.
+Carol (public): still no checkable claims from anyone. Each of us should name one specific player and the exact reason before any vote. Dave, who is your target and why?
+Dave (public): I don't have a defensible target; I was asking whether anyone did. Repeating that question isn't grounds to nominate. Unless someone offers concrete evidence, let's avoid a weak Day 1 trial.
+Grace (public): To move past round 3, each of us should name one player we'd test and the exact reason, or say we have none. Vague agreement alone doesn't give us anything to vote on.
+Heidi (public): Still no checkable claims, so I won't nominate on Day 1. Anyone who wants a trial should name a specific contradiction first, not a general hunch.
+Alice (public): Dave has asked for reads three times without naming a target. Dave, name a player and a checkable reason, or stop pushing nominations. Everyone else: state one concrete statement you would test.
+Dave (public): I already answered: I have no evidence-based target, so I won't invent one. Alice's repeated focus on me is a weak pressure pattern, not a case for trial. If anyone has an actual contradiction, name it; otherwise let's let the day close.
+Grace (public): Still no checkable reads, and this round has only repeated the same request. I'm not nominating on Day 1. If anyone has a specific contradiction, state it now; otherwise let the day close.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Frank, Grace) Frank (Yakuza chat): Keep the Katana with Grace and attack Alice tonight. She was active in directing scrutiny toward Dave, so removing her may disrupt town coordination. I’ll hold my Clerk token for a more decisive trial rather than rig blindly on Day 2. Let me know if you prefer another target.
+(to Frank, Grace) Grace (Yakuza chat): Agreed on Alice. Grace keeps the Katana and it hits Alice tonight. I'll hold my puppet token for now, and I'm not PMing you on Day 1. Let's vote the same way.
+(to Frank, Grace) Frank (Yakuza chat): Confirmed: keep the Katana with Grace and attack Alice. I’ll take no Clerk action tonight and save the rig until we have a clearer Day 2 target. Ready.
+(to Frank, Grace) Grace (Yakuza chat): Confirmed: the Katana stays with Grace and the attack hits Alice tonight. I take no other night action and I'm not spending my puppet token. Ready.
+Night actions:
+  Alice (Prosecutor): no action
+  Carol (Surveyor): target Dave; 1 token(s); "Survey Dave's group (Bob, Dave, Erin)."
+  Dave (Eavesdropper): target Alice
+  Erin (Philanthropist): no action
+  Frank (Clerk): no role action; Katana vote: Grace holds, attacks Alice
+  Grace (Puppeteer): no role action; Katana vote: Grace holds, attacks Alice
+  Heidi (Census Taker): target Dave; "Census around Dave"
+Katana: Grace holds it and attacks Alice.
+(to Carol) Moderator (private): You surveyed Bob, Dave and Erin. One of them, chosen at random, has the role Eavesdropper. 2 survey tokens left.
+(to Heidi) Moderator (private): Your census of Alice, Dave and Frank counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Alice) Moderator (private): You were attacked with the Katana tonight. You died.
+(to Grace) Moderator (private): Your Katana attack on Alice succeeded. You still hold the Katana. You did not use your puppet token; 1 puppet token left.
+(to Frank, Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and it was aimed at Alice. Frank chose no action (no rig). Grace chose no action of her own (no puppet).
+[Moderator summary] Night 1: No role-blocks. Grace (Katana holder) dealt a Standard Katana attack to Alice (Defense None), and Alice died (cause Katana, by Grace). Carol surveyed Dave (survey op, which spent a token). Heidi took a census around Dave (census op). Dave eavesdropped on Alice (eavesdrop op; Alice is dead, so there will be no messages to read). Frank didn't rig and Grace didn't puppet. Alice got her attack notice and Grace was told the attack succeeded. Both Yakuza got the summary of chosen actions.
+
+===== DAY 2 =====
+Alice died (killed by Katana). Their role was Prosecutor. Their last will: "Alice. I have no information on anyone yet. I will judge by votes and mechanical results, not by soft reads or PM links alone. Please weigh any claim against the votes that back it."
+(to Dave) Alice died, so you have no one to eavesdrop on today.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Dave.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Dave (public): Alice flipping Prosecutor confirms she was Good, but the Katana kill gives us little else by itself. Anyone with a result or concrete read, please share the target and evidence, but not tonight’s planned action. Let’s test claims and votes before considering a trial.
+Frank (public): I have no investigative result. Anyone with one should share the exact target and result; let’s compare claims with the votes and avoid treating one alignment result as conclusive.
+Grace (public): I still have no checkable results. Nobody has given a concrete read yet, so Bob, Carol, Erin, Heidi and Dave should each name one specific statement or vote behind any suspicion before anyone is nominated.
+Heidi (public): Alice died to the Katana, so a Yakuza holds it and is active. I have no claim to make yet. Dave and Frank, what did you do on Night 1, and did either of you get a result? Each of you should answer that directly, not just repeat that nobody has reads.
+Bob (public): I had no night action or result. Frank's answer only rules out an investigative result, not a night action; Dave and Frank should answer directly whether they acted and what result they got. No need to reveal future targets.
+Carol (public): Carol here. I took a Night 1 action that gave me no reason to suspect anyone, and I'm not sharing details yet. Still no checkable reads. Dave and Frank, please answer Heidi's question directly: did you act on Night 1, and what did you learn?
+Dave (public): Yes, I acted: I targeted Alice, but she died before Day 2, so I received no messages or result.
+Erin (public): Dave, Alice dying doesn't itself erase a night result: actions resolve simultaneously, though some roles get no feedback. What role/action did you use, and was it supposed to produce a result? Carol, please clarify whether your action had a checkable outcome. Let's hear that before considering a trial.
+Frank (public): Erin's point is right: Alice dying doesn't itself erase a result under simultaneous resolution. Dave, name the role and expected feedback; Carol, clarify whether your action produced a checkable result.
+Grace (public): Dave, you still haven't named your role or the result you expected from your Night 1 action. Erin's question stands. Nobody should be nominated until that is answered.
+Heidi (public): Dave, you still haven't named the role behind your Night 1 action or the result you expected. Targeting Alice and then saying she died is not an answer. Name the role and what feedback it should have given. Frank, did you act on Night 1, and what did it produce? No trial until both of you answer directly.
+Bob (public): Dave, Alice dying alone doesn’t explain the missing result; some actions give no feedback, so say whether yours was one. Frank, did you act? Carol, was there no checkable result, or are you withholding it?
+Carol (public): Dave, you still haven't named your role or the result you expected. Saying you targeted Alice is not an answer. Frank, did you take a Night 1 action? Until you both answer directly, I won't vote for anyone. My Night 1 result stays private for now.
+[Claim] Dave: Eavesdropper. N1: monitored Alice; she died before D2, so I had no messages to monitor.
+Dave (public): I'm Eavesdropper. N1 I monitored Alice; she died before D2, so I had no messages to monitor today. That's why I got no result—this role reads the target's private messages during the following Day, rather than receiving an ordinary night result. Frank, please answer whether you acted and what happened; Carol, share what your result showed without revealing any future target.
+Erin (public): Dave’s Eavesdropper explanation is plausible: Alice was dead before the following Day, so monitoring her yielded no read. Frank, did you act Night 1, and what feedback did you get? Carol, share your role/action and exact checkable outcome—or say why you’re withholding it.
+Frank (public): I didn't take a Night 1 action, so I have no result. Dave's explanation is consistent with Eavesdropper mechanics. Carol, please give the exact result or say clearly why you're withholding it; no future target needed.
+Grace (public): Dave's Eavesdropper account fits the mechanics: monitoring a player who died before the next Day yields nothing. Carol, you've twice declined to give a Night 1 outcome. If it had no checkable result, say so plainly. I'd rather hear that than nominate on Day 2.
+[Claim] Heidi: Census Taker. N1: census around Dave, group Alice, Dave, Frank: 2 of 3 counted Good.
+Heidi (public): Heidi here. I'm Census Taker. N1 I took a census around Dave, group Alice, Dave, Frank: 2 of 3 counted Good. Alice is Village, so exactly one of Dave and Frank is Good. Dave, how does your Eavesdropper claim square with that? Frank, is your no-action claim the whole story?
+Bob (public): Heidi’s count doesn’t show Dave or Frank is Evil: the non-Good player could be Neutral. It also doesn’t contradict Dave’s Eavesdropper claim. Carol, please say whether you got an actual result and what it was; “no reason to suspect” isn’t checkable.
+Carol (public): I won't nominate today. My Night 1 result stays private for now, but it doesn't contradict Dave's Eavesdropper claim. Heidi's census and Frank's no-action claim also don't conflict with each other. I want a concrete contradiction before any trial, and I'll judge by votes and mechanical results, not soft reads.
+Dave (public): I'm actually Village, so if Heidi's census claim is accurate, Frank is the non-Good player in that group; it doesn't distinguish Evil from Neutral. Frank, can you address that? Carol, you've withheld your Night 1 result twice—please share it, or explain what prevents you from doing so. I don't see enough to nominate yet.
+Erin (public): Heidi’s census, if accurate, establishes only that exactly one of Dave and Frank is Good. Dave’s Village claim would make Frank non-Good, but doesn’t verify either claim. Carol has twice withheld a checkable N1 result—please state it or explain why you can’t. I see no basis to nominate solely on this.
+Frank (public): Heidi’s Census group is a chosen target plus two random players, so Alice/Dave/Frank is mechanically possible. If the count is accurate, exactly one of Dave and Frank is Good; that doesn’t verify either claim. Dave’s Village claim came after the result, so it isn’t independent confirmation. Carol, please give your exact N1 result and role, or say plainly why it isn’t actionable.
+Grace (public): Heidi's census is a result we can't check: its group was a chosen target plus two random players, and it counts true alignment. Dave's Eavesdropper claim is also unverifiable so far. Carol has twice withheld her N1 result, so she should say whether she acted before any trial. I won't nominate until someone states a checkable contradiction.
+Heidi (public): Carol has now twice declined to give her Night 1 result. If it had no checkable outcome, say so plainly. Dave's Village claim would make Frank the non-Good player in my census group, so Frank's no-action claim needs checking against votes and behaviour, not just repetition. No nomination from me yet.
+Bob (public): I still see no contradiction sufficient for a trial. Carol, you needn't reveal your role or target, but please say what kind of result you got—alignment, exact-role, or visit-based—and whether it was actionable. Withholding everything leaves us unable to assess it.
+[Claim] Carol: Surveyor. N1: surveyed Bob, Dave and Erin: exactly one of them is an Eavesdropper (exact role only).
+Carol (public): Carol here, and I'm the Surveyor. N1 I surveyed Bob, Dave and Erin: exactly one of them is an Eavesdropper, exact role only. Dave's claim fits that. Nobody should nominate until someone shows a real contradiction.
+Dave (public): Carol’s claimed Surveyor group is mechanically impossible: the Night 1 living order was Alice–Bob–Carol–Dave–Erin–Frank–Grace–Heidi. No target gives the group Bob, Dave, Erin. Please explain this contradiction at trial.
+Dave nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Dave, Frank, Bob; No - Erin, Grace, Heidi, Carol.
+The nomination of Carol failed (3 Yes).
+Erin (public): Surveyor geometry makes Carol’s claimed group impossible: with Carol excluded, targeting Dave gives Dave/Erin, while targeting Bob gives Alice/Bob. No legal target yields Bob, Dave, Erin. This merits a trial, but the contradiction alone doesn’t prove she’s Evil; consider a Roleplayer or Jester possibility.
+Erin nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Erin, Frank, Grace, Bob, Dave; No - Heidi, Carol.
+Carol is put on trial (5 Yes).
+Carol (public): Carol, Surveyor. The geometry objection is wrong. I surveyed Dave, and my own seat is skipped, so Dave's neighbours are Erin on one side and Bob on the other. The group is Bob, Dave and Erin, exactly what I reported. Dave and Erin both treated my seat as Dave's neighbour, which it isn't. My result is exact-role only (one of Bob, Dave, Erin is an Eavesdropper), so it fits Dave's claim without confirming it. Dave, you called my claim impossible and then nominated me on that basis. Please explain that error. I'm Good and will judge on evidence, not on the bad geometry.
+Dave (public): Carol is right: surveying Dave skips Carol and reaches Bob, so Bob/Dave/Erin is a legal group. I misapplied the skip rule; my claimed contradiction was wrong. I withdraw it and will vote Innocent absent other evidence.
+Erin (public): Carol's correction is right: targeting Dave yields Dave, Erin, and Bob when Carol is skipped. My geometry objection was mistaken. Her result is consistent with Dave's claim, not independent proof; there is no remaining contradiction supporting a Guilty vote.
+Frank (public): Carol’s correction is right: targeting Dave can produce Bob/Dave/Erin when Carol is skipped, so the alleged mechanical contradiction is gone. Her result fits Dave’s Eavesdropper claim but does not independently prove it. The delay in sharing it is worth revisiting, but absent another concrete contradiction I don’t see a sound basis for Guilty.
+Grace (public): Carol's geometry now checks out, and Dave's objection was wrong. Carol has stated her result, which is consistent with Dave's claim but doesn't prove it. The open issue is why she withheld it for two rounds. I want that answered before any Guilty vote, so I'm undecided for now.
+Heidi (public): I checked Carol's geometry myself. Surveying Dave skips Carol, so Bob, Dave and Erin is a legal group, and Dave's and Erin's objections were wrong. Her result is consistent with Dave's Eavesdropper claim but doesn't prove it. Her late sharing is still a weak point, but I see no contradiction for a Guilty vote, so I lean Innocent. Dave, your nomination rested on that objection, so explain why you trusted it.
+Bob (public): I see no remaining mechanical contradiction: Carol’s Surveyor group is legal when Carol is skipped. Her delay is worth questioning, but not enough to hang on its own. I’ll vote Innocent absent new concrete evidence; Dave and Erin should own the mistaken geometry case.
+Carol (public): Carol, Surveyor. My survey of Dave covered Bob, Dave and Erin. Heidi and Bob checked that this group is legal, and Dave has withdrawn his geometry objection, so the mechanical case against me is gone. I should have stated my role and result on Day 2 instead of making people ask three times. That delay was a mistake and I accept the cost, but it is not a contradiction. Dave's Eavesdropper claim and my exact-role result can both be checked: if Dave is the Eavesdropper, the claim holds; if Bob or Erin is, Dave is lying. Dave nominated me on a geometry error he has now dropped, so he should explain why he trusted it. I have no concrete contradiction against anyone else, so I'm voting Innocent.
+Trial votes on Carol: Guilty - nobody; Innocent - Bob, Carol, Dave, Erin, Frank, Grace, Heidi.
+Carol is found Innocent (0 Guilty of 7 votes; 4 needed).
+Frank (public): Carol's Surveyor geometry is valid, so that basis is gone; her delayed reveal remains a process concern, not a contradiction. Dave deserves follow-up on how he reached the error, though he acknowledged it. Before another trial, let's hear concrete results or votes from Bob and Erin.
+Grace (public): Heidi's census (exactly one of Dave and Frank is Good) and Dave's Eavesdropper claim don't contradict each other, so neither is disproved yet. Bob and Erin haven't stated a Night 1 action or result. Please do so before anyone is nominated.
+Heidi (public): Bob and Erin still haven't stated a Night 1 action or result. Please answer directly before anyone is nominated. My census still means exactly one of Dave and Frank is non-Good, so their claims need checking against votes.
+Carol (public): Carol here. Bob and Erin still haven't said whether they acted on Night 1 or what they got. Please answer directly. My Surveyor result says one of Bob, Dave and Erin is an Eavesdropper, so if Dave isn't it, one of you is. I won't nominate until answers come in.
+Erin (public): I took no Night 1 action, so I have no result. Carol's claimed Surveyor group is legal; her result fits Dave's claim but doesn't identify him.
+Grace (public): Bob and Erin have now answered: no Night 1 action. Heidi's census and Dave's Eavesdropper claim can both be checked against votes later. I see no contradiction yet, so I won't nominate today.
+Heidi (public): My census still means exactly one of Dave and Frank is non-Good. If Dave is Village, that makes Frank the non-Good one. Dave's nomination rested on a geometry error, so I won't take his account on trust. Frank, why did you vote Yes on Carol's first nomination, and what backs your no-action claim?
+[Claim] Bob: Vanilla Villager. No Night 1 action or result.
+Bob (public): Frank’s first Yes came while Carol was withholding her result, so it could reflect wanting an answer, not evidence of coordination; his Innocent after the geometry correction is consistent. Neither that vote nor Heidi’s census proves his no-action claim. Please explain your initial reason; I see no basis for another trial yet.
+Carol (public): Dave's Eavesdropper claim fits my result, but it stays unproven. Bob and Erin, your no-action or vanilla claims don't clear you: if Dave isn't the Eavesdropper, one of you is. Vote on checkable contradictions only.
+Grace (public): Still no checkable contradiction, so I won't nominate. Dave and Heidi should answer the census-versus-Eavesdropper question directly before anyone votes.
+Heidi (public): Dave, why trust you after the wrong geometry nomination?
+Carol (public): Dave, you nominated me on a geometry error you then admitted. Why should we accept your Eavesdropper claim, given my result names one of Bob, Dave or Erin?
+Dave (public): I trusted a bad reading of the skip rule; Carol corrected it, and I withdrew. That mistake warrants skepticism, but it doesn't contradict my Eavesdropper claim. Her result fits, but doesn't verify it.
+[Feedback from Grace] A 10-word public message (4.09) costs more than my remaining budget (3.38), so public speech was unaffordable this round.
+(to Frank, Heidi) Heidi -> Frank (private): Frank, why did you vote Yes on Carol's first nomination? Answer me directly.
+(to Dave, Heidi) Heidi -> Dave (private): Dave, how does your Eavesdropper claim square with my census? Which of you is Good?
+Bob (public): Heidi's PMs to Dave and Frank are worth explaining publicly, especially after focusing on Frank; they're not proof. Please summarize them. I see no concrete basis for a third trial.
+(to Carol, Frank) Carol -> Frank (private): Frank, what did Heidi say in her PM to you? I'm the Surveyor: one of Bob, Dave or Erin is an Eavesdropper. Share your read on Heidi and Dave privately.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Frank, Grace) Frank (Yakuza chat): I propose keeping the Katana with you, Grace, and attacking Heidi. Her census directly puts pressure on me if Dave is Good, and she has been questioning me publicly. I also propose spending my Clerk token to rig Day 3; that makes a successful nomination decisive even if the trial vote goes Innocent. I’ll save the puppet token for now. Let me know if you disagree with the target or timing.
+(to Frank, Grace) Grace (Yakuza chat): Agreed on Heidi tonight. Katana stays with Grace and hits Heidi. Her census and her pressure on Frank make her a fair target. Frank, hold the Clerk rig until Day 3 nominations are clear. I'll keep my puppet token for a decisive Day. Holder: Grace. Target: Heidi.
+(to Frank, Grace) Frank (Yakuza chat): Agreed: Grace keeps the Katana and attacks Heidi. I’ll take no Clerk action tonight; let’s preserve the rig until we see how Day 3 develops, since Heidi’s census may put me at nomination risk and a successful nomination would force an execution. Save the puppet token too. Ready.
+(to Frank, Grace) Grace (Yakuza chat): Confirmed: Grace keeps the Katana and it attacks Heidi tonight. Frank, no Clerk rig and no puppet tonight, as agreed. Ready.
+Night actions:
+  Carol (Surveyor): target Frank; 1 token(s); "Survey Frank's group (Erin, Frank, Grace)."
+  Dave (Eavesdropper): target Frank
+  Erin (Philanthropist): target Carol; 1 token(s)
+  Frank (Clerk): 1 token(s); "Rig the next Day's votes."; Katana vote: Grace holds, attacks Heidi
+  Grace (Puppeteer): no role action; Katana vote: Grace holds, attacks Heidi
+  Heidi (Census Taker): target Frank
+Katana: Grace holds it and attacks Heidi.
+(to Carol) Moderator (private): You surveyed Erin, Frank and Grace. One of them, chosen at random, has the role Clerk. 1 survey token left.
+(to Carol) Moderator (private): A Philanthropist handed you a survey token. You now have 2.
+(to Heidi) Moderator (private): Your census of Bob, Carol and Frank counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Grace) Moderator (private): Night 2: You held the Katana and attacked Heidi. Your attack succeeded. You did not use your Puppeteer ability; you still have 1 puppet token.
+(to Frank) Moderator (private): Night 2: You spent your clerk token to rig tomorrow's votes: anyone successfully nominated tomorrow will be executed. 0 clerk tokens left.
+(to Frank, Grace) Moderator (private): Yakuza Night 2 actions: Grace holds the Katana and chose to attack Heidi with it; Grace used no Puppeteer action. Frank used his Clerk token to rig tomorrow's votes.
+(to Heidi) Moderator (private): Attack notice, Night 2: You were attacked with the Katana, and the attack killed you. You are dead.
+[Moderator summary] Night 2: No role-blocks or swaps. Carol surveyed Frank (group Erin/Frank/Grace), spending 1 token; Erin gave Carol a survey token (Carol ends with 2, Erin 1). Dave eavesdropped on Frank. Frank rigged Day 3 votes (clerk 0). Heidi took a census around Frank (results come from code). Grace held the Katana and attacked Heidi (Standard vs None): Heidi died to the Katana. Notices sent to Heidi, Grace and Frank, plus the Yakuza action summary. Still alive: Bob, Carol, Dave, Erin (Village) and Frank, Grace (Yakuza), so no win yet.
+
+===== DAY 3 =====
+Heidi died (killed by Katana). Their role was Census Taker. Their last will: "Heidi, Census Taker (Good). N1 census around Dave, group Alice, Dave, Frank: 2 of 3 counted Good. Alice was Village, so exactly one of Dave and Frank is Good."
+(to Dave) You are eavesdropping on Frank today: you'll read every private message they send or receive.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Dave.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Dave (public): Heidi's flip confirms she was a Census Taker. Her reported group was Alice, me, and Frank, with 2 Good; Alice and I are Good, so if the count is accurate Frank is non-Good. That doesn't distinguish Yakuza from Neutral, but it warrants a trial. Frank, explain the result and your Day 2 PMs with Heidi and Carol.
+Dave nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Dave, Erin, Bob, Carol; No - Frank, Grace.
+Frank is put on trial (4 Yes).
+Frank (public): Heidi’s census gives exactly one Good player among Dave and me; it doesn’t independently establish Dave’s alignment. His “I’m Village” claim is still a claim. His earlier Surveyor-geometry objection was mistaken, though he corrected it, so weigh his current inference carefully. I had no Night 1 result. Heidi’s PM asked why I voted Yes on Carol’s first nomination: I wanted her to explain the withheld result, then voted Innocent once the geometry checked out. Carol’s PM asked for my read; I had no new result to share.
+Grace (public): Frank's case rests on one census that only says exactly one of Dave and Frank is Good. It doesn't say which, and Heidi's count can't be checked. Dave is the one who nominated Frank on that alone, after an Eavesdropper claim and a geometry objection he got wrong. Frank's PMs asked questions, which is not evidence. I'm voting Innocent unless someone shows a concrete contradiction in Frank's votes or results. Dave, why is an unverifiable census enough to send Frank to the rope?
+Bob (public): Heidi’s result, if accurate, says exactly one of Dave and Frank is Good; it doesn’t identify which. Dave’s Village claim is not independent confirmation, so the same result could point at Dave instead. Frank’s explanation of his votes has no clear contradiction. I lean Innocent; Dave should explain what supports his claim.
+Carol (public): Carol, Surveyor. New fact for this trial: my Night 2 survey of Erin, Frank and Grace found exactly one Clerk. Clerk is a Yakuza role, so one of those three is Yakuza. That makes Frank a live candidate, but Erin and Grace are candidates too. Heidi's census only says one of Dave and Frank is Good, and Dave's Eavesdropper claim is unverified. I won't vote Guilty on the census alone. Frank, did you act on Night 2, and did you visit or receive anything? Erin and Grace, please state your Night 2 actions.
+Dave (public): My alignment isn’t an unknown claim to me: I’m Good, and Alice flipped Good. Heidi flipped as Census Taker and reported 2/3 Good, which makes Frank non-Good if her result was accurate. Carol’s separate claimed survey puts a Yakuza role among Frank, Erin, and Grace. Neither result proves Frank is Yakuza alone, but together they make him a stronger candidate than an unsupported alternative.
+[Claim] Erin: Philanthropist. N1: no action. N2: gave Carol one token; one remains.
+Erin (public): I’m Philanthropist. I took no action N1; N2 I spent a token to give Carol one, so she should have been told a Philanthropist handed her a token. Carol’s Surveyor result puts a Yakuza role somewhere among Erin, Frank, and Grace—not specifically Frank. Heidi’s census likewise says only that exactly one of Dave and Frank is Good, if accurate; Dave’s own alignment claim isn’t independent confirmation. I see no concrete contradiction in Frank’s account, so I lean Innocent.
+Frank (public): Heidi’s count doesn’t tell us which of Dave and me is Good, and Dave’s own claim isn’t independent confirmation. Carol’s survey gives a role from a group, not a named player. My Yes on Carol’s first nomination was because she withheld her result; I voted Innocent once the group checked out. One concrete claim to verify: Erin says she gave Carol a token on N2, which should have triggered a notification. Don’t treat that claim—or Dave’s alignment claim—as established fact.
+Trial votes on Frank: Guilty - Carol, Dave, Erin; Innocent - Bob, Frank, Grace.
+The verdict was Innocent (3 Guilty of 6 votes; 4 needed), but the vote was rigged by a Clerk, so Frank is executed by hanging anyway.
+Frank died (executed by hanging). Their role was Clerk. Their last will: "Please distinguish what the results establish: Heidi’s census says exactly one of Dave and Frank was Good; it does not identify which. Carol’s Surveyor result gives a role from the group, not a named player. Erin says she gave Carol a token on N2; Carol should have received a notification, so verify that claim. Dave’s alignment claim is not independent evidence. My Day 2 votes on Carol were Yes while her result was withheld, then Innocent after the group checked out."
+
+===== NIGHT 3 =====
+Night actions:
+  Carol (Surveyor): target Bob; 1 token(s); "Survey Bob's group (Grace, Bob, Dave)."
+  Dave (Eavesdropper): target Grace
+  Erin (Philanthropist): target Carol; 1 token(s); "Give Carol one token."
+  Grace (Puppeteer): no role action; Katana vote: Grace holds, attacks Carol
+Katana: Grace holds it and attacks Carol.
+(to Carol) Moderator (private): You surveyed Grace, Bob and Dave. One of them, chosen at random, has the role Eavesdropper. 1 survey token left.
+(to Carol) Moderator (private): A Philanthropist handed you a survey token. You now have 2.
+(to Grace) Moderator (private): Night 3 Yakuza summary: Grace (you) used no role action and kept the Katana. Your Katana attack on Carol succeeded. You have 1 puppet token left.
+(to Carol) Moderator (private): Attack notice: you were attacked tonight with the Katana. The attack killed you.
+[Moderator summary] Night 3: No role-blocks or swaps. Carol surveyed Bob (group Grace/Bob/Dave; code delivers result; token spent). Dave eavesdropped Grace for Day 4. Erin gave Carol a survey token (Erin now 0 philanthropy). Grace kept Katana and attacked Carol (Standard vs None) -> Carol died (Katana). Carol got attack notice; Grace told attack succeeded, 1 puppet token left. Living: Bob, Dave, Erin (Village), Grace (Yakuza) - game continues.
+
+===== DAY 4 =====
+Carol died (killed by Katana). Their role was Surveyor. Their last will: "Carol, Surveyor (Good). N1 survey of Bob, Dave and Erin: exactly one of them is an Eavesdropper (exact role only, not whose). N2 survey of Erin, Frank and Grace: exactly one of them is a Clerk (exact role only). Surveyor tokens left: 2 (one came from a Philanthropist). Plan, not fact: at night I would survey the most suspicious living player's group, skipping myself. Heidi's will said exactly one of Dave and Frank is Good; treat that as an unverified claim. Judge players by votes and mechanical results, not soft reads."
+(to Dave) You are eavesdropping on Grace today: you'll read every private message they send or receive.
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Dave.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Dave (public): Bob and Grace both voted Innocent on Frank, the confirmed Yakuza Clerk; that alone proves neither guilty. Each should explain their vote and name their strongest alternative suspect. Erin, explain your Guilty vote too. We need a concrete case before hanging anyone.
+Erin (public): I voted Guilty on Frank because Carol’s survey put exactly one Clerk among me, Frank, and Grace, while Heidi’s census—if accurate—made Frank non-Good given Dave was Good. It was a risk call, not proof; Frank’s flip fits. Bob and Grace, explain your Innocent votes and name your strongest suspect now.
+Grace (public): I voted Innocent on Frank because Heidi's census only says one of Dave and Frank is Good, which convicts no one. Erin's Guilty vote rests on that census plus Carol's group, and neither names Frank. My strongest suspect now is Dave. He nominated Carol on a geometry error, then nominated Frank on the unverifiable census, and his Eavesdropper claim has no result behind it. Dave, what could be checked about your claim?
+Bob (public): I voted Innocent on Frank because the evidence then didn’t identify him; his flip makes Grace’s Innocent vote worth revisiting, though it isn’t proof by itself. Heidi’s verified census result—Alice, Dave, Frank: 2 Good—points to Dave being Good, since Alice was Good and Frank was Yakuza. Carol’s will also corroborates receiving a token from a Philanthropist, supporting Erin’s account. Grace is now my strongest suspect; let’s test her.
+Bob nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Bob, Dave, Erin; No - Grace.
+Grace is put on trial (3 Yes).
+[Claim] Grace: Vanilla Villager. No night action or result.
+Grace (public): Grace here, claiming Vanilla Villager with no night result. Bob, you voted Innocent on Frank just as I did, so my vote is no evidence against me. You called Heidi's census verified, but it is an unverified claim: it only says one of Dave and Frank is Good and cannot show which. Carol's will says she received a Philanthropist's token, which backs Erin's claim. Carol's survey says one of Bob, Dave or Erin is an Eavesdropper; Erin is that Philanthropist and Bob claims Vanilla, so Dave's claim fits, unless Bob is lying. My votes on Carol and Frank were Innocent, each with a stated reason, and I see no contradiction in them. Dave's geometry nomination was wrong, but that is no case against me. Bob, Dave and Erin: name one checkable contradiction in my votes, claims or results, or vote Innocent.
+Bob (public): Grace, your Innocent vote is shared by me, but your No on Frank’s nomination isn’t: I voted Yes to put him on trial, then Innocent because the evidence didn’t identify him. You opposed even testing him, then voted Innocent after he flipped as Clerk. Explain that No vote specifically. It’s a concrete link and makes me lean Guilty, though it isn’t proof; Dave and Erin’s Guilty votes don’t clear them either.
+Dave (public): Grace, your Innocent verdict isn't the key distinction: you were the only non-target who voted No on Frank's nomination; Bob voted Yes, then Innocent. Frank flipped Yakuza. What concrete evidence made you oppose even testing him? My mistaken Carol geometry is a separate error, not evidence against you.
+Erin (public): The key distinction is not Grace’s Innocent verdict—Bob shared it—but her No on Frank’s nomination while Bob supported putting him on trial. That opposed testing the census/survey lead at all. It’s suspicious, not proof; Grace should explain why she rejected the trial.
+Grace (public): Grace here, Vanilla Villager, no night result. Bob's reading of Heidi's census is only as good as the census. If it's accurate and Frank was Yakuza, Dave is Good, but Dave's Eavesdropper claim has no result behind it. Dave also nominated Carol on a geometry error he later withdrew, then nominated Frank on that same census. I voted Innocent on Carol and Frank, each with a stated reason. I opposed testing Frank because a census that names no one shouldn't send anyone to trial. Bob, you voted Yes then Innocent on Frank, so you also didn't hang him on that census. Erin's Guilty vote on Frank counted a group that included Erin herself. Before hanging me, name a contradiction in my own words, votes or results, not my silence on a census.
+Trial votes on Grace: Guilty - Bob, Dave, Erin; Innocent - Grace.
+Grace is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Grace died (executed by hanging). Their role was Puppeteer. Their last will: "Grace. I hold no confirmed role or result to pass on. Village should judge Dave by his record: his Eavesdropper claim is unverified, and his Day 2 geometry nomination was wrong and then withdrawn. Heidi's census (exactly one of Dave and Frank is Good) and Carol's Surveyor results are unverified and should not be treated as established. Vote on checkable contradictions and mechanical results, not on claims alone."
+The game is over. Winners: Alice (dead), Bob, Carol (dead), Dave, Erin, Heidi (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Dave, Erin, Heidi
+Cost by player (USD):
+  Alice (Prosecutor)      $0.0151    9 calls  claude-haiku-5.5
+  Bob (Vanilla Villager)  $0.0359   29 calls  gpt-6-luna
+  Carol (Surveyor)        $0.0487   29 calls  claude-haiku-5.5
+  Dave (Eavesdropper)     $0.0467   32 calls  gpt-6-luna
+  Erin (Philanthropist)   $0.0464   32 calls  gpt-6-luna
+  Frank (Clerk)           $0.0459   32 calls  gpt-6-luna
+  Grace (Puppeteer)       $0.0616   38 calls  claude-haiku-5.5
+  Heidi (Census Taker)    $0.0395   24 calls  claude-haiku-5.5
+  Moderator               $0.7337   13 calls  claude-opus-5.5
+  Night checks            $0.2591    3 calls  claude-opus-5.5
+  Strategy review         $0.2288    1 calls  claude-opus-5.5
+  Log review              $0.1906    1 calls  claude-opus-5.5
+  Total                   $1.7519  243 calls
