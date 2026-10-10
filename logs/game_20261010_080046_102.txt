@@ -310,3 +310,98 @@ Dave is executed by hanging (3 Guilty of 5 votes; 3 needed).
 Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave (Village, Vanilla Villager). No night action, no visits, no Katana, no results. My Day 4 Guilty on Bob and my Night 3 claim about Ivan were mistakes. Bob has not given a plain yes or no on visiting Erin on Night 2. Read, not verdict: check Bob and Grace first. Vote on mechanical results and concrete contradictions, not speeches or group links alone."
 
 ===== NIGHT 5 =====
+Night actions:
+  Bob (Puppeteer): target Heidi; 1 token(s); "Puppet Heidi for Day 6."; Katana vote: Bob holds, attacks Grace
+  Grace (Vigilante): no action
+  Heidi (Arsonist): target Bob; "Douse Bob."
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Bob) Moderator (private): Night 5 results: The Katana stays with you, and your Katana attack on Grace succeeded. You puppeted Heidi for Day 6; you have 0 puppet tokens left. Yakuza actions tonight: Bob held the Katana, attacked Grace with it and puppeted Heidi.
+(to Heidi) Moderator (private): Night 5 result: You doused Bob.
+[Moderator summary] Night 5: Bob (the only Yakuza left) kept the Katana and attacked Grace (Standard vs None), so Grace died. Bob spent his puppet token on Heidi for Day 6 (now 0). Heidi doused Bob. Visits: Bob->Grace, Bob->Heidi, Heidi->Bob. Bob, Heidi and Mallory are still alive, so nobody has won yet.
+
+===== DAY 6 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace: no confirmed results and no claimed role. I took no action on Nights 1 to 4, so I made no visits and hold nothing hidden. My reads: Bob never gave a plain yes or no on visiting Erin on Night 2, and voted Guilty on Ivan without naming a concrete contradiction. Dave pushed Bob to Guilty, wrongly said Ivan had a night action, then retracted it. Ivan's Night 3 pair of 2 and 2 needed a second visitor that nobody named. Treat these as reads, not results. Judge players by votes, checkable results and concrete contradictions, not by speeches."
+(to Heidi) You are being puppeted today: you can't chat or see private messages, but you can still nominate and vote.
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Mallory (public): Mallory nominating Bob. He never answered yes or no on visiting Erin on N2, pushed Dave to execution with no contradiction, and self-nominated on Day 5. Heidi, please vote.
+Mallory nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Mallory, Heidi; No - Bob.
+Bob is put on trial (2 Yes).
+Bob (public): Bob here, on trial. Two of you will decide this, so check the record. Heidi, your Day 5 Guilty on Dave rested on 'I know I'm not the holder', which Mallory showed any player can say. That contradiction was refuted, so that vote was a read, not a result. Mallory, you retracted your Day 4 claim that Judy reported me visiting Alice, and your Day 6 nomination leaned on my Erin answer, which is a dodge, not a mechanical result. I've said I won't post my night choices, and I haven't given a false result. Nobody has named a concrete contradiction in my results. Name one, or vote Innocent.
+Heidi (public): Heidi here. I'm reconsidering my read on Bob. My Day 5 Guilty on Dave rested on 'I know I'm not the holder', which Mallory showed any player can say, so that vote was a read, not a result. Bob's dodge on the Erin question is annoying, but a dodge is not a mechanical contradiction. Before the trial vote, I want one concrete contradiction in Bob's results or claims named. Without one, I won't vote Guilty.
+(to Bob, Mallory) Heidi -> Mallory (private): Heidi here. My Dave Guilty leaned on a point that was refuted, and Bob's Erin dodge is not a result. Unless you have a concrete contradiction, let's not hang him on that alone. I'm leaning Innocent.
+Mallory (public): I'm voting Guilty on Bob. Alice's Night 2 map leaves only Bob or Dave as the Katana holder who visited Erin, and Bob still won't answer yes or no on visiting Erin. Bob also voted Guilty on Ivan, whose Night 2 numbers 3,3 match that same map, and Bob never explained that vote.
+(to Bob, Mallory) Mallory -> Heidi (private): Heidi: Bob is the only one who refuses the Erin question, and Alice's map points at him. Dave's Guilty on Bob was wrong for me too, but Bob's Guilty on Ivan is a real contradiction. Please vote Guilty with me on Bob.
+Bob (public): Bob here, on trial. Heidi is the deciding vote, so check the record. Mallory's case rests on Alice's Erin map, which shows links, not visits, and on my Day 4 Guilty vote on Ivan. That vote came from Ivan's unnamed second visitor, a read I'll own, not a result. My Erin answer is a dodge, and I admit it, but a dodge is not a mechanical contradiction. Mallory also retracted her Judy claim and voted Guilty on Dave with no contradiction either. I've named no false result. Name a concrete contradiction in my results, or vote Innocent.
+(to Bob) Bob -> Heidi (private): Heidi: Mallory's Guilty rests on Alice's map and a dodge, the same kind of read you dropped on Dave. Unless you have a concrete contradiction, please vote Innocent with me.
+Trial votes on Bob: Guilty - Heidi, Mallory; Innocent - Bob.
+Bob is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's last will: I hold no confirmed role, no results and have made no night claims. Erin's Accountant claim, Alice's Cartographer map and Ivan's Fortune Teller numbers were never verified, so treat them as unverified leads. Dave's Day 4 pressure on me was built on a link he could not check. Mallory nominated me on a claim she later retracted, so weigh her later votes on their record. Heidi and Mallory should be judged on their own votes and any night-numbered results they post. Ask every claimant for checkable results before any Guilty vote, and do not hang anyone on a group link alone."
+
+===== NIGHT 6 =====
+Night actions:
+  Heidi (Arsonist): target Mallory; "Douse Mallory."
+Katana: no attack (no target); nobody holds it.
+(to Heidi) Moderator (private): Night 6 result: You doused Mallory.
+[Moderator summary] Night 6: Heidi (Arsonist) doused Mallory (status doused=true; Mallory not told). No Yakuza remain alive, so there was no Katana vote, holder or attack. No attacks, no deaths. Visits: Heidi->Mallory. Heidi told her douse result.
+
+===== DAY 7 =====
+Nobody died last night.
+[Night check] Night 6: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Heidi (public): Heidi here. I'm not nominating anyone today. With two of us alive, I'll vote Innocent on any trial unless someone names a concrete contradiction in a checkable result.
+Mallory (public): Mallory here. Heidi, you are not Good: after Bob's hanging only you and I were alive, and the game didn't end, so one of us is Evil or Neutral. I'm nominating you to test your vote, and I'll vote Guilty.
+Mallory nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Mallory; No - Heidi.
+The nomination of Heidi failed (1 Yes).
+Mallory (public): Mallory here. With two alive, a hanging needs both of us voting Guilty, so Heidi's own vote decides this. I have no night action and no results to offer.
+Mallory (public): Mallory here. Nothing new from me. With two of us alive, a trial needs both votes to be Guilty, so the only way to hang anyone is for Heidi to vote Guilty on herself. I'll vote Guilty on any trial. I have no night action and no results.
+Mallory (public): Mallory here. With two of us alive, a trial needs both votes to be Guilty, so Heidi's own vote decides every trial. Heidi is not Good, since the game didn't end at two alive. I'll vote Guilty on any trial, and I have no night action or results to offer.
+(to Heidi, Mallory) Mallory -> Heidi (private): Heidi, neither of us can hang the other without your own vote. The only decision left is tonight. If you tell me what you are, I'll record it honestly in my will.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 7 =====
+Night actions:
+  Heidi (Arsonist): "Ignite (Astral Visit): Strong attack on every doused player."
+Katana: no attack (no target); nobody holds it.
+(to Heidi) Moderator (private): You ignited. Your Strong Attack hit every doused player: Mallory. Your attack on Mallory succeeded.
+(to Mallory) Moderator (private): You were attacked by an Arsonist tonight. You died.
+[Moderator summary] Night 7: Heidi (Arsonist) ignited (Astral Visit). The only doused living player was Mallory (Vanilla Villager, Defense None), and the Strong Attack killed her. There was no Katana activity because no Yakuza are left. No visits were recorded. Heidi is the only player left alive, so the Arsonist wins alone.
+
+===== DAY 8 =====
+Mallory died (killed by Arsonist). Their role isn't revealed. Their last will: "Mallory's last will (updated Day 7): I am a Vanilla Villager with no night action, no visits, no Katana and no results. I have posted no verified result. Carol (Oracle), Erin (Accountant), Alice (Cartographer) and Ivan (Fortune Teller) were never verified, so treat their numbers and maps as unproven. The Day 5 Dave trial and the Day 6 Bob trial rested on unverified group links and on Bob's refusal to answer about Night 2 Erin. Bob's Night 2 visit to Erin was never checked. Judge the remaining players by their votes, concrete contradictions and any night-numbered results they post."
+The game is over. Winners: Heidi.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 7: correct
+[Feedback from Carol] The game ended for me on Night 1, so my feedback is limited to what I observed; the public ledger and claim tracking were the hardest parts to follow.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Heidi
+Cost by player (USD):
+  Alice (Cartographer)        $0.0428   29 calls  claude-haiku-5.5
+  Bob (Puppeteer)             $0.1076   64 calls  claude-haiku-5.5
+  Carol (Oracle)              $0.0147   12 calls  claude-haiku-5.5
+  Dave (Vanilla Villager)     $0.0679   47 calls  claude-haiku-5.5
+  Erin (Accountant)           $0.0296   21 calls  claude-haiku-5.5
+  Frank (Smuggler)            $0.0759   51 calls  claude-haiku-5.5
+  Grace (Vigilante)           $0.0774   52 calls  claude-haiku-5.5
+  Heidi (Arsonist)            $0.0997   63 calls  claude-haiku-5.5
+  Ivan (Fortune Teller)       $0.0677   41 calls  claude-haiku-5.5
+  Judy (Clerk)                $0.0823   51 calls  claude-haiku-5.5
+  Mallory (Vanilla Villager)  $0.0967   56 calls  claude-haiku-5.5
+  Moderator                   $1.4770   21 calls  claude-opus-5.5
+  Night checks                $0.3012    7 calls  claude-opus-5.5
+  Strategy review             $0.2729    1 calls  claude-opus-5.5
+  Log review                  $0.2657    1 calls  claude-opus-5.5
+  Total                       $3.0788  517 calls

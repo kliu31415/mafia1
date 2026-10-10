@@ -245,3 +245,50 @@ Frank (public): Frank, Accountant. Heidi, you have never said whether you visite
 Ivan (public): Ivan, Vanilla Villager. Heidi, you sent me a private message saying you visited nobody on Night 2, but you have not said it publicly while asking everyone else to answer plainly. Post it publicly now. I won't vote on anyone until Frank's Night 3 audit and the Day 4 results land.
 Judy (public): Judy, Lookout. Heidi, you privately told Ivan you visited nobody on Night 2. Post that publicly too, since your count is the only thing naming a fourth visitor.
 Carol (public): Carol here. Heidi, you privately told Ivan you visited nobody on Night 2, but the table still has no public answer from you. Your count is the only thing naming a fourth visitor on Bob, so post your answer publicly rather than only in private.
+Frank (public): Frank, Accountant. Heidi, answer the Bob visit question publicly.
+Grace (public): I visited nobody on Night 2, and I have no night action. Heidi, you privately told Ivan you visited nobody but still haven't said so publicly. Your count can't name a fourth visitor while you stay silent. Answer publicly now.
+Heidi (public): I visited nobody on Night 2. Fortune Teller has no night action.
+Carol (public): Heidi's public answer is in. Nobody should vote before Frank's Night 3 audit and Dave's alert count land on Day 4.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+(to Carol, Erin, Mallory) Carol (Yakuza chat): Night 3 proposal: Erin keeps the Katana with no move. Target: Frank. His audits are the only thing that can read our tokens (my 2 swaps, Mallory's clerk token), and his Night 3 audit is due at Day 4. Heidi's count also pins a fourth visitor, and Frank's audit corroborates it. Nobody visits Dave, who is on alert. Mallory, no rig tonight. Object now or vote Frank.
+(to Carol, Erin, Mallory) Erin (Yakuza chat): Erin agrees with Carol: Erin keeps the Katana with no move, the attack goes to Frank, and I take no action. Mallory, no rig tonight. Nobody visits Dave, who is on alert. Frank's Night 3 audit is the threat, so I vote Frank. Ready.
+(to Carol, Erin, Mallory) Mallory (Yakuza chat): Mallory agrees with Carol and Erin: Erin keeps the Katana with no move, the attack goes to Frank, I take no action, no rig tonight, and nobody visits Dave, who is on alert. Frank's audit is the threat to our tokens. Vote Frank. Ready.
+(to Carol, Erin, Mallory) Carol (Yakuza chat): Carol agrees with the plan: Erin keeps the Katana with no move, the Katana attack goes to Frank, I take no action, no rig from Mallory, and nobody visits Dave, who is on alert. I vote Frank. Ready.
+(to Carol, Erin, Mallory) Erin (Yakuza chat): Erin confirms: I keep the Katana with no move, the attack goes to Frank, and I take no action. Mallory, no rig. I vote Frank. Ready.
+(to Carol, Erin, Mallory) Mallory (Yakuza chat): Mallory agrees: Erin keeps the Katana with no move, the Katana attack goes to Frank, I take no action, no rig, and nobody visits Dave. Ready.
+Night actions:
+  Carol (Smuggler): no role action; Katana vote: Erin holds, attacks Frank
+  Dave (Veteran): 1 token(s)
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks Frank
+  Frank (Accountant): target Mallory; "Accountant audit of Mallory's total token count at the end of the night."
+  Judy (Lookout): target Heidi; "Lookout watch on Heidi."
+  Mallory (Clerk): no role action; Katana vote: Erin holds, attacks Frank
+Katana: Erin holds it and attacks Frank.
+(to Frank) Moderator (private): Night 3 result: your audit of Mallory shows 1 token in total at the end of the night. You were attacked with the Katana tonight, and you died.
+(to Dave) Moderator (private): Night 3 result: you went on alert. Nobody visited you. 1 alert token left.
+(to Judy) Moderator (private): Night 3 result: you watched Heidi. Nobody visited Heidi.
+(to Heidi) Moderator (private): Fortune Teller numbers for Night 3 (unlabelled, in no order): 3 and 3.
+(to Carol, Erin, Mallory) Moderator (private): Yakuza night report: the Katana stays with Erin, and Erin used it to attack Frank. Carol chose no action. Erin chose no action of her own. Mallory chose no action.
+(to Erin) Moderator (private): Your Katana attack on Frank succeeded.
+[Moderator summary] Night 3: No swaps or blocks. Erin (Katana holder) attacked Frank with Standard Katana; Frank (no defense) died. Dave went on alert (alert 2->1), no visitors. Frank audited Mallory: 1 token. Judy watched Heidi: no visitors. Heidi FT numbers 3 and 3 (visited Frank, Mallory, Heidi; visitors Erin, Frank, Judy). Visits: Erin->Frank, Frank->Mallory, Judy->Heidi. Remaining: 3 Yakuza (Carol, Erin, Mallory), 5 Village; game continues.
+
+===== DAY 4 =====
+Frank died (killed by Katana). Their role was Accountant. Their last will: "Frank, Accountant (Village). Audit results so far: Night 1, Dave had 3 tokens total at the end of the night (fits his Veteran claim). Night 2, Bob had 0 tokens total at the end of the night (fits Bob spending his archive token on Night 1). Trust results over claims. Any later audit results will be added here as they happen."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Ivan (public): Ivan, Vanilla Villager. Frank died to the Katana on Night 3, so the holder is still alive. Frank's will has no Night 3 audit, so there is nothing new to weigh from him. Dave, please post your Night 3 alert count and attack results. Heidi, please post your Day 4 numbers. No nomination from me until these results land.
+Judy (public): Judy, Lookout. My N3 watch on Heidi found no visitors besides my own visit, so Heidi's Night 3 numbers should be 2 visited (Heidi, Frank) and 2 visitors (me and the Katana holder who hit Frank). Dave, Frank's death reveal lists only the Katana, and any visitor to an alert Veteran dies, so your N3 alert should show zero visitors. Please post that count. No nomination from me yet.
+Mallory (public): Mallory here. No nomination from me. Dave, please post your Night 3 alert count and any attack results as promised. Judy, your Night 3 watch on Heidi is a claim until Heidi's Day 4 numbers match it. Heidi, post the Day 4 numbers. Nobody should vote before those land.
+Carol (public): Carol, no nomination from me. Dave, post your Night 3 alert count and any attack results as promised. Heidi, post your Day 4 numbers. Nobody should vote until those results land.
+Dave (public): Dave, Veteran. N3 alert: nobody visited me, so no kill. 1 alert token left. Frank's death was the Katana on N3, so the holder is still alive. Heidi, post your Night 3 numbers with the visit names. I won't nominate yet.
+Erin (public): Erin, Vanilla Villager. Dave's N3 alert with zero visitors fits Judy's N3 watch on Heidi. Heidi, please post your Day 4 numbers with names, as promised. No nomination from me; I'll vote on mechanics.
+Grace (public): Grace, Vanilla Villager. Heidi, post your Day 4 numbers with names. Judy's N3 watch on you gives a testable 2 visited and 2 visitors. Dave, your N3 alert count of zero is noted. The Katana holder visited Bob on Night 2 by definition, so one of Carol, Mallory, Ivan or Erin who said they visited nobody is lying. Whoever it is, explain it now. No nomination from me.
+Heidi (public): Heidi, Fortune Teller. Night 3 numbers: 3 visited, 3 visitors. They fit exactly: Judy visited me on her Lookout watch, the Katana holder visited Frank, and Frank visited a third player who is neither me nor Frank. So Judy's 2-and-2 left out Frank's audit, but her watch on me stands. Frank's audit target is still unknown, so nobody should vote before we identify it. Dave's zero visitors is consistent. No nomination from me.
+Ivan (public): Ivan, Vanilla Villager. Two checks. Judy's N3 prediction (2 visited: Heidi and Frank) left out Frank's audit target, which Heidi's count of 3 visited needs as a third player, so Judy's prediction doesn't match Heidi's numbers. Bob's N1 list has one Grunt among Carol, Erin, Grace, Ivan and Mallory. I am a Vanilla, so the Grunt is Carol, Erin, Grace or Mallory. If anyone knows Frank's N3 audit target, say so. No nomination from me; I'll vote on mechanics.
+Judy (public): Judy, Lookout. Correction to my N3 prediction: I left out Frank's audit target. Heidi's 3-visited, 3-visitor count fits my watch on her: I visited Heidi, the Katana holder hit Frank, and Frank audited a third player. Dave, your zero N3 visitors is consistent with that count too. I'm not nominating. We need Dave's Night 4 alert count and Frank's audit target before any vote.
+Mallory (public): Mallory here. No nomination from me. Judy's N3 watch and Heidi's 3-and-3 count fit together once Frank's audit target is counted. Frank's N3 audit target is the open piece, so whoever he audited, please say so. Dave, post your N4 alert count when it lands.
+Carol (public): Carol, no nomination. Judy's N3 watch on Heidi and Heidi's 3-and-3 count only match once Frank's audit target is counted, and nobody has named that target yet. Heidi or Judy, if either of you knows who Frank audited on Night 3, post it. Dave, your Night 4 alert count is the next test. Nobody should vote before it lands.
+Dave (public): Dave, Veteran. No nomination from me. Judy's N3 watch on Heidi and Heidi's 3-and-3 count only fit once Frank's N3 audit target is counted, so that target is the open piece. I plan to go on alert tonight with my last token and will report visitor counts at the start of Day 5.
