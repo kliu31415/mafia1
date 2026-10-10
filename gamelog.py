@@ -59,7 +59,9 @@ from records import read_records, safe_print
 #     included); moderator_call has day and phase; "resume" has at ("day" or "night": the checkpoint's phase)
 # 29: player_feedback has step (players.STEPS), so answers to post-game questions aren't read as in-game reports
 # 30: "katana" result has moved_from (the previous holder) when the Katana changed hands that night
-LOG_VERSION = 30
+# 31: death records (and result players' death) have killers and killer_roles: every attacker whose attack was
+#     fatal (killer/killer_role are the first); the kill op's `by` may be a list
+LOG_VERSION = 31
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

@@ -22,6 +22,17 @@ def test_hanged_jester_wins_and_takes_revenge_on_a_guilty_voter(game_factory):
     assert len(dead) == 1 and dead <= {"Bob", "Carol"}
 
 
+def test_jester_revenge_draws_from_voters_alive_when_the_night_began(game_factory):
+    # Kevin, Oct 10: a Guilty voter killed by another attack that night is still in the draw.
+    game, _ = game_factory(["Jester", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob"])
+    game.phase = "night"
+    start = {p.name for p in game.alive()}
+    game.kill("Bob", "Katana")
+    game.resolve_revenge(start)
+    assert [n for n, _ in game.pending_deaths] == ["Bob"]  # nobody else dies
+
+
 def test_jester_killed_at_night_does_not_win(game_factory):
     game, _ = game_factory(["Jester", "Vanilla Villager", "Vanilla Villager", "Grunt"])
     game.phase = "night"

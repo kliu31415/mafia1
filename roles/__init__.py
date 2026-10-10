@@ -79,7 +79,7 @@ ROLES: dict[str, RoleInfo] = {
                           tokens={"vigilante": 3}, acts_at_night=True,
                           tested=True),
     "Veteran": RoleInfo(Alignment.GOOD, "Combat", False,
-                        summary="Token: go on alert, Standard Defense and a Strong Attack on every visitor.",
+                        summary="Can't be role-blocked. Token: go on alert, Standard Defense and a Strong Attack on every visitor.",
                         tokens={"alert": 3}, acts_at_night=True,
                         tested=True, notes="moderator resolves the alert; night note lists its effects"),
     "Prosecutor": RoleInfo(Alignment.GOOD, "Misc", False,

@@ -23,7 +23,10 @@ def tool(name: str, description: str, **params: dict) -> dict:
 def apply_changes_tool(role_op_docs: list[str]) -> dict:
     return tool(
         "apply_changes", "Apply state changes. Ops: {op:'kill', player, cause, by, katana} (by = the "
-        "killer's name if a player killed them; katana = true for the Katana attack; cause = the killer's role or weapon, e.g. 'Katana' or 'Vigilante'; it's revealed as 'X died (killed by <cause>)') | "
+        "killer's name if a player killed them, or a list of names if several attacks would each have killed them; "
+        "katana = true if the Katana attack was one of them; cause = the killer's role or weapon, e.g. 'Katana' or "
+        "'Vigilante', naming every fatal cause when there are several (R12), e.g. 'Katana and Serial Killer'; it's "
+        "revealed as 'X died (killed by <cause>)') | "
         "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
         "(value null deletes the key) | {op:'set_katana', player} | {op:'set_last_will', player, text} "
         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
@@ -292,8 +295,13 @@ class Moderator:
                 raise bad(f"missing {sorted(missing)}")
             if extra := fields - required - optional:
                 notes.append(f"change {i} ({op}): ignored unknown fields {sorted(extra)}")
+            if isinstance(c.get("by"), list):  # several fatal attackers (kill)
+                if op != "kill" or not c["by"] or not all(isinstance(b, str) for b in c["by"]):
+                    raise bad("by must be a player name" + (", or a list of names" if op == "kill" else ""))
+                if unknown := [b for b in c["by"] if b not in names]:
+                    raise bad(f"no player named {unknown[0]!r}")
             for key in ("player", "by"):
-                if key in c and c[key] not in names:
+                if key in c and not isinstance(c[key], list) and c[key] not in names:
                     raise bad(f"no player named {c[key]!r}")
             if op == "kill":
                 if "katana" in c and not isinstance(c["katana"], bool):
@@ -302,8 +310,8 @@ class Moderator:
                     raise bad("cause must be text")
                 if c["player"] in killed:  # the second kill would be dropped, with its cause and katana flag
                     raise bad(f"{c['player']} is already killed by an earlier change; make it one kill that names "
-                              "every cause (e.g. 'Katana and Serial Killer'), with katana=true if the Katana's "
-                              "attack was one of them")
+                              "every fatal cause (e.g. 'Katana and Serial Killer'), with by listing every killer "
+                              "and katana=true if the Katana's attack was one of them")
                 killed.add(c["player"])
                 if not self.game.player(c["player"]).alive:
                     notes.append(f"change {i} (kill): {c['player']} is already dead, so it does nothing")

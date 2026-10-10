@@ -174,7 +174,7 @@ class Game:
     # --- state changes ----------------------------------------------------------------------
 
     def kill(self, name: str, cause: str, public: bool = True, guilty_voters: list[str] | None = None,
-             by: str | None = None, katana: bool = False) -> None:
+             by: str | list[str] | None = None, katana: bool = False) -> None:
         """Rules R12. guilty_voters is set only for an execution by hanging. `by` is the killer, if a
         player, and katana marks the Katana attack; they're logged for analysis (deaths by role),
         while `cause` is the public wording."""
@@ -183,11 +183,15 @@ class Game:
             return
         p.alive = False
         self.phases_without_death = 0
-        killer_role = self.player(by).role if by else None
-        p.death = {"day": self.day, "phase": self.phase, "cause": cause, "killer": by, "killer_role": killer_role,
-                   "katana": katana}
+        # Several attacks may each have been fatal (R12): killers lists them all, killer is the first.
+        killers = [by] if isinstance(by, str) else list(by or [])
+        killer_roles = [self.player(k).role for k in killers]
+        killer, killer_role = (killers[0], killer_roles[0]) if killers else (None, None)
+        p.death = {"day": self.day, "phase": self.phase, "cause": cause, "killer": killer, "killer_role": killer_role,
+                   "killers": killers, "killer_roles": killer_roles, "katana": katana}
         self.log.write("death", player=name, role=p.role, cause=cause, day=self.day, phase=self.phase,
-                       killer=by, killer_role=killer_role, katana=katana)
+                       killer=killer, killer_role=killer_role, killers=killers, killer_roles=killer_roles,
+                       katana=katana)
         if not public:
             pass  # caller (e.g. moderator after a Mortician clean) announces it differently
         elif self.phase == "night":
@@ -257,10 +261,13 @@ class Game:
             reveal += f" Their last will: \"{p.last_will}\""
         return reveal
 
-    def resolve_revenge(self) -> None:
-        """Jester / Executioner revenge: a Divine Attack on a random Guilty voter, the night after."""
+    def resolve_revenge(self, alive_at_start: set[str] | None = None) -> None:
+        """Jester / Executioner revenge: a Divine Attack on a random Guilty voter, the night after, drawn from
+        those alive when the night began (Kevin, Oct 10: one killed by another attack that night can still be
+        drawn, and then nobody else dies)."""
         for source, voters in self.pending_revenge:
-            targets = [v for v in voters if self.player(v).alive]
+            targets = [v for v in voters if (v in alive_at_start if alive_at_start is not None
+                                             else self.player(v).alive)]
             if targets:
                 victim = self.rng.choice(targets)
                 self.log.write("revenge", source=source, victim=victim)

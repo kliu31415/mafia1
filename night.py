@@ -18,6 +18,7 @@ YAKUZA_MESSAGE_WORDS = 200  # Yakuza chat is free but each message is capped at 
 def run_night(game: Game, players: Players, moderator: Moderator, checker: NightChecker | None = None) -> None:
     game.phase = "night"
     game.emit(f"Night {game.day} begins.", cat=PHASE)
+    alive_at_start = {p.name for p in game.alive()}  # the revenge draw's pool (R10)
     if len(game.yakuza()) > 1:
         yakuza_chat(game, players, YAKUZA_CHAT_ROUNDS,
                     "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. "
@@ -78,10 +79,11 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "(the trap's owner for a trap) and katana=true for the Katana attack; these are recorded for "
         "analysis, never shown. Don't tell() deaths to all. Every attacked player, including those who died, "
         "gets their attack notice (R20 step 5); moderators have skipped it for players who died. Tell each role-blocked player that they "
-        "were role-blocked. Every player who used an ability gets a private result line, even when nothing "
+        "were role-blocked; a role-blocker learns only whether the block failed because its target can't be role-blocked (R9). Every player who used an ability gets a private result line, even when nothing "
         "else happened (e.g. 'You went on alert. 1 alert token left.'), stating any tokens they have left, "
         "except where a role note below says otherwise (e.g. code tells them, so don't tell() them a second result). "
-        "Tell all Yakuza which actions each Yakuza performed but not the results; "
+        "Tell all Yakuza which actions each Yakuza chose but not the results, nor whether a teammate was "
+        "role-blocked (R8); role-blocked Yakuza's Katana votes still count. "
         "only the attacker learns whether the Katana attack succeeded. Update token counts for any "
         "tokens spent.\n\n"
         + role_notes(game)
@@ -91,7 +93,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     transcript = moderator.run_phase(instructions)
     if checker:
         checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()))
-    game.resolve_revenge()
+    game.resolve_revenge(alive_at_start)
     # A forged will and a Mortician's clean only take effect if their target died tonight; the moderator may
     # apply them before knowing (any op order is fine), so survivors get theirs back.
     for p in game.alive():

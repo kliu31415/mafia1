@@ -62,9 +62,17 @@ def test_kills_record_the_killer_and_their_role(game_factory):
         {"op": "kill", "player": "Dave", "cause": "Katana", "by": "Carol", "katana": True}]})
     assert game.player("Bob").death["killer_role"] == "Vigilante" and not game.player("Bob").death["katana"]
     assert game.player("Dave").death == {"day": 1, "phase": "night", "cause": "Katana", "killer": "Carol",
-                                         "killer_role": "Grunt", "katana": True}
+                                         "killer_role": "Grunt", "killers": ["Carol"], "killer_roles": ["Grunt"],
+                                         "katana": True}
     with pytest.raises(ValueError, match="no player"):
         mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "by": "Zed"}]})
+    # Several fatal attacks: every killer is recorded (R12 reveals every fatal cause).
+    mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "cause": "Katana and Jester's revenge",
+                                                "by": ["Carol", "Dave"], "katana": True}]})
+    assert game.player("Alice").death["killers"] == ["Carol", "Dave"]
+    assert game.player("Alice").death["killer_roles"] == ["Grunt", "Jester"]
+    with pytest.raises(ValueError, match="no player"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Carol", "by": ["Dave", "Zed"]}]})
 
 
 def test_lessons_include_the_moderators_strategy_review(tmp_path, monkeypatch):

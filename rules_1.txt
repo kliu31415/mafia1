@@ -14,7 +14,8 @@ R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
 - Yakuza (Evil): fewer players, stronger roles; they know each other and share a night chat.
 - Neutral: each Neutral player is their own one-person faction, even if two players have the same Neutral role.
-The list of roles in the game is not public.
+The list of roles in the game is not public. A role may appear more than once in a game unless its text says
+Unique.
 
 R15 (Alignments)
 Every player has one of three alignments: Good (Village), Evil (Yakuza) or Neutral. Some roles and effects change
@@ -98,7 +99,9 @@ R6 (Visits)
 R9 (Role-blocks)
 A role-blocked player's actions that night have no effect, exactly as if they had chosen not to act: no visit,
 no tokens spent. It lasts only that one night (not the next Day or later nights). Role-blocked players are told
-they were role-blocked.
+they were role-blocked. Any player can be role-blocked unless their role says otherwise; blocking a player who
+has no night action has no effect. A role-blocker learns only whether the block failed because its target can't
+be role-blocked.
 
 R10 (Simultaneous night resolution)
 All night actions happen at the same time. Think of it as two steps: first everyone attempts their actions,
@@ -139,7 +142,8 @@ never told who protected them. A player who is attacked is still told as in R3.
 
 R12 (Death reveals)
 When someone dies, their role, cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are
-revealed publicly by default. They leave the circle and can't take part in the game any more.
+revealed publicly by default. If several attacks were each fatal, every fatal cause is revealed; attacks the
+player survived aren't. They leave the circle and can't take part in the game any more.
 
 R14 (Stall rule)
 If a Day begins and nobody has died in the three previous Nights and three previous Days, everyone loses. Deaths
@@ -175,8 +179,9 @@ R8 (Yakuza and the Katana)
 - The holder may also use their own role's night action.
 - The holder appears Good to alignment checks that night (R19).
 - The attacked player only learns they were attacked with the Katana, not the Yakuza role.
-- At the end of the night, each Yakuza learns what actions the other Yakuza performed, but not their results
-  (e.g. whether the Pharmacist's block worked).
+- At the end of the night, each Yakuza learns what actions the other Yakuza chose, but not their results
+  (e.g. whether the Pharmacist's block worked) or whether a teammate was role-blocked.
+- Role-blocked Yakuza still vote on the Katana's holder and target; the votes aren't actions.
 - If the holder dies, the Katana passes to a random living Yakuza, if any; a holder who dies at night passes it on
   after that night's results. The living Yakuza are told who holds it now (and so learn that the holder died).
 
@@ -268,8 +273,9 @@ Vigilante
 
 Veteran
   Tokens: 3 alert tokens.
-  Night: may spend a token to go on alert (not a visit, R6). While on alert you have Standard Defense, you can't be
-  role-blocked, and you deal a Strong Attack to every player who visits you that night, whatever their faction
+  You can't be role-blocked.
+  Night: may spend a token to go on alert (not a visit, R6). While on alert you have Standard Defense and you deal
+  a Strong Attack to every player who visits you that night, whatever their faction
   (a role-blocker who visits you is attacked too), however many there are. Astral Visits aren't visits, so they
   aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how many, and whether
   your attack on each of them succeeded, but nothing about who they were.
@@ -299,9 +305,9 @@ Outsiders (Village, but the role can hurt the Village)
 Roleplayer
   You are told your role is X, a random Village Investigative role other than Eavesdropper or Archivist, chosen at
   the start.
-  The moderator gives you results that are usually false but plausible. Exact-role checks see you as Roleplayer
-  (R19). Your night actions only happen in your imagination: they aren't visits, have no effect, and no other
-  role sees them.
+  You aren't told that you're a Roleplayer. The moderator gives you results that are usually false but plausible.
+  Exact-role checks see you as Roleplayer (R19). Your night actions only happen in your imagination: they aren't
+  visits, have no effect, and no other role sees them.
 
 Ex-Con
   Appears: Evil to alignment checks (R19).
@@ -391,8 +397,8 @@ Jester
   Defense: Basic. Appears: Evil to the Sheriff.
   Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
   alive.
-  Revenge: if you are hanged, the following night a random Guilty voter from your trial who is still alive is
-  dealt a Divine Attack (Astral Visit). If nobody voted Guilty, nothing happens.
+  Revenge: if you are hanged, the following night a random Guilty voter from your trial who was alive when that
+  night began is dealt a Divine Attack (Astral Visit). If nobody voted Guilty, nothing happens.
 
 Executioner
   Defense: Basic. Appears: Evil to the Sheriff.
@@ -401,7 +407,7 @@ Executioner
   the game ends with your target alive.
   On winning: the moderator reveals you at once and you leave the game. Leaving works exactly like dying (you
   leave the circle for good) except it doesn't count as a death. The following night, a random Guilty voter from
-  the trial who is still alive (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
+  the trial who was alive when that night began (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
   Guilty, nothing happens.
   If your target dies any other way, you become a Jester.
 
