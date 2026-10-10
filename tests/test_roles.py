@@ -248,7 +248,7 @@ def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
     result = next(e for e in game.events if e.cat == "result")
     assert result.visible_to == {"Alice"} and "You surveyed Frank, Bob and Carol." in result.text
     assert any(role in result.text for role in ("Jester", "Vanilla Villager", "Medic"))
-    assert game.player("Alice").tokens["survey"] == 1
+    assert game.player("Alice").tokens["survey"] == 2
     for name in ["Carol", "Dave", "Erin"]:
         game.player(name).alive, game.player(name).death = False, None  # died on earlier days
     assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob"]  # two others alive
@@ -587,3 +587,30 @@ def test_census_group_shrinks_when_few_players_are_left(game_factory):
     assert census_group(game, "Alice", "Bob") == ["Bob", "Carol"]
     game.day += 1
     assert census_group(game, "Alice", "Bob") == ["Bob"]
+
+
+def test_profiler_gets_three_roles_one_true_with_both_good_and_not_good(game_factory):
+    from roles.profiler import profile_candidates
+    from roles import ROLES, Alignment
+    game, players = game_factory(["Profiler", "Medic", "Sheriff", "Grunt", "Jester", "Vanilla Villager"])
+    game.phase = "night"
+    game.kill("Erin", "Katana")  # died tonight: the Jester is still in play
+    for target in ["Bob", "Dave", "Erin"]:
+        for _ in range(20):
+            roles = profile_candidates(game, "Alice", target)
+            assert len(set(roles)) == 3 and game.player(target).role in roles and roles == sorted(roles)
+            assert {ROLES[r].alignment is Alignment.GOOD for r in roles} == {True, False}
+            assert "Profiler" not in roles  # the Profiler's own seat isn't a decoy source
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "profile", "player": "Bob", "by": "Alice"}]})
+    result = [e for e in game.events if e.cat == "result"][-1]
+    assert result.visible_to == {"Alice"} and "You profiled Bob: their role is" in result.text
+    assert "Medic" in result.text and "2 profile tokens left" in result.text
+
+
+def test_profiler_decoys_fall_back_to_all_roles_in_tiny_games(game_factory):
+    from roles.profiler import profile_candidates
+    game, _ = game_factory(["Profiler", "Grunt", "Grunt"])
+    game.phase = "night"
+    roles = profile_candidates(game, "Alice", "Bob")
+    assert "Grunt" in roles and len(set(roles)) == 3

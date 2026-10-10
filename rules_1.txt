@@ -260,7 +260,7 @@ Archivist
   is an exact-role check (R19): a Roleplayer shows as Roleplayer.
 
 Surveyor
-  Tokens: 2 survey tokens.
+  Tokens: 3 survey tokens.
   Night: may spend a token to survey one player other than yourself. The group is that player plus their nearest
   neighbor on each side in the circle (R11) among the players alive at the start of the night, skipping yourself
   and never counting anyone twice (so with only one or two other players alive, the group is smaller). You are
@@ -275,6 +275,16 @@ Census Taker
   counted, and how many of the group are of it. It counts true alignment and is not an alignment check (R19):
   the Katana holder, framed players and the Ex-Con count as what they really are. Neutral players are never
   counted, as either Good or Evil.
+
+Profiler
+  Tokens: 3 profile tokens.
+  Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one
+  of which is that player's true role. The other two are drawn at random from the roles of the other players alive at
+  the start of the night (including players who die that night, but not yourself), or from all roles if too few
+  are in play. At least
+  one of the three is a Good role and at least one is not Good (Evil or Neutral), so a result never settles the
+  player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19): a
+  Roleplayer shows as Roleplayer.
 
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they

@@ -64,7 +64,7 @@ ROLES: dict[str, RoleInfo] = {
                           "and tells it at once"),
     "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False,
                          summary="Token: survey a player; learns one random role among them and their two neighbors.",
-                         tokens={"survey": 2}, acts_at_night=True, tested=True,
+                         tokens={"survey": 3}, acts_at_night=True, tested=True,
                          notes="moderator records the use with the survey op; code picks the group and draws the role"),
     "Census Taker": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Night: count the Good or the Evil players (drawn at random) among a chosen "
@@ -72,6 +72,10 @@ ROLES: dict[str, RoleInfo] = {
                              acts_at_night=True,
                              notes="moderator records the use with the census op; code draws the group and the "
                              "alignment counted, counts true alignment and tells them"),
+    "Profiler": RoleInfo(Alignment.GOOD, "Investigative", False,
+                         summary="Token: profile a player, learn three candidate roles for them, one true.",
+                         tokens={"profile": 3}, acts_at_night=True,
+                         notes="moderator records the use with the profile op; code draws the decoys and tells them"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,
@@ -217,7 +221,7 @@ def role_status_table() -> str:
 # Role files register their hooks when imported.
 from roles import (  # noqa: E402, F401
     accountant, archivist, arsonist, ballot_stuffer, cardinal, census_taker, clerk, diviner, eavesdropper, ex_con,
-    executioner, fortune_teller, jester, medic, philanthropist, prosecutor, puppeteer, roleplayer, seer, smuggler,
-    surveyor, trapper, veteran, vulture, wiretap)
+    executioner, fortune_teller, jester, medic, philanthropist, profiler, prosecutor, puppeteer, roleplayer, seer,
+    smuggler, surveyor, trapper, veteran, vulture, wiretap)
 
 assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"
