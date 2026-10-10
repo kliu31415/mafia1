@@ -206,3 +206,14 @@ def test_the_moderator_gets_a_readable_state_summary(game_factory):
     assert "seat 1: Alice (Clerk, Yakuza)" in summary and "holds the Katana" in summary
     assert "Dead: Bob (Medic" in summary and "seat 2" not in summary
     assert f"Clerk's rig on day {game.day + 1}" in summary and "Carol is prosecuted next day" in summary
+
+
+def test_a_token_count_below_zero_is_reset_and_warned(game_factory):
+    # game_20261009_232916_370745: set_tokens 0 plus a prosecute op that spent the token again.
+    game, players = game_factory(["Prosecutor", "Vanilla Villager", "Grunt"])
+    game.player("Alice").tokens["prosecutor"] = 1
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    out = mod.dispatch("apply_changes", {"changes": [
+        {"op": "set_tokens", "player": "Alice", "token": "prosecutor", "value": 0},
+        {"op": "prosecute", "player": "Carol", "by": "Alice"}]})
+    assert game.player("Alice").tokens["prosecutor"] == 0 and "below 0" in out["notes"][0]

@@ -224,6 +224,15 @@ class Moderator:
                             p.last_will = c["text"]
                         case "set_katana":
                             g.katana_holder = p.name
+                # e.g. set_tokens to 0 and then a prosecute op that spends the token too (game_20261009_232916_370745)
+                for q in g.players:
+                    for kind, n in q.tokens.items():
+                        if n < 0:
+                            q.tokens[kind] = 0
+                            note = (f"{q.name}'s {kind} tokens went below 0, so they were set to 0: an op that "
+                                    "spends a token already does it, so don't also set_tokens for it")
+                            notes.append(note)
+                            g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
                 return {"ok": True, **({"notes": notes} if notes else {})}
             case "random_choice":
                 options, k = args["options"], args.get("k", 1)
