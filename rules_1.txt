@@ -1,6 +1,4 @@
-==================================================================================================
-PART 1: THE GAME
-==================================================================================================
+=== PART 1: THE GAME ===
 
 R1 (Overview and winning)
 You are playing a Mafia-style game with around 10 players (depending on setup), each in a faction. An omniscient
@@ -33,14 +31,11 @@ R18 (Terms)
 - Alignment check: a result that reports alignment (Sheriff, Seer). See R19 for what they see.
 - Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician, Coroner, a Vigilante's kill).
 - Token: a limited-use resource a role starts with. Spent tokens are gone; a role-blocked action spends none.
-- Attack/Defense levels, lowest to highest: None, Basic, Standard, Strong, Divine (R3).
 
 R11 (The circle)
 Players sit in a circle. The dead (and players who leave) are removed from it.
 
-==================================================================================================
-PART 2: THE DAY
-==================================================================================================
+=== PART 2: THE DAY ===
 
 R4 (Day phase, chat, nominations and trials)
 Chat:
@@ -95,9 +90,7 @@ R13 (Last wills)
 Players may write and update a last will before Night 1, at the beginning of each Day (except those who died the
 night before) and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
 
-==================================================================================================
-PART 3: THE NIGHT
-==================================================================================================
+=== PART 3: THE NIGHT ===
 
 R5 (Night phase)
 Chat is off for most players; some (usually a faction, like the Yakuza) have a private night chat. The moderator
@@ -148,9 +141,7 @@ R20 (Night resolution checklist): a summary of the rules above, in the order the
    other's actions (R8).
 6. Deaths are revealed at the start of the Day (R12); the win check runs on all of the night's deaths together (R1).
 
-==================================================================================================
-PART 4: ATTACKS, DEATH AND INFORMATION
-==================================================================================================
+=== PART 4: ATTACKS, DEATH AND INFORMATION ===
 
 R3 (Attack and Defense)
 - Levels, lowest to highest: None, Basic, Standard, Strong, Divine. Players have Defense None by default.
@@ -190,9 +181,7 @@ Token counts (Accountant) see the true total at the end of the night. The Rolepl
 even though they believe they have their fake role's tokens.
 Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.
 
-==================================================================================================
-PART 5: THE YAKUZA
-==================================================================================================
+=== PART 5: THE YAKUZA ===
 
 R8 (Yakuza and the Katana)
 - One random Yakuza starts with the Katana. The Yakuza share a private chat at night.
@@ -212,14 +201,12 @@ R8 (Yakuza and the Katana)
 - If the holder dies, the Katana passes to a random living Yakuza, if any; a holder who dies at night passes it on
   after that night's results. The living Yakuza are told who holds it now (and so learn that the holder died).
 
-==================================================================================================
-PART 6: ROLES
-==================================================================================================
+=== PART 6: ROLES ===
 
 Every role lists the same fields. Defaults, unless a role says otherwise: Defense None, no tokens, appears as its
 true alignment (R19), night action is a visit.
 
----------------------------------------- Village (Good) ----------------------------------------
+--- Village (Good) ---
 
 Townsfolk (most villagers, helpful to the Village)
 
@@ -267,7 +254,7 @@ Archivist
   than you who were alive when the night began (players who died that night count): you are shown N roles, in
   random order and without names, of which floor(0.5 * N) are real and the rest are fake. The real ones are the
   roles of floor(0.5 * N) of those players, chosen at random; a role appears as many times as it was drawn, so
-  two drawn Vanilla Villagers show twice. This is an exact-role check (R19): a Roleplayer shows as Roleplayer.
+  two drawn Vanilla Villagers show twice. This is an exact-role check (R19).
   Each fake is drawn at random from all the roles in these rules, including roles that are in the game, except
   that the result never shows a unique role (R2) twice.
 
@@ -277,7 +264,7 @@ Surveyor
   neighbor on each side in the circle (R11) among the players alive at the start of the night, skipping yourself
   and never counting anyone twice (so with only one or two other players alive, the group is smaller). You are
   told who was in the group and the exact role of one of them chosen at random, but not whose it is. Players who
-  die that night can still be chosen. This is an exact-role check (R19): a Roleplayer shows as Roleplayer.
+  die that night can still be chosen. This is an exact-role check (R19).
 
 Census Taker
   Night: may take a census around one player other than yourself (a visit to that player only).
@@ -291,18 +278,18 @@ Census Taker
 Coroner
   Tokens: 3 coroner tokens.
   Night: may spend a token to examine one player who died before the night began (not one who left the game, and not
-  one who dies tonight). You learn their role, unless a Mortician cleaned them: then you learn only that. This is an Astral Visit (R6), and an exact-role check (R19): a
-  Roleplayer shows as Roleplayer.
+  one who dies tonight). You learn their role, unless a Mortician cleaned them: then you learn only that. This is an
+  Astral Visit (R6) and an exact-role check (R19).
 
 Chronicler
   Tokens: 2 chronicler tokens.
   Night: may spend a token to mark one player other than yourself. This is a visit. The marked player isn't told.
   The mark lasts for the rest of the game, even after you die. If a marked player dies, at any time and of any
-  cause, the announcement of their death also reveals their true role to everyone (an exact-role check, R19: a
-  Roleplayer shows as Roleplayer), and says they had been marked by a Chronicler (not by whom). A Mortician's
-  clean beats the mark: a marked player who is cleaned has their role and will hidden, and the announcement says
-  they had been marked but the clean hid their role. You can't mark a player you already marked. Marking a
-  player another Chronicler already marked spends your token but adds nothing.
+  cause, the announcement of their death also reveals their true role to everyone (an exact-role check, R19), and
+  says they had been marked by a Chronicler (not by whom). A Mortician's clean beats the mark: a marked player who
+  is cleaned has their role and will hidden, and the announcement says they had been marked but the clean hid their
+  role. You can't mark a player you already marked. Marking a player another Chronicler already marked spends your
+  token but adds nothing.
 
 Auditor
   Night: may audit one player other than yourself. You learn every vote they cast during the Day just before this
@@ -316,14 +303,12 @@ Profiler
   the start of the night (including players who die that night, but not yourself), or from all roles in these rules
   if too few are in play, so a listed role is not proof that anyone in the game has it. At least
   one of the three is a Good role and at least one is not Good (Evil or Neutral), so a result never settles the
-  player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19): a
-  Roleplayer shows as Roleplayer.
+  player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19).
 
 Cartographer
   Tokens: 2 map tokens.
   Night: at the end of every night, you learn the sizes of that night's visit groups. Link two players whenever one
-  visited the other that night (R6). Visits have a direction (R6, and e.g. the Tracker and Lookout see it), but your
-  results ignore it, treating the visits as an undirected graph: A visiting B links them exactly as B visiting A
+  visited the other that night (R6). Direction is ignored: A visiting B links them exactly as B visiting A
   would. A group is a set of players linked to each other, directly or through other players. Every player alive at
   the start of the night (including players who die that night) is in exactly one group, so a player who visited no
   one and was visited by no one is a group of 1, and a self-visit links no one. You learn only the sizes, largest
@@ -334,11 +319,11 @@ Cartographer
 
 Scout
   Night: at the end of every night, you learn the names of three players (you may be one of them) who were each in a
-  different visit group that night. Groups are as for the Cartographer: your results ignore the direction of visits,
-  linking the visitor and the visited either way (an undirected graph). The names are drawn like this: a random
-  player, then a random player outside the groups already drawn from, and so on, so a big group is more likely to come
-  up than a small one. If there were fewer than three groups, you learn one name per group and how many groups there
-  were. This needs no action and a role-block doesn't stop it. You never visit anyone.
+  different visit group that night. Groups are as for the Cartographer (visit direction is ignored). The names are
+  drawn like this: a random player, then a random player outside the groups already drawn from, and so on, so a big
+  group is more likely to come up than a small one. If there were fewer than three groups, you learn one name per
+  group and how many groups there were. This needs no action and a role-block doesn't stop it. You never visit
+  anyone.
 
 Insomniac
   Tokens: 2 insomniac tokens.
@@ -422,7 +407,7 @@ Cardinal
   died, or the night after the Day you died. It comes after all of that night's other actions and attacks, so the
   victim is drawn from the Good players still alive then, and it counts as a death that night.
 
----------------------------------------- Yakuza (Evil) ----------------------------------------
+--- Yakuza (Evil) ---
 All Yakuza share the Katana and night chat (R8).
 
 Grunt
@@ -505,7 +490,7 @@ Informant
   night action or a visit, so role-blocks don't stop it. Nobody is told that an Informant exists, and the other
   Yakuza aren't told the votes: what you share in the night chat is up to you.
 
----------------------------------------- Neutral ----------------------------------------
+--- Neutral ---
 Each Neutral player is their own faction (R2).
 
 Serial Killer
@@ -545,5 +530,5 @@ Vulture
   Night: none.
   Day: at the start of each Day, you learn a role for each player who died since the previous Day began (during that
   Day or the night after it; not players who left the game): with 50% chance it is their true
-  role (exact-role check, R19: a Roleplayer shows as Roleplayer), otherwise it is a different role drawn at random
+  role (exact-role check, R19), otherwise it is a different role drawn at random
   from all the roles in these rules. You aren't told which. This isn't an action, so a role-block doesn't stop it.

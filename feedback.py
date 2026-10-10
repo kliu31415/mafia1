@@ -316,7 +316,8 @@ QUIZ: list[tuple[str, str]] = [
      "lose the token, and does the protection happen?",
      "No token is used and nothing happens; a role-blocked action is as if they chose not to act."),
     ("During the day, A sends B a private message. Who learns what?",
-     "Everyone sees that A sent B a private message; only A and B see its contents."),
+     "Everyone sees that A sent B a private message; only A and B see its contents (apart from roles that read "
+     "private messages, such as the Wiretap or Eavesdropper)."),
     ("A Standard Attack hits a player who has Standard Defense. Do they die?",
      "No. An attack kills only if its level is strictly higher than the defense."),
     ("On Day 3 the last Yakuza is executed, leaving only Village players and a Jester alive. What happens next?",
@@ -328,14 +329,35 @@ QUIZ: list[tuple[str, str]] = [
     ("A Fabricator frames player X. A Lookout watches X that night. Does the Lookout see the Fabricator?",
      "Yes. Framing (and forging) count as visits."),
     ("How does voting on a nomination work, and when do players see each other's votes?",
-     "Everyone votes simultaneously (the nominator votes Yes automatically); all votes are revealed together "
-     "afterwards; it passes with strictly more than half Yes."),
+     "Everyone votes simultaneously (the nominator votes Yes by default; not voting counts as No); it passes "
+     "with strictly more than half Yes. Votes are secret: the number of Yes votes is announced, never who "
+     "voted which way."),
     ("An Executioner's target is killed by the Katana at night. What happens to the Executioner?",
      "They become a Jester."),
     ("Is the list of roles in the game public?", "No."),
     ("A Jester is hanged, with 4 players voting Guilty. What happens?",
      "The Jester wins. The following night, a random player who voted Guilty is dealt a Divine Attack (Astral)."),
     ("Three nominations reach trial today and all three end Innocent. What happens?", "The day ends."),
+    ("A Sheriff investigates a Serial Killer. Result?", "Not Evil."),
+    ("A player with no night action is role-blocked. Are they told?", "Yes, they are told they were role-blocked."),
+    ("A Veteran on alert is visited by a Medic, and an Oracle guesses the Veteran's role the same night. Who does "
+     "the Veteran attack?",
+     "The Medic (a Strong Attack). The Oracle's guess is an Astral Visit, not a visit, so the Oracle isn't attacked."),
+    ("When a player dies at night, what is revealed publicly?",
+     "Their cause of death and last will, not their role or alignment."),
+    ("A Smuggler swaps A and B for the night, and a Sheriff investigates A. What does the Sheriff learn?",
+     "B's alignment, reported as A's (the result doesn't show the swap)."),
+    ("The Yakuza holding the Katana is role-blocked on a night the Yakuza chose to attack. Does the attack happen?",
+     "No. The Katana attack is the holder's action, so the block stops it."),
+    ("Two Yakuza are alive and vote for different Katana targets. What happens?",
+     "No Katana attack happens that night: with two alive, both must agree."),
+    ("The Katana holder attacks B, a Medic protects B, and a Lookout watches B. B survives. What do the Medic and "
+     "the Lookout learn?",
+     "The Medic learns nothing about whether the protection mattered; the Lookout sees both the Katana holder and "
+     "the Medic visit B."),
+    ("A Day begins, and nobody has died in the three previous Nights and three previous Days. What happens?",
+     "Everyone loses (stall rule)."),
+    ("Does a Ballot Stuffer's doubled vote apply to nomination votes?", "No, only to Guilty/Innocent trial votes."),
 ]
 QUIZ_GRADE_SCHEMA = obj(results={"type": "array", "items": obj(
     question={"type": "integer"}, correct={"type": "boolean"}, note=STR)})
@@ -375,8 +397,12 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
                             f"   Answer: {answers[i] if i < len(answers) else '(none)'}"
                             for i, (q, ref) in enumerate(QUIZ))
         table[str(spec)] = quiz_answer(client, grader, [
+            # The rules too, so true details the reference leaves out (e.g. roles it doesn't name) aren't marked
+            # as invented; cached, so the graders' calls share them.
+            rules_system(rules, "You grade answers to a quiz about the rules above."),
             {"role": "user", "content": "Mark each answer correct if it gets the reference's main point right and "
-             "contradicts nothing in it; leaving out a minor detail is fine. Otherwise mark it incorrect. "
+             "contradicts nothing in it or in the rules; leaving out a minor detail is fine, and so is adding a "
+             "detail the rules support. Otherwise mark it incorrect. "
              "Give a short note either way, and say if the answer reveals a misreading of the rules."
              f"\n\n{marking}"},
         ], QUIZ_GRADE_SCHEMA, "quiz_grades", f"grading {spec}", problems).get("results", [])
