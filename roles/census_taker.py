@@ -1,10 +1,10 @@
-"""Census Taker: spends a token to count the Good or the Evil players among a target and two random others."""
+"""Census Taker: each night may count the Good or the Evil players among a target and two random others."""
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RoleLogic, acted_tonight, register, spend_token, token_user_error
+from roles.base import Alignment, RoleLogic, acted_tonight, register, token_user_error
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -30,17 +30,17 @@ def seen_alignment(game: Game, p: Player, framed: set[str]) -> Alignment:
 @register("Census Taker")
 class CensusTaker(RoleLogic):
     roleplayer_can_fake = False  # code draws the group and the count
-    night_note = ("A Census Taker who spent a token (and wasn't role-blocked): use the census op, which spends the "
-                  "token, with `framed` listing every player a Fabricator framed tonight (empty if none); code draws "
+    night_note = ("A Census Taker who acted (and wasn't role-blocked): use the census op, with `framed` listing "
+                  "every player a Fabricator framed tonight (empty if none); code draws "
                   "the group and the count and tells them (don't tell() them). It is a visit to the target only.")
     code_tells_user = True
     ops = {"census": ({"player", "by", "framed"}, set(),
-                      "{op:'census', player, by, framed}: the Census Taker `by` takes a census around player (spends a "
-                      "token); framed = every player a Fabricator framed tonight, [] if none")}
+                      "{op:'census', player, by, framed}: the Census Taker `by` takes a census around player; "
+                      "framed = every player a Fabricator framed tonight, [] if none")}
 
     def check_op(self, game: Game, change: dict) -> str | None:
         by, target = game.player(change["by"]), game.player(change["player"])
-        if error := token_user_error(game, by.name, "Census Taker", "census"):
+        if error := token_user_error(game, by.name, "Census Taker"):
             return error
         if target is by or not acted_tonight(game, target):
             return "a Census Taker counts around another player who was alive at the start of the night"
@@ -53,12 +53,11 @@ class CensusTaker(RoleLogic):
 
     def apply_op(self, game: Game, change: dict) -> None:
         by = game.player(change["by"])
-        left = spend_token(game, by.name, "census")
         group = census_group(game, by.name, change["player"])
         kind = game.rng.choice([Alignment.GOOD, Alignment.EVIL])
         n = sum(seen_alignment(game, game.player(q), set(change["framed"])) is kind for q in group)
         names = ", ".join(group[:-1]) + " and " + group[-1] if len(group) > 1 else group[0]
         text = (f"Your census of {names} counted {kind.value} players (drawn at random this time): {n} of the "
                 f"{len(group)} {'is' if n == 1 else 'are'} {kind.value}. Neutral players are never counted, as either "
-                f"Good or Evil. {left} census token{'' if left == 1 else 's'} left.")
+                f"Good or Evil.")
         game.tell([by.name], text)

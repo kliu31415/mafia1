@@ -67,9 +67,9 @@ ROLES: dict[str, RoleInfo] = {
                          tokens={"survey": 2}, acts_at_night=True, tested=True,
                          notes="moderator records the use with the survey op; code picks the group and draws the role"),
     "Census Taker": RoleInfo(Alignment.GOOD, "Investigative", False,
-                             summary="Token: count the Good or the Evil players (drawn at random) among a chosen "
+                             summary="Night: count the Good or the Evil players (drawn at random) among a chosen "
                              "player and two random others.",
-                             tokens={"census": 3}, acts_at_night=True,
+                             acts_at_night=True,
                              notes="moderator records the use with the census op (and tonight's frames); code draws "
                              "the group and the alignment counted, and tells them"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,

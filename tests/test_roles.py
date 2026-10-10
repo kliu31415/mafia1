@@ -572,9 +572,9 @@ def test_census_counts_alignment_as_checks_see_it_and_never_neutrals(game_factor
         assert len(group) == 3 and "Dave" in group and "Alice" not in group
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     out = mod.dispatch("apply_changes", {"changes": [{"op": "census", "by": "Alice", "player": "Dave", "framed": []}]})
-    assert out["ok"] and game.player("Alice").tokens["census"] == 2
+    assert out["ok"]
     told = [e.text for e in game.events if e.visible_to is not None and "Alice" in e.visible_to]
-    assert "Neutral players are never counted" in told[-1] and "2 census tokens left" in told[-1]
+    assert "Neutral players are never counted" in told[-1]
 
 
 def test_census_group_shrinks_when_few_players_are_left(game_factory):

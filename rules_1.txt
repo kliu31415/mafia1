@@ -266,8 +266,7 @@ Surveyor
   die that night can still be chosen. This is an exact-role check (R19): a Roleplayer shows as Roleplayer.
 
 Census Taker
-  Tokens: 3 census tokens.
-  Night: may spend a token to take a census around one player other than yourself (a visit to that player only).
+  Night: may take a census around one player other than yourself (a visit to that player only).
   The program adds two other players drawn at random from everyone alive at the start of the night except you
   (players who die that night can be drawn; if fewer than two others are left, the group is smaller). It also
   draws at random whether to count Good or Evil players. You are told who was in the group, which alignment was
