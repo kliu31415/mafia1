@@ -26,7 +26,7 @@ Code layout:
     checkpoint.py  saves the game each day and night so a stopped game can continue (--resume)
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
-    setups.py      random setups (--roles random:N), for role strength across many role mixes
+    setups.py      setups: how roles are drawn (--roles standard[:N]) and what players are told about it
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     grade.py       an LLM judge grades each player's play in finished games, blind to models (grades/)
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
@@ -46,7 +46,7 @@ Usage:
     uv run tips.py build                                     # tips file from past games' lessons
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
-    uv run mafia.py --roles random:8                         # a random 8-player setup
+    uv run mafia.py --roles standard:8                       # a standard setup drawn for 8 players
     uv run mafia.py --flips role --trial-votes public --nomination-votes public   # the old rules
     uv run stats.py                                          # win rates and decision skill across logs/
     uv run game_index.py build                               # logs/index.html: browse and filter every game
@@ -79,8 +79,8 @@ from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
 from players import Players
-from roles import DEFAULT_SETUP, ROLES, Status, role_status_table
-from setups import POOLS, parse_random_roles, random_setup
+from roles import ROLES, Status, role_status_table
+from setups import POOLS, SETUPS, parse_setup, players_for, setup_note
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
@@ -203,7 +203,8 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
     """Plays a game and its post-game steps; returns its log's path. checkpoint: save the game at the start
     of each day and night to logs/<game>.ckpt (deleted when the game finishes). resume: a loaded checkpoint
     (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's."""
-    rules = RULES_PATH.read_text(encoding="utf-8") + variants.rules_notes(config.rule_settings)
+    rules = (RULES_PATH.read_text(encoding="utf-8") + variants.rules_notes(config.rule_settings)
+             + setup_note(config.setup, config.roles))
     if resume:
         log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
     else:
@@ -478,9 +479,10 @@ def main() -> None:
     ap.add_argument("--moderator-fallback", default=str(DEFAULT_MODERATOR_FALLBACK),
                     help="model[:effort] the moderator switches to for the rest of the game if a content filter "
                     "blocks it several times in a row, or 'none'")
-    ap.add_argument("--roles", default=",".join(DEFAULT_SETUP), help="comma-separated role names, or random:N "
-                    "for a random N-player setup drawn from the seed (see setups.py)")
-    ap.add_argument("--role-pool", default="all", choices=POOLS, help="for --roles random:N, draw from every "
+    ap.add_argument("--roles", default="standard", help="a setup drawn from the seed: NAME (its usual player "
+                    f"count) or NAME:N for N players, NAME one of {', '.join(SETUPS)} (or random, the standard "
+                    "setup); or comma-separated role names (see setups.py)")
+    ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
                     help="reasoning effort for models that don't set their own (default: each model's own, "
@@ -570,14 +572,16 @@ def main() -> None:
         ap.error("--tips-for picks who gets --tips, so it needs --tips")
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     try:
-        random_players = parse_random_roles(args.roles)
+        named = parse_setup(args.roles)
     except ValueError as e:
         ap.error(str(e))
     setup = None
-    if random_players:
+    if named:
+        name, n = named
+        n = players_for(name, n, seed)
         # Its own RNG, so a seed's setup doesn't depend on the rest of the game (and vice versa).
-        roles = random_setup(random_players, random.Random(f"setup|{seed}"), args.role_pool)
-        setup = {"kind": "random", "players": random_players, "pool": args.role_pool}
+        roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), args.role_pool)
+        setup = {"kind": "random", "name": name, "players": n, "pool": args.role_pool}
     else:
         roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]

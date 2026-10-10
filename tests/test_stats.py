@@ -11,7 +11,7 @@ import stats
 from tests.conftest import ScriptedClient
 from llm import Model
 from roles import ROLES, Alignment
-from setups import parse_random_roles, random_setup
+from setups import parse_setup, players_for, random_setup, setup_note
 
 
 def write_log(path, records):
@@ -107,12 +107,20 @@ def test_random_setups_follow_their_proportions():
     assert tested and all(ROLES[r].tested for r in tested)
 
 
-def test_parse_random_roles():
-    assert parse_random_roles("Sheriff,Grunt") is None
-    assert parse_random_roles("random:8") == 8
-    for bad in ("random", "random:x", "random:3"):
+def test_parse_setup():
+    assert parse_setup("Sheriff,Grunt") is None
+    assert parse_setup("random:8") == ("standard", 8) and parse_setup("standard") == ("standard", None)
+    assert 11 <= players_for("standard", None, 5) <= 15 and players_for("standard", 9, 5) == 9
+    for bad in ("random:x", "standard:3"):
         with pytest.raises(ValueError):
-            parse_random_roles(bad)
+            parse_setup(bad)
+
+
+def test_players_are_told_how_the_roles_were_chosen_but_not_the_list():
+    drawn = setup_note({"kind": "random", "name": "standard", "players": 12}, random_setup(12, random.Random(1)))
+    assert "12 players" in drawn and "standard setup: about 30% of the players are Yakuza" in drawn
+    hand = setup_note(None, ["Sheriff", "Medic", "Grunt", "Fixer", "Jester", "Vanilla Villager"])
+    assert "picked by hand" in hand and "1 to 3 Yakuza, 0 to 2 Neutrals" in hand and "Sheriff" not in hand
 
 
 def test_a_random_setup_game_is_logged_and_counted(tmp_path, monkeypatch):

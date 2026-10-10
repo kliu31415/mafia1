@@ -105,7 +105,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   7. `roles/icons/<role-name>.svg` (e.g. `ex-con.svg`): the icon next to the role's players in the HTML log, a
      24x24 color drawing, distinct from the other roles at a glance (the viewer puts it on a badge tinted by faction).
      A test checks every role has one.
-  8. `setups.py` draws random setups (`--roles random:N`) by alignment and category, and `stats.py` scores
+  8. `setups.py` draws setups (`--roles standard` (the default, 11-15 players) or `standard:N`) by alignment and
+     category, and tells players how (a note after the rules, never the role list), and `stats.py` scores
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
      when the role's choices have a clear right answer.
 

@@ -75,7 +75,8 @@ from records import read_records, safe_print
 #     voter gets a "notice" with their own vote, and "vote" records still list every vote
 # 38: "vote" records have secret (players saw only the totals); the .txt view then lists the votes
 # 39: trial "vote" records have reversed (voters whose vote a Fixer reversed; votes holds the counted votes)
-LOG_VERSION = 39
+# 40: settings.setup has name (random setups); players are told how roles were chosen (setups.setup_note)
+LOG_VERSION = 40
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
