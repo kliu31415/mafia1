@@ -162,6 +162,8 @@ details.usage table { margin:4px 0 8px 16px; }
 body.no-calls details.call { display:none; } body.no-hidden .ev.hidden { display:none; }
 body.no-hidden .ev.error { display:none; }
 body.no-calls details.why { display:none; }
+body.hide-chat .ev.chat, body.hide-pm .ev.pm, body.hide-yak .ev.yak, body.hide-nom .ev.nom, body.hide-vote .ev.vote,
+body.hide-death .ev.death, body.hide-claim .ev.claim, body.hide-result .ev.result, body.hide-hidden .ev.hidden, body.hide-system .ev.system { display:none; }
 details.why { display:inline; margin-left:8px; font-size:12px; color:var(--muted); white-space:normal; }
 details.why > summary { display:inline; cursor:pointer; text-decoration:underline dotted; }
 details.why[open] { display:block; margin:2px 0 4px 16px; padding:4px 8px; background:var(--call); border-radius:6px; }
@@ -173,6 +175,12 @@ details.votes td, details.votes th { padding:1px 6px; text-align:center; border-
 details.votes tr > th:first-child { text-align:left; white-space:nowrap; }
 details.votes td.yes { font-weight:700; } details.votes td.no { color:var(--muted); }
 .focus-hide { display:none !important; }
+#jump { flex-basis:100%; display:flex; flex-wrap:wrap; gap:2px 4px; font-size:12.5px; }
+#jump a { padding:1px 6px; border-radius:4px; text-decoration:none; color:var(--fg); border:1px solid var(--line); }
+#jump a.night { color:var(--c-hidden); } #jump a.here { background:var(--call); border-color:var(--muted); }
+#jump .deaths { color:var(--c-death); margin-left:2px; }
+details.phase { scroll-margin-top:110px; }
+.legend .badge[data-cat] { cursor:pointer; user-select:none; } .legend .badge.off { opacity:.35; text-decoration:line-through; }
 body.no-hidden details.card { display:none; } details.card td { text-align:left; vertical-align:top; }
 details.card td:first-child { white-space:nowrap; }
 /* roster panel: beside the log on wide screens, a corner overlay on narrow ones (off by default there) */
@@ -211,6 +219,30 @@ const applyFocus = () => {
     el.classList.toggle('focus-hide', who !== '' && !(el.dataset.p || '').split(' ').includes(who)));
 };
 focus.addEventListener('change', applyFocus); applyFocus();
+// Legend badges hide or show their category's lines.
+document.querySelectorAll('.legend .badge[data-cat]').forEach(b => b.addEventListener('click', () =>
+  b.classList.toggle('off', document.body.classList.toggle('hide-' + b.dataset.cat))));
+// Jump bar: marks the phase at the top of the window.
+const jumps = [...document.querySelectorAll('#jump a')].map(a => [a, document.getElementById(a.hash.slice(1))]);
+let jumpPending = false;
+const markPhase = () => {
+  jumpPending = false;
+  let here = jumps[0];
+  for (const j of jumps) if (j[1].getBoundingClientRect().top < 120) here = j;
+  jumps.forEach(j => j[0].classList.toggle('here', j === here));
+};
+addEventListener('scroll', () => { if (!jumpPending) { jumpPending = true; requestAnimationFrame(markPhase); } },
+                 { passive: true });
+if (jumps.length) markPhase();
+// Phases off screen have estimated heights until drawn (content-visibility), so a jump lands a little off at
+// first: jump again once the page around it has been drawn.
+jumps.forEach(([a, phase]) => a.addEventListener('click', e => {
+  e.preventDefault();
+  history.replaceState(null, '', a.hash);
+  phase.scrollIntoView();
+  setTimeout(() => phase.scrollIntoView(), 120);
+  setTimeout(() => phase.scrollIntoView(), 400);
+}));
 // Roster panel: shows the snapshot whose marker (i.snap) is the last one above the top of the window.
 const rosterData = document.getElementById('roster-data');
 if (rosterData) {
@@ -445,6 +477,7 @@ def render_html(jsonl_path: Path) -> Path:
     last_call: dict[str, dict] = {}  # player -> their latest player_call, whose reason explains what they say next
     explained: set[int] = set()  # ids of the calls already shown next to a message (once each, on its first)
     phase_title = ""
+    phases: list[dict] = []  # id, title and deaths of each phase, for the jump bar
     nights: dict[int, dict] = {}  # night -> what its summary card shows (night_html)
     roster: dict[str, dict] = {}  # player -> alive, death, claim as of this point in the log
     believed: dict[str, set[str | None]] = {}  # player -> their role, and the role a Roleplayer thinks they have
@@ -464,6 +497,8 @@ def render_html(jsonl_path: Path) -> Path:
         alive = [n for n in alive if n != player]
         if player in roster and roster[player]["alive"]:
             roster[player].update(alive=False, death=how)
+            if phases:
+                phases[-1]["deaths"] += 1
             snap()
 
     def end_phase() -> None:
@@ -495,7 +530,9 @@ def render_html(jsonl_path: Path) -> Path:
         end_phase()
         cls = "night" if title.startswith("Night") else ""
         phase_start, phase_title = len(out), title
-        out.append(f"<details class='phase {cls}' open><summary>{esc(title)}</summary>")
+        anchor = f"phase-{len(phases)}"
+        phases.append({"id": anchor, "title": title, "deaths": 0})
+        out.append(f"<details class='phase {cls}' id='{anchor}' open><summary>{esc(title)}</summary>")
         snap()
 
     def line(category: str, badge: str, text: str, who: Iterable[str] = (), body_html: str | None = None,
@@ -677,7 +714,8 @@ def render_html(jsonl_path: Path) -> Path:
         body = body.replace(f"\0night {n}\0", night_html(n, info, name))
     body = re.sub("\0night [0-9]+\0", "", body)
 
-    legend = "".join(f"<span class='badge {c}'>{esc(label)}</span>" for c, label in CATEGORY_LABELS.items())
+    legend = "".join(f"<span class='badge {c}' data-cat='{c}' title='Click to hide or show these lines'>{esc(label)}"
+                     "</span>" for c, label in CATEGORY_LABELS.items())
     legend += ("<span class='n Village'>Village</span> <span class='n Yakuza'>Yakuza</span> "
                "<span class='n Neutral'>Neutral</span>")
     title = f"Mafia game {jsonl_path.stem}"
@@ -692,7 +730,8 @@ def render_html(jsonl_path: Path) -> Path:
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
             f"<label><input type='checkbox' id='showroster'> Roster</label>"
             f"<label>Player <select id='focus'><option value=''>everyone</option>{focus_options}</select></label>"
-            f"<span class='muted'>Untick the first two to read it like a player would.</span></div>"
+            f"<span class='muted'>Untick the first two to read it like a player would.</span>"
+            f"<nav id='jump'>{jump_html(phases)}</nav></div>"
             f"{errors_html(errors, unreadable)}"
             f"{votes_html(votes, name, alive_order, 'Votes (whole game)', show_day=True)}"
             f"{body}{roster_html(snaps, alive_order, roles, models)}<script>{JS}</script></body></html>")
@@ -782,6 +821,26 @@ def roster_html(snaps: list[dict], seats: list[str], roles: dict[str, str], mode
                       for s in snaps]}
     return ("<aside id='roster'></aside><script type='application/json' id='roster-data'>"
             + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>")
+
+
+def jump_html(phases: list[dict]) -> str:
+    """Links to each phase for the sticky bar: N1, D1, ... with a † per death in it, then one link to the
+    post-game sections and one to the result."""
+    links, post_game = [], False
+    for p in phases:
+        t = p["title"]
+        if m := re.fullmatch(r"(Day|Night) (\d+)", t):
+            short = m[1][0] + m[2]
+        elif t in ("Setup", "Game over"):
+            short = t
+        elif not post_game:
+            short, post_game = "Post-game", True
+        else:
+            continue
+        deaths = f"<span class='deaths'>{'†' * p['deaths']}</span>" if p["deaths"] else ""
+        cls = " class='night'" if t.startswith("Night") else ""
+        links.append(f"<a href='#{p['id']}'{cls} title='{esc(t)}'>{esc(short)}{deaths}</a>")
+    return "".join(links)
 
 
 def errors_html(errors: list[tuple[str, dict]], unreadable: int = 0) -> str:

@@ -122,3 +122,15 @@ def test_claim_truth():
     assert log_viewer.claim_truth("Vanilla, no action", {"Vanilla Villager"}) == "true"
     assert log_viewer.claim_truth("I'm the sheriff", {"Grunt"}) == "false"
     assert log_viewer.claim_truth("no comment", {"Grunt"}) == ""
+
+
+def test_jump_bar():
+    phases = [{"id": "phase-0", "title": "Setup", "deaths": 0}, {"id": "phase-1", "title": "Night 1", "deaths": 2},
+              {"id": "phase-2", "title": "Day 2", "deaths": 0},
+              {"id": "phase-3", "title": "Post-game feedback: rules", "deaths": 0},
+              {"id": "phase-4", "title": "Moderator strategy review", "deaths": 0},
+              {"id": "phase-5", "title": "Game over", "deaths": 0}]
+    links = re.findall(r"<a href='#(phase-\d)'[^>]*>([^<]*)(?:<span class='deaths'>(†*)</span>)?</a>",
+                       log_viewer.jump_html(phases))
+    assert links == [("phase-0", "Setup", ""), ("phase-1", "N1", "††"), ("phase-2", "D2", ""),
+                     ("phase-3", "Post-game", ""), ("phase-5", "Game over", "")]
