@@ -1,0 +1,246 @@
+Setup:
+  Alice    seat 1  Lookout           anthropic/claude-haiku-5.5
+  Bob      seat 2  Census Taker      anthropic/claude-haiku-5.5
+  Carol    seat 3  Profiler          anthropic/claude-haiku-5.5
+  Dave     seat 4  Tracker           anthropic/claude-haiku-5.5
+  Erin     seat 5  Wiretap           anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Jester            anthropic/claude-haiku-5.5
+  Heidi    seat 8  Arsonist          anthropic/claude-haiku-5.5
+  Ivan     seat 9  Ritualist         anthropic/claude-haiku-5.5
+  Judy     seat 10 Clerk             anthropic/claude-haiku-5.5
+  Katana starts with Ivan
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Erin, Ivan, Judy) Erin (Yakuza chat): Proposal: no Katana attack tonight. Night 1 kills reveal the Katana to the victim and draw attention, and we have no information on anyone yet. Ivan keeps the Katana (no holder move). Judy, no rig tonight. Ivan, do not use the Ritualist guess yet. Please confirm.
+(to Erin, Ivan, Judy) Ivan (Yakuza chat): Confirmed with Erin: no Katana attack tonight, Ivan keeps the Katana, no Clerk rig, and no Ritualist guess yet.
+(to Erin, Ivan, Judy) Judy (Yakuza chat): Confirmed: no Katana attack tonight, Ivan keeps the Katana, no Clerk rig, no Ritualist guess. I have nothing more to add.
+Night actions:
+  Alice (Lookout): target Dave
+  Bob (Census Taker): target Dave
+  Carol (Profiler): no action
+  Dave (Tracker): target Bob
+  Erin (Wiretap): no role action; Katana vote: Ivan holds, attacks None
+  Heidi (Arsonist): target Dave; "Douse Dave quietly."
+  Ivan (Ritualist): no role action; Katana vote: Ivan holds, attacks None
+  Judy (Clerk): no role action; Katana vote: Ivan holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Ivan holds it.
+(to Bob) Moderator (private): Your census of Dave, Frank and Heidi counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Alice) Moderator (private): Night 1 result: You watched Dave. Dave was visited by Bob and Heidi.
+(to Dave) Moderator (private): Night 1 result: You tracked Bob. Bob visited Dave (you).
+(to Heidi) Moderator (private): Night 1 result: You doused Dave. Dave is now doused.
+(to Erin, Ivan, Judy) Moderator (private): Night 1 Yakuza report: Erin chose no action. Ivan chose no action. Judy chose no action (no rig). The Katana stays with Ivan, and there was no Katana attack tonight.
+[Moderator summary] Night 1: No attacks, no deaths. Alice (Lookout) watched Dave and saw Bob and Heidi. Bob's census around Dave was handled by code. Dave (Tracker) tracked Bob and saw that Bob visited Dave. Heidi (Arsonist) doused Dave. The Yakuza kept the Katana with Ivan and didn't attack, and no Yakuza took an action. Visits: Alice->Dave, Bob->Dave, Dave->Bob, Heidi->Dave.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Grace.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 1: correct
+[Claim] Grace: Sheriff. N1: Dave Evil.
+Grace (public): Grace here, claiming Sheriff. My N1 result: Dave is Evil. Real Sheriff, speak up if you disagree, and let's look at the claims before anyone votes.
+Heidi (public): Heard Grace's Sheriff claim: Dave Evil. Too early to act on one claim. I want Dave and the other players to speak before we vote on anything.
+Ivan (public): Ivan here, no claim yet. One Sheriff claim is thin, so I want to hear from Dave and the other roles before anyone is nominated. Dave, what's your read on Grace?
+Judy (public): Judy here, no claim. Grace's Sheriff result on Dave is one claim so far, and Dave is the one who can answer it. Dave, are you Evil by your own read, or is Grace off? I'm holding my vote until more is said.
+[Claim] Alice: Lookout. N1: watched Dave, who was visited by Bob and Heidi.
+Alice (public): Alice here, claiming Lookout. My N1 result: I watched Dave, and Dave was visited by Bob and Heidi. Grace's Sheriff claim is still unverified, but Bob and Heidi should explain their Night 1 visits to Dave.
+[Claim] Bob: Census Taker, Good. N1: census on Dave, Frank, Heidi: 2 of 3 Good.
+Bob (public): Bob here, claiming Census Taker (Good). I can confirm Alice's Lookout read: I did visit Dave on Night 1. My census on Dave, Frank and Heidi came back 2 of 3 Good. If Grace's Dave Evil is true, that makes Frank and Heidi Good. Dave, answer Grace directly.
+Carol (public): Carol here, no claim yet. Grace (Sheriff), Alice (Lookout) and Bob (Census Taker) are all unverified. Dave, Heidi and Frank should answer. I'm holding my vote until more is said.
+[Claim] Dave: Tracker. N1: tracked Bob, who visited Dave.
+Dave (public): Dave here, and I'm the Tracker, not Grace's Evil. On Night 1 I tracked Bob and he visited me, which matches Bob's claim. I know I'm Good, so Grace's Dave Evil result is false. Grace, why would a real Sheriff be wrong about a Good player?
+Erin (public): Erin here, no claim yet. Dave now says Tracker, and Bob confirms Night 1 visited Dave, so Grace's Dave Evil result looks wrong. Grace, which Night 1 action did you take, and who did you check?
+Frank (public): Frank here, Vanilla Villager, no night action. Alice says Bob and Heidi both visited Dave, and Bob and Dave confirm Bob's visit. Heidi, why did you visit Dave on Night 1? Grace, what made you check Dave?
+Grace (public): Grace again. Dave's Tracker story and Bob's census can't both be right about Dave, and I stand by my Sheriff result. If you think I'm the liar, nominate me and let the trial decide. I'd rather be judged than let Dave slide.
+[Claim] Heidi: Medic. N1: protected Dave (Standard).
+Heidi (public): Heidi here. Yes, I visited Dave on Night 1. I'm claiming Medic and protected Dave (Standard), so Alice's Lookout result is explained by protection, not by any attack. Grace's Dave-Evil result needs a second source. I'm not nominating anyone yet.
+Ivan (public): Ivan here. Grace, your Dave-Evil result conflicts with Dave's Tracker story and with the Bob and Heidi visits. Which Night 1 target did you pick, and did you take any other action? Before anyone is nominated, I want Alice's and Bob's results checked against each other.
+Judy (public): Judy here, no claim. Grace's Dave-Evil result conflicts with Dave's Tracker story, Bob's visit to Dave and Heidi's visit to Dave, which all line up. Grace, which target did you check on Night 1, and what exactly did you learn? Alice and Bob both put visits on Dave, so I want their results pinned down before anyone is nominated. I'm not nominating yet.
+Alice (public): Alice again. My Lookout result stands: on Night 1 only Bob and Heidi visited Dave. Grace's Sheriff claim (Dave Evil) and Dave's Tracker claim contradict each other, so one of them is lying. Grace, what did you target, and what exact result did you get? Dave, what did your tracking show besides Bob? I'm not voting yet.
+Bob (public): Bob again. Grace's Sheriff claim has a hard problem: Alice's Lookout saw only Bob and Heidi visit Dave on Night 1. A Sheriff who investigated Dave would have visited him and shown up on that list, and Bob and Dave both confirm my visit, so Alice's list holds up. That makes Grace's Dave-Evil result unlikely to be real. My census (Dave, Frank, Heidi: 2 of 3 Good) then means that if Dave is Good, one of Frank or Heidi is not Good. Grace, why don't you appear on Alice's list?
+Carol (public): Carol here, no claim. Grace: a Sheriff who investigated Dave had to visit him, and Alice's Lookout saw only Bob and Heidi visit Dave. You aren't on that list, so explain the visit or drop the claim. Dave's Tracker and Bob's census line up with each other, which makes Grace the one to question. I'm not voting yet.
+Dave (public): Dave again. I'm Good, so Grace's Dave-Evil result is false. Alice's list (only Bob and Heidi visited Dave) matches what I saw: Bob visited me. A Sheriff who investigated Dave would have visited him and appeared on that list, and Grace doesn't. I'm nominating Grace and voting Yes.
+Dave nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: 9 Yes (the votes are secret).
+Grace is put on trial (9 Yes).
+Grace (public): Grace, on trial. My Sheriff result stands: Dave is Evil. Dave's Tracker story, Bob's census and Heidi's Medic protection all cover for Dave on Night 1. Alice's Lookout list leaves out a visitor it should contain, so either Alice's list is wrong or someone is hiding a visit. I'm not asking anyone to trust me, only to test the claims. If you think a Sheriff who names an Evil Tracker is the Yakuza here, vote Guilty. If Dave and Heidi are both Good, explain why a Lookout list would miss my visit.
+Heidi (public): Heidi here. Grace's Dave-Evil result doesn't fit the facts. Alice's Lookout list shows only Bob and Heidi visiting Dave, and a Sheriff who checked Dave would have appeared on it. Dave is Good by Tracker and Bob's results. I'm voting Guilty unless Grace can explain that missing visit.
+Ivan (public): Ivan here. Grace's Dave-Evil result has a concrete problem: a Sheriff who checked Dave had to visit him, and Alice's Lookout list shows no Grace visit. Grace, explain that missing visit. Unless you do, I lean Guilty.
+Judy (public): Judy here. Grace's Dave-Evil result still conflicts with Alice's Lookout list: a Sheriff who checked Dave had to visit him, and Grace is not on it. Dave's Tracker story, Bob's visit and Heidi's visit all fit together. Grace, name the visit or explain why your Sheriff check left no trace. Unless that changes, I'm voting Guilty.
+Alice (public): Alice again. Grace's Sheriff claim fails on my Lookout list. A Sheriff who checked Dave on Night 1 had to visit him, and Grace is not among Dave's visitors (only Bob and Heidi). Grace, name a reason that doesn't fit a real check, or explain the visit. Unless you do, I'm voting Guilty.
+Bob (public): Grace's Sheriff claim fails on Alice's Lookout list. A real Sheriff who checked Dave had to visit him, and the only visitors to Dave were Bob and Heidi, so Grace is lying or a Roleplayer. I'm voting Guilty.
+Carol (public): Carol here. Grace, if you checked Dave on Night 1 you had to visit him, and Alice's Lookout list shows no Grace visit. Bob's and Heidi's visits to Dave, Dave's Tracker read and Heidi's Medic claim all fit that list. Unless Grace explains the missing visit, I'm voting Guilty. Anyone defending Grace should say what Night 1 action Grace took and why it left no trace.
+Dave (public): Dave again. Grace's Sheriff check on me would have been a visit to me, and Alice's Lookout list shows no Grace visit on Dave. My Tracker result on Bob matches Bob's visit, so Grace's Dave-Evil claim fails. I'm voting Guilty.
+Erin (public): Erin here. Grace's missing visit is the key problem. A Sheriff who checked Dave had to visit him, and Alice's Lookout list shows no Grace visit. Grace, explain that visit or it stands. I'm voting Guilty.
+Frank (public): Frank here, Vanilla Villager, so I know I'm Good. Grace, a real Sheriff who checked Dave had to visit him. Alice's Lookout list shows only Bob and Heidi visiting Dave, and both confirmed those visits themselves. You aren't on it. That missing visit is a concrete contradiction, so I'm voting Guilty unless you can name the visit.
+Grace (public): Grace, final word. I can't invent a visit that Alice's list doesn't show, and I won't make up a story to save myself. Dave's Tracker read, Bob's census and Heidi's Medic protection all cover for each other on Night 1, and that is how I read it. Vote on the evidence as you see it. I'm not going to beg.
+Trial votes on Grace: 10 Guilty, 0 Innocent (the votes are secret).
+Grace is executed by hanging (10 Guilty of 10 votes; 6 needed).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "I hold no night information. Watch who pushed for a hanging early on thin evidence, and who stayed quiet through the first Day."
+Grace was the Jester: being hanged wins them the game.
+
+===== NIGHT 2 =====
+(to Erin, Ivan, Judy) Erin (Yakuza chat): Erin: Proposal: Ivan keeps the Katana and attacks Dave. Dave's Tracker claim is the biggest threat to us, since he can track our holder, and he led Grace's nomination. Heidi may protect him again, so if the attack fails we learn Heidi's Medic protection is active. Alternative: Alice, the Lookout whose list cleared Dave. Judy, no rig needed today. Ivan, please vote Dave on the target and keep the holder unchanged. Reply with your votes.
+(to Erin, Ivan, Judy) Ivan (Yakuza chat): Agree with Erin: Ivan keeps the Katana, no holder move, and we vote Dave as the target. Dave's Tracker claim and his Yes on Grace make him our biggest threat. If Heidi's Standard protection is active, the attack fails and we learn she is protecting him. If it succeeds, Heidi's Medic claim is doubtful. Judy, no rig. No daytime PMs between us. Ready.
+(to Erin, Ivan, Judy) Judy (Yakuza chat): Judy: I agree with Erin and Ivan. Ivan keeps the Katana, Dave is the target, and I'm holding my Clerk token tonight with no rig. Dave's Tracker claim and his Yes on Grace make him the biggest threat. If Heidi's Standard protection blocks the attack, we learn she is protecting him. I'll vote Dave and keep the holder unchanged. Ready.
+(to Erin, Ivan, Judy) Erin (Yakuza chat): Erin: Agreed. Ivan keeps the Katana with no holder move, and we all vote Dave as the target. Judy holds her Clerk token with no rig. Grace's Jester revenge may hit a random Guilty voter tonight, and that could be one of us, but we can't prevent it, so we carry on. Ready.
+(to Erin, Ivan, Judy) Ivan (Yakuza chat): Ivan: Agreed. Ivan keeps the Katana with no holder move. Target is Dave, Standard Katana attack. Judy holds her Clerk token with no rig. No Ritualist guess tonight. Heidi's Standard protection is the only risk. If the attack fails we learn she is protecting him, and if it succeeds her Medic claim is doubtful. Ready.
+(to Erin, Ivan, Judy) Judy (Yakuza chat): Judy: Agreed. Ivan keeps the Katana with no holder move, Dave is the Katana target, and I hold my Clerk token with no rig. Grace's revenge could hit any Guilty voter, including one of us, but we can't stop it. Ready.
+Night actions:
+  Alice (Lookout): target Bob
+  Bob (Census Taker): target Dave
+  Carol (Profiler): target Dave; 1 token(s); "Profile Dave with a Profiler token. Dave's Tracker claim is the central public claim, so I want to test it."
+  Dave (Tracker): target Ivan
+  Erin (Wiretap): no role action; Katana vote: Ivan holds, attacks Dave
+  Heidi (Arsonist): target Carol; "Douse Carol quietly."
+  Ivan (Ritualist): no role action; Katana vote: Ivan holds, attacks Dave
+  Judy (Clerk): no role action; Katana vote: Ivan holds, attacks Dave
+Katana: Ivan holds it and attacks Dave.
+(to Bob) Moderator (private): Your census of Dave, Frank and Ivan counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Carol) Moderator (private): You profiled Dave: their role is Clerk, Lookout or Tracker (exactly one is true, and at least one of the three is a Good role and one is not). 2 profile tokens left.
+(to Alice) Moderator (private): Night 2 result: You watched Bob. Nobody visited Bob tonight.
+(to Dave) Moderator (private): Night 2 result: You tracked Ivan. Ivan visited Dave (you). You were attacked with the Katana tonight, and you died.
+(to Heidi) Moderator (private): Night 2 result: You doused Carol.
+(to Ivan) Moderator (private): Night 2 result: As Katana holder, you attacked Dave with the Katana. The attack succeeded. You used no Ritualist action, so you still have 2 ritual tokens.
+(to Erin, Ivan, Judy) Moderator (private): Yakuza Night 2 summary: The Katana stayed with Ivan, and Ivan used it to attack Dave. Ivan chose no Ritualist action. Judy chose not to rig the vote (Clerk token unused). Erin has no night action.
+[Moderator summary] Night 2: No role-blocks. Ivan kept the Katana and attacked Dave (Standard vs None), so Dave died (Katana). Heidi doused Carol, and Dave was already doused. Bob took a census around Dave and Carol profiled Dave (the code ops handled both). Alice watched Bob and saw no visitors. Dave tracked Ivan and learned Ivan visited Dave. Visits: Bob→Dave, Carol→Dave, Dave→Ivan, Heidi→Carol, Ivan→Dave. Grace's Jester revenge is left to the code.
+[Revenge] Grace's Divine Attack hits Ivan.
+(to Erin, Judy) The Katana passed to Judy.
+
+===== DAY 3 =====
+Dave died (killed by Katana). Their role isn't revealed. Their last will: "Dave's will: On Night 1 I tracked Bob, and Bob visited me. Treat that as a lead, not proof. Trust results corroborated across several players and weigh voting records over speeches."
+Ivan died (killed by Jester's revenge). Their role isn't revealed. Their last will: "I have no information to share yet. Village: compare every claimed investigator's results against each other and against the visit evidence before voting, and be wary of claims that contradict each other."
+[Night check] Night 2: errors. [medium, R6, wrong visit list] Alice's Lookout watch on Bob is a visit, so Alice→Bob happened tonight. record_visits left out [Alice, Bob]; it recorded only Bob→Dave, Carol→Dave, Dave→Ivan, Heidi→Carol and Ivan→Dave.
+Speaking order today goes around the circle in seat order, starting with Judy.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Judy (public): Judy here, no claim. Dave died to the Katana on Night 2, so Heidi needs to answer: who did your Medic protect that night, and why didn't it stop Dave? Alice and Bob, your Night 1 lists still matter. Let's compare the investigator results before anyone votes.
+Alice (public): Alice again. My Night 2 Lookout result: nobody visited Bob, so Bob was not attacked. Dave was killed by the Katana, which is Standard, so a Standard Medic protection on Dave would have stopped it. Heidi, who did you protect on Night 2, and did it stop anything? I'm not nominating yet.
+Bob (public): my census stands. N1 Dave/Frank/Heidi: 2 of 3 Good. N2 Dave/Frank/Ivan: 2 of 3 Good. Heidi, Dave died Night 2 to a Standard Katana, so your Night 1 Medic protection can't have covered him then. Who did you protect Night 2, and did it stop anything?
+[Claim] Carol: Profiler (Good). N2: profiled Dave: Clerk, Lookout or Tracker (one is true).
+Carol (public): Carol here, claiming Profiler. On Night 2 I profiled Dave and got three roles: Clerk, Lookout or Tracker, exactly one of which is his true role. Yakuza don't kill their own, so Dave was Lookout or Tracker, not Clerk. Heidi, who did you protect on Night 2, and did it stop anything? Alice, besides Bob, who visited you on Night 2?
+Erin (public): Erin here, no claim. Heidi, you protected Dave on Night 1, but Dave died to a Standard Katana on Night 2. Who did you protect that night, and did it stop anything? Carol, a Profiler list gives only one true role, so Dave's role isn't settled yet. Alice and Bob, keep your visit lists consistent with each other.
+Frank (public): Frank here. I know I'm Good, so Bob's Night 1 census (Dave/Frank/Heidi: 2 of 3 Good) means Heidi is not Good if Dave is Good. Dave died to a Katana, so he isn't Yakuza. Heidi, you haven't said who your Medic protected on Night 2 or why Dave still died. Bob, who did your Night 2 census target?
+[Claim] Heidi: Medic. N1: protected Dave (Standard). N2: protected Carol (Standard).
+Heidi (public): Heidi here. My Night 2 Medic protection went to Carol (Standard), not Dave, so Dave's Katana death doesn't contradict my claim. Judy, you pushed Grace hardest on Day 2 and pressed my claim before anyone else. What evidence did that rest on, and what was your Night 1 and Night 2 action?
+Judy (public): Judy again. Heidi, you asked why I pressed Grace: Alice's Lookout list shows no visit from a Sheriff checking Dave, and Grace never explained that. I have no night role to claim. Heidi, Dave died to a Standard Katana on Night 2 while you protected Carol, so your protection missed the one death we had. Carol, your Profiler list says Dave was Tracker, so explain why you were so quick to vote Guilty on Grace on Day 2.
+Alice (public): Alice again. Bob's census is 2 of 3 Good on both Night 1 (Dave, Frank, Heidi) and Night 2 (Dave, Frank, Ivan). With Dave and Frank Good, that makes Heidi and Ivan non-Good. Heidi, a Medic who protected Dave on Night 1 and Carol on Night 2 did not stop Dave's Katana death, and that fits badly with a Good Medic. Carol, I am the Lookout, so Dave was not a Lookout unless there are two. Dave's visitors on Night 2 are still unknown, so I'm watching for them.
+Bob (public): Bob again. Census check: my N1 trio Dave/Frank/Heidi and N2 trio Dave/Frank/Ivan each have exactly one non-Good. Dave died to the Katana, so he is most likely Good, since his Tracker claim matches my visit. Frank is the only name in both trios, so one non-Good (Frank) explains both results. Heidi and Ivan would need two non-Good players. Frank, why push Heidi while calling yourself Vanilla?
+Carol (public): Carol again. My N2 profile was a visit to Dave, so I was one of Dave's N2 visitors. Alice, your N2 Lookout watched Bob, so did anyone watch Dave that night? Heidi, your N2 Medic went to me, but I was never attacked, so that confirms nothing. Let's test the claims before anyone votes.
+Erin (public): Erin here, no claim. Heidi's Medic story has a hole. Dave, the player the Katana killed on Night 2, went unprotected, while Heidi says she protected Carol, who was never attacked. A Medic who protects the living but not the one player killed looks wrong. Carol's Profiler list also has Dave as Lookout or Tracker, and Alice is the Lookout. I'm nominating Heidi to test her Medic claim. Heidi, answer the Dave question directly.
+Erin nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: 4 Yes (the votes are secret).
+Heidi is put on trial (4 Yes).
+Heidi (public): Heidi again, on trial. I stand by my claim: Medic. On N1 I protected Dave (Standard), which is exactly the Heidi visit on Alice's list. On N2 I protected Carol, who had just said they profiled Dave, so Carol was a likely target. I did not cover Dave that night, and that's a real miss, but a Medic can only protect one player. Erin's case rests on 'the Medic didn't protect Dave', which is one night's choice, not proof. Bob's census (2 of 3 Good on both trios) only shows one non-Good, and Frank and I are both in those trios. Judy and Erin, you pushed Grace hard, and Grace was the Jester. Explain why you were so quick. I'm not asking you to trust me, only to weigh the night results.
+(to Carol, Erin, Heidi) Heidi -> Carol (private): Carol, I protected you on N2 and you weren't attacked. Please check Alice's and Bob's lists against each other before you vote.
+Judy (public): Judy again. Heidi, you say your Night 2 protection went to Carol, who was never attacked, while Dave died unprotected on the one night it mattered. A Good Medic who protects a living player but not the one killed looks wrong. Bob's N1 census (Dave/Frank/Heidi: 2 of 3 Good) also points at Heidi, since Dave's Tracker story fits and Frank is Vanilla. On Grace, my vote followed Alice's Lookout list, which showed no Grace visit on Dave. I'm voting Guilty on Heidi unless she can explain the Dave night.
+Alice (public): Alice again. I'm the only Lookout, so Carol's Dave-as-Lookout option fails unless there are two. My N2 watch on Bob was empty, so I can't see who hit Dave. Heidi, your N1 Medic protection on Dave matches my list, but on N2 you covered Carol, not the Katana victim. You also PMed Carol during the trial. I'm leaning Guilty on that alone unless you explain the N2 choice.
+Bob (public): Bob here. Census math: Dave was Katana-killed, so he's most likely Good, and his Tracker claim matches my visit. That leaves one non-Good in each trio, and Frank is in both. Heidi's Night 1 visit to Dave matches Alice's list. Missing the Night 2 protection on Dave is a real miss, but it isn't proof. Frank, you call yourself Vanilla while pushing Heidi hard. Why? I'm voting Innocent on Heidi unless someone shows a concrete contradiction.
+Carol (public): Carol again. Profile logic: Clerk is Yakuza and the Katana killed Dave, so Dave wasn't Clerk. Alice is the only Lookout, so Dave was the Tracker, and Alice's list matches Bob's visit. Heidi, your Night 2 protection on Carol has a timing problem: I only claimed my profile on Day 3, after Night 2 resolved, so you couldn't have protected me because I had 'just said' I profiled Dave. A Medic who protects a living player while Dave dies, then rationalizes it, is my main lead. I'm leaning Guilty unless you explain the timing.
+Erin (public): Erin again. Heidi, your Night 2 Medic protection went to Carol, who wasn't attacked, while Dave died unprotected. Then you PMed Carol during your own trial and told her to check Alice and Bob. Coordinating with a player on trial looks bad. I'm voting Guilty.
+Frank (public): Frank again. I'm Vanilla and know I'm Good. Dave was Katana-killed, not Yakuza, and Carol's profile list plus Alice's Lookout point to Dave being Tracker, which makes him Good. If Bob's census is right (2 of 3 Good on Dave/Frank/Heidi), Heidi is the non-Good one, and that contradicts her Medic claim. Erin, you say Heidi PMed Carol to check Alice and Bob. Only Heidi and Carol can read that PM, so how do you know what it said? I'm voting Guilty on Heidi.
+Heidi (public): Heidi, final word. I misspoke on timing: Carol hadn't claimed Profiler before Night 2, so my Carol protection was a guess at the likeliest target, not a reaction to a claim. Dave's death was a real miss and I own it. On my PM to Carol: it asked her to check Alice's and Bob's lists against each other. Erin quoted it almost word for word, yet only Carol and I can read it. So either Erin read a private message, or Carol repeated it. Erin, which is it? Answer that before anyone votes. On the census: Frank is the only name in both trios, Frank pushed hardest against me while calling himself Vanilla, and Bob already flagged that. Vote on those contradictions, not on who was quickest to hang Grace. I'm not asking for trust, only for the night results to be weighed.
+Trial votes on Heidi: 5 Guilty, 2 Innocent (the votes are secret).
+Heidi is executed by hanging (5 Guilty of 7 votes; 4 needed).
+Heidi died (executed by hanging). Their role isn't revealed. Their last will: "Heidi: I have no reliable night information to pass on. The best evidence from Day 2 is the Night 1 visit list and the missing visit in Grace's Sheriff story. Weigh voting records and results that several players corroborate, and be cautious of anyone who pushed a hanging hardest on thin evidence."
+
+===== NIGHT 3 =====
+(to Erin, Judy) Erin (Yakuza chat): Erin: Proposal: Judy keeps the Katana (no holder move) and attacks Alice tonight with the Katana. Alice is the Lookout whose visit list broke Grace's Sheriff claim, so she is our most dangerous investigator and could watch Judy. Carol's Profiler claim is the next threat, but Alice first. No Clerk rig yet: we rig only when a Good nominee is certain. Judy, confirm your Katana target is Alice. I'll vote Alice too. No daytime PMs between us. Not ready yet.
+(to Erin, Judy) Judy (Yakuza chat): Judy: Agreed with Erin. Judy keeps the Katana with no holder move, and the Katana target is Alice tonight (Standard attack). Alice's Lookout list is our biggest investigative risk. I'm holding the Clerk token with no rig tonight, since no Good nominee is certain yet. Carol's Profiler claim is next if Alice survives. No daytime PMs between us. Ready.
+(to Erin, Judy) Erin (Yakuza chat): Erin: Confirmed. Judy keeps the Katana with no holder move, Standard attack on Alice tonight. No Clerk rig. I'm voting Alice. Ready.
+(to Erin, Judy) Judy (Yakuza chat): Judy: Confirmed with Erin. Judy keeps the Katana with no holder move, Standard attack on Alice tonight, and no Clerk rig since no Good nominee is certain. Erin and I both back Alice as the target. No daytime PMs between us. Ready.
+Night actions:
+  Alice (Lookout): target Carol
+  Bob (Census Taker): target Frank; "Census on Frank"
+  Carol (Profiler): target Frank; 1 token(s); "Profile Frank with a Profiler token. Frank is in both census trios and pushes hardest against Heidi while calling himself Vanilla."
+  Erin (Wiretap): no role action; Katana vote: Judy holds, attacks Alice
+  Judy (Clerk): no role action; Katana vote: Judy holds, attacks Alice
+Katana: Judy holds it and attacks Alice.
+(to Bob) Moderator (private): Your census of Carol, Frank and Judy counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Carol) Moderator (private): You profiled Frank: their role is Clerk, Vanilla Villager or Wiretap (exactly one is true, and at least one of the three is a Good role and one is not). 1 profile token left.
+(to Alice) Moderator (private): Night 3 result: You watched Carol. Nobody else visited Carol tonight. You were also attacked with the Katana tonight, and you died.
+(to Judy) Moderator (private): Night 3 result: As Katana holder you attacked Alice. Your attack succeeded. You did not use your Clerk token (1 clerk token left).
+(to Erin, Judy) Moderator (private): Yakuza night report (Night 3): The Katana stays with Judy, who attacked Alice with it. Erin chose no action. Judy chose no action of her own (no rig).
+[Moderator summary] Night 3: No role-blocks. Judy (Katana holder) attacked Alice with a Standard Katana attack; Alice (Defense None) died. Bob took a census around Frank (code handled it). Carol profiled Frank and spent 1 token (code handled it, 1 left). Alice watched Carol and saw no other visitors. Erin and Judy took no own actions. Visits: Judy->Alice, Bob->Frank, Carol->Frank, Alice->Carol. Living: Bob, Carol, Frank (Village) and Erin, Judy (Yakuza), so the game goes on.
+
+===== DAY 4 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice, Lookout (Village). Night 1: watched Dave, who was visited by Bob and Heidi. Night 2: watched Bob, and nobody visited Bob. Trust results that several players corroborate over bare claims, and check any claim against the visit evidence before voting. Watch players who push for a hanging without a concrete contradiction."
+Speaking order today goes around the circle in seat order, starting with Bob.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Night check] Night 3: correct
+[Claim] Bob: Census Taker, Good. N1: Dave/Frank/Heidi 2 of 3 Good. N2: Dave/Frank/Ivan 2 of 3 Good. N3: Carol/Frank/Judy 2 of 3 Good.
+Bob (public): Bob, Census Taker (Good). Trios: N1 Dave/Frank/Heidi 2 Good, N2 Dave/Frank/Ivan 2 Good, N3 Carol/Frank/Judy 2 Good. Frank is the only name in all three. Erin, you quoted Heidi's PM to Carol, which only Heidi and Carol can read. Which role reads PMs?
+Carol (public): Carol, Profiler (Good). N2 Dave: Clerk, Lookout or Tracker. N3 Frank: Clerk, Vanilla or Wiretap. Clerk and Wiretap are Yakuza, so Frank is Vanilla or Yakuza. Erin quoted Heidi's PM to me, and only Heidi and I could read it. That means Erin read a private message: either Wiretap (Yakuza) or an Eavesdropper who spied on Heidi on Night 2. Erin, which is it? Until you answer, Erin is my main lead.
+[Claim] Erin: Eavesdropper. N2: eavesdropped Heidi; read her Day 3 private messages (Heidi to Carol: check Alice's and Bob's lists).
+Erin (public): Erin here. I'm claiming Eavesdropper. On Night 2 I eavesdropped on Heidi, so I read her Day 3 private messages as they were sent. Heidi's PM to Carol asked her to check Alice's and Bob's lists against each other, which is what I quoted. Carol, you received that PM, so ask yourself whether you repeated it to anyone. Bob, my role doesn't touch your census trios.
+Frank (public): Frank, Vanilla, known Good. If Bob's census is honest, Heidi and Ivan are non-Good, and exactly one of Carol or Judy is non-Good. Judy, you have no claim and pushed Grace and Heidi early; do you have a role or any night action? Carol, your Profiler list fits Dave as Tracker, so I'm not against you yet. I'm not nominating today.
+Judy (public): Judy here, no claim. Bob's three census trios add up, with Frank in all three. Carol, Erin quoted Heidi's PM and you were the only other person who could read it. Did you repeat it to anyone? I want an answer before anyone is nominated.
+Bob (public): Bob again. Katana logic: Dave and Alice were both Katana kills, so a living Yakuza holder exists among Carol, Erin, Frank and Judy. Dave was a Katana victim, so he's Good, and each census trio needs exactly one non-Good. If Erin is Good, the Yakuza holder is the one non-Good in Carol/Frank/Judy. Frank is the only name in all three trios, so he's the simplest fit. Frank, what did you do on Nights 1 and 2, and did you visit anyone? Carol, you confirmed Erin's PM quote was accurate, so did you repeat Heidi's PM to anyone? Judy, do you have any role or night action?
+Carol (public): Carol again. I did not repeat Heidi's PM to anyone. Erin quoted it word for word, so Erin did read a private message, which means Eavesdropper (Good) or Wiretap (Yakuza). Dave isn't Clerk, since the Katana killed him, and Alice held Lookout, so Dave was Tracker and Good. Frank is Clerk, Vanilla or Wiretap, so Frank is either Clerk (Yakuza) or Vanilla. Judy, you have no claim: which of you or Frank is non-Good in Bob's Night 3 trio?
+Erin (public): Erin again. Bob's trios don't all point at Frank. Dave/Frank/Ivan needs two Good, and Carol/Frank/Judy needs two Good, so the odd player changes between trios. Carol and Bob, you keep attacking my PM quote. Name the player you think is Yakuza and explain why. I'm not nominating yet.
+Frank (public): Frank, Vanilla, Good. Bob's census math needs care. I'm in all three trios but I'm Good, so the non-Good player in each trio is someone else. N1 trio Dave/Heidi: Dave is a Katana victim, so Heidi. N2 trio Dave/Ivan: Ivan. N3 trio Carol/Judy: one of them is non-Good. Heidi's PM asked Carol to check Alice's and Bob's lists against each other, which targets our Lookout and Census Taker. Carol, you received that PM and say you didn't repeat it. Why would Heidi want that check? Judy, what's your role?
+(to Erin, Frank, Judy) Frank -> Judy (private): Judy, I'm Good. By the census trios, the Night 3 non-Good is you or Carol, and Carol received Heidi's PM. If you're Good, let's vote Carol out next round. I'll nominate if you agree.
+Judy (public): Judy here. Bob's Night 1 trio (Dave, Frank, Heidi) can't read 2 of 3 Good unless someone is non-Good. Dave (Tracker), Heidi (Medic) and Frank (Vanilla) all claim Good roles, and nobody has contradicted them. Bob, which of the three is the non-Good, or is the census wrong?
+(to Erin, Frank, Judy) Judy -> Frank (private): Frank, I'm Good. I agree Carol's Erin-PM accusation is shaky. Let's hear Bob's answer on the Night 1 trio first, then move on Carol together, not alone.
+Bob (public): Bob here. Census trios fit one clean picture: Heidi and Ivan are Yakuza, Frank is Good (Vanilla), and the third non-Good is Carol or Judy. Heidi PMed Carol to check Alice's and Bob's lists, which is what a Yakuza teammate would push. Carol, why did Heidi PM you that? Erin, Judy, Frank: if Carol can't explain it, I'll nominate Carol next round.
+Carol (public): Carol again. Bob's Night 3 trio (Carol/Frank/Judy, 2 Good) means exactly one of Frank or Judy is non-Good, and I'm Good. Frank and Judy, you PMed each other today. What did you say? I'll vote on that answer, not on who pushed hardest.
+Erin (public): Erin here. I'm nominating Carol. Her Night 3 profile on Frank lists Clerk, Vanilla and Wiretap, and she has accused me of reading a PM without showing a contradiction in my quote. Bob and Frank both asked for her out, so let's test her Profiler claim at trial.
+Erin nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: 3 Yes (the votes are secret).
+Carol is put on trial (3 Yes).
+Carol (public): Carol here, on trial as Profiler (Good). I did not repeat Heidi's PM to anyone. Erin quoted it, so Erin read a private message. Whether Erin is a real Eavesdropper or a Wiretap is a question for Erin, not a reason to hang me. Mechanics: Alice and Dave both died to the Katana, and Heidi was already dead by Alice's kill, so the living Yakuza holder on Night 3 was Bob, Erin, Frank or Judy. My Night 2 profile says Dave was Clerk, Lookout or Tracker; Alice was the Lookout, so Dave was Tracker and Good. My Night 3 profile says Frank is Clerk, Vanilla or Wiretap, so Frank is Yakuza unless his Vanilla claim is true. Frank and Judy PMed each other today. Frank, Judy: what did you say? Vote on those answers, not on who pushed hardest.
+Erin (public): Erin again, Eavesdropper. Carol, your profile lists are your only evidence, and you've used them to point at Frank and Judy without a check. You asked them what their PM said, though you say you read nothing. Your Night 3 Frank list has no verified result behind it. I'm voting Guilty on Carol unless someone gives a concrete contradiction that clears her.
+Frank (public): Frank, Vanilla, known Good, on Carol's trial. I checked Carol's Profiler lists against facts I know. Her Night 2 list (Clerk, Lookout, Tracker) includes Tracker, Dave's claimed role, and Dave was killed by Katana, so Clerk is out. Her Night 3 list on me (Clerk, Vanilla, Wiretap) includes Vanilla, my true role. Two lists that each contain a true answer is real evidence she is a real Profiler. Erin's case rests on a quote from a PM only Heidi and Carol could read, and Carol says she didn't repeat it. If Carol is Good, Bob's census puts the Night 3 non-Good on Judy. Judy, you still haven't given a role or night action. What did you do on Nights 1 to 3?
+Judy (public): Judy here. Carol, your two Profiler lists each contain one true answer, but nobody can check them, and they fit a liar too. You named Frank as Vanilla or Yakuza and pressed Erin over a PM quote while giving no evidence of your own. Unless you explain your Night 3 list, I'm voting Guilty.
+Bob (public): Bob again. Census check on Carol: my Night 3 trio Carol/Frank/Judy has exactly one non-Good. If Carol is Good, that player is Frank or Judy. Carol's Night 2 list fits Dave as Tracker, which matches Dave's claim and Bob's visit. Her Night 3 list includes Vanilla, Frank's claim. Erin's Heidi PM quote is the only evidence against Carol, and Carol denies repeating it. I'm voting Innocent unless someone shows a concrete contradiction. Judy, you still have no role: what did you do on Nights 1 to 3, and what did you and Frank PM about?
+Carol (public): Carol, final word. I did not repeat Heidi's PM to anyone. Erin's quote is Erin's claim about what Erin read, and it's the only thing against me. My checkable facts: Alice was the Lookout and Dave was a Katana victim, so Dave's Clerk option is out and Tracker fits my Night 2 list. My Night 3 list on Frank includes Vanilla, which Frank claims. Judy has given no role or Night action and has PMed Frank, so Judy, what did you and Frank discuss? Frank is in all three census trios, so he is a fair question too. Vote on answers and contradictions, not on who pushed hardest. I'm Good and I'm voting Innocent on myself.
+[ERROR player_error] Frank (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+[ERROR effort_fallback] Frank (haiku-5.5): answer cut off at max_tokens at high effort, retrying at medium
+Trial votes on Carol: 3 Guilty, 2 Innocent (the votes are secret).
+Carol is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Carol died (executed by hanging). Their role isn't revealed. Their last will: "Carol, Profiler (Good). Night 2: profiled Dave, who was Clerk, Lookout or Tracker (exactly one true). Night 3: profiled Frank, who was Clerk, Vanilla Villager or Wiretap (exactly one true). Trust corroborated results over single claims, and vote on mechanical contradictions."
+
+===== NIGHT 4 =====
+(to Erin, Judy) Erin (Yakuza chat): Erin: Proposal: Judy keeps the Katana (no holder move) and attacks Bob tonight with the Katana. Bob is the one living player with a claimed investigative role, and his census trios can't be answered from our side. Frank is the Vanilla player we can handle at trial later, so Bob comes first. No Clerk rig tonight: with two Good players alive, a rig now would only expose us. Judy, confirm you agree, and vote Bob with me. No daytime PMs between us. Not ready yet.
+(to Erin, Judy) Judy (Yakuza chat): Judy: Agreed. Judy keeps the Katana with no holder move, Bob is the Katana target tonight, and no Clerk rig tonight. Ready.
+(to Erin, Judy) Erin (Yakuza chat): Erin: Confirmed. Judy keeps the Katana with no holder move, Bob is the Katana target tonight, and no Clerk rig. I agree with the plan. No daytime PMs between us, and keep Frank at arm's length. Ready.
+(to Erin, Judy) Judy (Yakuza chat): Judy: Agreed. I keep the Katana with no holder move, Bob is the Katana target tonight, and I hold my Clerk token with no rig. If Bob dies, three remain (Erin, Judy, Frank), so Day 5 we need Frank nominated and both of us vote Yes and Guilty. Ready.
+Night actions:
+  Bob (Census Taker): target Erin; "Census around Erin"
+  Erin (Wiretap): no role action; Katana vote: Judy holds, attacks Bob
+  Judy (Clerk): no role action; Katana vote: Judy holds, attacks Bob
+Katana: Judy holds it and attacks Bob.
+(to Bob) Moderator (private): Your census of Erin, Frank and Judy counted Evil players (drawn at random this time): 2 of the 3 are Evil. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Judy) Moderator (private): Night 4: You held the Katana and attacked Bob. Your attack succeeded. You did not use your Clerk ability (1 clerk token left).
+(to Erin, Judy) Moderator (private): Yakuza report, Night 4: The Katana stays with Judy, who attacked Bob with it. Erin chose no action. Judy chose no Clerk action.
+(to Bob) Moderator (private): Attack notice, Night 4: You were attacked with the Katana, and the attack killed you.
+[Moderator summary] Night 4: Judy (Katana holder) attacked Bob with the Standard Katana. Bob had no defense and died. Bob's census around Erin still resolved (census op). Erin and Judy took no role actions, so Judy's clerk token was not spent. Visits: Bob->Erin, Judy->Bob. Alive: Erin and Judy (Yakuza) and Frank (Village).
+
+===== DAY 5 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "I was Bob, Census Taker (Good). My census results, by true alignment: N1 Dave/Frank/Heidi 2 of 3 Good; N2 Dave/Frank/Ivan 2 of 3 Good; N3 Carol/Frank/Judy 2 of 3 Good. Each trio has exactly one non-Good, and Frank is in the first two. Check claims against these results and the visit lists. Trust results that several players corroborate, and vote on evidence, not on who pushes hardest for a hanging."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Erin (public): I'm nominating Frank. He pushed hardest against Heidi and Carol, and his Vanilla claim can't be checked. Vote on that.
+(to Erin, Judy) Erin -> Judy (private): Judy: nominating Frank now. Vote Yes, then Guilty at trial.
+Erin nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: 2 Yes (the votes are secret).
+Frank is put on trial (2 Yes).
+Frank (public): Frank, Vanilla Villager, Good, with no night action and no night information. Erin nominated me on a claim she can't check, and nobody has shown a concrete contradiction in my play. Here is the arithmetic. Bob died to the Katana on Night 4, so the holder was alive that night. Bob was a victim, and I'm Good, so the holder is Erin or Judy. If I hang, two remain: the holder and one other. The holder kills that other on Night 5 and wins. Hanging me is a Yakuza win either way. Erin, you have pushed three hangings in a row and PMed Judy today. Judy, what did Erin's PM say?
+(to Erin, Frank, Judy) Frank -> Judy (private): Judy, one of you two holds the Katana, and I'm the only sure Good. If you're Good, voting me out hands the holder your life next night. Vote Innocent, and tell me what Erin's PM asked.
+Judy (public): Judy here. Frank asks us to judge on evidence, so here it is. Frank is the only name in all three census trios, and Frank pushed hard on Heidi and Carol on reads nobody could check. Frank also PMed me asking for an Innocent vote and asking what Erin's PM said. A Vanilla claim can't be checked either way, so I'm voting Guilty.
+Erin (public): Erin again. Frank says hanging him wins for Yakuza either way. Frank, you have no night result anyone can check, and you asked Judy for an Innocent vote in private, which Judy has confirmed. Name the night you were visited and by whom. I'm voting Guilty.
+Frank (public): Frank, final word. Bob died to the Katana on Night 4 and I'm Good, so the holder is Erin or Judy. Whichever of you is the holder wants me hanged, because I'm the only Good vote that can stop the Yakuza from winning. If I'm hanged, the holder kills the other of you tonight and wins. Erin, your Eavesdropper claim can't be checked, and you have started three hangings in a row, each on a claim nobody can verify. Judy, you have no role and no night action, and you have PMed me twice today. Judy, what did you do on Nights 1 to 4? Answer that before anyone votes me out. I'm voting Innocent on myself.
+(to Erin, Frank, Judy) Frank -> Judy (private): Judy, if you're Good, the holder is Erin, who has pushed three hangings in a row. Vote Innocent on me and we can look hard at Erin on Day 6 with two of us left.
+Trial votes on Frank: 2 Guilty, 1 Innocent (the votes are secret).
+Frank is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank, Vanilla Villager (Good), no night action or information. The Katana holder is Erin or Judy. Whoever pushed for my hanging is the likeliest holder. Trust results several players corroborate, and vote on contradictions, not on who pushes hardest."
+The game is over. Winners: Erin, Ivan (dead), Judy, Grace (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====

@@ -1,0 +1,308 @@
+Setup:
+  Alice    seat 1  Diviner           anthropic/claude-haiku-5.5
+  Bob      seat 2  Arsonist          anthropic/claude-haiku-5.5
+  Carol    seat 3  Vigilante         anthropic/claude-haiku-5.5
+  Dave     seat 4  Eavesdropper      anthropic/claude-haiku-5.5
+  Erin     seat 5  Pharmacist        anthropic/claude-haiku-5.5
+  Frank    seat 6  Fortune Teller    anthropic/claude-haiku-5.5
+  Grace    seat 7  Accountant        anthropic/claude-haiku-5.5
+  Heidi    seat 8  Puppeteer         anthropic/claude-haiku-5.5
+  Ivan     seat 9  Prosecutor        anthropic/claude-haiku-5.5
+  Judy     seat 10 Vanilla Villager  anthropic/claude-haiku-5.5
+  Katana starts with Alice
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Night 1 proposal: we have no read on roles yet, so no Katana attack tonight. Alice keeps the Katana. Erin, no block tonight. Heidi, hold your puppet token. I will use my Diviner action on one player for group info and share the result in chat. Object now if you want a different plan.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Agreed with Alice: no Katana attack tonight, Alice keeps the Katana, and I won't block anyone. Night 1 has no information yet, so I'd rather not waste a block or expose a target. I'm ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Agreed: no Katana attack tonight, Alice keeps the Katana, Erin no block. I'm holding my puppet token and taking no action. Ready.
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Agreed on all points: no Katana attack tonight, Alice keeps the Katana, Erin no block, Heidi holds the puppet token. I'll use my Diviner action on one player and share the group result in chat. Ready.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Agreed on all points: no Katana attack tonight, Alice keeps the Katana, no block from me. I'm ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Agreed: no Katana attack tonight, Alice keeps the Katana, Erin no block. I take no action and keep my puppet token. Ready.
+Night actions:
+  Alice (Diviner): target Judy; Katana vote: Alice holds, attacks None
+  Bob (Arsonist): target Dave; "Douse Dave"
+  Carol (Vigilante): no action
+  Dave (Eavesdropper): target Frank; "Eavesdrop on Frank for the coming Day."
+  Erin (Pharmacist): no role action; Katana vote: Alice holds, attacks None
+  Grace (Accountant): target Alice
+  Heidi (Puppeteer): no role action; Katana vote: Alice holds, attacks None
+  Ivan (Prosecutor): no action
+Katana: no attack (the Yakuza agreed not to attack); Alice holds it.
+(to Alice) Moderator (private): You divined Judy; the group was Ivan, Judy and Bob. The role drawn is Arsonist (60% chance it is Judy's, otherwise one of the others').
+(to Bob) Moderator (private): Night 1 result: You doused Dave.
+(to Grace) Moderator (private): Night 1 result: You audited Alice. Alice has 0 tokens in total.
+(to Frank) Moderator (private): Day 2 Fortune Teller result (about Night 1): your two numbers are 4 and 4.
+(to Erin, Heidi) Moderator (private): Yakuza Night 1 summary: Alice (Diviner) chose to divine Judy. Erin (Pharmacist) chose no action. Heidi (Puppeteer) chose no action. The Katana stays with Alice, and there was no Katana attack.
+(to Alice) Moderator (private): Yakuza Night 1 summary of your teammates: Erin (Pharmacist) chose no action. Heidi (Puppeteer) chose no action. The Katana stays with you, and there was no Katana attack.
+[Moderator summary] Night 1: No role-blocks, no attacks, no deaths. Alice (Katana holder, Diviner) divined Judy (divine op). Bob doused Dave (doused status set). Dave eavesdrops on Frank for Day 2. Grace audited Alice: 0 tokens. Frank's FT numbers: 4 and 4. Visits: Alice->Judy, Bob->Dave, Dave->Frank, Grace->Alice. The Yakuza were told each other's actions.
+
+===== DAY 2 =====
+Nobody died last night.
+(to Dave) You are eavesdropping on Frank today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Dave.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 1: correct
+Dave (public): Dave here, no reads yet. I'd like to hear everyone's first thoughts before I weigh in.
+Erin (public): Erin here. No reads yet and no claim. I'm watching the first votes and claims before I say more.
+Frank (public): Frank here. No claim and no reads yet. I'll be watching who pushes early nominations and who votes against them before I say more.
+[Claim] Grace: Accountant. N1: audited Alice, 0 tokens.
+Grace (public): Grace here. I'm the Accountant. N1 I audited Alice: 0 tokens. I'll keep auditing token holders and post any change. No nomination from me yet; I want to hear more claims.
+Heidi (public): Heidi here. No claim and no reads yet. Grace's Alice audit showing 0 tokens fits a token-less role, but I'm not reading anything into it. I want to see more claims before I nominate anyone.
+Ivan (public): Ivan here, no claim and no reads yet. Grace's Alice audit is our only result so far. Anyone holding investigative results, please post them early so we can compare them.
+Judy (public): Judy here, Vanilla Villager with no night info. Still no reads. Anyone with a result, post it early.
+Alice (public): Alice here. No claim yet. Grace's audit fits me having 0 tokens, so I'm not disputing it. I want the Accountant to keep auditing token holders and post any change. No nomination from me yet.
+Bob (public): Bob here, no claim and no reads yet. I'll wait for more results before weighing in on anyone. Grace, please keep posting audits as they come.
+Carol (public): Carol here. No claim and no reads yet. I'm holding my shots for a solid lead, and I'll post any result I get.
+Dave (public): nothing new from me yet. Still watching who pushes early nominations and what claims come in.
+Erin (public): Erin here, nothing new from me. Grace, keep posting your audits as they come. I'm not nominating until more claims or results come in.
+[Claim] Frank: Fortune Teller. N1 numbers: 4 and 4.
+Frank (public): Frank here. I'm the Fortune Teller. My Night 1 numbers were 4 and 4, so four players were visited and four players visited someone. I'll post my numbers each Day. Grace, your Alice audit is a useful start.
+Grace (public): Grace here. Frank's Fortune Teller claim (4 and 4) is noted, and Dave, Carol, Erin, and others are still quiet on claims. Anyone holding a token role (Medic, Vigilante, Seer, Archivist, Surveyor, Profiler, etc.), please post your night results early. I'll keep auditing token holders and post any changes. No nomination from me yet.
+Heidi (public): Heidi here, nothing new yet. I'm waiting for more results before I weigh in. Frank and Grace, keep posting your results as they come.
+Ivan (public): Ivan here. We have two claims so far: Grace (Accountant) and Frank (Fortune Teller). Both are unverified, so I'm holding off on any nomination until someone gives a checkable lead. Carol, Dave, Erin and Heidi, please post your reads.
+Judy (public): Judy here, still no reads. Frank and Grace, please post every new result as it comes. Carol, Dave, Erin, Heidi and Ivan, any night info from you helps us compare claims.
+[Claim] Alice: Diviner. N1: divined Judy; group Ivan, Judy, Bob; Arsonist drawn.
+Alice (public): Alice here. I'm the Diviner, not the Accountant or Fortune Teller. My Night 1 divine on Judy showed the group Ivan, Judy and Bob, with an Arsonist drawn among them (60% Judy). Judy, you said Vanilla, so please explain. Grace and Frank, I'll compare your results with mine each Day.
+Bob (public): Bob here. Alice's Diviner group (Ivan, Judy, Bob) has an Arsonist drawn, and that could be any of the three of us. I won't hang anyone on one group result. Judy's Vanilla claim versus Alice's result is worth comparing once Frank and Grace post more numbers. No nomination from me yet.
+Carol (public): Carol here. I checked Alice's group: Judy's neighbours are Ivan and Bob once Alice is skipped, so the group is consistent with a real Diviner. It doesn't settle anything yet. Judy, what do you make of Alice's Diviner result? Frank and Grace, please keep posting your numbers and audits as they come.
+Dave (public): Dave here. Carol's check of Alice's group holds up: Judy's neighbours are Ivan and Bob once Alice is skipped. Frank and Grace, please keep posting exact results as they come. No nomination from me yet.
+Erin (public): Erin here, nothing new yet. Frank and Grace, your results so far don't conflict. Judy, please answer Alice's Diviner group. Anyone with a Sheriff or Seer result, post it now.
+Frank (public): Frank here. Nothing new beyond my claim: Fortune Teller, Night 1 numbers 4 and 4. Judy still owes an answer on Alice's Diviner group. I'm not nominating yet. I'll post Day 3 numbers as soon as I get them, which will give us a second night of checkable data.
+Grace (public): Grace here. Alice's Diviner claim fits my 0-token audit of her, and the group Ivan, Judy, Bob checks out by seat. Frank's 4 and 4 is noted. Judy still owes an answer on that group. I'll post any audit result each Day and I'm not nominating yet.
+Ivan (public): Ivan here. I'm not the Arsonist, so Alice's Diviner group leaves Judy or Bob as the drawn Arsonist. The 60% weighting favours Judy, so Judy's Vanilla claim needs an answer. Bob, do you have anything beyond that group?
+Judy (public): Judy here. I'm a Vanilla Villager, so I know I'm not the Arsonist. If Alice's Diviner group (Ivan, Judy, Bob) is accurate, the Arsonist is Ivan or Bob. Ivan and Bob, please state your roles plainly. Alice, I'll check your Day 3 group against your next divine. Grace and Frank, post every new result. No nomination from me yet.
+Alice (public): Alice here. My N1 divine on Judy drew Ivan, Judy and Bob, with an Arsonist among them and 60% weight on Judy. Judy's Vanilla claim doesn't fit that. Judy, please say what you saw on N1 and why the Arsonist isn't you. Frank and Grace, post your Day 3 numbers and audits when you get them.
+Carol (public): Carol here. Bob and Ivan, please state your roles plainly, since Alice's group leaves one of you or Judy as the Arsonist. Judy, your Vanilla claim needs an answer to Alice's 60% weighting on you. Frank and Grace, post your Day 3 numbers and audits as soon as they come. No nomination from me yet.
+Erin (public): Erin here, nothing new. Judy, Ivan and Bob all need to answer Alice's group plainly. Frank and Grace, post exact results with targets so we can cross-check them on Day 3.
+Frank (public): Frank here. My Fortune Teller claim stands: Night 1 numbers 4 and 4. Alice's Diviner group and Grace's 0-token audit don't contradict those numbers. Judy, Ivan and Bob still need to answer the Arsonist group plainly. I'm not nominating yet.
+Judy (public): Judy here. I'm Vanilla, so I have no night result to offer. Alice's Diviner group needs checking: Bob hasn't stated a role yet, and Ivan has said he isn't the Arsonist. Bob, please state your role plainly. I'm not nominating until Day 3 numbers come in. Frank and Grace, please post them as soon as you have them.
+Alice (public): Alice here. Judy, you still haven't explained why you're not the Arsonist when my Diviner group weights you at 60%. Bob and Ivan, state your roles plainly. I'm not nominating yet, and I'll compare Day 3 results with Frank and Grace.
+Bob (public): Bob here. I'm a Vanilla Villager with no night info, so I have no result to add. Alice's group of Ivan, Judy and Bob with an Arsonist drawn doesn't name anyone yet, and I won't nominate on it. Alice, Judy and Ivan: post anything beyond that group. Frank and Grace, keep posting numbers and audits.
+Carol (public): Carol here, nothing new. Frank and Grace, please post Day 3 numbers and audits with targets as soon as you have them. Bob and Ivan, Alice's group still needs your plain answers. No nomination from me.
+Judy (public): Judy here. Bob and I have both said Vanilla, so if Alice's group is accurate, Ivan is the drawn Arsonist. Ivan, please state your role plainly. I still won't nominate until Frank and Grace post Day 3 results.
+Alice (public): Alice here. Judy, your Vanilla claim doesn't answer my Diviner group, which weights you 60% as the Arsonist. Explain plainly why you aren't the Arsonist.
+Bob (public): Bob here, still Vanilla with no night info. Alice's group of Ivan, Judy and Bob is a lead for all three of us, not proof against anyone. Judy, you've pushed me twice without a checkable result, so please answer plainly. I'm not nominating.
+Carol (public): Carol here, nothing new. Ivan is the only player in Alice's group who hasn't stated a role. Ivan, please state it plainly. No nomination from me yet.
+[Claim] Ivan: Prosecutor. 2 prosecutor tokens left.
+Ivan (public): Ivan here: I'm the Prosecutor with 2 tokens, not the Arsonist and not the Diviner. Alice's group leaves Judy or Bob as the drawn Arsonist, so one of their two Vanilla claims is false. Judy and Bob, each of you should say what you can check. I'm not nominating yet.
+Judy (public): Judy here, still Vanilla. Ivan, why claim Prosecutor only now? Alice, I'll check your next divine as promised.
+Alice (public): Ivan's Prosecutor claim came late, and Judy's Vanilla answer still doesn't explain my Arsonist group. Judy, answer plainly why you aren't the Arsonist.
+Bob (public): Bob here, still Vanilla as I stated. Alice's group can't settle anything by itself. Ivan's late Prosecutor claim, made only after pressure, deserves the same scrutiny. No nomination from me.
+Ivan (public): Ivan here. Alice's group implicates Judy or Bob as the Arsonist, but one group can't convict either of them. I'm holding my prosecution token until someone gives a checkable lead.
+[Feedback from Judy] A 2.90 budget can't cover even a 10-word public message (3.51) at round 7, so public speech is effectively closed. Maybe show the cheapest possible price earlier.
+[Feedback from Alice] Budget is tight: a 10-word public message at round 7 costs more than my 3.03 budget, so I can't speak publicly this round.
+Judy (public): Judy here, still Vanilla with no night result. Alice's group needs Day 3 numbers before anyone is nominated.
+Alice (public): Alice here. Judy, my Diviner group weights you 60% as the Arsonist. Vanilla doesn't answer that. Explain plainly on Day 3.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Alice: Proposal for N2. Katana stays with me. Attack target: Frank, who claims Fortune Teller. Erin: no block unless you see a better use. Heidi: hold your puppet token. I'll divine Grace (Accountant claim) and share the group result in chat. If you prefer a different kill, name it now with a reason. We need 2 of 3 on the same target, so vote in line with this unless there's a concrete objection.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Erin: Agreed. Alice keeps the Katana and attacks Frank, my vote is Frank. One idea: Grace's Accountant audit could read Heidi's puppet token, so I can block Grace to stop that audit. I'm fine either way, but Alice, tell me if you want the block. No other block from me.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Heidi: Agreed. Alice keeps the Katana and attacks Frank. Erin, blocking Grace is fine with me, since it stops her audit reading my token. I take no action and keep my puppet token. Ready.
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Alice: Confirmed. Katana stays with me and attacks Frank. Erin blocks Grace, Heidi takes no action, and I divine Grace and will share the group result after the night. Ready.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Erin: Confirmed. Alice keeps the Katana and attacks Frank. I block Grace. Heidi takes no action and keeps the puppet token. Ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Alice keeps the Katana and attacks Frank. Erin blocks Grace. I take no action and keep my puppet token. Ready.
+Night actions:
+  Alice (Diviner): target Grace; "Diviner action on Grace, per the Yakuza plan."; Katana vote: Alice holds, attacks Frank
+  Bob (Arsonist): target Alice; "Douse Alice"
+  Carol (Vigilante): no action
+  Dave (Eavesdropper): target Ivan; "Eavesdropping Ivan for Day 3."
+  Erin (Pharmacist): target Grace; Katana vote: Alice holds, attacks Frank
+  Grace (Accountant): target Ivan
+  Heidi (Puppeteer): no role action; Katana vote: Alice holds, attacks Frank
+  Ivan (Prosecutor): no action
+Katana: Alice holds it and attacks Frank.
+(to Alice) Moderator (private): You divined Grace; the group was Frank, Grace and Heidi. The role drawn is Fortune Teller (60% chance it is Grace's, otherwise one of the others').
+(to Frank) Moderator (private): You were attacked with the Katana tonight. You died.
+(to Bob) Moderator (private): You doused Alice.
+(to Erin) Moderator (private): You role-blocked Grace. Your block did not fail.
+(to Grace) Moderator (private): You were role-blocked tonight. Your action had no effect.
+(to Alice, Erin, Heidi) Moderator (private): Yakuza actions tonight: Alice held the Katana and attacked Frank with it, and also used her Diviner action on Grace. Erin chose to role-block Grace. Heidi took no action. Alice still holds the Katana.
+(to Alice) Moderator (private): Katana result: your Katana attack on Frank succeeded.
+[Moderator summary] Night 2: Alice (Katana holder) killed Frank (Standard vs None) and divined Grace (divine op). Bob doused Alice. Erin role-blocked Grace, so her audit of Ivan had no effect. Dave eavesdropped on Ivan. Carol, Heidi, Ivan and Judy took no action. Frank (Fortune Teller) died, so he gets no numbers. Visits recorded: Alice→Grace, Alice→Frank, Bob→Alice, Dave→Ivan, Erin→Grace. No win condition met.
+
+===== DAY 3 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank's will: Trust the vote ledger over speeches. Watch who pushes nominations early and who votes against them. Judge the living by what they do. Any night results I hold will be posted publicly by day if I survive."
+(to Dave) You are eavesdropping on Ivan today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Bob.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Bob (public): Bob here. Frank died to the Katana, so a Yakuza team is alive and holds it. Frank's will posts no results, so Grace and Alice, please say what you can check. I'm not nominating yet.
+[Night check] Night 2: correct
+Carol (public): Carol here. No new lead from me yet. Frank died to the Katana, so a Yakuza team holds it. Alice, Grace and Ivan, please keep posting exact results with targets. I'm not nominating yet.
+Dave (public): Dave here. Nothing new from me yet. Frank died to the Katana, so the Yakuza hold it. Alice, Grace and Ivan, please post exact results with targets, and Judy and Bob, answer Alice's group plainly. I'm not nominating yet.
+Erin (public): Erin here. Frank's will gives us nothing checkable, so Day 3 numbers and audits are what we have. Grace, post every audit target and result from N2, including any empty or odd one. Ivan, you claimed Prosecutor late; explain what you'd prosecute on and why. I'm not nominating yet.
+[Claim] Grace: Accountant. N1: audited Alice, 0 tokens. N2: role-blocked, no audit result.
+Grace (public): Grace here. I was role-blocked on Night 2, so I have no N2 audit to post. My only result is N1: Alice had 0 tokens. Any new audit I make will be posted publicly by day. Whoever blocked me is alive, so keep that in mind when you read the Night 2 Yakuza-style outcomes.
+Heidi (public): Heidi here. I agree with waiting for checkable results. Grace, please post your Night 3 audit target and result publicly when you have it. No nomination from me yet.
+Ivan (public): Ivan here. Grace was role-blocked on Night 2, so someone alive with a block or Katana link is a real lead. Grace, once you're done with your Day 3 audit, post your target. Alice, post your Day 3 divine target and group. Judy, you still haven't answered the Arsonist group. I'm not nominating yet.
+Judy (public): Judy here, still Vanilla with no night result. Frank died to the Katana, so his Fortune Teller claim (4 and 4) can no longer be checked. Anyone with a Day 3 result, post it with a target. Grace, the Night 2 blocker is alive, so track who it could be. I'm not nominating yet.
+Alice (public): Alice here. Judy still owes a plain answer on my Arsonist group, and Ivan's Prosecutor claim came only after pressure. Judy and Ivan, each name the one player you'd check first and why. I'm not nominating yet.
+Bob (public): Bob here, still no nomination from me. Alice's group is the only result we have, so Judy and Ivan should each name the one player they would check first, as Alice asked.
+Carol (public): Carol here, nothing new. Frank's Katana death and Grace's Night 2 block mean an active Yakuza-side blocker is alive. Judy and Ivan, name the one player you'd check first, as Alice asked. I'm not nominating yet.
+Dave (public): Dave here. No private messages from Frank or Ivan appear in the ledger, so there's no hidden channel to read yet. Grace's Night 2 block and Frank's Katana death point to a living blocker. Judy's answer on Alice's Diviner group and Ivan's late Prosecutor claim are the open questions. No nomination from me yet.
+Erin (public): Erin here. Nothing new from me. Ivan, you still haven't said who you would prosecute or why; with 2 tokens, name a target before Day 4 or the claim reads as a bluff. Grace, Alice's 0-token audit fits the Diviner claim, so I'm not reading it as false. No nomination from me yet.
+Grace (public): Grace here. Still no nomination from me. Frank died to the Katana and my Night 2 block means a living Pharmacist or Party Animal is among us. Any token-holder claim can be checked by audit, and I'll post my Night 3 audit target and result publicly by Day 4. Until then, please don't build votes on the open claims.
+Heidi (public): Heidi here. Nothing new from me. I won't nominate until Grace posts her Day 3 audit target and Ivan names his prosecution target.
+Ivan (public): Ivan here. I have no night result to post. I'll hold my prosecution token for Night 3 and name the target publicly once it's used. Alice, if your Diviner group is right, Judy or Bob is the Arsonist, so explain why your claim should be believed over theirs.
+Judy (public): Judy here, still Vanilla. Alice, your N1 group does match the seating once you're skipped: my neighbours are Ivan and Bob. But if you're honest, the Arsonist is Ivan or Bob, and Ivan's Prosecutor claim came late. Grace, your N2 block means a living blocker is alive, so please post your Day 3 audit target publicly. Alice, post your Day 3 divine target. I'm not nominating yet.
+Alice (public): Alice here. Grace's N1 audit of me (0 tokens) fits my Diviner claim, and I'm not disputing it. Judy and Ivan still owe answers: Judy, why isn't the Arsonist you when my group weights you 60%? Ivan, which player would your prosecution hit on Night 3, and why? Grace, please post your Day 3 audit target as you promised. No nomination from me yet.
+Erin (public): Erin here. Still no nomination from me. Ivan, your Prosecutor claim is the one I want answered: you hold 2 tokens but still name no target. Grace, post your Day 3 audit target and result as promised. I'll judge trials on the numbers, not on speeches.
+Grace (public): Grace here. My Night 3 audit target and result will be posted publicly at the start of Day 4, as promised. No nomination from me yet.
+Heidi (public): Heidi here, nothing new. Grace, please post your Day 3 audit target and result publicly as promised. Ivan, name your prosecution target before Night 3 or the claim reads as a bluff. No nomination from me yet.
+Ivan (public): Ivan here. I'll spend a prosecution token on Night 3. The target will be announced at the start of Day 4 as the rules require, so I won't name it now. Judy, answer Alice's group plainly: a Vanilla claim doesn't explain a drawn Arsonist. Grace, post your Day 3 audit target by Day 4.
+Judy (public): Judy here, still Vanilla with no new result and no nomination. Ivan, your Prosecutor token is due on Night 3, so name your target on Day 4 and we can judge the claim by what it does.
+Alice (public): Alice here. Nothing new from me. Judy still owes a plain answer on the Arsonist group. Ivan, name the prosecution target you said you'd use on Night 3. Grace, post your Day 3 audit target and result as promised. No nomination from me yet.
+Bob (public): Bob here, still Vanilla with no new result. I'm waiting for Grace's Day 4 audit and Ivan's prosecution target before I weigh in.
+Dave (public): Dave here, nothing new. Grace's Day 3 audit and Ivan's Night 3 prosecution target are both promised, so I'll judge them by what they show. I'm not nominating yet.
+Ivan (public): Ivan here. My Night 3 prosecution target will be announced at the start of Day 4, as the rules require. Grace and Alice, post your Day 3 results with targets. Judy, answer the Arsonist group before Day 4.
+Alice (public): Alice here, nothing new. Ivan, name your Night 3 prosecution target at Day 4 as promised. Judy, answer the Arsonist group plainly. No nomination from me yet.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Alice: N3 proposal. Katana stays with me. Attack target: Grace. She is our live Accountant claim, and her next audit could read Heidi's puppet token. Erin: block Ivan tonight to stop his prosecution from landing on one of us. Heidi: no action, keep the puppet token. I will divine Carol and share the group in chat after the night. Confirm the Grace attack, or object now with a concrete reason.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Erin: Confirmed. Alice keeps the Katana and attacks Grace. I block Ivan tonight to stop his prosecution from landing on one of us. Heidi: no action, keep your puppet token. I'll vote Alice as holder and Grace as target. Ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Heidi: Agreed. Alice keeps the Katana and attacks Grace. Erin blocks Ivan. I take no action and keep my puppet token. Ready.
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Alice: Confirmed. Katana stays with me and attacks Grace. Erin blocks Ivan, Heidi takes no action and keeps the puppet token. I divine Carol and will share the group after the night. Ready.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Erin: Agreed. Alice keeps the Katana and attacks Grace. I block Ivan. Heidi takes no action. I'll vote the same holder and target as agreed. No objections. Ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Alice keeps the Katana and attacks Grace. Erin's block on Ivan stands. I take no action and keep my puppet token. No objections. Ready.
+Night actions:
+  Alice (Diviner): target Carol; Katana vote: Alice holds, attacks Grace
+  Bob (Arsonist): target Carol; "Douse Carol"
+  Carol (Vigilante): no action
+  Dave (Eavesdropper): target Judy; "Eavesdrop on Judy for the coming Day."
+  Erin (Pharmacist): target Ivan; Katana vote: Alice holds, attacks Grace
+  Grace (Accountant): target Ivan
+  Heidi (Puppeteer): no role action; Katana vote: Alice holds, attacks Grace
+  Ivan (Prosecutor): target Judy; 1 token(s); "Spend 1 prosecutor token to prosecute Judy at the start of Day 4. Alice's Diviner group weights Judy 60% Arsonist, and Judy has not answered plainly."
+Katana: Alice holds it and attacks Grace.
+(to Alice) Moderator (private): You divined Carol; the group was Bob, Carol and Dave. The role drawn is Vigilante (60% chance it is Carol's, otherwise one of the others').
+(to Grace) Moderator (private): Night 3: You audited Ivan. He has 2 tokens in total. You were attacked with the Katana during the night, and you died.
+(to Ivan) Moderator (private): Night 3: You were role-blocked, so your action had no effect and you spent no token. You still have 2 prosecutor tokens.
+(to Erin) Moderator (private): Night 3: You role-blocked Ivan. Your block did not fail because of role-block immunity.
+(to Bob) Moderator (private): Night 3: You doused Carol.
+(to Alice, Erin, Heidi) Moderator (private): Night 3 Yakuza actions: Alice kept the Katana and attacked Grace with it, and also divined Carol. Erin role-blocked Ivan. Heidi took no action. Alice still holds the Katana.
+[Moderator summary] Night 3: The Yakuza kept the Katana with Alice, and it attacked Grace (Standard vs None), so Grace died (cause: Katana). Alice divined Carol (group Bob, Carol, Dave; code draws the result). Bob doused Carol, so Carol and Dave are now doused, along with Alice. Dave eavesdropped on Judy. Erin role-blocked Ivan, so his prosecution of Judy did not happen and he kept both tokens. Grace audited Ivan and got 2 tokens; she was told the result and that she died to the Katana. Heidi and Carol took no action. Visits recorded: Alice→Carol, Alice→Grace, Bob→Carol, Dave→Judy, Erin→Ivan, Grace→Ivan.
+
+===== DAY 4 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "I was Grace, the Accountant (Good). N1 I audited Alice: 0 tokens. Any later audit results will be posted publicly by day. Trust results that stay consistent over time more than loud claims. Be wary of anyone who pushes nominations without reasons, and of anyone who avoids voting on evidence. Token holders who claim roles should be checked against audits: a real Prosecutor shows 2 tokens, a real Medic shows 2, and so on."
+(to Dave) You are eavesdropping on Judy today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Erin.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Night check] Night 3: errors. [medium, R3 / R20 step 5 (R8: only the attacker learns whether the Katana attack succeeded), missing result] Alice, the Katana holder who made the attack, was never told that her attack on Grace succeeded. The tell was rejected, and the code's note said to resend it if it was about an attack. The moderator did not resend it. The Yakuza group message only says Alice attacked Grace, not whether it worked, so Alice got no attack-success notice.
+Erin (public): Erin here. No prosecution was announced at the start of Day 4, so Ivan's Night 3 prosecution either didn't happen or was stopped. Ivan, say plainly what you tried and what you learned. Judy and Bob still need to answer Alice's Diviner group. No nomination from me yet.
+Heidi (public): Heidi here, nothing new. Ivan, your Night 3 prosecution produced nothing on Day 4, so name the target you chose and what it showed. Judy and Bob still owe plain answers on Alice's Diviner group. No nomination from me yet.
+[Claim] Ivan: Prosecutor. 2 prosecutor tokens left. N3: role-blocked, prosecution had no effect.
+Ivan (public): Ivan here. My Night 3 prosecution was role-blocked, so nothing was announced today and I still hold 2 tokens. That means a living blocker exists, and it targeted me as well as Grace. Judy and Bob still owe plain answers on Alice's Diviner group. No nomination from me yet.
+Judy (public): Judy here, still Vanilla with no night result. Grace's will confirms only her N1 audit (Alice 0 tokens), so her N2 and N3 results are unverified. Ivan, your N3 prosecution was blocked, so name who you think the blocker is. Alice, post your Day 4 divine target and group now. Bob, answer Alice's group plainly.
+Alice (public): Alice here. My N3 divine on Carol: group Bob, Carol, Dave, with Vigilante drawn (60% Carol). Carol, confirm or deny your role. Judy and Ivan, answer what I asked. Bob and Dave, say what you saw on your side. No nomination from me yet.
+Bob (public): Bob here. Nothing new from me, and I won't nominate on a group result alone. Alice and Ivan, post your next night targets and results plainly when you have them.
+Carol (public): Carol here. I'm not nominating on group results alone, and I'm not confirming my role yet. Alice's N1 group (Ivan, Judy, Bob) and N3 group (Bob, Carol, Dave) both match the seating, so Alice's Diviner claim stays open. Ivan, Judy and Bob, name the blocker you suspect and why.
+Erin (public): Erin here. Ivan's blocked prosecution is a claim we can't check, so I'm not treating it as proof either way. Carol, Alice's N3 group had a Vigilante among Bob, Carol and Dave, and you still won't confirm or deny your role. Say it plainly. I'm not nominating yet.
+Heidi (public): Heidi here. Carol, Alice's N3 group had a Vigilante among Bob, Carol and Dave, and you've declined to confirm or deny your role three times. Say it plainly. Ivan, your Prosecutor claim still names no target, so tell us who you think blocked you and why. I'm not nominating yet.
+Ivan (public): Ivan here. Carol has declined three times to confirm or deny the Vigilante role that Alice's N3 group places among Bob, Carol and Dave. Carol, a plain yes or no on your role would settle more than more group talk. Alice, post the full group for any new divine. I'm not nominating yet.
+Judy (public): Judy here. Bob already said Vanilla, so if Alice's N3 group is accurate, the drawn Vigilante is Carol or Dave. Dave, you haven't stated a role yet. Please say it plainly, as Carol should too.
+Alice (public): Alice here. Carol has declined three times to confirm or deny the Vigilante role that my N3 group places among Bob, Carol and Dave. Carol, a plain yes or no is needed. Dave, you still haven't stated a role. Say it plainly. I'm not nominating yet and will judge any trial by results, not group talk.
+[Claim] Carol: Vigilante. 3 tokens left. No night results.
+Carol (public): Carol here. Confirmed: I am the Vigilante with 3 tokens, and I have no night result beyond that. My role matches Alice's N3 group, which supports her Diviner claim. Judy and Ivan still owe the Arsonist answer on Alice's N1 group. No nomination from me yet.
+Dave (public): Dave here. No private messages from Judy have reached me yet, so I have nothing to add from that channel. Carol's Vigilante confirmation fits Alice's N3 group, which gives Alice's Diviner claim some support. Ivan, Judy and Bob, each name the one player you suspect most and why. I'm not nominating yet.
+Erin (public): Erin here. Carol has now confirmed Vigilante, which matches Alice's N3 group. Ivan still names no prosecution target after two Days of claiming Prosecutor, so he needs to name one or explain why he hasn't. Dave, please state your role plainly, since Alice's group puts you beside Carol. I'm not nominating until a claim has something checkable behind it.
+Heidi (public): Heidi here, nothing new. Dave, you still haven't stated a role, so please say it plainly as Judy and Alice asked. Ivan, name your prosecution target before the next Day. No nomination from me yet.
+Ivan (public): Ivan here. Alice's N1 group puts the drawn Arsonist on Judy at 60% weight, and Judy keeps claiming Vanilla without answering that. Carol's Vigilante confirmation matches Alice's N3 group, which supports Alice's Diviner claim. Judy, give a checkable answer on the N1 group. Without one, I'll vote Yes on a Judy nomination.
+Judy (public): Judy here, still Vanilla. Ivan, you threatened a Yes on me without naming a prosecution target after three Days of Prosecutor claims. That is pressure, not a check. Carol's Vigilante confirmation fits Alice's N3 group, so Alice and Carol stay open for now. Dave, you still owe a plain role. I'm not nominating on group talk.
+Alice (public): Alice here, nothing new from me and no nomination yet. Dave, you are the only living player who hasn't stated a role, so please say it plainly today. Judy, your Vanilla claim still doesn't answer the N1 Arsonist group.
+Carol (public): Carol here. I am the real Vigilante, and Alice's N3 group places me correctly, so Alice's Diviner claim gains weight. Alice's N1 group still puts the Arsonist on Ivan, Judy or Bob. Dave, you are the only living player in Alice's N3 group who hasn't stated a role, so say it plainly. Ivan, name your prosecution target or stop treating the claim as a check. No nomination from me yet.
+[Claim] Dave: Eavesdropper (Village). Watched Frank D2, Ivan D3, Judy D4. No PM contents read yet.
+Dave (public): Dave here, stating my role plainly: I'm Village, an Eavesdropper. The ledger shows no private messages from Frank, Ivan or Judy, so I have no PM contents yet. I'll post any contents the moment I read them. Ivan: three Days of Prosecutor claims with no target. Name one today, or I'll judge the claim as a bluff. Alice and Carol: Carol's Vigilante fits Alice's N3 group, so I'm not moving against Alice yet.
+Erin (public): Erin here. Dave, your Eavesdropper claim has read no PM contents so far; post anything you read as soon as you read it. Ivan, three Days of Prosecutor claims still name no target. Name one, or the claim stays a bluff. No nomination from me yet.
+Heidi (public): Heidi here. Ivan has claimed Prosecutor for three Days, still names no target, and threatened a Yes on Judy without a check. Ivan, name your target now or the claim reads as a bluff. Dave, your Eavesdropper claim needs actual PM contents posted, not just ledger counts. I'm not nominating yet.
+Ivan (public): Ivan here. I'm not the Arsonist, so Alice's N1 group points at Judy (60% weight) or Bob, and both claim Vanilla. One of them is lying unless Alice is. Judy, you've answered with pressure, not a check. Bob, the same applies to you. Erin and Heidi, you both pressed me and Carol; name the living player you'd trial first and why. I'm not nominating today.
+Judy (public): Judy here, still Vanilla. Ivan, a blocked prosecution still has a target, so name the player you chose on Night 3 or drop the claim. Dave, post any PM contents you have read, or admit you have none. Carol and Alice, your N3 group checks out, so keep your claims consistent. No nomination from me.
+Alice (public): Alice here. Carol's Vigilante confirmation matches my N3 group, so my Diviner claim has one confirmed hit. Dave, post any PM contents you have actually read. Judy, the Arsonist question from my N1 group still stands. No nomination from me.
+Bob (public): Bob here, still Vanilla as I stated, and no nomination from me. Ivan, your Prosecutor claim has gone three Days without a named target, so name it or drop the claim. Dave, post any PM contents you have actually read.
+Carol (public): Carol here. Alice's N3 group placed the real Vigilante correctly, so I lean Alice real. Her N1 group weights Judy at 60% as the Arsonist. Ivan has claimed Prosecutor for four Days without naming a target and threatened a Yes on Judy, and I'm watching that pressure. Dave, post the PM contents you actually read or drop the Eavesdropper claim. No nomination from me yet.
+Dave (public): Dave here. The ledger still shows zero private messages sent today, so I have no PM contents to post. Anything I read will be posted as soon as I read it. Ivan, name your prosecution target or drop the claim. No nomination from me yet.
+Heidi (public): Heidi here. Ivan has claimed Prosecutor for four Days and still names no target, though a blocked prosecution still has one. Ivan, name your Night 3 target now. If you don't, I'll vote Yes on any nomination of you. Dave, post the PM contents you actually read.
+Ivan (public): Ivan here. Judy still hasn't answered Alice's N1 group, and Dave still hasn't posted any PM contents. I'll nominate Judy on Day 5 if she doesn't answer plainly.
+Judy (public): Judy here, still Vanilla, no nomination. Ivan: four Days of Prosecutor with no named target, and a blocked prosecution still has a target. Name your Night 3 target now, or I vote Yes on you if you're nominated. Bob: if Alice's N1 group and Ivan's claim are both true, the drawn Arsonist is Bob, who says Vanilla. Bob, explain. Dave: post the PM contents you actually read or drop the Eavesdropper claim.
+Alice (public): Alice here. Dave, post the PM contents you actually read or drop the Eavesdropper claim. Ivan, name your Night 3 prosecution target now, or the claim stays unverified. No nomination from me.
+Carol (public): Carol here, no nomination from me. Alice's N3 group matches my role, so I still lean Alice real. Dave, post the PM contents you actually read or the Eavesdropper claim stays unverified. Ivan, you threatened a Yes on Judy without naming a prosecution target; name it on Day 5 or I treat the claim as a bluff. Judy and Bob, answer Alice's N1 group in one line each.
+Dave (public): Dave here. The ledger shows zero private messages sent today, so I have read nothing yet and will post any contents the moment they appear. Ivan has named no prosecution target after four Days, so unless he names one, I lean toward a Yes if he is nominated.
+Erin (public): Erin here. I'm nominating Ivan. Four Days of Prosecutor claims have named no target, and he has threatened a Yes on Judy without a check. Vote Yes to put the claim to the test.
+Erin nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: 7 Yes (the votes are secret).
+Ivan is put on trial (7 Yes).
+[Claim] Ivan: Prosecutor. 2 tokens. N3: prosecution on Judy, role-blocked.
+Ivan (public): Ivan here. I'm the Prosecutor with 2 tokens. My only action was Night 3: a prosecution on Judy, which was role-blocked, so nothing happened and no token was spent. I'm not the Arsonist or the Diviner, and I'm not Yakuza. Judy has still not answered Alice's Night 1 Arsonist group plainly, so she is my top suspect. Erin and Heidi have pressed me and Carol in lockstep, and Erin's nomination named no checkable lead. Judge me by my blocked Night 3 action, and don't hang the only Prosecutor who has been blocked on a claim with no check behind it.
+Judy (public): Judy here. I'm voting Guilty on Ivan, and this is the concrete reason. On Day 3 Ivan said his Night 3 prosecution target would be announced at the start of Day 4. Nothing was announced, and the only target he has named is Judy, and only now at trial. Across four Days of Prosecutor claims he has named no target, and on Day 4 he threatened a Yes on me without a check. Alice's N1 group places the Arsonist on Ivan or Bob, and Ivan hasn't cleared himself. Ivan, if a blocked prosecution still has a named target, say what it was and why you chose it. A checkable answer would change my view.
+Alice (public): Alice here. I'll vote Guilty on Ivan, and the reason is checkable. Four Days of Prosecutor claims have named no target, and his Night 3 prosecution was never announced. He names Judy only now, at trial, after pressing Judy, Carol and Dave for four Days and threatening a Yes on Judy without a check. Carol's Vigilante is confirmed by my N3 group, so Ivan's claim is the one still unverified. Judy and Bob still owe a plain answer on the N1 Arsonist group, but Ivan's pressure is the live problem today.
+Bob (public): Bob here, still Vanilla with no night result. I'm voting Guilty on Ivan. He has claimed Prosecutor for four Days without naming a target, and a blocked Night 3 prosecution still has a target he could state. He has also threatened a Yes on Judy without a check. Ivan, name your target and what you chose it for, or the trial stands.
+Carol (public): Carol here. I'll vote Guilty on Ivan. Four Days of Prosecutor claims named no target until trial, and he threatened a Yes on Judy without a check. Ivan, name the Night 3 target and what you chose it for. Judy and Bob, answer Alice's N1 group in one line each. I'm holding my shots for a mechanical lead.
+Dave (public): Dave here. I'm voting Guilty on Ivan. He has claimed Prosecutor for four Days, the only target he has named is Judy, and only at trial. He also threatened a Yes on Judy without a check. My Eavesdropper has read no PM contents, so I have nothing hidden to add. Ivan, if you are a real Prosecutor, name your Night 3 target and what it was for, and I'll reconsider.
+Erin (public): Erin here. I'm voting Guilty on Ivan. Four Days of Prosecutor claims named no target, and the only name he has given is Judy, and only at trial. A blocked prosecution still has a target he could state, and he hasn't. I'd rather trial the unverified claim than keep waiting.
+Heidi (public): Heidi here. I'm voting Guilty on Ivan. He said his Night 3 prosecution target would be announced at the start of Day 4. Nothing was announced, and the only name he has given is Judy, and only at trial. Four Days of Prosecutor claims named no target, and he threatened a Yes on Judy without a check. Ivan, if you are the real Prosecutor, name the blocked target and why you chose it.
+Ivan (public): Ivan here. I was role-blocked on Night 3, so no prosecution was announced. That is what a blocked action looks like, not a lie. My target was Judy, and I've named her publicly now. I hold 2 Prosecutor tokens, and no night action of mine has been spent. Erin nominated me with no checkable lead, and Erin, Heidi and Dave all voted Guilty on the same reasons. Judy still hasn't explained why she isn't the Arsonist on Alice's Night 1 group, which weights her 60 percent. I'm not the Arsonist, so that group points at Judy or Bob, and both claim Vanilla. Vote on what is checkable: my blocked Night 3 action, and Judy's unanswered group.
+Trial votes on Ivan: 7 Guilty, 1 Innocent (the votes are secret).
+Ivan is executed by hanging (7 Guilty of 8 votes; 5 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan, Prosecutor (Good), 2 unspent prosecution tokens. Night 3 I targeted Judy with a prosecution; it was role-blocked, so nothing happened. I hold no verified night results. Judge the living by checkable results and the vote ledger, not by speeches made under pressure. Any later result I hold will be posted publicly by day."
+
+===== NIGHT 4 =====
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Alice: Proposal for N4. Katana stays with me and attacks Carol. She confirmed Vigilante with 3 tokens, the only real shooter threat, and her shot could hit one of us. Erin: block Carol so any Vigilante shot fails. Heidi: no action, keep your puppet token. I will divine Dave and share the group in chat after the night. Confirm or object with a concrete reason. We need 2 of 3 on Carol.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Erin: Agreed. Alice keeps the Katana and attacks Carol. I block Carol tonight, so any Vigilante shot fails. Heidi takes no action and keeps the puppet token. Ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Alice keeps the Katana and attacks Carol. Erin blocks Carol so her Vigilante shot fails. I take no action and keep my puppet token. No objections. Ready.
+(to Alice, Erin, Heidi) Alice (Yakuza chat): Alice: Confirmed. Katana stays with me and attacks Carol. Erin blocks Carol so any Vigilante shot fails. Heidi takes no action and keeps the puppet token. I divine Dave and will share the group in chat after the night. No objections. Ready.
+(to Alice, Erin, Heidi) Erin (Yakuza chat): Erin: Confirmed. Alice keeps the Katana and attacks Carol. I block Carol so her Vigilante shot fails. Heidi takes no action and keeps the puppet token. Alice's Dave divine is the only new information tonight, so share the group in chat after the night. No objections. Ready.
+(to Alice, Erin, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Alice keeps the Katana and attacks Carol, Erin blocks Carol so her Vigilante shot fails, and I take no action and keep my puppet token. Alice, send your Dave divine group in chat after the night. Ready.
+Night actions:
+  Alice (Diviner): target Dave; "Diviner action on Dave, as agreed in the Yakuza chat."; Katana vote: Alice holds, attacks Carol
+  Bob (Arsonist): "ignite"
+  Carol (Vigilante): no action
+  Dave (Eavesdropper): target Erin; "Eavesdrop on Erin for Day 5."
+  Erin (Pharmacist): target Carol; Katana vote: Alice holds, attacks Carol
+  Heidi (Puppeteer): no role action; Katana vote: Alice holds, attacks Carol
+Katana: Alice holds it and attacks Carol.
+(to Alice) Moderator (private): You divined Dave; the group was Carol, Dave and Erin. The role drawn is Pharmacist (60% chance it is Dave's, otherwise one of the others').
+(to Alice) Moderator (private): Your Katana attack on Carol succeeded. You were attacked by an Arsonist tonight, and you died.
+(to Carol) Moderator (private): You were role-blocked tonight. You were attacked with the Katana and by an Arsonist tonight, and you died.
+(to Bob) Moderator (private): You ignited. Your attacks on Alice, Carol and Dave all succeeded. That used up every douse, so no players are doused now.
+(to Erin) Moderator (private): You role-blocked Carol. The block did not fail: Carol is not immune to role-blocks.
+(to Erin, Heidi) Moderator (private): Yakuza actions chosen for Night 4: Alice kept the Katana and attacked Carol with it, and also used her Diviner action on Dave. Erin used her Pharmacist role-block on Carol. Heidi took no action.
+(to Alice) Moderator (private): Your teammates' actions for Night 4: Erin used her Pharmacist role-block on Carol. Heidi took no action.
+(to Alice) Moderator (private): Your Katana attack on Carol succeeded. You were attacked by an Arsonist tonight, and you died.
+(to Dave) Moderator (private): Attack notice: you were attacked by an Arsonist tonight, and you died.
+[Moderator summary] Night 4: Bob (Arsonist) ignited and hit everyone doused: Alice, Carol and Dave. Each had no Defense and took a Strong Attack, so all three died; their douses are cleared. Carol also took Alice's Standard Katana attack, which was fatal too, so her cause is 'Katana and Arsonist'. Erin role-blocked Carol, who had chosen no action anyway. Alice divined Dave, a non-Yakuza (divine op applied). Dave eavesdropped on Erin; the op was applied, but Dave is now dead. The Katana holder Alice died, so code passes the Katana to Erin or Heidi. Living players: Bob, Erin, Heidi, Judy, so no faction has won yet. Visits: Alice->Dave, Alice->Carol, Dave->Erin, Erin->Carol.
+(to Erin, Heidi) The Katana passed to Heidi.
+
+===== DAY 5 =====
+Carol died (killed by Katana and Arsonist). Their role isn't revealed. Their last will: "Carol, Vigilante (3 tokens, claimed Day 4). No night results. I vote on mechanical evidence, not speeches. Alice's Diviner group and Ivan's Prosecutor claim are still open; my role matches Alice's N3 group."
+Alice died (killed by Arsonist). Their role isn't revealed. Their last will: "Alice's will: Diviner (Village). N1 I divined Judy: group Ivan, Judy and Bob; Arsonist drawn (60% Judy). N2 I divined Grace: group Frank, Grace and Heidi; Fortune Teller drawn (60% Grace). N3 I divined Carol: group Bob, Carol and Dave; Vigilante drawn (60% Carol). Grace's audit of me (0 tokens) fits my Diviner claim. Judy's Vanilla claim must explain the Arsonist group. Ivan's Prosecutor claim needs a named target. Judge every claim by checkable results and vote records."
+Dave died (killed by Arsonist). Their role isn't revealed. Their last will: "Dave, Village, Eavesdropper. Night targets: Frank (D2), Ivan (D3), Judy (D4). Any private message contents I read will be posted publicly. Judge the living by their votes and checkable results, not by speeches."
+Speaking order today goes around the circle in seat order, starting with Bob.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Night check] Night 4: correct
+Erin (public): Erin here. Four are alive: Bob, Heidi, Judy and me. Alice's N1 group put the Arsonist on Judy or Bob, and Alice, Carol and Dave all died to an Arsonist ignite on Night 4. Judy and Bob, one of you is the Arsonist. Name the living player you'd vote Guilty first and why. I'm not nominating yet.
+Heidi (public): Heidi here. Erin asked the right question. Judy pressed Ivan hard, threatened a Yes without a check, and has never answered Alice's Night 1 group, which weights her at 60 percent. If I had to vote Guilty first today, it would be Judy. Bob, your plain Vanilla answers are better, but you still haven't explained the group. I'm not nominating yet. I want both of you to answer it plainly today.
+Judy (public): Judy here. Alice's Night 1 group put the drawn Arsonist on Ivan, Judy or Bob. I'm Vanilla, so it's Ivan or Bob. Ivan was executed on Day 4, but someone ignited on Night 4 and killed Alice, Dave and Carol. So the living Arsonist isn't Ivan. Unless there are two Arsonists, that leaves Bob. Bob, explain plainly. Erin and Heidi, your Guilty votes on Ivan came from pressure, so tell us what you checked on Night 1.
+Bob (public): Bob here, still Vanilla with no night result. Judy's point that Ivan can't be the living Arsonist is fair, but Alice's N1 group only says one of Ivan, Judy or Bob holds the Arsonist, and Alice is dead so nobody can check it. I'm not nominating. Erin and Heidi, you both pressed Ivan and voted Guilty without a check; tell us what you'd examine first on Day 6.
+Erin (public): Erin here. The Night 4 ignite happened after Ivan was executed, so the living Arsonist is Judy or Bob. Judy's reasoning points at Bob, and Bob has only repeated Vanilla while defending Judy's logic. Bob, name any night action you took and why you backed Judy's point. Judy, explain why you pressed Ivan without a checkable target. I'm not nominating yet, but I'll vote on whoever gives the weaker answer.
+Heidi (public): Heidi here. Judy's point is sound: Ivan was executed before the Night 4 ignite, so the living Arsonist is Judy or Bob. Bob, you have only repeated Vanilla. Name one thing you checked on Night 1 or 2, and say why you backed Judy's logic. I'm not nominating yet, and I'll vote on whoever gives the weaker answer.
+Judy (public): Judy here. Mechanics: Ivan was executed on Day 4, before the Night 4 ignite, so Ivan can't be the living Arsonist. I'm Vanilla and not the Arsonist. That leaves Bob as the drawn Arsonist in Alice's N1 group (Ivan, Judy, Bob), and Alice's N3 group correctly placed the Vigilante. Bob, you keep saying Vanilla without answering this. I'm nominating you now. Erin and Heidi, if you agree the mechanics point at Bob, vote Yes.
+Judy nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: 3 Yes (the votes are secret).
+Bob is put on trial (3 Yes).
+Bob (public): Bob here. I'm a Vanilla Villager with no night result, as I said on Day 2. Judy's case rests on Alice's Night 1 group, and Alice is dead. That group only says one of Ivan, Judy or Bob holds the Arsonist role, not who. Ivan is now executed, so the Arsonist is one of the three living names, and Judy has the most reason to push the lynch: she pushed Ivan, then nominated me as soon as Erin and Heidi were ready. Erin and Heidi voted Guilty on Ivan for not naming a target, which is a fair reason. I'm voting Innocent unless someone shows me a checkable result. Before voting Guilty on me, name one concrete contradiction in what I've said.
+(to Bob, Heidi) Bob -> Heidi (private): Heidi, I voted Guilty on Ivan because he named no target, but Judy is driving this trial. Before you vote Guilty on me, ask her for a checkable result.
+Erin (public): Erin here. I'm voting Innocent on Bob. Judy's case is only mechanics: Ivan was dead before Night 4, so the living Arsonist is Judy or Bob. Alice's N1 group named Judy as the picked player at 60%, against 20% for Bob. Judy, your Vanilla claim doesn't answer that group, and your nomination of Bob rests on elimination, not a check. I'll vote Judy on the evidence if she keeps dodging it.
+Heidi (public): Heidi here. I will vote Guilty on Bob, for a checkable reason. Judy's mechanics hold: Ivan was executed before the Night 4 ignite, so the living Arsonist is Judy or Bob, and Alice's Night 1 group weights Judy at 60 percent. Bob has repeated Vanilla and asked others for checks, but he has not named one Night 1 or Night 2 thing he examined. He also privately urged me to ask Judy for results instead of answering the group himself. Judy has been pushing hard, but Bob's defence has answered none of the questions put to him. Bob, if you are Vanilla, post one concrete check before the vote.
+Judy (public): Judy here. Alice's Night 1 group was Ivan, Judy, Bob with an Arsonist drawn. Erin and Heidi are not in that group. Ivan was executed before the Night 4 ignite and I'm Vanilla, so if Alice's group was real, Bob is the only living member who can be the Arsonist. Alice's N3 group also placed Carol's Vigilante correctly, which supports her. Bob, you have answered with Vanilla and 'Judy pushed', not a check. Erin and Heidi, vote on this contradiction.
+(to Erin, Judy) Judy -> Erin (private): Erin: Alice's group only includes Ivan, Judy and Bob. Ivan died before Night 4 and I'm Vanilla, so Bob is the only living candidate if Alice was real, and her N3 group checked out. Please vote Guilty with Heidi and me.
+Bob (public): Bob here, still Vanilla with no night result. Erin, you said you'd vote on whoever gives the weaker answer, so check this. Alice's Night 1 group put the 60 percent weight on the player she picked, which was Judy, not me. Judy's mechanics argument only makes me 20 percent. Judy has never explained why her own name carries the 60 percent, and she has pushed Ivan, then me, without a check. Judy, what did your private message to Erin say? Heidi, you asked for one concrete check, and this is it. I'm voting Innocent. Don't let a lynch rest on mechanics alone.
+(to Bob, Erin) Bob -> Erin (private): Erin, I'm Vanilla. Alice's 60 percent weight is on Judy, and Judy is the one dodging it. Vote Innocent with me and we test Judy next.
+Trial votes on Bob: 3 Guilty, 1 Innocent (the votes are secret).
+Bob is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's will: Bob, Vanilla Villager, no night results to share. I did not hold a Night 4 result to post. Judy has never answered Alice's Night 1 Diviner group, which weights her 60 percent as the Arsonist, and she pushed Ivan and Carol before Ivan's trial. Erin and Heidi pressed Ivan in lockstep and nominated him without a checkable lead. Judge the living by their vote records and checkable results, not by speeches or pressure. Don't hang anyone on group results alone."
+
+===== NIGHT 5 =====
+(to Erin, Heidi) Erin (Yakuza chat): Erin: Proposal for N5. Heidi keeps the Katana and attacks Judy. Judy is the only living non-Yakuza left. If she is Vanilla, her death ends the game for us. If she is the Arsonist, the Katana may fail, but nothing is lost. I will block Judy so any douse or ignite she attempts fails. Heidi, no daytime PMs with me. Confirm or object with a concrete reason. I'm ready.

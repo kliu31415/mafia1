@@ -1,0 +1,314 @@
+Setup:
+  Alice    seat 1  Jester            anthropic/claude-haiku-5.5
+  Bob      seat 2  Lookout           anthropic/claude-haiku-5.5
+  Carol    seat 3  Archivist         anthropic/claude-haiku-5.5
+  Dave     seat 4  Profiler          anthropic/claude-haiku-5.5
+  Erin     seat 5  Ritualist         anthropic/claude-haiku-5.5
+  Frank    seat 6  Smuggler          anthropic/claude-haiku-5.5
+  Grace    seat 7  Arsonist          anthropic/claude-haiku-5.5
+  Heidi    seat 8  Vigilante         anthropic/claude-haiku-5.5
+  Ivan     seat 9  Roleplayer        anthropic/claude-haiku-5.5  {'fake_role': 'Lookout'}
+  Judy     seat 10 Clerk             anthropic/claude-haiku-5.5
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Erin, Frank, Judy) Erin (Yakuza chat): Night 1 plan: I keep the Katana (holder vote: Erin). Katana target: Grace, a Standard attack that kills only a player with no Standard Defense. I won't spend ritual tokens tonight. Please vote Erin for holder and Grace for target, and tell me if you see a reason to change it.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Agreed: Erin keeps the Katana and we hit Grace tonight. I'll vote Erin as holder and Grace as target. I won't spend tokens or act tonight unless something new comes up.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Agreed with Erin and Frank: Erin keeps the Katana and it hits Grace tonight. I won't spend my Clerk token or act tonight. Holder vote Erin, target vote Grace.
+(to Erin, Frank, Judy) Erin (Yakuza chat): Confirmed: Erin holds the Katana, we hit Grace tonight with a Standard attack. I'm not spending ritual tokens. Nothing else to add.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Agreed: Erin keeps the Katana and it hits Grace tonight. I'm voting Erin as holder and Grace as target. I won't spend swap tokens tonight. Nothing more from me.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Confirmed: Erin keeps the Katana and we hit Grace tonight. I'm not spending my Clerk token. I have nothing to add, so I'm ready.
+Night actions:
+  Bob (Lookout): target Dave; "Lookout: watching Dave."
+  Carol (Archivist): 1 token(s); "Consult the archive."
+  Dave (Profiler): no action
+  Erin (Ritualist): no role action; Katana vote: Erin holds, attacks Grace
+  Frank (Smuggler): no role action; Katana vote: Erin holds, attacks Grace
+  Grace (Arsonist): target Bob; "Douse"
+  Heidi (Vigilante): no action
+  Ivan (Roleplayer): target Erin
+  Judy (Clerk): no role action; Katana vote: Erin holds, attacks Grace
+Katana: Erin holds it and attacks Grace.
+(to Carol) Moderator (private): The archive shows 9 roles, one for each of the 9 other players who were alive when the night began (including any who died tonight): 6 of them are the real roles of 6 of those players, the other 3 are fakes, all in random order: Medic, Roleplayer, Lookout, Clerk, Arsonist, Profiler, Diviner, Ritualist, Party Animal.
+(to Bob) Moderator (private): Night 1 result: You watched Dave. Nobody visited Dave tonight.
+(to Ivan) Moderator (private): Night 1 result: You watched Erin. Erin was visited tonight by: Carol.
+(to Grace) Moderator (private): Night 1 result: You doused Bob. You were attacked with the Katana tonight, but you survived.
+(to Erin) Moderator (private): Night 1 result: You held the Katana and attacked Grace. Your attack failed: Grace survived. You still have 2 ritual tokens.
+(to Erin, Frank, Judy) Moderator (private): Yakuza night summary (Night 1): Erin holds the Katana and chose to attack Grace with it; Erin chose no Ritualist action. Frank chose no action (no swap). Judy chose no action (no rig).
+[Moderator summary] Night 1: Bob (Lookout) watched Dave – no visitors. Carol consulted archive (token spent, code shows roles). Grace (Arsonist) doused Bob. Katana (Erin) attacked Grace – Standard vs Standard defense, survived. Ivan (Roleplayer/fake Lookout) watched Erin – fake result: Carol visited. No swaps, no rig, no role-blocks. No deaths. Visits: Bob->Dave, Erin->Grace, Grace->Bob.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Frank.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 1: correct
+Frank (public): Nobody died last night, so Grace either has protection or survived somehow. Grace, did anything happen to you? Let's hear everyone's night info before anyone is nominated.
+Grace (public): Yes, something happened to me last night and I survived. I'm not sharing details yet, so please don't read too much into it. Let's hear everyone's night info before anyone gets nominated.
+Heidi (public): I took no night action, so I have no result to share. Grace, surviving an attack points to a Medic or a blocked or failed kill. Let's hear more reports before anyone is nominated.
+[Claim] Ivan: Lookout. N1: watched Erin, visited by Carol.
+Ivan (public): Ivan here, claiming Lookout. N1 I watched Erin, and Carol visited Erin that night. Carol, what did you do N1? Grace, what hit you? I'll update as info comes in.
+Judy (public): Judy here, no role action on N1 and nothing to report. Grace survived something, which points to a Medic or a block. Ivan, you named Carol as your visitor, so Carol, what did you do N1? I'd like Carol and Heidi to answer before anyone is nominated.
+Alice (public): Alice here, no night role. Grace, refusing details while asking everyone to wait looks evasive to me. Ivan, Erin should confirm or deny the visit before we trust the Lookout claim. Carol, answer Ivan directly.
+[Claim] Bob: Lookout. N1: watched Dave, no visitors.
+Bob (public): Bob here, claiming Lookout. N1 I watched Dave and nobody visited him. Ivan also claims Lookout, so one of us is wrong. Erin and Carol, please confirm or deny your N1 visits. Carol, what did you do?
+[Claim] Carol: Archivist. N1 archive: Lookout, Medic, Clerk, Arsonist, Profiler, Diviner, Ritualist, Party Animal, Roleplayer (3 fake)
+Carol (public): Carol here, claiming Archivist, not a Lookout. I used my archive on N1 with no target, so I did not visit Erin. Ivan's visit claim on me is false. Two Lookout claims means one is lying. Erin and Dave, please say whether anyone visited you. Let's hold nominations until more reports are in.
+Dave (public): Dave here. I took no N1 action, so I can't confirm any visit. Bob's 'no visitors on Dave' is consistent with that. Ivan and Bob can't both be Lookout, so Erin should say whether Carol visited her. Carol, your Archivist claim is untested. I'll hold my vote until more results come in.
+Erin (public): Erin here, no role claim. I can't confirm Carol visiting me, and I don't know who visited me. Ivan and Bob both claim Lookout, so each should give a full visitor list for their watched player and any detail that can be checked. No nominations until more results are in.
+Frank (public): Frank here, no role claim. Ivan says Carol visited Erin, Carol denies it, and Erin only says she can't confirm. Ivan, which night did Carol visit, and what did you see in your Lookout result? Bob and Ivan both claim Lookout, so one of them is lying. No nominations from me yet.
+Grace (public): Grace here. Ivan and Bob both claim Lookout and their results can't both be true, so I want Ivan to say which night Carol visited Erin and whether Erin confirms it. No nominations from me yet.
+Heidi (public): Heidi here, no role claim and no N1 result. Ivan and Bob can't both be Lookout, so one of them is lying. Erin's answer on whether Carol visited her is the key check, and Carol should say whether her archive list is real. I'm holding nominations until those answers come in.
+Ivan (public): Ivan again. Carol, an Archivist use with no target is not a visit, so it doesn't explain why my Lookout saw you visit Erin on N1. My result stands. Bob, you claim Lookout too, so one of us is lying. Dave, can you confirm whether you were visited N1? Erin, did anyone besides Carol visit you? I'm not nominating yet.
+Judy (public): Judy here, no role claim. Ivan and Bob can't both be Lookout. Ivan's only accusation, that Carol visited Erin, is denied by Carol and not confirmed by Erin. Ivan, give your full Erin visitor list with the night and any detail that can be checked. Bob, give Dave's visitor details too. No nominations until both reports are in.
+Alice (public): Alice again. Ivan and Bob's Lookout results conflict, and Carol's archive list includes Lookout, so that doesn't settle who is lying. Erin's answer is the only direct check on Ivan's claim. Until she answers, I'd treat both Lookouts as unverified and vote on contradictions, not on who sounds more confident.
+Bob (public): Bob here, the real Lookout. My N1 watch on Dave showed no visitors, and Dave confirmed he took no action. Ivan, your Erin result says Carol visited, but Carol denies it and Erin hasn't confirmed. Erin, please say plainly whether Carol visited you N1. Nobody should be nominated until that answer is in.
+(to Bob, Erin) Bob -> Erin (private): Erin, Bob here. Did Carol visit you on Night 1? A straight yes or no helps us all.
+Carol (public): Carol again. I did not visit Erin on N1. My archive had no target, so Ivan's Lookout result naming me is false. Ivan, explain that result. Bob, your Dave result stands unless someone contradicts it. Erin, please answer both Lookouts plainly. No nomination from me yet.
+Dave (public): Dave again. Ivan and Bob can't both be Lookout, and Erin still hasn't said whether Carol visited her. Erin, please give a plain yes or no. I'm not nominating yet.
+(to Dave, Erin) Dave -> Erin (private): Erin, Dave here. Did Carol visit you on N1, yes or no? Your answer decides whether Ivan or Carol is lying.
+Erin (public): Erin here, no role claim. I can't confirm a Carol visit, and I won't guess at one. Ivan and Bob conflict, so I'll judge on contradictions. Ivan, give the full Erin visitor list with the night. I'm not nominating yet.
+Frank (public): Frank here. Ivan says Carol visited Erin, Carol denies it, and Erin can't confirm. Carol, if your archive had no target, what did you do on N1? Ivan, did your Erin result show any visitor besides Carol? No nomination from me yet.
+Grace (public): Grace here. I'm not nominating yet. Ivan and Bob can't both be right, and Carol's archive claim needs testing too. Ivan, which night did Carol visit Erin, and did any other player visit her? Bob, Dave's 'no visitors' result only means something if Dave's visit count is checked. I'll judge on contradictions, not confidence.
+Heidi (public): Heidi here, still no night result from me. Ivan and Bob can't both be Lookout, and Erin's plain answer on the Carol visit is the key check. Grace, if the attacker was a Katana or Standard-level hit, saying that would help us test the Medic idea. I'm holding nominations.
+Ivan (public): Ivan again. Carol, an Archivist use with no target is not a visit, so the archive does not explain my Lookout result. My result says a visitor reached Erin on N1, and you are the only one named. If you were not Erin's visitor, which role did you use on N1? Bob, your Dave result is not in conflict with mine, so I'm asking Erin and Carol for direct answers before anyone is nominated.
+Judy (public): Judy here, no role claim. Ivan and Bob cannot both be Lookout. Ivan's only visitor claim is Carol on Erin, which Carol denies and Erin can't confirm. Carol's archive with no target is untestable, so it doesn't settle anything. Grace, a Standard-level hit would point to a Medic, so please say what hit you. No nominations from me yet.
+Alice (public): Alice again. Erin has said plainly that she can't confirm a Carol visit, so Ivan's only check is still unverified. Carol's archive list can't be tested either. Grace still hasn't said what hit her. I'd rather vote on whoever's story keeps shifting than on who sounds more confident.
+Bob (public): Bob again. Ivan, you named Carol as Erin's only visitor, but Carol denies it and Erin hasn't confirmed it. Give your full Erin visitor list and the night it happened. Grace, what hit you? I'm not nominating yet.
+Carol (public): Carol again. Ivan, you say I visited Erin on N1. I didn't. I used my archive with no target, and I know my own night. So your Erin result is false, which makes you a liar or a Roleplayer. Bob's Dave result is consistent with Dave taking no action. If Erin doesn't confirm a visit, I'd count Ivan's claim as the contradiction to vote on.
+Erin (public): Erin again. I can't see who visits me, so I can't confirm or deny a Carol visit. Ivan's result names one visitor who denies it, and Bob's Dave result is clean. Ivan, what would Carol's visit have been on N1? No nomination from me yet.
+Frank (public): Frank here. Still no nomination from me. Ivan and Bob cannot both be Lookout, and Carol's visit claim is unconfirmed. Ivan, give the exact night and whether Carol was your only visitor. Grace, if a Medic protected you, say so plainly so we can test it.
+Grace (public): Grace here. Still no nomination from me. Ivan and Bob can't both be Lookout, so I'm waiting for Erin's direct answer on the Carol visit before anyone votes.
+Heidi (public): Heidi here. I'm still holding nominations. Ivan and Bob can't both be Lookout, and Erin's direct answer on the Carol visit is the key check. Grace, if you were hit by a Standard-level attack, say so, since that tests the Medic idea.
+Ivan (public): Ivan again. Bob, I am the real Lookout, so your Dave watch is false or imagined. Carol, an Archivist use with no target is not a visit, so your denial doesn't explain my Erin result. Either you visited Erin with a real role or you're lying about your role. I'm voting on these contradictions, and Grace should say what hit her.
+Judy (public): Judy here, no role claim. Ivan's only check is Carol visiting Erin. Carol denies it, and Erin can't see visitors, so it's unverified. Ivan, give Erin's full N1 visitor list. Grace, say what hit you. I'm not nominating yet.
+Alice (public): Alice again. Both Lookouts are unverified and I have no role to test them. If no real contradiction appears soon, I'd vote for the least-explained story, and my own story is no exception.
+Bob (public): Bob again. Ivan, your Erin result has no night and no visitor list, and Erin hasn't confirmed it. Carol denies it, and Carol's archive can't be tested. Grace still hasn't said what hit her. I'm not nominating yet, but I'll vote on contradictions when they appear.
+Carol (public): Carol again. I did not visit Erin on N1. My archive used no target, and I know my own night, so Ivan's Erin result naming me is false. If Erin confirms no visit, I'd vote Ivan Guilty on that contradiction. Grace, what hit you?
+Erin (public): Erin here, no role claim. Ivan, your Erin result gives no night and only Carol as visitor, and Carol denies it. Bob's Dave result is clean, and Dave confirmed no action. I'd watch Ivan's claim as the contradiction. No nomination from me yet.
+Frank (public): Frank here. Ivan's Erin result has no night and Carol denies it, while Bob's Dave result is clean and Dave confirmed no action. I'd watch Ivan first. Grace, name the hit, please.
+Grace (public): still no nomination. Ivan, give Erin's N1 visitor list and the night. Bob, give Dave's watch night. Contradictions should decide this, not confidence.
+Ivan (public): Ivan, real Lookout: my Erin result stands. Carol visited Erin N1; an archive with no target is no visit. Carol's denial is the contradiction.
+Judy (public): Judy here, no role claim. Ivan's Erin result gives no night, and Carol denies it. Ivan, name the night. Grace, what hit you?
+Alice (public): Ivan still hasn't given a night for the Erin result, and Grace still hasn't named the hit. I'll vote on whichever contradiction stays unexplained. My own no-role story is just as untestable, so judge me by the same standard.
+Bob (public): Bob, real Lookout. Ivan, your Erin result has no night and Carol denies it. Name the night and any other visitor, or I'll vote you Guilty. Grace, what hit you?
+Carol (public): Carol here. Ivan's Erin visit claim is false because I know my own N1, and I used no target. Ivan is the contradiction to watch. Bob's Dave result stands. No nomination from me yet.
+(to Bob, Carol) Carol -> Bob (private): Bob, if you're the real Lookout, Ivan's Erin claim is false. Watch whether he names a night.
+Erin (public): Erin again, no role claim. Ivan, your Erin result gives no night and names only Carol, who denies it. Carol says she used no target, so a single unverifiable visitor is the contradiction to watch. Bob's clean Dave watch stands. I'm not nominating yet, and I'll vote on whichever claim stays unexplained.
+Grace (public): Ivan's Erin result still has no night, and Erin can't confirm it. I'm not nominating, and I'll vote on the first clear contradiction.
+Heidi (public): Ivan's Erin result still has no night and only Carol as visitor, so it's the open contradiction. Grace, name the hit.
+Ivan (public): Ivan, real Lookout. Carol and Bob, explain your private messages.
+Judy (public): Ivan, give Erin's N1 night and full visitor list. Grace, name the hit.
+Alice (public): Alice again: Ivan, name the Erin night or I vote you. My no-role story is untestable, so judge me by the same standard.
+Bob (public): Ivan, name the Erin night or I vote you Guilty. Grace, name the hit. Nominations open if no answer.
+[Feedback from Carol] Budget makes public speech unaffordable by round 6 at 2.53; the price table has no cheaper tier, so an early-day budget floor would help.
+(to Bob, Carol) Carol -> Bob (private): Bob, I think you're the real Lookout and Ivan's Erin claim is the false one. If he still gives no night, I'll vote him with you.
+Dave (public): Dave again. Ivan still hasn't given the Erin night or any other visitor. Carol and Bob have exchanged private messages, which the table should note. Grace, name the hit, since it's the only test left for the Medic idea. I'm not nominating yet.
+Frank (public): Frank here. Ivan and Bob can't both be Lookout. Ivan, give Erin's visit night. Bob, give Dave's watch night and explain Carol's PMs. Still no nomination from me.
+Heidi (public): Heidi here, no night result. Ivan, name Erin's visit night or I'm treating your Erin result as the contradiction. Bob, explain Carol's PMs.
+[Feedback from Ivan] The public 10-word price (3.51) exceeds my 2.60 budget, so I can only send private messages this round.
+(to Erin, Ivan) Ivan -> Erin (private): Ivan here, the real Lookout. My N1 watch on you showed Carol as your visitor. Carol denies it. Did anyone else visit you on N1, or were you attacked? Please answer me privately.
+[Feedback from Alice] At 2.90 budget a public message of even 10 words (3.51) is unaffordable, so a low-budget player can only send private messages. Showing the cheapest public price in the prompt would help.
+(to Bob, Grace) Bob -> Grace (private): Grace, what hit you last night, and was it a Standard-level attack or a Katana? Give a plain answer so we can test the Medic idea.
+Carol (public): Ivan, your Erin claim is false, and I vote you Guilty if you can't name the night.
+Dave (public): still no nomination. Ivan, name the Erin night and any other visitor, or I'll vote on that contradiction.
+Grace (public): a Standard-level hit, and I survived it. Ivan, name the Erin night.
+Judy (public): Ivan, name Erin's visit night now, or your Erin result stays unexplained.
+Alice (public): Alice again: my no-role story is untestable, so I'm fine being the one hung if that's the vote. Ivan still owes an Erin night.
+[Feedback from Bob] Nominating costs 3.50 of a 4.22 budget, which leaves too little to explain the nomination publicly.
+Bob nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: 9 Yes (the votes are secret).
+Ivan is put on trial (9 Yes).
+Ivan (public): Ivan, real Lookout. My N1 watch on Erin showed one visitor, Carol. Carol says her archive used no target, so she made no visit. That doesn't make my result false; one of us is wrong, and Erin can't confirm or deny either way. Bob claims Lookout and watched Dave, who confirmed no action, so Bob's result says nothing about Erin. Carol and Bob have sent each other private messages since my claim, and Bob has PM'd Erin and Grace. Those contacts deserve a vote-level look. Grace, name the attack type, since a Standard hit would point to a Medic. Vote on real contradictions, not on confidence.
+Judy (public): Judy here, no role claim. Ivan still hasn't named the night of his Erin visit or any other visitor, and Carol denies it. That unexplained claim is my reason to vote Guilty. Ivan, if you have a night and a full visitor list, post it now.
+Alice (public): Ivan's Erin result still has no night, and Carol denies it. I'll vote on that. My no-role story can't be tested, so if the table wants a hang, I'm a fair target.
+Bob (public): Bob again. Ivan still gives no Erin visit night, names only Carol, and Carol denies it. Erin can't confirm it, and my Dave watch stands. Ivan's Erin result is the open contradiction, so I'm voting Ivan Guilty.
+Carol (public): Carol here. Ivan's Erin result names me, but I made no visit. My archive used no target, and I know my own night. Ivan still has not given the night or any other visitor, so his Lookout result is the unexplained contradiction. Bob's Dave watch is clean and Dave confirmed no action. I'm voting Guilty.
+Dave (public): Dave here. Ivan, you've had three Days to name Erin's visit night and you still haven't. Carol denies the visit, Erin can't confirm it, and you're the only one naming a visitor. That unexplained accusation is why I'm voting Guilty. Bob's Dave watch fits my no-action, so I'm not moving on Bob yet. Carol and Bob's private messages are worth watching.
+Erin (public): Erin here, no role claim. Ivan still hasn't named the night of his Erin visit or any other visitor, and Carol denies it. I can't confirm or deny it. That unexplained accusation is my reason to vote Guilty.
+Frank (public): Frank here. I'm voting Ivan Guilty. He has had three Days to name the night of his Erin visit and still hasn't. The only visitor he names, Carol, denies it, and Erin can't confirm it. That unexplained accusation is the contradiction I'm voting on.
+Grace (public): Ivan's Erin result still has no night and no second visitor after three Days. That unexplained claim is the contradiction I'm weighing.
+Heidi (public): Heidi here. I'm leaning Innocent on Ivan. Only one night has passed, N1, and Ivan named Erin's visitor on N1 from the start, so 'name the night' demands can't be answered. Carol's denial isn't evidence either. Bob pushed this nomination and has PM'd Erin, Grace and Carol, and Carol has PM'd Bob twice. I'd rather vote on that pattern than on repeated demands.
+Ivan (public): Ivan, real Lookout. My only action so far was watching Erin on Night 1, the only night that has passed. The result was one visitor, Carol. Lookouts see visits, not roles. Carol says her Archivist use had no target, but that doesn't rule out a visit under another role. If I'm wrong, Carol and Bob are the ones who should answer for it. Bob's Dave watch shows nothing about Erin, since Dave took no action. The pattern to vote on is Carol and Bob's private messages, plus Bob's PMs to Erin and Grace right after my claim. Judge the contradictions, not my tone.
+Trial votes on Ivan: 7 Guilty, 3 Innocent (the votes are secret).
+Ivan is executed by hanging (7 Guilty of 10 votes; 6 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "I am Ivan, a Village Lookout. N1 I watched Erin: Carol visited Erin that night. I suspect no one yet; judge players by claims, results and votes."
+
+===== NIGHT 2 =====
+(to Erin, Frank, Judy) Erin (Yakuza chat): Night 2 proposal: Erin keeps the Katana (holder vote Erin). Target Bob: he claims Lookout, is a PM hub with Carol and Grace, and pushed Ivan's nomination. Avoid Grace, who survived a Standard hit and is likely protected. I won't spend ritual tokens. Vote Erin as holder and Bob as target, or name a better no-Defense target now.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Frank: agreed. Erin keeps the Katana. Target Bob: Lookout claim, PM hub with Carol and Grace, and he pushed Ivan's nomination. Avoid Grace. I won't use swaps tonight. Holder vote Erin, target vote Bob. Ready.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Judy: agreed. Erin keeps the Katana, target Bob. I'm not using my Clerk token tonight. Avoid Grace, who likely has protection. No day PMs between us. Ready.
+(to Erin, Frank, Judy) Erin (Yakuza chat): Erin: agreed. Holder vote Erin, target vote Bob. Bob is the PM hub with Carol and Grace and pushed Ivan's nomination. Avoid Grace, who likely has protection. I won't spend ritual tokens. Frank and Judy, please confirm your votes. Ready.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Frank: agreed. Erin keeps the Katana and we hit Bob tonight. Holder vote Erin, target vote Bob. I won't use swaps. Ready.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Judy: agreed. Erin keeps the Katana and we hit Bob. Holder vote Erin, target vote Bob. Avoid Grace. I won't use my Clerk token. Ready.
+Night actions:
+  Bob (Lookout): target Grace; "Lookout: watching Grace."
+  Carol (Archivist): no action
+  Dave (Profiler): target Carol; 1 token(s); "Profile Carol with one profile token."
+  Erin (Ritualist): no role action; Katana vote: Erin holds, attacks Bob
+  Frank (Smuggler): no role action; Katana vote: Erin holds, attacks Bob
+  Grace (Arsonist): target Carol; "Douse Carol"
+  Heidi (Vigilante): no action
+  Judy (Clerk): no role action; Katana vote: Erin holds, attacks Bob
+Katana: Erin holds it and attacks Bob.
+(to Dave) Moderator (private): You profiled Carol: their role is Archivist, Arsonist or Smuggler (exactly one is true, and at least one of the three is a Good role and one is not). 2 profile tokens left.
+(to Bob) Moderator (private): Night 2 result: You watched Grace. Nobody else visited Grace tonight. You were attacked with the Katana tonight, and you died.
+(to Grace) Moderator (private): Night 2 result: You doused Carol.
+(to Erin) Moderator (private): Night 2 result: Your Katana attack on Bob succeeded. You still hold the Katana. You used no Ritualist action and still have 2 ritual tokens.
+(to Erin, Frank, Judy) Moderator (private): Yakuza actions chosen for Night 2: The Katana stayed with Erin, who attacked Bob with it. Erin chose no Ritualist action. Frank chose no Smuggler action. Judy chose no Clerk action.
+[Moderator summary] Night 2: No role-blocks or swaps. Erin (Katana holder) attacked Bob with a Standard attack. Bob had no Defense and died (Katana). Bob (Lookout) watched Grace: no other visitors. Dave profiled Carol (profile op, 1 token). Grace doused Carol. Nobody else acted. Visits: Bob->Grace, Dave->Carol, Erin->Bob, Grace->Carol. The Katana stays with Erin. No win condition met.
+
+===== DAY 3 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "Bob's will: On Night 1 I watched Dave and nobody visited him. Weigh claims against visit results and the vote record, not against confident talk. Suspect anyone whose story contradicts the visits."
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Judy.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Judy (public): Judy here, no role claim. Ivan's Erin visit was never explained, and Bob's Dave watch was clean but Dave took no action, so neither Lookout is settled. Grace, were you protected on N1, yes or no? Carol, your archive list can't be tested, so I'll judge on votes and contradictions. No nomination from me this round.
+Alice (public): no role, so I can't test anyone's claim. Ivan and Bob both claimed Lookout and one of them was lying. Carol's archive can't be tested, and her PMs with Bob are the pattern I'd watch. Vote on contradictions, not confidence.
+Carol (public): Carol here. Bob was killed by the Katana, and the Yakuza usually hit the real Lookout, so Bob is likely the real Lookout. That makes Ivan's claim that Carol visited Erin false, and Ivan probably Yakuza. Erin, Grace, Dave and Heidi: what did you do or receive on N2, and did anyone PM you about Ivan or Bob? I'm not nominating yet.
+Dave (public): Dave here. Bob died to the Katana, so the Yakuza hit a Lookout claimant, which weakens Ivan's Erin claim. Carol, you PM'd Bob twice on Day 2 and now argue Ivan is probably Yakuza. Explain those PMs and what your archive actually did. I'm not nominating yet.
+Erin (public): Erin here, no role claim. Carol, saying Ivan is probably Yakuza because Bob was hit doesn't prove Bob was the real Lookout. Your archive list can't be tested, and you PM'd Bob twice on Day 2. Dave's question matters: explain those PMs and what your archive actually did. I'm not nominating yet.
+Frank (public): Frank here, no role claim. Dave's question stands: Carol, explain the two PMs to Bob and what your archive actually did. Bob's Lookout claim is also unverified. I'm not nominating yet.
+Grace (public): Grace here, no new result to share. I agree with Dave: Carol, explain the two PMs to Bob and what your archive actually did before anyone is nominated.
+Heidi (public): Heidi here, no new result. I agree with Dave and Grace: Carol, explain the two PMs to Bob and what your archive actually did on N1. Ivan's Erin claim and Bob's Dave watch are both still unresolved, so I'm weighing Carol's answer before any vote.
+Judy (public): Judy here. Carol still hasn't explained her two PMs to Bob on Day 2 or what her archive did on N1. Ivan's Erin result names her and Carol says she visited no one. If she doesn't answer the PMs this round, I'll vote Yes on her. Dave, Heidi and Grace, are you ready to vote on that?
+Alice (public): Alice here. Judy's point stands: Carol still hasn't explained her two PMs to Bob or what her archive did on N1. Carol, answer that before the next round closes. I have no role to test, so judge me by the same standard, and if a Guilty majority forms on contradictions I won't object.
+Carol (public): Carol again, answering Dave, Judy and Erin. My two PMs to Bob said I thought he was the real Lookout, that Ivan's Erin claim was false, and asked him to watch whether Ivan ever named a night. Nothing about votes or targets. My archive used no target on N1. Bob is dead, so his Dave watch and Ivan's Erin watch both stay untested. Grace, you survived a Standard-level hit on N1. If someone protected you, say so, because that is the only test left for the Medic idea. I'm not nominating yet.
+Dave (public): Dave here, no new result. Carol's PM explanation is noted, but her archive still can't be tested and Ivan's Erin claim is still unexplained. Grace, a plain yes or no on whether you were protected on N1 would help test the Medic idea. Before anyone is nominated, each of you should name one concrete contradiction you would vote on.
+Erin (public): Erin, no role claim. Carol's answer on the two Bob PMs still doesn't explain why she was messaging him about the Lookouts before his death, and her archive can't be tested. Carol, give one concrete reason Judy and Dave shouldn't vote you. Grace, a plain yes or no on whether you were protected on N1 would help test the Medic idea. I'm not nominating yet.
+Frank (public): Frank here, no role claim. Carol's two PMs to Bob and her untestable archive still need a clear answer. Grace, a plain yes or no on whether you were protected on N1 is the only check on the Medic idea. I'm not nominating yet.
+Grace (public): Grace here, still no nomination. Carol's two PMs to Bob and her untestable archive still need a real answer. I'll vote on the first clear contradiction, not on pressure.
+Heidi (public): still no new result. Carol's two Bob PMs and her untestable archive are the open issue. I'm not nominating until someone names a concrete contradiction.
+Judy (public): Judy here. Carol's answer on the Bob PMs still skips the key question: why message Bob about the Lookouts before he died? Her archive can't be tested either. If nobody names a concrete contradiction by next round, I'd vote Yes on Carol. Grace, a yes or no on protection would help.
+Alice (public): Alice here, no new information. Carol's answers on the Bob PMs and the archive are still thin, so I agree with Judy: if there's no clear answer, a Yes on Carol is reasonable. I'm also a fair target if the table wants a hang, since I have no role to test.
+Carol (public): Carol here. Bob died to the Katana, which suggests the Yakuza hit the Lookout whose clean Dave watch fits Dave's no-action report. That makes Ivan's Erin claim the likely lie. Judy and Alice are pushing a Yes on me with a deadline but no concrete contradiction. Name one contradiction in my results or my votes, or stop pushing. Grace, yes or no: were you protected on N1?
+Dave (public): no new result. My N2 profile on Carol still reads Archivist, Arsonist or Smuggler, so her Archivist claim fits but isn't confirmed. I won't vote Carol on the PMs alone. I want a visit-based contradiction first.
+Erin (public): Erin again. Carol's two PMs to Bob before his death are still unexplained, and so is why she wanted him watching Ivan's night claim. If nobody gives a concrete visit-based contradiction by next round, I'd consider a nomination.
+Frank (public): Frank here. Carol's Archivist list can't be tested, and her two Bob PMs are still unexplained. Dave's request for a visit-based contradiction is the right test. If none appears by next round, I'd support a Yes on Carol. Grace, a yes or no on protection still matters.
+Grace (public): Grace here, no new result. I still want a visit-based contradiction on Carol's archive or PMs before any vote.
+Heidi (public): Heidi here, no new result and no nomination. I still want a visit-based contradiction on Carol's archive or PMs, and a plain answer from Grace on whether she was protected on N1.
+Judy (public): Judy here, no role claim. Carol's PMs to Bob and her untestable archive are still unexplained, and Ivan's Erin visit names her. I'm nominating Carol so the table can vote.
+Judy nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: 4 Yes (the votes are secret).
+The nomination of Carol failed (4 Yes).
+Alice (public): Alice here, no role to test. If the table forms a Guilty majority on any nominee, including me, I won't object. Carol's answers on the Bob PMs still don't give a visit-based contradiction, so I'd want one before anyone else is nominated.
+Carol (public): Carol here. Dave, you say your N2 profile on me reads Archivist, Arsonist or Smuggler. If you're a Profiler, say so and give the three roles, since that's checkable against my Archivist claim. Ivan's Erin visit is still false, and Bob's Katana death fits him as the real Lookout. Grace, a plain yes or no on protection still matters.
+Erin (public): Erin here, no new result. Carol still needs to explain her two Bob PMs. I'll vote on a visit-based contradiction, not on pressure.
+Frank (public): Frank here, no new result. Dave's N2 profile fits Carol's Archivist claim, so there is still no visit-based contradiction. Grace, a plain yes or no on whether you were protected on N1 would help. I'll vote on a concrete contradiction when one appears.
+Heidi (public): Heidi here, still no nomination and no new result. Grace, a yes or no on whether you were protected on N1 is the cheapest test left. Carol's two Bob PMs remain open, and I'll vote on a visit-based contradiction, not on pressure.
+Alice (public): Alice here: no role to test, so I nominate myself. Vote on the record.
+Alice nominated Alice. Everyone now votes Yes/No simultaneously.
+Nomination votes on Alice: 5 Yes (the votes are secret).
+Alice is put on trial (5 Yes).
+Alice (public): Alice here, on trial. I have no role and no night results, so I can't prove innocence and won't pretend to. I nominated myself because I'd rather the table decide on the record than drift toward a nominee with weak evidence. My votes followed contradictions: Ivan's Erin visit never got a night, and Carol's two PMs to Bob and untestable archive still aren't explained. If a Guilty majority forms on that record, I won't object. Vote on contradictions, not on how confident anyone sounds, including me.
+Carol (public): Carol here. I'm voting Guilty on Alice, on the record. Alice pushed for a Yes on me while my archive use and my N1 no-visit were already on the table, and she said 'a Yes on Carol is reasonable.' Then she nominated herself and repeated 'I'm a fair target' and 'I won't object.' That is a pattern of seeking a hang, not a Village player weighing evidence. Alice, which way did you vote on Carol's nomination, and what concrete result would make you vote Innocent?
+Dave (public): Dave here. Alice's self-nomination is an odd pattern, but it is not a visit-based contradiction. Carol's case against Alice rests on attitude, and Carol's PMs to Bob were already explained. I'm leaning Innocent on Alice unless someone names a concrete result she contradicts. Alice, did you vote Yes or No on Carol's nomination?
+Erin (public): Erin here, no role claim. Alice, you nominated yourself, said 'I won't object' twice, and pushed the Yes on Carol. Dave's question is still open: did you vote Yes or No on Carol's nomination? I'll vote on your answer and on Carol's Bob PMs, not on tone.
+Frank (public): Frank here. Alice, you pushed a Yes on Carol, then nominated yourself and twice said you're a fair target and won't object. That reads like a Jester pushing for a hang, and a Jester wins if hanged. I'm voting Guilty on that pattern. Carol's Archivist list and her Bob PMs are still open and I'll keep checking them.
+Grace (public): Grace here. Alice, you still haven't answered Dave's question: did you vote Yes or No on Carol's nomination? You pushed a Yes on Carol, then nominated yourself and twice said you're a fair target. I'll judge your answer and the record, not tone alone.
+Heidi (public): Heidi here. Alice, you still haven't answered Dave's question: did you vote Yes or No on Carol's nomination? You pushed a Yes on Carol, then nominated yourself and twice called yourself a fair target. I'll vote on your answer and the record, not on tone.
+Judy (public): Judy here. Alice, you still haven't said whether you voted Yes or No on Carol's nomination. You pushed a Yes on Carol, then nominated yourself, and twice called yourself a fair target who won't object. That is the record I'm voting on. Answer the Carol vote question directly.
+Alice (public): Alice here, answering Dave and Judy directly: I voted Yes on Carol's nomination. I pushed it because her two Bob PMs and her untestable archive were still open, and I wanted a vote rather than more delay. I then nominated myself so the table would decide on the record. I have no role to prove, so I can't give a visit-based contradiction. Judge the vote record and my answers, and vote on that.
+Trial votes on Alice: 6 Guilty, 2 Innocent (the votes are secret).
+Alice is executed by hanging (6 Guilty of 8 votes; 5 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice: no night role and no night results. My votes were based on contradictions, not confidence. Ivan's Erin visit claim was unverified and he never named a night. Carol's archive use is untestable, and the Carol-Bob private messages after Ivan's claim are worth a look. Judge the vote record, not my talk."
+Alice was the Jester: being hanged wins them the game.
+
+===== NIGHT 3 =====
+(to Erin, Frank, Judy) Erin (Yakuza chat): Erin: Night 3 proposal. Erin keeps the Katana (holder vote Erin). Target Carol: she is the most active claimant, has two PMs to Bob before his death, and her Archivist claim is untestable. Avoid Grace, who has Standard-level protection. Heidi and Dave have no claims, so they are poor targets. I won't spend ritual tokens, since a wrong guess would expose me. Frank and Judy, confirm your holder and target votes, or propose a better no-Defense target now.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Frank: agreed. Erin keeps the Katana, holder vote Erin, target Carol. I won't use swaps tonight. Judy, confirm your votes. Ready.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Judy: agreed. Erin keeps the Katana (holder vote Erin) and we hit Carol tonight. Carol is the most active claimant and her Archivist claim can't be tested. Grace stays off the list. I won't use my Clerk token tonight. Ready.
+(to Erin, Frank, Judy) Erin (Yakuza chat): Erin: agreed. Erin keeps the Katana (holder vote Erin) and we hit Carol tonight with the Standard attack. I'm not spending ritual tokens. Frank and Judy, confirm your votes in the same way. Nothing else from me.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Frank: agreed. Erin keeps the Katana (holder vote Erin) and we hit Carol tonight with the Standard attack. I won't use swaps. Judy, confirm your votes the same way. Ready.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Judy: agreed. Erin holds the Katana (holder vote Erin), target vote Carol. Avoid Grace. I won't use my Clerk token tonight. Ready.
+Night actions:
+  Carol (Archivist): no action
+  Dave (Profiler): target Carol; 1 token(s); "Profile Carol again with one profile token to test whether Archivist keeps appearing across two profiles."
+  Erin (Ritualist): no role action; Katana vote: Erin holds, attacks Carol
+  Frank (Smuggler): no role action; Katana vote: Erin holds, attacks Carol
+  Grace (Arsonist): target Erin; "Douse Erin"
+  Heidi (Vigilante): no action
+  Judy (Clerk): no role action; Katana vote: Erin holds, attacks Carol
+Katana: Erin holds it and attacks Carol.
+(to Dave) Moderator (private): You profiled Carol: their role is Archivist, Ritualist or Smuggler (exactly one is true, and at least one of the three is a Good role and one is not). 1 profile token left.
+(to Carol) Moderator (private): Night 3: You were attacked with the Katana, and the attack killed you.
+(to Erin) Moderator (private): Night 3: Your Katana attack on Carol succeeded. You did not use your Ritualist action; you still have 2 ritual tokens.
+(to Erin, Frank, Judy) Moderator (private): Night 3 Yakuza actions: Erin held the Katana and used it to attack Carol. Erin (Ritualist), Frank (Smuggler) and Judy (Clerk) chose not to use their own role actions.
+(to Grace) Moderator (private): Night 3: You doused Erin.
+[Moderator summary] Night 3: No role-blocks or swaps. Erin kept the Katana and attacked Carol (Standard vs None): Carol died (Katana). Dave profiled Carol (profile op; 1 profile token left). Grace doused Erin. Visits: Dave->Carol, Grace->Erin, Erin->Carol. Code will resolve Alice's Jester revenge.
+[Revenge] Alice's Divine Attack hits Dave.
+
+===== DAY 4 =====
+Carol died (killed by Katana). Their role isn't revealed. Their last will: "Carol, Archivist (0 archive tokens left). My Night 1 archive showed 9 roles, 6 real and 3 fake: Medic, Roleplayer, Lookout, Clerk, Arsonist, Profiler, Diviner, Ritualist, Party Animal. I visited no one on N1. Ivan's claim that I visited Erin is false. Test every claimed role against visit results and the vote record, and don't trust confident talk."
+Dave died (killed by Jester's revenge). Their role isn't revealed. Their last will: "Dave (Village). Night 2: I profiled Carol. Result: Archivist, Arsonist or Smuggler, exactly one true, with at least one Good role and one not Good. Carol's Archivist claim fits that result, but the profile does not confirm it. Ivan's last will and Bob's will are the only visit reports, and both are unverified. Carol and Bob exchanged private messages on Day 2. Vote on mechanical evidence: visit results, claim conflicts and the vote record, not on who talks loudest."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Heidi (public): Heidi here. Five are alive, and the Katana has killed Bob and Carol, so the Yakuza still hold it. Grace, say plainly what hit you on N1 and whether anyone protected you. That is the one concrete check left. Nobody should nominate without a visit-based contradiction.
+Judy (public): Judy here, no role claim. Grace is the only player who survived an attack, and she still won't say whether she was protected on N1. Three Days of silence on that is the contradiction I'm voting on. I nominate Grace so the table can vote on the record. I'm voting Yes.
+Judy nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: 3 Yes (the votes are secret).
+Grace is put on trial (3 Yes).
+Grace (public): Grace here, on trial. To Judy's question: nobody protected me on N1. I was hit by a Standard-level attack and survived because my role gives me innate Defense. I'm keeping the role private for now, but I haven't lied about being attacked. Judy, you pushed Carol and now me with the same 'silence' argument. Vote on the record: I've named no one without a concrete reason, and I'll explain my vote when the trial closes.
+Heidi (public): Heidi here. Grace, Standard-level innate Defense points to a Serial Killer or Arsonist, both Neutral and both threats to the Village. Name your role, or give a concrete reason the Katana couldn't have hit you, and I can clear you. Until then I'm leaning Guilty on the record. Judy's nominations have all rested on silence, so I won't follow that pattern.
+Judy (public): Judy here, no role claim. Grace, you say innate Defense but won't name your role, and you still haven't said why the Katana couldn't have been the attacker. Heidi's point stands: an unnamed role that survives a Standard hit is a real threat the table can't clear. I'm voting Guilty on that record.
+Erin (public): Erin here, no role claim. I'm voting Guilty on Grace. She survived a Standard-level hit and says her Defense is innate, but she won't name the role. That leaves a Serial Killer or Arsonist unexplained. Grace, name your role now, or the table has to decide on what we already know. Heidi's point stands, and I'll vote on that record.
+Frank (public): Frank here, no role claim. I'm voting Guilty on Grace. By her own account, nobody protected her and she survived a Standard-level Katana hit, yet she still won't name the role behind her innate Defense. An unnamed Standard-defense role is the open contradiction on the record. Heidi's read fits this, and I'm not following Judy's silence argument, but the unexplained Standard survival is enough for me.
+[Claim] Grace: Medic. N1: protected myself, Standard Defense, Katana attack failed.
+Grace (public): Grace on trial. I need to correct my earlier answer. I am the Medic, and I protected myself with a token on N1. The Katana's Standard attack failed against that protection, so I survived. I should not have said 'nobody protected me' or 'innate Defense'. That was bad wording, not an attempt to hide an attack. A Medic is a natural Katana target, which is why I stayed quiet. I am not Yakuza and I have no night results to hide. Heidi and Judy, test this claim against the N1 attack: the Katana hit me, and a self-protection explains my survival. Vote on that record.
+Trial votes on Grace: 3 Guilty, 2 Innocent (the votes are secret).
+Grace is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace (Medic, claimed). N1: protected myself with a token and survived a Katana attack. No other confirmed night information. Judge players by claims checked against visit results, votes cast, and private-message patterns."
+
+===== NIGHT 4 =====
+(to Erin, Frank, Judy) Erin (Yakuza chat): Erin: Heidi is the last non-Yakuza player alive, so killing her ends the game for us. Proposal: Erin keeps the Katana (holder vote Erin) and the Katana's Standard attack goes to Heidi. Heidi claimed no night action, so she has no known Defense. Frank and Judy, confirm holder Erin and target Heidi. No daytime PMs between us. I'll be ready once you both confirm.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Frank confirms: Erin holds the Katana (holder vote Erin) and the Standard attack goes to Heidi, the only non-Yakuza player alive. Judy, please confirm holder Erin and target Heidi. No daytime PMs. I'm ready.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Judy: agreed. Erin keeps the Katana (holder vote Erin) and we hit Heidi tonight, the last non-Yakuza player alive. I'm not acting or spending my Clerk token. No daytime PMs. Ready.
+(to Erin, Frank, Judy) Erin (Yakuza chat): Erin: Agreed. Holder vote Erin, Katana Standard attack on Heidi, the last non-Yakuza player alive. I'm not spending ritual tokens and won't do a daytime PM. Confirm your votes and I'll submit mine.
+(to Erin, Frank, Judy) Frank (Yakuza chat): Frank: agreed. Erin keeps the Katana (holder vote Erin) and the Standard attack goes to Heidi tonight. I'm voting holder Erin and target Heidi. No swaps from me, no daytime PMs. Ready.
+(to Erin, Frank, Judy) Judy (Yakuza chat): Judy confirmed: holder vote Erin, Katana Standard attack on Heidi. I'm not using my Clerk token or any other action tonight, and there are no daytime PMs. Ready.
+Night actions:
+  Erin (Ritualist): no role action; Katana vote: Erin holds, attacks Heidi
+  Frank (Smuggler): no role action; Katana vote: Erin holds, attacks Heidi
+  Heidi (Vigilante): no action
+  Judy (Clerk): no role action; Katana vote: Erin holds, attacks Heidi
+Katana: Erin holds it and attacks Heidi.
+(to Heidi) Moderator (private): Night 4: You were attacked with the Katana. You died.
+(to Erin) Moderator (private): Night 4 result: Your Katana attack on Heidi succeeded. You still hold the Katana. You did not use your Ritualist ability (2 ritual tokens left).
+(to Erin, Frank, Judy) Moderator (private): Yakuza Night 4 summary: The Katana stayed with Erin, and its attack was aimed at Heidi. Actions chosen: Erin chose no Ritualist action. Frank chose no swap. Judy chose not to rig the vote.
+[Moderator summary] Night 4: Yakuza kept Katana on Erin and attacked Heidi (Standard vs None) — Heidi dies. No other actions (Erin no ritual, Frank no swap, Judy no rig). Visits: Erin->Heidi. Only Yakuza (Erin, Frank, Judy) remain alive; Yakuza should win at the win check.
+
+===== DAY 5 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, Good Vigilante, with unused shot tokens. I took no night action on N1, N2 or N3, so I have no results. Ivan's Erin visit claim and Carol's Archivist claim were never verified. Bob's Dave watch was clean but Dave took no action. Carol and Bob's Day 2 private messages, and Bob's PMs to Erin and Grace, are the clearest pattern I saw. Grace survived a Standard-level hit on N1 and never said how. The living Village should vote on visit-based contradictions and claim conflicts, not on who talks loudest or who has the most confidence."
+The game is over. Winners: Erin, Frank, Judy, Alice (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 4: correct
+[Feedback from Frank] The night prompt did not clearly offer the Smuggler swap option, and I could not see my remaining speaking budget in the summary.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Erin, Frank, Judy, Alice
+Cost by player (USD):
+  Alice (Jester)     $0.0381   25 calls  claude-haiku-5.5
+  Bob (Lookout)      $0.0267   16 calls  claude-haiku-5.5
+  Carol (Archivist)  $0.0469   26 calls  claude-haiku-5.5
+  Dave (Profiler)    $0.0467   26 calls  claude-haiku-5.5
+  Erin (Ritualist)   $0.0670   39 calls  claude-haiku-5.5
+  Frank (Smuggler)   $0.0639   40 calls  claude-haiku-5.5
+  Grace (Arsonist)   $0.0536   32 calls  claude-haiku-5.5
+  Heidi (Vigilante)  $0.0568   33 calls  claude-haiku-5.5
+  Ivan (Roleplayer)  $0.0305   17 calls  claude-haiku-5.5
+  Judy (Clerk)       $0.0730   41 calls  claude-haiku-5.5
+  Moderator          $0.8373   12 calls  claude-opus-5.5
+  Night checks       $0.1576    4 calls  claude-opus-5.5
+  Strategy review    $0.2708    1 calls  claude-opus-5.5
+  Log review         $0.2331    1 calls  claude-opus-5.5
+  Total              $2.0023  313 calls
