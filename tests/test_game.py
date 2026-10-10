@@ -1,5 +1,7 @@
 """Whole-game behavior: win checks, game-ending safeguards and model settings."""
 
+import json
+
 import pytest
 
 import mafia
@@ -29,7 +31,6 @@ def test_nobody_wins_after_three_days_and_nights_without_deaths(tmp_path, monkey
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
     path = mafia.play_game(ScriptedClient(), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1))
     assert "Everyone loses" in path.with_suffix(".txt").read_text(encoding="utf-8")
-    import json
     result = json.loads(path.read_text(encoding="utf-8").splitlines()[-1])
     assert result["end_reason"] == "stall" and result["winning_faction"] is None
 
@@ -87,3 +88,32 @@ def test_winners_line_marks_dead_winners(game_factory):
     game.player("Carol").status[Status.LEFT] = True
     game.winners = ["Bob", "Carol"]
     assert game.winners_line() == "Winners: Bob, Carol (left)."
+
+
+def test_alignment_only_flips_hide_the_role(game_factory, tmp_path, monkeypatch):
+    game, _ = game_factory(["Vanilla Villager", "Ex-Con", "Grunt", "Jester"])
+    game.flips = "alignment"
+    game.player("Alice").last_will = "I was quiet."
+    for name in ("Alice", "Bob", "Carol", "Dave"):
+        game.kill(name, "executed by hanging")
+    reveals = [e.text for e in game.events if e.visible_to is None]
+    assert any("Alice" in r and "alignment was Good" in r and "I was quiet." in r for r in reveals)
+    # the true alignment, not what checks see: the Ex-Con reads Evil to them but flips Good
+    assert any("Bob" in r and "alignment was Good" in r for r in reveals)
+    assert any("Carol" in r and "alignment was Evil" in r for r in reveals)
+    assert any("Dave" in r and "alignment was Neutral" in r for r in reveals)
+    assert not any(role in r for r in reveals + game.death_record for role in ("Vanilla", "Ex-Con", "Grunt", "Jester"))
+    # the setting reaches every prompt through the rules text
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    config = mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1, flips="alignment")
+    prompts: list[str] = []
+
+    class Recording(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            prompts.append(json.dumps(messages))
+            return super().chat(model, messages, **kw)
+
+    path = mafia.play_game(Recording(), config)
+    assert prompts and all("only their alignment" in p for p in prompts)
+    assert '"flips": "alignment"' in path.read_text(encoding="utf-8").splitlines()[0]

@@ -27,6 +27,7 @@ Code layout:
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
     setups.py      random setups (--roles random:N), for role strength across many role mixes
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
+    grade.py       an LLM judge grades each player's play in finished games, blind to models (grades/)
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
     game_index.py  logs/index.html: every game in one filterable table (by model tier, winner, ...); or `serve`
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
@@ -45,6 +46,7 @@ Usage:
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
     uv run mafia.py --roles random:8                         # a random 8-player setup
+    uv run mafia.py --flips alignment                        # deaths reveal only Good/Evil/Neutral
     uv run stats.py                                          # win rates and decision skill across logs/
     uv run game_index.py build                               # logs/index.html: browse and filter every game
     uv run game_index.py serve                               # the same, always current, at localhost:8765
@@ -85,6 +87,14 @@ from tips import assign_tips, build as build_tips, file_digest, parse_player_tip
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
+# Game settings that change a rule, added after the rules text when chosen (--flips); "role" is rules R12 as written.
+FLIP_VARIANTS = {
+    "role": "",
+    "alignment": "\n\nGame setting for this game (it replaces part of R12): when someone dies, only their alignment "
+                 "(Good, Evil or Neutral) is revealed, not their role. It is their true alignment: frames and "
+                 "disguises (e.g. the Ex-Con's, or the Katana holder's) don't change it. Their cause of death and "
+                 "last will are still revealed, and a Mortician's clean hides the alignment and the will.",
+}
 LOG_DIR = ROOT / "logs"
 DEFAULT_TIPS = ROOT / "tips" / "tips.md"  # the players' sheet --update-tips keeps up to date after each game
 MOCK_TIPS = LOG_DIR / "mock_tips" / "tips.md"  # mock games' random lessons stay out of the real notebook
@@ -140,6 +150,7 @@ class GameConfig:
     update_tips: Path | None = None
     setup: dict | None = None
     moderator_fallback: ModelSpec | None = DEFAULT_MODERATOR_FALLBACK
+    flips: str = "role"  # what a death reveals: "role" (rules R12) or "alignment" (FLIP_VARIANTS)
 
     def __post_init__(self) -> None:
         self.player_tips = self.player_tips or []
@@ -171,7 +182,7 @@ class GameConfig:
                 "check_nights": self.check_nights, "checkpoint": checkpoint,
                 "tips": str(self.tips) if self.tips else None, "tips_for": self.tips_for if self.tips else None,
                 "player_tips": [[w, str(f) if f else None] for w, f in self.player_tips],
-                "setup": self.setup or {"kind": "fixed"}}
+                "setup": self.setup or {"kind": "fixed"}, "flips": self.flips}
 
     @classmethod
     def from_checkpoint(cls, ckpt: dict) -> "GameConfig":
@@ -191,7 +202,7 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
     """Plays a game and its post-game steps; returns its log's path. checkpoint: save the game at the start
     of each day and night to logs/<game>.ckpt (deleted when the game finishes). resume: a loaded checkpoint
     (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's."""
-    rules = RULES_PATH.read_text(encoding="utf-8")
+    rules = RULES_PATH.read_text(encoding="utf-8") + FLIP_VARIANTS[config.flips]
     if resume:
         log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
     else:
@@ -272,6 +283,7 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
     meta = game_meta(rules, config.settings(client, checkpoint))
     game = setup_game(config.roles, config.specs, random.Random(config.seed), log,
                       meta={"game_id": log.path.stem, **meta})
+    game.flips = config.flips
     if meta["git_commit"] is None:  # analysis across games groups them by code version
         log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
                   "game's code version isn't recorded")
@@ -472,6 +484,9 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--max-days", type=int, default=None,
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
+    ap.add_argument("--flips", choices=sorted(FLIP_VARIANTS), default="role",
+                    help="what a death reveals: the role (rules R12, default) or only the alignment (Good, Evil or "
+                    "Neutral), a setting that makes flips less decisive")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
@@ -605,7 +620,8 @@ def main() -> None:
             models, moderator, roles, seed, debrief=args.debrief, flag_issues=args.mod_flags,
             feedback_field=args.feedback_field, review=args.review, lessons=args.lessons, max_days=args.max_days,
             check_nights=args.check_nights, tips=args.tips, tips_for=args.tips_for, player_tips=player_tips,
-            update_tips=update_tips, setup=setup, moderator_fallback=fallback), checkpoint=args.checkpoint)
+            update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips),
+            checkpoint=args.checkpoint)
 
 
 @contextmanager

@@ -106,6 +106,8 @@ class Game:
     # night -> the visits made, as [visitor, target] pairs (duplicates kept), from the moderator's record_visits
     night_visits: dict[int, list[list[str]]] = field(default_factory=dict)
     claim_record: dict[str, list[tuple[int, str]]] = field(default_factory=dict)  # player -> (day, claim)
+    # What a death reveals (rules R12): "role", or "alignment" (Good, Evil or Neutral; a game setting, --flips)
+    flips: str = "role"
 
     def __getstate__(self) -> dict[str, Any]:
         # Pickled for checkpoints (checkpoint.py) without the log's open files; resuming reattaches a log.
@@ -242,7 +244,8 @@ class Game:
     def reveal_death(self, name: str, cause: str) -> None:
         self.emit(self.death_reveal(name, cause), cat=DEATH)
         p = self.player(name)
-        what = f"role cleaned by a Mortician, {cause}" if p.status.get(Status.CLEANED) else f"{p.role}, {cause}"
+        what = (f"role cleaned by a Mortician, {cause}" if p.status.get(Status.CLEANED)
+                else f"{self.revealed_identity(p)}, {cause}")
         when = p.death or {"day": self.day, "phase": self.phase}  # when they died, not when it's revealed
         self.death_record.append(f"{'Night' if when['phase'] == 'night' else 'Day'} {when['day']}: {name} ({what})")
 
@@ -262,12 +265,18 @@ class Game:
                 f"Claims (what players say about their own role and results; unverified, they may lie):\n{claims}\n"
                 f"Private messages sent, per day (sender -> recipient (count)):\n{pms}")
 
+    def revealed_identity(self, p: Player) -> str:
+        """What a death shows of the player (rules R12): their role, or with --flips alignment only their
+        true alignment (Good, Evil or Neutral), never a frame or disguise."""
+        return p.info.alignment.value if self.flips == "alignment" else p.role
+
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
         cause = death_cause(cause)
         if p.status.get(Status.CLEANED):
             return f"{name} died ({cause}). Their role and last will were cleaned by a Mortician."  # rules R12
-        reveal = f"{name} died ({cause}). Their role was {p.role}."
+        reveal = (f"{name} died ({cause}). Their alignment was {self.revealed_identity(p)}."
+                  if self.flips == "alignment" else f"{name} died ({cause}). Their role was {p.role}.")
         if p.last_will:
             reveal += f" Their last will: \"{p.last_will}\""
         return reveal

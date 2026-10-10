@@ -32,3 +32,4 @@ tips/*.tmp
 
 # Other threads' git worktrees
 .claude/worktrees/
+grades/
