@@ -28,6 +28,7 @@ class Status:
     CLEANED = "cleaned"  # Mortician: the death reveal hides role and will
     TARGET = "target"  # Executioner's target
     FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
+    DOUSED = "doused"  # Arsonist: set by the moderator on a doused player, cleared by an ignite
     TRAPPED_BY = "trapped_by"  # Trapper: on the trapped player, the Trapper's name until the trap is used or replaced
     SET_AT_SETUP = (TARGET, FAKE_ROLE)  # role hooks read these directly, so the moderator can't change them
 

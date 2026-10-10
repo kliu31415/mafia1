@@ -31,7 +31,7 @@ R18 (Terms)
 - Astral Visit: an action that is not a visit. Abilities that react to visits (Tracker, Lookout, Trapper,
   Fortune Teller) never see or react to it.
 - Alignment check: a result that reports alignment (Sheriff, Seer). See R19 for what they see.
-- Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician, Coroner).
+- Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician, Coroner, a Vigilante's kill).
 - Token: a limited-use resource a role starts with. Spent tokens are gone; a role-blocked action spends none.
 - Attack/Defense levels, lowest to highest: None, Basic, Standard, Strong, Divine (R3).
 
@@ -246,9 +246,9 @@ Seer
   pair isn't a visit. A role-block stops both.
 
 Fortune Teller
-  Day: at the start of each Day except the first, you get two numbers without being told which is which: how many
-  players were visited last night (a player visited several times counts once), and how many players visited
-  anyone last night (a player who visited several players counts once). Self-visits (R6) count in both numbers.
+  Day: at the start of each Day except the first, you get two numbers, each labeled: how many players were visited
+  last night (a player visited several times counts once), and how many players visited anyone last night (a
+  player who visited several players counts once). Self-visits (R6) count in both numbers.
   Example: A holds the Katana, attacks B and also uses their own role's action on C, D visits B, and E protects
   themself. Visited: B, C and E, so 3. Visitors: A, D and E, so 3. Equal numbers don't mean nobody was visited
   twice.
@@ -347,7 +347,8 @@ Trapper
 
 Vigilante
   Tokens: 3 vigilante tokens.
-  Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong.
+  Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong. If your shot kills them,
+  you also learn their role (exact-role check, R19).
 
 Veteran
   Tokens: 3 alert tokens.
@@ -476,8 +477,9 @@ Serial Killer
 Arsonist
   Defense: Standard. Appears: Not Evil to the Sheriff.
   Win: only alone (not even with another Arsonist).
-  Night: may douse one player (they aren't told), or ignite (Astral Visit), dealing a Strong Attack to every
-  doused player. Igniting uses up every douse: players who survive it are no longer doused.
+  Night: may douse one player, or ignite (Astral Visit), dealing a Strong Attack to every doused player. A doused
+  player who isn't Good (Yakuza or Neutral) is told at the end of the night that an Arsonist doused them; Good
+  players are never told. Igniting uses up every douse: players who survive it are no longer doused.
 
 Jester
   Defense: Basic. Appears: Evil to the Sheriff.

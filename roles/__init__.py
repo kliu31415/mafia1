@@ -47,7 +47,7 @@ ROLES: dict[str, RoleInfo] = {
                      tokens={"seer": 1}, acts_at_night=True,
                      tested=True, notes="random pair each night unless a token is spent"),
     "Fortune Teller": RoleInfo(Alignment.GOOD, "Investigative", False,
-                               summary="Each Day: two unlabeled numbers, how many players were visited "
+                               summary="Each Day: two labeled numbers, how many players were visited "
                                "and how many visited last night.",
                                tested=True, notes="numbers told at the end of the night"),
     "Oracle": RoleInfo(Alignment.GOOD, "Investigative", False,
@@ -109,9 +109,10 @@ ROLES: dict[str, RoleInfo] = {
                         tested=True,
                         notes="persistent traps tracked as player status; acting with no target removes the trap"),
     "Vigilante": RoleInfo(Alignment.GOOD, "Combat", False,
-                          summary="Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack.",
+                          summary="Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack; "
+                          "learns the role of a player it kills.",
                           tokens={"vigilante": 3}, acts_at_night=True,
-                          tested=True),
+                          tested=True, notes="moderator resolves the shot; code tells the victim's role on a kill"),
     "Veteran": RoleInfo(Alignment.GOOD, "Combat", False,
                         summary="Can't be role-blocked. Token: go on alert, Standard Defense "
                         "and a Strong Attack on every visitor.",
@@ -202,10 +203,10 @@ ROLES: dict[str, RoleInfo] = {
                               summary="Night: Strong Attack on one player. Wins alone. Standard Defense.",
                               defense="Standard", acts_at_night=True),
     "Arsonist": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                         summary="Night: douse a player, or ignite all doused players with a Strong Attack. "
-                         "Wins alone.",
+                         summary="Night: douse a player (only non-Good ones are told), or ignite all doused players "
+                         "with a Strong Attack. Wins alone.",
                          defense="Standard", acts_at_night=True,
-                         tested=True, notes="douses tracked as player status"),
+                         tested=True, notes="douses tracked as player status; code tells doused non-Good players"),
     "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
                        summary="Wins if hanged; then a Guilty voter dies. Reads Evil to the Sheriff.",
                        defense="Basic",

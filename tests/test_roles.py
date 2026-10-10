@@ -824,3 +824,30 @@ def test_a_game_starts_with_wills_and_night_1_without_a_day_1(tmp_path, monkeypa
     assert day1 and {r["step"] for r in day1} == {"will"}
     texts = [r.get("text", "") for r in records if r["kind"] == "event"]
     assert not any(t == "Day 1 begins." for t in texts) and any(t.startswith("There is no Day 1") for t in texts)
+
+
+def test_vigilante_learns_the_role_of_a_player_it_kills(game_factory):
+    game, players = game_factory(["Vigilante", "Roleplayer", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Vigilante", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("Your shot killed Bob. Their role was Roleplayer.")  # exact-role (R19)
+    game.kill("Dave", "Katana", by="Carol", katana=True)
+    assert not any("Dave" in t for t in told(game, "Alice"))  # someone else's kill tells the Vigilante nothing
+
+
+def test_only_doused_players_who_arent_good_are_told(game_factory):
+    from roles.base import logic
+    game, players = game_factory(["Arsonist", "Grunt", "Ex-Con", "Jester", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, *({"op": "set_status", "player": n, "key": "doused", "value": True}
+                               for n in ("Bob", "Carol", "Dave")))
+    logic("Arsonist").at_night_end(game)
+    told_doused = {n for n in ("Bob", "Carol", "Dave") if any("doused you" in t for t in told(game, n))}
+    assert told_doused == {"Bob", "Dave"}  # the Ex-Con reads Evil but is Good: not told
+    logic("Arsonist").at_night_end(game)  # a douse that's still there isn't news the next night
+    assert sum("doused you" in t for t in told(game, "Bob")) == 1
+    apply_ops(game, players, {"op": "set_status", "player": "Bob", "key": "doused", "value": None})  # ignited
+    logic("Arsonist").at_night_end(game)
+    apply_ops(game, players, {"op": "set_status", "player": "Bob", "key": "doused", "value": True})  # doused again
+    logic("Arsonist").at_night_end(game)
+    assert sum("doused you" in t for t in told(game, "Bob")) == 2
