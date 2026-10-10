@@ -254,5 +254,20 @@ def test_a_revision_rewords_and_retires_entries_without_counting_a_game(tmp_path
     nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
     t1, t2, t3 = nb["entries"]
     assert nb["games"] == ["g1"] and t1["status"] == "retired" and t1["history"][-1]["game"].startswith("revision ")
-    assert len(t2["support"]) == 1  # a revision never adds evidence
+    assert len(t2["support"]) == 1 and t3.get("pinned") and not t2.get("pinned")  # a revision adds no evidence
     assert [p.read_text(encoding="utf-8") for p in (tmp_path / "history").iterdir()] == ["# old sheet\n"]
+
+
+def test_pinned_entries_are_marked_for_the_sheet(tmp_path):
+    out = tmp_path / "tips.md"
+    nb = tips.new_notebook()
+    tips.apply_ops(nb, [op("add", tip="Spend tokens while alive.", weight=0.0, note="revision")], "g1")
+    tips.notebook_path(out).write_text(json.dumps(nb), encoding="utf-8")
+    client = TipsClient([])
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t1"])
+    (_, sheet), = client.prompts
+    assert "[t1] (Everyone) Spend tokens while alive. | PINNED" in sheet and "Every PINNED entry goes on" in sheet
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t1"], unpin=True)
+    assert "PINNED:" not in client.prompts[-1][1]
+    with pytest.raises(SystemExit, match="t9"):
+        tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t9"])

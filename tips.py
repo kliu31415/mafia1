@@ -23,6 +23,7 @@ Usage:
     uv run tips.py build                                # add new logs/game_*.jsonl, rewrite tips/tips.md
     uv run tips.py build logs/game_2026100* --out tips/early.md --max-words 600
     uv run tips.py revise --note "..."                  # after a rules change: reword or retire what no longer holds
+    uv run tips.py pin t12 t40                          # these entries always go on the sheet (--unpin)
     uv run tips.py show tips/tips.md                    # what players see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
     uv run mafia.py --player-tips Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none
@@ -223,8 +224,9 @@ def notebook_path(sheet: Path) -> Path:
 def entry_line(e: dict, notes: int = 3) -> str:
     """One notebook entry for a model to read: id, audience, tip, support and reports against it."""
     games = {x["game"] for x in e["support"]}
-    line = (f"[{e['id']}] ({e['audience']}) {e['tip']} | support: {len(games)} games, total weight "
-            f"{sum(x['weight'] for x in e['support']):.2f}")
+    line = (f"[{e['id']}] ({e['audience']}) {e['tip']} | "
+            + ("PINNED: Kevin asked for it on the sheet | " if e.get("pinned") else "")
+            + f"support: {len(games)} games, total weight {sum(x['weight'] for x in e['support']):.2f}")
     if e["against"]:
         line += (f" | against: {len(e['against'])} reports, total weight {sum(x['weight'] for x in e['against']):.2f}: "
                  + "; ".join(x["note"] for x in e["against"][-notes:]))
@@ -381,6 +383,8 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          "needs clearly more support than reports, or a rewording that fixes what went wrong. Thinly supported "
          "entries make the sheet only if they are clearly valuable. For each tip give the number of games "
          "that support it.\n"
+         "- Every PINNED entry goes on the sheet, merged with a related tip or on its own, keeping its point, "
+         "whatever its evidence.\n"
          "- Each tip is one or two concrete sentences a player can act on.\n"
          "- Use one section per audience: 'Everyone', a faction ('Village', 'Yakuza', 'Neutral'), or a "
          "role name. Every player sees the whole sheet, so a section also tells the other side how that "
@@ -389,7 +393,7 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          "useful.\n"
          "- Every tip must hold under the current game settings (at the end of the rules): leave out or reword "
          "advice that relies on what they hide, such as reading a dead player's role or who voted which way.\n"
-         f"- At most {max_words} words in total; drop the weakest tips first."},
+         f"- At most {max_words} words in total; drop the weakest unpinned tips first."},
     ]
     reply = client.chat(spec.model, messages, schema=DISTILL_SCHEMA, schema_name="tips", effort=spec.effort)
     order = {h: i for i, h in enumerate(HEADINGS)}
@@ -547,7 +551,11 @@ def revise(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, note: 
         rules = current_rules()
         stamp = keep_old_sheet(out)
         ops, cost = revise_notebook(client, spec, rules, nb, note)
+        before = {e["id"] for e in nb["entries"]}
         skipped = apply_ops(nb, ops, f"revision {stamp[:15]}", count_game=False)
+        for e in nb["entries"]:
+            if e["id"] not in before:  # a revision adds only what the note asked for, so it reaches the sheet
+                e["pinned"] = True
         if skipped:
             on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes in a revision; they were "
                      "skipped", skipped=skipped)
@@ -555,6 +563,26 @@ def revise(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, note: 
         counts = {k: sum(o["op"] == k for o in ops) for k in ("edit", "retire", "restore", "add")}
         return _rewrite_sheet(out, nb, client, spec, rules, max_words, on_error, cost,
                               "revised: " + ", ".join(f"{n} {k}" for k, n in counts.items() if n))
+
+
+def pin(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, ids: list[str], unpin: bool = False,
+        on_error: Callable[..., None] = print_alert) -> Path:
+    """Pins (or unpins) notebook entries, so the sheet always carries them, then rewrites the sheet."""
+    with locked(out, on_error):
+        nb_path = notebook_path(out)
+        nb = json.loads(nb_path.read_text(encoding="utf-8"))
+        by_id = {e["id"]: e for e in nb["entries"]}
+        if unknown := [i for i in ids if i not in by_id]:
+            raise SystemExit(f"No notebook entries {', '.join(unknown)} in {nb_path}")
+        for i in ids:
+            if unpin:
+                by_id[i].pop("pinned", None)
+            else:
+                by_id[i]["pinned"] = True
+        keep_old_sheet(out)
+        write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
+        return _rewrite_sheet(out, nb, client, spec, current_rules(), max_words, on_error, 0.0,
+                              f"{'un' if unpin else ''}pinned {', '.join(ids)}")
 
 
 def main() -> None:
@@ -576,11 +604,22 @@ def main() -> None:
     r.add_argument("--model", default="opus-5.5", help="model[:effort] that revises the tips")
     r.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
     r.add_argument("--note", default="", help="extra instructions for this revision, e.g. a tip to add")
+    pn = sub.add_parser("pin", help="pin notebook entries (by id, e.g. t12) so the sheet always carries them, then "
+                        "rewrite the sheet; revise pins the entries it adds")
+    pn.add_argument("ids", nargs="+")
+    pn.add_argument("--unpin", action="store_true")
+    pn.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
+    pn.add_argument("--model", default="opus-5.5", help="model[:effort] that rewrites the sheet")
+    pn.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
     s = sub.add_parser("show", help="print what players see of a tips file")
     s.add_argument("file")
     args = ap.parse_args()
     if args.cmd == "show":
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
+        return
+    if args.cmd == "pin":
+        pin(Path(args.out), OpenRouterClient(load_api_key()), parse_model_spec(args.model), args.max_words, args.ids,
+            args.unpin)
         return
     if args.cmd == "revise":
         # one answer covers the whole notebook (hundreds of entries), far past a game turn's 16k-token cap
