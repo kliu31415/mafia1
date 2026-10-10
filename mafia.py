@@ -47,7 +47,7 @@ Usage:
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
     uv run mafia.py --roles random:8                         # a random 8-player setup
-    uv run mafia.py --flips role --trial-votes public --nomination-votes public   # rules_1.txt as written
+    uv run mafia.py --flips role --trial-votes public --nomination-votes public   # the old rules
     uv run stats.py                                          # win rates and decision skill across logs/
     uv run game_index.py build                               # logs/index.html: browse and filter every game
     uv run game_index.py serve                               # the same, always current, at localhost:8765
@@ -490,7 +490,7 @@ def main() -> None:
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
     ap.add_argument("--flips", choices=variants.SETTINGS["flips"], default=variants.DEFAULTS["flips"],
                     help="what a death reveals: nothing but the cause and will (default), only the alignment (Good, "
-                    "Evil or Neutral), or the role (rules R12 as written)")
+                    "Evil or Neutral), or the role (rules R12)")
     ap.add_argument("--trial-votes", choices=variants.SETTINGS["trial_votes"],
                     default=variants.DEFAULTS["trial_votes"],
                     help="secret (default): only the Guilty/Innocent totals are announced; public: every vote (R4)")

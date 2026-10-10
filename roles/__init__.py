@@ -186,10 +186,10 @@ ROLES: dict[str, RoleInfo] = {
                         tested=True, notes="divine op: code draws the role from the group; "
                         "the moderator applies the Strong Defense"),
     "Mortician": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                          summary="Token: clean a player; if they die that night, their role and will are hidden.",
+                          summary="Token: clean a player; if they die that night, their will is hidden.",
                           tokens={"mortician": 2}, acts_at_night=True,
-                          tested=True, notes="clean via status 'cleaned'; "
-                          "code hides role and will in the reveal (cause shown)"),
+                          tested=True, notes="clean via status 'cleaned'; code hides the will in the "
+                          "reveal (and the role or alignment when --flips shows them; cause shown)"),
     "Wiretap": RoleInfo(Alignment.EVIL, "Yakuza", True,
                         summary="Passively reads every Day PM between any players.",
                         notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),

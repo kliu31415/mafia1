@@ -50,18 +50,20 @@ Chat:
 Nominations:
 - Any player may publicly nominate someone, including themself. All chat stops at once.
 - Everyone votes Yes/No at the same time; nobody sees another vote before casting their own. The nominator votes
-  Yes by default. There are no abstentions: a player who doesn't vote counts as voting No. Once all votes are in,
-  every vote is revealed.
+  Yes by default. There are no abstentions: a player who doesn't vote counts as voting No. Votes are secret: once
+  all votes are in, only the number of Yes votes is announced (the nominator is named), never who voted which way.
+  Each voter is privately reminded of their own vote.
 - If a majority of all votes counted are Yes, the nominee goes on trial.
 Trials:
 - The nominee says the first public message and may defend themself; others may chat publicly and privately.
   After everyone else has had a turn, the nominee gets one last public message before the vote.
 - Then everyone votes Guilty/Innocent at the same time (no abstentions: a player who doesn't vote counts as voting
-  Innocent); every vote is revealed.
+  Innocent). Votes are secret: only the Guilty and Innocent totals are announced, never who voted which way. Each
+  voter is privately reminded of their own vote.
 - If a majority of all votes counted are Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
   ends immediately.
 - If three nominations pass (failed ones don't count) and all three trials end Innocent, the Day ends.
-- Some roles can change how votes are counted. If an announced vote total doesn't match the revealed votes,
+- Some roles can change how votes are counted. If an announced vote total doesn't match the number of voters,
   a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial
   that Day, so the number of changed totals doesn't show how many times a role was used.
 Voting Yes or Guilty on yourself is allowed.
@@ -162,9 +164,11 @@ Protectors (e.g. the Medic) are never told whether their protection stopped an a
 never told who protected them. A player who is attacked is still told as in R3.
 
 R12 (Death reveals)
-When someone dies, their role, cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are
-revealed publicly by default. If several attacks were each fatal, every fatal cause is revealed; attacks the
-player survived aren't. They leave the circle and can't take part in the game any more.
+When someone dies, their cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are revealed
+publicly; their role and alignment are not. If several attacks were each fatal, every fatal cause is revealed;
+attacks the player survived aren't. The dead leave the circle and can't take part in the game any more. A player
+whose win ends their part in the game (a hanged Jester, an Executioner who leaves) is the exception: the
+announcement of their win names their role.
 
 R14 (Stall rule)
 If a Day begins and nobody has died in the three previous Nights and three previous Days, everyone loses. Deaths
@@ -439,8 +443,8 @@ Ballot Stuffer
   Tokens: 2 ballot tokens.
   Night: may spend a token so that during the following Day your vote counts twice in every Guilty/Innocent trial
   vote. It does not count twice in nomination (Yes/No) votes, which stay one vote each. A trial that Day needs a
-  majority of all votes counted, so your extra vote counts whether you vote Guilty or Innocent. Every player's vote is still revealed as usual; the announced totals
-  include your extra vote without saying whose it is.
+  majority of all votes counted, so your extra vote counts whether you vote Guilty or Innocent. The announced
+  totals include your extra vote without saying whose it is.
 
 Diviner
   Night: may pick one player. If they are Yakuza, they get Strong Defense for that night. Otherwise, the group is
@@ -453,7 +457,7 @@ Diviner
 Mortician
   Tokens: 2 mortician tokens.
   Night: may spend a token to try to clean someone. If they die that night by any cause, they are cleaned: their
-  death is revealed publicly with its cause, but their role and last will show as "cleaned by mortician". You are
+  death is revealed publicly with its cause, but their last will shows as "cleaned by mortician". You are
   privately told their role and last will. The token is spent even if they survive.
 
 Wiretap

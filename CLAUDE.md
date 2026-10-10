@@ -168,10 +168,11 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
   Lessons are weighted by their author's model strength and the game's average (`strength` in
   `llm.MODELS`, 1-5, kept by hand).
-- Rule settings (`variants.py`: `--flips`, `--trial-votes`, `--nomination-votes`) change rules from `rules_1.txt`
-  without editing it: each adds a note after the rules text, so every prompt sees it. The defaults hide the most
-  (no role or alignment on death, secret votes); code reads `game.rule_settings`, and logs without them used
-  `variants.LEGACY`.
+- Rule settings (`variants.py`: `--flips`, `--trial-votes`, `--nomination-votes`): `rules_1.txt` describes the game
+  with the defaults, which hide the most (deaths reveal only cause and will, secret votes). A non-default choice
+  changes a rule without editing the file: it adds a note after the rules text, so every prompt sees it. Code reads
+  `game.rule_settings`; logs without them used `variants.LEGACY` (role flips, public votes), as did the rules text
+  before Oct 10 2026. Keep rules wording in line with the defaults when they change.
 - Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
   Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
   `mafia.py`), so a stuck game can't run forever.

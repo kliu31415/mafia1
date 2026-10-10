@@ -115,7 +115,7 @@ def test_alignment_only_flips_hide_the_role(game_factory, tmp_path, monkeypatch)
             return super().chat(model, messages, **kw)
 
     path = mafia.play_game(Recording(), config)
-    assert prompts and all("only their alignment" in p for p in prompts)
+    assert prompts and all("their alignment (Good, Evil or Neutral) is revealed too" in p for p in prompts)
     assert '"flips": "alignment"' in path.read_text(encoding="utf-8").splitlines()[0]
 
 
