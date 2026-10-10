@@ -556,3 +556,33 @@ def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
                "Bob": {"act": False, "katana_vote_target": "Carol"}}
     logic("Smuggler").before_resolution(game, actions)
     assert actions["Bob"]["katana_vote_target"] == "Carol" and game.player("Alice").tokens["swap"] == 2
+
+
+def test_census_counts_alignment_as_checks_see_it_and_never_neutrals(game_factory):
+    from roles.census_taker import census_group, seen_alignment
+    from roles import Alignment
+    game, players = game_factory(["Census Taker", "Grunt", "Ex-Con", "Jester", "Vanilla Villager", "Pharmacist"])
+    game.phase = "night"
+    assert game.katana_holder == "Bob"
+    see = {p.name: seen_alignment(game, p, {"Erin"}) for p in game.players}
+    assert see == {"Alice": Alignment.GOOD, "Bob": Alignment.GOOD, "Carol": Alignment.EVIL,  # holder, Ex-Con
+                   "Dave": Alignment.NEUTRAL, "Erin": Alignment.EVIL, "Frank": Alignment.EVIL}  # framed
+    for _ in range(20):
+        group = census_group(game, "Alice", "Dave")
+        assert len(group) == 3 and "Dave" in group and "Alice" not in group
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    out = mod.dispatch("apply_changes", {"changes": [{"op": "census", "by": "Alice", "player": "Dave", "framed": []}]})
+    assert out["ok"] and game.player("Alice").tokens["census"] == 2
+    told = [e.text for e in game.events if e.visible_to is not None and "Alice" in e.visible_to]
+    assert "Neutral players are never counted" in told[-1] and "2 census tokens left" in told[-1]
+
+
+def test_census_group_shrinks_when_few_players_are_left(game_factory):
+    from roles.census_taker import census_group
+    game, _ = game_factory(["Census Taker", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    assert census_group(game, "Alice", "Bob") == ["Bob", "Carol"]
+    game.kill("Carol", "Katana")  # died tonight: still in the pool
+    assert census_group(game, "Alice", "Bob") == ["Bob", "Carol"]
+    game.day += 1
+    assert census_group(game, "Alice", "Bob") == ["Bob"]

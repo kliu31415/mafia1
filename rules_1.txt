@@ -167,8 +167,8 @@ from last Night count even though they're announced today. Every death counts; l
 doesn't.
 
 R19 (What investigations see)
-Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil) see a player's true alignment,
-except:
+Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil; Census Taker: counts Good
+or Evil players, never Neutrals) see a player's true alignment, except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - Ex-Con: Evil.
@@ -264,6 +264,15 @@ Surveyor
   and never counting anyone twice (so with only one or two other players alive, the group is smaller). You are
   told who was in the group and the exact role of one of them chosen at random, but not whose it is. Players who
   die that night can still be chosen. This is an exact-role check (R19): a Roleplayer shows as Roleplayer.
+
+Census Taker
+  Tokens: 3 census tokens.
+  Night: may spend a token to take a census around one player other than yourself (a visit to that player only).
+  The program adds two other players drawn at random from everyone alive at the start of the night except you
+  (players who die that night can be drawn; if fewer than two others are left, the group is smaller). It also
+  draws at random whether to count Good or Evil players. You are told who was in the group, which alignment was
+  counted, and how many of the group are of it. This is an alignment check (R19), so the Katana holder counts as
+  Good, and framed players and the Ex-Con as Evil. Neutral players are never counted, as either Good or Evil.
 
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they
