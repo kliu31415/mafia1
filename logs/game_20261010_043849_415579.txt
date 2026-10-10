@@ -1,0 +1,300 @@
+Setup:
+  Alice    seat 1  Vigilante         openai/gpt-6-luna
+  Bob      seat 2  Vanilla Villager  anthropic/claude-haiku-5.5
+  Carol    seat 3  Fabricator        openai/gpt-6-luna
+  Dave     seat 4  Tracker           openai/gpt-6-luna
+  Erin     seat 5  Smuggler          anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Seer              openai/gpt-6-luna
+  Heidi    seat 8  Sheriff           openai/gpt-6-luna
+  Ivan     seat 9  Grunt             anthropic/claude-haiku-5.5
+  Judy     seat 10 Lookout           openai/gpt-6-luna
+  Mallory  seat 11 Vanilla Villager  anthropic/claude-haiku-5.5
+  Niaj     seat 12 Medic             anthropic/claude-haiku-5.5
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Claim] Frank: Vanilla Villager. No night action.
+Frank (public): Frank here, Vanilla Villager with no night action. Day 1 is too early to nominate anyone. I'll watch claims and votes before deciding who to trust.
+Grace (public): Agreed: no blind Day 1 nomination. Let's hear claims and concrete reads; don't reveal tonight's targets.
+Heidi (public): Let's hear from everyone before considering a trial. No power-role claims or planned targets yet; bring concrete evidence as it develops.
+[Claim] Ivan: Vanilla Villager. No night action.
+Ivan (public): Ivan here, Vanilla Villager with no night action. Agree there should be no blind Day 1 nomination. I'll watch claims and concrete reads before deciding who to trust.
+Judy (public): Two vanilla claims are unsurprising and prove little. Let's hear from the rest before forming a wagon; note who pushes a trial without evidence and how the votes line up.
+Mallory (public): Mallory here, Vanilla Villager with no night action. Agree no blind Day 1 nomination. I'll track who pushes for a trial early and how votes line up.
+Niaj (public): Niaj here. Agree no blind Day 1 nomination. I'm watching who pushes for an early trial and which claims hold up as the day goes on.
+Alice (public): No basis for a trial yet. Let's hear Bob, Carol, Dave, and Erin before deciding; vanilla claims aren't alignment evidence. Note actual vote positions.
+Bob (public): Bob here, Vanilla Villager with no night action. Agree there should be no Day 1 nomination. I'll track who pushes early trials and how the votes line up.
+[Claim] Carol: Vanilla Villager. No night action.
+Carol (public): I’m Vanilla Villager too. The repeated vanilla claims don’t establish alignment; let’s hear the remaining players before drawing conclusions.
+Dave (public): No nomination from me; procedural agreement isn't alignment evidence. Let's hear concrete reads once everyone has spoken, and keep night targets private.
+[Claim] Erin: Vanilla Villager. No night action.
+Erin (public): Erin here, Vanilla Villager with no night action. Agree no blind Day 1 nomination. I'll judge claims by results and how votes line up once there's something to check.
+Frank (public): Nothing to nominate yet. Grace, Heidi, Alice, Dave and Judy haven't stated a role. Could you each say what would make you consider a trial, and which claim you're checking first?
+Grace (public): I'd consider a trial for a concrete contradiction in someone's account or votes, not merely a vanilla claim or cautious stance. I haven't picked a claim to check yet; let's hear everyone first.
+Heidi (public): A factual contradiction or vote inconsistency would justify a trial; cautiousness or vanilla claims don't. I'd like to hear Dave and Judy's answers before assessing anyone.
+Ivan (public): I agree with Grace and Heidi that a trial needs a concrete contradiction. Dave and Judy, have you claimed a role yet?
+Judy (public): I haven't made a role claim, and won't treat that as evidence either way. A trial needs a checkable contradiction in a claim or a vote; absent that, I'd rather carry reads into Night and compare results tomorrow.
+Mallory (public): Still no checkable contradiction. Dave and Judy have been asked twice, so name the claim you want checked first. Quiet players can't be compared yet.
+Niaj (public): Niaj here. Agree no blind nomination yet. Dave and Judy, please give one concrete read or claim before Night so we have something to check.
+Alice (public): Dave has been asked directly for a role or read, but his procedural reply didn't answer. Dave, give us an actual read—or explain why you're withholding one; either way is useful.
+Bob (public): Dave and Judy, please give one concrete read each. Vanilla claims are thin, so I'm weighing who answers direct questions and who pushes early trials.
+Carol (public): Dave has been asked several times for an actual read and still hasn't offered one. That's worth tracking, not enough to trial. Judy answered the question. Dave, name one player you currently trust least and why.
+Dave (public): Least trust currently Mallory: she turned unanswered prompts into pressure despite no evidence, then asked me to name a target. That's weak and provisional, not grounds for a trial. Judy answered substantively; no one is cleared.
+Erin (public): Erin here: agree no blind nomination. Dave's read on Mallory is thin so far, and I'd rather wait for concrete evidence or results before backing any trial.
+Frank (public): Dave, your read on Mallory is based on her pressure, not on a result. Give one concrete reason for it, or name a player with a checkable claim. No nomination from me yet.
+Ivan (public): Dave's reply is mostly deflection: he names Mallory as least trusted on pressure alone and still gives no role or read of his own. Dave, claim something or stop pointing fingers. Mallory's questions were fair, so I'm not reading her as scum yet.
+Judy (public): Dave has now given a read: Mallory's repeated pressure, but that's still a weak behavioral basis, not a checkable contradiction. Repeatedly demanding a role or read isn't itself evidence either. I see no trial-worthy case yet; let's carry this forward.
+Mallory (public): Dave, you named me as least trusted, but your only basis is that I pressed for answers. That's not evidence. You've now been asked three times for a role or read. Give one concrete claim or a checkable reason, or your silence will count against you.
+Niaj (public): No trial yet. Dave's read on Mallory and Mallory's pressure on Dave are both behavioral, not evidence. I want concrete claims or votes before anyone is nominated.
+Bob (public): No trial from me yet. Judy has given a read and Dave has only named Mallory. Dave, one concrete claim or read before Night, please. I'll back a nomination only on a checkable contradiction.
+Dave (public): I already named Mallory on behavior, not evidence; it’s a weak read. Ivan’s demand for a role claim doesn’t make it stronger. No trial-worthy case—let’s stop repeating the same prompts.
+Erin (public): still no nomination from me. Dave's Mallory read is thin, but so is repeatedly pressing for a role. I want checkable results before anyone is nominated.
+Frank (public): Dave has been asked for a role or read at least four times and has only named Mallory on pressure. Dave, give one concrete claim or read now. No nomination from me yet.
+Ivan (public): I agree with Frank. Dave still hasn't given a concrete read after several asks. Dave, give one checkable read now. Mallory's pressure alone is not grounds for a trial.
+Alice (public): Dave did answer: his suspicion of Mallory is behavioral and weak, not a checkable contradiction. Repeatedly asking for a different answer doesn't make this trial-worthy. No nomination from me; let's carry these reads into tomorrow.
+Erin (public): still no checkable contradiction, so no nomination from me. I'll wait for claims, votes or results before backing anyone.
+Ivan (public): Dave still hasn't given a role or any checkable read after repeated asks. If he keeps deflecting, I'll support a nomination on that basis.
+Mallory (public): Dave has been asked for a role or read at least four times and has only named me on pressure. Give one checkable read before Night, or your silence will count in tomorrow's votes.
+Niaj (public): No nomination from me yet. Dave, give one concrete read or role before Night; repeated silence doesn't help you. Let's compare results tomorrow.
+Dave (public): I've answered: Mallory's pressure is a weak read, not a trial case. I'm not claiming a role just to satisfy repeated prompts; let's stop cycling this and compare actual results tomorrow.
+Mallory (public): No nomination from me today. Dave, your read on me is behavioral, so I'll track your Day 2 votes against any claims or results. I'm Vanilla, so I have no checkable info yet.
+Ivan (public): No nomination from me. Dave's Mallory read is behavioral; give a checkable claim tomorrow or I'll back a trial on that.
+Dave (public): I've answered; no one has offered a checkable contradiction. No nomination from me. Tomorrow I'll weigh actual claims, results, and votes—not repeated demands.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Erin, Ivan) Carol (Yakuza chat): Plan: keep the Katana with Carol and attack Dave. I’ll frame Dave and spend my token to forge his will as a Sheriff who checked Mallory as Evil, if Dave dies. Erin, please don’t swap tonight; Ivan has no other action. Let me know if you see a better target.
+(to Carol, Erin, Ivan) Erin (Yakuza chat): Agreed: Carol keeps the Katana and it hits Dave tonight. I won't use my swap tonight, and Ivan has no action. Carol, handle the framing and the will as planned. Ready.
+(to Carol, Erin, Ivan) Ivan (Yakuza chat): Agreed: Carol keeps the Katana and it hits Dave. I vote Dave as target and Carol as holder. I have no night action and won't swap or PM. Carol, your Fabricator frame on Dave is a visit that Trackers can see, so keep the will forgery consistent with it. Ready.
+(to Carol, Erin, Ivan) Carol (Yakuza chat): Agreed. Keep the Katana with me and attack Dave. I’ll frame him and spend my token to forge his will as planned; no swap. Ready.
+(to Carol, Erin, Ivan) Erin (Yakuza chat): Erin: Agreed. Carol keeps the Katana and it hits Dave. I won't swap and have no other action. Ready.
+(to Carol, Erin, Ivan) Ivan (Yakuza chat): Agreed: Carol keeps the Katana and it attacks Dave tonight. I vote Carol as holder and Dave as target. No swap from me and no other action. Carol, the forged will should match the Fabricator frame. Ready.
+Night actions:
+  Alice (Vigilante): no action
+  Carol (Fabricator): target Dave; 1 token(s); "Frame Dave and spend 1 token to forge his will if he dies tonight: “Sheriff: checked Mallory — Evil.”"; Katana vote: Carol holds, attacks Dave
+  Dave (Tracker): target Mallory
+  Erin (Smuggler): no role action; Katana vote: Carol holds, attacks Dave
+  Grace (Seer): target Dave; second target Mallory; 1 token(s)
+  Heidi (Sheriff): target Dave
+  Ivan (Grunt): no role action; Katana vote: Carol holds, attacks Dave
+  Judy (Lookout): target Alice
+  Niaj (Medic): target Grace; "Protect Grace with Standard Defense, costing no tokens."
+Katana: Carol holds it and attacks Dave.
+(to Dave) Moderator (private): Night 1 result: You tracked Mallory. Mallory did not visit anyone. You were attacked with the Katana, and you died.
+(to Grace) Moderator (private): Night 1 result: You spent your seer token to compare Dave and Mallory. Their alignments are DIFFERENT. You have 0 seer tokens left.
+(to Heidi) Moderator (private): Night 1 result: You investigated Dave. Result: Evil.
+(to Judy) Moderator (private): Night 1 result: You watched Alice. Nobody visited Alice.
+(to Niaj) Moderator (private): Night 1 result: You protected Grace with Standard Defense. You have 2 medic tokens left.
+(to Carol) Moderator (private): Night 1 result: You framed Dave and spent your fabricator token to forge his last will. You have 0 fabricator tokens left. Your Katana attack on Dave succeeded.
+(to Carol, Erin, Ivan) Moderator (private): Yakuza Night 1 summary of chosen actions: Carol holds the Katana and it was aimed at Dave. Carol chose to frame Dave and forge his last will. Erin chose not to swap anyone. Ivan has no night action.
+[Moderator summary] Night 1: No role-blocks or swaps. Carol (Fabricator, Katana holder) framed Dave and forged his will ("Sheriff: checked Mallory — Evil."), fabricator token spent. Katana (Standard) killed Dave (Defense None), and his will was replaced by the forgery. Dave tracked Mallory: she visited no one. Grace spent her seer token on Dave/Mallory: different, because Dave was framed as Evil. Heidi checked Dave: Evil (framed). Judy watched Alice: no visitors. Niaj protected Grace (Standard, no token spent, 2 left). Yakuza were told the chosen actions.
+
+===== DAY 2 =====
+Dave died (killed by Katana). Their role was Tracker. Their last will: "Sheriff: checked Mallory — Evil."
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Carol (public): Dave flipped Tracker, but his will claims Sheriff. That mismatch means the “Mallory — Evil” result isn’t reliable; don’t treat it as proof against her. Let’s hear any actual night results before considering a trial.
+Erin (public): Erin here. Agree the will's Sheriff claim clashes with Dave's revealed Tracker role, so it proves nothing about Mallory. Anyone with real Tracker or Lookout information, please say so before we nominate anyone.
+Frank (public): Dave's will says Sheriff, but the reveal says Tracker. Either Dave lied or someone forged the will, and a forged will would mean the Mallory Evil result is planted. Mallory, do you have anything on that read? No nomination from me yet.
+[Claim] Grace: Seer. N1: Chose Dave and Mallory; their alignments differed. Dave flipped Tracker, so Mallory is non-Good.
+Grace (public): I’m the Seer. N1 I spent my token comparing Dave and Mallory; they were different. Dave flipped Tracker, so Mallory is non-Good—Evil or Neutral. That’s independent of Dave’s mismatched will. Mallory, what is your role and what did you learn last night?
+[Claim] Heidi: Sheriff. N1: Dave Evil.
+Heidi (public): I am the Sheriff. N1 I checked Dave: Evil. His Tracker flip means he was likely framed, so that result is inconclusive and says nothing about Mallory. Dave's will wasn't my result and may have been forged. Grace's result is separate; Mallory, please state your role and account. Non-Good could also mean Neutral.
+Ivan (public): Ivan here, Vanilla. Grace's logic doesn't hold. Heidi reads Dave as Evil, so Grace's pair with Dave differing means Mallory is Good or Neutral, not clearly non-Good. Grace, your 'non-Good' call depends on Dave reading Good. Why do you assume that when Heidi's result says Evil?
+Judy (public): The Tracker flip establishes Dave was Good; if Heidi’s Sheriff result is genuine, Dave must have been framed that night (he wasn’t an Ex-Con, and Katana holders read Good). Then Grace’s Seer saw Dave as Evil, so a differing pair points to Mallory being Good, not non-Good. If Dave wasn’t framed, it points the other way. Resolve the framing and claim reliability before treating this as evidence against Mallory.
+Mallory (public): Mallory here: I'm Vanilla, so I know I'm Good, and Grace's 'Mallory non-Good' inference is wrong. Grace's pair only shows Mallory isn't Dave's alignment. Heidi reads Dave Evil, and Dave's Tracker flip doesn't prove Dave was Good; a Fabricator frame would explain Dave's Evil read and the forged-looking Sheriff will. Grace, if Dave reads Evil, your result fits me being Good. Heidi, what did you check on Night 2? Let's compare claims before any nomination.
+Niaj (public): Dave flipped Tracker, so he was Good. That makes Heidi's Dave-Evil result a frame or a lie, and Grace's Dave-vs-Mallory pair then says Mallory is non-Good. Both claimants should stay open to challenge. Mallory, answer Grace's pair directly. Any Tracker or Lookout info, please. No nomination yet.
+Alice (public): Correction: Dave’s Tracker flip establishes Good alignment. A Fabricator could make alignment checks see a framed player as Evil, so if Heidi’s result is genuine, Dave may have been framed. Grace’s differing pair then doesn’t by itself classify Mallory. Mallory is wrong that the Tracker flip says nothing about Dave’s alignment. Resolve the framing possibility and Heidi’s credibility before a trial.
+Bob (public): Bob here, Vanilla. Dave's Tracker flip means Heidi's Dave-Evil result is either a frame or a lie, and Grace's Dave-vs-Mallory pair depends on that. Heidi and Grace, what did you each check on Night 2, and whom did you visit? No nomination from me until those results line up.
+Carol (public): A differing Seer pair only establishes that Mallory’s alignment differed from Dave’s as he appeared that night. If Dave was framed, Grace can’t infer Mallory is non-Good; she could be Good or Neutral. Heidi’s Dave-Evil result is compatible with a frame, but doesn’t prove one occurred. Let’s clarify that before considering a trial.
+Erin (public): Correcting my earlier read on Grace's pair. If Dave reads Evil, as Heidi's check says, then Mallory differing from him means Good or Neutral, not non-Good. Grace, did you also pair anyone on Night 2, or only Night 1? Heidi, is your Sheriff check the only result you have? No nomination from me yet.
+Frank (public): Dave's Tracker flip makes him Village, so Heidi's Dave-Evil result is either a frame or a lie. If Heidi is honest, Dave was framed on N1, which would make Grace's pair point to Mallory being Good. Heidi, what did you check on N2, and whom did you visit? Grace, did you pair anyone on N2, and what does your pair say about Dave's reading? No nomination from me yet.
+[Claim] Grace: Seer. N1: Dave/Mallory differed; if Dave was framed, Mallory is Good or Neutral; otherwise non-Good.
+Grace (public): Correction: I overstated my result. If Dave was framed, he appeared Evil to me, so the differing pair means Mallory could be Good or Neutral. If he was not framed, Mallory is non-Good. Heidi’s result is consistent with a frame, not proof either way. I only have my N1 pair; Night 2 hasn’t happened yet, so let’s not trial Mallory on this alone.
+Heidi (public): Dave’s Tracker flip establishes he was Good. My N1 Sheriff result was Evil as he appeared, not proof of his true alignment; a Fabricator frame is possible, but not proven. Grace’s differing pair only makes Mallory non-Good if Dave was not framed; if he was, Mallory could be Good or Neutral. Mallory’s claim that Dave’s flip says nothing about his alignment is wrong. This is not enough to justify a trial by itself.
+Ivan (public): Ivan here. Heidi's Dave-Evil result fits a Fabricator frame, and Grace's Seer pair only works if Dave was framed, so both results depend on Dave's real alignment. Heidi, what did you check on Night 2? Grace, did you pair anyone on Night 2? No nomination from me until those results line up.
+Judy (public): One important point: if Dave was framed on N1, a Fabricator could also have replaced his will that same night. That would explain both the Evil read and the Sheriff-claim will, without implicating Mallory. If Heidi’s result is genuine, Grace’s differing pair makes Mallory Good or Neutral—not necessarily Good. We need independent evidence, not forced certainty.
+Mallory (public): Correction for everyone: only Night 1 has happened, so nobody has a Night 2 result yet. Grace and Heidi, please give only your N1 targets and results. Dave's will claims Sheriff and says Mallory Evil, while Heidi also claims Sheriff, so at least one Sheriff claim is false. Heidi, who else did you check or visit on N1?
+Niaj (public): Dave's will says Sheriff while his reveal says Tracker, so the will proves nothing. Heidi and Grace, after Night 2 post your target, result and whether you visited anyone, so we can check your claims against each other. No nomination from me yet.
+Bob (public): No nomination from me yet. Dave was Good (Tracker flip), so Heidi's Dave-Evil read is either a frame or a lie, and Grace's pair depends on that. Heidi and Grace: after Night 2, post your target, result and any visit so we can cross-check. Dave's will claiming Sheriff also needs an explanation.
+Erin (public): Heidi's Dave-Evil check and Grace's Dave/Mallory pair both depend on Dave's alignment, and Dave's will (Sheriff, Mallory Evil) fits neither claim. Post Night 2 targets and results before any nomination; no nomination from me.
+Frank (public): Frank here. No nomination from me yet. Heidi and Grace: please post your Night 2 targets, results, and whether you visited anyone. Until those line up, I won't back a trial.
+Grace (public): To state the comparison precisely: if Dave was framed, he appeared Evil to my N1 check, so Mallory was Good or Neutral. If he was not framed, he appeared Good, so Mallory was Evil or Neutral. Heidi’s result is compatible with a frame, but doesn’t prove one.
+Heidi (public): One mechanical clarification: a Fabricator can frame and forge the same player's will on one visit. So Dave's Tracker flip, my N1 Evil result, and his false Sheriff will are compatible; the will doesn't prove another Sheriff claim or implicate Mallory. Grace's pair is conditional as stated. No N2 has happened.
+Ivan (public): Heidi's Dave-Evil check fits a Fabricator frame, and Grace's pair depends on that frame. Both need Night 2 results before anyone is nominated. No nomination from me.
+Mallory (public): Mallory here, Vanilla. Grace's pair shows Dave appearing Evil to her and me differing. Dave flipped Tracker, so he was Good; that makes Heidi's Dave-Evil check and Grace's pair consistent with a Fabricator frame on Dave. Dave's will, claiming Sheriff and Mallory Evil, is the outlier. Someone forged it, and that someone is a Yakuza suspect, not me. Heidi and Grace: did either of you pair or check anyone on Night 2? No nomination from me yet.
+Niaj (public): Niaj here. I have no investigation results. Dave's Tracker flip means he was Good, so Heidi's Evil read fits a Fabricator frame that also forged the will, as Heidi and Judy noted. Heidi and Grace: after Night 2, post your target, result and any visit so we can cross-check. No nomination from me.
+Alice (public): I agree there’s no trial-worthy case yet. Dave’s Tracker flip confirms he was Good; Heidi’s Evil result could be a frame or a lie, and the mismatched will could be forged or Dave’s own false claim. Grace’s pair is conditional on Dave’s appearance and doesn’t independently establish Mallory’s alignment. I won’t support a trial on this alone.
+Bob (public): No nomination from me. Heidi and Grace conflict on Dave, and both claims rest only on Night 1. Heidi and Grace, after Night 2 post your targets, results and any visits so we can cross-check them. Dave's will still needs an explanation.
+Erin (public): Erin here: no nomination from me. Heidi's Evil check on Dave fits the Tracker flip, so Grace's pair depends on whether Dave was framed. Both should post their Night 2 results before anyone is nominated.
+Ivan (public): Heidi's Dave-Evil result fits the Tracker flip if Dave was framed, so it's consistent. Grace's pair then only says Mallory is Good or Neutral. Heidi and Grace, post your Night 2 targets and results. No nomination from me yet.
+Mallory (public): Correction: Night 2 hasn't happened yet, so asking for N2 results is premature. Heidi and Grace have each posted N1 results. Dave's will is the only claim calling me Evil, and it's unverified. Heidi and Grace, did either of you visit anyone on N1 that we can cross-check?
+Niaj (public): no nomination yet. Heidi and Grace both report N1 results on Dave, and those can't both be honest as stated. Each of you should name your N1 target and whether you visited anyone, so Trackers and Lookouts can cross-check.
+Alice (public): A Tracker could leave a deliberately false will, so we cannot conclude Dave’s will was forged or identify its author. If Heidi is truthful, Dave must have been framed; then a truthful Grace’s pair leaves Mallory Good or Neutral. If either claim is false, the pair tells us less.
+Erin (public): Erin here: no nomination from me. Heidi's Dave-Evil result and Grace's pair both fit Dave's Tracker flip if he was framed, so I'll judge them on Night 2 results and votes, not on who pushes harder.
+Heidi (public): One correction: my result was not just compatible with a frame. I know I am Sheriff; Dave flipped Tracker, so he was neither Ex-Con nor a Yakuza Katana holder, and was framed N1. Grace’s pair therefore puts Mallory at Good or Neutral—not specifically Evil. Dave’s will could still be his own lie or forged.
+Ivan (public): Ivan here. Grace's pair has shifted twice, from 'non-Good' to 'Good or Neutral if Dave was framed', and it only says Mallory differs from Dave as he appeared. Heidi's Dave-Evil result fits the Tracker flip if Dave was framed. Grace, what did you check on Night 2, and did you visit anyone? No nomination from me yet.
+Mallory (public): Heidi's N1 Dave-Evil result and Grace's pair are consistent only if Dave was framed. If so, the same Fabricator likely forged his will, so whoever keeps citing the will's Mallory-Evil line deserves scrutiny. No nomination from me.
+Alice (public): We still don't have proof Dave was framed: Heidi's claim cannot establish its own truth. If Dave was framed, Grace's pair leaves Mallory Good or Neutral; otherwise it points to Neutral or Evil. Dave's will could be forged or his own lie, so it doesn't resolve this. No trial-worthy alignment case yet; keep night target plans private.
+Bob (public): still no nomination. Heidi and Grace conflict on Dave's N1 result, so I want their Night 2 targets and results cross-checked before any trial.
+Ivan (public): No nomination from me before Night 2 results. Grace's pair has moved twice, so she should post her N2 target and result first, and Heidi should do the same.
+Mallory (public): no nomination. Heidi, if you are the real Sheriff, check me tonight. I'm Good, so a Not Evil result is useful. Heidi and Grace, post your N2 targets and results before any vote.
+Niaj (public): No nomination from me. Heidi and Grace, after Night 2 post your target, result and any visit. Mallory, pressing Heidi to check you tonight is not evidence either way.
+Frank (public): Frank here. Heidi and Grace still have only conflicting Night 1 results on Dave, and neither has posted a Night 2 target. Heidi, Grace: whom did you visit on N1 and N2? Until those line up, I won't back a trial.
+Heidi (public): I visited Dave on N1; my Sheriff result was Evil. No N2 has occurred, so no N2 target or result exists. If my Sheriff claim is true, Dave’s Tracker flip rules out the Ex-Con and Katana-holder exceptions, confirming a Fabricator frame; Grace’s pair then leaves Mallory Good or Neutral.
+Ivan (public): Heidi's Dave-Evil result fits a frame, so I lean toward real Sheriff. Grace's pair has moved twice; she should explain it. No nomination.
+Grace (public): My Seer result never changed; I corrected the inference. Dave flipped Good, but could have appeared Evil if framed. If Heidi is truthful, Mallory is Good or Neutral; otherwise she could be Neutral or Evil. No trial on this alone.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Erin, Ivan) Carol (Yakuza chat): Plan: move the Katana to Ivan and attack Heidi; that gets it off me and removes the claimed Sheriff. I’ll frame Mallory to keep the alignment picture muddy. Erin, I recommend no swap unless you have a strong reason—otherwise it risks redirecting the attack. I’ll vote Ivan as holder and Heidi as target.
+(to Carol, Erin, Ivan) Erin (Yakuza chat): Erin: Agreed. Ivan holds the Katana tonight and it attacks Heidi. I vote Ivan as holder and Heidi as target. No swap and no other action from me. Carol, keep the Mallory frame as planned. Ready.
+(to Carol, Erin, Ivan) Ivan (Yakuza chat): Ivan agrees with Carol and Erin: Ivan holds the Katana tonight and it attacks Heidi. I vote Ivan as holder and Heidi as target. I have no swap and no other action. Erin, please confirm no swap so the attack lands on Heidi. Carol, keep the Mallory frame and the will plan as stated. Ready.
+Night actions:
+  Alice (Vigilante): no action
+  Carol (Fabricator): target Mallory; "Frame Mallory; I have no forge token remaining."; Katana vote: Ivan holds, attacks Heidi
+  Erin (Smuggler): no role action; Katana vote: Ivan holds, attacks Heidi
+  Grace (Seer): no action
+  Heidi (Sheriff): target Ivan
+  Ivan (Grunt): no role action; Katana vote: Ivan holds, attacks Heidi
+  Judy (Lookout): target Heidi
+  Niaj (Medic): target Heidi; "Protect Heidi with Standard Defense, no token cost."
+Katana: Ivan holds it and attacks Heidi.
+(to Grace) Moderator (private): Night 2 Seer result: Bob and Erin — their alignments are DIFFERENT. (You have 0 seer tokens left.)
+(to Heidi) Moderator (private): Night 2: You investigated Ivan. Result: Not Evil. You were also attacked with the Katana tonight, but you survived.
+(to Judy) Moderator (private): Night 2: You watched Heidi. Visitors to Heidi: Ivan, Niaj.
+(to Niaj) Moderator (private): Night 2: You protected Heidi with Standard Defense (no token spent). You have 2 medic tokens left.
+(to Carol) Moderator (private): Night 2: You framed Mallory (no will forged). You have 0 fabricator tokens left.
+(to Ivan) Moderator (private): Night 2: As Katana holder you attacked Heidi with the Katana. Your attack FAILED — Heidi survived.
+(to Carol, Erin, Ivan) Moderator (private): Yakuza night summary (Night 2) — actions chosen: Carol (Fabricator) framed Mallory, no forge. Erin (Smuggler) took no action. Ivan (Grunt) holds the Katana (moved from Carol) and made the Katana attack on Heidi.
+[Moderator summary] Night 2: Katana moved Carol->Ivan; Ivan's Standard Katana attack on Heidi was blocked by Niaj's Standard protection (no token) — no deaths. Carol framed Mallory (no forge). Heidi checked Ivan -> Not Evil (Katana holder). Judy watched Heidi: Ivan, Niaj. Grace random pair Bob/Erin -> different. Erin no swap. No token changes.
+
+===== DAY 3 =====
+Nobody died last night.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Alice (public): Now that N2 has happened, Heidi and Grace should post whether they acted and give their exact N2 targets and results; if either abstained, say so. The no-death night clears nobody. Their N1 claims remain conditional, so I see no basis to nominate yet.
+Bob (public): Bob here, Vanilla. Night 2 passed with no death, so nobody is cleared. Heidi and Grace, post your N2 target, result, and whether you visited anyone. Your conflicting N1 Dave results are the only checks so far. No nomination from me yet.
+Carol (public): A no-death night clears nobody. Please give your actual N2 actions and results, not just ask for them; then we can compare the claims. No nomination until those are on record.
+Erin (public): Erin here. Nobody died last night, so Heidi's Dave-Evil result and Grace's Dave/Mallory pair are still unverified. Both have posted claims, and I want their N2 targets and results on record before anyone is nominated. No nomination from me yet.
+Frank (public): Frank here. Night 2 had no death. Heidi and Grace, state whether you acted on N2, your exact target and result. Heidi, your 'no N2 has occurred' on Day 2 was said before Night 2, so please post the N2 outcome now. No nomination from me yet.
+[Claim] Grace: Seer. N1 Dave/Mallory differed; N2 random Bob/Erin differed.
+Grace (public): N2 result: random pair Bob/Erin DIFFERENT; I chose neither and made no visit. Since both claim Vanilla (Good), at least one claim is false. This doesn’t tell us which or classify either. Bob and Erin, explain.
+[Claim] Heidi: Sheriff. N1 Dave Evil as appeared; N2 Ivan Not Evil. Attacked by Katana N2 and survived.
+Heidi (public): N2 I checked Ivan: Not Evil, which doesn’t clear him (some Neutrals and the Katana holder can read Not Evil). I was attacked with the Katana and survived; I can’t tell whether protection or a swap explains it. Grace’s pair says Bob and Erin differ, not which one is non-Good; if genuine, at least one Vanilla claim is false. No trial yet.
+Ivan (public): Ivan here, Vanilla per my claim. No nomination from me. Grace's and Heidi's results could both be genuine, so I'm not hanging on either yet. Bob and Erin, say what you did on N1 and N2 so Grace's Bob/Erin pair can be checked. Heidi, what stopped the Katana on N2?
+[Claim] Judy: Lookout. N1 watched Alice: nobody visited. N2 watched Heidi: Ivan and Niaj visited.
+Judy (public): I watched Heidi on N2 and saw Ivan and Niaj visit her. That establishes visits, not what either did; given Heidi’s Katana report, both visits merit scrutiny. Ivan and Niaj, explain your visits and whether you were swapped. Let’s hear their accounts before considering a nomination.
+Mallory (public): Judy's Lookout report is the first checkable lead: Ivan and Niaj both visited Heidi on N2, and Heidi was hit by the Katana. Ivan and Niaj, what did your visits do? Judy, did anyone visit your N1 watch target? I'm not nominating yet.
+[Claim] Niaj: Medic. N1: protected Grace (Standard). N2: protected Heidi (Standard, no token). Heidi survived the Katana.
+Niaj (public): Niaj here, Medic. N1 I protected Grace with Standard Defense. N2 I protected Heidi with Standard Defense and spent no token. Judy's Lookout report is accurate: I visited Heidi on N2. Heidi was hit by a Standard Katana and survived, which fits my protection. The only other visitor was Ivan, so Ivan, explain your N2 visit to Heidi and what you were doing.
+Alice (public): I’m nominating Ivan. Judy says you visited Heidi on N2, when she was hit by the Katana; Niaj gives a plausible Medic explanation for his own visit. Ivan, state exactly what you did and whether you were swapped. This is a serious lead, not proof by itself.
+Alice nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: Yes - Alice, Bob, Frank, Grace, Heidi, Judy, Mallory, Niaj; No - Carol, Erin, Ivan.
+Ivan is put on trial (8 Yes).
+[Claim] Ivan: Ex-Con. Automatic nightly visit to a random player (not told who). Appears Evil to alignment checks.
+Ivan (public): Ivan here. I'm changing my claim to Ex-Con: a Village Outsider who appears Evil to alignment checks and makes an automatic visit each night to a random player, without being told who. Judy's Lookout report of my N2 visit to Heidi may simply be that random visit, and I have no targeted action. That also means Heidi's N2 'Ivan Not Evil' is wrong, since an Ex-Con reads Evil. Heidi, how did you get Not Evil? Bob and Erin: say what you did on N1 and N2. I won't vote on Grace's pair alone, and I'd like the trial decided on checkable facts.
+Judy (public): If Heidi’s Sheriff result is genuine, it conflicts with Ivan’s Ex-Con claim: an Ex-Con reads Evil. The Not Evil result fits the Katana-holder exception, and my watch places Ivan visiting Heidi on the night she reports a Katana attack. Niaj’s claimed protection plausibly explains her survival. A false Sheriff claim or swap could change this, so Ivan should answer directly whether he held the Katana or was swapped. I lean Guilty on this contradiction and visit, not on Grace’s pair.
+Mallory (public): Ivan's Ex-Con claim conflicts with Heidi's Not Evil result. An Ex-Con reads Evil, so Not Evil fits only a Katana holder reading Good. Judy's watch puts Ivan at Heidi on the night she was hit by a Standard Katana, and Niaj's Standard protection explains her survival. Ivan also moved from Vanilla to Ex-Con only after the nomination, and his random visit landing on the Katana target is too convenient. I lean Guilty on that chain, not on Grace's pair.
+Niaj (public): Niaj here. I lean Guilty on Ivan. Judy's Lookout puts Ivan visiting Heidi on the night the Katana hit her, and Heidi read Ivan Not Evil. An Ex-Con reads Evil, so the Ex-Con claim can't explain that result, but a Katana holder reads Good that night. My own visit to Heidi is public and my protection fits her survival. Ivan, explain why Heidi's Not Evil result is wrong, or say whether you held the Katana or were swapped.
+Alice (public): Ivan’s Ex-Con explanation accounts for a visit only by coincidence; it cannot explain Heidi’s Not Evil result if her Sheriff claim and result are genuine. That result is consistent with Ivan holding the Katana, and Judy independently saw him visit Heidi the night she reports a Katana hit. Niaj’s Standard protection plausibly explains her survival: equal Standard attack and defense do not kill. Ivan, answer plainly whether you held the Katana or were swapped. I lean Guilty on this chain, while recognizing a false Sheriff claim or swap could change it; the visit alone is not proof.
+Bob (public): Bob here, Vanilla. I lean Guilty on Ivan. Heidi's Not Evil result on Ivan contradicts his Ex-Con claim, since an Ex-Con reads Evil. Judy saw only Ivan and Niaj visit Heidi on the night she was hit by a Standard Katana. Heidi survived, which fits Niaj's Standard protection, so the attacker was most likely Ivan. Ivan changed claims only after the nomination. Ivan, explain why a random Ex-Con visit would land on the Katana victim and why your claim fits Heidi's Not Evil result. Separately, I know I'm Good, so Grace's Bob/Erin pair means Erin is Neutral or Evil, unless Grace is lying.
+Carol (public): I voted No on the nomination because the visit alone didn’t establish what Ivan did. His Ex-Con claim now conflicts with Heidi’s Not Evil result, and he still hasn’t answered whether he held the Katana. The claim switch adds to my concern; I’m leaning Guilty on those specifics.
+Erin (public): Erin here. I voted No on the nomination because a visit alone isn't proof. Ivan's Ex-Con claim doesn't explain Heidi's Not Evil result, and Judy's watch puts him at Heidi on the night she was hit. That chain is now enough for me to lean Guilty. Ivan, plainly: did you hold the Katana that night? Grace, Bob/Erin only says one of us differs; it doesn't classify either of us.
+Frank (public): Frank here. Heidi's Katana hit needed a visitor, and Judy's watch shows only Ivan and Niaj visited her. Niaj's Standard protection is the only thing that lets a Standard hit fail, so Niaj is not the attacker if he is the Medic. That makes Ivan the Katana visitor. An Ex-Con is Village, so Ivan can't hold the Katana. If Ivan is an Ex-Con, Niaj must be the attacker, which contradicts Niaj's protection. Ivan, did you visit Heidi with the Katana on N2, yes or no? I lean Guilty on this chain, not on Grace's pair.
+Grace (public): Heidi’s Not Evil result is the strongest point: if her Sheriff check is genuine, an Ex-Con should read Evil, while a Katana holder reads Good. Judy’s watch corroborates Ivan’s visit but can’t identify what he did; an automatic Ex-Con visit is possible. Niaj’s claimed protection could explain Heidi’s survival, but neither the protection nor the attack attribution is confirmed. Ivan, answer plainly: did you hold the Katana or were you swapped? Your change from Vanilla is concerning too.
+Heidi (public): I’ll vote Guilty. If Ivan is truly an Ex-Con, my Sheriff check should read Evil, not Not Evil. A swap could redirect my check, but Ivan hasn’t claimed one; Judy independently saw him visit the Katana victim. The visit alone doesn’t prove he held it, but his claim still doesn’t explain my result.
+Ivan (public): Ivan here. I did not hold the Katana on Night 2 and I did not attack Heidi. I have no targeted action. My Ex-Con visit is random and I'm never told the target, so Judy's watch only shows that I visited someone, which is what a random visit does. A random visit landing on the Katana victim is a coincidence, not proof of an attack. Heidi's Not Evil result on me is the real problem: an Ex-Con reads Evil, so either her Sheriff check is false or her result is wrong. Heidi, what exactly did you see on N2, and who did you check on N1? Please vote on checkable facts, not on a visit alone.
+Trial votes on Ivan: Guilty - Alice, Bob, Carol, Erin, Frank, Grace, Heidi, Judy, Mallory, Niaj; Innocent - Ivan.
+Ivan is executed by hanging (10 Guilty of 11 votes; 6 needed).
+Ivan died (executed by hanging). Their role was Grunt. Their last will: "Ivan: Ex-Con (Village Outsider, appears Evil). My nightly visit is to a random player and I'm not told who. I have no targeted night action and no night results. Judge me by my votes and public statements, and don't hang anyone on silence alone."
+(to Carol, Erin) The Katana passed to Carol.
+
+===== NIGHT 3 =====
+(to Carol, Erin) Carol (Yakuza chat): I recommend Carol keeps the Katana and attacks Niaj. He can’t protect himself, so this should remove the claimed Medic; swapping risks redirecting the attack and exposing the swap. I’ll frame Grace tonight to muddy any Sheriff check on her. Erin, let me know if you see a stronger plan or have a good reason to use a swap.
+(to Carol, Erin) Erin (Yakuza chat): Erin: I agree Carol keeps the Katana. Two notes. Niaj is a Medic and can self-protect for one token, so 'he can't protect himself' is wrong and a Standard hit on him can fail. Niaj already protected Heidi on N2, so she is the likeliest to be covered again. Grace is a Seer who hasn't been hit and whose N2 Bob/Erin pair fits our team, so I propose the Katana hits Grace. Carol, keep the Grace frame as planned. I'll vote Carol as holder and Grace as target unless you give a concrete reason otherwise.
+(to Carol, Erin) Carol (Yakuza chat): Agreed: Carol holds the Katana and attacks Grace; I won't swap. I’ll vote Carol as holder and Grace as target. I suggest framing Heidi rather than Grace—if Grace dies, framing her has little value, while a living Sheriff or a Seer pair including Heidi could still be affected.
+(to Carol, Erin) Erin (Yakuza chat): Erin: Agreed. Carol holds the Katana and it attacks Grace. I vote Carol as holder and Grace as target. Framing Heidi instead of Grace is fine with me. I won't swap and have no other action. Carol, keep the Katana and the frame consistent. Ready.
+(to Carol, Erin) Carol (Yakuza chat): Agreed: Carol keeps the Katana and attacks Grace; I’ll frame Heidi. No swap. I’m ready.
+(to Carol, Erin) Erin (Yakuza chat): Erin: Confirmed. Carol holds the Katana and it attacks Grace; I won't swap and have no other action. Carol frames Heidi with no forge. Holder and target votes match. Niaj may protect Grace, but the plan stands. Ready.
+Night actions:
+  Alice (Vigilante): target Erin; 1 token(s); "Basic Vigilante attack"
+  Carol (Fabricator): target Heidi; "Frame Heidi; no forge token remaining."; Katana vote: Carol holds, attacks Grace
+  Erin (Smuggler): no role action; Katana vote: Carol holds, attacks Grace
+  Grace (Seer): no action
+  Heidi (Sheriff): target Niaj
+  Judy (Lookout): target Grace
+  Niaj (Medic): target Heidi; "Protect Heidi with Standard Defense; no token cost."
+Katana: Carol holds it and attacks Grace.
+(to Alice) Moderator (private): Night 3 result: You shot Erin with a Basic Attack (1 vigilante token spent). Your attack succeeded. You have 2 vigilante tokens left.
+(to Erin) Moderator (private): Night 3: You were attacked by a Vigilante. You died.
+(to Grace) Moderator (private): Night 3: You were attacked with the Katana. You died. Your Seer result for the night: random pair Alice and Niaj — their alignments are the SAME. You have 0 seer tokens.
+(to Heidi) Moderator (private): Night 3 result: You investigated Niaj. Result: Not Evil.
+(to Judy) Moderator (private): Night 3 result: You watched Grace. Visitors: Carol.
+(to Niaj) Moderator (private): Night 3 result: You protected Heidi with Standard Defense (no token spent). You have 2 medic tokens left.
+(to Carol) Moderator (private): Night 3 result: You framed Heidi (no forge; 0 fabricator tokens left). You held the Katana and attacked Grace: the attack succeeded. Yakuza actions this night: Carol — framed Heidi; Erin — no action. Katana vote: holder Carol, target Grace.
+(to Erin) Moderator (private): Yakuza actions this night: Carol — framed Heidi; Erin — no action. Katana vote: holder Carol, target Grace. You have 2 swap tokens.
+[Moderator summary] Night 3: Alice (Vigilante, 1 token, Basic) killed Erin (Smuggler, Defense None); Alice has 2 tokens left. Carol held the Katana and killed Grace (Seer, unprotected) with a Standard Attack. Carol framed Heidi (no forge). Niaj protected Heidi at Standard with no token, but nobody attacked Heidi. Heidi checked Niaj and got Not Evil. Judy watched Grace and saw Carol. Grace's random Seer pair was Alice and Niaj: SAME (both Good). Erin chose no action and made no swap. Carol keeps the Katana and is the last Yakuza alive; the game goes on with 8 players.
+
+===== DAY 4 =====
+Erin died (killed by Vigilante). Their role was Smuggler. Their last will: "Erin's will: I have no confirmed role information to share. Dave's will claimed a Sheriff check on Mallory, but Dave's revealed role was Tracker, so that claim is unverified. Heidi's Sheriff claim and Grace's Seer claim are both unverified. Judge players by their votes and verifiable results, not by early speeches or pushes."
+Grace died (killed by Katana). Their role was Seer. Their last will: "I am the Seer. N1 I chose Dave and Mallory; their alignments differed. Dave flipped Tracker, so he was Good, but he may have been framed and appeared Evil to me. If framed, Mallory could be Good or Neutral; if not, she is non-Good. Dave’s mismatched will may have been forged or false and does not establish Mallory’s alignment. N2 my random pair was Bob and Erin; their alignments differed. This does not identify which is Good, Evil, or Neutral. I have no seer tokens remaining."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Frank (public): Frank here. Concrete vote read: on Ivan's nomination, Carol, Erin and Ivan were the only No votes. Erin and Ivan were Yakuza, so Carol's No is a lead. Carol, why did you vote No? Mallory, why did you push Heidi to check you, and why call the will a Yakuza forgery? Heidi's and Niaj's results fit each other. No nomination from me yet.
+[Claim] Heidi: Sheriff. N1 Dave Evil as appeared; N2 Ivan Not Evil; N3 Niaj Not Evil.
+Heidi (public): Erin's flip confirms she was Yakuza; Ivan also flipped Grunt. Carol, your No on the nomination followed by Guilty is a meaningful distinction—what made you reject the nomination but convict after hearing the defense? It isn't proof by itself. My N3 check on Niaj was Not Evil, but that does not clear him: a Yakuza Katana holder reads Good, and Erin could have held it before dying. Niaj's Medic claim is likewise unverified. Let's establish who had the Katana before a trial.
+Judy (public): I’m nominating Carol. I watched Grace on N3 and saw only Carol visit; Grace was killed by the Katana that night. A visit alone doesn’t prove an attack, and Erin’s Smuggler role means a swap is possible, but this is our strongest direct lead. Carol, explain the visit and whether you were told you were swapped.
+Judy nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Judy, Mallory, Niaj, Alice, Bob, Carol, Frank, Heidi; No - nobody.
+Carol is put on trial (8 Yes).
+Carol (public): I voted Yes on the nomination to hear the case, not because a visit proves an attack. Judy saw where I visited, not who selected the target or whether it was redirected. Erin was still alive at the start of N3 and, as Smuggler, could have swapped herself with the Katana’s intended target; she and Grace both died that night, so neither could report being swapped. My Day 3 vote on Ivan was also consistent: I voted No before his claim, then Guilty after the Ex-Con claim conflicted with Heidi’s result. Please distinguish a strong lead from proof before voting Guilty.
+Frank (public): Judy's Lookout watch on Grace (N3) shows only Carol visiting her, and Grace died to the Katana that night. Erin's Smuggler swap doesn't fit: a Smuggler visits both swapped players, so Erin would appear on Grace's visitor list. Carol claims Vanilla, which has no night action, so her visit must be the Katana attack or an unexplained random visit. Add her No vote on Ivan alongside Erin and Ivan, and I vote Guilty. Carol, explain that visit in one line.
+Heidi (public): If Judy’s N3 report is accurate, Carol’s swap defense doesn’t fit: any Erin swap involving Grace—needed to redirect Judy’s watch or redirect a Katana hit onto Grace—would make Erin visit Grace, which Judy should see. She saw only Carol. Carol’s visit fits the attack; I plan to vote Guilty, though the report isn’t proof by itself.
+Judy (public): Carol's swap defense doesn't explain the observation: if Erin swapped Grace, Judy's watch would follow the swap, and Erin would be visible visiting the watched player. No Erin appeared. That doesn't prove Carol attacked, but her Vanilla claim gives no reason for her visit. As the sole visitor to the Katana victim, Carol is my strongest suspect, and I intend to vote Guilty.
+Mallory (public): Guilty on Carol. Concrete points: she claims Vanilla, which has no night action, yet Judy's N3 watch on Grace shows Carol as the only visitor the night Grace was Katana-killed. She also voted No on Ivan's nomination alongside Erin and Ivan, both confirmed Yakuza. Carol, what was your N3 visit?
+Niaj (public): Niaj here, Medic. On Carol: Judy's Lookout watch on Grace (N3) showed Carol as the only visitor, and Grace died to the Katana that night. A Katana kill needs the holder to visit the victim, so the holder was Carol. Erin's Smuggler swap doesn't fit, since a swap would have put Erin on Grace's visitor list. A Yakuza holds the Katana, so Carol is Yakuza. Ivan, Erin and Carol also all voted No on Ivan's nomination. I vote Guilty.
+Alice (public): Judy’s N3 watch places Carol as the only visitor to Grace, who was killed by the Katana that night. Carol claims Vanilla, which has no night action. The swap explanation doesn’t account for this: a swap involving Grace would make Erin visible visiting the watched player too. This is strong direct evidence, not just a vote read. I’m persuaded to vote Guilty; Carol needs to explain the visit.
+Bob (public): Bob here, Vanilla. I vote Guilty on Carol. Judy's N3 watch shows Carol as the only visitor to Grace, and Grace died to the Katana that night, so the Katana holder visited her. Erin's Smuggler swap would have shown Erin visiting Grace too, and Judy didn't see her. Carol's Vanilla claim has no night action to explain that visit. Carol, explain the visit in one line.
+[Claim] Carol: Party Animal. N1/N2: no action. N3: visited Grace to role-block her.
+Carol (public): My N3 visit was to block Grace: I’m the Party Animal. I lied about being Vanilla to conceal an active role. I was not swapped; my earlier swap comment was only a possibility, not an account of my action. Judy’s report establishes that I visited Grace, but not that I attacked her. I understand why the timing looks damning, but please distinguish a visit from an attack before voting Guilty.
+Trial votes on Carol: Guilty - Alice, Bob, Frank, Heidi, Judy, Mallory, Niaj; Innocent - Carol.
+Carol is executed by hanging (7 Guilty of 8 votes; 5 needed).
+Carol died (executed by hanging). Their role was Fabricator. Their last will: "Party Animal. I lied about being Vanilla to conceal my role. N3 I visited Grace to role-block her after her Seer claim; I was not swapped. Judy’s watch establishes my visit, not its purpose. My N1 and N2 actions were unused. Heidi’s Sheriff and Niaj’s Medic claims remain unverified. Grace’s pair said Bob and Erin differed; Erin flipped Smuggler, which does not by itself classify Bob."
+The game is over. Winners: Alice, Bob, Dave (dead), Frank, Grace (dead), Heidi, Judy, Mallory, Niaj. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Frank, Grace, Heidi, Judy, Mallory, Niaj
+Cost by player (USD):
+  Alice (Vigilante)           $0.0477   32 calls  gpt-6-luna
+  Bob (Vanilla Villager)      $0.0461   29 calls  claude-haiku-5.5
+  Carol (Fabricator)          $0.0559   39 calls  gpt-6-luna
+  Dave (Tracker)              $0.0158   12 calls  gpt-6-luna
+  Erin (Smuggler)             $0.0543   34 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)    $0.0501   30 calls  claude-haiku-5.5
+  Grace (Seer)                $0.0386   28 calls  gpt-6-luna
+  Heidi (Sheriff)             $0.0497   33 calls  gpt-6-luna
+  Ivan (Grunt)                $0.0504   31 calls  claude-haiku-5.5
+  Judy (Lookout)              $0.0468   32 calls  gpt-6-luna
+  Mallory (Vanilla Villager)  $0.0472   29 calls  claude-haiku-5.5
+  Niaj (Medic)                $0.0537   32 calls  claude-haiku-5.5
+  Moderator                   $0.7527   10 calls  claude-opus-5.5
+  Night checks                $0.2791    3 calls  claude-opus-5.5
+  Strategy review             $0.2413    1 calls  claude-opus-5.5
+  Log review                  $0.1931    1 calls  claude-opus-5.5
+  Total                       $2.0224  376 calls
