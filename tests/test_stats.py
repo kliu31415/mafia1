@@ -10,7 +10,7 @@ import pytest
 import mafia
 import stats
 from tests.conftest import ScriptedClient
-from llm import Model
+from llm import MockClient, Model, text_of
 from roles import ROLES, Alignment
 import role_power
 import setups
@@ -174,3 +174,24 @@ def test_role_powers_are_refit_from_results_towards_the_priors(tmp_path):
     role_power.update(tmp_path, path)  # no games: the priors
     assert role_power.load(path) == (role_power.OFFSET_PRIOR, role_power.PRIOR)
     assert "| Sheriff | Good | +0.55 | +0.55 | 0 |" in path.with_suffix(".md").read_text(encoding="utf-8")
+
+
+def test_players_get_the_setup_note_and_their_tips(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    systems: list[str] = []
+    chat = MockClient.chat
+
+    def spy(self, model, messages, **kw):
+        systems.append(" ".join(str(text_of(m.get("content"))) for m in messages if m.get("role") == "system"))
+        return chat(self, model, messages, **kw)
+    monkeypatch.setattr(MockClient, "chat", spy)
+    tips = tmp_path / "tips.md"
+    tips.write_text("# Tips\n\n## Everyone\n- A tip only this test writes.\n", encoding="utf-8")
+    roles = balanced_setup(13, random.Random(1), yakuza=3)
+    mafia.play_game(MockClient(1), mafia.GameConfig(
+        [Model.HAIKU_5_5], Model.HAIKU_5_5, roles, 1, tips=tips, max_days=1, debrief=False, lessons=False,
+        review=False, check_nights=False, setup={"kind": "random", "name": "standard", "players": 13, "yakuza": 3}),
+        checkpoint=False)
+    assert all("Its roles were drawn at random by the standard setup" in s for s in systems)
+    assert any("A tip only this test writes." in s for s in systems)
+    assert not any(", ".join(roles) in s for s in systems)
