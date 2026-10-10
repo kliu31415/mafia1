@@ -1,13 +1,1 @@
-{
- "game_20261010_013419_977337": {
-  "ids": [
-   "1791596423.1524286:moderator_flag",
-   "1791596900.9508414:moderator_warning",
-   "1791597358.6243877:player_feedback",
-   "1791598129.0569391:player_feedback",
-   "1791598131.469343:player_feedback",
-   "1791598135.089305:player_feedback"
-  ],
-  "note": "Katana-pass fixed (70904c9), puppet double-spend is noise; asked Kevin: R9 notice for blocked no-action players, Trapper re-trap delay, night will edits"
- }
-}
+{}
