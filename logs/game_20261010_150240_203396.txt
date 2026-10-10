@@ -1,0 +1,56 @@
+Setup:
+  Alice    seat 1  Vanilla Villager  anthropic/claude-opus-5.5
+  Bob      seat 2  Vanilla Villager  anthropic/claude-opus-5.5
+  Carol    seat 3  Fabricator        anthropic/claude-opus-5.5
+  Dave     seat 4  Surveyor          anthropic/claude-opus-5.5
+  Erin     seat 5  Arsonist          anthropic/claude-opus-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-opus-5.5
+  Grace    seat 7  Fixer             anthropic/claude-opus-5.5
+  Heidi    seat 8  Philanthropist    anthropic/claude-opus-5.5
+  Ivan     seat 9  Vanilla Villager  anthropic/claude-opus-5.5
+  Judy     seat 10 Vigilante         anthropic/claude-opus-5.5
+  Mallory  seat 11 Seer              anthropic/claude-opus-5.5
+  Niaj     seat 12 Eavesdropper      anthropic/claude-opus-5.5
+  Olivia   seat 13 Vanilla Villager  anthropic/claude-opus-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Grace) Carol (Yakuza chat): Hi Grace. Proposal: you keep the Katana (you read Good to checks while holding it). With no info yet, let's hit someone random: Mallory. Please vote holder=Grace, target=Mallory so the kill goes through, since both of us must agree. I'll frame Bob tonight so any Sheriff or Seer who checks him gets an Evil result. My forge token stays saved. My cover is Seer with 1 token, and I'll invent pair results to push suspicion onto town. For you, I'd suggest a 2-token Village claim that won't draw the Katana, like Philanthropist or Cartographer, so an Accountant check fits. Pick one and tell me. No day PMs between us; all planning stays here. If you'd rather target someone else, just say who and I'll match it.
+(to Carol, Grace) Grace (Yakuza chat): Agreed on all of it. I'm voting holder=Grace, target=Mallory. My cover is Philanthropist (2 tokens, which matches my 2 fixer tokens if an Accountant checks me). My will already says I'm holding the tokens until power roles are confirmed. I'm saving my fixes for a Day when one of us is on trial, or when a key mislynch needs a nudge. Your Seer cover is good, but be careful: a real Seer may counterclaim, so keep your pair results vague enough to survive that. Frame on Bob sounds fine. Going forward we kill whoever claims Sheriff, Lookout or Tracker, and whoever runs the strongest analysis. No day PMs. Ready.
+(to Carol, Grace) Carol (Yakuza chat): Confirmed: holder=Grace, target=Mallory. Frame on Bob. Philanthropist cover noted. If you're ever accused, I'll stay neutral and won't defend you. Ready.
+(to Carol, Grace) Grace (Yakuza chat): Confirmed again: holder=Grace, target=Mallory. Ready.
+Night actions:
+  Carol (Fabricator): target Bob; "Frame Bob (no forge token spent)."; Katana vote: Grace holds, attacks Mallory
+  Dave (Surveyor): target Heidi; 1 token(s)
+  Erin (Arsonist): target Judy; "douse"
+  Grace (Fixer): no role action; Katana vote: Grace holds, attacks Mallory
+  Heidi (Philanthropist): no action
+  Judy (Vigilante): no action
+  Mallory (Seer): no action
+  Niaj (Eavesdropper): target Mallory
+Katana: Grace holds it and attacks Mallory.
+(to Dave) Moderator (private): You surveyed Grace, Heidi and Ivan. One of them, chosen at random, has the role Vanilla Villager. 2 survey tokens left.
+(to Mallory) Moderator (private): Night 1 Seer result (random pair): Ivan and Erin have DIFFERENT alignments. You were attacked with the Katana tonight and you died.
+(to Carol) Moderator (private): You framed Bob tonight (no will forged). 1 fabricator token left.
+(to Erin) Moderator (private): You doused Judy tonight.
+(to Grace) Moderator (private): Your Katana attack on Mallory succeeded. You still hold the Katana. 2 fixer tokens left (none used tonight).
+(to Carol, Grace) Moderator (private): Yakuza actions chosen on Night 1: Carol (Fabricator) chose to frame Bob, with no will forged. Grace (Fixer) chose no Fixer action. The Katana stayed with Grace, who chose to attack Mallory with it.
+[Moderator summary] Night 1: Grace (holding the Katana) attacked Mallory (Standard vs None) and killed her, cause Katana. Carol framed Bob, no forge. Dave surveyed Heidi (1 token spent, code gives the result). Erin doused Judy. Niaj eavesdropped on Mallory, who died, so there will be nothing to read. Mallory's random Seer pair was Ivan (Good) and Erin (Neutral): different. Nobody was role-blocked. Visits: Carol->Bob, Dave->Heidi, Erin->Judy, Grace->Mallory, Niaj->Mallory.
+
+===== DAY 2 =====
+Mallory died (killed by Katana). Their role isn't revealed. Their last will: "Mallory - Seer (Good). 1 seer token (choose-pair). Will log every night's pair and result here. N1: random pair (no token used)."
+(to Niaj) Mallory died, so you have no one to eavesdrop on today.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Grace.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Grace (public): Mallory's will says Seer, killed N1, probably a random early hit. Investigators with N1 results (Sheriff, Lookout, Tracker, etc.): please post them now so we have something to work from. Everyone else, no need to hard-claim protective roles yet.
+Ivan (public): Agree with Grace. Investigators, post N1 results now, with target and exact result. Everyone else: say who you'd check or watch and why. Silence today will be noted.
+Judy (public): No N1 result to share from me. Agree with Grace and Ivan: investigators, post target and exact result. Protective and combat roles, stay quiet for now. I'll be tracking claims for conflicts.
+Niaj (public): Nothing useful from N1 on my end. Agree with the call: investigators, post target and exact result. I'm logging every vote and PM link today, so unexplained PM pairs will get asked about.
+Olivia (public): No N1 result from me either. Agreed: investigators post target plus exact result. Everyone, state your nomination and trial votes openly so we can check them against the totals.
+[Claim] Alice: Vanilla Villager. No night action.
+Alice (public): Vanilla Villager here, no night action, nothing hidden. Mallory (claimed Seer) died N1 before logging anything, so that was likely a random hit. Investigators who sit on results past today become suspects. Before any vote, everyone please state Yes/No openly.
+[ERROR crash] the game stopped on day 2 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1/logs/game_20261010_150240_203396.ckpt

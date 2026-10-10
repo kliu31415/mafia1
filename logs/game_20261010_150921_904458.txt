@@ -1,0 +1,327 @@
+Setup:
+  Alice    seat 1  Census Taker      anthropic/claude-opus-5.5
+  Bob      seat 2  Wiretap           anthropic/claude-opus-5.5
+  Carol    seat 3  Fortune Teller    anthropic/claude-opus-5.5
+  Dave     seat 4  Cartographer      anthropic/claude-opus-5.5
+  Erin     seat 5  Lookout           anthropic/claude-opus-5.5
+  Frank    seat 6  Diviner           anthropic/claude-opus-5.5
+  Grace    seat 7  Oracle            anthropic/claude-opus-5.5
+  Heidi    seat 8  Ballot Stuffer    anthropic/claude-opus-5.5
+  Ivan     seat 9  Ex-Con            anthropic/claude-opus-5.5
+  Judy     seat 10 Archivist         anthropic/claude-opus-5.5
+  Mallory  seat 11 Party Animal      anthropic/claude-opus-5.5
+  Niaj     seat 12 Vanilla Villager  anthropic/claude-opus-5.5
+  Olivia   seat 13 Profiler          anthropic/claude-opus-5.5
+  Katana starts with Heidi
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Bob, Frank, Heidi) Bob (Yakuza chat): Plan proposal. Holder: Heidi keeps the Katana tonight. Moving it needs 2 matching votes and her stuffer action is self-only, so no extra visit. Target: no info yet, so a random quiet seat. I propose Judy. Everyone vote holder=Heidi, target=Judy so the kill isn't lost. Frank: use the Diviner on Mallory (group Judy/Mallory/Niaj) to fish for power roles, unless you prefer elsewhere. By day I'll read every PM and pass any investigator or Medic I spot here for N2. Cover claims, fixed now, never switch: I'm Vanilla Villager (0 tokens). Frank: claim something with 0 tokens that can't easily be disproved, like Vanilla Villager (2 allowed) or Lookout if pressed. Heidi: you hold 2 ballot tokens, so claim a 2-token role, like Chronicler or Prosecutor, and keep it vague on Day 2. Never PM each other by day. Save Heidi's stuffer for a day when a teammate is on trial or we can push a hang through.
+(to Bob, Frank, Heidi) Frank (Yakuza chat): Agreed: holder=Heidi, target=Judy. I'll vote both. I'll Diviner Mallory (group Judy/Mallory/Niaj). My cover is Oracle (0 tokens, Astral Visit so no Tracker/Lookout can contradict it). My Diviner exact-role hits let me fake 'correct' Oracle guesses with real info. If I see Judy's role, I can claim I guessed it, which looks credible. Bob, Vanilla works for you. Heidi, Chronicler or Prosecutor with 2 tokens is fine. Just make sure we don't both claim Oracle. No day PMs between us.
+(to Bob, Frank, Heidi) Heidi (Yakuza chat): Agreed: holder=Heidi, target=Judy. I'll vote both. My cover is Medic (2 tokens, matches an Accountant check), already written in my will: 'N1 protected Grace, free Standard, no result'. Medic also explains any 'survived attack' oddities later and lets me 'protect' whoever we want to look clean. I'll hold my ballot tokens for a teammate's trial or a close hang we want. Frank Oracle, Bob Vanilla, me Medic: no overlaps. No day PMs between us. Bob, flag any investigator/Medic claims you read in PMs.
+(to Bob, Frank, Heidi) Bob (Yakuza chat): All agreed: holder=Heidi, target=Judy. Claims locked: Bob Vanilla, Frank Oracle, Heidi Medic. Heidi, careful: if a real Medic claims, you're in a counterclaim, so stay vague on Day 2 and only claim if pressed. I'll report PM contents here each night. Frank, if Diviner shows a real Oracle in the game, tell us so you can pivot early.
+(to Bob, Frank, Heidi) Frank (Yakuza chat): All locked: holder=Heidi, target=Judy. I Diviner Mallory and will report the role I see here N2. If it shows an Oracle in play I'll pivot my claim before speaking much. Ready.
+(to Bob, Frank, Heidi) Heidi (Yakuza chat): Confirmed: holder=Heidi, target=Judy. No ballot token tonight. I'll stay vague on Day 2 and only claim Medic if pressed. Ready.
+Night actions:
+  Alice (Census Taker): target Grace
+  Bob (Wiretap): no role action; Katana vote: Heidi holds, attacks Judy
+  Dave (Cartographer): no action
+  Erin (Lookout): target Judy
+  Frank (Diviner): target Mallory; Katana vote: Heidi holds, attacks Judy
+  Grace (Oracle): target Heidi; guessed role Vanilla Villager
+  Heidi (Ballot Stuffer): no role action; Katana vote: Heidi holds, attacks Judy
+  Judy (Archivist): 1 token(s); "Consult the archive."
+  Mallory (Party Animal): target Judy
+  Olivia (Profiler): target Grace; 1 token(s)
+  Ivan (Ex-Con): automatic: target Frank; "random visit"
+Katana: Heidi holds it and attacks Judy.
+(to Olivia) Moderator (private): You profiled Grace: their role is Diviner, Oracle or Wiretap (exactly one is true, and at least one of the three is a Good role and one is not). 2 profile tokens left.
+(to Alice) Moderator (private): Your census of Erin, Grace and Niaj counted Good players (drawn at random this time): 3 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Frank) Moderator (private): You divined Mallory; the group was Judy, Mallory and Niaj. The role drawn is Party Animal (60% chance it is Mallory's, otherwise one of the others').
+(to Erin) Moderator (private): You watched Judy. Visitors to Judy tonight: Heidi, Mallory.
+(to Grace) Moderator (private): You guessed that Heidi is a Vanilla Villager. Your guess was wrong.
+(to Mallory) Moderator (private): You visited Judy to role-block them. Your block did not fail because of a role-block immunity.
+(to Carol) Moderator (private): Fortune Teller numbers for Night 1 (read at the start of Day 2): 4 players were visited; 7 players visited someone.
+(to Heidi) Moderator (private): You held the Katana and attacked Judy. Your attack succeeded. You still have 2 ballot tokens.
+(to Judy) Moderator (private): You were role-blocked tonight. You were also attacked with the Katana, and you died.
+(to Bob, Heidi) Moderator (private): Yakuza actions tonight: Heidi held the Katana and used it to attack Judy (no role action of her own). Frank divined Mallory. Bob took no action. Heidi still holds the Katana.
+(to Frank) Moderator (private): Yakuza teammates' actions tonight: Heidi held the Katana and used it to attack Judy (no role action of her own). Bob took no action. Heidi still holds the Katana.
+[Moderator summary] Night 1: Mallory (Party Animal) role-blocked Judy, so the archive didn't happen and her token wasn't spent. Heidi (Katana holder) attacked Judy with a Standard attack and killed her (Katana). Alice took a census around Grace, Olivia profiled Grace (1 token spent), Frank divined Mallory. Grace guessed Heidi = Vanilla Villager: wrong. Erin watched Judy and saw Heidi and Mallory. Ivan's Ex-Con visit went to Frank. FT numbers: 4 visited, 7 visitors. Visits: Alice>Grace, Erin>Judy, Frank>Mallory, Heidi>Judy, Mallory>Judy, Olivia>Grace, Ivan>Frank.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 6, 3, 1, 1, 1, 1.
+
+===== DAY 2 =====
+Judy died (killed by Katana). Their role isn't revealed. Their last will: "Judy - Archivist (1 archive token). Plan: use the archive early and post the full list of roles publicly. Remember about half the entries are fake; use it to test claims, not to hang directly."
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Niaj.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Niaj (public): Judy (Archivist) was killed N1 by the Katana. Investigators, please post your role, target and exact result today. Protective roles, stay quiet. Everyone, please state your votes before each ballot so we can compare them with the totals.
+[Claim] Olivia: Profiler. N1: profiled Grace (result withheld until Grace claims her role)
+Olivia (public): I'm the Profiler (3 roles, exactly one true). N1 I profiled Grace. Grace: please state your exact role now, before I post the list, so it's a clean test. Everyone else, don't guess roles for her. I'll post the full result once she answers.
+[Claim] Alice: Census Taker. N1: census around Grace, group Erin/Grace/Niaj, counted Good: 3 of 3 Good.
+Alice (public): Census Taker. N1 census around Grace: program's group was Erin, Grace, Niaj; counted Good: 3 of 3 Good. Census sees true alignment (not fooled by Katana/frames), so Erin, Grace and Niaj are truly Good. Olivia, carry on with your Grace test.
+[Claim] Bob: Vanilla Villager. N1: no action.
+Bob (public): Vanilla Villager here, no night action. Good start. Grace, please claim so Olivia's test is clean. If Alice's census is true, Erin, Grace and Niaj are cleared.
+[Claim] Carol: Fortune Teller. N1: 4 players visited, 7 players visited someone.
+Carol (public): Fortune Teller. N1 numbers: 4 players were visited, 7 players visited someone (self-visits count in both). So far: Olivia->Grace, Alice->Grace, Katana holder->Judy = 3 visitors, 2 targets. That leaves 4 more visitors landing on at most 2 other targets. Everyone who visited on N1, please state your target so we can match 7/4.
+[Claim] Dave: Cartographer. N1 visit-group sizes: 6, 3, 1, 1, 1, 1 (no map used).
+Dave (public): Cartographer here: every night I learn the sizes of the visit groups, with visits linked regardless of direction. N1 sizes: 6, 3, 1, 1, 1, 1. So 9 players were linked and 4 neither visited nor were visited. This fits Carol's 7/4. Grace's group (Olivia, Alice, Grace and maybe more) and Judy's group (Judy plus the Katana holder) are probably the 6 and the 3. All N1 visitors, please name your targets and I'll check the fit.
+[Claim] Erin: Lookout. N1: watched Judy, visitors Heidi and Mallory.
+Erin (public): Lookout. N1 I watched Judy: visitors were Heidi and Mallory. One of them likely carried the Katana. Heidi, Mallory: name your role and N1 target now. Dave: my visit puts me in Judy's group too (Judy, Heidi, Mallory, me = 4+), so that's your 6. Grace's group is then the 3 (Olivia, Alice, Grace), and 2 more players are linked to Judy's group.
+[Claim] Frank: Oracle. N1: guessed one of the Judy-case players; result withheld until Heidi and Mallory claim.
+Frank (public): Oracle (I guess one exact role per night, Astral Visit, so no Lookout or Tracker sees me). My N1 guess bears directly on Erin's Judy result. Like Olivia, I'll hold it for a clean test: Heidi and Mallory, each state your exact role and your N1 action on Judy before I post. Nobody feed them roles.
+[Claim] Grace: Oracle. N1: guessed Heidi = Vanilla Villager -> WRONG.
+Grace (public): Oracle (the real one). N1 I guessed Heidi = Vanilla Villager: WRONG, so Heidi is not Vanilla. Olivia, post your list. Frank: this setup has every role but Vanilla at most once, so your Oracle claim is false. You're either Evil or a Roleplayer (Oracle is one of its fake roles). Post your exact result.
+[Claim] Heidi: Sheriff. N1: Judy - Not Evil.
+Heidi (public): Sheriff. N1 I checked Judy (a random quiet first check): Not Evil. That's the visit Erin saw, and Grace is right that I'm not Vanilla. So of Judy's two visitors, I was investigating her. Mallory, please claim your exact role and N1 action now. Frank and Grace both claim Oracle with every non-Vanilla role unique, so one of you is lying. Post your full results.
+[Claim] Ivan: Ex-Con. N1: automatic random visit, target unknown.
+Ivan (public): Ex-Con (Village). I read Evil to Sheriff/Seer, and every night I automatically visit a random player without being told whom. So I'm one of Carol's 7 visitors, target unknown. If a Sheriff reads me Evil or a Lookout sees me somewhere, that's why. Frank: Grace is census-cleared, so you're Roleplayer or lying.
+[Claim] Mallory: Party Animal. N1: role-blocked Judy.
+Mallory (public): Party Animal (Village, can't be blocked). N1 I role-blocked Judy (random pick), which is my visit Erin saw. That's why Judy's archive never ran. I'm not Yakuza, so Judy's only other visitor, Heidi, must be the Katana holder. A Katana holder reads Not Evil and can claim a fake check. Heidi is our hang today.
+[Claim] Niaj: Vanilla Villager. N1: no action.
+Niaj (public): Vanilla Villager, no visit (Alice's census has me Good). Visit math: the claimed visitors are Olivia, Alice, Erin, Heidi, Mallory and Ivan. That's 6, but Carol says 7. So someone who claimed no visit is hiding one. That means one of Bob, Carol, Dave, Frank, Grace or me, or an unclaimed extra action. Frank is my top suspect. He double-claims Oracle against census-cleared Grace. He also says his N1 guess 'bears on the Judy case', but nobody could know Judy's visitors at night unless they were Yakuza. Frank: post your exact N1 guess and result now. Olivia: post your Grace list.
+[Claim] Olivia: Profiler. N1: Grace -> Diviner/Oracle/Wiretap (consistent with her Oracle claim; census Good => Oracle).
+Olivia (public): Profile result, N1 on Grace: Diviner, Oracle or Wiretap (exactly one is true). Grace claimed Oracle, and Alice's census counted her truly Good, so Grace is the Oracle. Diviner and Wiretap are both Yakuza roles, and the census rules them out. That makes Frank's Oracle claim false: he is either a Roleplayer or Yakuza. Frank, post your exact guess and result now. Visit math from Dave's 6/3 groups: the 3-group is exactly Grace, Alice and me. The 6-group is Judy, Erin, Heidi, Mallory, Ivan, plus ONE hidden visitor who claimed no visit (Bob, Carol, Dave, Frank or Niaj). Who visited, and whom?
+Alice (public): Erin is census-confirmed Good, so her watch is solid: Heidi or Mallory carried the Katana on N1. Each claim is unverifiable on its own, so it's a 50/50 for now. Frank, post your exact N1 guess and result now. Its content tells us a lot. The hidden 7th visitor is in Judy's 6-group, so it's one of Bob, Carol, Dave or Frank (or a quiet protector). Heidi and Mallory, who did you each pick and why?
+Bob (public): Re-confirming: I made no visit N1, I have no action. Frank is the clearest lead today. He double-claims Oracle against Grace, who is census-cleared and profile-consistent, and he slipped that his guess 'bears on the Judy case' before anyone knew Judy's visitors. He's also the likeliest hidden 6th member of Judy's group. Heidi vs Mallory is 50/50, and investigators can test it tonight. I'd hang Frank first unless he posts something that checks out.
+Carol (public): Visit math. Grace's 3-group (Grace, Alice, Olivia) can't hold Ivan, or it would be 4. Ivan didn't visit Judy, or Erin would have seen him. So Ivan's random visit landed inside Judy's 6-group: Judy, Erin, Heidi, Mallory, Ivan, plus one unclaimed Y. Either Y is a hidden visitor, or Y was just Ivan's target and the 7th visitor self-visited (a protector). Y is one of Bob, Dave, Frank, Niaj or me (I made no visit). Frank could be a Roleplayer, so post your exact guess before we hang anyone.
+Dave (public): Group math confirms Carol. The 3-group is Grace, Alice and Olivia. The 6-group is Judy, Erin, Heidi, Mallory, Ivan and one more player X. Two fits: (a) X secretly visited Erin, Heidi, Mallory or Ivan, or (b) X was Ivan's random target and the 7th visitor self-targeted, which makes them a lone 1-group. Oracle guesses are Astral, so my groups can't test Frank. Frank: post your exact guess now.
+Erin (public): Small correction: Frank spoke after my Judy post, so his 'bears on the Judy case' line isn't a night slip. Still, Oracle is unique and Grace is census-cleared, so Frank, post your exact guess and result now. My watch stands: Heidi or Mallory carried the Katana. Both claims are safe and unverifiable (dead target), so I want an exact-role test on them before anyone hangs on a coin flip. Heidi, Mallory: why Judy, of all players?
+(to Bob, Erin, Grace) Erin -> Grace (private): Suggestion, don't announce it: tonight guess Mallory = Party Animal. If you're right, Heidi is the Katana holder. If you're wrong, Mallory lied about her role. That's a clean test of my watch.
+[Claim] Frank: Roleplayer (was told Oracle). N1 'guessed' Mallory = Medic, told WRONG; my results are fake noise.
+Frank (public): Fair hit, and I'll own it. I was told my role is Oracle. Grace is census-Good and Olivia's profile fits her as Oracle, and Oracle is on the Roleplayer's fake-role list. So I must be the Roleplayer, not a liar. That makes my results noise and my 'actions' imaginary. They're not visits, so I'm not the hidden 6-group member. For the record, N1 I guessed Mallory = Medic and was told WRONG. Treat that as worthless. Hanging an Outsider who came clean wastes today. The real question is Heidi vs Mallory, plus whoever Ivan's random visit landed on.
+Grace (public): Frank's Roleplayer explanation fits the rules, so I'd park him. Heidi vs Mallory: note that a Pharmacist (block-immune) would naturally fake Party Animal to cover a block-visit, and a Katana holder would fake a Sheriff 'Not Evil' check. Both covers work. I'd rather test tonight than hang a coin flip. I won't say whom I'm guessing.
+(to Bob, Erin, Grace) Grace -> Erin (private): Good idea, I'll likely do that. Keep it quiet.
+Heidi (public): Mallory, your claim is the classic Pharmacist cover: block-immune, and it explains a visit to a Katana victim. Why randomly block a quiet player on N1, when blocking only matters if they act? My Judy check was a plain first check. Tonight I'm checking Mallory. A Pharmacist who isn't holding the Katana reads Evil. I agree with Erin and Grace: test tonight, don't hang a coin flip. Mallory pushed to hang me before any test, so note that.
+Ivan (public): Group-math correction: option (b) fails. If my random visit hit X and X did nothing, Ivan+X would form a separate 2-group, not part of the 6. So X is tied to Judy's group by a real visit. Either X visited Erin, Heidi, Mallory or me, or a Judy visitor (e.g. the Katana holder also using its own action) visited X. Heidi checking Mallory isn't independent. Better tests: Alice census around Mallory or Heidi, and Grace guessing one of them.
+Mallory (public): Heidi announcing she'll check me tonight is not a test. She picks her own result, and a Yakuza will just post 'Mallory Evil'. I ask her own question back: why would a Sheriff check a quiet player first? Yakuza wouldn't waste a Pharmacist block on the Katana's own victim either. The real tests: Alice, census around Heidi tonight. Grace, guess Heidi = Sheriff. I'll vote Guilty on Heidi today if she's nominated.
+Niaj (public): Visit math narrows the hidden visitor. Ivan's random visit must sit in the 6-group, and Carol's '4 visited' leaves only two fits. Either a hidden player X visited Erin, Heidi, Mallory or Ivan, or the Katana holder's own action hit X and someone else self-visited. Either way, one of Bob, Carol, Dave or Frank, who all claimed no visit, is lying (unless a Smuggler swap skews the count). Tests for tonight: Alice, census around Mallory; Grace, guess Heidi = Sheriff. I won't hang a coin flip today without new info.
+Olivia (public): Key point from my Grace profile: the two non-true roles are drawn from roles of OTHER real players in this game. Grace is Oracle, so Diviner and Wiretap are both in play: two Yakuza roles confirmed. Wiretap reads every PM, so treat all PMs as read by Yakuza; don't PM claims or plans. Diviner visits nightly, so it could be our hidden 6-group visitor. I'll test Heidi vs Mallory tonight; no coin-flip hang today.
+Alice (public): Agree: no coin-flip hang today. I'll census around one of Heidi/Mallory tonight and post the exact group and count tomorrow. I won't say which one. Bob, Carol, Dave: one of you is likely the hidden 6-group link, so keep your stories consistent.
+Carol (public): Agree with Ivan's fix: Y is tied to Judy's group by a real visit. One clean fit: the Katana holder also used their own action on Y. Olivia's profile puts a Diviner in play, and a Diviner visits nightly, so watch for that. No coin-flip hang today. I'll post my N2 numbers tomorrow.
+Mallory (public): Fine, I'll accept no hang today. Just pre-register this: if Heidi posts 'Mallory Evil' tomorrow, that's her word against mine, not a test. Census sees true alignment even through the Katana and a Sheriff doesn't. So weigh Alice's census and Grace's guess, not Heidi's check.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Frank, Heidi) Bob (Yakuza chat): PM intel from D2: Erin told Grace privately to guess Mallory = Party Animal tonight, and Grace agreed. If that comes back RIGHT, Heidi is proven the Katana carrier. So Grace must die tonight. Second threat: Alice will census around Heidi or Mallory. Proposal: move the Katana to ME (Bob), target Grace. Reasons: Mallory (block-immune Party Animal) will very likely block Heidi tonight, which would kill the attack. I'm the least useful member, since Wiretap is passive and works even if I'm exposed. Votes: holder=Bob, target=Grace. Everyone submit both. Heidi: you're tomorrow's likely nominee, so spend 1 ballot token tonight. It's self-only, no visit. Tomorrow post 'Mallory: Evil' as planned. Frank: your Roleplayer claim means any seen visit kills you. Either skip, or divine somewhere unlikely to be watched (not Heidi/Mallory/Grace). Erin will probably watch Heidi or Mallory.
+(to Bob, Frank, Heidi) Frank (Yakuza chat): Agreed: holder=Bob, target=Grace. I'll submit both. Grace's Mallory=PA guess would almost surely come back RIGHT: my N1 divine on Mallory's group drew Party Animal, so Mallory is very likely the real PA. That makes Grace the top threat. I'll skip my Diviner tonight. My Roleplayer claim can't survive any seen visit, and last night's hidden 6-group visitor was me, so another unexplained visitor would feed their math. Heidi: if you post 'Mallory: Evil' tomorrow, be ready for Alice's census or Olivia's profile to hit you. Olivia's list on you would show Ballot Stuffer and probably no Sheriff. If either lands, we may have to use the stuffer and push Mallory hard. Bob: tomorrow keep pushing Heidi-vs-Mallory as a 50/50 and steer suspicion toward Mallory or the hidden-visitor pool (Carol/Dave).
+(to Bob, Frank, Heidi) Heidi (Yakuza chat): Agreed: holder=Bob, target=Grace. I'll submit both. Grace confirming Mallory=PA would hang me, so she's the right kill. I'll spend 1 ballot token tonight (self-only, no visit). If I'm on trial tomorrow, the two of you vote Innocent with me: that's 4 Innocent of 12 counted, so we only need 2-3 town Innocents. I'll post 'Mallory: Evil' tomorrow and push the line that Mallory is the Pharmacist cover. Frank, skipping the divine is right. Bob, tomorrow keep it a 50/50 and push for Alice's census to be weighed against a possible frame. If Alice's census hits me with an Evil count, I'll argue that a Diviner/Fabricator can't fake a census but that the group has 2 other members, so the Evil could be either of them. Don't defend me hard if it's hopeless, but vote Innocent if it's close.
+(to Bob, Frank, Heidi) Bob (Yakuza chat): Locked: holder=Bob, target=Grace. All three submit both votes. Heidi spends 1 ballot token and posts 'N2 Mallory: Evil' tomorrow. Frank skips. Tomorrow I'll keep it a 50/50 and point at the hidden-visitor pool (Carol/Dave). If a Lookout names me at Grace tomorrow, I'm burned, so you two vote with town on me and keep yourselves clean. If Grace survives (Medic), don't retry tomorrow night. We'll block or kill the protector instead. Ready.
+(to Bob, Frank, Heidi) Frank (Yakuza chat): Locked: holder=Bob, target=Grace. I'll submit both and skip my Diviner. Tomorrow I'll stay low-key as the Roleplayer: I'll treat Heidi vs Mallory as a real test and lean on the Pharmacist-cover argument against Mallory. If a census or profile hits Heidi hard, I'll vote with town. Ready.
+(to Bob, Frank, Heidi) Heidi (Yakuza chat): Locked: holder=Bob, target=Grace. I submit both, and I spend 1 ballot token tonight. Tomorrow I post 'N2 Mallory: Evil' and push the Pharmacist-cover line. If I'm on trial, vote Innocent unless it's clearly hopeless. Ready.
+Night actions:
+  Alice (Census Taker): target Mallory
+  Bob (Wiretap): no role action; Katana vote: Bob holds, attacks Grace
+  Dave (Cartographer): target Heidi; 1 token(s); "Map Heidi"
+  Erin (Lookout): target Grace
+  Frank (Diviner): no role action; Katana vote: Bob holds, attacks Grace
+  Grace (Oracle): target Mallory; guessed role Party Animal
+  Heidi (Ballot Stuffer): 1 token(s); "Spend 1 ballot token: my vote counts twice in every Day 3 trial vote."; Katana vote: Bob holds, attacks Grace
+  Mallory (Party Animal): target Heidi
+  Olivia (Profiler): target Mallory; 1 token(s)
+  Ivan (Ex-Con): automatic: target Heidi; "random visit"
+Katana: Bob holds it and attacks Grace.
+(to Alice) Moderator (private): Your census of Carol, Dave and Mallory counted Good players (drawn at random this time): 3 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Olivia) Moderator (private): You profiled Mallory: their role is Ballot Stuffer, Oracle or Party Animal (exactly one is true, and at least one of the three is a Good role and one is not). 1 profile token left.
+(to Grace) Moderator (private): Night 2 result: your guess was CORRECT. Mallory is the Party Animal. You were attacked with the Katana tonight, and you died.
+(to Erin) Moderator (private): Night 2 result: you watched Grace. Visitors to Grace (not counting you): Bob.
+(to Carol) Moderator (private): Fortune Teller numbers for Night 2: 3 players were visited; 6 players visited someone.
+(to Mallory) Moderator (private): Night 2 result: you visited Heidi to role-block her. Your block didn't fail because of immunity (she can be role-blocked).
+(to Heidi) Moderator (private): Night 2: you were role-blocked. Your action had no effect and you spent no token. You still have 2 ballot tokens.
+(to Bob) Moderator (private): Night 2 result: your Katana attack on Grace succeeded. You still hold the Katana.
+(to Bob, Frank, Heidi) Moderator (private): Yakuza actions chosen on Night 2: Bob holds the Katana and used it to attack Grace (he has no action of his own). Frank chose not to act. Heidi chose to spend 1 ballot token so that her trial votes count twice on Day 3.
+[Moderator summary] Night 2: Mallory (Party Animal) blocked Heidi, so the ballot stuffing failed and no token was spent. Bob (Katana, Standard) killed Grace (no defense). Grace's Oracle guess (Mallory = Party Animal) was correct. Erin's watch on Grace saw Bob. Alice took a census around Mallory, and Olivia profiled Mallory (1 token spent). Dave mapped Heidi (1 token spent). Ivan's random visit hit Heidi. Visits: Alice->Mallory, Bob->Grace, Erin->Grace, Mallory->Heidi, Olivia->Mallory, Ivan->Heidi. Fortune Teller: 3 visited, 6 visitors. Frank took no action. Bob keeps the Katana.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 5, 3, 1, 1, 1, 1. You mapped Heidi: their group is Alice, Heidi, Ivan, Mallory and Olivia. 1 map token left.
+
+===== DAY 3 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace - Oracle (Good, census-cleared, Olivia's profile fits). N1: guessed Heidi = Vanilla Villager -> WRONG. D2: Erin watched Judy, saw Heidi + Mallory; one likely Katana. N2 plan: guess Mallory = Party Animal or Heidi = Sheriff (decide at night). Either result tests the pair: a right guess clears that one and points at the other; a wrong guess means that player lied. Frank claims Roleplayer (told Oracle), plausible."
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Heidi: Sheriff. N1: Judy - Not Evil. N2: tried Mallory, was role-blocked (no result).
+Heidi (public): Sheriff, N2: I went to check Mallory, as I announced, and was ROLE-BLOCKED, so I have no result. Mallory, did you block me? A real Party Animal and a block-immune Pharmacist would both block the Sheriff who said they'd check them. Either way, Grace died the night she planned to test Mallory = Party Animal. Alice, Erin, Carol, Dave: post your N2 census, watch, numbers and groups before we decide anything. Next time I'll keep my check target quiet.
+Ivan (public): Mallory: whom did you block N2? One plain answer, please. If you blocked Heidi, say so. If not, a separate Pharmacist exists and blocked her. Grace died the night she planned to test you two. Alice, Erin, Carol and Dave: post your N2 results before anyone nominates. I'll reread the group math once they're in.
+[Claim] Mallory: Party Animal. N1: blocked Judy. N2: blocked Heidi.
+Mallory (public): Plain answer: yes, I blocked Heidi N2. She was the only other visitor to the Katana victim N1, so blocking her would stop the Katana if she still held it. Grace died anyway, so the Katana moved to another Yakuza N2, or Heidi isn't the holder. That doesn't clear her: Erin saw only Heidi and me at Judy. Alice: whose census did you take N2? Erin, Carol, Dave: post your N2 results, then we decide.
+Niaj (public): Mallory's N2 block on Heidi also conveniently killed the one check aimed at her. That's a lead, not a verdict. Heidi blocked means no Heidi visit, so N2 data can test this. Dave: does your N2 grouping fit Mallory->Heidi as a pair? Erin, whom did you watch? Alice, Carol: post N2 census and numbers. Then we nominate.
+[Claim] Olivia: Profiler. N1: Grace -> Diviner/Oracle/Wiretap. N2: Mallory -> Ballot Stuffer/Oracle/Party Animal (so Party Animal or Ballot Stuffer).
+Olivia (public): Profiler, N2: I profiled Mallory. Result: Ballot Stuffer, Oracle or Party Animal (exactly one is true). Oracle was Grace, so Mallory is either the Party Animal she claims or the Ballot Stuffer (Yakuza). The fake roles are drawn from other living players' real roles, so either a Ballot Stuffer or a second Party Animal is in this game. Watch trial totals for a doubled vote. If anyone else is the Party Animal, now is the time to say so. With Diviner and Wiretap already confirmed, my lean is that Mallory is the real Party Animal and Heidi is Yakuza. I still want Alice's, Erin's, Dave's and Carol's N2 results before anyone nominates.
+[Claim] Alice: Census Taker. N1: Grace -> Erin/Grace/Niaj 3/3 Good. N2: Mallory -> Carol/Dave/Mallory 3/3 Good.
+Alice (public): Census N2 around Mallory: program's group was Carol, Dave, Mallory; counted Good: 3 of 3 Good. Census counts TRUE alignment, so the Katana, frames and the Ex-Con can't fool it. That makes Mallory truly Good, so Olivia's profile resolves to Party Animal, not Ballot Stuffer. Carol and Dave are Good too. Erin (census-Good) saw only Heidi and Mallory at Judy N1. With Mallory Good, Heidi was the Katana visitor and her Sheriff claim is fake. I'll nominate Heidi once Erin, Carol and Dave have posted N2. Hidden N1 visitor: Bob or Frank.
+Bob (public): Alice's census counts true alignment, and Erin is census-Good, so Heidi is now the mechanical fit for the N1 Katana. I'll vote Guilty if she's nominated. But Mallory blocked her N2 and Grace still died, so the Katana moved to another Yakuza. On the hidden N1 visitor: it's not just Bob or Frank. A census-Good protector hiding as Vanilla (Medic, Trapper) would also be an unclaimed visitor. Niaj, you're the other Vanilla claim. I made no visit.
+[Claim] Carol: Fortune Teller. N1: 4 visited, 7 visitors. N2: 3 visited, 6 visitors.
+Carol (public): N2 numbers: 3 players visited, 6 visitors. Claimed N2 visits: Mallory->Heidi, Olivia->Mallory, Alice->Mallory, Katana->Grace, plus Ivan's random visit. Heidi was blocked, so she didn't visit. That's 5 visitors, so there is exactly one more, and Erin's watch would fill it. Visited must be exactly Heidi, Mallory, Grace. So Erin, your N2 watch target must be one of those three, and Ivan's random visit landed there too. Any other claimed N2 visit breaks the count. Nobody else visited: no protector, no Diviner visit outside those three. Erin and Dave, please post your N2 results now.
+[Claim] Dave: Cartographer. N1 sizes 6,3,1,1,1,1. N2 sizes 5,3,1,1,1,1; mapped Heidi: group Alice/Heidi/Ivan/Mallory/Olivia.
+Dave (public): Cartographer N2: sizes 5, 3, 1, 1, 1, 1. I spent my map on Heidi. Her group was exactly Alice, Heidi, Ivan, Mallory and Olivia (the 5-group), which fits Mallory->Heidi, Alice and Olivia->Mallory, and Ivan's random visit landing on Heidi or Mallory. Grace was NOT in that group. So Grace's group is the 3-group: Grace, the Katana holder, and one more visitor. That matches Carol's 3/6 exactly if Erin watched Grace. So the N2 holder visited Grace and is one of Bob, Carol, Frank or Niaj. I'm a singleton. Alice's census has Carol and Niaj truly Good, so it's Bob or Frank. Frank's claimed actions aren't visits, and Bob claims no action, so whichever one Erin saw at Grace is lying. Erin: who visited Grace? Heidi is still the N1 Katana fit if Mallory is Good. Hang the Grace visitor first.
+[Claim] Erin: Lookout. N1: watched Judy, visitors Heidi and Mallory. N2: watched Grace, only visitor Bob.
+Erin (public): Lookout N2: I watched Grace. Her ONLY visitor was BOB. Grace died to the Katana, and the holder's attack is a visit, so Bob carried the Katana N2. It fits everything: Carol's 6 visitors (Mallory, Olivia, Alice, Ivan, me, Bob) and Dave's 3-group (Grace, me, Bob). Bob claimed Vanilla with no action. Note his last post already floated 'a protector hiding as Vanilla' as cover. A Medic can't explain it either: Standard protection stops the Katana, yet Grace died. I'm census-cleared Good. Nominating Bob. Vote Yes, then Guilty.
+Erin nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Erin, Frank, Heidi, Ivan, Mallory, Niaj, Olivia, Alice, Carol, Dave; No - Bob
+Nomination votes on Bob: 10 Yes (the votes are secret).
+Bob is put on trial (10 Yes).
+Bob (public): I'm a Vanilla Villager and I did not visit Grace. This whole case is Erin's word. Check the mechanics: Carol's 3 visited plus Dave's 3-group mean Grace had exactly two visitors, Erin and one other. If Erin is honest, the other visitor is the holder. If she isn't, she held the Katana herself, since her watch is her visit, and she named a no-action Vanilla who can't prove anything. A Vanilla is exactly the player a Yakuza Lookout would pick to frame. Erin's 'census-Good' rests on one source, Alice, and nobody else can verify a census. Grace's Good was backed by Olivia's profile. Erin's isn't. Roles aren't revealed on death, so hanging me settles nothing. Tonight, Olivia should profile Erin and Alice should census around her. I'm voting Innocent.
+Carol (public): Mechanics back Erin. My 6 visitors plus Dave's map force a second visitor in Grace's 3-group besides Erin, and that visitor claimed no visit. Erin is census-Good, and Alice's census also counted me Good, which I know is true. Guilty on Bob.
+Dave (public): Alice's N2 census counted me Good, which I know is true, so her census checks out where I can verify it. Erin is census-Good, and my map forces a second visitor in Grace's 3-group besides Erin. Bob's defence needs both Alice and Erin to be Yakuza. Guilty on Bob.
+Erin (public): Bob's own math sinks him. Grace's group was 3, so a second visitor besides me exists either way. If I'm lying, who is that third member, and why are they hiding? Alice's census is verified by Carol and Dave on themselves. Guilty on Bob.
+Frank (public): Guilty on Bob. Erin's watch fits Carol's 6 visitors and Dave's 3-group exactly. Bob's defence needs both Alice and Erin to be Yakuza, but Carol and Dave verify Alice's census on themselves. Once this is done, Heidi's N1 visit to Judy is the next question.
+Heidi (public): Guilty on Bob. Erin's watch, Carol's 6 visitors and Dave's 3-group all line up on him. I'll answer the N1 Judy question after this vote. Remember that the Katana holder can move between nights, and a swap moves where a watch lands.
+Ivan (public): Guilty on Bob. Note: Dave's map puts my N2 random visit in Heidi's 5-group, not Grace's 3-group, so Grace's only non-Erin visitor was Bob. Next question: Heidi.
+Mallory (public): Guilty on Bob. Erin's watch fits Carol's 3/6 and Dave's map, and Alice's census checks out on Carol, Dave and me. Watch this trial's total for a Ballot Stuffer's extra vote (12+ means one exists). Heidi is next.
+Niaj (public): Guilty on Bob. Erin's watch, Carol's 3/6 and Dave's map all fit, and Alice's census checks out on Carol, Dave, Mallory and me. Heidi is next.
+Olivia (public): Guilty on Bob. Erin's watch, Carol's 3/6 and Dave's map all fit him as the N2 holder. Watch this total: more than 11 votes means the Ballot Stuffer used a token.
+Alice (public): Guilty on Bob. My census is true-alignment and Carol, Dave and Mallory verify it on themselves, so Erin's watch stands. Bob's defence needs both Erin and me to be Yakuza. Heidi is next.
+Bob (public): I'm a Vanilla Villager and I didn't visit Grace. I can't prove a negative; no Vanilla can. If you hang me, the counts still say Grace had two visitors, Erin and one other. So test Erin tonight with a profile and a census before you trust her next 'lone visitor' call. Also note the N1 hidden visitor is still open. Niaj is the other no-action claim, and Frank's Roleplayer claim is unverified. Don't stop at me. Innocent.
+Trial votes on Bob: 10 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Alice, Carol, Dave, Erin, Frank, Heidi, Ivan, Mallory, Niaj, Olivia; Innocent - Bob
+Bob is executed by hanging (10 Guilty of 11 votes; 6 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob here. Vanilla Villager, no night action, no tokens. N1 and N2: no action. D3: Erin claimed I was Grace's only visitor. I never visited anyone. Grace had exactly two visitors (Carol's 3 visited and Dave's 3-group): Erin and one other. If I'm hanged as a Vanilla, Erin lied and held the Katana herself. Her 'Good' rests only on Alice's census. Profile Erin and census around her next. The N1 hidden visitor is still unsolved: check Niaj and Frank. Coroner me if you have one."
+(to Frank, Heidi) The Katana passed to Frank.
+
+===== NIGHT 3 =====
+(to Frank, Heidi) Frank (Yakuza chat): Hard truth: Heidi, the N1 Judy math (Erin + census-Good Mallory) makes you tomorrow's hang almost surely. Tonight's FT/Cartographer counts will expose any hidden visitor, and Carol, Dave and Niaj are census-Good, so if I carry the Katana I'm the only unexplained candidate and we both die. Proposal: move the Katana to Heidi (holder=Heidi) and attack Olivia. Her last profile token on me would show Diviner and no Roleplayer, which kills my cover outright. Your visit costs nothing since you're already burned. Risk: Mallory blocks you again. If she does, there's no kill but I stay clean. Also spend your last ballot token tonight: your doubled Innocent plus mine gives 3 of 11, which can save you if town splits. I'll make no visit. Tomorrow claim a Sheriff result, or say you were blocked if you were. I'll vote with town only if it's hopeless. When the Katana passes to me I'll pick kills carefully. Votes: holder=Heidi, target=Olivia. Agree?
+(to Frank, Heidi) Heidi (Yakuza chat): Agreed: holder=Heidi, target=Olivia. I'll submit both votes. I'll also spend my ballot token tonight. If Mallory blocks me again, both the kill and the token fail, but you stay clean, and that's the priority. Tomorrow I'll post my 'Sheriff' result. If I'm unblocked I'll claim a check that muddies things, e.g. 'Ivan: Evil' (true for an Ex-Con, so it looks consistent), or just report the block. If I'm on trial, vote Innocent only if it looks close; otherwise vote Guilty and keep yourself clean. After I'm gone, use the Katana on Alice (census) or Erin (Lookout) first, and keep your Roleplayer cover: no visits on nights when counts would expose you. Good luck.
+(to Frank, Heidi) Frank (Yakuza chat): Locked: holder=Heidi, target=Olivia. I'm submitting both votes now and making no visit. 'Ivan: Evil' is a good unblocked claim, since an Ex-Con really reads Evil. Tomorrow I'll stay low-key: I'll vote with the majority unless the trial looks close, and stay on the Roleplayer cover. Thanks, Heidi. Ready.
+(to Frank, Heidi) Heidi (Yakuza chat): Locked: holder=Heidi, target=Olivia, plus my ballot token. Ready.
+Night actions:
+  Alice (Census Taker): target Ivan
+  Dave (Cartographer): target Heidi; 1 token(s); "Map Heidi"
+  Erin (Lookout): target Alice
+  Frank (Diviner): no role action; Katana vote: Heidi holds, attacks Olivia
+  Heidi (Ballot Stuffer): 1 token(s); "Spend 1 ballot token: my vote counts twice in every Day 4 trial vote."; Katana vote: Heidi holds, attacks Olivia
+  Mallory (Party Animal): target Heidi
+  Olivia (Profiler): target Heidi; 1 token(s)
+  Ivan (Ex-Con): automatic: target Niaj; "random visit"
+Katana: Heidi holds it and attacks Olivia.
+(to Alice) Moderator (private): Your census of Carol, Heidi and Ivan counted Evil players (drawn at random this time): 1 of the 3 is Evil. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Olivia) Moderator (private): You profiled Heidi: their role is Ballot Stuffer, Cartographer or Lookout (exactly one is true, and at least one of the three is a Good role and one is not). 0 profile tokens left.
+(to Erin) Moderator (private): Night 3 result: You watched Alice. Nobody visited Alice tonight (not counting your own visit).
+(to Carol) Moderator (private): Fortune Teller numbers for Night 3 (read at the start of Day 4): 4 players were visited; 5 players visited someone.
+(to Mallory) Moderator (private): Night 3 result: You visited Heidi and role-blocked her.
+(to Heidi) Moderator (private): Night 3: You were role-blocked. Your actions tonight had no effect: no ballot token was spent (you still have 2), and the Katana attack on Olivia did not happen. Yakuza actions chosen tonight: Frank chose no action. You chose to spend a ballot token; the Katana moved to you and targeted Olivia.
+(to Frank) Moderator (private): Night 3: Yakuza actions chosen tonight: Heidi chose to spend a ballot token (her trial votes would count twice on Day 4). The Katana moved from you to Heidi and targeted Olivia. You chose no action.
+(to Ivan) Moderator (private): Night 3: You made your automatic Ex-Con visit to a random player (you aren't told whom).
+[Moderator summary] Night 3: Mallory (Party Animal) blocked Heidi (Ballot Stuffer, new Katana holder). Heidi's ballot token was not spent (still 2) and the Katana attack on Olivia didn't happen. Frank took no action. Alice did a census around Ivan (code op). Olivia profiled Heidi (code op, now 0 tokens). Dave mapped Heidi (code op, now 0 tokens; her group is Heidi/Mallory/Olivia). Erin watched Alice and saw no visitors. Ivan's Ex-Con visit went to Niaj. Visits: Alice->Ivan, Erin->Alice, Mallory->Heidi, Olivia->Heidi, Ivan->Niaj. Carol's numbers: 4 players visited, 5 visitors. Groups: 4 (Alice, Erin, Ivan, Niaj), 3 (Heidi, Mallory, Olivia), then Carol, Dave and Frank alone. Nobody died.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 4, 3, 1, 1, 1. You mapped Heidi: their group is Heidi, Mallory and Olivia. 0 map tokens left.
+
+===== DAY 4 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Alice.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 3: correct
+[Claim] Alice: Census Taker. N1: Grace->Erin/Grace/Niaj 3/3 Good. N2: Mallory->Carol/Dave/Mallory 3/3 Good. N3: Ivan->Carol/Heidi/Ivan 1/3 Evil.
+Alice (public): Census N3 around Ivan: program's group was Carol, Heidi, Ivan. It counted Evil: 1 of 3 Evil. This is true alignment, so the Katana and Ex-Con disguises don't apply. Carol is already census-Good twice over (N2, and she knows it herself), so exactly one of Heidi and Ivan is truly Evil. Erin (Good) saw only Heidi and Mallory (Good) at Judy N1, so Heidi is the fit. I'll nominate Heidi next round unless someone has a hard counter.
+[Claim] Carol: Fortune Teller. N1: 4 visited/7 visitors. N2: 3/6. N3: 4 visited/5 visitors.
+Carol (public): N3 numbers: 4 players visited, 5 visitors, no death. Known N3 visits so far: Alice->Ivan and Ivan's random visit. That leaves only 3 other visitors. Mallory, Erin, Heidi, Olivia: state your N3 targets, or say you didn't act. Too many claimed visits breaks the count. I support the Heidi nomination.
+[Claim] Dave: Cartographer. N1 6,3,1,1,1,1. N2 5,3,1,1,1,1; map Heidi: Alice/Heidi/Ivan/Mallory/Olivia. N3 4,3,1,1,1; map Heidi: Heidi/Mallory/Olivia.
+Dave (public): Cartographer N3: sizes 4, 3, 1, 1, 1. I spent my last map on Heidi. Her group was exactly Heidi, Mallory and Olivia. With Carol's 4/5, exactly two of those three visited inside that trio. The 5th visitor is in the 4-group with Alice and Ivan (Alice->Ivan plus Ivan's random visit), so it is one of Carol, Erin, Frank or Niaj. I'm a singleton. Erin's watch would fill that slot naturally, but only if she watched someone outside Heidi/Mallory/Olivia. Heidi, Mallory, Olivia, Erin: state your N3 targets now. Anyone in the trio who claims a target outside it is lying. I support nominating Heidi after they answer.
+[Claim] Erin: Lookout. N1: Judy -> Heidi, Mallory. N2: Grace -> Bob only. N3: Alice -> nobody.
+Erin (public): Lookout N3: I watched Alice. Nobody visited her. So Ivan's random visit did NOT land on Alice. Dave's 4-group is Alice, Ivan, me and Ivan's random target, who is one of Carol, Frank or Niaj. With Carol's 4 visited, the Heidi/Mallory/Olivia trio has 2 visitors but only 1 player visited: two of them hit the same third. Heidi, Mallory, Olivia: name your N3 targets. Alice's census makes Heidi or Ivan Evil, and Heidi is my N1 Judy visitor. I support the Heidi nomination.
+Frank (public): No visit from me N3: as the Roleplayer, my 'actions' aren't visits. If I'm in Dave's 4-group, it's only as Ivan's random target, and the same goes for Carol or Niaj. I support nominating Heidi: Alice's 1/3 Evil count plus Erin's N1 Judy watch fit her.
+Heidi (public): N3: I aimed at Niaj and was role-blocked again (Mallory, third night running). So I made no visit, and the trio pair Dave sees is Mallory's block on me plus Olivia's visit. Alice's census puts one Evil among Heidi and Ivan, so look hard at Ivan. Olivia's Grace profile showed a Diviner in play, and a Diviner visits every night. Ivan claimed Ex-Con unprompted on Day 2. That one claim explains a nightly visit to an 'unknown' target and any Evil read, and nothing can disprove it. He also filled the N1 hidden-visitor slot with his own story. I'm a Sheriff who has been silenced every night since I said I'd check Mallory. If you hang me and the Katana keeps killing, Ivan is your Diviner.
+[Claim] Ivan: Ex-Con. N1-N3: automatic random visit, target unknown (N2 on Heidi or Mallory per Dave's map; N3 not Alice per Erin).
+Ivan (public): Census counts TRUE alignment, so the Ex-Con disguise doesn't apply to it. I'm truly Good, and Carol was already census-Good on N2, so Alice's 1/3 Evil lands on Heidi. Heidi's 'Ivan is the Diviner' needs me to have faked a role that only hurts me with every Sheriff. It also needs Alice's census to be wrong. Also, no kill N3 fits Mallory blocking Heidi, if Heidi held the Katana again. Mallory, Olivia: state your N3 targets. Then hang Heidi.
+[Claim] Mallory: Party Animal. N1: blocked Judy. N2: blocked Heidi. N3: blocked Heidi (no death N3).
+Mallory (public): N3: I blocked Heidi again (third night). So the trio fits: Mallory->Heidi plus Olivia's visit, presumably also on Heidi. Heidi blocked = no visit, and NOBODY died N3. That fits Heidi holding the Katana after Bob's death. Alice's 1/3 Evil + Erin's N1 watch + no-kill night all point at her. Ready to vote Yes/Guilty on Heidi.
+Niaj (public): N3 fits cleanly: Mallory and Olivia visited Heidi, Alice visited Ivan, Erin visited Alice, and Ivan's random visit landed on Carol, Frank or me. That leaves no other visit at all: no other Yakuza action and no kill, which fits a blocked Katana holder. Heidi says she 'aimed at Niaj'. A census-cleared Vanilla is an odd Sheriff check, but a natural Katana target. Olivia, post your N3, then nominate Heidi. I vote Yes and Guilty.
+[Claim] Olivia: Profiler. N1: Grace -> Diviner/Oracle/Wiretap. N2: Mallory -> Ballot Stuffer/Oracle/Party Animal. N3: Heidi -> Ballot Stuffer/Cartographer/Lookout (no Sheriff).
+Olivia (public): N3 Profile on Heidi: Ballot Stuffer, Cartographer or Lookout. Exactly one is true. Sheriff isn't on the list, so Heidi's Sheriff claim is false. Dave is the Cartographer and Erin is the Lookout, both census-Good. That leaves Heidi = Ballot Stuffer (Yakuza). This also fits Alice's 1/3 Evil and Erin's N1 watch. My N3 visit was to Heidi. Nominate Heidi. I vote Yes and Guilty.
+Alice (public): All N3 results are in and they fit. Olivia's profile has no Sheriff, my census puts one Evil among Heidi and Ivan, and Erin saw Heidi at Judy N1. Nominating Heidi. Vote Yes, then Guilty.
+Alice nominated Heidi. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Heidi] Yes - Alice, Carol, Dave, Erin, Frank, Ivan, Mallory, Niaj, Olivia; No - Heidi
+Nomination votes on Heidi: 9 Yes (the votes are secret).
+Heidi is put on trial (9 Yes).
+Heidi (public): I can't out-claim a profile, so here's the hole. Olivia's list draws its fakes from other players' real roles, so a Ballot Stuffer exists either way, and her Mallory list already showed it. Alice's census only says one of Ivan and me is truly Evil. My only 'visit' is N1 at Judy, which a Sheriff check explains, and I've been blocked every night since. Ivan's Ex-Con claim was made unprompted on Day 2. It covers a nightly visit to an 'unknown' target, any Evil read, and every Lookout sighting, and nobody can ever disprove it. That is exactly the cover a Diviner needs. If you hang me, do it with your eyes open. If the Katana kills tonight and nobody can name the holder, re-test Ivan with a profile: if the list shows Diviner and no Ex-Con, he's your man. I'm voting Innocent.
+Ivan (public): Heidi's case against me ignores Olivia's profile: Sheriff isn't on her list, so her claim is false no matter what I am. The census counts true alignment, so the Ex-Con disguise doesn't apply. Olivia, profile me any night you like; it will show Ex-Con. Guilty on Heidi. Watch the total: more than 10 votes means a doubled ballot.
+Mallory (public): Guilty on Heidi. Olivia's profile has no Sheriff, Alice's census puts one Evil in Heidi/Ivan, and Erin saw Heidi at Judy N1. Three independent sources agree. If the Katana kills tonight anyway, Ivan and Frank are next to test. Watch the total: over 10 means a Ballot Stuffer.
+Niaj (public): Guilty on Heidi. Olivia's profile has no Sheriff, Alice's census puts one Evil in Heidi/Ivan, and Erin saw Heidi at Judy N1. Nomination got 9 Yes. Who voted No? Watch the trial total for a doubled ballot.
+Olivia (public): Guilty on Heidi. My profile list on her has no Sheriff, so her claim is false whatever Ivan turns out to be. The 9 Yes fits Heidi's own No. If the Katana kills tonight, test Ivan and Frank next.
+Alice (public): Guilty on Heidi. Erin (Good) saw only Heidi and Mallory (Good) at Judy N1, so Heidi is the only Katana fit, independent of Olivia's profile. I'll post my next census tomorrow.
+Carol (public): Guilty on Heidi. N3 fits exactly: visitors Alice, Ivan, Erin, Mallory, Olivia; visited Ivan, Alice, Heidi and Ivan's random target. Heidi blocked means no Katana kill, which fits her holding it. Her profile has no Sheriff.
+Dave (public): Guilty on Heidi. My N3 map (Heidi, Mallory, Olivia only) fits Mallory and Olivia both visiting Heidi. With Carol's 4/5, Alice->Ivan, Erin->Alice and Ivan's random visit, every count adds up. Her profile shows no Sheriff.
+Erin (public): Guilty on Heidi. My N1 watch puts her at Judy, Olivia's profile shows no Sheriff, and Alice's census puts the Evil in Heidi or Ivan. 9 Yes means everyone but Heidi voted Yes. If the Katana kills tonight, Olivia should profile Ivan. Ex-Con must be on his list.
+Frank (public): Guilty on Heidi. Olivia's profile has no Sheriff, Alice's census puts the Evil in Heidi or Ivan, and Erin saw Heidi at Judy N1. Three sources agree.
+Heidi (public): Last word: I'm voting Innocent. If you hang me and the Katana kills again tomorrow, don't stop. Alice's census left Ivan as the other candidate, and nobody has ever verified his Ex-Con claim. Olivia, profile Ivan first. If Ex-Con isn't on his list, he's your Diviner.
+Trial votes on Heidi: 9 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Heidi] Guilty - Alice, Carol, Dave, Erin, Frank, Ivan, Mallory, Niaj, Olivia; Innocent - Heidi
+Heidi is executed by hanging (9 Guilty of 10 votes; 6 needed).
+Heidi died (executed by hanging). Their role isn't revealed. Their last will: "Heidi - Sheriff. N1: checked Judy - Not Evil (my visit Erin saw). N2: tried Mallory, ROLE-BLOCKED. N3: tried Niaj, ROLE-BLOCKED. I never got a single result after Day 2. Alice's N3 census says one of Ivan and me is Evil. If I was hanged and the Katana keeps killing, it's Ivan: his unprompted Ex-Con claim covers a nightly visit, any Evil read, and any Lookout sighting, which is a perfect Diviner cover. Profile Ivan next. If Ex-Con isn't on the list, hang him."
+(to Frank) The Katana passed to Frank.
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Census Taker): target Frank
+  Dave (Cartographer): no action
+  Erin (Lookout): target Alice
+  Frank (Diviner): target Alice; "Divine Alice (same target as the Katana, so no extra visit)."; Katana vote: Frank holds, attacks Alice
+  Mallory (Party Animal): target Frank
+  Olivia (Profiler): no action
+  Ivan (Ex-Con): automatic: target Carol; "random visit"
+Katana: Frank holds it and attacks Alice.
+(to Alice) Moderator (private): Your census of Dave, Frank and Mallory counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Mallory) Moderator (private): You visited Frank and role-blocked him.
+(to Erin) Moderator (private): You watched Alice. Nobody visited her last night (not counting you).
+(to Carol) Moderator (private): Fortune Teller numbers for Night 4: 3 players were visited; 4 players visited someone.
+(to Frank) Moderator (private): You were role-blocked last night.
+[Moderator summary] Night 4: Mallory (Party Animal) role-blocked Frank (Diviner, Katana holder, last Yakuza), so the Katana attack on Alice and Frank's divine on Alice both had no effect. No deaths. Visits: Alice->Frank (census op), Erin->Alice (saw nobody), Mallory->Frank, Ivan->Carol (Ex-Con automatic). FT Carol: 3 visited / 4 visitors. Groups: {Alice, Erin, Frank, Mallory}=4, {Ivan, Carol}=2, Dave, Niaj, Olivia singletons. Dave and Olivia did not act. Katana stays with Frank.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 4, 2, 1, 1, 1.
+
+===== DAY 5 =====
+Nobody died last night.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Alice.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Alice: Census Taker. N1: Erin/Grace/Niaj 3/3 Good. N2: Carol/Dave/Mallory 3/3 Good. N3: Carol/Heidi/Ivan 1/3 Evil. N4: Dave/Frank/Mallory 2/3 Good (Frank not Good).
+Alice (public): Census N4 around Frank: group Dave, Frank, Mallory; counted Good: 2 of 3. Dave and Mallory are census-Good (N2), so Frank is NOT Good. A Roleplayer is Village and counts Good, so his claim is false. Nominating Frank. Yes, then Guilty.
+Alice nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Alice, Carol, Dave, Erin, Ivan, Mallory, Niaj, Olivia; No - Frank
+Nomination votes on Frank: 8 Yes (the votes are secret).
+Frank is put on trial (8 Yes).
+[Claim] Frank: Jester (started Executioner, target Grace; she died N2 so I became Jester). D2 Oracle/Roleplayer claims were to push Grace's hang. No night action.
+Frank (public): Alice's census is right, and here's the truth behind it. I'm Neutral. I started as Executioner with Grace as my target. That's why I counterclaimed Oracle on Day 2: to get her hanged. When the census and Olivia's profile cleared her, I retreated to 'Roleplayer'. Grace died to the Katana on N2, so I became a Jester. The census never counts Neutrals, so 2 of 3 Good is exactly what I produce. I have no night action and no visits. Mallory, if you blocked me on N4, you blocked nothing. So: hang me and I win, and a random Guilty voter takes a Divine Attack tomorrow night. I voted Yes on my own nomination, so someone else cast that No. The last Yakuza is still out there, and only Alice and Olivia have never been in a census group. The hidden N1 visitor in Judy's group fits Bob as the Diviner. Your call.
+Ivan (public): Innocent from me. Frank's story fits Day 2 too well: he claimed Oracle before Grace had claimed, and then backed off. That is exactly what an Executioner pushing his target's hang would do. Hanging a Jester gives him the win and a Divine kill on one of us. If he's really Yakuza, he has to visit to use the Katana. Erin can watch him tonight and Mallory can block him, and we hang him tomorrow if he shows a visit. Also, the game didn't end after Heidi died. If Frank is the Jester, another non-Village player is still alive. The only players never in a census group are Alice and Olivia, so test them. Mallory, whom did you block N4? Who voted No on the nomination?
+[Claim] Mallory: Party Animal. N1: Judy. N2: Heidi. N3: Heidi (no death). N4: Frank (no death).
+Mallory (public): I blocked Frank on N4, and nobody died. Frank's Executioner story has a hole: he claimed Oracle on Day 2 BEFORE Grace had claimed anything. An Executioner can't know his target's role. A Diviner can. Olivia's Grace profile showed a Diviner in the game, and a Diviner who picked Grace on N1 would have seen 'Oracle'. Heidi was the Ballot Stuffer, so Diviner and Wiretap are the other two Yakuza, and Bob was one of them. 'Jester' is the standard last dodge for cornered Yakuza because it scares the vote. Census says not Good, there was no kill the night I blocked him, and he had foreknowledge of Grace's role. Guilty.
+Niaj (public): Guilty. Two hard points. First, the game didn't end when Heidi died. If Frank were only a Jester, another killer would still be alive, yet nobody died on N4, the exact night Mallory blocked Frank. Second, Frank claimed Oracle on Day 2 before Grace said a word. An Executioner can't know his target's role, but a Diviner who picked Grace on N1 can. To limit any Jester risk, the investigators could hold back and leave a bare Guilty majority. I'm Vanilla, so I'll take that risk. Carol, what are your N4 numbers?
+Olivia (public): Guilty. Frank's Jester claim doesn't hold up. 1) A real Jester wants the rope. Claiming Jester on trial is the standard Yakuza way to scare off the vote. 2) On Day 2 Frank never pushed against Grace. He said his Oracle guess 'bore on the Judy case' and folded the moment she claimed. That isn't an Executioner working on his target. 3) N4 had no kill, the night Mallory blocked him. 4) N1 math: a Diviner Frank who visited Erin fills the hidden 6-group slot exactly (7 visitors; 4 visited with Ivan landing on Heidi or Mallory). A Diviner reading Erin's group would also see Grace's role. Diviner and Wiretap were both in play, and Bob was only one of them.
+Alice (public): Guilty. If Frank were a Jester, the game would have ended when Heidi died, unless Ivan or Olivia is also non-Village. He claimed Oracle before Grace spoke, there was no kill the night he was blocked, and the census says he is not Good. He's the last Yakuza holder.
+Carol (public): Guilty. Frank named Oracle before Grace claimed it. He needed to know her role to do that, which fits a Diviner and not an Executioner. He was also blocked the one night with no kill. My N4 count was 3 visited, 4 visitors: Alice, Mallory and Ivan's random visit, plus one of Erin or Olivia. Erin and Olivia, please post your N4 targets.
+Dave (public): Guilty. My N4 sizes (4, 2, 1, 1, 1) fit Carol's 3 visited / 4 visitors. The visits were Alice and Mallory on Frank, Ivan's random visit, and one of Erin or Olivia. Nobody else made any visit, so whoever held the Katana N4 never attacked. The only player blocked that night was Frank. If Frank were really a Jester, an unblocked Yakuza would have killed someone. A census reading of not Good plus the no-kill night is a mechanical fit, not just behaviour.
+Erin (public): Guilty. Mechanical point: if Frank were a Jester, the game not ending at Heidi's hanging means a Yakuza is still alive among Ivan, Olivia or Alice. That Yakuza was unblocked on N4 (Mallory blocked Frank), yet there was no kill and no extra visit in Carol's or Dave's counts. That only fits Frank being the last Yakuza.
+Frank (public): Your 'foreknowledge' point cuts the other way. If I were a Diviner who had seen Grace as Oracle on N1, claiming Oracle would be suicide: a guaranteed counterclaim against a census-cleared player. Nobody who knew would do it. I picked Oracle blind to set up a counterclaim fight, and it blew up on me. On N4: a Yakuza who survived two hangings has every reason to skip a kill on a night they know points at me. One quiet night buys them a free hang of the Neutral you already suspect. Do the maths before voting. Hang me and I win, and one of the 7 Guilty voters takes a Divine Attack tomorrow night. If that's Alice, Erin or Mallory, you've lost a confirmed info role for nothing. If you insist, keep Alice, Erin, Mallory and Olivia on Innocent and let a bare majority do it.
+Trial votes on Frank: 8 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Alice, Carol, Dave, Erin, Ivan, Mallory, Niaj, Olivia; Innocent - Frank
+Frank is executed by hanging (8 Guilty of 9 votes; 5 needed).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank: Neutral. Started as Executioner with Grace as my target. I claimed Oracle on Day 2 to get her hanged, then backed off to 'Roleplayer' when she was cleared. Grace died to the Katana N2, so I became a Jester. I have no night action and no visits. Alice's N4 census (2/3 Good) is exactly how a Neutral reads, since the census never counts Neutrals. The last Yakuza is still alive. Alice and Olivia are the only living players never counted in a census group, and Bob fits the N1 hidden Diviner visit in Judy's group."
+The game is over. Winners: Alice, Carol, Dave, Erin, Grace (dead), Ivan, Judy (dead), Mallory, Niaj, Olivia. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Ivan] Night history for automatic actions (Ex-Con) was incomplete: only Night 3 was listed.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Grace, Ivan, Judy, Mallory, Niaj, Olivia
+Cost by player (USD):
+  Alice (Census Taker)     $1.8916   26 calls  claude-opus-5.5
+  Bob (Wiretap)            $1.4264   20 calls  claude-opus-5.5
+  Carol (Fortune Teller)   $1.6256   22 calls  claude-opus-5.5
+  Dave (Cartographer)      $2.0172   26 calls  claude-opus-5.5
+  Erin (Lookout)           $1.9186   25 calls  claude-opus-5.5
+  Frank (Diviner)          $2.6089   32 calls  claude-opus-5.5
+  Grace (Oracle)           $0.7428   10 calls  claude-opus-5.5
+  Heidi (Ballot Stuffer)   $1.9443   28 calls  claude-opus-5.5
+  Ivan (Ex-Con)            $1.5551   22 calls  claude-opus-5.5
+  Judy (Archivist)         $0.4315    4 calls  claude-opus-5.5
+  Mallory (Party Animal)   $1.8235   26 calls  claude-opus-5.5
+  Niaj (Vanilla Villager)  $1.5344   22 calls  claude-opus-5.5
+  Olivia (Profiler)        $1.9511   26 calls  claude-opus-5.5
+  Moderator                $1.2264   16 calls  claude-opus-5.5
+  Night checks             $0.5004    4 calls  claude-opus-5.5
+  Strategy review          $0.2686    1 calls  claude-opus-5.5
+  Log review               $0.3169    1 calls  claude-opus-5.5
+  Total                    $23.7836  311 calls
