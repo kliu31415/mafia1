@@ -11,7 +11,7 @@ from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, de
                  rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
 from state import Game, Player, phase_label
-from texts import describe_action, player_view
+from texts import blank, describe_action, player_view
 
 
 NOTEPAD_WORDS = 300  # longer notepads are truncated; the cap grows with the player count (notepad_words)
@@ -278,11 +278,6 @@ def with_common_fields(schema: dict, feedback_field: bool, text: dict | None = N
 STEPS = ("will", "day_turn", "trial_turn", "budget_revision", "puppet_nomination", "nomination_vote", "trial_vote",
          "yakuza_chat", "night_action", "katana_revote", "ask_player", "debrief", "lessons")
 
-
-def blank(text: str) -> bool:
-    """An answer meaning "nothing": "" or a written-out null (Haiku wrote "null" as feedback 27 times in
-    game_20261009_152339_529912, since the shared schema types text fields as plain strings)."""
-    return text.strip().strip(".").lower() in ("", "null", "none", "n/a")
 
 class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""

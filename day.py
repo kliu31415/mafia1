@@ -310,6 +310,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         if p.last_will != will:  # Sol's wills were cut 40 times unnoticed (game_20261009_152409_117630)
             game.emit(f"(Program note: your last will was over {LAST_WILL_WORDS} words, so it was cut to its "
                       f"first {LAST_WILL_WORDS}.)", [p.name])
+    # The puppet sees these marked as their Puppeteer's in their own history (Game.history_split), as do log views.
+    puppeted: dict[str, Any] = {} if writer is p else {"puppeteer": writer.name}
     # A claim with no letters or digits (Sol wrote "/" for "no change") or a written-out null keeps the old one.
     # (A Puppeteer may set the puppet's.)
     if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):
@@ -318,7 +320,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
             claim = claims[-1][1]
         if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
-            game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim)
+            game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim, **puppeted)
         if claims and claims[-1][0] == game.day:
             claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
         elif not claims or claims[-1][1] != claim:
@@ -332,8 +334,6 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"You couldn't afford to nominate {nominee}.", [p.name])
             nominee = None
     public = False
-    # The puppet sees these marked as their Puppeteer's in their own history (Game.history_split), as do log views.
-    puppeted: dict[str, Any] = {} if writer is p else {"puppeteer": writer.name}
     for i, (to, text) in enumerate(planned_messages(out)):
         if to is not None and to not in game.alive_names():  # the schema only offers living players
             game.log.error("harness_error", f"{p.name}'s private message went to {to!r}, who isn't a living "

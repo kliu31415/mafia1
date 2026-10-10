@@ -40,3 +40,9 @@ def sections(text: str) -> dict[str, str]:
 def player_view(text: str) -> str:
     """What players see of a tips file: every section, without the preamble."""
     return "\n\n".join(f"## {h}\n{body}" for h, body in sections(text).items())
+
+
+def blank(text: str) -> bool:
+    """An answer meaning "nothing": "" or a written-out null (Haiku wrote "null" as feedback 27 times in
+    game_20261009_152339_529912, since the shared schema types text fields as plain strings)."""
+    return text.strip().strip(".").lower() in ("", "null", "none", "n/a")

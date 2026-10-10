@@ -122,13 +122,18 @@ def test_puppeteer_reads_and_writes_the_puppets_private_messages(game_factory):
         if key in sent or key not in ("Alice", "Erin-as-Bob"):
             return None
         sent.add(key)
-        return {"private_messages": [{"to": "Bob" if key == "Alice" else "Carol", "text": f"from {key}"}]}
+        return {"private_messages": [{"to": "Bob" if key == "Alice" else "Carol", "text": f"from {key}"}],
+                "claim": f"claim by {key}"}
     game, players = game_factory(TOWN4_GRUNT[:3] + ["Grunt", "Puppeteer"], ScriptedClient(decide))
     game.puppets_next = {"Bob": "Erin"}
     run_day(game, players)
     pms = {e.fields["message"]: e.visible_to for e in game.events if e.cat == "pm"}
     assert pms["from Alice"] == {"Alice", "Erin"}  # sent to Bob, read by his Puppeteer
     assert pms["from Erin-as-Bob"] == {"Erin", "Carol"}  # Bob's message, written by Erin
+    # Bob's claim, set by Erin, is marked as hers in Bob's own history, like the messages she writes as him
+    claim = next(e for e in game.events if e.cat == "claim" and e.fields["speaker"] == "Bob")
+    assert claim.fields["puppeteer"] == "Erin" and "[Claim] Bob: claim by Erin-as-Bob [written by your Puppeteer" \
+        in game.history_for("Bob")
 
 
 def test_turns_go_around_the_circle_in_the_same_order_every_round(game_factory):

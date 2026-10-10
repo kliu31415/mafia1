@@ -1,6 +1,7 @@
 """The log viewer reads event categories, and still renders logs written before they existed."""
 
 import json
+import re
 
 import log_viewer
 
@@ -47,9 +48,39 @@ def test_alive_list_at_each_day(tmp_path):
     path = tmp_path / "g.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
     html = log_viewer.render_html(path).read_text(encoding="utf-8")
-    alive = [line.split("</span>", 1)[1] for line in html.split("<div class='ev system'><span class='badge'>")[1:]]
+    alive = [line.split("</span>", 1)[1] for line in re.split(r"<div class='ev system'[^>]*><span class='badge'>",
+                                                             html)[1:]]
     counts = [c.split(")")[0] for c in html.split("Alive (")[1:]]
     assert counts == ["4", "1", "0"]
     assert "Bob" in alive[0] and "Erin" in alive[0] and "Bob" not in alive[1] and "Dave" in alive[1]
     assert alive[2].startswith("nobody")
     assert "Night 1</summary><div class='ev system'>" not in html
+
+
+def test_votes_table_player_filter_and_reasons(tmp_path):
+    players = [{"name": n, "seat": i, "role": r, "model": "m"}
+               for i, (n, r) in enumerate([("Bob", "Grunt"), ("Carol", "Puppeteer"), ("Dave", "Sheriff")])]
+    records = [
+        {"kind": "setup", "players": players, "katana": "Bob"},
+        {"kind": "event", "visible_to": "all", "cat": "phase", "text": "Day 1 begins."},
+        {"kind": "player_call", "player": "Carol", "model": "m", "task": "t", "output": {"reason": "Frame Dave."}},
+        {"kind": "event", "visible_to": "all", "cat": "chat", "speaker": "Bob", "puppeteer": "Carol",
+         "message": "Dave is Evil.", "text": "Bob (public): Dave is Evil."},
+        {"kind": "event", "visible_to": "all", "cat": "claim", "speaker": "Dave", "claim": "null", "text": "x"},
+        {"kind": "event", "visible_to": ["Dave"], "cat": "result", "message": "Bob is Evil.", "text": "x"},
+        {"kind": "vote", "day": 1, "stage": "trial", "nominator": "Dave", "nominee": "Bob",
+         "votes": {"Carol": False, "Dave": True}, "weights": {"Dave": 2}, "outcome": "executed"},
+        {"kind": "player_feedback", "player": "Dave", "feedback": "A bug.", "step": "day"},
+        {"kind": "moderator_flag", "issue": "Unclear rule."},
+    ]
+    path = tmp_path / "g.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    # the puppeted message carries the Puppeteer's reason, and involves both of them
+    assert "Frame " in html.split("(puppeted by")[1].split("<div class='ev")[0]
+    assert "data-p='Bob Carol Dave'" in html  # names in the message
+    assert "data-p='Bob Dave'><span class='badge'>Result" in html  # also whom a private result went to
+    assert "[Claim]" not in html and ": null" not in html  # a written-out null claim is no claim
+    assert html.count("<details class='votes'>") == 2  # the Day's table and the whole game's
+    assert "✓×2" in html and "✗" in html
+    assert "A bug." in html and "Unclear rule." in html

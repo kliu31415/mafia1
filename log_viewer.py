@@ -18,12 +18,13 @@ import sys
 import urllib.parse
 from collections import Counter
 from pathlib import Path
+from collections.abc import Iterable
 from typing import Any
 
 from gamelogs import faction_of
 from records import read_records
 from roles import ROLES
-from texts import describe_action, player_view
+from texts import blank, describe_action, player_view
 
 
 def text_line(r: dict) -> str | None:
@@ -160,6 +161,18 @@ div.usage.total { font-weight:650; padding:3px 0 3px 16px; }
 details.usage table { margin:4px 0 8px 16px; }
 body.no-calls details.call { display:none; } body.no-hidden .ev.hidden { display:none; }
 body.no-hidden .ev.error { display:none; }
+body.no-calls details.why { display:none; }
+details.why { display:inline; margin-left:8px; font-size:12px; color:var(--muted); white-space:normal; }
+details.why > summary { display:inline; cursor:pointer; text-decoration:underline dotted; }
+details.why[open] { display:block; margin:2px 0 4px 16px; padding:4px 8px; background:var(--call); border-radius:6px; }
+details.why[open] > summary { display:block; }
+details.thinking > summary { cursor:pointer; }
+details.votes { margin:4px 0; } details.votes > summary { cursor:pointer; color:var(--muted); font-size:13px; }
+.scroll { overflow-x:auto; } details.votes table { font-size:12px; margin:4px 0; }
+details.votes td, details.votes th { padding:1px 6px; text-align:center; border-bottom:1px solid var(--line); }
+details.votes tr > th:first-child { text-align:left; white-space:nowrap; }
+details.votes td.yes { font-weight:700; } details.votes td.no { color:var(--muted); }
+.focus-hide { display:none !important; }
 """
 
 JS = """
@@ -175,6 +188,14 @@ document.getElementById('expand').addEventListener('click', () =>
   document.querySelectorAll('details.call').forEach(d => d.open = true));
 document.getElementById('collapse').addEventListener('click', () =>
   document.querySelectorAll('details.call').forEach(d => d.open = false));
+// Player filter: show only the lines and calls that involve the chosen player (their data-p).
+const focus = document.getElementById('focus');
+const applyFocus = () => {
+  const who = focus.value;
+  document.querySelectorAll('details.phase > .ev, details.phase > details.call').forEach(el =>
+    el.classList.toggle('focus-hide', who !== '' && !(el.dataset.p || '').split(' ').includes(who)));
+};
+focus.addEventListener('change', applyFocus); applyFocus();
 """
 
 CATEGORY_LABELS = {"chat": "Chat", "pm": "PM", "yak": "Yakuza chat", "nom": "Nomination", "vote": "Vote",
@@ -291,6 +312,9 @@ class Namer:
             return escaped
         return self.pattern.sub(lambda m: self.spans[m[1]], escaped)
 
+    def names_in(self, text: str) -> set[str]:
+        return set(self.pattern.findall(text)) if self.pattern else set()
+
 
 def is_phase_start(r: dict) -> bool:
     if "cat" in r:
@@ -319,7 +343,7 @@ def classify(r: dict) -> tuple[str, str, str]:
         case "result":
             return "result", f"Result → {', '.join(vis)}", r["message"]
         case "claim":
-            return "claim", "Claim", f"{r['speaker']}: {r['claim']}"
+            return "claim", "Claim", f"{r['speaker']}{puppeted(r)}: {r['claim']}"
         case "announcement":
             return "result", "Announcement", r["message"]
         case "death" | "nom" | "vote":
@@ -356,20 +380,29 @@ def render_html(jsonl_path: Path) -> Path:
     models: dict[str, str] = {}
     name = Namer({})
     alive: list[str] = []  # in seat order; shown at the start of each Day
+    alive_order: list[str] = []  # every player in seat order: the votes tables' rows
     out: list[str] = []
     phase_start: int | None = None  # index in out of the open phase's opening tag
     errors: list[tuple[str, dict]] = []  # (anchor id, record) of each GameLog.error record
+    votes: list[dict] = []  # every "vote" record, for the whole-game table at the top
+    day_votes: list[dict] = []  # the open phase's, for its table at the end of the phase
+    last_call: dict[str, dict] = {}  # player -> their latest player_call, whose reason explains what they say next
+    explained: set[int] = set()  # ids of the calls already shown next to a message (once each, on its first)
 
     def end_phase() -> None:
         if phase_start is None:
             return
         # rough height for content-visibility until the phase is drawn: collapsed calls are one line,
         # other text wraps at about 110 characters
+        if day_votes:
+            out.append(votes_html(day_votes, name, alive_order, "Votes this Day"))
+            day_votes.clear()
         px = 40
         for part in out[phase_start + 1:]:
-            if part.startswith("<details class='call'"):
+            if part.startswith(("<details class='call'", "<details class='votes'")):
                 px += 26
             else:
+                part = re.sub(r"<details class='why'>.*?</details>(</details>)?", "", part)  # collapsed
                 text = re.sub(r"<[^>]+>", "", part.replace("<tr", "\n<tr").replace("<div", "\n<div"))
                 px += 23 * sum(1 + len(ln) // 110 for ln in text.strip("\n").split("\n"))
         out[phase_start] = out[phase_start].replace("<details ", f"<details style='contain-intrinsic-size:"
@@ -383,9 +416,28 @@ def render_html(jsonl_path: Path) -> Path:
         phase_start = len(out)
         out.append(f"<details class='phase {cls}' open><summary>{esc(title)}</summary>")
 
-    def line(category: str, badge: str, body_html: str) -> None:
+    def line(category: str, badge: str, text: str, who: Iterable[str] = (), body_html: str | None = None,
+             extra: str = "") -> None:
+        """One event line. who: players it involves besides those named in text (the player filter's data-p)."""
         b = f"<span class='badge'>{esc(badge)}</span>" if badge else ""
-        out.append(f"<div class='ev {category}'>{b}{body_html}</div>")
+        out.append(f"<div class='ev {category}'{involves(name.names_in(text) | set(who))}>{b}"
+                   f"{name(text) if body_html is None else body_html}{extra}</div>")
+
+    def why(r: dict) -> str:
+        """The reason (and thinking) behind a player's message, claim or nomination, from the call that wrote
+        it: the writer's latest call. Shown once per call, next to the first thing it said."""
+        call = last_call.get(r.get("puppeteer") or r.get("speaker") or "")
+        if not call or id(call) in explained:
+            return ""
+        explained.add(id(call))
+        o = call.get("output") or {}
+        reason = o.get("reason") or o.get("thoughts")  # "thoughts" in LOG_VERSION 22 and earlier
+        if not reason and not call.get("reasoning"):
+            return ""
+        return ("<details class='why'><summary title='Why: the private reason and thinking behind this turn'>"
+                "why</summary>" + (f"<div>{name(reason)}</div>" if reason else "")
+                + (f"<details class='thinking'><summary>Model's thinking</summary><pre>{esc(call['reasoning'])}</pre>"
+                   "</details>" if call.get("reasoning") else "") + "</details>")
 
     for r in records:
         k = r["kind"]
@@ -393,7 +445,8 @@ def render_html(jsonl_path: Path) -> Path:
             anchor = f"error-{len(errors)}"
             errors.append((anchor, r))
             details = {f: v for f, v in r.items() if f not in ("t", "kind", "alert", "error", "traceback")}
-            out.append(f"<div class='ev error' id='{anchor}'><span class='badge'>Error: {esc(k)}</span>"
+            out.append(f"<div class='ev error' id='{anchor}'{involves([r['player']] if r.get('player') else [])}>"
+                       f"<span class='badge'>Error: {esc(k)}</span>"
                        f"{name(r['error'])}" + (f"<details class='call'><summary>Details</summary>"
                                                 f"{pre('Fields', details)}{pre('Traceback', r.get('traceback'))}"
                                                 "</details>" if details or r.get("traceback") else "") + "</div>")
@@ -402,6 +455,7 @@ def render_html(jsonl_path: Path) -> Path:
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
             name = Namer(roles)
             alive = [p["name"] for p in sorted(r["players"], key=lambda p: p["seat"])]
+            alive_order = list(alive)
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}</td>"
                            f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
@@ -421,18 +475,25 @@ def render_html(jsonl_path: Path) -> Path:
             if is_phase_start(r):
                 start_phase(r["text"].removesuffix(" begins."))
                 if r["text"].startswith("Day "):  # night deaths are already logged, though revealed after this
-                    out.append(f"<div class='ev system'><span class='badge'>Alive ({len(alive)})</span>"
-                               f"{', '.join(map(name, alive)) or 'nobody'}</div>")
+                    line("system", f"Alive ({len(alive)})", ", ".join(alive) or "nobody")
                 continue
+            if r.get("cat") == "claim" and blank(r["claim"]):
+                continue  # "null" meant no change (shown in logs from before a592f5f)
             if r.get("cat") == "death" and (m := re.match(r"(\w+) was the Executioner.* leave the game", r["text"])):
                 alive = [n for n in alive if n != m[1]]  # LOG_VERSION 33 and earlier had no "left" record
             category, badge, body = classify(r)
-            line(category, badge, name(body))
+            vis = r["visible_to"]
+            line(category, badge, body, who=[] if vis == "all" else vis,
+                 extra=why(r) if r.get("cat") in ("chat", "pm", "yak", "claim") else "")
         elif k in ("death", "left"):
             alive = [n for n in alive if n != r["player"]]
         elif k == "claim":
-            line("system", "Claim", name(f"{r['player']}: {r['claim']}"))
+            line("system", "Claim", f"{r['player']}: {r['claim']}")
+        elif k == "vote":
+            votes.append(r)
+            day_votes.append(r)
         elif k == "player_call":
+            last_call[r["player"]] = r
             o = dict(r.get("output") or {})
             thoughts = o.pop("thoughts", "")  # LOG_VERSION 22 and earlier
             reason = o.pop("reason", "")  # LOG_VERSION 24+
@@ -445,7 +506,7 @@ def render_html(jsonl_path: Path) -> Path:
             first_line = r["task"].split("\n")[0]
             summary = (f"{name(r['player'])} ({esc(roles.get(r['player'], '?'))}, "
                        f"{esc(r['model'].split('/')[-1])}) · {esc(first_line[:90])} · ${r.get('cost', 0):.4f}")
-            out.append(f"<details class='call'><summary>{summary}</summary>"
+            out.append(f"<details class='call'{involves([r['player']])}><summary>{summary}</summary>"
                        + pre("Reasoning (model's thinking)", r.get("reasoning"), REASONING_HINT)
                        + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason, REASON_HINT)
                        + pre("Output", o) + notepad
@@ -461,26 +522,51 @@ def render_html(jsonl_path: Path) -> Path:
                        + pre("Usage", r.get("usage")) + "</details>")
         elif k == "moderator_tool":
             if r["name"] == "end_phase":
-                line("hidden", "Moderator summary", name(str(tool_args(r["args"]).get("summary", ""))))
+                line("hidden", "Moderator summary", str(tool_args(r["args"]).get("summary", "")))
             else:
                 out.append(f"<details class='call'><summary>Tool {esc(r['name'])} result</summary>"
                            + pre("Args", r.get("args")) + pre("Result", r.get("result")) + "</details>")
         elif k == "night_actions":
             rows = "".join(f"<div>{name(n)} ({esc(r['roles'].get(n))}): {name(describe_action(a))}</div>"
                            for n, a in r["actions"].items())
-            line("hidden", "Night actions", rows)
+            line("hidden", "Night actions", "", who=r["actions"], body_html=rows)
         elif k in ("katana", "revenge"):
-            line("hidden", "Katana" if k == "katana" else "Revenge", name(text_line(r) or ""))
+            line("hidden", "Katana" if k == "katana" else "Revenge", text_line(r) or "")
         elif k == "night_check":
-            line("hidden", "Night check", name(describe_check(r)))
+            line("hidden", "Night check", describe_check(r))
+        elif k == "visits":  # the moderator's record_visits (LOG_VERSION 33+)
+            line("hidden", "Visits", ", ".join(f"{a} → {b}" for a, b in r["visits"]) or "none")
+        elif k == "night_effects_undone":
+            line("hidden", "Undone", f"{r['player']} survived the night, so their {' and '.join(r['undone'])} "
+                 "change was undone")
+        elif k == "moderator_flag":
+            line("hidden", "Moderator flag", r["issue"])
+        elif k == "player_feedback":
+            line("hidden", f"Feedback from {r['player']}", r["feedback"], who=[r["player"]])
+        elif k == "resume":
+            line("system", "Resumed", f"The game continued from the checkpoint at the start of {r.get('at', 'day')} "
+                 f"{r['day']}; {r.get('cut_records', 0)} log records after it were dropped.")
+        elif k == "debrief" and r["who"] == "moderator":  # players' debriefs are their player_call records
+            out.append(f"<details class='call'><summary>Moderator ({esc(short_model(r['model']))}) debrief · "
+                       f"${r.get('cost', 0):.4f}</summary>{pre('Answers', r['answers'])}</details>")
+        elif k == "strategy_review":
+            line("hidden", "Strategy review", r["summary"])
+            out.append(f"<details class='call'><summary>Moderator ({esc(short_model(r['model']))}) lessons · "
+                       f"${r.get('cost', 0):.4f}</summary>{pre('Lessons', r.get('lessons'))}</details>")
+        elif k == "review":
+            for i in r["issues"]:
+                line("hidden", f"Review: {i.get('severity', '?')}, {i.get('kind', '?')}", i.get("description", ""))
+            if not r["issues"]:
+                line("hidden", "Review", "No issues found.")
         elif k in ("budget_warning", "message_dropped", "nomination_dropped", "player_error", "moderator_error"):
-            out.append(f"<details class='call'><summary>{esc(k.replace('_', ' '))}: "
+            out.append(f"<details class='call'{involves([r['player']] if r.get('player') else [])}><summary>"
+                       f"{esc(k.replace('_', ' '))}: "
                        f"{esc(r.get('player', ''))}</summary>{pre('Details', r)}</details>")
         elif k == "section":  # post-game steps (feedback.POST_GAME_SECTIONS)
             start_phase(r["title"])
         elif k == "result":
             start_phase("Game over")
-            line("result", "Winners", name(", ".join(r["winners"] or []) or "nobody"))
+            line("result", "Winners", ", ".join(r["winners"] or []) or "nobody")
             if "usage" in r:  # LOG_VERSION 10+
                 out.append(usage_html(r["usage"]))
             else:
@@ -491,6 +577,7 @@ def render_html(jsonl_path: Path) -> Path:
     legend += ("<span class='n Village'>Village</span> <span class='n Yakuza'>Yakuza</span> "
                "<span class='n Neutral'>Neutral</span>")
     title = f"Mafia game {jsonl_path.stem}"
+    focus_options = "".join(f"<option>{esc(n)}</option>" for n in alive_order)
     page = (f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' "
             f"content='width=device-width, initial-scale=1'><title>{esc(title)}</title>"
             f"<style>{CSS}{icons_css()}</style>"
@@ -499,11 +586,48 @@ def render_html(jsonl_path: Path) -> Path:
             f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
             f"<label><input type='checkbox' id='showicons' checked> Role icons</label>"
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
-            f"<span class='muted'>Untick both to read it like a player would.</span></div>"
-            f"{errors_html(errors, unreadable)}{''.join(out)}<script>{JS}</script></body></html>")
+            f"<label>Player <select id='focus'><option value=''>everyone</option>{focus_options}</select></label>"
+            f"<span class='muted'>Untick the first two to read it like a player would.</span></div>"
+            f"{errors_html(errors, unreadable)}"
+            f"{votes_html(votes, name, alive_order, 'Votes (whole game)', show_day=True)}"
+            f"{''.join(out)}<script>{JS}</script></body></html>")
     html_path = jsonl_path.with_suffix(".html")
     html_path.write_text(page, encoding="utf-8", errors="replace")
     return html_path
+
+
+def involves(names: Iterable[str]) -> str:
+    """The data-p attribute the player filter reads: the players a line or call involves."""
+    return f" data-p='{esc(' '.join(sorted(names)))}'" if names else ""
+
+
+def votes_html(votes: list[dict], name: Namer, seats: list[str], title: str, show_day: bool = False) -> str:
+    """A collapsed table of vote records: a row per voter (in seat order), a column per vote. Yes and Guilty
+    are ✓, No and Innocent are ✗, blank if they didn't vote (dead, or the nominee of a trial ...)."""
+    if not votes:
+        return ""
+    voters = [n for n in seats if any(n in v["votes"] for v in votes)]
+    heads, outcomes = [], []
+    for v in votes:
+        when = f"D{v['day']} " if show_day else ""
+        stage = "trial" if v["stage"] == "trial" else "nom."
+        heads.append(f"<th title='{esc(stage)} of {esc(v['nominee'])}, nominated by {esc(v.get('nominator'))}"
+                     f"{' (prosecuted)' if v.get('prosecuted') else ''}'><span class='muted'>{when}{stage}</span>"
+                     f"<br>{name(v['nominee'])}</th>")
+        outcomes.append(f"<td class='muted'>{esc(v['outcome'])}</td>")
+
+    def cell(v: dict, voter: str) -> str:
+        if voter not in v["votes"]:
+            return "<td></td>"
+        weight = (v.get("weights") or {}).get(voter, 1)
+        mark = ("✓" if v["votes"][voter] else "✗") + (f"×{weight}" if weight != 1 else "")
+        return f"<td class='{'yes' if v['votes'][voter] else 'no'}'>{mark}</td>"
+    rows = "".join(f"<tr><th>{name(n)}</th>{''.join(cell(v, n) for v in votes)}</tr>" for n in voters)
+    trials = sum(v["stage"] == "trial" for v in votes)
+    return (f"<details class='votes'><summary>{esc(title)}: {len(votes) - trials} nomination vote(s), "
+            f"{trials} trial(s). ✓ Yes/Guilty, ✗ No/Innocent</summary><div class='scroll'><table>"
+            f"<tr><th></th>{''.join(heads)}</tr>{rows}<tr><th class='muted'>Outcome</th>{''.join(outcomes)}</tr>"
+            "</table></div></details>")
 
 
 def errors_html(errors: list[tuple[str, dict]], unreadable: int = 0) -> str:
