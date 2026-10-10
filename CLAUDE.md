@@ -14,6 +14,9 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   (haiku-5.5, gpt-6-luna) and an opus-5.5 moderator. Keep a status line saying a live game is running
   until it finishes (games take 10-40 minutes).
 - Low-cost API calls (Haiku, Luna) are fine whenever they help verify that code works.
+- Don't pick DeepSeek V4.1 Flash as a player unless Kevin asks: its thinking often runs into the token cap, so
+  turns fall back to defaults, and its feedback reports problems that didn't happen (details above its entry in
+  `llm.py`). When reviewing alerts, check its reports against the log before treating them as bugs.
 
 ## Live games in the cloud
 

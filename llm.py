@@ -52,6 +52,12 @@ class Model(str, Enum):
     # more on later days). The retry usually parses. It got worse in a 15-player game (28 of 185 calls in
     # game_20261009_181836_910820), and effort "low" didn't shorten its thinking (replayed turns: 1-15k output
     # tokens at low vs 2-11k at medium), so effort can't fix it.
+    # Deprioritized 2026-10-10: still usable by name, but not picked for test or benchmark games unless Kevin asks
+    # (use Haiku 5.5, Luna or Luna Pro as the cheap players). In its games on 2026-10-09 it had 47
+    # player_errors and 4 fallbacks (silent turns and a defaulted vote); of the models kept, Haiku had 4 errors and
+    # Gemini Flash 1 in those games, with no fallbacks. Its feedback
+    # is also unreliable: it reported misspelled schema fields ('katana_voate_holder', 'publilc_message'), a
+    # missing role-block notice and being prompted after death, none of which the logs show.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
 
