@@ -66,7 +66,10 @@ from records import read_records, safe_print
 #     uses one step lower (llm.lower_effort)
 # 33: "visits" records (day, visits: [visitor, target] pairs) from the moderator's record_visits, one per night
 # 34: "left" records (player, day, phase) when a player leaves the game without dying (a winning Executioner)
-LOG_VERSION = 34
+# 35: "effort_fallback" alert records (player, model, from_effort, to_effort, step, day, phase, round) when a
+#     player's answer was cut off at max_tokens and the retry uses one effort step lower; result usage rows of
+#     players have effort_fallbacks (how many)
+LOG_VERSION = 35
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
@@ -165,16 +168,21 @@ def caller_of(record: dict) -> str | None:
     return CALLER_BY_KIND.get(record["kind"]) if "cost" in record else None
 
 
+# Record kind -> the key of a player's usage row that counts them.
+COUNTED_PER_PLAYER = {"player_error": "failed_calls", "player_fallback": "fallbacks",
+                      "effort_fallback": "effort_fallbacks"}
+
+
 def usage_by_caller(path: Path, players: list[dict]) -> list[dict]:
     """Cost, calls and tokens of each player (in seat order), the moderator, and each post-game step
     that made calls, read from a log's records so far. players: {name, model, role} per player.
     A player's failed calls (player_error; a failed answer that was paid for is also in calls and cost) and
-    fallback answers (player_fallback) are counted too."""
+    fallback answers (player_fallback) and retries at a lower effort (effort_fallback) are counted too."""
     rows: dict[str, dict] = {p["name"]: {"who": p["name"], "kind": "player", "role": p.get("role"),
                                          "models": [p["model"]]} for p in players}
     for r in read_records(path)[0]:
-        if r["kind"] in ("player_error", "player_fallback") and r.get("player") in rows:
-            key = "failed_calls" if r["kind"] == "player_error" else "fallbacks"
+        if r["kind"] in COUNTED_PER_PLAYER and r.get("player") in rows:
+            key = COUNTED_PER_PLAYER[r["kind"]]
             rows[r["player"]][key] = rows[r["player"]].get(key, 0) + 1
         who = caller_of(r)
         if who is None:
@@ -200,7 +208,7 @@ def usage_by_caller(path: Path, players: list[dict]) -> list[dict]:
         for k in TOKEN_FIELDS:
             row.setdefault(k, 0)
         if row["kind"] == "player":
-            row.setdefault("failed_calls", 0)
-            row.setdefault("fallbacks", 0)
+            for key in COUNTED_PER_PLAYER.values():
+                row.setdefault(key, 0)
         out.append(row)
     return out

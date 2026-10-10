@@ -151,7 +151,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   (a test checks it), and a new maker also needs `PROVIDERS`.
 - Reasoning effort: each model has a default (`effort` in `MODELS`: high, except Qwen and Gemini Flash at medium,
   since at high they run near or past the token cap); measured cost and time per turn at medium vs high are in the comment there.
-  `model:effort` or `--effort` override it.
+  `model:effort` or `--effort` override it. A player answer cut off at max_tokens is retried one step lower
+  (`llm.lower_effort`), logged as an `effort_fallback` alert (from/to effort; counted per player in result usage).
 - Player and moderator answers use strict JSON schemas (structured outputs). Some providers reject schema shapes
   others accept; known cases and workarounds are in the comment above `flat_nullable_enums` in `llm.py`. When a
   new model or a new schema field fails with HTTP 400 or empty answers, check there first.

@@ -117,7 +117,8 @@ MODELS: dict[Model, ModelInfo] = {
     # Gemini returns brief thought summaries only. High effort nears the token cap (see above).
     Model.GEMINI_3_8_FLASH: ModelInfo("gemini-3.8-flash", "cheap", 3, "medium"),  # AA 41 at high
     # Haiku 5.5 wrote "Name:" at the start of nearly every public message (game_20261009_084630_739772).
-    # AA 43 at max, 38 at high
+    # AA 43 at max, 38 at high. At high it can reason to the 16k cap on long late-game prompts; those turns retry at
+    # medium (lower_effort), logged as effort_fallback.
     Model.HAIKU_5_5: ModelInfo("haiku-5.5", "cheap", 2, short_reason=True, name_prefix=True),
     Model.GPT_6_LUNA: ModelInfo("gpt-6-luna", "cheap", 2),  # AA 38
     # DeepSeek V4.1 Flash fills some strict-schema answers with whitespace runs to the token limit, like Solar and
@@ -219,7 +220,9 @@ def default_effort(model: Model) -> str:
 def lower_effort(effort: str) -> str:
     """One step down EFFORTS, but not below "low": the retry after an answer cut off at max_tokens. Haiku at high
     effort reasoned to the 16k cap on 5 of Mallory's late-game day turns in one 15-player game (~56k-token
-    prompts, game_20261010_003734_551955), leaving her silent on Days 6-7 with four players alive."""
+    prompts, game_20261010_003734_551955), leaving her silent on Days 6-7 with four players alive. Such a retry
+    makes that player's effort inconsistent across turns, so Players.ask logs it as an "effort_fallback" alert
+    (from_effort, to_effort) and the answer's player_call has the effort used; usage rows count effort_fallbacks."""
     return EFFORTS[max(EFFORTS.index(effort) - 1, EFFORTS.index("low"))] if effort in EFFORTS else effort
 
 

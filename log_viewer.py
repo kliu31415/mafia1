@@ -255,7 +255,8 @@ def usage_html(usage: list[dict]) -> str:
                   "Prompt tokens": num(u["prompt_tokens"]), "Cached prompt tokens": num(u["cached_tokens"]),
                   "Completion tokens": num(u["completion_tokens"]),
                   "Reasoning tokens": num(u["reasoning_tokens"]),
-                  "Failed calls": u.get("failed_calls"), "Fallback answers": u.get("fallbacks")}
+                  "Failed calls": u.get("failed_calls"), "Fallback answers": u.get("fallbacks"),
+                  "Retries at lower effort": u.get("effort_fallbacks")}
         cells = "".join(f"<tr><td class='muted'>{esc(k)}</td><td>{esc(v)}</td></tr>"
                         for k, v in detail.items() if v is not None)
         role = f" <span class='muted'>({esc(u['role'])})</span>" if u.get("role") else ""

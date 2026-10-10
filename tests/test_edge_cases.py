@@ -144,6 +144,14 @@ def test_an_answer_cut_off_at_max_tokens_is_retried_at_lower_effort(game_factory
     assert client.efforts == [("Alice", "high"), ("Alice", "medium")]
     call = [r for r in records(game.log.path) if r["kind"] == "player_call"][-1]
     assert call["effort"] == "medium"
+    [fallback] = [r for r in records(game.log.path) if r["kind"] == "effort_fallback"]
+    assert fallback["alert"] and fallback["player"] == "Alice" and fallback["step"] == "trial_vote"
+    assert (fallback["from_effort"], fallback["to_effort"]) == ("high", "medium")
+    from gamelog import usage_by_caller
+    from gamelogs import effort_fallback_counts
+    assert effort_fallback_counts(records(game.log.path)) == {"Alice": 1}
+    rows = usage_by_caller(game.log.path, [{"name": n, "model": "m"} for n in ("Alice", "Bob")])
+    assert [r["effort_fallbacks"] for r in rows[:2]] == [1, 0]
     assert lower_effort("low") == "low" and lower_effort("max") == "xhigh"
 
 

@@ -328,7 +328,12 @@ class Players:
                                     **({"output": reply.content, "reasoning": reply.reasoning, "cost": reply.cost,
                                         "usage": reply.usage} if reply else {}))  # a failed answer still costs
                 if reply and reply.finish_reason == "length":  # ran out of tokens: retry thinking less (lower_effort)
-                    effort = lower_effort(effort or getattr(self.client, "effort", None) or default_effort(p.model))
+                    was = effort or getattr(self.client, "effort", None) or default_effort(p.model)
+                    effort = lower_effort(was)
+                    if effort != was and attempt == 0:  # this player's turns no longer all use one effort
+                        self.game.log.error("effort_fallback", f"{p.name} ({p.model.short}): answer cut off at "
+                                            f"max_tokens at {was} effort, retrying at {effort}", player=p.name,
+                                            model=p.model.value, from_effort=was, to_effort=effort, **where)
                 elif reply and reply.content:  # tell the model what was wrong, so the retry isn't the same answer
                     messages = messages + [{"role": "assistant", "content": reply.content},
                                            {"role": "user", "content": f"That answer couldn't be used ({error[:300]}). "

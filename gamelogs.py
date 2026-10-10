@@ -66,6 +66,12 @@ def fallback_counts(records: list[dict]) -> Counter:
     return fallbacks
 
 
+def effort_fallback_counts(records: list[dict]) -> Counter:
+    """Player -> how many of their answers were cut off at max_tokens and retried one effort step lower
+    (log version 35 on; older logs show it only as player_call's effort)."""
+    return Counter(r.get("player") for r in records if r.get("kind") == "effort_fallback")
+
+
 def players(records: list[dict], setup: dict | None = None, result: dict | None = None) -> list[dict]:
     """Each player of the game in seat order: name, seat, model (full id), start_role, final_role (None
     while the game hasn't ended), faction (of the start role, by faction_of), won, alive, died (a "death"
