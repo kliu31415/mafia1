@@ -141,6 +141,7 @@ def test_a_random_setup_game_is_logged_and_counted(tmp_path, monkeypatch):
 
 def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch):
     monkeypatch.setattr(setups, "LOG_DIR", Path("/nonexistent"))  # no past games: the same draw everywhere
+    monkeypatch.setattr(role_power, "FILE", Path("/nonexistent"))  # the priors, not the latest fit
     chances: list[float] = []
     yakuza_counts: Counter = Counter()
     for seed in range(100):
@@ -160,4 +161,16 @@ def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch)
 
 
 def test_every_role_has_a_power():
-    assert set(role_power.POWER) == set(ROLES)
+    assert set(role_power.PRIOR) == set(ROLES)
+
+
+def test_role_powers_are_refit_from_results_towards_the_priors(tmp_path):
+    base = ["Sheriff", "Medic", "Vanilla Villager", "Vanilla Villager", "Grunt"]
+    data = [(base + ["Jester"], 0, 1.0)] * 12 + [(base + ["Vulture"], 1, 1.0)] * 12
+    offset, power = role_power.fit(data)
+    assert power["Jester"] < role_power.PRIOR["Jester"] - 0.1 and power["Vulture"] > role_power.PRIOR["Vulture"] + 0.1
+    assert power["Seer"] == role_power.PRIOR["Seer"]  # never seen: stays at its prior
+    path = tmp_path / "role_power.json"
+    role_power.update(tmp_path, path)  # no games: the priors
+    assert role_power.load(path) == (role_power.OFFSET_PRIOR, role_power.PRIOR)
+    assert "| Sheriff | Good | +0.55 | +0.55 | 0 |" in path.with_suffix(".md").read_text(encoding="utf-8")

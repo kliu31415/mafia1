@@ -40,7 +40,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 BRANCH = "logs"
 REMOTE = "origin"
-TIPS_FILES = ("tips.md", "tips_notebook.json", "tips_notebook.md")
+TIPS_FILES = ("tips.md", "tips_notebook.json", "tips_notebook.md", "role_power.json", "role_power.md")
 README = (b"# Game logs\n\nThis branch holds game logs (logs/) and the tips sheet (tips/), not code. It is written by\n"
           b"`uv run sync_logs.py` on main; see that file's docstring.\n")
 PUSH_TRIES = 6  # another machine pushing at the same moment makes a push fail; it is rebuilt and retried
@@ -395,6 +395,8 @@ def main() -> None:
             if not catch_up(repo, log_dir, tips_dir, None if args.no_tips else args.tips_model):
                 print(f"No new logs on {repo.remote}/{repo.branch}")
             rebuild_index(log_dir)
+            if not args.no_tips:
+                refit_powers(log_dir)
             if not args.no_tips and (tips_dir / "tips.md").exists():
                 commit_tips(repo, tips_dir)
             if not args.no_tips:
@@ -413,6 +415,16 @@ def main() -> None:
     except RuntimeError as e:
         print(f"ALERT sync_error: {e}", file=sys.stderr)
         sys.exit(1)
+
+
+def refit_powers(log_dir: Path) -> None:
+    """Refits tips/role_power.json from the games in log_dir (role_power.py); a failure is an ALERT, not raised."""
+    import role_power
+    try:
+        role_power.update(log_dir)
+    except Exception as e:
+        print(f"ALERT power_error: refitting the role powers failed: {type(e).__name__}: {e}; "
+              "`uv run role_power.py` retries", file=sys.stderr)
 
 
 def rebuild_index(log_dir: Path) -> None:

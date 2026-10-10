@@ -84,6 +84,7 @@ from setups import POOLS, SETUPS, parse_setup, players_for, setup_note
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
+import role_power
 import variants
 from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
 
@@ -401,6 +402,8 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
         step("Updating the tips notebook and sheet", lambda: build_tips(
             [*again, log.path], update_tips, client, mod, 800, include_mock=mock, on_error=log.error))
         log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
+        if update_tips == DEFAULT_TIPS and not mock:  # next to the tips, so their commit and publish carry it
+            step("Refitting the role powers", lambda: role_power.update(LOG_DIR))
     return usage
 
 
@@ -482,6 +485,8 @@ def main() -> None:
     ap.add_argument("--roles", default="standard", help="a setup drawn from the seed: NAME (its usual player "
                     f"count) or NAME:N for N players, NAME one of {', '.join(SETUPS)} (random means classic)"
                     "; or comma-separated role names (see setups.py)")
+    ap.add_argument("--yakuza", type=int, default=None, help="for the standard setup: exactly this many Yakuza "
+                    "(players are still told the setup's usual range)")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
@@ -580,8 +585,11 @@ def main() -> None:
         name, n = named
         n = players_for(name, n, seed)
         # Its own RNG, so a seed's setup doesn't depend on the rest of the game (and vice versa).
-        roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), args.role_pool)
-        setup = {"kind": "random", "name": name, "players": n, "pool": args.role_pool}
+        options = {"yakuza": args.yakuza} if args.yakuza is not None else {}
+        if options and name != "standard":
+            ap.error("--yakuza only works with the standard setup")
+        roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), args.role_pool, **options)
+        setup = {"kind": "random", "name": name, "players": n, "pool": args.role_pool, **options}
     else:
         roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
