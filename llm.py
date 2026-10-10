@@ -227,6 +227,12 @@ def lower_effort(effort: str) -> str:
 
 
 DEFAULT_MAX_TOKENS = 16_000  # reasoning + answer; Anthropic needs this above the reasoning budget
+# Kept at 16k for Haiku rather than 32k (Kevin, 2026-10-10): of 8.1k Haiku calls, the median used 1.2k output
+# tokens, the 99th percentile 9.5k, and one was cut off (Frank's trial vote in game_20261010_102519_202). Its
+# summarized reasoning had already decided before the cap; the medium-effort retry took 1.5k tokens and 10 s (vs 71 s)
+# and gave the same vote. The longest finished turns (15k+) were sound but re-checked suspects already covered. A
+# higher cap would mostly add latency (the table waits on the turn); revisit for games with ~50k+ token prompts
+# (15+ players), where Haiku hit the cap five times in game_20261010_003734_551955.
 
 
 def load_api_key() -> str:
