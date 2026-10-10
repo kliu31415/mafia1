@@ -914,3 +914,38 @@ def test_fixer_reverses_a_players_trial_votes_the_next_day_and_nobody_is_told(ga
     assert any(t.endswith("You voted Guilty in the trial of Erin.") for t in told(game, "Carol"))  # what she cast
     assert not any("fix" in t.lower() for t in told(game, "Carol"))
     assert game.votes[game.day][-1]["votes"]["Carol"] is False  # the Auditor reads the counted vote too
+
+
+def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
+    game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "stay_awake", "by": "Alice"}]})
+    mod.dispatch("record_visits", {"visits": [["Bob", "Bob"], ["Carol", "Dave"], ["Dave", "Carol"],
+                                              ["Erin", "Carol"], ["Frank", "Dave"], ["Bob", "Carol"]]})
+    game.run_night_end_hooks()
+    last = told(game, "Alice")[-1]
+    assert "More than 3 players visited" in last and last.endswith("1 insomniac token left.")
+    heard = last.split("Their roles: ")[1].split(".")[0].split(", ")
+    assert len(heard) == 3 and heard == sorted(heard) and set(heard) < {"Medic", "Sheriff", "Grunt", "Tracker",
+                                                                         "Lookout"}
+    game.day += 1  # fewer than 3 visitors: all of them, a repeated visitor once
+    mod.dispatch("apply_changes", {"changes": [{"op": "stay_awake", "by": "Alice"}]})
+    mod.dispatch("record_visits", {"visits": [["Erin", "Bob"], ["Carol", "Bob"], ["Carol", "Dave"]]})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("heard every player who visited someone tonight. Their roles: Sheriff, "
+                                            "Tracker. 0 insomniac tokens left.")
+
+
+def test_insomniac_with_no_visitors_or_no_recorded_visits(game_factory):
+    game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "stay_awake", "by": "Alice"}]})
+    mod.dispatch("record_visits", {"visits": []})
+    game.run_night_end_hooks()
+    assert "nobody visited anyone tonight" in told(game, "Alice")[-1]
+    game.day += 1
+    apply_ops(game, players, {"op": "stay_awake", "by": "Alice"})
+    game.run_night_end_hooks()
+    assert game.player("Alice").tokens["insomniac"] == 0 and game.log.error_counts == {"insomniac_no_visits": 1}

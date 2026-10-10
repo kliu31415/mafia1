@@ -99,6 +99,12 @@ ROLES: dict[str, RoleInfo] = {
                       summary="Every night: learns three players (maybe themselves) who were each in a different "
                       "visit group.", tested=True,
                       notes="passive; code draws the names from the moderator's record_visits list and tells them"),
+    "Insomniac": RoleInfo(Alignment.GOOD, "Investigative", False,
+                          summary="Token: learns the roles (no names) of up to 3 random players who visited someone "
+                          "that night.",
+                          tokens={"insomniac": 2}, acts_at_night=True,
+                          notes="moderator records the use with the stay_awake op; code draws the visitors from "
+                          "record_visits and tells them at the end of the night"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,

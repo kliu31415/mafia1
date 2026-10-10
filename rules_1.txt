@@ -330,6 +330,15 @@ Scout
   up than a small one. If there were fewer than three groups, you learn one name per group and how many groups there
   were. This needs no action and a role-block doesn't stop it. You never visit anyone.
 
+Insomniac
+  Tokens: 2 insomniac tokens.
+  Night: may spend a token to stay awake. At the end of the night, you learn the roles of up to 3 players who visited
+  someone that night (R6; a visit to themselves counts), but not who they are: if more than 3 players visited, 3 of
+  them are drawn at random. The roles are listed in alphabetical order, and a role shows twice if two of those
+  players have it. If fewer than 3 players visited, you learn all of their roles, and if nobody visited, you learn
+  that. Players who visited and then died that night count. Only visits count: an action that isn't a visit (e.g.
+  an Astral Visit or a Veteran's alert) doesn't. Staying awake is not a visit. This is an exact-role check (R19).
+
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they
   spent that night (token count, R19). You learn only the total, not what kind of tokens they are.
