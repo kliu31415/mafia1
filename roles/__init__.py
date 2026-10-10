@@ -60,9 +60,9 @@ ROLES: dict[str, RoleInfo] = {
                              "target's PMs the next day"),
     "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False,
                           summary="Once (token): sees one role per other player, unnamed and shuffled; "
-                          "75% are real, the rest fakes.",
+                          "half are real, the rest fakes.",
                           tokens={"archive": 1}, acts_at_night=True, tested=True,
-                          notes="moderator records the use with the archive op; code draws the real 75% "
+                          notes="moderator records the use with the archive op; code draws the real half "
                           "and the fakes (any role, never a second unique one), and tells it at once"),
     "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False,
                          summary="Token: survey a player; learns one random role among them and their two neighbors.",
@@ -196,9 +196,11 @@ ROLES: dict[str, RoleInfo] = {
                         notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                        summary="Wins alone if alive when few enough players remain at dawn.",
+                        summary="Wins alone if alive when few enough players remain at dawn. Learns a role for each "
+                        "death, true only half the time.",
                         unique=True,
-                        notes="code checks the living count at each dawn and ends the game when it wins"),
+                        notes="code checks the living count at each dawn and ends the game when it wins; code tells "
+                        "the death reports at dawn"),
     "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                               summary="Night: Strong Attack on one player. Wins alone. Standard Defense.",
                               defense="Standard", acts_at_night=True),

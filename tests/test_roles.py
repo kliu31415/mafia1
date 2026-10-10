@@ -162,9 +162,9 @@ def test_archivist_sees_one_role_per_other_player_three_quarters_real_once(game_
         mod.dispatch("apply_changes", {"changes": [{"op": "archive", "by": "Alice"}]})
     result = next(e for e in game.events if e.cat == "result")
     assert result.visible_to == {"Alice"}
-    # Bob died tonight but counts: N = 8, floor(0.75 * 8) = 6 real
-    assert "shows 8 roles" in result.text and "6 of them are the real" in result.text
-    assert "other 2 are fakes" in result.text
+    # Bob died tonight but counts: N = 8, floor(0.5 * 8) = 4 real
+    assert "shows 8 roles" in result.text and "4 of them are the real" in result.text
+    assert "other 4 are fakes" in result.text
     shown = result.fields["message"].rsplit(": ", 1)[1].rstrip(".").split(", ")
     assert len(shown) == 8 and all(r in ROLES for r in shown)
     assert result.phase == "night"  # a night result, not a dawn one
@@ -188,11 +188,11 @@ def test_archivist_fakes_are_any_role_but_never_a_second_unique_one(game_factory
     for seed in range(300):
         game.rng = random.Random(seed)
         n, real, shown = archive_roles(game, game.player("Alice"))
-        assert (n, real, len(shown)) == (8, 6, 8)
+        assert (n, real, len(shown)) == (8, 4, 8)
         counts = Counter(shown)
         assert all(counts[r] <= 1 for r in unique)
-        # at least the 6 real roles come from the other players' roles
-        assert sum(min(counts[r], pool[r]) for r in counts) >= 6
+        # at least the 4 real roles come from the other players' roles
+        assert sum(min(counts[r], pool[r]) for r in counts) >= 4
         fakes_seen |= set(counts - pool)
     assert fakes_seen - set(pool)  # fakes include roles not in the game
     assert fakes_seen & unique  # a unique role not drawn as real can show up as a fake
@@ -851,3 +851,22 @@ def test_only_doused_players_who_arent_good_are_told(game_factory):
     apply_ops(game, players, {"op": "set_status", "player": "Bob", "key": "doused", "value": True})  # doused again
     logic("Arsonist").at_night_end(game)
     assert sum("doused you" in t for t in told(game, "Bob")) == 2
+
+
+def test_vulture_hears_a_half_true_role_for_each_new_death(game_factory):
+    from roles.vulture import report_deaths
+    game, _ = game_factory(["Vulture", "Roleplayer", "Grunt", "Executioner", "Vanilla Villager", "Vanilla Villager"])
+    vulture = [game.player("Alice")]
+    game.kill("Bob", "Katana")
+    game.player("Dave").alive = False
+    game.player("Dave").status[Status.LEFT] = True  # left the game, didn't die: no report
+    game.rng.random = lambda: 0.0  # type: ignore[method-assign]  # the true role
+    report_deaths(game, vulture)
+    assert told(game, "Alice")[-1].endswith("Bob: Roleplayer.")  # exact-role check (R19)
+    report_deaths(game, vulture)  # nothing new: no second report
+    assert len(told(game, "Alice")) == 1
+    game.kill("Carol", "executed by hanging")
+    game.rng.random = lambda: 0.9  # type: ignore[method-assign]  # a fake: any other role
+    report_deaths(game, vulture)
+    fake = told(game, "Alice")[-1].rsplit("Carol: ", 1)[1].rstrip(".")
+    assert fake in ROLES and fake != "Grunt" and "Bob" not in told(game, "Alice")[-1]

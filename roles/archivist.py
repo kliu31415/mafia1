@@ -1,5 +1,5 @@
 """Archivist: once per game, is shown N roles, where N is the number of other players alive when the night began
-(those who died that night count): the real roles of a random three quarters of them plus fakes drawn from every
+(those who died that night count): the real roles of a random half of them plus fakes drawn from every
 role in the rules, mixed in random order."""
 
 from __future__ import annotations
@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 
 from roles.base import RecordedAction, RoleLogic, acted_tonight, register
 
-SHARE = 0.75  # rules: floor(0.75 * N) of the N roles shown are real
+SHARE = 0.5  # rules: floor(0.5 * N) of the N roles shown are real
 
 if TYPE_CHECKING:
     from state import Game, Player
