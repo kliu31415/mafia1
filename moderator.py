@@ -28,7 +28,8 @@ def apply_changes_tool(role_op_docs: list[str]) -> dict:
         "'Vigilante', naming every fatal cause when there are several (R12), e.g. 'Katana and Serial Killer'; it's "
         "revealed as 'X died (killed by <cause>)') | "
         "{op:'set_tokens', player, token, value} | {op:'set_status', player, key, value} "
-        "(value null deletes the key) | {op:'set_katana', player} (not at night: code moves the Katana per the Yakuza vote and passes it on "
+        "(value null deletes the key) | {op:'set_katana', player} (not at night: code moves the Katana per the Yakuza "
+        "vote and passes it on "
         "after the night's results if its holder died) | {op:'set_last_will', player, text} "
         "(e.g. a Fabricator forgery). For a Mortician clean, use set_status key 'cleaned' value true; "
         "the dawn reveal then hides the role and will (the cause is still shown). "
@@ -344,7 +345,8 @@ class Moderator:
                 p = self.game.player(c["player"])
                 if not p.alive or p.info.alignment is not Alignment.EVIL:
                     raise bad(f"{p.name} is not a living Yakuza")
-                if self.game.phase == "night":  # rules R8; game_20261010_013419_977337 passed it to a player dying that night
+                # rules R8; game_20261010_013419_977337 passed it to a player dying that night
+                if self.game.phase == "night":
                     raise bad("code moves the Katana per the Yakuza vote and passes it on after the night's results "
                               "if its holder died (R8); don't set it at night")
         return out, notes
