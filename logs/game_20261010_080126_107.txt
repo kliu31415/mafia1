@@ -552,3 +552,80 @@ Judy nominated Judy. Everyone now votes Yes/No simultaneously.
 Nomination votes on Judy: Yes - Judy; No - Erin, Grace, Heidi.
 The nomination of Judy failed (1 Yes).
 Erin (public): Erin here. I'm not nominating today, and I won't vote Guilty on Judy. Her repeated self-nominations and false Vanilla claim look like a Jester who wants the hang, and a hanged Jester wins while Guilty voters become revenge targets. The Katana has killed every night, so the living Yakuza is most likely Grace or Heidi. Grace and Heidi, state your Night 5 and Night 6 actions and targets, and whether you visited Erin or Judy. Judy, are you Jester or Executioner? Give a direct answer.
+Grace (public): Grace here. I'm not nominating today. Erin, your Day 6 Yes on Judy and Judy's repeated self-nominations are the two open questions, and I'll vote only on checkable answers. Judy, state your real role now.
+Heidi (public): Heidi here. I'm not nominating today. Judy, you still haven't named a real role or said whether you visited anyone on Nights 5 or 6. Give a direct answer before the Day ends, or the Village votes on what it already has.
+Judy (public): Judy here. Four are alive and the Katana has killed every night, so the Village needs a checkable result. Heidi pressed my trial and then voted Innocent. Grace has voted both ways on me. Erin has been consistent. Whoever is nominated next between Heidi and Grace, I'll vote Guilty on the record.
+Erin (public): Erin here. No nomination from me. Grace and Heidi, you both voted Guilty on my trial, and I've asked for your Night 5 and Night 6 actions without a direct answer. Give your targets, what you did, and whether you visited Judy or me. Judy, your Vanilla claim is false and you keep self-nominating, so the Jester read stands. I won't hang anyone on a pattern alone.
+Grace (public): Grace here. My Night 4 answer stands and I have no new result. I voted Guilty on Erin for her Day 6 Yes on Judy, and I still see no checkable tie from Judy to a kill. I'm not nominating today.
+Heidi (public): Heidi here. No new information and no nomination from me. Judy's role question still stands, and on Day 8 I'll vote on checkable answers rather than repeated self-nominations.
+Judy (public): Judy here. Four are alive, and the Katana holder must be Grace or Heidi. Both voted Guilty on Erin on thin reasons. Erin, you're the only player whose read hasn't flipped. Name the one of them you want on trial, and I'll vote with you on the record.
+Erin (public): Erin here. No nomination from me today. Judy: a hanged Jester wins and revenges a Guilty voter, so I'm voting Innocent on you unless a visit or result appears. Grace and Heidi, my Guilty trial was thin; Night 5 and 6 actions are still unanswered, so state them.
+Heidi (public): Heidi here. Nothing new from me. Judy, you still haven't named a real role. Erin, nothing you've said changes my read. I'm not nominating today.
+Judy (public): Judy here. I'm nominating Heidi. She pressed my trial hardest, flipped from Guilty to Innocent on Day 6, and voted Guilty on Erin with no checkable result. Grace, vote on the record.
+Judy nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Judy; No - Erin, Grace, Heidi.
+The nomination of Heidi failed (1 Yes).
+Erin (public): Erin here. Mallory's Night 4 numbers (2 visited, 1 visitor) mean one visitor hit Alice plus one other player. I took no night action. Grace, Heidi and Judy have each denied any Night 4 visit, so at least one of you is lying. Whoever visited Alice, name the second target and why. I'm not nominating until someone answers that.
+Judy (public): Judy here. I'm not nominating today. Grace and Heidi, you both voted Guilty on Erin, so name your Night 5 and 6 actions as Erin asked.
+Erin (public): Erin here. Grace and Heidi, you both voted Guilty on me, so state your Night 5 and Night 6 actions and whether you visited Judy or me. Judy, state your real role.
+(to Heidi, Judy) Judy -> Heidi (private): Heidi, you pushed my trial hardest, then flipped to Innocent. If you think I'm Yakuza, nominate me and vote Guilty; I'll vote Guilty too.
+Erin (public): Erin here. Judy's pattern reads Jester, not Katana. Grace or Heidi holds the Katana, and Mallory's Night 4 count shows one visitor on Alice plus one other target. Grace and Heidi, yes or no: did you visit Alice on Night 4?
+Heidi (public): Heidi here. Erin, no: I took no night action on Night 4, Night 5 or Night 6, and I visited nobody. Judy still hasn't said whether she visited anyone on Nights 4 to 6. I'm not nominating today.
+(to Grace, Judy) Judy -> Grace (private): Grace, if you think I'm Yakuza, nominate me and vote Guilty. Only a Guilty vote from you and Heidi tests me, since Erin will stay Innocent.
+(to Heidi, Judy) Judy -> Heidi (private): Heidi, your Guilty-then-Innocent flip is the lead. Nominate me and vote Guilty to test it.
+(to Erin, Judy) Erin -> Judy (private): Judy, privately: are you Jester or Yakuza? Answer to me only. I won't reveal your reply.
+Heidi (public): no nomination from me today. Judy, state your real role.
+(to Heidi, Judy) Judy -> Heidi (private): Heidi, you pushed my trial, flipped to Innocent, then voted Guilty on Erin with no result behind it. If you think I'm Yakuza, nominate me on Day 8 and vote Guilty. I'll vote Guilty on myself too, so the Village gets its test.
+[ERROR player_error] Erin (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Discussion time is over. The day ends.
+
+===== NIGHT 7 =====
+(to Grace, Heidi) Grace (Yakuza chat): Grace: Night 7 proposal. I keep the Katana (holder Grace). Katana target: Erin. Erin is the only Village non-Jester left, and Judy is Jester-shaped, so Erin's death leaves two Yakuza against a Jester. My Diviner pick: Judy. Heidi, confirm Erin as target and me as holder. No daytime PMs.
+(to Grace, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Grace holds the Katana, Erin is the target, and I vote Erin with Grace as holder. My clerk token stays unused. No daytime PMs. Ready.
+(to Grace, Heidi) Grace (Yakuza chat): Grace: Confirmed. I keep the Katana, Erin is the target, and I vote Erin with Grace as holder. My Diviner pick is Judy. Heidi, keep your clerk token unused tonight. No daytime PMs. Ready.
+(to Grace, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Grace holds the Katana, Erin is the target, and I vote Erin with Grace as holder. My clerk token stays unused. No daytime PMs. Ready.
+Night actions:
+  Grace (Diviner): target Judy; Katana vote: Grace holds, attacks Erin
+  Heidi (Clerk): no role action; Katana vote: Grace holds, attacks Erin
+Katana: Grace holds it and attacks Erin.
+(to Grace) Moderator (private): You divined Judy; the group was Heidi, Judy and Erin. The role drawn is Jester (60% chance it is Judy's, otherwise one of the others').
+(to Erin) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Grace, Heidi) Moderator (private): Yakuza actions tonight: Grace kept the Katana and used it to attack Erin. Grace also used her Diviner action on Judy. Heidi took no action, so her clerk token was not spent.
+(to Grace) Moderator (private): Katana attack result: your Katana attack on Erin succeeded.
+[Moderator summary] Night 7: Grace (Diviner, holding the Katana) attacked Erin with the Katana at Standard level. Erin had Defense None, so she died. Grace divined Judy, a non-Yakuza (code draws and sends the result). Heidi took no action and still has 1 clerk token. Visits: Grace->Erin, Grace->Judy. Nobody was role-blocked. Grace, Heidi and Judy (Jester) are left alive, so ignoring the Jester, every living player is Yakuza: the Yakuza win.
+
+===== DAY 8 =====
+Erin died (killed by Katana). Their alignment was Good. Their last will: "Erin, Vanilla Villager (Good). No night action and no results, and I have never claimed otherwise. My votes: Day 2 Innocent on Judy's trial; Day 4 Guilty on Ivan, whose Tracker track on Frank conflicts with Alice's Scout N3; Day 5 Innocent on Mallory and Grace; Day 6 Yes on Judy's first nomination, which contradicted my stated plan (I say so openly), then Innocent on Judy and on Frank. Public facts: Bob's Lookout N2 and Ivan's Tracker N2 both show one visit to Erin, Ivan, which I cannot confirm from my side. Katana kills: Dave N1, Carol N2, Bob N3, Alice N4, Mallory N5, Frank N6. Mallory's Fortune Teller N4 (2 visited, 1 visitor) means one visitor hit Alice plus one other target. Judy's Vanilla claim was false by Carol's Oracle, and she has sent PMs to Dave, Grace, Frank, Heidi and Erin. Judy may be a Jester, so do not hang her without a visit or result. A living Yakuza must be Grace, Heidi or Judy. Trust visits and results over wording."
+The game is over. Winners: Grace, Heidi, Ivan (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Erin] The per-night visit information and the Fortune Teller count explanations were hard to reconcile, and the revealed vote totals sometimes did not match the stated votes.
+[Feedback from Dave] The game is over, so the interface's per-turn notepad and reason fields had nothing to act on; I answered the feedback fields only.
+[Feedback from Grace] The transcript contains repeated and inconsistent public records (duplicate 'Judy nominated Judy' lines, mismatched Katana vote attributions), which may be a logging problem.
+[Night check] Night 7: correct
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Grace, Heidi, Ivan
+Cost by player (USD):
+  Alice (Scout)             $0.0906   48 calls  claude-haiku-5.5
+  Bob (Lookout)             $0.0701   41 calls  claude-haiku-5.5
+  Carol (Oracle)            $0.0418   26 calls  claude-haiku-5.5
+  Dave (Executioner)        $0.0205   11 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)   $0.2273   97 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.1925   82 calls  claude-haiku-5.5
+  Grace (Diviner)           $0.3238  117 calls  claude-haiku-5.5
+  Heidi (Clerk)             $0.2751  116 calls  claude-haiku-5.5
+  Ivan (Fabricator)         $0.1067   57 calls  claude-haiku-5.5
+  Judy (Jester)             $0.1744   85 calls  claude-haiku-5.5
+  Mallory (Fortune Teller)  $0.1585   65 calls  claude-haiku-5.5
+  Moderator                 $2.2666   29 calls  claude-opus-5.5
+  Night checks              $0.5298    7 calls  claude-opus-5.5
+  Strategy review           $0.3803    1 calls  claude-opus-5.5
+  Log review                $0.4514    1 calls  claude-opus-5.5
+  Total                     $5.3094  783 calls
