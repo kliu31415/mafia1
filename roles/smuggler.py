@@ -18,7 +18,9 @@ class Smuggler(RoleLogic):
                   "action in the JSON and told the Smuggler and both swapped players), so resolve the actions as "
                   "given and tell none of them about the swap. Actions it moved keep the player's own choice in "
                   "`chosen_target` / `chosen_second_target`: word every private result with the player the "
-                  "action's user chose, never the one it landed on, so the swap stays hidden (rules R23). The "
+                  "action's user chose, never the one it landed on, and in a list of players trade the swapped "
+                  "pair's names (each where the other would be), so the swap stays hidden (rules R23). Give ops "
+                  "the player an action landed on: code words its own results this way. The "
                   "Smuggler visits both swapped players (R6); it can't be role-blocked.")
     code_tells_user = True
     roleplayer_can_fake = False  # code carries out the swap and its notices

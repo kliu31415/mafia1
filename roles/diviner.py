@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, join_names, neighbor_group, register
+from roles.base import RecordedAction, RoleLogic, as_chosen, join_names, neighbor_group, register
 
 TARGET_CHANCE = 0.6  # the rest is split evenly among the target's neighbors in the group
 
@@ -31,7 +31,8 @@ class Diviner(RoleLogic):
         others = [n for n in group if n != target.name]
         weights = [TARGET_CHANCE if n == target.name else (1 - TARGET_CHANCE) / len(others) for n in group]
         role = game.player(game.rng.choices(group, weights)[0]).role
-        text = (f"You divined {target.name}; the group was {join_names(group)}. The role drawn is {role} "
-                f"({TARGET_CHANCE:.0%} chance it is {target.name}'s, otherwise one of the others')." if others
-                else f"You divined {target.name}, the only player in the group: their role is {role}.")
+        chosen, = as_chosen(game, target.name, [target.name])  # rules R23
+        text = (f"You divined {chosen}; the group was {join_names(as_chosen(game, target.name, group))}. The role "
+                f"drawn is {role} ({TARGET_CHANCE:.0%} chance it is {chosen}'s, otherwise one of the others')."
+                if others else f"You divined {chosen}, the only player in the group: their role is {role}.")
         game.tell([by.name], text)

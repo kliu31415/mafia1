@@ -568,6 +568,18 @@ def test_a_swap_can_land_an_others_only_action_on_its_user_and_the_result_names_
     assert "You profiled Carol: their role is " in result and "Profiler" in result
 
 
+def test_group_results_on_a_swapped_target_trade_the_pair_s_names(game_factory):
+    roles = ["Census Taker", "Smuggler", "Vanilla Villager", "Grunt", "Surveyor", "Diviner", "Vanilla Villager"]
+    game, players = game_factory(roles)
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Bob", "Carol", "Grace"]]}  # actions aimed at Carol land on Grace
+    apply_ops(game, players, {"op": "census", "by": "Alice", "player": "Grace"},
+              {"op": "survey", "by": "Erin", "player": "Grace"}, {"op": "divine", "by": "Frank", "player": "Grace"})
+    assert "Your census of " in told(game, "Alice")[-1] and "Carol" in told(game, "Alice")[-1]
+    assert told(game, "Erin")[-1].startswith("Moderator (private): You surveyed Alice, Carol and Frank.")  # rules R23
+    assert "You divined Carol; the group was Alice, Carol and Erin." in told(game, "Frank")[-1]
+
+
 def test_census_counts_true_alignment_and_never_neutrals(game_factory):
     from roles.census_taker import census_group
     game, players = game_factory(["Census Taker", "Grunt", "Ex-Con", "Jester", "Vanilla Villager", "Pharmacist"])

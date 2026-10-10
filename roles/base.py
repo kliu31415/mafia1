@@ -174,6 +174,17 @@ def swap_partner(game: Game, name: str) -> str | None:
     return None
 
 
+def as_chosen(game: Game, target: str, names: list[str]) -> list[str]:
+    """Names in a result about `target`, as its user chose them: when a swap moved the action onto `target`, the
+    swapped pair trade names (each where the other would be) and the list goes back to seat order, so the result
+    doesn't show the swap (rules R23). Roles and alignments drawn from the group stay the real players'."""
+    partner = swap_partner(game, target)
+    if partner is None:
+        return names
+    shown = {target: partner, partner: target}
+    return [p.name for p in game.players if p.name in {shown.get(n, n) for n in names}]
+
+
 def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:
     """check_op for a role op: None if `by` has `role`, was alive when the night began (acted_tonight) and,
     for an op that spends a `kind` token, has one."""

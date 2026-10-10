@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RecordedAction, RoleLogic, acted_tonight, join_names, register
+from roles.base import Alignment, RecordedAction, RoleLogic, acted_tonight, as_chosen, join_names, register
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -30,7 +30,8 @@ class CensusTaker(RoleLogic):
         group = census_group(game, by.name, target.name)
         kind = game.rng.choice([Alignment.GOOD, Alignment.EVIL])
         n = sum(game.player(q).info.alignment is kind for q in group)  # true alignment (rules R19)
-        text = (f"Your census of {join_names(group)} counted {kind.value} players (drawn at random this time): {n} of "
+        shown = as_chosen(game, target.name, group)  # rules R23
+        text = (f"Your census of {join_names(shown)} counted {kind.value} players (drawn at random this time): {n} of "
                 f"the {len(group)} {'is' if n == 1 else 'are'} {kind.value}. It counts true alignment, so frames and "
                 "disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as "
                 "either Good or Evil.")

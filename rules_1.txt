@@ -84,7 +84,9 @@ Some roles can swap two players for a night. Every action that night aimed at on
 attack and automatic actions such as the Ex-Con's visit or the Seer's pair) lands on the other instead, as if its
 user had chosen that player. Only the swap itself is not moved (the swapping player's Katana vote is). Results name the player the action's
 user chose, so a swapped action's result doesn't show the swap: a Sheriff who checked A learns B's alignment as
-A's. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action landed on.
+A's. A result that lists several players (e.g. a group around the target) is built around B, but A and B trade
+places in the list, each named where the other would be; the roles, alignments and counts in it are still the real
+players', so the rest of the group can still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action landed on.
 
 R13 (Last wills)
 Players may write and update a last will at the beginning of each Day (except those who died the night before)

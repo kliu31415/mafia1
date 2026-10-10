@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, join_names, neighbor_group, register, tokens_left_text
+from roles.base import (RecordedAction, RoleLogic, as_chosen, join_names, neighbor_group, register,
+                        tokens_left_text)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -21,7 +22,8 @@ class Surveyor(RoleLogic):
         assert target
         group = neighbor_group(game, by.name, target.name)
         role = game.player(game.rng.choice(group)).role
-        text = (f"You surveyed {join_names(group)}. One of them, chosen at random, has the role {role}."
-                if len(group) > 1 else f"You surveyed {target.name}, the only player in the group: their role is "
+        shown = as_chosen(game, target.name, group)  # rules R23
+        text = (f"You surveyed {join_names(shown)}. One of them, chosen at random, has the role {role}."
+                if len(group) > 1 else f"You surveyed {shown[0]}, the only player in the group: their role is "
                 f"{role}.")
         game.tell([by.name], f"{text} {tokens_left_text(by, 'survey')}.")
