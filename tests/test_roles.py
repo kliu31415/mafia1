@@ -744,3 +744,13 @@ def test_a_diviner_may_pick_themselves_for_strong_defense(game_factory):
     game.phase = "night"
     with pytest.raises(ValueError, match="Strong Defense"):
         apply_ops(game, players, {"op": "divine", "player": "Alice", "by": "Alice"})
+
+
+def test_the_roleplayer_rule_lists_exactly_the_roles_it_can_be():
+    from pathlib import Path
+    rules = Path("rules_1.txt").read_text(encoding="utf-8")
+    text = " ".join(rules.split("\nRoleplayer\n", 1)[1].split("\n\n")[0].split())
+    found = re.search(r"at the start from (.+?)\.", text)
+    assert found
+    listed = set(re.split(r", | and ", found[1]))
+    assert listed == {r for r, i in ROLES.items() if i.category == "Investigative" and logic(r).roleplayer_can_fake}
