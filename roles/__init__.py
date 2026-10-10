@@ -165,9 +165,10 @@ ROLES: dict[str, RoleInfo] = {
     "Smuggler": RoleInfo(Alignment.EVIL, "Yakuza", True,
                             summary="Token: swap two players for the night, so every action aimed at one lands on "
                             "the other. Immune to role-blocks.",
-                            tokens={"swap": 2}, acts_at_night=True, unique=True, tested=True,
+                            tokens={"swap": 2}, acts_at_night=True, unique=True,
                             notes="code applies the swap to the submitted actions before the Katana tally and the "
-                            "moderator, and tells the Smuggler and both swapped players"),
+                            "moderator, and tells the Smuggler and both swapped players; kept untested (Kevin, "
+                            "Oct 10): only one live swap so far"),
     "Ballot Stuffer": RoleInfo(Alignment.EVIL, "Yakuza", True,
                                summary="Token: their vote counts twice in the next Day's trials.",
                                tokens={"ballot": 2}, acts_at_night=True,

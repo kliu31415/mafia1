@@ -213,6 +213,15 @@ def test_unique_roles_appear_at_most_once(tmp_path):
                    GameLog(tmp_path / "t.jsonl"))
 
 
+def test_the_rules_list_exactly_the_unique_roles():
+    # The rules name the unique roles in one place (Kevin, Oct 10), so role paragraphs don't repeat it.
+    from pathlib import Path
+    text = " ".join(Path("rules_1.txt").read_text(encoding="utf-8").split())
+    found = re.search(r"except these unique roles, which appear at most once: (.+?)\.", text)
+    assert found
+    assert set(found[1].split(", ")) == {r for r, i in ROLES.items() if i.unique}
+
+
 def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
     from day import run_trial
     guilty = {"Bob", "Erin", "Frank"}

@@ -14,8 +14,8 @@ R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
 - Yakuza (Evil): fewer players, stronger roles; they know each other and share a night chat.
 - Neutral: each Neutral player is their own one-person faction, even if two players have the same Neutral role.
-The list of roles in the game is not public. A role may appear more than once in a game unless its text says
-Unique.
+The list of roles in the game is not public. A role may appear more than once in a game, except these unique
+roles, which appear at most once: Smuggler, Vulture.
 
 R15 (Alignments)
 Every player has one of three alignments: Good (Village), Evil (Yakuza) or Neutral. Some roles and effects change
@@ -420,7 +420,7 @@ Clerk
   announced publicly.
 
 Smuggler
-  Unique: at most one per game. Immune to role-blocks.
+  Immune to role-blocks.
   Tokens: 2 swap tokens.
   Night: may spend a token to swap two different living players (yourself included) for the night (R23). You visit
   both of them. Both swapped players are told they were swapped, but not with whom.
@@ -463,7 +463,7 @@ Arsonist
   Defense: Standard. Appears: Not Evil to the Sheriff.
   Win: only alone (not even with another Arsonist).
   Night: may douse one player (they aren't told), or ignite (Astral Visit), dealing a Strong Attack to every
-  doused player.
+  doused player. Igniting uses up every douse: players who survive it are no longer doused.
 
 Jester
   Defense: Basic. Appears: Evil to the Sheriff.
@@ -484,7 +484,6 @@ Executioner
   If your target dies any other way, you become a Jester.
 
 Vulture
-  Unique: at most one Vulture per game.
   Win: alone, if you are alive at the start of a Day (after the night's deaths) and max(floor(N/4), 2) or fewer
   players are alive, counting yourself, where N is the number of players at the start of the game. The game then
   ends at once and everyone else loses (Jester and Executioner wins already earned still count, R1).
