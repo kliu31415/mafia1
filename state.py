@@ -291,9 +291,12 @@ class Game:
         return None
 
     def winners_line(self) -> str:
-        """"Winners: ..." for game text. Dead winners are marked, so they don't read as survivors."""
-        names = [f"{n} (dead)" if not self.player(n).alive else n for n in self.winners or []]
-        line = f"Winners: {', '.join(names) or 'nobody'}."
+        """"Winners: ..." for game text. Winners who died or left (an Executioner, R1) are marked, so they don't
+        read as survivors; leaving isn't dying."""
+        def mark(n: str) -> str:
+            p = self.player(n)
+            return n if p.alive else f"{n} (left)" if p.status.get(Status.LEFT) else f"{n} (dead)"
+        line = f"Winners: {', '.join(map(mark, self.winners or [])) or 'nobody'}."
         return line + " Dead players still win with their side." if "(dead)" in line else line
 
     def state_summary(self) -> str:

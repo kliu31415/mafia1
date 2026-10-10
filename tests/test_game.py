@@ -4,6 +4,7 @@ import pytest
 
 import mafia
 from llm import Model
+from roles import Status
 from tests.conftest import ScriptedClient
 
 
@@ -81,3 +82,8 @@ def test_winners_line_marks_dead_winners(game_factory):
     assert game.winners_line() == "Winners: Bob."
     game.winners = []
     assert game.winners_line() == "Winners: nobody."
+    # An Executioner who won left the game (R1), which isn't dying (game_20261010_021114_222540)
+    game.player("Carol").alive = False
+    game.player("Carol").status[Status.LEFT] = True
+    game.winners = ["Bob", "Carol"]
+    assert game.winners_line() == "Winners: Bob, Carol (left)."

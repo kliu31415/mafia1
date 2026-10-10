@@ -59,12 +59,12 @@ ROLES: dict[str, RoleInfo] = {
     "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False,
                           summary="Once (token): at dawn, sees 75% of the other players' roles, "
                           "random and without names.",
-                          tokens={"archive": 1}, acts_at_night=True,
+                          tokens={"archive": 1}, acts_at_night=True, tested=True,
                           notes="moderator records the use with the archive op; code draws the sample "
                           "and tells it at once"),
     "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False,
                          summary="Token: survey a player; learns one random role among them and their two neighbors.",
-                         tokens={"survey": 2}, acts_at_night=True,
+                         tokens={"survey": 2}, acts_at_night=True, tested=True,
                          notes="moderator records the use with the survey op; code picks the group and draws the role"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
@@ -113,7 +113,7 @@ ROLES: dict[str, RoleInfo] = {
                        "night note says it reads Evil to Sheriff and Seer"),
     "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
                          summary="If they die, a random living Good player is dealt a Divine Attack.",
-                         notes="curse resolved by code at the next dawn"),
+                         tested=True, notes="curse resolved by code at the next dawn"),
     # Yakuza
     "Grunt": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="No night action of its own; shares the Katana.",

@@ -31,7 +31,7 @@ class Archivist(RoleLogic):
         spend_token(game, by.name, "archive")
         others = [p for p in game.players if p is not by and acted_tonight(game, p)]
         drawn = game.rng.sample(others, int(len(others) * SHARE))
-        roles = ", ".join(sorted(p.role for p in drawn)) or "none"
+        roles = ", ".join(p.role for p in drawn) or "none"  # in the order drawn: the rule says random order
         text = (f"The archive shows {len(drawn)} of the roles of the {len(others)} other players who were alive "
                 "when the night began (including any who died tonight): " + roles + ".")
         game.tell([by.name], text)
