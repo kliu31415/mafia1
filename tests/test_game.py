@@ -117,3 +117,14 @@ def test_alignment_only_flips_hide_the_role(game_factory, tmp_path, monkeypatch)
     path = mafia.play_game(Recording(), config)
     assert prompts and all("only their alignment" in p for p in prompts)
     assert '"flips": "alignment"' in path.read_text(encoding="utf-8").splitlines()[0]
+
+
+def test_no_flips_reveal_neither_role_nor_alignment(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Grunt", "Vanilla Villager"])
+    game.flips = "none"
+    game.player("Alice").last_will = "I was quiet."
+    game.kill("Alice", "Katana")
+    game.kill("Bob", "executed by hanging")
+    reveals = [e.text for e in game.events if e.visible_to is None] + game.death_record
+    assert any("Alice" in r and "killed by Katana" in r and "I was quiet." in r for r in reveals)
+    assert not any(w in r for r in reveals for w in ("Vanilla", "Grunt", "Good", "Evil"))

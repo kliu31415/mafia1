@@ -94,6 +94,9 @@ FLIP_VARIANTS = {
                  "(Good, Evil or Neutral) is revealed, not their role. It is their true alignment: frames and "
                  "disguises (e.g. the Ex-Con's, or the Katana holder's) don't change it. Their cause of death and "
                  "last will are still revealed, and a Mortician's clean hides the alignment and the will.",
+    "none": "\n\nGame setting for this game (it replaces part of R12): when someone dies, neither their role nor "
+            "their alignment is revealed. Only their cause of death and last will are, and a Mortician's clean "
+            "hides the will.",
 }
 LOG_DIR = ROOT / "logs"
 DEFAULT_TIPS = ROOT / "tips" / "tips.md"  # the players' sheet --update-tips keeps up to date after each game
@@ -150,7 +153,7 @@ class GameConfig:
     update_tips: Path | None = None
     setup: dict | None = None
     moderator_fallback: ModelSpec | None = DEFAULT_MODERATOR_FALLBACK
-    flips: str = "role"  # what a death reveals: "role" (rules R12) or "alignment" (FLIP_VARIANTS)
+    flips: str = "role"  # what a death reveals: "role" (rules R12), "alignment" or "none" (FLIP_VARIANTS)
 
     def __post_init__(self) -> None:
         self.player_tips = self.player_tips or []
@@ -485,8 +488,8 @@ def main() -> None:
     ap.add_argument("--max-days", type=int, default=None,
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
     ap.add_argument("--flips", choices=sorted(FLIP_VARIANTS), default="role",
-                    help="what a death reveals: the role (rules R12, default) or only the alignment (Good, Evil or "
-                    "Neutral), a setting that makes flips less decisive")
+                    help="what a death reveals: the role (rules R12, default), only the alignment (Good, Evil or "
+                    "Neutral), or none of the two; settings that make flips less decisive")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
