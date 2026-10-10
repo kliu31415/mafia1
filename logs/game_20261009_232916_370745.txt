@@ -348,3 +348,42 @@ Katana: Frank holds it and attacks Bob.
 ===== DAY 5 =====
 Bob died (killed by Katana). Their role was Medic. Their last will (written by them): "Medic (Good). N1 I protected Judy, N2 Carol, and N3 Ivan with Standard Defense; I have 2 tokens left and received no feedback. Carol’s will says she survived a Ritualist attack N2, consistent with my protection but not proof. Judy was killed by Katana; Carol was killed by Ritualist. Heidi’s claim that Ivan’s N2 Seer result contradicts the flips is mechanically wrong: Mallory could have appeared Good as Katana holder, or Judy could have been framed. Heidi was the only living player besides Mallory to vote Innocent at Mallory’s trial, and voted Guilty on Carol; these are concerns, not proof. Mallory flipped Yakuza. Carol’s N1 Lookout result was corroborated but did not identify the Katana holder. Judy’s N2 Sheriff result does not clear Erin."
 [Night check] Night 4: errors. [medium, Prosecutor / R18 (Tokens), token or status error] Erin started Night 4 with 1 prosecutor token and spent exactly 1, so she should end with 0. Her final state shows prosecutor: -1. The moderator set her tokens to 0 manually, and the prosecute op apparently spent the token again, so the token was deducted twice. Everything else (Bob's Katana death, Ivan's Seer pair, the trap move, the Yakuza and private results) was resolved correctly.
+Frank is being prosecuted and goes straight to trial.
+Frank (public): I won’t pretend my votes look clean: I voted Innocent on Heidi and Guilty on Mallory. The distinction was evidence, not a pact. Heidi’s trial rested on an undifferentiated visitor list that never identified the Katana holder; Mallory made a concrete false claim that Ivan’s and Judy’s results contradicted each other. I was wrong to defend Heidi, but I did help execute Mallory. I claimed Tracker before my own trial: N1 Dave visited nobody, consistent with his Executioner role. Carol’s result establishes that I visited Dave, not that I attacked him. No one has shown my result is impossible. Please name a mechanical contradiction, rather than treating an imperfect vote history as proof.
+Grace (public): Frank asks for a mechanical contradiction. Carol’s list doesn’t provide one, but Ivan’s N3 Seer report matters: I know I’m Good, and he says Frank and I differed, so if that report is genuine Frank did not appear Good. Bob was killed by Katana last night, so a Yakuza is still among us; I am not it. Frank’s later Guilty votes on Mallory and Heidi count in his favor, but he also voted Innocent on Heidi on Day 2. I’ll vote Guilty.
+Ivan (public): My N3 result matters here: Grace and Frank differed. Grace’s visit to Dave is corroborated by Carol’s Lookout result, and her Trapper claim fits it. If Grace is Good, Frank did not appear Good that night; with Heidi (Yakuza) alive then, she could have held the Katana, making Frank appear Evil. Frank later voted Innocent on Heidi. His Guilty vote on Mallory doesn’t erase that. My N4 result comparing Erin and Grace does not clear Frank. It isn’t certainty, but the evidence points to Frank. I vote Guilty.
+[Claim] Erin: Prosecutor. N3 prosecuted Heidi (Ritualist), N4 prosecuted Frank.
+Erin (public): I am claiming Prosecutor. On Night 3 I prosecuted Heidi, who flipped Ritualist; on Night 4 I prosecuted Frank, putting him on the stand today. Frank is the final Yakuza: he received Day 1 PMs from both Mallory and Heidi, voted No on Mallory's Day 3 nomination alongside Heidi, and was the sole player outside Heidi to vote Innocent on her trial yesterday. Grace and Ivan are already voting Guilty. Let's lock in 3 Guilty votes and end the game with a Village win.
+Frank (public): Grace, Ivan’s N3 result says only that our alignments differed; it doesn’t establish which of us is Good, and your own alignment is not independently verified. Carol confirmed I visited Dave, not that I carried the Katana. My votes look bad, but there is a distinction: I thought Heidi’s trial lacked a unique contradiction; Mallory made a false claim about the Seer and Sheriff results, so I voted Guilty on her. Erin’s prosecution explains why I’m on trial, not whether the accusation is true. I’m asking you not to treat a circumstantial case as mechanical proof when three votes end the game. My Tracker result on Dave remains consistent with his Executioner flip. Vote Innocent.
+Trial votes on Frank: Guilty - Erin, Grace, Ivan; Innocent - Frank.
+Frank is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Frank died (executed by hanging). Their role was Fabricator. Their last will (written by them): "Erin’s account of the Day 1 private messages with Dave is unverifiable, and Dave’s public focus was Frank—not the account Erin later gave. Dave’s will accused Erin, but he flipped Executioner and had a personal objective; don’t treat it as proof. Judy’s Not Evil result does not clear Erin of being Neutral. Carol’s Lookout result was corroborated, but it identified visitors, not the Katana holder. My Innocent vote on Heidi reflected the lack of a unique contradiction; I voted Guilty on Mallory after her claim that Ivan’s Seer result conflicted with Judy’s check, which it did not. Grace and Ivan’s claims are also unverified. Recheck the records and judge each player independently."
+The game is over. Winners: Alice (dead), Bob (dead), Carol (dead), Erin, Grace, Ivan, Judy (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Erin, Grace, Ivan, Judy
+Cost by player (USD):
+  Alice (Fortune Teller)  $0.2143   24 calls  gemini-3.8-flash
+  Bob (Medic)             $0.1757   35 calls  gpt-6-luna-pro
+  Carol (Lookout)         $0.2510   31 calls  gemini-3.8-flash
+  Dave (Executioner)      $0.0188   11 calls  claude-haiku-5.5
+  Erin (Prosecutor)       $0.3018   38 calls  gemini-3.8-flash
+  Frank (Fabricator)      $0.2642   46 calls  gpt-6-luna-pro
+  Grace (Trapper)         $0.0626   38 calls  gpt-6-luna
+  Heidi (Ritualist)       $0.0911   44 calls  claude-haiku-5.5
+  Ivan (Seer)             $0.0599   38 calls  gpt-6-luna
+  Judy (Sheriff)          $0.0479   32 calls  gpt-6-luna
+  Mallory (Clerk)         $0.0683   36 calls  claude-haiku-5.5
+  Moderator               $1.2812   17 calls  claude-opus-5.5
+  Night checks            $0.3997    4 calls  claude-opus-5.5
+  Strategy review         $0.2862    1 calls  claude-opus-5.5
+  Log review              $0.3073    1 calls  claude-opus-5.5
+  Total                   $3.8301  396 calls
