@@ -216,6 +216,13 @@ def default_effort(model: Model) -> str:
     return model.info.effort
 
 
+def lower_effort(effort: str) -> str:
+    """One step down EFFORTS, but not below "low": the retry after an answer cut off at max_tokens. Haiku at high
+    effort reasoned to the 16k cap on 5 of Mallory's late-game day turns in one 15-player game (~56k-token
+    prompts, game_20261010_003734_551955), leaving her silent on Days 6-7 with four players alive."""
+    return EFFORTS[max(EFFORTS.index(effort) - 1, EFFORTS.index("low"))] if effort in EFFORTS else effort
+
+
 DEFAULT_MAX_TOKENS = 16_000  # reasoning + answer; Anthropic needs this above the reasoning budget
 
 
@@ -244,6 +251,7 @@ class LLMReply:
     usage: dict
     # Why an empty answer is empty, e.g. "finish_reason content_filter via Azure: <refusal text>".
     stop_note: str | None = None
+    finish_reason: str | None = None  # "length": the model reasoned or wrote past max_tokens
 
 
 def clean_json(x: Any) -> Any:
@@ -510,6 +518,7 @@ class OpenRouterClient:
             usage=usage,
             stop_note=(f"finish_reason {choice.get('finish_reason')} via {data.get('provider')}: "
                        f"{msg.get('refusal') or 'no refusal text'}"),
+            finish_reason=choice.get("finish_reason"),
         )
 
     def _post(self, body: dict) -> dict:

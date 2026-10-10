@@ -8,7 +8,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 import log_viewer
 from events import RESULT
-from llm import SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, rules_system, schema_errors
+from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, default_effort, lower_effort,
+                 rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
 from state import Game, Player
 from tips import player_view
@@ -306,6 +307,7 @@ class Players:
         sent = with_common_fields(common, self.feedback_field, STR) if shared and common else wanted
         messages = player_messages(self.game, p, self.rules, task + (fields_note(schema) if shared else ""),
                                    self.feedback_field, context)
+        effort = p.effort
         for attempt in range(2):
             reply: LLMReply | None = None
             started = time.monotonic()
@@ -313,7 +315,7 @@ class Players:
             # retries is the model's (retried, then the fallback). Anything else is a bug in our code, which should
             # stop the game (resumable from its checkpoint) rather than silence this player for the rest of it.
             try:
-                reply = self.client.chat(p.model, messages, schema=sent, effort=p.effort)
+                reply = self.client.chat(p.model, messages, schema=sent, effort=effort)
                 latency = round(time.monotonic() - started, 2)
                 out = answer_json(reply, sent)
                 if shared:
@@ -325,7 +327,9 @@ class Players:
                                     latency_s=round(time.monotonic() - started, 2),
                                     **({"output": reply.content, "reasoning": reply.reasoning, "cost": reply.cost,
                                         "usage": reply.usage} if reply else {}))  # a failed answer still costs
-                if reply and reply.content:  # tell the model what was wrong, so the retry isn't the same answer
+                if reply and reply.finish_reason == "length":  # ran out of tokens: retry thinking less (lower_effort)
+                    effort = lower_effort(effort or getattr(self.client, "effort", None) or default_effort(p.model))
+                elif reply and reply.content:  # tell the model what was wrong, so the retry isn't the same answer
                     messages = messages + [{"role": "assistant", "content": reply.content},
                                            {"role": "user", "content": f"That answer couldn't be used ({error[:300]}). "
                                             "Answer again with JSON that follows the schema exactly."}]
@@ -339,9 +343,9 @@ class Players:
                     self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
                                    f"to its first {cap}.)", [p.name])
             self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task,
-                                output=out, reasoning=reply.reasoning, cost=reply.cost,
-                                usage=reply.usage, latency_s=latency, notepad_before=before,
-                                notepad_after=after)
+                                **({"effort": effort} if effort != p.effort else {}), output=out,
+                                reasoning=reply.reasoning, cost=reply.cost, usage=reply.usage, latency_s=latency,
+                                notepad_before=before, notepad_after=after)
             if isinstance(fb := out.pop("feedback", None), str) and not blank(fb):
                 self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
                                     player=p.name, role=p.role, feedback=fb)

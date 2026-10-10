@@ -12,7 +12,7 @@ import pytest
 
 import mafia
 import moderator as moderator_module
-from llm import LLMReply, MockClient, Model, OpenRouterClient
+from llm import LLMReply, MockClient, Model, OpenRouterClient, lower_effort
 from moderator import Moderator
 from players import NOTEPAD_WORDS, truncate_words, word_count
 from roles import DEFAULT_SETUP, Status
@@ -126,6 +126,25 @@ def test_an_empty_notepad_keeps_the_notepad_and_a_retry_says_what_was_wrong(game
     from players import VOTE_SCHEMA
     players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote")
     assert "couldn't be used" in client.calls[1][-1]["content"] and "answer.vote" in client.calls[1][-1]["content"]
+
+
+def test_an_answer_cut_off_at_max_tokens_is_retried_at_lower_effort(game_factory):
+    class CutOffOnce(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            reply = super().chat(model, messages, **kw)
+            if len(self.efforts) == 1:  # Haiku reasoned past the 16k cap (game_20261010_003734_551955)
+                return dataclasses.replace(reply, content=None, finish_reason="length")
+            return reply
+    client = CutOffOnce()
+    game, players = game_factory(TOWN4_GRUNT, client)
+    alice = game.player("Alice")
+    alice.effort = "high"
+    from players import VOTE_SCHEMA
+    players.ask(alice, "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote")
+    assert client.efforts == [("Alice", "high"), ("Alice", "medium")]
+    call = [r for r in records(game.log.path) if r["kind"] == "player_call"][-1]
+    assert call["effort"] == "medium"
+    assert lower_effort("low") == "low" and lower_effort("max") == "xhigh"
 
 
 def test_a_night_check_answer_that_breaks_its_schema_is_one_failed_check(tmp_path):
