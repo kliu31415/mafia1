@@ -167,13 +167,15 @@ from last Night count even though they're announced today. Every death counts; l
 doesn't.
 
 R19 (What investigations see)
-Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil; Census Taker: counts Good
-or Evil players, never Neutrals) see a player's true alignment, except:
+Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil) see a player's true alignment,
+except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - Ex-Con: Evil.
 - Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
   every Neutral as Neutral.)
+The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
+above apply to it.
 Exact-role checks see the true role. The Roleplayer is seen as "Roleplayer".
 Token counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,
 even though they believe they have their fake role's tokens.
@@ -270,8 +272,9 @@ Census Taker
   The program adds two other players drawn at random from everyone alive at the start of the night except you
   (players who die that night can be drawn; if fewer than two others are left, the group is smaller). It also
   draws at random whether to count Good or Evil players. You are told who was in the group, which alignment was
-  counted, and how many of the group are of it. This is an alignment check (R19), so the Katana holder counts as
-  Good, and framed players and the Ex-Con as Evil. Neutral players are never counted, as either Good or Evil.
+  counted, and how many of the group are of it. It counts true alignment and is not an alignment check (R19):
+  the Katana holder, framed players and the Ex-Con count as what they really are. Neutral players are never
+  counted, as either Good or Evil.
 
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they

@@ -1,6 +1,7 @@
 """Role hooks and role-specific rules that code carries out (roles/*.py)."""
 
 import json
+import re
 
 import pytest
 
@@ -558,23 +559,23 @@ def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
     assert actions["Bob"]["katana_vote_target"] == "Carol" and game.player("Alice").tokens["swap"] == 2
 
 
-def test_census_counts_alignment_as_checks_see_it_and_never_neutrals(game_factory):
-    from roles.census_taker import census_group, seen_alignment
-    from roles import Alignment
+def test_census_counts_true_alignment_and_never_neutrals(game_factory):
+    from roles.census_taker import census_group
     game, players = game_factory(["Census Taker", "Grunt", "Ex-Con", "Jester", "Vanilla Villager", "Pharmacist"])
     game.phase = "night"
     assert game.katana_holder == "Bob"
-    see = {p.name: seen_alignment(game, p, {"Erin"}) for p in game.players}
-    assert see == {"Alice": Alignment.GOOD, "Bob": Alignment.GOOD, "Carol": Alignment.EVIL,  # holder, Ex-Con
-                   "Dave": Alignment.NEUTRAL, "Erin": Alignment.EVIL, "Frank": Alignment.EVIL}  # framed
     for _ in range(20):
         group = census_group(game, "Alice", "Dave")
         assert len(group) == 3 and "Dave" in group and "Alice" not in group
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    out = mod.dispatch("apply_changes", {"changes": [{"op": "census", "by": "Alice", "player": "Dave", "framed": []}]})
-    assert out["ok"]
-    told = [e.text for e in game.events if e.visible_to is not None and "Alice" in e.visible_to]
-    assert "Neutral players are never counted" in told[-1]
+    for _ in range(10):  # Bob holds the Katana (still Evil here), Carol is an Ex-Con (still Good), Dave is Neutral
+        mod.dispatch("apply_changes", {"changes": [{"op": "census", "by": "Alice", "player": "Dave"}]})
+        text = [e.text for e in game.events if e.visible_to is not None and "Alice" in e.visible_to][-1]
+        m = re.search(r"census of (.+) counted (Good|Evil) players .*: (\d) of the", text)
+        assert m, text
+        group = m[1].replace(" and ", ", ").split(", ")
+        want = sum(game.player(q).info.alignment.value == m[2] for q in group)
+        assert int(m[3]) == want and "Neutral players are never counted" in text
 
 
 def test_census_group_shrinks_when_few_players_are_left(game_factory):
