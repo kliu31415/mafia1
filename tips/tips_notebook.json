@@ -11322,7 +11322,8 @@
      "game": "revision 20261010_215157",
      "change": "added"
     }
-   ]
+   ],
+   "pinned": true
   },
   {
    "id": "t246",
@@ -11342,7 +11343,8 @@
      "game": "revision 20261010_215157",
      "change": "added"
     }
-   ]
+   ],
+   "pinned": true
   },
   {
    "id": "t247",
@@ -11362,7 +11364,8 @@
      "game": "revision 20261010_215721",
      "change": "added"
     }
-   ]
+   ],
+   "pinned": true
   },
   {
    "id": "t248",
@@ -11382,7 +11385,8 @@
      "game": "revision 20261010_215721",
      "change": "added"
     }
-   ]
+   ],
+   "pinned": true
   }
  ]
 }
