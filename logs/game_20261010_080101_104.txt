@@ -625,3 +625,10 @@ Trial votes on Frank: Guilty - Frank; Innocent - Bob, Grace.
 Frank is found Innocent (1 Guilty of 3 votes; 2 needed).
 Grace (public): slots fit Ivan as Pharmacist, Carol as Diviner, Bob as Grunt, Frank as Jester. Bob is the last Yakuza and holds the Katana. Frank, I won't vote Guilty on you while the Jester revenge kills me.
 (to Frank, Grace) Frank -> Grace (private): Grace, nominate me and vote Guilty with me. Hanging the Jester wins my game. Revenge would hit a living Guilty voter tonight, so you should know that risk. Bob voted Innocent to keep me alive, and he is the Katana holder who may strike you whatever we do.
+Grace nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Grace; No - Bob, Frank.
+The nomination of Bob failed (1 Yes).
+(to Frank, Grace) Frank -> Grace (private): Grace, Bob voted Innocent on me to keep himself and the Katana safe, and his Night 8 strike is your real threat. I'm nominating myself. If you vote Guilty, I win as Jester, and any revenge comes after that. Vote Guilty with me.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank; No - Grace, Bob.
+The nomination of Frank failed (1 Yes).

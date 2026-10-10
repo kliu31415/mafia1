@@ -573,3 +573,27 @@ The game is over. Winners: Bob, Carol (dead), Ivan (dead), Frank (dead). Dead pl
 [Feedback from Alice] The per-night submission and prosecutor-token flow was hard to track, and repeated identical nomination log lines in Day 4 and Day 5 looked like a logging error.
 
 ===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol, Ivan, Frank
+Cost by player (USD):
+  Alice (Prosecutor)  $0.2081   77 calls  claude-haiku-5.5
+  Bob (Grunt)         $0.2415  101 calls  claude-haiku-5.5
+  Carol (Diviner)     $0.0956   45 calls  claude-haiku-5.5
+  Dave (Lookout)      $0.0203   13 calls  claude-haiku-5.5
+  Erin (Ex-Con)       $0.2189   82 calls  claude-haiku-5.5
+  Frank (Jester)      $0.1385   66 calls  claude-haiku-5.5
+  Grace (Archivist)   $0.1372   56 calls  claude-haiku-5.5
+  Heidi (Tracker)     $0.0777   40 calls  claude-haiku-5.5
+  Ivan (Pharmacist)   $0.2056   89 calls  claude-haiku-5.5
+  Judy (Seer)         $0.0637   32 calls  claude-haiku-5.5
+  Mallory (Oracle)    $0.1649   73 calls  claude-haiku-5.5
+  Moderator           $2.2341   23 calls  claude-opus-5.5
+  Night checks        $0.4030    7 calls  claude-opus-5.5
+  Strategy review     $0.3737    1 calls  claude-opus-5.5
+  Log review          $0.3402    1 calls  claude-opus-5.5
+  Total               $4.9229  706 calls
