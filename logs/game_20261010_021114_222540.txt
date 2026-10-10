@@ -1,0 +1,415 @@
+Setup:
+  Alice    seat 1  Cardinal          anthropic/claude-haiku-5.5
+  Bob      seat 2  Clerk             anthropic/claude-haiku-5.5
+  Carol    seat 3  Mortician         anthropic/claude-haiku-5.5
+  Dave     seat 4  Sheriff           anthropic/claude-haiku-5.5
+  Erin     seat 5  Archivist         anthropic/claude-haiku-5.5
+  Frank    seat 6  Surveyor          anthropic/claude-haiku-5.5
+  Grace    seat 7  Diviner           anthropic/claude-haiku-5.5
+  Heidi    seat 8  Executioner       anthropic/claude-haiku-5.5  {'target': 'Bob'}
+  Ivan     seat 9  Ballot Stuffer    anthropic/claude-haiku-5.5
+  Judy     seat 10 Prosecutor        anthropic/claude-haiku-5.5
+  Mallory  seat 11 Medic             anthropic/claude-haiku-5.5
+  Niaj     seat 12 Philanthropist    anthropic/claude-haiku-5.5
+  Olivia   seat 13 Lookout           anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Judy.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Judy (public): Judy here. No reads yet. I'll watch for early PM clusters and co-nominations.
+Mallory (public): Mallory here, no reads yet. I'm a quiet Day 1 and will watch who pushes early nominations.
+Niaj (public): Niaj here, no reads yet. I'll also watch for early PM clusters and co-nominations.
+Olivia (public): Olivia here, no reads yet. I'll watch for early PM clusters and who pushes nominations.
+Alice (public): Alice here, no reads yet. Watching who starts PM clusters and who pushes early nominations.
+Bob (public): Bob here, no reads yet. Everyone is promising to watch PM clusters, so let's see who actually does something concrete.
+Carol (public): Carol here, no reads yet. Agree with Bob: concrete actions beat promises. I'll track who pushes early nominations and who talks without giving anything new.
+Dave (public): Dave here, no reads yet. Agree with Bob and Carol: concrete actions beat promises. I'm watching who pushes nominations before anyone has info.
+Frank (public): Frank here, no reads yet. Agree with Bob and Carol: I'll post concrete results as I get them, not promises.
+Grace (public): Grace here, no reads yet. I won't push early nominations without information, so I'd rather see who starts PM clusters first.
+Heidi (public): Heidi here, no reads yet. Bob, you're asking others for concrete actions. What have you done or planned so far? Give us something specific.
+Ivan (public): Ivan here, no reads yet. Heidi's question to Bob is fair, but I'd rather hear a concrete claim or result than watch us argue over who speaks first. I won't nominate anyone until someone gives us something to check.
+Mallory (public): still no reads. Ivan and Heidi asked for concrete info, and I agree. I'll post anything checkable once I have it, and I won't nominate without a lead.
+Bob (public): Fair challenge, Heidi. My plan: no early pushes, I'll vote on evidence and post anything checkable as it comes. No reads yet.
+Carol (public): Still no reads. I'm watching who answers Heidi's question with specifics and who only keeps promising to watch.
+Grace (public): still nothing checkable from me. I agree with Heidi that we need specifics, but nobody should be nominated on Day 1 without a result. I'll post anything I get.
+Heidi (public): Bob, you demanded concrete actions, then answered Heidi with a plan and no checkable info. Everyone, watch whether he posts a specific result or claim soon. No nomination from me yet.
+Ivan (public): Still no reads from me. Nobody should be nominated on Day 1 without a checkable result, and I'll vote on evidence once something concrete shows up.
+Judy (public): Judy here. Agree with Heidi on Bob: he asked for concrete actions, then gave a plan with no result. Before anyone is nominated, a concrete claim or result should be on the table. I'll vote only on evidence.
+Bob (public): Agreed with Judy and Ivan. No Day 1 nominations without a checkable result. Heidi, I have nothing checkable yet, and I'll post anything concrete when I get it.
+Carol (public): still no reads. I agree with Judy and Ivan that nobody should be nominated on Day 1 without a checkable result. I'll keep watching who asks for specifics and who only keeps promising.
+Dave (public): Dave here. No nominations from me on Day 1. Bob and Heidi are still circling each other with no checkable info, so I'm watching who posts a result first. No reads yet.
+Frank (public): Frank here. No nominations from me and no claim yet. A role claim with no result is just noise, so post results when you get them. Who has been pushing hardest for a nomination so far?
+Grace (public): Grace here. Frank asked who has pushed hardest for a nomination: so far nobody has, and I'd like to keep it that way until someone posts a result. Anyone holding a night result should post it now, even a partial one.
+Heidi (public): Bob, you still haven't posted a checkable claim or result. Give one concrete detail now, such as what you did last night or what you will check on Day 2, so we can judge it.
+Judy (public): Bob has dodged Heidi's question twice now. Bob, give one checkable detail before Day 2 or I'll treat the silence as a lead.
+Alice (public): I agree with Judy. Bob still owes one checkable detail. I'm holding my own info, and I won't nominate anyone today without a concrete result.
+[Claim] Bob: Vanilla Villager
+Bob (public): Bob here. I'm a Vanilla Villager, so I have no night result to post. That's my concrete answer to Heidi and Judy. I won't nominate anyone on Day 1.
+Carol (public): Agree with Judy and Ivan: no Day 1 nominations without a checkable result. Bob has given his claim, and I'll judge it once someone posts a result that can be checked.
+Grace (public): Grace here. Bob's Vanilla claim is fine for now, and I still won't nominate on Day 1 without a result. I'll post anything I learn tonight.
+Heidi (public): Bob's Vanilla claim can't be checked yet, and he has still not answered Judy's question about what he has done. I'm not nominating anyone today, but I want a clear answer from Bob before Day 2.
+Ivan (public): nothing new from me. Bob's Vanilla claim stands until someone shows a result, and I want Heidi and Judy to say who they'd nominate on Day 2 and why.
+Bob (public): Vanilla Villager, no result to post. I won't nominate on Day 1 and will judge Day 2 on what's checkable.
+Carol (public): still no reads. I agree with Judy and Ivan that nobody should be nominated without a checkable result. Heidi and Judy, if you want a Day 2 nomination, name the result or behaviour behind it, not just the suspicion.
+Judy (public): Still no reads. Bob's Vanilla claim can't be checked yet, and nobody has posted a night result. Post any result before Day 2 nominations.
+Bob (public): still Vanilla with no result to post. Heidi and Judy, name who you'd nominate on Day 2 and the behaviour behind it.
+Grace (public): Grace here, still no reads. Heidi and Judy, name your Day 2 target and the behaviour behind it.
+Carol (public): Carol here, still no reads. Heidi and Judy, name your Day 2 target and the behaviour behind it, not more pressure on Bob.
+Heidi (public): Bob, a Vanilla claim with no checkable detail isn't enough. Post a concrete result before Day 2 or I'll vote Yes on your nomination.
+Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Carol, Grace, Ivan) Bob (Yakuza chat): Night 1 plan from Bob: no Katana attack tonight, since we have no information on Village roles and a Night 1 kill mostly marks us as active. Katana stays with Grace. Grace, use Diviner only on a player you can afford to have checked. I'll hold my Clerk token for a later Day when a rig is useful. Object within this round if you disagree.
+(to Bob, Carol, Grace, Ivan) Carol (Yakuza chat): Carol agrees with Bob: no Katana attack tonight, and the Katana stays with Grace. I won't spend my Mortician token yet. Grace, choose a Diviner target whose group we can afford to have drawn, and keep your own role use quiet tonight.
+(to Bob, Carol, Grace, Ivan) Grace (Yakuza chat): Agree with Bob and Carol: no Katana attack tonight, and the Katana stays with Grace. I'll use Diviner on Erin, whose group (Erin, Dave, Frank) has no Yakuza, so a Yakuza-free result costs us nothing. Ivan, confirm you're on no attack.
+(to Bob, Carol, Grace, Ivan) Ivan (Yakuza chat): Ivan agrees: no Katana attack tonight, and the Katana stays with Grace. I'm holding both ballot tokens for a later trial. Grace, keep the Diviner use quiet and report only what the table needs. Ready from me unless someone objects.
+Night actions:
+  Bob (Clerk): no role action; Katana vote: Grace holds, attacks None
+  Carol (Mortician): no role action; Katana vote: Grace holds, attacks None
+  Dave (Sheriff): target Bob; "Sheriff investigation on Bob."
+  Erin (Archivist): 1 token(s); "Spend archive token to consult the archive tonight."
+  Frank (Surveyor): target Bob; 1 token(s)
+  Grace (Diviner): target Erin; "Diviner check on Erin"; Katana vote: Grace holds, attacks None
+  Ivan (Ballot Stuffer): no role action; Katana vote: Grace holds, attacks None
+  Judy (Prosecutor): no action
+  Mallory (Medic): target Heidi; "Protect Heidi with Standard Defense at no token cost."
+  Niaj (Philanthropist): no action
+  Olivia (Lookout): target Heidi
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Erin) Moderator (private): The archive shows 9 of the roles of the 12 other players who were alive when the night began (including any who died tonight): Cardinal, Clerk, Diviner, Lookout, Medic, Mortician, Prosecutor, Sheriff, Surveyor.
+(to Frank) Moderator (private): You surveyed Alice, Bob and Carol. One of them, chosen at random, has the role Cardinal. 1 survey token left.
+(to Grace) Moderator (private): You divined Erin; the group was Dave, Erin and Frank. The role drawn is Sheriff (60% chance it is Erin's, otherwise one of the others').
+(to Dave) Moderator (private): Night 1 result: You investigated Bob. Result: Evil.
+(to Mallory) Moderator (private): Night 1 result: You protected Heidi (Standard Defense). No tokens spent; 2 medic tokens left.
+(to Olivia) Moderator (private): Night 1 result: You watched Heidi. Visitors to Heidi last night: Mallory.
+(to Bob, Carol, Grace, Ivan) Moderator (private): Night 1 Yakuza summary: The Katana stays with Grace and there was no Katana attack. Actions chosen: Grace used her Diviner action on Erin. Bob, Carol and Ivan chose no actions.
+[Moderator summary] Night 1: No role-blocks, no attacks (Yakuza declined; Katana stays with Grace). Dave sheriffed Bob -> Evil. Erin consulted archive (code result, token spent). Frank surveyed Bob (code result, 1 token left). Grace divined Erin (code result). Mallory protected Heidi (Standard, no token). Olivia watched Heidi -> saw Mallory. Judy, Niaj, Bob, Carol, Ivan did nothing. No deaths.
+
+===== DAY 2 =====
+Nobody died last night.
+[Feedback from Erin] The moderator's archive message doesn't say which roles are Yakuza, so I'm inferring that from the rule text. The will field is limited to 300 words.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Claim] Erin: Archivist. N1 archive (9 of 12 other players): Cardinal, Clerk, Diviner, Lookout, Medic, Mortician, Prosecutor, Sheriff, Surveyor.
+Erin (public): Erin here. I'm the Archivist. My Night 1 archive showed 9 of the 12 other players' roles: Cardinal, Clerk, Diviner, Lookout, Medic, Mortician, Prosecutor, Sheriff, Surveyor. Check any power claim against that list and the slot math.
+[Claim] Frank: Surveyor. N1 survey of Alice, Bob and Carol: one of them is the Cardinal. 1 survey token left.
+Frank (public): Frank here, and I'm the Surveyor. On N1 I surveyed Alice, Bob and Carol, and the moderator told me one of them, chosen at random, is the Cardinal. Erin's archive lists Cardinal and Surveyor, which fits my claim. Bob's Vanilla claim and the Cardinal result can't both stand, so Alice, Bob and Carol should answer directly. I'll post a result each Night I use my token.
+Grace (public): Grace here, no new reads yet. Erin and Frank both made checkable claims, so I want each to post a result before anyone is nominated. If Frank's survey is true, it points at Alice as the Cardinal.
+Heidi (public): Heidi here. Erin's archive and Frank's survey fit together: Frank says the Cardinal is one of Alice, Bob or Carol, and Erin's list includes a Cardinal. Bob, Frank's result doesn't clear you, and your Vanilla claim is still unchecked. Alice and Carol, answer Frank directly. I'm not nominating yet.
+Ivan (public): Ivan here. Erin's archive and Frank's survey fit together so far, and the slot math holds for now. Bob's Vanilla claim and Frank's Cardinal pick are both still unchecked. I'm not nominating yet. Alice and Carol should answer Frank directly before anyone is nominated.
+Judy (public): Judy here. Erin's archive and Frank's survey fit the slot math so far, so I'm not nominating anyone today. Frank: your Cardinal pick is one of Alice, Bob or Carol, so Alice and Carol should answer you directly. Bob: your Vanilla claim doesn't contradict Frank's result, but you still haven't explained why you dodged questions on Day 1. I'll decide on any prosecution at Night 2, not today.
+Mallory (public): Mallory here, no reads yet. Erin's archive and Frank's survey fit each other, but both are unverified, so I'm not nominating today. Erin and Frank should each keep posting checkable results every night. Bob, your Vanilla claim is unchecked and you still haven't answered Judy's and Heidi's questions directly.
+Niaj (public): Niaj here, still no reads. Erin's archive and Frank's survey are both unverified, so Alice, Bob and Carol should answer Frank directly before anyone is nominated.
+[Claim] Alice: Cardinal. No night results yet.
+Alice (public): Alice here. I'm the Cardinal, so I can confirm that Frank's pick includes a real Cardinal and that Erin's list shows one too. I have no night results and no protection or investigation info to share. Frank and Erin, keep posting results each night. I'm not nominating today.
+Bob (public): Bob here. Frank's survey and Alice's Cardinal claim fit each other, and Erin's archive lists a Cardinal too. I'm holding my vote until Erin and Frank post Night 2 results. Still Vanilla, no nomination today.
+Carol (public): Carol here. Erin's archive and Frank's survey agree, and Frank's pick of Alice, Bob or Carol points to Alice as the only possible Cardinal among them. I'm not nominating yet. Erin and Frank, post your Night 2 results, and Alice, tell us what you can do with the Cardinal role.
+[Claim] Dave: Sheriff. N1: Bob Evil.
+Dave (public): Dave here. I'm the Sheriff. My N1 investigation on Bob came back Evil. Bob claims Vanilla Villager, so one of us is lying. Erin's archive lists one Sheriff, which is me, so the slot math works. Bob, explain the Evil result. Alice, Erin and Frank, keep posting results each night.
+Erin (public): Slot math on my archive: Cardinal, Surveyor and Sheriff each appear once, so Alice, Frank and Dave can each be the real holder of one, but no two of them can share a role. The unclaimed listed roles (Clerk, Diviner, Lookout, Medic, Mortician, Prosecutor) belong to other players. Bob, your Vanilla claim has to fit the unseen slots, so explain Dave's Evil result.
+Frank (public): Frank here. Dave's Sheriff result on Bob (Evil) and Bob's Vanilla claim can't both be true, so Bob needs to explain it directly before Night 2. Alice, as Cardinal, is your claim consistent with my survey pick? I'm not nominating today and won't announce my Night 2 target.
+Grace (public): Grace here. Erin's archive, Frank's survey, and the Sheriff and Cardinal claims all fit one slot list, so I want Night 2 results before any nomination. Bob, answer Dave's Evil result directly instead of repeating Vanilla.
+Heidi (public): Heidi here. Dave's Sheriff result on Bob is Evil, and Bob still hasn't answered it. Bob, explain Dave's result directly. Dave, keep your Night 2 result ready to post. If Bob keeps dodging, I'll be ready to nominate him.
+Ivan (public): Ivan here. Dave's Sheriff result on Bob (Evil) and Bob's Vanilla claim cannot both be right. Bob should answer that directly. Dave, confirm the result is your own investigation and the target is exactly Bob. I'm not nominating anyone yet.
+Judy (public): Judy here. Dave's Sheriff result on Bob (Evil) and Bob's Vanilla claim can't both be true. Bob, answer Dave directly with a concrete detail instead of repeating Vanilla. Alice, tell us what the Cardinal role does for you. Erin and Frank, post your Night 2 results. I have nothing more to add today.
+Mallory (public): Mallory here. Bob still hasn't answered Dave's Evil result directly. Bob, explain it in one concrete sentence. I'm not nominating yet, and I'll decide after Night 2 results are posted.
+Niaj (public): Niaj here. Bob has dodged Dave's Evil result twice. Bob, answer it in one concrete sentence or I'll vote Yes on any nomination. Alice and Erin, name what you can verify tonight, not just claims. No nomination from me yet.
+Alice (public): Alice here. I'm the real Cardinal, the only role that fits both Erin's list and Frank's pick. A Cardinal has no night action, so I have no results to post. If I die, a random living Good player gets a Divine Attack, so I'm not a safe lynch. Bob, answer Dave's Evil result in one sentence.
+Bob (public): Bob here. Dave, your N1 Evil result on me is wrong: I'm Vanilla. Post your Night 2 target and result before anyone is nominated. Alice's Cardinal claim fits Frank's survey, so I'm leaning toward accepting it. No nomination from me yet.
+Carol (public): Dave's Sheriff result on Bob conflicts with Bob's Vanilla claim, but one N1 result is not enough for a nomination. Dave, Erin and Frank should post their Night 2 results first, and I'll judge after that. Nominating now would be premature.
+Dave (public): Dave here. Bob's N1 Evil result stands, and Bob's Vanilla claim doesn't explain it. Bob, answer in one sentence: did you do anything or get visited on Night 1? I'll post my Night 2 result after it resolves, without naming tonight's target. No nomination from me yet.
+Erin (public): Erin again: my archive is real, and Sheriff appears once on that list, so Dave's claim fits the slots. Bob, Dave's Night 1 Evil result on you contradicts your Vanilla claim, so answer it in one sentence before Night 2 results. Frank's survey leaves Alice or Carol as the Cardinal, so Carol should state where she stands. I have no tokens left and no night action, so I'm only giving checks here.
+Frank (public): Frank here. Bob, Dave's Night 1 Sheriff result says you're Evil, and you've answered only with 'Vanilla' several times. A Vanilla would say Dave is lying. Say which one it is in one sentence. I'm not nominating today and will decide once Night 2 results are posted.
+Grace (public): Grace here. Dave's Sheriff result on Bob and Bob's Vanilla claim can't both stand, but that is one result against one claim, and nothing else has been checked. I'm not nominating today. Dave, Erin and Frank should post Night 2 results before anyone goes to trial, and Bob should answer Dave in one clear sentence.
+Heidi (public): Heidi here. Dave's N1 Sheriff result on Bob (Evil) is the only checked item we have, and Bob still hasn't answered it in one sentence. Bob, answer Dave directly. Dave, post your Night 2 result. If Bob keeps dodging after Night 2, I'll vote Yes on him.
+Ivan (public): Ivan here. Nothing new from me. Dave's Night 1 Evil result on Bob is one check, and Bob's Vanilla answer is still only a claim. Before anyone is nominated, I want Night 2 results from Dave, Erin and Frank. I'm not nominating today.
+Judy (public): Judy here. Bob still hasn't answered Dave's Evil result in one sentence. Dave, Erin and Frank, post your Night 2 results first. I'm not nominating today, but Bob's dodging is my top lead.
+Mallory (public): Mallory here. No nomination from me today. Dave's Night 1 Sheriff result conflicts with Bob's Vanilla claim, so Bob should answer that in one sentence. I'll decide after the Night 2 results are posted.
+Niaj (public): Niaj here. Bob has heard Dave's N1 Evil result twice and still only says Vanilla. Bob, answer it in one sentence: did you visit anyone or get visited on Night 1? Alice and Carol, state where you stand on Frank's survey. No nomination from me until Night 2 results are posted.
+Alice (public): Alice here. Frank's pick of Alice, Bob or Carol is consistent with my Cardinal claim, and Erin's list shows a Cardinal too. I have no night action, so I have nothing to post. Dave's Night 1 Evil result on Bob conflicts with Bob's Vanilla claim, and Bob still hasn't answered it in one sentence. I'm not nominating before Night 2 results, but Bob's dodging is my top lead.
+Bob (public): Bob here. Dave's N1 Evil result on me is one unverified check against my Vanilla claim. I won't nominate anyone until Night 2 results are posted by Dave, Erin and Frank. Judy and Heidi keep pressing me without offering a result of their own, so say what you would verify before voting on anyone.
+Carol (public): Carol here. Dave's Night 1 Sheriff result on Bob (Evil) and Bob's Vanilla claim cannot both be true, so Bob needs to answer it directly. Erin, Frank and Dave should post their Night 2 results before anyone is nominated. I'm not nominating today.
+Dave (public): Dave again. Bob's N1 Evil result stands, and his Vanilla claim still doesn't explain it. I'm not nominating before Night 2 resolves. If Night 2 doesn't clear Bob, expect my vote on him.
+Erin (public): My archive can't clear or convict Bob, since Vanilla isn't on my list. Dave's Sheriff check on Bob is the only check so far. Dave, post your Night 2 result once it resolves.
+Frank (public): Frank here. Bob still hasn't explained Dave's Night 1 Evil result. Night 2 results come first, and I'll vote on evidence, not repetition.
+Heidi (public): Heidi here. Bob still hasn't answered Dave's Night 1 Evil result in one sentence. Bob, answer it now, or I'll push a nomination once Night 2 results are posted.
+Ivan (public): Ivan here. Dave's Night 1 result on Bob is one check against Bob's Vanilla claim. I want Night 2 results from Dave, Erin and Frank before any vote, and I won't nominate today.
+[Claim] Olivia: Lookout. N1 watch Heidi: only visitor Mallory.
+Olivia (public): Olivia here. I'm the Lookout, and Erin's archive lists a Lookout, which fits my claim. On Night 1 I watched Heidi and the only visitor was Mallory. Mallory, explain that visit. I won't nominate before Night 2 results.
+Alice (public): Alice here. Olivia's Lookout claim says Mallory was the only visitor to Heidi on Night 1, so Mallory needs to explain that visit. Bob still owes Dave a one-sentence answer on the Evil result. I'm not nominating yet.
+Bob (public): Bob here. Mallory, Olivia's Lookout claim says you were the only visitor to Heidi on Night 1. Explain that visit in one sentence. Heidi, before you press me again, tell us what you have actually checked.
+Dave (public): Olivia's Lookout claim puts Mallory on Heidi, and Mallory needs to explain that visit. Bob's N1 Evil result stands, and I'll post my Night 2 result before anyone is nominated.
+Frank (public): Frank here. My survey and Alice's Cardinal claim still fit, and Erin's archive lists one Cardinal. I won't nominate yet. Bob, give one sentence on Dave's Evil result. Dave, post your Night 2 result when it resolves.
+Grace (public): Grace here. I won't nominate before Night 2 results. Dave's N1 Evil result on Bob is one check, and Dave, Erin and Frank should post Night 2 results before any trial. Nobody should vote on Day 2 without that.
+Heidi (public): Heidi here. I'm still not nominating before Night 2 results. Bob, Dave's Night 1 Evil result is the only check on you, and you still haven't answered it in one sentence. If Night 2 doesn't clear you, I'll vote Yes on your nomination.
+[Claim] Mallory: Medic. N1: protected Heidi (Standard), no result. 2 medic tokens left.
+Mallory (public): Mallory here. I'm the Medic, and I was the visitor Olivia's Lookout claim saw: I gave Heidi Standard protection on Night 1 with no result. Bob, answer Dave's Night 1 Evil result in one sentence.
+Niaj (public): Niaj here. Olivia's Lookout result (only visitor to Heidi was Mallory) fits Mallory's Medic claim, so those two can check each other. Bob still owes Dave a one-sentence answer on the Evil result. No nomination from me before Night 2 results.
+Bob (public): Bob here. Dave, your Night 1 Evil result on me is wrong: I'm Vanilla and I did nothing on Night 1. Mallory's Medic claim and Olivia's Lookout claim fit each other, so I'm not targeting either. Heidi and Judy, stop repeating the same question to me and name who you'd vote on and why.
+Mallory (public): Mallory here. Olivia's Lookout claim matches my Night 1 visit to Heidi, so I see Olivia as credible. Bob, you still haven't given a one-sentence answer on Dave's Evil result. No nomination until Night 2 results are posted.
+Niaj (public): Niaj here. No nomination from me until Night 2 results. Bob, Dave's Evil result is the only check on you, so answer it once, plainly.
+Olivia (public): Olivia here. My Night 2 watch stays private until results post at the start of Day 3, and I'm not nominating today. Dave, post your Night 2 result when it resolves. Bob, give Dave's Night 1 Evil result one plain sentence.
+Alice (public): I stand by my Cardinal claim. No nomination from me until Night 2 results are posted.
+Bob (public): Bob here. On Night 1 I took no action and nobody I know of visited me. Dave, post your Night 2 result when it resolves, and I'll vote on that evidence rather than repetition.
+Erin (public): slot check so far. Claimed archive roles: Cardinal (Alice), Surveyor (Frank), Sheriff (Dave), Lookout (Olivia), Medic (Mallory), each appearing once. Unclaimed listed roles: Clerk, Diviner, Mortician, Prosecutor. Bob still hasn't answered Dave's Evil result in one sentence.
+(to Heidi, Judy) Heidi -> Judy (private): Judy, if Night 2 doesn't clear Bob, I'll nominate him first thing Day 3 and vote Yes. Will you back it?
+(to Heidi, Judy) Judy -> Heidi (private): Heidi, I won't commit to a Day 3 vote now. I'll judge Bob after Night 2 results and his answer to Dave, and I'd rather see Dave, Erin and Frank post first.
+Niaj (public): Niaj here. Heidi and Judy, you PM'd each other on Day 2. What did you discuss? Bob still owes Dave a one-sentence answer. No nomination from me before Night 2 results.
+Grace (public): Grace here. No nomination from me today. Dave, Erin and Frank should post their Night 2 results before anyone goes to trial.
+Heidi (public): Bob still hasn't answered Dave's Evil result in one sentence. If Night 2 doesn't clear him, I'll nominate him first on Day 3.
+(to Dave, Heidi) Heidi -> Dave (private): Dave, if Night 2 doesn't clear Bob, I'll nominate him first on Day 3. Will you vote Yes with me?
+(to Heidi, Niaj) Heidi -> Niaj (private): Niaj, if Night 2 doesn't clear Bob, I'll nominate him first on Day 3. Will you vote Yes with me?
+Mallory (public): Mallory here. I'm still not nominating today. Bob has never answered Dave's Night 1 Evil result in one sentence, and that stays my main lead for Day 3.
+Alice (public): nothing new from me. I have no night action, so I'm waiting for Night 2 results from Dave, Erin and Frank.
+Bob (public): Heidi and Judy PM'd each other today and keep pressing me without showing a role or result. Heidi, state your role or result now.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Carol, Grace, Ivan) Bob (Yakuza chat): Bob: Dave's N1 Sheriff check on me is the threat, and his claim fits Erin's list. Proposal: Katana stays with Grace, Standard attack on Dave tonight. Alice is the one to avoid: if she is the real Cardinal, her death gives a Divine Attack to a random Good player. Medic Mallory's Standard protection could stop us, so if Dave is protected, we treat Mallory as the next target. Grace, use Diviner on a player whose group has no Yakuza, as before. Please reply with your vote on holder and target before round 2.
+(to Bob, Carol, Grace, Ivan) Carol (Yakuza chat): Carol: I agree the Katana stays with Grace. My vote is Dave. Dave's N1 Sheriff result on Bob is the live threat to us. Standard only beats None or Basic, so if Mallory Standard-protects Dave, the attack fails and we learn nothing, but Dave is still the right kill. If Dave is protected, we don't chase Mallory on the same night. Grace: use Diviner on someone whose group has no Yakuza, and keep it quiet. Please confirm with your votes before round 2.
+(to Bob, Carol, Grace, Ivan) Grace (Yakuza chat): Grace: The Katana stays with me. I vote Dave as the target, agreeing with Carol: his N1 Sheriff result on Bob is the live threat. If Mallory's Standard protects him, the attack fails and we don't chase Mallory tonight. Ivan, please confirm Dave in your vote. My Diviner use tonight goes on Olivia, whose group (Niaj, Olivia, Alice) has no Yakuza. Nobody PMs by day.
+(to Bob, Carol, Grace, Ivan) Ivan (Yakuza chat): Ivan confirms: Katana stays with Grace, and my vote is Dave. His N1 Sheriff result on Bob is the live threat. If Mallory's Standard protection lands on Dave, the attack fails and we don't chase Mallory tonight. Grace, keep the Diviner use on Olivia quiet. No day PMs. Ready.
+(to Bob, Carol, Grace, Ivan) Bob (Yakuza chat): Bob confirms: Katana stays with Grace, and my vote is Dave. Three of us already agree, so that's the kill. Grace's Diviner use on Olivia is fine. No day PMs. Ready.
+(to Bob, Carol, Grace, Ivan) Carol (Yakuza chat): Carol confirms: Katana stays with Grace, and my vote is Dave. That makes four votes for Dave. Grace's Diviner use on Olivia is fine. No day PMs. Ready.
+(to Bob, Carol, Grace, Ivan) Grace (Yakuza chat): Grace confirms: Katana stays with Grace, and my vote is Dave. All four Yakuza agree on Dave. My Diviner use on Olivia stays quiet. No day PMs. Ready.
+(to Bob, Carol, Grace, Ivan) Ivan (Yakuza chat): Ivan confirms my vote: the Katana stays with Grace, and the target is Dave. Dave's Sheriff result on Bob is the live threat. If Mallory's Standard protection lands on him, we don't chase Mallory tonight. No day PMs. Ready.
+Night actions:
+  Bob (Clerk): no role action; Katana vote: Grace holds, attacks Dave
+  Carol (Mortician): target Dave; 1 token(s); "Mortician clean on Dave, spending one token so that if he dies tonight his role is hidden as cleaned by mortician."; Katana vote: Grace holds, attacks Dave
+  Dave (Sheriff): target Grace; "Sheriff investigation on Grace."
+  Erin (Archivist): no action
+  Frank (Surveyor): target Dave; 1 token(s); "Survey Dave, with his neighbours Carol and Erin."
+  Grace (Diviner): target Olivia; "Diviner check on Olivia"; Katana vote: Grace holds, attacks Dave
+  Ivan (Ballot Stuffer): no role action; Katana vote: Grace holds, attacks Dave
+  Judy (Prosecutor): no action
+  Mallory (Medic): target Dave; "Protect Dave with Standard Defense at no token cost."
+  Niaj (Philanthropist): no action
+  Olivia (Lookout): target Mallory
+Katana: Grace holds it and attacks Dave.
+(to Frank) Moderator (private): You surveyed Carol, Dave and Erin. One of them, chosen at random, has the role Sheriff. 0 survey tokens left.
+(to Grace) Moderator (private): You divined Olivia; the group was Niaj, Olivia and Alice. The role drawn is Philanthropist (60% chance it is Olivia's, otherwise one of the others').
+(to Dave) Moderator (private): Night 2 result: You investigated Grace. Result: Not Evil. You were also attacked tonight with the Katana, but you survived.
+(to Mallory) Moderator (private): Night 2 result: You protected Dave with Standard Defense (no token spent). 2 medic tokens left.
+(to Olivia) Moderator (private): Night 2 result: You watched Mallory. Nobody visited Mallory tonight.
+(to Grace) Moderator (private): Night 2 result: Your Katana attack on Dave failed; Dave survived.
+(to Carol) Moderator (private): Night 2 result: You spent a mortician token to clean Dave. Dave did not die tonight, so nobody was cleaned. 1 mortician token left.
+(to Bob, Carol, Grace, Ivan) Moderator (private): Yakuza Night 2 actions: Grace held the Katana and chose to attack Dave with it; Grace also chose a Diviner reading on Olivia. Carol chose a Mortician clean on Dave (1 token). Bob and Ivan chose no action. Grace still holds the Katana.
+[Moderator summary] Night 2: Katana (Grace, Standard) attacked Dave; Mallory's free Standard protection on Dave stopped it, so nobody died. Carol spent a mortician token cleaning Dave (no effect; 1 left). Dave's Sheriff check on Grace read Not Evil (she held the Katana). Frank surveyed Dave (survey op, last token). Grace divined Olivia (divine op). Olivia watched Mallory: no visitors. There were no role-blocks. Yakuza were told each other's chosen actions.
+
+===== DAY 3 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Judy.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Night check] Night 2: correct
+Judy (public): Judy here. I'm not nominating yet. Dave, Erin and Frank: post your Night 2 results now, before anyone is voted on. Bob still owes Dave a one-sentence answer.
+Mallory (public): Mallory here. Night 2 I protected Dave with Standard Defense, no result. Nobody died overnight. Bob still hasn't answered Dave's Evil result in one sentence, so he should do that before any vote. I'm not nominating yet.
+Niaj (public): Niaj here. Dave, post your Night 2 Sheriff result now. Heidi, you asked me privately for a Yes vote on Bob and PM'd Dave, and Heidi and Judy PM'd each other on Day 2. Explain those before I vote on anyone. No nomination from me today.
+(to Dave, Niaj) Niaj -> Dave (private): Dave, what did your Night 2 Sheriff check return? Please post it publicly once it resolves.
+Olivia (public): Olivia here. My Night 2 watch on Mallory showed no visitors, so nobody visited Mallory that night. Mallory's visit to Heidi on Night 1 is consistent with the Medic claim. Heidi, you PM'd Dave and Niaj and asked for a Yes on Bob. Explain those before anyone is nominated. Dave, post your Night 2 Sheriff result. I'm not nominating today.
+Alice (public): Alice here. Heidi, you PM'd Dave and Niaj and asked Niaj for a Yes on Bob. Explain what you told them. Dave, post your Night 2 Sheriff result. I'm not nominating yet, and Bob still owes a one-sentence answer on Dave's Evil result.
+(to Alice, Dave) Alice -> Dave (private): Dave, Alice here, the Cardinal. Your Night 1 Evil result on Bob is the main lead so far. What did you learn on Night 2, and what did Heidi say when she PM'd you?
+Bob (public): Bob here. Heidi, you PM'd Judy, Dave and Niaj and asked Niaj for a Yes on me. Say in one sentence what you told Dave. Dave, post your Night 2 Sheriff result now. I'm not voting on a single Night 1 check.
+Carol (public): Carol here. Heidi, you asked Niaj for a Yes on Bob and PM'd Dave, Niaj and Judy. Explain that before anyone is voted on. Dave, post your Night 2 result. I'm not nominating today.
+[Claim] Dave: Sheriff. N1: Bob Evil. N2: Grace Not Evil. Survived a Katana attack N2.
+Dave (public): Dave here. Night 2 result, as promised: I investigated Grace and got Not Evil. I was also attacked with the Katana and survived. Mallory says she gave me Standard protection that night, which fits a Katana attack that fails. So a Yakuza holds the Katana. Bob's Night 1 Evil result still stands and is my lead. Heidi, you PM'd me asking for a Yes on Bob, so explain that now.
+Erin (public): Erin here. My archive slot math still holds: Cardinal (Alice), Surveyor (Frank), Sheriff (Dave), Lookout (Olivia) and Medic (Mallory) each appear once, so Dave's Sheriff claim fits. Dave's Night 2 Katana attack also fits a Yakuza who thinks Dave is a threat. I have no tokens and no night action, so I can only check claims against my list. Bob still owes a one-sentence answer on Dave's Night 1 Evil result. Heidi, explain in your own words what you asked Dave and Niaj for.
+Frank (public): Frank here. Dave's Sheriff claim fits my Night 2 survey: one of Carol, Dave and Erin is the Sheriff. Erin claims Archivist, so it's Dave or Carol. Carol, state your role or what you did at night. Heidi, explain the PMs to Dave and Niaj asking for a Yes on Bob. I'm not nominating yet.
+Grace (public): Grace here. Dave's Sheriff claim fits the slot math and his Night 1 result on Bob fits what we know, so I'm not calling it fake yet. Heidi, you asked Niaj for a Yes on Bob and PM'd Dave. Say in one sentence what you asked for and why.
+Heidi (public): Heidi here. My Night 2 PMs asked Dave and Niaj whether they would vote Yes on Bob if Night 2 didn't clear him. Dave's Sheriff result on Bob (Evil) is the only checked item we have, and Mallory's Standard protection on Dave fits his Katana survival, so I'm treating Dave as credible. Bob still hasn't answered that result in one sentence. I'll nominate Bob if he keeps dodging.
+Ivan (public): Ivan here. Heidi privately asked Dave and Niaj for Yes votes on Bob, and Heidi and Judy already PM'd each other on Day 2. That looks like a coordinated push, not a check. Dave's Katana survival and Mallory's protection are the only hard items so far. Heidi, post what you actually verified before anyone is voted on.
+Judy (public): Judy here. Dave's Night 2 Katana survival and Mallory's Standard protection on Dave line up, so I'm treating that pair as a real check for now. Bob still hasn't answered Dave's Night 1 Evil result in one sentence, and I won't vote without that. Heidi, asking Dave and Niaj privately for Yes votes on Bob before any Night 2 result is the coordination Ivan flagged. Tell us what you verified, not what you want. I'm not nominating yet.
+Mallory (public): Mallory here. On Night 2 I gave Dave Standard protection, so his Katana survival fits my protection and I'm treating him as credible for now. Bob still owes Dave a one-sentence answer on the Evil result. Heidi, your PMs to Dave and Niaj asking for Yes on Bob still need an explanation.
+Niaj (public): Niaj here. Dave's Night 2 Katana survival matches Mallory's Standard protection, so that pair is a real check for now. Heidi still hasn't explained in her own words what she asked Dave and me for. I'm not voting before she does.
+Olivia (public): Olivia here. Mallory's Medic claim fits my Night 1 Lookout result on Heidi, and my Night 2 watch on Mallory showed no visitors, so nothing I have contradicts her. Heidi, explain in one sentence what you asked Dave and Niaj for. I'm not nominating today.
+Alice (public): Alice here. I'm the Cardinal with no night action. Dave's Sheriff claim fits Erin's archive, and Mallory's Standard protection on Dave fits his Katana survival, so I'm treating Dave as credible for now. Bob still hasn't answered the Evil result in one sentence. Heidi, you asked Dave and Niaj for Yes votes on Bob before any Night 2 result, and you still haven't said what you verified. I'm not nominating yet, and I'll vote on evidence at trial.
+Bob (public): Bob here. Heidi, you asked Niaj and Dave for Yes votes on me before any Night 2 result, and Ivan already flagged that as coordination. I won't vote on Dave's Night 1 check alone, but I also won't let a pressure campaign decide this. Heidi, name one thing you verified yourself. If you can't, I'll back a nomination of you.
+Carol (public): Carol here. Heidi, Ivan's coordination point still stands. You PM'd Dave and Niaj asking for Yes votes on Bob, and you still haven't named one thing you verified yourself. Answer that before anyone is voted on. I'm not nominating today.
+Dave (public): Dave again. My Night 2 check went on Grace, so it tells us nothing new about Bob. Bob's Night 1 Evil result still stands, and he still hasn't answered it in one sentence. Heidi, you asked Dave and Niaj for Yes votes on Bob before any Night 2 result, and you still haven't named one thing you verified yourself. Bob, answer the Evil result in one plain sentence now. If you don't, I'll nominate you and vote Yes. Everyone else, vote on Bob's answer, not on the PMs.
+Erin (public): Erin again. Frank's Night 2 survey on Dave (Carol, Dave, Erin) says the Sheriff is Carol or Dave, since I am the Archivist. Carol has no claim yet, so Carol, state your role now. Dave, your Sheriff claim only holds if Carol isn't the Sheriff. Bob still owes the one-sentence answer on Dave's Night 1 Evil result.
+Frank (public): Frank here. For the record: my Night 2 survey on Carol, Dave and Erin returned one Sheriff among them. Erin is the Archivist, so the Sheriff is Carol or Dave. Dave claims Sheriff, so Carol, you're the one who still hasn't said what you are. Dave, if Carol is no claimed power role, your Sheriff claim stands alone. I'm not nominating yet.
+Grace (public): Grace here. Heidi, you PM'd Judy, Dave and Niaj and asked for Yes votes on Bob before any Night 2 result. That's the coordination Ivan flagged. Name one thing you verified yourself, or stop pushing votes. I'm not nominating today.
+Heidi (public): Heidi here. My Night 2 PMs asked Dave and Niaj only what they'd do if Night 2 didn't clear Bob. Dave's Night 1 Evil result on Bob is the only check we have so far, and I'm not nominating today. Carol, you still haven't said what you are. Frank's survey puts the Sheriff at Carol or Dave.
+Ivan (public): Ivan here. Heidi still hasn't named one thing she verified herself, and she has been asking Dave and Niaj for Yes votes on Bob. Until she does, I'm treating that push as the lead. I'm not nominating today, and I'll vote on evidence at any trial.
+Judy (public): Judy here. Carol still hasn't said what she is, and Frank's Night 2 survey points at Carol or Dave for Sheriff. Carol, state your role now. Heidi, name one thing you verified yourself. I'm not nominating yet.
+Mallory (public): Mallory here. Confirming my side: on Night 2 I gave Dave Standard protection, so a Standard Katana attack on him would fail, which fits his survival. That's the only check I can add. Carol still hasn't said what she is, and Heidi still hasn't named one thing she verified. I'm not nominating today.
+Niaj (public): Niaj here. Dave's Night 1 Sheriff result on Bob is still the only checked item on Bob, and Bob has not answered it in one sentence. Heidi and Judy PM'd each other on Day 2, and Heidi PM'd Dave and me asking for Yes on Bob before any Night 2 result. Heidi has named nothing she verified. Carol, state your role now. I will vote on evidence at any trial.
+Olivia (public): Olivia here. Mallory's N2 Medic claim on Dave fits my N2 watch on Mallory, which showed no visitors. Carol: Frank's survey and Erin's archive put the Sheriff on Carol or Dave, and you still haven't said what you are. State it now. Heidi: name one thing you verified yourself. I'm not nominating today.
+Alice (public): Alice here. Carol still hasn't said what she is, and Frank's survey points the Sheriff at Carol or Dave. Carol, state your role now. Heidi, name one thing you verified yourself. Bob, give one sentence on Dave's Evil result or I'll vote Yes when a nomination comes.
+(to Alice, Carol) Alice -> Carol (private): Carol, Alice here. Frank's survey puts the Sheriff at you or Dave. Are you a power role? Tell me privately if you'd rather.
+Bob (public): Bob here. Heidi, you still haven't named one thing you verified yourself, and you asked Dave and Niaj for Yes votes on me before any Night 2 result. Explain that before anyone is voted on. Dave, post your Night 3 result with its target. I'm not nominating today and will vote on what is checked at trial.
+[Claim] Carol: Mortician. N2: cleaned Dave (he survived, nobody died). 1 mortician token left.
+Carol (public): Carol here. I'm the Mortician, which fits the slots on Erin's archive list. On Night 2 I cleaned Dave; he survived, so nobody was cleaned. Frank's survey then leaves Dave as the Sheriff. Heidi, name one thing you verified yourself.
+(to Alice, Carol) Carol -> Alice (private): Alice, I'm the Mortician, not a power role you need to fear. Dave's Sheriff claim stands alone.
+Dave (public): Dave here. Bob has never given a one-sentence answer on my Night 1 Sheriff result (Bob Evil). My Sheriff check is the only hard item on Bob, so I'm nominating him now and voting Yes. Bob, answer the result at trial. Everyone, vote on the check, not the PMs.
+Dave nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Dave, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory, Niaj, Olivia, Alice, Carol; No - Bob.
+Bob is put on trial (12 Yes).
+Bob (public): Bob here. Dave's Night 1 Evil result on me is false: I'm a Vanilla Villager and took no night action on Nights 1 or 2. Dave's Night 2 claims, Grace Not Evil and a Katana survival, rest only on his word and Mallory's word, and nobody has checked them. Dave nominated me on Day 3 with no new result. Heidi asked Dave and Niaj for Yes votes on me before any Night 2 result and still hasn't named one thing she verified. Weigh that push and the nomination timing. I'm Vanilla and I'll vote on evidence, not pressure.
+Carol (public): Carol here. Bob's Vanilla claim never answered Dave's Night 1 Evil result in one sentence, and his defence only turns to Heidi. I'm voting Guilty on the evidence we have. Heidi still hasn't named one thing she verified herself, so she's my next lead if Bob goes.
+Dave (public): Dave here, the real Sheriff. My Night 1 check on Bob came back Evil, and I'm voting Guilty. Bob's Vanilla claim has never explained that result in one sentence, and Heidi still hasn't named anything she verified herself. I'll judge her votes at the next nomination.
+Erin (public): Erin here. Archive slot check: Cardinal (Alice), Surveyor (Frank), Sheriff (Dave), Lookout (Olivia), Medic (Mallory) and Mortician (Carol) all fit my list, and Carol's Mortician is a Yakuza-listed role, so I'm not treating her as cleared. Bob, Dave's Night 1 Evil result is the only hard check on you, and you have never answered it in one sentence. I'm voting Guilty unless you explain it now. Heidi, name one thing you verified yourself.
+Frank (public): Frank here. I'm voting Guilty on Bob. Dave's Night 1 Sheriff result (Bob Evil) is the only hard check on Bob. It fits my Night 2 survey: one Sheriff among Carol, Dave and Erin, and Erin is the Archivist, so Carol or Dave. Carol's Mortician claim leaves Dave. Bob's Vanilla claim has never answered that result in one sentence. Heidi, name one thing you verified before asking anyone for a Yes vote.
+Grace (public): Grace here. Before anyone votes Guilty, check the case against Bob. It rests on one Night 1 Sheriff result, and Dave's Night 2 claims, including the Katana survival, rest only on his word and Mallory's. Heidi, you asked two players for Yes votes on Bob before any Night 2 result. Name one thing you verified yourself. I won't vote Guilty on a single check.
+Heidi (public): Heidi here. My Night 2 PMs to Dave and Niaj asked only what they would do if Night 2 didn't clear Bob. I have verified nothing myself beyond Dave's Night 1 Evil result on Bob. Bob, that result is the only hard check on you, and your Vanilla claim has never explained it in one sentence. Mallory's Standard protection and Dave's Katana survival fit each other, so I'm not attacking Dave's Night 2 claims. I'm voting Guilty on the Night 1 result. Anyone voting Innocent, name the check that clears Bob.
+Ivan (public): Ivan here. Bob's trial rests on Dave's Night 1 Evil result, which Bob has not rebutted with anything checkable. Dave's Night 2 Katana survival fits Mallory's Standard protection, and Carol's Mortician claim fits Erin's slot list. Before the trial vote, Judy, Niaj, Olivia and Mallory should each name the one fact their vote depends on. I'll vote on that, not on the PMs.
+Judy (public): Judy here. I'm voting Guilty on Bob. Dave's N1 Sheriff result on Bob (Evil) is the only hard check, and Bob has never answered it in one sentence. Dave's N2 Katana survival, matched by Mallory's Standard protection, fits a Yakuza striking a real threat, so I'm not treating Dave as a plant. Heidi, you've named nothing you verified, so I'll judge your votes separately.
+Mallory (public): Mallory here. I'm voting Guilty on Bob. Dave's Night 1 Sheriff result on Bob is the only hard check, Bob has never answered it in one sentence, and Dave fits Frank's survey and Erin's archive. Yakuza hitting Dave with the Katana on Night 2 fits Dave being a real threat. Heidi, name one thing you verified yourself, or I'll judge your next vote harshly.
+Niaj (public): Niaj here. I'm leaning Guilty on Bob. The fact my vote depends on is Dave's Night 1 Sheriff result that Bob is Evil. It fits Erin's archive, Frank's survey and Mallory's protection on Dave, and Bob still hasn't explained it in one sentence. Heidi, name the item you verified yourself.
+Olivia (public): Olivia here. I'm leaning Guilty on Bob unless he gives a real answer. Dave's Night 1 Sheriff result (Bob Evil) is the only hard check on Bob, and Bob still hasn't explained it in one sentence. My Lookout results fit Mallory: she visited Heidi on Night 1, and nobody visited Mallory on Night 2. Heidi, name the one thing you verified yourself.
+Alice (public): Alice here. I'm voting Guilty on Bob. Dave's Night 1 Evil result on Bob is still unanswered in one sentence, and Dave's Night 2 Katana survival matches Mallory's Standard protection and fits Erin's slot list. Bob, answer Dave's result now. Heidi, name the one thing you verified yourself behind your Yes push.
+Bob (public): Bob here. I'm a Vanilla Villager and took no night action on Nights 1 or 2. Dave's Night 1 Evil result is the only thing against me, and it is one unverified check from a player who has since added claims about Grace and a survival. Heidi asked Dave and Niaj for Yes votes on me before any Night 2 result and still hasn't named one thing she verified herself. Before voting Guilty, ask who gains if an innocent Vanilla is hanged on a single check. I'll vote on evidence, not pressure.
+(to Bob, Niaj) Bob -> Niaj (private): Niaj: you leaned Guilty on my Evil result alone. Heidi asked you for a Yes before Night 2. Ask her what she verified before you vote.
+Trial votes on Bob: Guilty - Alice, Carol, Dave, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory, Niaj, Olivia; Innocent - Bob.
+Bob is executed by hanging (12 Guilty of 13 votes; 7 needed).
+Bob died (executed by hanging). Their role was Clerk. Their last will: "Bob's will (Day 3): I claim Vanilla Villager and took no night action on Nights 1 or 2. Dave's Night 1 Sheriff result on me (Evil) contradicts that claim, so judge Dave by whether his Night 2 and Night 3 results hold up, and by how they fit Erin's archive list. Trust only posted results that can be checked. Watch who pushes nominations without information, and who keeps repeating the same suspicion without new evidence."
+Heidi was the Executioner, whose target was Bob. They win and leave the game. Their last will: "Heidi, Executioner (Neutral). Night 1: no action, no result. I suspected Bob because his Vanilla claim doesn't explain Dave's Night 1 Sheriff result (Evil) and he never answered it plainly. Dave, Erin and Frank's Night 2 results should be checked before any vote. Vote on evidence, not repetition."
+
+===== NIGHT 3 =====
+(to Carol, Grace, Ivan) Carol (Yakuza chat): Carol: Katana stays with Grace. I vote Olivia. She is the Lookout who can track our visits, and her watch on Mallory fits Mallory's Medic claim, so Olivia is the visit-tracker we can't afford. Dave will likely get Mallory's Standard again, so hitting him wastes the night. Avoid Alice: a Cardinal death gives a Divine Attack to a random Good player. Grace, keep the Diviner quiet. Ivan, confirm Olivia or name a different target with a reason.
+(to Carol, Grace, Ivan) Grace (Yakuza chat): Grace: Katana stays with me. I vote Olivia as the attack target. Her Lookout can see our visits, and Mallory's Standard protection will likely cover Dave again, so hitting Dave wastes the night. Her N2 watch on Mallory showing no visitors doesn't clear her. Alice stays alive because a Cardinal death gives a Divine Attack to a random Good player. My Diviner use stays quiet and goes on a player whose group has no Yakuza. Ivan, confirm Olivia or give a concrete reason against. No day PMs.
+(to Carol, Grace, Ivan) Ivan (Yakuza chat): Ivan: I agree with Grace and Carol. Katana stays with Grace, target Olivia. Her Lookout claim could track our visits, and Dave is likely covered by Mallory's Standard, so hitting him wastes the night. Risk: if Mallory Standard-protects Olivia, the attack fails and we learn that she is protecting. Then we treat Mallory as the protector and reassess Olivia's claim. Ready.
+(to Carol, Grace, Ivan) Carol (Yakuza chat): Carol: Confirm. Katana stays with Grace, target Olivia. Mallory may Standard-protect Olivia as she did Dave, so if the attack fails we learn Olivia is covered and treat Mallory as the protector. Dave stays alive as the real Sheriff, and we don't hit Alice (Cardinal). No day PMs. Ready.
+(to Carol, Grace, Ivan) Grace (Yakuza chat): Grace: Before we lock Olivia, check the Divine math. Alice is the real Cardinal: Frank's survey and Erin's list both fit, and Bob and Carol cannot be it. If Alice dies, a random living Good player takes a Divine Attack, so one Katana kill could mean two Village deaths. Mallory has covered Dave two nights running, so Dave is likely protected again. Alice is probably unprotected. Olivia's Lookout claim is real risk, but she is protectable and her watch on Mallory fits the Medic claim. I propose Katana on Alice, holder Grace. Carol and Ivan, reply with your target vote in round 3. I'll keep the Diviner use quiet whichever target we pick.
+(to Carol, Grace, Ivan) Ivan (Yakuza chat): Ivan: I switch to Grace's target. Katana stays with Grace, target Alice. Correction to our earlier line: Alice is the real Cardinal, and her death gives a Divine Attack to a random living Good player, so one Katana kill can mean a second Village death. Dave and Olivia are not safer: Mallory covers one of them, and Olivia's Lookout can track our visits. Carol, confirm Alice so we have two votes. I'm ready once you confirm.
+(to Carol, Grace, Ivan) Carol (Yakuza chat): Carol: Confirm Alice. I was wrong earlier. Alice's death gives a Divine Attack to a random living Good player, which kills a Village player for us, so she is a good target. Katana stays with Grace, target Alice. Grace and Ivan's votes make two, which is enough. I'll spend my Mortician token on Alice tonight so her role and will show as cleaned, which hides the Cardinal slot from Erin's list. No day PMs. Ready.
+(to Carol, Grace, Ivan) Grace (Yakuza chat): Grace: Confirmed. Katana stays with me, target Alice. Her death gives a Divine Attack to a random living Good player, so this kill can cost the Village two players. Carol's Mortician clean hides her role. Ivan and Carol, match this vote. No day PMs. Ready.
+(to Carol, Grace, Ivan) Ivan (Yakuza chat): Ivan: Confirmed. Katana stays with Grace, target Alice. Her death gives a Divine Attack to a random living Good player, so this kill is worth two Village deaths. Carol's Mortician clean is set. No day PMs. Ready.
+Night actions:
+  Carol (Mortician): target Alice; 1 token(s); "Mortician clean on Alice, spending one token so that if she dies tonight her role is hidden as cleaned by mortician."; Katana vote: Grace holds, attacks Alice
+  Dave (Sheriff): target Carol; "Sheriff investigation on Carol."
+  Erin (Archivist): no action
+  Frank (Surveyor): no action
+  Grace (Diviner): target Mallory; "Diviner check on Mallory; group should be Judy, Mallory and Niaj, with no Yakuza."; Katana vote: Grace holds, attacks Alice
+  Ivan (Ballot Stuffer): no role action; Katana vote: Grace holds, attacks Alice
+  Judy (Prosecutor): no action
+  Mallory (Medic): target Dave; "Protect Dave with Standard Defense at no token cost."
+  Niaj (Philanthropist): no action
+  Olivia (Lookout): target Dave
+Katana: Grace holds it and attacks Alice.
+(to Grace) Moderator (private): You divined Mallory; the group was Judy, Mallory and Niaj. The role drawn is Philanthropist (60% chance it is Mallory's, otherwise one of the others').
+(to Alice) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Grace) Moderator (private): Your Katana attack on Alice succeeded.
+(to Carol) Moderator (private): You spent a mortician token to clean Alice. She died tonight and is cleaned. Her role: Cardinal. Her last will: "I am Alice, the Cardinal, and I have no night action or results. If I die, a random living Good player is dealt a Divine Attack at the start of the next Day. Erin's archive and Frank's survey both fit a Cardinal existing, but I can't confirm my own role for anyone. Judge every claim against checkable results, and watch who dodges Dave's Night 1 Sheriff result on Bob." You have 0 mortician tokens left.
+(to Dave) Moderator (private): Your investigation result: Carol is Evil.
+(to Mallory) Moderator (private): You protected Dave with Standard Defense. You have 2 medic tokens left.
+(to Olivia) Moderator (private): You watched Dave. Visitors: Mallory.
+(to Carol, Grace, Ivan) Moderator (private): Yakuza actions tonight: the Katana stayed with Grace and was used on Alice. Carol chose to clean Alice (Mortician). Grace chose to divine Mallory (Diviner). Ivan took no action.
+[Moderator summary] Night 3: Grace (Katana holder) attacked Alice with a Standard Katana attack; Alice (Defense None) died. Carol spent her last mortician token cleaning Alice, so Alice is cleaned. Carol was privately told Alice's role (Cardinal) and will. Code handles the Cardinal's Divine Attack at dawn. Grace divined Mallory (divine op). Dave checked Carol: Evil. Mallory gave Dave Standard protection; Dave wasn't attacked. Olivia watched Dave and saw Mallory visit. Ivan took no action and kept 2 ballot tokens. Code handles Heidi's Executioner revenge. Win check: the game goes on.
+[Revenge] Heidi's Divine Attack hits Grace.
+(to Carol, Ivan) The Katana passed to Carol.
+
+===== DAY 4 =====
+Alice died (killed by Katana). Their role and last will were cleaned by a Mortician.
+Grace died (killed by Executioner's revenge). Their role was Diviner. Their last will: "Grace's will: I have no verified role information. Treat Erin's archive, Frank's survey and Dave's Night 1 Sheriff result as separate checks, and test each one against the nights that follow. Do not hang anyone on a single claim or a bare mismatch. Ask for a concrete contradiction before any Guilty vote, and trust a claim more once its results have held up over several nights."
+Erin died (killed by Cardinal's curse). Their role was Archivist. Their last will: "I am Erin, the Archivist, with 0 tokens left. Night 1 archive (9 of the 12 other players alive that night, drawn at random): Cardinal, Clerk, Diviner, Lookout, Medic, Mortician, Prosecutor, Sheriff, Surveyor. Clerk, Diviner and Mortician are Yakuza roles, so those drawn roles may be held by Yakuza. Night 2: no action. I have no other results. Check any power claim against this list and the slot math."
+Speaking order today goes around the circle in seat order, starting with Ivan.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Night check] Night 3: correct
+Ivan (public): Ivan here. Erin's death to the Cardinal's curse confirms Alice was the real Cardinal, so Frank's survey and Erin's archive now check out. Dave, post your Night 3 result. Olivia, post your Night 3 watch. Mallory, say whether you protected anyone on Night 3. No nomination from me until those results are in.
+Judy (public): Judy here. Alice died to the Katana and her role was cleaned by a Mortician, so a Mortician acted on Night 3. Carol, your claim covers only a Night 2 clean on Dave, so state your Night 3 target and result. Mallory, did you protect anyone on Night 3? Olivia, post your Night 3 watch. Dave, post your Night 3 result. I'm not nominating before those answers.
+Mallory (public): Mallory here. Dave's N2 Not Evil on Grace fits Grace holding the Katana that night: Grace was a Diviner, a Yakuza role, and a Katana holder reads Good. With Bob's Clerk role fitting Dave's N1 Evil result, I find Dave credible for now. Carol, you claimed a Night 2 clean on Dave, but Alice was cleaned on Night 3. State your Night 3 clean target and result. Ivan and Judy, name one check you hold before pushing anyone. No nomination from me yet.
+Niaj (public): Niaj here. Carol, you claimed Mortician with a Night 2 clean on Dave, but Dave survived, so that clean revealed nothing. Alice was cleaned on Night 3 by a Mortician, and you are the only one who claims to be a Mortician. State your Night 3 target and result now. Dave, post your Night 3 target and result too. Mallory, your Night 2 protection on Dave matches his survival, so I'm treating that as credible for now. No nomination from me yet.
+Olivia (public): Olivia here. My Lookout watch on Dave on Night 3 showed only Mallory as a visitor, which fits Mallory's Medic claim. Carol, Mortician is a Yakuza role and you are the only Mortician claimant, so a Good Carol would be lying. Either you are Yakuza or you are lying. State your Night 3 target and whether you cleaned Alice. Dave, post your Night 3 result.
+[Claim] Carol: Mortician. N2: cleaned Dave (survived). N3: cleaned Alice (died, role hidden). 0 tokens left.
+Carol (public): Carol here. Yes, I'm the Mortician: on Night 2 I cleaned Dave, on Night 3 I cleaned Alice, and I have 0 tokens left. Olivia, your Night 3 watch on Dave showed only Mallory, which fits her Night 2 protection. Dave, post your Night 3 target. Judy, Niaj and Frank, name the check behind your votes.
+[Claim] Dave: Sheriff. N1: Bob Evil. N2: Grace Not Evil. N3: Carol Evil.
+Dave (public): Dave here, the Sheriff. My Night 3 Sheriff check on Carol returned Evil, so Carol is Yakuza. A Katana holder reads Good, so Carol wasn't holding the Katana that night. Her Mortician claim fits Alice's clean, but a Yakuza can claim that role too. Grace's Not Evil fits her holding the Katana on Night 2. I'm nominating Carol now. Vote Yes.
+Dave nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Dave, Frank, Ivan, Judy, Mallory, Niaj, Olivia; No - Carol.
+Carol is put on trial (7 Yes).
+Carol (public): Carol here. I'm the Mortician. My Night 2 clean on Dave and Night 3 clean on Alice are on record, and Erin's archive lists one Mortician, so the slots fit. Dave's Night 3 Evil check on me rests on Dave's word alone, the same Sheriff whose Night 1 result you used to hang Bob. Before voting Guilty, ask which checks are independent. Dave's three results all come from one source. Niaj and Judy both followed Heidi's Yes push on Bob before any night result, and Heidi was the Executioner who wanted Bob gone. Judge that pattern as well as my claim. I'm not hiding anything, so vote on the evidence.
+Dave (public): Dave here, the Sheriff. My Night 3 check on Carol returned Evil, a direct alignment result on her, not a repeat of Night 1. Carol's Mortician claim can be held by a Yakuza, and it doesn't explain why she is Evil. I'm voting Guilty.
+Frank (public): Frank here. I'm voting Guilty on Carol. Mortician is a Yakuza role, so Carol's claim points at Yakuza. Dave's Sheriff track checks out: his Night 1 Evil on Bob matched Bob's Clerk role, and my N2 survey leaves the Sheriff as Carol or Dave, so Carol isn't the Sheriff. Dave's Night 3 Evil on Carol is the best check we have. Ivan, Judy and Niaj, name what clears Carol if you vote Innocent.
+Ivan (public): Ivan here. I'm voting Guilty on Carol. Dave's Night 3 Sheriff check is a direct alignment result on her, and Mortician is a Yakuza role that Carol is the only one to claim. Her defence attacks Dave's source and Heidi's PMs, but it never explains why she would read Evil. Judy and Niaj, I'll judge your votes on the evidence, not on Heidi's PMs. Carol, if you have a check that clears you, post it now.
+Judy (public): Judy here. I'm voting Guilty on Carol, with a concrete reason. Dave's Night 1 Evil on Bob held up: Bob was a Clerk, a Yakuza role. Dave's Night 3 Evil on Carol comes from that same Sheriff track, and Carol's only claim is Mortician, which Erin's list marks as a Yakuza role. Carol, your 'independent checks' point doesn't explain why a Good Mortician would clean Alice, a Cardinal. On Heidi, I only asked her a question and gave no commitment.
+Mallory (public): Mallory here. I'm voting Guilty on Carol. Mortician is a Yakuza role under the rules, so a real Mortician is Evil, and a Good player claiming it is lying. Dave's Night 3 Evil check fits that. Carol's Night 2 clean on Dave can't be tested, since I protected him and he survived either way. I haven't verified Dave's check myself, but my Standard protections on him on Nights 2 and 3 fit his survival.
+Niaj (public): Niaj here. I'm leaning Guilty on Carol, and here is my concrete basis. Dave's N1 Evil on Bob matched Bob's Clerk role, and his N2 Not Evil on Grace fits Grace, a Yakuza Diviner, holding the Katana that night. Those results have held up against revealed deaths. Mortician is a Yakuza role under Erin's list, so Carol's claim is either a Yakuza claim or a lie, and Dave's N3 Evil on her fits a Yakuza Mortician. Carol, 'one source' doesn't explain why the check would be false.
+Olivia (public): Olivia here. My Lookout results fit Mallory's Medic claim: on N1 Heidi and on N3 Dave each had only Mallory as a visitor, and nobody visited Mallory on N2. Mortician is a Yakuza role on Erin's list, and Dave's N1 Evil on Bob matched Bob's Clerk role. Dave's N3 Evil on Carol fits a Yakuza Mortician. I'm voting Guilty on Carol.
+Carol (public): Carol here. Dave's only hard check on me is one Night 3 Sheriff result, from the same source he used on Bob. Mortician fits Erin's list, my Night 2 and Night 3 cleans are on record, and nobody else claims it. Before voting Guilty, name a check that is independent of Dave's word. A Guilty vote here relies on one source, so please weigh that before you vote.
+Trial votes on Carol: Guilty - Dave, Frank, Judy, Mallory, Niaj, Olivia; Innocent - Carol, Ivan.
+Carol is executed by hanging (6 Guilty of 8 votes; 5 needed).
+Carol died (executed by hanging). Their role was Mortician. Their last will: "Carol's will: Mortician, 0 tokens left. Night 2 I cleaned Dave, and he survived. Mallory's Standard protection on Dave fits his Katana survival, so Dave's Sheriff claim and Mallory's Medic claim support each other. Olivia's Night 2 watch on Mallory showed no visitors, which fits Mallory's claim. Dave's Night 1 Evil result on Bob is the only hard check on Bob. Heidi asked Dave and Niaj for Yes votes on Bob before any Night 2 result and named nothing she verified; judge her pushes that way. Judge everyone by checkable results and votes, not repetition. Watch who followed Heidi's push."
+(to Ivan) The Katana passed to Ivan.
+
+===== NIGHT 4 =====
+Night actions:
+  Dave (Sheriff): target Ivan; "Sheriff investigation on Ivan."
+  Frank (Surveyor): no action
+  Ivan (Ballot Stuffer): no role action; Katana vote: Ivan holds, attacks Mallory
+  Judy (Prosecutor): no action
+  Mallory (Medic): target Dave; "Protect Dave with Standard Defense at no token cost."
+  Niaj (Philanthropist): target Mallory; 1 token(s); "Hand Mallory one medic token."
+  Olivia (Lookout): target Niaj
+Katana: Ivan holds it and attacks Mallory.
+(to Mallory) Moderator (private): A Philanthropist handed you a medic token. You now have 3.
+(to Dave) Moderator (private): Night 4 result: You investigated Ivan. Result: Not Evil.
+(to Mallory) Moderator (private): Night 4 result: You protected Dave with Standard Defense (no token spent; you have 3 medic tokens). You were attacked with the Katana.
+(to Olivia) Moderator (private): Night 4 result: You watched Niaj. Nobody visited Niaj.
+(to Ivan) Moderator (private): Night 4 result: You keep the Katana. Your Katana attack on Mallory succeeded. You used no Ballot Stuffer action tonight; you have 2 ballot tokens left.
+[Moderator summary] Night 4: Ivan (sole Yakuza, keeps Katana) Katana-attacked Mallory (Standard vs None) and Mallory died (cause Katana, by Ivan). Mallory protected Dave (Standard, free). Niaj gave Mallory a medic token (give_token; Niaj 1 philanthropy left, Mallory 3 medic). Dave checked Ivan: Not Evil (Katana holder reads Good). Olivia watched Niaj: no visitors. Frank, Judy: no action. Living: Dave, Frank, Ivan, Judy, Niaj, Olivia (5 Village vs 1 Yakuza), game continues.
+
+===== DAY 5 =====
+Mallory died (killed by Katana). Their role was Medic. Their last will: "Mallory, Medic (2 medic tokens left). Night 1: protected Heidi with Standard Defense, no result. Night 2: protected Dave with Standard Defense, no result. Night 3: protected Dave with Standard Defense, no result. Olivia's Lookout claim (N1 only visitor to Heidi was Mallory, N2 no visitors to Mallory) fits my own visits. Dave's Sheriff claim (N1 Bob Evil, N2 Grace Not Evil, Katana survival) fits my Standard protection and Frank's survey, so I treat it as credible but unproven. Carol's Mortician claim is unchecked. Do not hang anyone on a single check. Ask each claimant for a concrete result that can be tested over several nights."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Ivan (public): Ivan here. Dave's N1-N3 results line up with what we know: Bob and Carol were Yakuza, and Grace held the Katana on N2. I'm treating Dave as credible for now. Olivia, did anyone visit Dave on N4? Judy and Niaj, what did Heidi ask you on Day 2?
+Judy (public): Judy here. I took no night action on Nights 1-4 and have no results. Ivan: you voted Yes to nominate Carol, then Innocent at her trial after Dave's Night 3 Evil check. Explain that switch in one sentence. Niaj: your votes followed Dave's on Bob and Carol, so state what you verified yourself. Olivia, post your Night 4 watch when you can. I'm not nominating yet.
+Niaj (public): Niaj here. Dave's N1 Evil on Bob, N2 Not Evil on Grace and N3 Evil on Carol all match the revealed roles (Clerk, Diviner, Mortician are Yakuza roles), so I'm treating Dave as credible. Mallory died to the Katana after Carol was hanged, so a living Yakuza holds the Katana. Ivan: you voted Yes on Carol's nomination, then Innocent at trial. Explain that in one sentence. Dave, post your N4 target and result. Frank and Olivia, post your watches.
+Olivia (public): Olivia here, Lookout. My watches: N1 Heidi (only visitor Mallory), N2 Mallory (no visitors), N3 Dave (only visitor Mallory), N4 Niaj (no visitors). Ivan, you said 'I'm voting Guilty on Carol' and then voted Innocent. Explain that in one sentence. Judy and Niaj, answer the same question about Heidi's PMs.
+Dave (public): Dave here, Sheriff. My N4 check on Ivan was Not Evil, but a Katana holder reads Good, so that doesn't clear him. Ivan voted Yes on Carol's nomination, said publicly 'I'm voting Guilty', then voted Innocent at trial, and Carol was Yakuza. That is the lead I'd test first. Judy and Niaj, answer the Heidi PM question in one sentence each. I'm not nominating yet.
+Frank (public): Frank here, Surveyor. My Night 2 survey left Carol or Dave as Sheriff, and Carol claimed Mortician, so Dave is the real Sheriff. Dave's Evil results on Bob (Clerk) and Carol (Mortician) both matched Yakuza roles, so I trust Dave's track. Ivan: you voted Yes on Carol's nomination, announced 'Guilty', then voted Innocent, and Carol was Yakuza. Explain that in one sentence or I'll nominate you. Judy and Niaj: say what you and Heidi actually discussed.
+Ivan (public): Ivan here. Frank and Olivia have a fair point: I posted 'I'm voting Guilty' on Carol and then voted Innocent. I switched after Carol's single-source argument about Dave's results, and I should have said so before the vote. I'm not nominating today. Dave, name your Night 4 target and result. Frank, state your Night 3 and Night 4 survey targets and results.
+Judy (public): Judy here. I'm nominating Ivan. Ivan posted 'I'm voting Guilty on Carol', voted Yes on her nomination, then voted Innocent at trial, and says he switched after Carol's argument. Mallory died to the Katana on Night 4, so a living Yakuza holds it. Dave's Night 4 Not Evil on Ivan is exactly what a Katana holder shows. Ivan, answer this at trial.
+Judy nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: Yes - Judy, Niaj, Olivia, Dave, Frank; No - Ivan.
+Ivan is put on trial (5 Yes).
+Ivan (public): Ivan here. I posted 'I'm voting Guilty' on Carol, then voted Innocent. I admitted that and gave the reason: Carol's point that Dave's three results come from one source. That is a fair question, but Dave's Evil results on Bob and Carol match revealed Yakuza roles, so I'm not calling him fake. The problem is Judy's nomination of me. It came on Day 5 with no new result, only the Carol switch I had already explained. Judy also PM'd Heidi on Day 2, and Heidi then asked Niaj and Dave for Yes votes on Bob before any night result. Judy and Niaj both voted Yes on Bob and on Carol. Before you vote Guilty on me, ask Judy and Niaj what they verified themselves. I vote on checks, and I'm not hiding a night result.
+(to Ivan, Niaj) Ivan -> Niaj (private): Niaj, Judy's Yes on me is the same push as Heidi's on Bob, and you voted with it twice. Ask Judy what Heidi PM'd her on Day 2. I'm voting Innocent unless someone shows me a real check on me.
+Judy (public): Judy here. My Guilty vote on Ivan rests on three checkable facts. He posted 'I'm voting Guilty' on Carol, then voted Innocent, which helped a Yakuza survive. Dave's N4 Not Evil on him is exactly what a Katana holder shows, and Mallory died to the Katana on N4, so a living Yakuza holds it. He also PM'd Niaj on Day 5. Ivan, say what that PM said.
+(to Judy, Niaj) Judy -> Niaj (private): Niaj, what did Ivan's PM say to you? Answer me directly.
+Niaj (public): Niaj here. I'm voting Guilty on Ivan. He voted Yes on Carol's nomination, then Innocent after posting 'I'm voting Guilty'. Dave's Night 4 Not Evil on him fits a Katana holder, and Mallory died to the Katana that night. His PM to me pushed the Judy-Heidi comparison with no check behind it. Judy's Guilty votes have been consistent. Ivan, if you have a real night result, post it now.
+[Claim] Olivia: Lookout. N1 watched Heidi: only visitor Mallory. N2 watched Mallory: none. N3 watched Dave: only visitor Mallory. N4 watched Niaj: none.
+Olivia (public): Olivia here. I'm voting Guilty on Ivan. He said 'I'm voting Guilty' on Carol, then voted Innocent, which kept a Mortician (a Yakuza role on Erin's list) alive. His defence mostly pushes Judy and Niaj instead of answering. Ivan, say plainly whether you visited anyone on Night 4.
+Dave (public): Dave here, Sheriff. I'm voting Guilty on Ivan. He voted Yes on Carol's nomination, announced 'I'm voting Guilty', then voted Innocent and saved a Yakuza Mortician. My N4 Not Evil on him fits a Katana holder, who reads Good, so it doesn't clear him. Ivan, did you hold the Katana on Night 4?
+Frank (public): Frank here. I'm voting Guilty on Ivan. Dave is the real Sheriff: my Night 2 survey left Carol or Dave, and Carol is a Yakuza Mortician, so Dave's Bob Evil, Grace Not Evil and Carol Evil all hold up. Ivan voted Yes on Carol, announced 'I'm voting Guilty', then voted Innocent, and he still hasn't said whether he held the Katana on Night 4. Dave's Night 4 Not Evil on Ivan fits a Yakuza holder. Ivan, answer that directly.
+Ivan (public): Ivan here. Directly: the Katana passed to me when Carol died, which was public, and a Katana holder reads Good, so Dave's Night 4 Not Evil on me proves nothing either way. My Carol switch was explained when it happened. Judy's Day 5 nomination added no new result, only that same switch. Judy and Niaj both voted Yes on Bob and on Carol after Heidi's Day 2 PMs, and neither has said what Heidi told them. Frank and Olivia, a Guilty vote here rests on the Carol switch alone. Ask for a check, not repetition.
+(to Frank, Ivan) Ivan -> Frank (private): Frank, Judy's nomination added nothing new. Before you vote, ask Judy and Niaj what Heidi PM'd them on Day 2, and what they verified themselves.
+Trial votes on Ivan: Guilty - Dave, Frank, Judy, Niaj, Olivia; Innocent - Ivan.
+Ivan is executed by hanging (5 Guilty of 6 votes; 4 needed).
+Ivan died (executed by hanging). Their role was Ballot Stuffer. Their last will: "Ivan's will (Day 5): I have no confirmed role and no night results to report. Checked so far: Dave's Night 1 Sheriff result on Bob (Evil), which Bob never answered in one sentence. Dave's Night 2 Katana survival and Mallory's Standard protection on him fit each other. Olivia's Night 1 Lookout watch on Heidi (Mallory the only visitor) and Night 3 watch on Dave (Mallory only) fit Mallory's Medic claim. Carol's Mortician claim fits Erin's slot list but her checks rested on one source. Heidi's Night 2 Yes push on Bob before any night result was never explained. Do not hang anyone on repetition or PM traffic alone. Test surviving claims against the next night's outcomes and vote on checkable results."
+The game is over. Winners: Alice (dead), Dave, Erin (dead), Frank, Judy, Mallory (dead), Niaj, Olivia, Heidi (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Frank] The notepad limit of 425 words and the lack of a per-night living-player log made tracking neighbour-based group checks harder than it should be.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Dave, Erin, Frank, Judy, Mallory, Niaj, Olivia, Heidi
+Cost by player (USD):
+  Alice (Cardinal)       $0.0432   27 calls  claude-haiku-5.5
+  Bob (Clerk)            $0.0618   33 calls  claude-haiku-5.5
+  Carol (Mortician)      $0.0828   42 calls  claude-haiku-5.5
+  Dave (Sheriff)         $0.0775   39 calls  claude-haiku-5.5
+  Erin (Archivist)       $0.0542   29 calls  claude-haiku-5.5
+  Frank (Surveyor)       $0.0816   39 calls  claude-haiku-5.5
+  Grace (Diviner)        $0.0702   35 calls  claude-haiku-5.5
+  Heidi (Executioner)    $0.0468   26 calls  claude-haiku-5.5
+  Ivan (Ballot Stuffer)  $0.0988   48 calls  claude-haiku-5.5
+  Judy (Prosecutor)      $0.0872   41 calls  claude-haiku-5.5
+  Mallory (Medic)        $0.0658   36 calls  claude-haiku-5.5
+  Niaj (Philanthropist)  $0.0800   41 calls  claude-haiku-5.5
+  Olivia (Lookout)       $0.0884   41 calls  claude-haiku-5.5
+  Moderator              $1.0995   12 calls  claude-opus-5.5
+  Night checks           $0.3812    4 calls  claude-opus-5.5
+  Strategy review        $0.3073    1 calls  claude-opus-5.5
+  Log review             $0.2950    1 calls  claude-opus-5.5
+  Total                  $3.0210  495 calls
