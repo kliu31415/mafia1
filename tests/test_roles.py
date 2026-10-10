@@ -691,3 +691,26 @@ def test_cartographer_token_is_spent_even_when_no_visits_were_recorded(game_fact
     apply_ops(game, players, {"op": "map", "player": "Bob", "by": "Alice"})
     game.run_night_end_hooks()
     assert game.player("Alice").tokens["map"] == 1 and game.log.error_counts == {"cartographer_no_visits": 1}
+
+
+def test_scout_learns_three_players_from_different_visit_groups(game_factory):
+    from roles.base import visit_groups
+    game, players = game_factory(["Scout", "Medic", "Sheriff", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.phase = "night"
+    game.night_visits[game.day] = [["Dave", "Bob"], ["Carol", "Bob"], ["Erin", "Alice"]]
+    groups = {n: tuple(g) for g in visit_groups(game) or [] for n in g}
+    for _ in range(20):
+        game.run_night_end_hooks()
+        names = re.findall(r"Bob|Carol|Dave|Erin|Frank|Alice", told(game, "Alice")[-1].split(":", 1)[1])
+        assert len(names) == 3 and len({groups[n] for n in names}) == 3
+
+
+def test_scout_with_fewer_than_three_groups(game_factory):
+    game, players = game_factory(["Scout", "Medic", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.night_visits[game.day] = [["Carol", "Bob"], ["Bob", "Dave"], ["Alice", "Dave"]]
+    game.run_night_end_hooks()
+    assert "were all in one visit group tonight, including" in told(game, "Alice")[-1]
+    game.night_visits[game.day] = [["Carol", "Bob"], ["Bob", "Dave"]]  # Alice alone
+    game.run_night_end_hooks()
+    assert "Alice" in told(game, "Alice")[-1] and "only 2 visit groups" in told(game, "Alice")[-1]

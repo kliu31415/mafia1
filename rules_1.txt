@@ -179,7 +179,7 @@ above apply to it.
 Exact-role checks see the true role. The Roleplayer is seen as "Roleplayer".
 Token counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,
 even though they believe they have their fake role's tokens.
-Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer) are never changed by any of these.
+Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.
 
 ==================================================================================================
 PART 5: THE YAKUZA
@@ -288,15 +288,24 @@ Profiler
 
 Cartographer
   Tokens: 2 map tokens.
-  Night: at the end of every night, you learn the sizes of that night's visit groups. Link two players whenever
-  one visited the other that night (R6), in either direction; a group is a set of players linked to each other,
-  directly or through other players. Every player alive at the start of the night (including players who die that
-  night) is in exactly one group, so a player who visited no one and was visited by no one is a group of 1, and a
-  self-visit links no one. You learn only the sizes, largest first (e.g. "4, 2, 1, 1, 1"). This needs no action
-  and a role-block doesn't stop it.
+  Night: at the end of every night, you learn the sizes of that night's visit groups. Link two players whenever one
+  visited the other that night (R6). Visits have a direction (R6, and e.g. the Tracker and Lookout see it), but your
+  results ignore it, treating the visits as an undirected graph: A visiting B links them exactly as B visiting A
+  would. A group is a set of players linked to each other, directly or through other players. Every player alive at
+  the start of the night (including players who die that night) is in exactly one group, so a player who visited no
+  one and was visited by no one is a group of 1, and a self-visit links no one. You learn only the sizes, largest
+  first (e.g. "4, 2, 1, 1, 1"). This needs no action and a role-block doesn't stop it.
   Night: may also spend a token to map one player (Astral Visit; yourself allowed): at the end of the night you also
   learn the names of everyone in that player's group. A role-block stops the map (R9) but not the sizes.
   Your own actions never visit anyone, so they never link you to anyone.
+
+Scout
+  Night: at the end of every night, you learn the names of three players (you may be one of them) who were each in a
+  different visit group that night. Groups are as for the Cartographer: your results ignore the direction of visits,
+  linking the visitor and the visited either way (an undirected graph). The names are drawn like this: a random
+  player, then a random player outside the groups already drawn from, and so on, so a big group is more likely to come
+  up than a small one. If there were fewer than three groups, you learn one name per group and how many groups there
+  were. This needs no action and a role-block doesn't stop it. You never visit anyone.
 
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they

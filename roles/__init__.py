@@ -79,11 +79,15 @@ ROLES: dict[str, RoleInfo] = {
                          tokens={"profile": 3}, acts_at_night=True,
                          notes="moderator records the use with the profile op; code draws the decoys and tells them"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
-                             summary="Every night: learns the sizes of the night's visit groups. Token: learns the "
-                             "names in one player's group.",
+                             summary="Every night: learns the sizes of the night's visit groups (visits linking "
+                             "players either way). Token: learns the names in one player's group.",
                              tokens={"map": 2}, acts_at_night=True,
                              notes="moderator lists every night's visits with record_visits and records a token use "
                              "with the map op; code finds the groups and tells them"),
+    "Scout": RoleInfo(Alignment.GOOD, "Investigative", False,
+                      summary="Every night: learns three players (maybe themselves) who were each in a different "
+                      "visit group.",
+                      notes="passive; code draws the names from the moderator's record_visits list and tells them"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,
