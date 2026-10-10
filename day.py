@@ -38,7 +38,7 @@ CLAIM_WORDS = 30  # claims (in the public ledger) are short and free, so they ca
 
 
 def length_cost(words: int) -> float:
-    """Cheap for short and medium messages, superlinear for long ones."""
+    """Cheap for short and medium messages, superlinear for long ones. budget_parameters spells this out."""
     return words / 60 + (words / 200) ** 2
 
 
@@ -54,6 +54,20 @@ def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> fl
     if free_words:
         cost = 0.0 if words <= free_words else length_cost(words) - length_cost(free_words)
     return cost * round_multiplier(rnd) * (PRIVATE_COST_FACTOR if private else 1.0)
+
+
+def budget_parameters() -> str:
+    """The speaking-budget numbers (rules R22), shown to every player at the start of the game."""
+    return (f"Speaking budget numbers for this game (rules R22): you earn {BUDGET_PER_ROUND:g} per round, up to "
+            f"{BUDGET_MAX:g}; at the start of each Day {CARRY_SHARE:.0%} of what you have left carries over. A "
+            f"public message costs ({MESSAGE_BASE_COST:g} + words/60 + (words/200)^2) x the round multiplier; "
+            f"a private one costs {PRIVATE_COST_FACTOR:g} of that. The multiplier is 1 for rounds 1-"
+            f"{FULL_PRICE_ROUNDS} and rises by {ROUND_COST_STEP:g} each later round (round {MAX_DAY_ROUNDS}: "
+            f"{round_multiplier(MAX_DAY_ROUNDS):g}x). A nomination costs {NOMINATION_COST:g} x the multiplier. "
+            f"Messages are capped at {MAX_MESSAGE_WORDS} words. Trial turns use the 1x price plus a trial-only "
+            f"budget of {TRIAL_BUDGET:g}; the accused's first defense message is free up to {FREE_DEFENSE_WORDS} "
+            f"words. At most {MAX_TRIALS_PER_DAY} trials per Day. Each turn's prompt shows your budget and a "
+            "price table.")
 
 
 def price_table(rnd: int, trial: bool = False) -> str:
@@ -230,7 +244,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     step = "trial_turn" if trial else "day_turn"
     task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
-            f"up to {BUDGET_MAX:g}; at the start of each day, half of what you have left "
+            f"up to {BUDGET_MAX:g}; at the start of each day, {CARRY_SHARE:.0%} of what you have left "
             "carries over. You may send one public message and any "
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "
             f"the contents), or nothing. The transcript already shows who sent each message, so there's "

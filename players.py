@@ -195,6 +195,8 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
         "deceive you too. Play to win, not to be agreeable or transparent. Think the situation through before "
         "each answer."
     )
+    from day import budget_parameters  # day imports this module
+    general += f"\n\n{budget_parameters()}"
     if p.tips and (tips := player_view(p.tips)):
         general += ("\n\n---\n\nTips from past games (lessons that players and moderators drew from earlier "
                     f"games of this variant; use your own judgment):\n\n{tips}")

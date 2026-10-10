@@ -71,6 +71,14 @@ turns then go around the circle from them in the same order every round. Besides
 which nobody sends a public message or nominates, except that anyone sent a private message during that round
 first gets one last turn. The Day also ends after at most 8 rounds.
 
+R22 (Speaking budget)
+Day messages and nominations cost speaking budget. Each player earns budget every round of a Day, up to a cap,
+and part of what they have left carries into the next Day. A message's price grows with its length and, after
+the first rounds of a Day, with the round; private messages cost less than public ones. A nomination costs
+budget too. On a trial turn prices are lower and each speaker also gets a trial-only budget, spent first and lost
+when the turn ends; the accused's first defense message is free up to a set length. The program sets the
+numbers for each game and tells every player at the start.
+
 R13 (Last wills)
 Players may write and update a last will at the beginning of each Day (except those who died the night before)
 and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
