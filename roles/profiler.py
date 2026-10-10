@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RoleLogic, acted_tonight, register, spend_token, token_user_error
+from roles.base import Alignment, RecordedAction, RoleLogic, acted_tonight, register, tokens_left_text
 
 if TYPE_CHECKING:
-    from state import Game
+    from state import Game, Player
 
 
 def profile_candidates(game: Game, profiler: str, target: str) -> list[str]:
@@ -37,24 +37,13 @@ def profile_candidates(game: Game, profiler: str, target: str) -> list[str]:
 @register("Profiler")
 class Profiler(RoleLogic):
     roleplayer_can_fake = False  # code draws the decoys
-    night_note = ("A Profiler who spent a token (and wasn't role-blocked): use the profile op, which spends the token; "
-                  "code tells them the result and tokens left (don't tell() them). It is a visit to the target only.")
     code_tells_user = True
-    ops = {"profile": ({"player", "by"}, set(), "{op:'profile', player, by}: the Profiler `by` profiles player (spends "
-                                                "a token; code tells them three candidate roles, one true)")}
+    action = RecordedAction("profile", "profiles player (code tells them three candidate roles, one true)",
+                            "code tells them the result and tokens left", token="profile", visit=True)
 
-    def check_op(self, game: Game, change: dict) -> str | None:
-        by, target = game.player(change["by"]), game.player(change["player"])
-        if error := token_user_error(game, by.name, "Profiler", "profile"):
-            return error
-        if target is by or not acted_tonight(game, target):
-            return "a Profiler profiles another player who was alive at the start of the night"
-        return None
-
-    def apply_op(self, game: Game, change: dict) -> None:
-        by = game.player(change["by"])
-        left = spend_token(game, by.name, "profile")
-        a, b, c = profile_candidates(game, by.name, change["player"])
-        game.tell([by.name], f"You profiled {change['player']}: their role is {a}, {b} or {c} (exactly one is true, "
-                             f"and at least one of the three is a Good role and one is not). {left} profile "
-                             f"token{'' if left == 1 else 's'} left.")
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        assert target
+        a, b, c = profile_candidates(game, by.name, target.name)
+        game.tell([by.name], f"You profiled {target.name}: their role is {a}, {b} or {c} (exactly one is true, and "
+                             "at least one of the three is a Good role and one is not). "
+                             f"{tokens_left_text(by, 'profile')}.")

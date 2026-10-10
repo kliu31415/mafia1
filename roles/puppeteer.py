@@ -4,28 +4,20 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RoleLogic, register, spend_token, token_user_error
+from roles.base import Alignment, RecordedAction, RoleLogic, register
 
 if TYPE_CHECKING:
-    from state import Game
+    from state import Game, Player
 
 
 @register("Puppeteer")
 class Puppeteer(RoleLogic):
-    night_note = "A Puppeteer's puppet: use the puppet op (code swaps who chats tomorrow)."
-    ops = {"puppet": ({"player", "by"}, set(), "{op:'puppet', player, by}: the Puppeteer `by` spends a "
-                                                 "token; player is puppeted by them tomorrow")}
+    action = RecordedAction("puppet", "puppets player tomorrow", "code swaps who chats tomorrow", token="puppet")
 
-    def check_op(self, game: Game, change: dict) -> str | None:
-        by = game.player(change["by"])
-        if error := token_user_error(game, by.name, "Puppeteer", "puppet"):
-            return error
-        if change["player"] == by.name:
-            return "a Puppeteer can't puppet themselves"
-        if game.player(change["player"]).info.alignment is Alignment.EVIL:
-            return "a Puppeteer can't puppet another Yakuza"
-        return None
+    def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
+        return "a Puppeteer can't puppet another Yakuza" if target and target.info.alignment is Alignment.EVIL \
+            else None
 
-    def apply_op(self, game: Game, change: dict) -> None:
-        spend_token(game, change["by"], "puppet")
-        game.puppets_next[change["player"]] = change["by"]
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        assert target
+        game.puppets_next[target.name] = by.name

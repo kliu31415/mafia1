@@ -4,21 +4,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, register, spend_token, token_user_error
+from roles.base import RecordedAction, RoleLogic, register
 
 if TYPE_CHECKING:
-    from state import Game
+    from state import Game, Player
 
 
 @register("Clerk")
 class Clerk(RoleLogic):
-    night_note = "A Clerk's rig: use the rig_vote op (code executes tomorrow's accused regardless of the vote)."
-    ops = {"rig_vote": ({"by"}, set(), "{op:'rig_vote', by}: the Clerk `by` spends a token; tomorrow's trials "
-                                        "execute the accused regardless of the vote")}
+    action = RecordedAction("rig_vote", "rigs tomorrow's trials to execute the accused regardless of the vote",
+                            "code executes tomorrow's accused regardless of the vote", token="clerk", target="")
 
-    def check_op(self, game: Game, change: dict) -> str | None:
-        return token_user_error(game, change["by"], "Clerk", "clerk")
-
-    def apply_op(self, game: Game, change: dict) -> None:
-        spend_token(game, change["by"], "clerk")
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         game.rigged_day = game.day + 1

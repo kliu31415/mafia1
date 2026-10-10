@@ -7,6 +7,7 @@ the defaults, which do nothing; the LLM moderator resolves their abilities from 
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING
 
@@ -31,10 +32,28 @@ class Status:
     SET_AT_SETUP = (TARGET, FAKE_ROLE)  # role hooks read these directly, so the moderator can't change them
 
 
+@dataclass(frozen=True)
+class RecordedAction:
+    """A night action the moderator records with one apply_changes op and code then carries out
+    (RoleLogic.carry_out). @register builds the role's op, its checks and its night note from this."""
+
+    op: str  # the op's name
+    does: str  # what the op does, after "the <role> `by`", for the tool description: e.g. "surveys player"
+    then: str  # what code does next, for the night note: e.g. "code tells them one random role in the group"
+    token: str = ""  # the token kind each use spends; "" for an every-night action
+    target: str = "other"  # "other": another player alive at the start of the night; "any": themselves too; "": none
+    visit: bool = False  # the night note says the action visits its target (rules R6)
+    note: str = ""  # anything else the moderator must know, appended to the night note
+
+
 class RoleLogic:
     """Defaults for every hook. Subclass it in roles/<role>.py and decorate with @register.
     Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
 
+    role: str = ""  # set by @register
+    # A night action recorded with an op and carried out by code (see RecordedAction); the role implements
+    # carry_out, and target_error for any check beyond the standard ones.
+    action: RecordedAction | None = None
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
     # False for roles whose results code delivers (live PMs, random samples), which the moderator can't fake
     # for a Roleplayer who believes they have the role.
@@ -88,13 +107,37 @@ class RoleLogic:
 
     def check_op(self, game: Game, change: dict) -> str | None:
         """Why one of this role's ops can't be carried out (the whole batch is then refused, so nothing is
-        half-applied), or None if it can. Fields are already checked against `ops`."""
-        return None
+        half-applied), or None if it can. Fields are already checked against `ops`. For a RecordedAction: its
+        user has the role and was alive when the night began (R10) with a token to spend, and its target was
+        alive then too, then target_error."""
+        assert self.action, f"{self.role} has ops but no RecordedAction: override check_op and apply_op"
+        by = game.player(change["by"])
+        if error := token_user_error(game, by.name, self.role, self.action.token or None):
+            return error
+        target = game.player(change["player"]) if self.action.target else None
+        if target and not acted_tonight(game, target):
+            return f"{target.name} wasn't alive at the start of the night"
+        if target is by and self.action.target == "other":
+            return f"{'an' if self.role[0] in 'AEIOU' else 'a'} {self.role} can't target themselves"
+        return self.target_error(game, by, target)
 
     def apply_op(self, game: Game, change: dict) -> None:
         """Carry out one of this role's ops. Fields are already checked against `ops`, and player
-        names against the game."""
-        raise NotImplementedError(change["op"])
+        names against the game. For a RecordedAction: spends the token, then carry_out."""
+        assert self.action, f"{self.role} has ops but no RecordedAction: override check_op and apply_op"
+        by = game.player(change["by"])
+        if self.action.token:
+            spend_token(game, by.name, self.action.token)
+        self.carry_out(game, by, game.player(change["player"]) if self.action.target else None)
+
+    def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
+        """A RecordedAction's role-specific check (e.g. a Puppeteer can't puppet a Yakuza): why it can't be
+        carried out, or None."""
+        return None
+
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        """A RecordedAction's effect, once checked and its token spent. Tell a private result with game.tell."""
+        raise NotImplementedError(self.role)
 
     def before_resolution(self, game: Game, actions: dict[str, dict]) -> None:
         """After the night's actions are in (and any Katana revote), before the Katana tally and the moderator's
@@ -139,8 +182,46 @@ def spend_token(game: Game, by_name: str, kind: str) -> int:
     return by.tokens[kind]
 
 
+def tokens_left_text(p: Player, kind: str) -> str:
+    """e.g. "2 survey tokens left"."""
+    n = p.tokens.get(kind, 0)
+    return f"{n} {kind} token{'' if n == 1 else 's'} left"
+
+
+def join_names(names: list[str]) -> str:
+    """e.g. "Alice, Bob and Carol"."""
+    return ", ".join(names[:-1]) + " and " + names[-1] if len(names) > 1 else "".join(names)
+
+
+def neighbor_group(game: Game, user: str, target: str) -> list[str]:
+    """The target and their nearest neighbor on each side (rules R11), among players alive at the start of the
+    night other than `user`, without repeats: [left, target, right], shorter in small games (Surveyor, Diviner)."""
+    circle = [p.name for p in game.players if acted_tonight(game, p) and p.name != user]
+    i = circle.index(target)
+    return list(dict.fromkeys([circle[i - 1], target, circle[(i + 1) % len(circle)]]))
+
+
+def recorded_action_parts(role: str, cls: type[RoleLogic]) -> None:
+    """Fills in a RecordedAction role's op and (unless it sets its own) night note."""
+    a = cls.action
+    if a is None:
+        return
+    cls.ops = {a.op: ({"player", "by"} if a.target else {"by"}, set(),
+                      f"{{op:'{a.op}', {'player, ' if a.target else ''}by}}: the {role} `by` {a.does}"
+                      + (" (spends a token)" if a.token else ""))}
+    if not cls.night_note:
+        article = "An" if role[0] in "AEIOU" else "A"
+        cls.night_note = (f"{article} {role} who {'spent a token' if a.token else 'acted'} (and wasn't role-blocked): "
+                          f"use the {a.op} op{', which spends the token' if a.token else ''}; {a.then}."
+                          + (f" Don't tell() the {role} anything about it." if cls.code_tells_user else "")
+                          + (" It is a visit to the target only." if a.visit else "")
+                          + (f" {a.note}" if a.note else ""))
+
+
 def register(role: str):
     def wrap(cls: type[RoleLogic]) -> type[RoleLogic]:
+        cls.role = role
+        recorded_action_parts(role, cls)
         LOGIC[role] = cls()
         return cls
     return wrap

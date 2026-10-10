@@ -4,22 +4,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, register, spend_token, token_user_error
+from roles.base import RecordedAction, RoleLogic, register
 
 if TYPE_CHECKING:
-    from state import Game
+    from state import Game, Player
 
 
 @register("Prosecutor")
 class Prosecutor(RoleLogic):
-    night_note = "A Prosecutor's prosecution: use the prosecute op (code runs the trial when the next day starts)."
-    ops = {"prosecute": ({"player", "by"}, set(), "{op:'prosecute', player, by}: the Prosecutor `by` spends a "
-                                                   "token; player goes to trial when the next day starts")}
+    action = RecordedAction("prosecute", "prosecutes player, who goes to trial when the next day starts",
+                            "code runs the trial when the next day starts", token="prosecutor", target="any")
 
-    def check_op(self, game: Game, change: dict) -> str | None:
-        return token_user_error(game, change["by"], "Prosecutor", "prosecutor")
-
-    def apply_op(self, game: Game, change: dict) -> None:
-        spend_token(game, change["by"], "prosecutor")
-        if change["player"] not in game.prosecutions:  # two Prosecutors on one player: one trial
-            game.prosecutions.append(change["player"])
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        assert target
+        if target.name not in game.prosecutions:  # two Prosecutors on one player: one trial
+            game.prosecutions.append(target.name)

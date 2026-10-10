@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, register, spend_token, token_user_error
+from roles.base import RecordedAction, RoleLogic, register
 
 NEXT = "ballots_next"  # game.role_state: Ballot Stuffers who spent a token tonight
 TODAY = "ballots"  # game.role_state: Ballot Stuffers whose trial votes count twice today
@@ -15,10 +15,8 @@ if TYPE_CHECKING:
 
 @register("Ballot Stuffer")
 class BallotStuffer(RoleLogic):
-    night_note = ("A Ballot Stuffer who spent a token (and wasn't role-blocked): use the stuff_ballot op, which "
-                  "spends the token; code doubles their trial votes tomorrow.")
-    ops = {"stuff_ballot": ({"by"}, set(), "{op:'stuff_ballot', by}: the Ballot Stuffer `by` spends a token; their "
-                                           "Guilty/Innocent votes count twice tomorrow")}
+    action = RecordedAction("stuff_ballot", "has their Guilty/Innocent votes count twice tomorrow",
+                            "code doubles their trial votes tomorrow", token="ballot", target="")
 
     def briefing(self, game: Game, p: Player) -> list[str]:
         line = ("When you spend a token at night, your vote counts twice in every Guilty/Innocent trial vote the "
@@ -27,17 +25,11 @@ class BallotStuffer(RoleLogic):
             line += " Today your trial votes count twice."
         return [line]
 
-    def check_op(self, game: Game, change: dict) -> str | None:
-        by = game.player(change["by"])
-        if error := token_user_error(game, by.name, "Ballot Stuffer", "ballot"):
-            return error
-        if by.name in game.role_state.get(NEXT, []):
-            return f"{by.name} already stuffed tomorrow's ballots"
-        return None
+    def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
+        return f"{by.name} already stuffed tomorrow's ballots" if by.name in game.role_state.get(NEXT, []) else None
 
-    def apply_op(self, game: Game, change: dict) -> None:
-        spend_token(game, change["by"], "ballot")
-        game.role_state.setdefault(NEXT, []).append(change["by"])
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        game.role_state.setdefault(NEXT, []).append(by.name)
 
     def at_dawn(self, game: Game) -> None:
         game.role_state[TODAY] = game.role_state.pop(NEXT, [])

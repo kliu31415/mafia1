@@ -9,8 +9,8 @@ import mafia
 from day import run_day
 from llm import MockClient, Model
 from moderator import Moderator
-from roles import ROLES, Status
-from tests.conftest import VILLAGE5, ScriptedClient
+from roles import ROLES, Status, logic
+from tests.conftest import VILLAGE5, ScriptedClient, apply_ops, told
 
 
 def test_hanged_jester_wins_and_takes_revenge_on_a_guilty_voter(game_factory):
@@ -237,12 +237,12 @@ def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
 
 
 def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
-    from roles.surveyor import survey_group
+    from roles.base import neighbor_group
     game, players = game_factory(["Surveyor", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
     game.phase = "night"
-    assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]  # skips Alice, wraps around
+    assert neighbor_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]  # skips Alice, wraps around
     game.kill("Carol", "Katana")  # died tonight: still in the group (alive at the start of the night)
-    assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]
+    assert neighbor_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     mod.dispatch("apply_changes", {"changes": [{"op": "survey", "player": "Bob", "by": "Alice"}]})
     result = next(e for e in game.events if e.cat == "result")
@@ -251,9 +251,9 @@ def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
     assert game.player("Alice").tokens["survey"] == 2
     for name in ["Carol", "Dave", "Erin"]:
         game.player(name).alive, game.player(name).death = False, None  # died on earlier days
-    assert survey_group(game, "Alice", "Bob") == ["Frank", "Bob"]  # two others alive
+    assert neighbor_group(game, "Alice", "Bob") == ["Frank", "Bob"]  # two others alive
     game.player("Frank").alive, game.player("Frank").death = False, None
-    assert survey_group(game, "Alice", "Bob") == ["Bob"]
+    assert neighbor_group(game, "Alice", "Bob") == ["Bob"]
 
 
 def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_factory):
@@ -542,12 +542,9 @@ def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game
     katana = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "katana")
     assert katana["result"]["attack"] == "Frank"
     assert game.player("Alice").tokens["swap"] == 1
-    told = {n: [e.text for e in game.events if e.visible_to is not None and n in e.visible_to]
-            for n in ("Alice", "Erin", "Frank", "Carol")}
-    assert any("You swapped Erin and Frank. You have 1 swap token left." in t for t in told["Alice"])
-    assert any("You were swapped with another player" in t for t in told["Erin"] + told["Frank"])
-    assert len([t for t in told["Erin"] + told["Frank"] if "swapped with another player" in t]) == 2
-    assert not any("swapped with another player" in t for t in told["Carol"])
+    assert any("You swapped Erin and Frank. You have 1 swap token left." in t for t in told(game, "Alice"))
+    assert len([t for t in told(game, "Erin") + told(game, "Frank") if "swapped with another player" in t]) == 2
+    assert not any("swapped with another player" in t for t in told(game, "Carol"))
 
 
 def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
@@ -567,10 +564,9 @@ def test_census_counts_true_alignment_and_never_neutrals(game_factory):
     for _ in range(20):
         group = census_group(game, "Alice", "Dave")
         assert len(group) == 3 and "Dave" in group and "Alice" not in group
-    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     for _ in range(10):  # Bob holds the Katana (still Evil here), Carol is an Ex-Con (still Good), Dave is Neutral
-        mod.dispatch("apply_changes", {"changes": [{"op": "census", "by": "Alice", "player": "Dave"}]})
-        text = [e.text for e in game.events if e.visible_to is not None and "Alice" in e.visible_to][-1]
+        apply_ops(game, players, {"op": "census", "by": "Alice", "player": "Dave"})
+        text = told(game, "Alice")[-1]
         m = re.search(r"census of (.+) counted (Good|Evil) players .*: (\d) of the", text)
         assert m, text
         group = m[1].replace(" and ", ", ").split(", ")
@@ -614,3 +610,31 @@ def test_profiler_decoys_fall_back_to_all_roles_in_tiny_games(game_factory):
     game.phase = "night"
     roles = profile_candidates(game, "Alice", "Bob")
     assert "Grunt" in roles and len(set(roles)) == 3
+
+
+@pytest.mark.parametrize("role", [r for r in ROLES if logic(r).action])
+def test_recorded_actions_check_their_user_target_and_token(game_factory, role):
+    action = logic(role).action
+    assert action
+    game, players = game_factory([role, "Vanilla Villager", "Vanilla Villager", "Grunt", "Medic"])
+    game.phase = "night"
+    op = {"op": action.op, "by": "Alice", **({"player": "Bob"} if action.target else {})}
+    with pytest.raises(ValueError, match="is not a"):
+        apply_ops(game, players, {**op, "by": "Carol"})
+    if action.target:
+        game.player("Bob").alive, game.player("Bob").death = False, None  # died on an earlier day
+        with pytest.raises(ValueError, match="wasn't alive at the start of the night"):
+            apply_ops(game, players, op)
+        game.player("Bob").alive = True
+        if action.target == "other":
+            with pytest.raises(ValueError, match="can't target themselves"):
+                apply_ops(game, players, {**op, "player": "Alice"})
+    if action.token:
+        left = game.player("Alice").tokens[action.token]
+        game.player("Alice").tokens[action.token] = 0
+        with pytest.raises(ValueError, match=f"no {action.token} token"):
+            apply_ops(game, players, op)
+        game.player("Alice").tokens[action.token] = left
+    apply_ops(game, players, op)
+    assert game.player("Alice").tokens.get(action.token, 0) == (left - 1 if action.token else 0)
+    assert action.op in logic(role).night_note

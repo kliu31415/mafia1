@@ -9,6 +9,7 @@ import pytest
 
 from gamelog import GameLog
 from llm import LLMReply, Model, flat_messages
+from moderator import Moderator
 from players import Players
 from roles import ROLES, Alignment
 from state import Game, setup_game
@@ -95,6 +96,17 @@ def game_factory(tmp_path):
 
 
 # Shared by several test files.
+
+def apply_ops(game: Game, players: Players, *changes: dict) -> dict:
+    """Has a scripted moderator apply these apply_changes ops at once (raises ValueError if they're refused)."""
+    return Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)").dispatch(
+        "apply_changes", {"changes": list(changes)})
+
+
+def told(game: Game, name: str) -> list[str]:
+    """The texts of the private events (results, notices) `name` has been shown, oldest first."""
+    return [e.text for e in game.events if e.visible_to is not None and name in e.visible_to]
+
 
 VILLAGE5 = ["Vanilla Villager"] * 5
 TOWN4_GRUNT = ["Vanilla Villager"] * 4 + ["Grunt"]  # run_day needs two factions alive, or the game is over

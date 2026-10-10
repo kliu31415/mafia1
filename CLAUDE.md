@@ -90,13 +90,18 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      `state.py` and `day.py`; `night_action_schema` in `players.py` is one shape for every role.
   4. `night_note` on the role's class: a reminder the moderator gets each night for effects with no
      submitted action or that need a special op. Only roles in the game are included.
-  5. A role-specific `apply_changes` op: declare it in the role's `ops`, validate it in `check_op` (the error goes back to the moderator) and carry it out in `apply_op`.
-     Use `token_user_error` and `spend_token` from `roles/base.py` (a user killed earlier the same night still acts, R10)
-     and `game.tell` for a private result.
-     The moderator is offered it only when the role is in the game. Ops every game needs are
+  5. A role-specific `apply_changes` op. For a night action the moderator just records and code carries out (most
+     info and token roles), set `action = RecordedAction(...)` and write `carry_out` (plus `target_error` for any
+     extra check): `@register` builds the op, the standard checks (user has the role and was alive when the night
+     began, R10; token; target alive then; not themselves) and the night note, and
+     `test_recorded_actions_check_their_user_target_and_token` tests them. Otherwise declare the op in `ops` and
+     write `check_op` and `apply_op` with `token_user_error` and `spend_token`. Use `game.tell` for a private
+     result; `join_names`, `neighbor_group` and `tokens_left_text` in `roles/base.py` cover common wording and
+     groups. The moderator is offered the op only when the role is in the game. Ops every game needs are
      `CORE_OPS` in `moderator.py`.
   6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game
-     smoke test automatically (`test_every_role_survives_a_mock_game`).
+     smoke test automatically (`test_every_role_survives_a_mock_game`). `apply_ops` and `told` in
+     `tests/conftest.py` apply moderator ops and read a player's private results.
   7. `roles/icons/<role-name>.svg` (e.g. `ex-con.svg`): the icon next to the role's players in the HTML log, a
      24x24 color drawing, distinct from the other roles at a glance (the viewer puts it on a badge tinted by faction).
      A test checks every role has one.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, register
+from roles.base import RecordedAction, RoleLogic, register
 
 NEXT = "eavesdrops_next"  # game.role_state: Eavesdropper -> target, recorded tonight for the next day
 TODAY = "eavesdrops"  # game.role_state: Eavesdropper -> target, today
@@ -16,22 +16,14 @@ if TYPE_CHECKING:
 @register("Eavesdropper")
 class Eavesdropper(RoleLogic):
     roleplayer_can_fake = False  # live PMs
-    night_note = ("An Eavesdropper's target (a visit; nothing if role-blocked): use the eavesdrop op (code shows "
-                  "them the target's private messages tomorrow, and tells them so at dawn: don't tell() them).")
     code_tells_user = True
-    ops = {"eavesdrop": ({"player", "by"}, set(), "{op:'eavesdrop', player, by}: the Eavesdropper `by` reads "
-                                                    "player's private messages tomorrow")}
+    action = RecordedAction("eavesdrop", "reads player's private messages tomorrow",
+                            "code shows them the target's private messages tomorrow and tells them so at dawn",
+                            visit=True)
 
-    def check_op(self, game: Game, change: dict) -> str | None:
-        by = game.player(change["by"])
-        if by.role != "Eavesdropper" or not by.alive:
-            return f"{by.name} is not a living Eavesdropper"
-        if change["player"] == by.name:
-            return "an Eavesdropper can't eavesdrop on themselves"
-        return None
-
-    def apply_op(self, game: Game, change: dict) -> None:
-        game.role_state.setdefault(NEXT, {})[change["by"]] = change["player"]
+    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        assert target
+        game.role_state.setdefault(NEXT, {})[by.name] = target.name
 
     def at_dawn(self, game: Game) -> None:
         game.role_state[TODAY] = game.role_state.pop(NEXT, {})
