@@ -101,14 +101,30 @@ LOGIC: dict[str, RoleLogic] = {}
 DEFAULT = RoleLogic()
 
 
-def token_user_error(game: Game, by_name: str, role: str, kind: str) -> str | None:
-    """check_op for an op that spends one of `role`'s `kind` tokens: None if `by` can spend one."""
+def acted_tonight(game: Game, p: Player) -> bool:
+    """Whether p was alive when the night began: still alive, or killed earlier in tonight's resolution. Night
+    actions are simultaneous (rules R10), so ops for a player killed tonight still apply, whatever order the
+    moderator sends them in, and an effect set for the next Day survives its user's death unless it needs them to
+    act that Day (R21)."""
+    return p.alive or (p.death is not None and p.death["day"] == game.day and p.death["phase"] == "night")
+
+
+def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:
+    """check_op for a role op: None if `by` has `role`, was alive when the night began (acted_tonight) and,
+    for an op that spends a `kind` token, has one."""
     by = game.player(by_name)
-    if by.role != role or not by.alive:
-        return f"{by.name} is not a living {role}"
-    if by.tokens.get(kind, 0) < 1:
+    if by.role != role or not acted_tonight(game, by):
+        return f"{by.name} is not a {role} who was alive when the night began"
+    if kind and by.tokens.get(kind, 0) < 1:
         return f"{by.name} has no {kind} token left"
     return None
+
+
+def spend_token(game: Game, by_name: str, kind: str) -> int:
+    """apply_op's half of token_user_error: spends one `kind` token and returns how many are left."""
+    by = game.player(by_name)
+    by.tokens[kind] -= 1
+    return by.tokens[kind]
 
 
 def register(role: str):

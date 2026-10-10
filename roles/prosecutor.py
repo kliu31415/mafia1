@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, register, token_user_error
+from roles.base import RoleLogic, register, spend_token, token_user_error
 
 if TYPE_CHECKING:
     from state import Game
@@ -20,6 +20,6 @@ class Prosecutor(RoleLogic):
         return token_user_error(game, change["by"], "Prosecutor", "prosecutor")
 
     def apply_op(self, game: Game, change: dict) -> None:
-        game.player(change["by"]).tokens["prosecutor"] -= 1
+        spend_token(game, change["by"], "prosecutor")
         if change["player"] not in game.prosecutions:  # two Prosecutors on one player: one trial
             game.prosecutions.append(change["player"])

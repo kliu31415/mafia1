@@ -205,7 +205,7 @@ def test_malformed_tool_arguments_are_errors(game_factory, name, args):
 def test_a_puppet_op_needs_a_living_puppeteer_and_a_non_yakuza_puppet(game_factory):
     game, players = game_factory(["Puppeteer", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Wiretap"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    with pytest.raises(ValueError, match="not a living Puppeteer"):
+    with pytest.raises(ValueError, match="not a Puppeteer"):
         mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Carol", "by": "Bob"}]})
     with pytest.raises(ValueError, match="themselves"):
         mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Alice", "by": "Alice"}]})

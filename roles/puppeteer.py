@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RoleLogic, register, token_user_error
+from roles.base import Alignment, RoleLogic, register, spend_token, token_user_error
 
 if TYPE_CHECKING:
     from state import Game
@@ -27,5 +27,5 @@ class Puppeteer(RoleLogic):
         return None
 
     def apply_op(self, game: Game, change: dict) -> None:
-        game.player(change["by"]).tokens["puppet"] -= 1
+        spend_token(game, change["by"], "puppet")
         game.puppets_next[change["player"]] = change["by"]

@@ -492,3 +492,17 @@ def test_trapper_is_told_whether_their_trap_still_stands(game_factory):
     game.player("Bob").status[Status.TRAPPED_BY] = "Alice"
     assert "Your trap is on Bob" in role_briefing(game, trapper)
     assert "trap" not in role_briefing(game, game.player("Bob"))
+
+
+def test_a_token_op_counts_its_user_as_alive_all_night_whatever_the_op_order(game_factory):
+    # rules R10 (simultaneous) and R21: a Clerk killed earlier in tonight's resolution still rigs tomorrow
+    game, players = game_factory(["Clerk", "Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.phase = "night"
+    mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "cause": "Vigilante"}]})
+    mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
+    assert game.rigged_day == game.day + 1 and game.player("Alice").tokens["clerk"] == 0
+    game.day += 1  # a Clerk who died on an earlier night can't
+    game.player("Alice").tokens["clerk"] = 1
+    with pytest.raises(ValueError, match="alive when the night began"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})

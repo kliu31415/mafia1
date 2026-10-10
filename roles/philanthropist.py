@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from events import RESULT
-from roles.base import RoleLogic, register
+from roles.base import RoleLogic, register, spend_token, token_user_error
 
 if TYPE_CHECKING:
     from state import Game
@@ -20,16 +19,14 @@ class Philanthropist(RoleLogic):
 
     def check_op(self, game: Game, change: dict) -> str | None:
         by, to = game.player(change["by"]), game.player(change["player"])
-        if by.role != "Philanthropist":
-            return f"{by.name} is not a Philanthropist"
-        if by.tokens.get("philanthropy", 0) < 1:
-            return f"{by.name} has no philanthropy token left"
+        if error := token_user_error(game, by.name, "Philanthropist", "philanthropy"):
+            return error
         if to is by:
             return "a Philanthropist hands tokens to other players only"
         return None
 
     def apply_op(self, game: Game, change: dict) -> None:
-        game.player(change["by"]).tokens["philanthropy"] -= 1
+        spend_token(game, change["by"], "philanthropy")
         to = game.player(change["player"])
         # A Roleplayer's token kinds are their fake role's, so the gift keeps their cover.
         if kinds := sorted(to.tokens):
@@ -38,4 +35,4 @@ class Philanthropist(RoleLogic):
             text = f"A Philanthropist handed you a {kind} token. You now have {to.tokens[kind]}."
         else:
             text = "A Philanthropist handed you a token, but you threw it away because you have no use for it."
-        game.emit(f"Moderator (private): {text}", [to.name], cat=RESULT, message=text)
+        game.tell([to.name], text)

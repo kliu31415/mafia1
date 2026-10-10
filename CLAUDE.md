@@ -91,6 +91,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   4. `night_note` on the role's class: a reminder the moderator gets each night for effects with no
      submitted action or that need a special op. Only roles in the game are included.
   5. A role-specific `apply_changes` op: declare it in the role's `ops`, validate it in `check_op` (the error goes back to the moderator) and carry it out in `apply_op`.
+     Use `token_user_error` and `spend_token` from `roles/base.py` (a user killed earlier the same night still acts, R10)
+     and `game.tell` for a private result.
      The moderator is offered it only when the role is in the game. Ops every game needs are
      `CORE_OPS` in `moderator.py`.
   6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game

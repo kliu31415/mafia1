@@ -8,7 +8,7 @@ from typing import Any
 
 from llm import LLMClient, LLMReply, Model, ModelSpec, cache_block, clean_json, rules_system
 from players import ANSWER_SCHEMA, Players
-from events import ANNOUNCEMENT, RESULT
+from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
 from state import Game
 
@@ -255,7 +255,7 @@ class Moderator:
                 else:
                     for n in to:
                         g.player(n)  # validate names
-                    g.emit(f"Moderator (private): {args['text']}", to, cat=RESULT, message=args["text"])
+                    g.tell(to, args["text"])
                 return {"ok": True}
             case "ask_player":
                 p = g.player(args["player"])
@@ -263,7 +263,7 @@ class Moderator:
                                        {"answer": ""}, step="ask_player")
                 # Kept in the player's history, so later turns show what they chose.
                 text = f"The moderator asked you: {args['question']} You answered: {out['answer']}"
-                g.emit(f"Moderator (private): {text}", [p.name], cat=RESULT, message=text)
+                g.tell([p.name], text)
                 return {"answer": out["answer"]}  # not the player's notepad
             case "end_phase":
                 return {"ok": True}

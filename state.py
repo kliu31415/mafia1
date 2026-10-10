@@ -9,7 +9,7 @@ from typing import Any
 
 from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
-from events import ANNOUNCEMENT, DEATH, SYSTEM
+from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 
 
@@ -155,6 +155,10 @@ class Game:
         self.events.append(Event(self.day, self.phase, text, vis, cat, fields, kind == "notice"))
         self.log.write(kind, day=self.day, phase=self.phase, text=text,
                        visible_to=sorted(vis) if vis is not None else "all", cat=cat, **fields)
+
+    def tell(self, names: list[str], text: str) -> None:
+        """A private moderator result (the moderator's tell(), or one that code works out for a role)."""
+        self.emit(f"Moderator (private): {text}", names, cat=RESULT, message=text)
 
     def history_for(self, name: str) -> str:
         earlier, current = self.history_split(name)

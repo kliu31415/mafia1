@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, register
+from roles.base import RoleLogic, register, spend_token, token_user_error
 
 NEXT = "ballots_next"  # game.role_state: Ballot Stuffers who spent a token tonight
 TODAY = "ballots"  # game.role_state: Ballot Stuffers whose trial votes count twice today
@@ -29,16 +29,14 @@ class BallotStuffer(RoleLogic):
 
     def check_op(self, game: Game, change: dict) -> str | None:
         by = game.player(change["by"])
-        if by.role != "Ballot Stuffer" or not by.alive:
-            return f"{by.name} is not a living Ballot Stuffer"
-        if by.tokens.get("ballot", 0) < 1:
-            return f"{by.name} has no ballot token left"
+        if error := token_user_error(game, by.name, "Ballot Stuffer", "ballot"):
+            return error
         if by.name in game.role_state.get(NEXT, []):
             return f"{by.name} already stuffed tomorrow's ballots"
         return None
 
     def apply_op(self, game: Game, change: dict) -> None:
-        game.player(change["by"]).tokens["ballot"] -= 1
+        spend_token(game, change["by"], "ballot")
         game.role_state.setdefault(NEXT, []).append(change["by"])
 
     def at_dawn(self, game: Game) -> None:

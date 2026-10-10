@@ -4,9 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from events import RESULT
-from roles.base import RoleLogic, register
-from roles.surveyor import alive_at_night_start, survey_group
+from roles.base import RoleLogic, acted_tonight, register, token_user_error
+from roles.surveyor import survey_group
 
 TARGET_CHANCE = 0.6  # the rest is split evenly among the target's neighbors in the group
 
@@ -24,9 +23,9 @@ class Diviner(RoleLogic):
 
     def check_op(self, game: Game, change: dict) -> str | None:
         by, target = game.player(change["by"]), game.player(change["player"])
-        if by.role != "Diviner" or not alive_at_night_start(game, by):
-            return f"{by.name} is not a Diviner who was alive tonight"
-        if not alive_at_night_start(game, target):
+        if error := token_user_error(game, by.name, "Diviner"):
+            return error
+        if not acted_tonight(game, target):
             return f"{target.name} wasn't alive at the start of the night"
         if target.info.category == "Yakuza":
             return f"{target.name} is Yakuza: they get Strong Defense tonight, and the Diviner gets no result"
@@ -43,4 +42,4 @@ class Diviner(RoleLogic):
         text = (f"You divined {target}; the group was {names}. The role drawn is {role} ({TARGET_CHANCE:.0%} chance "
                 f"it is {target}'s, otherwise one of the others')." if others
                 else f"You divined {target}, the only player in the group: their role is {role}.")
-        game.emit(f"Moderator (private): {text}", [by.name], cat=RESULT, message=text)
+        game.tell([by.name], text)
