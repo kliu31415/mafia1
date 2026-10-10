@@ -289,11 +289,12 @@ def test_half_the_budget_left_carries_into_the_next_day(game_factory):
 
 
 def test_a_symbol_only_claim_keeps_the_old_one_and_a_cut_will_says_so(game_factory):
-    # Sol wrote "/" for "no change" and wills over the cap (game_20261009_152409_117630).
+    # Sol wrote "/" for "no change" and wills over the cap (game_20261009_152409_117630); Luna wrote ":null"
+    # (game_20261010_090539_3006).
     def decide(name, task, schema):
         if name == "Alice" and "claim" in schema["properties"]:
             return ({"claim": "Sheriff", "last_will": "word " * 400} if "Day 1," in task
-                    else {"claim": "/" if "Day 2," in task else "null", "last_will": "null"})
+                    else {"claim": "/" if "Day 2," in task else ":null", "last_will": ":null"})
         return None
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
     run_day(game, players)

@@ -44,5 +44,6 @@ def player_view(text: str) -> str:
 
 def blank(text: str) -> bool:
     """An answer meaning "nothing": "" or a written-out null (Haiku wrote "null" as feedback 27 times in
-    game_20261009_152339_529912, since the shared schema types text fields as plain strings)."""
-    return text.strip().strip(".").lower() in ("", "null", "none", "n/a")
+    game_20261009_152339_529912, since the shared schema types text fields as plain strings). Stray punctuation
+    around it counts too: Luna wrote ":null" as its claim and will in game_20261010_090539_3006, meaning "keep"."""
+    return text.strip().strip(".:;,'\"` ").lower() in ("", "null", "none", "n/a")
