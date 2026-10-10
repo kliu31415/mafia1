@@ -82,3 +82,304 @@ Grace (public): No trial yet. Heidi still owes a named suspect with an observed 
 Mallory (public): Heidi has named no suspect after repeated asks. Heidi, name one now with an observed action, or I will nominate you next Day.
 Olivia (public): Heidi named Carol, citing the chronology shift in Carol's Grace case. Mild, but Mallory's claim Heidi named nobody is another miss; acknowledge it.
 Alice (public): Mallory, Olivia is right: Heidi named Carol and gave a specific reason. That’s another factual miss after the Judy mix-up; it may be an oversight, but please acknowledge it and reassess rather than repeating that Heidi named nobody. Not trial-worthy by itself.
+Carol (public): Heidi, what observed action supports naming me?
+Dave (public): Heidi's stated basis was your initial Grace case relying on a chronology she thought was wrong, then shifting to the empty opener. That's an observable change, but weak and you acknowledged it; not trial-worthy.
+Frank (public): Heidi did name Carol and cite a specific basis. Mallory’s later “no suspect” claim was inaccurate too; let’s see if she acknowledges it. Neither error alone warrants a trial.
+Grace (public): Heidi did name Carol with a basis; Mallory's no-suspect claim was wrong.
+Mallory (public): I erred: Heidi named Carol. Heidi, expand that Carol read.
+(to Carol, Heidi) Carol -> Heidi (private): Heidi: answer Mallory's Carol-read ask in one line, then stop pushing nominations.
+Heidi (public): Carol shifted bases after correction; weak inconsistency, not trial-worthy.
+Ivan (public): Mallory acknowledged the second miss. Carol dropped her Grace case; Heidi’s concern is the chronology shift, weak and already conceded. No nomination from me.
+Olivia (public): Carol's timeline correction and explanation lower my concern; Mallory owned both misses. No trial-worthy case yet. Keep these as weak reads and reassess tomorrow.
+Carol (public): No nomination from me today; reassess tomorrow with concrete reads.
+Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Dave, Heidi) Carol (Yakuza chat): Proposal: no Katana attack tonight, since a Night 1 kill would be an unexplained death with no clear town lead. Carol keeps the Katana. Dave, use your Fabricator visit to frame Grace (she's already drawn town suspicion, so an Evil result fits the Day 1 noise and misleads a Sheriff). Don't forge a will yet; keep the token. Heidi, hold the puppet token for a later Day when a Good player's messages matter more. I'll keep my Ballot Stuffer token for a trial where we need the extra Guilty or Innocent vote. Object if you see a better frame target, otherwise I'd like a yes.
+(to Carol, Dave, Heidi) Dave (Yakuza chat): Agreed: Carol keeps the Katana, no attack tonight, and I'll visit Grace to frame her without forging her will. Heidi should hold the puppet token for a more valuable Day. Ready.
+(to Carol, Dave, Heidi) Heidi (Yakuza chat): I’d attack rather than no-kill: Mallory was the most persistent pressure on me and has been driving factual accountability. Removing an active organizer helps us more than delaying. Carol keeps the Katana; Dave frames Grace as planned. I’ll hold the puppet token for a more consequential Day.
+(to Carol, Dave, Heidi) Carol (Yakuza chat): Carol: I agree with Heidi. Katana attacks Mallory tonight. She has been driving the pressure on Heidi and Judy, and an early kill is unexplained, so it stays low-risk. Carol keeps the Katana as holder, which also makes me look Good to a Sheriff tonight. Dave's frame on Grace stays as planned, and I'm not forging anything yet. Target vote: Mallory. Holder vote: Carol. Please lock your votes now.
+(to Carol, Dave, Heidi) Dave (Yakuza chat): Agreed: Carol keeps the Katana and attacks Mallory. I’ll frame Grace without forging her will. Mallory’s active pressure makes her a useful early removal, and the attack should look unexplained rather than point back to us. Ready to lock those votes.
+(to Carol, Dave, Heidi) Heidi (Yakuza chat): Confirm Carol keeps the Katana and attacks Mallory; Dave frames Grace without forging. I’ll hold my puppet token. Ready.
+(to Carol, Dave, Heidi) Carol (Yakuza chat): Confirmed: Carol keeps the Katana and it attacks Mallory. Dave frames Grace without forging her will. Heidi holds the puppet token. Votes locked as agreed.
+(to Carol, Dave, Heidi) Dave (Yakuza chat): Confirmed: Carol holds the Katana and attacks Mallory. I’ll frame Grace without forging her will; no token spent. Ready.
+(to Carol, Dave, Heidi) Heidi (Yakuza chat): Confirmed: Carol keeps the Katana and attacks Mallory; Dave frames Grace without forging. I’m holding my puppet token. Ready to lock the votes.
+Night actions:
+  Alice (Tracker): target Carol
+  Bob (Medic): target Alice
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks Mallory
+  Dave (Fabricator): target Grace; "Frame Grace; do not forge her will."; Katana vote: Carol holds, attacks Mallory
+  Erin (Serial Killer): target Frank
+  Grace (Archivist): 1 token(s)
+  Heidi (Puppeteer): no role action; Katana vote: Carol holds, attacks Mallory
+  Ivan (Accountant): target Carol
+  Judy (Seer): no action
+  Niaj (Sheriff): target Carol
+  Olivia (Veteran): no action
+Katana: Carol holds it and attacks Mallory.
+(to Grace) Moderator (private): The archive shows 9 of the roles of the 12 other players who were alive when the night began (including any who died tonight): Accountant, Fabricator, Medic, Puppeteer, Seer, Serial Killer, Sheriff, Tracker, Veteran.
+(to Alice) Moderator (private): You tracked Carol. Carol visited Mallory.
+(to Bob) Moderator (private): You protected Alice (Standard Defense, no token spent). You have 2 medic tokens left.
+(to Carol) Moderator (private): You held the Katana and attacked Mallory. Your attack succeeded. You did not spend a ballot token; you have 2 ballot tokens left.
+(to Dave) Moderator (private): You framed Grace (no will forged). You have 1 fabricator token left.
+(to Carol, Dave, Heidi) Moderator (private): Yakuza actions tonight: Carol held the Katana and used it to attack Mallory; Carol used no Ballot Stuffer token. Dave framed Grace (no forged will). Heidi took no action. Carol still holds the Katana.
+(to Erin) Moderator (private): You attacked Frank. Your attack succeeded.
+(to Ivan) Moderator (private): You audited Carol. Carol has 2 tokens in total.
+(to Niaj) Moderator (private): You investigated Carol. Result: Not Evil.
+(to Judy) Moderator (private): Your Seer result: Grace and Carol have different alignments. You have 1 seer token left.
+(to Mallory) Moderator (private): You were attacked with the Katana tonight.
+(to Frank) Moderator (private): You were attacked by a Serial Killer tonight.
+[Moderator summary] Night 1: Carol (Katana holder) attacked Mallory (Standard vs Basic) and killed her. Erin (SK) attacked Frank (Strong) and killed him. Bob protected Alice (Standard, no token). Dave framed Grace, no forge. Grace used the archive. Alice tracked Carol and saw her visit Mallory. Ivan audited Carol: 2 tokens. Niaj checked Carol: Not Evil (Katana). Judy's random Seer pair was Grace/Carol: different (Grace framed as Evil, Carol seen as Good). Olivia, Heidi and Carol (ballot) did not act. No win yet.
+
+===== DAY 2 =====
+Mallory died (killed by Katana). Their role was Executioner. Their last will (written by them): "Mallory's last will: I had no confirmed reads on Day 1. Trust mechanical contradictions over smooth talk, and be wary of anyone pushing an early trial without evidence. Keep your votes consistent with your reads, and check the vote totals against the number of votes revealed."
+Frank died (killed by Serial Killer). Their role was Vanilla Villager. Their last will (written by them): "I am Frank, a Vanilla Villager. Mallory owned her initial misread and has now corrected her later claim that Heidi named no suspect. Heidi’s case on Carol was that Carol shifted her Grace read after a chronology correction, which Carol conceded; this is weak evidence. No trial is warranted on Day 1."
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Grace.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Grace: Archivist. N1 archive: 9 of 12 others' roles shown, incl. Sheriff, Seer, Tracker, Medic, Veteran, Serial Killer.
+Grace (public): Grace here: I am the Archivist, and my claim is up. My Night 1 archive showed 9 of the 12 other night-1 players' roles: Accountant, Fabricator, Medic, Puppeteer, Seer, Serial Killer, Sheriff, Tracker, Veteran. Serial Killer is a real threat since it killed Frank. Check any role claim against that list. I'm not nominating anyone yet.
+[ERROR api_retry] a openai/gpt-6-luna-pro request failed (attempt 1), retrying: ConnectionResetError: [Errno 104] Connection reset by peer
+Heidi (public): Grace's unnamed archive is plausible and fits the revealed roles, but identifies no holder. Let's hear each person's strongest current suspect with a concrete reason; don't turn a role list alone into a trial.
+Ivan (public): Grace's archive is plausible, and its Serial Killer entry matches Frank's flip, but an unnamed role list doesn't implicate anyone. My weak watch remains Carol's delayed reads and PM cluster, softened by her later answer and correction; not enough to nominate. Everyone should give one strongest suspect with a concrete reason.
+[Claim] Judy: Seer. N1: Grace and Carol have different alignments (one is not Good). 1 Seer token left.
+Judy (public): Judy here, and I'm claiming Seer. My Night 1 result: Grace and Carol have different alignments, so one of them is not Good. Grace's Archivist claim and Carol's reads are both testable against that. I'll use my last Seer token on a later night and post the result then. No nomination from me yet.
+[Claim] Niaj: Sheriff. N1: Carol Not Evil.
+Niaj (public): Claiming Sheriff. N1 I investigated Carol: Not Evil. As a reminder, the Katana holder, Serial Killer, and Arsonist all read Not Evil to Sheriff, so this does not clear Carol completely.
+
+Notice Grace's archive listed Sheriff, matching my role. Judy claims Grace and Carol have different alignments. If Grace is a truthful Archivist (Good), Carol must be non-Good (pointing toward SK, Arsonist, or N1 Katana holder given my check). If Carol is Good, either Grace or Judy is lying. Let's hear Carol's response.
+Olivia (public): If Grace is Good and Judy’s result is accurate, Carol is non-Good; Niaj’s Not Evil result then points to Neutral, not a Katana-holder (who appears Good). That could fit an independent Neutral, including the Serial Killer, but it proves nothing while claims are unverified. Carol, please answer directly; no trial from this alone.
+[Claim] Alice: Tracker. N1: Carol visited Mallory.
+Alice (public): I’m claiming Tracker. N1 I tracked Carol; she visited Mallory, who was killed by the Katana. A visit doesn’t prove Carol attacked or is Yakuza—she could have used another visiting ability—but it deserves an explanation alongside Judy’s and Niaj’s claims. No nomination yet.
+Bob (public): Alice's track of Carol visiting Mallory is critical context alongside Mallory's death to the Katana. Note that per R8 and R19, the Katana holder executes the attack as a visit and appears Good/Not Evil to alignment checks, which perfectly matches Niaj's Sheriff result on Carol. Carol speaks directly next: before any nomination, we need to hear who she claims to be and why she visited Mallory.
+[Claim] Carol: Party Animal. N1: visited Mallory (role-block, no effect).
+Carol (public): Carol here: I'm Party Animal. My N1 visit was a role-block on Mallory, who had no night action, so it did nothing. Niaj's Not Evil and Judy's Carol/Grace split both fit that. I'm not nominating.
+(to Carol, Heidi) Carol -> Heidi (private): I'm claiming Party Animal to explain Alice's track. Please don't contradict it.
+(to Carol, Dave) Carol -> Dave (private): Carol now claims Party Animal for Alice's visit track. Stay consistent if asked.
+Dave (public): Alice's track establishes Carol visited Mallory, not why; a Katana holder would also visit an attack target. Niaj's Not Evil result is compatible with that, but doesn't distinguish the possibilities. Judy's split likewise doesn't identify which person is non-Good. Let's get independent evidence before turning these compatible claims into a trial.
+Erin (public): Carol couldn't be the SK who killed Frank, since Alice tracked Carol visiting Mallory. But if Carol were the Katana holder, she would appear Good to Judy per R19, contradicting Judy's split with Grace (assuming Grace is Good). Conversely, if Carol were framed, Niaj would have seen Evil. Carol, why did you choose Mallory of all people for an N1 role-block?
+Grace (public): I'm certainly Good, so Judy's split puts Carol non-Good. Carol's Party Animal is the only claimed role missing from my archive list, which fits Party Animal (Good) or an unlisted Neutral such as Arsonist (Not Evil to Niaj). Either Judy or Carol is wrong. Judy, does your Seer result hold up? Carol, why did you choose Mallory? No nomination yet.
+Heidi (public): Important mechanical caveat: a Fabricator frame makes Grace appear Evil to Judy’s alignment comparison, even if Grace is Good. Grace’s claimed archive includes a Fabricator, so Judy’s result doesn’t force Carol to be non-Good. Alice’s visit fits either a Party Animal action or the Katana attack; Niaj’s result also fits the holder. Don’t trial on this alone.
+[Claim] Ivan: Accountant. N1: Carol had 2 tokens at the end of the night.
+Ivan (public): I claim Accountant: N1 Carol had 2 tokens at night’s end, after any spending. Party Animal has no tokens; a donated token is discarded for a role with none. That contradicts Carol’s claim. I nominate Carol; explain the result.
+Ivan nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Ivan, Judy, Niaj, Olivia, Alice, Bob, Dave, Erin, Grace; No - Carol, Heidi.
+Carol is put on trial (9 Yes).
+[ERROR player_error] Carol (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Carol (public): Carol here. I'm Party Animal with no tokens. My N1 visit role-blocked Mallory, who had no night action, so it did nothing. Alice's track matches that visit. Ivan's Accountant result says I had 2 tokens, which can't be true for a Party Animal, so one of us is wrong. Ivan is the only claim that directly contradicts mine, and he posted it together with a nomination, before anyone could check it. Ivan, when did you audit me, and why nominate in the same post instead of letting the Day develop? Judy's Seer split and Niaj's Sheriff result are compatible with my claim, and I'm not asking anyone to take my word over theirs. Vote on the evidence, not the nomination. I'm voting Innocent unless Ivan's claim is shown to be accurate.
+(to Carol, Heidi) Carol -> Heidi (private): Heidi, please vote Innocent and back the Party Animal line.
+(to Carol, Dave) Carol -> Dave (private): Dave, I need your Innocent vote on this trial.
+Dave (public): I voted yes to hear the explanation, not because a trial proves guilt. Ivan’s audit is a direct claim, but Grace’s archive listing an Accountant doesn’t authenticate him. Even if the token count is accurate, it doesn’t by itself establish Carol’s faction. Alice confirms a visit, not which action it was; the Sheriff and Seer claims don’t settle it either. I’d vote Innocent and test the competing claims with further evidence.
+Erin (public): Dave, Ivan's audit directly breaks Carol's Party Animal claim: Party Animals cannot hold tokens under any circumstances. Carol visited the exact player killed by the Katana, and two tokens matches multiple Yakuza roles. Believing Carol requires assuming Ivan fabricated a highly specific audit against someone already caught visiting the victim. Her defense doesn't hold up.
+Grace (public): Carol's Party Animal claim conflicts with Ivan's audit. Party Animals hold no tokens, but Ivan says Carol had 2 at night's end. Carol also visited Mallory, the Katana victim, and a Party Animal choosing a no-action Executioner as a role-block target is an odd pick. Her PMs to Heidi and Dave urging no nominations add to the pattern. Ivan could be lying, but nothing has disproven his audit, so I'm voting Guilty.
+Heidi (public): Alice’s track establishes a visit, not which action Carol took; the Katana attack itself is a visit. Ivan’s audit is the stronger point: if accurate, two tokens contradict Carol’s Party Animal claim. The archive listing an Accountant doesn’t authenticate Ivan, but Carol needs to explain the discrepancy directly. A false role claim is serious; the visit alone doesn’t settle guilt.
+Ivan (public): Carol's defense does not address the mechanical contradiction: my N1 audit measured two tokens after any spending. Party Animal has no token pool, and donated tokens are discarded for someone with no use, so she cannot have two. A false claim plus her visit to the Katana victim makes Guilty warranted; the audit alone doesn't prove her exact role.
+Judy (public): I'm voting Guilty. My Seer result says Grace and Carol differ, so one of them is non-Good. Carol's Party Animal claim conflicts with Ivan's audit, and she visited the Katana victim. Grace's archive is internally consistent, so I lean Carol non-Good. I'll change if Carol's token claim is disproven.
+Niaj (public): I will be voting Guilty. Carol visiting Mallory—the Katana victim—coupled with Ivan auditing 2 tokens directly dismantles her Party Animal claim, as Party Animals hold 0 tokens and discard any gifts. Multiple Yakuza roles start with exactly 2 tokens (Ritualist, Ballot Stuffer, Mortician). Furthermore, the Katana holder appears Not Evil to Sheriff checks per R19, perfectly explaining my N1 result. Carol has provided no credible explanation for these mechanical contradictions.
+Olivia (public): I’m voting Guilty. Carol’s visit to Mallory plus Niaj’s Not Evil result fits her being the Katana holder: the holder appears Good to Sheriff checks, and would visit the attack target. A Fabricator frame on Grace could explain Judy’s split. Ivan’s claimed two-token audit contradicts Party Animal; Grace’s archive includes an Accountant, though that doesn’t authenticate Ivan. Taken together, this is enough for me to reject Carol’s claim.
+Alice (public): My track confirms only a visit, not an attack; my will’s caveat stands. The stronger issue is Ivan’s claimed N1 end-of-night audit: two tokens cannot fit Party Animal, and a donated token is discarded for a role with no use. Carol has not offered a mechanical way to account for two. Her visit to the Katana victim and Niaj’s Not Evil result are both consistent with her being the holder. The audit is still an unverified counterclaim, but overall I lean Guilty.
+Bob (public): Carol's defense offers no answer to the mechanical contradiction: Party Animal cannot hold tokens under any circumstances, yet Ivan found two. That directly aligns with Carol being a 2-token Yakuza role carrying the Katana to Mallory, which also fits Niaj seeing her as Not Evil. I am voting Guilty.
+Carol (public): Carol's final word: Ivan's audit is an unverified claim, and it arrived in the same post as a nomination, which is how a convenient counter-claim looks. Party Animal has no tokens, so one of us is wrong, and nobody has verified which. My visit was a role-block on a player with no night action, which fits Alice's track. Niaj's Sheriff result and Judy's Seer split don't identify me as the bad one either, and Grace's archive is also just a claim. If Ivan is lying, a Guilty vote executes a Good player on his word alone. I'm asking for Innocent: vote on the mechanics, not on who spoke loudest.
+Trial votes on Carol: Guilty - Alice, Bob, Erin, Grace, Heidi, Ivan, Judy, Niaj, Olivia; Innocent - Carol, Dave.
+Carol is executed by hanging (9 Guilty of 11 votes; 6 needed).
+Carol died (executed by hanging). Their role was Ballot Stuffer. Their last will (written by them): "Carol's last will: I was a loyal Village member. Mallory and Frank died in the night, and I want the Village to stop trading on thin reads. Watch Grace: her empty opener and her quick pile-on on Mallory never got a full explanation. Trust vote patterns over speeches, and check every announced total against the revealed votes."
+(to Dave, Heidi) The Katana passed to Dave.
+
+===== NIGHT 2 =====
+(to Dave, Heidi) Dave (Yakuza chat): Proposal: Dave keeps the Katana and attacks Alice; as Tracker, she could identify the holder’s visit tomorrow. I’ll frame Alice and spend my last token to forge her will, ideally planting a plausible suspicion that divides town. Heidi, please puppet Judy to blunt the Seer claim and sow doubt; no Katana transfer. If you strongly prefer Judy as the attack target or another puppet target, say so, but Alice is my priority. Ready.
+(to Dave, Heidi) Heidi (Yakuza chat): Agreed: Dave keeps the Katana and attacks Alice; frame her and spend the forge token. Keep the forged will cautious and consistent with Alice’s public Tracker caveat—don’t invent a specific N2 result that could be checked. I’ll spend my puppet token on Judy and use her voice to cast measured doubt on claims without making an obvious contradiction. Ready.
+Night actions:
+  Alice (Tracker): target Ivan
+  Bob (Medic): target Alice; 1 token(s)
+  Dave (Fabricator): target Alice; 1 token(s); "Frame Alice and spend my last token to forge her will: “I am the Tracker. N1, Carol visited Mallory; that proves a visit, not an attack. Carol’s flip confirms she was Yakuza, but Ivan’s audit claim remains unverified. Recheck Ivan and the trial votes rather than trusting any single claim.”"; Katana vote: Dave holds, attacks Alice
+  Erin (Serial Killer): target Judy
+  Grace (Archivist): no action
+  Heidi (Puppeteer): target Judy; 1 token(s); "Puppet Judy for the following Day. Keep her Seer claim and stated N1 result consistent. Use measured doubt: note that Carol's flip confirms the token contradiction but does not independently authenticate the other claims; remind people that framing can affect alignment results, and urge checking claims and evidence before another trial. Avoid inventing any new Seer result or making an obvious contradiction."; Katana vote: Dave holds, attacks Alice
+  Ivan (Accountant): target Dave
+  Judy (Seer): target Grace; second target Ivan; 1 token(s); "Spend my last Seer token to compare the alignments of Grace and Ivan."
+  Niaj (Sheriff): target Dave
+  Olivia (Veteran): 1 token(s)
+Katana: Dave holds it and attacks Alice.
+(to Alice) Moderator (private): Night 2 result: You tracked Ivan. Ivan visited Dave. Also, you were attacked with the Katana tonight, but you survived.
+(to Bob) Moderator (private): Night 2 result: You protected Alice with Strong Defense (spent 1 medic token). 1 medic token left.
+(to Dave) Moderator (private): Night 2 result: You framed Alice and spent your fabricator token to forge her last will (0 fabricator tokens left). Your Katana attack on Alice failed: she survived.
+(to Erin) Moderator (private): Night 2 result: Your attack on Judy succeeded. She died.
+(to Heidi) Moderator (private): Night 2 result: You spent your puppet token to puppet Judy for the following Day. 0 puppet tokens left.
+(to Ivan) Moderator (private): Night 2 result: You audited Dave. At the end of the night, Dave had 0 tokens in total.
+(to Judy) Moderator (private): Night 2 result: You spent your Seer token to compare Grace and Ivan. Grace and Ivan have the same alignment. 0 seer tokens left. You were also attacked by the Serial Killer tonight, and you died.
+(to Niaj) Moderator (private): Night 2 result: You investigated Dave. Result: Not Evil.
+(to Olivia) Moderator (private): Night 2 result: You went on alert. Nobody visited you. 2 alert tokens left.
+(to Dave, Heidi) Moderator (private): Yakuza night report (Night 2): Dave held the Katana and used it to attack Alice. Dave also framed Alice and spent his fabricator token to forge her last will. Heidi spent her puppet token to puppet Judy for the following Day. Dave still holds the Katana.
+[Moderator summary] Night 2: Nobody was role-blocked. Bob spent 1 medic token to give Alice Strong Defense (1 left). Dave, holding the Katana, framed Alice, spent his token on a forged will and hit her with a Standard Katana attack. She survived, and since she lived the forged will was never used. Erin (Serial Killer) killed Judy with a Strong attack. Before she died, Judy spent her Seer token on Grace and Ivan: same alignment. Heidi spent her puppet token on Judy. Judy died, so the puppeting lapses (R21); I spent the token with set_tokens and didn't use the puppet op. Ivan audited Dave: 0 tokens. Niaj checked Dave: Not Evil, because Dave holds the Katana. Alice tracked Ivan, who visited Dave. Olivia went on alert (2 tokens left) and nobody visited her. Grace took no action. The Yakuza were told each other's actions. Win check: the game continues.
+
+===== DAY 3 =====
+Judy died (killed by Serial Killer). Their role was Seer. Their last will (written by them): "Judy, Seer. My Night 1 result was that Grace and Carol have different alignments. Village: don't hang anyone on a single loud accusation. Test Grace's Archivist claim and Carol's reads against that result, and keep votes matched to stated reads."
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Niaj.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Niaj: Sheriff. N1: Carol Not Evil. N2: Dave Not Evil.
+Niaj (public): N2 I investigated Dave: Not Evil. As always, remember the Katana holder, Serial Killer, and Arsonist all appear Not Evil to Sheriff checks (R19), and Dave was Carol's lone Innocent voter on trial and PM partner. Also notice there was no Katana kill announced last night—either it hit Judy alongside the Serial Killer, was blocked, or hit Medic protection. Let's hear night results from Alice, Ivan, and anyone else before nominating, with Heidi and Dave remaining our primary focuses from Carol's voting and PM patterns.
+Olivia (public): Niaj’s Dave result is a lead, not a verdict: Not Evil fits a Neutral killer or the Katana holder. Dave was Carol’s only Innocent voter, and Carol repeatedly PMed him. Dave, explain those links and why you trusted her. Before a trial, I want Alice and Ivan’s N2 results too.
+Alice (public): N2 I tracked Ivan; he visited Dave. I was also attacked with the Katana and survived. Neither fact proves Ivan’s role or Dave’s alignment. Still, Niaj’s Dave Not Evil result, Dave’s lone Innocent vote for Carol, and Carol’s repeated PMs to him make Dave worth pressing. Dave, explain those links; Ivan, what did you do at Dave?
+[Claim] Bob: Medic. N1: Alice protected (Standard). N2: Alice protected (Strong, 1 token spent). 1 token left.
+Bob (public): I am claiming Medic. Grace's N1 archive listed Medic—that was me. N1 I protected Alice (Standard Defense, 0 tokens), and N2 I protected Alice with Strong Defense (spent 1 token). That mechanically explains Alice surviving the Katana attack last night. I have 1 medic token remaining. With Alice confirmed Tracker, Ivan confirmed Accountant from the Carol audit, and Grace's archive corroborated, our town core is clear. Dave is Carol's lone Innocent voter and PM recipient, and if he held the Katana last night attacking Alice, he would read Not Evil to Niaj. Let's hear from Dave and Ivan.
+Dave (public): My Innocent vote was a bad call: I treated Ivan's audit as unverified, but Carol's Ballot Stuffer flip confirms the two-token count. I won't pretend that clears me. Still, Bob calling Alice a “confirmed Tracker” and Ivan a “confirmed Accountant” overstates unverified claims. Alice's N2 result says Ivan visited me—consistent with an audit. Ivan, did you audit me, and what did you learn? Niaj's Not Evil result alone doesn't distinguish Good from a Katana holder.
+Erin (public): Bob's Medic claim cleanly accounts for Alice surviving the Katana strike, further solidifying our confirmed town core. Dave's lone Innocent vote on Carol combined with their repeated private messaging makes him the primary Yakuza suspect. Since Alice saw Ivan visit Dave, let's hear Ivan's audit report on Dave—as well as Grace and Heidi's thoughts—before moving to nominate.
+Grace (public): Grace (Archivist, 0 tokens left): Carol's Ballot Stuffer reveal means the archive's 3 unshown roles were BS, Vanilla, Executioner. So the 9 shown roles belong to Alice, Bob, Dave, Erin, Heidi, Ivan, Judy, Niaj, Olivia, one each. If the claims hold, Dave, Erin, Heidi, Olivia hold Fabricator, Puppeteer, SK, Veteran.
+[ERROR api_retry] a openai/gpt-6-luna-pro request failed (attempt 1), retrying: error in the answer: {"message": "Provider returned an empty response", "code": 502, "metadata": {"error_type": "provider_unavailable"}}
+Heidi (public): Grace, your archive is an unnamed sample: it supports a role inventory, but cannot assign Fabricator/Puppeteer/SK/Veteran to Dave, Erin, Heidi, and Olivia. What independent evidence supports those assignments? Bob's protection story is plausible, not confirmation. Ivan's N2 audit would help before another trial.
+Ivan (public): Correction: Ballot Stuffer is a Yakuza role, so Carol's flip confirms she was Yakuza; my N1 two-token audit fit her role. Dave was her sole Innocent voter and PM partner. Niaj's Not Evil result keeps Dave suspicious; my N2 audit found 0 tokens, not a clearance. I nominate Dave.
+Ivan nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Ivan, Niaj, Olivia, Alice, Bob, Erin, Grace, Heidi; No - Dave.
+Dave is put on trial (8 Yes).
+Dave (public): I was wrong to vote Innocent on Carol. Her flip confirms she was Yakuza and makes Ivan’s N1 count credible; I should have treated the audit plus her visit to Mallory as enough. That was a serious bad call, and the PM connection is fair suspicion—not something I can wave away. But today’s evidence doesn’t independently identify me: Ivan reports 0 tokens, which is a count, not an alignment; Alice saw Ivan visit me, consistent with an audit; and Niaj’s Not Evil result is explicitly inconclusive. Bob’s protection explanation may be true, but it doesn’t confirm every linked claim. Don’t turn a valid case against Carol into proof against me. Vote Innocent and test the claims tomorrow.
+Erin (public): Dave's 'bad call' defense doesn't resolve the compounding evidence: he was Carol's lone Innocent voter and private contact, and a Katana holder attacking Alice would show Not Evil to Niaj. An audit of 0 tokens is fully consistent with a Grunt or Katana holder. His defense is insufficient against the facts; I lean Guilty.
+Grace (public): Dave is my Guilty. Carol's PM partners were Heidi and Dave, and Dave cast the lone Innocent vote for her. Niaj's Not Evil on Dave fits only Veteran, SK, or Katana holder. His 0-token audit fits SK or a token spent by a Yakuza. Yakuza are two of Dave, Erin, Heidi, Olivia.
+Heidi (public): Dave's Innocent vote on Carol is serious evidence, and he has owned it; but it is not a mechanical contradiction. Niaj's Not Evil result explicitly fits the Katana holder, while a zero-token audit doesn't establish alignment. Alice seeing Ivan visit Dave fits an audit. The PM/vote link warrants scrutiny, not certainty; I wouldn't execute on circumstantial links alone.
+Ivan (public): Dave's 0-token audit is not alignment evidence, and Niaj's Not Evil result includes Good, Neutral killers, or the Katana holder; neither proves guilt. The case is cumulative: Dave was the only other Innocent voter on Carol, who repeatedly PMed him, and her flip confirms she was Yakuza. He admits the vote was wrong but hasn't explained it. I lean Guilty on the combined pattern, not the audit alone. Grace's role-list assignments don't identify players.
+Niaj (public): Dave has not even claimed a role despite being on trial. Remember that the Katana holder, Serial Killer, and Arsonist all read Not Evil to Sheriff checks (R19), so my N2 result provides him zero clearance. Dave was Carol's sole Innocent voter and repeated PM recipient. Without a credible role claim, the evidence strongly points to Guilty.
+Olivia (public): Each clue alone is inconclusive, as Dave says, but together they matter: he was Carol’s only Innocent voter, had repeated private contact with the now-confirmed Yakuza, and reads Not Evil—consistent with either the Katana holder or a Neutral killer. His 0-token audit doesn’t clear him; his failure to claim adds concern. I lean Guilty.
+Alice (public): Dave has admitted his Innocent vote on Carol was wrong, but hasn’t given a reason beyond doubting Ivan’s audit. That could be honest, yet the vote and repeated PMs with the now-confirmed Yakuza still need explaining. Niaj’s Not Evil result and Ivan’s zero-token audit aren’t proof; they’re consistent with a Katana holder or Neutral killer. Taken together, I lean Guilty. Dave, what specifically made you trust Carol’s claim?
+Bob (public): Dave still hasn't claimed a role on trial. Combined with being Carol's lone Innocent vote, her frequent PM contact, and matching the profile of a 0-token Katana holder (which reads Not Evil to Sheriff), his defense is empty. I am voting Guilty.
+[Claim] Dave: Vanilla Villager. N1/N2: no night action.
+Dave (public): I’ll claim Vanilla Villager: no tokens and no night action, so Ivan’s zero-token result is compatible. My Innocent vote on Carol was a mistake; her flip proves her faction, not that I knowingly protected her. Carol also messaged Heidi, and message counts don’t reveal what was said or prove either recipient’s alignment. The mechanics still don’t settle mine: Niaj’s Not Evil result is explicitly inconclusive, Alice seeing Ivan visit me fits an audit, and Bob’s protection story is plausible but unverified. Grace’s archive is an unnamed sample, not an identity map. You have reason to suspect me, but suspicion isn’t confirmation. I ask you to vote Innocent and test the remaining claims tomorrow.
+Trial votes on Dave: Guilty - Alice, Bob, Erin, Grace, Heidi, Ivan, Niaj, Olivia; Innocent - Dave.
+Dave is executed by hanging (8 Guilty of 9 votes; 5 needed).
+Dave died (executed by hanging). Their role was Fabricator. Their last will (written by them): "No night result to report. I claimed Vanilla Villager at trial. My Innocent vote on Carol was wrong, but do not treat a PM recipient list as proof of alignment: Carol also messaged Heidi, who voted Guilty on her, while I voted Innocent. Niaj’s Not Evil result and Ivan’s zero-token audit do not independently settle alignment. Test claims against evidence rather than treating association as confirmation."
+(to Heidi) The Katana passed to Heidi.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Tracker): target Niaj
+  Bob (Medic): target Ivan; 1 token(s)
+  Erin (Serial Killer): target Bob
+  Grace (Archivist): no action
+  Heidi (Puppeteer): no role action; Katana vote: Heidi holds, attacks Bob
+  Ivan (Accountant): target Heidi
+  Niaj (Sheriff): target Heidi
+  Olivia (Veteran): 1 token(s); "Go on alert."
+Katana: Heidi holds it and attacks Bob.
+[Moderator flag] R3/R12: Bob was hit by two lethal attacks the same night (Serial Killer Strong + Katana Standard, both beat Defense None). The kill op takes a single cause/by. Best interpretation: apply one kill with cause 'Serial Killer and Katana' (both are true causes and revealable), recording by=Erin (the SK) with katana=true for the Katana component.
+(to Bob) Moderator (private): You protected Ivan with Strong Defense (1 medic token spent). 0 medic tokens left. You were attacked by a Serial Killer, and you were also attacked with the Katana. You died.
+(to Erin) Moderator (private): You attacked Bob. Your attack succeeded: Bob died.
+(to Heidi) Moderator (private): Yakuza actions tonight: Heidi kept the Katana and used it to attack Bob. No other Yakuza actions. Your Katana attack on Bob succeeded: Bob died. You still hold the Katana.
+(to Ivan) Moderator (private): You audited Heidi. At the end of the night, Heidi had 0 tokens in total.
+(to Niaj) Moderator (private): You investigated Heidi. Result: Not Evil.
+(to Alice) Moderator (private): You tracked Niaj. Niaj visited Heidi.
+(to Olivia) Moderator (private): You went on alert (1 alert token spent). 1 alert token left. Nobody visited you tonight.
+[Moderator summary] Night 3: Visits — Alice→Niaj (track), Bob→Ivan (Strong protect, medic 1→0), Erin→Bob (SK Strong attack), Heidi→Bob (Katana Standard attack, Heidi keeps Katana), Ivan→Heidi (audit), Niaj→Heidi (sheriff). Olivia alerted (alert 2→1), no visitors. Bob (Defense None) killed by both SK and Katana. Ivan protected but not attacked. Results: Alice: Niaj visited Heidi; Ivan: Heidi 0 tokens; Niaj: Heidi Not Evil (Katana holder); Olivia: nobody visited. Erin and Heidi told their attacks succeeded; Bob told attacked by SK and Katana. Grace no action. Survivors: Alice, Erin, Grace, Heidi, Ivan, Niaj, Olivia — no win. Flagged double-kill cause handling.
+
+===== DAY 4 =====
+Bob died (killed by Serial Killer and Katana). Their role was Medic. Their last will (written by them): "Bob - Medic
+N1: Alice (Standard, 0 tokens)
+N2: Alice (Strong, 1 token spent - saved from Katana)
+1 token left."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Ivan.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Ivan (public): Heidi was the only other No voter on Carol's nomination, then voted Guilty; she also defended Dave while voting Guilty. I nominate her; explain that pattern.
+Ivan nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Ivan, Niaj, Olivia, Alice, Erin, Grace; No - Heidi.
+Heidi is put on trial (6 Yes).
+[Claim] Heidi: Sheriff. N1: Grace Evil. N2: Alice Evil. Both may have been framed by Dave; no N3 check.
+Heidi (public): I’ll claim Sheriff: N1 Grace Evil; N2 Alice Evil. I held back because both results looked compromised, not because I had a clean case: Dave later flipped Fabricator, so either could have been framed. I’m not calling either evil on that alone. The case against me is voting No on Carol’s nomination. I hesitated over an unverified audit, then voted Guilty after weighing it with the visit evidence. I also spoke too cautiously about Dave while voting Guilty; that’s fair to question. But I voted Guilty on both executed Yakuza. Niaj’s Sheriff claim and results are unverified too; judge the records, not just the counterclaim.
+Ivan (public): Heidi’s Sheriff results are plausible: Dave could frame Grace N1 and Alice N2. Her No on Carol’s nomination remains concerning, but she voted Guilty on both Yakuza. Explain the hesitation; neither the vote pattern nor the claim alone proves her alignment.
+[Claim] Niaj: Sheriff. N1: Carol Not Evil. N2: Dave Not Evil. N3: Heidi Not Evil.
+Niaj (public): Heidi's Sheriff claim is a dead-to-rights lie. Grace's N1 archive listed exactly 9 roles: Accountant, Fabricator, Medic, Puppeteer, Seer, Serial Killer, Sheriff, Tracker, Veteran. Coupled with the 3 unshown roles (Frank's Vanilla, Mallory's Executioner, Carol's Ballot Stuffer), that accounts for all 13 players. There is exactly one Sheriff in this game, and I claimed it on Day 2.
+
+The unassigned pool of {Erin, Heidi, Olivia} contains strictly Puppeteer, Serial Killer, and Veteran. Heidi claiming Sheriff is mechanically impossible. She is caught evil—vote Guilty.
+Olivia (public): I lean Guilty, though Heidi’s Sheriff results are technically possible: Dave could have framed Grace N1 and Alice N2. The stronger issue is the role inventory: Grace’s nine sampled roles plus the known unsampled flips and her claimed role leave no room for a second Sheriff, if her archive claim is true. Niaj’s claim fits it; Heidi’s late counterclaim looks false.
+Alice (public): Don’t convict on Niaj’s inventory argument: Grace’s archive was a random 9-of-12 sample, not a census, and the rules don’t make Sheriff unique. Dave could have framed Grace N1 and me N2, as Heidi says. Her late claim is suspicious, but she voted Guilty on both flipped Yakuza. I lean Innocent: this is an unresolved counterclaim, not a mechanical catch.
+[Claim] Erin: Veteran. Conserved alerts.
+Erin (public): I am claiming Veteran; I've conserved my alerts. Niaj's inventory deduction is airtight: between revealed flips, verified claims, and Grace's archive, {Heidi, Olivia, Erin} holds strictly Veteran, Puppeteer, and Serial Killer. There is no room for a second Sheriff. Heidi is caught evil trying to survive. I am voting Guilty.
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Grace (public): Guilty on Heidi. Niaj and Heidi can't both be Sheriff. The shown roles leave exactly one Sheriff among Niaj, Heidi, Erin and Olivia, and Erin claims Veteran, so Niaj's inventory fits. Heidi's counterclaim needs Dave to frame both me on N1 and Alice on N2. I know I'm Good, so her Grace Evil result is either a lie or a Dave frame. She held her Sheriff claim until her own trial, voted No on Carol's nomination, and was one of Carol's repeated PM partners. Niaj's results match the Katana holder mechanics.
+[Claim] Heidi: Sheriff. N1: Grace Evil. N2: Alice Evil.
+Heidi (public): The role-inventory argument is not a mechanical catch. Grace’s archive is unnamed: it shows a Sheriff among the sampled players, but identifying that role as Niaj’s requires accepting Niaj’s unverified claim. The list doesn’t say which of us holds that slot. The further assignment also relies on accepting other players’ claims. I know my No on Carol’s nomination looks bad, but I voted Guilty on her and Dave; the No was hesitation over an unverified audit, not protection. I defended Dave’s evidentiary point, then voted Guilty. That’s suspicious in hindsight, not proof. Please don’t treat a counterclaim as a role flip.
+Trial votes on Heidi: Guilty - Alice, Erin, Grace, Ivan, Niaj, Olivia; Innocent - Heidi.
+Heidi is executed by hanging (6 Guilty of 7 votes; 4 needed).
+Heidi died (executed by hanging). Their role was Puppeteer. Their last will (written by them): "I was the Sheriff. N1 I checked Grace: Evil. N2 I checked Alice: Evil. Dave was the Fabricator, so framing could explain either result; these results do not prove either player is Evil. Still, don’t treat Alice’s Tracker claim as confirmed, and investigate the discrepancy before relying on her account. Niaj’s Sheriff claim is unverified too. Keep checking concrete evidence and vote records."
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Tracker): target Olivia; "Track Olivia."
+  Erin (Serial Killer): target Alice
+  Grace (Archivist): no action
+  Ivan (Accountant): target Erin
+  Niaj (Sheriff): target Olivia
+  Olivia (Veteran): 1 token(s)
+Katana: no attack (no target); nobody holds it.
+(to Alice) Moderator (private): Night 4 result: you tracked Olivia. Olivia did not visit anyone. You were attacked by the Serial Killer and by the Veteran.
+(to Niaj) Moderator (private): Night 4 result: you investigated Olivia: Not Evil. You were attacked by the Veteran.
+(to Ivan) Moderator (private): Night 4 result: you audited Erin. Erin has 0 tokens in total.
+(to Erin) Moderator (private): Night 4 result: you attacked Alice. Your attack succeeded.
+(to Olivia) Moderator (private): Night 4 result: you went on alert. 2 players visited you: your attack killed both of them. 0 alert tokens left.
+[Moderator flag] The kill op only takes one 'by' player. On Night 4, Alice was killed by two attackers at once: Erin (Serial Killer) and Olivia (Veteran on alert; Alice visited her to track her). I recorded by='Erin' and cause='Serial Killer and Veteran', so Olivia's part in this kill is missing from the 'by' field (it shows only in the cause).
+[Moderator summary] Night 4: Olivia (Veteran) alerted (1->0 tokens). Alice (Tracker) tracked Olivia and Niaj (Sheriff) investigated Olivia, so both visited the alert Veteran and both took a Strong Attack. Erin (SK) also hit Alice with a Strong Attack. Deaths: Alice (Serial Killer and Veteran) and Niaj (Veteran). Alice's track: Olivia visited no one. Niaj's check: Olivia Not Evil. Ivan's audit: Erin has 0 tokens. Erin was told the attack succeeded. Olivia was told 2 visitors, both killed. No Yakuza are alive and no Katana activity. Remaining: Erin (SK), Grace, Ivan, Olivia; game continues.
+
+===== DAY 5 =====
+Alice died (killed by Serial Killer and Veteran). Their role was Tracker. Their last will (written by them): "I am Alice, a Tracker. N1 Carol visited Mallory; N2 Ivan visited Dave; N3 Niaj visited Heidi. These are visit facts, not proof of action or alignment. Carol flipped Yakuza Ballot Stuffer and Dave flipped Yakuza Fabricator. Bob died on N3 to both the Serial Killer and Katana, so a Serial Killer and at least one Yakuza were still alive at the end of that night; do not assume the Yakuza are eliminated. Niaj visiting Heidi is compatible with his claimed Sheriff investigation, but does not verify it. My N2 survival does not identify who attacked or protected me. I voted Guilty on Carol and Dave; weigh the evidence, but don't treat associations or visits alone as proof."
+Niaj died (killed by Veteran). Their role was Sheriff. Their last will (written by them): "Niaj - Sheriff
+N1: Carol -> Not Evil (flipped Ballot Stuffer)
+N2: Dave -> Not Evil (flipped Fabricator)
+N3: Heidi -> Not Evil (counterclaimed Sheriff; Katana holder or SK)"
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Erin: Veteran. N4: alerted (1 token spent), 2 visitors killed.
+Erin (public): N4 I went on alert. At the end of the night I learned 2 players visited me and attacks on both succeeded. From the morning flips, Alice and Niaj visited me, with Alice also attacked by the Serial Killer. Having claimed Veteran on Day 4, Olivia is the Serial Killer. Let's hang Olivia to win.
+Grace (public): Erin's Veteran claim fits the N4 deaths: Niaj and Alice were both killed by Veteran. Erin, your line says Olivia claimed Veteran, but Olivia never did. Erin or Olivia is the SK. Olivia, what is your role? An Accountant audit on Erin should show 2 alert tokens if she is Veteran.
+(to Grace, Ivan) Grace -> Ivan (private): Ivan: please consider auditing Erin tonight. Veteran should show 2 tokens left.
+[Claim] Ivan: Accountant. N1: Carol 2 tokens; N2: Dave 0; N3: Heidi 0; N4: Erin 0.
+Ivan (public): N4 audit: Erin had 0 tokens. Her claim she conserved alerts then spent 1 N4 implies 2 remaining, not 0. Also, Olivia never claimed Veteran.
+Ivan nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Ivan, Olivia, Grace; No - Erin.
+Erin is put on trial (3 Yes).
+Erin (public): First, to clarify my opener: when I said 'Having claimed Veteran on Day 4', I was referring to myself—I claimed Veteran yesterday on Day 4, which left Olivia as the only unclaimed player and presumed Serial Killer. Look at the timeline: I claimed Veteran openly on Day 4. Olivia was present, saw my claim, and did not counter-claim me. If Olivia were the Veteran, why stay silent and let me claim it unchallenged? Now look at Ivan. Ivan claims an audit of 0 tokens. If Ivan is the Serial Killer, Accountant has been his safe cover since Day 2, jumping on Carol when Alice had already tracked her. Today, his only path to victory is fabricating an audit to lynch the claimed Veteran. Grace, remember that hanging me hands the game to the Serial Killer. Listen to Olivia's explanation before rushing to Guilty.
+Grace (public): Guilty on Erin. Her Veteran claim fails the audit: she says she conserved alerts, then spent 1 on N4, which should leave 2 tokens. Ivan audited 0. Erin hasn't explained that gap. Olivia, you haven't claimed a role; state yours and any N4 result.
+Ivan (public): My N4 audit was an ordinary visit to Erin. If she alerted, Veteran attacks every visitor; I am alive. That directly contradicts her claimed N4 alert, independent of token count. Olivia, state your role and N4 action.
+[Claim] Olivia: Veteran. N2, N3, N4: alerted; N2/N3 nobody visited; N4 two visitors, both attacks succeeded.
+Olivia (public): I am the Veteran: I alerted N2, N3, and N4; my N4 result was two visitors attacked, and both attacks succeeded. The N4 Veteran deaths are consistent with that result. Erin’s claim that I had already claimed Veteran is false. More importantly, Ivan says he visited Erin N4 and is alive—if Erin alerted, her Veteran attack should have killed him. Her 0-token audit also conflicts with conserving alerts.
+Erin (public): Grace, look at what just happened.
+
+Yesterday on Day 4, I claimed Veteran in broad daylight. Olivia was right there, said nothing, and let my claim stand completely unchallenged. Now today, Olivia suddenly counterclaims Veteran and claims she burned alerts on N2 and N3 with zero visits? That is a textbook fabricated claim.
+
+Furthermore, Ivan's argument collapses under scrutiny: Ivan claims he visited me last night as Accountant. But if Ivan is the Serial Killer, Ivan attacked Alice last night—meaning he never visited me at all! He is fabricating both a visit and a 0-token audit specifically to engineer this mislynch.
+
+If you vote Guilty, town executes its Veteran and evil wins immediately. Vote Innocent to force a 2-2 tie so we do not throw the game away.
+Trial votes on Erin: Guilty - Grace, Ivan, Olivia; Innocent - Erin.
+Erin is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Erin died (executed by hanging). Their role was Serial Killer. Their last will (written by them): "Erin - Veteran.
+N4: Alerted (spent 1 token). Learned 2 visitors, both killed (Alice and Niaj).
+Olivia and Ivan are fabricating claims. Ivan is SK framing me, or Olivia counterclaimed late. Hang them to win."
+The game is over. Winners: Alice (dead), Bob (dead), Frank (dead), Grace, Ivan, Judy (dead), Niaj (dead), Olivia. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Frank, Grace, Ivan, Judy, Niaj, Olivia
+Cost by player (USD):
+  Alice (Tracker)           $0.0478   29 calls  gpt-6-luna
+  Bob (Medic)               $0.1596   24 calls  gemini-3.8-flash
+  Carol (Ballot Stuffer)    $0.0500   22 calls  claude-haiku-5.5
+  Dave (Fabricator)         $0.1375   28 calls  gpt-6-luna-pro
+  Erin (Serial Killer)      $0.2842   35 calls  gemini-3.8-flash
+  Frank (Vanilla Villager)  $0.0441   11 calls  gpt-6-luna-pro
+  Grace (Archivist)         $0.1206   36 calls  claude-haiku-5.5
+  Heidi (Puppeteer)         $0.1710   34 calls  gpt-6-luna-pro
+  Ivan (Accountant)         $0.0618   32 calls  gpt-6-luna
+  Judy (Seer)               $0.0374   18 calls  claude-haiku-5.5
+  Mallory (Executioner)     $0.0194   11 calls  claude-haiku-5.5
+  Niaj (Sheriff)            $0.2080   29 calls  gemini-3.8-flash
+  Olivia (Veteran)          $0.0535   33 calls  gpt-6-luna
+  Moderator                 $1.1188   15 calls  claude-opus-5.5
+  Night checks              $0.3441    4 calls  claude-opus-5.5
+  Strategy review           $0.2714    1 calls  claude-opus-5.5
+  Log review                $0.2878    1 calls  claude-opus-5.5
+  Total                     $3.4171  363 calls
