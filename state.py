@@ -296,14 +296,6 @@ class Game:
         line = f"Winners: {', '.join(names) or 'nobody'}."
         return line + " Dead players still win with their side." if "(dead)" in line else line
 
-    def public_state(self) -> dict:
-        return {
-            "day": self.day,
-            "phase": self.phase,
-            "players": [{"name": p.name, "seat": p.seat, "alive": p.alive,
-                         "revealed_role": None if p.alive else p.role} for p in self.players],
-        }
-
     def state_summary(self) -> str:
         """full_state() as readable lines, for the moderator (it asked for one after
         game_20261009_084630_739772): seat order, Katana holder, tokens, statuses and next-Day effects."""
