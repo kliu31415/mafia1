@@ -47,7 +47,7 @@
   "game_20261010_102519_203",
   "game_20261010_102519_204"
  ],
- "next_id": 249,
+ "next_id": 251,
  "entries": [
   {
    "id": "t1",
@@ -408,7 +408,7 @@
   {
    "id": "t5",
    "audience": "Everyone",
-   "tip": "Keep your votes consistent with your stated reads. If you change your mind, say why before the vote; an unexplained switch gets cited against you. Ballots are secret, so the record is your stated vote plus the announced totals. Village: a read/vote mismatch is a weak lead, not a verdict, because confused townies mismatch often. Check it against claims, mechanical results and PM links. Never shoot or hang on a mismatch alone. Never hang a credible power role (e.g. a Veteran whose alerts killed visitors) over an old stated Yes on a nomination: a Yes only opens a trial. When a group pushes a mismatch case, count whether its Guilty votes alone could decide the trial, and ask who benefits.",
+   "tip": "Keep your votes consistent with your stated reads. If you change your mind, say why before the vote; an unexplained switch gets cited against you. Ballots are secret, so the record is your stated vote plus the announced totals. Village: a read/vote mismatch is a weak lead, not a verdict. Confused townies mismatch often, and a Fixer can flip a player's trial votes without telling them (nomination votes can't be fixed). Check a mismatch against claims, mechanical results and PM links. Never shoot or hang on a mismatch alone. Never hang a credible power role (e.g. a Veteran whose alerts killed visitors) over an old stated Yes on a nomination: a Yes only opens a trial. When a group pushes a mismatch case, count whether its Guilty votes alone could decide the trial, and ask who benefits.",
    "status": "active",
    "support": [
     {
@@ -626,6 +626,12 @@
      "change": "edited",
      "old": "Keep your votes consistent with your stated reads. If you change your mind, say why before the vote; an unexplained switch gets cited against you. Village: a read/vote mismatch is a weak lead, not a verdict, because confused townies mismatch often. Check it against claims, mechanical results and PM links. Never shoot or hang on a mismatch alone. Never hang a credible power role (e.g. a Veteran whose alerts killed visitors) over an old Yes on a nomination: a Yes only opens a trial. When a group pushes a mismatch case, count whether its Guilty votes alone could decide the trial, and ask who benefits.",
      "note": "Nomination votes are secret now, so the Yes is only what a player said they voted."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Keep your votes consistent with your stated reads. If you change your mind, say why before the vote; an unexplained switch gets cited against you. Ballots are secret, so the record is your stated vote plus the announced totals. Village: a read/vote mismatch is a weak lead, not a verdict, because confused townies mismatch often. Check it against claims, mechanical results and PM links. Never shoot or hang on a mismatch alone. Never hang a credible power role (e.g. a Veteran whose alerts killed visitors) over an old stated Yes on a nomination: a Yes only opens a trial. When a group pushes a mismatch case, count whether its Guilty votes alone could decide the trial, and ask who benefits.",
+     "note": "Revision: the Fixer (new role) can secretly flip a player's trial votes, so a trial mismatch may not be a lie. The rest is unchanged."
     }
    ]
   },
@@ -748,7 +754,7 @@
   {
    "id": "t7",
    "audience": "Vigilante",
-   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. Claim only once your shots have paid off.",
+   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off.",
    "status": "active",
    "support": [
     {
@@ -885,6 +891,12 @@
      "change": "edited",
      "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or a proven Yakuza's vote record or PM partners (e.g. the few who voted No on their nomination or argued to delay their hang). When roles are hidden on death and hard leads are scarce, the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. Claim only once your shots have paid off.",
      "note": "A hang no longer proves anyone Yakuza, and individual votes are secret. The lead now rests on stated votes against totals and on mechanical exposure."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. Claim only once your shots have paid off.",
+     "note": "Revision: a Vigilante now learns the role of a player their shot kills (exact-role check). Added an instruction to post it. The rest is unchanged."
     }
    ]
   },
@@ -1279,7 +1291,7 @@
   {
    "id": "t11",
    "audience": "Village",
-   "tip": "(Village) Keep hostile Neutrals (SK, Arsonist) in the suspect pool all game, not only after the Yakuza die. Once an archive, survey or kill pattern suggests one exists, give every player a slot and keep a running list of candidates. Press anyone who admits a night action ('I took an action elsewhere') but won't name a role or target: that is a douse until explained. Press the quiet unclaimed players who give only measured, non-committal comments, and ask each for a claim. An Arsonist kills no one until it ignites, so quiet nights don't mean it's harmless; expect a multi-death night. A Not Evil Sheriff result or a Vanilla claim doesn't clear them. A failed attack with no block notice can mean innate Defense, not just a Medic.",
+   "tip": "Keep hostile Neutrals (SK, Arsonist) in the suspect pool all game, not only after the Yakuza die. Once an archive, survey or kill pattern suggests one exists, give every player a slot and keep a running list of candidates. Press anyone who admits a night action ('I took an action elsewhere') but won't name a role or target: treat it as a douse until explained. Press the quiet unclaimed players who give only measured, non-committal comments, and ask each for a claim. An Arsonist kills no one until it ignites, so quiet nights don't mean it's harmless; expect a multi-death night. A Not Evil Sheriff result or a Vanilla claim doesn't clear them. A failed attack with no block notice can mean innate Defense, not just a Medic. Doused Yakuza and Neutrals are told an Arsonist doused them, but Good players never are. A player who says they were doused has therefore admitted they aren't Good.",
    "status": "active",
    "support": [
     {
@@ -1385,6 +1397,12 @@
      "change": "edited",
      "old": "Keep hostile Neutrals (SK, Arsonist) in the suspect pool all game, not only after the Yakuza die. Once an archive, survey or kill pattern suggests one exists, keep a running list of candidates. Press the quiet unclaimed players who give only measured, non-committal comments, and ask each for a claim. An Arsonist kills no one until it ignites, so quiet nights don't mean it's harmless. A Not Evil Sheriff result or a Vanilla claim doesn't clear them. A failed attack with no block notice can mean innate Defense, not just a Medic.",
      "note": "Moderator, Erin, Carol, Dave: Judy's archive listed Arsonist and Mallory said on D2 she had 'taken an action elsewhere'. Nobody followed up, and her N4 ignite killed three players."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "(Village) Keep hostile Neutrals (SK, Arsonist) in the suspect pool all game, not only after the Yakuza die. Once an archive, survey or kill pattern suggests one exists, give every player a slot and keep a running list of candidates. Press anyone who admits a night action ('I took an action elsewhere') but won't name a role or target: that is a douse until explained. Press the quiet unclaimed players who give only measured, non-committal comments, and ask each for a claim. An Arsonist kills no one until it ignites, so quiet nights don't mean it's harmless; expect a multi-death night. A Not Evil Sheriff result or a Vanilla claim doesn't clear them. A failed attack with no block notice can mean innate Defense, not just a Medic.",
+     "note": "Revision: under the new Arsonist rule only non-Good doused players are told, so a 'doused' claim reveals a non-Good player."
     }
    ]
   },
@@ -1478,7 +1496,7 @@
   {
    "id": "t13",
    "audience": "Arsonist",
-   "tip": "Ignite is a Strong Astral attack: invisible to Lookouts and Trackers, but it fails against Strong Defense (e.g. a Medic's Strong token protection). Nothing in the rules removes a douse when an ignite fails, so a protected doused player can be ignited again on a later night once the Medic's tokens run out. Douse is a normal visit, so don't douse a player a Tracker or Lookout is likely watching or has publicly committed to.",
+   "tip": "Ignite is a Strong Astral attack. It is invisible to Lookouts, Trackers, Insomniacs and Fortune Teller counts, but it fails against Strong Defense (a Medic's Strong token protection, a Diviner's Strong Defense on a Yakuza). An ignite uses up every douse, so a player who survives it is no longer doused and must be doused again before a later ignite. Ignite when your douses are unlikely to be protected. Doused Yakuza and Neutrals are told an Arsonist doused them; Good players are not. Douse is a normal visit, so don't douse a player a Tracker or Lookout is likely watching or has publicly committed to.",
    "status": "active",
    "support": [
     {
@@ -1498,6 +1516,12 @@
      "change": "edited",
      "old": "Ignite is a Strong Astral attack: invisible to Lookout and Tracker, but it fails against Strong Defense (e.g. a Medic spending tokens on themselves). Douse is a normal visit, so don't douse a player a Tracker has publicly committed to tracking.",
      "note": "Rupert and the moderator: Mallory's Strong protections stopped the N7 and N9 ignites on Olivia, and Rupert won once her tokens ran out, without re-dousing."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Ignite is a Strong Astral attack: invisible to Lookouts and Trackers, but it fails against Strong Defense (e.g. a Medic's Strong token protection). Nothing in the rules removes a douse when an ignite fails, so a protected doused player can be ignited again on a later night once the Medic's tokens run out. Douse is a normal visit, so don't douse a player a Tracker or Lookout is likely watching or has publicly committed to.",
+     "note": "Revision: the old claim that a douse survives a failed ignite is now false, since igniting uses up every douse. Also added the douse notification to non-Good players."
     }
    ]
   },
@@ -2274,7 +2298,7 @@
   {
    "id": "t28",
    "audience": "Sheriff",
-   "tip": "On Night 1, investigate a prominent player or one likely to make a claim, and plan to disclose the result right away. An early public result is worth more than a hidden one.",
+   "tip": "There is no Day 1, so your Night 1 check is blind: pick anyone, and post the target and exact result in your first Day 2 speech. An early public result is worth more than a hidden one. From Night 2 on, investigate the most prominent Day 2 voices and players likely to make or contest a claim.",
    "status": "active",
    "support": [
     {
@@ -2298,6 +2322,12 @@
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "On Night 1, investigate a prominent player or one likely to make a claim, and plan to disclose the result right away. An early public result is worth more than a hidden one.",
+     "note": "Revision: with no Day 1, nobody is prominent before Night 1. The early-disclosure advice is unchanged."
     }
    ]
   },
@@ -2497,7 +2527,7 @@
   {
    "id": "t32",
    "audience": "Village",
-   "tip": "Don't hint at your own power role or its tokens on Day 1, especially a protective one or a Veteran. If someone else drops a hint, don't ask them about it in public; that spreads the hint. A flat, repeated refusal to claim is itself a hint: answer claim requests with a quiet, cooperative non-answer instead of making the refusal the day's topic. Investigators should still post results publicly once they matter, not only in a will that may come too late. When a Ritualist may be alive, never name another living player's exact role in your will or in public; write 'one of X/Y holds info, ask them'.",
+   "tip": "On the first Day (Day 2), don't hint at a protective role, a Veteran or your tokens. If someone else drops a hint, don't ask them about it in public; that spreads the hint. A flat, repeated refusal to claim is itself a hint: answer claim requests with a quiet, cooperative non-answer instead of making the refusal the day's topic. Investigators should still post results publicly once they matter, not only in a will that may come too late; a Night 1 result that bears on Day 2 already matters. When a Ritualist may be alive, never name another living player's exact role in your will or in public; write 'one of X/Y holds info, ask them'.",
    "status": "active",
    "support": [
     {
@@ -2710,6 +2740,12 @@
      "change": "edited",
      "old": "Don't hint at your own power role or its tokens on Day 1, especially a protective one or a Veteran. A flat, repeated refusal to claim is itself a hint: answer claim requests with a quiet, cooperative non-answer instead of making the refusal the day's topic. Investigators should still post results publicly once they matter, not only in a will that may come too late. When a Ritualist may be alive, never name another living player's exact role in your will or in public; write 'one of X/Y holds info, ask them'.",
      "note": "Moderator: Heidi publicly asked whether Dave's 'Sheriff check' remark was a claim, which amplified it. The Yakuza killed Dave N1."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Don't hint at your own power role or its tokens on Day 1, especially a protective one or a Veteran. If someone else drops a hint, don't ask them about it in public; that spreads the hint. A flat, repeated refusal to claim is itself a hint: answer claim requests with a quiet, cooperative non-answer instead of making the refusal the day's topic. Investigators should still post results publicly once they matter, not only in a will that may come too late. When a Ritualist may be alive, never name another living player's exact role in your will or in public; write 'one of X/Y holds info, ask them'.",
+     "note": "Revision: there is no Day 1, and the first Day (Day 2) already follows Night 1 results. Reworded the Day 1 restraint accordingly."
     }
    ]
   },
@@ -3605,7 +3641,7 @@
   {
    "id": "t40",
    "audience": "Yakuza",
-   "tip": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on Day 1; plan in night chat. If you must DM, also message villagers, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
+   "tip": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on the first Day (Day 2). Night chat is open from Night 1, so plan there. If you must DM, also message villagers, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
    "status": "active",
    "support": [
     {
@@ -3770,13 +3806,19 @@
      "change": "edited",
      "old": "Don't send private messages to teammates on Day 1. Plan in night chat. If you must DM, also message villagers, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
      "note": "Carol PMed her 'vote me as holder, no attack, read Good' plan to Judy and Niaj on D2. Alice (Eavesdropper on Carol) read it live and posted it, and all three Yakuza were hanged D3-D5. Moderator, Judy, Carol, Niaj and Alice all reported this."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on Day 1; plan in night chat. If you must DM, also message villagers, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
+     "note": "Revision: there is no Day 1, so 'Day 1' is now 'the first Day (Day 2)'."
     }
    ]
   },
   {
    "id": "t41",
    "audience": "Village",
-   "tip": "Map who starts PM clusters and who co-nominates. If the same few players DM each other early and then push the same nomination with no new information, treat them as a likely Yakuza bloc. Once one of them is exposed by a mechanical result, use the shared stated votes and pushes against the others. But a PM link is a lead, never a hang on its own. A Jester or Executioner leaves PM trails on purpose: one player privately asking several others for Yes votes, or a lone Day 1 PM to a player later exposed as Yakuza, fits a Neutral as well as a Yakuza. Ask what they verified, and judge the target on their own results, not on who pushes. A villager PMing for votes on a credible result (a Lookout log) is pushing clumsily, not proving a bloc, and Yakuza will reframe it as a 'whip' to hang them. Before hanging on a PM link, require stated votes that the totals back up, or a mechanical result that needs them to be a teammate.",
+   "tip": "Map who starts PM clusters and who co-nominates. If the same few players DM each other early and then push the same nomination with no new information, treat them as a likely Yakuza bloc. Once one of them is exposed by a mechanical result, use the shared stated votes and pushes against the others. But a PM link is a lead, never a hang on its own. A Jester or Executioner leaves PM trails on purpose: one player privately asking several others for Yes votes, or a lone early PM to a player later exposed as Yakuza, fits a Neutral as well as a Yakuza. Ask what they verified, and judge the target on their own results, not on who pushes. A villager PMing for votes on a credible result (a Lookout log) is pushing clumsily, not proving a bloc, and Yakuza will reframe it as a 'whip' to hang them. Before hanging on a PM link, require stated votes that the totals back up, or a mechanical result that needs them to be a teammate.",
    "status": "active",
    "support": [
     {
@@ -4000,6 +4042,12 @@
      "change": "edited",
      "old": "Map who starts PM clusters and who co-nominates. If the same few players DM each other early and then push the same nomination with no new information, treat them as a likely Yakuza bloc, and once one of them flips, use the shared vote record against the others. But a PM link is a lead, never a hang on its own. A Jester or Executioner leaves PM trails on purpose: one player privately asking several others for Yes votes, or a lone Day 1 PM to a later-flipped Yakuza, fits a Neutral as well as a Yakuza. Ask what they verified, and judge the target on their own results, not on who pushes. A villager PMing for votes on a credible result (a Lookout log) is pushing clumsily, not proving a bloc, and Yakuza will reframe it as a 'whip' to hang them. Before hanging on a PM link, require votes or a mechanical result that needs them to be a teammate.",
      "note": "There are no flips or public vote records now. Exposure and stated votes replace them."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Map who starts PM clusters and who co-nominates. If the same few players DM each other early and then push the same nomination with no new information, treat them as a likely Yakuza bloc. Once one of them is exposed by a mechanical result, use the shared stated votes and pushes against the others. But a PM link is a lead, never a hang on its own. A Jester or Executioner leaves PM trails on purpose: one player privately asking several others for Yes votes, or a lone Day 1 PM to a player later exposed as Yakuza, fits a Neutral as well as a Yakuza. Ask what they verified, and judge the target on their own results, not on who pushes. A villager PMing for votes on a credible result (a Lookout log) is pushing clumsily, not proving a bloc, and Yakuza will reframe it as a 'whip' to hang them. Before hanging on a PM link, require stated votes that the totals back up, or a mechanical result that needs them to be a teammate.",
+     "note": "Revision: 'Day 1 PM' is now 'early PM', since there is no Day 1."
     }
    ]
   },
@@ -4772,7 +4820,7 @@
   {
    "id": "t53",
    "audience": "Mortician",
-   "tip": "A clean token is spent even if the target survives. Roles are hidden on death anyway, so a clean only hides the victim's last will (you privately learn their role and will). Clean only when the kill is near-certain (no possible Defense, no likely protector) and the will likely holds something that hurts your team: an investigator who has probably checked you, a puppeting notice. A clean of a player whose results are already public saves little. Don't add your clean visit to another Yakuza's Katana target while a Lookout may watch; clean only when you hold the Katana yourself or the visit is expendable.",
+   "tip": "A clean token is spent even if the target survives. Roles are hidden on death, so a clean hides the victim's last will: it shows as 'cleaned by mortician', and you privately learn their role and will. It also blocks a Coroner, who learns nothing from a cleaned body. The public notice proves a Mortician exists. Clean only when the kill is near-certain (no possible Defense, no likely protector) and the will or body likely holds something that hurts your team: an investigator who has probably checked you, a puppeting notice, or one side of a claim duel a Coroner would examine. A clean of a player whose results are already public saves little. Don't add your clean visit to another Yakuza's Katana target while a Lookout may watch; clean only when you hold the Katana yourself or the visit is expendable.",
    "status": "active",
    "support": [
     {
@@ -4819,6 +4867,12 @@
      "change": "edited",
      "old": "A clean token is spent even if the target survives. Clean only when the kill is near-certain (no possible Defense, no likely protector) and the target's will likely holds something that hurts your team: an investigator who has probably checked you, a puppeting notice. A first-night clean of a talkative player usually just reveals a low-value role. Don't add your clean visit to another Yakuza's Katana target while a Lookout may watch; clean only when you hold the Katana yourself or the visit is expendable.",
      "note": "Under the current settings the clean's value lies only in hiding the will."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "A clean token is spent even if the target survives. Roles are hidden on death anyway, so a clean only hides the victim's last will (you privately learn their role and will). Clean only when the kill is near-certain (no possible Defense, no likely protector) and the will likely holds something that hurts your team: an investigator who has probably checked you, a puppeting notice. A clean of a player whose results are already public saves little. Don't add your clean visit to another Yakuza's Katana target while a Lookout may watch; clean only when you hold the Katana yourself or the visit is expendable.",
+     "note": "Revision: the Coroner now exists and learns nothing from a cleaned body, and the clean notice is public. The rest is unchanged."
     }
    ]
   },
@@ -4930,7 +4984,7 @@
   {
    "id": "t57",
    "audience": "Yakuza",
-   "tip": "(Yakuza) Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. But a holder with no visiting role has no cover if a Lookout sees them at the victim, so agree a cover story before Day starts. Once a Lookout or Tracker publicly names the holder as a visitor to a victim, move the Katana that same night to an unexposed member: the exposed holder will be blocked, shot or SK-killed, and the Not Evil read doesn't stop any of that. A confident Day 1 organizer is often a Medic or investigator and a good N1 kill, but may be an alerting Veteran; if the risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+   "tip": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. But a holder with no visiting role has no cover if a Lookout sees them at the victim, so agree a cover story before Day starts. Once a Lookout or Tracker publicly names the holder as a visitor to a victim, move the Katana that same night to an unexposed member: the exposed holder will be blocked, shot or SK-killed, and the Not Evil read doesn't stop any of that. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If the risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
    "status": "active",
    "support": [
     {
@@ -5086,6 +5140,12 @@
      "change": "edited",
      "old": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. Don't attack an unclaimed, confident, vocal organizer who may be an alerting Veteran. If you must hit one, have the Diviner give the holder Strong Defense (it beats the Veteran's Strong attack), or use an Astral Ritualist guess.",
      "note": "Mallory (Clerk) held the Katana N1, was seen at Dave by Alice, kept it N2 for the Not Evil read, was blocked by Ivan and killed by the SK. Mallory, Peggy, Heidi and the moderator. Dave and Heidi: hitting organizer Dave (Medic) paid off."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "(Yakuza) Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. But a holder with no visiting role has no cover if a Lookout sees them at the victim, so agree a cover story before Day starts. Once a Lookout or Tracker publicly names the holder as a visitor to a victim, move the Katana that same night to an unexposed member: the exposed holder will be blocked, shot or SK-killed, and the Not Evil read doesn't stop any of that. A confident Day 1 organizer is often a Medic or investigator and a good N1 kill, but may be an alerting Veteran; if the risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+     "note": "Revision: there is no Day 1, so the organizer read applies to Day 2 and that night's kill."
     }
    ]
   },
@@ -5154,7 +5214,7 @@
   {
    "id": "t60",
    "audience": "Village",
-   "tip": "An archive or partial survey is a sample, not a census. It shows that roles exist, never how many. Never say a duplicate claim 'proves' a liar. Say instead that it shifts the odds, e.g. 'only 5 of 7 roles were sampled, so three Vanilla claims against one listed Vanilla are worth testing'. Overstating the math gets a correct suspicion discredited and the trial acquitted. Once a list is public, keep a role inventory every Day and post it. The list is one claimant's report until something corroborates it. Of the N roles shown, floor(0.75*N) are real and the rest are fakes that may or may not be in the game. So a listed role may be absent, and a role listed once may have an unsampled second holder. Use slot math to decide whom to press for an exact claim and whom to audit, watch or guess. Then hang on the contradiction that test produces (e.g. a token count against a Vanilla claim, an Evil check), not on slot math alone. Roles proven by public effects (a prosecution proves a Prosecutor, a clean a Mortician, an ignite an Arsonist) are certain. Track Unique roles (Smuggler, Vulture) separately: once one is proven, every other living claimant of it is a proven liar. A claim made right after a result that only explains that result is not placed, so keep it open. When the inventory narrows to a few unclaimed players, demand an exact claim from each; a refusal then is heavy evidence. Late in the game an unverified 'Vanilla' claim is worth testing early. Keep deductions conditional: corroborating one entry doesn't verify the whole list.",
+   "tip": "An archive or partial survey is a sample, not a census. It shows that roles exist, never how many. Never say a duplicate claim 'proves' a liar. Say instead that it shifts the odds, e.g. 'only half the archive's entries are real, so three Vanilla claims against one listed Vanilla are worth testing'. Overstating the math gets a correct suspicion discredited and the trial acquitted. Once a list is public, keep a role inventory every Day and post it. The list is one claimant's report until something corroborates it. Of the N roles shown, floor(0.5*N) are real and the rest are fakes that may or may not be in the game. So a listed role may be absent, and a role listed once may have an unsampled second holder. Use slot math to decide whom to press for an exact claim and whom to audit, watch or guess. Then hang on the contradiction that test produces (e.g. a token count against a Vanilla claim, an Evil check), not on slot math alone. Roles proven by public effects (a prosecution proves a Prosecutor, a clean a Mortician, an ignite an Arsonist) are certain. Track Unique roles (Smuggler, Vulture) separately: once one is proven, every other living claimant of it is a proven liar. A claim made right after a result that only explains that result is not placed, so keep it open. When the inventory narrows to a few unclaimed players, demand an exact claim from each; a refusal then is heavy evidence. Late in the game an unverified 'Vanilla' claim is worth testing early. Keep deductions conditional: corroborating one entry doesn't verify the whole list.",
    "status": "active",
    "support": [
     {
@@ -5290,6 +5350,12 @@
      "change": "edited",
      "old": "Once an Archivist or Surveyor result is public, keep a role inventory every Day and post it, but know what it can prove. The list is one claimant's report until something corroborates it, and an archive shows N roles of which only floor(0.75*N) are real; the rest are fakes that may or may not be in the game. So a listed role may be absent, and a role listed once may still have an unsampled second holder. Use slot math to decide whom to press for an exact claim and whom to audit, watch or guess. Then hang on the contradiction that test produces (e.g. a token count against a Vanilla claim), not on slot math alone. A duplicate claim is a lead to test, not proof of a lie. Roles proven by public effects (a prosecution proves a Prosecutor, a clean a Mortician, an ignite an Arsonist) are certain. Track Unique roles (Smuggler, Vulture) separately: once one is proven, every other living claimant of it is a proven liar. A claim made right after a result that only explains that result is not placed; keep it open. When the inventory narrows to a few unclaimed players, demand an exact claim from each; a refusal then is heavy evidence. Late game, the last unverified 'Vanilla' claim is often the hidden Yakuza, so press it early. Keep deductions conditional: corroborating one entry doesn't verify the whole list.",
      "note": "Carol read one listed Vanilla in a 5-of-7 sample as a cap and said two Vanilla claimers must be lying. She was rebutted and retracted, and Bob (Smuggler) was acquitted 0-8 despite being Yakuza. Moderator, Alice, Dave and Frank all said the sheet's compressed slot-math line dropped the sample caveat. The edit leads with it."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "An archive or partial survey is a sample, not a census. It shows that roles exist, never how many. Never say a duplicate claim 'proves' a liar. Say instead that it shifts the odds, e.g. 'only 5 of 7 roles were sampled, so three Vanilla claims against one listed Vanilla are worth testing'. Overstating the math gets a correct suspicion discredited and the trial acquitted. Once a list is public, keep a role inventory every Day and post it. The list is one claimant's report until something corroborates it. Of the N roles shown, floor(0.75*N) are real and the rest are fakes that may or may not be in the game. So a listed role may be absent, and a role listed once may have an unsampled second holder. Use slot math to decide whom to press for an exact claim and whom to audit, watch or guess. Then hang on the contradiction that test produces (e.g. a token count against a Vanilla claim, an Evil check), not on slot math alone. Roles proven by public effects (a prosecution proves a Prosecutor, a clean a Mortician, an ignite an Arsonist) are certain. Track Unique roles (Smuggler, Vulture) separately: once one is proven, every other living claimant of it is a proven liar. A claim made right after a result that only explains that result is not placed, so keep it open. When the inventory narrows to a few unclaimed players, demand an exact claim from each; a refusal then is heavy evidence. Late in the game an unverified 'Vanilla' claim is worth testing early. Keep deductions conditional: corroborating one entry doesn't verify the whole list.",
+     "note": "Revision: the archive's real share changed from floor(0.75*N) to floor(0.5*N). The example and fraction are updated."
     }
    ]
   },
@@ -5593,7 +5659,7 @@
   {
    "id": "t69",
    "audience": "Everyone",
-   "tip": "Fortune Teller numbers are unordered: one counts distinct players visited, the other counts distinct players who visited anyone. Every visiting action counts, including Lookout watches, Tracker tracks, Accountant audits, Medic protections, Fabricator frames and the Katana. Self-visits count in both. A Veteran's alert isn't a visit, but anyone who visits the Veteran is. Blocked and Astral actions (Oracle, Ritualist, ignite, map) count in neither. Players who died that night still count. Only a Katana holder who also uses their own visiting action can add a second destination, so visited <= visitors + 1; if the numbers differ by 2 or more, the larger one is visitors. Read small counts literally. On a night with a Katana death, a visitor total of 1 means the holder made every visit that night. Anyone who claims a visit that night is then the holder or is lying, and a player who refuses to state their night action, or gives only a bare denial, is the hang. A totals-only role can't name visitors, so 'the FT's visitors are unnamed' is not a flaw, and evil uses that line to hang a real FT. FT: line your totals up publicly against every claimed visit, then ask each player with no claimed action for a plain yes/no on the leftover visit. A total that doesn't fit shows that some set of claims is false, not which claim. List every account that repairs it (holder acting twice, Ex-Con random visit, douses, switched plans). Outside the one-visitor case, never hang on the count alone, least of all against an exact-role check. Ask for the raw totals per night and the derivation before calling a count a lie.",
+   "tip": "Fortune Teller numbers are labeled: players visited (distinct) and players who visited anyone (distinct). Every visiting action counts, including Lookout watches, Tracker tracks, Accountant audits, Medic protections, Fabricator frames and the Katana. Self-visits count in both. A Veteran's alert isn't a visit, but anyone who visits the Veteran is. Blocked and Astral actions (Oracle, Ritualist, ignite, map, Coroner exam, Jester or Executioner revenge) count in neither. Players who died that night still count. One visitor can add several destinations: a Katana holder who also uses their own visiting action, a Smuggler (a swap visits both players) or a Seer's chosen pair (visits both). Read small counts literally. On a night with a Katana death, a visitor total of 1 means the holder made every visit that night. Anyone who claims a visit that night is then the holder or is lying, and a player who refuses to state their night action, or gives only a bare denial, is the hang. A totals-only role can't name visitors, so 'the FT's visitors are unnamed' is not a flaw, and evil uses that line to hang a real FT. FT: line your totals up publicly against every claimed visit, then ask each player with no claimed action for a plain yes/no on the leftover visit. A total that doesn't fit shows that some set of claims is false, not which claim. List every account that repairs it (holder acting twice, a swap, a chosen Seer pair, Ex-Con random visit, douses, switched plans). Outside the one-visitor case, never hang on the count alone, least of all against an exact-role check. Ask for the totals per night and the derivation before calling a count a lie.",
    "status": "active",
    "support": [
     {
@@ -5672,6 +5738,12 @@
      "change": "edited",
      "old": "Fortune Teller numbers are unordered: one counts distinct players visited, the other counts distinct players who visited anyone. Every visiting action counts, including Lookout watches, Tracker tracks, Accountant audits, Medic protections, Fabricator frames and the Katana. Self-visits count in both. A Veteran's alert isn't a visit, but anyone who visits the Veteran is. Blocked and Astral actions (Oracle, Ritualist, ignite, map) count in neither. Players who died that night still count. Only a Katana holder who also uses their own visiting action can add a second destination, so visited <= visitors + 1; if the numbers differ by 2 or more, the larger one is visitors. Read small counts literally. On a night with a Katana death, a visitor total of 1 means the holder made every visit that night. Anyone who claims a visit that night is then the holder or is lying, and a player who refuses to state their night action, or gives only a bare denial, is the hang. A totals-only role can't name visitors, so 'the FT's visitors are unnamed' is not a flaw, and evil uses that line to hang a real FT. FT: line your totals up publicly against every claimed visit, then ask each player with no claimed action for a plain yes/no on the leftover visit. A total that doesn't fit shows that some set of claims is false, not which claim. List every account that repairs it (holder acting twice, Ex-Con random visit, douses, switched plans). Outside the one-visitor case, never hang on the count alone, least of all against an exact-role check or a flip. Ask for the raw totals per night and the derivation before calling a count a lie.",
      "note": "Removed the reference to flips, since roles are hidden on death."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Fortune Teller numbers are unordered: one counts distinct players visited, the other counts distinct players who visited anyone. Every visiting action counts, including Lookout watches, Tracker tracks, Accountant audits, Medic protections, Fabricator frames and the Katana. Self-visits count in both. A Veteran's alert isn't a visit, but anyone who visits the Veteran is. Blocked and Astral actions (Oracle, Ritualist, ignite, map) count in neither. Players who died that night still count. Only a Katana holder who also uses their own visiting action can add a second destination, so visited <= visitors + 1; if the numbers differ by 2 or more, the larger one is visitors. Read small counts literally. On a night with a Katana death, a visitor total of 1 means the holder made every visit that night. Anyone who claims a visit that night is then the holder or is lying, and a player who refuses to state their night action, or gives only a bare denial, is the hang. A totals-only role can't name visitors, so 'the FT's visitors are unnamed' is not a flaw, and evil uses that line to hang a real FT. FT: line your totals up publicly against every claimed visit, then ask each player with no claimed action for a plain yes/no on the leftover visit. A total that doesn't fit shows that some set of claims is false, not which claim. List every account that repairs it (holder acting twice, Ex-Con random visit, douses, switched plans). Outside the one-visitor case, never hang on the count alone, least of all against an exact-role check. Ask for the raw totals per night and the derivation before calling a count a lie.",
+     "note": "Revision: FT numbers are now labeled, so the unordered-split reasoning is gone. Also fixed the old 'visited <= visitors + 1' rule: Smuggler swaps and Seer chosen pairs add two destinations too."
     }
    ]
   },
@@ -5985,7 +6057,7 @@
   {
    "id": "t76",
    "audience": "Neutral",
-   "tip": "As a solo killer you win only alone. Douse or kill the suspected Yakuza bloc first: players who vote together on every key hang, defended a flipped Yakuza and lead pushes on proven town roles. If you wipe out the Village and leave several Yakuza alive, you can't outvote them and the Katana keeps coming. In a small endgame your role is easy to deduce by elimination, and a Ritualist's Divine guess beats your Standard Defense, so finish the Yakuza while you still can.",
+   "tip": "As a solo killer you win only alone. Douse or kill the suspected Yakuza bloc first: players whose stated votes line up on every key hang, who defended an exposed Yakuza and who lead pushes on proven town roles. A doused Yakuza is told an Arsonist doused them, and the team shares it in night chat. Each Yakuza douse puts the Katana and any Ritualist on your trail, so douse them late in your cycle and ignite soon after. If you wipe out the Village and leave several Yakuza alive, you can't outvote them and the Katana keeps coming. In a small endgame your role is easy to deduce by elimination, and a Ritualist's Divine guess beats your Standard Defense, so finish the Yakuza while you still can.",
    "status": "active",
    "support": [
     {
@@ -6015,6 +6087,12 @@
      "change": "edited",
      "old": "As a solo killer, watch for players who vote together on every key hang, defended a flipped Yakuza and lead pushes on proven town roles. Douse or kill them first: removing the Yakuza leaves a town you can outlast, and one ignite can hit the whole bloc.",
      "note": "Moderator and Heidi: Heidi doused only Village players (Frank, Bob, Grace, Alice) and her N5 ignite left her with two Yakuza and the Jester. Olivia's Divine guess killed her N6."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "As a solo killer you win only alone. Douse or kill the suspected Yakuza bloc first: players who vote together on every key hang, defended a flipped Yakuza and lead pushes on proven town roles. If you wipe out the Village and leave several Yakuza alive, you can't outvote them and the Katana keeps coming. In a small endgame your role is easy to deduce by elimination, and a Ritualist's Divine guess beats your Standard Defense, so finish the Yakuza while you still can.",
+     "note": "Revision: non-Good doused players are now told of the douse, and votes are secret (reworded to stated votes, no flips)."
     }
    ]
   },
@@ -6051,7 +6129,7 @@
   {
    "id": "t78",
    "audience": "Village",
-   "tip": "On Day 1, power roles (Party Animal, investigators) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common first Katana target. Save your influence for when you have information.",
+   "tip": "On the first Day (Day 2), power roles with no result worth posting (Party Animal, Medic, investigators with an empty Night 1) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common Katana target that night. Investigators with a useful Night 1 result should still post it (t1); save the rest of your influence for when you have information.",
    "status": "active",
    "support": [
     {
@@ -6100,6 +6178,12 @@
     {
      "game": "game_20261009_121338_61703",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "On Day 1, power roles (Party Animal, investigators) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common first Katana target. Save your influence for when you have information.",
+     "note": "Revision: there is no Day 1, and Day 2 already follows Night 1 results. Reconciled with t1."
     }
    ]
   },
@@ -6663,7 +6747,7 @@
   {
    "id": "t91",
    "audience": "Village",
-   "tip": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild Day 1 dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza. If a more clearly Yakuza player is available, hang them first. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent.",
+   "tip": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza. If a more clearly Yakuza player is available, hang them first. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent.",
    "status": "active",
    "support": [
     {
@@ -6777,6 +6861,12 @@
      "change": "edited",
      "old": "(Village) Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild Day 1 dissent plus a lone PM to a later-flipped Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza. If a more clearly Yakuza player is available, hang them first. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent.",
      "note": "'Later-flipped Yakuza' reworded, since roles are hidden on death."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild Day 1 dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza. If a more clearly Yakuza player is available, hang them first. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent.",
+     "note": "Revision: 'Day 1 dissent' is now 'early dissent', since there is no Day 1."
     }
    ]
   },
@@ -7358,7 +7448,7 @@
   {
    "id": "t104",
    "audience": "Executioner",
-   "tip": "Stay quiet on Day 1, because the loudest protective or info-sounding voice draws the first Katana, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
+   "tip": "Stay quiet on the first Day (Day 2), because the loudest protective or info-sounding voice draws the Katana that night, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
    "status": "active",
    "support": [
     {
@@ -7384,6 +7474,12 @@
      "change": "edited",
      "old": "Stay quiet on Day 1, because the loudest protective or info-sounding voice draws the first Katana, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty. Never write a will that both fake-claims a Village role and accuses your target: your flip reveals Executioner and effectively clears the target.",
      "note": "Dropped the will clause: an Executioner who dies without winning is no longer revealed, so its flip can't clear the target."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Stay quiet on Day 1, because the loudest protective or info-sounding voice draws the first Katana, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
+     "note": "Revision: there is no Day 1, so this now refers to the first Day."
     }
    ]
   },
@@ -7860,7 +7956,7 @@
   {
    "id": "t117",
    "audience": "Archivist",
-   "tip": "Consult the archive early, while the living population and your sample are largest; waiting risks dying with the token unused. Report the full list, duplicates included, and remind the town how it is built. Of the N roles shown, floor(0.75 * N) are real roles of random players, and the rest are fakes drawn from all roles. So any single entry may be fake, a missing role may be present, and a role shown once can have several holders. Read it as odds, not a census. A dangerous entry (Arsonist, Serial Killer) should start a hunt, not be dismissed as a likely fake. Cross the list with confirmed claims and self-proving effects after every death to narrow the rest. Roles stay hidden on death, so a dead player's slot stays open unless their role was confirmed.",
+   "tip": "Consult the archive early, while the living population and your sample are largest; waiting risks dying with the token unused. Report the full list, duplicates included, and remind the town how it is built. Of the N roles shown, floor(0.5 * N) are real roles of random players, and the rest are fakes drawn from all roles. So about half the list is fake, any single entry may be fake, a missing role may be present, and a role shown once can have several holders. Read it as odds, not a census. A dangerous entry (Arsonist, Serial Killer) should start a hunt, not be dismissed as a likely fake. Cross the list with confirmed claims and self-proving effects after every death to narrow the rest. Roles stay hidden on death, so a dead player's slot stays open unless their role was confirmed (e.g. a credible Coroner exam or Vigilante kill report).",
    "status": "active",
    "support": [
     {
@@ -7908,6 +8004,12 @@
      "change": "edited",
      "old": "Consult the archive early, while the living population and your sample are largest; waiting risks dying with the token unused. Report the full list, duplicates included, and remind the town how it is built. Of the N roles shown, floor(0.75*N) are real roles of random players, and the rest are fakes drawn from all roles. So any single entry may be fake, a missing role may be present, and a role shown once can have several holders. Read it as odds, not a census. A dangerous entry (Arsonist, Serial Killer) should start a hunt, not be dismissed as a likely fake. Cross the list with flips and confirmed claims after every death to narrow the rest.",
      "note": "Flips no longer reveal roles."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Consult the archive early, while the living population and your sample are largest; waiting risks dying with the token unused. Report the full list, duplicates included, and remind the town how it is built. Of the N roles shown, floor(0.75 * N) are real roles of random players, and the rest are fakes drawn from all roles. So any single entry may be fake, a missing role may be present, and a role shown once can have several holders. Read it as odds, not a census. A dangerous entry (Arsonist, Serial Killer) should start a hunt, not be dismissed as a likely fake. Cross the list with confirmed claims and self-proving effects after every death to narrow the rest. Roles stay hidden on death, so a dead player's slot stays open unless their role was confirmed.",
+     "note": "Revision: the archive's real share changed from 0.75 to 0.5. Also mentions the new ways a dead player's role can be confirmed (Coroner, Vigilante)."
     }
    ]
   },
@@ -8324,7 +8426,7 @@
   {
    "id": "t133",
    "audience": "Eavesdropper",
-   "tip": "Eavesdrop on whoever starts the Day 1 PM cluster. When you intercept incriminating private messages, post them publicly in full and write the exact quotes and every implicated player into your will before your turn ends. Expect a Ritualist or the Katana that night, so your will must carry the case without you.",
+   "tip": "There is no Day 1, so a Night 1 eavesdrop is a blind guess at Day 2's traffic. From Night 2 on, eavesdrop on whoever started the Day's PM cluster; your read covers the next Day. When you intercept incriminating private messages, post them publicly in full and write the exact quotes and every implicated player into your will before your turn ends. Expect a Ritualist or the Katana that night, so your will must carry the case without you.",
    "status": "active",
    "support": [
     {
@@ -8338,6 +8440,12 @@
     {
      "game": "game_20261009_181836_910820",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Eavesdrop on whoever starts the Day 1 PM cluster. When you intercept incriminating private messages, post them publicly in full and write the exact quotes and every implicated player into your will before your turn ends. Expect a Ritualist or the Katana that night, so your will must carry the case without you.",
+     "note": "Revision: there is no Day 1 PM cluster to target. The advice is shifted to Day 2 onward."
     }
    ]
   },
@@ -9323,7 +9431,7 @@
   {
    "id": "t170",
    "audience": "Jester",
-   "tip": "Make yourself the town's concrete lead. A mild but reasonable Day 1 dissent (e.g. 'a no-hang day gives Yakuza a free night') draws N1 checks, and you read Evil to the Sheriff. One short Day 1 PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
+   "tip": "Make yourself the town's concrete lead. A mild but reasonable dissent on the first Day (Day 2), e.g. 'a no-hang day gives Yakuza a free night', draws checks that night, and you read Evil to the Sheriff. One short early PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
    "status": "active",
    "support": [
     {
@@ -9358,6 +9466,12 @@
      "change": "edited",
      "old": "(Jester) Make yourself the town's concrete lead. A mild but reasonable Day 1 dissent (e.g. 'a no-hang day gives Yakuza a free night') draws N1 checks, and you read Evil to the Sheriff. One short Day 1 PM to a single pushy or quiet player becomes a link if they flip Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself. A strong defense or any Jester hint makes careful players vote Innocent.",
      "note": "'Flip Yakuza' reworded, and the secret ballot noted."
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Make yourself the town's concrete lead. A mild but reasonable Day 1 dissent (e.g. 'a no-hang day gives Yakuza a free night') draws N1 checks, and you read Evil to the Sheriff. One short Day 1 PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
+     "note": "Revision: there is no Day 1, so the dissent and PM move to the first Day (Day 2)."
     }
    ]
   },
@@ -9449,7 +9563,7 @@
   {
    "id": "t174",
    "audience": "Medic",
-   "tip": "(Medic) If you were visible on Day 1, consider spending 1 token on Night 1 for Standard self-protection. Night 1 Katana targets are usually the most visible talkers, and a Medic dead on N1 saves nobody all game.",
+   "tip": "There is no Day 1, so the Night 1 Katana target is a near-blind pick: don't spend a token on Night 1 self-protection by default. Once you have been visible on a Day (organizing, leading analysis), consider spending 1 token that night on Standard self-protection. The most visible talkers are the usual Katana targets, and a dead Medic saves nobody all game.",
    "status": "active",
    "support": [
     {
@@ -9463,6 +9577,12 @@
     {
      "game": "game_20261010_013419_977337",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "(Medic) If you were visible on Day 1, consider spending 1 token on Night 1 for Standard self-protection. Night 1 Katana targets are usually the most visible talkers, and a Medic dead on N1 saves nobody all game.",
+     "note": "Revision: the 'visible on Day 1, protect N1' trigger no longer exists. The idea moves to the night after you are first visible."
     }
    ]
   },
@@ -9606,7 +9726,7 @@
   {
    "id": "t179",
    "audience": "Executioner",
-   "tip": "Pressure your target on Day 1 so they make a weak or bare claim (e.g. Vanilla). Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
+   "tip": "Pressure your target on the first Day (Day 2) so they make a weak or bare claim (e.g. Vanilla). Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
    "status": "active",
    "support": [
     {
@@ -9625,6 +9745,12 @@
     {
      "game": "game_20261010_021114_222540",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Pressure your target on Day 1 so they make a weak or bare claim (e.g. Vanilla). Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
+     "note": "Revision: there is no Day 1, so the pressure starts on Day 2."
     }
    ]
   },
@@ -10252,7 +10378,7 @@
   {
    "id": "t204",
    "audience": "Yakuza",
-   "tip": "If an Arsonist may be alive (e.g. an archive lists one), hunt it as well as the Village. You can't see douses, and one ignite can kill your whole remaining team. Steer the town's suspicion toward quiet unclaimed players, and consider spending the Katana on the likeliest Arsonist rather than one more villager.",
+   "tip": "If an Arsonist may be alive (e.g. an archive lists one), hunt it as well as the Village. A doused Yakuza is told an Arsonist doused them. Report it in night chat at once: it proves a live Arsonist and means the next ignite will hit you. Good players are never told, so you can't see the douses on villagers, and one ignite can kill your whole remaining team. Never say in public that you were doused: only a non-Good player can know it. Steer the town's suspicion toward quiet unclaimed players, and consider spending the Katana (or a Ritualist guess of 'Arsonist') on the likeliest Arsonist rather than one more villager.",
    "status": "active",
    "support": [
     {
@@ -10276,6 +10402,12 @@
     {
      "game": "game_20261010_070232_101",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "If an Arsonist may be alive (e.g. an archive lists one), hunt it as well as the Village. You can't see douses, and one ignite can kill your whole remaining team. Steer the town's suspicion toward quiet unclaimed players, and consider spending the Katana on the likeliest Arsonist rather than one more villager.",
+     "note": "Revision: Yakuza are now told when they are doused, so 'you can't see douses' only holds for douses on villagers."
     }
    ]
   },
@@ -10438,7 +10570,7 @@
   {
    "id": "t211",
    "audience": "Everyone",
-   "tip": "Before each vote, re-read your own private vote reminder and make sure your ballot matches the stance you just posted; say 'as of now' if you might change it. Ballots are secret, but announced totals are compared with stated votes. A stated Innocent that the totals show was Guilty puts everyone on that side under suspicion, and the town can hang a good player over it. If you slip, correct it publicly before the next nomination.",
+   "tip": "Before each vote, re-read your own private vote reminder and make sure your ballot matches the stance you just posted; say 'as of now' if you might change it. Ballots are secret, but announced totals are compared with stated votes. A stated Innocent that the totals show was Guilty puts everyone on that side under suspicion, and the town can hang a good player over it. If you slip, correct it publicly before the next nomination. A Fixer can flip your trial votes without telling you (your reminder still shows what you cast). If the totals don't fit your own honest vote, say so at once as a possible fix.",
    "status": "active",
    "support": [
     {
@@ -10457,13 +10589,19 @@
     {
      "game": "game_20261010_080036_102",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Before each vote, re-read your own private vote reminder and make sure your ballot matches the stance you just posted; say 'as of now' if you might change it. Ballots are secret, but announced totals are compared with stated votes. A stated Innocent that the totals show was Guilty puts everyone on that side under suspicion, and the town can hang a good player over it. If you slip, correct it publicly before the next nomination.",
+     "note": "Revision: added the Fixer, which can flip a player's trial votes without their knowledge."
     }
    ]
   },
   {
    "id": "t212",
    "audience": "Fortune Teller",
-   "tip": "Post your two raw totals, labeled by night, in your first speech each Day from Day 2; don't hold them back. Keep your result and your deductions visibly separate: 'N2 totals: 4 and 4' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
+   "tip": "Post both labeled numbers (players visited, players who visited), with the night, in your first speech each Day from Day 2; don't hold them back. Keep your result and your deductions visibly separate: 'N2: 4 visited, 4 visitors' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
    "status": "active",
    "support": [
     {
@@ -10497,6 +10635,12 @@
     {
      "game": "game_20261010_080036_102",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Post your two raw totals, labeled by night, in your first speech each Day from Day 2; don't hold them back. Keep your result and your deductions visibly separate: 'N2 totals: 4 and 4' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
+     "note": "Revision: FT numbers are now labeled (visited vs visitors), and the example is updated to match."
     }
    ]
   },
@@ -10650,7 +10794,7 @@
   {
    "id": "t218",
    "audience": "Everyone",
-   "tip": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite and the Cartographer's map. No Lookout, Tracker, Fortune Teller, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers and Cartographers as the visit threats, and the Oracle as an exact-role threat.",
+   "tip": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
    "status": "active",
    "support": [
     {
@@ -10664,6 +10808,12 @@
     {
      "game": "game_20261010_080041_102",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite and the Cartographer's map. No Lookout, Tracker, Fortune Teller, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers and Cartographers as the visit threats, and the Oracle as an exact-role threat.",
+     "note": "Revision: added the Coroner's Astral exam, the revenge attacks and the new Insomniac to the lists."
     }
    ]
   },
@@ -10815,7 +10965,7 @@
   {
    "id": "t224",
    "audience": "Yakuza",
-   "tip": "Use the Night 1 Katana attack. In a large town with many unclaimed investigators, a skipped kill lets every power role reach Day 2, claim and cross-check results. That shared picture corners your team fast. Kill a likely investigator or organizer on N1 unless there's a concrete reason to wait (e.g. several investigators are certain to land on your holder).",
+   "tip": "Use the Night 1 Katana attack. There is no Day 1, so nobody has spoken and the target is near-blind: pick any non-teammate rather than skip. In a large town with many unclaimed investigators, a skipped kill lets every power role reach Day 2, claim and cross-check results. That shared picture corners your team fast. Skip only for a concrete reason.",
    "status": "active",
    "support": [
     {
@@ -10839,6 +10989,12 @@
     {
      "game": "game_20261010_080051_104",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Use the Night 1 Katana attack. In a large town with many unclaimed investigators, a skipped kill lets every power role reach Day 2, claim and cross-check results. That shared picture corners your team fast. Kill a likely investigator or organizer on N1 unless there's a concrete reason to wait (e.g. several investigators are certain to land on your holder).",
+     "note": "Revision: with no Day 1 there is no 'likely investigator or organizer' to read before N1. The advice to use the kill stands."
     }
    ]
   },
@@ -11176,7 +11332,7 @@
   {
    "id": "t239",
    "audience": "Village",
-   "tip": "Under secret ballots, stated votes alone prove nothing: Evil players can announce Innocent and vote Guilty, or split their stated votes to look independent. At small counts, though, the totals can catch the liar. If 3 of 4 voted Guilty and the nominee surely voted Innocent, everyone else who said Innocent lied. Do this arithmetic after every small trial, publicly name who must have lied, and make that player the next hang.",
+   "tip": "Under secret ballots, stated votes alone prove nothing: Evil players can announce Innocent and vote Guilty, or split their stated votes to look independent. At small counts, though, the totals can catch a liar. If 3 of 4 voted Guilty and the nominee surely voted Innocent, everyone else who said Innocent either lied or had their vote changed. Do this arithmetic after every small trial and publicly name whose stated vote the totals contradict. Before hanging, check for manipulation. A Fixer flips one player's trial votes without telling them, and a Ballot Stuffer adds a vote (compare the total with the voter count). Nomination Yes counts can't be altered by either, so they are the cleaner check, and an Auditor sees the vote as counted. If no manipulation fits better, make that player the next hang.",
    "status": "active",
    "support": [
     {
@@ -11195,6 +11351,12 @@
     {
      "game": "game_20261010_102519_201",
      "change": "added"
+    },
+    {
+     "game": "revision 20261010_232528",
+     "change": "edited",
+     "old": "Under secret ballots, stated votes alone prove nothing: Evil players can announce Innocent and vote Guilty, or split their stated votes to look independent. At small counts, though, the totals can catch the liar. If 3 of 4 voted Guilty and the nominee surely voted Innocent, everyone else who said Innocent lied. Do this arithmetic after every small trial, publicly name who must have lied, and make that player the next hang.",
+     "note": "Revision: the Fixer can now make an honest player's trial vote count the other way, so totals arithmetic needs a manipulation check before it hangs anyone."
     }
    ]
   },
@@ -11383,6 +11545,48 @@
    "history": [
     {
      "game": "revision 20261010_215721",
+     "change": "added"
+    }
+   ],
+   "pinned": true
+  },
+  {
+   "id": "t249",
+   "audience": "Everyone",
+   "tip": "Vote totals can be changed on purpose. A Ballot Stuffer's trial vote counts twice, so the total exceeds the voters. A Fixer secretly flips one player's Guilty/Innocent votes for a Day: the total stays the same, the player isn't told, and their reminder shows what they cast. So a trial total that contradicts honest stated votes may be a fix, not a lie. An Auditor (Village) and the Yakuza's Informant see fixed votes as counted. Neither role touches nomination (Yes/No) votes, so a Yes count that contradicts stated votes is the cleanest evidence of a hidden liar. When a trial total doesn't fit, list the fix and stuffer accounts before accusing. Auditor: audit a player whose votes decided a close trial or who defended a suspect. Post night, target and the full record, and read a trial-vote mismatch as 'lied or fixed' but a Yes/No mismatch as a lie.",
+   "status": "active",
+   "support": [
+    {
+     "game": "revision 20261010_232528",
+     "weight": 0.0,
+     "note": "From a revision, not a game. It covers the new Fixer, Auditor and Informant roles, which change how vote-total arithmetic in t5, t34, t48 and t239 must be read."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "revision 20261010_232528",
+     "change": "added"
+    }
+   ],
+   "pinned": true
+  },
+  {
+   "id": "t250",
+   "audience": "Coroner",
+   "tip": "Examine bodies whose role would settle a live question: one side of a duplicate claim, a hanged suspect (did the hang hit a Yakuza?), a victim whose will may be forged, or a dead claimant whose results the town relies on. Post night, target and exact role the next Day in one message, and keep the log in your will. A body shown 'cleaned by mortician' gives nothing, so don't spend a token on it; the clean notice already proves a Mortician exists. Your exam is Astral, so no visit log can confirm it, and your report is your word until it fits other evidence. A confirmed Coroner is a prime Ritualist and Katana target, so post before you are likely to die. A Roleplayer shows as Roleplayer.",
+   "status": "active",
+   "support": [
+    {
+     "game": "revision 20261010_232528",
+     "weight": 0.0,
+     "note": "From a revision, not a game. The new Coroner is the main way a dead player's role becomes known now that death hides roles, so it needs targeting and posting guidance."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "revision 20261010_232528",
      "change": "added"
     }
    ],
