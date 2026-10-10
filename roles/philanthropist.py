@@ -14,6 +14,7 @@ if TYPE_CHECKING:
 class Philanthropist(RoleLogic):
     night_note = ("A Philanthropist who spent a token (and wasn't role-blocked): use the give_token op, which spends "
                   "it; code hands the recipient a token and tells them. Tell the Philanthropist nothing about it.")
+    code_tells_user = True
     ops = {"give_token": ({"player", "by"}, set(), "{op:'give_token', player, by}: the Philanthropist `by` hands "
                                                    "player a token of their role's kind (spends a token)")}
 

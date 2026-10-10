@@ -227,3 +227,17 @@ def test_a_token_count_below_zero_is_reset_and_warned(game_factory):
         {"op": "set_tokens", "player": "Alice", "token": "prosecutor", "value": 0},
         {"op": "prosecute", "player": "Carol", "by": "Alice"}]})
     assert game.player("Alice").tokens["prosecutor"] == 0 and "below 0" in out["notes"][0]
+
+
+def test_a_night_tell_to_a_player_whose_result_code_delivers_is_held_once(game_factory):
+    game, players = game_factory(["Philanthropist", "Medic", "Vanilla Villager", "Grunt"])
+    game.phase = "night"
+    game.night_actions[game.day] = {"Alice": {"act": True, "target": "Bob"}, "Bob": {"act": True, "target": "Carol"}}
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    told = lambda name: [e.text for e in game.events if e.visible_to is not None and name in e.visible_to]  # noqa: E731
+    out = mod.dispatch("tell", {"to": ["Alice"], "text": "You handed Bob a token."})
+    assert out["ok"] is False and "code already gives Alice" in out["note"] and not told("Alice")
+    mod.dispatch("tell", {"to": ["Alice"], "text": "You were attacked but survived."})  # resent: goes through
+    assert told("Alice") == ["Moderator (private): You were attacked but survived."]
+    assert mod.dispatch("tell", {"to": ["Bob"], "text": "Done."})["ok"]  # a Medic's result comes from the moderator
+    assert game.log.error_counts == {}

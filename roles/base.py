@@ -42,6 +42,10 @@ class RoleLogic:
     # Reminder for the moderator's night resolution, for effects with no submitted action or that
     # need a special op. Included when anyone in the game has (or had) the role.
     night_note: str = ""
+    # Code gives this role's user the result of their night action (or, by the rules, nothing), so a
+    # moderator tell() to them on a night they acted is held once with a note (the moderator resends it
+    # if it's about something else, e.g. an attack). Night checks caught redundant and leaking tells.
+    code_tells_user: bool = False
     # Extra apply_changes ops for the moderator, offered only when someone in the game has the role:
     # op -> (required fields, optional fields, description shown in the tool). apply_op carries them out.
     ops: dict[str, tuple[set[str], set[str], str]] = {}

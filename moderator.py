@@ -99,6 +99,8 @@ class Moderator:
         self.flags: list[str] = []
         self.ops = dict(CORE_OPS)
         self.op_roles: dict[str, RoleLogic] = {}  # role op -> the role that carries it out
+        self.code_told: set[str] = set()  # players whose night result code delivers (RoleLogic.code_tells_user)
+        self.tells_held: set[str] = set()  # ... whose tell() was held once this phase
         docs = []
         for role in sorted({p.role for p in game.players}):
             for op, (required, optional, doc) in logic(role).ops.items():
@@ -112,6 +114,7 @@ class Moderator:
         """Runs the moderator until it ends the phase. Returns what it did: each tool call, its
         arguments and result, in order (for the night check)."""
         transcript: list[dict] = []
+        self.code_told, self.tells_held = set(), set()
         messages = [
             rules_system(self.rules, "You are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
@@ -214,6 +217,8 @@ class Moderator:
                 for c in changes:
                     if c["op"] in self.op_roles:
                         self.op_roles[c["op"]].apply_op(g, c)
+                        if self.op_roles[c["op"]].code_tells_user:
+                            self.code_told.add(c["by"])
                         continue
                     p = g.player(c["player"])  # every core op names a player
                     match c["op"]:
@@ -258,6 +263,11 @@ class Moderator:
                 else:
                     for n in to:
                         g.player(n)  # validate names
+                    if held := self.held_tell(to):
+                        return {"ok": False, "note": f"Not sent: code already gives {', '.join(held)} the result of "
+                                "their action tonight (or, by the rules, nothing), so don't tell them about it. If "
+                                "this message is about something else, such as an attack or a role-block, send it "
+                                "again and it will go through."}
                     g.tell(to, args["text"])
                 return {"ok": True}
             case "ask_player":
@@ -275,6 +285,19 @@ class Moderator:
                 g.log.write("moderator_flag", day=g.day, phase=g.phase, issue=args["issue"])
                 return {"ok": True, "note": "Thanks; carry on."}
         raise ValueError(f"unknown tool {name!r}")
+
+    def held_tell(self, to: list[str]) -> list[str]:
+        """Recipients of a night tell() whose result code delivers, the first time each is told this phase."""
+        g = self.game
+        if g.phase != "night":
+            return []
+        acted = g.night_actions.get(g.day, {})
+        held = [n for n in to if n not in self.tells_held and logic(g.player(n).role).code_tells_user
+                and (n in self.code_told or acted.get(n, {}).get("act"))]
+        if held:
+            self.tells_held.update(held)
+            g.log.write("tell_held", day=g.day, players=held)
+        return held
 
     def check_changes(self, changes: Any) -> tuple[list[dict], list[str]]:
         """Raises ValueError, before anything is applied, if any op is malformed. Returns the changes

@@ -24,6 +24,7 @@ class Surveyor(RoleLogic):
     roleplayer_can_fake = False  # code draws the result
     night_note = ("A Surveyor who spent a token (and wasn't role-blocked): use the survey op, which spends the token; "
                   "code tells them the result and tokens left (don't tell() them). It is a visit to the target only.")
+    code_tells_user = True
     ops = {"survey": ({"player", "by"}, set(), "{op:'survey', player, by}: the Surveyor `by` surveys player (spends a "
                                                "token; code picks the group and tells them one random role in it)")}
 

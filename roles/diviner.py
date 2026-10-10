@@ -18,6 +18,7 @@ class Diviner(RoleLogic):
     night_note = ("A Diviner (not role-blocked) who picked a Yakuza: that player has Strong Defense tonight, and the "
                   "Diviner gets no result. One who picked anyone else: use the divine op; code draws the role and "
                   "tells them. It is a visit to the target only.")
+    code_tells_user = True
     ops = {"divine": ({"player", "by"}, set(), "{op:'divine', player, by}: the Diviner `by` divines a non-Yakuza "
                                                "player (code picks the group and tells them one role drawn from it)")}
 
