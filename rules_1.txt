@@ -284,8 +284,8 @@ Profiler
   Tokens: 3 profile tokens.
   Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one
   of which is that player's true role. The other two are drawn at random from the roles of the other players alive at
-  the start of the night (including players who die that night, but not yourself), or from all roles if too few
-  are in play. At least
+  the start of the night (including players who die that night, but not yourself), or from all roles in these rules
+  if too few are in play, so a listed role is not proof that anyone in the game has it. At least
   one of the three is a Good role and at least one is not Good (Evil or Neutral), so a result never settles the
   player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19): a
   Roleplayer shows as Roleplayer.
