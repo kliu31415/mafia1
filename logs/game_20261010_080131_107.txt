@@ -68,3 +68,156 @@ The nomination of Judy failed (2 Yes).
 Dave (public): Dave again. Judy has said she would vote Guilty on herself and voted Yes on herself, which is an odd pair of votes. A trial is the only real test of that, and I'll vote on her case, not on her speeches.
 Frank (public): still no contradiction. Judy's offers and her Yes on herself are odd, but Dave's nomination was also a guess. I'll wait for night results or a real claim before voting.
 Ivan (public): Judy's Yes on herself and Dave's nomination still lack a concrete contradiction. I'll vote on night results and real claims, not on offers.
+Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Grace, Heidi, Ivan) Grace (Yakuza chat): Night 1 plan: no Katana attack tonight, since a Standard kill on a Day 1 player would only be noise. Katana stays with Grace. My Diviner check goes on Dave, who nominated Judy and reads as a likely Village target. Heidi, keep the Clerk rig for a later Day when a teammate can't be the nominee. Ivan, skip visiting anyone tonight so the Fabricator frame stays for a Sheriff or Seer read. Ready unless someone objects.
+(to Grace, Heidi, Ivan) Heidi (Yakuza chat): Heidi agrees. No Katana attack tonight, Katana stays with Grace, and Ivan skips visits so the frame is saved. I keep my clerk token for a decisive rigged Day. Grace's Diviner check on Dave is fine. Ready.
+(to Grace, Heidi, Ivan) Ivan (Yakuza chat): Ivan agrees: no Katana attack tonight, Katana stays with Grace, and I skip visits so the frame is saved. Grace's Diviner check on Dave is fine. Heidi keeps the clerk token for a decisive Day. I keep my fabricator token. Ready.
+[ERROR api_retry] a anthropic/claude-haiku-5.5 request failed (attempt 1), retrying: URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>
+Night actions:
+  Bob (Lookout): target Judy
+  Carol (Oracle): target Judy; guessed role Jester; "Oracle guess: Judy is Jester"
+  Grace (Diviner): target Dave; Katana vote: Grace holds, attacks None
+  Heidi (Clerk): no role action; Katana vote: Grace holds, attacks None
+  Ivan (Fabricator): no role action; Katana vote: Grace holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Grace) Moderator (private): You divined Dave; the group was Carol, Dave and Erin. The role drawn is Executioner (60% chance it is Dave's, otherwise one of the others').
+(to Bob) Moderator (private): Night 1 result: You watched Judy. Nobody else visited her tonight.
+(to Carol) Moderator (private): Night 1 result: You guessed that Judy is a Jester. You were right.
+(to Mallory) Moderator (private): Fortune Teller result for Night 1 (in no particular order): 2 and 2.
+(to Heidi, Ivan) Moderator (private): Yakuza night summary (Night 1): Grace chose to divine Dave. Heidi chose no action. Ivan chose no action. Grace keeps the Katana, and there was no Katana attack.
+(to Grace) Moderator (private): Yakuza night summary (Night 1): Heidi chose no action. Ivan chose no action. You keep the Katana, and there was no Katana attack.
+[Moderator summary] Night 1: Yakuza agreed to keep the Katana with Grace and not attack. Grace (Diviner) divined Dave (divine op; code tells Grace the result). Bob (Lookout) watched Judy: no other visitors. Carol (Oracle) guessed Judy = Jester: correct (Astral Visit). Heidi and Ivan took no action; no tokens spent. Visits: Bob->Judy, Grace->Dave. Fortune Teller Mallory told 2 and 2. No deaths, no role-blocks.
+(to Alice) Moderator (private): Tonight Carol, Grace and Judy were each in a different visit group.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Bob (public): Bob here, still no claim. Nobody died last night, so the Yakuza may be waiting for us to get comfortable. Judy's two failed nominations give us no new evidence. Before Day 2 ends, I want each of you to name one concrete reason for your Day 1 vote, not just a general stance.
+Carol (public): Carol again. My Day 1 reasons: I voted No on Dave's nomination of Judy because Judy's offer is not a contradiction, and No on Judy's own nomination because nobody had evidence. Judy's Yes on herself is the one odd vote, but a self-nomination alone isn't a reason to hang anyone. I'll wait for a concrete claim, vote pattern or result before I vote Guilty.
+Dave (public): Dave here. Nobody died on Night 1, so we have no results yet. If anyone has a Night 1 result, post it now so we can check claims against each other before anyone votes.
+Erin (public): Erin again. Nobody has a new result, and Judy's and Dave's Day 1 votes still lack a contradiction. Anyone with a real Night 1 result or claim should post it, and I'll vote on evidence, not on speeches.
+Frank (public): Frank here. Nobody died on Night 1, so the quiet could be a Yakuza hold or a Katana that didn't move. Anyone with a Night 1 result, post it now and I'll check it against others' claims before any vote.
+Grace (public): Grace here. I have no new information to post today, so I won't nominate on the current evidence. Anyone with a real Night 1 role result should post it with names, and I'll check it against others' claims before any vote.
+Heidi (public): Heidi here. I have no new result and won't nominate on the current evidence. Anyone with a real claim or Night 1 result, post it with names and I'll check it against the others.
+Ivan (public): Ivan again: no new information. The only votes on record are Dave's nomination and Judy's self-Yes, and neither is a contradiction. I'll vote on real claims or results when they come.
+[Claim] Judy: Sheriff. N1: Ivan Evil.
+Judy (public): Judy here. I'm claiming Sheriff. N1: Ivan Evil. Ivan said Vanilla Villager on Day 1, so one of us is lying. Ivan, explain your claim against mine. Everyone else: a direct claim conflict is the concrete contradiction you have been asking for, so vote on it when it comes up.
+Mallory (public): Mallory here. Judy's Sheriff claim (N1: Ivan Evil) directly conflicts with Ivan's Vanilla claim, so one of them is lying. Ivan, answer Judy's result directly. Judy, name your other Night 1 checks, if any, and say why Ivan was your only target. I'll hold my own information until the claims settle.
+Alice (public): Alice here. Judy's Sheriff claim (N1: Ivan Evil) and Ivan's Vanilla claim conflict, so one of them is lying. Ivan, answer Judy's result directly. Judy, did you check Ivan with your Sheriff action, and did you visit him? I'm holding my own Night 1 information until the claims settle.
+Bob (public): Bob again. Judy, Sheriff checks need no visit to the target, so explain how you learned Ivan was Evil and who you visited on N1. Ivan, what did you do on N1? I hold a Night 1 result that bears on Judy's claim and will post it if the conflict stays open. No nomination yet.
+[Claim] Carol: Oracle. N1: Judy is Jester (correct).
+Carol (public): Carol here. I'm claiming Oracle. On Night 1 I guessed Judy is Jester, and the result was right. So Judy's Sheriff claim (N1: Ivan Evil) is false, and that Evil read is not evidence against Ivan. Nobody should nominate or vote Guilty on Judy, because a hanged Jester wins. Ivan, what did you do on N1? Bob, post your held result now.
+Dave (public): Dave here. Carol's Oracle result (Judy is Jester) and Judy's Sheriff result (Ivan Evil) can't both be true. Carol, why did you guess Judy on N1, and who did you visit? Judy, who did you visit on N1 with your Sheriff check? Nobody should vote until one claim is backed by a visit or a second result.
+Erin (public): Erin again. Two claims conflict: Judy's Sheriff (N1: Ivan Evil) and Carol's Oracle (N1: Judy is Jester). Judy and Carol, name each of your Night 1 targets and what you visited. Bob, post your held result now. I won't vote on conflicting claims alone.
+Frank (public): Frank again. Carol's Oracle result (Judy is Jester) fits Judy's behaviour: she asked twice to be hanged and voted Yes on herself. Judy's Sheriff claim (Ivan Evil) conflicts with Ivan's Vanilla claim, so one of them is lying. Carol, what was your Night 1 target, and did you visit Judy? Judy, who did you check and visit? Bob, post your held result now. Nobody votes until these are answered.
+Grace (public): Grace here. Two claims conflict: Judy's Sheriff check (Ivan Evil) and Carol's Oracle guess (Judy Jester). I won't vote on a claim pair alone. Carol, what was your N1 target, and did you visit Judy? Judy, whom did you investigate on N1, and did you visit anyone else? Until both answer, I'm not nominating.
+Heidi (public): Heidi here. Judy's Sheriff claim (N1: Ivan Evil) and Carol's Oracle claim (N1: Judy Jester) conflict. Carol, which target and visit gave you Judy? Judy, did you visit Ivan with your check? Bob, please post your held result. I won't vote on a claim pair until someone answers with a visit or a second result.
+Ivan (public): Ivan here, Vanilla Villager, and I am not Evil. Judy's Sheriff claim names me Evil, and Carol's Oracle claim says Judy is Jester, so at least one of them is false. Judy has asked for a hanging twice and said she would vote Guilty on herself. That fits a Jester who wants a Village player hanged on a false Evil read. Judy, which night did you check me, and whom did you visit? Carol, what did you visit on N1 to learn that Judy is Jester? Bob, please post your held result.
+Judy (public): Judy again. Carol's Oracle claim names me as Jester, and I can't disprove a claim about my own role. Ivan's Vanilla claim and my Sheriff check still conflict, and that conflict is the open question. Carol, what made you guess me in particular on Night 1, and who did you visit to get that result?
+Mallory (public): Mallory again. Judy's Sheriff check (N1: Ivan Evil) and Carol's Oracle guess (N1: Judy Jester) conflict, and neither has shown a visit yet. Judy, a Sheriff check is a visit, so say who you visited on N1 and whether Ivan was one of them. Carol, Oracle guesses are astral, so say what you can show beyond the result. Bob, please post your held result. No nominations until these answers come in.
+Alice (public): Alice here. I hold a Night 1 result that bears on the visit questions. Judy, your Sheriff check on Ivan needs a visit to Ivan, so say who you visited on N1. Carol, Oracle guesses are astral, so a visit answer isn't needed from you. No nominations until the visit answers come in.
+[Claim] Bob: Lookout. N1: watched Judy, no visitors besides me.
+Bob (public): Bob here, claiming Lookout. On N1 I watched Judy and nobody else visited her. Judy's Sheriff check on Ivan would be a visit to Ivan, not to her, so my result neither proves nor disproves her claim. I'll watch Judy again on N2 and post whoever visits her. No nominations from me yet.
+Carol (public): Carol again. My Oracle result is an exact-role check, so Judy is Jester. That makes Judy's Sheriff claim and her Ivan Evil read false. Nobody should nominate or vote Guilty on Judy, because a hanged Jester wins. Bob, keep watching Judy on N2 and post any visitors you see.
+Dave (public): Dave again. Judy's Sheriff claim (Ivan Evil) and Carol's Oracle claim (Judy Jester) still conflict, and neither has shown a visit. Judy has twice asked for a trial and said she would vote Guilty on herself. I'm nominating Judy again. Vote on her case and her answers, not on speeches.
+Dave nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Dave, Grace, Ivan, Judy; No - Erin, Frank, Heidi, Mallory, Alice, Bob, Carol.
+The nomination of Judy failed (4 Yes).
+Erin (public): Erin here. Alice, you said you hold a Night 1 result that bears on the visit questions, so post it now. Judy, a Sheriff check on Ivan is a visit to Ivan, so yes or no: did you check Ivan on N1? Carol, Oracle is astral, so give your result and say why you picked Judy. Bob's Lookout watch shows no visitor to Judy, which fits both claims, so it doesn't settle the conflict yet.
+Frank (public): Frank again. Dave's repeat nomination of Judy failed with 4 Yes, and Ivan and Grace joined it without a new reason. Ivan, why does Judy's Sheriff claim make you vote Yes on her now? Judy, yes or no: did you check Ivan on N1, and whom did you visit? Alice, post your Night 1 result now.
+Grace (public): Grace here. Judy's Sheriff claim (Ivan Evil) and Carol's Oracle claim (Judy Jester) conflict, and neither is verified. Dave has nominated Judy three times, the last one after Carol said Judy is Jester. Dave, why push a hang that would win the game for a Jester? Judy, did you visit Ivan on N1? I'm not nominating yet.
+Heidi (public): Heidi here. Judy's Sheriff claim and Carol's Oracle claim still conflict, and a fourth nomination of Judy adds no new evidence. I want Alice's held result and Bob's N2 watch before any vote. Judy and Carol, saying who you visited on N1 would settle more than repeated claims.
+Ivan (public): Ivan again. I'm still Vanilla, and Judy's Sheriff read names me Evil, so the two claims conflict. Judy, did you visit Ivan on N1? Carol, what did you visit to learn Judy is Jester? Alice, post your held result, since it bears on the visit questions. No nomination from me yet.
+Judy (public): Judy again. My Sheriff result (Ivan Evil) and Ivan's Vanilla claim conflict, and more questions won't settle it. Carol's Oracle guess doesn't settle it either. One of the two claims is false, and a trial is the only test that can show which. If I'm the liar, a Guilty vote costs the village nothing, since I'd vote Guilty on myself anyway. Those voting No should say which claim they believe.
+[Claim] Mallory: Fortune Teller. N1 result: 2 visited, 2 visitors (no names).
+Mallory (public): Mallory here. I'm claiming Fortune Teller. My Night 1 result is only numbers: 2 players visited and 2 players visited someone, with no names. Test it: Bob's Lookout watch (Bob visited Judy) plus Judy's Sheriff check on Ivan (Judy visited Ivan) gives visited Judy and Ivan, visitors Bob and Judy, which is exactly 2 and 2. So the numbers fit Judy visiting Ivan, unless another pair of visits explains them. Alice, you said you hold a Night 1 result on the visit questions. Post it and we can check it against these numbers. No nomination from me yet.
+[Claim] Alice: Scout. N1: Carol, Grace and Judy were each in a different visit group, so none of them visited another of the three.
+Alice (public): Alice here. I'm claiming Scout. N1: Carol, Grace and Judy were each in a different visit group, so none of the three visited another of them. That doesn't clear anyone, but it fits Bob's Lookout (only Bob visited Judy) and Mallory's numbers if Judy visited Ivan and Bob visited Judy. Scout results are group-based, so I'll post group sizes as they come. No nomination from me.
+Bob (public): Bob here, no new result. My N1 watch on Judy shows only my own visit, so it neither confirms nor refutes either claim. Dave, you have nominated Judy three times, the last right after Carol's Oracle claim that Judy is Jester. What new evidence do you have? I won't nominate on claims alone.
+Carol (public): Carol again. My Oracle result is that Judy is Jester, so her Sheriff claim (Ivan Evil) is false. Hanging her wins the game for her, so I won't vote Guilty on her. Dave, why keep nominating her? Mallory and Alice, say which visit pairs your numbers and groups need. Bob, post any N2 visitors to Judy.
+Dave (public): Dave here. Judy's Sheriff claim (Ivan Evil) and Carol's Oracle claim (Judy Jester) can't both be true, and neither has a visit behind it yet. Carol, why did you pick Judy on N1, and who did you visit? Judy, did you check Ivan on N1, yes or no?
+Erin (public): Erin again. Mallory's numbers and Bob's watch both fit Judy visiting Ivan, so they don't disprove her Sheriff claim. Carol, Oracle is astral, so state your Night 1 target and whether you had any reason beyond the guess. Alice, post your held result. No nomination from me until the visit answers come in.
+Frank (public): Frank again. Mallory's numbers, Bob's watch and Alice's Scout groups all fit Judy visiting Ivan, but none of them proves it. Judy, Mallory and Alice, name the exact visit pairs your claims need. I won't vote Guilty until that's answered.
+Grace (public): Grace here. Carol, your Oracle claim (Judy is Jester) conflicts with Judy's Sheriff claim, and Oracle is astral, so nobody can check your guess. Judy, a Sheriff check on Ivan needs a visit to Ivan, so say whether you visited him on N1. I won't nominate until someone answers with a visit or a second result.
+Heidi (public): Heidi here. Carol, your Oracle claim (Judy is Jester) is untestable, and it conflicts with Judy's Sheriff check on Ivan. Ivan's Vanilla claim conflicts with that check too, so one of the three is lying. Carol, what made you pick Judy on N1, and did you visit anyone to get that result?
+Ivan (public): Ivan again. Carol, Oracle is astral, so 'I guessed Judy' gives us no reason. Why Judy, and did you visit anyone to get that result? Judy, you say you checked me on N1, so did you visit me? Until someone shows a visit, I won't vote on claims.
+Judy (public): Judy here. Carol's Oracle result and my Sheriff result conflict, and only a trial can settle it. If Carol is right, hanging me removes a liar. If I'm lying as Sheriff, a Guilty vote costs the village nothing. Nominate me again and vote on this case, not on speeches.
+Mallory (public): Mallory here, with a constraint from my numbers. Two visited and two visitors means exactly one player besides Bob visited anyone on N1, if Bob's watch is right. Judy's Sheriff check on Ivan needs Judy to be that visitor. If Judy is Jester, as Carol says, the lone visitor is someone else. Judy, did you visit Ivan? Whoever visited anyone on N1, say so.
+Alice (public): Alice again. My N1 Scout result stands: Carol, Grace and Judy were in three different visit groups, so none of them visited another of the three. That rules out Judy visiting Carol or Grace, but allows Judy visiting Ivan, as her Sheriff claim says. Mallory's numbers and Bob's watch fit the same picture. I won't vote until the N2 Scout results come in.
+Carol (public): Carol again. Oracle is an exact-role check, so Judy is Jester. Her Sheriff claim that Ivan is Evil is a Jester's lie, and Ivan's Evil read is false. Nobody should vote Guilty on Judy, because a hanged Jester wins. Dave, Grace and Ivan, what new evidence did you have for your Day 2 Yes on Judy?
+Dave (public): Carol, you've twice told us not to vote Judy, while her Sheriff and your Oracle claims clash. Who will test it at a trial with me?
+Erin (public): Erin again. Carol, your Oracle claim can't be checked, and Dave's Day 2 nomination of Judy came right after it. Dave, you asked Carol why she picked Judy, so answer the same for yourself: what evidence beyond Carol's claim supports the nomination? I still want Alice's held result and Bob's N2 watch before any vote.
+(to Alice, Frank) Frank -> Alice (private): Alice, what is your held Night 1 result? Send it to me privately if you don't want it public yet.
+Grace (public): Grace again. Judy's Sheriff claim gives a concrete check (Ivan Evil) that a visit can test, while Carol's Oracle guess can't be checked at all. I'd rather test Judy at trial than leave this open. Judy, did you visit Ivan on N1? Answer that and I'll vote on your case.
+Heidi (public): Carol's Oracle guess can't be tested, and Judy's Sheriff read may rest on a real visit. Judy and Alice, answer the visit questions before any vote; I won't nominate.
+Ivan (public): Ivan again. Carol's Oracle guess can't be checked, and its only effect is to block a test of Judy's Sheriff claim. Judy has named me Evil and I say she is lying. An untestable Jester read shouldn't shield her from a trial, so I'll vote Guilty on Judy's case.
+Judy (public): Judy again. Carol's Oracle guess can't be checked, but my Sheriff claim names a concrete visit and a trial can test it. I still say I'd vote Guilty on my own case, so vote on the claims, not on my speeches.
+Mallory (public): Mallory again: I'm not nominating yet. I'll vote on Judy only after she answers whether she visited Ivan on N1, and after Bob posts his N2 watch.
+Alice (public): Alice again: I have no new result before tonight's Scout groups, so I won't nominate. Dave, Judy has been nominated three times with no new evidence. Wait for Bob's N2 watch and Judy's answer on whether she visited Ivan before any more nominations.
+Bob (public): Bob again, no nomination. Judy, a Sheriff check on Ivan needs a visit to Ivan, so answer whether you visited him on N1. Dave and Grace, your Day 2 Yes votes on Judy rest on Carol's untestable Oracle claim, so name a reason beyond that. My N2 watch on Judy stands, and I'll post any visitors I see.
+Dave (public): Carol, why block a trial? Test Judy's Sheriff claim.
+Erin (public): I'm still not nominating or voting Guilty. Judy, answer whether you visited Ivan on N1. Alice, post your held result. Dave, I'm not blocking a trial; I want the visit answer first.
+Ivan (public): no nomination from me. Judy, did you visit me on N1? Carol, why Judy? Alice, post your result.
+(to Ivan, Judy) Judy -> Ivan (private): Ivan, vote Yes on my case. Carol's Oracle can't be tested, but my Sheriff claim names a visit to you, so a trial can check it.
+Judy nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Judy, Dave, Grace; No - Mallory, Alice, Bob, Carol, Erin, Frank, Heidi, Ivan.
+The nomination of Judy failed (3 Yes).
+(to Dave, Grace) Dave -> Grace (private): Grace, Dave here. Carol's Oracle claim can't be checked, but Judy's Sheriff claim names a visit we can test at trial. Would you vote Guilty on Judy's case with me? Keep this private for now.
+(to Dave, Grace) Grace -> Dave (private): Dave, not yet. Mallory's 2/2 numbers fit my visit to Dave and Bob's visit to Judy with Judy visiting no one, which contradicts Judy's Ivan check. I want that settled before any Guilty vote.
+Judy (public): Nominate me and vote on my Sheriff claim, not speeches.
+Bob (public): no nomination or vote this round. My Lookout watch on Judy runs again tonight, and I'll post any visitors at the start of Day 3. If Carol's Oracle claim is right, hanging Judy wins the game for a Jester, so I want that night result before any Guilty vote.
+Carol (public): Carol here. Judy is a confirmed Jester by my Oracle result, so nobody should vote Guilty on her. Dave, name new evidence or stop nominating her.
+Dave (public): Carol: an untestable Oracle guess shouldn't shield Judy's checkable claim.
+Erin (public): Judy, did you visit Ivan on N1, yes or no? Carol, what did you visit to get your Oracle result? Alice, post your Scout result. I won't nominate or vote until these answers come in.
+Frank (public): Judy's Sheriff claim and Carol's Oracle claim can't both be tested tonight. I'll vote on Bob's N2 Lookout watch and Alice's Scout groups, not on repeated nominations.
+Grace (public): Grace here, no new information. I still want Judy's answer on whether she visited Ivan on N1, and Alice's Scout result, before any Guilty vote.
+Heidi (public): Heidi here. Carol's Oracle guess is the only untestable claim blocking Judy's checkable Sheriff read. Carol, name your N1 visit or stop blocking a vote. I'll vote on Judy's case once she answers the visit question.
+Ivan (public): Ivan again, no new result. Judy, did you visit me on N1? Carol, name the visit behind your Oracle result. I'll vote on the answers.
+(to Grace, Judy) Judy -> Grace (private): Grace, if you want my Sheriff claim tested, nominate me yourself on Day 3. I'll vote Guilty on my own case.
+[Feedback from Mallory] Unclear whether a Fortune Teller's Night 1 numbers come at the end of Night 1 or at the start of Day 2; the Day 2 start showed nothing new for me.
+Mallory (public): Mallory again. My numbers still say two visited and two visitors. With Bob's watch, that fits Judy visiting Ivan only if Judy is the second visitor. If Judy visited nobody, as Carol's Oracle claim implies, a different visitor X hit a different target Y. Judy, did you visit Ivan on N1, yes or no? Nobody should hang on claim pairs alone.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Grace, Heidi, Ivan) Grace (Yakuza chat): Grace: I propose the Katana (Standard) hits Judy tonight, holder stays Grace. Judy's Sheriff claim names Ivan Evil, which is true, so if she is a real Sheriff she checks us again next night. Carol's Oracle claim that Judy is Jester can't be tested, and a Jester killed at night doesn't win. Heidi and Ivan: vote Grace as holder and Judy as target. Heidi, keep the clerk token for a decisive rigged Day. Ivan, visit nobody so the frame stays available. My Diviner check is set; I'll post nothing publicly until Day 3. Reply with your votes, then I'll mark ready.
+(to Grace, Heidi, Ivan) Heidi (Yakuza chat): Heidi agrees: Katana holder Grace stays, target Judy. Judy's Sheriff claim names Ivan correctly, so she is a real threat to us. I'm taking no visits and keeping my clerk token for a rigged Day. Ready.
+(to Grace, Heidi, Ivan) Ivan (Yakuza chat): Ivan agrees: Katana holder Grace stays, target Judy. Judy's Sheriff claim names me Evil, so she is a real threat if her claim is true. I visit nobody tonight and keep my fabricator token. Ready.
+(to Grace, Heidi, Ivan) Grace (Yakuza chat): Grace: I agree. Katana holder stays Grace, Standard attack on Judy. Heidi and Ivan take no visits tonight. I'll post nothing publicly today beyond what the Day requires. Ready.
+(to Grace, Heidi, Ivan) Heidi (Yakuza chat): Heidi agrees: Katana holder stays Grace, Standard attack on Judy. I take no visits tonight and keep my clerk token for a rigged Day. Ready.
+(to Grace, Heidi, Ivan) Ivan (Yakuza chat): Ivan agrees: Grace stays Katana holder and the Standard attack hits Judy. I take no visits tonight and keep my fabricator token. Ready.
+Night actions:
+  Bob (Lookout): target Judy
+  Carol (Oracle): target Dave; guessed role Executioner
+  Grace (Diviner): target Carol; "Diviner: divine Carol, to test her Oracle claim by group and exact role."; Katana vote: Grace holds, attacks Judy
+  Heidi (Clerk): no role action; Katana vote: Grace holds, attacks Judy
+  Ivan (Fabricator): no role action; Katana vote: Grace holds, attacks Judy
+Katana: Grace holds it and attacks Judy.
+(to Grace) Moderator (private): You divined Carol; the group was Bob, Carol and Dave. The role drawn is Oracle (60% chance it is Carol's, otherwise one of the others').
+(to Bob) Moderator (private): Night 2 result: You watched Judy. Besides you, she was visited by Grace.
+(to Carol) Moderator (private): Night 2 result: You guessed that Dave is the Executioner. Your guess was correct.
+(to Judy) Moderator (private): Night 2: You were attacked with the Katana and you died.
+(to Grace, Heidi, Ivan) Moderator (private): Yakuza Night 2 summary: Grace holds the Katana and chose to attack Judy with it. Grace (Diviner) chose to divine Carol. Heidi chose no action. Ivan chose no action.
+(to Mallory) Moderator (private): Fortune Teller result for Night 2 (read at the start of Day 3): your two numbers are 2 and 2 (one is how many players were visited, the other how many players visited anyone; you aren't told which is which).
+(to Grace) Moderator (private): Night 2: As the Katana holder, your Katana attack on Judy succeeded.
+[Moderator summary] Night 2: Grace (Diviner, Katana holder) divined Carol (divine op used) and killed Judy (Jester, Basic defense) with the Standard Katana attack. Bob (Lookout) watched Judy and saw Grace. Carol (Oracle) correctly guessed Dave = Executioner (Astral). Heidi and Ivan took no action. Visits: Bob->Judy, Grace->Carol, Grace->Judy. FT numbers 2/2. Dave's target Judy died by Katana, so code will turn Dave into a Jester. Judy was not hanged, so no Jester revenge. Katana stays with Grace.
+(to Alice) Moderator (private): Tonight Erin, Frank and Grace were each in a different visit group.
+
+===== DAY 3 =====
+Judy died (killed by Katana). Their role isn't revealed. Their last will: "Judy's last will: I have no firm read on anyone. Trust votes and mechanical results over speeches. Dave nominated me twice without new evidence and voted Yes on my own trial, so check his reasons first. Anyone who voted No on a trial without a stated reason should explain it before the next vote."
+(to Dave) Your target died other than by hanging. You are now a Jester.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+Bob (public): Bob, Lookout. My Night 2 watch on Judy showed Grace as her only other visitor. Judy then died to the Katana, and a Katana attack is a visit by its holder, so the holder had to be Grace. That makes Grace the Katana holder and Yakuza. Grace also pushed Judy's nomination on Day 2 and PM'd Dave. I'll watch Grace on Night 3. Grace, why did you visit Judy on Night 2?
+[Claim] Carol: Oracle. N1: Judy Jester (correct). N2: Dave Executioner (correct).
+Carol (public): Carol again. My Night 2 Oracle result is exact-role: Dave is the Executioner. Judy was almost certainly Dave's target, since he nominated her three times, so her Katana death turned him into a Jester who now wins only by being hanged. That explains his push on Judy. Bob, keep watching Grace; Grace and Ivan, explain your Day 2 Yes votes on Judy.
+Dave (public): Dave here. I stand by my Judy nominations, and Carol's untestable Oracle claim has blocked every trial. I'm putting myself up for trial so the village can test me.
+Dave nominated Dave. Everyone now votes Yes/No simultaneously.
+Nomination votes on Dave: Yes - Dave; No - Erin, Frank, Grace, Heidi, Ivan, Mallory, Alice, Bob, Carol.
+The nomination of Dave failed (1 Yes).
+Erin (public): Erin here. Bob's Lookout result gives us a checkable lead: Judy's only other visitor on Night 2 was Grace, and a Katana kill needs a visiting holder, so Grace is the lead. Grace, did you visit Judy on Night 2, yes or no? If yes, why? Dave, Carol's Executioner claim can't be tested, so don't treat it as settled. I won't vote Guilty on claims alone, but an unconvincing answer from Grace would move my vote.
+Frank (public): Frank here. Bob's Lookout result is the only checkable lead we have. Grace was Judy's sole other visitor on Night 2, and Judy died to the Katana, so Grace is the lead, though Bob could be lying. Grace, answer Erin's question directly. Bob, confirm your Night 2 watch and say whether anyone else visited Judy. I won't vote Guilty on Carol's untestable claim alone.

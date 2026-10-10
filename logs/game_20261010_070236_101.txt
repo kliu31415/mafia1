@@ -335,3 +335,150 @@ Erin counterclaimed falsely; watch Erin and Bob."
 (to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana (holder vote Bob) and the target is Heidi. I have no Puppeteer action, since I have 0 tokens. No Day PMs. Ready.
 (to Alice, Bob, Ivan) Alice (Yakuza chat): Alice confirms the N4 plan: Bob holds the Katana (holder vote Bob) and the target is Heidi. I take no Fabricator visit tonight and keep my token. Bob and Ivan, submit exactly these votes so we reach two of three. Erin may protect Heidi with Standard Defense, which would block the Katana, so after the night we should check whether Heidi lives and adjust. On Day 5, avoid defending Bob's Clerk claim and avoid any PM with teammates. Ready.
 (to Alice, Bob, Ivan) Bob (Yakuza chat): Confirmed: Bob holds the Katana and Heidi is the target. No separate Clerk action; I’m saving the rig token. Ready.
+(to Alice, Bob, Ivan) Ivan (Yakuza chat): Ivan confirms the N4 plan: Bob holds the Katana (holder vote Bob) and the target is Heidi. I take no Puppeteer action, since I have 0 tokens. No PMs. For Day 5: don't defend Bob's Clerk claim beyond what's been said, and don't PM. If Heidi dies, her Surveyor claim dies with her. If she survives, Erin's protection is the likely explanation, so we should not push Erin until we see her results. Ready.
+Night actions:
+  Alice (Fabricator): no role action; Katana vote: Bob holds, attacks Heidi
+  Bob (Clerk): no role action; Katana vote: Bob holds, attacks Heidi
+  Erin (Medic): target Erin; 1 token(s)
+  Heidi (Surveyor): no action
+  Ivan (Puppeteer): no role action; Katana vote: Bob holds, attacks Heidi
+  Mallory (Arsonist): "Ignite all doused players: Alice, Bob, and Dave."
+Katana: Bob holds it and attacks Heidi.
+(to Alice) Moderator (private): You were attacked by an Arsonist tonight. You died.
+(to Bob) Moderator (private): You were attacked by an Arsonist tonight. You died. Your Katana attack on Heidi succeeded.
+(to Dave) Moderator (private): You were attacked by an Arsonist tonight. You died.
+(to Heidi) Moderator (private): You were attacked with the Katana tonight. You died.
+(to Mallory) Moderator (private): You ignited. Your attacks on Alice, Bob and Dave all succeeded.
+(to Erin) Moderator (private): You protected yourself tonight (Standard Defense), spending 1 medic token. 1 medic token left.
+(to Alice, Bob, Ivan) Moderator (private): Yakuza actions chosen tonight: Bob held the Katana and used it to attack Heidi. Alice chose no action of her own. Bob chose no action of his own. Ivan chose no action of his own.
+[Moderator summary] Night 4: Mallory (Arsonist) ignited and killed doused Alice, Bob and Dave (Strong vs None; ignite is an Astral Visit). Bob held the Katana and killed Heidi (Standard vs None); visit Bob->Heidi. Erin spent 1 medic token to protect herself (Standard), so 1 token left; self-visit. Nobody else acted. Deaths: Alice, Bob, Dave, Heidi. Code still has to: pass the Katana from Bob to Ivan, the last living Yakuza; deal Dave's Cardinal Divine Attack on a random Good player; carry out Grace's Jester revenge on a random Guilty voter; run the win check.
+[Revenge] Grace's Divine Attack hits Erin.
+(to Frank) Moderator (private): Tonight Erin, Heidi and Mallory were each in a different visit group.
+(to Ivan) The Katana passed to Ivan.
+
+===== DAY 5 =====
+Alice died (killed by Arsonist). Their role isn't revealed. Their last will: "Alice's will. Day 3: I voted Yes on Frank to hear his answer, not on proof. Frank's Scout groups (N1 Carol/Ivan/Mallory, N2 Carol/Mallory/Erin) are unverified and don't locate Judy's killer. Carol's Katana survival is unverified; she pressed Frank every turn. Grace and Heidi repeatedly defended Carol and pressed Frank; check their reasons. Dave's Frank nomination failed 5-5. Judge my death by how the Day went."
+Bob died (killed by Arsonist). Their role isn't revealed. Their last will: "Day 1: No actionable information. Frank quickly named Carol over a thin prompt, then withdrew that read; several players criticized his reaction. No concrete contradiction emerged.
+
+Day 2: Judy claimed an anonymous, incomplete Archivist sample of seven roles. It identifies no holder and does not exclude unlisted roles. Frank claimed Scout only after the sample was public; his N1 result is plausible, but the delay remains unexplained. Carol claims Vanilla and says she survived a Katana hit on N1; this is unverified and does not identify a protector.
+
+Night 2: Judy died to the Katana. Her death does not verify her role claim or sample. Frank's Scout claim and Carol's account remain unverified.
+
+Day 3: Frank reported Carol, Mallory and Erin in separate visit groups on N2; that does not locate Judy's killer. Dave nominated Frank; the nomination failed 5-5. My Yes was to hear an explanation, not proof of guilt. No concrete contradiction emerged.
+
+Day 4: I am the Clerk; my token remains unused, and I did not rig today's votes. My Yes on Dave was a nomination vote only. Heidi's two Surveyor Clerk results do not prove the same player was sampled twice; roles can repeat. Heidi's claimed N3 survey of Alice and Grace's claimed protection of Heidi link Alice and Grace, conflicting with Frank's N3 report that they were in separate groups. At least one claim or result needs explanation."
+Dave died (killed by Arsonist). Their role isn't revealed. Their last will: "Day 1: No verified information or concrete lead.
+Day 2: Judy claimed an anonymous 7/10 archive sample including Surveyor, Scout, Puppeteer, and Clerk; it identified no holders. Frank claimed Scout after initially withholding his N1 result; delay unexplained.
+Day 3: Judy died to the Katana; role unrevealed. Frank’s original N2 report was later said to be puppeted; corrected report is unverified. Dave nominated Frank; it failed 5-5.
+Day 4: Heidi claims Surveyor; her N1/N3 results show Clerk in groups containing Bob, and Bob admits Clerk with token unused. Grace and Erin both claim Medic and share N1 Carol/N2 Frank protection targets. Grace says she protected Heidi N3; Heidi says she surveyed Alice N3, linking Alice and Grace. Frank’s N3 Scout result says Alice and Grace were separate. This is a conflict unless a swap or a false report explains it; swapped players are notified. Erin claims she protected Frank N3, but Medics receive no save feedback. Grace is on trial; I lean Guilty based on the graph conflict, not Erin’s counterclaim alone."
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi - Surveyor (0 tokens)
+N1: Carol ({Bob, Carol, Dave}) -> Clerk
+N2: Frank ({Erin, Frank, Grace}) -> Medic
+N3: Alice ({Mallory, Alice, Bob}) -> Clerk
+
+Bob claimed Clerk (Yakuza!).
+Erin is confirmed Medic; Grace fake-claimed Medic and got caught in Frank's N3 visit graph contradiction."
+Erin died (killed by Jester's revenge). Their role isn't revealed. Their last will: "Erin - Medic (2 tokens left)
+N1: Carol (Standard Defense - Carol Katana hit, saved)
+N2: Frank (Standard Defense)
+N3: Frank (Standard Defense - 0 deaths D4, Frank Katana hit, saved)
+Grace is fake Medic / Yakuza. Bob claimed Clerk (Yakuza)."
+Frank died (killed by Cardinal's curse). Their role isn't revealed. Their last will: "Frank, Scout (Village). My true Scout results: N1 Carol, Ivan and Mallory were in separate visit groups. N2 Carol, Dave and Frank were in separate visit groups. N3 Alice, Grace and Ivan were in separate visit groups. I was puppeted on Day 3, so any Day 3 Frank message claiming N2 was Carol, Mallory and Erin was not my account. Treat it as Yakuza-written. I was attacked by the Katana on N3 and survived, so a protector may exist. Judy's Archivist claim and Carol's Vanilla claim are unverified. Check claims against votes and mechanical results before hanging anyone."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Carol.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Carol (public): Carol here. Three players are alive, so a nomination needs 2 Yes votes. I'm Vanilla with no night action, so I won't vote without a visit-based contradiction. Ivan and Mallory, please state your role claims and any Night 4 action you took, and say whether you were visited or protected in any way you can verify. Don't name future targets.
+Ivan (public): Ivan here. I have no night action and no claim beyond Vanilla. Carol asked for claims: Mallory's only claimed action is Day 2's 'I took an action elsewhere' on Night 1, with no target or result. An Arsonist is alive, since Night 4's ignitions killed Alice, Bob and Dave, and it has to be one of the three of us still alive. Carol claims Vanilla, so Mallory is the player with a claimed action to test. Mallory also dodged Day 1 reads for several turns. I'm nominating Mallory; vote Guilty if you agree.
+Ivan nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Ivan, Carol; No - Mallory.
+Mallory is put on trial (2 Yes).
+[Claim] Mallory: Ex-Con. N1: automatic random visit; target unknown, no result.
+Mallory (public): I’m Ex-Con. My N1 “action elsewhere” was the automatic random visit; I don’t learn its target, and it gives me no result. The Night 4 deaths prove an Arsonist is among the three of us, not which one. Ivan is treating my disclosed N1 action as identity proof, but his and Carol’s Vanilla claims are also unverified. Don’t turn suspicion into certainty: what evidence distinguishes either of their claims from mine? I’m asking you to vote Innocent unless you have more than inference.
+Carol (public): Mallory's Ex-Con claim can't be verified, and neither can Ivan's Vanilla claim. An Arsonist survived Night 4, so it's Ivan or Mallory. If we hang Mallory and Mallory is Good, Carol and Ivan are left, and with two players neither of us can hang the other, so Ivan wins by waiting. I'm leaning Innocent unless a visit-based contradiction appears. Ivan, what concrete check on Mallory's claim do you have beyond the Arsonist logic?
+Ivan (public): I'm voting Guilty on Mallory. The Ex-Con visit is unverifiable and gives no result. Carol, you say the Arsonist is Ivan or Mallory. Mallory's claim is the one with nothing to check, so I want a Guilty vote from you too.
+(to Carol, Ivan) Ivan -> Carol (private): Carol, vote Guilty on Mallory with me. Their claim can't be checked and they dodged reads all game.
+Mallory (public): My N1 action is exactly what my Ex-Con claim describes: an automatic random visit, with no target or result given to me. That accounts for the only thing Ivan cites; it doesn’t distinguish me from the Arsonist. Night 4 tells us the Arsonist is among the three survivors, but no public result identifies which one. My claim is unverified, as are Ivan’s Vanilla claim and Carol’s. Please vote Innocent—not as an acquittal, but because this accusation rests on an action my claimed role is required to take.
+Trial votes on Mallory: Guilty - Ivan; Innocent - Carol, Mallory.
+Mallory is found Innocent (1 Guilty of 3 votes; 2 needed).
+Mallory (public): My N1 visit was an automatic role action, exactly as Ex-Con requires; it is not a contradiction. Ivan offered no independent check, then sent Carol a private message after pushing Guilty. Carol, please share its substance publicly. I won't nominate on this alone.
+Carol (public): Carol nominates Ivan. Ivan privately asked me to vote Guilty on Mallory, and his only case was that her Ex-Con claim can't be checked. Ivan, what concrete check do you have on Mallory?
+(to Carol, Mallory) Carol -> Mallory (private): I'm nominating Ivan. His only case against you was an unverifiable claim, so I'll vote Guilty on him if you do.
+Carol nominated Ivan. Everyone now votes Yes/No simultaneously.
+Nomination votes on Ivan: Yes - Carol, Mallory; No - Ivan.
+Ivan is put on trial (2 Yes).
+Ivan (public): Ivan defending. Three of us are alive, so this trial is Carol, Mallory and me. Carol, last turn you said you were leaning Innocent on Mallory, then after one private message from me you nominated me. That flip is worth weighing. Carol's own logic says the Arsonist is Ivan or Mallory, so she treats her Vanilla claim as safe without a check. I can't prove my Vanilla claim either, and I won't pretend to. Mallory's Ex-Con claim is unverifiable, but so is Carol's Vanilla claim. My Guilty ask on Mallory was about an unchecked claim, not proof. If you hang me, two players remain and a Guilty majority needs both of you, so neither of you can finish the Arsonist without the other. Vote Innocent unless you have a visit-based contradiction against me.
+(to Carol, Ivan) Ivan -> Carol (private): Carol, you called the Arsonist Ivan or Mallory, which leaves your own Vanilla claim as the only unchecked one on your side. Mallory's N5 result can test her claim tonight. Please vote Innocent on me.
+Mallory (public): Ivan's defense offers no way to check his Vanilla claim, and his case against me was an automatic Ex-Con visit, not a contradiction. He privately urged Carol to help hang me, then sent another PM after she nominated him. That doesn't prove his faction, but it's pressure without evidence. I will vote Guilty.
+(to Carol, Mallory) Mallory -> Carol (private): I will vote Guilty. His defense still offers no check, and his second PM added no public evidence. Please keep the decision tied to his case and votes.
+Carol (public): Carol here. I'll vote Guilty on Ivan. His case against Mallory rested on an unverifiable claim, and he privately urged me to vote with him on it. His defence still offers no visit-based check on his own Vanilla claim, and he is the only one of us pressing hard for a hang on a Village-aligned claim. I'd rather test him by the vote than leave him alive.
+Ivan (public): Ivan, final word. Carol and Mallory: Night 4's ignitions killed Alice, Bob and Dave, so the Arsonist is one of you two. I am not the Arsonist. Hanging me doesn't reveal which of you it is; it leaves the two of you alone, and the Arsonist wins by eliminating the other. Carol, you leaned Innocent on Mallory, then nominated me after one private message from me. That is a flip, not a visit-based check. My Vanilla claim can't be verified, but neither can yours or Mallory's. Vote Innocent unless you have a visit-based contradiction against me.
+(to Ivan, Mallory) Ivan -> Mallory (private): Mallory, hanging me leaves you alone with Carol, and whichever of you is the Arsonist wants the other gone. Carol's Guilty vote came after my one PM, not from evidence. Vote Innocent and keep the trial at a split you can defend.
+Trial votes on Ivan: Guilty - Carol, Mallory; Innocent - Ivan.
+Ivan is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan (no role results, no public night results). Frank's Scout groups were consistent with Judy's sample, and his N3 report is the only one that can be checked against a visit. His Day 3 N2 message was puppeted, so trust his corrected reports only. Grace's Medic claim conflicts with Frank surviving the N3 Katana, and Erin's Medic claim fits the deaths. Mallory dodged early reads, then named Frank. Carol has pressed scrutiny since Day 1, and her Katana survival is unverified. Test Night 5 claims against visit-based results before any vote."
+
+===== NIGHT 5 =====
+Night actions:
+  Mallory (Arsonist): target Carol; "Douse Carol."
+Katana: no attack (no target); nobody holds it.
+(to Mallory) Moderator (private): Night 5 result: You doused Carol.
+[Moderator summary] Night 5: Only Carol (Vanilla Villager) and Mallory (Arsonist) alive; no Yakuza remain, so no Katana vote/attack. Mallory doused Carol (visit Mallory->Carol; Carol not told). No attacks, no deaths. Carol now doused. Game continues (Village vs Neutral Arsonist).
+
+===== DAY 6 =====
+Nobody died last night.
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Carol (public): Mallory's Ex-Con claim can't be true. Ex-Con is Village, and I am a Vanilla Village player. A Village pair would have ended the game, so Mallory is not Village. Mechanically, a two-player trial needs two Guilty votes, so neither of us can execute the other alone.
+Mallory (public): That only means at least one of our claims or alignments is wrong; it doesn’t identify which role I have. At two alive, a nomination needs both Yes votes, and a hanging needs both Guilty votes. I won’t nominate or vote Guilty without evidence. Let’s let the day end.
+[Feedback from Carol] With two players alive, a trial needs both Guilty votes, so a Village player cannot force an execution alone; the rules could state this more plainly.
+Carol (public): Mallory, the game is still running with me alive, so you are not Village. Your Ex-Con claim is false by the win check. With two alive, a trial needs both our votes, so I want a concrete reason before I vote Guilty. State your real role and what you did last night, and I'll weigh your answer against the mechanics.
+Mallory (public): One of our claims is false, but assuming yours is accurate doesn’t prove which. The public record doesn’t independently verify either role. I won’t nominate or vote Guilty based on an unverified claim; we can let the day close.
+Carol (public): Nominating Mallory so we get a clear Yes or No on record. A Jester who wants a hang would vote Yes; a Yakuza or Arsonist would vote No.
+Carol nominated Mallory. Everyone now votes Yes/No simultaneously.
+Nomination votes on Mallory: Yes - Carol; No - Mallory.
+The nomination of Mallory failed (1 Yes).
+Carol (public): Two of us remain, and any Guilty majority needs both of us. Mallory, if you are a Jester or Executioner, say so now. I'll vote Guilty on you if your win needs a hang, and I'm not nominating again without a reason.
+Mallory (public): My claim remains Ex-Con; my Night 5 visit was automatic, and I wasn't told its target. The game continuing means at least one of our claims or alignments is wrong, but doesn't tell us which. I won't claim a hang condition I don't have. Let's let the day end.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 6 =====
+Night actions:
+  Mallory (Arsonist): "Ignite all doused players: Carol."
+Katana: no attack (no target); nobody holds it.
+(to Carol) Moderator (private): You were attacked by an Arsonist tonight and died.
+(to Mallory) Moderator (private): You ignited. Your attack on the doused player Carol succeeded. (You have no tokens.)
+[Moderator summary] Night 6: Mallory (Arsonist) ignited (Astral Visit, Strong Attack on all doused). Only living doused player was Carol (Defense None) -> Carol dies (killed by Arsonist). No Katana (no Yakuza alive), no visits recorded. Mallory is the sole survivor; Arsonist wins alone.
+
+===== DAY 7 =====
+Carol died (killed by Arsonist). Their role isn't revealed. Their last will: "Carol, Vanilla Villager (true): no night action, no investigative results. Hit by the Katana on N1 and survived; protector unknown. Judy (Archivist) died to the Katana N2. Heidi's Surveyor groups and Grace's and Erin's Medic claims conflict; Erin's N2 and N3 protections of Frank fit the Night 3 Katana survival, Grace's do not. Frank's corrected Scout results (N1 Carol/Ivan/Mallory, N2 Carol/Dave/Frank, N3 Alice/Grace/Ivan) are his own; his Day 3 N2 message was puppeted. Mallory is not Village, so her Ex-Con claim is false; Mallory is Yakuza or Arsonist. Vote on visit-based evidence only."
+The game is over. Winners: Mallory, Grace (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 6: correct
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Mallory, Grace
+Cost by player (USD):
+  Alice (Fabricator)        $0.0852   46 calls  claude-haiku-5.5
+  Bob (Clerk)               $0.0720   46 calls  gpt-6-luna
+  Carol (Vanilla Villager)  $0.1345   49 calls  claude-haiku-5.5
+  Dave (Cardinal)           $0.0560   33 calls  gpt-6-luna
+  Erin (Medic)              $0.2964   37 calls  gemini-3.8-flash
+  Frank (Scout)             $0.0593   33 calls  claude-haiku-5.5
+  Grace (Executioner)       $0.3964   36 calls  gemini-3.8-flash
+  Heidi (Surveyor)          $0.2992   38 calls  gemini-3.8-flash
+  Ivan (Puppeteer)          $0.1187   62 calls  claude-haiku-5.5
+  Judy (Archivist)          $0.0288   19 calls  gpt-6-luna
+  Mallory (Arsonist)        $0.0958   58 calls  gpt-6-luna
+  Moderator                 $1.5558   17 calls  claude-opus-5.5
+  Night checks              $0.4605    6 calls  claude-opus-5.5
+  Strategy review           $0.3394    1 calls  claude-opus-5.5
+  Log review                $0.3526    1 calls  claude-opus-5.5
+  Total                     $4.3504  482 calls
