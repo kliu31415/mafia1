@@ -53,6 +53,10 @@ night actions already run in parallel.
 
 ## Turned down for now
 
+- **Whistleblower and Herald** (proposed Oct 10, 2026; Kevin: punt for now). Whistleblower (Village, 1 token): the
+  next Day's trial votes are all public. Herald (Village, 1-2 tokens): publicly reveals one dead player's role at
+  dawn, a public Coroner. Both undo the hidden-info defaults for a moment, which is their appeal and their risk.
+
 - **End the game once a faction has an unbreakable voting majority** (suggested by a player in
   game_20261009_121338_61703, whose last day was a foregone 3-vs-2 hang). Would cut hollow final days.
   Turned down (Kevin, 2026-10-09): factions can still occasionally win from a minority, e.g. with a
