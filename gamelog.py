@@ -65,7 +65,8 @@ from records import read_records, safe_print
 # 32: player_call has effort when it differs from the player's own: a retry after an answer cut off at max_tokens
 #     uses one step lower (llm.lower_effort)
 # 33: "visits" records (day, visits: [visitor, target] pairs) from the moderator's record_visits, one per night
-LOG_VERSION = 33
+# 34: "left" records (player, day, phase) when a player leaves the game without dying (a winning Executioner)
+LOG_VERSION = 34
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

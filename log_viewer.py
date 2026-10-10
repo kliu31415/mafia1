@@ -355,6 +355,7 @@ def render_html(jsonl_path: Path) -> Path:
     roles: dict[str, str] = {}
     models: dict[str, str] = {}
     name = Namer({})
+    alive: list[str] = []  # in seat order; shown at the start of each Day
     out: list[str] = []
     phase_start: int | None = None  # index in out of the open phase's opening tag
     errors: list[tuple[str, dict]] = []  # (anchor id, record) of each GameLog.error record
@@ -400,6 +401,7 @@ def render_html(jsonl_path: Path) -> Path:
             roles = {p["name"]: p["role"] for p in r["players"]}
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
             name = Namer(roles)
+            alive = [p["name"] for p in sorted(r["players"], key=lambda p: p["seat"])]
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}</td>"
                            f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
@@ -418,9 +420,16 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "event":
             if is_phase_start(r):
                 start_phase(r["text"].removesuffix(" begins."))
+                if r["text"].startswith("Day "):  # night deaths are already logged, though revealed after this
+                    out.append(f"<div class='ev system'><span class='badge'>Alive ({len(alive)})</span>"
+                               f"{', '.join(map(name, alive)) or 'nobody'}</div>")
                 continue
+            if r.get("cat") == "death" and (m := re.match(r"(\w+) was the Executioner.* leave the game", r["text"])):
+                alive = [n for n in alive if n != m[1]]  # LOG_VERSION 33 and earlier had no "left" record
             category, badge, body = classify(r)
             line(category, badge, name(body))
+        elif k in ("death", "left"):
+            alive = [n for n in alive if n != r["player"]]
         elif k == "claim":
             line("system", "Claim", name(f"{r['player']}: {r['claim']}"))
         elif k == "player_call":

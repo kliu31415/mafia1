@@ -25,3 +25,31 @@ def test_legacy_logs_still_render(tmp_path):
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
     html = log_viewer.render_html(path).read_text(encoding="utf-8")
     assert "class='ev chat'" in html and "Day 1" in html
+
+
+def test_alive_list_at_each_day(tmp_path):
+    players = [{"name": n, "seat": i, "role": "Vanilla Villager", "model": "m"}
+               for i, n in enumerate(["Bob", "Carol", "Dave", "Erin"])]
+    day = {"kind": "event", "visible_to": "all", "cat": "phase"}
+    records = [
+        {"kind": "setup", "players": players, "katana": None},
+        {**day, "text": "Day 1 begins."},
+        {"kind": "death", "player": "Carol"},
+        {"kind": "left", "player": "Erin"},
+        {**day, "text": "Night 1 begins."},
+        {"kind": "death", "player": "Bob"},  # a night death: logged before the Day starts, revealed after
+        {**day, "text": "Day 2 begins."},
+        # LOG_VERSION 33 and earlier: a winning Executioner left with only this event
+        {"kind": "event", "visible_to": "all", "cat": "death",
+         "text": "Dave was the Executioner, whose target was X. They win and leave the game."},
+        {**day, "text": "Day 3 begins."},
+    ]
+    path = tmp_path / "g.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    alive = [line.split("</span>", 1)[1] for line in html.split("<div class='ev system'><span class='badge'>")[1:]]
+    counts = [c.split(")")[0] for c in html.split("Alive (")[1:]]
+    assert counts == ["4", "1", "0"]
+    assert "Bob" in alive[0] and "Erin" in alive[0] and "Bob" not in alive[1] and "Dave" in alive[1]
+    assert alive[2].startswith("nobody")
+    assert "Night 1</summary><div class='ev system'>" not in html

@@ -32,6 +32,7 @@ class Executioner(RoleLogic):
             game.pending_revenge.append((me.name, guilty_voters))
             me.alive = False  # leaves the game; not a death
             me.status[Status.LEFT] = True
+            game.log.write("left", player=me.name, day=game.day, phase=game.phase)
             game.emit(f"{me.name} was the Executioner, whose target was {dead.name}. They win and leave the game."
                       + (f" Their last will: \"{me.last_will}\"" if me.last_will else ""), cat=DEATH)  # rules R12
             game.death_record.append(f"Day {game.day}: {me.name} (Executioner) won and left the game")
