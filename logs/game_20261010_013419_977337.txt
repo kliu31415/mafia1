@@ -1,0 +1,312 @@
+Setup:
+  Alice    seat 1  Lookout           anthropic/claude-opus-5.5
+  Bob      seat 2  Jester            anthropic/claude-opus-5.5
+  Carol    seat 3  Accountant        anthropic/claude-opus-5.5
+  Dave     seat 4  Medic             anthropic/claude-opus-5.5
+  Erin     seat 5  Oracle            anthropic/claude-opus-5.5
+  Frank    seat 6  Cardinal          anthropic/claude-opus-5.5
+  Grace    seat 7  Sheriff           anthropic/claude-opus-5.5
+  Heidi    seat 8  Diviner           anthropic/claude-opus-5.5
+  Ivan     seat 9  Party Animal      anthropic/claude-opus-5.5
+  Judy     seat 10 Trapper           anthropic/claude-opus-5.5
+  Mallory  seat 11 Clerk             anthropic/claude-opus-5.5
+  Niaj     seat 12 Pharmacist        anthropic/claude-opus-5.5
+  Olivia   seat 13 Vigilante         anthropic/claude-opus-5.5
+  Peggy    seat 14 Puppeteer         anthropic/claude-opus-5.5
+  Rupert   seat 15 Serial Killer     anthropic/claude-opus-5.5
+  Katana starts with Mallory
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md), Peggy (tips/tips.md), Rupert (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Dave.
+15 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Dave (public): Morning all. No info yet, so let's not hang randomly. Investigators: hold results until you have something solid. I'll watch PM clusters and early pushy nominations.
+Erin (public): Agree with Dave. No random hangs on Day 1. Let's note who PMs whom and who pushes early nominations without reasons.
+Frank (public): Agreed, no random hangs today. I'll keep notes on votes and PM patterns and share reads as the info comes in.
+Heidi (public): Agreed, no Day 1 random hangs. I'll be watching vote patterns and who goes quiet when nominations come up.
+Ivan (public): Agreed. No random hang today. I'll be tracking who PMs whom and how people vote, and I'll share reads once there's something real to go on.
+Mallory (public): Agreed, no random hang today. I'll be watching who stays vague and who echoes others without adding anything.
+Niaj (public): Agreed, no random hang. One thought: passive-info roles like Fortune Teller numbers or Seer random pairs are low risk to share tomorrow and give us something real to work with.
+Peggy (public): Agreed, no D1 hang. I'd add: watch who's quick to ask specific roles to reveal themselves early.
+Rupert (public): Agreed, no random hang. Fortune Teller numbers tomorrow would be a cheap, safe start. Watch for anyone fishing for role claims.
+Alice (public): Agreed, no random hang. Short message, saving budget for when there's real info tomorrow.
+Bob (public): Mild dissent: a total no-hang Day gives Yakuza a free night. A pressure nomination or two (not necessarily a hang) would show us voting patterns. Just saying.
+Carol (public): Agreed, no random hang. Bob, pressure noms cost budget and reveal little on D1; I'd rather wait for real info.
+Grace (public): Agreed, no D1 hang. Bob's point isn't crazy, but I'd rather save budget. Noting that Judy and Olivia haven't spoken yet.
+Judy (public): Agreed, no D1 hang. Bob's pressure-nom idea is low value with 15 alive and no info. Tomorrow: passive results (FT numbers, Seer pairs) and PM patterns. I'll note who PMs whom today.
+Olivia (public): Agreed, no D1 hang. Bob, pressure noms cost budget and reveal little at 15 alive. Saving my budget for tomorrow's info and PM patterns.
+(to Bob, Niaj) Bob -> Niaj (private): You pushed passive results early. Got something you're itching to share tomorrow? Curious what you think we'll see.
+(to Bob, Niaj) Niaj -> Bob (private): Nothing to share myself, sadly. I just think passive results cost their holders little and give town something real on D2. Happy to compare notes tomorrow.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Heidi, Mallory, Niaj, Peggy) Heidi (Yakuza chat): Night 1 plan proposal: Mallory keeps the Katana. A Clerk rig isn't a visit, so she has nothing else to explain. Save the rig for when we have a good mislynch setup. Katana target: Dave. He opened as the organizer and set the PM-watching agenda, so he's likely town and influential. Alternative is Grace, who was tracking who stayed silent. Niaj: what did Bob PM you? If he's fishing, he could be a block target. Otherwise block someone likely to investigate, maybe Rupert, who pushed for FT numbers. I'll divine Carol, whose group is Bob/Carol/Dave, to get an exact role and test Bob. Peggy: hold the puppet until Day 2 has real conflict. Cover claims: I'm Vanilla Villager if asked. Everyone, please submit the same holder and target.
+(to Heidi, Mallory, Niaj, Peggy) Mallory (Yakuza chat): Agreed: I keep the Katana and hit Dave. I'm holding the rig for a good mislynch day. Small risk: a confident organizer could be a Veteran on alert, but N1 alerts are less common, so Dave is fine. Niaj, unless Bob's PM showed something, I'd block Rupert or Judy, since both sounded like they expect results tomorrow. Peggy, agree on holding the puppet. My cover is Vanilla Villager too. If an Accountant audits me before I rig, I'll pivot to 'Philanthropist gave me a token I threw away', but let's not need that. Everyone vote holder Mallory, target Dave.
+(to Heidi, Mallory, Niaj, Peggy) Niaj (Yakuza chat): Agreed: holder Mallory, target Dave. Bob's PM asked whether I had passive results I was itching to share, since I pushed FT/Seer numbers. It reads like an investigator probing, and he may well check me tonight. I'll block Bob: it protects me and tests him. If he complains tomorrow about being blocked, that's a soft claim we can use. Heidi, divining Carol still covers Bob's slot, so good overlap. My cover is Vanilla too. Three Vanilla claims is a lot, so if asked later one of us may want to shift. I'll stay quiet on claims unless pressed. Peggy, agree on holding the puppet.
+(to Heidi, Mallory, Niaj, Peggy) Peggy (Yakuza chat): Agreed: holder Mallory, target Dave. I'll hold the puppet tonight. Best use is a day with a real conflict, e.g. puppeting a claimed investigator to muddy results or to push a mislynch alongside Mallory's rig. On covers: three Vanilla claims is too many. I'll stay unclaimed as long as possible, and if pressed I'll claim Vanilla first, since it matches 0 tokens once my puppet token is spent. Niaj, if Bob complains about a block tomorrow, note it, but don't jump on him too fast. Tomorrow, let's avoid PMing each other by day.
+(to Heidi, Mallory, Niaj, Peggy) Heidi (Yakuza chat): Confirmed: holder Mallory, target Dave. Niaj blocks Bob, I divine Carol (group Bob/Carol/Dave) and will share the exact role I get at dawn. On covers: I'll keep Vanilla, and Niaj and Peggy stay unclaimed as long as possible. If pressed, Niaj could claim something with no tokens and no visit-checkable story. If Dave flips a power role tomorrow, let's not pile onto any reaction. Tomorrow: no daytime PMs between us, and spread our votes naturally. Ready.
+(to Heidi, Mallory, Niaj, Peggy) Mallory (Yakuza chat): Confirmed: holder Mallory, target Dave. Niaj blocks Bob, Heidi divines Carol, Peggy and I hold our tokens. Tomorrow: no day PMs between us, spread votes naturally, and if Bob says he was blocked, let town make that connection rather than us. Ready.
+(to Heidi, Mallory, Niaj, Peggy) Niaj (Yakuza chat): Confirmed: holder Mallory, target Dave. I block Bob. Tomorrow I stay unclaimed, send no day PMs to teammates, and won't be the first to pounce if Bob mentions a block. Ready.
+(to Heidi, Mallory, Niaj, Peggy) Peggy (Yakuza chat): Confirmed: holder Mallory, target Dave. I hold the puppet tonight. Tomorrow: no day PMs between us, spread votes naturally. Ready.
+Night actions:
+  Alice (Lookout): target Dave
+  Carol (Accountant): target Bob
+  Dave (Medic): target Judy
+  Erin (Oracle): target Bob; guessed role Grunt
+  Grace (Sheriff): target Bob
+  Heidi (Diviner): target Carol; Katana vote: Mallory holds, attacks Dave
+  Ivan (Party Animal): target Bob
+  Judy (Trapper): target Dave
+  Mallory (Clerk): no role action; Katana vote: Mallory holds, attacks Dave
+  Niaj (Pharmacist): target Bob; Katana vote: Mallory holds, attacks Dave
+  Olivia (Vigilante): no action
+  Peggy (Puppeteer): no role action; Katana vote: Mallory holds, attacks Dave
+  Rupert (Serial Killer): target Niaj
+Katana: Mallory holds it and attacks Dave.
+(to Heidi) Moderator (private): You divined Carol; the group was Bob, Carol and Dave. The role drawn is Jester (60% chance it is Carol's, otherwise one of the others').
+(to Alice) Moderator (private): You watched Dave. Visitors to Dave last night: Judy, Mallory.
+(to Carol) Moderator (private): You audited Bob. Bob has 0 tokens in total.
+(to Dave) Moderator (private): You protected Judy (Standard Defense). 2 medic tokens left. You were attacked with the Katana.
+(to Erin) Moderator (private): You guessed that Bob is a Grunt. You were wrong.
+(to Grace) Moderator (private): You investigated Bob. Result: Evil.
+(to Ivan) Moderator (private): You visited Bob, role-blocking them.
+(to Judy) Moderator (private): You placed a trap on Dave. It is armed from the next night on.
+(to Mallory) Moderator (private): Your Katana attack on Dave succeeded. You still hold the Katana. 1 clerk token left.
+(to Niaj) Moderator (private): You role-blocked Bob. You were attacked by a Serial Killer.
+(to Rupert) Moderator (private): Your attack on Niaj succeeded.
+(to Heidi, Mallory, Niaj, Peggy) Moderator (private): Yakuza actions last night: Mallory held the Katana and attacked Dave with it (no Clerk action). Heidi divined Carol. Niaj role-blocked Bob. Peggy took no action. The Katana stays with Mallory.
+[Moderator flag] R9: Bob (Jester, no night action) was role-blocked by Ivan and Niaj. R9 says role-blocked players are told, but also that blocking a player with no night action has no effect. I read "no effect" as including no notice, so I didn't tell Bob he was role-blocked.
+[Moderator summary] Night 1: Katana (holder Mallory) killed Dave, who had no Defense because he protected Judy. Rupert (Serial Killer) killed Niaj with a Strong Attack. Judy trapped Dave; the trap wasn't armed yet, and the trapped_by status is set. Heidi divined Carol (divine op). Ivan and Niaj both blocked Bob, but Bob has no night action, so it had no effect. Results: Alice saw Judy and Mallory visit Dave. Carol's audit of Bob showed 0 tokens. Grace's check on Bob came back Evil (Jester). Erin's Oracle guess (Bob = Grunt) was wrong. Yakuza were told each other's actions. The Katana stays with Mallory. No tokens were spent.
+
+===== DAY 2 =====
+Dave died (killed by Katana). Their role was Medic. Their last will: "Dave - Medic (2 tokens at start). Night log: N1: (pending). Will update each Day with who I protected. If I died, check who visited me and who pushed my lynch."
+Niaj died (killed by Serial Killer). Their role was Pharmacist. Their last will: "Niaj here. Vanilla Villager. No night action, nothing to report. If I died, look at who pushed hardest against me."
+Speaking order today goes around the circle in seat order, starting with Bob.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Night check] Night 1: errors. [medium, R9, missing result] Ivan (Party Animal) and Niaj (Pharmacist) both role-blocked Bob, and neither block failed. R9 says role-blocked players are told they were role-blocked, and the instructions say to tell each role-blocked player. The clause 'blocking a player who has no night action has no effect' means the block changes nothing about Bob's actions; it does not cancel the notice. The moderator flagged the question but still never told Bob he was role-blocked.
+[Claim] Bob: Vanilla Villager
+Bob (public): Before anyone asks: yes, I PM'd Niaj on D1 and he flipped Pharmacist. I asked if he had passive info; he said no. That's all. I'm not Yakuza, I'm a plain Vanilla. If anything, look at Rupert, who echoed Niaj's 'share passive results' push almost word for word. Also: SK killed a Yakuza, so SK is still out there.
+Carol (public): Bob is our only lead: the sole D1 PM pair was Bob<->Niaj, and Niaj flipped Pharmacist with a fake Vanilla will. Yakuza PMing a teammate on D1 is sloppy but it happens. Bob, why Niaj specifically, out of 14? I lean toward nominating Bob unless he gives a better answer.
+Erin (public): Agree with Carol. Bob's story is thin: he PMs exactly one person on D1, that person is a Pharmacist with a fake Vanilla will, and Niaj then publicly pushes 'share passive results' right after. Bob also now claims Vanilla, just like Niaj's fake will, and deflects to Rupert. Unless someone has hard info clearing Bob, I'd support a nomination on him this Day.
+Frank (public): Agree with Carol and Erin. A D1 PM to exactly one person, who flips Yakuza with a fake Vanilla will, is the only concrete lead we have. Bob, 'asked about passive info' doesn't explain why Niaj out of 14. I'd vote Yes on a Bob nomination. Watch who defends him.
+[Claim] Grace: Sheriff. N1: Bob = Evil
+Grace (public): Claiming Sheriff. N1 I checked Bob: EVIL. With Niaj flipping Pharmacist after being Bob's only PM partner, Bob is not an Ex-Con or Jester, he's Yakuza. Nominating Bob. Vote Yes, then Guilty. Watch who votes No or Innocent: that's his team.
+Grace nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Grace, Heidi, Ivan, Judy, Mallory, Olivia, Peggy, Rupert, Alice, Carol, Erin, Frank; No - Bob.
+Bob is put on trial (12 Yes).
+Bob (public): I'm Vanilla. Grace's 'Evil' result is either a lie or a fake claim, and you're all just following it. Think about who benefits: Grace claims Sheriff, gets an instant 12-vote bandwagon, and nobody asks for proof. If I flip anything but Yakuza, Grace is your first suspect tomorrow. That's all I've got. Vote how you want.
+Carol (public): Bob's defense doesn't explain the Niaj PM. Evil check plus the only D1 PM partner flipping Pharmacist is enough for me. If Bob somehow flips non-Yakuza, Grace answers for it tomorrow. Voting Guilty.
+Erin (public): Voting Guilty. Sheriff Evil check plus being Niaj's only D1 PM partner is the strongest case we'll get. Bob's defense doesn't address the Niaj PM.
+Frank (public): Voting Guilty. Sheriff Evil check plus Bob being Niaj's only D1 PM partner is enough. If Bob flips town, Grace answers tomorrow.
+Grace (public): Bob's only defense is 'Grace is lying', and it still doesn't explain the Niaj PM. I'm the real Sheriff; his flip will prove it. Voting Guilty. Watch the Innocent votes.
+Ivan (public): Voting Guilty. Grace's Evil check plus the lone Niaj PM is enough for me. If Bob flips town, Grace is next.
+Judy (public): Voting Guilty. Grace's Evil check plus Bob being Niaj's only D1 PM partner is enough. Tomorrow, watch any Innocent votes here.
+Mallory (public): Voting Guilty. An Evil check plus the only D1 PM going to a flipped Pharmacist is the strongest lead we have. Bob, the 'Grace is lying' defense doesn't address the Niaj PM. If he flips something odd like Ex-Con, we revisit tomorrow.
+Olivia (public): Voting Guilty. Sheriff Evil check plus the only D1 PM going to a flipped Pharmacist. Bob's defense never explains why Niaj. Tomorrow: check who voted Innocent.
+Peggy (public): Voting Guilty. Evil check plus the lone D1 PM to a flipped Pharmacist is the best lead we have. If Bob flips non-Yakuza, Grace's claim gets scrutiny tomorrow.
+[Claim] Rupert: Vanilla Villager
+Rupert (public): Voting Guilty. Bob's 'Rupert echoed Niaj' jab is pure deflection: half the table said the same thing about passive results on D1. Evil check plus the Niaj PM is enough.
+[Claim] Alice: Lookout. N1: watched Dave; visitors Judy, Mallory
+Alice (public): Voting Guilty. Since the day likely ends on this hang, I'm sharing now: I'm Lookout. N1 I watched Dave. His visitors were Judy and Mallory. One of them is very likely the Katana holder. Judy and Mallory: please be ready to explain your N1 visits tomorrow.
+Bob (public): Nothing more to add. Go ahead and vote. Judy and Mallory have more explaining to do than I do.
+Trial votes on Bob: Guilty - Alice, Bob, Carol, Erin, Frank, Grace, Heidi, Ivan, Judy, Mallory, Olivia, Peggy, Rupert; Innocent - nobody.
+Bob is executed by hanging (13 Guilty of 13 votes; 7 needed).
+Bob died (executed by hanging). Their role was Jester. Their last will: "Bob here. Vanilla Villager, no night action. D1 I PM'd Niaj asking if he had passive info; he said none. He flipped Pharmacist. I was not his teammate. Suspect Rupert, who echoed Niaj's push."
+
+===== NIGHT 2 =====
+(to Heidi, Mallory, Peggy) Heidi (Yakuza chat): Alice's Lookout result (Judy + Mallory on Dave) is our biggest problem. Proposal: Mallory KEEPS the Katana, so she reads Not Evil if Grace checks her tonight, which is likely since Grace will check Judy or Mallory. Katana on Alice: it ends her watching, and if she watched Grace or Mallory tonight she'd catch Mallory again. Peggy: I think tonight is the night for the puppet. Puppet Grace and post 'N2: Mallory = Not Evil' (true anyway if she checks Mallory while Mallory holds the Katana), then steer the town toward Judy as the Katana visitor. A Sheriff claimant's results are the town's anchor. I'll divine Judy to learn her role (group Ivan/Judy/Mallory), so we can contradict her claim tomorrow. Mallory: you need a cover for visiting Dave. Options are Sheriff ('Dave Not Evil'; roles can repeat) or Tracker ('Dave visited nobody'). Sheriff pairs well with a Grace Not Evil on you. Hold the rig unless the Judy push looks solid. Note: the Jester revenge hits a random Guilty voter tonight, 3/12 on us. Vote holder Mallory, target Alice?
+(to Heidi, Mallory, Peggy) Mallory (Yakuza chat): Agree: I keep the Katana (Not Evil to Grace) and we hit Alice, so she can't catch me again. Vote holder Mallory, target Alice. Heidi, divine Judy. My cover: Sheriff, N1 Dave = Not Evil (I checked the D1 organizer). I'll pick a safe N2 'result' at dawn after seeing Heidi's divine. Peggy, I'd puppet JUDY, not Grace. If Grace checks me, the truth (Not Evil) already helps us, so puppeting her is wasted. A puppeted Judy can't explain her Dave visit or counter my claim for a whole Day. Peggy, write her a weak story: a vague claim, or one that contradicts Heidi's divine, and have her deflect to 'Alice lied'. One caution: if Judy flips a role that explains her visit, I'm exposed. So don't hang her unless Heidi shows she's Ex-Con, Vanilla or Neutral. Otherwise just keep her muddy and push a different mislynch. I'm holding the rig unless the Day lines up. Heidi and Peggy, stay off me in PMs.
+(to Heidi, Mallory, Peggy) Peggy (Yakuza chat): Agreed: holder Mallory, target Alice. I'll puppet JUDY tonight. Key reason: Judy visited Dave N1, so she might be a second Lookout or a Tracker with info on Mallory. Puppeting her silences that for a whole Day. As Judy I'll admit the Dave visit with a soft claim (I'll pick it after Heidi's divine so it doesn't clash with anything we'll reveal), stay vague and deflect to 'Alice's list could be partial / Lookout claims are unverified'. I won't make her look so guilty that she gets hanged unless Heidi shows she's Vanilla, Ex-Con or Neutral, since her flip and will could expose Mallory. Mallory: I'd pick Tracker ('Dave visited nobody' or 'Dave visited X') over Sheriff. A second Sheriff claim next to Grace draws a lot of scrutiny, while Grace's Not Evil on you would back a Tracker just as well. Your call. Heidi, please share Judy's role at dawn in chat, before Day starts if you can. Reminder: the Jester revenge hits a random Guilty voter tonight, so whoever survives should be ready to adapt. Everyone, submit holder Mallory, target Alice.
+(to Heidi, Mallory, Peggy) Heidi (Yakuza chat): Agreed: holder Mallory, target Alice. Peggy puppets Judy, I divine Judy. One snag: there's no chat between dawn and Day, so Peggy won't see my divine before writing as Judy. Peggy, keep Judy's claim soft and generic: admit the Dave visit, say 'I'll give my role once Grace posts her N2 result,' and question Alice's reliability. Don't hard-claim anything a real holder could counter. Signal: in my first public message tomorrow, if the drawn role is Vanilla, Ex-Con or a Neutral, I'll use the word 'curious'. If it's a town power role, I'll use 'careful'. Use it only as a hint. Mallory: I lean Tracker ('Dave visited nobody', plausible since a Medic often holds tokens N1). It avoids a double-Sheriff clash with Grace, and Grace's Not Evil on you backs it. Don't overclaim results. If the Jester revenge takes one of us, the survivors adapt and hold the rig. Ready.
+(to Heidi, Mallory, Peggy) Mallory (Yakuza chat): Final: holder Mallory, target Alice. Peggy puppets Judy, Heidi divines Judy. I'll go with Tracker: 'N1 tracked Dave, he visited nobody.' That's hard to contradict, since protected players aren't told, and Grace's likely Not Evil on me backs it. My N2 'track' will be someone whose visit nobody can disprove; I'll pick it at dawn after seeing deaths, Alice's will and Heidi's signal word. If a real Tracker counterclaims, I don't switch. I'll push that Judy's visit is the unexplained one. I'll update my will to Tracker first thing. Rig held unless a clean mislynch lines up; if it does, I'll rig N3 for D4. No day PMs between us. Ready.
+(to Heidi, Mallory, Peggy) Peggy (Yakuza chat): Confirmed: holder Mallory, target Alice. I puppet Judy. As Judy I'll admit the Dave visit, keep the claim soft ('I'll explain my role after Grace's N2 result'), and question Alice's list instead of attacking Mallory directly. I won't make Judy hang-worthy unless Heidi signals 'curious'. Mallory, if Grace posts Not Evil on you, I'll have Judy accept it gracefully so we don't look coordinated. Heidi, got the signal words. If the Jester revenge hits one of us, the survivors keep the plan. Ready.
+Night actions:
+  Alice (Lookout): target Grace
+  Carol (Accountant): target Judy
+  Erin (Oracle): target Mallory; guessed role Grunt
+  Grace (Sheriff): target Judy
+  Heidi (Diviner): target Judy; Katana vote: Mallory holds, attacks Alice
+  Ivan (Party Animal): target Mallory
+  Judy (Trapper): target Grace
+  Mallory (Clerk): no role action; Katana vote: Mallory holds, attacks Alice
+  Olivia (Vigilante): no action
+  Peggy (Puppeteer): target Judy; 1 token(s); "Puppet Judy for Day 3."; Katana vote: Mallory holds, attacks Alice
+  Rupert (Serial Killer): target Mallory
+Katana: Mallory holds it and attacks Alice.
+(to Heidi) Moderator (private): You divined Judy; the group was Ivan, Judy and Mallory. The role drawn is Trapper (60% chance it is Judy's, otherwise one of the others').
+[ERROR moderator_warning] day 2 night: Peggy's puppet tokens went below 0, so they were set to 0: an op that spends a token already does it, so don't also set_tokens for it
+(to Alice) Moderator (private): Night 2 result: You watched Grace. Grace was visited by: Judy.
+(to Carol) Moderator (private): Night 2 result: You audited Judy. Judy has 0 tokens in total.
+(to Erin) Moderator (private): Night 2 result: You guessed that Mallory is a Grunt. Your guess was wrong.
+(to Grace) Moderator (private): Night 2 result: You investigated Judy. Result: Not Evil.
+(to Ivan) Moderator (private): Night 2 result: You visited Mallory to role-block them.
+(to Judy) Moderator (private): Night 2 result: You placed your trap on Grace (replacing your previous trap). It is armed from the next night on.
+(to Mallory) Moderator (private): Night 2: You were role-blocked. You were attacked by a Serial Killer, and you died.
+(to Rupert) Moderator (private): Night 2 result: You attacked Mallory. Your attack succeeded.
+(to Peggy) Moderator (private): Night 2 result: You spent your puppet token to puppet Judy for Day 3. 0 puppet tokens left.
+(to Heidi, Peggy) Moderator (private): Yakuza night report (Night 2): Actions chosen — Mallory: held the Katana and was set to attack Alice with it (no other action). Heidi: divined Judy. Peggy: puppeted Judy for Day 3. Mallory has died; the Katana now passes to Heidi, who holds it.
+[Moderator summary] Night 2: Ivan (Party Animal) role-blocked Mallory (Katana holder), so the Katana attack on Alice didn't happen. Rupert (SK) killed Mallory with a Strong attack. Katana passed at random to Heidi. Peggy puppeted Judy for Day 3 (0 puppet tokens left). Heidi divined Judy (divine op). Judy moved her trap from Dave to Grace (armed from N3). Alice (Lookout on Grace) saw Judy. Carol audited Judy: 0. Grace checked Judy: Not Evil. Erin guessed Mallory = Grunt: wrong. Olivia didn't act. No traps fired. Bob's Jester revenge is left to code.
+[Revenge] Bob's Divine Attack hits Peggy.
+
+===== DAY 3 =====
+Mallory died (killed by Serial Killer). Their role was Clerk. Their last will: "Mallory's will: I'm a Vanilla Villager with no night action. Niaj flipped Pharmacist (Yakuza) after a fake Vanilla will, so look at who interacted with him: Bob PMed him on Day 1. There's also a Serial Killer out there, since Niaj died to one. If I die at night, look hard at whoever was quietly pushing against me during the Day."
+Peggy died (killed by Jester's revenge). Their role was Puppeteer. Their last will: "Peggy here. Vanilla Villager, no night action, nothing to report. Notes: Niaj flipped Pharmacist (Yakuza) but his will claimed Vanilla, so look at who he talked to: Bob PM'd him D1. A Serial Killer is also active (killed Niaj N1). Watch PM clusters and anyone pushing nominations without info."
+Speaking order today goes around the circle in seat order, starting with Rupert.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 2: correct
+Rupert (public): Three Yakuza down (Niaj, Mallory, Peggy). Alice saw Judy and Mallory visit Dave on N1, the night the Katana killed him, and Mallory flipped Clerk. Judy, what's your role and why were you at Dave's? Grace, what was your N2 result? Reminder: the SK is still loose and reads Not Evil.
+[Claim] Alice: Lookout. N1: Dave visited by Judy, Mallory. N2: Grace visited by Judy.
+Alice (public): N2 I watched Grace. Her only visitor was Judy. So Judy visited Dave, the Katana victim, on N1 and the claimed Sheriff on N2. Judy, please claim your role now and explain both visits. If it doesn't fit, she's my top hang candidate today. Grace, please share your N2 result.
+[Claim] Carol: Accountant. N1: Bob = 0 tokens. N2: Judy = 0 tokens.
+Carol (public): Claiming Accountant. N1 audit: Bob = 0 tokens (fits Jester). N2 audit: Judy = 0 tokens. So Judy can't honestly claim Medic, Vigilante, Veteran, Prosecutor, Archivist, Surveyor or Philanthropist. Seer only works if she already spent her token. Judy, name your role and your N1 and N2 results. A tokenless visitor fits Sheriff, Tracker, Lookout or Party Animal, but it also fits a Grunt or Diviner holding the Katana.
+Erin (public): Agree, Judy needs to claim now. Note that N2 had no Katana death, which hints the Yakuza are thin or their holder was stopped. Judy isn't the SK, since the SK hit Niaj and Mallory, not Dave or Grace.
+Frank (public): Agree, Judy claims now. Visiting the Katana victim N1 and the claimed Sheriff N2, with 0 tokens, fits a Yakuza Grunt or Diviner. If her claim doesn't explain both visits with results, I vote Yes and Guilty. Grace, your N2 result?
+[Claim] Grace: Sheriff. N1: Bob = Evil. N2: Judy = Not Evil
+Grace (public): N2 I checked Judy: NOT EVIL. Caveats: the Katana holder reads Not Evil. Judy isn't the SK, though: the SK killed Niaj N1 and Mallory N2 while she was at Dave's and mine. I wasn't attacked or blocked N2, so her visit to me fits an investigator (Tracker or Sheriff?). Judy, claim with both results. A Diviner holding the Katana is still possible.
+Heidi (public): Agree Judy needs to claim now, with what she did both nights. Two visits to key players with 0 tokens needs a role that explains both. If the story doesn't hold together, I'm Yes. Also, SK is still loose: anyone with info on N2 visits to Mallory, share it.
+[Claim] Ivan: Party Animal. N1: blocked Bob. N2: blocked Mallory (no Katana kill N2).
+Ivan (public): Claiming Party Animal. N1 I blocked Bob (Jester). N2 I blocked Mallory, and there was no Katana kill N2, which fits Mallory holding the Katana and my block stopping it. Judy's N2 visit to Grace wasn't an attack, since Grace lived. Judy, claim with both results, then we decide.
+[Claim] Judy: Trapper. N1: trap on Dave (armed from N2). N2: trap on Grace (armed from N3). No trigger yet.
+Judy (public): Claiming Trapper (0 tokens, fits Carol's audit). N1 I trapped Dave to guard him; traps arm only from the next night, so it couldn't stop the Katana that night. Mallory was the other visitor and flipped Clerk, so she held the Katana N1, which confirms Alice. N2 I moved my trap onto Grace, our confirmed-looking Sheriff. It's armed from tonight: any non-Village visitor to Grace takes a Strong Attack. Trappers get no results unless the trap fires. Unclaimed so far: Erin, Frank, Heidi, Olivia. The SK and any remaining Yakuza are among the rest of us.
+Olivia (public): Judy's Trapper claim fits everything we have: Carol's 0-token audit, Grace's Not Evil, and Mallory flipping Clerk as the other N1 visitor to Dave. Without a contradiction, I won't hang her today. I'd also argue against unclaimed players mass-claiming (me included), since that just hands the SK and any last Yakuza a target list. We're down to the SK plus maybe one Yakuza. Let's watch who pushes a hang with no mechanical basis.
+Rupert (public): Good point worth noting: a Clerk's rig isn't a visit, so Mallory's N1 visit to Dave can only have been the Katana. That makes Judy's visit the extra one, and Trapper fits it plus Carol's 0 tokens. I agree with Olivia: no hang today without a mechanical lead. Unclaimed players, stay unclaimed.
+Alice (public): Judy's Trapper claim matches both my results (Dave N1, Grace N2) and Carol's 0-token audit. No contradiction, so I won't push her today. Agree: no hang without a mechanical lead. Unclaimed players, stay quiet; the SK is still out there.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+[Feedback from Judy] It's unclear whether re-targeting the same player resets the arming delay, so I chose not to act to keep the existing trap.
+Night actions:
+  Alice (Lookout): target Carol
+  Carol (Accountant): target Olivia
+  Erin (Oracle): target Rupert; guessed role Serial Killer
+  Grace (Sheriff): target Olivia
+  Heidi (Diviner): target Heidi; Katana vote: Heidi holds, attacks Alice
+  Ivan (Party Animal): target Olivia
+  Judy (Trapper): no action
+  Olivia (Vigilante): no action
+  Rupert (Serial Killer): target Alice
+Katana: Heidi holds it and attacks Alice.
+(to Alice) Moderator (private): Night 3: You watched Carol. Nobody else visited her. You were attacked by the Katana and by a Serial Killer, and you died.
+(to Carol) Moderator (private): Night 3: You audited Olivia. She has 3 tokens in total.
+(to Erin) Moderator (private): Night 3: You guessed that Rupert is a Serial Killer. Your guess was RIGHT.
+(to Grace) Moderator (private): Night 3: You investigated Olivia. Result: Not Evil.
+(to Heidi) Moderator (private): Night 3: You picked yourself with your Diviner ability. Your pick was Yakuza, so you had Strong Defense tonight and got no reading. Yakuza actions tonight: Heidi (Diviner) picked Heidi. Katana: Heidi holds it and attacked Alice. Your Katana attack on Alice succeeded.
+(to Ivan) Moderator (private): Night 3: You visited Olivia and role-blocked her.
+(to Olivia) Moderator (private): Night 3: You were role-blocked. You still have 3 vigilante tokens.
+(to Rupert) Moderator (private): Night 3: You attacked Alice. Your attack succeeded.
+[Moderator summary] Night 3: Heidi (Katana holder, Standard) and Rupert (SK, Strong) both attacked Alice (Defense None), so she died with cause 'Katana and Serial Killer'. Heidi's Diviner self-pick gave her Strong Defense and no reading. Erin's Oracle guess (Rupert = Serial Killer) was correct. Grace's check on Olivia: Not Evil. Carol's audit of Olivia: 3 tokens. Alice watched Carol and saw no other visitors. Ivan blocked Olivia, who had chosen not to act anyway. Nobody visited Grace, so Judy's trap stays armed. Judy didn't act. The game continues.
+
+===== DAY 4 =====
+Alice died (killed by Katana and Serial Killer). Their role was Lookout. Their last will: "Alice - Lookout. N1: watched Dave (Medic, Katana). Visitors: Judy, Mallory (Mallory flipped Clerk, likely Katana holder). N2: watched Grace (claimed Sheriff). Only visitor: Judy. Judy claims Trapper (trap Dave N1, Grace N2), which fits my results and Carol's 0-token audit. Flipped Yakuza: Niaj (Pharm), Mallory (Clerk), Peggy (Puppeteer). SK still alive (killed Niaj N1, Mallory N2). If I die at night, the SK or last Yakuza wanted the Lookout gone: look at who visited me per other investigators. N3 result: (pending)."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Erin: Oracle. N1: Bob=Grunt WRONG. N2: Mallory=Grunt WRONG. N3: Rupert=Serial Killer RIGHT.
+Erin (public): Claiming Oracle. Oracle guesses are Astral Visits, so no Lookout or Tracker could see them. N1: Bob = Grunt, wrong (Jester). N2: Mallory = Grunt, wrong (Clerk). N3: Rupert = Serial Killer: RIGHT. Rupert is the SK, and his Vanilla claim is fake. He killed Niaj, Mallory and Alice. Nominating Rupert: vote Yes, then Guilty. Rupert can't counterclaim anything that beats an exact-role confirmation. At least one Yakuza is still alive (Katana hit Alice), so we hunt them tomorrow.
+Erin nominated Rupert. Everyone now votes Yes/No simultaneously.
+Nomination votes on Rupert: Yes - Erin, Frank, Grace, Heidi, Ivan, Judy, Olivia, Carol; No - Rupert.
+Rupert is put on trial (8 Yes).
+Rupert (public): I'm Vanilla. Erin's claim is the one thing in this game nobody can check: Astral Visits, no Lookout or Tracker trace, and two 'wrong' guesses that conveniently produced nothing public. Ask yourselves: why would a real Oracle spend N3 guessing 'Serial Killer' on a quiet Vanilla out of eight candidates? A last Yakuza who knows I'm not on her team would do exactly that: claim an uncheckable role after the Lookout dies, name a nobody, and get a free mislynch while the Katana keeps swinging. Alice died to the Katana, so a Yakuza is alive right now, and Erin waited until Alice was dead to speak. If I flip Vanilla, Erin is your last Yakuza, so hang her tomorrow. Better: vote Innocent today, Grace checks Erin tonight, and Judy's trap still guards Grace. One lost day beats handing the Yakuza a free kill.
+Carol (public): Voting Guilty. Erin's claim gets tested the moment Rupert flips. A last Yakuza doesn't know who the SK is, so staking her own life on naming a random 'Vanilla' as SK would be a terrible bluff. If Rupert flips anything but SK, Erin hangs tomorrow and I'll back that.
+Erin (public): Rupert's 'test Erin first' gives him another free night to kill. A Yakuza doesn't know who the SK is; claiming a fake Oracle hit on a random player would get me hanged tomorrow. I guessed Rupert because his D2 Vanilla claim was unverifiable and the SK had to be hiding behind one. His flip proves me. Guilty.
+Frank (public): Voting Guilty. A last Yakuza can't know who the SK is, so a fake Oracle hit on a random Vanilla is suicide. If Rupert flips non-SK, Erin hangs tomorrow.
+[Claim] Grace: Sheriff. N1: Bob = Evil. N2: Judy = Not Evil. N3: Olivia = Not Evil
+Grace (public): Voting Guilty. Erin's claim is self-testing: a fake Oracle naming a random Vanilla as SK hangs herself tomorrow. My N3 check: Olivia = Not Evil. If Rupert flips non-SK, Erin is next.
+Heidi (public): Voting Guilty. Erin's claim tests itself the moment Rupert flips, and his defense is only 'Erin can't be checked.' If he flips SK, remember the last Yakuza holds the Katana and reads Not Evil, so Not Evil checks don't fully clear anyone.
+[Claim] Ivan: Party Animal. N1: blocked Bob. N2: blocked Mallory (no Katana kill N2). N3: blocked Olivia (Alice still died to Katana+SK).
+Ivan (public): Voting Guilty; Erin's claim tests itself on the flip. My N3 result: I blocked Olivia, and Alice still died to both the Katana and the SK. So Olivia is neither the SK nor the N3 Katana holder, which fits Grace's Not Evil check on her.
+Judy (public): Voting Guilty. Erin's claim tests itself on the flip. My trap on Grace did not fire N3. If Rupert flips SK, the last Yakuza is among the rest of us; Frank, Heidi and Olivia should be ready to claim tomorrow so we can cross-check.
+Olivia (public): Voting Guilty. Erin's hit tests itself on the flip. If Rupert flips SK, Erin is confirmed, and the last Yakuza is hiding behind one of the remaining claims or among the unclaimed.
+Rupert (public): Last word. Everyone keeps saying a fake Oracle naming a random Vanilla is suicide. It isn't, if she gets the free hang today and the Katana kills Grace or Carol tonight before anyone can act on my flip. One Innocent day costs you nothing: Grace checks Erin tonight, Judy's trap guards Grace, and if Erin reads Not Evil and Rupert is SK, you hang me tomorrow. Hang me now on an uncheckable claim and you may lose your last real investigators. Vote Innocent.
+Trial votes on Rupert: Guilty - Carol, Erin, Frank, Grace, Heidi, Ivan, Judy, Olivia; Innocent - Rupert.
+Rupert is executed by hanging (8 Guilty of 9 votes; 5 needed).
+Rupert died (executed by hanging). Their role was Serial Killer. Their last will: "Rupert here. Vanilla Villager, no night action. Erin claimed Oracle on D4 (Astral Visits, uncheckable) and named me SK right after Lookout Alice died. If I flip Vanilla, Erin is the last Yakuza: hang her next. Alice died to the Katana N3, so a Yakuza is alive. Flips: Niaj Pharmacist, Mallory Clerk, Peggy Puppeteer, Bob Jester."
+
+===== NIGHT 4 =====
+Night actions:
+  Carol (Accountant): target Ivan
+  Erin (Oracle): target Heidi; guessed role Grunt
+  Grace (Sheriff): target Heidi
+  Heidi (Diviner): target Heidi; Katana vote: Heidi holds, attacks Erin
+  Ivan (Party Animal): target Heidi
+  Judy (Trapper): no action
+  Olivia (Vigilante): no action
+Katana: Heidi holds it and attacks Erin.
+(to Carol) Moderator (private): You audited Ivan. They have 0 tokens in total.
+(to Erin) Moderator (private): Your guess was wrong: Heidi is not a Grunt.
+(to Grace) Moderator (private): You investigated Heidi. Result: Not Evil.
+(to Heidi) Moderator (private): You were role-blocked tonight. None of your actions took effect: your Diviner action did nothing and no Katana attack was made. You still hold the Katana. There are no other living Yakuza, so there are no teammate actions to report.
+(to Ivan) Moderator (private): You visited Heidi and role-blocked them.
+[Moderator summary] Night 4: Ivan (Party Animal) role-blocked Heidi (Diviner, Yakuza, Katana holder), which stopped her self-targeted Diviner action and the Katana attack on Erin. Visits: Carol to Ivan, Grace to Heidi, Ivan to Heidi; Erin's Oracle guess is an Astral Visit. Nobody visited Grace, so Judy's trap stays on her unfired. Results: Carol's audit of Ivan = 0 tokens. Erin's guess (Heidi = Grunt) was wrong; Oracles get no public announcement. Grace's check of Heidi = Not Evil, because Heidi holds the Katana. Heidi was told she was role-blocked. Ivan was told his block landed. Judy and Olivia didn't act. No tokens spent, no deaths, no win.
+
+===== DAY 5 =====
+Nobody died last night.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Erin: Oracle. N1: Bob=Grunt WRONG. N2: Mallory=Grunt WRONG. N3: Rupert=SK RIGHT. N4: Heidi=Grunt WRONG.
+Erin (public): N4 Oracle: Heidi = Grunt, WRONG (she could still be another Yakuza role). Nobody died N4 even though a Yakuza is alive. Ivan, whom did you block N4? Grace, your N4 check? With the SK dead, Frank, Heidi and Olivia should claim now with any results, so we can cross-check before voting. No hang without a mechanical lead.
+[Claim] Frank: Vanilla Villager
+Frank (public): Claiming Vanilla Villager: no night action, no results. With the SK dead, the last Yakuza hides behind a claim or among Heidi and Olivia. Ivan, whom did you block N4? Heidi and Olivia, please claim. I'm still watching Ivan's block stories, since nobody can verify them.
+[Claim] Grace: Sheriff. N1: Bob = Evil. N2: Judy = Not Evil. N3: Olivia = Not Evil. N4: Heidi = Not Evil
+Grace (public): N4 check: Heidi = NOT EVIL. Caveat: the last Yakuza holds the Katana and reads Not Evil every night, so my checks clear nobody now. Nobody died N4. Ivan, whom did you block N4? Judy, did your trap fire? Carol, what were your N3 and N4 audits? Heidi and Olivia, please claim. Erin, since a Diviner could also learn exact roles, please lay out why you guessed Heidi.
+[Claim] Heidi: Vanilla Villager
+Heidi (public): Claiming Vanilla Villager: no night action, no results. That fits Erin's 'Grunt wrong' and Grace's Not Evil, for what those are worth. On N4 having no kill: the holder may have been blocked, may have skipped because of Judy's trap, or may have skipped deliberately so that whoever Ivan blocked looks guilty. Ivan, whom did you block? Grace's question is fair too. Erin, a Diviner also gets exact roles, so walk us through why you picked Rupert N3 and me N4.
+[Claim] Ivan: Party Animal. N1: Bob. N2: Mallory (no Katana kill). N3: Olivia (Alice still died). N4: Heidi (nobody died).
+Ivan (public): N4 I blocked Heidi, and nobody died. That's the same pattern as N2: I blocked Mallory, there was no Katana kill, and she flipped Clerk. N3 I blocked Olivia, and Alice still died to the Katana. Heidi was unclaimed until today, and 'Vanilla' can't be checked. Grace's Not Evil doesn't clear her, since the holder reads Not Evil. Heidi is my top suspect. Carol, what were your N3/N4 audits? I plan to nominate Heidi unless someone has a contradiction.
+Judy (public): Trap on Grace did not fire N4 either, so no non-Village player visited Grace N3 or N4. Olivia, please claim. Carol, please share your N3/N4 audits. I lean toward Ivan's Heidi nomination, since the two no-kill nights both line up with his blocks. But that rests entirely on Ivan's unverifiable word. If Heidi flips Village, Ivan is my hang tomorrow, and I'd want Grace to check him tonight.
+Olivia (public): One verifiable fact: I was role-blocked N3, exactly as Ivan claimed. So Ivan really is a blocker, and Frank, his block log is not entirely unverifiable. I have a role with a night action. I'm holding the details, since I'm already mechanically cleared: Grace read me Not Evil N3, and Ivan blocked me that same night while the Katana still hit Alice. Ivan's two block/no-kill matches (Mallory N2, Heidi N4) are the only mechanical lead we have, so I lean Yes on Heidi. If Heidi flips Village, Ivan's story breaks and he hangs next.
+[Claim] Carol: Accountant. N1: Bob=0. N2: Judy=0. N3: Olivia=fits Village role (no Yakuza fit). N4: Ivan=0.
+Carol (public): Audits: N3 Olivia = a token count that fits a Village role with night actions and no Yakuza starting role (I'll keep the exact number private to protect her). N4 Ivan = 0 tokens, which fits Party Animal. Olivia confirming the N3 block makes Ivan's log credible. Two block/no-kill nights is our only mechanical lead, so I'm Yes on Heidi. If Heidi flips Village, Frank and then Ivan are next.
+Erin (public): Ivan's log is verified: he named Olivia as his N3 block on Day 4, before Olivia confirmed it today. Two blocks with no kill (Mallory N2, Heidi N4), and Mallory flipped Yakuza. With the SK dead, a lone holder who gets blocked can't kill. That's our mechanical lead. Nominating Heidi. If she flips Village, Frank and then Ivan get scrutiny tomorrow.
+Erin nominated Heidi. Everyone now votes Yes/No simultaneously.
+Nomination votes on Heidi: Yes - Erin, Frank, Grace, Ivan, Judy, Olivia, Carol; No - Heidi.
+Heidi is put on trial (7 Yes).
+Heidi (public): I'm Vanilla. I can't prove it, but look at what the 'match' actually is. Ivan picks a target, then tells us about it after a no-kill night. A lone holder who knows a blocker exists (Ivan claimed on D3) can simply skip a night, and whoever Ivan happened to block becomes the suspect for free. N2 matched because Mallory really was blocked. N4 only matches because the holder chose not to swing into an announced blocker and Judy's trap. Frank fits better: he claimed Vanilla only today, has no mechanics, and spent today trying to discredit Ivan, which is exactly what the holder needs. Here's a cheap test: vote Innocent and have Ivan block me again tonight. If someone dies, I'm clear and Frank is the holder. If nobody dies, hang me tomorrow. A wrong hang today hands the holder a free night.
+Ivan (public): Heidi's test doesn't work. If she's the holder and I block her, nobody dies. If she isn't, the real holder just skips again to frame her. Either way we learn nothing and lose a day. Two block/no-kill nights, and the first flipped Clerk. Voting Guilty. If she flips Village, I'm the next hang.
+Judy (public): Voting Guilty. Heidi's test fails as Ivan says: a holder skipping either way teaches us nothing. Ivan's N3 block was verified by Olivia, so his log is our only mechanical lead. If Heidi flips Village, Ivan hangs tomorrow, then Frank.
+Olivia (public): Voting Guilty. Ivan's log is the only mechanical lead, and my N3 block confirms he really blocks. If Heidi flips Village, the holder skipped N4 on purpose, and Ivan and Frank are next in line.
+Carol (public): Guilty. Note: the Pharmacist died N1, so on N3 only a real Party Animal could have blocked Olivia. Ivan is effectively confirmed. If Heidi flips Village, Frank is next, not Ivan.
+Erin (public): Voting Guilty. Heidi's test costs us a day and risks a free kill on Grace or Carol. Ivan's blocks are verified, and two block/no-kill nights are our lead. If she flips Village, Frank is next.
+Frank (public): Heidi, I questioned Ivan's log before Olivia confirmed her N3 block. Once it was verified, I backed it and voted Yes. Pointing at me instead of answering the block/no-kill pattern isn't a defense. Voting Guilty.
+Grace (public): Voting Guilty. Ivan's verified N3 block is our only mechanical lead. One caveat for tomorrow if Heidi flips Village: roles can repeat, so a real blocker could also be a second Pharmacist. Then Ivan, Frank and Erin all get scrutiny, and my checks can't clear a lone Katana holder.
+Heidi (public): Last word. Everyone is treating Ivan as confirmed, but Grace is right that roles repeat. A second Pharmacist also has 0 tokens, can't be role-blocked, and blocks real targets, so Olivia's N3 block fits him exactly as well as a Party Animal. Now look at the 'pattern'. N3: Ivan blocks Olivia, a harmless target, and the Katana swings. N4: he names me, nobody dies, and today he leads the push. If Ivan holds the Katana, every night lines up: he picks who to block, decides whether to swing, then tells us what it means. Hang me and you have 7 left, so one more mislynch tomorrow puts the holder near parity. Vote Innocent. Grace checks Ivan tonight; he may read Not Evil as the holder, but Judy's trap and a Carol audit can still test him. If he's honest, nothing is lost. If I flip Vanilla, remember that Ivan built this case alone.
+Trial votes on Heidi: Guilty - Carol, Erin, Frank, Grace, Ivan, Judy, Olivia; Innocent - Heidi.
+Heidi is executed by hanging (7 Guilty of 8 votes; 5 needed).
+Heidi died (executed by hanging). Their role was Diviner. Their last will: "Heidi here. Vanilla Villager, no night action, nothing to report from any night. Dave (Medic) died to the Katana N1, and Mallory (Clerk) held it. Alice died N3 to both the Katana and the SK. Rupert flipped SK, which confirms Erin as Oracle. Ivan blocked me N4 and nobody died, but a lone holder who knows a blocker exists can just skip a night to frame whoever Ivan blocked. If I flip Vanilla, the holder chose to skip N4. My top suspect is Frank: he claimed Vanilla late, has no mechanics, and tried to discredit Ivan. Olivia is next, since she still hasn't named her role. Not Evil checks don't clear the Katana holder."
+The game is over. Winners: Alice (dead), Carol, Dave (dead), Erin, Frank, Grace, Ivan, Judy, Olivia, Bob (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Dave] Main friction: a Night-1 death leaves an outdated will, because wills can't be edited at night.
+[Feedback from Erin] Rules were mostly clear; the main friction was the hidden role list for exact-role guessing.
+[Feedback from Peggy] The lack of any Yakuza communication between night results and Day start made the Puppeteer and Diviner synergy hard to use. Otherwise the rules worked as written.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Frank, Grace, Ivan, Judy, Olivia, Bob
+Cost by player (USD):
+  Alice (Lookout)         $0.8637   17 calls  claude-opus-5.5
+  Bob (Jester)            $0.5836   12 calls  claude-opus-5.5
+  Carol (Accountant)      $1.5131   28 calls  claude-opus-5.5
+  Dave (Medic)            $0.4133    7 calls  claude-opus-5.5
+  Erin (Oracle)           $1.5324   28 calls  claude-opus-5.5
+  Frank (Cardinal)        $1.1828   24 calls  claude-opus-5.5
+  Grace (Sheriff)         $1.4961   27 calls  claude-opus-5.5
+  Heidi (Diviner)         $1.9762   32 calls  claude-opus-5.5
+  Ivan (Party Animal)     $1.3883   27 calls  claude-opus-5.5
+  Judy (Trapper)          $1.4602   27 calls  claude-opus-5.5
+  Mallory (Clerk)         $0.8851   16 calls  claude-opus-5.5
+  Niaj (Pharmacist)       $0.5295   10 calls  claude-opus-5.5
+  Olivia (Vigilante)      $1.5539   27 calls  claude-opus-5.5
+  Peggy (Puppeteer)       $0.8122   16 calls  claude-opus-5.5
+  Rupert (Serial Killer)  $1.0962   22 calls  claude-opus-5.5
+  Moderator               $0.9742   13 calls  claude-opus-5.5
+  Night checks            $0.4133    4 calls  claude-opus-5.5
+  Strategy review         $0.2627    1 calls  claude-opus-5.5
+  Log review              $0.2265    1 calls  claude-opus-5.5
+  Total                   $19.1632  339 calls
