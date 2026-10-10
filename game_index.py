@@ -22,7 +22,9 @@ from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from llm import Model, TIERS, model_tier
+from gamelogs import folder_logs, mix_of, model_id, result_of, setup_of, short
+from gamelogs import players as game_players
+from llm import TIERS, model_tier
 from records import read_records
 
 ROOT = Path(__file__).resolve().parent
@@ -30,46 +32,26 @@ LOG_DIR = ROOT / "logs"
 INDEX = "index.html"
 CACHE = "index_cache.json"
 CACHE_VERSION = 1  # bump when summarize()'s fields change, so cached summaries are rebuilt
-SHORT = {m.value: m.short for m in Model}
 TIER_ORDER = ["frontier", "mid", "cheap", "unknown"]
-MIX_SHARE = 2 / 3  # a game is "frontier" (or "mid", "cheap") when at least this share of its seats are
-
-
-def short(model: str) -> str:
-    return SHORT.get(model, model.split("/")[-1])
-
-
-def mix_of(seat_models: list[str]) -> tuple[float, str]:
-    """(share of seats played by frontier models, the game's mix label: a tier, or "mixed")."""
-    if not seat_models:
-        return 0.0, "mixed"
-    tiers = Counter(model_tier(m) for m in seat_models)
-    share = tiers["frontier"] / len(seat_models)
-    top, n = tiers.most_common(1)[0]
-    return round(share, 3), top if n / len(seat_models) >= MIX_SHARE else "mixed"
 
 
 def summarize(path: Path) -> dict | None:
     """One game's row: who played, how it ended and what it cost; None if it isn't a game log."""
     records, _ = read_records(path)
-    setup = next((r for r in records if r.get("kind") == "setup"), None)
+    setup = setup_of(records)
     if setup is None:
         return None
-    result = next((r for r in reversed(records) if r.get("kind") == "result"), None) or {}
+    result = result_of(records) or {}
     settings = setup.get("settings") or {}
-    seats = setup.get("players") or []
-    seat_models = [p.get("model", "?") for p in seats]
+    seats = game_players(records, setup, result)
+    seat_models = [p["model"] for p in seats]
     share, mix = mix_of(seat_models)
     game_id = setup.get("game_id") or path.stem
     try:
         started = datetime.fromtimestamp(setup["t"]).strftime("%Y-%m-%d %H:%M")
     except (KeyError, TypeError, ValueError, OSError):
         started = ""
-    tips_record = next((r for r in records if r.get("kind") == "tips"), None)
-    tips = (sum(1 for p in result["players"] if p.get("tips")) if result.get("players")
-            else len(tips_record.get("players") or []) if tips_record else 0)
     errors = Counter(r["kind"] for r in records if r.get("alert"))
-    deaths = {r.get("player") for r in records if r.get("kind") == "death"}
     winners = set(result.get("winners") or [])
     return {
         "game": game_id, "started": started, "date": started[:10].replace("-", ""),
@@ -82,17 +64,12 @@ def summarize(path: Path) -> dict | None:
         "duration_min": round(result["duration_s"] / 60) if result.get("duration_s") else None,
         "n_players": len(seats), "models": seat_models, "frontier_share": share, "mix": mix,
         "moderator": settings.get("moderator", ""), "setup": (settings.get("setup") or {}).get("kind", "fixed"),
-        "players": [{"name": p.get("name"), "model": p.get("model"), "role": p.get("role"),
-                     "won": p.get("name") in winners, "alive": p.get("name") not in deaths} for p in seats],
-        "roles": sorted(p.get("role", "?") for p in seats), "errors": sum(errors.values()),
-        "error_kinds": dict(errors), "tips": tips, "log_version": setup.get("log_version", 1),
+        "players": [{"name": p["name"], "model": p["model"], "role": p["start_role"], "won": p["won"],
+                     "alive": not p["died"]} for p in seats],
+        "roles": sorted(p["start_role"] for p in seats), "errors": sum(errors.values()),
+        "error_kinds": dict(errors), "tips": sum(p["tips"] for p in seats), "log_version": setup.get("log_version", 1),
         "git_commit": (setup.get("git_commit") or "")[:7], "seed": settings.get("seed"),
     }
-
-
-def log_files(log_dir: Path, include_mock: bool) -> list[Path]:
-    names = ["game_*.jsonl", *(["mock_*.jsonl"] if include_mock else [])]
-    return sorted(f for pat in names for f in log_dir.glob(pat) if f.name != "mock_lessons.jsonl")
 
 
 def load_summaries(log_dir: Path = LOG_DIR, include_mock: bool = False) -> list[dict]:
@@ -106,7 +83,7 @@ def load_summaries(log_dir: Path = LOG_DIR, include_mock: bool = False) -> list[
         cache = {}
     entries = cache.get("games", {})
     out, fresh = [], {}
-    for path in log_files(log_dir, include_mock):
+    for path in folder_logs(log_dir, include_mock):
         st = path.stat()
         key = f"{st.st_size}:{st.st_mtime_ns}"
         entry = entries.get(path.name)
@@ -152,10 +129,6 @@ def add_filter_args(ap: argparse.ArgumentParser) -> None:
     g.add_argument("--players", type=player_range, metavar="N or A-B", help="only games with this many players")
     g.add_argument("--since", metavar="YYYY-MM-DD", help="only games started on or after this day")
     g.add_argument("--until", metavar="YYYY-MM-DD", help="only games started on or before this day")
-
-
-def model_id(name: str) -> str:
-    return next((m.value for m in Model if name in (m.value, m.short)), name)
 
 
 def matches(g: dict, args: argparse.Namespace) -> bool:

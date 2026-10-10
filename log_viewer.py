@@ -20,8 +20,9 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from gamelogs import faction_of
 from records import read_records
-from roles import ROLES, Alignment
+from roles import ROLES
 from tips import player_view
 
 
@@ -295,13 +296,6 @@ def icons_css() -> str:
         slug, svg = path.stem, " ".join(path.read_text(encoding="utf-8").split())
         rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
     return "\n".join(rules)
-
-
-def faction_of(role: str) -> str:
-    info = ROLES.get(role)
-    if info is None:
-        return "Village"
-    return {Alignment.GOOD: "Village", Alignment.EVIL: "Yakuza", Alignment.NEUTRAL: "Neutral"}[info.alignment]
 
 
 class Namer:

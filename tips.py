@@ -36,13 +36,13 @@ import os
 import random
 import re
 import time
-from collections import Counter
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+import gamelogs
 from llm import (DEFAULT_STRENGTH, LLMClient, MockClient, ModelSpec, OpenRouterClient, answer_json, load_api_key,
                  model_strength, parse_model_spec)
 from records import read_records, safe_print
@@ -144,17 +144,15 @@ def read_game(path: Path) -> dict | None:
     hasn't finished (its post-game steps may still be running, and a game is only read once)."""
     records, _ = read_records(path)  # a half-written last line (a killed game) is skipped
     lessons = [r for r in records if r["kind"] in ("lessons", "strategy_review")]
-    result = next((r for r in records if r["kind"] == "result"), None)
+    result = gamelogs.result_of(records)
     if not lessons or result is None:
         return None
-    fallbacks = Counter(r.get("player") for r in records if r["kind"] == "player_fallback")
-    if not fallbacks:  # older logs had no player_fallback record: a failed second (last) attempt was one
-        fallbacks = Counter(r.get("player") for r in records
-                            if r["kind"] == "player_error" and r.get("attempt") == 1)
-    tips = next((r for r in records if r["kind"] == "tips"), None)
+    fallbacks = gamelogs.fallback_counts(records)
+    tips = gamelogs.first(records, "tips")
+    setup = gamelogs.setup_of(records)
     return {"game": path.stem, "records": lessons, "result": result, "had_tips": tips["players"] if tips else [],
             "unreliable": sorted(p for p, n in fallbacks.items() if p and n >= FALLBACKS_TO_DISTRUST),
-            "mock": next((r.get("settings", {}).get("mock") for r in records if r["kind"] == "setup"), False)}
+            "mock": setup.get("settings", {}).get("mock") if setup else False}
 
 
 def describe_game(g: dict) -> str:

@@ -41,26 +41,17 @@ from collections.abc import Iterable
 from pathlib import Path
 
 import game_index
-from llm import Model
+from gamelogs import faction_of, log_files, mix_of, result_of, setup_of, short
+from gamelogs import players as game_players
 from records import read_records
 from roles import ROLES, Alignment, logic
 
 ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
-SHORT = {m.value: m.short for m in Model}
 ATTACKERS = {"Vigilante", "Serial Killer", "Ritualist"}  # night actions that attack their target
 POWER_CATEGORIES = {"Investigative", "Combat", "Misc"}
 DECISION_ORDER = ["nomination", "nomination_vote", "trial_vote", "deceived_voter", "sheriff_check",
                   "medic_protect", "vigilante_shot", "katana_target"]
-
-
-def short(model: str) -> str:
-    return SHORT.get(model, model.split("/")[-1])
-
-
-def faction_of(role: str) -> str:
-    alignment = ROLES[role].alignment if role in ROLES else None
-    return {Alignment.GOOD: "Village", Alignment.EVIL: "Yakuza"}.get(alignment, "Neutral")  # type: ignore[arg-type]
 
 
 def wants_dead(faction: str, role: str) -> bool | None:
@@ -80,47 +71,24 @@ def wants_dead(faction: str, role: str) -> bool | None:
 
 # --- reading logs ------------------------------------------------------------------------------
 
-def log_files(paths: Iterable[Path]) -> list[Path]:
-    out: list[Path] = []
-    for p in paths:
-        if p.is_dir():
-            out += sorted(f for f in [*p.glob("game_*.jsonl"), *p.glob("mock_*.jsonl")]
-                          if f.name != "mock_lessons.jsonl")
-        elif p.suffix == ".jsonl" and p.exists():
-            out.append(p)
-        else:
-            raise SystemExit(f"{p} is not a folder or a .jsonl game log")
-    return out
-
-
 def load_game(path: Path) -> dict | None:
     """One finished game's summary, players and scored decisions, or None if it has no result."""
     records, _ = read_records(path)  # a half-written last line (a killed game) is skipped
-    setup = next((r for r in records if r.get("kind") == "setup"), None)
-    result = next((r for r in reversed(records) if r.get("kind") == "result"), None)
+    setup, result = setup_of(records), result_of(records)
     if setup is None or result is None:  # stopped or crashed, or not a game log (e.g. mock_lessons.jsonl)
         return None
     settings = setup.get("settings") or {}
     game_id = setup.get("game_id") or path.stem
-    if "players" in result:
-        players = [{"name": p["name"], "model": short(p["model"]), "role": p["start_role"],
-                    "faction": faction_of(p["start_role"]), "won": p["won"], "alive": p["alive"]}
-                   for p in result["players"]]
-    else:  # log versions before 3
-        winners = set(result.get("winners") or [])
-        start_roles = {p["name"]: p["role"] for p in setup["players"]}
-        players = [{"name": n, "model": short(result["models"][n]), "role": start_roles.get(n, role),
-                    "faction": faction_of(start_roles.get(n, role)), "won": n in winners,
-                    "alive": n not in {r["player"] for r in records if r["kind"] == "death"}}
-                   for n, role in result["roles"].items()]
+    seated = game_players(records, setup, result)
+    players = [{"name": p["name"], "model": short(p["model"]), "role": p["start_role"], "faction": p["faction"],
+                "won": p["won"], "alive": p["alive"]} for p in seated]
     winning = result.get("winning_faction")
     if "winning_faction" not in result:
         factions = {p["faction"] for p in players if p["won"]} & {"Village", "Yakuza"}
         winning = next(iter(factions), None)
     by_name = {p["name"]: p for p in players}
-    full_ids = {p["name"]: p["model"] for p in result["players"]} if "players" in result else result.get("models", {})
-    seat_models = [full_ids.get(p["name"]) or p.get("model", "?") for p in setup["players"]]
-    frontier_share, mix = game_index.mix_of(seat_models)
+    seat_models = [p["model"] for p in seated]
+    frontier_share, mix = mix_of(seat_models)
     game = {"game": game_id, "file": path.name, "date": game_id.split("_")[1] if "_" in game_id else "",
             "log_version": setup.get("log_version", 1), "mock": bool(settings.get("mock")),
             "setup": (settings.get("setup") or {}).get("kind", "fixed"), "players": players,

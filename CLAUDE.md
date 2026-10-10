@@ -111,6 +111,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
 - `Player.status` keys that code reads are in `roles.Status`; use the constants, not strings.
 - Logs are meant for analysis across games: each record kind keeps stable fields. If you change a
   record's fields, bump `LOG_VERSION` in `gamelog.py` (it's written in the "setup" record).
+  Tools that read many games go through `gamelogs.py` (log files, setup/result, one dict per player); shims for
+  old log versions belong there only.
 - Night checks (`night_check.py`, on by default) log a judge model's verdict on each night's moderator
   resolution as "night_check" records; they never change the game.
 - Anything that goes wrong (a failed or empty LLM answer, a fallback, an API retry, a moderator tool
