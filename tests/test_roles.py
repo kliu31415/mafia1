@@ -680,6 +680,10 @@ def test_coroner_examines_only_players_dead_before_the_night(game_factory):
             apply_ops(game, players, {"op": "examine", "player": name, "by": "Alice"})
     apply_ops(game, players, {"op": "examine", "player": "Bob", "by": "Alice"})
     assert told(game, "Alice")[-1].endswith("You examined Bob: their role was Roleplayer. 2 coroner tokens left.")
+    game.player("Bob").status[Status.CLEANED] = True  # a Mortician's clean hides the role from the Coroner
+    apply_ops(game, players, {"op": "examine", "player": "Bob", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("You examined Bob: their body was cleaned by a Mortician, so you learned "
+                                            "nothing more. 1 coroner token left.")
 
 
 def test_profiler_decoys_fall_back_to_all_roles_in_tiny_games(game_factory):

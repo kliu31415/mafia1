@@ -18,9 +18,7 @@ from roles import ROLES, Alignment
 
 YAKUZA_SHARE = 0.3
 MIN_PLAYERS = 5
-# The Mortician hides the role and alignment, which the default settings (variants.py) already hide, so there it
-# would be a Grunt (Kevin, Oct 10 2026: leave it out of random setups for now).
-EXCLUDED = {"Mortician"}
+EXCLUDED: set[str] = set()
 POOLS = ("all", "tested")  # --role-pool: every role, or only roles seen working in a live game
 
 

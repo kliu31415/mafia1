@@ -79,10 +79,11 @@ ROLES: dict[str, RoleInfo] = {
                          tokens={"profile": 3}, acts_at_night=True,
                          notes="moderator records the use with the profile op; code draws the decoys and tells them"),
     "Coroner": RoleInfo(Alignment.GOOD, "Investigative", False,
-                        summary="Token: examine a player who died before tonight, learn their role.",
+                        summary="Token: examine a player who died before tonight, learn their role (not if a "
+                        "Mortician cleaned them).",
                         tokens={"coroner": 3}, acts_at_night=True,
                         notes="moderator records the use with the examine op (a dead target, not a visit); code "
-                        "tells them the role"),
+                        "tells them the role, or that the body was cleaned"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",
@@ -187,8 +188,9 @@ ROLES: dict[str, RoleInfo] = {
                         tested=True, notes="divine op: code draws the role from the group; "
                         "the moderator applies the Strong Defense"),
     "Mortician": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                          summary="Token: clean a player; if they die that night, their will is hidden.",
-                          tokens={"mortician": 2}, acts_at_night=True,
+                          summary="Token: clean a player; if they die that night, their will is hidden and a Coroner "
+                          "can't read their role.",
+                          tokens={"mortician": 3}, acts_at_night=True,
                           tested=True, notes="clean via status 'cleaned'; code hides the will in the "
                           "reveal (and the role or alignment when --flips shows them; cause shown)"),
     "Wiretap": RoleInfo(Alignment.EVIL, "Yakuza", True,

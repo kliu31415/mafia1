@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, register, tokens_left_text
+from roles.base import RecordedAction, RoleLogic, Status, register, tokens_left_text
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -21,5 +21,7 @@ class Coroner(RoleLogic):
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
-        game.tell([by.name], f"You examined {target.name}: their role was {target.role}. "
-                             f"{tokens_left_text(by, 'coroner')}.")
+        cleaned = target.status.get(Status.CLEANED)  # rules: Mortician
+        found = ("their body was cleaned by a Mortician, so you learned nothing more" if cleaned
+                 else f"their role was {target.role}")
+        game.tell([by.name], f"You examined {target.name}: {found}. {tokens_left_text(by, 'coroner')}.")

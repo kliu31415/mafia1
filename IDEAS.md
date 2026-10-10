@@ -42,6 +42,15 @@ night actions already run in parallel.
 - **More scored decisions in `stats.py`.** Role-blocks (Pharmacist, Party Animal), Lookout/Tracker
   targets, and whether claims were true (claims are free text, so that needs a judge pass).
 
+## Balance
+
+- **Roleplayer and Ex-Con under hidden flips.** Before the hidden-info defaults, a flip cleared them: a dead
+  Roleplayer's false results were exposed, and a hanged Ex-Con showed as a Villager. Now neither happens, so both
+  probably cost the Village more than before. Kevin (Oct 10, 2026): leave them and their odds in `setups.py` alone
+  until there's data. Options then: draw them less often in random setups, or give the Roleplayer a tell.
+- **Ritualist under hidden roles.** Most Village roles are claimed, so its exact-role guesses get easier and its
+  Divine attack ignores the Medic. Watch its kills per game before changing it.
+
 ## Turned down for now
 
 - **End the game once a faction has an unbreakable voting majority** (suggested by a player in

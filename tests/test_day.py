@@ -202,7 +202,7 @@ def test_yakuza_see_their_own_and_teammates_tokens_left(game_factory):
     game, _ = game_factory(["Mortician", "Ballot Stuffer", "Grunt", "Vanilla Villager", "Vanilla Villager"])
     game.player("Bob").tokens["ballot"] = 1
     briefing = role_briefing(game, game.player("Alice"))
-    assert "You have 2 mortician tokens left." in briefing
+    assert "You have 3 mortician tokens left." in briefing
     assert "Bob (Ballot Stuffer, 1 ballot token left)" in briefing and "Carol (Grunt)" in briefing
 
 
