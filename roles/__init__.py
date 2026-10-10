@@ -59,11 +59,11 @@ ROLES: dict[str, RoleInfo] = {
                              notes="moderator records the target with the eavesdrop op; code shows them the "
                              "target's PMs the next day"),
     "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False,
-                          summary="Once (token): at dawn, sees 75% of the other players' roles, "
-                          "random and without names.",
+                          summary="Once (token): sees one role per other player, unnamed and shuffled; "
+                          "75% are real, the rest fakes.",
                           tokens={"archive": 1}, acts_at_night=True, tested=True,
-                          notes="moderator records the use with the archive op; code draws the sample "
-                          "and tells it at once"),
+                          notes="moderator records the use with the archive op; code draws the real 75% "
+                          "and the fakes (any role, never a second unique one), and tells it at once"),
     "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False,
                          summary="Token: survey a player; learns one random role among them and their two neighbors.",
                          tokens={"survey": 3}, acts_at_night=True, tested=True,

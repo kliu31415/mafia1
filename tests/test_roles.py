@@ -150,7 +150,7 @@ def test_eavesdropper_reads_its_targets_pms_for_one_day(game_factory):
     assert {e.fields["message"] for e in game.events if e.cat == "pm" and e.visible("Alice")} == heard
 
 
-def test_archivist_sees_three_quarters_of_the_others_alive_at_night_start_once(game_factory):
+def test_archivist_sees_one_role_per_other_player_three_quarters_real_once(game_factory):
     game, players = game_factory(["Archivist", "Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt",
                                   "Jester", "Sheriff", "Medic", "Pharmacist"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
@@ -162,14 +162,40 @@ def test_archivist_sees_three_quarters_of_the_others_alive_at_night_start_once(g
         mod.dispatch("apply_changes", {"changes": [{"op": "archive", "by": "Alice"}]})
     result = next(e for e in game.events if e.cat == "result")
     assert result.visible_to == {"Alice"}
-    assert "6 of the roles of the 8 other players" in result.text  # Bob died tonight but counts: N = 8
-    shown = result.fields["message"].split(": ", 1)[1].rstrip(".").split(", ")
-    pool = ["Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester", "Sheriff", "Medic", "Pharmacist"]
-    assert len(shown) == 6 and all(shown.count(r) <= pool.count(r) for r in shown)
+    # Bob died tonight but counts: N = 8, floor(0.75 * 8) = 6 real
+    assert "shows 8 roles" in result.text and "6 of them are the real" in result.text
+    assert "other 2 are fakes" in result.text
+    shown = result.fields["message"].rsplit(": ", 1)[1].rstrip(".").split(", ")
+    assert len(shown) == 8 and all(r in ROLES for r in shown)
     assert result.phase == "night"  # a night result, not a dawn one
     game.announce_dawn()
     game.run_dawn_hooks()  # nothing more at dawn
     assert sum(e.cat == "result" for e in game.events) == 1
+
+
+def test_archivist_fakes_are_any_role_but_never_a_second_unique_one(game_factory):
+    import random
+    from collections import Counter
+    from roles.archivist import archive_roles
+    game, _ = game_factory(["Archivist", "Vulture", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester",
+                            "Sheriff", "Medic", "Pharmacist"])
+    pool = Counter(["Vulture", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester", "Sheriff", "Medic",
+                    "Pharmacist"])
+    game.phase = "night"
+    unique = {r for r, info in ROLES.items() if info.unique}
+    assert unique
+    fakes_seen: set[str] = set()
+    for seed in range(300):
+        game.rng = random.Random(seed)
+        n, real, shown = archive_roles(game, game.player("Alice"))
+        assert (n, real, len(shown)) == (8, 6, 8)
+        counts = Counter(shown)
+        assert all(counts[r] <= 1 for r in unique)
+        # at least the 6 real roles come from the other players' roles
+        assert sum(min(counts[r], pool[r]) for r in counts) >= 6
+        fakes_seen |= set(counts - pool)
+    assert fakes_seen - set(pool)  # fakes include roles not in the game
+    assert fakes_seen & unique  # a unique role not drawn as real can show up as a fake
 
 
 def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
