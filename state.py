@@ -218,8 +218,13 @@ class Game:
             if self.katana_holder:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
 
+    def run_night_end_hooks(self) -> None:
+        """Role effects at the end of the night (e.g. the Cardinal's curse)."""
+        for role_logic in LOGIC.values():
+            role_logic.at_night_end(self)
+
     def run_dawn_hooks(self) -> None:
-        """Role effects at the start of the day (e.g. the Cardinal's curse)."""
+        """Role effects at the start of the day (e.g. Ballot Stuffer votes taking effect)."""
         for role_logic in LOGIC.values():
             role_logic.at_dawn(self)
 

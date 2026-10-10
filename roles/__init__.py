@@ -113,7 +113,7 @@ ROLES: dict[str, RoleInfo] = {
                        "night note says it reads Evil to Sheriff and Seer"),
     "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
                          summary="If they die, a random living Good player is dealt a Divine Attack.",
-                         tested=True, notes="curse resolved by code at the next dawn"),
+                         tested=True, notes="curse resolved by code at the end of the night"),
     # Yakuza
     "Grunt": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="No night action of its own; shares the Katana.",

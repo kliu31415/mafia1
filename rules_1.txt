@@ -325,8 +325,9 @@ Ex-Con
   the visit (R7).
 
 Cardinal
-  If you die, a random living Good player (if any) is dealt a Divine Attack: at the start of the following Day if
-  you died at night, or at the start of the next Day if you died during a Day.
+  If you die, a random living Good player (if any) is dealt a Divine Attack at the end of the night: the night you
+  died, or the night after the Day you died. It comes after all of that night's other actions and attacks, so the
+  victim is drawn from the Good players still alive then, and it counts as a death that night.
 
 ---------------------------------------- Yakuza (Evil) ----------------------------------------
 All Yakuza share the Katana and night chat (R8).

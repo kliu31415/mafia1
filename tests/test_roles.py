@@ -296,11 +296,22 @@ def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     assert game.katana_holder == "Bob"
 
 
-def test_cardinal_curse_kills_a_good_player_next_dawn(game_factory):
+def test_cardinal_curse_kills_a_good_player_at_the_end_of_the_night(game_factory):
     game, _ = game_factory(["Cardinal", "Vanilla Villager", "Vanilla Villager", "Grunt"])
     game.kill("Alice", "executed by hanging", guilty_voters=["Dave"])
-    game.run_dawn_hooks()
+    game.phase = "night"
+    game.run_night_end_hooks()
     assert [p.name for p in game.alive()] in (["Bob", "Dave"], ["Carol", "Dave"])
+    victim = next(p for p in game.players[1:3] if not p.alive)
+    assert victim.death["phase"] == "night"  # a night death, for the stall rule and wills (R13, R14)
+
+
+def test_a_cursed_cardinal_curses_in_turn_the_same_night(game_factory):
+    game, _ = game_factory(["Cardinal", "Cardinal", "Grunt", "Grunt"])
+    game.phase = "night"
+    game.kill("Alice", "Katana")
+    game.run_night_end_hooks()  # Bob is the only Good player left; his curse then finds nobody
+    assert [p.name for p in game.alive()] == ["Carol", "Dave"]
 
 
 def test_setup_hooks_assign_executioner_target_and_roleplayer_fake_role(tmp_path):

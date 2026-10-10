@@ -92,6 +92,10 @@ class RoleLogic:
         names against the game."""
         raise NotImplementedError(change["op"])
 
+    def at_night_end(self, game: Game) -> None:
+        """End of each night, after the moderator's resolution and any revenge, before the dawn reveal and the
+        win check. Called once per registered role, whether or not anyone has it."""
+
     def at_dawn(self, game: Game) -> None:
         """Start of each day, after the night's deaths are revealed. Called once per registered role,
         whether or not anyone has it, so it can act after its player has died."""

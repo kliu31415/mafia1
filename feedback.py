@@ -321,7 +321,7 @@ QUIZ: list[tuple[str, str]] = [
     ("On Day 3 the last Yakuza is executed, leaving only Village players and a Jester alive. What happens next?",
      "The game ends immediately (it's checked after every death). The Village wins; the Jester, still alive, loses."),
     ("A Cardinal dies at night. When does their effect happen, and to whom?",
-     "At the beginning of the following day, a random Good player is dealt a Divine Attack."),
+     "At the end of that night, after its other actions, a random living Good player is dealt a Divine Attack."),
     ("The Yakuza holding the Katana at the end of the night is investigated by a Sheriff that night. Result?",
      "Not Evil."),
     ("A Fabricator frames player X. A Lookout watches X that night. Does the Lookout see the Fabricator?",
