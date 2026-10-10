@@ -379,3 +379,64 @@ Nomination votes on Frank: Yes - Frank; No - Grace, Ivan, Mallory, Alice, Bob, E
 The nomination of Frank failed (1 Yes).
 [Feedback from Mallory] At 2.98 budget, the cheapest public message (3.51) and any nomination (3.00) are unaffordable, so public speech is effectively locked out.
 (to Grace, Mallory) Mallory -> Grace (private): Grace, which of Frank, Bob or Ivan does your archive leave room for Pharmacist or Grunt? Reply privately.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank; No - Grace, Ivan, Mallory, Alice, Bob, Erin.
+The nomination of Frank failed (1 Yes).
+Mallory (public): no nomination from me. Night 4 checks should decide the next vote.
+Alice (public): Grace's archive puts Pharmacist and Grunt among Bob, Frank and Ivan (Dave is Good). Frank's confessed lie makes him a likely Yakuza. Bob and Ivan, which of you is the other? Both of you voted Guilty on Mallory on Day 2, so explain that with a checkable result.
+Bob (public): Bob here, no new result. Night 4 checks should decide the next vote, so I won't nominate today.
+Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+(to Bob, Ivan) Bob (Yakuza chat): Bob: Proposal. Bob keeps the Katana (no holder move) and attacks Grace, the Archivist. Her archive already lists Pharmacist and Grunt, and she is the one most able to confirm our roles. Ivan, block Mallory: an Oracle guess naming Bob as Grunt would expose me, and she has already been role-blocked once. Erin and Grace have been PMing Mallory, so they may be coordinating. Ivan, reply with agreement or name a better target. Bob takes no action. Vote Grace.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Bob keeps the Katana with no holder move and attacks Grace, the Archivist, whose archive lists our roles. I block Mallory with the Pharmacist to stop the Oracle guess. Bob takes no action. Katana vote: Bob holds, target Grace. No Day PMs. Ready.
+(to Bob, Ivan) Bob (Yakuza chat): Bob: Confirmed. Bob keeps the Katana with no holder move and attacks Grace, the Archivist. Ivan blocks Mallory with the Pharmacist. Bob takes no action. Katana vote: holder Bob, target Grace. No Day PMs. Ready.
+(to Bob, Ivan) Ivan (Yakuza chat): Ivan: Confirmed. Bob keeps the Katana with no holder move and attacks Grace, the Archivist. I block Mallory with the Pharmacist to stop the Oracle guess. Bob takes no action. No Day PMs. Ready.
+Night actions:
+  Alice (Prosecutor): no action
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Grace
+  Grace (Archivist): no action
+  Ivan (Pharmacist): target Mallory; Katana vote: Bob holds, attacks Grace
+  Mallory (Oracle): target Frank; guessed role Pharmacist
+  Erin (Ex-Con): automatic: target Grace; "random visit"
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Bob) Moderator (private): Your Katana attack on Grace succeeded.
+(to Mallory) Moderator (private): You were role-blocked tonight. Your action had no effect, so you get no result.
+(to Ivan) Moderator (private): You role-blocked Mallory tonight. Mallory was not immune to the block.
+(to Bob, Ivan) Moderator (private): Yakuza actions tonight: Bob kept the Katana and used it to attack Grace. Bob chose no other action. Ivan (Pharmacist) chose to role-block Mallory.
+[Moderator summary] Night 4: Ivan (Pharmacist) role-blocked Mallory, so her Oracle guess (Frank = Pharmacist) didn't happen. It was an Astral Visit anyway, and she gets no result. Erin's automatic Ex-Con visit went to Grace. Bob kept the Katana and hit Grace with a Standard attack. Grace had no Defense and died (Good, killed by Katana). Visits: Ivan to Mallory, Erin to Grace, Bob to Grace. No tokens were spent. Still alive: Alice, Bob, Erin, Frank (Jester), Ivan and Mallory. The game goes on.
+
+===== DAY 5 =====
+Grace died (killed by Katana). Their alignment was Good. Their last will: "Grace (Archivist, Good, 0 tokens). Night 1 archive showed 7 of the 10 other players' roles, no names: Pharmacist, Oracle, Lookout, Diviner, Grunt, Ex-Con, Prosecutor. Since Carol (Evil) claimed Diviner, that role is accounted for, but Pharmacist and Grunt are still unaccounted for, so Yakuza were alive on Night 1 and may still be among the living. Frank confessed his Sheriff claim and Night 1 result were invented, so his Evil read on Mallory is void. Mallory's Oracle claim stands unchallenged. Judy's Seer result (Carol and Erin differ) was never verified, and Erin's Ex-Con claim is unverified. I hold no result against anyone and I have no tokens left. Trust nothing without a mechanical check. Vote on contradictions and mechanical results, not on who pushes hardest."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Erin.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Erin (public): Erin here, Ex-Con (Good). Night 4 results are still missing. Pharmacist and Grunt must be two of Alice, Bob, Frank and Ivan. Frank's fake Sheriff claim pushed a Good Oracle to trial, so he is my top suspect. Alice, Bob and Ivan all backed Mallory's nomination; what check do you hold on Mallory? Post your Night 4 results.
+Frank (public): Frank here. I'm nominating myself again. My Sheriff claim and Night 1 result were a confessed lie, and nothing I say can clear that. Vote Guilty on the record. Hanging me tests the table, and if I'm Good, the Village loses one lie.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Alice, Bob; No - Ivan, Mallory, Erin.
+The nomination of Frank failed (3 Yes).
+Ivan (public): Ivan here, no claim. Frank has already confessed an invented Sheriff claim and has self-nominated six times, which looks like a Jester hunting the hang or a liar. Alice, Erin and Mallory: post your Night 4 results and let's vote on mechanics, not on who pushes. I'm not nominating today.
+Mallory (public): Mallory, Oracle, Good. Alice, Bob and Ivan backed my Day 4 nomination without a new result, and Alice and Bob now back Frank. Frank's self-nominations look like a Jester fishing for a hang, and a hanged Jester wins outright. Post your results before any vote. I'll post my Night 5 result when I have one.
+(to Erin, Mallory) Mallory -> Erin (private): Erin, Judy's split fits your Ex-Con claim with Carol holding the Katana on Night 1, so I count you as Good. Let's vote on mechanics together, and not on Frank's self-noms yet.
+Alice (public): Alice here, no new result. Erin: your Ex-Con claim fits Judy's Carol/Erin split, and I'll weigh it against Night 5 results. Bob and Ivan: you both voted Guilty on Mallory on Day 2 on Frank's Sheriff read, which he has now confessed was invented. Give a checkable reason for that vote, or explain what changed. Frank, I won't vote Guilty on another self-nomination without a mechanical link.
+Bob (public): Bob here, no new result. Alice, my Day 2 Guilty vote on Mallory rested on Frank's Sheriff read, which he has since confessed was invented, so that vote is void and I won't repeat it. I'm not nominating on bare reads or self-nominations. Anyone with a real checkable result, post it before any Day 5 vote.
+Erin (public): Erin here. Grace's archive leaves Pharmacist and Grunt among Alice, Bob, Frank and Ivan. Alice and Bob backed Mallory's Day 4 nomination, then backed Frank's self-nomination today. Alice and Bob, what new check made you flip to Yes on Frank? I'm voting No until someone shows a mechanical reason.
+Frank (public): Frank here, nominating myself again. My Sheriff claim and Night 1 result were a confessed lie, and Alice and Bob already backed testing that. A Guilty vote is the mechanical check the table keeps asking for, so vote on it.
+(to Frank, Ivan) Frank -> Ivan (private): Ivan, you asked for a mechanical check. A Guilty vote on me is that test.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Bob; No - Ivan, Mallory, Alice, Erin.
+The nomination of Frank failed (2 Yes).
+Ivan (public): Ivan here, no new result. Frank's self-nomination drew only two Yes votes, so there is still no mechanical check on anyone. Judy's Seer split fits Erin's Ex-Con claim, and Mallory's Judy-as-Seer guess was right, so both stand until Night 5 results are out. I'm not nominating today; please vote on checkable results.
+Mallory (public): I'm voting No on Frank. He confessed an invented Sheriff claim and keeps self-nominating, which fits a Jester hunting the hang, and a hanged Jester wins outright. Alice and Bob, you backed my Day 4 nomination and now back Frank's. Explain that shift.
+Alice (public): Alice here, no new result. Frank has now self-nominated six times after confessing an invented Sheriff claim. That fits a Jester hunting the hang, so I won't vote Guilty on another self-nomination. Ivan, you voted Guilty on Mallory on Day 2 resting on Frank's read, and you haven't said what you hold now. Anyone with a real Night 5 result, post it before the next vote.
+Bob (public): Bob here, no new result. My Day 2 Guilty vote on Mallory rested on Frank's Sheriff read, which he has confessed was invented, so I have withdrawn it. Frank's six self-nominations look like a Jester pattern, and I won't vote Guilty on them without a mechanical link. Mallory and Erin, post your Night 5 results when you have them.
+Erin (public): Erin here, no new result. Frank sent Ivan a private message today, and earlier sent Bob and Grace privately too. Ivan, what did Frank's message say? Frank has self-nominated six times, which is not a check. Alice and Bob, post any Night 4 result you hold.
+Frank (public): Frank nominating myself again. My confessed Sheriff lie is the test: vote Yes, then Guilty.
+(to Alice, Frank) Frank -> Alice (private): Alice, my Sheriff claim was a confessed lie, and a Guilty vote on me is the only mechanical test on offer. Please vote Yes and Guilty.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank, Alice, Bob; No - Ivan, Mallory, Erin.
+The nomination of Frank failed (3 Yes).
+Mallory (public): Mallory here, no new result. Frank's self-nominations have failed for want of a check, so I won't vote Guilty on them. Alice, Bob and Ivan: you backed my Day 4 nomination or voted Guilty on me on Day 2, and that vote rested on Frank's invented read. Name one checkable reason for it. I'll post my Night 5 result when it's out.
+Alice (public): Grace's archive puts Pharmacist and Grunt among Bob, Frank and Ivan, and Dave is Good. So two of those three are Yakuza. Frank's confessed lie and six self-nominations are the strongest lead, but a Jester hunting the hang fits too. I'll vote on checkable results at the next nomination.
