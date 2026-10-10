@@ -83,8 +83,8 @@ Message prices this round (round 1, 1.00x; next round 1.00x):
   200 words: public 5.33, private 1.33
   400 words: public 11.67, private 2.92
   800 words: public 30.33, private 7.58
-You may also replace your last will (free, max 300 words; null keeps it), e.g. to match a claim you make today. It's shown to everyone if you die.
-You may also set your claim (free, max 30 words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
+You may also replace your last will (free, max 300 words; leave it "" to keep it), e.g. to match a claim you make today. It's shown to everyone if you die.
+You may also set your claim (free, max 30 words; leave it "" to keep it): a claimed role and night results, e.g. 'Sheriff. N1: Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
 You may nominate a player for trial, which stops chat for a vote. Nominating costs 1.00 from your budget this round and is paid before your messages.
 
 

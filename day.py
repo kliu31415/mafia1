@@ -268,11 +268,10 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
                "nothing to add.\n" if trial else "")
             + (f"Your public message this turn is free up to {free_words} words; beyond that you "
                "pay only for the extra length.\n" if free_words else "")
-            + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; null keeps it), e.g. to "
-               "match a claim you make "
-               "today. It's shown to everyone if you die.\n" if writer is p else "")
+            + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; leave it \"\" to keep it), "
+               "e.g. to match a claim you make today. It's shown to everyone if you die.\n" if writer is p else "")
             + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
-               f"{CLAIM_WORDS} words; null keeps it): a claimed role and night results, e.g. 'Sheriff. N1: "
+               f"{CLAIM_WORDS} words; leave it \"\" to keep it): a claimed role and night results, e.g. 'Sheriff. N1: "
                "Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, "
                "and the public ledger lists every player's latest claim and any earlier ones they changed from, "
                "as unverified claims.\n")
