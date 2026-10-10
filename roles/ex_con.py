@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 @register("Ex-Con")
 class ExCon(RoleLogic):
     night_note = ("The Ex-Con's random visit is drawn by code: it is in the night's actions as an automatic action "
-                  "with its target (the Ex-Con isn't told whom). Like a framed player, the Ex-Con has the Evil "
+                  "with its target (the Ex-Con isn't told whom). A role-block stops it (no visit). Like a framed player, the Ex-Con has the Evil "
                   "alignment to every role that learns alignments (Sheriff, Seer); roles that learn visits or exact "
                   "roles see it as it is.")  # rules Ex-Con
 

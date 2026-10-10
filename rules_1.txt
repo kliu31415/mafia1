@@ -95,7 +95,7 @@ effect. By default, effects are announced publicly at the start of the next Day;
 R7 (Optional actions)
 Every ability is optional ("may") unless its role says "must": any player may choose not to act at Night, not to
 use a Day ability, and not to spend a token. Effects a role has automatically, with no choice (e.g. the
-Ex-Con's nightly visit), aren't optional and always happen.
+Ex-Con's nightly visit), aren't optional, but a role-block still stops them (R9).
 
 R6 (Visits)
 - When A performs an action on B, A visits B, unless the action is an Astral Visit.
@@ -123,7 +123,8 @@ its user dies that night, unless it needs its user to act during that Day (e.g. 
 messages, a Ballot Stuffer's doubled vote); those lapse. Any token spent on it is gone either way (R18).
 
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
-1. Remove actions of role-blocked players (R9). Party Animal, Pharmacist and Veteran can't be role-blocked.
+1. Remove actions of role-blocked players (R9), automatic ones included (the Ex-Con's visit, the Seer's pair).
+   Party Animal, Pharmacist and Veteran can't be role-blocked.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
    Traps hit non-Village visitors (Trapper).
@@ -223,7 +224,8 @@ Seer
   Night: at the end of every night, you are told two random players other than yourself who were alive when the
   night began (players who die that night count, R10), and whether their alignments (Good/Neutral/Evil) are the
   same (alignment check, R19). Instead, you may spend a token to choose the
-  two living players yourself (not including yourself).
+  two living players yourself (not including yourself). A chosen pair is a visit to both players; the random
+  pair isn't a visit. A role-block stops both.
 
 Fortune Teller
   Day: at the start of each Day except the first, you get two numbers without being told which is which: how many
@@ -319,7 +321,8 @@ Roleplayer
 
 Ex-Con
   Appears: Evil to alignment checks (R19).
-  Night: every night you visit a random player other than yourself, and you aren't told whom.
+  Night: every night you visit a random player other than yourself, and you aren't told whom. A role-block stops
+  the visit (R7).
 
 Cardinal
   If you die, a random living Good player (if any) is dealt a Divine Attack: at the start of the following Day if
