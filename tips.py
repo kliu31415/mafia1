@@ -53,6 +53,8 @@ from texts import player_view
 
 ROOT = Path(__file__).resolve().parent
 HEADINGS = ["Everyone", "Village", "Yakuza", "Neutral", *ROLES]
+REVISE_MAX_TOKENS = 64_000  # `revise`: reasoning plus edits to a whole notebook (16k cut off at 244 entries)
+REVISE_DEADLINE_S = 1200
 FALLBACKS_TO_DISTRUST = 3  # a player with this many fallback answers barely played (e.g. a provider bug)
 
 
@@ -581,7 +583,8 @@ def main() -> None:
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
         return
     if args.cmd == "revise":
-        reviser = OpenRouterClient(load_api_key())
+        # one answer covers the whole notebook (hundreds of entries), far past a game turn's 16k-token cap
+        reviser = OpenRouterClient(load_api_key(), max_tokens=REVISE_MAX_TOKENS, timeout=REVISE_DEADLINE_S)
         reviser.on_error = print_alert
         revise(Path(args.out), reviser, parse_model_spec(args.model), args.max_words, args.note)
         return
