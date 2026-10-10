@@ -81,7 +81,7 @@ ROLES: dict[str, RoleInfo] = {
     "Coroner": RoleInfo(Alignment.GOOD, "Investigative", False,
                         summary="Token: examine a player who died before tonight, learn their role (not if a "
                         "Mortician cleaned them).",
-                        tokens={"coroner": 3}, acts_at_night=True,
+                        tokens={"coroner": 3}, acts_at_night=True, tested=True,
                         notes="moderator records the use with the examine op (a dead target, not a visit); code "
                         "tells them the role, or that the body was cleaned"),
     "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False,
