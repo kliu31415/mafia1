@@ -26,7 +26,7 @@ Everything you have seen so far:
 [Day 1] [Claim] Alice: Sheriff
 [Day 1] Alice (public): Dave has been very quiet. I nominate him.
 [Day 1] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
-[Day 1] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
+[Day 1] Nomination votes on Dave: 6 Yes (the votes are secret).
 [Day 1] Dave is put on trial (6 Yes).
 [Day 1] Dave (public): Dave has a view on this trial.
 [Day 1] Erin (public): Erin has a view on this trial.
@@ -43,7 +43,7 @@ Alive, in seat order: Alice, Bob, Carol, Dave, Erin, Frank
 Deaths and departures:
 - none yet
 Nominations and trials:
-- Day 1: Alice nominated Dave; Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody; passed
+- Day 1: Alice nominated Dave; 6 Yes (secret vote); passed
 Claims (what players say about their own role and results; unverified, they may lie):
 - Alice: Day 1: Sheriff
 Private messages sent, per day (sender -> recipient (count)):
@@ -60,6 +60,6 @@ Every response also has a 'reason' field: why you chose this answer, usually in 
 
 ---
 
-Dave is on trial. Vote true for Guilty (execute), false for Innocent. Voting is simultaneous: you can't see anyone else's vote, and all votes are revealed publicly once everyone has voted.
+Dave is on trial. Vote true for Guilty (execute), false for Innocent. Voting is simultaneous: you can't see anyone else's vote, and the votes are secret: only the Guilty and Innocent totals are announced, never who voted which way.
 
 Answer in these fields: vote (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

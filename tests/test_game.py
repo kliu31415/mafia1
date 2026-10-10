@@ -92,7 +92,7 @@ def test_winners_line_marks_dead_winners(game_factory):
 
 def test_alignment_only_flips_hide_the_role(game_factory, tmp_path, monkeypatch):
     game, _ = game_factory(["Vanilla Villager", "Ex-Con", "Grunt", "Jester"])
-    game.flips = "alignment"
+    game.rule_settings["flips"] = "alignment"
     game.player("Alice").last_will = "I was quiet."
     for name in ("Alice", "Bob", "Carol", "Dave"):
         game.kill(name, "executed by hanging")
@@ -121,10 +121,17 @@ def test_alignment_only_flips_hide_the_role(game_factory, tmp_path, monkeypatch)
 
 def test_no_flips_reveal_neither_role_nor_alignment(game_factory):
     game, _ = game_factory(["Vanilla Villager", "Grunt", "Vanilla Villager"])
-    game.flips = "none"
+    game.rule_settings["flips"] = "none"
     game.player("Alice").last_will = "I was quiet."
     game.kill("Alice", "Katana")
     game.kill("Bob", "executed by hanging")
     reveals = [e.text for e in game.events if e.visible_to is None] + game.death_record
     assert any("Alice" in r and "killed by Katana" in r and "I was quiet." in r for r in reveals)
     assert not any(w in r for r in reveals for w in ("Vanilla", "Grunt", "Good", "Evil"))
+
+
+def test_a_hanged_jester_is_revealed_even_with_hidden_flips(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Jester", "Grunt"])
+    game.kill("Bob", "executed by hanging", guilty_voters=["Alice"])
+    public = [e.text for e in game.events if e.visible_to is None]
+    assert any("isn't revealed" in t for t in public) and any("Bob was the Jester" in t for t in public)

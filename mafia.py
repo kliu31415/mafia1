@@ -14,6 +14,7 @@ Code layout:
     roles/         role definitions, the default setup, and per-role hooks (roles/base.py)
     events.py      event categories for game.emit()
     state.py       game state, events with visibility, deaths, win checks
+    variants.py    rule settings (--flips, --trial-votes, --nomination-votes): what deaths and votes reveal
     players.py     player prompts, output schemas, notepads
     day.py         speaking budget, chat turns, nominations, votes
     night.py       Yakuza chat, night actions, Katana vote
@@ -46,7 +47,7 @@ Usage:
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
     uv run mafia.py --roles random:8                         # a random 8-player setup
-    uv run mafia.py --flips alignment                        # deaths reveal only Good/Evil/Neutral
+    uv run mafia.py --flips role --trial-votes public --nomination-votes public   # rules_1.txt as written
     uv run stats.py                                          # win rates and decision skill across logs/
     uv run game_index.py build                               # logs/index.html: browse and filter every game
     uv run game_index.py serve                               # the same, always current, at localhost:8765
@@ -83,21 +84,11 @@ from setups import POOLS, parse_random_roles, random_setup
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
+import variants
 from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
-# Game settings that change a rule, added after the rules text when chosen (--flips); "role" is rules R12 as written.
-FLIP_VARIANTS = {
-    "role": "",
-    "alignment": "\n\nGame setting for this game (it replaces part of R12): when someone dies, only their alignment "
-                 "(Good, Evil or Neutral) is revealed, not their role. It is their true alignment: frames and "
-                 "disguises (e.g. the Ex-Con's, or the Katana holder's) don't change it. Their cause of death and "
-                 "last will are still revealed, and a Mortician's clean hides the alignment and the will.",
-    "none": "\n\nGame setting for this game (it replaces part of R12): when someone dies, neither their role nor "
-            "their alignment is revealed. Only their cause of death and last will are, and a Mortician's clean "
-            "hides the will.",
-}
 LOG_DIR = ROOT / "logs"
 DEFAULT_TIPS = ROOT / "tips" / "tips.md"  # the players' sheet --update-tips keeps up to date after each game
 MOCK_TIPS = LOG_DIR / "mock_tips" / "tips.md"  # mock games' random lessons stay out of the real notebook
@@ -153,7 +144,10 @@ class GameConfig:
     update_tips: Path | None = None
     setup: dict | None = None
     moderator_fallback: ModelSpec | None = DEFAULT_MODERATOR_FALLBACK
-    flips: str = "role"  # what a death reveals: "role" (rules R12), "alignment" or "none" (FLIP_VARIANTS)
+    # Rule settings (variants.py): what a death reveals, and whether trial and nomination votes are secret
+    flips: str = variants.DEFAULTS["flips"]
+    trial_votes: str = variants.DEFAULTS["trial_votes"]
+    nomination_votes: str = variants.DEFAULTS["nomination_votes"]
 
     def __post_init__(self) -> None:
         self.player_tips = self.player_tips or []
@@ -185,7 +179,11 @@ class GameConfig:
                 "check_nights": self.check_nights, "checkpoint": checkpoint,
                 "tips": str(self.tips) if self.tips else None, "tips_for": self.tips_for if self.tips else None,
                 "player_tips": [[w, str(f) if f else None] for w, f in self.player_tips],
-                "setup": self.setup or {"kind": "fixed"}, "flips": self.flips}
+                "setup": self.setup or {"kind": "fixed"}, **self.rule_settings}
+
+    @property
+    def rule_settings(self) -> dict[str, str]:
+        return {name: getattr(self, name) for name in variants.SETTINGS}
 
     @classmethod
     def from_checkpoint(cls, ckpt: dict) -> "GameConfig":
@@ -193,11 +191,11 @@ class GameConfig:
         would name this module, which is __main__ when mafia.py runs as a script); before GameConfig they were
         play_game's keyword arguments, "play_args"."""
         if "config" in ckpt:
-            return cls(**ckpt["config"])
+            return cls(**{**variants.LEGACY, **ckpt["config"]})  # checkpoints from before the rule settings
         old = dict(ckpt["play_args"])
         old["moderator"] = old.pop("moderator_model")
         old["player_tips"] = old["player_tips"] or []
-        return cls(**old)
+        return cls(**{**variants.LEGACY, **old})
 
 
 def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
@@ -205,7 +203,7 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
     """Plays a game and its post-game steps; returns its log's path. checkpoint: save the game at the start
     of each day and night to logs/<game>.ckpt (deleted when the game finishes). resume: a loaded checkpoint
     (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's."""
-    rules = RULES_PATH.read_text(encoding="utf-8") + FLIP_VARIANTS[config.flips]
+    rules = RULES_PATH.read_text(encoding="utf-8") + variants.rules_notes(config.rule_settings)
     if resume:
         log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
     else:
@@ -223,6 +221,7 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
         else:
             started = time.time()
             game = start_game(client, config, rules, log, checkpoint)
+        game.rule_settings = dict(config.rule_settings)  # a resumed game's own (from_checkpoint)
         if isinstance(client, OpenRouterClient):
             client.on_error = log.error
         players = Players(game, client, rules, feedback_field=config.feedback_field,
@@ -286,7 +285,6 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
     meta = game_meta(rules, config.settings(client, checkpoint))
     game = setup_game(config.roles, config.specs, random.Random(config.seed), log,
                       meta={"game_id": log.path.stem, **meta})
-    game.flips = config.flips
     if meta["git_commit"] is None:  # analysis across games groups them by code version
         log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
                   "game's code version isn't recorded")
@@ -490,9 +488,15 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--max-days", type=int, default=None,
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")
-    ap.add_argument("--flips", choices=sorted(FLIP_VARIANTS), default="role",
-                    help="what a death reveals: the role (rules R12, default), only the alignment (Good, Evil or "
-                    "Neutral), or none of the two; settings that make flips less decisive")
+    ap.add_argument("--flips", choices=variants.SETTINGS["flips"], default=variants.DEFAULTS["flips"],
+                    help="what a death reveals: nothing but the cause and will (default), only the alignment (Good, "
+                    "Evil or Neutral), or the role (rules R12 as written)")
+    ap.add_argument("--trial-votes", choices=variants.SETTINGS["trial_votes"],
+                    default=variants.DEFAULTS["trial_votes"],
+                    help="secret (default): only the Guilty/Innocent totals are announced; public: every vote (R4)")
+    ap.add_argument("--nomination-votes", choices=variants.SETTINGS["nomination_votes"],
+                    default=variants.DEFAULTS["nomination_votes"],
+                    help="secret (default): only the nominator and the Yes count are announced; public: every vote")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
@@ -626,7 +630,8 @@ def main() -> None:
             models, moderator, roles, seed, debrief=args.debrief, flag_issues=args.mod_flags,
             feedback_field=args.feedback_field, review=args.review, lessons=args.lessons, max_days=args.max_days,
             check_nights=args.check_nights, tips=args.tips, tips_for=args.tips_for, player_tips=player_tips,
-            update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips),
+            update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips,
+            trial_votes=args.trial_votes, nomination_votes=args.nomination_votes),
             checkpoint=args.checkpoint)
 
 

@@ -43,6 +43,7 @@ from pathlib import Path
 from typing import Any
 
 import gamelogs
+import variants
 from llm import (DEFAULT_STRENGTH, LLMClient, MockClient, ModelSpec, OpenRouterClient, answer_json, load_api_key,
                  model_strength, parse_model_spec)
 from records import read_records, safe_print
@@ -136,7 +137,8 @@ def read_game(path: Path) -> dict | None:
     setup = gamelogs.setup_of(records)
     return {"game": path.stem, "records": lessons, "result": result, "had_tips": tips["players"] if tips else [],
             "unreliable": sorted(p for p, n in fallbacks.items() if p and n >= FALLBACKS_TO_DISTRUST),
-            "mock": setup.get("settings", {}).get("mock") if setup else False}
+            "mock": setup.get("settings", {}).get("mock") if setup else False,
+            "rule_settings": variants.full(setup.get("settings") if setup else None)}
 
 
 def describe_game(g: dict) -> str:
@@ -150,6 +152,10 @@ def describe_game(g: dict) -> str:
         lines.append(f"Winners: {', '.join(res.get('winners') or []) or 'nobody'} "
                      f"(faction: {res.get('winning_faction') or 'none'}, end: {res.get('end_reason')}, "
                      f"{res.get('days')} days). Roles: {roles}.")
+        rs = g.get("rule_settings") or variants.LEGACY
+        lines.append(f"Game settings: {variants.describe(rs)}." + (
+            "" if rs == variants.DEFAULTS else " These differ from the current settings, so lessons that rely on "
+            "what this game revealed and the current settings hide don't apply as written."))
         if res.get("errors"):
             lines.append(f"Program errors this game: {res['errors']}.")
     else:
@@ -185,7 +191,10 @@ def system_prompt(rules: str, role: str) -> str:
     return (f"{rules}\n\n---\n\nYou coach players of this game. {role} Lessons come from past games, written "
             "by the players (each tagged with their role, whether they won, their model and a weight) and by "
             "the moderator, who saw everything, including hidden night actions. The weight (0-1) is higher when "
-            "the author is a stronger model and when the game's players were stronger on average.")
+            "the author is a stronger model and when the game's players were stronger on average. The rules end "
+            "with the settings games are now played with; each game says which settings it was played with, and "
+            "older games often revealed more (a dead player's role, who voted which way). Advice that relies on "
+            "information the current settings hide doesn't apply now unless it still works reworded.")
 
 
 # The notebook: every tip ever learned, with its evidence, in JSON (<sheet>_notebook.json, plus a
@@ -300,7 +309,8 @@ def update_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, g:
          "- edit: new evidence refines an entry (sharper wording, a condition, a different audience); give "
          "the new tip and why.\n"
          "- retire: an entry is shown wrong (it contradicts the rules, or well-weighted reports keep showing "
-         "it backfires); restore: new evidence revives a retired entry, instead of adding it again.\n"
+         "it backfires, or it relies on information the current settings hide and can't be reworded to work "
+         "without it); restore: new evidence revives a retired entry, instead of adding it again.\n"
          "Skip recaps of this game, complaints about the program or interface, vague advice, lessons that "
          "contradict the rules, and lessons from players marked as barely playing. Several ops can come "
          "from one lesson, and no ops is fine if the game taught nothing new."},
@@ -349,6 +359,8 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          "role or faction tends to play (e.g. a Villager reading the Yakuza section learns their usual "
          "tricks); include tips on spotting and countering each side. Leave out sections with nothing "
          "useful.\n"
+         "- Every tip must hold under the current game settings (at the end of the rules): leave out or reword "
+         "advice that relies on what they hide, such as reading a dead player's role or who voted which way.\n"
          f"- At most {max_words} words in total; drop the weakest tips first."},
     ]
     reply = client.chat(spec.model, messages, schema=DISTILL_SCHEMA, schema_name="tips", effort=spec.effort)
@@ -439,7 +451,8 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
     if not games:
         raise NoNewGames("No new game logs with lessons found (games need --lessons, which is on by default)."
                          + (f" {nb_path} already has all {len(nb['games'])} games." if nb["games"] else ""))
-    rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8")
+    # the rules as games are now played (variants.DEFAULTS), so tips hold under them
+    rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8") + variants.rules_notes(variants.DEFAULTS)
     cost = 0.0
     stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
     if out.exists():  # the sheet before this build (the notebook's old versions are in git history)

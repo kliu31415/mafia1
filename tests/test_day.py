@@ -311,3 +311,29 @@ def test_a_claim_that_only_drops_a_period_is_not_a_new_claim():
     from day import same_claim
     assert same_claim("Sheriff. N1: Carol Evil.", "sheriff. N1:  Carol Evil")
     assert not same_claim("Sheriff. N1: Carol Evil", "Sheriff. N1: Carol Not Evil")
+
+
+def test_secret_votes_announce_only_totals_and_remind_each_voter(game_factory):
+    # Default settings (variants.py): nomination and trial votes are secret.
+    def decide(name, task, schema):
+        return {"vote": name in ("Carol", "Dave")} if "vote" in schema["properties"] else None
+    game, players = game_factory(VILLAGE5, ScriptedClient(decide))
+    # 3 Yes of 5 puts Bob on trial; 2 Guilty of 5 acquits him
+    assert run_nomination(game, players, game.player("Alice"), "Bob", rnd=1) == "innocent"
+    public = [e.text for e in game.events if e.visible_to is None and e.cat == "vote"]
+    assert any("3 Yes" in t for t in public) and any("2 Guilty, 3 Innocent" in t for t in public), public
+    assert not any("Carol" in t or "Dave" in t for t in public), public
+    reminders = [e for e in game.events if e.notice and e.cat == "vote"]
+    assert {(next(iter(e.visible_to)), e.text.split(" on ")[0]) for e in reminders} >= {
+        ("Carol", "(Only you see this) You voted Yes"), ("Erin", "(Only you see this) You voted No")}
+    assert ("Dave", "(Only you see this) You voted Guilty in the trial of Bob.") in {
+        (next(iter(e.visible_to)), e.text) for e in reminders}
+    assert not any("Carol" in r for r in game.vote_record) and "3 Yes" in game.vote_record[0]
+
+
+def test_public_votes_name_every_voter(game_factory):
+    game, players = game_factory(VILLAGE5, ScriptedClient(votes(guilty_for={"Bob"})))
+    game.rule_settings.update(trial_votes="public", nomination_votes="public")
+    run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
+    assert any("Guilty - " in e.text for e in game.events if e.visible_to is None)
+    assert not any(e.notice for e in game.events)

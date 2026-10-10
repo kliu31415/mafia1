@@ -392,22 +392,34 @@ def same_claim(a: str, b: str) -> bool:
 def run_nomination(game: Game, players: Players, nominator: Player, nominee: str, rnd: int) -> str:
     """Rules R4. Nomination vote, then trial and verdict. Returns "failed", "innocent" or "executed".
     Both votes are simultaneous: every voter decides without seeing the others, then all votes
-    are revealed together."""
+    are revealed together, or only their totals when the game's rule settings make them secret (variants.py)."""
     game.emit(f"{nominator.name} nominated {nominee}. Everyone now votes Yes/No simultaneously.", cat=NOMINATION)
     others = [v for v in game.clockwise_from(nominator.name) if v is not nominator]
+    secret = game.rule_settings["nomination_votes"] == "secret"
     task = (f"{nominator.name} nominated {nominee}. Vote true (Yes) to put them on trial, false (No) "
-            "otherwise. Voting is simultaneous: you can't see anyone else's vote, and all votes are "
-            f"revealed publicly once everyone has voted. {nominator.name} votes Yes automatically.")
+            "otherwise. Voting is simultaneous: you can't see anyone else's vote, and "
+            + ("the votes are secret: only the number of Yes votes is announced, never who voted which way. "
+               if secret else "all votes are revealed publicly once everyone has voted. ")
+            + f"{nominator.name} votes Yes automatically.")
     outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in others], step="nomination_vote")
     yes_voters = [nominator.name] + [v.name for v, o in zip(others, outs) if o["vote"]]
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
-    game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
-              f"No - {', '.join(no_voters) or 'nobody'}.", cat=VOTE)
     # rules R4: majority of all votes counted (one each; no abstentions)
     passed = majority(len(yes_voters), len(game.alive()))
     log_vote(game, "nomination", nominator.name, nominee, yes_voters, no_voters, "passed" if passed else "failed")
-    game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}; "
-                            f"No - {', '.join(no_voters) or 'nobody'}; {'passed' if passed else 'failed'}")
+    outcome = "passed" if passed else "failed"
+    if secret:  # rule setting: only the nominator and the Yes count are public; each voter is told their own vote
+        game.emit(f"Nomination votes on {nominee}: {len(yes_voters)} Yes (the votes are secret).", cat=VOTE)
+        for v, o in zip(others, outs):
+            game.emit(f"(Only you see this) You voted {'Yes' if o['vote'] else 'No'} on the nomination of {nominee}.",
+                      [v.name], kind="notice", cat=VOTE)
+        game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; {len(yes_voters)} Yes "
+                                f"(secret vote); {outcome}")
+    else:
+        game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
+                  f"No - {', '.join(no_voters) or 'nobody'}.", cat=VOTE)
+        game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}"
+                                f"; No - {', '.join(no_voters) or 'nobody'}; {outcome}")
     if not passed:
         game.emit(f"The nomination of {nominee} failed ({len(yes_voters)} Yes).", cat=VOTE)
         return "failed"
@@ -445,29 +457,41 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
                     "vote, to answer questions and accusations. " + TRIAL_VOTE_NOTE)
 
     voters = game.alive()
+    secret = game.rule_settings["trial_votes"] == "secret"
     task = (f"{nominee} is on trial. Vote true for Guilty (execute), false for Innocent. Voting is "
-            "simultaneous: you can't see anyone else's vote, and all votes are revealed publicly once "
-            "everyone has voted.")
+            "simultaneous: you can't see anyone else's vote, and "
+            + ("the votes are secret: only the Guilty and Innocent totals are announced, never who voted which way."
+               if secret else "all votes are revealed publicly once everyone has voted."))
     outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters], step="trial_vote")
     guilty = [v.name for v, o in zip(voters, outs) if o["vote"]]
     innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
-    game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
-              f"Innocent - {', '.join(innocent) or 'nobody'}.", cat=VOTE)
     # A role may count a voter more than once (Ballot Stuffer); the verdict then needs a majority of all
     # votes counted, and the announced totals include the extra votes without saying whose they are.
     weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
     guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
+    if secret:  # rule setting: only the totals are public; each voter is told their own vote
+        game.emit(f"Trial votes on {nominee}: {guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (the "
+                  "votes are secret).", cat=VOTE)
+        for v, o in zip(voters, outs):
+            game.emit(f"(Only you see this) You voted {'Guilty' if o['vote'] else 'Innocent'} in the trial of "
+                      f"{nominee}.", [v.name], kind="notice", cat=VOTE)
+    else:
+        game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
+                  f"Innocent - {', '.join(innocent) or 'nobody'}.", cat=VOTE)
     tally = f"{guilty_votes} Guilty of {total_votes} votes; {total_votes // 2 + 1} needed"  # rules R4: a majority
     if total_votes != len(voters):
-        tally += ("; these totals don't match the revealed votes because a role manipulated the count on purpose "
-                  "(rules R4), not because of an error")
+        tally += (f"; there are more votes than the {len(voters)} voters because a role manipulated the count on "
+                  "purpose (rules R4), not because of an error")
     voted_guilty = majority(guilty_votes, total_votes)
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
     log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted,
              weights={n: w for n, w in weight.items() if w != 1})
-    game.vote_record.append(f"Day {game.day}: trial of {nominee}; Guilty - {', '.join(guilty) or 'nobody'}; "
-                            f"Innocent - {', '.join(innocent) or 'nobody'}; {verdict}")
+    game.vote_record.append(
+        f"Day {game.day}: trial of {nominee}; "
+        + (f"{guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (secret vote)" if secret else
+           f"Guilty - {', '.join(guilty) or 'nobody'}; Innocent - {', '.join(innocent) or 'nobody'}")
+        + f"; {verdict}")
     if voted_guilty or game.rigged_day == game.day:
         # One line for a rigged hanging: "executed (3 Guilty of 7; 4 needed)" read as a contradiction
         # (game_20261009_121338_61703).

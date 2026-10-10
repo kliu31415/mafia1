@@ -40,9 +40,14 @@ def test_private_events_reach_only_their_audience(tmp_path, monkeypatch, seed):
                 assert set(vis) <= yakuza, r
             case "result":
                 assert vis != "all", r
-    # Everyone else learns only that a private message was sent, never its contents.
+    # Everyone else learns only that a private message was sent, never its contents; with secret votes (the
+    # default), each voter alone is reminded of their own vote.
     notices = [r for r in events if r["kind"] == "notice"]
-    assert notices and all(r["text"].endswith("a private message.") for r in notices)
+    assert notices and all(r["text"].endswith("a private message.") or
+                           (r["cat"] == "vote" and len(r["visible_to"]) == 1 and r["text"].startswith("(Only you"))
+                           for r in notices)
+    public_votes = [r["text"] for r in events if r.get("cat") == "vote" and r["visible_to"] == "all"]
+    assert public_votes and not any(" - " in v for v in public_votes), "secret votes must not name voters"
 
 
 def test_briefings_reveal_only_what_a_role_knows(game_factory):

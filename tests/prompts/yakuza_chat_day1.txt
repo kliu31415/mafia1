@@ -25,7 +25,8 @@ Everything you have seen in earlier phases (this phase's events are in the next 
 [Day 1] [Claim] Alice: Sheriff
 [Day 1] Alice (public): Dave has been very quiet. I nominate him.
 [Day 1] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
-[Day 1] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
+[Day 1] Nomination votes on Dave: 6 Yes (the votes are secret).
+[Day 1] (Only you see this) You voted Yes on the nomination of Dave.
 [Day 1] Dave is put on trial (6 Yes).
 [Day 1] Dave (public): Dave has a view on this trial.
 [Day 1] Erin (public): Erin has a view on this trial.
@@ -34,9 +35,10 @@ Everything you have seen in earlier phases (this phase's events are in the next 
 [Day 1] Bob (public): Bob has a view on this trial.
 [Day 1] Carol (public): Carol has a view on this trial.
 [Day 1] Dave (public): Dave has a view on this trial.
-[Day 1] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
+[Day 1] Trial votes on Dave: 6 Guilty, 0 Innocent (the votes are secret).
+[Day 1] (Only you see this) You voted Guilty in the trial of Dave.
 [Day 1] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
-[Day 1] Dave died (executed by hanging). Their role was Vanilla Villager.
+[Day 1] Dave died (executed by hanging). Their role isn't revealed.
 [end of a cached prefix]
 
 
@@ -49,10 +51,10 @@ What you have seen this phase so far:
 Public ledger (a summary of public facts so far):
 Alive, in seat order: Alice, Bob, Carol, Erin, Frank
 Deaths and departures:
-- Day 1: Dave (Vanilla Villager, executed by hanging)
+- Day 1: Dave (role hidden, executed by hanging)
 Nominations and trials:
-- Day 1: Alice nominated Dave; Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody; passed
-- Day 1: trial of Dave; Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody; executed
+- Day 1: Alice nominated Dave; 6 Yes (secret vote); passed
+- Day 1: trial of Dave; 6 Guilty, 0 Innocent (secret vote); executed
 Claims (what players say about their own role and results; unverified, they may lie):
 - Alice: Day 1: Sheriff
 Private messages sent, per day (sender -> recipient (count)):

@@ -12,6 +12,7 @@ from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
 from roles.base import acted_tonight
 from state import Game
+import variants
 
 
 def tool(name: str, description: str, **params: dict) -> dict:
@@ -130,6 +131,7 @@ class Moderator:
              "learns, worded neutrally: never explain why a result came out as it did (e.g. never "
              "mention the Katana, framing or defenses to an investigator), and never name an attacker "
              "or reveal roles beyond what the rules allow."
+             + variants.moderator_note(self.game.rule_settings)
              + (" If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and "
                 "then continue with your best interpretation." if FLAG_TOOL in self.tools else "")),
             # Cached so the phase's later steps, which resend it, read it from the cache.

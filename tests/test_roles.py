@@ -264,7 +264,7 @@ def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
     assert game.player("Frank").tokens["ballot"] == 1
     game.run_dawn_hooks()
     assert run_trial(game, players, alice, "Alice", 1) == "executed"  # Frank counts twice: 4 of 7
-    assert any("(4 Guilty of 7 votes; 4 needed; these totals don't match" in e.text for e in game.events)
+    assert any("(4 Guilty of 7 votes; 4 needed; there are more votes than the 6 voters" in e.text for e in game.events)
     game.run_dawn_hooks()  # the next day, without a new token, Frank's Innocent is back to one vote
     guilty.clear()
     guilty.update({"Bob", "Carol", "Erin"})

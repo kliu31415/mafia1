@@ -9,6 +9,7 @@ Vanilla Villagers, 3 Yakuza, 1 Neutral):
   would no longer outnumber the Yakuza.
 - Village: the rest, with at least one Investigative role, at most one Outsider, and up to a third
   Vanilla Villagers. Every other Village role at most once.
+- Roles in EXCLUDED are never drawn.
 """
 
 import random
@@ -17,6 +18,9 @@ from roles import ROLES, Alignment
 
 YAKUZA_SHARE = 0.3
 MIN_PLAYERS = 5
+# The Mortician hides the role and alignment, which the default settings (variants.py) already hide, so there it
+# would be a Grunt (Kevin, Oct 10 2026: leave it out of random setups for now).
+EXCLUDED = {"Mortician"}
 POOLS = ("all", "tested")  # --role-pool: every role, or only roles seen working in a live game
 
 
@@ -32,7 +36,7 @@ def parse_random_roles(text: str) -> int | None:
 
 def random_setup(n: int, rng: random.Random, pool: str = "all") -> list[str]:
     """n role names, drawn as the module docstring describes. pool: "all" or "tested"."""
-    allowed = [r for r, info in ROLES.items() if pool == "all" or info.tested]
+    allowed = [r for r, info in ROLES.items() if (pool == "all" or info.tested) and r not in EXCLUDED]
 
     def of(alignment: Alignment, *categories: str) -> list[str]:
         return [r for r in allowed if ROLES[r].alignment is alignment

@@ -70,7 +70,10 @@ from records import read_records, safe_print
 #     player's answer was cut off at max_tokens and the retry uses one effort step lower; result usage rows of
 #     players have effort_fallbacks (how many)
 # 36: games start with Night 1 (no Day 1, rules R1): day 1 has only the opening wills and Night 1
-LOG_VERSION = 36
+# 37: setup settings carry the rule settings (variants.py: flips, trial_votes, nomination_votes; older logs mean
+#     variants.LEGACY), and the defaults hide flips and votes: secret votes' public events give only totals, each
+#     voter gets a "notice" with their own vote, and "vote" records still list every vote
+LOG_VERSION = 37
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

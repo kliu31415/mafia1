@@ -51,6 +51,6 @@ Every response also has a 'reason' field: why you chose this answer, usually in 
 
 ---
 
-Alice nominated Dave. Vote true (Yes) to put them on trial, false (No) otherwise. Voting is simultaneous: you can't see anyone else's vote, and all votes are revealed publicly once everyone has voted. Alice votes Yes automatically.
+Alice nominated Dave. Vote true (Yes) to put them on trial, false (No) otherwise. Voting is simultaneous: you can't see anyone else's vote, and the votes are secret: only the number of Yes votes is announced, never who voted which way. Alice votes Yes automatically.
 
 Answer in these fields: vote (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

@@ -11,6 +11,7 @@ from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
+import variants
 
 
 PLAYER_NAMES = ["Alice", "Bob", "Carol", "Dave", "Erin", "Frank", "Grace", "Heidi", "Ivan", "Judy",
@@ -112,8 +113,8 @@ class Game:
     # night -> the visits made, as [visitor, target] pairs (duplicates kept), from the moderator's record_visits
     night_visits: dict[int, list[list[str]]] = field(default_factory=dict)
     claim_record: dict[str, list[tuple[int, str]]] = field(default_factory=dict)  # player -> (day, claim)
-    # What a death reveals (rules R12): "role", "alignment" (Good, Evil or Neutral) or "none"; a game setting, --flips
-    flips: str = "role"
+    # Rule settings (variants.py): what a death reveals, and whether trial and nomination votes are secret
+    rule_settings: dict[str, str] = field(default_factory=lambda: dict(variants.DEFAULTS))
 
     def __getstate__(self) -> dict[str, Any]:
         # Pickled for checkpoints (checkpoint.py) without the log's open files; resuming reattaches a log.
@@ -274,18 +275,18 @@ class Game:
     def revealed_identity(self, p: Player) -> str:
         """What a death shows of the player (rules R12): their role, with --flips alignment only their true
         alignment (Good, Evil or Neutral; never a frame or disguise), with --flips none nothing."""
-        return {"alignment": p.info.alignment.value, "none": "unrevealed"}.get(self.flips, p.role)
+        return {"alignment": p.info.alignment.value, "none": "role hidden"}.get(self.rule_settings["flips"], p.role)
 
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
         cause = death_cause(cause)
         if p.status.get(Status.CLEANED):
             hidden = {"alignment": "alignment and last will were", "none": "last will was"}.get(
-                self.flips, "role and last will were")
+                self.rule_settings["flips"], "role and last will were")
             return f"{name} died ({cause}). Their {hidden} cleaned by a Mortician."  # rules R12
         reveal = {"alignment": f"{name} died ({cause}). Their alignment was {self.revealed_identity(p)}.",
                   "none": f"{name} died ({cause}). Their role isn't revealed."}.get(
-                      self.flips, f"{name} died ({cause}). Their role was {p.role}.")
+                      self.rule_settings["flips"], f"{name} died ({cause}). Their role was {p.role}.")
         if p.last_will:
             reveal += f" Their last will: \"{p.last_will}\""
         return reveal
