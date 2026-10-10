@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 class Diviner(RoleLogic):
     code_tells_user = True
     action = RecordedAction("divine", "divines a non-Yakuza player (code picks the group and tells them one role "
-                            "drawn from it)", "code draws the role and tells them", visit=True,
+                            "drawn from it)", "code draws the role and tells them", target="any", visit=True,
                             note="If they picked a Yakuza, don't use the op: that player has Strong Defense "
                             "tonight, and the Diviner gets no result.")
 

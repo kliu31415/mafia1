@@ -714,3 +714,9 @@ def test_scout_with_fewer_than_three_groups(game_factory):
     game.night_visits[game.day] = [["Carol", "Bob"], ["Bob", "Dave"]]  # Alice alone
     game.run_night_end_hooks()
     assert "Alice" in told(game, "Alice")[-1] and "only 2 visit groups" in told(game, "Alice")[-1]
+def test_a_diviner_may_pick_themselves_for_strong_defense(game_factory):
+    # rules Diviner: picking a Yakuza (themselves included) gives Strong Defense, which the moderator applies; no op.
+    game, players = game_factory(["Diviner", "Vanilla Villager", "Vanilla Villager", "Medic"])
+    game.phase = "night"
+    with pytest.raises(ValueError, match="Strong Defense"):
+        apply_ops(game, players, {"op": "divine", "player": "Alice", "by": "Alice"})
