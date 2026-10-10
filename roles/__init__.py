@@ -92,7 +92,7 @@ ROLES: dict[str, RoleInfo] = {
                            "and the death announcement reveals the role or says the clean hid it"),
     "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False,
                         summary="Night: audit a player, learn all their nomination and trial votes from that Day.",
-                        acts_at_night=True,
+                        acts_at_night=True, tested=True,
                         notes="moderator records the use with the audit op (a visit); code reads the Day's votes "
                         "and tells them"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
@@ -108,7 +108,7 @@ ROLES: dict[str, RoleInfo] = {
     "Insomniac": RoleInfo(Alignment.GOOD, "Investigative", False,
                           summary="Token: learns the roles (no names) of up to 3 random players who visited someone "
                           "that night.",
-                          tokens={"insomniac": 2}, acts_at_night=True,
+                          tokens={"insomniac": 2}, acts_at_night=True, tested=True,
                           notes="moderator records the use with the stay_awake op; code draws the visitors from "
                           "record_visits and tells them at the end of the night"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
@@ -219,7 +219,7 @@ ROLES: dict[str, RoleInfo] = {
                         summary="Passively reads every Day PM between any players.",
                         notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),
     "Informant": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                          summary="Passively sees how every player voted in each trial.",
+                          tested=True, summary="Passively sees how every player voted in each trial.",
                           notes="code tells living Informants each secret trial's votes; not role-blockable"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
