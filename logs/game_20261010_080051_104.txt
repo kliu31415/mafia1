@@ -352,3 +352,29 @@ The game is over. Winners: Alice, Dave (dead), Erin, Grace, Heidi, Judy (dead), 
 
 ===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
 [Feedback from Dave] The prompt asked for in-game response fields but this request is a feedback survey; I answered the survey fields and left the game fields empty. Rule and interface pieces that were hard to follow are noted in the answer above.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Dave, Erin, Grace, Heidi, Judy, Mallory
+Cost by player (USD):
+  Alice (Prosecutor)  $0.1111   44 calls  claude-haiku-5.5
+  Bob (Grunt)         $0.1066   49 calls  claude-haiku-5.5
+  Carol (Diviner)     $0.0837   39 calls  claude-haiku-5.5
+  Dave (Lookout)      $0.0705   35 calls  claude-haiku-5.5
+  Erin (Ex-Con)       $0.0841   42 calls  claude-haiku-5.5
+  Frank (Jester)      $0.0739   36 calls  claude-haiku-5.5
+  Grace (Archivist)   $0.1110   44 calls  claude-haiku-5.5
+  Heidi (Tracker)     $0.1007   44 calls  claude-haiku-5.5
+  Ivan (Pharmacist)   $0.0652   33 calls  claude-haiku-5.5
+  Judy (Seer)         $0.0610   30 calls  claude-haiku-5.5
+  Mallory (Oracle)    $0.1055   45 calls  claude-haiku-5.5
+  Moderator           $0.9658   13 calls  claude-opus-5.5
+  Night checks        $0.2001    3 calls  claude-opus-5.5
+  Strategy review     $0.2793    1 calls  claude-opus-5.5
+  Log review          $0.2973    1 calls  claude-opus-5.5
+  Total               $2.7159  459 calls

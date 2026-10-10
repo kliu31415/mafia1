@@ -346,3 +346,37 @@ Grace (public): Grace here. Bob, your denial covers only your Puppeteer role. He
 Heidi (public): Heidi here. Bob still hasn't answered Grace plainly: did he visit anyone or hold the Katana on Night 2 or Night 3? His denial covers only his Puppeteer role, and he claimed Puppeteer only after two Guilty votes. Until he answers that directly, I lean Guilty.
 Judy (public): Judy here. Bob's trial rests on a hedged denial and the timing of his Puppeteer claim. Grace nominated him right after PMing Erin and Carol, and Erin's Guilty push on Carol followed by a No vote is still unexplained. Heidi's tracks fit the numbers, so I want a concrete contradiction before voting Guilty.
 Mallory (public): Mallory here, still Vanilla. Bob, Grace, Erin, Dave and Heidi all asked whether you visited anyone or held the Katana on Night 2 or 3. You only answered about your Puppeteer role. Answer that plainly, yes or no, or I vote Guilty.
+Bob (public): Bob here. Direct answer, as asked: no. I took no night action on Nights 2 or 3, and I did not visit anyone on those nights. My only role is Puppeteer, and my puppet token is unused. Ivan's 2 and 3 is an unverified claim from a dead player, and its third visitor depends on Heidi's Tracker track, which she already lied about once. Don't hang me on an unconfirmed count. Erin: you PM'd Grace for a Guilty vote on Carol, then voted No on her nomination, and you haven't explained that. Grace: you nominated me right after PMing Erin and Carol, so what did you tell them? I've answered the question. Vote on the contradictions, not on the Bob nomination alone.
+Trial votes on Bob: Guilty - Carol, Dave, Erin, Frank, Grace, Heidi; Innocent - Bob, Judy, Mallory.
+Bob is executed by hanging (6 Guilty of 9 votes; 5 needed).
+Bob died (executed by hanging). Their alignment was Evil. Their last will: "No role claim and no night information to pass on. Carol's unexplained nomination of Bob and her silent withdrawal are worth weighing. Vote on checked results, not on claims alone."
+(to Frank, Judy) The Katana passed to Frank.
+
+===== NIGHT 4 =====
+(to Frank, Judy) Frank (Yakuza chat): Frank: I hold the Katana now, so I keep it (no holder vote needed). Target proposal: Erin. She is a confirmed Accountant (Carol's N3 Oracle hit) and her audits can read our tokens: Judy's clerk token, my 2 swaps and Bob's puppet token. Carol is the other threat, but she has already stated her N4 target is private, and her Oracle guesses are one per night. Judy, please confirm Erin as target. I'll hold my swaps and not act tonight, and I'd like you to hold the clerk token.
+(to Frank, Judy) Judy (Yakuza chat): Judy agrees: Erin is the target tonight, and Frank keeps the Katana as holder. Erin's audits can read our clerk and swap tokens, and her Accountant claim is backed by Carol's Oracle hit. Carol's Oracle is the other threat, but her guess is private and she has one per night, so Erin is the cleaner kill. I won't swap or rig tonight. Frank, please submit Erin and keeping the Katana. Ready.
+(to Frank, Judy) Frank (Yakuza chat): Frank: I confirm Erin as tonight's target, and I keep the Katana as holder. I'm not swapping and I'm not using my role tonight. Judy, please submit Erin as target and Frank as holder, and hold your clerk token. Ready.
+(to Frank, Judy) Judy (Yakuza chat): Judy confirms: Erin is tonight's target and Frank keeps the Katana as holder. I won't swap or rig tonight and I'm holding my clerk token. Frank, submit the same votes. Ready.
+Night actions:
+  Carol (Oracle): target Heidi; guessed role Tracker; "Oracle guess on Heidi as Tracker."
+  Erin (Accountant): target Frank
+  Frank (Smuggler): no role action; Katana vote: Frank holds, attacks Erin
+  Grace (Vigilante): no action
+  Heidi (Arsonist): "Ignite (Astral Visit): Strong attack on every doused player, Frank and Judy."
+  Judy (Clerk): no role action; Katana vote: Frank holds, attacks Erin
+Katana: Frank holds it and attacks Erin.
+(to Carol) Moderator (private): Night 4 result: your guess that Heidi is a Tracker was wrong.
+(to Erin) Moderator (private): Night 4 result: your audit of Frank shows 2 tokens in total at the end of the night. You were also attacked by the Katana tonight, and you died.
+(to Heidi) Moderator (private): Night 4 result: you ignited. Your attack on Frank succeeded, and your attack on Judy succeeded.
+(to Frank) Moderator (private): Night 4 result: as Katana holder you attacked Erin, and the attack succeeded. You were also attacked by an Arsonist tonight, and you died. You still have 2 swap tokens.
+(to Judy) Moderator (private): Night 4: you were attacked by an Arsonist tonight, and you died.
+(to Frank, Judy) Moderator (private): Yakuza actions chosen on Night 4: Frank used no Smuggler action and kept the Katana (both voted Frank as holder), with Erin as the Katana target. Judy used no Clerk action (no rig).
+[Moderator summary] Night 4: Carol's Oracle guess (Astral) that Heidi is a Tracker was wrong, since Heidi is the Arsonist. Erin audited Frank and got 2 tokens (visit Erin->Frank). Frank kept the Katana and attacked Erin with it (Standard, visit Frank->Erin); Erin had no defense and died. Heidi ignited (Astral, Strong) and killed the doused players Frank and Judy (Bob was already dead). Grace and Judy took no action. Nobody was role-blocked and there was no swap. Deaths: Erin (Katana), Frank (Arsonist), Judy (Arsonist). All Yakuza are now dead, so no living Yakuza can take the Katana. Remaining alive: Carol, Dave, Grace, Mallory (Village) and Heidi (Arsonist), so the game continues.
+
+===== DAY 5 =====
+Erin died (killed by Katana). Their alignment was Good. Their last will: "Erin (Good), Accountant. Audit results: N1 Heidi 0 tokens (no token role, consistent with Tracker). N2 Alice 1 token (fits Cartographer with one map spent). N3 Carol 0 tokens (fits Oracle). Ivan's Fortune Teller numbers (N1 2 and 2, N2 2 and 3) remain unresolved. Plan for N4, not a result: audit Bob, who claims Puppeteer and should hold 1 token if real and unspent. Trust concrete results over guesses."
+Frank died (killed by Arsonist). Their alignment was Evil. Their last will: "Frank (no role claim, no confirmed results). Unresolved: Ivan's Night 2 numbers (2 and 3) were never tied to a visited count, and his death leaves them untested. Carol's Oracle hit on Ivan is a claim, and her unexplained Bob nomination and withdrawal is the one move I would weigh against her. Erin's Accountant audits (Heidi 0 tokens, Alice 1 token left) are consistent with each other but unverified. Alice's Night 1 group of three is still unnamed. Vote only on checkable contradictions, not on hunches. Watch who votes No on nominations and who sends private messages to whom."
+Judy died (killed by Arsonist). Their alignment was Evil. Their last will: "Judy (Village). No night results or secret plans. Public facts only: Alice and Ivan both died to the Katana and were Good. Ivan's Fortune Teller numbers (N1 2 and 2, N2 2 and 3, order unknown) and Carol's Oracle hit on Ivan are unverified claims. Alice's Night 1 group of three is still unnamed. Carol's unexplained Bob nomination and withdrawal is unresolved. Don't hang anyone on claims alone; check Night 4 results and the vote record before any trial."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).

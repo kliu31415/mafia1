@@ -330,3 +330,32 @@ Erin (public): no vote yet. Carol and Ivan, name N1-3 targets and visits.
 Mallory (public): Carol and Ivan: name your N1-3 targets now.
 Alice (public): Alice, Scout. Mallory's N1 numbers fit Bob's watch plus Grace's divine on Dave exactly, which leaves Judy visiting nobody. Her Sheriff check on Ivan is then false. Ivan and Carol, vote on this, not on claims.
 Carol (public): Ivan, explain your Yes on Dave's self-nomination.
+Dave (public): Carol's Oracle reads are untestable. If you think my Judy pushes served the Yakuza, vote Guilty on me at the next trial.
+(to Dave, Ivan) Dave -> Ivan (private): Ivan, a Guilty vote on me is the test I asked for. Vote on that.
+Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+(to Heidi, Ivan) Heidi (Yakuza chat): Heidi: Proposal. Katana stays with Heidi, Standard attack on Carol. Carol's untestable Oracle reads have steered three votes, and she is now pushing Ivan, so she is the biggest threat to us. Ivan, please confirm you vote Carol as target and Heidi as holder. I'll take no other visits and keep my clerk token for a decisive rigged Day. Also keep your fabricator token and avoid any visit tonight.
+(to Heidi, Ivan) Ivan (Yakuza chat): Ivan agrees with Heidi: Heidi keeps the Katana and the Standard attack hits Carol. Carol's Oracle reads have steered three trials and she is now pushing me, so she is the right kill. I take no visits tonight and keep my fabricator token. Ready.
+(to Heidi, Ivan) Heidi (Yakuza chat): Heidi agrees: Katana stays with Heidi, Standard attack on Carol. I take no other visits and keep my clerk token. Ivan, confirm Heidi as holder and Carol as target. Ready.
+(to Heidi, Ivan) Ivan (Yakuza chat): Ivan agrees: Heidi holds the Katana and the Standard attack hits Carol. I take no visits tonight and keep my fabricator token. Ready.
+Night actions:
+  Carol (Oracle): target Ivan; guessed role Grunt; "Oracle guess on Ivan: Grunt."
+  Heidi (Clerk): no role action; Katana vote: Heidi holds, attacks Carol
+  Ivan (Fabricator): no role action; Katana vote: Heidi holds, attacks Carol
+Katana: Heidi holds it and attacks Carol.
+(to Carol) Moderator (private): Night 4 result: Your Oracle guess (Ivan is Grunt) was wrong. You were attacked with the Katana tonight and you died.
+(to Heidi) Moderator (private): Night 4 result: You held the Katana and attacked Carol. Your attack succeeded. You did not use your Clerk ability (1 clerk token left).
+(to Heidi, Ivan) Moderator (private): Yakuza night summary (Night 4): Heidi holds the Katana and chose to attack Carol with it; Heidi chose no Clerk action. Ivan chose no action.
+(to Mallory) Moderator (private): Fortune Teller result for Night 4: your two numbers are 1 and 1.
+[Moderator summary] Night 4: Heidi (Katana holder) attacked Carol with Standard Katana; Carol (Defense None) died. Carol's Oracle guess Ivan=Grunt was wrong (Ivan is Fabricator); astral, no visit. Ivan and Heidi took no role actions; Heidi kept her clerk token. Visits: Heidi->Carol. Fortune Teller Mallory: 1 and 1. No win yet (Alice, Dave[Jester], Erin, Frank, Heidi, Ivan, Mallory alive).
+(to Alice) Moderator (private): Tonight Erin, Heidi and Ivan were each in a different visit group.
+
+===== DAY 5 =====
+Carol died (killed by Katana). Their role isn't revealed. Their last will: "Carol, Oracle (Good). Exact-role results: N1 Judy Jester (correct). N2 Dave Executioner (correct). N3 Bob Lookout (correct). Bob's Lookout claim is therefore true: Grace visited Judy on N2 and was Yakuza. Judy's Sheriff claim is a Jester's lie. Do not hang Dave or Judy. Check Ivan's votes and the Night 3 visit numbers before any Guilty vote."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Frank (public): Frank here, Vanilla Villager. Carol died to the Katana on Night 4, so a living Yakuza visited her. Mallory and Alice, post your Night 4 numbers and Scout groups now. Dave and Ivan, tell us what your Day 4 PMs said. I won't nominate until these come in.
+Heidi (public): Heidi here, no claim. Mallory and Alice, post your Night 4 numbers and groups now, as Frank asked. Dave and Ivan, what did your Day 4 PMs say?
+Ivan (public): Ivan here. Mallory and Alice, post your Night 4 numbers and groups now, and say which visits they cover, since Carol's N1-N3 targets died with her. Dave, your Day 4 PMs asked me to vote Guilty on you. I won't do that on your say-so; tell us what your Judy pushes rested on. I'll vote on numbers.
