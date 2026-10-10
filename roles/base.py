@@ -41,7 +41,9 @@ class RecordedAction:
     does: str  # what the op does, after "the <role> `by`", for the tool description: e.g. "surveys player"
     then: str  # what code does next, for the night note: e.g. "code tells them one random role in the group"
     token: str = ""  # the token kind each use spends; "" for an every-night action
-    target: str = "other"  # "other": another player alive at the start of the night; "any": themselves too; "": none
+    # "other": another player alive at the start of the night; "any": themselves too; "dead": a player who died
+    # before the night began (not one who left); "": none
+    target: str = "other"
     visit: bool = False  # the night note says the action visits its target (rules R6)
     note: str = ""  # anything else the moderator must know, appended to the night note
 
@@ -115,7 +117,10 @@ class RoleLogic:
         if error := token_user_error(game, by.name, self.role, self.action.token or None):
             return error
         target = game.player(change["player"]) if self.action.target else None
-        if target and not acted_tonight(game, target):
+        if target and self.action.target == "dead":
+            if target.name not in dead_before_tonight(game):
+                return f"{target.name} hadn't died before the night began"
+        elif target and not acted_tonight(game, target):
             return f"{target.name} wasn't alive at the start of the night"
         if target is by and self.action.target == "other" and not swap_partner(game, by.name):
             return f"{'an' if self.role[0] in 'AEIOU' else 'a'} {self.role} can't target themselves"
@@ -162,6 +167,13 @@ def acted_tonight(game: Game, p: Player) -> bool:
     moderator sends them in, and an effect set for the next Day survives its user's death unless it needs them to
     act that Day (R21)."""
     return p.alive or (p.death is not None and p.death["day"] == game.day and p.death["phase"] == "night")
+
+
+def dead_before_tonight(game: Game) -> list[str]:
+    """Players who died before the night began (not those who left, nor those killed tonight): what a "dead" target
+    (RecordedAction.target) may be."""
+    return [p.name for p in game.players
+            if not p.alive and not p.status.get(Status.LEFT) and not acted_tonight(game, p)]
 
 
 def swap_partner(game: Game, name: str) -> str | None:

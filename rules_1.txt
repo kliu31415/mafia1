@@ -31,7 +31,7 @@ R18 (Terms)
 - Astral Visit: an action that is not a visit. Abilities that react to visits (Tracker, Lookout, Trapper,
   Fortune Teller) never see or react to it.
 - Alignment check: a result that reports alignment (Sheriff, Seer). See R19 for what they see.
-- Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician).
+- Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician, Coroner).
 - Token: a limited-use resource a role starts with. Spent tokens are gone; a role-blocked action spends none.
 - Attack/Defense levels, lowest to highest: None, Basic, Standard, Strong, Divine (R3).
 
@@ -283,6 +283,12 @@ Census Taker
   counted, and how many of the group are of it. It counts true alignment and is not an alignment check (R19):
   the Katana holder, framed players and the Ex-Con count as what they really are. Neutral players are never
   counted, as either Good or Evil.
+
+Coroner
+  Tokens: 3 coroner tokens.
+  Night: may spend a token to examine one player who died before the night began (not one who left the game, and not
+  one who dies tonight). You learn their role. This is an Astral Visit (R6), and an exact-role check (R19): a
+  Roleplayer shows as Roleplayer.
 
 Profiler
   Tokens: 3 profile tokens.

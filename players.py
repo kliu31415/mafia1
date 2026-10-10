@@ -10,6 +10,7 @@ from events import RESULT
 from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, default_effort, lower_effort,
                  rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
+from roles.base import dead_before_tonight
 from state import Game, Player, phase_label
 from texts import blank, describe_action, player_view
 
@@ -103,9 +104,12 @@ ANSWER_SCHEMA = obj(answer=STR)
 def night_action_schema(game: Game, p: Player) -> dict:
     """One generic shape for every role; the moderator interprets it using the rules."""
     names = game.alive_names()
+    action = logic(p.role).action
+    dead = dead_before_tonight(game) if action and action.target == "dead" else None  # e.g. the Coroner's
     props = {
         "act": BOOL,
-        "target": nullable(name_enum(names)),
+        "target": (nullable(name_enum(names)) if dead is None else nullable(name_enum(dead)) if dead
+                   else {"type": "null"}),
         "second_target": nullable(name_enum(names)),
         "guessed_role": nullable(name_enum(list(ROLES))),
         "tokens_to_spend": {"type": "integer"},

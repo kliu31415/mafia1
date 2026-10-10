@@ -78,6 +78,11 @@ ROLES: dict[str, RoleInfo] = {
                          summary="Token: profile a player, learn three candidate roles for them, one true.",
                          tokens={"profile": 3}, acts_at_night=True,
                          notes="moderator records the use with the profile op; code draws the decoys and tells them"),
+    "Coroner": RoleInfo(Alignment.GOOD, "Investigative", False,
+                        summary="Token: examine a player who died before tonight, learn their role.",
+                        tokens={"coroner": 3}, acts_at_night=True,
+                        notes="moderator records the use with the examine op (a dead target, not a visit); code "
+                        "tells them the role"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",

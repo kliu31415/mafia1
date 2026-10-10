@@ -663,6 +663,25 @@ def test_profiler_gets_three_roles_one_true_with_both_good_and_not_good(game_fac
     assert "Medic" in result.text and "2 profile tokens left" in result.text
 
 
+def test_coroner_examines_only_players_dead_before_the_night(game_factory):
+    from players import night_action_schema
+    game, players = game_factory(["Coroner", "Roleplayer", "Sheriff", "Grunt", "Executioner", "Vanilla Villager"])
+    game.phase = "night"
+    assert night_action_schema(game, game.player("Alice"))["properties"]["target"] == {"type": "null"}  # no dead yet
+    for name in ("Bob", "Erin"):
+        game.player(name).alive = False  # died on an earlier day
+    game.player("Erin").status[Status.LEFT] = True  # left the game (an Executioner's win), didn't die
+    game.kill("Carol", "Katana")  # dies tonight: not yet examinable
+    assert night_action_schema(game, game.player("Alice"))["properties"]["target"]["anyOf"][0]["enum"] == ["Bob"]
+    assert night_action_schema(game, game.player("Frank"))["properties"]["target"]["anyOf"][0]["enum"] == \
+        ["Alice", "Dave", "Frank"]  # other roles still target the living
+    for name in ("Carol", "Erin", "Dave"):
+        with pytest.raises(ValueError, match="hadn't died before the night began"):
+            apply_ops(game, players, {"op": "examine", "player": name, "by": "Alice"})
+    apply_ops(game, players, {"op": "examine", "player": "Bob", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("You examined Bob: their role was Roleplayer. 2 coroner tokens left.")
+
+
 def test_profiler_decoys_fall_back_to_all_roles_in_tiny_games(game_factory):
     from roles.profiler import profile_candidates
     game, _ = game_factory(["Profiler", "Grunt", "Grunt"])
@@ -680,7 +699,11 @@ def test_recorded_actions_check_their_user_target_and_token(game_factory, role):
     op = {"op": action.op, "by": "Alice", **({"player": "Bob"} if action.target else {})}
     with pytest.raises(ValueError, match="is not a"):
         apply_ops(game, players, {**op, "by": "Carol"})
-    if action.target:
+    if action.target == "dead":
+        with pytest.raises(ValueError, match="hadn't died before the night began"):
+            apply_ops(game, players, op)
+        game.player("Bob").alive, game.player("Bob").death = False, None  # died on an earlier day
+    elif action.target:
         game.player("Bob").alive, game.player("Bob").death = False, None  # died on an earlier day
         with pytest.raises(ValueError, match="wasn't alive at the start of the night"):
             apply_ops(game, players, op)
