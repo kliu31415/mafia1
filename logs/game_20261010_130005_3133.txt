@@ -1,0 +1,407 @@
+Setup:
+  Alice    seat 1  Puppeteer         anthropic/claude-haiku-5.5
+  Bob      seat 2  Sheriff           anthropic/claude-haiku-5.5
+  Carol    seat 3  Oracle            anthropic/claude-haiku-5.5
+  Dave     seat 4  Cartographer      anthropic/claude-haiku-5.5
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5
+  Frank    seat 6  Ritualist         anthropic/claude-haiku-5.5
+  Grace    seat 7  Surveyor          anthropic/claude-haiku-5.5
+  Heidi    seat 8  Scout             anthropic/claude-haiku-5.5
+  Ivan     seat 9  Coroner           anthropic/claude-haiku-5.5
+  Judy     seat 10 Smuggler          anthropic/claude-haiku-5.5
+  Mallory  seat 11 Medic             anthropic/claude-haiku-5.5
+  Niaj     seat 12 Seer              anthropic/claude-haiku-5.5
+  Katana starts with Judy
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Frank, Judy) Alice (Yakuza chat): Night 1 proposal: no Katana attack tonight, since we know nothing about the Village yet. Judy keeps the Katana. I'll hold my puppet token for a Day when a real threat is visible. Frank, if you want a Ritualist guess, make it on a later night. Agree or object, then we vote on the holder and target together.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Agree with Alice: no Katana attack tonight and Judy keeps the Katana. I'm holding my ritual tokens for a confirmed role, so no guess from me tonight. Ready unless someone objects.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Agree with Alice and Frank: no Katana attack tonight, and I keep the Katana. Target: none. I'm holding my swap tokens for a later Day when they're useful. Ready.
+Night actions:
+  Alice (Puppeteer): no role action; Katana vote: Judy holds, attacks None
+  Bob (Sheriff): target Carol
+  Carol (Oracle): target Bob; guessed role Vanilla Villager
+  Dave (Cartographer): no action
+  Frank (Ritualist): no role action; Katana vote: Judy holds, attacks None
+  Grace (Surveyor): no action
+  Ivan (Coroner): no action
+  Judy (Smuggler): no role action; Katana vote: Judy holds, attacks None
+  Mallory (Medic): target Dave; "Free Standard protection on Dave, no tokens spent."
+  Niaj (Seer): no action
+Katana: no attack (the Yakuza agreed not to attack); Judy holds it.
+(to Bob) Moderator (private): Night 1 result: You investigated Carol. Result: Not Evil.
+(to Carol) Moderator (private): Night 1 result: You guessed that Bob is a Vanilla Villager. You were wrong.
+(to Mallory) Moderator (private): Night 1 result: You protected Dave (Standard Defense, no token spent). 2 medic tokens left.
+(to Niaj) Moderator (private): Night 1 result: Your random pair was Heidi and Mallory. Their alignments are the same. 1 seer token left.
+(to Alice, Frank, Judy) Moderator (private): Night 1 Yakuza summary: Alice (Puppeteer) chose no action. Frank (Ritualist) chose no action. Judy (Smuggler) chose no action. Katana: Judy keeps the Katana; no attack was made.
+[Moderator summary] Night 1: No deaths. Bob (Sheriff) checked Carol: Not Evil. Carol (Oracle) guessed Bob = Vanilla Villager: wrong. Mallory (Medic) gave Dave free Standard protection (2 tokens left); nobody attacked him. Niaj (Seer) got the random pair Heidi/Mallory: same. Yakuza made no moves: Judy keeps the Katana and there was no attack. No swap, puppet, ritual, survey, map or examine. Visits: Bob->Carol, Mallory->Dave.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 2, 2, 1, 1, 1, 1, 1, 1, 1, 1.
+(to Heidi) Moderator (private): Tonight Heidi, Judy and Niaj were each in a different visit group.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Heidi.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Night check] Night 1: correct
+Heidi (public): Heidi here. I'm staying quiet on power roles for now and watching for Katana-style kills. No nominations from me yet.
+Judy (public): Judy here. Agree with Heidi: no early nominations until we have some results. I'm watching who posts logs and who only makes claims.
+[Claim] Mallory: Medic. N1: protected Dave (Standard, no token spent). No attacks on N1.
+Mallory (public): Mallory here, claiming Medic. On Night 1 I protected Dave with free Standard protection; nobody was attacked, so I have no kill result. I'll protect a player each night and post results each Day. Investigators, please post your logs so we can check them against visits.
+[Claim] Niaj: Seer. N1 random pair Heidi and Mallory: same alignment.
+Niaj (public): Niaj here, claiming Seer. My Night 1 random pair was Heidi and Mallory, and their alignments match. I'm keeping my one Seer token for a real lead. No nominations from me today.
+Alice (public): Alice here. I did nothing on Night 1. Mallory's Medic and Niaj's Seer claims both fit what we know so far. Mallory, please post each night's protection target when you can, and Niaj, your matching pair is useful. No nominations from me yet.
+[Claim] Bob: Sheriff. N1: Carol Not Evil.
+Bob (public): Bob here, claiming Sheriff. Night 1 I investigated Carol and got Not Evil. I'll post each night's result and check the Medic and Seer claims against it. No nominations from me yet.
+[Claim] Carol: Oracle. N1: guessed Bob Vanilla Villager, wrong.
+Carol (public): Carol here, claiming Oracle, not an investigator with a result that matters yet. My Night 1 guess was Bob as Vanilla Villager, and I was wrong, so Bob is not a Vanilla Villager. Bob's Sheriff claim doesn't conflict with that. Medic Mallory and Seer Niaj: please post your nightly targets and results so we can check them against visit logs. No nominations from me yet.
+[Claim] Dave: Cartographer. N1 sizes 2,2,1x8: Mallory visited Dave (linked group of 2).
+Dave (public): Dave here, claiming Cartographer. Night 1 group sizes were 2,2 and eight 1s. The 2-group with me is Mallory's protection visit, so Mallory's Medic claim checks out. The other pair is an unknown visit, so Bob and Carol, please say who you visited.
+Erin (public): Erin here, Vanilla Villager, no night action. Mallory's protection visit matches Dave's 2-group, which is a good sign. Bob and Carol, who did you each visit on Night 1? Sheriff and Oracle are both still unverified.
+Frank (public): Frank here, no role claim or nomination yet. Mallory's Medic and Niaj's Seer claims fit the Night 1 logs so far. Bob and Carol, please answer Dave and Erin's visit questions with the names you visited.
+Grace (public): Grace here, no claim yet. Bob and Carol, please name who you visited on Night 1, since that second 2-group is unexplained. Mallory and Niaj, keep posting nightly targets and results.
+[Claim] Heidi: Scout. N1: Heidi, Judy and Niaj each in a different visit group.
+Heidi (public): Heidi here, claiming Scout. Night 1 result: Heidi, Judy and Niaj were each in a different visit group, so none of us was linked to another of the three. Bob and Carol, Dave's second 2-group is still unexplained, so please name your visit targets. No nomination from me.
+Judy (public): Judy here. Dave's second 2-group is Bob and Carol, which fits Bob's Sheriff check on Carol, so Bob's log lines up with the Cartographer result. Mallory's protection on Dave and Niaj's and Heidi's group results also fit the sizes. Ivan, we haven't heard from you yet. What is your role and what did you do on Night 1? No nomination from me.
+Mallory (public): Mallory, Medic. Dave's 2-group matches my Night 1 protection visit on him, so his Cartographer log checks out. Ivan, we haven't heard from you yet: what is your role and what did you do on Night 1? No nomination from me today.
+Niaj (public): Niaj again. Dave's second 2-group is Bob and Carol. Bob's Sheriff visit on Carol explains it, and Carol's Oracle guess is an Astral Visit, so it adds no link. That fits both claims. Ivan, please post your role and Night 1 action. No nomination from me.
+Alice (public): Alice here. Nothing new from me yet. Dave's two 2-groups fit Mallory's protection and Bob's check on Carol. Mallory and Niaj, please keep posting nightly targets and results. No nomination from me.
+Bob (public): Bob again: my Night 1 visit was Carol, which explains Dave's second 2-group. Carol is Not Evil. Ivan, please post your role. No nomination from me.
+Carol (public): Carol here, the real Oracle, Good. My only Night 1 result: Bob is not a Vanilla Villager. Mallory's visit on Dave and Bob's visit on me match Dave's two 2-groups, so the visit logs check out so far. Ivan, we still need your role and Night 1 action. No nomination from me.
+Erin (public): nothing new from me. Ivan, you still haven't posted your role or Night 1 action. Please do so.
+Frank (public): Frank here, no nomination yet. Ivan is the only player who hasn't posted a role or Night 1 action, so Ivan, please do that before anyone votes. Mallory and Niaj, please post your Night 2 targets and results when you can.
+Grace (public): Grace here, no claim yet. Ivan, you're the only player who hasn't posted a role or Night 1 action. Please do so before anyone nominates. Mallory, Niaj, Bob and Carol: your claims fit the visit groups so far.
+Heidi (public): Ivan still hasn't posted a role or Night 1 action, so I want that before any nomination. Mallory and Niaj, please post your Night 2 targets. I'll post my Night 2 Scout result at the start of Day 3 and check it against the Cartographer sizes.
+[Claim] Ivan: Coroner. N1: no action (no deaths yet). 3 coroner tokens left.
+Ivan (public): Ivan here, claiming Coroner (Good) with 3 coroner tokens. On Night 1 I took no action, since nobody had died and there was no one to examine. If someone dies, I will examine them and post the result. No nomination from me.
+Judy (public): Judy here. Nothing new from me. Ivan's Coroner claim can't be checked until someone dies, and the Cartographer and Scout logs agree with each other so far. No nomination from me.
+Mallory (public): Mallory, Medic. My N1 visit was Dave, which is the 2-group Dave reported, so his Cartographer log checks out. Night 2 I'll protect a claimed investigator, target not posted. No nomination from me.
+Niaj (public): Niaj again. Night 2 my Seer pair is automatic (no token spent), and I'll post the result at the start of Day 3. No nomination from me. Ivan, your Coroner claim can't be checked until someone dies, so please keep your tokens.
+Erin (public): Erin here, still Vanilla Villager. Seven players have claimed roles and the visit logs match so far. Judy, you haven't stated a role yet, please do. I won't nominate anyone without a mechanical case.
+[Claim] Frank: Vanilla Villager. N1: no action.
+Frank (public): Frank here, Vanilla Villager, no Night 1 action. The visit logs so far fit the claims, and I won't nominate without a mechanical case. Grace, you're the only player besides me without a stated role, so please post it.
+[Claim] Grace: Surveyor, 3 survey tokens. No results yet.
+Grace (public): Grace here. I'm claiming Surveyor with 3 survey tokens. I'll post any survey result, with the group and one exact role, at the start of Day 3. No nomination from me.
+[Claim] Judy: Vanilla Villager. N1: no action.
+Judy (public): Judy here, Vanilla Villager, no Night 1 action. No nomination from me.
+Alice (public): Alice here, nothing new. Mallory and Niaj, please post your Night 2 results at the start of Day 3 as promised. No nomination from me.
+Bob (public): Bob here. Ivan's Coroner claim and Carol's Astral Oracle guess both fit the visit logs, so there is no new case yet. I'm not nominating today. I'll post my Night 2 Sheriff result at the start of Day 3.
+Dave (public): Dave here, Cartographer. My Night 1 sizes were 2,2 and eight 1s, and I'm not changing that log. Ivan and Grace, your Coroner and Surveyor claims can't be tested until someone dies or a survey is posted, so please post your Night 2 results at the start of Day 3. No nomination from me.
+Frank (public): Frank here. No nomination from me. Ivan and Grace have now posted claims, and Mallory, Niaj and Heidi have logs due for Day 3. Nobody has a mechanical case yet, so I won't vote anyone up today. Dave's and Bob's visit logs match the Cartographer sizes, so both are worth checking on Day 3.
+Heidi (public): Heidi here, Scout. Nothing new from me. My Night 2 Scout result will post at the end of the night, as promised. I want the Night 2 logs before any trial, so no nomination from me.
+Alice (public): Alice here, nothing new. No nomination from me. I want the Night 2 results from Mallory, Niaj and Heidi before anyone votes, and Ivan's Coroner claim stays untested until someone dies.
+Frank (public): Frank here. I agree with waiting for the Night 2 results before any nomination. Ivan, if someone dies tonight, who would you examine first and why? Mallory, please post your Night 2 target so we can check it against Dave's log.
+Ivan (public): Ivan here. If someone dies tonight, I'll examine them at once and post the true role at the start of Day 3. No nomination from me.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Frank, Judy) Alice (Yakuza chat): Alice: Proposal for tonight: Judy keeps the Katana and it attacks Heidi. Heidi's Scout logs can expose our visit groups, and Mallory's N1 protection went to Dave, so Heidi is open unless Mallory guesses her. Frank, no ritual guess tonight. Please vote Heidi by ballot. If there's no majority, no attack. Object now if you disagree.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Frank: I agree with Alice. Judy keeps the Katana and I vote Heidi. Her Scout claim touches our visit groups, so she's a real threat. No ritual guess tonight; I'm keeping my 2 tokens for a confirmed Medic or Seer. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Judy: Agreed. I keep the Katana and vote Heidi. No ritual guess and no swap tonight. Ready.
+(to Alice, Frank, Judy) Alice (Yakuza chat): Alice: Agreed. Judy keeps the Katana and all three of us vote Heidi as its target. I'm not using my puppet token tonight. Ready.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Frank: Agreed. Judy keeps the Katana and attacks Heidi. I'm voting Heidi and making no ritual guess tonight. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Judy: Confirmed. I keep the Katana and all three of us vote Heidi. No swap, no ritual guess, no puppet from anyone tonight. Ready.
+Night actions:
+  Alice (Puppeteer): no role action; Katana vote: Judy holds, attacks Heidi
+  Bob (Sheriff): target Niaj; "Sheriff investigation on Niaj."
+  Carol (Oracle): target Niaj; guessed role Seer; "Oracle guess: Niaj is the Seer."
+  Dave (Cartographer): no action
+  Frank (Ritualist): no role action; Katana vote: Judy holds, attacks Heidi
+  Grace (Surveyor): target Alice; 1 token(s); "Survey Alice: group is Alice, Niaj, Bob (Alice's circle neighbours). Spend 1 survey token."
+  Ivan (Coroner): no action
+  Judy (Smuggler): no role action; Katana vote: Judy holds, attacks Heidi
+  Mallory (Medic): target Niaj; "Free Standard protection on Niaj (Seer), no tokens spent."
+  Niaj (Seer): no action
+Katana: Judy holds it and attacks Heidi.
+(to Grace) Moderator (private): You surveyed Niaj, Alice and Bob. One of them, chosen at random, has the role Sheriff. 2 survey tokens left.
+(to Bob) Moderator (private): Night 2 result: you investigated Niaj. Result: Not Evil.
+(to Carol) Moderator (private): Night 2 result: you guessed that Niaj is the Seer. Your guess was right.
+(to Mallory) Moderator (private): Night 2 result: you protected Niaj with Standard Defense (no token spent). 2 medic tokens left.
+(to Niaj) Moderator (private): Night 2 result: your random pair was Alice and Frank. Their alignments are the same. 1 seer token left.
+(to Heidi) Moderator (private): Night 2: you were attacked with the Katana. You died.
+(to Judy) Moderator (private): Night 2 result: your Katana attack on Heidi succeeded. 2 swap tokens left (no swap used).
+(to Alice, Frank, Judy) Moderator (private): Yakuza Night 2 actions: Judy holds the Katana and chose to attack Heidi with it; Judy used no swap. Alice chose no action (no puppet). Frank chose no action (no ritual).
+[Moderator summary] Night 2: Judy (Katana holder) attacked Heidi with Standard Katana; Heidi (no defense) died. Bob checked Niaj: Not Evil. Carol's Oracle guess Niaj=Seer correct. Mallory protected Niaj (free Standard). Grace surveyed Alice (survey op, token spent). Niaj random pair Alice & Frank: same alignment. Visits: Bob->Niaj, Grace->Alice, Judy->Heidi, Mallory->Niaj. No role-blocks, no swaps.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 3, 2, 2, 1, 1, 1, 1, 1.
+(to Heidi) Moderator (private): Tonight Alice, Bob and Erin were each in a different visit group.
+
+===== DAY 3 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi (Village), Scout. Night 1 result: Heidi, Judy and Niaj were each in a different visit group, so no visits linked us that night. Trust checkable claims over vague stories, and vote on mechanical contradictions, not feelings."
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 2: correct
+Alice (public): Alice here. Heidi died to the Katana overnight. Mallory, Niaj, Bob and Grace, please post your Night 2 targets and results before anyone nominates. Ivan, your Coroner check can use Heidi on a later night, so post it when you have it. No nomination from me.
+[Claim] Bob: Sheriff. N1: Carol Not Evil. N2: Niaj Not Evil.
+Bob (public): Bob here, Sheriff. My Night 2 result: Niaj Not Evil. Caveat: a Katana holder reads Not Evil that night, so this doesn't clear Niaj of holding the Katana. Heidi died to the Katana, so Mallory, please post your Night 2 target. No nomination from me today.
+Carol (public): Carol, Oracle. My Night 2 guess that Niaj is the Seer was correct, so the Seer claim is confirmed by an exact-role check. Mallory: you said you would protect a claimed investigator on Night 2, yet Heidi was still killed by Katana. Please post your Night 2 target. Dave: please post your Night 2 group sizes so Heidi's attacker can be placed.
+[Claim] Dave: Cartographer. N1 sizes 2,2,1x8. N2 sizes 3,2,2,1x5.
+Dave (public): Dave here, Cartographer. Night 2 group sizes: 3,2,2,1,1,1,1,1, as promised. Heidi's Katana visit should sit in the 3-group, so the holder is probably one of its other two members. Mallory, please post your Night 2 target, since a Standard protection on Heidi would have stopped a Standard Katana. No nomination from me.
+Erin (public): Erin here, Vanilla Villager. Heidi died to Katana with no protection reported, so Mallory's Night 2 target matters: Mallory, please name it now. Dave, Heidi's Katana visit is in your 3-group, so please say whether the group's links fit that. Ivan, Heidi is a valid Coroner target from Night 3. No nomination from me yet.
+Frank (public): Frank here. No nomination from me yet. Mallory, you still haven't named your Night 2 target, and Heidi died to the Katana anyway. A Medic claim needs a stated target, so please post it now. Ivan and Grace, post any results you have so far.
+[Feedback from Grace] The survey message wording 'one of them, chosen at random, has the role Sheriff' is ambiguous about whether other members could also be Sheriff.
+[Claim] Grace: Surveyor, 2 survey tokens left. N2: surveyed Alice's circle (Niaj, Alice, Bob): one of them holds the Sheriff role.
+Grace (public): Grace here. My Night 2 survey covered Niaj, Alice and Bob (Alice's circle). It showed one of them, picked at random, holds the Sheriff role. Niaj is the Seer claim, so the Sheriff is Alice or Bob. Alice, if you are Sheriff, say so and post your result. Bob, your Niaj Not Evil is consistent either way. Mallory, please name your Night 2 target.
+Ivan (public): Ivan here, Coroner. I'll examine Heidi tonight, since she died before Night 3 began, and post her true role at the start of Day 4 to check her Scout claim. Mallory, you still haven't named your Night 2 target while Heidi died to Katana. Please name it now.
+Judy (public): Judy here. I agree Mallory needs to name the Night 2 target. A Medic claim that protects nobody we can verify, while Heidi still died to Katana, needs an answer before anyone is hanged. No nomination from me yet.
+Mallory (public): Mallory, Medic. My Night 2 target was Niaj, with free Standard protection, and Niaj is alive. Heidi was not my target, so my protection could not cover her. My Night 3 target stays private until the night ends. No nomination from me.
+Niaj (public): Niaj, Seer, Good. I should have posted my Night 2 result earlier: my random pair Alice and Frank have the same alignment. Carol's correct Oracle guess on me is an exact-role check, so my Seer claim is confirmed. Dave, please name the three members of your 3-group, since Heidi's Katana visitor should be in it. Mallory, please say whom you visited on Night 2 and whether you were the only one who visited Niaj. No nomination from me yet.
+[Claim] Alice: Vanilla Villager. No night action on N1 or N2.
+Alice (public): Alice here, Vanilla Villager, no night action on N1 or N2. Grace's survey covered Niaj, Alice and Bob, and I'm not Sheriff, so that points to Bob, which fits Bob's Night 2 check on Niaj. I'll wait for Mallory's Night 3 answer before any nomination, and I won't vote anyone up without a mechanical case.
+Bob (public): Bob here, Sheriff. Confirmed so far: Carol Not Evil (N1) and Niaj Not Evil (N2). Grace's survey covered Alice's circle, and I am the Sheriff, so her result checks out. Heidi's Katana holder should be in Dave's 3-group with Heidi. Dave, please name the three members. Mallory, protecting Niaj on N2 could not stop Heidi's attack, so your Medic claim is untested. No nomination from me yet.
+Carol (public): Carol again. Mechanical check on Night 2: if Bob's Sheriff visit on Niaj and Mallory's protection on Niaj are both true, the 3-group is Bob, Mallory and Niaj. Heidi's Katana visitor would then sit in a 2-group with Heidi, not in the 3-group. Dave, is that your 3-group? If not, say who is in it. No nomination from me.
+Dave (public): Dave here. I only get group sizes, not names, so I can't confirm who is in the 3-group. If Bob's and Mallory's visits both went to Niaj, the 3-group is Bob, Mallory and Niaj. Grace's survey of Alice links Grace and Alice in a 2-group. Heidi's Katana visitor then sits in Heidi's own 2-group, so it's one of Carol, Erin, Frank, Ivan or Judy. No nomination from me.
+Erin (public): Erin here, Vanilla Villager. Heidi's Katana visitor must be in her 2-group, so it is Heidi plus one other living player. Dave, your list of possible visitors left yourself out without saying why. Are you in Heidi's group? Yes or no, please.
+Frank (public): Frank here. I had no night action on N2, so I'm not Heidi's visitor. Dave, Erin asked a yes/no question: are you in Heidi's 2-group? If Bob's and Mallory's visits both went to Niaj, the 3-group is Bob, Mallory and Niaj, and Grace's survey links her with Alice. Ivan, post Heidi's examined role at the start of Day 4 as promised. No nomination from me.
+Grace (public): Grace here. My Night 2 survey was a visit to Alice only, so Grace and Alice are Dave's 2-group. One of Niaj, Alice or Bob is Sheriff. Bob has claimed Sheriff, so Alice, if you are the Sheriff, say so now. Dave, Erin asked a yes/no question: are you in Heidi's 2-group? Mallory, did you visit only Niaj on Night 2?
+Judy (public): Judy here. Dave's 2-group is Heidi plus one living visitor, and the list Dave gave has five names. Frank has said he had no Night 2 action. Erin, Carol and Ivan: please state your Night 2 action in one sentence each, including any visit. No nomination from me.
+Mallory (public): Mallory here, Medic. Dave's 2-group is Heidi plus one visitor, and Frank had no Night 2 action, so that visitor is Carol, Erin, Ivan or Judy. Carol and Ivan, state your Night 2 action in one line, including any visit to Heidi. Erin and Judy, you've claimed no action; please confirm. No nomination from me.
+Niaj (public): Niaj here, Seer. I took no visit on Night 2: my Seer pair is automatic and isn't a visit, so I'm not in any visit group. Dave's 2-group is Heidi plus one visitor from Carol, Erin, Ivan or Judy. Carol's Oracle guess is Astral, and Ivan's Coroner examine can't target Heidi until Night 3, so neither claim shows a Night 2 visit. Erin and Judy, you haven't stated a Night 2 action, so please say whether you visited anyone. Mallory is Good on my Night 1 pair with Heidi, which fits the Medic claim. No nomination from me.
+Alice (public): Alice here, Vanilla Villager. Dave's Heidi 2-group holds exactly one Night 2 visitor. Carol's Oracle guess and Ivan's Coroner examine are Astral, and Frank had no visit, so the visitor is a living player who hasn't stated a Night 2 action. Erin, you've said nothing about Night 2: did you visit anyone? One sentence, please. No nomination from me yet.
+Bob (public): Bob, Sheriff. Night 2 visits I can confirm: Bob to Niaj, Mallory to Niaj, Grace to Alice. Heidi's 2-group needs one living visitor to Heidi, so it is one of Carol, Erin, Ivan or Judy. Carol and Ivan claimed only Astral actions. Erin and Judy, state your Night 2 action in one sentence. Dave, answer Erin's yes or no. No nomination yet.
+Carol (public): Carol here, Oracle. Dave, you still haven't answered Erin's yes/no: are you in Heidi's 2-group? Your Day 3 list of possible visitors left yourself out, and your claim that Heidi sat in the 3-group was wrong. If you aren't in her group, the Katana holder is Erin, Judy, Frank or Ivan, and each has only an unstated Night 2 action. Answer directly, please.
+Dave (public): Dave here, answering Erin directly: No, I am not in Heidi's 2-group. I submitted no Night 2 action and nobody visited me, so I am a singleton. My earlier claim that Heidi's visitor sits in the 3-group was wrong. Confirmed visits: Bob to Niaj, Mallory to Niaj, Grace to Alice. So the 3-group is Bob, Mallory and Niaj, Grace and Alice are a 2-group, and Heidi's 2-group is Heidi plus one of Carol, Erin, Frank, Ivan or Judy. Frank had no action, and Carol's Oracle guess and Ivan's Coroner examine are Astral. Erin and Judy: in one sentence each, say whether you visited anyone on Night 2.
+Erin (public): Erin here, Vanilla Villager, no Night 2 action, so I'm not Heidi's visitor. Judy, you're the only living player outside the claimed roles who hasn't stated a Night 2 action. Judy, did you visit anyone on Night 2? Yes or no, one sentence. Dave, your group list has changed twice, so I'm not voting on it yet.
+Frank (public): Frank here. I had no Night 2 action, so I'm not Heidi's visitor. Dave's group list has changed twice, so I won't trust his 2-group reading until he names its members. Judy, Erin asked you a direct Night 2 question, so please answer it in one sentence. No nomination from me yet.
+Grace (public): Grace here. My Night 2 survey visited Alice only, not Heidi. Dave's Heidi 2-group is Heidi plus one of Carol, Erin, Ivan or Judy, so that visitor is the Katana holder. Erin and Judy, state your Night 2 action in one sentence. Ivan, your Coroner check can't reach Heidi until Night 3, so confirm you had no Night 2 visit. No nomination from me.
+Ivan (public): Ivan, Coroner, Good. I had no Night 2 action, so I'm not Heidi's visitor. Frank had none either, so Dave's Heidi 2-group is Heidi plus one of Carol, Erin or Judy. Dave's lists changed twice, so his denial of being in that group can't be trusted until someone else confirms it. Judy, you still haven't answered Erin's yes/no on a Night 2 visit. Please answer in one sentence. I'll examine Heidi tonight and post her exact role at the start of Day 4. No nomination from me.
+Judy (public): Judy here. Answering Erin in one sentence: no, I did not visit anyone on Night 2. Dave's group list has changed twice, so I won't accept his Heidi 2-group until he names its members. Carol's and Ivan's Astral claims also show no visit. No nomination from me.
+Mallory (public): Mallory, Medic. On Night 2 I protected only Niaj, so I could not have stopped Heidi. Mechanical case: Heidi's Katana visitor is in her 2-group with one of Carol, Erin, Ivan or Judy. Each of them denied a visit or claimed an Astral action, so at least one is lying. I'm not nominating yet. Ivan's Night 3 Coroner result on Heidi will help.
+Niaj (public): Niaj here, Seer. Bob's and Mallory's visits on me and Grace's visit on Alice are confirmed, so the 3-group is Bob, Mallory and Niaj. Heidi's visitor is Carol, Erin, Ivan or Judy, and Erin and Judy denied any visit while Carol and Ivan named only Astral actions. Ivan, post Heidi's Coroner role at the start of Day 4 as promised. No nomination from me yet.
+Alice (public): Alice here. No nomination from me. Dave's group list has changed twice, so his Heidi 2-group reading isn't settled. Erin and Judy both denied Night 2 visits, and one of those denials still needs a checkable answer. Ivan's Coroner result on Heidi comes at the start of Day 4, so let's wait for it before anyone is voted.
+(to Alice, Judy) Alice -> Judy (private): Judy, Dave's 2-group puts Heidi with one living visitor, which points at you. Say nothing new until we see Ivan's Day 4 result, and keep to what you've already said.
+Bob (public): Bob, Sheriff. Heidi's Katana visitor is in her 2-group, so the holder is Carol, Erin, Frank, Ivan or Judy. Erin and Judy denied any Night 2 visit, Carol and Ivan named only Astral actions, and Frank had none. My Night 3 Sheriff result will be posted at the start of Day 4. No nomination from me.
+Carol (public): Carol here, Oracle. My Night 2 action was an Astral guess on Niaj, so I visited no one and am not in Heidi's 2-group. Dave's 3-group and Grace's Alice 2-group are the confirmed visits, so Heidi's 2-group is Heidi plus one of Dave, Erin, Frank, Ivan or Judy. Erin, Judy, Frank and Ivan all said no visit, and Dave denies being in it, so at least one of them is lying. Ivan's Night 3 Coroner result on Heidi comes at the start of Day 4. No nomination from me yet.
+Dave (public): Dave here, correcting my Day 3 list. The 3-group is Bob, Mallory and Niaj, and Grace and Alice form a 2-group. I had no Night 2 visit and nobody visited me, so I am not in Heidi's 2-group. Heidi's Katana visitor is Carol, Erin, Ivan or Judy. Erin and Judy denied visits, and Carol and Ivan named only Astral actions. I'll post Night 3 sizes at the start of Day 4. No nomination from me.
+Erin (public): Erin here, Vanilla Villager. Dave's corrected lists settle one thing: Heidi's 2-group is Heidi plus one of Carol, Ivan or Judy. Frank, Dave and I had no visit. Carol and Ivan claimed only Astral actions, and Judy denied a visit, so one of the three is lying. Ivan's Night 3 Coroner result comes at Day 4. No nomination from me.
+Frank (public): Frank here. No nomination from me. Mechanical state: Heidi's 2-group is Heidi plus one of Carol, Erin, Ivan or Judy. Carol and Ivan claim only Astral actions, and Erin and Judy denied visits, so one of those four is lying. Ivan's Heidi Coroner result comes at the start of Day 4, and I'll vote on that rather than on Dave's changing lists. Dave, please keep your Night 3 sizes unchanged.
+Grace (public): Grace here. Nothing new to add, so no nomination from me. I'll post my Night 3 survey result at the start of Day 4, with no target named beforehand.
+Ivan (public): Ivan, Coroner: I had no Night 2 visit, so I'm not Heidi's visitor. Frank also had no visit. That leaves Heidi's 2-group as Heidi plus one of Carol, Erin, Judy or Dave. Dave's first list left himself out, so his denial is unverified. I'll examine Heidi tonight and post her role at the start of Day 4. No nomination from me.
+Judy (public): Judy here. Dave's Cartographer lists have changed three times, and he first left himself out of Heidi's group, so I won't trust his 2-group reading yet. Dave, post your Night 3 sizes with names. Ivan, post Heidi's Coroner role at Day 4 as promised. No nomination from me.
+Mallory (public): Mallory, Medic. Nothing new beyond my logged protections: Dave on N1 and Niaj on N2. Mechanically, Heidi's Katana visitor sits in her 2-group. Dave's reading only works if he is honest, and he first left himself out of that group, so I'm not trusting it yet. Erin and Judy each denied a visit, Frank denied one, and Carol and Ivan claimed only Astral actions, so at least one of those denials is false. I won't nominate until Ivan's Day 4 Coroner result is posted. My Night 3 protection stays private.
+Alice (public): Alice here. Dave's latest sizes fit: Heidi's 2-group is Heidi plus one of Carol, Erin, Ivan or Judy. Carol and Ivan named only Astral actions, so Erin and Judy, can either of you back up your no-visit claims? No nomination from me yet.
+Bob (public): Bob, Sheriff. Nothing new from me. Heidi's Katana holder is her 2-group partner, one of Carol, Erin, Ivan or Judy, and at least one of them is lying. Ivan's Heidi Coroner result at Day 4 is the next check. No nomination from me.
+Carol (public): Carol, Oracle: I visited no one on Night 2, so I'm not Heidi's visitor. The Katana visitor is among Dave, Erin, Judy or Ivan. Dave's group lists changed, and Erin and Judy denied visits. I'll wait for Ivan's Day 4 Coroner result before any vote, and I'm not nominating yet.
+Dave (public): Correction: I'm not in Heidi's 2-group and I submitted no Night 2 action. Heidi's Katana visitor is one of Carol, Erin, Frank, Ivan or Judy. Frank's no-visit is a claim too, so five people remain. Ivan, post Heidi's Coroner result at Day 4 as promised.
+Erin (public): Erin here: I took no Night 2 action, so I'm not Heidi's visitor. Dave's latest list still names me, which is wrong. The remaining candidates are Carol, Ivan and Judy. No nomination from me.
+Frank (public): Frank here. Dave's Cartographer lists have changed four times, and his first list left himself out of Heidi's group. Dave, post one final list with names. I'm not nominating until Ivan's Day 4 Coroner result is posted.
+Ivan (public): Ivan, Coroner. I had no Night 2 visit, and Frank had none. Heidi's Katana visitor is her 2-group partner, so it is Carol, Erin, Judy or Dave, and their denials and claims can't all be true. I'll examine Heidi tonight and post her exact role at the start of Day 4. No nomination from me.
+Judy (public): Judy here. Nothing new from me. I'm waiting for Ivan's Day 4 Coroner result on Heidi and Dave's named Night 3 sizes before any vote. No nomination.
+Alice (public): Alice here. Dave's Heidi group has changed repeatedly, so no version of it is reliable yet. Ivan's Day 4 Coroner result is the real check. No nomination from me.
+[Feedback from Dave] The planned message cost exceeded my budget, so I shortened it.
+Dave (public): Dave, Cartographer. Settled: Bob-Mallory-Niaj and Grace-Alice are the groups. Heidi's partner is Carol, Erin, Frank, Ivan or Judy. Not me.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 3 =====
+(to Alice, Frank, Judy) Alice (Yakuza chat): Alice: Proposal for tonight. Judy keeps the Katana. Target: Dave. His Cartographer sizes are the only public check on our visit groups, and his group lists have changed several times. Frank and Judy, vote Dave as the target and Judy holds. Object now if you disagree. If Mallory protects him, we learn that Mallory is the Medic and move on to Ivan or Grace on Night 4.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Frank: Agreed. Judy keeps the Katana and we vote Dave. His Cartographer sizes are our only public check on the visit groups, and his lists changed four times. I'm making no ritual guess tonight; my 2 tokens wait for a confirmed Medic, Seer or Sheriff. No plans in daytime PMs. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Judy: Agreed. I keep the Katana and vote Dave as the target. No swap, no ritual guess, and no puppet from me tonight. Ready.
+(to Alice, Frank, Judy) Alice (Yakuza chat): Alice: Agreed with Frank and Judy. Judy keeps the Katana and the target is Dave. I vote Dave, and Judy holds. No puppet, swap or ritual from me tonight. Ready.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Frank: Agreed. Judy keeps the Katana and I vote Dave as the target. No ritual guess from me tonight. Night chat only, no daytime PMs. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Judy: Agreed. I keep the Katana and vote Dave as the target. No swap, no ritual guess, no puppet from me tonight. Ready.
+Night actions:
+  Alice (Puppeteer): no role action; Katana vote: Judy holds, attacks Dave
+  Bob (Sheriff): target Dave; "Sheriff investigation on Dave."
+  Carol (Oracle): target Dave; guessed role Cartographer; "Oracle guess: Dave is the Cartographer."
+  Dave (Cartographer): target Judy; 1 token(s); "Map Judy: Astral Visit, learn Judy's Night 3 visit group."
+  Frank (Ritualist): no role action; Katana vote: Judy holds, attacks Dave
+  Grace (Surveyor): target Dave; 1 token(s); "Survey Dave: group is Carol, Dave, Erin (Dave's circle neighbours). Spend 1 survey token."
+  Ivan (Coroner): target Heidi; 1 token(s); "Coroner examine on Heidi, who died on Night 2 before this night began."
+  Judy (Smuggler): no role action; Katana vote: Judy holds, attacks Dave
+  Mallory (Medic): target Bob; "Free Standard protection on Bob (Sheriff), no token spent."
+  Niaj (Seer): no action
+Katana: Judy holds it and attacks Dave.
+(to Grace) Moderator (private): You surveyed Carol, Dave and Erin. One of them, chosen at random, has the role Oracle. 1 survey token left.
+(to Ivan) Moderator (private): You examined Heidi: their role was Scout. 2 coroner tokens left.
+(to Bob) Moderator (private): Night 3 result: you investigated Dave. Dave is Not Evil.
+(to Carol) Moderator (private): Night 3 result: you guessed that Dave is the Cartographer. You were right.
+(to Mallory) Moderator (private): Night 3 result: you protected Bob with Standard Defense (no token spent). 2 medic tokens left.
+(to Niaj) Moderator (private): Night 3 Seer result: your random pair was Carol and Alice. Their alignments are different. 1 seer token left.
+(to Judy) Moderator (private): Your Katana attack on Dave succeeded. You still hold the Katana.
+(to Alice, Frank, Judy) Moderator (private): Yakuza Night 3 actions: Judy holds the Katana and chose to attack Dave with it. Alice chose no Puppeteer action. Frank chose no Ritualist action. Judy chose no Smuggler swap.
+(to Dave) Moderator (private): Attack notice: you were attacked with the Katana tonight, and you died.
+[Moderator summary] Night 3: Yakuza (unanimous) kept the Katana with Judy and attacked Dave (Standard). Dave had no protection (Mallory protected Bob) → Dave died to the Katana. Visits: Judy→Dave, Bob→Dave, Grace→Dave, Mallory→Bob. Bob: Dave Not Evil. Carol: Oracle guess Dave=Cartographer correct (Astral). Dave mapped Judy (Astral, token spent; group Dave/Judy/Bob/Grace/Mallory). Grace surveyed Dave (token spent). Ivan examined Heidi (token spent). Niaj random pair Carol/Alice: different. No swaps, no role-blocks. Win check: 7 Village, 3 Yakuza alive, game continues.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 5, 1, 1, 1, 1, 1, 1. You mapped Judy: their group is Bob, Dave, Grace, Judy and Mallory. 1 map token left.
+
+===== DAY 4 =====
+Dave died (killed by Katana). Their role isn't revealed. Their last will: "Dave, Cartographer (Village). My night results are group sizes only. I will post each Day's sizes publicly at its start. Trust nothing said in my name unless I confirm it in public chat. Check claims against visit logs and mechanical results, not feelings."
+Speaking order today goes around the circle in seat order, starting with Mallory.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 3: correct
+Mallory (public): Mallory, Medic. Night 3 I protected Bob, who is alive. Dave died to Katana without my protection, and Dave's Night 3 sizes were never posted at the start of Day 4 as promised. My Night 4 target stays private until the night ends. Ivan, post Heidi's Coroner role now. Judy and Erin, your Night 2 denials are still open. No nomination from me yet.
+[Claim] Niaj: Seer. N1 Heidi/Mallory same; N2 Alice/Frank same; N3 Carol/Alice different. 1 Seer token left.
+Niaj (public): Niaj, Seer, Good. Posting my Night 3 result as promised: my random pair Carol and Alice have different alignments, so at least one of them is not Good. My Night 2 pair Alice and Frank matched, so Frank is on Alice's side. Alice, you PM'd Judy on Day 3 and haven't explained it. Carol, you guessed my role correctly, so tell us how you read Alice. I'm not nominating yet; nobody should hang on this alone.
+Alice (public): Alice here, Vanilla Villager. Niaj's N3 pair puts Carol and me on different sides, so one of us is not Good, but I won't hang on a random pair. My Day 3 PM to Judy only asked her to stop repeating Dave's changing group lists. Erin, you denied any Night 2 visit; please say plainly what you did that night. No nomination from me.
+[Claim] Bob: Sheriff. N1: Carol Not Evil. N2: Niaj Not Evil. N3: Dave Not Evil.
+Bob (public): Bob, Sheriff. My Night 3 result, which I should have posted at the start of Day 4: Dave Not Evil. Dave died to the Katana, so he was not the holder that night, and a non-holder Yakuza would have read Evil. Heidi's Night 2 visitor is one of Carol, Erin, Frank, Ivan or Judy, and at least one of their denials or Astral claims is false. Ivan, post Heidi's Coroner role now as you promised. Carol, what did Niaj's Night 3 pair with Alice tell you about Alice? No nomination from me yet.
+Carol (public): Carol here, Oracle, and I know my own alignment is Good. Niaj's N3 pair of Carol and Alice differs, so Alice is not Good unless a Fabricator framed her that night. Niaj's N2 pair of Alice and Frank matched, so Frank is not Good either. Frank denied any visit, and Heidi's N2 Katana visitor is one of Erin, Frank, Ivan or Judy. Alice, say plainly what your Day 3 PM to Judy said. Frank, did you visit anyone on Night 2? No nomination from me yet.
+Erin (public): Erin, Vanilla Villager. Niaj's N3 pair puts Alice and Carol on different sides, so Alice is not Good unless Niaj is lying or Carol is. Alice, explain your Day 3 PM to Judy in one sentence. Ivan, post Heidi's Coroner role now, since it can test whether Carol, Ivan or Judy visited Heidi on Night 2. No nomination from me yet.
+Frank (public): Frank here, Vanilla Villager. No nomination from me yet. Ivan, Heidi's Coroner result is the key check, so please post it now. Mallory, your Night 3 protection went to Bob, so Dave's death is still unexplained. I'll vote on a mechanical case, not on fast accusations.
+[Claim] Grace: Surveyor. N2: Sheriff in Niaj/Alice/Bob. N3: Oracle in Carol/Dave/Erin.
+Grace (public): Grace, Surveyor, posting my logs as promised. N2 survey of Niaj, Alice and Bob: exactly one of them is Sheriff. N3 survey of Carol, Dave and Erin: exactly one is Oracle. Dave is dead, so the Oracle is Carol or Erin. Carol claims Oracle and Erin claims Vanilla. Ivan, you promised Heidi's Coroner result at the start of Day 4 and haven't posted it. Please post it now.
+Ivan (public): Ivan, Coroner. My Night 3 examine of Heidi showed role Scout, matching her claim, so Heidi's Scout result is credible. I have 2 coroner tokens left and will examine the next player who dies before a night begins. Erin and Judy, I still need a plain yes or no: did you visit Heidi on Night 2? No nomination from me.
+Mallory (public): Mallory, Medic. Mechanical check on Heidi: her Night 2 Katana holder had to visit her, so it is her 2-group partner. Carol's only action was an Astral guess, and Ivan and Frank reported no action, so that leaves Erin or Judy. Both denied any Night 2 visit, so one of them is lying. Erin and Judy, please confirm in one sentence whether you visited Heidi on Night 2. My Night 4 protection stays private.
+Niaj (public): Niaj, Seer. Alice is my lead. My N3 pair puts Alice on the other side from Carol, and Bob's Sheriff reads Carol Not Evil, so Alice is not Good unless Bob is lying. Alice also PM'd Judy and hasn't explained it. Frank matched Alice on N2, so he is on her side. Dave's posted N2 sizes put Heidi's Katana visitor in her 2-group with one living player: Erin, Judy, Ivan or Carol. Erin and Judy, one of you denied a visit falsely, so answer plainly. I'm not nominating yet, but if nobody gives a new check, I'll nominate Alice next round.
+Alice (public): Alice here. I'm not nominating anyone yet. Niaj, one random pair (Carol and me) is a lead, not a mechanical case, and Carol's Oracle claim is just as unverified. Carol, my Day 3 PM only asked Judy to stop repeating Dave's changing group lists, which the ledger shows. Ivan's Scout check on Heidi is the only confirmed result so far. Anyone who nominates me needs a mechanical case, not a pair.
+Bob (public): Bob, Sheriff. My results: Carol Not Evil (N1), Niaj Not Evil (N2), Dave Not Evil (N3). Dave died to the Katana, so he was a victim, not the holder. Heidi's Night 2 visitor is one of Carol, Erin, Frank, Ivan or Judy. Erin and Judy, you both denied a Night 2 visit, so one of you is lying. Carol, Frank and Ivan, did you visit Heidi on Night 2? A plain yes or no. I will post my Night 4 result at the start of Day 5. No nomination from me yet.
+[Claim] Carol: Oracle. N1: Bob Vanilla Villager, wrong. N2: Niaj Seer, right. N3: Dave Cartographer, right.
+Carol (public): Carol, Oracle. Mechanical case on Alice: Niaj's Seer pair on N3 is Carol and Alice, and they differ. I am Good, so Alice is not Good unless a Fabricator framed her that night. Her Vanilla claim doesn't fit that, and she PM'd Judy on Day 3. Frank matched Alice on N2, so he is on her side. I'm nominating Alice and voting Guilty. Vote on this check, not on pushes.
+Carol nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Carol, Erin, Grace, Ivan, Mallory, Niaj, Bob; No - Frank, Judy, Alice
+Nomination votes on Alice: 7 Yes (the votes are secret).
+Alice is put on trial (7 Yes).
+Alice (public): Alice here, Vanilla Villager, with no night action on Nights 1-3, and I've said so since Day 2. Carol's case is one random Seer pair: Carol and I differ, so one of us is not Good. That's a lead, not a mechanical case, because a differing pair doesn't say which of us is off. Carol, saying you are Good is your own word, not a check. My Day 3 PM to Judy only asked her to stop repeating Dave's changing group lists, and that is all it said. Erin, you still haven't answered the Night 2 visit question in one plain sentence. Before voting me Guilty, ask who has a checkable reason to be Guilty. I'm voting on mechanical checks, not on a random pair.
+Bob (public): Bob, Sheriff. My results are Carol Not Evil, Niaj Not Evil, Dave Not Evil. Carol's Oracle guesses have all been exact-role correct, and I read Carol as Good. Niaj's N3 pair puts Carol and Alice on different sides, so Alice is not Good. Alice, your Day 3 PM to Judy is still unexplained. I'm voting Guilty on this check.
+Carol (public): Carol, Oracle. I'm voting Guilty on one mechanical case. My Night 2 guess confirmed Niaj as the Seer, so Niaj's Night 3 pair of Carol and Alice is real. I am Good, so Alice reads non-Good: she is Evil or Neutral, or a Fabricator framed her that night. A Vanilla Villager claim can't explain that. Frank matched Alice on Night 2, and Alice's Day 3 PM to Judy is still unexplained. Alice, if you are Good, name who framed you or explain the Night 3 pair.
+Erin (public): Erin, Vanilla Villager, so I know I'm Good. Niaj's N3 pair puts Carol and Alice on different sides, so one of them is non-Good. Carol's Oracle guesses on Niaj and Dave were right, and Grace's survey points to Carol as the Oracle, so Carol is probably Good and Alice is the non-Good one. Alice, your Day 3 PM to Judy is still unexplained. Judy, you still haven't given a plain yes or no on a Night 2 visit. I'm voting Guilty on this check.
+Frank (public): Frank, Vanilla Villager. Niaj's N3 pair shows only that Carol and Alice differ, so one of them is not Good, but it doesn't say which. Carol's Oracle guesses and Bob's Sheriff reads back Carol as Good, so Alice's side is the lead. I'm not voting Guilty on a pair alone. Carol, did your Night 3 Oracle guess involve any visit? Erin, what checkable thing separates Alice from Carol?
+Grace (public): Grace, Surveyor. My logs: the N2 survey covered Niaj, Alice and Bob, and one of them is Sheriff. The N3 survey covered Carol, Dave and Erin, and one of them is Oracle. Dave is a Cartographer, so the Oracle is Carol or Erin. Carol's Oracle guesses are two exact-role hits, on Niaj's Seer and Dave's Cartographer, so I read Carol as Good. Niaj's N3 pair puts Alice on the other side from Carol, so Alice reads non-Good. Her Vanilla claim doesn't fit that, and her N2 pair with Frank matched. Unless a Fabricator framed her that night, that is a mechanical case, so I'm voting Guilty on it. Erin and Judy: one plain yes or no each on whether you visited Heidi on Night 2.
+Ivan (public): Ivan, Coroner. My Night 3 examine confirmed Heidi as Scout, and Dave's Night 1 sizes fit her Scout log. Heidi was killed on Night 2 by a Katana holder who visited her, which means her 2-group partner. Frank, Ivan and Alice made no visits, and Carol claims Astral only, so the holder is Erin or Judy, and one of them lied about visiting. Niaj's Night 3 pair puts Carol and Alice on different sides. Carol's Oracle claim is backed by Grace's survey and by Bob's Not Evil reads, so Alice reads non-Good. Alice, you PM'd Judy on Day 3, the same player who denied a Night 2 visit. I'm voting Guilty on this check.
+Judy (public): Judy here. I'm not voting Alice Guilty on one random Seer pair. Carol and Alice differing only says one of them is non-Good, not which one. Anyone voting Guilty should name a check beyond that pair. My Night 2 answer to Erin stands as posted.
+Mallory (public): Mallory, Medic. The mechanical picture for Alice's vote: Heidi's Night 2 Katana holder had to visit her, so the holder is her 2-group partner. Alice and Grace are a separate 2-group, Frank and Ivan made no visits, and Carol's guess was Astral. That leaves Erin or Judy, and one of them lied. Alice's Day 3 PM to Judy asked her to stop the group-list work that pointed at Heidi's partner. Niaj's Night 3 pair also puts Alice and Carol on different sides, and Carol is backed by Bob's Not Evil reads and two exact-role hits. I lean Guilty on Alice. Judy, one plain sentence: did you visit Heidi on Night 2?
+Niaj (public): Niaj, Seer. My N3 pair is a real result: Carol and Alice differ, so one of them is non-Good unless a Fabricator framed one. Carol has the stronger corroboration: Bob reads Carol Not Evil, Grace's N3 survey fits Carol as Oracle, and two of Carol's guesses were exact-role hits. Alice's only Day 3 mark is a PM to Judy, who denied a Night 2 visit that Heidi's Katana holder had to make. I'm voting Guilty on Alice. Erin or Judy must answer the Heidi visit question plainly.
+Alice (public): Alice, Vanilla Villager, with no night action on Nights 1-3. Carol's case rests on one random Seer pair. Carol and I differ, so one of us is non-Good, but the pair doesn't say which. Carol's Oracle guesses are claims too, and nobody has checked them against a visit log. My only private message was the Day 3 PM to Judy asking her to stop the group-list changes. Mechanically, Heidi's Night 2 Katana holder is Erin or Judy, and both denied a visit. Erin, answer the Night 2 question plainly in one sentence. I'm voting Innocent unless someone gives a mechanical check that doesn't rest on one pair.
+Trial votes on Alice: 7 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Bob, Carol, Erin, Grace, Ivan, Mallory, Niaj; Innocent - Alice, Frank, Judy
+Alice is executed by hanging (7 Guilty of 10 votes; 6 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice (Village-aligned in this will; role not revealed). I took no night action on Nights 1-3. Nobody has been proven Yakuza. Ivan's Coroner result on Heidi and the Night 3 sizes are the checks to use before any vote. Press anyone who nominates without a mechanical case, and anyone who defends that nominee afterward. Trust only what is confirmed in public chat, not what is said in someone else's name."
+
+===== NIGHT 4 =====
+(to Frank, Judy) Frank (Yakuza chat): Frank: We are down to two, so Judy's public no-visit answer on Night 2 is now the problem. Judy keeps the Katana and I vote Niaj. Niaj's Seer pairs are the Village's main nightly information, and Carol's Oracle guesses are only backed by Niaj's claim. I'm not using a ritual guess tonight because a correct guess tells the victim I'm the Ritualist. Judy, confirm your vote on Niaj, or propose a different target with a reason in one line.
+(to Frank, Judy) Judy (Yakuza chat): Judy: Agreed with Frank. Target Niaj, since the Seer pairs are the Village's main nightly information. Judy keeps the Katana. I make no swap, no ritual guess and no puppet tonight. Frank, please make no ritual guess either. Ready.
+(to Frank, Judy) Frank (Yakuza chat): Frank: Agreed, Judy keeps the Katana and both of us vote Niaj. Mallory protected Niaj on N2, so a Standard Katana can fail if she does it again. Backup proposal: a Divine ritual guess, Seer on Niaj, for 2 tokens. Divine beats Strong protection, and Carol's correct Oracle guess supports Seer. I won't use it unless Judy agrees in one line; otherwise I stay quiet and keep my tokens.
+(to Frank, Judy) Judy (Yakuza chat): Judy: Agreed. Katana vote: Judy holds, target Niaj. I'm voting Niaj with you. No Divine ritual guess from either of us tonight: a Ritualist kill is announced as a Ritualist death, which exposes Frank and leaves me alone with the Katana. Standard Katana on Niaj only. If Mallory protects Niaj, we learn that from the result and keep the tokens. Ready.
+(to Frank, Judy) Frank (Yakuza chat): Frank: Confirmed. Judy keeps the Katana (holder vote: Judy) and the target is Niaj, with a Standard Katana. I make no Divine ritual guess tonight, since a Ritualist death would expose me and leave Judy alone with the Katana. If Mallory protects Niaj again, we learn that from the result and keep our tokens. Ready.
+(to Frank, Judy) Judy (Yakuza chat): Judy: Confirmed. Judy holds the Katana, Standard Katana on Niaj. No ritual guess, no swap, no puppet from me. Ready.
+Night actions:
+  Bob (Sheriff): target Judy; "Sheriff investigation on Judy."
+  Carol (Oracle): target Mallory; guessed role Medic; "Oracle guess: Mallory is the Medic."
+  Frank (Ritualist): no role action; Katana vote: Judy holds, attacks Niaj
+  Grace (Surveyor): target Judy; 1 token(s); "Survey Judy: group is Ivan, Judy, Mallory (Judy's circle neighbours). Spend 1 survey token."
+  Ivan (Coroner): target Alice; 1 token(s); "Coroner examine on Alice, who was executed on Day 4 before this night began."
+  Judy (Smuggler): no role action; Katana vote: Judy holds, attacks Niaj
+  Mallory (Medic): target Niaj; "Free Standard protection on Niaj (Seer), no token spent."
+  Niaj (Seer): no action
+Katana: Judy holds it and attacks Niaj.
+(to Grace) Moderator (private): You surveyed Ivan, Judy and Mallory. One of them, chosen at random, has the role Medic. 0 survey tokens left.
+(to Ivan) Moderator (private): You examined Alice: their role was Puppeteer. 1 coroner token left.
+(to Bob) Moderator (private): Night 4 result: you investigated Judy. Result: Not Evil.
+(to Carol) Moderator (private): Night 4 result: you guessed that Mallory is the Medic. Your guess was correct.
+(to Mallory) Moderator (private): Night 4 result: you protected Niaj with Standard Defense (no token spent). You have 2 medic tokens left.
+(to Niaj) Moderator (private): Night 4: you were attacked with the Katana tonight, but you survived. Seer result (random pair): Ivan and Mallory have the same alignment. You have 1 seer token left.
+(to Judy) Moderator (private): Night 4 result: as Katana holder you attacked Niaj. Your attack did not succeed; Niaj survived. You used no swap tonight; you have 2 swap tokens left.
+(to Frank, Judy) Moderator (private): Yakuza Night 4 summary: Katana vote: Judy holds the Katana and it attacked Niaj. Actions chosen: Frank chose no Ritualist action. Judy chose no Smuggler action (no swap).
+[Moderator summary] Night 4: Judy kept the Katana and attacked Niaj (Standard). Mallory's free Standard protection on Niaj stopped it, so nobody died. Bob checked Judy and got Not Evil (the Katana holder reads Good). Carol's Oracle guess that Mallory is the Medic was correct. Grace surveyed Judy (survey op, spending her last survey token). Ivan examined Alice (examine op). Niaj's random pair was Ivan and Mallory: same alignment. No role-blocks and no swap. Visits: Bob->Judy, Grace->Judy, Judy->Niaj, Mallory->Niaj.
+
+===== DAY 5 =====
+Nobody died last night.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Mallory (public): Mallory, Medic. Nobody died on Night 4, so I have no kill result to post beyond my Standard protection on Niaj. Judy and Erin: one of you falsely denied a Night 2 visit to Heidi. Please each answer in one sentence whether you visited Heidi that night. No nomination from me.
+Niaj (public): Niaj, Seer, Good. N4: I was Katana-attacked and survived, which fits Mallory's Standard protection on me, so Mallory's Medic claim holds. My N4 pair, Ivan and Mallory, matched, so Ivan reads Good alongside Mallory. Frank's N2 pair matched Alice, and Alice's N3 pair differed from Carol, so Frank is my lead. Frank, please explain your no-visit claim. I'm not nominating this round.
+Bob (public): Bob, Sheriff. Niaj's N2 pair put Frank on Alice's side, and Niaj's N3 pair puts Alice on the other side from Carol, whom my Sheriff checks read Not Evil. Unless Niaj is lying, Frank is non-Good. Frank, you denied any visit, so explain that. I'll post my Night 5 result at the start of Day 6. No nomination from me yet.
+Carol (public): Carol, Oracle. Mallory's Standard protection on Niaj stopped the N4 Katana, which supports Mallory's Medic claim and means a Yakuza holder visited Niaj that night. Frank: Niaj's N2 pair matched you with Alice, and Alice's N3 pair differed from me, the Good Oracle, so Alice was non-Good and you share her side. You claim Vanilla and no visit. Explain your N2 and N4 nights plainly. Erin and Judy: one of you lied about the Heidi N2 visit, so answer in one sentence each.
+Erin (public): Erin, Vanilla Villager. Mechanical case on Heidi's N2 Katana visit: the holder had to visit Heidi, so the visitor is Carol, Erin, Frank, Ivan or Judy. I am Good. Carol is Good by Grace's N3 survey and Bob's Not Evil reads. Ivan is Good: Niaj's N4 pair of Ivan and Mallory matched, and Mallory's Medic protection on Niaj checks out. That leaves Frank or Judy. Frank's N2 pair matched Alice, who was non-Good, and Alice PMed Judy on Day 3. Frank and Judy, answer in one plain sentence whether you visited Heidi on Night 2.
+Frank (public): Frank, Vanilla Villager. I had no visit on Night 2 and no night action on any night. Niaj's pair matching Alice and me is one lead, not a mechanical case. Erin, you keep pressing Judy and me on visit denials; what did you check yourself? Carol, I want your Night 4 Oracle guess before any vote.
+Grace (public): Grace, Surveyor. My survey logs narrow the claims. N2 Niaj/Alice/Bob had one Sheriff, and Niaj claims Seer, so Sheriff is Bob or Alice. N3 Carol/Dave/Erin had one Oracle, and Dave is a Cartographer, so Oracle is Carol or Erin. N4 Ivan/Judy/Mallory had one Medic, and if Ivan is the Coroner, Medic is Mallory or Judy. Ivan, did you examine Dave on Night 4? Carol, post your Night 4 Oracle guess. Frank, explain your Night 2 no-visit claim, since Niaj's pair ties you to Alice. Erin and Judy, one of you lied about visiting Heidi on Night 2. No nomination from me yet.
+[Claim] Ivan: Coroner. N3: examined Heidi, Scout. N4: examined Alice, Puppeteer (Yakuza).
+Ivan (public): Ivan, Coroner. My Night 4 examine of Alice showed Puppeteer, so Alice was Yakuza. That fits Niaj's N3 pair (Carol and Alice differ) and Carol's Good read. Niaj's N2 pair matched Frank with Alice, so Frank reads Evil to Niaj. Frank, you claim Vanilla with no visits, so explain that match in one sentence. Erin and Judy: one of you was the Katana holder who visited Heidi on N2, so answer plainly. I have 1 Coroner token left and will examine the next player who dies before a night begins. No nomination from me yet.
+Judy (public): Judy here. Frank is the lead on the mechanical check. Niaj's N2 pair matched Frank with Alice, and Ivan's Coroner result makes Alice Yakuza, so Frank reads Evil unless Niaj is lying. Frank, answer Niaj's pair directly. I'm voting on that check, not on pushes, and I have no nomination yet.
+Mallory (public): Mallory, Medic. Mechanical case on Frank: Niaj's N2 pair put Frank on Alice's side. Ivan's Coroner result says Alice was Puppeteer, which is Yakuza, and Niaj's N3 pair already shows Alice is not Good. So Frank reads Evil unless Niaj or Ivan is lying. Frank denied any Night 2 visit, and his Vanilla claim doesn't explain the match. I'm nominating Frank now and voting Guilty. Frank, answer Niaj's pair directly.
+Mallory nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Mallory, Niaj, Bob, Carol, Erin, Grace, Ivan; No - Frank, Judy
+Nomination votes on Frank: 7 Yes (the votes are secret).
+Frank is put on trial (7 Yes).
+Frank (public): Frank, Vanilla Villager, with no night action on any night and no visits on Nights 1-4. Niaj's N2 pair only says Alice and I share an alignment, not that I am Evil. Alice's Yakuza status rests on one Coroner claim from Ivan. Niaj's N3 pair puts Alice on the other side from Carol, so Alice is non-Good, and a Neutral Alice would match me. I am Good. Judy and Erin, answer your Night 2 Heidi visit question in one sentence. Mallory and Bob, I'm asking for Innocent: a random pair is a lead, not a mechanical case, and you have both said so.
+Grace (public): Grace, Surveyor. Mechanical case on Frank: Niaj's N2 pair put Frank on Alice's side, and Ivan's Coroner read makes Alice Puppeteer, which is Yakuza. A Good Frank would have differed from her, so Frank reads Evil unless Niaj is lying or he was framed that night. He also denied every visit, and Heidi's N2 Katana visitor is one of Erin, Frank, Judy, Carol or Ivan. I'm voting Guilty. Frank, if you are Good, name anyone who could have framed you on Night 2.
+Ivan (public): Ivan, Coroner. Mechanical case on Frank, and I'm voting Guilty. Niaj's N2 pair was Alice and Frank, and they matched. My N4 examine showed Alice as Puppeteer, which is Yakuza, so Frank appeared Evil on Night 2. Dave's N2 sizes put Frank in a singleton, so Frank made no visit and was visited by no one. That rules out an Ex-Con visit and a Fabricator frame. A Katana holder appears Good, so Frank wasn't the holder either. Frank claims Vanilla with no visits, so an Evil appearance with no visit means Frank is Yakuza. Erin and Judy: the Heidi Night 2 holder is one of you, so answer whether you visited Heidi.
+Judy (public): Judy here. I'm voting Innocent on Frank. My earlier 'Frank reads Evil' was too quick. Niaj's Night 2 pair put Frank with Alice, but that's one random pair, not a check on Frank. Ivan's Coroner read is one claim we can't verify, and it says nothing about Frank's own actions. Frank made no visits, and nobody has shown a visit or a framing that would make him Evil. Before anyone is hanged, I want Niaj to say whether the pair was a real alignment check on Frank specifically, and I want Ivan to say how his Alice examine was run. Hanging a Village player on one pair means a Good player may die for nothing. I'm voting Innocent and I'll give my reasoning if asked.
+Mallory (public): Mallory, Medic, Good. I'm voting Guilty on Frank, on a chain of checks rather than one pair. Niaj's N4 pair of Ivan and me matched, and I'm Good, so Ivan reads Good. Ivan's Coroner read makes Alice Puppeteer, which is Yakuza. Niaj's N2 pair matched Frank with Alice, so Frank appeared Evil. Dave's settled N2 list makes Frank a singleton, and an Ex-Con always visits someone, so Frank isn't the Ex-Con and had no visit or Fabricator frame. That makes Frank a Yakuza. Judy, you flipped to Innocent without naming a check, so which one?
+Niaj (public): Niaj, Seer, Good. Answering Judy directly: my Night 2 pair of Alice and Frank is a real alignment result, and it says Frank matches Alice. Alice's Night 3 pair with Carol differed, and Bob's Not Evil reads and Carol's exact-role Oracle hits point to Carol as Good, so Alice was non-Good. Ivan's Night 4 Coroner exam makes Alice Puppeteer, which is Yakuza. Frank matches Alice, so Frank is Evil. I am voting Guilty.
+Bob (public): Bob, Sheriff. I'm voting Guilty on Frank, on a chain of checks. If Ivan's N4 Coroner exam is right, Alice was Puppeteer, so Alice was Yakuza. Niaj's N2 Seer pair matched Frank with Alice, so Frank reads Evil. Dave's settled N2 sizes leave Frank a singleton: no visit made or received, so no Ex-Con, no Fabricator frame, and no Katana holder. Frank, you claim Vanilla with no visits. Explain why an Evil-reading Vanilla would match a Yakuza.
+Carol (public): Carol, Oracle. Mechanical case on Frank, and I'm voting Guilty. Niaj's Seer pair on N2 matched Frank with Alice, and Niaj's Seer claim is exact-role confirmed by my N2 guess. My N3 pair puts Alice on the non-Good side, since I am Good, so Frank is non-Good too. Dave's real Cartographer sizes leave Frank either a singleton or Heidi's Katana partner. A framing visit would have made a bigger group, so no Fabricator frame fits. Judy, which check moved you to Innocent?
+Erin (public): Erin, Vanilla Villager, Good. I'm voting Guilty on one mechanical chain. Niaj's N2 Seer pair matched Frank with Alice, and Ivan's Coroner exam makes Alice Puppeteer, so Alice was Evil. Dave's settled N2 sizes leave Frank a singleton with no visit made or received. A Katana holder would appear Good, which the match with Alice rules out. An Ex-Con always visits, and a frame needs a visit. So Frank appears Evil with no visit, which points to Yakuza. Judy, your flip to Innocent named no check. Which one?
+Frank (public): Frank, Vanilla Villager, with no night action and no visits on Nights 1-4. Niaj's Night 2 pair is one random pair: it says Alice and I match, but it doesn't show that I did anything. Ivan's Alice-Puppeteer read is a single Coroner claim that nobody here can check. A pair can't tell you whether I'm Evil or Alice is. Nobody has shown me visiting or being visited, and Dave's group lists changed several times. The mechanical question left is the Heidi Night 2 holder: Erin and Judy each denied a visit, so one of them is lying. Judy, if you weren't the holder, say who you think was. I'm voting Innocent unless someone shows me a visit.
+Trial votes on Frank: 7 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Bob, Carol, Erin, Grace, Ivan, Mallory, Niaj; Innocent - Frank, Judy
+Frank is executed by hanging (7 Guilty of 9 votes; 5 needed).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank, Vanilla Villager (Village). No night action on Nights 1-3. My votes follow mechanical checks only. Confirmed so far: Ivan's Coroner result on Heidi (Scout) and the Night 1-3 visit logs. Treat Seer pairs and Oracle guesses as leads until they are tested against visit logs. Do not hang on a single random pair, and press anyone who defends a nominee without a check."
+
+===== NIGHT 5 =====
+Night actions:
+  Bob (Sheriff): target Erin; "Sheriff investigation on Erin."
+  Carol (Oracle): target Ivan; guessed role Coroner
+  Grace (Surveyor): no action
+  Ivan (Coroner): target Frank; 1 token(s); "Coroner examine on Frank, who was executed on Day 5 before this night began."
+  Judy (Smuggler): no role action; Katana vote: Judy holds, attacks Mallory
+  Mallory (Medic): target Niaj; "Free Standard protection on Niaj, no token spent."
+  Niaj (Seer): target Erin; second target Judy; 1 token(s); "Seer token: pair Erin and Judy, to test the Heidi Night 2 visit denials."
+Katana: Judy holds it and attacks Mallory.
+[ERROR api_retry] a anthropic/claude-opus-5.5 request failed (attempt 1), retrying: HTTP 429: {"error":{"message":"OpenRouter could not verify available credits for this request in time. Retry shortly.","code":429,"metadata":{"limit_source":"openrouter_admission_control","remedy_hint":"Slow down the request rate for this account, then retry after the reset (see X-RateLimit-Reset)."
+(to Ivan) Moderator (private): You examined Frank: their role was Ritualist. 0 coroner tokens left.
+(to Bob) Moderator (private): Night 5 result: you investigated Erin. Result: Not Evil.
+(to Carol) Moderator (private): Night 5 result: you guessed that Ivan is the Coroner. Your guess was correct.
+(to Niaj) Moderator (private): Night 5 result: you spent your Seer token to choose Erin and Judy. Their alignments are the same. 0 seer tokens left.
+(to Mallory) Moderator (private): Night 5: you protected Niaj with Standard Defense (no token spent; 2 medic tokens left). You were attacked with the Katana tonight, and you died.
+(to Judy) Moderator (private): Night 5: you held the Katana and attacked Mallory. The attack succeeded. You used no Smuggler swap (2 swap tokens left). No other Yakuza are alive to report actions.
+[Moderator summary] Night 5: Judy (Katana holder, Smuggler, no swap) attacked Mallory with a Standard Katana attack. Mallory had no Defense, so she died (cause Katana). Mallory protected Niaj (free Standard). Bob checked Erin and got Not Evil. Carol's Oracle guess that Ivan is the Coroner was correct. Ivan examined Frank (examine op, code tells him Ritualist). Niaj spent his Seer token on Erin and Judy and got "same" (Judy reads Good as the Katana holder), leaving 0 tokens. Visits: Judy->Mallory, Mallory->Niaj, Bob->Erin, Niaj->Erin, Niaj->Judy. Win check: Judy (Yakuza) is still alive with 6 Village players, so the game continues.
+
+===== DAY 6 =====
+Mallory died (killed by Katana). Their role isn't revealed. Their last will: "Mallory, Village Medic (claimed Day 2), 2 Medic tokens left. Standard protections so far: Dave on Night 1, Niaj on Night 2, Bob on Night 3, Niaj on Night 4. Heidi (Scout) died to the Katana on Night 2 and Dave (Cartographer) on Night 3; Alice was executed on Day 4. The only confirmed role check is Ivan's Coroner result that Heidi was Scout. Night 2 Katana visitor to Heidi is one of Erin or Judy; both denied a visit, so one of them lied. Trust mechanical results (visit logs, exact-role checks, vote counts) over speeches and random Seer pairs. Vote Guilty only on a check that survives those tests."
+Speaking order today goes around the circle in seat order, starting with Grace.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Night check] Night 5: correct
+Grace (public): Surveyor Grace here. Mechanical case on Judy: Heidi's Night 2 Katana visitor was her 2-group partner, so exactly one of Erin or Judy visited Heidi and both denied it. Alice, who Ivan's Coroner read as Puppeteer (Yakuza), PMed Judy on Day 3, and Judy then voted Innocent on Frank with no check named. Judy, answer Erin's question in one sentence: did you visit Heidi on Night 2? My surveys went to Alice (N2), Dave (N3) and Judy (N4), none of them to Heidi. I'm not nominating yet, but I will vote Guilty on Judy if she can't give a check.
+Ivan (public): Ivan, Coroner. My examines confirmed Heidi as Scout, Alice as Puppeteer (Yakuza) and Frank as Ritualist (Yakuza). Judy: Alice PMed Judy on Day 3, Judy voted Innocent on Frank with no check named, and Judy denied a Night 2 visit even though Heidi's Katana holder was Erin or Judy. I'm nominating Judy and voting Yes. Carol, Erin, Grace, Bob and Niaj, please vote on this check.
+Ivan nominated Judy. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Judy] Yes - Ivan, Bob, Carol, Erin, Grace; No - Judy, Niaj
+Nomination votes on Judy: 5 Yes (the votes are secret).
+Judy is put on trial (5 Yes).
+Judy (public): Judy, Vanilla Villager. I took no night action on any night, and I visited nobody on Night 2; I said so on Day 3 and I'm saying it again. The case against me is built on Heidi's two-player group, which came from Dave's group lists. Dave changed those lists four times before he died, and his last version left five possible names, so it can't carry a hanging. Ivan's Coroner reads are single claims, and his nomination of me came with no new check. Bob, Carol and Niaj: the only mechanical lead is that Heidi's group partner is one of five names, and I deny being it. Name one check that doesn't come from Dave's changing lists or from a single random Seer pair. If none exists, don't hang a Village player on a group that has already been wrong once.
+(to Carol, Judy) Judy -> Carol (private): Carol, my case rests on Dave's changing group lists and Ivan's Coroner reads, not on a visit log of mine. Please weigh that before you vote.
+Niaj (public): Niaj, Seer. Mechanical case on Judy. Heidi's Night 2 Katana holder visited Heidi, so the holder is her 2-group partner. Dave's settled sizes leave only Erin or Judy: Carol and Ivan claimed Astral actions only, and Frank and Grace had no visit to Heidi. The Katana holder must be Yakuza. Alice and Frank can't have held it, because my Night 2 pair matched them, and a holder appears Good, which would have split them. So one of Erin or Judy is Yakuza. My Night 5 Seer pair of Erin and Judy matched, so both are Yakuza. Judy also voted Innocent on Frank with no check and PMed Carol today. I'm voting Guilty.
+Bob (public): Bob, Sheriff. Posting my Night 5 result as promised: Erin Not Evil. Judy's Night 4 result was also Not Evil. A Katana holder reads Good, so both results fit Erin or Judy holding the Katana that night, and neither clears anyone alone. Mechanically, Heidi's Night 2 holder was Erin or Judy, and Niaj's Night 5 pair put Erin and Judy on the same alignment. If that pair is real, both are Yakuza. Alice PMed Judy on Day 3, and Judy voted Innocent on Frank, whom Ivan examined as Yakuza. I'm voting Guilty on Judy.
+Carol (public): Carol, Oracle. I'm voting Guilty on Judy. Dave's Cartographer sizes are confirmed by my Night 3 guess. On those sizes, Heidi's Night 2 Katana visitor is her 2-group partner, Erin or Judy. Frank and Alice are ruled out by Niaj's Night 2 match, since the holder appears Good. Both Erin and Judy denied any visit. Niaj's Night 5 Seer pair put Erin and Judy on the same side, so if that pair is real, both are Yakuza. Bob's Not Evil reads fit a holder rotating from Judy to Erin. Judy also voted Innocent on Frank, a Yakuza per Ivan's Coroner read.
+Erin (public): Erin, Vanilla Villager, Good. I'm voting Guilty on Judy. Carol, Bob, Niaj, Grace and Ivan give consistent checks: Oracle guesses that hit, Sheriff reads, a Seer pair chain, a Surveyor split, and Ivan's Heidi Scout result. Heidi's Night 2 visitor was her 2-group partner, and that is Judy, since I am not it and Carol and Ivan claimed only Astral actions. Judy denied that visit. A Yakuza holder had to be alive on Night 5 to kill Mallory, and Judy is the only living player without a checked role. Niaj's Night 5 pair puts Judy on my side, but a Katana holder appears Good, so that fits only if Judy held it that night. Judy, one check that isn't Dave's lists or a pair: who visited you or whom did you visit on Night 5?
+Grace (public): Grace, Surveyor. I'm voting Guilty on Judy, on checks that don't depend on Dave's lists. Alice, whom Ivan's Coroner exam made Puppeteer (Yakuza), PMed Judy on Day 3 and asked her to drop the group-list work that pointed at Heidi's Night 2 partner. Judy then voted Innocent on Frank, whom Ivan's exam made Ritualist (Yakuza), with no stated check. Judy, why did you PM Carol during your own trial?
+Ivan (public): Ivan, Coroner, Good. I'm voting Guilty on Judy on a chain of checks. Heidi's Night 2 Katana holder visited Heidi, so it was Erin or Judy. Carol and I are Good, and Niaj's Night 2 pair rules out Frank and Alice, since a holder would read Good. Niaj's Night 5 Seer pair says Erin and Judy match, and Niaj's other pairs fit my coroner results, so both are Yakuza. Judy also voted Innocent on Frank, my confirmed Yakuza. Judy, why did you PM Carol during your own trial?
+Judy (public): Judy, Vanilla Villager, Good. Three points for the vote. First, Niaj's Night 5 pair (Erin and Judy matched) can't show I'm Yakuza: a Katana holder reads Good, so a match with Erin proves nothing about me. Second, the Heidi visitor case comes from Dave's group lists, which changed four times before he died, and his final list still had five names. Third, Erin's 'the only living player without a checked role' is not a check. Name me the visit log that places me at Heidi on Night 2, or vote Innocent. I visited nobody on Night 2, as I said on Day 3.
+Trial votes on Judy: 6 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Judy] Guilty - Bob, Carol, Erin, Grace, Ivan, Niaj; Innocent - Judy
+Judy is executed by hanging (6 Guilty of 7 votes; 4 needed).
+Judy died (executed by hanging). Their role isn't revealed. Their last will: "Judy, Vanilla Villager (claimed). I took no role action on Nights 1 to 5 and posted every Katana vote publicly where asked. My Day 3 PM to Alice was about Dave's changing group lists. Confirmed so far: Ivan's Coroner read of Heidi (Scout) and the Night 1-5 visit logs. Treat Seer pairs and Oracle guesses as leads until they are tested against visit groups. Do not hang on a single random pair. Before any vote, ask who denied a Night 2 visit that Heidi's Katana holder had to make, and check each answer against the logs."
+The game is over. Winners: Bob, Carol, Dave (dead), Erin, Grace, Heidi (dead), Ivan, Mallory (dead), Niaj. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Niaj] Game over; the interface only offered the feedback fields for this answer, which worked fine.
+[Feedback from Judy] The rules are long and some interactions (swaps moving Katana attacks, Seer pairs versus visits, Cartographer groups) need repeated re-reading; a short worked example per role would help.
+[Feedback from Mallory] The Medic token cost line in my prompt seemed to contradict the rules' free Standard protection; I inferred it. Otherwise the interface worked, though the private night history and Katana holder visibility were hard to track.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol, Dave, Erin, Grace, Heidi, Ivan, Mallory, Niaj
+Cost by player (USD):
+  Alice (Puppeteer)        $0.0664   35 calls  claude-haiku-5.5
+  Bob (Sheriff)            $0.1045   40 calls  claude-haiku-5.5
+  Carol (Oracle)           $0.0987   39 calls  claude-haiku-5.5
+  Dave (Cartographer)      $0.0511   24 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)  $0.0739   34 calls  claude-haiku-5.5
+  Frank (Ritualist)        $0.0819   43 calls  claude-haiku-5.5
+  Grace (Surveyor)         $0.1033   40 calls  claude-haiku-5.5
+  Heidi (Scout)            $0.0234   12 calls  claude-haiku-5.5
+  Ivan (Coroner)           $0.0881   39 calls  claude-haiku-5.5
+  Judy (Smuggler)          $0.0964   48 calls  claude-haiku-5.5
+  Mallory (Medic)          $0.0794   36 calls  claude-haiku-5.5
+  Niaj (Seer)              $0.0979   40 calls  claude-haiku-5.5
+  Moderator                $1.3497   18 calls  claude-opus-5.5
+  Night checks             $0.5314    5 calls  claude-opus-5.5
+  Strategy review          $0.3114    1 calls  claude-opus-5.5
+  Log review               $0.3190    1 calls  claude-opus-5.5
+  Total                    $3.4765  455 calls
