@@ -160,15 +160,15 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
     shift = rng.choices(list(YAKUZA_ODDS), list(YAKUZA_ODDS.values()))[0]
     n_yakuza = yakuza if yakuza is not None else max(1, usual + shift)
     lean = 0 if n_yakuza == usual else 3 if n_yakuza < usual else -3  # fewer Yakuza: stronger roles
-    yakuza = weighted_order(of(Alignment.EVIL), lambda r: math.exp(lean * (-power[r] - 0.95)))[:n_yakuza]
+    evil = weighted_order(of(Alignment.EVIL), lambda r: math.exp(lean * (-power[r] - 0.95)))[:n_yakuza]
     # The Village must outnumber the Yakuza (rules R2) and get its MIN_VILLAGE seats.
-    room = n - len(yakuza) - max(MIN_VILLAGE, len(yakuza) + 1)
+    room = n - len(evil) - max(MIN_VILLAGE, len(evil) + 1)
 
     wanted = max(0, min(rng.choices(list(NEUTRAL_ODDS), list(NEUTRAL_ODDS.values()))[0], room))
 
     def candidate(n_neutrals: int) -> list[str]:
         neutrals = weighted_order(of(Alignment.NEUTRAL))[:n_neutrals]
-        slots = n - len(yakuza) - len(neutrals)
+        slots = n - len(evil) - len(neutrals)
         village = weighted_order(of(Alignment.GOOD, "Investigative"))[:1]
         rest = weighted_order([r for r in of(Alignment.GOOD, "Investigative", "Combat", "Misc") if r not in village])
         outsiders = weighted_order(of(Alignment.GOOD, "Outsider"))[:MAX_OUTSIDERS]
@@ -181,7 +181,7 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
                 village.append("Vanilla Villager")
             else:
                 village.append(rest.pop(0))
-        return village + yakuza + neutrals
+        return village + evil + neutrals
 
     tried: list[tuple[float, list[str]]] = []
     for n_neutrals in range(wanted, -1, -1):  # one Neutral fewer only when no pick is balanced enough
