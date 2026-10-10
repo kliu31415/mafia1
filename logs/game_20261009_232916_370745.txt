@@ -309,3 +309,42 @@ Heidi is being prosecuted and goes straight to trial.
 Heidi (public): Ivan's Seer result is the cleanest contradiction we have: he says Mallory and Judy share an alignment. Mallory's death reveal was Clerk, an Evil role, and Judy was Sheriff, a Village role, so Ivan's N2 Seer result is false. That makes Ivan the liar, not me. My defence stays the same: Party Animal, a block on Dave that did nothing, and my visit is on Carol's list. I voted on evidence, and nothing I did on Day 2 or 3 is a contradiction. Ivan, what is your real N2 result? Erin's PMs with Dave still need an answer, but Ivan's false claim is concrete.
 (to Grace, Heidi) Heidi -> Grace (private): Grace: Ivan's Seer claim is false. Mallory was Clerk (Evil) and Judy was Sheriff (Good), so they can't share an alignment. Don't vote me Guilty on Ivan's word.
 Ivan (public): Heidi’s claimed contradiction is not real. My N2 result was that Mallory and Judy had the same alignment; Seer checks see appearances, not always true alignment. If Mallory held the Katana at the end of N2, she appeared Good; alternatively, Judy could have been framed and appeared Evil. Either fits the result. It doesn’t show I lied. My N3 result is also exactly as reported: Grace and Frank differ, not which is which. Heidi’s unverified Party Animal claim and Guilty vote on Carol remain concerns; I’m leaning Guilty on the full record.
+[Claim] Bob: Medic. N1 Judy, N2 Carol, N3 Ivan: Standard Defense.
+Bob (public): I’m claiming Medic. N2 I protected Carol with Standard Defense; her will says she was attacked by Ritualist N2 and survived, consistent with my protection, though I received no feedback. N3 I protected Ivan. Heidi’s claim that Ivan’s N2 result contradicts the flips is wrong: Mallory could have appeared Good as Katana holder, or Judy could have been framed. Heidi’s Innocent vote with Mallory at Mallory’s trial is the stronger concern.
+Erin (public): Heidi’s deflection onto Ivan completely falls apart: under rule R19, a Yakuza holding the Katana appears Good to alignment checks. If Mallory held the Katana on Night 2, she appeared Good—matching Sheriff Judy exactly.
+
+Look at Heidi's undeniable record:
+1. She was the sole Innocent vote on flipped Yakuza Mallory.
+2. She and Mallory were the only two votes trying to execute confirmed Lookout Carol on Day 2.
+3. She voted No in lockstep with Mallory on every single nomination.
+4. Her Day 2 Party Animal claim visiting Dave is the natural cover for Pharmacist.
+
+With Carol killed by Ritualist and Judy by Katana, evil is clear. With 6 alive, we need 4 Guilty votes. Heidi is blatant Yakuza. Vote Guilty.
+Frank (public): I voted Guilty on Mallory, so this isn’t a defense of her. But Heidi’s specific answer on Ivan is mechanically correct: Mallory held the Katana at the end of N2 and therefore appeared Good to the Seer; Judy was Good, so the same-alignment result fits both flips. That doesn’t prove Heidi is Town, but it removes the claimed contradiction. Her Carol vote can be criticized as an overread of the omitted-self issue, not proof she knew Carol was Town. I see suspicions, not a demonstrated lie; don’t spend the fourth Guilty vote on inference alone.
+Grace (public): Ivan’s N2 result is not a contradiction: if Mallory held the Katana at the end of N2, she appeared Good and could match Judy despite their roles. Heidi is wrong to call it proof Ivan lied. But her Innocent vote on Mallory, followed by her Guilty vote on Carol after the visitors corroborated Carol’s result, remains serious evidence. I lean Guilty, though the votes alone aren’t proof.
+Heidi (public): Fair correction: a Katana holder appears Good, so Mallory matching Judy fits Ivan's N2 result. I overstated that, and I'm not calling Ivan a liar. Erin: you PM'd Dave twice on Day 1, his will names you, and you've pushed a trial almost every day. Why is my Party Animal claim the bigger problem than your own unexplained PMs? Bob: your Medic claim is unverified, and you voted Guilty on Mallory and Carol with the same Carol reasoning as Erin. My Carol vote was about her 100% overclaim, not knowing she was Town. Judge the record on the votes themselves, not on the pile-on.
+(to Grace, Heidi) Heidi -> Grace (private): Grace: Erin's 'blatant Yakuza' line is pressure. Judge my Carol vote on the 100% overclaim you already noted.
+(to Heidi, Ivan) Heidi -> Ivan (private): Ivan: I withdraw the liar claim; your N3 result fits Grace and Frank. Don't let Erin's pile-on decide your vote.
+Trial votes on Heidi: Guilty - Bob, Erin, Grace, Ivan; Innocent - Frank, Heidi.
+Heidi is executed by hanging (4 Guilty of 6 votes; 4 needed).
+Heidi died (executed by hanging). Their role was Ritualist. Their last will (written by them): "I am Heidi, claimed Party Animal (Village). On N1 I role-blocked Dave, who had no night action, so the block did nothing. I voted on evidence and never tunneled anyone. Erin's private messages with Dave on Day 1 are still unexplained and Dave's will names her, so please get a straight answer from her. Judy's Sheriff result (Erin Not Evil) and Carol's Lookout list were both corroborated by visits, so do not hang anyone on the will alone. Bob's claim that Ivan's Seer result contradicted Judy's Sheriff result was false and redirected suspicion, so check his other reads carefully. The Katana holder is still unknown to me."
+(to Frank) The Katana passed to Frank.
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Medic): target Ivan; 1 token(s); "Give Ivan Strong Defense."
+  Erin (Prosecutor): target Frank; 1 token(s); "Prosecute Frank"
+  Frank (Fabricator): target Erin; "Frame Erin tonight. Keep the Katana and attack Bob."; Katana vote: Frank holds, attacks Bob
+  Grace (Trapper): target Ivan
+  Ivan (Seer): no action
+Katana: Frank holds it and attacks Bob.
+(to Bob) Moderator (private): Night 4: You protected Ivan with Strong Defense. 1 medic token left. You were attacked with the Katana, and you died.
+(to Erin) Moderator (private): Night 4: You prosecuted Frank. He will go to trial when the next Day starts. 0 prosecutor tokens left.
+(to Frank) Moderator (private): Night 4: Yakuza actions tonight: Frank kept the Katana, framed Erin (no will forged), and attacked Bob with the Katana. Your Katana attack on Bob succeeded. 0 fabricator tokens left. You still hold the Katana.
+(to Grace) Moderator (private): Night 4: You placed your trap on Ivan, replacing your previous trap. It is armed from the next night on.
+(to Ivan) Moderator (private): Night 4 Seer result: Erin and Grace have different alignments. 0 seer tokens left.
+[Moderator summary] Night 4: Bob (Medic) gave Ivan Strong Defense (1 medic token left). Erin prosecuted Frank (0 tokens left), so Frank goes to trial on Day 5. Frank kept the Katana, framed Erin and killed Bob with the Katana (Standard attack vs no Defense). Grace moved her trap from dead Carol to Ivan; it arms from Night 5. No trap went off. Ivan's random Seer pair was Erin and Grace: different, because Erin was framed and read Evil. No Fortune Teller alive. Bob died, leaving Erin, Frank, Grace and Ivan alive. That's Village plus Yakuza, so nobody has won.
+
+===== DAY 5 =====
+Bob died (killed by Katana). Their role was Medic. Their last will (written by them): "Medic (Good). N1 I protected Judy, N2 Carol, and N3 Ivan with Standard Defense; I have 2 tokens left and received no feedback. Carol’s will says she survived a Ritualist attack N2, consistent with my protection but not proof. Judy was killed by Katana; Carol was killed by Ritualist. Heidi’s claim that Ivan’s N2 Seer result contradicts the flips is mechanically wrong: Mallory could have appeared Good as Katana holder, or Judy could have been framed. Heidi was the only living player besides Mallory to vote Innocent at Mallory’s trial, and voted Guilty on Carol; these are concerns, not proof. Mallory flipped Yakuza. Carol’s N1 Lookout result was corroborated but did not identify the Katana holder. Judy’s N2 Sheriff result does not clear Erin."
+[Night check] Night 4: errors. [medium, Prosecutor / R18 (Tokens), token or status error] Erin started Night 4 with 1 prosecutor token and spent exactly 1, so she should end with 0. Her final state shows prosecutor: -1. The moderator set her tokens to 0 manually, and the prosecute op apparently spent the token again, so the token was deducted twice. Everything else (Bob's Katana death, Ivan's Seer pair, the trap move, the Yakuza and private results) was resolved correctly.

@@ -1,0 +1,43 @@
+Setup:
+  Alice    seat 1  Wiretap           anthropic/claude-haiku-5.5
+  Bob      seat 2  Sheriff           anthropic/claude-haiku-5.5
+  Carol    seat 3  Jester            openai/gpt-6-luna-pro
+  Dave     seat 4  Mortician         openai/gpt-6-luna
+  Erin     seat 5  Tracker           google/gemini-3.8-flash
+  Frank    seat 6  Diviner           openai/gpt-6-luna
+  Grace    seat 7  Eavesdropper      anthropic/claude-haiku-5.5
+  Heidi    seat 8  Surveyor          openai/gpt-6-luna-pro
+  Ivan     seat 9  Vigilante         openai/gpt-6-luna-pro
+  Judy     seat 10 Oracle            openai/gpt-6-luna
+  Mallory  seat 11 Medic             anthropic/claude-haiku-5.5
+  Niaj     seat 12 Party Animal      google/gemini-3.8-flash
+  Olivia   seat 13 Lookout           google/gemini-3.8-flash
+  Peggy    seat 14 Ritualist         openai/gpt-6-luna
+  Rupert   seat 15 Arsonist          google/gemini-3.8-flash
+  Katana starts with Frank
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Mallory (tips/tips.md), Olivia (tips/tips.md), Peggy (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Niaj.
+15 players are alive, so a nomination needs 8 Yes votes (rules R4).
+Niaj (public): Greetings everyone. Day 1 is here. Let's see how discussions unfold and look out for suspicious behavior.
+Olivia (public): Hello everyone. Looking forward to hearing initial thoughts from the rest of the circle as we get discussions underway.
+Peggy (public): Let's get actual reads before role claims. Who has a specific concern, and what behavior supports it? Day 1 pile-ons without evidence help no one.
+Rupert (public): Agreed with Peggy. It's too early to jump on people without information; let's see what everyone says across the circle first.
+Alice (public): Agree, no pile-ons on Day 1. Concrete reads only: who dodged a question or pushed too fast? Niaj, Olivia, anything specific stood out?
+Bob (public): Bob here. No reads yet. I'm watching who pushes early and who PMs whom, and I'll share concrete notes once I have them.
+Carol (public): Bob's PM-monitoring focus is oddly preemptive: no one mentioned private messages, yet he volunteered that he is watching them. That's my first concern.
+Dave (public): Bob volunteering that he’s watching PMs before anyone mentioned them is a little odd, but weak evidence. Bob, what prompted that? Let’s hear the explanation before piling on.
+Erin (public): Bob's comment about watching PMs is worth noting, but premature to treat as an evil slip on its own. Let's hear his response and see what the remaining players contribute.
+Frank (public): The PM point is weak by itself, but Bob volunteered it unprompted. I’d like him to clarify what he meant, then let’s hear from the remaining seats before deciding if it matters.
+Grace (public): Grace here, no claim yet. Bob's PM remark is weak alone, so I want his explanation before anyone votes. Heidi, Ivan, Judy, what are your reads?
+Heidi (public): Bob's PM comment is odd but weak evidence. Bob, what specifically made PMs your focus? Let's hear Ivan, Judy, and Mallory before treating this as vote-worthy.
+Ivan (public): Bob's PM comment is odd but weak; repeating the same observation isn't additional evidence. Bob, clarify what you meant, and let's hear independent reads from Mallory onward before deciding whether a vote is warranted.
+Judy (public): This is now a chorus repeating one weak point, not corroboration. Let’s hear independent reads from Mallory, Niaj, Olivia, Peggy, and Rupert before deciding.
+Mallory (public): Mallory here, no claim. Agreed Bob's PM remark is weak alone. Bob, answer the question, and everyone else, name one concrete read with its reason.
+Niaj (public): Alice asked earlier: Bob's PM line got picked up by almost half the town echoing the exact same caution. Carol pointing it out was reasonable, but the repetitive 'odd but weak' comments feel like easy safe filler. Let's hear Bob's actual answer when his turn comes up.
+Olivia (public): Alice, to your question: the chorus echoing 'odd but weak' on Bob felt like safe filler, as Judy and Niaj noted. Bob should explain his remark, but I'm more interested in who moves beyond safe repetition.
+Peggy (public): The chorus isn't evidence, but Bob still hasn't explained the unsolicited PM comment. Bob, answer directly; then I want independent reads, not another echo.
+Rupert (public): Agreed. Bob will have his turn shortly after Alice; let's give him room to explain rather than rehashing it, and see who offers fresh observations.
+Alice (public): Bob's answer on the PM remark is still the only concrete thread. Niaj, Olivia and Erin, please name one specific suspect and your reason, even a weak one, instead of another echo.
+Bob (public): Bob again: my PM line was a habit of tracking who messages whom, not a hint at anything. Day 1 is early, so I'm not voting anyone yet. Erin, Niaj, Olivia: which of you has an actual read?
