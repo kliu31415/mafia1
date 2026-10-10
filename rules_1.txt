@@ -79,6 +79,13 @@ budget too. On a trial turn prices are lower and each speaker also gets a trial-
 when the turn ends; the accused's first defense message is free up to a set length. The program sets the
 numbers for each game and tells every player at the start.
 
+R23 (Swaps)
+Some roles can swap two players for a night. Every action that night aimed at one of them (including the Katana's
+attack and automatic actions such as the Ex-Con's visit or the Seer's pair) lands on the other instead, as if its
+user had chosen that player. Only the swap itself is not moved (the swapping player's Katana vote is). Results name the player the action's
+user chose, so a swapped action's result doesn't show the swap: a Sheriff who checked A learns B's alignment as
+A's. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action landed on.
+
 R13 (Last wills)
 Players may write and update a last will at the beginning of each Day (except those who died the night before)
 and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
@@ -124,7 +131,7 @@ messages, a Ballot Stuffer's doubled vote); those lapse. Any token spent on it i
 
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
 1. Remove actions of role-blocked players (R9), automatic ones included (the Ex-Con's visit, the Seer's pair).
-   Party Animal, Pharmacist and Veteran can't be role-blocked.
+   Party Animal, Pharmacist, Smuggler and Veteran can't be role-blocked. Swaps (R23) apply before anything else.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
    Traps hit non-Village visitors (Trapper).
@@ -365,6 +372,12 @@ Clerk
   Night: may spend a token to rig the next Day's votes. On a rigged Day, anyone successfully nominated is executed.
   The Guilty/Innocent vote still happens; if a majority votes Guilty, the rig is not announced, otherwise it is
   announced publicly.
+
+Smuggler
+  Unique: at most one per game. Immune to role-blocks.
+  Tokens: 2 swap tokens.
+  Night: may spend a token to swap two different living players (yourself included) for the night (R23). You visit
+  both of them. Both swapped players are told they were swapped, but not with whom.
 
 Ballot Stuffer
   Tokens: 2 ballot tokens.

@@ -519,3 +519,40 @@ def test_a_token_op_counts_its_user_as_alive_all_night_whatever_the_op_order(gam
     game.player("Alice").tokens["clerk"] = 1
     with pytest.raises(ValueError, match="alive when the night began"):
         mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
+
+
+def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game_factory):
+    from night import run_night
+    choices = {"Alice": {"act": True, "target": "Erin", "second_target": "Frank", "katana_vote_holder": "Alice",
+                         "katana_vote_target": "Erin"},
+               "Bob": {"act": False, "katana_vote_holder": "Alice", "katana_vote_target": "Erin"},
+               "Carol": {"act": True, "target": "Erin"}, "Dave": {"act": True, "target": "Frank"}}
+
+    def decide(name, task, schema):
+        return choices.get(name) if "Choose your night action" in task else None
+    roles = ["Smuggler", "Grunt", "Sheriff", "Medic", "Vanilla Villager", "Vanilla Villager"]
+    game, players = game_factory(roles, ScriptedClient(decide))
+    run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
+    acts = game.night_actions[1]
+    assert acts["Alice"]["target"] == "Erin" and acts["Alice"]["second_target"] == "Frank"  # its own action stays
+    assert acts["Carol"]["target"] == "Frank" and acts["Carol"]["chosen_target"] == "Erin"
+    assert acts["Dave"]["target"] == "Erin" and acts["Dave"]["chosen_target"] == "Frank"
+    assert acts["Bob"]["katana_vote_target"] == "Frank"
+    katana = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "katana")
+    assert katana["result"]["attack"] == "Frank"
+    assert game.player("Alice").tokens["swap"] == 1
+    told = {n: [e.text for e in game.events if e.visible_to is not None and n in e.visible_to]
+            for n in ("Alice", "Erin", "Frank", "Carol")}
+    assert any("You swapped Erin and Frank. You have 1 swap token left." in t for t in told["Alice"])
+    assert any("You were swapped with another player" in t for t in told["Erin"] + told["Frank"])
+    assert len([t for t in told["Erin"] + told["Frank"] if "swapped with another player" in t]) == 2
+    assert not any("swapped with another player" in t for t in told["Carol"])
+
+
+def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
+    game, _ = game_factory(["Smuggler", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    from roles import logic
+    actions = {"Alice": {"act": True, "target": "Carol", "second_target": "Carol"},
+               "Bob": {"act": False, "katana_vote_target": "Carol"}}
+    logic("Smuggler").before_resolution(game, actions)
+    assert actions["Bob"]["katana_vote_target"] == "Carol" and game.player("Alice").tokens["swap"] == 2

@@ -4,7 +4,7 @@ import json
 
 from players import (BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, tokens_left, truncate_words,
                      word_count)
-from roles import Alignment, Status, logic
+from roles import LOGIC, Alignment, Status, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from moderator import Moderator
@@ -41,6 +41,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.log.write("night_actions", day=game.day, actions=actions,
                    roles={name: game.player(name).role for name in actions})
 
+    holder_before = game.katana_holder  # restored before the tally is redone below
     katana = tally_katana(game, actions)
     revote: dict[str, str | None] = {}  # Yakuza -> target, if there was a revote
     yakuza = game.yakuza()
@@ -65,6 +66,10 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                                    katana_vote_target=out["katana_vote_target"])
             revote[y.name] = out["katana_vote_target"]
         katana = tally_katana(game, actions)
+    for role_logic in LOGIC.values():  # e.g. a Smuggler's swap redirects the other actions (rules R23)
+        role_logic.before_resolution(game, actions)
+    game.katana_holder = holder_before
+    katana = tally_katana(game, actions)
     game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
     game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
     instructions = (

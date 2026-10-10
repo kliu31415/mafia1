@@ -96,6 +96,10 @@ class RoleLogic:
         names against the game."""
         raise NotImplementedError(change["op"])
 
+    def before_resolution(self, game: Game, actions: dict[str, dict]) -> None:
+        """After the night's actions are in (and any Katana revote), before the Katana tally and the moderator's
+        resolution: may change `actions` in place (Smuggler swaps). Called once per registered role."""
+
     def at_night_end(self, game: Game) -> None:
         """End of each night, after the moderator's resolution and any revenge, before the dawn reveal and the
         win check. Called once per registered role, whether or not anyone has it."""
