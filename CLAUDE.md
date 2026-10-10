@@ -9,6 +9,9 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 
 - Commit and push straight to `main` once `uv run pytest`, `uv run ruff check .` and `uv run mypy .`
   pass. No need to ask first or to open a branch, unless Kevin asks for one.
+- GitHub runs the same checks on every push to main (`.github/workflows/checks.yml`, skipped for tips-only
+  commits). After pushing, check your commit's run (GitHub tools: workflow runs for `checks.yml` on main) and fix a
+  red one yourself, including breakage from another thread's push; Kevin doesn't watch CI emails.
 - Small changes: test with offline mock games only, no live games.
 - Bigger changes: also run a live game in the background: about 7-8 players with cheap player models
   (haiku-5.5, gpt-6-luna) and an opus-5.5 moderator. Keep a status line saying a live game is running

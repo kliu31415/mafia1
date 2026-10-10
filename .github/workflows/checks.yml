@@ -1,0 +1,21 @@
+# The checks every commit to main must pass (CLAUDE.md): tests, ruff and mypy. They run after a push rather
+# than blocking it; the thread that pushed checks the result and fixes a red run (CLAUDE.md, "Checking changes").
+name: checks
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["tips/**"]  # the PC's tips-only commits change no code
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - run: uv run pytest -q
+      - run: uv run ruff check .
+      - run: uv run mypy .
