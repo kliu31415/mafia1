@@ -324,3 +324,28 @@ The game is over. Winners: Alice (dead), Erin, Heidi. Dead players still win wit
 ===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
 [Night check] Night 5: correct
 [Feedback from Dave] The Eavesdropper role gave me little usable information in this game, and the interface doesn't make clear when an eavesdropped PM counts as read, so I could not tell whether my targets had any chance to produce content.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Erin, Heidi
+Cost by player (USD):
+  Alice (Diviner)          $0.0594   39 calls  claude-haiku-5.5
+  Bob (Arsonist)           $0.0591   38 calls  claude-haiku-5.5
+  Carol (Vigilante)        $0.0477   31 calls  claude-haiku-5.5
+  Dave (Eavesdropper)      $0.0440   31 calls  claude-haiku-5.5
+  Erin (Pharmacist)        $0.0817   47 calls  claude-haiku-5.5
+  Frank (Fortune Teller)   $0.0185   12 calls  claude-haiku-5.5
+  Grace (Accountant)       $0.0295   21 calls  claude-haiku-5.5
+  Heidi (Puppeteer)        $0.0776   47 calls  claude-haiku-5.5
+  Ivan (Prosecutor)        $0.0489   31 calls  claude-haiku-5.5
+  Judy (Vanilla Villager)  $0.0572   32 calls  claude-haiku-5.5
+  Moderator                $1.2052   18 calls  claude-opus-5.5
+  Night checks             $0.2365    5 calls  claude-opus-5.5
+  Strategy review          $0.2388    1 calls  claude-opus-5.5
+  Log review               $0.2004    1 calls  claude-opus-5.5
+  Total                    $2.4045  354 calls
