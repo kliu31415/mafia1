@@ -81,3 +81,24 @@ Speaking order today goes around the circle in seat order, starting with Carol.
 11 players are alive, so a nomination needs 6 Yes votes (rules R4).
 [Night check] Night 1: correct
 Carol (public): I hold a Night 1 result that confirms Dave is a Vanilla Villager, so Dave's claim checks out. I'm not revealing my role yet and I'm not nominating anyone today.
+Dave (public): Dave, Vanilla, no night info. Thanks Carol for the check. Carol, which role gives you an exact-role result on me? Vanilla is an exact-role check, so it's worth stating. I'm not nominating today and I'll weigh the claims as they come in.
+Erin (public): Erin, still no claim. Carol, which exact role gave you Dave as Vanilla? Dave, you're not on my list yet, but I'd like Carol's role named before anyone weighs that check. No nomination from me today.
+Frank (public): Frank here, still no claim. I agree with Erin: Carol, name the role behind the Dave check. Then we can test it against Night 1 results and tokens. No nomination from me yet.
+Grace (public): Grace, still no claim. I agree with Erin and Frank: Carol, name the exact role behind the Dave check. Vanilla is an exact-role result, so we need the role to test it against tokens and other Night 1 results. No nomination from me.
+Heidi (public): I agree with Erin, Frank and Grace. Carol, please name the exact role behind the Dave check so we can test it against tokens and other Night 1 results.
+Ivan (public): Ivan here. Agree with Erin, Frank, Grace and Heidi: Carol, name the exact role behind the Dave check. A Vanilla result is only checkable once we know the role and its tokens. No nomination from me today.
+Judy (public): Judy here, no claim. I agree with Erin, Frank, Grace and Heidi: Carol, name the exact role behind the Dave check so we can test it against tokens and other Night 1 results. No nomination from me today.
+Mallory (public): I back Erin, Frank, Grace, Heidi, Ivan and Judy. Carol, name the exact role and its token count behind the Dave check, plus your Night 1 target. Until then it's an unverified claim, and I won't nominate today.
+Alice (public): Alice, no claim yet. Carol, name the exact role behind the Dave check and its token count, since Vanilla only comes from certain exact-role results. Until then I won't nominate anyone.
+Bob (public): I agree with the group. Carol, name the exact role and its token count behind the Dave check, and say who your Night 1 target was. Until that's answered it's an unverified claim, and I won't nominate or vote on it today.
+[Claim] Carol: Oracle (Good). N1: guessed Dave's exact role as Vanilla Villager, correct.
+Carol (public): Carol here: my role is Oracle (Good). Night 1 I guessed Dave's exact role as Vanilla Villager and the moderator confirmed it. Oracle has no tokens and one guess a night, so I'll post each night's target and result. No nomination from me today.
+Dave (public): Dave here. I'm a true Vanilla, so Carol's Oracle check on me is consistent with what I know. Carol, post your Night 2 target and result when it resolves. Nobody has an exact-role contradiction yet, so I won't nominate today.
+Erin (public): Carol's Oracle claim can only be tested through Carol's own results, so Carol, please post your Night 2 target and result when it resolves. My Night 1 audit was Mallory at 0 tokens, which fits Vanilla but doesn't prove it. No nomination from me yet.
+Frank (public): Frank here, still no nomination. Carol's Oracle claim is testable only through her own results, so Carol, please post your Night 2 target and result as soon as it resolves. Erin, your Mallory 0-token audit fits Vanilla, so keep it in the log. I'm waiting on Carol's result before I vote on anyone.
+Heidi (public): Heidi here. I agree with Erin and Frank: Carol's Oracle claim gets tested through her Night 2 result, so Carol, post it when it resolves. No nomination from me today.
+Ivan (public): Ivan here. I hold a Night 1 result, but it's only numbers, so I'm not posting it yet. Carol, post your Night 2 target and result when it resolves. No nomination from me today.
+Judy (public): Judy here. No nomination from me. Carol's Night 2 result is the real test of the Oracle claim. Ivan, your Night 1 numbers could be checked against that too, so post them when you can.
+Mallory (public): Carol's Oracle claim gets tested by her Night 2 target and result, so I'm waiting for that. Ivan, post your Night 1 numbers with the role they came from, since unlabeled numbers can't be checked. No nomination from me.
+[Claim] Alice: Cartographer (Good), 2 map tokens. N1 visit-group sizes: 2, 2, 1, 1, 1, 1, 1, 1, 1.
+Alice (public): Alice here. My role is Cartographer (Good) with 2 map tokens. Night 1 visit-group sizes were 2, 2, 1, 1, 1, 1, 1, 1, 1: two visit pairs, and everyone else was alone. I'll post the sizes each night so visit claims can be checked against them. No nomination from me today.

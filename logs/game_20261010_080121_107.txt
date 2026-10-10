@@ -66,3 +66,22 @@ Ivan (public): Ivan here. Agreed, no nomination until Alice's Night 1 Scout name
 Judy (public): Carol, Ivan and Grace, name who you'd nominate first if Alice's Night 1 names look wrong. Copied openings still need a read.
 Carol (public): Carol here. I won't name a pre-chosen target. If Alice's Night 1 Scout names look wrong, I'll judge the nomination on what they show, not on a name picked in advance.
 Grace (public): Grace here. I won't name a pre-chosen target either. Once Alice's Night 1 Scout names post, I'll judge any nomination on what they show.
+(to Bob, Judy) Judy -> Bob (private): Bob, Alice's Scout names are the real test. I'll vote with whoever checks them carefully.
+(to Bob, Judy) Judy -> Bob (private): Bob, I'm nominating myself to test whether the holding bloc will vote. Watch the tally.
+Judy nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Judy, Dave, Heidi; No - Mallory, Alice, Bob, Carol, Erin, Frank, Grace, Ivan.
+The nomination of Judy failed (3 Yes).
+Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Grace, Heidi, Ivan) Grace (Yakuza chat): Grace: No attack tonight. Katana stays with me (holder vote: Grace, no move). Target: none. I'll use my Diviner on a non-Yakuza group for info, not a visit trail on either of you. Heidi, Ivan: keep your tokens for later, no PMs on Day 1. Agree?
+(to Grace, Heidi, Ivan) Heidi (Yakuza chat): Agree with Grace: no attack tonight, Katana stays with Grace, no Day 1 PMs. Ivan, no framing tonight; save your fabricator token. I'll hold my clerk token for a later Day. Grace, share the Diviner group when you get it.
+(to Grace, Heidi, Ivan) Ivan (Yakuza chat): Ivan agrees: no attack tonight, Katana stays with Grace, no framing tonight, and I keep my fabricator token. Grace, share the Diviner group here only. Ready to end chat.
+Night actions:
+  Bob (Lookout): target Dave
+  Carol (Oracle): target Judy; guessed role Jester; "Oracle guess: Judy is Jester."
+  Grace (Diviner): target Alice; "Diviner pick: Alice"; Katana vote: Grace holds, attacks None
+  Heidi (Clerk): no role action; Katana vote: Grace holds, attacks None
+  Ivan (Fabricator): no role action; Katana vote: Grace holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Grace) Moderator (private): You divined Alice; the group was Mallory, Alice and Bob. The role drawn is Scout (60% chance it is Alice's, otherwise one of the others').

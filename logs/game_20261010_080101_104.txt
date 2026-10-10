@@ -56,3 +56,47 @@ Carol (public): Carol here. Agreed, no nomination before Night 1 results. Dave, 
 Frank (public): Frank here. I'm still the most suspicious name on my own silence-only push. If no result appears by Night 1, I stand by self-nominating.
 Ivan (public): Ivan here. Agreed: no Day 1 nomination before Night 1 results. Frank, a self-nomination on silence alone would only hand the town a Day 1 hang, so let's wait for results.
 [Feedback from Frank] The nomination cost (3.00) exceeds my 2.60 budget, so I can't nominate this round; the minimum public message also costs more than I have.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Carol, Ivan) Bob (Yakuza chat): Proposal for Night 1: no Katana attack, since a Night 1 hit only tells the town the Katana exists. Katana stays with Carol. Carol, use the Diviner pick on a Village-looking player for group info. Ivan, hold your block for now. Keep no Day 1 PMs. Object by round 2 if you disagree.
+(to Bob, Carol, Ivan) Carol (Yakuza chat): Agree with Bob: no Katana attack tonight, Katana stays with Carol. Diviner pick on Heidi, who looks Village and gives group info without exposing us. Ivan, hold your block until we see Day 2 information. No Day 1 PMs.
+(to Bob, Carol, Ivan) Ivan (Yakuza chat): Ivan here: I agree with Bob and Carol. No Katana attack tonight, the Katana stays with Carol, and Carol's Diviner pick on Heidi is fine. I'll hold my block until we see Day 2 information. No PMs. Ready.
+(to Bob, Carol, Ivan) Bob (Yakuza chat): Bob agrees with the plan: no Katana attack tonight, Katana stays with Carol, Carol's Diviner pick on Heidi, Ivan holds the block. I have no action of my own. Ready.
+(to Bob, Carol, Ivan) Carol (Yakuza chat): Carol agrees with the plan: no Katana attack tonight, the Katana stays with Carol, Diviner pick on Heidi, Ivan holds the block. No PMs. Ready.
+(to Bob, Carol, Ivan) Ivan (Yakuza chat): Ivan agrees: no Katana attack tonight, Katana stays with Carol, Carol's Diviner pick on Heidi, and I hold my block. No PMs. Ready.
+Night actions:
+  Alice (Prosecutor): no action
+  Bob (Grunt): no role action; Katana vote: Carol holds, attacks None
+  Carol (Diviner): target Heidi; Katana vote: Carol holds, attacks None
+  Dave (Lookout): target Frank
+  Grace (Archivist): 1 token(s); "Consult the archive for the end of Night 1."
+  Heidi (Tracker): target Dave
+  Ivan (Pharmacist): no role action; Katana vote: Carol holds, attacks None
+  Judy (Seer): no action
+  Mallory (Oracle): target Frank; guessed role Vanilla Villager
+  Erin (Ex-Con): automatic: target Mallory; "random visit"
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Grace) Moderator (private): The archive shows 7 of the roles of the 10 other players who were alive when the night began (including any who died tonight): Tracker, Prosecutor, Pharmacist, Lookout, Ex-Con, Grunt, Diviner.
+(to Carol) Moderator (private): You divined Heidi; the group was Grace, Heidi and Ivan. The role drawn is Pharmacist (60% chance it is Heidi's, otherwise one of the others').
+(to Judy) Moderator (private): Night 1 result: your random pair is Carol and Erin. Their alignments are DIFFERENT. You have 1 seer token left.
+(to Dave) Moderator (private): Night 1 result: you watched Frank. Nobody visited Frank tonight.
+(to Heidi) Moderator (private): Night 1 result: you tracked Dave. Dave visited Frank.
+(to Mallory) Moderator (private): Night 1 result: you guessed that Frank is a Vanilla Villager. Your guess was WRONG.
+(to Bob, Carol, Ivan) Moderator (private): Yakuza night summary (Night 1): Carol keeps the Katana; no Katana attack was made. Actions chosen by the Yakuza: Bob – no action. Carol – Diviner action on Heidi. Ivan – no action.
+[Moderator summary] Night 1: No attacks, no role-blocks, no deaths. Carol keeps the Katana (no attack) and divined Heidi (divine op). Grace consulted the archive (archive op, token spent). Dave watched Frank: no visitors. Heidi tracked Dave: Dave visited Frank. Mallory guessed Frank = Vanilla Villager (Astral Visit): wrong. Erin (Ex-Con) automatically visited Mallory. Judy's random Seer pair was Carol and Erin: DIFFERENT (Carol reads Good as the Katana holder, Erin reads Evil as the Ex-Con); Judy has 1 token left. Visits recorded: Carol→Heidi, Dave→Frank, Heidi→Dave, Erin→Mallory. Yakuza told of each other's actions.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Judy.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 1: correct
+[Claim] Judy: Seer. N1: Carol and Erin have DIFFERENT alignments (at least one is not Good).
+Judy (public): Judy here. I'm the Seer. Night 1 result: my random pair, Carol and Erin, have DIFFERENT alignments, so at least one of them is not Good. I'm holding my token for now. Carol and Erin, please address that directly.
+Mallory (public): Mallory here. Judy's Seer claim is the only hard info so far. Carol and Erin, please answer it directly. I won't nominate until we have more.
+Alice (public): Alice here. Judy's Seer claim is the only hard info we have, and it points at Carol or Erin being not Good. Carol and Erin, please answer Judy's claim directly. Judy, hold your token and keep your pair in mind. I'm not nominating anyone until we hear from both of you.
+Bob (public): Bob here. Judy's Seer claim is unverified, and one random pair can't tell us who is lying. Judy, what would you do if your pair were both Good or both Evil? Erin and Carol, I'd like each of you to say plainly how you've played so far, not just that you're not nominating.
+Carol (public): Carol here. I have no role claim and no results. Judy, one random pair from one night can't settle much, so I want your claim tested over the next nights before anyone is nominated. I'm not nominating today.
+Dave (public): Dave here. No new results from me. Judy, your Seer claim is the only hard info so far, so please keep your token and tell us how you'd test that pair. Carol and Erin, answer the pair question directly.
+Erin (public): Erin here, no role claim and no night results. Judy, a pair with one Good and one not Good doesn't tell us which side is off, so how would you test it over the next nights? Carol, I want your own read on Judy's claim before anyone is nominated.
+Frank (public): Frank here. Judy's Seer claim is unverified, and I still have no read that justifies a hang. I'm the easiest name on the board, so if the town wants a test, I won't object. Judy, what would you do with your token if Carol or Erin turns out Good?

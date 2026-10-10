@@ -451,3 +451,25 @@ The game is over. Winners: Mallory, Grace (dead). Dead players still win with th
 ===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
 
 ===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Mallory, Grace
+Cost by player (USD):
+  Alice (Fabricator)        $0.0762   45 calls  claude-haiku-5.5
+  Bob (Clerk)               $0.0772   48 calls  gpt-6-luna
+  Carol (Vanilla Villager)  $0.0716   37 calls  claude-haiku-5.5
+  Dave (Cardinal)           $0.0775   41 calls  gpt-6-luna
+  Erin (Medic)              $0.2712   36 calls  gemini-3.8-flash
+  Frank (Scout)             $0.0395   22 calls  claude-haiku-5.5
+  Grace (Executioner)       $0.3093   37 calls  gemini-3.8-flash
+  Heidi (Surveyor)          $0.2288   30 calls  gemini-3.8-flash
+  Ivan (Puppeteer)          $0.0831   49 calls  claude-haiku-5.5
+  Judy (Archivist)          $0.0150    7 calls  gpt-6-luna
+  Mallory (Arsonist)        $0.0876   51 calls  gpt-6-luna
+  Moderator                 $1.6645   22 calls  claude-opus-5.5
+  Night checks              $0.5976    7 calls  claude-opus-5.5
+  Strategy review           $0.3446    1 calls  claude-opus-5.5
+  Log review                $0.3372    1 calls  claude-opus-5.5
+  Total                     $4.2810  434 calls

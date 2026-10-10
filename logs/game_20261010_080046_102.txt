@@ -54,3 +54,33 @@ Night actions:
   Heidi (Arsonist): target Frank; "Douse Frank."
   Judy (Clerk): no role action; Katana vote: Bob holds, attacks Carol
 Katana: Bob holds it and attacks Carol.
+(to Carol) Moderator (private): Night 1 result: You guessed that Dave is a Vanilla Villager. You were right. You were attacked with the Katana tonight, and you died.
+(to Erin) Moderator (private): Night 1 result: You audited Carol. At the end of the night Carol had 0 tokens in total.
+(to Heidi) Moderator (private): Night 1 result: You doused Frank.
+(to Ivan) Moderator (private): Fortune Teller reading for Night 1: your two numbers are 2 and 3. One is how many players were visited last night, the other is how many players visited anyone. You aren't told which is which.
+(to Bob) Moderator (private): Night 1 result: Your Katana attack on Carol succeeded.
+(to Bob, Frank, Judy) Moderator (private): Yakuza night summary (Night 1): The Katana stays with Bob, and Bob chose to attack Carol with it. Bob chose not to use the Puppeteer action. Frank chose not to use the Smuggler action. Judy chose not to use the Clerk action.
+[Moderator summary] Night 1: Bob (Katana holder) attacked Carol with Standard Katana; Carol (Defense None) died. Carol's Oracle guess (Dave = Vanilla Villager) was correct; told. Erin audited Carol: 0 tokens. Heidi doused Frank (status doused). No swaps, puppets, rigs or maps. Visits: Bob->Carol, Erin->Carol, Heidi->Frank. Fortune Teller Ivan told 2 and 3. Yakuza told their chosen actions; Bob told the attack succeeded.
+(to Alice) Moderator (private): Tonight's visit groups have sizes 3, 2, 1, 1, 1, 1, 1, 1.
+
+===== DAY 2 =====
+Carol died (killed by Katana). Their role isn't revealed. Their last will: "I am Carol, Oracle (Good). I have no confirmed results yet. Plan, unconfirmed: a night guess of one player's exact role, which is an Astral Visit. Do not trust quick Day 1 hangs without votes or mechanical evidence."
+Speaking order today goes around the circle in seat order, starting with Dave.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Night check] Night 1: correct
+Dave (public): Carol died to the Katana on Night 1, and their will says Oracle. We can't verify that, so no one should treat it as settled. The Katana means at least one Yakuza is alive and holding it. Anyone with a real night result should post it with the night number, and we should vote on evidence, not on Day 1 vibes.
+Erin (public): Erin here. My Night 1 audit showed Carol had 0 tokens, which fits an Oracle claim but doesn't prove it. I have no nominations yet. I want Night 2 results and votes before anyone goes to trial.
+Frank (public): Frank here. I agree with Erin and Dave: no trial until we have Night 2 results and a real vote. Carol's Oracle will is unverified, so I won't lean on it either way.
+Grace (public): Grace here. I have no new results and won't nominate before Night 2 results are in. Carol's Oracle will can't be checked yet, so anyone holding a Night 1 result, please post it with the night number.
+Heidi (public): Heidi here. Nothing new from me. I agree we should wait for Night 2 results before any nomination.
+Ivan (public): Ivan here. I still have nothing to nominate on. Carol's Oracle will is unverified, so I'd rather see Night 2 results first. Anyone with a night result, please post it with the night number, including whether the result was a visit-based one.
+Judy (public): Judy here. No new results from me. I'll wait for Night 2 results before backing any nomination, like the rest of you.
+Mallory (public): Mallory here. Erin, you said your Night 1 audit showed Carol had 0 tokens, so you're effectively claiming Accountant. If that's real, post your audit results with the night number. Carol's Oracle will is still unverified, so I agree: no trial before Night 2 results.
+Alice (public): Alice here, nothing new to add. I agree: no trial before Night 2 results are posted with their night number. I'll share anything real when it's useful.
+Bob (public): Bob here, nothing new from me. I agree: no trial before Night 2 results. Anyone posting a result should include the night number and whether it came from a visit, so we can cross-check it.
+[Claim] Erin: Accountant. N1: Carol had 0 tokens at the end of the night.
+Erin (public): Erin here. I'm claiming Accountant, since my Night 1 audit has already been mentioned. N1: Carol had 0 tokens, which fits her Oracle will but doesn't prove it. I'll audit a living player on N2 and post the total with the night number.
+Frank (public): Frank here. Erin's Accountant claim fits Carol having no tokens, so I'd like Erin's Night 2 audit result, with the night number, before any nomination. I still have no claim.
+Grace (public): Grace here. Nothing new from me. Erin, please post your Night 2 audit with the night number once it resolves. I'm holding any action until there's a vote or a mechanical lead.
+Judy (public): Judy here. Erin's Accountant claim fits Carol having 0 tokens, but that doesn't confirm Carol was an Oracle. Erin, please post your Night 2 audit with the target's name and the night number once it resolves. Nothing else from me yet.
+Mallory (public): Mallory here. Nothing new from me. Erin, when your Night 2 audit resolves, please post the target's name and the night number so we can check it against Carol's Oracle will. No nomination until then.

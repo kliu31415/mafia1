@@ -56,3 +56,37 @@ Alice (public): Dave and Frank, a night role you won't name gives Day 2 results 
 Erin (public): Erin here. Agree with Grace and Alice: Dave and Frank, name your roles now, or your Day 2 results carry no weight.
 [Claim] Frank: Accountant (Village). Audit results to follow at the start of Day 2.
 Frank (public): Frank here: I'm the Accountant (Village). I'll post my first audit result at the start of Day 2, and I'm making no nomination today.
+Carol (public): still no firm reads. Frank's Accountant claim has no result yet, and Dave has named no role. Both should show results on Day 2, and I won't nominate today.
+Frank (public): Frank here: no nomination from me. Dave, please name your role before Day 2 results can be weighed.
+Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Erin, Mallory) Carol (Yakuza chat): Carol: Proposal for tonight: no Katana attack, Erin keeps the Katana, and nobody moves it. Early kills reveal the Katana to the target. I'll take no action, so I'm not visiting anyone. Mallory, no rig tonight. Object now if you disagree.
+(to Carol, Erin, Mallory) Erin (Yakuza chat): Erin agrees: no Katana attack tonight, I keep the Katana, and nobody moves it. Mallory, no rig. Stall rule: if nobody dies before Day 4 starts, everyone loses, so we must get a kill on Night 2 or Night 3. Let's pick a target then, a quiet Village player with no claim, and keep it out of the day chat.
+(to Carol, Erin, Mallory) Mallory (Yakuza chat): Mallory agrees: no Katana attack tonight, Erin keeps the Katana, no rig. For Night 2 let's pick a quiet Village player with no claim (Bob or Judy fit), and decide it in night chat, not in the day chat. Nothing to move tonight.
+Night actions:
+  Alice (Medic): target Carol
+  Bob (Archivist): 1 token(s); "Spend my archive token to consult the archive at the end of Night 1."
+  Carol (Smuggler): no role action; Katana vote: Erin holds, attacks None
+  Dave (Veteran): no action
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks None
+  Frank (Accountant): target Dave; "Audit Dave's total token count at the end of the night."
+  Judy (Lookout): target Frank
+  Mallory (Clerk): no role action; Katana vote: Erin holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Erin holds it.
+(to Bob) Moderator (private): The archive shows 7 of the roles of the 10 other players who were alive when the night began (including any who died tonight): Grunt, Veteran, Accountant, Fortune Teller, Vanilla Villager, Lookout, Medic.
+(to Alice) Moderator (private): Night 1 result: You protected Carol, giving them Standard Defense tonight. You spent no tokens: 2 medic tokens left.
+(to Frank) Moderator (private): Night 1 result: You audited Dave. At the end of the night Dave has 3 tokens in total.
+(to Judy) Moderator (private): Night 1 result: You watched Frank. Nobody else visited Frank tonight.
+(to Heidi) Moderator (private): Fortune Teller numbers for Night 1 (unlabelled, in no particular order): 3 and 3.
+(to Carol, Erin, Mallory) Moderator (private): Yakuza Night 1 summary: Carol chose no action (no swap). Erin chose no action of her own. Mallory chose no action (no rig). By the Katana vote, Erin keeps the Katana and there was no Katana attack.
+[Moderator summary] Night 1: No deaths, no role-blocks, no attacks. Alice (Medic) protected Carol at Standard Defense (0 tokens spent, 2 left). Bob (Archivist) used the archive op and spent his token; code showed him the roles. Frank (Accountant) audited Dave: 3 tokens. Judy (Lookout) watched Frank and saw no visitors. Heidi (Fortune Teller) got 3 and 3 (visited: Carol, Dave, Frank; visitors: Alice, Frank, Judy). The Yakuza took no actions, and Erin keeps the Katana with no attack. Dave did not go on alert. Mallory did not rig. Carol did not swap. Visits recorded: Alice->Carol, Frank->Dave, Judy->Frank.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Frank: Accountant (Village). N1 audit: Dave has 3 tokens total.
+Frank (public): Frank, Accountant. Night 1 audit: Dave had 3 tokens in total at the end of the night. Dave, you have claimed a night action but not a role. Which role with 3 tokens are you?
+Grace (public): Frank's audit says Dave had 3 tokens. Dave, if that's true, your role carries tokens (Vigilante, Veteran, Surveyor or Profiler, for example). Name it now so we can test your claim against Frank's. Frank, a claim with a result we can't check yet is still just a claim. No nomination from me yet.
