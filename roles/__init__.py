@@ -84,6 +84,12 @@ ROLES: dict[str, RoleInfo] = {
                         tokens={"coroner": 3}, acts_at_night=True, tested=True,
                         notes="moderator records the use with the examine op (a dead target, not a visit); code "
                         "tells them the role, or that the body was cleaned"),
+    "Chronicler": RoleInfo(Alignment.GOOD, "Investigative", False,
+                           summary="Token: marks a player; if they ever die, their role is revealed to everyone "
+                           "(unless a Mortician cleans them).",
+                           tokens={"chronicler": 2}, acts_at_night=True,
+                           notes="moderator records the use with the mark op (a visit); code sets status 'marked', "
+                           "and the death announcement reveals the role or says the clean hid it"),
     "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False,
                         summary="Night: audit a player, learn all their nomination and trial votes from that Day.",
                         acts_at_night=True,

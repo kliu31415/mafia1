@@ -294,6 +294,15 @@ Coroner
   one who dies tonight). You learn their role, unless a Mortician cleaned them: then you learn only that. This is an Astral Visit (R6), and an exact-role check (R19): a
   Roleplayer shows as Roleplayer.
 
+Chronicler
+  Tokens: 2 chronicler tokens.
+  Night: may spend a token to mark one player other than yourself. This is a visit. The marked player isn't told.
+  The mark lasts for the rest of the game, even after you die. If a marked player dies, at any time and of any
+  cause, the announcement of their death also reveals their true role to everyone (an exact-role check, R19: a
+  Roleplayer shows as Roleplayer), and says they had been marked by a Chronicler (not by whom). A Mortician's
+  clean beats the mark: a marked player who is cleaned has their role and will hidden, and the announcement says
+  they had been marked but the clean hid their role. You can't mark a player who is already marked.
+
 Auditor
   Night: may audit one player other than yourself. You learn every vote they cast during the Day just before this
   Night, in order: Yes or No on each nomination and Guilty or Innocent in each trial. If they cast none, you learn
@@ -481,7 +490,8 @@ Mortician
   Tokens: 3 mortician tokens.
   Night: may spend a token to try to clean someone. If they die that night by any cause, they are cleaned: their
   death is revealed publicly with its cause, but their last will shows as "cleaned by mortician". You are
-  privately told their role and last will. A Coroner who examines a cleaned player learns nothing. The token is
+  privately told their role and last will. A Coroner who examines a cleaned player learns nothing, and a
+  cleaned player's role stays hidden even if a Chronicler marked them (the announcement says so). The token is
   spent even if they survive.
 
 Wiretap

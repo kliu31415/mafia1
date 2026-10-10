@@ -949,3 +949,34 @@ def test_insomniac_with_no_visitors_or_no_recorded_visits(game_factory):
     apply_ops(game, players, {"op": "stay_awake", "by": "Alice"})
     game.run_night_end_hooks()
     assert game.player("Alice").tokens["insomniac"] == 0 and game.log.error_counts == {"insomniac_no_visits": 1}
+
+
+def test_chronicler_mark_reveals_the_role_on_any_later_death_even_after_the_chronicler_died(game_factory):
+    game, players = game_factory(["Chronicler", "Sheriff", "Grunt", "Vanilla Villager", "Medic"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("1 chronicler token left.") and not told(game, "Carol")
+    with pytest.raises(ValueError, match="already marked"):
+        apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})
+    assert logic("Chronicler").briefing(game, game.player("Alice")) == ["Your marks on living players: Carol."]
+    game.kill("Alice", "Katana")  # the mark outlives the Chronicler
+    game.announce_dawn()
+    game.phase = "day"
+    game.kill("Carol", "Execution by Hanging")
+    reveal = [e.text for e in game.events if e.cat == "death"][-1]
+    assert reveal.endswith("They had been marked by a Chronicler, so their role is revealed: Grunt.")
+    assert "Grunt (revealed)" in game.death_record[-1]
+    assert "role isn't revealed" in [e.text for e in game.events if e.cat == "death"][0]  # unmarked Alice
+
+
+def test_mortician_clean_beats_a_chronicler_mark_and_the_announcement_says_so(game_factory):
+    game, players = game_factory(["Chronicler", "Sheriff", "Mortician", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "mark", "player": "Bob", "by": "Alice"},
+              {"op": "kill", "player": "Bob", "cause": "Katana"},
+              {"op": "set_status", "player": "Bob", "key": Status.CLEANED, "value": True})
+    game.announce_dawn()
+    reveal = next(e.text for e in game.events if e.cat == "death")
+    assert "Sheriff" not in reveal and "Sheriff" not in game.death_record[0]
+    assert reveal.endswith("They had been marked by a Chronicler, but the Mortician's clean hides the role too, so "
+                           "it isn't revealed.")

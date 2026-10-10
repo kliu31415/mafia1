@@ -29,6 +29,7 @@ class Status:
     TARGET = "target"  # Executioner's target
     FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
     DOUSED = "doused"  # Arsonist: set by the moderator on a doused player, cleared by an ignite
+    MARKED = "marked"  # Chronicler: on the marked player, the marker's name
     TRAPPED_BY = "trapped_by"  # Trapper: on the trapped player, the Trapper's name until the trap is used or replaced
     SET_AT_SETUP = (TARGET, FAKE_ROLE)  # role hooks read these directly, so the moderator can't change them
 
@@ -95,6 +96,12 @@ class RoleLogic:
 
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """This player just died. guilty_voters is set only for an execution by hanging."""
+
+    def reveals_on_death(self, game: Game, dead: Player) -> str | None:
+        """Why this death's announcement also shows the dead player's role (e.g. "They had been marked by a
+        Chronicler"), or None. Called once per registered role. A Mortician's clean still hides the role, and
+        the announcement says so."""
+        return None
 
     def on_other_death(self, game: Game, me: Player, dead: Player, guilty_voters: list[str] | None) -> None:
         """Another player just died; called for every living player of this role."""

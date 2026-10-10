@@ -258,6 +258,7 @@ class Game:
         self.emit(self.death_reveal(name, cause), cat=DEATH)
         p = self.player(name)
         what = (f"role cleaned by a Mortician, {cause}" if p.status.get(Status.CLEANED)
+                else f"{p.role} (revealed), {cause}" if self.role_reveal_reason(p)
                 else f"{self.revealed_identity(p)}, {cause}")
         when = p.death or {"day": self.day, "phase": self.phase}  # when they died, not when it's revealed
         self.death_record.append(f"{'Night' if when['phase'] == 'night' else 'Day'} {when['day']}: {name} ({what})")
@@ -283,16 +284,29 @@ class Game:
         alignment (Good, Evil or Neutral; never a frame or disguise), with --flips none nothing."""
         return {"alignment": p.info.alignment.value, "none": "role hidden"}.get(self.rule_settings["flips"], p.role)
 
+    def role_reveal_reason(self, p: Player) -> str | None:
+        """Why p's death announcement also shows their role (RoleLogic.reveals_on_death, e.g. a Chronicler's
+        mark), or None. With role flips the role shows anyway."""
+        if self.rule_settings["flips"] == "role":
+            return None
+        return next((r for logic in LOGIC.values() if (r := logic.reveals_on_death(self, p))), None)
+
     def death_reveal(self, name: str, cause: str) -> str:
         p = self.player(name)
         cause = death_cause(cause)
         if p.status.get(Status.CLEANED):
             hidden = {"alignment": "alignment and last will were", "none": "last will was"}.get(
                 self.rule_settings["flips"], "role and last will were")
-            return f"{name} died ({cause}). Their {hidden} cleaned by a Mortician."  # rules R12
-        reveal = {"alignment": f"{name} died ({cause}). Their alignment was {self.revealed_identity(p)}.",
-                  "none": f"{name} died ({cause}). Their role isn't revealed."}.get(
-                      self.rule_settings["flips"], f"{name} died ({cause}). Their role was {p.role}.")
+            reveal = f"{name} died ({cause}). Their {hidden} cleaned by a Mortician."  # rules R12
+            if reason := self.role_reveal_reason(p):  # the clean wins, and everyone is told so (rules: Mortician)
+                reveal += f" {reason}, but the Mortician's clean hides the role too, so it isn't revealed."
+            return reveal
+        if reason := self.role_reveal_reason(p):
+            reveal = f"{name} died ({cause}). {reason}, so their role is revealed: {p.role}."
+        else:
+            reveal = {"alignment": f"{name} died ({cause}). Their alignment was {self.revealed_identity(p)}.",
+                      "none": f"{name} died ({cause}). Their role isn't revealed."}.get(
+                          self.rule_settings["flips"], f"{name} died ({cause}). Their role was {p.role}.")
         if p.last_will:
             reveal += f" Their last will: \"{p.last_will}\""
         return reveal
