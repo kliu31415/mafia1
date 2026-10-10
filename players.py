@@ -10,7 +10,7 @@ from events import RESULT
 from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, default_effort, lower_effort,
                  rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
-from state import Game, Player
+from state import Game, Player, phase_label
 from texts import describe_action, player_view
 
 
@@ -241,7 +241,7 @@ def night_history(game: Game, p: Player) -> str:
     lines = [f"- Night {night}: you submitted {describe_action(as_chosen(actions[p.name]))}"
              for night, actions in game.night_actions.items()
              if p.name in actions and not actions[p.name].get("automatic")]  # e.g. the Ex-Con isn't told its visit
-    lines += [f"- Day {e.day} {e.phase}, result: {e.fields.get('message', e.text)}" for e in game.events
+    lines += [f"- {phase_label(e.day, e.phase)}, result: {e.fields.get('message', e.text)}" for e in game.events
               if e.cat == RESULT and e.visible_to is not None and p.name in e.visible_to]
     return "\n".join(lines)
 

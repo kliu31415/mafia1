@@ -74,7 +74,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
     instructions = (
         f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
-        f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n\n"
+        f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n"
+        + (f"Code has already moved the Katana from {katana['moved_from']}, who held it when the night began, to "
+           f"{katana['holder']}; get_state shows the new holder.\n" if katana.get("moved_from") else "") + "\n"
         "Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, "
         "role-blocks R9, attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator "
         "frames). Use apply_changes for deaths and token/status changes, tell() for each private result, "

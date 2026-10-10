@@ -69,25 +69,25 @@ Current full state (call get_state to refresh after changes):
 {"day": 1, "phase": "night", "katana_holder": "Erin", "players": [{"name": "Alice", "seat": 0, "alive": true, "role": "Sheriff", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Bob", "seat": 1, "alive": true, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Carol", "seat": 2, "alive": true, "role": "Medic", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {"medic": 2}, "status": {}, "last_will": ""}, {"name": "Dave", "seat": 3, "alive": false, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Erin", "seat": 4, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "last_will": ""}, {"name": "Frank", "seat": 5, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "last_will": ""}]}
 
 Public history so far:
-[Day 1 day] Day 1 begins.
-[Day 1 day] Speaking order today goes around the circle in seat order, starting with Carol.
-[Day 1 day] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
-[Day 1 day] [Claim] Alice: Sheriff
-[Day 1 day] Alice (public): Dave has been very quiet. I nominate him.
-[Day 1 day] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
-[Day 1 day] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
-[Day 1 day] Dave is put on trial (6 Yes).
-[Day 1 day] Dave (public): Dave has a view on this trial.
-[Day 1 day] Erin (public): Erin has a view on this trial.
-[Day 1 day] Frank (public): Frank has a view on this trial.
-[Day 1 day] Alice (public): Alice has a view on this trial.
-[Day 1 day] Bob (public): Bob has a view on this trial.
-[Day 1 day] Carol (public): Carol has a view on this trial.
-[Day 1 day] Dave (public): Dave has a view on this trial.
-[Day 1 day] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
-[Day 1 day] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
-[Day 1 day] Dave died (executed by hanging). Their role was Vanilla Villager.
-[Day 1 night] Night 1 begins.
+[Day 1] Day 1 begins.
+[Day 1] Speaking order today goes around the circle in seat order, starting with Carol.
+[Day 1] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Day 1] [Claim] Alice: Sheriff
+[Day 1] Alice (public): Dave has been very quiet. I nominate him.
+[Day 1] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
+[Day 1] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
+[Day 1] Dave is put on trial (6 Yes).
+[Day 1] Dave (public): Dave has a view on this trial.
+[Day 1] Erin (public): Erin has a view on this trial.
+[Day 1] Frank (public): Frank has a view on this trial.
+[Day 1] Alice (public): Alice has a view on this trial.
+[Day 1] Bob (public): Bob has a view on this trial.
+[Day 1] Carol (public): Carol has a view on this trial.
+[Day 1] Dave (public): Dave has a view on this trial.
+[Day 1] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
+[Day 1] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
+[Day 1] Dave died (executed by hanging). Their role was Vanilla Villager.
+[Night 1] Night 1 begins.
 [end of a cached prefix]
 
 

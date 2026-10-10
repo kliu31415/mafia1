@@ -17,6 +17,12 @@ PLAYER_NAMES = ["Alice", "Bob", "Carol", "Dave", "Erin", "Frank", "Grace", "Heid
                 "Mallory", "Niaj", "Olivia", "Peggy", "Rupert", "Sybil"]
 
 
+
+def phase_label(day: int, phase: str) -> str:
+    """"Day 2" or "Night 2" (the night after Day 2), the way the rules and announcements name phases; players
+    argued over labels when history lines said "Day 2 night"."""
+    return f"{'Night' if phase == 'night' else 'Day'} {day}"
+
 @dataclass
 class Player:
     name: str
@@ -171,7 +177,7 @@ class Game:
     def history_split(self, name: str) -> tuple[list[str], list[str]]:
         """What `name` has seen, as lines from earlier phases and lines from the current one. Earlier
         phases don't change, so prompts can cache them (llm.cache_block)."""
-        lines = [(e.day, e.phase, f"[Day {e.day} {e.phase}] {e.text}" + (
+        lines = [(e.day, e.phase, f"[{phase_label(e.day, e.phase)}] {e.text}" + (
             " [written by your Puppeteer, not you]" if e.fields.get("puppeteer") and e.fields.get("speaker") == name
             else "")) for e in self.events if e.visible(name)]
         start = len(lines)

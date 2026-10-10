@@ -19,32 +19,32 @@ You are Bob (seat 2 of 6, counting from 1). Your role is Vanilla Villager (Good)
 ---
 
 Everything you have seen in earlier phases (this phase's events are in the next message):
-[Day 1 day] Day 1 begins.
-[Day 1 day] Speaking order today goes around the circle in seat order, starting with Carol.
-[Day 1 day] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
-[Day 1 day] [Claim] Alice: Sheriff
-[Day 1 day] Alice (public): Dave has been very quiet. I nominate him.
-[Day 1 day] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
-[Day 1 day] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
-[Day 1 day] Dave is put on trial (6 Yes).
-[Day 1 day] Dave (public): Dave has a view on this trial.
-[Day 1 day] Erin (public): Erin has a view on this trial.
-[Day 1 day] Frank (public): Frank has a view on this trial.
-[Day 1 day] Alice (public): Alice has a view on this trial.
-[Day 1 day] Bob (public): Bob has a view on this trial.
-[Day 1 day] Carol (public): Carol has a view on this trial.
-[Day 1 day] Dave (public): Dave has a view on this trial.
-[Day 1 day] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
-[Day 1 day] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
-[Day 1 day] Dave died (executed by hanging). Their role was Vanilla Villager.
-[Day 1 night] Night 1 begins.
+[Day 1] Day 1 begins.
+[Day 1] Speaking order today goes around the circle in seat order, starting with Carol.
+[Day 1] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Day 1] [Claim] Alice: Sheriff
+[Day 1] Alice (public): Dave has been very quiet. I nominate him.
+[Day 1] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
+[Day 1] Nomination votes on Dave: Yes - Alice, Bob, Carol, Dave, Erin, Frank; No - nobody.
+[Day 1] Dave is put on trial (6 Yes).
+[Day 1] Dave (public): Dave has a view on this trial.
+[Day 1] Erin (public): Erin has a view on this trial.
+[Day 1] Frank (public): Frank has a view on this trial.
+[Day 1] Alice (public): Alice has a view on this trial.
+[Day 1] Bob (public): Bob has a view on this trial.
+[Day 1] Carol (public): Carol has a view on this trial.
+[Day 1] Dave (public): Dave has a view on this trial.
+[Day 1] Trial votes on Dave: Guilty - Alice, Bob, Carol, Dave, Erin, Frank; Innocent - nobody.
+[Day 1] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
+[Day 1] Dave died (executed by hanging). Their role was Vanilla Villager.
+[Night 1] Night 1 begins.
 [end of a cached prefix]
 
 
 === user ===
 What you have seen this phase so far:
-[Day 2 day] Day 2 begins.
-[Day 2 day] Alice died (killed by Katana). Their role was Sheriff.
+[Day 2] Day 2 begins.
+[Day 2] Alice died (killed by Katana). Their role was Sheriff.
 
 ---
 
