@@ -159,9 +159,9 @@ def syncable(path: Path) -> bool:
 def push(repo: Repo, log_dir: Path) -> list[str]:
     """Sends every log file in log_dir (top level) the branch doesn't have, and merges the shared
     files into the branch's copies. Returns the paths that changed on the branch."""
-    def gather(parent: str | None) -> dict[str, bytes]:
+    def gather(parent: str | None) -> dict[str, bytes | None]:
         theirs = repo.files(parent, "logs")
-        out = {}
+        out: dict[str, bytes | None] = {}
         for p in sorted(log_dir.iterdir()) if log_dir.is_dir() else []:
             if not syncable(p):
                 continue
@@ -170,6 +170,11 @@ def push(repo: Repo, log_dir: Path) -> list[str]:
             if p.name in MERGED:
                 data = MERGED[p.name](data, repo.blob(theirs[key]) if key in theirs else b"")
             out[key] = data
+        # A checkpoint pushed mid-game outlives its game on the branch (the game deletes it here when it ends).
+        for key in theirs:
+            log = log_dir / key.split("/", 1)[1].replace(".ckpt", ".jsonl")
+            if key.endswith(".ckpt") and key not in out and log.is_file() and b'"kind": "result"' in log.read_bytes():
+                out[key] = None
         return out
     return repo.publish(gather, f"Logs from {platform.node()}")[1]
 

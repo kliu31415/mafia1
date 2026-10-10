@@ -103,6 +103,19 @@ def test_a_log_pushed_again_after_the_game_went_on_replaces_the_earlier_copy(mac
     assert (pc.root / "logs" / "game_1.jsonl").read_text().endswith('{"kind": "result"}\n')
 
 
+def test_a_mid_game_checkpoint_leaves_the_branch_once_its_game_has_ended(machines):
+    cloud = machines["cloud"]
+    logs = cloud.root / "logs"
+    logs.mkdir()
+    (logs / "game_1.jsonl").write_text('{"kind": "setup"}\n')
+    (logs / "game_1.ckpt").write_bytes(b"pickle")
+    sync_logs.push(cloud, logs)
+    (logs / "game_1.ckpt").unlink()  # the game ended
+    (logs / "game_1.jsonl").write_text('{"kind": "setup"}\n{"kind": "result"}\n')
+    assert "logs/game_1.ckpt" in sync_logs.push(cloud, logs)
+    assert "logs/game_1.ckpt" not in cloud.files(cloud.fetch(), "logs")
+
+
 def test_a_re_pushed_game_s_other_files_follow_its_log_but_another_game_s_dont(machines):
     cloud, pc = machines["cloud"], machines["pc"]
     logs = cloud.root / "logs"

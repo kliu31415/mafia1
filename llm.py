@@ -439,11 +439,18 @@ def byok_cost(usage: dict) -> float | None:
 
 
 RETRY_CODES = (408, 429, 500, 502, 503, 504)  # HTTP statuses (or error codes in an answer) worth retrying
+# Longest a request may take, per attempt: the slowest calls in live games so far took 210 s (Luna Pro and Sol
+# player turns; p99 50-140 s by model, 2026-10-10). A stuck call used to hold the whole table for up to 10 minutes
+# per attempt (MiMo: 805 s). OpenRouter may keep a slow answer's connection alive with whitespace, so this is
+# checked while reading, not only as the socket's idle timeout.
+CALL_DEADLINE_S = 360
+DEADLINE_RETRIES = 1  # a call that hit the deadline is tried this many more times (it's likely to again)
+MAX_RETRY_WAIT_S = 60  # cap on a 429's Retry-After
 
 
 class OpenRouterClient:
     def __init__(self, api_key: str, effort: str | None = None, max_tokens: int = DEFAULT_MAX_TOKENS,
-                 timeout: float = 600, retries: int = 4):
+                 timeout: float = CALL_DEADLINE_S, retries: int = 4):
         self.api_key = api_key
         self.effort = effort
         self.max_tokens = max_tokens
@@ -515,16 +522,23 @@ class OpenRouterClient:
                 "X-Title": "mafia1",
             },
         )
+        deadlines_hit = 0
         for attempt in range(self.retries + 1):
             try:
-                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                    data = json.loads(resp.read().decode("utf-8"))
+                data = json.loads(self._read(req).decode("utf-8"))
             except urllib.error.HTTPError as e:
                 detail = e.read().decode("utf-8", "replace")[:500]
                 if e.code in RETRY_CODES and attempt < self.retries:
-                    self._retrying(body, attempt, f"HTTP {e.code}: {detail}")
+                    self._retrying(body, attempt, f"HTTP {e.code}: {detail}", retry_after=e.headers.get("Retry-After"))
                     continue
                 raise RuntimeError(f"OpenRouter HTTP {e.code}: {detail}") from None
+            except TimeoutError as e:  # the deadline, or no bytes for that long
+                deadlines_hit += 1
+                if deadlines_hit <= DEADLINE_RETRIES and attempt < self.retries:
+                    self._retrying(body, attempt, f"TimeoutError: {e}")
+                    continue
+                raise RuntimeError(f"OpenRouter request timed out ({deadlines_hit} time(s), {self.timeout:g} s "
+                                   f"each): {e}") from e
             # A dropped or cut-off connection while reading the answer (urllib only wraps errors while
             # sending in URLError), or a body that isn't JSON (e.g. a proxy's HTML error page).
             except (OSError, http.client.HTTPException, json.JSONDecodeError, UnicodeDecodeError) as e:
@@ -540,11 +554,26 @@ class OpenRouterClient:
             return data
         raise AssertionError("unreachable")
 
-    def _retrying(self, body: dict, attempt: int, error: str) -> None:
+    def _read(self, req: urllib.request.Request) -> bytes:
+        """The answer's body, or TimeoutError once the request has taken self.timeout seconds in all."""
+        started = time.monotonic()
+        chunks = []
+        with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+            while chunk := resp.read(1 << 16):
+                chunks.append(chunk)
+                if time.monotonic() - started > self.timeout:
+                    raise TimeoutError(f"no complete answer after {self.timeout:g} s")
+        return b"".join(chunks)
+
+    def _retrying(self, body: dict, attempt: int, error: str, retry_after: str | None = None) -> None:
         if self.on_error:
             self.on_error("api_retry", f"a {body['model']} request failed (attempt {attempt + 1}), retrying: "
                           f"{error[:300]}", model=body["model"], attempt=attempt)
-        time.sleep(2 ** (attempt + 1))
+        # Jittered, so a parallel round's failed calls (votes, night actions) don't all retry at the same moment.
+        wait = 2 ** (attempt + 1) * random.uniform(0.5, 1.5)
+        if retry_after and retry_after.strip().isdigit():  # a 429 saying how long to wait
+            wait = max(wait, min(float(retry_after), MAX_RETRY_WAIT_S))
+        time.sleep(wait)
 
 
 class MockClient:

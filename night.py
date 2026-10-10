@@ -95,7 +95,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     wills = {p.name: p.last_will for p in game.alive()}
     transcript = moderator.run_phase(instructions)
     if checker:
-        checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()))
+        checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()),
+                       moderator=moderator.model)
     game.resolve_revenge(alive_at_start)
     # A forged will and a Mortician's clean only take effect if their target died tonight; the moderator may
     # apply them before knowing (any op order is fine), so survivors get theirs back.

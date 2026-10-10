@@ -29,7 +29,7 @@ def records(path):
 
 class FakeResponse:
     def __init__(self, body: bytes, fail: Exception | None = None):
-        self.body, self.fail = body, fail
+        self.body, self.fail, self.sent = body, fail, False
 
     def __enter__(self):
         return self
@@ -37,10 +37,11 @@ class FakeResponse:
     def __exit__(self, *exc):
         return False
 
-    def read(self):
+    def read(self, size: int = -1):
         if self.fail:
             raise self.fail
-        return self.body
+        body, self.sent = (b"" if self.sent else self.body), True
+        return body
 
 
 def test_dropped_connections_and_provider_errors_in_an_answer_are_retried(monkeypatch):
@@ -61,6 +62,25 @@ def test_dropped_connections_and_provider_errors_in_an_answer_are_retried(monkey
     monkeypatch.setattr("urllib.request.urlopen", lambda req, timeout: FakeResponse(b"not json"))
     with pytest.raises(RuntimeError, match="failed after 1 attempts"):
         client.chat(Model.GPT_6_LUNA, [])
+
+
+def test_a_call_past_its_deadline_is_retried_once_then_fails(monkeypatch):
+    class KeptAlive(FakeResponse):  # whitespace forever, as a stuck provider behind a keep-alive could send
+        def read(self, size: int = -1):
+            return b" "
+    calls: list[float] = []
+
+    def urlopen(req, timeout):
+        calls.append(timeout)
+        return KeptAlive(b"")
+    monkeypatch.setattr("urllib.request.urlopen", urlopen)
+    monkeypatch.setattr("time.sleep", lambda s: None)
+    client = OpenRouterClient("key", timeout=0.01)
+    seen: list[str] = []
+    client.on_error = lambda kind, summary, **data: seen.append(kind)
+    with pytest.raises(RuntimeError, match="timed out"):
+        client.chat(Model.GPT_6_LUNA, [])
+    assert len(calls) == 2 and seen == ["api_retry"]
 
 
 def test_a_lone_surrogate_in_a_models_text_is_replaced(game_factory):

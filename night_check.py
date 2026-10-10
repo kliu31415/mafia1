@@ -35,8 +35,10 @@ class NightChecker:
         self.pool = ThreadPoolExecutor(max_workers=2)
         self.pending: list[Future] = []
 
-    def submit(self, night: int, instructions: str, before: dict, transcript: list[dict], after: dict) -> None:
-        """Queue a check. Everything passed must be a snapshot: the game keeps changing meanwhile."""
+    def submit(self, night: int, instructions: str, before: dict, transcript: list[dict], after: dict,
+               moderator: Model | None = None) -> None:
+        """Queue a check. Everything passed must be a snapshot: the game keeps changing meanwhile. moderator: the
+        model that resolved this night, if not the one the game started with (it switched to its fallback)."""
         user = (f"{instructions}\n\n---\n\nHidden state before the moderator acted:\n{json.dumps(before)}\n\n"
                 f"What the moderator did, in order (tool, arguments, result):\n{json.dumps(transcript, indent=1)}"
                 f"\n\nHidden state after:\n{json.dumps(after)}\n\n---\n\n"
@@ -53,6 +55,7 @@ class NightChecker:
                     {"role": "user", "content": user}]
         alive = [p for p in before["players"] if p["alive"]]
         in_play = {"alive": len(alive), "roles_in_play": sorted(p["role"] for p in alive)}  # for analysis
+        in_play["moderator"] = (moderator or self.moderator).value
         self.pending.append(self.pool.submit(self._check, night, messages, in_play))
 
     def _check(self, night: int, messages: list[dict], in_play: dict) -> None:
@@ -60,7 +63,7 @@ class NightChecker:
             reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check",
                                      effort=self.effort)
             out = answer_json(reply, CHECK_SCHEMA)
-            self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
+            self.log.write("night_check", night=night, judge=self.judge.value,
                            verdict=out["verdict"], issues=out["issues"], cost=reply.cost, usage=reply.usage,
                            **in_play)
             for issue in out["issues"]:
@@ -68,7 +71,7 @@ class NightChecker:
                     self.log.error("night_check_issue", f"night {night}: {issue['description']}",
                                    night=night, issue=issue)
         except Exception as e:  # a failed check must never stop the game
-            self.log.write("night_check", night=night, judge=self.judge.value, moderator=self.moderator.value,
+            self.log.write("night_check", night=night, judge=self.judge.value,
                            verdict="failed", issues=[], error=f"{type(e).__name__}: {e}", **in_play)
             self.log.error("night_check_error", f"the night {night} check failed: {type(e).__name__}: {e}",
                            night=night)
