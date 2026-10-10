@@ -10,7 +10,7 @@ from day import run_day
 from llm import MockClient, Model
 from moderator import Moderator
 from roles import ROLES, Status, logic
-from tests.conftest import VILLAGE5, ScriptedClient, apply_ops, told
+from tests.conftest import VILLAGE5, ScriptedClient, apply_ops, told, votes
 
 
 def test_hanged_jester_wins_and_takes_revenge_on_a_guilty_voter(game_factory):
@@ -874,3 +874,25 @@ def test_vulture_hears_a_half_true_role_for_each_new_death(game_factory):
     report_deaths(game, vulture)
     fake = told(game, "Alice")[-1].rsplit("Carol: ", 1)[1].rstrip(".")
     assert fake in ROLES and fake != "Grunt" and "Bob" not in told(game, "Alice")[-1]
+
+
+def test_auditor_learns_every_vote_its_target_cast_that_day(game_factory):
+    game, players = game_factory(["Auditor", "Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"])
+    game.day = 3
+    game.votes[2] = [{"stage": "trial", "nominee": "Erin", "votes": {"Bob": True}}]  # an earlier Day: not this one
+    game.votes[3] = [{"stage": "nomination", "nominee": "Carol", "votes": {"Bob": True, "Dave": False}},
+                     {"stage": "trial", "nominee": "Carol", "votes": {"Bob": False, "Dave": True}}]
+    game.phase = "night"
+    apply_ops(game, players, {"op": "audit", "player": "Bob", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("Your audit of Bob's votes during the Day, in order: Yes on the "
+                                            "nomination of Carol; Innocent in the trial of Carol.")
+
+
+def test_informant_sees_every_secret_trial_vote(game_factory):
+    from day import run_trial
+    game, players = game_factory(["Informant", "Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"],
+                                 ScriptedClient(votes(guilty_for={"Erin"})))
+    run_trial(game, players, game.player("Carol"), "Erin", rnd=1)
+    seen = [t for t in told(game, "Alice") if "How everyone voted" in t]
+    assert len(seen) == 1 and "Guilty - Alice, Bob, Carol, Dave" in seen[0]
+    assert not any("How everyone voted" in t for t in told(game, "Bob"))  # other Yakuza aren't told

@@ -108,6 +108,8 @@ class Game:
     puppets: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, today
     death_record: list[str] = field(default_factory=list)  # public summary of each death, for the ledger
     vote_record: list[str] = field(default_factory=list)  # public summary of each nomination and trial
+    # day -> each nomination and trial vote in order: {"stage", "nominee", "votes": {voter: Yes/Guilty}}; secret or not
+    votes: dict[int, list[dict]] = field(default_factory=dict)
     pm_record: dict[int, dict[str, int]] = field(default_factory=dict)  # day -> {"A -> B": private messages}
     night_actions: dict[int, dict[str, dict]] = field(default_factory=dict)  # night -> submitted actions
     # night -> the visits made, as [visitor, target] pairs (duplicates kept), from the moderator's record_visits

@@ -294,6 +294,11 @@ Coroner
   one who dies tonight). You learn their role, unless a Mortician cleaned them: then you learn only that. This is an Astral Visit (R6), and an exact-role check (R19): a
   Roleplayer shows as Roleplayer.
 
+Auditor
+  Night: may audit one player other than yourself. You learn every vote they cast during the Day just before this
+  Night, in order: Yes or No on each nomination and Guilty or Innocent in each trial. If they cast none, you learn
+  that. A doubled vote (Ballot Stuffer) shows as a single Guilty or Innocent.
+
 Profiler
   Tokens: 3 profile tokens.
   Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one
@@ -466,6 +471,11 @@ Wiretap
   You passively read the contents of every private message sent during the Day, between any two players. This is
   not a night action or a visit, so role-blocks don't stop it. Puppeted messages reach you as the puppet's (you
   aren't told about the puppeting). Nobody is told that a Wiretap exists.
+
+Informant
+  You passively see how every player voted in each Guilty/Innocent trial vote, right after the vote. This is not a
+  night action or a visit, so role-blocks don't stop it. Nobody is told that an Informant exists, and the other
+  Yakuza aren't told the votes: what you share in the night chat is up to you.
 
 ---------------------------------------- Neutral ----------------------------------------
 Each Neutral player is their own faction (R2).

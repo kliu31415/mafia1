@@ -104,6 +104,10 @@ class RoleLogic:
         `speaker` to `to` (Wiretap, Eavesdropper)."""
         return False
 
+    def sees_trial_votes(self, game: Game, me: Player) -> bool:
+        """Whether this living player is privately told how everyone voted in each secret trial (Informant)."""
+        return False
+
     def trial_vote_weight(self, game: Game, p: Player) -> int:
         """How many votes this player's Guilty/Innocent vote counts as today (Ballot Stuffer)."""
         return 1

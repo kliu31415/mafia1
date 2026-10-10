@@ -435,6 +435,8 @@ def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str
              prosecuted: bool = False, weights: dict[str, int] | None = None) -> None:
     """A structured vote record for analysis. stage is "nomination" (yes = Yes votes, including the
     nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once."""
+    game.votes.setdefault(game.day, []).append(
+        {"stage": stage, "nominee": nominee, "votes": {**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}})
     game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
                    votes={**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}, outcome=outcome,
                    prosecuted=prosecuted, secret=game.rule_settings[f"{stage}_votes"] == "secret",
@@ -476,6 +478,11 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
         for v, o in zip(voters, outs):
             game.emit(f"(Only you see this) You voted {'Guilty' if o['vote'] else 'Innocent'} in the trial of "
                       f"{nominee}.", [v.name], kind="notice", cat=VOTE)
+        informants = [p.name for p in game.alive() if logic(p.role).sees_trial_votes(game, p)]
+        if informants:
+            game.emit(f"(Only you see this) How everyone voted in the trial of {nominee}: Guilty - "
+                      f"{', '.join(guilty) or 'nobody'}; Innocent - {', '.join(innocent) or 'nobody'}.", informants,
+                      cat=VOTE)
     else:
         game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
                   f"Innocent - {', '.join(innocent) or 'nobody'}.", cat=VOTE)

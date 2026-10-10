@@ -84,6 +84,11 @@ ROLES: dict[str, RoleInfo] = {
                         tokens={"coroner": 3}, acts_at_night=True,
                         notes="moderator records the use with the examine op (a dead target, not a visit); code "
                         "tells them the role, or that the body was cleaned"),
+    "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False,
+                        summary="Night: audit a player, learn all their nomination and trial votes from that Day.",
+                        acts_at_night=True,
+                        notes="moderator records the use with the audit op (a visit); code reads the Day's votes "
+                        "and tells them"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",
@@ -196,6 +201,9 @@ ROLES: dict[str, RoleInfo] = {
     "Wiretap": RoleInfo(Alignment.EVIL, "Yakuza", True,
                         summary="Passively reads every Day PM between any players.",
                         notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),
+    "Informant": RoleInfo(Alignment.EVIL, "Yakuza", True,
+                          summary="Passively sees how every player voted in each trial.",
+                          notes="code tells living Informants each secret trial's votes; not role-blockable"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                         summary="Wins alone if alive when few enough players remain at dawn. Learns a role for each "
