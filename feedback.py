@@ -22,7 +22,7 @@ DEBRIEF_QUESTIONS = {
     "bugs_or_oddities": "Did anything seem broken, inconsistent with the rules, or strange?",
     "suggestions": "What would you change about the game or the interface?",
 }
-DEBRIEF_SCHEMA = obj(**{k: STR for k in DEBRIEF_QUESTIONS})
+DEBRIEF_SCHEMA = obj(**dict.fromkeys(DEBRIEF_QUESTIONS, STR))
 ISSUE_KINDS = ["rules ambiguity", "harness bug", "moderator error", "prompt problem", "player confusion", "other"]
 REVIEW_SCHEMA = obj(issues={"type": "array", "items": obj(
     kind={"type": "string", "enum": ISSUE_KINDS},
@@ -51,7 +51,8 @@ def when(r: dict) -> str:
 def full_log(game: Game) -> str:
     """Every event, with who could see it. Players get it after the game too, so feedback and lessons
     from players who died early (or never saw the other side's chat) cover the whole game."""
-    return "\n".join(f"[Day {e.day} {e.phase}] " + ("" if e.visible_to is None else f"(to {', '.join(sorted(e.visible_to))}) ")
+    return "\n".join(f"[Day {e.day} {e.phase}] "
+                     + ("" if e.visible_to is None else f"(to {', '.join(sorted(e.visible_to))}) ")
                      + e.text for e in game.events
                      if not e.notice)  # "X sent Y a private message" would repeat the message shown above it
 
@@ -87,7 +88,7 @@ POST_GAME_SECTIONS = {  # "section" records: the log views start a titled sectio
 def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     game.log.write("section", title=POST_GAME_SECTIONS["debrief"])
     task = debrief_task(game, with_reveal=False)  # the reveal is in the context
-    fallback = {k: "" for k in DEBRIEF_QUESTIONS}
+    fallback = dict.fromkeys(DEBRIEF_QUESTIONS, "")
     outs = players.ask_many([(p, task, DEBRIEF_SCHEMA, fallback) for p in game.players], step="debrief",
                             context=post_game_context(game), shared_with=POST_GAME_SCHEMA)
     for p, out in zip(game.players, outs):
@@ -369,7 +370,8 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
         ], answer_schema, "quiz", f"{spec}'s answers", problems)
         answers = [parsed.get(f"q{i + 1}", "") for i in range(len(QUIZ))]
         answers_by_model[str(spec)] = answers
-        marking = "\n".join(f"{i + 1}. Q: {q}\n   Reference: {ref}\n   Answer: {answers[i] if i < len(answers) else '(none)'}"
+        marking = "\n".join(f"{i + 1}. Q: {q}\n   Reference: {ref}\n"
+                            f"   Answer: {answers[i] if i < len(answers) else '(none)'}"
                             for i, (q, ref) in enumerate(QUIZ))
         table[str(spec)] = quiz_answer(client, grader, [
             {"role": "user", "content": "Mark each answer correct if it gets the reference's main point right and "

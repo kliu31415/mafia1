@@ -2,8 +2,8 @@
 
 Every error a game runs into is logged with alert: true (GameLog.error). This lists the games in logs/
 whose errors haven't been marked reviewed (and problems the moderator flagged, players reported in their
-feedback field, or the post-game log review rated high severity), plus games that stopped with no result and no crash record
-(the process was killed). Claude Code runs `--hook` when a session starts in this folder
+feedback field, or the post-game log review rated high severity), plus games that stopped with no result and no
+crash record (the process was killed). Claude Code runs `--hook` when a session starts in this folder
 (.claude/settings.json), so Claude sees new errors and brings them up; a finished game also prints a
 reminder line while any are unreviewed. Reviewed errors are kept in logs/alerts_reviewed.json (by when
 each happened), so a game that gets new errors later (e.g. it was resumed) shows up again.
@@ -65,7 +65,8 @@ def scan(path: Path) -> dict:
         elif r.get("kind") == "review":  # the post-game log review's serious findings
             errors += [{"t": r.get("t"), "kind": "review_issue", "id": f"{r.get('t')}:review_issue:{n}",
                         "error": f"{i.get('kind')}: {i.get('description')}"}
-                       for n, i in enumerate(r.get("issues") or []) if isinstance(i, dict) and i.get("severity") == "high"]
+                       for n, i in enumerate(r.get("issues") or [])
+                       if isinstance(i, dict) and i.get("severity") == "high"]
     kinds = Counter(str(r.get("kind")) for r in errors)
     samples: list[str] = []
     for kind in kinds:

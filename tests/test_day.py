@@ -254,7 +254,8 @@ def test_a_new_claim_shows_in_everyones_history_and_a_name_prefix_is_dropped(gam
     claims = [e for e in game.events if e.cat == "claim"]
     assert len(claims) == 1 and claims[0].text == "[Claim] Alice: Sheriff. N1: Bob Not Evil"
     assert "[Claim] Alice" in game.history_for("Bob")
-    assert [e.fields["message"] for e in game.events if e.cat == "chat"] == ["Alice: I'm the Sheriff.", "I'm the Sheriff."]
+    assert ([e.fields["message"] for e in game.events if e.cat == "chat"]
+            == ["Alice: I'm the Sheriff.", "I'm the Sheriff."])
 
 
 def test_each_day_states_the_living_count_and_nomination_threshold(game_factory):

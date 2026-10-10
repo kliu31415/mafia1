@@ -88,7 +88,8 @@ def player_view(text: str) -> str:
 
 
 def choose_players(names: list[str], models: list[str], who: str, rng: random.Random) -> list[str]:
-    """Which players get tips. who: "all", "half" (a random half, rounded down, picked with rng), or comma-separated player names and model short names."""
+    """Which players get tips. who: "all", "half" (a random half, rounded down, picked with rng), or
+    comma-separated player names and model short names."""
     if who == "all":
         return names
     if who == "half":
@@ -521,7 +522,8 @@ def main() -> None:
         if not found:
             raise SystemExit(f"No game logs match {pat}")
         paths |= set(found)
-    paths = {p for p in paths if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
+    paths = {p for p in paths
+             if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
     client = MockClient(0) if args.mock else OpenRouterClient(load_api_key())
     if isinstance(client, OpenRouterClient):
         client.on_error = print_alert

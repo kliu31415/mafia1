@@ -71,8 +71,8 @@ def test_shared_files_are_merged_and_pushes_from_two_machines_both_land(machines
     logs = a.root / "logs"
     assert (logs / "game_b.jsonl").exists()
     assert (logs / "lessons.jsonl").read_text().splitlines() == ['{"game": "game_a"}', '{"game": "game_b"}']
-    assert json.loads((logs / "alerts_reviewed.json").read_text()) == {"game_a": ["1:crash"], "old": ["2:api_retry", "5:player_error"],
-                                                                 "older": []}
+    assert json.loads((logs / "alerts_reviewed.json").read_text()) == {
+        "game_a": ["1:crash"], "old": ["2:api_retry", "5:player_error"], "older": []}
 
 
 def test_tips_published_on_the_pc_reach_cloud_games(machines):
@@ -149,8 +149,10 @@ def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch):
     monkeypatch.setattr(mafia, "play_game", lambda client, *a, **kw: calls.append(("play", kw["update_tips"])))
     monkeypatch.setattr(mafia, "OpenRouterClient", lambda *a, **kw: None)
     monkeypatch.setattr(mafia, "load_api_key", lambda: "key")
-    monkeypatch.setattr(sync_logs, "after_game", lambda log_dir, tips_dir, cloud: calls.append(("sync", tips_dir, cloud)))
-    monkeypatch.setattr(sync_logs, "catch_up", lambda repo, log_dir, tips_dir, model: calls.append(("catch_up", tips_dir)))
+    monkeypatch.setattr(sync_logs, "after_game",
+                        lambda log_dir, tips_dir, cloud: calls.append(("sync", tips_dir, cloud)))
+    monkeypatch.setattr(sync_logs, "catch_up",
+                        lambda repo, log_dir, tips_dir, model: calls.append(("catch_up", tips_dir)))
     for cloud, argv, expected in [
             ("true", [], [("play", None), ("sync", None, True)]),
             ("", [], [("catch_up", mafia.DEFAULT_TIPS.parent), ("play", mafia.DEFAULT_TIPS),
@@ -257,7 +259,8 @@ def test_a_pc_game_first_adds_new_cloud_games_to_the_tips(machines, monkeypatch)
     (cloud.root / "logs" / "game_1.jsonl").write_text("{}")
     sync_logs.push(cloud, cloud.root / "logs")
     built: list = []
-    monkeypatch.setattr(sync_logs, "update_tips", lambda games, tips_dir, model: built.append(([g.name for g in games], model)))
+    monkeypatch.setattr(sync_logs, "update_tips",
+                        lambda games, tips_dir, model: built.append(([g.name for g in games], model)))
     logs, tips = pc.root / "logs", pc.root / "tips"
     assert [w.name for w in sync_logs.catch_up(pc, logs, tips, "opus-5.5")] == ["game_1.jsonl"]
     assert built == [(["game_1.jsonl"], "opus-5.5")]

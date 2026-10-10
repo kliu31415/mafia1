@@ -176,7 +176,8 @@ def play_game(client: LLMClient, models: Sequence[Model | ModelSpec], moderator_
                           sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
         if isinstance(client, OpenRouterClient):
             client.on_error = log.error
-        players = Players(game, client, rules, feedback_field=feedback_field, shared=isinstance(client, OpenRouterClient))
+        players = Players(game, client, rules, feedback_field=feedback_field,
+                          shared=isinstance(client, OpenRouterClient))
         moderator = Moderator(game, client, players, mod.model, rules, flag_issues=flag_issues, effort=mod.effort,
                               fallback=moderator_fallback)
         if resume:
@@ -403,19 +404,25 @@ def main() -> None:
                     help="save the game at the start of each day and night to logs/<game>.ckpt, deleted when the game "
                     "finishes, so a stopped game can be continued with --resume")
     ap.add_argument("--resume", metavar="CKPT", help="continue a stopped game from its checkpoint, with the "
-                    "settings it started with (other game options are ignored); replays the day or night it was saved at")
+                    "settings it started with (other game options are ignored); replays the day or night it was "
+                    "saved at")
     fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md); on by default, "
                              "turn one off with --no-<flag>")
-    fb.add_argument("--debrief", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player and the moderator "
+    fb.add_argument("--debrief", action=argparse.BooleanOptionalAction, default=True,
+                    help="after the game, ask every player and the moderator "
                     "what was confusing, missing or broken")
-    fb.add_argument("--mod-flags", action=argparse.BooleanOptionalAction, default=True, help="give the moderator a flag_issue tool for rules "
+    fb.add_argument("--mod-flags", action=argparse.BooleanOptionalAction, default=True,
+                    help="give the moderator a flag_issue tool for rules "
                     "ambiguities and missing tools during the game")
-    fb.add_argument("--feedback-field", action=argparse.BooleanOptionalAction, default=True, help="add an optional out-of-game feedback field "
+    fb.add_argument("--feedback-field", action=argparse.BooleanOptionalAction, default=True,
+                    help="add an optional out-of-game feedback field "
                     "to every player response")
-    fb.add_argument("--lessons", action=argparse.BooleanOptionalAction, default=True, help="after the game, ask every player for tips they wish "
+    fb.add_argument("--lessons", action=argparse.BooleanOptionalAction, default=True,
+                    help="after the game, ask every player for tips they wish "
                     "they'd known, and the moderator model for a strategy review of the game; also "
                     "appended to logs/lessons.jsonl across games for analysis")
-    fb.add_argument("--review", action=argparse.BooleanOptionalAction, default=True, help="after the game, have the moderator model review the "
+    fb.add_argument("--review", action=argparse.BooleanOptionalAction, default=True,
+                    help="after the game, have the moderator model review the "
                     "whole log for problems")
     fb.add_argument("--check-nights", action=argparse.BooleanOptionalAction, default=True,
                     help="after each night, have the moderator model check the moderator's resolution against "

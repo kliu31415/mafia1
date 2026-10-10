@@ -176,7 +176,8 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
 
         def do_GET(self) -> None:
             if self.path.split("?")[0] not in ("/", f"/{INDEX}"):
-                return super().do_GET()
+                super().do_GET()
+                return
             page = render(load_summaries(log_dir, include_mock), datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                           live=True).encode()
             self.send_response(200)

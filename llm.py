@@ -110,13 +110,15 @@ MODELS: dict[Model, ModelInfo] = {
     # Grok, Qwen and Kimi return their reasoning text in full.
     Model.GROK_4_7: ModelInfo("grok-4.7", "mid", 4, short_reason=True),  # AA 46
     Model.QWEN_3_8_MAX_PRIME: ModelInfo("qwen-3.8-max-prime", "mid", 4, "medium", short_reason=True),  # = qwen3.8-max
-    Model.QWEN_3_8_MAX: ModelInfo("qwen-3.8-max", "mid", 4, "medium", short_reason=True),  # AA 45; high runs past the cap
+    # AA 45; high runs past the cap
+    Model.QWEN_3_8_MAX: ModelInfo("qwen-3.8-max", "mid", 4, "medium", short_reason=True),
     Model.KIMI_K3: ModelInfo("kimi-k3", "mid", 4, short_reason=True),  # AA 44
     Model.GLM_5_3: ModelInfo("glm-5.3", "mid", 4),  # AA 44.8; reasoning return not checked
     # Gemini returns brief thought summaries only. High effort nears the token cap (see above).
     Model.GEMINI_3_8_FLASH: ModelInfo("gemini-3.8-flash", "cheap", 3, "medium"),  # AA 41 at high
     # Haiku 5.5 wrote "Name:" at the start of nearly every public message (game_20261009_084630_739772).
-    Model.HAIKU_5_5: ModelInfo("haiku-5.5", "cheap", 2, short_reason=True, name_prefix=True),  # AA 43 at max, 38 at high
+    # AA 43 at max, 38 at high
+    Model.HAIKU_5_5: ModelInfo("haiku-5.5", "cheap", 2, short_reason=True, name_prefix=True),
     Model.GPT_6_LUNA: ModelInfo("gpt-6-luna", "cheap", 2),  # AA 38
     # DeepSeek V4.1 Flash fills some strict-schema answers with whitespace runs to the token limit, like Solar and
     # MiMo but less often: 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together;

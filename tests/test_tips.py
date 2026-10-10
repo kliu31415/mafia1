@@ -132,11 +132,13 @@ def test_the_notebook_and_sheet_are_built_from_game_logs(tmp_path):
         *[{"kind": "player_fallback", "player": "Ivan"}] * 3,
         {"kind": "lessons", "who": "Alice", "role": "Medic", "model": "anthropic/claude-haiku-5.5",
          "lessons": [{"topic": "night actions", "applies_to": "Medic", "tip": "Guard the Sheriff."}]},
-        {"kind": "strategy_review", "model": "anthropic/claude-opus-5.5", "summary": "The Village won on day 3.", "lessons": [
-            {"topic": "deduction", "applies_to": "everyone", "tip": "Track votes.", "evidence": "Day 2 vote."}]},
+        {"kind": "strategy_review", "model": "anthropic/claude-opus-5.5", "summary": "The Village won on day 3.",
+         "lessons": [{"topic": "deduction", "applies_to": "everyone", "tip": "Track votes.",
+                      "evidence": "Day 2 vote."}]},
         {"kind": "result", "winners": ["Alice"], "winning_faction": "Village", "end_reason": "win", "days": 3,
          "roles": {"Alice": "Medic", "Ivan": "Grunt"},
-         "models": {"Alice": "anthropic/claude-haiku-5.5", "Ivan": "anthropic/claude-opus-5.5"}, "errors": {"player_fallback": 3}},
+         "models": {"Alice": "anthropic/claude-haiku-5.5", "Ivan": "anthropic/claude-opus-5.5"},
+         "errors": {"player_fallback": 3}},
     ]
     log.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     (tmp_path / "game_20261009_000001_2.jsonl").write_text(json.dumps({"kind": "setup"}) + "\n", encoding="utf-8")

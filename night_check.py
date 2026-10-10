@@ -19,7 +19,8 @@ CHECK_SCHEMA = obj(
     verdict={"type": "string", "enum": ["correct", "errors", "unsure"]},
     issues={"type": "array", "items": obj(
         rule=STR,  # e.g. "R9" or a role name
-        severity={"type": "string", "enum": ["high", "medium", "low"]},  # high: changed who lives or what someone learned
+        # high: changed who lives or what someone learned
+        severity={"type": "string", "enum": ["high", "medium", "low"]},
         kind={"type": "string", "enum": ISSUE_KINDS},
         description=STR,
     )},

@@ -39,8 +39,8 @@ from records import read_records, safe_print
 #     schema are player_errors
 # 16: settings have setup: {"kind": "fixed"}, or {"kind": "random", "players", "pool"} for --roles random:N
 # 17: "resume" has cut_cost (cost of the calls cut from the log, still in the result's cost) and
-#     unreadable_lines; a resumed game keeps earlier nights' night_check records; "night_effects_undone" record (a revenge kill reverted a
-#     night's will forgery or cleaning); new error kind log_error (unreadable log lines)
+#     unreadable_lines; a resumed game keeps earlier nights' night_check records; "night_effects_undone" record
+#     (a revenge kill reverted a night's will forgery or cleaning); new error kind log_error (unreadable log lines)
 # 18: "katana" has revote_targets (Yakuza -> target in the revote, or null when there was none)
 # 19: "tips_update" record after the result (model, cost of updating the tips; not in the result's cost)
 # 20: trial "vote" records have weights (voter -> votes counted, only voters counted more than once; Ballot Stuffer)
@@ -50,7 +50,8 @@ from records import read_records, safe_print
 # 23: player answers have no "thoughts" field (any model): written-out reasoning looks like distillation to
 #     Anthropic's filter, which blocked Opus calls in game_20261009_084630_739772; see "reasoning" instead
 # 24: player_call outputs have "reason", a sentence or a few on why the player chose that answer (players.REASON_NOTE)
-# 25: claims are "event" records with cat "claim" (fields speaker, claim), shown in players' history, instead of "claim" records
+# 25: claims are "event" records with cat "claim" (fields speaker, claim), shown in players' history, instead of
+#     "claim" records
 # 26: "section" records (title) before each post-game step, so log views show them as named sections
 # 27: chat and pm events a Puppeteer wrote have a "puppeteer" field; night_actions include automatic actions
 #     (the Ex-Con's random visit), marked "automatic": true

@@ -504,7 +504,8 @@ def render_html(jsonl_path: Path) -> Path:
                "<span class='n Neutral'>Neutral</span>")
     title = f"Mafia game {jsonl_path.stem}"
     page = (f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' "
-            f"content='width=device-width, initial-scale=1'><title>{esc(title)}</title><style>{CSS}{icons_css()}</style>"
+            f"content='width=device-width, initial-scale=1'><title>{esc(title)}</title>"
+            f"<style>{CSS}{icons_css()}</style>"
             f"</head><body><h1>{esc(title)}</h1><div class='legend'>{legend}</div><div class='controls'>"
             f"<label><input type='checkbox' id='showcalls' checked> Model details</label>"
             f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
@@ -542,7 +543,7 @@ def errors_html(errors: list[tuple[str, dict]], unreadable: int = 0) -> str:
 def render_text(jsonl_path: Path) -> Path:
     lines = [text_line(r) for r in read_records(jsonl_path)[0]]
     txt_path = jsonl_path.with_suffix(".txt")
-    txt_path.write_text("\n".join(l for l in lines if l is not None) + "\n", encoding="utf-8", errors="replace")
+    txt_path.write_text("\n".join(line for line in lines if line is not None) + "\n", encoding="utf-8", errors="replace")
     return txt_path
 
 

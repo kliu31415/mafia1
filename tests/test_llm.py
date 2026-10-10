@@ -145,7 +145,8 @@ def test_an_answer_that_breaks_its_schema_is_an_error_and_still_costs(tmp_path):
             reply = super().chat(model, messages, **kw)
             return dataclasses.replace(reply, content=json.dumps({"vote": "Zed"}), cost=0.01)
     game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], OffSchema())  # type: ignore[arg-type]
-    assert players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote") == {"vote": False}
+    answer = players.ask(game.player("Alice"), "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote")
+    assert answer == {"vote": False}
     game.log.close()
     from gamelog import usage_by_caller
     [alice, _] = usage_by_caller(game.log.path, [{"name": "Alice", "model": "m"}, {"name": "Bob", "model": "m"}])
@@ -239,7 +240,8 @@ def test_live_games_send_one_schema_for_every_in_game_question(tmp_path):
     assert players.ask(alice, "Vote.", VOTE_SCHEMA, {"vote": False}, step="trial_vote") == {"vote": True}
     assert players.ask(alice, "Will.", LAST_WILL_SCHEMA, {"last_will": "x"}, step="will") == {"last_will": ""}
     players.ask(alice, "Talk.", day_turn_schema(game, "Alice", can_nominate=True), {}, step="day_turn")
-    assert players.ask(bob, "Act.", night_action_schema(game, bob), {"act": False}, step="night_action") == {"act": False}  # fallback
+    answer = players.ask(bob, "Act.", night_action_schema(game, bob), {"act": False}, step="night_action")
+    assert answer == {"act": False}  # fallback
     assert all(s == sent[0] for s in sent) and len(sent) == 5  # the night action was asked twice
     assert "Answer in these fields: vote" in players.client.asked[0][1]  # type: ignore[attr-defined]
 

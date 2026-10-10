@@ -65,7 +65,9 @@ def test_dropped_connections_and_provider_errors_in_an_answer_are_retried(monkey
 
 def test_a_lone_surrogate_in_a_models_text_is_replaced(game_factory):
     def decide(name, task, schema):
-        return {"public_message": "Hello \ud83d"} if name == "Alice" and "public_message" in schema["properties"] else None
+        if name == "Alice" and "public_message" in schema["properties"]:
+            return {"public_message": "Hello \ud83d"}
+        return None
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
     from day import chat_turn
     game.player("Alice").speaking_budget = 3.0
@@ -368,7 +370,8 @@ def test_alerts_in_progress_stay_listed_apart_until_acked_and_new_errors_reopen_
         log.write_text(err(1) + "\n" + json.dumps({"t": 2, "kind": "result"}) + "\n", encoding="utf-8")
     alerts.mark_in_progress(tmp_path, [a.stem], "waiting on Kevin")
     new, wip = alerts.split_in_progress(tmp_path, alerts.unreviewed(tmp_path))
-    assert [g["game"] for g in new] == [b.stem] and [(g["game"], g["note"]) for g in wip] == [(a.stem, "waiting on Kevin")]
+    assert [g["game"] for g in new] == [b.stem]
+    assert [(g["game"], g["note"]) for g in wip] == [(a.stem, "waiting on Kevin")]
     assert "waiting on Kevin" in alerts.describe(new, wip)
     assert alerts.ack(tmp_path, ["all"]) == [b.stem]  # "all" leaves in-progress games alone
     assert alerts.pending_line(tmp_path) is None  # only an in-progress game is left
@@ -391,7 +394,8 @@ def test_tips_skip_unfinished_games_and_repeated_ops_and_keep_the_sheet_when_the
         (tmp_path / f"game_2026100{n}_000000_1.jsonl").write_text(
             "\n".join(json.dumps(r) for r in game(n, finished)) + "\n", encoding="utf-8")
     client = TipsClient([[op("add", tip="Count votes.", weight=0.5), op("add", tip="Count votes.")]])
-    out = tips.build(sorted(tmp_path.glob("game_*.jsonl")), tmp_path / "tips.md", client, ModelSpec(Model.OPUS_5_5), 500)
+    out = tips.build(sorted(tmp_path.glob("game_*.jsonl")), tmp_path / "tips.md", client,
+                     ModelSpec(Model.OPUS_5_5), 500)
     nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
     assert nb["games"] == ["game_20261001_000000_1"] and len(nb["entries"]) == 1  # unfinished: not yet
     entry = nb["entries"][0]
@@ -627,7 +631,8 @@ def test_death_reveal_says_who_or_what_killed():
 def test_a_cut_notepad_tells_its_owner(game_factory):
     long = " ".join(["word"] * (NOTEPAD_WORDS + 5))
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(lambda name, task, schema: {"notepad": long}))
-    players.ask(game.player("Alice"), "Note something.", {"type": "object", "properties": {}, "required": []}, {}, step="day_turn")
+    players.ask(game.player("Alice"), "Note something.", {"type": "object", "properties": {}, "required": []}, {},
+                step="day_turn")
     assert "notepad was over" in game.history_for("Alice") and "notepad was over" not in game.history_for("Bob")
 
 

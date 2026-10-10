@@ -319,7 +319,8 @@ class Game:
         if dead:
             lines.append("Dead: " + "; ".join(
                 f"{who(p)}, died day {p.death['day']} {p.death['phase']}" if p.death else who(p) for p in dead))
-        effects = ([f"Clerk's rig on day {self.rigged_day}"] if self.rigged_day and self.rigged_day >= self.day else []) \
+        effects = ([f"Clerk's rig on day {self.rigged_day}"]
+                   if self.rigged_day and self.rigged_day >= self.day else []) \
             + [f"{n} is prosecuted next day" for n in self.prosecutions] \
             + [f"{a} puppets {b} next day" for b, a in self.puppets_next.items()] \
             + [f"{a} puppets {b} today" for b, a in self.puppets.items()]

@@ -5,9 +5,10 @@ from roles.base import RoleLogic, Status, register
 
 @register("Trapper")
 class Trapper(RoleLogic):
-    night_note = ("Trapper traps persist across nights: set_status key 'trapped_by' to the Trapper's name on the trapped "
-                  "player, and set it to null when the trap is used up or replaced. If several non-Village players "
-                  "visit a trapped player the same night, random_choice picks the one hit.")
+    night_note = ("Trapper traps persist across nights: set_status key 'trapped_by' to the Trapper's name on "
+                  "the trapped player, and set it to null when the trap is used up or replaced. "
+                  "If several non-Village players visit a trapped player the same night, "
+                  "random_choice picks the one hit.")
 
     def briefing(self, game, p):
         # Trappers lost track of whether their trap still stood (game_20261009_121338_61703).

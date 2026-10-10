@@ -16,9 +16,14 @@ pythonpath = ["."]
 line-length = 120
 
 [tool.ruff.lint]
-# Bug-catching rules only (undefined names, unused imports, likely mistakes), not style.
-select = ["F", "E9", "B"]
+# Bug-catching rules (undefined names, unused imports, likely mistakes), plus the line-length limit.
+select = ["F", "E9", "B", "E501"]
 ignore = ["B905"]  # zip() without strict=
+
+[tool.ruff.lint.per-file-ignores]
+# Their embedded HTML/CSS/JS templates (game_index.PAGE, log_viewer.CSS/JS) keep long lines.
+"game_index.py" = ["E501"]
+"log_viewer.py" = ["E501"]
 
 [tool.mypy]
 explicit_package_bases = true

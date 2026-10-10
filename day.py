@@ -191,7 +191,8 @@ def drop_own_name(out: dict, name: str, model: Model) -> dict:
     (game_20261009_084630_739772). Kept to models marked name_prefix in llm.MODELS so other models'
     messages are never rewritten; drop it if a later Haiku follows the prompt."""
     msg = out.get("public_message")
-    if model.info.name_prefix and isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
+    if (model.info.name_prefix and isinstance(msg, str)
+            and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip()):
         out = {**out, "public_message": msg[m.end():]}
     return out
 
@@ -310,7 +311,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"(Program note: your last will was over {LAST_WILL_WORDS} words, so it was cut to its "
                       f"first {LAST_WILL_WORDS}.)", [p.name])
     # A claim with no letters or digits (Sol wrote "/" for "no change") or a written-out null keeps the old one.
-    if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):  # a Puppeteer may set the puppet's
+    # (A Puppeteer may set the puppet's.)
+    if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):
         claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
         claims = game.claim_record.setdefault(p.name, [])
         if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
@@ -391,7 +393,8 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     no_voters = [v.name for v, o in zip(others, outs) if not o["vote"]]
     game.emit(f"Nomination votes on {nominee}: Yes - {', '.join(yes_voters)}; "
               f"No - {', '.join(no_voters) or 'nobody'}.", cat=VOTE)
-    passed = majority(len(yes_voters), len(game.alive()))  # rules R4: majority of all votes counted (one each; no abstentions)
+    # rules R4: majority of all votes counted (one each; no abstentions)
+    passed = majority(len(yes_voters), len(game.alive()))
     log_vote(game, "nomination", nominator.name, nominee, yes_voters, no_voters, "passed" if passed else "failed")
     game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; Yes - {', '.join(yes_voters)}; "
                             f"No - {', '.join(no_voters) or 'nobody'}; {'passed' if passed else 'failed'}")
@@ -411,7 +414,7 @@ def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str
     """A structured vote record for analysis. stage is "nomination" (yes = Yes votes, including the
     nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once."""
     game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
-                   votes={**{n: True for n in yes}, **{n: False for n in no}}, outcome=outcome,
+                   votes={**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}, outcome=outcome,
                    prosecuted=prosecuted, **({"weights": weights} if stage == "trial" else {}))
 
 
