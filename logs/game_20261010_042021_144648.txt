@@ -337,3 +337,74 @@ Judy nominated Carol. Everyone now votes Yes/No simultaneously.
 Nomination votes on Carol: Yes - Judy, Erin, Frank; No - Carol, Grace.
 Carol is put on trial (3 Yes).
 Carol (public): I am the Seer, and my log is consistent: N1 I spent my token on Alice/Dave; N2 Alice/Ivan, N3 Frank/Alice, and N4 Heidi/Judy were random pairs, all same alignment. These results don’t identify a Katana holder, and I shouldn’t have treated them as a case against Judy. I nominated Mallory over the missing visit, then wrongly voted Innocent because I over-weighted the possible Roleplayer explanation. I also made a weak call on Alice. Those were mistakes, not evidence I’m Yakuza. I voted Guilty on Bob after his explicit “Yakuza Fabricator” claim, and his flip confirmed it. Please vote Innocent: there’s no mechanical contradiction in my claim.
+Erin (public): Erin, Lookout. I'm voting Guilty on Carol. Three concrete points: (1) Alice's Day 3 public track showed Ivan visiting Carol, Carol nominated Alice that same day, and the Katana killed Alice that night. (2) Ivan, the Sheriff, visited Carol on N2 (my watch saw it), and the Katana killed Ivan that same night. (3) Carol nominated Mallory, then voted Innocent on the confirmed Smuggler. Her Seer pairs can't be checked, and a holder reads Good, so they clear no one. Carol, why did you nominate Alice the day her track implicated you?
+Frank (public): I’ll vote Guilty. This isn’t a Seer-pair case: Carol nominated Mallory over a Sheriff visit that could not have happened, then voted Innocent despite calling the result unusable. More concerning, Alice publicly tracked Ivan visiting Carol, Carol nominated Alice, and the Katana killed Alice that night. Together, that’s the strongest remaining Yakuza case.
+Grace (public): Grace, Vanilla. Before the vote: Judy's record is the pattern to watch. She voted Innocent on Bob's trial and No on his Day 4 nomination after his Fabricator slip, and she nominated Carol right after Carol's Seer read named Judy as the possible Katana holder. Carol's own nominations on Mallory and Bob both hit confirmed Yakuza. I'm voting Innocent on Carol unless a concrete contradiction appears.
+Judy (public): Judy, Vanilla. I'm voting Guilty on Carol. Her Seer pairs can't be tested. She nominated Mallory, then voted Innocent on her. Her Alice nomination came the day Alice's track showed Ivan visiting Carol. Her N4 pair on me proves nothing either way. Erin and Frank have given concrete reasons, and I agree with them.
+Carol (public): I won’t defend my Alice nomination: it was a weak suspicion after her track, and my Innocent vote on Mallory was a mistake. But neither is a mechanical link. Ivan’s visit to me was consistent with his Sheriff action; we never got his result, and his death proves only that the Yakuza wanted him dead. Alice’s track established the visit, not my alignment. My random N2–N4 Seer pairs were non-visiting and don’t show I attacked anyone. Bob’s Fabricator flip, meanwhile, confirmed my Guilty vote on him. Judy’s Innocent vote on Bob after his slip and No on his D4 nomination deserve scrutiny, as does her being in my unresolved N4 pair with confirmed Good Heidi. Don’t turn my bad reads into proof of faction; vote Innocent.
+Trial votes on Carol: Guilty - Erin, Frank, Judy; Innocent - Carol, Grace.
+Carol is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Carol died (executed by hanging). Their role was Seer. Their last will: "Carol, Seer (Good). N1 Alice/Dave same (token); N2 Alice/Ivan same; N3 Frank/Alice same; N4 Heidi/Judy same. Seer pairs do not identify the Katana holder, who appears Good to alignment checks.
+
+Confirmed flips: Mallory Smuggler, Bob Fabricator, Heidi Good Medic, Alice Good Tracker, Ivan Good Sheriff. Frank admits his Vigilante shot killed Heidi; Erin saw Frank as Heidi’s only visitor N4, strongly supporting Frank’s claim. Erin’s earlier watches were corroborated by Alice’s tracks. Erin reports the Katana attacked her N4; fresh Standard protection could explain her survival.
+
+Judy was found Innocent on Day 5. Correction: Judy voted YES on Bob’s Day 3 nomination, not No as I and others mistakenly said; she and Grace both voted Innocent at Bob’s trial. Judy voted No on Mallory’s nomination, then Guilty at trial. These votes are leads, not proof. Grace’s Vanilla claim is unverified. Don’t clear or convict either from votes or my Seer pairs; seek mechanical evidence."
+
+===== NIGHT 5 =====
+Night actions:
+  Erin (Lookout): target Judy; "Lookout watch on Judy"
+  Frank (Vigilante): no action
+  Judy (Grunt): no role action; Katana vote: Judy holds, attacks Erin
+Katana: Judy holds it and attacks Erin.
+(to Erin) Moderator (private): Night 5 result: You watched Judy. Nobody visited Judy tonight. You were attacked with the Katana tonight and you died.
+(to Judy) Moderator (private): Night 5 result: You held the Katana and attacked Erin. The attack succeeded. Yakuza actions tonight: Judy (Grunt) held the Katana and attacked Erin; no other night action. You still hold the Katana.
+[Moderator summary] Night 5: Judy (Grunt, Katana holder) attacked Erin with the Standard Katana. Erin had no Defense and no protection, so she died (cause Katana, by Judy). Erin's Lookout watch on Judy saw no visitors. Frank and Grace took no action. Nobody was role-blocked. Still alive: Frank (Village), Grace (Village), Judy (Yakuza), so there's no win yet.
+
+===== DAY 6 =====
+Erin died (killed by Katana). Their role was Lookout. Their last will: "Erin, Lookout (Good). Results: N1 watched Ivan: visited only by Alice and Bob. N2 watched Carol: visited only by Ivan. N3 watched Bob: no visitors. N4 watched Heidi: visited only by Frank, and Heidi then died to a Vigilante, which fits Frank's Vigilante claim. Night 4: a Katana attack on me failed, so a living Yakuza holder exists among Carol, Frank, Grace and Judy. Mallory's Sheriff check on Ivan had no visit behind it, so her Evil read is false. Bob's N1 visit to Ivan fits a Medic claim. Plan, not result: I'll watch the likeliest Katana holder tonight and post the visitors at dawn. Village: hang only on visit or vote mismatches, not on counterclaims alone."
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Grace.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Grace (public): Grace, Vanilla. Judy's record shields confirmed Yakuza Mallory and Bob, and Frank's Vigilante shot matches Erin's N4 watch. I nominate Judy.
+(to Frank, Grace) Grace -> Frank (private): Frank, I'm nominating Judy: she shielded Mallory and Bob. Please vote Yes so we can trial her.
+Grace nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Grace, Frank; No - Judy.
+Judy is put on trial (2 Yes).
+Judy (public): Judy, Vanilla Villager, no night action or results. Grace, your case rests on my Day 3 and Day 5 votes. My Innocent on Bob was a call for lack of a mechanical contradiction, and voting Innocent on myself at Day 5 proves nothing. Carol's Seer pairs can't be tested, and my N4 pair with Heidi reads Good, which fits a Good Judy. Frank, Erin's watch corroborates your Vigilante shot on Heidi, so I won't argue with it. But that doesn't show I'm guilty. Guilty needs two votes out of three. Hang me only on a visit or vote mismatch, and I see none.
+(to Grace, Judy) Judy -> Grace (private): Grace, I have no night action and no results to hide. Please check the votes and any visit logs before you hang me; a hang on Carol's pairs or my old votes is not proof.
+Frank (public): Grace's wording overstates one point: Judy voted No on Mallory's nomination but then Guilty on Mallory. The stronger distinction is Carol: Judy voted Guilty on the confirmed Good Seer after Carol publicly raised Judy as a possible Katana holder; Grace voted Innocent. Judy's vote was needed for the 3–2 execution. That is not mechanical proof, but it is my strongest basis, and I lean Guilty.
+Grace (public): Grace, Vanilla. Frank's Vigilante shot on Heidi matches Erin's N4 watch, so Frank is Good. I know I'm Good. Erin died to a Katana on N5, and the only living player who can be that holder is Judy. Judy also shielded Mallory and Bob with No and Innocent votes. I vote Guilty.
+Judy (public): Judy, Vanilla Villager. No living visitor or vote mismatch exists against me. Erin's watches, Alice's tracks and Carol's Seer pairs are dead or untestable, so the case rests on votes. My Guilty on Carol came after Carol nominated me, and Frank's lean relies on that same vote. Grace is unverified Vanilla and the one pushing hardest to hang me. If Grace is an Executioner or Jester, a hang on me is exactly her win. Frank and Grace, name one concrete visit or result conflict against me. If you can't, vote Innocent.
+(to Frank, Judy) Judy -> Frank (private): Frank: I have no visit or vote mismatch to hide. Grace is the one pushing this hang and her case is votes only. Please check for a real contradiction before you vote Guilty.
+Trial votes on Judy: Guilty - Frank, Grace; Innocent - Judy.
+Judy is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Judy died (executed by hanging). Their role was Grunt. Their last will: "Judy, Vanilla Villager, no night action and no night results. Carol's Seer pairs and Erin's Lookout watches were the only checkable information, and both are now dead. Frank admitted a Vigilante shot on Heidi. Village: vote on visit or vote mismatches, not on counterclaims or vote history alone."
+The game is over. Winners: Alice (dead), Carol (dead), Dave (dead), Erin (dead), Frank, Grace, Heidi (dead), Ivan (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Frank, Grace, Heidi, Ivan
+Cost by player (USD):
+  Alice (Tracker)           $0.0693   31 calls  claude-haiku-5.5
+  Bob (Fabricator)          $0.0805   44 calls  claude-haiku-5.5
+  Carol (Seer)              $0.0895   47 calls  gpt-6-luna
+  Dave (Vanilla Villager)   $0.0161    9 calls  claude-haiku-5.5
+  Erin (Lookout)            $0.1405   50 calls  claude-haiku-5.5
+  Frank (Vigilante)         $0.0947   53 calls  gpt-6-luna
+  Grace (Vanilla Villager)  $0.1370   51 calls  claude-haiku-5.5
+  Heidi (Medic)             $0.0583   36 calls  gpt-6-luna
+  Ivan (Sheriff)            $0.0241   17 calls  gpt-6-luna
+  Judy (Grunt)              $0.1264   61 calls  claude-haiku-5.5
+  Mallory (Smuggler)        $0.0273   19 calls  gpt-6-luna
+  Moderator                 $1.1681   14 calls  claude-opus-5.5
+  Night checks              $0.4047    5 calls  claude-opus-5.5
+  Strategy review           $0.2906    1 calls  claude-opus-5.5
+  Log review                $0.2439    1 calls  claude-opus-5.5
+  Total                     $2.9711  439 calls
