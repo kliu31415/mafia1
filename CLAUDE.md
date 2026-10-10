@@ -66,8 +66,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   winner, cost, errors, tips) linking to each HTML log; games and `sync_logs.py pull` rebuild it, and
   `uv run game_index.py serve` shows an always-current copy on localhost. `stats.py` takes the same filters
   (`--mix frontier`, `--min-frontier 0.7`, `--model`, `--winner`, ...; `--list` lists the games). Model tiers
-  are `TIERS` in `llm.py`, relative to today's frontier: a new model needs an entry, and re-check the list
-  when a new frontier model comes out.
+  are each model's `tier` in `MODELS` (`llm.py`), relative to today's frontier: re-check them when a new
+  frontier model comes out.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
   roles you give, in order).
@@ -137,7 +137,10 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   prefix too, so live games send every in-game player call one schema (`players.shared_schema`) and check the
   answer against the task's own afterwards. Check `cached_tokens`
   in `player_call` usage after changing a prompt's layout.
-- Reasoning effort: each model has a default (`MODEL_EFFORT` in `llm.py`: high, except Qwen and Gemini Flash at medium,
+- Models: everything the program knows about a model (short name, tier, strength, default effort, quirks) is its
+  `MODELS` entry in `llm.py`, with notes on its quirks next to it; a new model is a `Model` id plus that entry
+  (a test checks it), and a new maker also needs `PROVIDERS`.
+- Reasoning effort: each model has a default (`effort` in `MODELS`: high, except Qwen and Gemini Flash at medium,
   since at high they run near or past the token cap); measured cost and time per turn at medium vs high are in the comment there.
   `model:effort` or `--effort` override it.
 - Player and moderator answers use strict JSON schemas (structured outputs). Some providers reject schema shapes
@@ -153,8 +156,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   system prompts, and `--player-tips WHO=FILE|none,...` sets each player's or model's file. Players see
   every section (all factions and roles). The models learn collectively: one file pools every model's lessons. The
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
-  Lessons are weighted by their author's model strength and the game's average (`STRENGTH` in `tips.py`,
-  1-5, kept by hand; a new model needs an entry there).
+  Lessons are weighted by their author's model strength and the game's average (`strength` in
+  `llm.MODELS`, 1-5, kept by hand).
 - Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
   Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
   `mafia.py`), so a stuck game can't run forever.

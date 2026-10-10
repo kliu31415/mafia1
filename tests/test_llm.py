@@ -242,3 +242,12 @@ def test_live_games_send_one_schema_for_every_in_game_question(tmp_path):
     assert players.ask(bob, "Act.", night_action_schema(game, bob), {"act": False}, step="night_action") == {"act": False}  # fallback
     assert all(s == sent[0] for s in sent) and len(sent) == 5  # the night action was asked twice
     assert "Answer in these fields: vote" in players.client.asked[0][1]  # type: ignore[attr-defined]
+
+
+def test_every_model_has_a_complete_registry_entry():
+    from llm import EFFORTS, MODELS
+    assert set(MODELS) == set(Model)  # a new Model needs its MODELS entry
+    assert len({info.short for info in MODELS.values()}) == len(MODELS)
+    for m, info in MODELS.items():
+        assert info.tier in ("frontier", "mid", "cheap") and 1 <= info.strength <= 5 and info.effort in EFFORTS, m
+        assert m.value.split("/")[0] in PROVIDERS, m

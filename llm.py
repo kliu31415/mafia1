@@ -20,103 +20,145 @@ API_KEY_ENV_VAR = "OPENROUTER_API_KEY"
 
 
 class Model(str, Enum):
-    """OpenRouter model ids. All of these accept every reasoning.effort in EFFORTS (OpenRouter maps
-    them to each provider's setting). The cheap ones are for testing the harness."""
+    """OpenRouter model ids. Everything else about a model is its MODELS entry below; a new model needs both.
+    All of these accept every reasoning.effort in EFFORTS (OpenRouter maps them to each provider's setting)."""
 
     OPUS_5_5 = "anthropic/claude-opus-5.5"
     SONNET_5_5 = "anthropic/claude-sonnet-5.5"
     GPT_6_1_SOL = "openai/gpt-6.1-sol"
     # GEMINI_4_ARGON = "google/gemini-4-argon"  # Google's frontier model (Sep 30, 2026); not on OpenRouter as
-    #     of 2026-10-09. When it is: uncomment, add it to MODEL_SHORT_NAMES and to STRENGTH in tips.py (5).
-    #     (It is already in TIERS.)
+    #     of 2026-10-09. When it is: uncomment and add its MODELS entry (strength 5; tier from OTHER_TIERS).
     GROK_4_7 = "x-ai/grok-4.7"
     QWEN_3_8_MAX_PRIME = "qwen/qwen3.8-max-prime"  # same weights as QWEN_3_8_MAX at twice the price
     QWEN_3_8_MAX = "qwen/qwen3.8-max-0902"
     KIMI_K3 = "moonshotai/kimi-k3"
     GLM_5_3 = "z-ai/glm-5.3"
     GEMINI_3_8_FLASH = "google/gemini-3.8-flash"
-    # Cheap models for smoke tests.
+    # Cheap models, for testing the harness.
     HAIKU_5_5 = "anthropic/claude-haiku-5.5"
     GPT_6_LUNA = "openai/gpt-6-luna"
-    # Cheap models tried 2026-10-09 on one real Day 2 turn and one night action each (seconds, $ per call):
-    # DeepSeek V4.1 Flash 8-11 s/$0.002-0.004, Luna Pro 14-23 s/$0.0025; sensible play. Turned down: Qwen 3.8
-    # Flash and GLM-5.3 Flash (ran out of tokens, unparsable answers), Seed 2.1 Turbo (90-100 s a call), Nemotron
-    # 3.5 Lightning and Command A+ (claimed their role and announced their target in public chat on Day 2),
-    # Mistral Large 4 ($0.01 a call, about 70 s). Solar Pro 4 and MiMo V2.6 Flash passed the test but in their
-    # first game (2026-10-09) often filled strict-schema answers with runs of tabs or whitespace up to the token
-    # limit (unparsable, minutes per call), so they were dropped. DeepSeek V4.1 Flash does the same less often:
-    # 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together; 36 replays of
-    # that game's turns all parsed on Together, DeepInfra and Fireworks, so it isn't one provider's grammar.
-    # In game_20261009_164356_960898 it also twice wrote its thinking as plain text in the answer, with no JSON,
-    # until the token limit (no reasoning returned). Every successful call returned its reasoning separately, with
-    # up to ~16k output tokens, so these look like thinking that ran into the cap before it closed (~5% of calls,
-    # more on later days). The retry usually parses. It got worse in a 15-player game (28 of 185 calls in
-    # game_20261009_181836_910820), and effort "low" didn't shorten its thinking (replayed turns: 1-15k output
-    # tokens at low vs 2-11k at medium), so effort can't fix it.
-    # Deprioritized 2026-10-10: still usable by name, but not picked for test or benchmark games unless Kevin asks
-    # (use Haiku 5.5, Luna or Luna Pro as the cheap players). In its games on 2026-10-09 it had 47
-    # player_errors and 4 fallbacks (silent turns and a defaulted vote); of the models kept, Haiku had 4 errors and
-    # Gemini Flash 1 in those games, with no fallbacks. Its feedback
-    # is also unreliable: it reported misspelled schema fields ('katana_voate_holder', 'publilc_message'), a
-    # missing role-block notice and being prompted after death, none of which the logs show.
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
 
     @property
+    def info(self) -> "ModelInfo":
+        return MODELS[self]
+
+    @property
     def short(self) -> str:
-        return MODEL_SHORT_NAMES[self]
+        return MODELS[self].short
 
 
-MODEL_SHORT_NAMES = {
-    Model.OPUS_5_5: "opus-5.5",
-    Model.SONNET_5_5: "sonnet-5.5",
-    Model.GPT_6_1_SOL: "gpt-6.1-sol",
-    Model.GROK_4_7: "grok-4.7",
-    Model.QWEN_3_8_MAX_PRIME: "qwen-3.8-max-prime",
-    Model.QWEN_3_8_MAX: "qwen-3.8-max",
-    Model.KIMI_K3: "kimi-k3",
-    Model.GLM_5_3: "glm-5.3",
-    Model.GEMINI_3_8_FLASH: "gemini-3.8-flash",
-    Model.HAIKU_5_5: "haiku-5.5",
-    Model.GPT_6_LUNA: "gpt-6-luna",
-    Model.DEEPSEEK_V4_1_FLASH: "deepseek-v4.1-flash",
-    Model.GPT_6_LUNA_PRO: "gpt-6-luna-pro",
+@dataclass(frozen=True)
+class ModelInfo:
+    """What the program knows about one model. A test checks every Model has an entry."""
+
+    short: str  # the name used on the command line and in logs and tables
+    # frontier, mid or cheap, relative to today's frontier (see "Tiers" below); game_index.py and stats.py filter by it
+    tier: str
+    # How strong the model is at this game, 1-5, kept by hand (a first guess from general capability, to be replaced
+    # by measured results). tips.py weights a lesson by its author's strength and the game's average.
+    strength: int
+    effort: str = "high"  # reasoning effort when nothing sets one (see "Reasoning effort" below)
+    short_reason: bool = False  # players get the short "reason" note (see "Reasoning that comes back" below)
+    # HACK for a model that starts public messages with "Name:" despite the prompt (day.drop_own_name strips it)
+    name_prefix: bool = False
+
+
+# Tiers: relative to the current frontier, so a model moves down as newer ones come out (Gemini 3.1 Pro was
+# frontier when released and is cheap-tier now). Re-check them when a new frontier model appears; old games then
+# show under the new tiers, which is what filtering wants. Source, 2026-10-10: Artificial Analysis Intelligence
+# Index v4.3.2 at max effort (artificialanalysis.ai, changelog), the only index that scores nearly all of these on
+# one recent scale; cutoffs frontier >= 50, mid 44-49, cheap <= 43 (the scores are in the comments below). LMArena
+# text Elo agrees where it has the model (Opus 5.5 ~1503; Gemini 4 Argon #1). No current social-deduction
+# leaderboard (Werewolf, Mafia, Diplomacy arenas) covers these models, so this is general capability; stats.py's
+# per-model results here should replace it once there are enough games.
+#
+# Reasoning effort: from one real day-2 speaking turn (~12-18k-token prompt), 3 runs per model and effort,
+# 2026-10-09. Medium -> high:
+#   model          s/turn     output tokens (reasoning)   extra $ per seat in a 12p game (~50 calls)
+#   opus-5.5       19 -> 21   1214 (461) -> 1687 (840)    +$0.47 (+18%)
+#   sonnet-5.5      7 -> 16    495 (0)   -> 1773 (1256)   +$0.64 (+58%)  no reasoning at all at medium
+#   gpt-6.1-sol    25 -> 42    825 (101) -> 1689 (1002)   +$0.43 (+45%)  barely reasons at medium
+#   glm-5.3        20 -> 20    518 (97)  -> 3270 (2290)   +$0.60
+#   kimi-k3        92 -> 118  3010       -> 3434          +$0.32 (+35%)
+#   grok-4.7       93 -> 136  4995       -> 7976          +$0.89 (+40%)
+#   qwen-3.8-max   72 -> 552  2556       -> 14621         ~5x; hit the 16k max_tokens cap with no answer on
+#                                                         1 of 3 runs, so Qwen stays at medium
+#   gemini-3.8-flash 25 -> 84 2390 (1736)-> 11098 (10482) +$1.80 (~4x); low: 8 s, 402 (0). High nears the
+#                                                         16k cap and scores no better (AA index 40 vs 41), so medium
+#   haiku-5.5      10 -> 23   1276 (800) -> 4158 (3470)   +$0.07
+#   gpt-6-luna     19 -> 33   1272 (891) -> 2449 (2070)   +$0.03
+# Times are with 12 requests at once. Speaking turns run one at a time (~260 in a 7-day 12p game), so
+# s/turn sets a game's length: Grok and Kimi seats are slow at any effort. Artificial Analysis'
+# Intelligence Index (Oct 2026) also rises with effort, e.g. Sonnet 5.5 41 at medium, 47 high, 56 max.
+#
+# Cheap models tried 2026-10-09 on one real Day 2 turn and one night action each (seconds, $ per call):
+# DeepSeek V4.1 Flash 8-11 s/$0.002-0.004, Luna Pro 14-23 s/$0.0025; sensible play. Turned down: Qwen 3.8
+# Flash and GLM-5.3 Flash (ran out of tokens, unparsable answers), Seed 2.1 Turbo (90-100 s a call), Nemotron
+# 3.5 Lightning and Command A+ (claimed their role and announced their target in public chat on Day 2),
+# Mistral Large 4 ($0.01 a call, about 70 s). Solar Pro 4 and MiMo V2.6 Flash passed the test but in their
+# first game (2026-10-09) often filled strict-schema answers with runs of tabs or whitespace up to the token
+# limit (unparsable, minutes per call), so they were dropped.
+MODELS: dict[Model, ModelInfo] = {
+    # Claude's thinking comes back summarized, and long written-out reasoning in answers is a likely trigger of
+    # Anthropic's distillation filter, so Claude players give the short "reason".
+    Model.OPUS_5_5: ModelInfo("opus-5.5", "frontier", 5, short_reason=True),  # AA 58, #1
+    Model.SONNET_5_5: ModelInfo("sonnet-5.5", "frontier", 4, short_reason=True),  # AA 56
+    # OpenAI returns only encrypted reasoning (a summary on about 1 call in 8), so its players give the long reason.
+    Model.GPT_6_1_SOL: ModelInfo("gpt-6.1-sol", "frontier", 5),  # AA 52
+    # Grok, Qwen and Kimi return their reasoning text in full.
+    Model.GROK_4_7: ModelInfo("grok-4.7", "mid", 4, short_reason=True),  # AA 46
+    Model.QWEN_3_8_MAX_PRIME: ModelInfo("qwen-3.8-max-prime", "mid", 4, "medium", short_reason=True),  # = qwen3.8-max
+    Model.QWEN_3_8_MAX: ModelInfo("qwen-3.8-max", "mid", 4, "medium", short_reason=True),  # AA 45; high runs past the cap
+    Model.KIMI_K3: ModelInfo("kimi-k3", "mid", 4, short_reason=True),  # AA 44
+    Model.GLM_5_3: ModelInfo("glm-5.3", "mid", 4),  # AA 44.8; reasoning return not checked
+    # Gemini returns brief thought summaries only. High effort nears the token cap (see above).
+    Model.GEMINI_3_8_FLASH: ModelInfo("gemini-3.8-flash", "cheap", 3, "medium"),  # AA 41 at high
+    # Haiku 5.5 wrote "Name:" at the start of nearly every public message (game_20261009_084630_739772).
+    Model.HAIKU_5_5: ModelInfo("haiku-5.5", "cheap", 2, short_reason=True, name_prefix=True),  # AA 43 at max, 38 at high
+    Model.GPT_6_LUNA: ModelInfo("gpt-6-luna", "cheap", 2),  # AA 38
+    # DeepSeek V4.1 Flash fills some strict-schema answers with whitespace runs to the token limit, like Solar and
+    # MiMo but less often: 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together;
+    # 36 replays of that game's turns all parsed on Together, DeepInfra and Fireworks, so it isn't one provider's
+    # grammar. In game_20261009_164356_960898 it also twice wrote its thinking as plain text in the answer, with no
+    # JSON, until the token limit (no reasoning returned). Every successful call returned its reasoning separately,
+    # with up to ~16k output tokens, so these look like thinking that ran into the cap before it closed (~5% of
+    # calls, more on later days). The retry usually parses. It got worse in a 15-player game (28 of 185 calls in
+    # game_20261009_181836_910820), and effort "low" didn't shorten its thinking (replayed turns: 1-15k output
+    # tokens at low vs 2-11k at medium), so effort can't fix it.
+    # Deprioritized 2026-10-10: still usable by name, but not picked for test or benchmark games unless Kevin asks
+    # (use Haiku 5.5, Luna or Luna Pro as the cheap players). In its games on 2026-10-09 it had 47 player_errors and
+    # 4 fallbacks (silent turns and a defaulted vote); of the models kept, Haiku had 4 errors and Gemini Flash 1 in
+    # those games, with no fallbacks. Its feedback is also unreliable: it reported misspelled schema fields
+    # ('katana_voate_holder', 'publilc_message'), a missing role-block notice and being prompted after death, none
+    # of which the logs show.
+    Model.DEEPSEEK_V4_1_FLASH: ModelInfo("deepseek-v4.1-flash", "cheap", 2, "medium"),  # AA 39
+    # Not scored by AA; Luna's weights with more reasoning (tier and strength a guess: near Luna).
+    Model.GPT_6_LUNA_PRO: ModelInfo("gpt-6-luna-pro", "cheap", 2),
 }
 
-# Each model's tier today: frontier, mid or cheap. game_index.py and stats.py use it to find e.g. games that
-# mostly seated frontier models. Tiers are relative to the current frontier, so a model moves down as newer
-# ones come out (Gemini 3.1 Pro was frontier when released and is cheap-tier now). Re-check this list when a
-# new frontier model appears; old games then show under the new tiers, which is what filtering wants.
-# Keyed by id (not Model) so models dropped from the list, still in old logs, keep a tier.
-# Source, 2026-10-10: Artificial Analysis Intelligence Index v4.3.2 at max effort (artificialanalysis.ai,
-# changelog), the only index that scores nearly all of these on one recent scale; cutoffs frontier >= 50,
-# mid 44-49, cheap <= 43. LMArena text Elo agrees where it has the model (Opus 5.5 ~1503; Gemini 4 Argon #1).
-# No current social-deduction leaderboard (Werewolf, Mafia, Diplomacy arenas) covers these models, so this
-# is general capability; stats.py's per-model results here should replace it once there are enough games.
-TIERS = {
-    "anthropic/claude-opus-5.5": "frontier",  # 58, #1
-    "anthropic/claude-sonnet-5.5": "frontier",  # 56
-    "google/gemini-4-argon": "frontier",  # 53, #1 on LMArena (not on OpenRouter yet)
-    "openai/gpt-6.1-sol": "frontier",  # 52
-    "x-ai/grok-4.7": "mid",  # 46
-    "qwen/qwen3.8-max-0902": "mid",  # 45
-    "qwen/qwen3.8-max-prime": "mid",  # same weights as qwen3.8-max
-    "z-ai/glm-5.3": "mid",  # 44.8
-    "moonshotai/kimi-k3": "mid",  # 44
-    "anthropic/claude-haiku-5.5": "cheap",  # 43 at max, 38 at high (our default)
-    "google/gemini-3.8-flash": "cheap",  # 41 at high
-    "deepseek/deepseek-v4.1-flash": "cheap",  # 39
-    "openai/gpt-6-luna": "cheap",  # 38
-    "openai/gpt-6-luna-pro": "cheap",  # not scored; Luna's weights with more reasoning (a guess: near Luna)
-    "google/gemini-3.1-pro": "cheap",  # 30 (dropped from the model list)
+# Tiers of models without a MODELS entry, so games that seated them keep a tier: not on OpenRouter yet, or dropped.
+OTHER_TIERS = {
+    "google/gemini-4-argon": "frontier",  # AA 53, #1 on LMArena (not on OpenRouter yet)
+    "google/gemini-3.1-pro": "cheap",  # AA 30 (dropped from the model list)
     "xiaomi/mimo-v2.6-flash": "cheap",  # dropped after one game
     "upstage/solar-pro4": "cheap",  # dropped after one game
 }
+TIERS = {m.value: info.tier for m, info in MODELS.items()} | OTHER_TIERS  # by id, for logs of any age
 
 
 def model_tier(model_id: str) -> str:
     """frontier, mid, cheap, or unknown for a model missing from TIERS."""
     return TIERS.get(model_id, "unknown")
+
+
+DEFAULT_STRENGTH = 3  # for a model without a MODELS entry (e.g. dropped from the list)
+
+
+def model_strength(model_id: str) -> int:
+    """MODELS' strength by id."""
+    return next((info.strength for m, info in MODELS.items() if m.value == model_id), DEFAULT_STRENGTH)
 
 
 # The one OpenRouter provider each model maker's models use: the maker's own endpoint (all support
@@ -143,7 +185,6 @@ def parse_model(name: str) -> Model:
     raise ValueError(f"Unknown model {name!r}; choose from {[m.short for m in Model]}")
 
 
-DEFAULT_EFFORT = "medium"  # for a model missing from MODEL_EFFORT
 # reasoning.effort values OpenRouter accepts for every model (it maps them to each provider's own
 # setting; checked 2026-10-08: anything else is rejected with HTTP 400).
 EFFORTS = ("none", "minimal", "low", "medium", "high", "xhigh", "max")
@@ -167,30 +208,10 @@ def parse_model_spec(text: str) -> ModelSpec:
     if effort and effort not in EFFORTS:
         raise ValueError(f"Unknown effort {effort!r} in {text!r}; choose from {list(EFFORTS)}")
     return ModelSpec(parse_model(name), effort or None)
-# Each model's reasoning effort when nothing sets one (a model:effort spec or --effort). From one real
-# day-2 speaking turn (~12-18k-token prompt), 3 runs per model and effort, 2026-10-09. Medium -> high:
-#   model          s/turn     output tokens (reasoning)   extra $ per seat in a 12p game (~50 calls)
-#   opus-5.5       19 -> 21   1214 (461) -> 1687 (840)    +$0.47 (+18%)
-#   sonnet-5.5      7 -> 16    495 (0)   -> 1773 (1256)   +$0.64 (+58%)  no reasoning at all at medium
-#   gpt-6.1-sol    25 -> 42    825 (101) -> 1689 (1002)   +$0.43 (+45%)  barely reasons at medium
-#   glm-5.3        20 -> 20    518 (97)  -> 3270 (2290)   +$0.60
-#   kimi-k3        92 -> 118  3010       -> 3434          +$0.32 (+35%)
-#   grok-4.7       93 -> 136  4995       -> 7976          +$0.89 (+40%)
-#   qwen-3.8-max   72 -> 552  2556       -> 14621         ~5x; hit the 16k max_tokens cap with no answer on
-#                                                         1 of 3 runs, so Qwen stays at medium
-#   gemini-3.8-flash 25 -> 84 2390 (1736)-> 11098 (10482) +$1.80 (~4x); low: 8 s, 402 (0). High nears the
-#                                                         16k cap and scores no better (AA index 40 vs 41), so medium
-#   haiku-5.5      10 -> 23   1276 (800) -> 4158 (3470)   +$0.07
-#   gpt-6-luna     19 -> 33   1272 (891) -> 2449 (2070)   +$0.03
-# Times are with 12 requests at once. Speaking turns run one at a time (~260 in a 7-day 12p game), so
-# s/turn sets a game's length: Grok and Kimi seats are slow at any effort. Artificial Analysis'
-# Intelligence Index (Oct 2026) also rises with effort, e.g. Sonnet 5.5 41 at medium, 47 high, 56 max.
-MODEL_EFFORT = {m: "high" for m in Model} | {Model.QWEN_3_8_MAX: "medium", Model.QWEN_3_8_MAX_PRIME: "medium",
-                                              Model.GEMINI_3_8_FLASH: "medium", Model.DEEPSEEK_V4_1_FLASH: "medium"}
 
 
 def default_effort(model: Model) -> str:
-    return MODEL_EFFORT.get(model, DEFAULT_EFFORT)
+    return model.info.effort
 
 
 DEFAULT_MAX_TOKENS = 16_000  # reasoning + answer; Anthropic needs this above the reasoning budget
@@ -357,7 +378,7 @@ def flat_messages(messages: list[dict]) -> list[dict]:
 #   Grok, Qwen, Kimi, GLM and OpenAI accept both.
 # - Z.AI's own GLM endpoint doesn't support structured outputs at all; GLM goes through Together.
 # - Not a schema problem but looks like one: a model that reasons past max_tokens returns an empty or
-#   cut-off answer (Qwen 3.8 Max and nearly Gemini Flash at high effort; see MODEL_EFFORT).
+#   cut-off answer (Qwen 3.8 Max and nearly Gemini Flash at high effort; see MODELS' effort).
 # Gemini's limit was found by testing (5-20 values fine, 30+ rejected); its error text never says why.
 
 # Anthropic's distillation filter (seen 2026-10-09, game_20261009_084630_739772): Claude answers can come back empty
@@ -377,19 +398,15 @@ def flat_messages(messages: list[dict]) -> list[dict]:
 # Players give a long "reason" by default (players.LONG_REASON_NOTE: a dense paragraph of up to ~150 words, with
 # the options weighed, reads and plan), since for a model whose reasoning doesn't come back it's all we see of its
 # thinking. Kevin (2026-10-09) would rather get API errors (alerted, retried, checkpointed) than lose that content,
-# so a model gets the short note (players.REASON_NOTE) only when it's in SHORT_REASON below: its full reasoning
+# so a model gets the short note (players.REASON_NOTE) only when its MODELS entry has short_reason: its full reasoning
 # comes back, or its API filters strictly. In game 121338 (Haiku/Luna) the short "reason" had a median of 18 words
 # against 88 for returned reasoning, which held the alternatives and reads that "reason" left out. The long note
 # asks for an explanation of a choice already made, not a transcript of reasoning. A new model gets the long one
 # until it's checked.
 
 
-# Models whose players give the short "reason" (see the note above). Claude: its thinking comes back summarized,
-# and long written-out reasoning in answers is a likely trigger of Anthropic's distillation filter. Grok, Qwen and
-# Kimi: their reasoning text comes back in full. Not here, so long: OpenAI (encrypted reasoning, a summary on about
-# 1 call in 8), Gemini (brief thought summaries only) and GLM (not checked).
-SHORT_REASON = frozenset({Model.OPUS_5_5, Model.SONNET_5_5, Model.HAIKU_5_5, Model.GROK_4_7,
-                          Model.QWEN_3_8_MAX_PRIME, Model.QWEN_3_8_MAX, Model.KIMI_K3})
+# Models whose players give the short "reason" (see the note above): short_reason in MODELS.
+SHORT_REASON = frozenset(m for m, info in MODELS.items() if info.short_reason)
 
 
 def flat_nullable_enums(schema: Any) -> Any:

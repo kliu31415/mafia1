@@ -22,5 +22,5 @@ ignore = ["B905"]  # zip() without strict=
 
 [tool.mypy]
 explicit_package_bases = true
-exclude = ['\.venv']
+exclude = ['\.venv', '\.claude']  # .claude/worktrees: other threads' checkouts
 check_untyped_defs = true  # role hooks and tests are often unannotated; check their bodies anyway

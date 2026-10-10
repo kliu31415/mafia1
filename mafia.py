@@ -372,7 +372,7 @@ def write_views(log: GameLog, close: bool = False) -> Path | None:
 
 
 def resolve_effort(spec: ModelSpec, effort: str | None) -> ModelSpec:
-    """A spec's own effort, else --effort, else the model's default (MODEL_EFFORT in llm.py)."""
+    """A spec's own effort, else --effort, else the model's default (MODELS in llm.py)."""
     return ModelSpec(spec.model, spec.effort or effort or default_effort(spec.model))
 
 
@@ -392,7 +392,7 @@ def main() -> None:
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
                     help="reasoning effort for models that don't set their own (default: each model's own, "
-                    "MODEL_EFFORT in llm.py)")
+                    "MODELS in llm.py)")
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--max-days", type=int, default=None,
                     help=f"stop a game that runs this long, with no winner (default: players + {EXTRA_DAYS})")

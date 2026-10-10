@@ -185,16 +185,13 @@ def run_day(game: Game, players: Players) -> None:
     game.emit("Discussion time is over. The day ends.")
 
 
-NAME_PREFIX_MODELS = {Model.HAIKU_5_5}  # models that ignore the prompt's "no need to start with your own name"
-
-
 def drop_own_name(out: dict, name: str, model: Model) -> dict:
     """HACK, Haiku only: strips a leading "Name:" from the public message. The prompt already says not to
     write it, and every other model follows that; Haiku 5.5 wrote it on nearly every turn
-    (game_20261009_084630_739772). Kept to the models in NAME_PREFIX_MODELS so other models' messages
-    are never rewritten; drop it if a later Haiku follows the prompt."""
+    (game_20261009_084630_739772). Kept to models marked name_prefix in llm.MODELS so other models'
+    messages are never rewritten; drop it if a later Haiku follows the prompt."""
     msg = out.get("public_message")
-    if model in NAME_PREFIX_MODELS and isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
+    if model.info.name_prefix and isinstance(msg, str) and (m := re.match(rf"\s*\**{re.escape(name)}\**\s*:\s*", msg)) and msg[m.end():].strip():
         out = {**out, "public_message": msg[m.end():]}
     return out
 

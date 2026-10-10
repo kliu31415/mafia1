@@ -43,7 +43,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from llm import LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, answer_json, load_api_key, parse_model_spec
+from llm import (DEFAULT_STRENGTH, LLMClient, MockClient, ModelSpec, OpenRouterClient, answer_json, load_api_key,
+                 model_strength, parse_model_spec)
 from records import read_records, safe_print
 from roles import ROLES
 
@@ -51,23 +52,12 @@ ROOT = Path(__file__).resolve().parent
 HEADINGS = ["Everyone", "Village", "Yakuza", "Neutral", *ROLES]
 FALLBACKS_TO_DISTRUST = 3  # a player with this many fallback answers barely played (e.g. a provider bug)
 
-# How strong each model is at this game, 1-5, kept by hand (a first guess from general capability, to be
-# replaced by measured results). Lessons count for more when their author's model is stronger, and when the
-# game's players were stronger on average (lessons from a game of weak players may be about beating weak play).
-STRENGTH = {
-    Model.OPUS_5_5: 5, Model.GPT_6_1_SOL: 5,
-    Model.SONNET_5_5: 4, Model.GROK_4_7: 4, Model.KIMI_K3: 4, Model.GLM_5_3: 4,
-    Model.QWEN_3_8_MAX_PRIME: 4, Model.QWEN_3_8_MAX: 4,
-    Model.GEMINI_3_8_FLASH: 3,
-    Model.HAIKU_5_5: 2, Model.GPT_6_LUNA: 2,
-    # Cheap models added 2026-10-09; a guess from one test turn each, until games say more.
-    Model.DEEPSEEK_V4_1_FLASH: 2, Model.GPT_6_LUNA_PRO: 2,
-}
-DEFAULT_STRENGTH = 3  # a model missing from STRENGTH
-
 
 def strength(model_id: str) -> int:
-    return next((v for m, v in STRENGTH.items() if m.value == model_id), DEFAULT_STRENGTH)
+    """How strong the model is at this game, 1-5 (strength in llm.MODELS, kept by hand). Lessons count for more
+    when their author's model is stronger, and when the game's players were stronger on average (lessons from a
+    game of weak players may be about beating weak play)."""
+    return model_strength(model_id)
 
 
 def lesson_weight(author: int, game_average: float) -> float:

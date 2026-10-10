@@ -206,8 +206,8 @@ def test_a_game_can_update_the_tips_when_it_ends(tmp_path, monkeypatch):
     assert len(nb["games"]) == 1 and sheet.exists()
 
 
-def test_every_model_has_a_strength():
-    assert set(tips.STRENGTH) == set(Model)
+def test_strength_comes_from_the_model_registry():
+    assert tips.strength(Model.OPUS_5_5.value) == 5 and tips.strength("someone/dropped-model") == tips.DEFAULT_STRENGTH
 
 
 def test_parallel_builds_of_one_sheet_take_turns(tmp_path, monkeypatch):
