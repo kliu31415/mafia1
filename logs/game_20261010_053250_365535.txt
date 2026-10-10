@@ -1,0 +1,36 @@
+Setup:
+  Alice    seat 1  Cartographer      anthropic/claude-haiku-5.5
+  Bob      seat 2  Lookout           openai/gpt-6-luna
+  Carol    seat 3  Fabricator        openai/gpt-6-luna
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Smuggler          openai/gpt-6-luna
+  Frank    seat 6  Sheriff           anthropic/claude-haiku-5.5
+  Grace    seat 7  Medic             anthropic/claude-haiku-5.5
+  Heidi    seat 8  Tracker           openai/gpt-6-luna
+  Ivan     seat 9  Grunt             openai/gpt-6-luna
+  Judy     seat 10 Profiler          anthropic/claude-haiku-5.5
+  Mallory  seat 11 Census Taker      openai/gpt-6-luna
+  Niaj     seat 12 Scout             anthropic/claude-haiku-5.5
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md)
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Dave.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Dave (public): Dave here, plain Vanilla Villager with no night info. I'm not nominating anyone on day one. I'll read claims, votes and PM links before forming opinions, and I'd like everyone to explain their first votes clearly.
+Erin (public): Agreed: let's hear everyone before votes; avoid forcing a Day 1 hang without a concrete case, and explain any nominations.
+Frank (public): Frank here. No nominations from me on Day 1. I want claims and concrete cases before any votes, so I'll wait and see who says what.
+Grace (public): Grace here. I have no night information yet and won't nominate on Day 1. I want to see claims, votes and PM clusters before forming any read.
+Heidi (public): I'll hold nominations until we have concrete evidence. Please avoid forced role claims; after tonight, share results with targets and account for swaps or other limitations.
+Judy (public): Judy here, no night info yet. Agreed: no Day 1 hang without a concrete case. I'll watch PM clusters and co-nominations as they form.
+Mallory (public): Let's make today's record useful: state a specific read and what could change it; note PM or co-nomination links without treating contact alone as proof.
+Niaj (public): Niaj here, no night info yet. I won't nominate on Day 1. I'll track co-nominations and PM links and want a concrete case before any vote.
+Alice (public): Alice here, no night information yet and no nomination from me today. I'll watch co-nominations and PM links, and I want a concrete case before any vote.
+Bob (public): We've heard broad process statements; I'd like everyone to offer one tentative read and say what evidence could change it, without pressuring anyone to claim a role.
+Carol (public): Tentatively Bob: the request for specific reads is useful, but let's see whether he offers one himself. Process talk alone isn't alignment evidence; I'll wait for concrete behavior.
+Dave (public): Still no concrete reads. Carol's 'tentatively Bob' is vague, and Bob's request for reads was fair. I'm holding my vote until someone posts a specific claim or contradiction.
+Erin (public): Bob's request for tentative reads is fair, but he hasn't offered one himself yet. Carol's point is reasonable; let's hear Bob's read next without forcing claims.
+Frank (public): still no nominations from me. Bob, your request for reads is fair, but you haven't offered one yet. Any night info I get, I'll share publicly, with targets labelled as plans.
+Heidi (public): Bob was asked twice for a read; please give one concrete tentative read and what would change it. Until then, his prompt is neutral, not evidence. Repetition alone isn't alignment evidence.
+Ivan (public): Bob was asked for a tentative read twice and hasn't offered one yet. That's a mild process concern, not a vote; I'd still like his read and what would change it.
+[ERROR crash] the game stopped on day 1 day: KeyboardInterrupt: ; continue it with: uv run mafia.py --resume /home/user/mafia1-g3/logs/game_20261010_053250_365535.ckpt
