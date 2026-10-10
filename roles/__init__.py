@@ -1,9 +1,11 @@
 """Role definitions from rules_1.txt and the default setup.
 
 Each role with effects that code carries out has its own file here (e.g. roles/executioner.py),
-implementing the hooks in roles/base.py. Import it at the bottom of this file to register it.
+implementing the hooks in roles/base.py. Every module here is imported at the bottom of this file, which registers it.
 """
 
+import importlib
+import pkgutil
 from dataclasses import dataclass, field
 
 from roles.base import (LOGIC, Alignment, RoleLogic, Status, code_hooks, logic,  # noqa: F401  (re-exported)
@@ -218,10 +220,8 @@ def role_status_table() -> str:
     return "\n".join(rows)
 
 
-# Role files register their hooks when imported.
-from roles import (  # noqa: E402, F401
-    accountant, archivist, arsonist, ballot_stuffer, cardinal, census_taker, clerk, diviner, eavesdropper, ex_con,
-    executioner, fortune_teller, jester, medic, philanthropist, profiler, prosecutor, puppeteer, roleplayer, seer,
-    smuggler, surveyor, trapper, veteran, vulture, wiretap)
+# Every module in roles/ is a role file, which registers its hooks when imported (base is already loaded).
+for _module in pkgutil.iter_modules(__path__):
+    importlib.import_module(f"{__name__}.{_module.name}")
 
 assert LOGIC.keys() <= ROLES.keys(), f"@register names unknown roles: {LOGIC.keys() - ROLES.keys()}"

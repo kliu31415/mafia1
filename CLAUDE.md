@@ -83,7 +83,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      hovering the role's icon in the HTML log; a test fails when the role's rules paragraph changes, until
      `uv run role_summaries.py ROLE` records that the summary was checked), defense, tokens, `acts_at_night`, `tested`, `notes`).
   2. `roles/<role>.py`: effects that code carries out, as hooks from `roles/base.py` (setup, briefing,
-     deaths, dawn, ...). Register the file by importing it at the bottom of `roles/__init__.py`. Core
+     deaths, dawn, ...). Every module in roles/ is imported (and so registered) automatically. Core
      code calls hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to
      `RoleLogic`. Per-game role state goes in `game.role_state`, not new `Game` fields.
   3. Day mechanics roles trigger (`Game.prosecutions`, `rigged_day`, `puppets`) are generic and live in
