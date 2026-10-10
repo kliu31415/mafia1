@@ -81,12 +81,12 @@ ROLES: dict[str, RoleInfo] = {
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",
-                             tokens={"map": 2}, acts_at_night=True,
+                             tokens={"map": 2}, acts_at_night=True, tested=True,
                              notes="moderator lists every night's visits with record_visits and records a token use "
                              "with the map op; code finds the groups and tells them"),
     "Scout": RoleInfo(Alignment.GOOD, "Investigative", False,
                       summary="Every night: learns three players (maybe themselves) who were each in a different "
-                      "visit group.",
+                      "visit group.", tested=True,
                       notes="passive; code draws the names from the moderator's record_visits list and tells them"),
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
@@ -165,7 +165,7 @@ ROLES: dict[str, RoleInfo] = {
     "Smuggler": RoleInfo(Alignment.EVIL, "Yakuza", True,
                             summary="Token: swap two players for the night, so every action aimed at one lands on "
                             "the other. Immune to role-blocks.",
-                            tokens={"swap": 2}, acts_at_night=True, unique=True,
+                            tokens={"swap": 2}, acts_at_night=True, unique=True, tested=True,
                             notes="code applies the swap to the submitted actions before the Katana tally and the "
                             "moderator, and tells the Smuggler and both swapped players"),
     "Ballot Stuffer": RoleInfo(Alignment.EVIL, "Yakuza", True,

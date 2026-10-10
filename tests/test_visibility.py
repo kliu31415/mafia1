@@ -84,3 +84,19 @@ def test_night_history_shows_only_your_own_actions_and_results(game_factory):
     assert "Your night history" not in bob  # Bob had no night action and got no results
     replay = night_replay(game)  # after the game, everything is revealed
     assert "Alice (Sheriff): target Carol" in replay and "Result to Alice: Carol is Evil." in replay
+
+
+def test_night_history_shows_the_target_chosen_not_the_one_a_swap_moved_it_to(game_factory):
+    # game_20261010_053523_23052 night 3: Grace's history said Carol, her result Alice, so she noticed the swap
+    from players import player_messages
+    game, _ = game_factory(["Medic", "Smuggler", "Vanilla Villager", "Grunt"])
+    game.night_actions[1] = {"Alice": {"act": True, "target": "Carol", "chosen_target": "Bob"},
+                             "Bob": {"act": True, "target": "Bob", "second_target": "Carol",
+                                     "katana_vote_holder": "Bob", "katana_vote_target": "Bob",
+                                     "chosen_katana_vote_target": "Carol"}}
+    game.phase = "night"
+    alice = player_messages(game, game.player("Alice"), "(rules)", "task")[1]["content"]
+    bob = player_messages(game, game.player("Bob"), "(rules)", "task")[1]["content"]
+    line = next(x for x in alice.splitlines() if x.startswith("- Night 1: you submitted"))
+    assert "target Bob" in line and "Carol" not in line
+    assert "attacks Carol" in bob

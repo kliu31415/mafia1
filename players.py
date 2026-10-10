@@ -229,10 +229,16 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
     return [system, {"role": "user", "content": user}]
 
 
+def as_chosen(a: dict) -> dict:
+    """A night action as its user chose it: a swap (rules R23) moves `target` and keeps the choice in
+    `chosen_target`, and showing the moved one would reveal the swap."""
+    return {k: a.get(f"chosen_{k}", v) for k, v in a.items() if not k.startswith("chosen_")}
+
+
 def night_history(game: Game, p: Player) -> str:
     """p's submitted action each night and the moderator's private results to p, in one place (players
     lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
-    lines = [f"- Night {night}: you submitted {describe_action(actions[p.name])}"
+    lines = [f"- Night {night}: you submitted {describe_action(as_chosen(actions[p.name]))}"
              for night, actions in game.night_actions.items()
              if p.name in actions and not actions[p.name].get("automatic")]  # e.g. the Ex-Con isn't told its visit
     lines += [f"- Day {e.day} {e.phase}, result: {e.fields.get('message', e.text)}" for e in game.events
