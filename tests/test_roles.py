@@ -556,6 +556,18 @@ def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
     assert actions["Bob"]["katana_vote_target"] == "Carol" and game.player("Alice").tokens["swap"] == 2
 
 
+def test_a_swap_can_land_an_others_only_action_on_its_user_and_the_result_names_the_choice(game_factory):
+    # game_20261010_053523_23052 night 3: Bob swapped Alice and Carol, so Alice's profile of Carol landed on Alice
+    game, players = game_factory(["Profiler", "Smuggler", "Vanilla Villager", "Grunt"])
+    game.phase = "night"
+    with pytest.raises(ValueError, match="can't target themselves"):
+        apply_ops(game, players, {"op": "profile", "by": "Alice", "player": "Alice"})
+    game.role_state["swaps"] = {game.day: [["Bob", "Alice", "Carol"]]}
+    apply_ops(game, players, {"op": "profile", "by": "Alice", "player": "Alice"})  # rules R23
+    result = told(game, "Alice")[-1]
+    assert "You profiled Carol: their role is " in result and "Profiler" in result
+
+
 def test_census_counts_true_alignment_and_never_neutrals(game_factory):
     from roles.census_taker import census_group
     game, players = game_factory(["Census Taker", "Grunt", "Ex-Con", "Jester", "Vanilla Villager", "Pharmacist"])

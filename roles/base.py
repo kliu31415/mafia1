@@ -117,7 +117,7 @@ class RoleLogic:
         target = game.player(change["player"]) if self.action.target else None
         if target and not acted_tonight(game, target):
             return f"{target.name} wasn't alive at the start of the night"
-        if target is by and self.action.target == "other":
+        if target is by and self.action.target == "other" and not swap_partner(game, by.name):
             return f"{'an' if self.role[0] in 'AEIOU' else 'a'} {self.role} can't target themselves"
         return self.target_error(game, by, target)
 
@@ -162,6 +162,16 @@ def acted_tonight(game: Game, p: Player) -> bool:
     moderator sends them in, and an effect set for the next Day survives its user's death unless it needs them to
     act that Day (R21)."""
     return p.alive or (p.death is not None and p.death["day"] == game.day and p.death["phase"] == "night")
+
+
+def swap_partner(game: Game, name: str) -> str | None:
+    """Who `name` was swapped with tonight (rules R23), or None. An action that landed on a swapped player was aimed
+    at their partner, so its result names the partner; and an action may land on its own user that way, even one
+    whose role can't target themselves."""
+    for _, x, y in game.role_state.get("swaps", {}).get(game.day, []):
+        if name in (x, y):
+            return y if name == x else x
+    return None
 
 
 def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:
