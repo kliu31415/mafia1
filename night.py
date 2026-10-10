@@ -95,7 +95,13 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "Tell all Yakuza which actions each Yakuza chose but not the results, nor whether a teammate was "
         "role-blocked (R8); role-blocked Yakuza's Katana votes still count. "
         "only the attacker learns whether the Katana attack succeeded. Update token counts for any "
-        "tokens spent.\n\n"
+        "tokens spent. "
+        "Before end_phase, call record_visits once with every visit that happened tonight (R6, R20 steps 1-2), "
+        "as [visitor, target] pairs, a self-visit as [X, X] (an empty list if there were none). Easy to miss: the "
+        "Katana holder visits the Katana target (R8) besides any visit from their own role's action; automatic "
+        "visits (the Ex-Con's); a Seer's chosen pair is a visit to both players. Leave out the actions of "
+        "role-blocked players, Astral Visits and actions that target no player. The submitted actions above "
+        "already show any swap (R23), so record each visit to the player it landed on.\n\n"
         + role_notes(game)
     )
     before = snapshot(game.full_state())

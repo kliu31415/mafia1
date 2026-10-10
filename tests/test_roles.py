@@ -638,3 +638,56 @@ def test_recorded_actions_check_their_user_target_and_token(game_factory, role):
     apply_ops(game, players, op)
     assert game.player("Alice").tokens.get(action.token, 0) == (left - 1 if action.token else 0)
     assert action.op in logic(role).night_note
+
+
+def test_record_visits_checks_names_and_is_needed_before_a_night_ends(game_factory):
+    game, players = game_factory(["Cartographer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.phase = "day"
+    with pytest.raises(ValueError, match="night"):
+        mod.dispatch("record_visits", {"visits": []})
+    game.phase = "night"
+    game.player("Erin").alive = False  # died on an earlier day
+    for bad in ([["Bob", "Zed"]], [["Bob"]], [["Bob", "Erin"]]):
+        with pytest.raises(ValueError, match="nothing was recorded"):
+            mod.dispatch("record_visits", {"visits": bad})
+    assert mod.dispatch("end_phase", {"summary": ""})["ok"] is False  # reminded once
+    assert mod.dispatch("end_phase", {"summary": ""})["ok"] is True
+    assert game.log.error_counts == {"visits_missing": 1}
+    game.kill("Dave", "Katana")  # died tonight: still in tonight's graph
+    assert mod.dispatch("record_visits", {"visits": [["Dave", "Bob"], ["Dave", "Bob"]]})["recorded"] == 2
+    assert game.night_visits[game.day] == [["Dave", "Bob"], ["Dave", "Bob"]]
+
+
+def test_visit_groups_are_undirected_components_of_players_alive_at_night_start(game_factory):
+    from roles.base import visit_groups
+    game, _ = game_factory(["Cartographer", "Medic", "Sheriff", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.phase = "night"
+    assert visit_groups(game) is None
+    game.player("Frank").alive = False  # died on an earlier day: not in the graph
+    game.kill("Dave", "Katana")
+    game.night_visits[game.day] = [["Dave", "Carol"], ["Bob", "Carol"], ["Erin", "Erin"], ["Bob", "Carol"]]
+    assert visit_groups(game) == [["Bob", "Carol", "Dave"], ["Alice"], ["Erin"]]
+
+
+def test_cartographer_gets_sizes_every_night_and_names_with_a_token(game_factory):
+    game, players = game_factory(["Cartographer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "map", "player": "Bob", "by": "Alice"}]})
+    mod.dispatch("record_visits", {"visits": [["Dave", "Bob"], ["Bob", "Erin"], ["Carol", "Carol"]]})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Tonight's visit groups have sizes 3, 1, 1. You mapped Bob: their group "
+                                            "is Bob, Dave and Erin. 1 map token left.")
+    game.day += 1  # a night with no map (e.g. role-blocked): sizes only
+    mod.dispatch("record_visits", {"visits": []})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Tonight's visit groups have sizes 1, 1, 1, 1, 1.")
+
+
+def test_cartographer_keeps_the_token_when_no_visits_were_recorded(game_factory):
+    game, players = game_factory(["Cartographer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "map", "player": "Bob", "by": "Alice"})
+    game.run_night_end_hooks()
+    assert game.player("Alice").tokens["map"] == 2 and game.log.error_counts == {"cartographer_no_visits": 1}

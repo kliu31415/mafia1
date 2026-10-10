@@ -14,7 +14,7 @@ from llm import LLMClient, Model, answer_json, rules_system
 from players import STR, obj
 
 ISSUE_KINDS = ["wrong death", "missed death", "wrong result", "missing result", "leaked information",
-               "token or status error", "other"]
+               "token or status error", "wrong visit list", "other"]
 CHECK_SCHEMA = obj(
     verdict={"type": "string", "enum": ["correct", "errors", "unsure"]},
     issues={"type": "array", "items": obj(
@@ -46,8 +46,10 @@ class NightChecker:
                 "who is role-blocked, who visits whom, attacks vs defenses, who dies, and what each player "
                 "should be told. Compare that with what the moderator did. List every mistake: a wrong or "
                 "missed death, a wrong or missing private result, information leaked beyond what the rules "
-                "allow, wrong tokens or statuses. Cite the rule label (e.g. R9) or role. Code, not the "
-                "moderator, carries out Jester/Executioner revenge and dawn effects, so don't expect those. "
+                "allow, wrong tokens or statuses, and a record_visits list that isn't exactly tonight's visits "
+                "(a missing, extra or misdirected visit; repeats and order don't matter). Cite the rule label "
+                "(e.g. R9) or role. Code, not the moderator, carries out Jester/Executioner revenge and dawn "
+                "effects, so don't expect those. "
                 "Verdict 'correct' if there are no mistakes, 'unsure' if the rules are ambiguous for what "
                 "happened (describe it as an issue of kind 'other').")
         messages = [rules_system(self.rules, "You audit an LLM moderator's "

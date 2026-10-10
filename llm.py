@@ -601,7 +601,7 @@ class MockClient:
         tool_calls = []
         content = None
         if tools:
-            # Carry out the Katana attack (so mock games have night deaths), then end the phase.
+            # Carry out the Katana attack (so mock games have night deaths) and record its visit, then end the phase.
             done = any(m.get("role") == "tool" for m in messages)
             args: dict[str, Any]
             name, args = ("end_phase", {"summary": "mock"}) if done else ("get_state", {})
@@ -609,8 +609,12 @@ class MockClient:
             if not done and katana and (target := json.loads(katana[1]).get("attack")):
                 name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana",
                                                            "by": json.loads(katana[1])["holder"], "katana": True}]}
+            calls = [(name, args)]
+            if not done and katana:  # the night's visits: the mock moderator only knows the Katana's
+                visits = [[json.loads(katana[1])["holder"], target]] if name == "apply_changes" else []
+                calls.append(("record_visits", {"visits": visits}))
             tool_calls = [{"id": f"call_{rng.randrange(10**9)}", "type": "function",
-                           "function": {"name": name, "arguments": json.dumps(args)}}]
+                           "function": {"name": n, "arguments": json.dumps(a)}} for n, a in calls]
         elif schema:
             content = json.dumps(self._sample(schema, rng))
         else:

@@ -10,6 +10,7 @@ from llm import LLMClient, LLMReply, Model, ModelSpec, cache_block, clean_json, 
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
+from roles.base import acted_tonight
 from state import Game
 
 
@@ -49,6 +50,11 @@ MODERATOR_TOOLS = [
          to={"type": "array", "items": {"type": "string"}}, text={"type": "string"}),
     tool("ask_player", "Ask one player a question and get their free-text answer.",
          player={"type": "string"}, question={"type": "string"}),
+    tool("record_visits", "Night only: every visit that happened tonight (rules R6), after role-blocks, as "
+         "[visitor, target] pairs: a player who visited several players gets a pair for each, a self-visit is "
+         "[X, X], and repeats are fine. Call it once each night before end_phase; calling it again replaces the "
+         "list. Code uses it for visit-based roles; players never see it.",
+         visits={"type": "array", "items": {"type": "array", "items": {"type": "string"}}}),
     tool("end_phase", "Finish this phase. The summary is private to the game log.",
          summary={"type": "string"}),
 ]
@@ -101,6 +107,7 @@ class Moderator:
         self.op_roles: dict[str, RoleLogic] = {}  # role op -> the role that carries it out
         self.code_told: set[str] = set()  # players whose night result code delivers (RoleLogic.code_tells_user)
         self.tells_held: set[str] = set()  # ... whose tell() was held once this phase
+        self.visits_reminded = False  # end_phase was refused once this night for a missing record_visits
         docs = []
         for role in sorted({p.role for p in game.players}):
             for op, (required, optional, doc) in logic(role).ops.items():
@@ -114,7 +121,7 @@ class Moderator:
         """Runs the moderator until it ends the phase. Returns what it did: each tool call, its
         arguments and result, in order (for the night check)."""
         transcript: list[dict] = []
-        self.code_told, self.tells_held = set(), set()
+        self.code_told, self.tells_held, self.visits_reminded = set(), set(), False
         messages = [
             rules_system(self.rules, "You are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
@@ -162,7 +169,7 @@ class Moderator:
                 transcript.append({"tool": name, "args": call["function"].get("arguments"),
                                    "result": "(the full state)" if name == "get_state" else result})
                 messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
-                ended = ended or name == "end_phase"
+                ended = ended or (name == "end_phase" and result.get("ok") is not False)
             if ended:
                 return transcript
         self.game.log.error("moderator_error", f"the moderator hit its step limit ({MAX_MODERATOR_STEPS}) "
@@ -278,13 +285,39 @@ class Moderator:
                 text = f"The moderator asked you: {args['question']} You answered: {out['answer']}"
                 g.tell([p.name], text)
                 return {"answer": out["answer"]}  # not the player's notepad
+            case "record_visits":
+                return self.record_visits(args["visits"])
             case "end_phase":
+                if g.phase == "night" and g.day not in g.night_visits:
+                    if not self.visits_reminded:
+                        self.visits_reminded = True
+                        return {"ok": False, "note": "Not ended: call record_visits with tonight's visits first "
+                                "(an empty list if nobody visited anyone), then end_phase."}
+                    g.log.error("visits_missing", f"the moderator ended night {g.day} without record_visits, so "
+                                "visit-based roles have no visits tonight", day=g.day)
                 return {"ok": True}
             case "flag_issue":
                 self.flags.append(args["issue"])
                 g.log.write("moderator_flag", day=g.day, phase=g.phase, issue=args["issue"])
                 return {"ok": True, "note": "Thanks; carry on."}
         raise ValueError(f"unknown tool {name!r}")
+
+    def record_visits(self, visits: Any) -> dict:
+        g = self.game
+        if g.phase != "night":
+            raise ValueError("record_visits is for the night's visits; nothing was recorded")
+        if not isinstance(visits, list) or not all(isinstance(v, list) and len(v) == 2 and all(isinstance(n, str)
+                                                    for n in v) for v in visits):
+            raise ValueError("visits must be a list of [visitor, target] pairs of player names; nothing was recorded")
+        names = {p.name for p in g.players}
+        for n in (n for v in visits for n in v):
+            if n not in names:
+                raise ValueError(f"no player named {n!r}; nothing was recorded")
+            if not acted_tonight(g, g.player(n)):
+                raise ValueError(f"{n} wasn't alive at the start of the night; nothing was recorded")
+        g.night_visits[g.day] = [list(v) for v in visits]
+        g.log.write("visits", day=g.day, visits=visits)
+        return {"ok": True, "recorded": len(visits)}
 
     def held_tell(self, to: list[str]) -> list[str]:
         """Recipients of a night tell() whose result code delivers, the first time each is told this phase."""

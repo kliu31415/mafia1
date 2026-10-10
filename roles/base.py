@@ -201,6 +201,29 @@ def neighbor_group(game: Game, user: str, target: str) -> list[str]:
     return list(dict.fromkeys([circle[i - 1], target, circle[(i + 1) % len(circle)]]))
 
 
+def visit_groups(game: Game) -> list[list[str]] | None:
+    """Tonight's visit groups (Cartographer): the connected parts of the undirected graph whose nodes are the
+    players alive at the start of the night and whose edges are the moderator's record_visits pairs (self-visits
+    link no one), each in seat order, largest first, then by first seat. None if no visits were recorded."""
+    visits = game.night_visits.get(game.day)
+    if visits is None:
+        return None
+    nodes = [p.name for p in game.players if acted_tonight(game, p)]
+    root = {n: n for n in nodes}
+
+    def find(n: str) -> str:
+        while root[n] != n:
+            n = root[n]
+        return n
+    for a, b in visits:
+        if a in root and b in root:
+            root[find(a)] = find(b)
+    groups: dict[str, list[str]] = {}
+    for n in nodes:
+        groups.setdefault(find(n), []).append(n)
+    return sorted(groups.values(), key=lambda g: (-len(g), nodes.index(g[0])))
+
+
 def recorded_action_parts(role: str, cls: type[RoleLogic]) -> None:
     """Fills in a RecordedAction role's op and (unless it sets its own) night note."""
     a = cls.action

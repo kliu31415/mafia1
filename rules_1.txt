@@ -179,7 +179,7 @@ above apply to it.
 Exact-role checks see the true role. The Roleplayer is seen as "Roleplayer".
 Token counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,
 even though they believe they have their fake role's tokens.
-Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.
+Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer) are never changed by any of these.
 
 ==================================================================================================
 PART 5: THE YAKUZA
@@ -285,6 +285,18 @@ Profiler
   one of the three is a Good role and at least one is not Good (Evil or Neutral), so a result never settles the
   player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19): a
   Roleplayer shows as Roleplayer.
+
+Cartographer
+  Tokens: 2 map tokens.
+  Night: at the end of every night, you learn the sizes of that night's visit groups. Link two players whenever
+  one visited the other that night (R6), in either direction; a group is a set of players linked to each other,
+  directly or through other players. Every player alive at the start of the night (including players who die that
+  night) is in exactly one group, so a player who visited no one and was visited by no one is a group of 1, and a
+  self-visit links no one. You learn only the sizes, largest first (e.g. "4, 2, 1, 1, 1"). This needs no action
+  and a role-block doesn't stop it.
+  Night: may also spend a token to map one player (Astral Visit; yourself allowed): at the end of the night you also
+  learn the names of everyone in that player's group. A role-block stops the map (R9) but not the sizes.
+  Your own actions never visit anyone, so they never link you to anyone.
 
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they

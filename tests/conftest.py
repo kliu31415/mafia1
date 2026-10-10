@@ -46,7 +46,7 @@ def default_answer(schema: dict):
 
 class ScriptedClient:
     """Players answer with defaults unless decide() overrides fields. The moderator makes the
-    queued tool calls in order, then ends the phase."""
+    queued tool calls in order, then ends the phase (at night, recording no visits first unless it did)."""
 
     def __init__(self, decide: Decide | None = None, moderator_calls: list[tuple[str, dict]] | None = None):
         self.decide = decide or (lambda name, task, schema: None)
@@ -61,6 +61,9 @@ class ScriptedClient:
         if tools:
             self.efforts.append(("moderator", effort))
             name, args = self.moderator_calls.pop(0) if self.moderator_calls else ("end_phase", {"summary": ""})
+            if name == "end_phase" and "Resolve Night" in json.dumps(messages[:2]) and not any(
+                    c["function"]["name"] == "record_visits" for m in messages for c in m.get("tool_calls") or []):
+                name, args = "record_visits", {"visits": []}  # unless the test recorded them
             calls = [{"id": f"call_{len(messages)}", "type": "function",
                       "function": {"name": name, "arguments": json.dumps(args)}}]
             msg = {"role": "assistant", "content": None, "tool_calls": calls}

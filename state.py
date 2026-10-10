@@ -103,6 +103,8 @@ class Game:
     vote_record: list[str] = field(default_factory=list)  # public summary of each nomination and trial
     pm_record: dict[int, dict[str, int]] = field(default_factory=dict)  # day -> {"A -> B": private messages}
     night_actions: dict[int, dict[str, dict]] = field(default_factory=dict)  # night -> submitted actions
+    # night -> the visits made, as [visitor, target] pairs (duplicates kept), from the moderator's record_visits
+    night_visits: dict[int, list[list[str]]] = field(default_factory=dict)
     claim_record: dict[str, list[tuple[int, str]]] = field(default_factory=dict)  # player -> (day, claim)
 
     def __getstate__(self) -> dict[str, Any]:
