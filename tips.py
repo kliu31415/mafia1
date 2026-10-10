@@ -22,6 +22,7 @@ runs the update after each game.
 Usage:
     uv run tips.py build                                # add new logs/game_*.jsonl, rewrite tips/tips.md
     uv run tips.py build logs/game_2026100* --out tips/early.md --max-words 600
+    uv run tips.py revise --note "..."                  # after a rules change: reword or retire what no longer holds
     uv run tips.py show tips/tips.md                    # what players see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
     uv run mafia.py --player-tips Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none
@@ -249,9 +250,9 @@ def record(e: dict, kind: str, game: str, weight: float, note: str) -> None:
         same["note"] = f"{same['note']}; {note}" if same["note"] else note
 
 
-def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
+def apply_ops(nb: dict, ops: list[dict], game: str, count_game: bool = True) -> int:
     """Carries out the model's ops on the notebook; returns how many were skipped (an unknown id, an
-    empty tip)."""
+    empty tip). `game` labels the evidence and history; count_game=False for a revision, which isn't a game."""
     by_id = {e["id"]: e for e in nb["entries"]}
     skipped = 0
     for op in ops:
@@ -287,7 +288,8 @@ def apply_ops(nb: dict, ops: list[dict], game: str) -> int:
             e["history"].append({"game": game, "change": kind + "d", "note": note})
         else:
             skipped += 1
-    nb["games"].append(game)
+    if count_game:
+        nb["games"].append(game)
     return skipped
 
 
@@ -319,6 +321,30 @@ def update_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, g:
     ops = answer_json(reply, OPS_SCHEMA)["ops"]
     skipped = apply_ops(nb, ops, g["game"])
     return len(ops) - skipped, skipped, reply.cost
+
+
+def revise_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, note: str) -> tuple[list[dict], float]:
+    """One pass over the whole notebook after a rules or settings change: rewords or retires entries that no
+    longer hold, plus whatever `note` (from Kevin) asks. Returns (the ops, cost)."""
+    messages = [
+        {"role": "system", "content": system_prompt(rules, "You keep a notebook of everything learned about "
+         "playing this game well: the long-term memory behind a short tips sheet that players get.")},
+        {"role": "user", "content": f"The notebook so far:\n\n{notebook_view(nb)}\n\n---\n\nThe rules or the "
+         "game settings have changed, and no new game is attached: revise the notebook so every active entry "
+         "holds under the rules and settings above. Go through every active entry, as ops:\n"
+         "- edit: the entry relies on something the rules or settings no longer allow (e.g. reading a dead "
+         "player's role, or who voted which way, when those are hidden), but its idea still works reworded; "
+         "give the new tip and why. Keep what the evidence showed; don't add claims it doesn't support.\n"
+         "- retire: the entry can't be reworded to hold; say why.\n"
+         "- restore: a retired entry that the change makes true again.\n"
+         "- add: only for what the instructions below ask for; use weight 0 and say in the note that it comes "
+         "from a revision, not a game.\n"
+         "Leave entries that still hold alone (no op). Don't use support or against."
+         + (f"\n\nInstructions for this revision: {note}" if note else "")},
+    ]
+    reply = client.chat(spec.model, messages, schema=OPS_SCHEMA, schema_name="notebook_ops", effort=spec.effort)
+    ops = [o for o in answer_json(reply, OPS_SCHEMA)["ops"] if o["op"] not in ("support", "against")]
+    return ops, reply.cost
 
 
 def render_notebook(nb: dict) -> str:
@@ -451,14 +477,9 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
     if not games:
         raise NoNewGames("No new game logs with lessons found (games need --lessons, which is on by default)."
                          + (f" {nb_path} already has all {len(nb['games'])} games." if nb["games"] else ""))
-    # the rules as games are now played (variants.DEFAULTS), so tips hold under them
-    rules = (ROOT / "rules_1.txt").read_text(encoding="utf-8") + variants.rules_notes(variants.DEFAULTS)
+    rules = current_rules()
     cost = 0.0
-    stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
-    if out.exists():  # the sheet before this build (the notebook's old versions are in git history)
-        (out.parent / "history").mkdir(parents=True, exist_ok=True)
-        (out.parent / "history" / f"{out.stem}_{stamp}{out.suffix}").write_bytes(out.read_bytes())
-    out.parent.mkdir(parents=True, exist_ok=True)
+    keep_old_sheet(out)
     for g in games:
         applied, skipped, c = update_notebook(client, spec, rules, nb, g)
         cost += c
@@ -470,6 +491,29 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
         # Saved after each game, so a failure later keeps (and doesn't pay again for) the games before it.
         write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
         touch()  # still alive: other builds wait instead of taking over the lock
+    return _rewrite_sheet(out, nb, client, spec, rules, max_words, on_error, cost, f"{len(games)} new")
+
+
+def current_rules() -> str:
+    """The rules as games are now played (variants.DEFAULTS), so tips hold under them."""
+    return (ROOT / "rules_1.txt").read_text(encoding="utf-8") + variants.rules_notes(variants.DEFAULTS)
+
+
+def keep_old_sheet(out: Path) -> str:
+    """Copies the sheet as it is to <out dir>/history/ (the notebook's old versions are in git history); returns the
+    timestamp it used."""
+    stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
+    if out.exists():
+        (out.parent / "history").mkdir(parents=True, exist_ok=True)
+        (out.parent / "history" / f"{out.stem}_{stamp}{out.suffix}").write_bytes(out.read_bytes())
+    out.parent.mkdir(parents=True, exist_ok=True)
+    return stamp
+
+
+def _rewrite_sheet(out: Path, nb: dict, client: LLMClient, spec: ModelSpec, rules: str, max_words: int,
+                   on_error: Callable[..., None], cost: float, what: str) -> Path:
+    """Writes the sheet from the notebook (and the notebook's .md); keeps the old sheet if the new one is empty."""
+    nb_path = notebook_path(out)
     body, c = write_sheet(client, spec, rules, nb, max_words)
     cost += c
     active = sum(e["status"] == "active" for e in nb["entries"])
@@ -484,8 +528,31 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
     write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
     write_atomic(out, header + body)
     print(f"Tips: {out} ({len(body.split())} words) from {nb_path.name} ({active} active entries, "
-          f"{len(nb['games'])} games; {len(games)} new); cost ${cost:.2f}")
+          f"{len(nb['games'])} games; {what}); cost ${cost:.2f}")
     return out
+
+
+def revise(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, note: str = "",
+           on_error: Callable[..., None] = print_alert) -> Path:
+    """After a rules or settings change: one pass that rewords or retires the notebook entries that no longer
+    hold (and does what `note` asks), then rewrites the sheet. Its changes are labeled "revision <time>" in the
+    notebook's history; it adds no game."""
+    with locked(out, on_error):
+        nb_path = notebook_path(out)
+        if not nb_path.exists():
+            raise SystemExit(f"No notebook at {nb_path} to revise")
+        nb = json.loads(nb_path.read_text(encoding="utf-8"))
+        rules = current_rules()
+        stamp = keep_old_sheet(out)
+        ops, cost = revise_notebook(client, spec, rules, nb, note)
+        skipped = apply_ops(nb, ops, f"revision {stamp[:15]}", count_game=False)
+        if skipped:
+            on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes in a revision; they were "
+                     "skipped", skipped=skipped)
+        write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
+        counts = {k: sum(o["op"] == k for o in ops) for k in ("edit", "retire", "restore", "add")}
+        return _rewrite_sheet(out, nb, client, spec, rules, max_words, on_error, cost,
+                              "revised: " + ", ".join(f"{n} {k}" for k, n in counts.items() if n))
 
 
 def main() -> None:
@@ -501,11 +568,22 @@ def main() -> None:
     b.add_argument("--fresh", action="store_true", help="start a new notebook from all the games, instead of "
                    "adding the games it doesn't have yet")
     b.add_argument("--mock", action="store_true", help="no API calls (random tips), and read mock_*.jsonl logs")
+    r = sub.add_parser("revise", help="after a rules or settings change: reword or retire the notebook entries that "
+                       "no longer hold, then rewrite the sheet (one call over the whole notebook, no games)")
+    r.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
+    r.add_argument("--model", default="opus-5.5", help="model[:effort] that revises the tips")
+    r.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
+    r.add_argument("--note", default="", help="extra instructions for this revision, e.g. a tip to add")
     s = sub.add_parser("show", help="print what players see of a tips file")
     s.add_argument("file")
     args = ap.parse_args()
     if args.cmd == "show":
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
+        return
+    if args.cmd == "revise":
+        reviser = OpenRouterClient(load_api_key())
+        reviser.on_error = print_alert
+        revise(Path(args.out), reviser, parse_model_spec(args.model), args.max_words, args.note)
         return
     prefix = "mock" if args.mock else "game"
     out = Path(args.out) if args.out else ROOT / ("logs/mock_tips/tips.md" if args.mock else "tips/tips.md")

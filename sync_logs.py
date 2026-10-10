@@ -382,7 +382,8 @@ def main() -> None:
     p.add_argument("--tips-model", default="opus-5.5", help="model[:effort] that updates the tips notebook")
     t = sub.add_parser("tips", help="tips/ from the branch, for cloud games (before games)")
     t.add_argument("--force", action="store_true", help="overwrite local tips files that differ")
-    sub.add_parser("publish-tips", help="publish tips/ here to the branch (pull does this after updating them)")
+    sub.add_parser("publish-tips", help="publish tips/ here to the branch and, on the PC, "
+                   "commit them to main (pull does this after updating them; run it after `tips.py revise`)")
     args = ap.parse_args()
     repo, log_dir, tips_dir = Repo(), ROOT / "logs", ROOT / "tips"
     try:
@@ -407,6 +408,8 @@ def main() -> None:
                 print(f"  kept {name}: the local copy differs (use --force to overwrite)")
         elif args.cmd == "publish-tips":
             print("Published" if put_tips(repo, tips_dir) else "Nothing new to publish")
+            if not in_cloud() and (tips_dir / "tips.md").exists():  # e.g. after `tips.py revise` on the PC
+                commit_tips(repo, tips_dir)
     except RuntimeError as e:
         print(f"ALERT sync_error: {e}", file=sys.stderr)
         sys.exit(1)

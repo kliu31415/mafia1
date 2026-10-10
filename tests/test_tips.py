@@ -236,3 +236,23 @@ def test_parallel_builds_of_one_sheet_take_turns(tmp_path, monkeypatch):
     monkeypatch.setattr(tips, "LOCK_STALE_S", -1)
     with tips.locked(sheet):
         pass
+
+
+def test_a_revision_rewords_and_retires_entries_without_counting_a_game(tmp_path):
+    out = tmp_path / "tips.md"
+    nb = tips.new_notebook()
+    tips.apply_ops(nb, [op("add", tip="Read the flipped role.", weight=0.5, note="g1"),
+                        op("add", tip="Guard the Sheriff.", audience="Medic", weight=0.5, note="g1")], "g1")
+    tips.notebook_path(out).write_text(json.dumps(nb), encoding="utf-8")
+    out.write_text("# old sheet\n", encoding="utf-8")
+    client = TipsClient([[op("retire", id="t1", note="flips are hidden"), op("support", id="t2", weight=1.0),
+                          op("add", tip="Hunt Neutral killers.", note="revision: asked for")]])
+    tips.revise(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, note="Add a tip on hunting Neutral killers.")
+    (_, revision), (_, sheet) = client.prompts
+    assert "no new game is attached" in revision and "Add a tip on hunting Neutral killers." in revision
+    assert "flipped role" not in sheet and "Hunt Neutral killers." in sheet
+    nb = json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))
+    t1, t2, t3 = nb["entries"]
+    assert nb["games"] == ["g1"] and t1["status"] == "retired" and t1["history"][-1]["game"].startswith("revision ")
+    assert len(t2["support"]) == 1  # a revision never adds evidence
+    assert [p.read_text(encoding="utf-8") for p in (tmp_path / "history").iterdir()] == ["# old sheet\n"]
