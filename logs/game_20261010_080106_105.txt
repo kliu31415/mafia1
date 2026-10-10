@@ -470,3 +470,25 @@ The game is over. Winners: Carol, Erin, Mallory.
 ===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
 
 ===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Erin, Mallory
+Cost by player (USD):
+  Alice (Medic)             $0.0276   20 calls  claude-haiku-5.5
+  Bob (Archivist)           $0.0307   20 calls  claude-haiku-5.5
+  Carol (Smuggler)          $0.1561   73 calls  claude-haiku-5.5
+  Dave (Veteran)            $0.1487   56 calls  claude-haiku-5.5
+  Erin (Grunt)              $0.1490   73 calls  claude-haiku-5.5
+  Frank (Accountant)        $0.0743   36 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.1404   59 calls  claude-haiku-5.5
+  Heidi (Fortune Teller)    $0.1145   40 calls  claude-haiku-5.5
+  Ivan (Vanilla Villager)   $0.1443   58 calls  claude-haiku-5.5
+  Judy (Lookout)            $0.1128   44 calls  claude-haiku-5.5
+  Mallory (Clerk)           $0.1566   73 calls  claude-haiku-5.5
+  Moderator                 $1.6990   17 calls  claude-opus-5.5
+  Night checks              $0.4897    6 calls  claude-opus-5.5
+  Strategy review           $0.3315    1 calls  claude-opus-5.5
+  Log review                $0.3491    1 calls  claude-opus-5.5
+  Total                     $4.1244  577 calls

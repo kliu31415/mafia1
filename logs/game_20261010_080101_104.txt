@@ -632,3 +632,30 @@ The nomination of Bob failed (1 Yes).
 Frank nominated Frank. Everyone now votes Yes/No simultaneously.
 Nomination votes on Frank: Yes - Frank; No - Grace, Bob.
 The nomination of Frank failed (1 Yes).
+[Feedback from Grace] Budget of 2.98 is just short of the 3.00 nomination cost, which blocks nominating this round.
+(to Frank, Grace) Grace -> Frank (private): Frank, Grace privately. Bob is the last Yakuza and holds the Katana, and he's keeping you alive because you and he together win if I die tonight. If you aren't Yakuza, nominate Bob and I'll vote Guilty with you. I won't vote Guilty on you.
+[Feedback from Frank] Message prices (minimum 4.09 public, 1.02 private for 10 words) mean a nomination uses nearly all my budget; the budget display and carry-over make it hard to say anything this round.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Frank; No - Grace, Bob.
+The nomination of Frank failed (1 Yes).
+(to Frank, Grace) Grace -> Frank (private): Frank, Grace privately. Bob is the last Yakuza and holds the Katana, so he will probably strike me tonight. If you want to win, hanging Bob with me is the only Village win left, and a hanged Bob ends the game with you still alive. My Guilty vote on you would kill me by revenge and leave Bob alone.
+Discussion time is over. The day ends.
+
+===== NIGHT 8 =====
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Grace
+  Grace (Archivist): no action
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): Night 8: You were attacked with the Katana. The attack killed you.
+(to Bob) Moderator (private): Night 8 Yakuza summary: Bob kept the Katana and attacked Grace with it. Bob took no other action. Your Katana attack on Grace succeeded.
+[Moderator summary] Night 8: Bob (Grunt, Katana holder) attacked Grace with the Standard Katana attack; Grace (Archivist, Defense None) died. No other actions. Visits: Bob->Grace. Remaining alive: Bob (Yakuza) and Frank (Jester). Ignoring the Jester, every living player is Yakuza, so the Yakuza win.
+
+===== DAY 9 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace (Archivist, Good). Night 1 archive, already shared: 7 of 10 others shown as Tracker, Prosecutor, Pharmacist, Lookout, Ex-Con, Grunt, Diviner; 3 unlisted. Claimed roles: Judy Seer, Heidi Tracker, Dave Lookout, Mallory Oracle, Carol Diviner, Alice Prosecutor, Erin Ex-Con (all dead). Bob claims Grunt, a Yakuza role, and is the likely last Katana holder. Frank claims Jester, and a hanged Jester wins, so do not hang him without a clear reason. Judy's Night 2 Carol visit (from Heidi's track) is the Katana lead."
+The game is over. Winners: Bob, Carol (dead), Ivan (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 8: correct
+[Feedback from Carol] The notepad 375-word cap and the lack of a per-turn summary of Katana history made long games hard to track.
+[Feedback from Grace] The public ledger and game log show duplicated nomination entries and some inconsistent Pharmacist/Katana information; the interface also made it hard to track budget and living-player slot math during play.
+[Feedback from Mallory] The Day 8 ledger lists repeated identical nomination entries and the rules do not say whether a self-nomination that fails still counts against the three-nomination cap; clarifying that would help.
