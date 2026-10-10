@@ -388,3 +388,23 @@ The game is over. Winners: Alice, Bob (dead), Dave, Frank (dead), Grace, Heidi (
 ===== MODERATOR STRATEGY REVIEW =====
 
 ===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Frank, Grace, Heidi, Ivan, Judy
+Cost by player (USD):
+  Alice (Medic)             $0.0905   45 calls  claude-haiku-5.5
+  Bob (Archivist)           $0.0614   29 calls  claude-haiku-5.5
+  Carol (Smuggler)          $0.0862   49 calls  claude-haiku-5.5
+  Dave (Veteran)            $0.0949   46 calls  claude-haiku-5.5
+  Erin (Grunt)              $0.1050   55 calls  claude-haiku-5.5
+  Frank (Accountant)        $0.0848   41 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0718   41 calls  claude-haiku-5.5
+  Heidi (Fortune Teller)    $0.0300   17 calls  claude-haiku-5.5
+  Ivan (Vanilla Villager)   $0.0723   41 calls  claude-haiku-5.5
+  Judy (Lookout)            $0.0907   46 calls  claude-haiku-5.5
+  Mallory (Clerk)           $0.0639   42 calls  claude-haiku-5.5
+  Moderator                 $1.3162   15 calls  claude-opus-5.5
+  Night checks              $0.2219    5 calls  claude-opus-5.5
+  Strategy review           $0.2812    1 calls  claude-opus-5.5
+  Log review                $0.2594    1 calls  claude-opus-5.5
+  Total                     $2.9302  474 calls
