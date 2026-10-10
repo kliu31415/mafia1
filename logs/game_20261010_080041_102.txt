@@ -493,3 +493,44 @@ Heidi (public): Heidi, claimed Tracker, not guilty. My tracks match the public n
 (to Heidi, Mallory) Heidi -> Mallory (private): Mallory, you confirmed my N4 track on you was accurate. Carol's unnamed Oracle result is the only thing against me. Please vote Innocent and press Dave to explain his Yes.
 Mallory (public): Mallory, Vanilla. I lean Guilty on Heidi. Carol's Oracle results checked out where we can test them: Ivan as Fortune Teller, Erin as Accountant (0 tokens, matching Carol's audit), and Grace as Vigilante. So her Night 4 'Heidi is not a Tracker' carries real weight. Heidi flatly denied any Night 1-2 action before claiming Tracker, and her tracks only fit if her own claim is true. Heidi, if Carol's Night 4 result is wrong, name the role Carol guessed and explain why your Night 1-2 denial was true. Dave, you voted Yes today: what is your concrete reason beyond Carol's result?
 Dave (public): Dave, Vanilla. I voted Yes on Heidi's nomination and I'm voting Guilty. My concrete reason: on Day 4 she flatly denied any Night 1-2 action, then claimed Tracker only after being nominated. Carol's N4 check says she isn't a Tracker, and Carol's checks on Ivan, Erin and Grace fit those players' claims. Heidi, if Carol's N4 result is false, name the role Carol guessed. Mallory, you voted No on both Heidi nominations and PM'd her on Day 5. What's your reason beyond defending her tracks?
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+Grace (public): Grace, Vigilante. I'm voting Guilty on Heidi. Carol's Oracle checks on Ivan, Erin and me held, and her Night 4 result says Heidi is not a Tracker. Heidi also lied about her Night 1-2 actions before claiming Tracker. My Basic shot failed, so Heidi has Basic Defense or protection. Heidi, if you're a real Tracker, name who protected you.
+Heidi (public): Heidi here. I was given the Tracker role and I believe it. Carol's Night 4 check says I'm not a Tracker, but exact-role checks show a Roleplayer as 'Roleplayer', and Roleplayers are never told. A Roleplayer's tracks and guesses can be false without them knowing, and Erin's 0-token audit fits either a Tracker or a Roleplayer. I admit my Day 4 denial of Night 1-2 actions was a panicked lie, and I'm sorry for it. Dave and Mallory: the vote should turn on whether Carol's Night 4 result is real, not on my flip. I see no concrete Yakuza link on me, and the Yakuza are not what hanging me would fix. Vote on that.
+(to Dave, Heidi) Heidi -> Dave (private): Dave, a Roleplayer is told a Village investigative role and never told it's fake, so Carol's wrong Tracker guess fits that as well as a liar. Please weigh that before voting Guilty.
+Trial votes on Heidi: Guilty - Dave, Grace, Mallory; Innocent - Heidi.
+Heidi is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Heidi died (executed by hanging). Their alignment was Neutral. Their last will: "Heidi (Tracker, claimed). Tracks: N1 Bob visited no one; N2 Frank visited no one; N3 Judy visited no one; N4 Mallory visited no one (Mallory confirmed). Erin's N1 audit visited me and my track visited Bob, so Alice's N1 group of three is Erin, Heidi, Bob. Ivan's N2 pair of 2 and 3 fits Alice's Katana death, my visit to Frank, and Erin's audit of Alice. Carol's Oracle claim named no role or target for N4 and nominated me on that unnamed result; I never trusted it. Grace's Vigilante claim is the only one with a checked outcome (Carol's N5 guess on Grace was confirmed). The Katana holder still alive must be Dave or Mallory, since both voted No on my nominations and both claim Vanilla. Plan, not result: N7 track Dave, then vote on the answer. Vote on checkable results, not claims alone."
+The game is over. Winners: Alice (dead), Carol (dead), Dave, Erin (dead), Grace, Ivan (dead), Mallory. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Ivan] The game is finished, so the other response fields were left empty as instructed; the Fortune Teller's unlabeled numbers were the main interface issue.
+[Feedback from Carol] Several rules around Astral Visits, Oracle result wording and Roleplayer exact-role checks were ambiguous to me during play; the interface gave no way to resolve them privately.
+[Feedback from Mallory] The per-turn speaking budget made it impossible to send even a short public message at higher round multipliers, which forced silence; a zero-cost pass option would avoid this.
+[Feedback from Bob] Interface gave no clear budget display in the Day prompt for my own remaining speaking points, and rule text on Fortune Teller order and Oracle visibility was hard to apply mid-game.
+[Feedback from Judy] The fields for this answer are fine, but the game's public death announcement order for simultaneous Night 4 deaths (Frank, Judy, Erin) was hard to sequence; a note on death ordering would help.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Grace, Ivan, Mallory
+Cost by player (USD):
+  Alice (Cartographer)        $0.0266   19 calls  claude-haiku-5.5
+  Bob (Puppeteer)             $0.0931   53 calls  claude-haiku-5.5
+  Carol (Oracle)              $0.1676   64 calls  claude-haiku-5.5
+  Dave (Vanilla Villager)     $0.1617   65 calls  claude-haiku-5.5
+  Erin (Accountant)           $0.1045   49 calls  claude-haiku-5.5
+  Frank (Smuggler)            $0.0988   56 calls  claude-haiku-5.5
+  Grace (Vigilante)           $0.2472   77 calls  claude-haiku-5.5
+  Heidi (Arsonist)            $0.1759   71 calls  claude-haiku-5.5
+  Ivan (Fortune Teller)       $0.0482   27 calls  claude-haiku-5.5
+  Judy (Clerk)                $0.0989   56 calls  claude-haiku-5.5
+  Mallory (Vanilla Villager)  $0.1567   65 calls  claude-haiku-5.5
+  Moderator                   $1.7328   19 calls  claude-opus-5.5
+  Night checks                $0.4303    6 calls  claude-opus-5.5
+  Strategy review             $0.3449    1 calls  claude-opus-5.5
+  Log review                  $0.3236    1 calls  claude-opus-5.5
+  Total                       $4.2109  629 calls
