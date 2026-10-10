@@ -186,6 +186,11 @@ ROLES: dict[str, RoleInfo] = {
                                tokens={"ballot": 2}, acts_at_night=True,
                                notes="moderator records the use with the stuff_ballot op; code doubles the vote "
                                "in the next day's trials"),
+    "Fixer": RoleInfo(Alignment.EVIL, "Yakuza", True,
+                      summary="Token: one player's trial votes count as the opposite the next Day; nobody is told.",
+                      tokens={"fixer": 2}, acts_at_night=True,
+                      notes="moderator records the use with the fix op (a visit); code reverses the counted vote "
+                      "in the next day's trials"),
     "Diviner": RoleInfo(Alignment.EVIL, "Yakuza", True,
                         summary="Night: pick a player; a Yakuza gets Strong Defense, "
                         "else learn a role from them and neighbors (60% theirs).",

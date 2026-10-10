@@ -236,6 +236,10 @@ class Game:
         for role_logic in LOGIC.values():
             role_logic.at_night_end(self)
 
+    def trial_vote_reversed(self, voter: Player) -> bool:
+        """Whether a role effect counts this voter's Guilty/Innocent vote today as the opposite (Fixer)."""
+        return any(role_logic.reverses_trial_vote(self, voter) for role_logic in LOGIC.values())
+
     def run_dawn_hooks(self) -> None:
         """Role effects at the start of the day (e.g. Ballot Stuffer votes taking effect)."""
         for role_logic in LOGIC.values():

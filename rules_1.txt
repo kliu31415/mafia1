@@ -452,6 +452,14 @@ Ballot Stuffer
   majority of all votes counted, so your extra vote counts whether you vote Guilty or Innocent. The announced
   totals include your extra vote without saying whose it is.
 
+Fixer
+  Tokens: 2 fixer tokens.
+  Night: may spend a token to fix one player other than yourself. During the following Day, every Guilty/Innocent
+  trial vote they cast counts as the opposite (Guilty as Innocent, Innocent as Guilty). Their nomination (Yes/No)
+  votes are unchanged. Nobody is told, not even them: their private reminder shows the vote they cast, while the
+  totals and anything that reports how they voted (e.g. the Auditor, the Informant, a Jester's revenge on Guilty
+  voters) use the vote as counted.
+
 Diviner
   Night: may pick one player. If they are Yakuza, they get Strong Defense for that night. Otherwise, the group is
   that player plus their nearest neighbor on each side in the circle (R11) among the players alive at the start of

@@ -104,6 +104,11 @@ class RoleLogic:
         `speaker` to `to` (Wiretap, Eavesdropper)."""
         return False
 
+    def reverses_trial_vote(self, game: Game, voter: Player) -> bool:
+        """Whether this role's effect counts `voter`'s Guilty/Innocent vote today as the opposite (Fixer). Called once
+        per registered role, whether or not anyone has it."""
+        return False
+
     def sees_trial_votes(self, game: Game, me: Player) -> bool:
         """Whether this living player is privately told how everyone voted in each secret trial (Informant)."""
         return False

@@ -896,3 +896,21 @@ def test_informant_sees_every_secret_trial_vote(game_factory):
     seen = [t for t in told(game, "Alice") if "How everyone voted" in t]
     assert len(seen) == 1 and "Guilty - Alice, Bob, Carol, Dave" in seen[0]
     assert not any("How everyone voted" in t for t in told(game, "Bob"))  # other Yakuza aren't told
+
+
+def test_fixer_reverses_a_players_trial_votes_the_next_day_and_nobody_is_told(game_factory):
+    from day import run_trial
+    game, players = game_factory(["Fixer", "Informant", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"],
+                                 ScriptedClient(votes(guilty_for={"Erin"})))
+    game.phase = "night"
+    apply_ops(game, players, {"op": "fix", "player": "Carol", "by": "Alice"})
+    assert game.player("Alice").tokens["fixer"] == 1
+    game.announce_dawn()
+    game.run_dawn_hooks()
+    game.phase = "day"
+    run_trial(game, players, game.player("Dave"), "Erin", rnd=1)
+    seen = next(t for t in told(game, "Bob") if "How everyone voted" in t)  # the Informant sees the counted vote
+    assert "Innocent - Carol" in seen
+    assert any(t.endswith("You voted Guilty in the trial of Erin.") for t in told(game, "Carol"))  # what she cast
+    assert not any("fix" in t.lower() for t in told(game, "Carol"))
+    assert game.votes[game.day][-1]["votes"]["Carol"] is False  # the Auditor reads the counted vote too

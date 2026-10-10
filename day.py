@@ -432,7 +432,8 @@ TRIAL_VOTE_NOTE = ("This turn is only for discussion: after everyone has spoken,
 
 
 def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str], no: list[str], outcome: str,
-             prosecuted: bool = False, weights: dict[str, int] | None = None) -> None:
+             prosecuted: bool = False, weights: dict[str, int] | None = None,
+             reversed_voters: list[str] | None = None) -> None:
     """A structured vote record for analysis. stage is "nomination" (yes = Yes votes, including the
     nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once."""
     game.votes.setdefault(game.day, []).append(
@@ -440,7 +441,7 @@ def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str
     game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
                    votes={**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}, outcome=outcome,
                    prosecuted=prosecuted, secret=game.rule_settings[f"{stage}_votes"] == "secret",
-                   **({"weights": weights} if stage == "trial" else {}))
+                   **({"weights": weights, "reversed": reversed_voters or []} if stage == "trial" else {}))
 
 
 def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int,
@@ -466,8 +467,12 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
             + ("the votes are secret: only the Guilty and Innocent totals are announced, never who voted which way."
                if secret else "all votes are revealed publicly once everyone has voted."))
     outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters], step="trial_vote")
-    guilty = [v.name for v, o in zip(voters, outs) if o["vote"]]
-    innocent = [v.name for v, o in zip(voters, outs) if not o["vote"]]
+    # A role may count a vote as the opposite of what was cast (Fixer): the voter's reminder shows the vote they
+    # cast; the count, the log and anyone who sees votes (Informant, Auditor) see the vote as counted.
+    reversed_voters = [v.name for v in voters if game.trial_vote_reversed(v)]
+    counted = [o["vote"] != (v.name in reversed_voters) for v, o in zip(voters, outs)]
+    guilty = [v.name for v, c in zip(voters, counted) if c]
+    innocent = [v.name for v, c in zip(voters, counted) if not c]
     # A role may count a voter more than once (Ballot Stuffer); the verdict then needs a majority of all
     # votes counted, and the announced totals include the extra votes without saying whose they are.
     weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
@@ -494,7 +499,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
     log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted,
-             weights={n: w for n, w in weight.items() if w != 1})
+             weights={n: w for n, w in weight.items() if w != 1}, reversed_voters=reversed_voters)
     game.vote_record.append(
         f"Day {game.day}: trial of {nominee}; "
         + (f"{guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (secret vote)" if secret else
