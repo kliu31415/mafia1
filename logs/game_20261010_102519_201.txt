@@ -306,3 +306,21 @@ Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob
 
 ===== NIGHT 5 =====
 (to Erin, Heidi) Erin (Yakuza chat): Erin: Proposal for N5. Heidi keeps the Katana and attacks Judy. Judy is the only living non-Yakuza left. If she is Vanilla, her death ends the game for us. If she is the Arsonist, the Katana may fail, but nothing is lost. I will block Judy so any douse or ignite she attempts fails. Heidi, no daytime PMs with me. Confirm or object with a concrete reason. I'm ready.
+(to Erin, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. I keep the Katana and attack Judy. Erin blocks Judy so any douse or ignite fails. I take no other action and keep my puppet token. Judy is the only living non-Yakuza, so her death ends the game for us. Erin, confirm your block and vote Judy as target. No daytime PMs between us. Ready.
+Night actions:
+  Erin (Pharmacist): target Judy; Katana vote: Heidi holds, attacks Judy
+  Heidi (Puppeteer): no role action; Katana vote: Heidi holds, attacks Judy
+Katana: Heidi holds it and attacks Judy.
+(to Judy) Moderator (private): Night 5: You were role-blocked tonight. You were attacked with the Katana, and you died.
+(to Erin) Moderator (private): Night 5 result: You role-blocked Judy.
+(to Heidi) Moderator (private): Night 5 result: You held the Katana and attacked Judy. Your attack succeeded. You did not use your own role's action tonight; you still have 1 puppet token.
+(to Erin, Heidi) Moderator (private): Yakuza night summary (Night 5): Heidi holds the Katana and it attacked Judy. Erin (Pharmacist) chose to role-block Judy. Heidi (Puppeteer) chose not to use her own action.
+[Moderator summary] Night 5: Erin (Pharmacist) role-blocked Judy; Heidi (Katana holder) attacked Judy with Standard Katana attack; Judy (Vanilla, Defense None) died. Visits: Erin->Judy, Heidi->Judy. Only Yakuza (Erin, Heidi) remain alive: Yakuza win.
+
+===== DAY 6 =====
+Judy died (killed by Katana). Their role isn't revealed. Their last will: "Judy was a Vanilla Villager with no night action and no night information, and that has never changed. I hold no results and never had a token. Alice's Diviner group put me at 60 percent Arsonist on Night 1. That group can't convict anyone alone, so judge it against checkable results, not my word. Ivan's Prosecutor claim named no target until trial, and Dave's Eavesdropper claim read no PM contents. Treat any claim without a checkable result as unverified. Two Arsonist kills (Alice, Dave, Carol) suggest a living Arsonist who wants to be alone at the end, so watch for players who push votes against checkable evidence. Vote on contradictions and mechanical leads only."
+The game is over. Winners: Alice (dead), Erin, Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 5: correct
+[Feedback from Dave] The Eavesdropper role gave me little usable information in this game, and the interface doesn't make clear when an eavesdropped PM counts as read, so I could not tell whether my targets had any chance to produce content.

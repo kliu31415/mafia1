@@ -244,3 +244,24 @@ The game is over. Winners: Erin, Ivan (dead), Judy, Grace (dead). Dead players s
 ===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
 
 ===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Erin, Ivan, Judy, Grace
+Cost by player (USD):
+  Alice (Lookout)           $0.0343   18 calls  claude-haiku-5.5
+  Bob (Census Taker)        $0.0749   26 calls  claude-haiku-5.5
+  Carol (Profiler)          $0.0616   26 calls  claude-haiku-5.5
+  Dave (Tracker)            $0.0154   10 calls  claude-haiku-5.5
+  Erin (Wiretap)            $0.0665   34 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.0690   25 calls  claude-haiku-5.5
+  Grace (Jester)            $0.0146   10 calls  claude-haiku-5.5
+  Heidi (Arsonist)          $0.0308   17 calls  claude-haiku-5.5
+  Ivan (Ritualist)          $0.0228   14 calls  claude-haiku-5.5
+  Judy (Clerk)              $0.0652   36 calls  claude-haiku-5.5
+  Moderator                 $0.8299   13 calls  claude-opus-5.5
+  Night checks              $0.2516    4 calls  claude-opus-5.5
+  Strategy review           $0.2055    1 calls  claude-opus-5.5
+  Log review                $0.1671    1 calls  claude-opus-5.5
+  Total                     $1.9093  235 calls
