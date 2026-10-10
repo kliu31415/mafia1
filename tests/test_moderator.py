@@ -241,3 +241,26 @@ def test_a_night_tell_to_a_player_whose_result_code_delivers_is_held_once(game_f
     assert told("Alice") == ["Moderator (private): You were attacked but survived."]
     assert mod.dispatch("tell", {"to": ["Bob"], "text": "Done."})["ok"]  # a Medic's result comes from the moderator
     assert game.log.error_counts == {}
+
+
+def test_ending_the_night_with_a_held_tell_unsent_is_refused_once(game_factory):
+    game, players = game_factory(["Philanthropist", "Vanilla Villager", "Grunt"])
+    game.phase = "night"
+    game.night_actions[game.day] = {"Alice": {"act": True, "target": "Bob"}}
+    game.night_visits[game.day] = []
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert mod.dispatch("tell", {"to": ["Alice"], "text": "You handed Bob a token. You were attacked."})["ok"] is False
+    out = mod.dispatch("end_phase", {"summary": ""})
+    assert out["ok"] is False and "Alice" in out["note"]
+    assert mod.dispatch("end_phase", {"summary": ""})["ok"]  # nothing else to send: the second end_phase goes through
+
+
+def test_a_resent_held_tell_lets_the_night_end(game_factory):
+    game, players = game_factory(["Philanthropist", "Vanilla Villager", "Grunt"])
+    game.phase = "night"
+    game.night_actions[game.day] = {"Alice": {"act": True, "target": "Bob"}}
+    game.night_visits[game.day] = []
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("tell", {"to": ["Alice"], "text": "You handed Bob a token. You were attacked."})
+    mod.dispatch("tell", {"to": ["Alice"], "text": "You were attacked but survived."})
+    assert mod.dispatch("end_phase", {"summary": ""})["ok"]

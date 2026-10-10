@@ -437,7 +437,8 @@ def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str
     nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once."""
     game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
                    votes={**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}, outcome=outcome,
-                   prosecuted=prosecuted, **({"weights": weights} if stage == "trial" else {}))
+                   prosecuted=prosecuted, secret=game.rule_settings[f"{stage}_votes"] == "secret",
+                   **({"weights": weights} if stage == "trial" else {}))
 
 
 def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int,

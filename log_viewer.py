@@ -62,6 +62,11 @@ def text_line(r: dict) -> str | None:
             return f"[Moderator flag] {r['issue']}"
         case "player_feedback":
             return f"[Feedback from {r['player']}] {r['feedback']}"
+        case "vote" if r.get("secret"):  # players saw only the totals; the log keeps who voted which way
+            yes, no = ("Guilty", "Innocent") if r["stage"] == "trial" else ("Yes", "No")
+            names = {v: [n for n, x in r["votes"].items() if x is v] for v in (True, False)}
+            return (f"[Secret {r['stage']} votes on {r['nominee']}] {yes} - {', '.join(names[True]) or 'nobody'}; "
+                    f"{no} - {', '.join(names[False]) or 'nobody'}")
         case "revenge":
             return f"[Revenge] {r['source']}'s Divine Attack hits {r['victim']}."
         case "night_check":

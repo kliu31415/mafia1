@@ -337,3 +337,13 @@ def test_public_votes_name_every_voter(game_factory):
     run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
     assert any("Guilty - " in e.text for e in game.events if e.visible_to is None)
     assert not any(e.notice for e in game.events)
+
+
+def test_the_text_log_lists_secret_votes_for_reviewers(game_factory):
+    from log_viewer import text_line
+    game, players = game_factory(VILLAGE5, ScriptedClient(votes(guilty_for={"Bob"})))
+    records: list[dict] = []
+    game.log.write = lambda kind, **f: records.append({"kind": kind, **f})  # type: ignore[method-assign]
+    run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
+    lines = [text_line(r) for r in records if r["kind"] == "vote"]
+    assert lines and (lines[0] or "").startswith("[Secret trial votes on Bob] Guilty - ")

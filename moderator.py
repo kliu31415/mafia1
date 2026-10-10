@@ -109,6 +109,8 @@ class Moderator:
         self.code_told: set[str] = set()  # players whose night result code delivers (RoleLogic.code_tells_user)
         self.tells_held: set[str] = set()  # ... whose tell() was held once this phase
         self.visits_reminded = False  # end_phase was refused once this night for a missing record_visits
+        self.held_unsent: set[str] = set()  # held tells not followed by another tell to that player this phase
+        self.held_reminded = False  # end_phase was refused once this night for held_unsent
         docs = []
         for role in sorted({p.role for p in game.players}):
             for op, (required, optional, doc) in logic(role).ops.items():
@@ -123,6 +125,7 @@ class Moderator:
         arguments and result, in order (for the night check)."""
         transcript: list[dict] = []
         self.code_told, self.tells_held, self.visits_reminded = set(), set(), False
+        self.held_unsent, self.held_reminded = set(), False
         messages = [
             rules_system(self.rules, "You are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
@@ -278,6 +281,7 @@ class Moderator:
                                 "this message is about something else, such as an attack or a role-block, send it "
                                 "again and it will go through."}
                     g.tell(to, args["text"])
+                    self.held_unsent.difference_update(to)
                 return {"ok": True}
             case "ask_player":
                 p = g.player(args["player"])
@@ -297,6 +301,14 @@ class Moderator:
                                 "(an empty list if nobody visited anyone), then end_phase."}
                     g.log.error("visits_missing", f"the moderator ended night {g.day} without record_visits, so "
                                 "visit-based roles have no visits tonight", day=g.day)
+                # A held tell can carry more than the action's result: "Your Katana attack on Grace succeeded" to a
+                # Diviner holder was held and never resent (game_20261010_102519_201).
+                if self.held_unsent and not self.held_reminded:
+                    self.held_reminded = True
+                    return {"ok": False, "note": f"Not ended: your tell() to {', '.join(sorted(self.held_unsent))} "
+                            "was held and not sent. If it said anything besides the result of their own action "
+                            "(e.g. whether their attack succeeded, a role-block, that they died), send that part "
+                            "again now; otherwise call end_phase again."}
                 return {"ok": True}
             case "flag_issue":
                 self.flags.append(args["issue"])
@@ -331,6 +343,7 @@ class Moderator:
                 and (n in self.code_told or acted.get(n, {}).get("act"))]
         if held:
             self.tells_held.update(held)
+            self.held_unsent.update(held)
             g.log.write("tell_held", day=g.day, players=held)
         return held
 

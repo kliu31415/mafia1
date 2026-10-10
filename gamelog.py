@@ -73,7 +73,8 @@ from records import read_records, safe_print
 # 37: setup settings carry the rule settings (variants.py: flips, trial_votes, nomination_votes; older logs mean
 #     variants.LEGACY), and the defaults hide flips and votes: secret votes' public events give only totals, each
 #     voter gets a "notice" with their own vote, and "vote" records still list every vote
-LOG_VERSION = 37
+# 38: "vote" records have secret (players saw only the totals); the .txt view then lists the votes
+LOG_VERSION = 38
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
