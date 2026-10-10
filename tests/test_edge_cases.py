@@ -220,6 +220,16 @@ def test_bad_ops_refuse_the_whole_batch(game_factory, change, why):
     assert game.player("Carol").alive  # nothing was applied
 
 
+def test_set_katana_is_refused_at_night(game_factory):
+    """Rules R8: a holder who dies at night passes the Katana on after the night's results, by code, so a
+    teammate dying to that night's Jester revenge can't receive it (game_20261010_013419_977337)."""
+    game, players = game_factory(TOWN4_GRUNT)
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    with pytest.raises(ValueError, match="don't set it at night"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "set_katana", "player": "Erin"}]})
+
+
 def test_null_optional_fields_mean_not_given_and_an_unknown_token_is_a_warning(game_factory):
     game, players = game_factory(TOWN4_GRUNT)
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
