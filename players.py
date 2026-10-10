@@ -309,32 +309,16 @@ class Players:
         for attempt in range(2):
             reply: LLMReply | None = None
             started = time.monotonic()
+            # Only the call and the answer's checks are caught: a bad answer or a request that failed after its
+            # retries is the model's (retried, then the fallback). Anything else is a bug in our code, which should
+            # stop the game (resumable from its checkpoint) rather than silence this player for the rest of it.
             try:
                 reply = self.client.chat(p.model, messages, schema=sent, effort=p.effort)
                 latency = round(time.monotonic() - started, 2)
                 out = answer_json(reply, sent)
                 if shared:
                     out = fit_answer(out, wanted)
-                before = p.notepad
-                after = before
-                if isinstance(note := out.get("notepad"), str) and not blank(note):  # "" keeps it, like null
-                    cap = notepad_words(self.game)
-                    after = truncate_words(note, cap) if word_count(note) > cap else note
-                    if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
-                        self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
-                                       f"to its first {cap}.)", [p.name])
-                self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task,
-                                    output=out, reasoning=reply.reasoning, cost=reply.cost,
-                                    usage=reply.usage, latency_s=latency, notepad_before=before,
-                                    notepad_after=after)
-                if isinstance(fb := out.pop("feedback", None), str) and not blank(fb):
-                    self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
-                                        player=p.name, role=p.role, feedback=fb)
-                out.pop("notepad", None)
-                out.pop("reason", None)  # logged above; game code and the moderator never see it
-                p.notepad = after
-                return out
-            except Exception as e:  # a bad answer, or a request that failed after its retries
+            except Exception as e:
                 error = str(e) if isinstance(e, (json.JSONDecodeError, RuntimeError)) else f"{type(e).__name__}: {e}"
                 self.game.log.error("player_error", f"{p.name} ({p.model.short}), attempt {attempt + 1}: {error}",
                                     player=p.name, model=p.model.value, attempt=attempt, **where, task=task,
@@ -345,6 +329,26 @@ class Players:
                     messages = messages + [{"role": "assistant", "content": reply.content},
                                            {"role": "user", "content": f"That answer couldn't be used ({error[:300]}). "
                                             "Answer again with JSON that follows the schema exactly."}]
+                continue
+            before = p.notepad
+            after = before
+            if isinstance(note := out.get("notepad"), str) and not blank(note):  # "" keeps it, like null
+                cap = notepad_words(self.game)
+                after = truncate_words(note, cap) if word_count(note) > cap else note
+                if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
+                    self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
+                                   f"to its first {cap}.)", [p.name])
+            self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task,
+                                output=out, reasoning=reply.reasoning, cost=reply.cost,
+                                usage=reply.usage, latency_s=latency, notepad_before=before,
+                                notepad_after=after)
+            if isinstance(fb := out.pop("feedback", None), str) and not blank(fb):
+                self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
+                                    player=p.name, role=p.role, feedback=fb)
+            out.pop("notepad", None)
+            out.pop("reason", None)  # logged above; game code and the moderator never see it
+            p.notepad = after
+            return out
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, **where, task=task, fallback=fallback)

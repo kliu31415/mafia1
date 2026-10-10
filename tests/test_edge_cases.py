@@ -692,3 +692,16 @@ def test_post_game_prompts_carry_the_history_once(game_factory):
     game.emit("night happened")
     text = str(player_messages(game, game.player("Alice"), "(rules)", "?", context=post_game_context(game)))
     assert text.count("day one remark") == 1
+
+
+def test_a_bug_in_our_own_answer_handling_stops_the_game_instead_of_a_silent_fallback(tmp_path, monkeypatch):
+    import players as players_module
+    game, players = make_game(tmp_path, TOWN4_GRUNT)
+
+    def broken(game):
+        raise KeyError("bug")
+    monkeypatch.setattr(players_module, "notepad_words", broken)  # reached only after a valid answer
+    with pytest.raises(KeyError):
+        players.ask(game.player("Alice"), "Vote.", players_module.VOTE_SCHEMA, {"vote": False}, step="trial_vote")
+    game.log.close()
+    assert not [r for r in records(game.log.path) if r["kind"] in ("player_error", "player_fallback")]
