@@ -34,10 +34,7 @@ class Cartographer(RoleLogic):
         if not users:
             return
         groups = visit_groups(game)
-        if groups is None:  # the moderator didn't record_visits (logged as visits_missing)
-            for p in users:
-                if p.name in maps:
-                    p.tokens["map"] += 1  # program safeguard, not a rule: no map drawn, so the token is kept
+        if groups is None:  # the moderator didn't record_visits (logged as visits_missing); a spent token stays spent
             game.log.error("cartographer_no_visits", f"night {game.day}: no visits were recorded, so the "
                            "Cartographer got no result", day=game.day, players=[p.name for p in users])
             return

@@ -685,9 +685,9 @@ def test_cartographer_gets_sizes_every_night_and_names_with_a_token(game_factory
     assert told(game, "Alice")[-1].endswith("Tonight's visit groups have sizes 1, 1, 1, 1, 1.")
 
 
-def test_cartographer_keeps_the_token_when_no_visits_were_recorded(game_factory):
+def test_cartographer_token_is_spent_even_when_no_visits_were_recorded(game_factory):
     game, players = game_factory(["Cartographer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
     game.phase = "night"
     apply_ops(game, players, {"op": "map", "player": "Bob", "by": "Alice"})
     game.run_night_end_hooks()
-    assert game.player("Alice").tokens["map"] == 2 and game.log.error_counts == {"cartographer_no_visits": 1}
+    assert game.player("Alice").tokens["map"] == 1 and game.log.error_counts == {"cartographer_no_visits": 1}
