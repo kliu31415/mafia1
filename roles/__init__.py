@@ -79,7 +79,8 @@ ROLES: dict[str, RoleInfo] = {
                         summary="Night: trap a player; the first non-Village visitor on a later night "
                         "takes a Strong Attack.",
                         acts_at_night=True,
-                        tested=True, notes="persistent traps tracked as player status"),
+                        tested=True,
+                        notes="persistent traps tracked as player status; acting with no target removes the trap"),
     "Vigilante": RoleInfo(Alignment.GOOD, "Combat", False,
                           summary="Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack.",
                           tokens={"vigilante": 3}, acts_at_night=True,

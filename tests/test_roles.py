@@ -503,6 +503,7 @@ def test_trapper_is_told_whether_their_trap_still_stands(game_factory):
     assert "no trap set" in role_briefing(game, trapper)
     game.player("Bob").status[Status.TRAPPED_BY] = "Alice"
     assert "Your trap is on Bob" in role_briefing(game, trapper)
+    assert "can't trap Bob again" in role_briefing(game, trapper)  # Kevin, Oct 10: removing it is allowed instead
     assert "trap" not in role_briefing(game, game.player("Bob"))
 
 

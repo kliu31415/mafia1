@@ -108,8 +108,8 @@ R9 (Role-blocks)
 A role-blocked player's actions that night have no effect, exactly as if they had chosen not to act: no visit,
 no tokens spent. It lasts only that one night (not the next Day or later nights). Role-blocked players are told
 they were role-blocked. Any player can be role-blocked unless their role says otherwise; blocking a player who
-has no night action has no effect. A role-blocker learns only whether the block failed because its target can't
-be role-blocked.
+has no night action, or who chose not to act, has no other effect, but they are still told. A role-blocker learns
+only whether the block failed because its target can't be role-blocked.
 
 R10 (Simultaneous night resolution)
 All night actions happen at the same time. Think of it as two steps: first everyone attempts their actions,
@@ -271,8 +271,9 @@ Medic
   Defense instead. Spend 1 more token to protect yourself instead (so self-protection with Strong costs 2).
 
 Trapper
-  Night: may place a trap on one player other than yourself. You have one trap at a time; a new trap replaces the
-  old one at once. Traps last even after you die. A trap is armed from the next night on: the first time a
+  Night: may place a trap on one player other than yourself and other than the player your trap is already on, or
+  may remove your trap (removing it isn't a visit). You have one trap at a time; a new trap replaces the old one at
+  once. Traps last even after you die. A trap is armed from the next night on: the first time a
   non-Village player visits the trapped player on a later night, the trap is used up and that visitor is dealt a
   Strong Attack. If several non-Village players visit that night, one of them, chosen at random, is hit. You learn
   that your trap went off, and nothing else (not who, nor whether it killed).
