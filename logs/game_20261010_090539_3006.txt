@@ -1,0 +1,293 @@
+Setup:
+  Alice    seat 1  Lookout           openai/gpt-6-luna
+  Bob      seat 2  Smuggler          openai/gpt-6-luna
+  Carol    seat 3  Archivist         anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Grunt             openai/gpt-6-luna
+  Frank    seat 6  Medic             anthropic/claude-haiku-5.5
+  Grace    seat 7  Jester            anthropic/claude-haiku-5.5
+  Heidi    seat 8  Sheriff           openai/gpt-6-luna
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Bob, Erin) Bob (Yakuza chat): I suggest we keep the Katana with Erin and attack Alice tonight. I’ll save my swap token for a night when we have more information. I’m ready with that plan.
+(to Bob, Erin) Erin (Yakuza chat): Agreed: keep the Katana with me and attack Alice. I have no other action as Grunt, so I’m ready.
+Night actions:
+  Alice (Lookout): target Bob
+  Bob (Smuggler): no role action; Katana vote: Erin holds, attacks Alice
+  Carol (Archivist): 1 token(s); "Consult the archive for the Night 1 roles list."
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks Alice
+  Frank (Medic): target Alice; "Standard protection on Alice at no token cost."
+  Heidi (Sheriff): target Alice
+Katana: Erin holds it and attacks Alice.
+(to Carol) Moderator (private): The archive shows 7 roles, one for each of the 7 other players who were alive when the night began (including any who died tonight): 5 of them are the real roles of 5 of those players, the other 2 are fakes, all in random order: Lookout, Jester, Medic, Sheriff, Profiler, Vanilla Villager, Diviner.
+(to Alice) Moderator (private): Night 1 result: You watched Bob. Nobody visited Bob tonight (not counting your own visit). Also, you were attacked with the Katana tonight, but you survived.
+(to Heidi) Moderator (private): Night 1 result: You investigated Alice. Result: Not Evil.
+(to Frank) Moderator (private): Night 1 result: You protected Alice (Standard Defense, no token spent). You have 2 medic tokens left.
+(to Erin) Moderator (private): Night 1 result: You held the Katana and attacked Alice. Your attack failed: Alice survived. You still hold the Katana.
+(to Bob, Erin) Moderator (private): Yakuza night summary (Night 1): Erin holds the Katana and chose to attack Alice with it. Bob chose no night action (no swap). Erin chose no action for her own role.
+[Moderator summary] Night 1: Erin (Katana holder, Standard) attacked Alice; Frank's Medic protection (Standard, no token) saved her. Heidi checked Alice: Not Evil. Alice watched Bob: no visitors. Carol consulted the archive (token spent, code delivered roles). Bob took no action, so there was no swap. No deaths. The Katana stays with Erin.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Heidi: Sheriff. N1: Alice Not Evil.
+Heidi (public): I’m Sheriff. N1 investigated Alice: Not Evil. That doesn’t clear the Katana holder, Ex-Con, or Neutral killers. Please share claims and results.
+[Claim] Alice: Lookout. N1: watched Bob; nobody visited him.
+Alice (public): I’m Lookout. N1 I watched Bob; nobody visited him. I was also attacked with the Katana and survived, likely due to protection. Heidi’s result is consistent with my alignment, but doesn’t independently clear either of us.
+Bob (public): Heidi’s result fits Alice’s claimed alignment but is only Not Evil; Alice surviving a Katana hit could mean protection or innate defense. Let’s hear the other claims and results before choosing a case.
+[Claim] Carol: Archivist. N1: archive shows Lookout, Jester, Medic, Sheriff, Profiler, Vanilla Villager, Diviner (5 real, 2 fake).
+Carol (public): I'm Archivist. My N1 archive shows 7 roles, 5 real and 2 fake: Lookout, Jester, Medic, Sheriff, Profiler, Vanilla Villager, Diviner. Heidi's Sheriff and Alice's Lookout both appear in it, which fits but doesn't prove either claim.
+Dave (public): Dave here: Vanilla Villager with no night information. Carol's archive lists Sheriff and Lookout, which fits Heidi and Alice, but it doesn't say who holds them. I want Heidi's and Alice's next results before voting on anyone.
+[Claim] Erin: Vanilla Villager. No N1 result.
+Erin (public): I’m Vanilla Villager, with no N1 result. Alice’s survival fits protection or innate defense; Heidi’s Not Evil doesn’t distinguish Good from a Serial Killer or Arsonist. Let’s hear the remaining claims before voting.
+[Claim] Frank: Medic. N1: protected Alice (Standard Defense, no token spent).
+Frank (public): I'm Medic. N1 I protected Alice with Standard Defense, no token spent. That fits Alice surviving a Katana hit, and it means the Medic on Carol's archive list is real. Heidi and Alice, keep your claims consistent. I'm not voting on anyone yet.
+Grace (public): Grace here, no claim and no night results. Heidi says she checked Alice N1, and Frank says he protected Alice N1, and Alice then survived a Katana hit. Two claims stacked on one player, plus a survival, looks off to me. Heidi and Frank, how do your N1 stories fit together?
+Heidi (public): There’s no contradiction: my investigation and Frank’s protection are independent actions, and both could target Alice. His protection also explains her surviving the Katana attack. Grace, what specific part of these claims do you think conflicts?
+Alice (public): There’s no conflict: independent actions can target me, and Frank’s claimed protection explains my survival. Grace, what specific inconsistency do you see? Bob and Grace, please share your claims when ready.
+[Claim] Bob: Vanilla Villager. No N1 action or result.
+Bob (public): I’m Vanilla Villager; no N1 action or result. Heidi’s check and Frank’s protection are independent and can both target Alice. Grace, what specific inconsistency are you seeing? I don’t think this alone supports a nomination.
+Carol (public): The archive has one Vanilla Villager slot, yet Bob, Erin and Dave all claim Vanilla. The archive shows only 5 of the 7 others' roles, so this isn't proof, but at least one of you is either hiding a role or misreporting. Grace, you have no claim yet. What role do you have?
+Dave (public): Dave here, still Vanilla with no new information. Heidi and Frank both reference Alice, and Frank's protection explains her survival, so that's consistent. I won't nominate until someone produces a new result. Grace, what role do you have?
+Erin (public): Carol's archive is probabilistic, not a role-slot census; duplicate Vanilla claims are possible. Grace still hasn't given a claim—please state it and explain your earlier accusation.
+Frank (public): Frank (Medic): Alice was the Katana target on Night 1 and my protection stopped it. The holder is Yakuza, who wouldn't hit their own teammate, so Alice reads Good to me. Heidi and Alice can't both be right about each other, so I want Heidi's next result before any vote. Grace, what is your claim?
+Grace (public): Frank's claim that Alice reads Good because the holder wouldn't hit a teammate is a leap. Katana targets are chosen by the Yakuza, so Alice's survival proves little. Heidi's Not Evil and Frank's protection both landing on Alice is convenient. Frank, would you have protected Alice without knowing Heidi's result?
+Heidi (public): Frank’s protection explains Alice surviving, but “Yakuza wouldn’t hit a teammate” is not proof; they can choose any target. My Not Evil result is limited. Grace, please state your claim and the specific contradiction you see; I’m not nominating on this alone.
+Alice (public): Grace, the claims you questioned can all fit: Heidi checked me, Frank protected me, and I survived. That isn’t a contradiction. Please give your role and N1 result—or name the specific evidence behind your suspicion—before we consider a nomination.
+Carol (public): Grace still hasn't stated a role. Grace, please give your role and the specific evidence behind your suspicion. Heidi, Alice and Frank's N1 claims fit together. I won't nominate until we see Night 2 results.
+(to Carol, Grace) Carol -> Grace (private): Grace, what is your role and N1 result? If you have a real role, say so now. Your Heidi/Frank point is only useful if it rests on something concrete.
+Dave (public): Dave here, still Vanilla with no new information. Grace, you still haven't given a claim or said what your accusation is based on. Heidi, Alice and Frank, please post every Night 2 result as it comes in before anyone is nominated.
+Erin (public): Grace has had several direct chances to claim and still hasn’t. Her concern names no actual contradiction. Please give your role and results now; if not, I support testing that evasiveness rather than treating Carol’s probabilistic archive as proof against the Vanilla claims.
+Frank (public): Frank (Medic) here. Grace still hasn't given a role after several requests. Grace, state it now and name the specific contradiction you see. Heidi, Alice and I can all be right at once, so I'm not nominating before Night 2 results.
+[Claim] Grace: Jester (Neutral). N1: no action, no result.
+Grace (public): Grace here: I'm Jester, Neutral, with no night results. I should have said so earlier. Jester wins only if I'm hanged, so I won't pretend to be Good. Judge me on what I say. Alice and Bob have pushed hardest on me, and Heidi's and Frank's N1 stories both land on Alice, which is convenient.
+Heidi (public): I won't support a trial on Grace after her Jester claim; hanging her directly awards her win. Her earlier evasiveness is suspicious, but not enough to justify giving her that outcome. No nomination from me.
+Bob (public): Agreed: no trial on someone claiming Jester. Carol's archive is probabilistic, and duplicate Vanilla claims alone aren't proof. Without a concrete contradiction, let's end the day.
+Carol (public): Carol here. I won't nominate yet, and I don't want to hang Grace on her Jester claim without proof. Heidi, if you're the Sheriff, please check Grace tonight and post the result. Evil fits a Jester or Yakuza, Not Evil fits a Good player.
+Dave (public): Still Vanilla, no new info. Grace's Jester claim is unverified, and Heidi's Night 2 result would help. I won't nominate today.
+Frank (public): Frank (Medic): I'm not nominating before Night 2 results. Heidi, post your Night 2 check as soon as it's in. Grace, your Jester claim means a hanging would hand you the win, so I need concrete evidence, not 'convenient' stories. I'll use my free protection tonight and won't say who.
+Grace (public): Grace again: Heidi, Carol asked you to check me. A Jester reads Evil to a Sheriff, so that result would give you grounds to nominate me. If you think I'm Yakuza, say so and vote me; I'm not hiding anything.
+Dave (public): no nomination until Night 2 results. Heidi, post your check as soon as it's in.
+Grace (public): Heidi, Carol asked for your Night 2 check on me. If it reads Evil, that fits a Jester, so vote me. Ending Day 2 with no trial just helps the Yakuza.
+(to Bob, Grace) Grace -> Bob (private): Bob, you pushed hardest on me. If I look Yakuza to you, vote Yes on my nomination.
+Grace nominated Grace. Everyone now votes Yes/No simultaneously.
+Nomination votes on Grace: Yes - Grace; No - Heidi, Alice, Bob, Carol, Dave, Erin, Frank.
+The nomination of Grace failed (1 Yes).
+Carol (public): Bob, Dave and Erin all claim Vanilla, but my archive shows only one Vanilla slot, so at least two of you are lying or hiding a role. Explain that, and Heidi, post your Night 2 check on Grace as soon as you have it.
+Frank (public): Frank (Medic): no nomination until Night 2 results. Heidi, post your Night 2 check as soon as it's in, and say who you checked.
+(to Bob, Grace) Grace -> Bob (private): Bob, if Heidi's Night 2 check reads Evil on me, that's your case. Please nominate me on Day 3 if it does.
+Carol (public): Bob, Dave, Erin: my archive has one Vanilla slot, so at least two of you are lying or hiding a role. Explain before Night 2.
+Erin (public): No new evidence: the archive is probabilistic. I’m not nominating anyone.
+Frank (public): Frank (Medic): no nomination before Night 2 results. Heidi, post your check and who you checked.
+Grace (public): Heidi, check me tonight. Evil fits a Jester; vote me.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Erin) Bob (Yakuza chat): Keep the Katana with Erin and attack Heidi tonight. I’ll save my swap token and take no other action. Heidi’s Sheriff claim makes her the most dangerous information role to leave alive.
+(to Bob, Erin) Erin (Yakuza chat): Agreed: keep the Katana with me and attack Heidi. I have no other action as Grunt. Ready.
+Night actions:
+  Alice (Lookout): target Frank
+  Bob (Smuggler): no role action; Katana vote: Erin holds, attacks Heidi
+  Carol (Archivist): no action
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks Heidi
+  Frank (Medic): target Heidi; "Standard protection on Heidi, no token spent."
+  Heidi (Sheriff): target Frank
+Katana: Erin holds it and attacks Heidi.
+(to Alice) Moderator (private): Night 2 result: You watched Frank. Frank was visited by: Heidi.
+(to Heidi) Moderator (private): Night 2 result: You investigated Frank. Result: Not Evil.
+(to Heidi) Moderator (private): Last night you were attacked with the Katana. You survived.
+(to Frank) Moderator (private): Night 2 result: You protected Heidi with Standard Defense (no token spent). You have 2 medic tokens left.
+(to Bob, Erin) Moderator (private): Yakuza actions chosen on Night 2: Erin held the Katana and attacked Heidi with it; Erin chose no other action. Bob chose no action (no swap).
+(to Erin) Moderator (private): Night 2 result: Your Katana attack on Heidi failed. She survived.
+[Moderator summary] Night 2: No swaps and no role-blocks. Erin (Katana holder) attacked Heidi with Standard attack; Frank's Standard protection (no token) on Heidi stopped it, so nobody died. Heidi checked Frank and got Not Evil. Alice watched Frank and saw Heidi visit. No tokens were spent. Visits: Erin->Heidi, Frank->Heidi, Heidi->Frank, Alice->Frank.
+
+===== DAY 3 =====
+Nobody died last night.
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Bob (public): No deaths means last night's attack failed, but we don't know why or who was targeted. Heidi, please share your N2 check and target. I still wouldn't treat Carol's probabilistic archive or Grace's Jester claim as grounds for a trial.
+Carol (public): Heidi, please post your N2 check and who you checked now. Grace, what did you send Bob privately twice, and why?
+Dave (public): still Vanilla, no new info. Heidi, I'm still waiting on your Night 2 check and who you checked. Carol, Grace and Bob: what were the private messages about? I won't nominate until we have results.
+Erin (public): Heidi, please post your N2 target and result so we can assess the Sheriff claim. Carol, the private messages are worth asking about, but aren’t proof by themselves; Grace should explain them. Given Grace’s Jester claim, I don’t support a trial on her without stronger evidence.
+Frank (public): Frank (Medic): no deaths last night. Heidi, post your N2 check and who you checked now. Grace, what did your private messages to Bob and Carol say?
+Grace (public): My private messages to Bob asked him to nominate me only if Heidi's Night 2 check reads Evil on me, the test Carol wants. Heidi, post your result and who you checked. If you believe your Sheriff result, nominate me on it. Holding back a Jester test helps the Yakuza.
+(to Bob, Grace) Grace -> Bob (private): Bob, if Heidi's check reads Evil on me, nominate me Day 3 and I'll vote Yes.
+[Claim] Heidi: Sheriff. N1 Alice: Not Evil; N2 Frank: Not Evil.
+Heidi (public): N2 I investigated Frank: Not Evil. That does not clear him—the Katana holder reads Good to a Sheriff, and some Neutral killers also read Not Evil. I was attacked with the Katana and survived, but I don’t know whether protection stopped it. Grace’s requested test hasn’t happened; I checked Frank, not Grace.
+Alice (public): Heidi’s visit to Frank matches her claimed investigation, but a visit alone doesn’t verify the result; Not Evil also doesn’t clear him, especially with the Katana-holder exception. Frank, did you protect Heidi last night? Grace’s Jester claim still makes hanging her a bad test.
+Carol (public): No deaths on Night 2, so the Katana missed or was blocked. Heidi, did you check Frank or Grace on Night 2, and did you really survive a Katana hit? Frank, did you protect Heidi last night? Bob, Dave and Erin: the archive has only one Vanilla slot, so which of you is the real Vanilla, and what are the other two hiding?
+Dave (public): Dave here, still Vanilla. Heidi, you say the Katana hit you on Night 2 and you survived, but the only protection claimed is Frank's on Alice in Night 1. Frank, did you protect Heidi on Night 2? Heidi, you checked Frank, not Grace as Carol asked. Please say why. I'm not voting on anyone until these are answered.
+Erin (public): Heidi was free to check Frank; choosing him instead of Grace is not a contradiction. Frank, please answer whether you protected Heidi on N2. Carol’s archive is probabilistic, not a Vanilla census, so the duplicate claims alone don’t establish a liar.
+[Claim] Frank: Medic. N1: protected Alice (Standard, no token). N2: protected Heidi (Standard, no token).
+Frank (public): Frank (Medic): Yes, I protected Heidi on Night 2 with Standard Defense, no token spent, the same as Alice on Night 1. That's my full answer on N2. I'm not nominating yet; I want Night 3 results before any vote.
+Grace (public): Heidi, the test everyone asked for is still missing. Your Night 3 check on me is the one that matters. A Jester reads Evil to a Sheriff, so if it does, nominate me and I'll vote Guilty on my own trial. Carol, Dave, Erin, please hold that test to account.
+Heidi (public): N2 I checked Frank: Not Evil. My Katana attack and Frank’s claimed protection fit, but neither proves he is Medic nor clears him—the holder exception matters. I chose Frank over Grace because an Evil result on someone claiming Jester wouldn’t distinguish Jester from Yakuza, and hanging her would grant her claimed win. Please don’t treat my results as a clear; focus on independent evidence and concrete contradictions.
+Alice (public): My N2 Lookout result: Heidi visited Frank, consistent with her claimed check but not proof of what she did or learned. Carol’s archive isn’t a census, and hanging Grace on her Jester claim would give her the win.
+[Claim] Bob: Vanilla Villager. No Night 1 action or result.
+Bob (public): Grace has explained the PM: she asked me to nominate her if Heidi found her Evil. That doesn’t verify anything, and she claims Jester, so a trial gives her exactly the win she wants. Carol’s archive is not a role census; let’s save trials for stronger evidence.
+Carol (public): Carol (Archivist): Quick math. The archive shows one real Vanilla at most. If Heidi, Alice, Frank and Grace are honest roles, they take 4 of the 5 real slots, so at least two of Bob, Dave and Erin are not Vanilla. Those two are lying or hiding a role. Name which one you are, or explain.
+Dave (public): Dave, still Vanilla. Frank's N1 and N2 protections explain both Katana survivals, so they don't contradict Heidi or Alice. Heidi, post your Night 3 target and result as soon as it's in. Bob and Erin: if either of you has any night role or result, say it now. No nomination from me until Night 3 results.
+Frank (public): Frank (Medic): no nomination from me yet. Heidi, your N3 check is the test people asked for, so post the target and result when it's in.
+Grace (public): Still no Night 3 check from Heidi. Heidi, you checked Frank on N2, so your N3 target matters. Post it and check me if you can. If I read Evil, nominate me and I'll vote Guilty on my own trial. Stalling on that test only helps the Yakuza.
+Heidi (public): To be clear, Night 3 hasn’t happened; I cannot have an N3 result today. I’ll report my next check tomorrow. N2 was Frank: Not Evil, and I was attacked with the Katana; Frank says he protected me. This fits but proves neither claim nor alignment. Carol’s archive is a random partial sample with two fakes, not a census; roles can repeat, so it doesn’t prove only one of Bob, Dave, and Erin is Vanilla. I won’t trial Grace just to award her claimed Jester win.
+Carol (public): Check R14 before we stall. If Night 3 also brings no death, Day 4 may open after three quiet Nights and Days, and then everyone loses. Heidi, post your Night 3 check and target as soon as it resolves, and let's not let a quiet day run out the clock.
+Dave (public): Dave, still Vanilla. Alice, your N2 watch on Frank: list every visitor you saw, not just Heidi. Frank, if you protected Heidi on N2 you visited her, so a watch on her would show it. Heidi, post your N3 target when it resolves.
+Frank (public): Frank (Medic): no nomination from me before Night 3 results. Heidi, post your N3 check and who you checked when it resolves. Grace, a Jester plea doesn't replace evidence.
+Grace (public): Stall check: a quiet Day 4 means everyone loses, so we can't waste this Day. Heidi, your N3 check is the one people want. If it reads Evil on me, nominate me and I'll vote Guilty. If it reads Not Evil, nominate whoever you think is Yakuza. Don't let the day close with nothing.
+[Claim] Heidi: Sheriff. N1: Alice Not Evil; N2: Frank Not Evil.
+Heidi nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Heidi, Carol, Dave, Frank, Grace; No - Alice, Bob, Erin.
+Bob is put on trial (5 Yes).
+Bob (public): I’m still Vanilla Villager, as I claimed yesterday. Carol’s archive is a random sample with two fake entries, not a census or a limit on how many Vanilla Villagers can be in the game. It doesn’t disprove my claim, and nobody has identified a concrete contradiction in anything I’ve said or done. Grace has said she wants to be hanged, so her vote shouldn’t be treated as evidence against me. Please vote Innocent unless there’s stronger evidence than the archive math.
+Carol (public): I'm leaning Guilty on Bob. Bob claims Vanilla, but the archive has only one Vanilla slot and Bob, Dave and Erin all claim it, so at least two of them are not real Vanillas. Bob, explain why you defend Grace's Jester plea so hard, and show why your Vanilla claim holds.
+Dave (public): Dave, still Vanilla. My Yes on Bob's nomination was only to open the case for answers, not a Guilty vote. Carol's archive is still not a census, and I see no concrete contradiction in Bob's Vanilla claim. I'm leaning Innocent. Bob, what did Grace's private messages ask you to do, and why did you defend her Jester plea so hard?
+Erin (public): The archive isn’t a census: one Vanilla entry means one sampled Vanilla role, not one Vanilla in the game. It doesn’t establish a contradiction in Bob’s claim. Grace’s PM explanation is suspicious context, but not proof Bob is Yakuza; I lean Innocent.
+Frank (public): Frank (Medic): Carol, the archive math doesn't prove what you say. It samples 5 of the 7 other players, so one Vanilla in the list only limits the sampled roles. Bob, Dave and Erin could still be Vanilla. Hanging on that is weak, and the stall rule (R14) makes a bad hang costly too. I'm leaning Innocent on Bob unless someone shows a concrete contradiction.
+Grace (public): Carol's archive math doesn't prove Bob is Yakuza, and nobody has shown a concrete contradiction in his claim. I'm leaning Innocent. Heidi, if your Night 3 check reads Evil on me, nominate me and I'll vote Guilty on my own trial.
+Heidi (public): Carol’s archive samples five roles among seven; one Vanilla entry is not a census or a cap, so it doesn’t contradict Bob. His PM link to Grace is worth noting, but her stated request fits a Jester test and proves no faction. I nominated to hear that context; I see no concrete basis to vote Guilty.
+Alice (public): I lean Innocent. Carol’s archive is a partial sample with fakes, not a census, so it doesn’t disprove Bob’s Vanilla claim. Grace’s PMs are context, not proof of Bob’s faction, and no concrete contradiction has been shown.
+Bob (public): No one has identified a concrete contradiction in my claim or actions. Carol’s archive is a partial, partly fake sample of five roles among seven players—not a census or a limit on how many Vanillas are in the game. Grace’s PMs are suspicious context, but her explanation matches what she said publicly. I understand why Heidi opened the trial; I don’t see evidence that justifies a Guilty vote. Please vote Innocent.
+Trial votes on Bob: Guilty - nobody; Innocent - Alice, Bob, Carol, Dave, Erin, Frank, Grace, Heidi.
+Bob is found Innocent (0 Guilty of 8 votes; 5 needed).
+Alice (public): I’m nominating Carol. Her archive samples five roles from seven players, so one Vanilla entry does not cap how many Vanillas are in the game. She repeatedly presented it as proof that at least two Vanilla claims were false, and Bob’s trial produced no supporting evidence. Carol, explain that reasoning.
+Alice nominated Carol. Everyone now votes Yes/No simultaneously.
+Nomination votes on Carol: Yes - Alice, Bob, Dave, Erin, Grace, Heidi; No - Carol, Frank.
+Carol is put on trial (6 Yes).
+Carol (public): Carol, Archivist. Alice's nomination rests on my Day 2 math, and that math was wrong. The archive covers only 5 of the 7 other players, so Bob, Dave and Erin can all be Vanilla, and I withdraw the claim that two of them must be lying. The archive itself is real. Its Lookout, Sheriff, Medic and Jester entries match Alice, Heidi, Frank and Grace, and that is all it shows. I'm voting Innocent on Bob. Alice, what evidence beyond the retracted math makes you nominate me?
+Dave (public): Dave, still Vanilla. Alice's nomination rests only on Carol's Day 2 math, which Carol has retracted. The archive's listed roles match claims already made, and I see no concrete contradiction from Carol, so I'm voting Innocent. Alice, what evidence beyond that math makes you nominate her?
+Erin (public): Carol corrected her mistaken archive math, and the archive was never a census. Alice’s case rests on that retracted point; there’s no concrete contradiction in Carol’s claim or result. I’m voting Innocent.
+Frank (public): Frank (Medic): I'm voting Innocent on Carol. Her archive math was wrong and she retracted it, and the archive's listed roles match claims already made. Alice's nomination rests only on that retracted math, so I see no concrete contradiction in Carol. I'll judge the Night 3 results when they come in.
+Grace (public): Grace (Jester): Carol's retracted math was the only case against her, and her archive entries match roles already claimed, so I'm leaning Innocent unless Alice shows a concrete contradiction. Heidi, my requested Night 3 check still stands.
+Heidi (public): Carol’s inference was wrong, but she explicitly retracted it; the archive’s sampling rules support her correction. I see no independent evidence that her Archivist claim or result is false. My earlier nomination of Bob relied too much on the same weak archive and PM concerns, and his trial revealed no concrete contradiction. I favor Innocent.
+Alice (public): I nominated Carol because she treated a partial archive as a limit on Vanilla claims. She has retracted that inference, and the archive rules support her correction. I have no independent contradiction, so I’ll vote Innocent; my nomination was weak.
+Bob (public): Carol corrected her archive inference, and the sampling rules support that correction. I see no independent evidence her claim is false, so I favor Innocent.
+Carol (public): Carol, Archivist. Alice's nomination rests only on my Day 2 one-Vanilla math, which was wrong and which I withdrew. The archive is a 5-of-7 sample, so it caps nothing. Its Lookout, Sheriff, Medic and Jester entries match claims already made. Profiler, Diviner and Vanilla are still unclaimed, and that is open for everyone. Alice, what concrete contradiction do you have beyond the retracted math? I'm voting Innocent unless someone shows one. Heidi's Night 3 result and Alice's watch lists matter more than my archive.
+Trial votes on Carol: Guilty - nobody; Innocent - Alice, Bob, Carol, Dave, Erin, Frank, Grace, Heidi.
+Carol is found Innocent (0 Guilty of 8 votes; 5 needed).
+Dave (public): Dave, still Vanilla. Alice, list every visitor you saw on Frank's N2 watch, not just Heidi. Heidi, post your N3 target and result once it resolves. Per R14, a quiet Night 3 ends the game for everyone, so we need deaths or a real trial.
+Erin (public): One mechanics correction: Alice watched Frank on N2 and reports Heidi visited Frank. Frank protecting Heidi would be Frank visiting Heidi, so this neither confirms nor contradicts his Medic claim. Bob’s acquittal and Carol’s retraction leave no case for another weak trial; let’s get actual night results.
+Grace (public): Heidi, if your Night 3 check reads Evil on me, nominate me and I'll vote Guilty. A quiet night also loses the game for all of us under R14, so we need a real test.
+Heidi (public): I’m nominating Frank: his claimed protection matches both Katana victims, and my Not Evil check cannot clear a Katana holder. This is a lead, not proof.
+Heidi nominated Frank. Everyone now votes Yes/No simultaneously.
+Nomination votes on Frank: Yes - Heidi, Alice, Dave, Erin, Grace; No - Bob, Carol, Frank.
+Frank is put on trial (5 Yes).
+Frank (public): Frank, Medic. I protected Alice on N1 and Heidi on N2, both with Standard Defense and no token. Both were Katana targets, both survived, and nobody died either night. That is what a working Medic looks like, and it means Yakuza tried to kill two claimed investigators. Heidi's stated reason for nominating me is that my protections match both Katana victims. That is evidence for my claim, not against it. Alice's N2 watch on me reportedly shows Heidi visiting me, which fits Heidi's Not Evil check on me, and I am Good. I can't prove my role, but I'm not hiding anything. Judge me on the Katana results: if I'm a real Medic, the next attack gets stopped too. I'm voting Innocent unless someone shows a concrete contradiction.
+Grace (public): Grace (Jester): Frank's N1 and N2 protections match both Katana survivals, but Heidi's Not Evil doesn't clear a Katana holder. Frank can't be cleared on the claim alone, and a quiet Night 3 ends the game for everyone under R14, Jester included. Heidi, your Night 3 check on me still stands.
+Heidi (public): I nominated Frank because the repeated match between his claimed protections and the Katana attacks seemed worth testing, not because it proved guilt. His account fits, and I have no concrete contradiction. I’ll vote Innocent unless someone brings stronger evidence; we should judge the next results on their merits.
+Alice (public): On N2 I watched Frank and saw Heidi visit him, consistent with her claimed Sheriff check. Frank’s claimed protection of Heidi would be a visit to Heidi, not Frank, so my watch neither verifies nor contradicts that. His N1 protection claim fits my survival but is unverified. No concrete contradiction supports Guilty; I favor Innocent.
+Bob (public): I still see no concrete basis for Guilty. Frank’s claimed protections mechanically fit both Katana attacks, and no result contradicts his account. I’ll vote Innocent.
+Carol (public): Carol (Archivist): I'm voting Innocent on Frank. Both Katana hits on claimed investigators (Alice N1, Heidi N2) were survived, and Frank's Medic protections are the only explanation offered. If Frank were a Yakuza faking Medic, someone else would have had to stop those hits, and nobody else has claimed protection. Alice's N2 watch showing only Heidi visiting Frank fits Heidi's check and doesn't contradict Frank visiting Heidi. Heidi's Not Evil result doesn't convict him either. Guilty needs a concrete contradiction, and I haven't seen one.
+Dave (public): Vanilla Villager here. On Frank: his N1 and N2 protections match both Katana survivals, and Heidi's Not Evil and Alice's watch don't contradict his claim. I see no concrete contradiction, so I lean Innocent. Heidi, please post your Night 3 result promptly.
+Frank (public): Frank, Medic. I protected Alice on N1 and Heidi on N2 with Standard Defense. Both were Katana targets, both survived, and nobody died. Heidi's nomination says my protections match the attacks, but that is what a working Medic produces, not a contradiction. Heidi's Not Evil on me fits my claim, and Alice's watch shows Heidi visiting me, which fits Heidi's check. No one has shown a concrete contradiction in my claim or results. Hanging the only protection the Village has against the Katana helps the Yakuza. I'm voting Innocent unless someone shows a real contradiction.
+Trial votes on Frank: Guilty - nobody; Innocent - Alice, Bob, Carol, Dave, Erin, Frank, Grace, Heidi.
+Frank is found Innocent (0 Guilty of 8 votes; 5 needed).
+Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 3 =====
+(to Bob, Erin) Bob (Yakuza chat): Keep the Katana with Erin and attack Carol. I recommend no swap tonight: Carol is less likely than Heidi or Frank to be protected, and a swap would create extra visit evidence and spend a token. I have no other action.
+(to Bob, Erin) Erin (Yakuza chat): Agreed: keep the Katana with me and attack Carol. I have no Grunt action. Frank may be the Medic after protecting both previous targets, but Carol seems less likely to be protected; no swap.
+Night actions:
+  Alice (Lookout): target Heidi
+  Bob (Smuggler): no role action; Katana vote: Erin holds, attacks Carol
+  Carol (Archivist): no action
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks Carol
+  Frank (Medic): target Heidi
+  Heidi (Sheriff): target Bob
+Katana: Erin holds it and attacks Carol.
+(to Carol) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Heidi) Moderator (private): You investigated Bob. Result: Evil.
+(to Alice) Moderator (private): You watched Heidi. Visitors to Heidi tonight (other than you): Frank.
+(to Frank) Moderator (private): You protected Heidi with Standard Defense (no token spent). You have 2 medic tokens left.
+(to Bob, Erin) Moderator (private): Yakuza actions chosen tonight: Bob chose no action of his own (no swap). Erin (Grunt, no action of her own) held the Katana and attacked Carol with it.
+(to Erin) Moderator (private): Your Katana attack on Carol succeeded.
+[Moderator summary] Night 3: Erin (Katana holder) attacked Carol (Standard vs None) and killed her. Frank protected Heidi (Standard, no token, 2 medic left). Heidi checked Bob: Evil (Bob is Yakuza and not the Katana holder). Alice watched Heidi and saw Frank. Bob did not swap (2 swap tokens left). Carol had no archive token and did not act. Visits: Alice→Heidi, Frank→Heidi, Heidi→Bob, Erin→Carol. Katana stays with Erin. No one was role-blocked. The game goes on (Village 4, Yakuza 2, Jester 1).
+
+===== DAY 4 =====
+Carol died (killed by Katana). Their role was Archivist. Their last will: "I am Carol, Village (Archivist). My Night 1 archive showed 7 roles, 5 real and 2 fake: Lookout, Jester, Medic, Sheriff, Profiler, Vanilla Villager, Diviner. I have no archive tokens left. Trust my public Day 2 posts over anything else attributed to me."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Heidi: Sheriff. N1 Alice Not Evil; N2 Frank Not Evil; N3 Bob Evil.
+Heidi (public): N3 Sheriff result: Bob is Evil. That is not exact-role proof, but after Carol's Katana death it's the strongest lead. I nominate Bob.
+Heidi nominated Bob. Everyone now votes Yes/No simultaneously.
+Nomination votes on Bob: Yes - Heidi, Alice, Dave, Frank, Grace; No - Bob, Erin.
+Bob is put on trial (5 Yes).
+Bob (public): I understand why Heidi’s result is alarming, but it is still an uncorroborated claim. Her previous case against me relied on Carol’s mistaken archive inference; after that collapsed, Heidi herself voted Innocent. Nothing independently confirms this new result. I have consistently claimed Vanilla, and I ask you to vote Innocent rather than treat one claimed check as conclusive.
+Dave (public): Dave, Vanilla. Katana holders don't hit their own teammates, so Heidi (attacked N2) and Alice (attacked N1) are unlikely to be Yakuza. That makes Heidi's Sheriff claim more credible than I had assumed, and her N3 result reads Bob Evil. Bob claims Vanilla, and his PM link with Grace is still unexplained. I'm leaning Guilty on this new result. Bob, if you're Vanilla, what do you think Heidi's check got wrong? Frank, what did you do on N3?
+Erin (public): Heidi’s result is serious, but it’s still an uncorroborated claim, and an alignment result can be affected by framing. Yesterday’s trial found no concrete contradiction in Bob’s claim. I favor Innocent rather than execute him on one unverified check.
+Frank (public): Frank (Medic): I'm voting Guilty on Bob. Heidi's N3 Bob Evil is the first check on him that doesn't rest on Carol's retracted math. Bob's defense only says the result is uncorroborated, yet he defended Grace's Jester plea and received two of her PMs. On Night 3 I protected Heidi with Standard Defense, no token, and the Katana still killed Carol, so the Yakuza are choosing claimed Village roles. I won't announce future targets. I'm not treating Heidi as proven, but Bob has the weaker case.
+Grace (public): Grace (Jester): I'm leaning Guilty on Bob. Heidi's N3 Bob Evil is the first result not built on Carol's retracted math, and another quiet Day risks the R14 stall. Heidi, if he's acquitted, check me on N4. Evil on me is your case.
+Heidi (public): Bob’s defense doesn’t address the result: I investigated him on N3 and got Evil. Carol’s archive mistake was unrelated and doesn’t invalidate a separate Sheriff check. Framing can alter a result, but nobody has presented evidence he was framed. I’ll vote Guilty on this direct lead.
+[Claim] Alice: Lookout. N1 watched Bob: nobody visited him; N2 watched Frank: Heidi visited him; N3 watched Heidi: Frank visited her.
+Alice (public): My N3 watch of Heidi saw Frank visit her; it does not confirm Heidi’s target or result. Her Evil result on Bob is still a specific lead, separate from Carol’s mistaken archive math. I see no counter-result from Bob, though a Fabricator frame is possible. Grace’s PMs are weak context. I lean Guilty based on the Sheriff result, not the PMs.
+Bob (public): Yesterday Heidi nominated me on weak grounds, then voted Innocent herself. Today the only new evidence is a result only she can verify. It’s a serious lead, but it isn’t independent corroboration: Alice saw Heidi visit Frank on N2, which fits an investigation, but can’t verify what she learned; nobody can verify N3’s result. Framing can also alter Sheriff results. I’ve consistently claimed Vanilla, and no one has shown a contradiction in my actions or claim. Please don’t turn an uncorroborated result into a Guilty vote. If you execute me, you’re choosing to trust Heidi’s result without any way to test it.
+Trial votes on Bob: Guilty - Alice, Dave, Frank, Grace, Heidi; Innocent - Bob, Erin.
+Bob is executed by hanging (5 Guilty of 7 votes; 4 needed).
+Bob died (executed by hanging). Their role was Smuggler. Their last will: "I am Bob, Village (Vanilla Villager). I had no Night actions or results. Alice reported that nobody visited me on Night 1. Carol's archive was a partial sample, not a census or a limit on Vanilla claims. Heidi's Night 3 result is uncorroborated; I ask you to weigh it against her earlier weak case and Innocent vote."
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Lookout): target Heidi
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks Frank
+  Frank (Medic): target Heidi; "Standard protection on Heidi, no token spent."
+  Heidi (Sheriff): target Erin; "Investigate Erin."
+Katana: Erin holds it and attacks Frank.
+(to Alice) Moderator (private): Night 4 result: You watched Heidi. Visitors to Heidi: Frank.
+(to Heidi) Moderator (private): Night 4 result: You investigated Erin. Result: Not Evil.
+(to Frank) Moderator (private): Night 4: You protected Heidi with Standard Defense (no token spent; 2 medic tokens left). You were attacked with the Katana and died.
+(to Erin) Moderator (private): Night 4: You held the Katana and attacked Frank. Your attack succeeded. Yakuza actions chosen tonight: Erin (Grunt) – no role action; Katana held by Erin, attacking Frank.
+[Moderator summary] Night 4: Erin (Katana holder) attacked Frank with a Standard attack. Frank had no defense, since his protection went on Heidi, so he died (Katana). Heidi checked Erin and got Not Evil, because the Katana holder appears Good. Alice watched Heidi and saw Frank visit. Frank spent no token and has 2 medic tokens left. Visits: Alice→Heidi, Frank→Heidi, Heidi→Erin, Erin→Frank. Still alive: Alice, Dave, Erin, Grace, Heidi. No win yet.
+
+===== DAY 5 =====
+Frank died (killed by Katana). Their role was Medic. Their last will: "Frank, Medic (Good). I protected Alice on N1 and Heidi on N2 and N3 with Standard Defense, no token spent (2 tokens left). Check my results against the Katana attacks, and check Heidi's Sheriff results and Alice's Lookout watch against what they say. Watch who pushes early nominations and who votes against the evidence. Carol's archive math was retracted, so judge claims on their records. Trust the Village over the Yakuza."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Dave.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Dave (public): Dave, Vanilla. The death reveal says Bob was Smuggler, a Yakuza role, so Heidi's N3 'Bob Evil' was accurate, which strengthens her Sheriff claim. Alice's Lookout watches also fit the night facts. The Katana holder who killed Frank on N4 had to be a living Yakuza. That leaves Erin or Grace, since Heidi, Alice and I fit the Village. Grace claims Jester, and Erin claims Vanilla while voting Innocent on Bob despite the Evil result. I nominate Erin. Erin, why did you defend Bob?
+Dave nominated Erin. Everyone now votes Yes/No simultaneously.
+Nomination votes on Erin: Yes - Dave, Grace, Heidi, Alice; No - Erin.
+Erin is put on trial (4 Yes).
+Erin (public): I made a bad vote, but it isn’t proof I’m Bob’s partner. At the time, Bob consistently claimed Vanilla and Heidi’s result was uncorroborated; his flip changes how I assess that vote, not my role. A mistaken read is fair to question, but don’t treat it as conclusive proof. Dave’s case also assumes the other claims establish everyone else’s alignment; they don’t. Grace: if I’m executed, the remaining non-Jesters are all Village, so the game ends with you alive and you lose. An Innocent vote is your chance to keep your own win possible.
+Grace (public): Grace (Jester): Erin, your closing line says that if you're executed, the remaining non-Jesters are all Village. A living Yakuza killed Frank on Night 4, so that's only true if you're the last Yakuza. Explain what you know, or stop asking me for an Innocent vote on that basis. Heidi, post your Night 4 result.
+Heidi (public): Erin, your claim that if you’re executed the remaining non-Jesters are all Village conflicts with Frank’s N4 Katana death: a living Yakuza made that attack. Unless you know you’re the last Yakuza and would remove yourself, that claim has no basis. My N4 Not Evil result doesn’t clear you—the Katana holder reads Not Evil. Bob flipped Yakuza, and you voted No/Innocent on him. I will vote Guilty.
+Alice (public): Erin’s own argument is the strongest evidence: she says executing her leaves only Village among the non-Jesters, even though a Yakuza Katana kill happened on N4. She has no basis to know that unless she knows she is the remaining Yakuza. She also voted Innocent on Bob, who flipped Smuggler. I’ll vote Guilty.
+Dave (public): Dave, Vanilla. Erin's closing line says that if she's executed, 'the remaining non-Jesters are all Village.' Frank's N4 Katana killer is still alive, and Heidi, Alice and I are Village, so that only works if Erin knows she is the last Yakuza. She also voted Innocent on Bob, who flipped Smuggler. I'm voting Guilty.
+[Claim] Erin: :null
+Erin (public): That was a conditional argument from Dave’s framing, not knowledge: if his case that I’m the only non-Jester suspect is right, hanging me ends the game and costs Grace her win. Grace is right that a Yakuza is still alive; that doesn’t prove it’s me. Bob’s flip makes my Innocent vote look bad, but it doesn’t prove I knew his role. Heidi’s result is still one unverified report, and no one independently saw who attacked Frank. Please don’t turn a bad vote and a badly phrased conditional into proof. Grace, if you want any chance at your win, don’t help end the game; everyone else, vote Innocent.
+Trial votes on Erin: Guilty - Alice, Dave, Heidi; Innocent - Erin, Grace.
+Erin is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Erin died (executed by hanging). Their role was Grunt. Their last will: ":null"
+The game is over. Winners: Alice, Carol (dead), Dave, Frank (dead), Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Frank] Token cost wording for self-protection and Standard vs Katana interaction was confusing; Erin's will showed ':null', which looks like a bug.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Frank, Heidi
+Cost by player (USD):
+  Alice (Lookout)          $0.0537   38 calls  gpt-6-luna
+  Bob (Smuggler)           $0.0536   40 calls  gpt-6-luna
+  Carol (Archivist)        $0.0603   33 calls  claude-haiku-5.5
+  Dave (Vanilla Villager)  $0.0614   36 calls  claude-haiku-5.5
+  Erin (Grunt)             $0.0599   44 calls  gpt-6-luna
+  Frank (Medic)            $0.0646   37 calls  claude-haiku-5.5
+  Grace (Jester)           $0.0572   35 calls  claude-haiku-5.5
+  Heidi (Sheriff)          $0.0564   38 calls  gpt-6-luna
+  Moderator                $0.7623   10 calls  claude-opus-5.5
+  Night checks             $0.2956    4 calls  claude-opus-5.5
+  Strategy review          $0.2415    1 calls  claude-opus-5.5
+  Log review               $0.2203    1 calls  claude-opus-5.5
+  Total                    $1.9869  317 calls
