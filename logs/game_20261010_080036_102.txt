@@ -357,3 +357,24 @@ Heidi died (executed by hanging). Their role was Arsonist. Their last will: "Hei
 
 ===== NIGHT 5 =====
 (to Frank, Judy) Frank (Yakuza chat): Frank: Proposal for Night 5. Katana stays with Frank. Target: Erin. Erin's Accountant audits are the live threat to us, since Frank holds 2 swap tokens and Judy holds 1 clerk token, and an audit on either of us would be decisive. Grace's Vigilante claim with 3 shots is a second risk we can't stop tonight. No swap and no Clerk rig tonight. Judy, submit Frank as holder and Erin as target so the attack isn't cancelled. If you see a reason to pick a different target, say so now.
+(to Frank, Judy) Judy (Yakuza chat): Judy agrees: Frank holds the Katana and the target is Erin. Her Accountant audits are checkable and the most dangerous threat to us. Grace's Vigilante shots are a risk we can't stop tonight. No swap, no Clerk rig, no puppet. Frank, I'm submitting you as holder and Erin as target, so please submit the same so the attack isn't cancelled. I'm ready.
+(to Frank, Judy) Frank (Yakuza chat): Frank confirms: Katana holder Frank, target Erin. No swap, no Clerk rig, no puppet. Judy, submit Frank as holder and Erin as target so the attack isn't cancelled. Grace's Vigilante shots are a risk we can't stop tonight; Erin's audits are the checkable threat, so she goes.
+(to Frank, Judy) Judy (Yakuza chat): Judy agrees: Frank holds the Katana and the target is Erin. Her Accountant audits are the checkable threat to us. No swap, no Clerk rig, no puppet tonight. I'll submit the same holder and target, so please match.
+Night actions:
+  Erin (Accountant): target Grace
+  Frank (Smuggler): no role action; Katana vote: Frank holds, attacks Erin
+  Grace (Vigilante): no action
+  Judy (Clerk): no role action; Katana vote: Frank holds, attacks Erin
+Katana: Frank holds it and attacks Erin.
+(to Erin) Moderator (private): Night 5 result: You audited Grace. She has 3 tokens in total at the end of the night. You were also attacked with the Katana tonight, and you died.
+(to Frank) Moderator (private): Night 5 result: You held the Katana and attacked Erin. Your attack succeeded. You didn't use your Smuggler swap (2 swap tokens left). Yakuza actions tonight: Frank kept the Katana and attacked Erin with it; Judy didn't use her Clerk rig (1 clerk token left).
+(to Judy) Moderator (private): Night 5 Yakuza actions: Frank kept the Katana and attacked Erin with it. Frank didn't use his Smuggler swap. You didn't use your Clerk rig (1 clerk token left).
+[Moderator summary] Night 5: Frank kept the Katana (both Yakuza voted for it) and attacked Erin with a Standard attack. Erin had no Defense and died. Erin audited Grace and got 3 tokens (all vigilante tokens). Grace and Judy didn't act, and Frank didn't swap. Visits: Erin->Grace, Frank->Erin. Still alive: Dave, Frank, Grace, Judy, Mallory (3 Village, 2 Yakuza), so the game goes on.
+
+===== DAY 6 =====
+Erin died (killed by Katana). Their role was Accountant. Their last will: "Erin, Accountant (Good). Results: N1 audit of Mallory: 0 tokens in total. N2 audit of Alice: 1 token at end of N2, consistent with her Cartographer claim and one map token spent. N3 audit of Heidi: 0 tokens in total. N4 audit of Dave: 0 tokens in total. Bob's Lookout claim was false (Puppeteer reveal), so his N2 visit on Carol was likely the Katana hit. Ivan's Fortune Teller claim was retracted to unordered totals only. Carol's Oracle and Heidi's Lookout claims remain unverified. Token counts are the checkable evidence; trust mechanical results and voting records over claims, and don't hang on a single unexplained visit."
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Mallory.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Mallory (public): Mallory, Vanilla. Erin died to a Katana on Night 5, so the living holder is Frank, Grace or Judy. Judy: you pushed Ivan and Heidi, both Good, and called both mechanical. Name the exact result you checked that wasn't already in the public totals. Grace: three Vigilante shots through three Katana kills with no trigger named. If you're real, name the lead you'd shoot on. Frank: you voted Guilty on Ivan and Heidi too, so what did you check? I'm not nominating until these answers are in.
+Dave (public): Dave, Vanilla. Erin's N5 audit target was never posted, so there's nothing new there. Grace: a Katana holder is alive and killed Erin last night, so name the exact lead you would fire on with your three Vigilante shots. Judy and Mallory: you each pushed Good players (Ivan, Heidi) and then pushed each other. Name the check each of you ran on the other's nomination. No nomination from me.

@@ -339,3 +339,21 @@ Night actions:
   Grace (Diviner): target Mallory; Katana vote: Grace holds, attacks Alice
   Heidi (Clerk): no role action; Katana vote: Grace holds, attacks Alice
 Katana: Grace holds it and attacks Alice.
+(to Grace) Moderator (private): You divined Mallory; the group was Judy, Mallory and Alice. The role drawn is Fortune Teller (60% chance it is Mallory's, otherwise one of the others').
+(to Alice) Moderator (private): Night 4: You were attacked with the Katana. You died.
+(to Grace, Heidi) Moderator (private): Night 4 Yakuza actions: Grace holds the Katana and chose to attack Alice with it; Grace also chose to divine Mallory. Heidi chose no action.
+(to Mallory) Moderator (private): Fortune Teller numbers for Night 4 (in no particular order): 2 and 1.
+(to Grace) Moderator (private): Night 4 Katana attack result: as the Katana holder, your attack on Alice succeeded.
+[Moderator summary] Night 4: Grace (Diviner, Katana holder) attacked Alice with the Katana (Standard vs None): Alice died. Grace divined Mallory (divine op, code delivers the result). Heidi took no action, so there's no rig. Visits: Grace->Mallory, Grace->Alice. FT numbers 2 and 1. Living: Erin, Frank, Mallory (Village); Grace, Heidi (Yakuza); Judy (Jester). The game continues.
+(to Alice) Moderator (private): Tonight Erin, Heidi and Mallory were each in a different visit group.
+
+===== DAY 5 =====
+Alice died (killed by Katana). Their alignment was Good. Their last will: "Alice, Scout (Good). Scout results (names are random picks; 'separate groups' means no visit link between them): N1 Dave, Erin, Ivan in separate groups. N2 Erin, Heidi, Judy in separate groups. N3 Erin, Frank, Ivan in separate groups, so Ivan's Night 3 action did not link him to Erin or Frank. Carol's Oracle claim and Bob's Lookout claim are unverified. Judy's Vanilla claim is false by Carol's result, and her Day 1 PM asked Dave to nominate her. Ivan's Tracker claim (N1 Frank, N2 Erin) matches Bob's Lookout on a Night 2 visit to Erin; Ivan denied visiting Carol, who was Katana-killed, so the Katana holder that night is still unidentified. Test future Scout results against votes and visits, not speed."
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Heidi.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Heidi (public): Heidi here. I'm nominating Judy. Her Vanilla claim was false by Carol's Oracle result, she PM'd Dave on Day 1 asking for a nomination, she PM'd Grace on Day 3, and she has self-nominated repeatedly without a role. Erin, Frank, Mallory: vote on that record.
+Heidi nominated Judy. Everyone now votes Yes/No simultaneously.
+Nomination votes on Judy: Yes - Heidi, Judy, Frank, Grace; No - Mallory, Erin.
+Judy is put on trial (4 Yes).
+Judy (public): Judy here. I'm on trial for the same record: a false Vanilla claim and a Day 1 PM asking Dave to nominate me. I won't pretend that's clean. But look at the board. Ivan's Tracker track moved after Alice's Scout result contradicted it. Mallory's numbers can't be checked against any named visitor. We are down to six, and the Katana has killed a Good player every night. Nobody has shown a result tying me to a Yakuza action. If nothing mechanical clears me, a Guilty vote is the Village's only test left. Vote on the record.
