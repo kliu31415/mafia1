@@ -84,3 +84,41 @@ def test_votes_table_player_filter_and_reasons(tmp_path):
     assert html.count("<details class='votes'>") == 2  # the Day's table and the whole game's
     assert "✓×2" in html and "✗" in html
     assert "A bug." in html and "Unclear rule." in html
+
+
+def test_night_card_and_roster(tmp_path):
+    players = [{"name": "Bob", "seat": 0, "role": "Grunt", "model": "m"},
+               {"name": "Dave", "seat": 1, "role": "Sheriff", "model": "m"},
+               {"name": "Erin", "seat": 2, "role": "Roleplayer", "model": "m", "status": {"fake_role": "Lookout"}}]
+    phase = {"kind": "event", "visible_to": "all", "cat": "phase"}
+    records = [
+        {"kind": "setup", "players": players, "katana": "Bob"},
+        {**phase, "text": "Day 1 begins.", "day": 1, "phase": "day"},
+        {"kind": "event", "visible_to": "all", "cat": "claim", "speaker": "Bob", "claim": "Sheriff", "text": "x"},
+        {"kind": "event", "visible_to": "all", "cat": "claim", "speaker": "Erin", "claim": "Lookout.", "text": "x"},
+        {**phase, "text": "Night 1 begins.", "day": 1, "phase": "night"},
+        {"kind": "night_actions", "day": 1, "roles": {"Bob": "Grunt", "Dave": "Sheriff"},
+         "actions": {"Bob": {"act": False}, "Dave": {"act": True, "target": "Bob"}}},
+        {"kind": "death", "player": "Dave", "cause": "Katana", "day": 1, "phase": "night"},
+        {"kind": "event", "visible_to": ["Dave"], "cat": "result", "message": "Bob is Evil.", "text": "x",
+         "day": 1, "phase": "night"},
+        {**phase, "text": "Day 2 begins.", "day": 2, "phase": "day"},
+        {"kind": "night_check", "night": 1, "verdict": "correct", "issues": []},  # arrives after the night
+    ]
+    path = tmp_path / "g.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    card = html.split("<details class='votes card'>")[1].split("</details>")[0]
+    assert "Night 1 summary: 1 acted" in card and "night check: correct" in card and "Katana" in card
+    assert "Bob is Evil." not in card and "is Evil." in card and "\0" not in html
+    data = json.loads(html.split("id='roster-data'>")[1].split("</script>")[0])
+    last = data["snaps"][-1]
+    assert last["Dave"][0] is False and "Night 1: Katana" in last["Dave"][1]
+    assert last["Bob"][2:] == ["Sheriff", "false"] and last["Erin"][3] == "true"  # a Roleplayer believes it
+    assert html.count("<i class='snap'") == len(data["snaps"])
+
+
+def test_claim_truth():
+    assert log_viewer.claim_truth("Vanilla, no action", {"Vanilla Villager"}) == "true"
+    assert log_viewer.claim_truth("I'm the sheriff", {"Grunt"}) == "false"
+    assert log_viewer.claim_truth("no comment", {"Grunt"}) == ""

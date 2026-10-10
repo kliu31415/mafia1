@@ -173,6 +173,21 @@ details.votes td, details.votes th { padding:1px 6px; text-align:center; border-
 details.votes tr > th:first-child { text-align:left; white-space:nowrap; }
 details.votes td.yes { font-weight:700; } details.votes td.no { color:var(--muted); }
 .focus-hide { display:none !important; }
+body.no-hidden details.card { display:none; } details.card td { text-align:left; vertical-align:top; }
+details.card td:first-child { white-space:nowrap; }
+/* roster panel: beside the log on wide screens, a corner overlay on narrow ones (off by default there) */
+#roster { display:none; font-size:12.5px; background:var(--bg); border:1px solid var(--line); border-radius:8px;
+          padding:6px 10px; overflow:auto; z-index:2; }
+body.roster-on #roster { display:block; position:fixed; right:8px; bottom:8px; width:320px; max-height:50vh; }
+@media (min-width: 1400px) {
+  body.roster-on { margin-left:max(16px, calc(50vw - 670px)); }
+  body.roster-on #roster { top:12px; bottom:auto; right:max(16px, calc(50vw - 670px)); max-height:calc(100vh - 24px); }
+}
+#roster .p { padding:3px 0; border-bottom:1px solid var(--line); }
+#roster .p.dead .n { text-decoration:line-through; opacity:.6; } #roster .claim { padding-left:24px; }
+#roster .truth { font-size:10.5px; font-weight:700; padding:0 4px; border-radius:3px; margin-right:4px; }
+#roster .truth.false { color:var(--c-death); border:1px solid var(--c-death); }
+#roster .truth.true { color:var(--muted); border:1px solid var(--line); }
 """
 
 JS = """
@@ -196,6 +211,46 @@ const applyFocus = () => {
     el.classList.toggle('focus-hide', who !== '' && !(el.dataset.p || '').split(' ').includes(who)));
 };
 focus.addEventListener('change', applyFocus); applyFocus();
+// Roster panel: shows the snapshot whose marker (i.snap) is the last one above the top of the window.
+const rosterData = document.getElementById('roster-data');
+if (rosterData) {
+  const R = JSON.parse(rosterData.textContent), aside = document.getElementById('roster');
+  const marks = [...document.querySelectorAll('i.snap')];
+  const rosterBox = document.getElementById('showroster');
+  rosterBox.checked = window.innerWidth >= 1400;
+  rosterBox.addEventListener('change', () => document.body.classList.toggle('roster-on', rosterBox.checked));
+  document.body.classList.toggle('roster-on', rosterBox.checked);
+  const top = el => {  // a marker in a collapsed phase has no box: use its phase's
+    const r = el.getBoundingClientRect();
+    return r.top || r.left ? r.top : el.closest('details.phase').getBoundingClientRect().top;
+  };
+  let shown = -1;
+  const render = i => {
+    if (i === shown) return;
+    shown = i;
+    const s = R.snaps[i];
+    aside.innerHTML = "<div class='muted'>Roster, as of the part of the log at the top of the window</div>" +
+      R.players.map(p => {
+        const [alive, death, claim, truth] = s[p.n];
+        const mark = truth ? `<span class='truth ${truth}' title='${truth === 'false' ?
+          'names a role other than their own' : 'names their own role'}'>${truth === 'false' ? 'false' : 'true'}</span>` : '';
+        return `<div class='p ${alive ? '' : 'dead'}'>${p.html} <span class='muted'>${p.model}${death ? ' · ' + death : ''}</span>` +
+          (claim ? `<div class='claim'>${mark}${claim}</div>` : '') + '</div>';
+      }).join('');
+  };
+  const update = () => {
+    let lo = 0, hi = marks.length - 1, best = 0;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      if (top(marks[mid]) < 60) { best = mid; lo = mid + 1; } else hi = mid - 1;
+    }
+    render(+marks[best].dataset.snap);
+  };
+  let pending = false;
+  addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(() => { pending = false; update(); }); } },
+                   { passive: true });
+  update();
+}
 """
 
 CATEGORY_LABELS = {"chat": "Chat", "pm": "PM", "yak": "Yakuza chat", "nom": "Nomination", "vote": "Vote",
@@ -389,18 +444,43 @@ def render_html(jsonl_path: Path) -> Path:
     day_votes: list[dict] = []  # the open phase's, for its table at the end of the phase
     last_call: dict[str, dict] = {}  # player -> their latest player_call, whose reason explains what they say next
     explained: set[int] = set()  # ids of the calls already shown next to a message (once each, on its first)
+    phase_title = ""
+    nights: dict[int, dict] = {}  # night -> what its summary card shows (night_html)
+    roster: dict[str, dict] = {}  # player -> alive, death, claim as of this point in the log
+    believed: dict[str, set[str | None]] = {}  # player -> their role, and the role a Roleplayer thinks they have
+    snaps: list[dict] = []  # copies of roster, each marked in the page where it starts to hold (the roster panel)
+
+    def night(n: int) -> dict:
+        return nights.setdefault(n, {"actions": {}, "results": {}, "deaths": [], "katana": None, "check": None,
+                                     "visits": None})
+
+    def snap() -> None:
+        if roster:
+            snaps.append({n: dict(v) for n, v in roster.items()})
+            out.append(f"<i class='snap' data-snap='{len(snaps) - 1}'></i>")
+
+    def gone(player: str, how: str) -> None:
+        nonlocal alive
+        alive = [n for n in alive if n != player]
+        if player in roster and roster[player]["alive"]:
+            roster[player].update(alive=False, death=how)
+            snap()
 
     def end_phase() -> None:
         if phase_start is None:
             return
-        # rough height for content-visibility until the phase is drawn: collapsed calls are one line,
-        # other text wraps at about 110 characters
         if day_votes:
             out.append(votes_html(day_votes, name, alive_order, "Votes this Day"))
             day_votes.clear()
+        if phase_title.startswith("Night "):
+            out.append(f"\0night {phase_title.split()[1]}\0")  # its card, once its night check has arrived
+        # rough height for content-visibility until the phase is drawn: collapsed calls are one line,
+        # other text wraps at about 110 characters
         px = 40
         for part in out[phase_start + 1:]:
-            if part.startswith(("<details class='call'", "<details class='votes'")):
+            if part.startswith("<i class='snap'"):
+                continue
+            if part.startswith(("<details class='call'", "<details class='votes'", "\0night")):
                 px += 26
             else:
                 part = re.sub(r"<details class='why'>.*?</details>(</details>)?", "", part)  # collapsed
@@ -411,11 +491,12 @@ def render_html(jsonl_path: Path) -> Path:
         out.append("</details>")
 
     def start_phase(title: str) -> None:
-        nonlocal phase_start
+        nonlocal phase_start, phase_title
         end_phase()
         cls = "night" if title.startswith("Night") else ""
-        phase_start = len(out)
+        phase_start, phase_title = len(out), title
         out.append(f"<details class='phase {cls}' open><summary>{esc(title)}</summary>")
+        snap()
 
     def line(category: str, badge: str, text: str, who: Iterable[str] = (), body_html: str | None = None,
              extra: str = "") -> None:
@@ -457,6 +538,8 @@ def render_html(jsonl_path: Path) -> Path:
             name = Namer(roles)
             alive = [p["name"] for p in sorted(r["players"], key=lambda p: p["seat"])]
             alive_order = list(alive)
+            believed = {p["name"]: {p["role"], (p.get("status") or {}).get("fake_role")} for p in r["players"]}
+            roster = {n: {"alive": True, "death": "", "claim": "", "truth": ""} for n in alive}
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}</td>"
                            f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
@@ -481,13 +564,24 @@ def render_html(jsonl_path: Path) -> Path:
             if r.get("cat") == "claim" and blank(r["claim"]):
                 continue  # "null" meant no change (shown in logs from before a592f5f)
             if r.get("cat") == "death" and (m := re.match(r"(\w+) was the Executioner.* leave the game", r["text"])):
-                alive = [n for n in alive if n != m[1]]  # LOG_VERSION 33 and earlier had no "left" record
+                gone(m[1], f"won and left, Day {r.get('day')}")  # LOG_VERSION 33 and earlier had no "left" record
+            if r.get("cat") == "result" and r.get("phase") == "night":
+                for who in r["visible_to"]:
+                    night(r["day"])["results"].setdefault(who, []).append(r["message"])
             category, badge, body = classify(r)
             vis = r["visible_to"]
             line(category, badge, body, who=[] if vis == "all" else vis,
                  extra=why(r) if r.get("cat") in ("chat", "pm", "yak", "claim") else "")
-        elif k in ("death", "left"):
-            alive = [n for n in alive if n != r["player"]]
+            if r.get("cat") == "claim" and r["speaker"] in roster:
+                roster[r["speaker"]].update(claim=r["claim"], truth=claim_truth(r["claim"], believed[r["speaker"]]))
+                snap()
+        elif k == "death":
+            when = f"{'Night' if r.get('phase') == 'night' else 'Day'} {r.get('day')}"
+            gone(r["player"], f"died {when}: {r.get('cause')}")
+            if r.get("phase") == "night":
+                night(r["day"])["deaths"].append((r["player"], r.get("cause")))
+        elif k == "left":
+            gone(r["player"], f"won and left, Day {r.get('day')}")
         elif k == "claim":
             line("system", "Claim", f"{r['player']}: {r['claim']}")
         elif k == "vote":
@@ -531,12 +625,17 @@ def render_html(jsonl_path: Path) -> Path:
             rows = "".join(f"<div>{name(n)} ({esc(r['roles'].get(n))}): {name(describe_action(a))}</div>"
                            for n, a in r["actions"].items())
             line("hidden", "Night actions", "", who=r["actions"], body_html=rows)
+            night(r["day"]).update(actions=r["actions"], roles=r["roles"])
         elif k in ("katana", "revenge"):
+            if k == "katana":
+                night(r["day"])["katana"] = text_line(r)
             line("hidden", "Katana" if k == "katana" else "Revenge", text_line(r) or "")
         elif k == "night_check":
             line("hidden", "Night check", describe_check(r))
+            night(r["night"])["check"] = r
         elif k == "visits":  # the moderator's record_visits (LOG_VERSION 33+)
             line("hidden", "Visits", ", ".join(f"{a} → {b}" for a, b in r["visits"]) or "none")
+            night(r["day"])["visits"] = r["visits"]
         elif k == "night_effects_undone":
             line("hidden", "Undone", f"{r['player']} survived the night, so their {' and '.join(r['undone'])} "
                  "change was undone")
@@ -573,6 +672,10 @@ def render_html(jsonl_path: Path) -> Path:
             else:
                 out.append(pre("Cost by model (USD)", r.get("cost")))
     end_phase()
+    body = "".join(out)
+    for n, info in nights.items():
+        body = body.replace(f"\0night {n}\0", night_html(n, info, name))
+    body = re.sub("\0night [0-9]+\0", "", body)
 
     legend = "".join(f"<span class='badge {c}'>{esc(label)}</span>" for c, label in CATEGORY_LABELS.items())
     legend += ("<span class='n Village'>Village</span> <span class='n Yakuza'>Yakuza</span> "
@@ -587,11 +690,12 @@ def render_html(jsonl_path: Path) -> Path:
             f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
             f"<label><input type='checkbox' id='showicons' checked> Role icons</label>"
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
+            f"<label><input type='checkbox' id='showroster'> Roster</label>"
             f"<label>Player <select id='focus'><option value=''>everyone</option>{focus_options}</select></label>"
             f"<span class='muted'>Untick the first two to read it like a player would.</span></div>"
             f"{errors_html(errors, unreadable)}"
             f"{votes_html(votes, name, alive_order, 'Votes (whole game)', show_day=True)}"
-            f"{''.join(out)}<script>{JS}</script></body></html>")
+            f"{body}{roster_html(snaps, alive_order, roles, models)}<script>{JS}</script></body></html>")
     html_path = jsonl_path.with_suffix(".html")
     html_path.write_text(page, encoding="utf-8", errors="replace")
     return html_path
@@ -629,6 +733,55 @@ def votes_html(votes: list[dict], name: Namer, seats: list[str], title: str, sho
             f"{trials} trial(s). ✓ Yes/Guilty, ✗ No/Innocent</summary><div class='scroll'><table>"
             f"<tr><th></th>{''.join(heads)}</tr>{rows}<tr><th class='muted'>Outcome</th>{''.join(outcomes)}</tr>"
             "</table></div></details>")
+
+
+ROLE_NAMES = re.compile(r"\b(" + "|".join(re.escape(r) for r in sorted(ROLES, key=len, reverse=True))
+                        + r"|Vanilla)\b", re.I)
+
+
+def claim_truth(claim: str, believed: set[str | None]) -> str:
+    """'true' if a claim names the player's role (or the one a Roleplayer believes they have), 'false' if it names
+    only other roles, '' if it names none."""
+    named = {m.lower() for m in ROLE_NAMES.findall(claim)}
+    if not named:
+        return ""
+    own = {r.lower() for r in believed if r} | ({"vanilla"} if "Vanilla Villager" in believed else set())
+    return "true" if named & own else "false"
+
+
+def night_html(n: int, info: dict, name: Namer) -> str:
+    """A collapsed card at the end of a Night: who did what, what each was told, the Katana, deaths and the night
+    check's verdict, in one place."""
+    deaths = ", ".join(f"{p} ({c})" for p, c in info["deaths"]) or "nobody"
+    check = info["check"]
+    verdict = f" · night check: {check['verdict']}" if check else ""
+    acted = {p: a for p, a in info["actions"].items() if a.get("act") or a.get("katana_vote_holder")}
+    rows = "".join(f"<tr><td>{name(p)}</td><td class='muted'>{esc(info.get('roles', {}).get(p, ''))}</td>"
+                   f"<td>{name(describe_action(a))}</td>"
+                   f"<td>{'<br>'.join(map(name, info['results'].get(p, [])))}</td></tr>" for p, a in acted.items())
+    told = "".join(f"<tr><td>{name(p)}</td><td></td><td class='muted'>no action</td>"
+                   f"<td>{'<br>'.join(map(name, msgs))}</td></tr>"
+                   for p, msgs in info["results"].items() if p not in acted)
+    extra = "".join(f"<div>{label}: {name(text)}</div>" for label, text in (
+        ("Katana", info["katana"]), ("Visits", ", ".join(f"{a} → {b}" for a, b in info["visits"] or []))) if text)
+    if check and check["issues"]:
+        extra += f"<div>Night check: {name(describe_check(check))}</div>"
+    return (f"<details class='votes card'><summary>Night {n} summary: {len(acted)} acted · died: {name(deaths)}"
+            f"{esc(verdict)}</summary><div class='scroll'><table><tr><th>Player</th><th>Role</th><th>Action</th>"
+            f"<th>Told</th></tr>{rows}{told}</table></div>{extra}</details>")
+
+
+def roster_html(snaps: list[dict], seats: list[str], roles: dict[str, str], models: dict[str, str]) -> str:
+    """The roster panel: every player's alive or dead state and latest claim as of the part of the log on screen.
+    The page marks where each snapshot starts (<i class='snap'>), and the script shows the last one above."""
+    if not snaps:
+        return ""
+    data = {"players": [{"n": n, "html": name_span(n, roles[n]), "role": roles[n], "model": models.get(n, "")}
+                        for n in seats],
+            "snaps": [{n: [s[n]["alive"], esc(s[n]["death"]), esc(s[n]["claim"]), s[n]["truth"]] for n in seats}
+                      for s in snaps]}
+    return ("<aside id='roster'></aside><script type='application/json' id='roster-data'>"
+            + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>")
 
 
 def errors_html(errors: list[tuple[str, dict]], unreadable: int = 0) -> str:
