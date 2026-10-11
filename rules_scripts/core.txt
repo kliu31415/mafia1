@@ -114,6 +114,8 @@ no tokens spent. It lasts only that one night (not the next Day or later nights)
 they were role-blocked. Any player can be role-blocked unless their role says otherwise; blocking a player who
 has no night action, or who chose not to act, has no other effect, but they are still told. A role-blocker learns
 only whether the block failed because its target can't be role-blocked.
+A result a role gets with no action at all (its text says "This needs no action") isn't an action, so a role-block
+doesn't stop it; automatic actions, such as the Ex-Con's visit or the Seer's random pair, are stopped (R7).
 
 R10 (Simultaneous night resolution)
 All night actions happen at the same time. Think of it as two steps: first everyone attempts their actions,
