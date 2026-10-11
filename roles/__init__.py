@@ -131,8 +131,9 @@ ROLES: dict[str, RoleInfo] = {
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,
-                           tested=False, notes="moderator records the audit; code tells the true total at the end of "
-                           "the night, after token changes (Magpie steals); Roleplayers show 0"),
+                           tested=False, notes="moderator records the audit with the count_tokens op; code tells the "
+                           "true total at the end of the night, after token changes (Magpie steals); Roleplayers "
+                           "show 0"),
     "Medic": RoleInfo(Alignment.GOOD, "Combat", False,
                       summary="Night: protect one other player (Standard Defense; tokens for Strong or for self).",
                       tokens={"medic": 2}, acts_at_night=True,

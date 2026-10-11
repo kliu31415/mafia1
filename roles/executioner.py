@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from events import DEATH
-from roles.base import RoleLogic, Status, logic, register
+from roles.base import RoleLogic, Status, leave_game, register
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -30,14 +30,9 @@ class Executioner(RoleLogic):
         if guilty_voters is not None:
             game.personal_winners.append(me.name)
             game.pending_revenge.append((me.name, guilty_voters))
-            me.alive = False  # leaves the game; not a death
-            me.status[Status.LEFT] = True
-            game.log.write("left", player=me.name, day=game.day, phase=game.phase)
+            leave_game(game, me)
             game.emit(f"{me.name} was the Executioner, whose target was {dead.name}. They win and leave the game."
                       + (f" Their last will: \"{me.last_will}\"" if me.last_will else ""), cat=DEATH)  # rules R12
-            game.death_record.append(f"Day {game.day}: {me.name} (Executioner) won and left the game")
-            for q in game.alive():  # leaving counts as a death, e.g. for an Executioner targeting this one
-                logic(q.role).on_other_death(game, q, me, None)
         elif game.phase == "night":
             # Night deaths are simultaneous (R10): if the Executioner dies tonight too, they die an Executioner.
             game.role_state.setdefault(TURN_JESTER, []).append(me.name)

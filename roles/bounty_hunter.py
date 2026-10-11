@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from events import DEATH
-from roles.base import RoleLogic, Status, join_names, logic, register
+from roles.base import RoleLogic, Status, join_names, leave_game, register
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -90,9 +90,7 @@ def settle(game: Game, me: Player) -> None:
         game.log.write("bounty_won", player=me.name, claimed=b["claimed"], day=game.day, phase=game.phase)
     if not me.alive:  # a dead winner stays hidden like any death (R12); a dead loser needs nothing
         return
-    me.alive = False  # leaves the game; not a death
-    me.status[Status.LEFT] = True
-    game.log.write("left", player=me.name, day=game.day, phase=game.phase)
+    leave_game(game, me, won)
     text = (f"{me.name} was the Bounty Hunter and " + ("claimed their bounties. They win" if won else
             "can no longer claim enough bounties. They lose") + " and leave the game."
             + (f" Their last will: \"{me.last_will}\"" if me.last_will else ""))  # rules R12
@@ -100,6 +98,3 @@ def settle(game: Game, me: Player) -> None:
         game.pending_announcements.append(text)
     else:
         game.emit(text, cat=DEATH)
-    game.death_record.append(f"Day {game.day}: {me.name} (Bounty Hunter) {'won' if won else 'lost'} and left the game")
-    for q in game.alive():  # leaving counts as a death for anyone targeting this one (an Executioner, ...)
-        logic(q.role).on_other_death(game, q, me, None)

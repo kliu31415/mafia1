@@ -407,6 +407,18 @@ def test_every_role_file_is_registered():
     assert files == registered
 
 
+def test_op_names_are_unique_across_roles():
+    """The moderator routes an op by its name alone, so two roles with one name (the Auditor's and Accountant's
+    'audit') send one role's ops to the other's checks."""
+    from moderator import CORE_OPS
+    from roles.base import LOGIC
+    owners: dict[str, list[str]] = {}
+    for role, r in LOGIC.items():
+        for op in r.ops:
+            owners.setdefault(op, []).append(role)
+    assert not {op: roles for op, roles in owners.items() if len(roles) > 1 or op in CORE_OPS}
+
+
 def test_puppeting_lapses_if_the_puppeteer_died(game_factory):
     client = ScriptedClient()
     game, players = game_factory(VILLAGE5[:3] + ["Grunt", "Puppeteer"], client)
@@ -758,7 +770,8 @@ def test_a_swapped_recorded_action_tells_its_user_the_player_they_chose(game_fac
     action = logic(role).action
     assert action
     apply_ops(game, players, {"op": action.op, "by": "Alice", "player": "Carol"})
-    for text in told(game, "Alice")[before:]:  # roles that tell their result later (or never) have nothing here
+    game.run_night_end_hooks()  # results told at the end of the night (Accountant, Magpie) too
+    for text in told(game, "Alice")[before:]:  # roles that never tell a result have nothing here
         assert "Bob" in text  # e.g. "You marked Bob"; group results list both, with the names traded
 
 
@@ -1200,7 +1213,7 @@ def test_magpie_steals_after_token_use_and_wins_after_three_players(game_factory
     game, players = game_factory(["Magpie", "Vigilante", "Medic", "Roleplayer", "Prosecutor", "Accountant", "Grunt"])
     game.phase = "night"
     apply_ops(game, players, {"op": "steal", "player": "Bob", "by": "Alice"},
-              {"op": "audit", "player": "Bob", "by": "Frank"},
+              {"op": "count_tokens", "player": "Bob", "by": "Frank"},
               {"op": "set_tokens", "player": "Bob", "token": "vigilante", "value": 2})  # Bob shot tonight
     game.run_night_end_hooks()
     assert game.player("Bob").tokens["vigilante"] == 1
@@ -1214,7 +1227,7 @@ def test_magpie_steals_after_token_use_and_wins_after_three_players(game_factory
     game.day += 1
     rp_tokens = dict(game.player("Dave").tokens)
     apply_ops(game, players, {"op": "steal", "player": "Dave", "by": "Alice"},
-              {"op": "audit", "player": "Dave", "by": "Frank"})
+              {"op": "count_tokens", "player": "Dave", "by": "Frank"})
     game.run_night_end_hooks()
     assert game.player("Dave").tokens == rp_tokens and "had no tokens" in told(game, "Alice")[-1]
     assert not any("Magpie" in t for t in told(game, "Dave"))
@@ -1228,6 +1241,21 @@ def test_magpie_steals_after_token_use_and_wins_after_three_players(game_factory
     game.phase = "day"
     game.announce_dawn()
     assert any("was the Magpie and stole enough tokens" in e.text for e in game.events)
+
+
+def test_a_magpie_leaving_at_the_end_of_the_night_still_counts_in_tonights_visit_results(game_factory):
+    # rules R10: results draw from everyone alive when the night began; the Magpie leaves before the Insomniac's hook
+    game, players = game_factory(["Magpie", "Medic", "Insomniac", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.role_state["magpie_robbed"] = {"Alice": ["Dave", "Erin"]}
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("apply_changes", {"changes": [{"op": "steal", "player": "Bob", "by": "Alice"},
+                                               {"op": "stay_awake", "by": "Carol"}]})
+    mod.dispatch("record_visits", {"visits": [["Alice", "Bob"]]})
+    game.run_night_end_hooks()
+    assert "Alice" in game.personal_winners and game.player("Alice").status[Status.LEFT]
+    assert "Their roles: Magpie." in told(game, "Carol")[-1]
+    assert game.death_record[-1] == f"Night {game.day}: Alice (Magpie) won and left the game"
 
 
 def test_random_setups_include_a_magpie_only_with_enough_token_roles():

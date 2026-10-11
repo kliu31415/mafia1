@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, register, true_tokens
+from roles.base import RecordedAction, RoleLogic, chosen_name, register, true_tokens
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -17,7 +17,7 @@ TONIGHT = "accountant_audits"  # game.role_state: {day: [(accountant, target)]},
 class Accountant(RoleLogic):
     code_tells_user = True
     night_end_order = 1  # after every token change of the night (a Magpie's steal)
-    action = RecordedAction("audit", "audits player",
+    action = RecordedAction("count_tokens", "counts player's tokens",
                             "code tells them the target's total token count at the end of the night", visit=True,
                             note="Record it before or after this night's set_tokens changes: either is fine.")
 
@@ -29,4 +29,4 @@ class Accountant(RoleLogic):
         # rules, Accountant: the true total (R19), so a Roleplayer shows 0; before any role change at dawn
         for name, target in game.role_state.get(TONIGHT, {}).pop(game.day, []):
             n = sum(true_tokens(game.player(target)).values())
-            game.tell([name], f"Your audit: {target} has {n} token{'' if n == 1 else 's'} in total.")
+            game.tell([name], f"Your audit: {chosen_name(game, target)} has {n} token{'' if n == 1 else 's'} in total.")

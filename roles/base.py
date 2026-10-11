@@ -194,7 +194,24 @@ def acted_tonight(game: Game, p: Player) -> bool:
     actions are simultaneous (rules R10), so ops for a player killed tonight still apply, whatever order the
     moderator sends them in, and an effect set for the next Day survives its user's death unless it needs them to
     act that Day (R21)."""
-    return p.alive or (p.death is not None and p.death["day"] == game.day and p.death["phase"] == "night")
+    return p.alive or (p.death is not None and p.death["day"] == game.day and p.death["phase"] == "night") \
+        or game.role_state.get(LEFT_AT, {}).get(p.name) == [game.day, "night"]
+
+
+LEFT_AT = "left_at"  # game.role_state: player -> [day, phase] they left the game
+
+
+def leave_game(game: Game, me: Player, won: bool = True) -> None:
+    """me wins (or loses) and leaves the game: not a death, and the caller announces it. Leaving at night still
+    counts as alive when the night began (acted_tonight), so tonight's visit results keep them (rules R10)."""
+    me.alive = False
+    me.status[Status.LEFT] = True
+    game.role_state.setdefault(LEFT_AT, {})[me.name] = [game.day, game.phase]
+    game.log.write("left", player=me.name, day=game.day, phase=game.phase)
+    when = f"{'Night' if game.phase == 'night' else 'Day'} {game.day}"
+    game.death_record.append(f"{when}: {me.name} ({me.role}) {'won' if won else 'lost'} and left the game")
+    for q in game.alive():  # leaving counts as a death for anyone targeting this one (an Executioner, ...)
+        logic(q.role).on_other_death(game, q, me, None)
 
 
 def true_tokens(p: Player) -> dict[str, int]:

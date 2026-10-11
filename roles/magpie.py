@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, Status, acted_tonight, logic, register, true_tokens
+from roles.base import RecordedAction, RoleLogic, acted_tonight, chosen_name, leave_game, register, true_tokens
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -36,19 +36,20 @@ class Magpie(RoleLogic):
     def at_night_end(self, game: Game) -> None:
         for name, target_name in game.role_state.get(TONIGHT, {}).pop(game.day, []):
             me, target = game.player(name), game.player(target_name)
+            chosen = chosen_name(game, target_name)  # rules R23
             robbed = game.role_state.setdefault(ROBBED, {}).setdefault(name, [])
             if target_name in robbed:
-                game.tell([name], f"You already stole from {target_name}, so you took nothing: a Magpie needs two "
-                          "different players.")
+                game.tell([name], f"You already stole from {chosen}, so you took nothing: a Magpie needs two different "
+                          "players.")
                 continue
             if not (tokens := true_tokens(target)):
-                game.tell([name], f"{target_name} had no tokens, so you stole nothing.")
+                game.tell([name], f"{chosen} had no tokens, so you stole nothing.")
                 continue
             kind = game.rng.choices(list(tokens), list(tokens.values()))[0]
             target.tokens[kind] -= 1
             robbed.append(target_name)
             game.log.write("steal", player=name, target=target_name, token=kind, day=game.day)
-            game.tell([name], f"You stole a token from {target_name} ({len(robbed)} of {NEEDED}).")
+            game.tell([name], f"You stole a token from {chosen} ({len(robbed)} of {NEEDED}).")
             if target.alive:
                 game.tell([target_name], f"A Magpie stole one of your {kind} tokens. You have {target.tokens[kind]} "
                           "left.")
@@ -60,12 +61,7 @@ def win(game: Game, me: Player) -> None:
     game.personal_winners.append(me.name)
     if not me.alive:  # died tonight: a dead winner stays hidden like any death (R12)
         return
-    me.alive = False  # leaves the game; not a death
-    me.status[Status.LEFT] = True
-    game.log.write("left", player=me.name, day=game.day, phase=game.phase)
+    leave_game(game, me)
     game.pending_announcements.append(f"{me.name} was the Magpie and stole enough tokens. They win and leave the game."
                                       + (f" Their last will: \"{me.last_will}\"" if me.last_will else ""))  # R12
-    game.death_record.append(f"Day {game.day}: {me.name} (Magpie) won and left the game")
-    for q in game.alive():  # leaving counts as a death for anyone targeting this one (an Executioner, ...)
-        logic(q.role).on_other_death(game, q, me, None)
 
