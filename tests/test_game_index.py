@@ -1,6 +1,7 @@
 """The game index (game_index.py): model tiers, per-game summaries, filters shared with stats.py, the page."""
 
 import argparse
+import json
 
 import game_index
 import mafia
@@ -57,6 +58,18 @@ def test_index_lists_a_mock_game_and_stats_filters_it(tmp_path, monkeypatch):
     assert [x["game"] for x in games] == [path.stem]
     games, skipped = stats.load_games([path], include_mock=True, filters=filters("--min-frontier", "0.5"))
     assert games == [] and skipped["filtered out"] == 1
+
+
+def test_a_neutral_win_is_named_by_role(tmp_path):
+    haiku = Model.HAIKU_5_5.value
+    log = tmp_path / "game_1.jsonl"
+    log.write_text("\n".join(json.dumps(r) for r in [
+        {"kind": "setup", "t": 0, "settings": {}, "players": []},
+        {"kind": "result", "winners": ["Mallory"], "winning_faction": "Neutral:Mallory", "end_reason": "win",
+         "players": [{"name": "Mallory", "model": haiku, "start_role": "Jester", "final_role": "Jester", "won": True},
+                     {"name": "Bob", "model": haiku, "start_role": "Sheriff", "final_role": "Sheriff"}]}]))
+    [g] = game_index.load_summaries(tmp_path)
+    assert (g["winner"], g["winners"]) == ("Neutral:Jester", ["Mallory"])
 
 
 def test_the_index_is_never_synced(tmp_path):

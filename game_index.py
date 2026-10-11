@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
 INDEX = "index.html"
 CACHE = "index_cache.json"
-CACHE_VERSION = 1  # bump when summarize()'s fields change, so cached summaries are rebuilt
+CACHE_VERSION = 2  # bump when summarize()'s fields change, so cached summaries are rebuilt
 TIER_ORDER = ["frontier", "mid", "cheap", "unknown"]
 
 
@@ -53,11 +53,15 @@ def summarize(path: Path) -> dict | None:
         started = ""
     errors = Counter(r["kind"] for r in records if r.get("alert"))
     winners = set(result.get("winners") or [])
+    winner = result.get("winning_faction") or ("" if result else "unfinished")
+    if winner.startswith("Neutral:"):  # a Neutral's faction is named after its player: show its role instead
+        role = {p["name"]: p["final_role"] or p["start_role"] for p in seats}.get(winner.removeprefix("Neutral:"))
+        winner = f"Neutral:{role}" if role else winner
     return {
         "game": game_id, "started": started, "date": started[:10].replace("-", ""),
         "mock": bool(settings.get("mock")), "finished": bool(result),
         "end_reason": result.get("end_reason") or ("win" if result else "unfinished"),
-        "winner": result.get("winning_faction") or ("" if result else "unfinished"),
+        "winner": winner,
         "winners": sorted(winners),
         "days": result.get("days") or max((r.get("day") or 0 for r in records if "day" in r), default=0),
         "cost": round(sum((result.get("cost") or {}).values()), 2) if result else None,
