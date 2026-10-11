@@ -279,7 +279,7 @@ class ClaudeCodeClient:
         utilization and reset time. None while games may go on using the subscription."""
         now = time.time()
         over = [(name, used, self.plan_resets.get(name)) for name, used in self.plan_utilization.items()
-                if used >= self.caps.get(name, 1.0) and (self.plan_resets.get(name) or now + 1) > now]
+                if used >= self.caps.get(name, 1.0) < 1 and (self.plan_resets.get(name) or now + 1) > now]
         return max(over, key=lambda o: o[2] or float("inf")) if over else None
 
     def cap_text(self, over: tuple[str, float, float | None]) -> str:
@@ -329,7 +329,7 @@ class ClaudeCodeClient:
         if over := self.over_cap():
             raise PlanLimitError(f"not starting: {self.cap_text(over)}")
         week, allowed = self.plan_utilization.get("seven_day", 0.0), self.start_cap("seven_day")
-        if week >= allowed:
+        if week >= allowed < 1:
             left = (self.plan_resets["seven_day"] - time.time()) / 86400
             raise PlanLimitError(
                 f"not starting: {week:.0%} of the Claude subscription's 7-day window is used with {left:.1f} days "

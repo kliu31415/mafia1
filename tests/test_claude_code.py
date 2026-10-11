@@ -7,7 +7,7 @@ import pytest
 
 import claude_code
 from claude_code import ClaudeCodeClient, PlanLimitError
-from llm import Model, answer_json, cache_block
+from llm import MockClient, Model, answer_json, cache_block
 
 
 class FakeCli:
@@ -287,3 +287,196 @@ def test_a_new_game_needs_more_of_the_week_left_early_in_the_week():
     running = ClaudeCodeClient(None, runner=FakeCli(used(0.1, 0.5, week_left=6), {"vote": "Bob"}))
     running.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
     running.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # a game under way goes on up to the cap
+
+
+# --- The subscription caps, at their edges and in a game ----------------------------------------------
+
+def capped(*answers, caps=None):
+    return ClaudeCodeClient(None, runner=FakeCli(*answers), caps=caps)
+
+
+def test_a_cap_holds_from_exactly_its_figure_and_only_until_the_reset(monkeypatch):
+    slept: list[float] = []
+    monkeypatch.setattr(time, "sleep", slept.append)
+    under = capped(used(0.69, 0.1), {"vote": "Bob"})
+    under.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    under.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert not slept and under.over_cap() is None
+    at = capped(used(0.7, 0.1, resets_in=600), {"vote": "Bob"})
+    at.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert at.over_cap()[:2] == ("five_hour", 0.7)
+    at.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert len(slept) == 1 and 600 < slept[0] < 700  # the reset plus a margin, not the whole 5 hours
+    stale = capped(used(0.9, 0.1, resets_in=-30), {"vote": "Bob"})  # the window has reset since it was read
+    stale.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    stale.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert len(slept) == 1 and stale.over_cap() is None
+
+
+def test_with_both_windows_at_their_caps_the_later_reset_decides(monkeypatch):
+    monkeypatch.setattr(time, "sleep", lambda s: pytest.fail("waited for the 5-hour window alone"))
+    both = capped(used(0.9, 0.9, resets_in=600, week_left=2), {"vote": "Bob"})
+    both.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert both.over_cap()[0] == "seven_day"
+    with pytest.raises(PlanLimitError, match="7-day window.*--resume"):  # waiting 10 minutes would not help
+        both.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+
+
+def test_caps_turned_off_never_hold_a_call_even_at_full_use(monkeypatch):
+    monkeypatch.setattr(time, "sleep", lambda s: pytest.fail("held a call with the caps off"))
+    off = capped(used(1.0, 1.0, week_left=6), used(1.0, 1.0, week_left=6), {"vote": "Bob"},
+                 caps={"five_hour": 1.0, "seven_day": 1.0})
+    assert "games start below 100%" in off.check_plan()
+    off.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    off.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert off.over_cap() is None
+
+
+def test_each_cap_is_set_on_its_own_and_the_weekly_ramp_scales_with_it():
+    client = capped(used(0.75, 0.2, week_left=3.5), caps={"five_hour": 0.9, "seven_day": 0.5})
+    line = client.check_plan()  # 75% is under a 90% 5-hour cap; halfway through the week 50% allows 25%
+    assert "5-hour window 75% used (games start below 90%)" in line
+    assert "7-day window 20% used (games start below 25%)" in line
+    with pytest.raises(PlanLimitError, match="only below 25%.*rising to 50%"):
+        capped(used(0.1, 0.3, week_left=3.5), caps={"five_hour": 0.9, "seven_day": 0.5}).check_plan()
+
+
+def test_the_weekly_ramp_grows_through_the_week_and_never_passes_the_cap():
+    client = capped()
+    client.plan_utilization = {"seven_day": 0.0}
+    seen = []
+    for days_left in (7, 6, 5, 4, 3, 2, 1, 0.001):
+        client.plan_resets = {"seven_day": time.time() + days_left * 86400}
+        seen.append(client.start_cap("seven_day"))
+    assert seen == sorted(seen) and seen[0] == pytest.approx(0, abs=1e-6) and seen[-1] == pytest.approx(0.7, abs=1e-3)
+    assert seen[1] == pytest.approx(0.1) and seen[4] == pytest.approx(0.4)
+    for odd in (9, -1):  # a reset time further off than a week, or already past: clamped to the week
+        client.plan_resets = {"seven_day": time.time() + odd * 86400}
+        assert 0 <= client.start_cap("seven_day") <= 0.7
+    client.plan_resets = {}
+    assert client.start_cap("seven_day") == 0.7  # no reset time reported: the flat cap
+    assert client.start_cap("five_hour") == 0.7  # the 5-hour window has no ramp
+
+
+def test_the_start_check_is_not_held_back_by_an_earlier_reading(monkeypatch):
+    monkeypatch.setattr(time, "sleep", lambda s: pytest.fail("the start check waited"))
+    client = capped(used(0.2, 0.1, week_left=3))
+    client.plan_utilization = {"five_hour": 0.95}  # e.g. read by an earlier game in this process
+    client.plan_resets = {"five_hour": time.time() + 900}
+    assert "5-hour window 20% used" in client.check_plan()  # the fresh figure decides
+    assert client.caps == claude_code.PLAN_CAPS  # and the caps are back for the game's calls
+
+
+def test_calls_made_at_once_all_wait_at_a_cap_and_report_it_once(monkeypatch):
+    from concurrent.futures import ThreadPoolExecutor
+    slept: list[float] = []
+    monkeypatch.setattr(time, "sleep", slept.append)
+    errors = []
+    client = capped(used(0.8, 0.1, resets_in=1200), *[{"vote": "Bob"}] * 6)
+    client.on_error = lambda kind, summary, **kw: errors.append(kind)
+    client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    with ThreadPoolExecutor(6) as pool:
+        answers = list(pool.map(lambda _: answer_json(client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)),
+                                range(6)))
+    assert answers == [{"vote": "Bob"}] * 6
+    assert errors == ["plan_cap"] and 1 <= len(slept) <= 6 and all(1200 < s < 1300 for s in slept)
+
+
+def test_other_makers_models_are_never_held_by_the_claude_caps(monkeypatch):
+    monkeypatch.setattr(time, "sleep", lambda s: pytest.fail("held a call to another maker"))
+
+    class Other:
+        total_cost: dict[str, float] = {}
+
+        def chat(self, model, messages, **kw):
+            return "from openrouter"
+    client = ClaudeCodeClient(Other(), runner=FakeCli(used(0.99, 0.99, week_left=3)))
+    client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert client.chat(Model.GPT_6_LUNA, player_messages(), schema=SCHEMA) == "from openrouter"
+
+
+def run_main(monkeypatch, argv):
+    import sys
+
+    import mafia
+    monkeypatch.setattr(sys, "argv", ["mafia.py", *argv])
+    with pytest.raises(SystemExit):
+        mafia.main()
+
+
+def test_a_game_at_the_cap_does_not_start_and_leaves_no_log(tmp_path, monkeypatch, capsys):
+    import mafia
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "logs")
+    monkeypatch.setattr(claude_code, "available", lambda: True)
+    monkeypatch.setattr(time, "sleep", lambda s: None)
+    seen = {}
+
+    def client_for(cli):
+        def api_client(effort, via, plan_cap=None):
+            seen["via"], seen["caps"] = via, plan_cap
+            return ClaudeCodeClient(None, runner=cli, caps=plan_cap)
+        monkeypatch.setattr(mafia, "api_client", api_client)
+    game = ["--players", "haiku-5.5", "--moderator", "opus-5.5"]
+    client_for(FakeCli(used(0.1, 0.5, week_left=5)))  # two days into the week, half of it used
+    run_main(monkeypatch, game)
+    err = capsys.readouterr().err
+    assert seen == {"via": True, "caps": None}  # Claude Code and the default caps, with no flag given
+    assert "not starting: 50% of the Claude subscription's 7-day window is used with 5.0 days left" in err
+    assert "only below 20%" in err and "--no-claude-code" in err
+    client_for(FakeCli(used(0.75, 0.05, week_left=1)))
+    run_main(monkeypatch, game)
+    assert "cap of 70% of the Claude subscription's 5-hour window, which is 75% used" in capsys.readouterr().err
+    client_for(FakeCli(used(0.1, 0.5, week_left=0.5)))
+    run_main(monkeypatch, [*game, "--plan-cap", "70,30"])
+    assert seen["caps"] == {"five_hour": 0.7, "seven_day": 0.3}
+    assert "cap of 30% of the Claude subscription's 7-day window, which is 50% used" in capsys.readouterr().err
+    client_for(FakeCli(*[("fail", "not signed in")] * (claude_code.RETRIES + 1)))  # the CLI itself is broken
+    run_main(monkeypatch, game)
+    assert "not signed in" in capsys.readouterr().err
+    run_main(monkeypatch, [*game, "--plan-cap", "eighty"])
+    assert "--plan-cap takes two percents" in capsys.readouterr().err
+    assert not (tmp_path / "logs").exists()
+
+
+def test_the_start_check_runs_only_for_claude_seats_through_the_cli(capsys):
+    import argparse
+
+    import mafia
+    from llm import ModelSpec
+    ap = argparse.ArgumentParser()
+    cli = FakeCli(used(0.2, 0.1, week_left=3))
+    client = ClaudeCodeClient(None, runner=cli)
+    mafia.check_plan(ap, client, [Model.GPT_6_LUNA, ModelSpec(Model.GPT_6_LUNA)])  # no Claude seat: no call
+    mafia.check_plan(ap, MockClient(0), [Model.OPUS_5_5])  # not through the CLI
+    assert not cli.runs and not capsys.readouterr().out
+    mafia.check_plan(ap, client, [Model.GPT_6_LUNA, ModelSpec(Model.OPUS_5_5)])
+    [run] = cli.runs
+    assert run["argv"][run["argv"].index("--model") + 1] == "claude-haiku-5-5"  # the cheapest model reads it
+    assert "5-hour window 20% used (games start below 70%)" in capsys.readouterr().out
+
+
+def test_a_game_stopped_at_the_weekly_cap_can_be_resumed(tmp_path, monkeypatch):
+    import mafia
+    from checkpoint import load
+    from roles import DEFAULT_SETUP
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+
+    class HitsTheCap(MockClient):
+        calls = 0
+
+        def chat(self, model, messages, **kw):
+            self.calls += 1
+            if self.calls == 60:  # some way into the game
+                raise PlanLimitError("games have a cap of 70% of the Claude subscription's 7-day window")
+            return super().chat(model, messages, **kw)
+    seed = 7
+    config = mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed)
+    with pytest.raises(PlanLimitError):  # not swallowed as a bad answer from a player
+        mafia.play_game(HitsTheCap(seed), config)
+    [ckpt_path] = tmp_path.glob("*.ckpt")
+    log = ckpt_path.with_suffix(".jsonl")
+    crash = [json.loads(line) for line in log.read_text(encoding="utf-8").splitlines()][-1]
+    assert crash["kind"] == "crash" and "7-day window" in crash["error"] and "--resume" in crash["error"]
+    ckpt = load(ckpt_path)
+    mafia.play_game(MockClient(seed), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
+    assert json.loads(log.read_text(encoding="utf-8").splitlines()[-1])["kind"] == "result"
