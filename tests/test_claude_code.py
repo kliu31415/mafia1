@@ -263,6 +263,16 @@ def test_plan_cap_option():
             parse_plan_cap(bad)
 
 
+@pytest.mark.parametrize("days_left, start_cap", [(7, 0.0), (5.25, 0.175), (3.5, 0.35), (1.75, 0.525), (0, 0.7)])
+def test_the_weekly_start_cap_rises_evenly_from_0_at_the_reset_to_the_cap_at_the_end(days_left, start_cap):
+    client = ClaudeCodeClient(None)
+    client.plan_resets = {"five_hour": time.time() + 3600, "seven_day": time.time() + days_left * 86400}
+    assert client.start_cap("seven_day") == pytest.approx(start_cap, abs=1e-4)
+    assert client.start_cap("five_hour") == 0.7  # the 5-hour window has no ramp
+    client.caps = {"five_hour": 0.5, "seven_day": 0.4}  # --plan-cap 50,40: the ramp ends at the weekly cap given
+    assert client.start_cap("seven_day") == pytest.approx(start_cap * 0.4 / 0.7, abs=1e-4)
+
+
 def test_a_new_game_needs_more_of_the_week_left_early_in_the_week():
     def start(week_used, days_left, caps=None):
         return ClaudeCodeClient(None, runner=FakeCli(used(0.1, week_used, week_left=days_left)), caps=caps).check_plan()
