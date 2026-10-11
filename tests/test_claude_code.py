@@ -217,3 +217,47 @@ def test_games_use_the_cli_by_default_where_it_is_installed(monkeypatch):
     assert not via_claude_code(None)
     with pytest.raises(ValueError, match="no `claude` command"):
         via_claude_code(True)
+
+
+def used(five_hour, week, resets_in=3600.0):
+    """A call that answers and reports this much of each subscription window used."""
+    return ("events", [{"type": "rate_limit_event", "rate_limit_info": {"status": "allowed", "unifiedWindows": {
+                "five_hour": {"utilization": five_hour, "resetsAt": time.time() + resets_in},
+                "seven_day": {"utilization": week, "resetsAt": time.time() + 3 * 86400}}}},
+            {"type": "result", "subtype": "success", "is_error": False, "structured_output": {"vote": "Bob"},
+             "result": "ok", "usage": {}}])
+
+
+def test_games_stop_using_the_subscription_at_its_cap(monkeypatch):
+    slept: list[float] = []
+    monkeypatch.setattr(time, "sleep", slept.append)
+    errors = []
+    cli = FakeCli(used(0.5, 0.3), used(0.85, 0.3), {"vote": "Bob"}, {"vote": "Bob"})
+    client = ClaudeCodeClient(None, runner=cli)
+    client.on_error = lambda kind, summary, **kw: errors.append((kind, kw.get("window")))
+    assert "5-hour window 50% used (cap 80%)" in client.check_plan()  # a game may start
+    client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # this call takes the 5-hour window past its cap
+    assert not slept
+    client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # so the next waits for that window's reset
+    assert errors == [("plan_cap", "five_hour")] and 3600 < slept[0] < 3700
+    client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # and after it calls go on as usual
+    assert len(slept) == 1 and len(cli.runs) == 4
+
+    week = ClaudeCodeClient(None, runner=FakeCli(used(0.2, 0.9), {"vote": "Bob"}))
+    with pytest.raises(PlanLimitError, match="not starting.*7-day window, which is 90% used"):
+        week.check_plan()
+    with pytest.raises(PlanLimitError, match="--resume"):  # mid-game: the week resets too late to wait for
+        week.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    off = ClaudeCodeClient(None, runner=FakeCli(used(0.95, 0.95), {"vote": "Bob"}),
+                           caps={"five_hour": 1.0, "seven_day": 1.0})
+    off.check_plan()
+    off.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # --plan-cap 100,100: only Anthropic's own limit
+
+
+def test_plan_cap_option():
+    from mafia import parse_plan_cap
+    assert parse_plan_cap(None) is None
+    assert parse_plan_cap("80,70") == {"five_hour": 0.8, "seven_day": 0.7}
+    for bad in ("80", "0,50", "120,50", "a,b"):
+        with pytest.raises(ValueError):
+            parse_plan_cap(bad)

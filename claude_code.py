@@ -19,6 +19,10 @@ How it differs from an OpenRouter call:
 - max_tokens is the CLI's; effort is passed as --effort (low..max; "none"/"minimal" become low).
 - Cost: calls are paid by the subscription, so they count $0; the list price the CLI reports is kept in the call's
   usage as list_cost_usd, with the subscription windows' utilization (five_hour, seven_day) as plan_utilization.
+- Caps: games leave part of the subscription for other work. Once a window's utilization reaches its cap (PLAN_CAPS:
+  80% of the 5-hour and of the 7-day window; --plan-cap), no call starts until that window resets: a game doesn't
+  start (check_plan, one small Haiku call that reads the utilization), and a running one waits, or stops for
+  --resume when the reset is more than 6 hours away.
 - Thinking comes back summarized (--thinking-display summarized), like Claude's through the API.
 - Effort: both paths send Anthropic's native effort level (5.5 models reject thinking budgets), but answering through
   the CLI's StructuredOutput tool, plus a closing turn after it, costs more output than the API's constrained JSON. On
@@ -45,6 +49,10 @@ CLI_EFFORTS = ("low", "medium", "high", "xhigh", "max")
 CALL_DEADLINE_S = 900  # one call, CLI start-up and its own API retries included (Opus turns took up to ~210 s)
 RETRIES = 2  # a call that failed (no answer at all) is tried this many more times
 MAX_PLAN_WAIT_S = 6 * 3600  # waits this long at most for a subscription limit to reset; longer stops the game
+# A program safeguard, not Anthropic's limit: the share of each subscription window that games may use up
+# (utilization 0-1), so other Claude Code work isn't locked out by games. 1 turns a cap off.
+PLAN_CAPS = {"five_hour": 0.8, "seven_day": 0.8}
+WINDOW_NAMES = {"five_hour": "5-hour", "seven_day": "7-day"}
 # The parent Claude Code session's variables (session id, remote-session settings, ...) would make the child act
 # as part of that session and add its context; these are the ones the child needs to sign in.
 KEEP_ENV = {"CLAUDE_SESSION_INGRESS_TOKEN_FILE", "CLAUDE_CONFIG_DIR"}
@@ -156,8 +164,12 @@ class ClaudeCodeClient:
     OpenRouterClient, or None when there's no key: then a non-Claude model is an error)."""
 
     def __init__(self, other: LLMClient | None, effort: str | None = None, timeout: float = CALL_DEADLINE_S,
-                 runner: Runner = run_cli, cli: str | None = None):
+                 runner: Runner = run_cli, cli: str | None = None, caps: dict[str, float] | None = None):
         self.other = other
+        self.caps = dict(PLAN_CAPS if caps is None else caps)
+        self.plan_resets: dict[str, float] = {}  # when each window resets (epoch seconds)
+        self.cap_lock = threading.Lock()
+        self.cap_reported = 0.0  # the reset time of the last cap wait that was reported, so each is reported once
         self.effort = effort
         self.timeout = timeout
         self.runner = runner
@@ -207,6 +219,7 @@ class ClaudeCodeClient:
         """The call's stream-json events, ending with its result. Retries a call that gave no answer, and waits
         out a subscription limit."""
         for attempt in range(RETRIES + 1):
+            self._hold_for_caps(model)
             started = time.monotonic()
             try:
                 code, out, err = self.runner(argv, prompt, child_env(), self.cwd, self.timeout)
@@ -255,6 +268,54 @@ class ClaudeCodeClient:
                 for name, w in windows.items():
                     if isinstance(w, dict) and "utilization" in w:
                         self.plan_utilization[name] = w["utilization"]
+                        if isinstance(w.get("resetsAt"), (int, float)):
+                            self.plan_resets[name] = w["resetsAt"]
+
+    def over_cap(self) -> tuple[str, float, float | None] | None:
+        """The window whose utilization has reached its cap (the one that resets last, if both have): its name,
+        utilization and reset time. None while games may go on using the subscription."""
+        now = time.time()
+        over = [(name, used, self.plan_resets.get(name)) for name, used in self.plan_utilization.items()
+                if used >= self.caps.get(name, 1.0) and (self.plan_resets.get(name) or now + 1) > now]
+        return max(over, key=lambda o: o[2] or float("inf")) if over else None
+
+    def cap_text(self, over: tuple[str, float, float | None]) -> str:
+        name, used, resets = over
+        when = f"resets in {(resets - time.time()) / 3600:.1f} h" if resets else "reset time unknown"
+        return (f"games have a cap of {self.caps[name]:.0%} of the Claude subscription's "
+                f"{WINDOW_NAMES.get(name, name)} window, which is {used:.0%} used ({when}); --plan-cap changes it")
+
+    def _hold_for_caps(self, model: Model) -> None:
+        """Before a call: waits until a window that has reached its cap resets, or stops the game when that is
+        too far off (as for the subscription's own limit)."""
+        while over := self.over_cap():
+            name, _, resets = over
+            if resets is None or resets - time.time() + 60 > MAX_PLAN_WAIT_S:
+                raise PlanLimitError(f"{self.cap_text(over)}. Resume the game (--resume) after the reset")
+            wait = max(resets - time.time() + 60, 60)
+            with self.cap_lock:
+                report, self.cap_reported = self.cap_reported != resets, resets
+            if report and self.on_error:
+                self.on_error("plan_cap", f"{self.cap_text(over)}; waiting {wait / 60:.0f} min",
+                              model=model.value, window=name, wait_s=round(wait))
+            time.sleep(wait)
+            if self.plan_resets.get(name) == resets:  # the window has reset: its old figure no longer counts
+                self.plan_utilization.pop(name, None)
+
+    def check_plan(self) -> str:
+        """Before a game: reads the subscription's utilization with one small Haiku call (which also shows the CLI
+        works and is signed in) and returns a line about it. PlanLimitError if a window is at its cap."""
+        self.caps, caps = {}, self.caps  # this call itself isn't held back
+        try:
+            self.chat(Model.HAIKU_5_5, [{"role": "system", "content": "Reply with the word ok."},
+                                        {"role": "user", "content": "Go."}], effort="low")
+        finally:
+            self.caps = caps
+        if over := self.over_cap():
+            raise PlanLimitError(f"not starting: {self.cap_text(over)}")
+        used = ", ".join(f"{WINDOW_NAMES.get(n, n)} window {u:.0%} used (cap {self.caps.get(n, 1.0):.0%})"
+                         for n, u in self.plan_utilization.items())
+        return f"Claude subscription: {used or 'utilization not reported'}"
 
     def _limit_wait(self, events: list[dict], error: str) -> float | None:
         """Seconds until the subscription limit that refused this call resets, or None if it wasn't refused."""

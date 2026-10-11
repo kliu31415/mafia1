@@ -541,6 +541,11 @@ def build_parser() -> argparse.ArgumentParser:
                     "signed-in Claude subscription's quota) instead of OpenRouter; other models still use OpenRouter "
                     "(claude_code.py). Default: on when the `claude` command is found; --no-claude-code sends "
                     "Claude models through OpenRouter too")
+    ap.add_argument("--plan-cap", default=None, metavar="FIVE_HOUR,WEEK",
+                    help="with Claude Code: the percent of the subscription's 5-hour and 7-day windows that games may "
+                    "use up, leaving the rest for other work (default 80,80; 100,100 turns it off). At a cap a game "
+                    "doesn't start, and a running one waits for the reset or stops for --resume. A program "
+                    "safeguard, not a rule")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
                     help="save the game at the start of each day and night to logs/<game>.ckpt, deleted when the game "
@@ -606,13 +611,39 @@ def via_claude_code(flag: bool | None, mock: bool = False) -> bool:
     return claude_code.available()
 
 
-def api_client(effort: str | None, via_claude_code: bool) -> LLMClient:
+def parse_plan_cap(text: str | None) -> dict[str, float] | None:
+    """--plan-cap "80,70" as the share of each subscription window games may use; None (not given) is the default."""
+    if text is None:
+        return None
+    try:
+        five_hour, week = (float(x) / 100 for x in text.replace("%", "").split(","))
+    except ValueError:
+        raise ValueError(f"--plan-cap takes two percents, 5-hour then 7-day (e.g. 80,70), not {text!r}") from None
+    if not (0 < five_hour <= 1 and 0 < week <= 1):
+        raise ValueError(f"--plan-cap percents go from 1 to 100, not {text!r}")
+    return {"five_hour": five_hour, "seven_day": week}
+
+
+def api_client(effort: str | None, via_claude_code: bool, plan_cap: dict[str, float] | None = None) -> LLMClient:
     """OpenRouter, or with via_claude_code Claude models through the Claude Code CLI (claude_code.py) and the
     rest through OpenRouter, whose key is then needed only if a game seats another maker's model."""
     if not via_claude_code:
         return OpenRouterClient(load_api_key(), effort=effort)
     other = OpenRouterClient(load_api_key(), effort=effort) if os.environ.get(API_KEY_ENV_VAR, "").strip() else None
-    return claude_code.ClaudeCodeClient(other, effort=effort)
+    return claude_code.ClaudeCodeClient(other, effort=effort, caps=plan_cap)
+
+
+def check_plan(ap: argparse.ArgumentParser, client: LLMClient, models: Sequence[Model | ModelSpec]) -> None:
+    """Before a live game that seats Claude models through Claude Code: stops if the subscription is at a cap
+    (--plan-cap) or the CLI doesn't answer, and prints the utilization otherwise."""
+    seated = [m.model if isinstance(m, ModelSpec) else m for m in models]
+    if not isinstance(client, claude_code.ClaudeCodeClient) or not any(claude_code.routes(m) for m in seated):
+        return
+    try:
+        print(f"{client.check_plan()}. Claude models run through the Claude Code CLI; --no-claude-code sends them "
+              "through OpenRouter")
+    except (claude_code.PlanLimitError, RuntimeError) as e:
+        ap.error(f"{e} (--no-claude-code runs Claude models through OpenRouter)")
 
 
 def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
@@ -628,8 +659,13 @@ def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     saved = GameConfig.from_checkpoint(ckpt)
     if args.no_update_tips or sync_logs.in_cloud():  # the other options are the game's own
         saved.update_tips = None
+    try:
+        plan_cap = parse_plan_cap(args.plan_cap)
+    except ValueError as e:
+        ap.error(str(e))
     resumed_client = (MockClient(saved.seed) if ckpt["client"]["mock"]
-                      else api_client(ckpt["client"]["effort"], ckpt["client"].get("claude_code", False)))
+                      else api_client(ckpt["client"]["effort"], ckpt["client"].get("claude_code", False), plan_cap))
+    check_plan(ap, resumed_client, [*saved.models, saved.moderator])
     with synced(args.sync and not ckpt["client"]["mock"], saved.update_tips):
         play_game(resumed_client, saved, checkpoint=args.checkpoint, resume=ckpt)
 
@@ -681,6 +717,7 @@ def main() -> None:
     roles, setup = choose_roles(ap, args, seed)
     try:
         args.claude_code = via_claude_code(args.claude_code, args.mock)
+        plan_cap = parse_plan_cap(args.plan_cap)
         # Efforts resolved here, so the log records what each model actually used.
         models = [resolve_effort(parse_model_spec(m), args.effort, args.claude_code) for m in args.players.split(",")]
         moderator = resolve_effort(parse_model_spec(args.moderator), args.effort, args.claude_code)
@@ -690,10 +727,7 @@ def main() -> None:
         ap.error(str(e))
     update_tips = (None if args.no_update_tips else args.update_tips or (
         MOCK_TIPS if args.mock else None if sync_logs.in_cloud() else DEFAULT_TIPS))
-    client = MockClient(seed) if args.mock else api_client(args.effort, args.claude_code)
-    if args.claude_code and any(claude_code.routes(m.model) for m in [*models, moderator]):
-        print("Claude models run through the Claude Code CLI (the subscription's quota); --no-claude-code sends "
-              "them through OpenRouter")
+    client = MockClient(seed) if args.mock else api_client(args.effort, args.claude_code, plan_cap)
     try:
         player_tips = parse_player_tips(args.player_tips)
     except ValueError as e:
@@ -718,6 +752,7 @@ def main() -> None:
         path = run_quiz(client, models + [moderator], moderator, rules, LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return
+    check_plan(ap, client, [*models, moderator])
     if args.sync and update_tips == DEFAULT_TIPS:  # a PC game: cloud games' lessons go in the tips first
         try:
             sync_logs.catch_up(sync_logs.Repo(), LOG_DIR, DEFAULT_TIPS.parent, args.moderator)
