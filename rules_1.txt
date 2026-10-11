@@ -298,6 +298,13 @@ Auditor
   Night, in order: Yes or No on each nomination and Guilty or Innocent in each trial. If they cast none, you learn
   that. A doubled vote (Ballot Stuffer) shows as a single Guilty or Innocent.
 
+Juror
+  Night: may name two different players other than yourself (dead players allowed; Astral Visit). You learn how many
+  times they voted the same way, over every Day so far, counted separately for trial votes (Guilty/Innocent) and
+  nomination votes (Yes/No), e.g. "the same way in 3 of 4 trial votes and 5 of 9 nomination votes". Only votes
+  both of them cast count, and not votes on the nomination or trial of either of them. A doubled vote (Ballot
+  Stuffer) counts once. You learn only the totals, not which votes they agreed on.
+
 Profiler
   Tokens: 3 profile tokens.
   Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one

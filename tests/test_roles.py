@@ -1029,3 +1029,27 @@ def test_mortician_clean_beats_a_chronicler_mark_and_the_announcement_says_so(ga
     assert "Sheriff" not in reveal and "Sheriff" not in game.death_record[0]
     assert reveal.endswith("They had been marked by a Chronicler, but the Mortician's clean hides the role too, so "
                            "it isn't revealed.")
+
+
+def test_juror_counts_shared_votes_over_the_game_skipping_votes_on_either(game_factory):
+    game, players = game_factory(["Juror", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.votes = {
+        2: [{"stage": "nomination", "nominee": "Erin", "votes": {"Bob": True, "Carol": True, "Dave": False}},
+            {"stage": "trial", "nominee": "Erin", "votes": {"Bob": True, "Carol": False, "Dave": True}}],
+        3: [{"stage": "nomination", "nominee": "Bob", "votes": {"Bob": True, "Carol": False}},  # on Bob: skipped
+            {"stage": "trial", "nominee": "Dave", "votes": {"Bob": False, "Carol": False}},
+            {"stage": "trial", "nominee": "Alice", "votes": {"Bob": True}}],  # Carol didn't vote: skipped
+    }
+    game.phase = "night"
+    apply_ops(game, players, {"op": "jury", "player": "Bob", "second": "Carol", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("Bob and Carol voted the same way in 1 of 2 trial votes and 1 of 1 "
+                                            "nomination votes.")
+    game.player("Erin").alive = False  # dead players can be compared
+    apply_ops(game, players, {"op": "jury", "player": "Erin", "second": "Dave", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("Erin and Dave have no shared votes yet.")
+    for bad in ({"player": "Bob", "second": "Bob"}, {"player": "Alice", "second": "Bob"},
+                {"player": "Bob", "second": "Zed"}):
+        with pytest.raises(ValueError):
+            apply_ops(game, players, {"op": "jury", "by": "Alice", **bad})
+    from players import night_action_schema
+    assert "Erin" in json.dumps(night_action_schema(game, game.player("Alice"))["properties"]["second_target"])

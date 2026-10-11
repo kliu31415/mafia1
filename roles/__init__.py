@@ -95,6 +95,11 @@ ROLES: dict[str, RoleInfo] = {
                         acts_at_night=True, tested=True,
                         notes="moderator records the use with the audit op (a visit); code reads the Day's votes "
                         "and tells them"),
+    "Juror": RoleInfo(Alignment.GOOD, "Investigative", False,
+                      summary="Night: name two players, learn how often they voted the same way all game.",
+                      acts_at_night=True,
+                      notes="moderator records the use with the jury op (Astral); code counts the shared votes "
+                      "and tells them"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",

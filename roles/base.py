@@ -58,6 +58,9 @@ class RoleLogic:
     # A night action recorded with an op and carried out by code (see RecordedAction); the role implements
     # carry_out, and target_error for any check beyond the standard ones.
     action: RecordedAction | None = None
+    # The night action's target and second_target may name any player, dead ones included (Juror); otherwise they
+    # are living players (or, for a RecordedAction with target "dead", players who died before the night).
+    targets_anyone: bool = False
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
     # False for roles whose results code delivers (live PMs, random samples), which the moderator can't fake
     # for a Roleplayer who believes they have the role.

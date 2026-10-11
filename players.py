@@ -103,7 +103,7 @@ ANSWER_SCHEMA = obj(answer=STR)
 
 def night_action_schema(game: Game, p: Player) -> dict:
     """One generic shape for every role; the moderator interprets it using the rules."""
-    names = game.alive_names()
+    names = [q.name for q in game.players] if logic(p.role).targets_anyone else game.alive_names()
     action = logic(p.role).action
     dead = dead_before_tonight(game) if action and action.target == "dead" else None  # e.g. the Coroner's
     props = {
