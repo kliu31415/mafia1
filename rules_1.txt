@@ -431,8 +431,8 @@ Puppeteer
   Tokens: 1 puppet token.
   Night: may spend a token to puppet someone (not yourself or another Yakuza) for the following Day. That Day, they
   are told they are being puppeted, and they can't chat or see private messages; nobody else is told. You chat
-  publicly and privately in their place (including seeing their private messages); that is all you can do for
-  them. They still nominate, vote and so on as normal. It lasts one Day.
+  publicly and privately in their place (including seeing their private messages) and can set their claim, which
+  appears in the ledger as theirs; that is all you can do for them. They still nominate, vote and so on as normal. It lasts one Day.
 
 Fabricator
   Tokens: 1 fabricator token.
