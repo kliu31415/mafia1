@@ -50,8 +50,9 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
 
 ## Checking changes
 
-- `uv run pytest` runs the scenario and visibility tests (offline, about 10 seconds). Run it before
-  every commit, and add a test when you fix a rules bug or change a code-handled role.
+- `uv run pytest` runs the scenario and visibility tests (offline, about 20 s on 4 cores, in parallel through
+  pytest-xdist; `-n0` runs them in one process, for debugging). Run it before every commit, and add a test when you
+  fix a rules bug or change a code-handled role. Tests write only under `tmp_path`, since they run at the same time.
 - `uv run ruff check .` catches undefined names, unused imports and likely bugs; `uv run mypy .` checks
   types (e.g. a possibly-None value used as a player), including the bodies of unannotated functions.
 - `tests/test_prompts.py` keeps what players and the moderator are sent for a short scripted game in

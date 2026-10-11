@@ -154,10 +154,11 @@ def test_a_game_pushes_its_logs_in_the_cloud_and_publishes_the_tips_on_the_pc(ma
     assert "ALERT sync_error: pushing the logs failed" in capsys.readouterr().err
 
 
-def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch):
+def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch, tmp_path):
     import sys
 
     import mafia
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)  # the game index is rebuilt there, not in the real logs/
     calls: list[tuple] = []
     monkeypatch.setattr(mafia, "play_game", lambda client, config, **kw: calls.append(("play", config.update_tips)))
     monkeypatch.setattr(mafia, "OpenRouterClient", lambda *a, **kw: None)
