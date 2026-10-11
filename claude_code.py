@@ -115,6 +115,20 @@ def transcript(messages: list[dict]) -> str:
     return "\n\n".join(parts)
 
 
+def unquote_empty(x: Any) -> Any:
+    """The answer with each string that is just a pair of quotes made empty. Through the CLI, Haiku 5.5 wrote the
+    two characters "" for "no change" in 63 of 220 answers (notepad, will, claim, feedback;
+    game_20261011_085841_783834); texts.blank caught most, but one turn posted "" as a public message. Through the
+    API's constrained decoding it never did (0 in ~1900 Haiku calls in ten games)."""
+    if isinstance(x, str):
+        return "" if x.strip() in ('""', "''") else x
+    if isinstance(x, list):
+        return [unquote_empty(v) for v in x]
+    if isinstance(x, dict):
+        return {k: unquote_empty(v) for k, v in x.items()}
+    return x
+
+
 class ClaudeCodeClient:
     """An LLMClient that runs Claude models through the Claude Code CLI and passes other models to `other` (an
     OpenRouterClient, or None when there's no key: then a non-Claude model is an error)."""
@@ -241,7 +255,7 @@ class ClaudeCodeClient:
         thinking = [b.get("thinking", "") for e in events if e.get("type") == "assistant"
                     for b in (e.get("message") or {}).get("content") or [] if b.get("type") == "thinking"]
         stops = [(e.get("message") or {}).get("stop_reason") for e in events if e.get("type") == "assistant"]
-        out = result.get("structured_output")
+        out = unquote_empty(result.get("structured_output"))
         tool_calls: list[dict] = []
         content: str | None
         if tools:
@@ -276,5 +290,6 @@ class ClaudeCodeClient:
             message["tool_calls"] = tool_calls
         return LLMReply(content=content, reasoning="".join(thinking) or None, tool_calls=tool_calls, message=message,
                         model=model.value, cost=0.0, usage=usage,
-                        stop_note=f"Claude Code: {result.get('subtype')}, stop_reason {result.get('stop_reason')}",
+                        stop_note=f"Claude Code: {result.get('subtype')}, stop_reason {result.get('stop_reason')}"
+                        + (f", {str(result['errors'])[:300]}" if result.get("errors") else ""),
                         finish_reason="length" if "max_tokens" in stops else None)

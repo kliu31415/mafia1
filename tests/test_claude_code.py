@@ -173,3 +173,9 @@ def test_a_retry_after_a_bad_answer_is_sent_as_a_transcript():
     ClaudeCodeClient(None, runner=cli).chat(Model.HAIKU_5_5, messages, schema=SCHEMA)
     prompt = cli.runs[0]["prompt"]
     assert prompt.index("Vote now.") < prompt.index('{"vote": "Dave"}') < prompt.index("couldn't be used")
+
+
+def test_a_pair_of_quotes_for_no_change_is_read_as_empty():
+    cli = FakeCli({"vote": "Bob", "notepad": '""', "claim": "said \"\" twice"})
+    reply = ClaudeCodeClient(None, runner=cli).chat(Model.HAIKU_5_5, player_messages(), schema={"type": "object"})
+    assert json.loads(reply.content or "") == {"vote": "Bob", "notepad": "", "claim": 'said "" twice'}
