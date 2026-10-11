@@ -1,0 +1,198 @@
+Setup:
+  Alice    seat 1  Vigilante         anthropic/claude-haiku-5.5
+  Bob      seat 2  Informant         anthropic/claude-haiku-5.5
+  Carol    seat 3  Grunt             anthropic/claude-haiku-5.5
+  Dave     seat 4  Lookout           anthropic/claude-haiku-5.5
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5
+  Frank    seat 6  Fabricator        anthropic/claude-haiku-5.5
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5
+  Heidi    seat 8  Insomniac         anthropic/claude-haiku-5.5
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Bob, Carol, Frank) Bob (Yakuza chat): Night 1 proposal: no Katana attack tonight, since we know nothing about the Village yet and a first kill just reveals us. Carol keeps the Katana. Frank, save the fabricator token. I'll keep my Informant role quiet and watch the first trial votes. Object now if you disagree.
+(to Bob, Carol, Frank) Carol (Yakuza chat): Agreed with Bob: no Katana attack tonight, Carol keeps the Katana, and Frank saves the fabricator token. We plan kills in night chat only, with no daytime PMs about plans. Ready.
+(to Bob, Carol, Frank) Frank (Yakuza chat): Agreed. No Katana attack tonight, Carol keeps the Katana, and I save my fabricator token. Nothing else from me tonight.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Informant): no role action; Katana vote: Carol holds, attacks None
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks None
+  Dave (Lookout): target Carol
+  Frank (Fabricator): no role action; Katana vote: Carol holds, attacks None
+  Heidi (Insomniac): 1 token(s); "Stay awake"
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Dave) Moderator (private): You watched Carol tonight. Nobody visited Carol tonight.
+(to Bob, Carol, Frank) Moderator (private): Yakuza night summary: The Katana stays with Carol and makes no attack tonight. Actions chosen: Bob chose no action, Carol chose no action, and Frank chose no action (no frame, no forgery).
+[Moderator summary] Night 1: Yakuza kept the Katana with Carol and made no attack. Dave (Lookout) watched Carol and saw no visitors. Heidi (Insomniac) stayed awake (1 token spent, 1 left); code reports the visitor roles from the visit list [Dave->Carol]. Frank did not frame or forge. No deaths.
+(to Heidi) Moderator (private): You lay awake all night and heard every player who visited someone tonight. Their roles: Lookout. 1 insomniac token left.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Frank.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Night check] Night 1: correct
+Frank (public): Frank here. Night 1 was quiet for me, so I have no information yet. I'd rather hear everyone's first real claims before pushing any hang. Who has anything to share?
+[Claim] Grace: Vanilla Villager. No night action.
+Grace (public): Grace here. I'm a Vanilla Villager with no night action, so I have no night info. I'll judge claims by evidence and explain any vote I cast.
+[Claim] Heidi: Insomniac. N1 stayed awake: one visitor, a Lookout.
+Heidi (public): Heidi here, Insomniac with 1 token left. Night 1 I stayed awake: exactly one player visited anyone, and they were a Lookout. Lookout, if that's you, speak up.
+[Claim] Alice: Vigilante, 3 tokens. N1: no shot.
+Alice (public): Alice here. I'm the Vigilante with 3 tokens and took no shot on Night 1. Heidi, the Lookout you saw is a real lead, so whoever it is should speak up and say who they watched. No hang yet.
+Bob (public): Bob here. I have no night info to share. Heidi's Insomniac read is useful, and whoever the Lookout is should say who they watched. Alice, if you took no shot, we have nothing to act on yet. I'm not nominating today; I want more claims before anyone is pushed.
+[Claim] Carol: Vanilla Villager. No night action, N1 nothing.
+Carol (public): Carol here, Vanilla Villager with no night action and no info from Night 1. I agree with Bob: no early hang without evidence. Heidi's Insomniac read says one visitor, a Lookout, so that Lookout should speak up and name who they watched. Alice, if your Vigilante tokens are real, keep them for a lead we can actually test.
+[Claim] Dave: Lookout. N1: watched Carol, nobody visited Carol.
+Dave (public): Dave here, the Lookout Heidi saw. On Night 1 I watched Carol and nobody visited Carol. Heidi's Insomniac read checks out, since I was the one visitor. I'll post a fresh Lookout result at the start of each Day.
+[Claim] Erin: Vanilla Villager. No night action.
+Erin (public): Erin here, Vanilla Villager with no night info. Heidi's Insomniac read and Dave's Lookout claim line up with each other, so Dave, please keep posting your watch results. Alice, your Vigilante shot should wait for a real lead. No hang yet.
+Frank (public): Frank here. Dave's Lookout claim and Heidi's Insomniac read agree with each other, so Dave, please keep posting your watch results and I'll weigh them. Alice, keep the Vigilante shot for a real lead. No hang yet.
+Grace (public): Grace here. Nothing new from me. Dave, Heidi and Alice each claimed a role that can be tested over the next nights, so I'll track their results and vote on evidence. No hang yet.
+Heidi (public): Heidi here. On Night 1 the only player who visited anyone was Dave's Lookout, so no Yakuza or Ex-Con acted that night. Dave, please keep posting your watch results.
+Alice (public): Alice here. Heidi's Insomniac read and Dave's Lookout watch on Carol fit together, so both are worth tracking. I'm holding my three Vigilante tokens for a real lead on Night 2 or 3. No nomination from me yet.
+Bob (public): Bob here. Three players claim Vanilla Villager (Grace, Carol, Erin), but only two can be real, so one of them is lying. Dave's watch on Carol fits Heidi's one-visitor count. No nomination from me yet.
+Carol (public): Carol here, still a Vanilla Villager with no night info. Bob's point stands: of Grace, Erin and me, one is lying, so I'm not pushing anyone yet. Dave, please keep posting who you watch and whether they visited. Alice, keep the Vigilante shot for a clear lead.
+Dave (public): Dave here. My Night 1 watch on Carol stands: nobody visited her, so Heidi's one-visitor count matches me. I'll watch a new player tonight and post the result at the start of Day 3. No nomination from me yet.
+Erin (public): Erin here, genuinely a Vanilla Villager. Dave's watch on Carol and Heidi's one-visitor count agree, so those two stand or fall together. Frank and Bob, you haven't claimed anything yet. Are you Vanilla, or do you hold a role you'd like to share?
+[Claim] Frank: Tracker. N1: tracked Carol, Carol visited nobody.
+Frank (public): Frank here, answering Erin directly: I'm the Tracker. On Night 1 I tracked Carol and she visited nobody, which matches Dave's watch and Heidi's one-visitor count. I'll post any new track result at the start of each Day. No nomination from me.
+Grace (public): Grace here. Bob's count holds: setup allows at most two Vanilla Villagers, and I'm real, so one of Carol or Erin is lying. Bob, you haven't claimed yet. Dave and Frank's checks agree, so Dave, please post your next watch and Frank, your next track, at the start of Day 3.
+Heidi (public): Heidi here. Dave's watch on Carol and Frank's Tracker result on Carol agree, so the Lookout and Tracker reads are consistent so far. Dave and Frank, please post your next results. Carol, Erin and Grace: one of you is lying, so say who you think it is.
+Alice (public): Alice here. Frank, your Tracker claim conflicts with two other reads. Dave's Lookout watch on Carol saw nobody visit her, and Heidi counted exactly one visitor, Dave. A Tracker's track is a visit to its target, so if you tracked Carol on Night 1 you would have been a visitor both of them missed. Explain that, or the claim stands as a contradiction. Dave and Heidi, please keep your results consistent. No nomination from me yet.
+Bob (public): Bob here. Alice's point on Frank's Tracker claim is fair: Heidi counted one visitor (Dave), so a Tracker track on Carol doesn't fit. Frank, answer that directly. No nomination from me yet.
+Carol (public): Carol here. Alice and Bob are right: Heidi counted one visitor, Dave, so Frank's Tracker track on Carol can't be true. Frank, answer that contradiction directly. Alice's Vigilante claim has no result yet, so it stays unproven. No nomination from me yet.
+Dave (public): Dave here. Frank, your Tracker track on Carol contradicts Heidi's count: the only Night 1 visitor was me, and my watch on Carol found nobody. Explain that directly. My Night 2 watch result comes at the start of Day 3. No nomination from me yet.
+Erin (public): Erin here. Frank's Tracker track on Carol is the claim that breaks the count. A track is a visit, so Heidi would have counted two visitors, not one. Frank, answer that in one plain sentence. Dave and Heidi match each other, and Frank is the one still contradicting them.
+[Claim] Frank: Vanilla Villager. No night action. Tracker claim withdrawn.
+Frank (public): Frank here. Erin and Alice are right: a Tracker track is a visit, and Heidi counted exactly one visitor, Dave. So my Tracker claim is wrong. I withdraw it and I'm a Vanilla Villager with no night action. I still want Dave's and Heidi's next results before any hang.
+Grace (public): Grace here. Frank has now joined Carol and Erin as a Vanilla claim, so Grace, Carol, Erin and Frank are four Vanilla Villagers. Setup allows at most two, and I'm real, so at least two of Carol, Erin and Frank are lying. Bob, what's your role?
+Heidi (public): Heidi here. Frank's Tracker track on Carol can't fit my count of one visitor (Dave), and his withdrawal leaves four Vanilla claims when setup allows at most two. Frank is my top suspect. Dave's Lookout result fits my count, so he stays a real lead. I'll stay awake again tonight and post the visitor roles at the start of Day 3.
+Alice (public): Alice here. Frank's Tracker track on Carol contradicts Heidi's count and Dave's watch, and he withdrew it after being pressed. Frank, why did you claim Tracker at all? I back Heidi's read on you. If you can't give a clear answer, I'll nominate you.
+Bob (public): Bob here. Frank withdrew a Tracker claim that didn't fit the count. That's a mistake, not proof of a lie, and it doesn't settle anything. Alice, nominating him now would mean hanging on a withdrawn claim. Let's see Dave's and Heidi's Night 2 results first. No nomination from me.
+Carol (public): Carol here. Frank's withdrawn Tracker claim is a mistake, not proof, and nominating him now would hang on that alone. I'm still Vanilla with no night info. Let's see Dave's and Heidi's Night 2 results before anyone is nominated.
+Dave (public): Dave here. Frank's withdrawn Tracker claim is a real contradiction of Heidi's count, so I agree he's the main suspect for now. I'm not nominating yet. I'll post my Night 2 Lookout result at the start of Day 3.
+Erin (public): Erin here. Frank's Tracker track on Carol still can't fit Heidi's one-visitor count, and four Vanilla claims is impossible. Frank, explain the withdrawal in one sentence. Bob, you haven't claimed yet: what's your role? No nomination from me yet.
+Frank (public): Frank here. Withdrawing my wrong Tracker claim was a mistake, not a lie, and I'm Vanilla. Nominating me on that alone is premature. Let's see Night 2 results before any hang.
+Heidi (public): Heidi here. I have nothing new beyond my Night 1 count. Frank's withdrawn Tracker claim is still the contradiction to settle, and I'll post Night 2 visitor roles at the start of Day 3.
+Carol (public): Carol here. Nothing new from me. Let's see Night 2 results before any nomination.
+Erin (public): Erin here. Frank's withdrawn Tracker claim still conflicts with Heidi's one-visitor count. Bob, please state your role now. No nomination from me yet.
+Frank (public): Frank here. I'm Vanilla now; the Tracker claim was a mistake I corrected, not a lie. Hanging me on a withdrawn claim alone is premature. Let's see Night 2 results first.
+Alice (public): Alice here. Frank, four Vanilla claims plus your Tracker track break the count. If Dave's and Heidi's Night 2 results hold, I'll nominate you next Day.
+A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Carol, Frank) Bob (Yakuza chat): Night 2 proposal: Carol keeps the Katana. Target Dave, the Lookout, who could watch Carol's visits and expose our attacks every night. Carol, your Katana visit lands on Dave. Frank, no frame tonight; save your fabricator token. Please each reply Yes or No with your holder and target votes. Heidi's Insomniac count is the other risk, but Dave is the sharper one.
+(to Bob, Carol, Frank) Carol (Yakuza chat): Carol agrees: Katana stays with me, and tonight's target is Dave. Frank, no frame; save your token. I'll submit Carol as holder and Dave as target. Ready.
+(to Bob, Carol, Frank) Frank (Yakuza chat): Frank: Yes to Carol holding the Katana and Dave as the target. No frame tonight, and I keep my fabricator token. Ready.
+(to Bob, Carol, Frank) Bob (Yakuza chat): Bob: Yes to Carol holding the Katana and Dave as the target. No frame from Frank tonight. Submit the same holder and target votes. Ready.
+(to Bob, Carol, Frank) Carol (Yakuza chat): Carol: confirmed. Carol holds the Katana and the target is Dave. No frame from Frank tonight, and he keeps his fabricator token. I'll submit the same holder and target votes. Ready.
+(to Bob, Carol, Frank) Frank (Yakuza chat): Frank: Yes to Carol holding the Katana and Dave as the target. No frame tonight, and I keep my fabricator token. Ready.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Informant): no role action; Katana vote: Carol holds, attacks Dave
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Dave
+  Dave (Lookout): target Frank
+  Frank (Fabricator): no role action; Katana vote: Carol holds, attacks Dave
+  Heidi (Insomniac): 1 token(s); "Stay awake"
+Katana: Carol holds it and attacks Dave.
+(to Dave) Moderator (private): You watched Frank tonight. Nobody visited Frank tonight. You were attacked with the Katana tonight, and you died.
+(to Bob, Carol, Frank) Moderator (private): Yakuza actions tonight: Carol kept the Katana and chose to attack Dave with it. Bob chose no night action. Frank chose no night action (no frame, no forgery).
+(to Carol) Moderator (private): Your Katana attack on Dave succeeded tonight.
+[Moderator summary] Night 2: Carol kept the Katana and attacked Dave (Standard attack vs no Defense), so Dave died (Katana). Dave watched Frank and saw no visitors. Heidi stayed awake and spent her last token; code reports the visitors' roles from the recorded visits (Carol->Dave, Dave->Frank). Nobody was role-blocked. The Yakuza were told each other's actions, and Carol was told her attack succeeded. 7 players are left alive (4 Village, 3 Yakuza), so nobody has won yet.
+(to Heidi) Moderator (private): You lay awake all night and heard every player who visited someone tonight. Their roles: Grunt, Lookout. 0 insomniac tokens left.
+
+===== DAY 3 =====
+Dave died (killed by Katana). Their role isn't revealed. Their last will: "Dave, seat 4. I will post any night result publicly at the start of the next Day. Do not hang on noise alone; hang the best-evidenced suspect."
+Speaking order today goes around the circle in seat order, starting with Frank.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Night check] Night 2: correct
+Frank (public): Frank here. Dave's death is a real loss, and his Lookout watch on Carol should stay on record. Heidi, please post who visited on Night 2. Alice, did your Vigilante take a shot? I'm still Vanilla and won't hang on a withdrawn claim. Let's get Night 2 results before any nomination.
+Grace (public): Grace here. Dave was killed by Katana, so his Night 2 Lookout watch never gets posted and his Night 1 watch on Carol stands alone. Heidi, post your Night 2 visitor roles and count. Alice, did your Vigilante shoot? Frank, answer in one sentence why you claimed Tracker on Carol. No nomination from me yet.
+[Claim] Heidi: Insomniac, 0 tokens. N1: one visitor, Lookout. N2: Grunt and Lookout visited.
+Heidi (public): Heidi here. Night 2 I stayed awake: two visitors, a Grunt and a Lookout. Dave was the Lookout, so the Grunt visited Dave, which was the Katana attack. That Grunt is a living Yakuza holding the Katana. I have no insomniac tokens left. Frank, your withdrawn Tracker claim is still my top lead.
+Alice (public): Alice here. Heidi's Night 2 count says a Grunt visited Dave, so a living Yakuza holds the Katana. Frank's Tracker claim broke the Night 1 count, and four Vanilla claims are impossible. I'm nominating Frank now. Bob, Carol, Erin and Grace, vote on the evidence.
+Alice nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Alice, Erin, Grace, Heidi; No - Bob, Carol, Frank
+Nomination votes on Frank: 4 Yes (the votes are secret).
+Frank is put on trial (4 Yes).
+Frank (public): Frank here. I'm a Vanilla Villager with no night action on Nights 1 or 2. My Tracker claim was a mistake I corrected on Day 2, and it doesn't fit Heidi's Night 1 count, so I've withdrawn it. Heidi's Night 2 read says a Grunt visited Dave. That tells us who visited, not who the Grunt is. Alice, your nomination rests on my withdrawn claim, and you haven't said whether your Vigilante fired on Night 2. Vote on evidence. I'm asking for Innocent unless someone shows a mechanical contradiction in my own actions.
+Grace (public): Grace here. I'll vote Guilty on Frank, with one mechanical reason: his Night 1 Tracker claim tracked Carol, but Heidi's Night 1 count had exactly one visitor (Dave), so that claim was false, and he withdrew it only after being pressed. Frank, if you're Village with no night action, explain why a Tracker claim with a visit came out at all. Heidi's Night 2 count of two visitors also rules out an Alice shot that night.
+Heidi (public): Heidi here. I'm voting Guilty on Frank, with one mechanical reason: he claimed Tracker and tracked Carol on Night 1, but my Night 1 count had exactly one visitor (Dave), so that track never happened. Withdrawing a false claim doesn't make it true. The Grunt holding the Katana is living and is one of Alice, Bob, Carol, Erin, Frank or Grace. Vanilla is an easy cover for a Grunt, so check who is pushing these votes.
+Alice (public): Alice here. I vote Guilty on Frank, with one mechanical reason: Frank claimed Tracker and tracked Carol on Night 1, but Heidi's Night 1 count had exactly one visitor, Dave, and Dave's watch on Carol found nobody. A Tracker track is a visit, so that claim was false, not a slip. Withdrawing it after being pressed doesn't make it true. I took no shot on Nights 1 or 2. Frank, answer in one sentence: why did you claim Tracker with a track on Carol at all?
+Bob (public): I'm voting Innocent on Frank. His Tracker claim was false and he withdrew it, which is a mistake, not a Night 1 or Night 2 action. Heidi's counts show one visitor on N1 (Dave) and a Grunt plus Dave on N2, and nothing in them shows Frank visiting anyone. Alice, your nomination rests on that withdrawn claim, and you still haven't said plainly whether your Vigilante fired on Night 2. Erin and Grace, what exact contradiction is left beyond the withdrawn claim?
+Carol (public): Carol here. I voted No on Frank's nomination and will vote Innocent now. His Tracker claim was false and he withdrew it, which is a mistake, not a Night 1 or Night 2 action, and no count shows Frank visiting anyone. Alice, your Vigilante question is still open: did you shoot on Night 2? Erin, you haven't explained your read on Frank yet. Guilty or Innocent, and why?
+Erin (public): Erin here. I'm genuinely a Vanilla Villager with no night action, and I'll vote Guilty on Frank. Mechanical reason: he claimed Tracker and tracked Carol on Night 1, but Heidi's Night 1 count had exactly one visitor (Dave), so that track never happened. Withdrawing a false claim doesn't make it true. Bob and Carol, how do you explain that track?
+Frank (public): Frank here. Three points. (1) I took no night action on Night 1 or Night 2, and Heidi's visitor counts show no visit from me, so nothing in those counts points at me. My Tracker claim was a mistake, withdrawn on Day 2 before any Night 2 result. (2) Alice's nomination rests on that withdrawn claim. Grace's claim that Heidi's count rules out an Alice shot is not a mechanical fact: two visitors on Night 2 don't say who visited whom. Alice, your Vigilante claim is still untested. (3) Heidi says a living Grunt holds the Katana and is one of six players. Hanging the one player whose only fault is a withdrawn claim lets that Grunt keep the Katana. Vote Innocent, then judge me on the Night 3 results.
+Trial votes on Frank: 5 Guilty, 2 Innocent (the votes are secret).
+(to Bob) (Only you see this) How everyone voted in the trial of Frank: Guilty - Alice, Bob, Erin, Grace, Heidi; Innocent - Carol, Frank.
+[Secret trial votes on Frank] Guilty - Alice, Bob, Erin, Grace, Heidi; Innocent - Carol, Frank
+Frank is executed by hanging (5 Guilty of 7 votes; 4 needed).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank's last will: I have no confirmed role information beyond my public Vanilla claim. Weigh claims by results that can be checked, not by who pushes hardest for an early hang. Compare every ballot total against the stated votes, and keep the Lookout and Insomniac reads in view until their next results are posted."
+
+===== NIGHT 3 =====
+(to Bob, Carol) Bob (Yakuza chat): Bob: Night 3 proposal. Carol keeps the Katana (holder Carol) and targets Alice. Alice has 3 Vigilante tokens and could shoot Carol on any night, and she led the push that hanged Frank. Heidi has 0 Insomniac tokens left, so she can't read visitors again. I'm taking no role action and won't frame anyone. Carol, confirm holder Carol and target Alice in your submission, and I'll submit the same. Ready.
+(to Bob, Carol) Carol (Yakuza chat): Carol: Agreed with Bob. Tonight's target is Alice, the Vigilante with 3 tokens who pushed Frank's hang. Katana holder stays Carol. Bob, submit the same holder and target. Ready.
+Night actions:
+  Alice (Vigilante): target Bob; 1 token(s); "Basic shot on Bob, 1 token."
+  Bob (Informant): no role action; Katana vote: Carol holds, attacks Alice
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Alice
+  Heidi (Insomniac): no action
+Katana: Carol holds it and attacks Alice.
+(to Alice) Moderator (private): Your shot killed Bob. Their role was Informant.
+(to Alice) Moderator (private): You shot Bob with a Basic attack (1 token). Your attack succeeded. 2 vigilante tokens left. You were also attacked with the Katana tonight, and you died.
+(to Bob) Moderator (private): You were attacked by a Vigilante tonight, and you died.
+(to Bob, Carol) Moderator (private): Yakuza actions tonight: Carol holds the Katana and attacked Alice with it. Neither Bob nor Carol used any other action.
+(to Carol) Moderator (private): Your Katana attack on Alice succeeded.
+[Moderator summary] Night 3: Alice (Vigilante) shot Bob with a Basic attack (1 token, 2 left). Bob had Defense None, so Bob (Informant) died. Carol (Grunt, Katana holder) attacked Alice with the Katana (Standard vs None), so Alice died. Heidi had no tokens and took no action. Nobody was role-blocked. Visits: Alice->Bob, Carol->Alice. Carol is alive, so the Katana stays with her. Left alive: Carol (Yakuza), Erin, Grace, Heidi (Village). The game goes on.
+
+===== DAY 4 =====
+Bob died (killed by Vigilante). Their role isn't revealed. Their last will: "I claimed no role and have no night information to share. Judge players by their stated votes and whether their stories match the counts. Hang the best-evidenced suspect, not the loudest voice."
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice's will: I am the Village Vigilante. I held my three vigilante tokens for a real lead and fired on no one on Nights 1 or 2. My Day 2 read was Frank, for his withdrawn Tracker claim against Heidi's count. Judge my play by my votes and speeches from Day 2 on. Trust nobody who pushed a quick hang without a reason."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Grace.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Grace (public): Grace here. Trial check: the announced count was 5 Guilty and 2 Innocent, which is 7 voters. The stated votes are Alice, Heidi, Erin and me Guilty (4), and Bob, Carol and Frank Innocent (3). So one of Bob, Carol or Frank voted Guilty while saying Innocent. Bob and Frank are dead, so Carol, state your real trial vote in one sentence. Erin and Heidi, confirm yours too. No nomination from me yet.
+Heidi (public): Heidi here. Carol, you defended Frank and Bob at every vote. The Guilty total is one higher than the four Guilty voters we can name (Alice, Heidi, Erin, Grace), and the extra one came from Bob, Carol or Frank, who all said Innocent. Frank and Bob are dead, so the discrepancy leaves Carol. I'm nominating Carol now. Erin and Grace, vote on the count.
+Heidi nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Heidi, Erin, Grace; No - Carol
+Nomination votes on Carol: 3 Yes (the votes are secret).
+Carol is put on trial (3 Yes).
+Carol (public): Carol here. I voted Innocent on Frank, and I am voting Innocent now as I said. The trial total was 5 Guilty and 2 Innocent. Four Guilty votes are named (Alice, Heidi, Erin, Grace), so the fifth Guilty came from Bob or Frank, who both said Innocent. I said Innocent, so I am not the extra. Heidi's 'the extra is Carol' is a guess, not a count. Heidi, your Insomniac counts show visits, not who was behind them. Erin and Grace: before you vote Guilty, name one concrete contradiction in my own actions, not just my defense of Frank.
+(to Carol, Erin) Carol -> Erin (private): Erin, the fifth Guilty in the trial total came from Bob or Frank, not me. I voted Innocent as I said. Please judge me on that count, not on Heidi's guess.
+Erin (public): Erin here. I'm a Vanilla Villager with no night action. The Frank trial total of 5 Guilty means one of Bob, Carol or Frank voted Guilty while saying Innocent. Bob and Frank are dead and can't be checked, so the one living player among the three who defended both of them at every vote is Carol. Her 'the fifth came from Bob or Frank' is also a guess, not a count. I'm voting Guilty on that basis. Carol, if you have a concrete contradiction in your own votes, name it now.
+Grace (public): Grace here. Carol, your 'fifth Guilty came from Bob or Frank' can't be checked because both are dead. Of the three who said Innocent, you are the only living one, so the discrepancy points at you unless you can show otherwise. You also sent Erin the only private message this Day and haven't said what it was. Erin, what did Carol send you? I'm leaning Guilty unless Carol explains that.
+Heidi (public): Heidi here. I'm voting Guilty on Carol. The 5 Guilty total needs one of Bob, Carol or Frank to have voted Guilty while saying Innocent, and Carol is the only one of the three still alive to explain it. Carol, what did you PM Erin? Answer in one sentence.
+Carol (public): Carol here, final word. I voted Innocent on Frank and I'm voting Innocent now. Mechanically, my own vote is Innocent, so I can't be the fifth Guilty. The 5G total means either Bob or Frank voted Guilty while saying Innocent, or a living Guilty voter (Heidi, Erin or Grace) voted Innocent. Bob and Frank are dead and can't be checked, so the count can't be pinned on me. Erin and Grace: before you vote Guilty, ask whether the discrepancy is evidence against me or just a guess. My PM to Erin only repeated this count point.
+(to Carol, Grace) Carol -> Grace (private): Grace, I voted Innocent, and the extra Guilty can't be my vote. Your Guilty is the deciding one now, so please don't hang me on a guess about who the fifth Guilty was.
+Trial votes on Carol: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Erin, Grace, Heidi; Innocent - Carol
+Carol is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Carol died (executed by hanging). Their role isn't revealed. Their last will: "Carol's last will: Vanilla Villager with no night action and no confirmed information. I voted No on Frank's nomination and Innocent in his trial. Judge players by their votes and speeches, not by early pushes. Heidi's Insomniac counts are the only night data so far, so check each claimed visit against what the counts report."
+The game is over. Winners: Alice (dead), Dave (dead), Erin, Grace, Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Dave, Erin, Grace, Heidi
+Cost by player (USD):
+  Alice (Vigilante)         $0.0313   18 calls  claude-haiku-5.5
+  Bob (Informant)           $0.0325   22 calls  claude-haiku-5.5
+  Carol (Grunt)             $0.0433   27 calls  claude-haiku-5.5
+  Dave (Lookout)            $0.0196   13 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)   $0.0359   19 calls  claude-haiku-5.5
+  Frank (Fabricator)        $0.0301   22 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0454   21 calls  claude-haiku-5.5
+  Heidi (Insomniac)         $0.0460   23 calls  claude-haiku-5.5
+  Moderator                 $0.4852    9 calls  claude-opus-5.5
+  Night checks              $0.1808    3 calls  claude-opus-5.5
+  Strategy review           $0.1969    1 calls  claude-opus-5.5
+  Log review                $0.1713    1 calls  claude-opus-5.5
+  Total                     $1.3183  179 calls
