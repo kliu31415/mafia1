@@ -67,6 +67,16 @@ night actions already run in parallel.
 
 ## Turned down for now
 
+- **Ventriloquist** (Yakuza, proposed Oct 11, 2026; Kevin: shelved for its bug risk). Forges a player's public
+  message and claim that turn for a random half of the other players (2 tokens), or one of their private messages
+  (1 token); the victim sees their own text and isn't told. Players then remember the same turn differently, a pure
+  deception test. Cost: the claim ledger becomes per player (each claim entry records who saw it), plus split events
+  for the moderator's public history, logs and reviews; about 200 lines, moderate bug risk. Caching is unaffected
+  (the ledger is in the uncached part of the prompt). Simpler versions were dropped as a weaker Puppeteer.
+- **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
+  naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
+  defeats it, so it mostly taxes Yakuza coordination.
+
 - **Whistleblower and Herald** (proposed Oct 10, 2026; Kevin: punt for now). Whistleblower (Village, 1 token): the
   next Day's trial votes are all public. Herald (Village, 1-2 tokens): publicly reveals one dead player's role at
   dawn, a public Coroner. Both undo the hidden-info defaults for a moment, which is their appeal and their risk.
