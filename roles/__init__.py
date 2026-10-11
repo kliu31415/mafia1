@@ -135,7 +135,8 @@ ROLES: dict[str, RoleInfo] = {
                            "true total at the end of the night, after token changes (Magpie steals); Roleplayers "
                            "show 0"),
     "Medic": RoleInfo(Alignment.GOOD, "Combat", False,
-                      summary="Night: protect one other player (Standard Defense; tokens for Strong or for self).",
+                      summary="Night: protect a player (Standard Defense; 1 token for Strong, 1 token to protect "
+                      "yourself).",
                       tokens={"medic": 2}, acts_at_night=True,
                       tested=True, notes="tokens tracked via set_tokens; briefing lists token costs"),
     "Trapper": RoleInfo(Alignment.GOOD, "Combat", False,

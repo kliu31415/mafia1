@@ -154,7 +154,8 @@ R3 (Attack and Defense)
 - An Attack kills iff its level is strictly higher than the target's Defense.
 - Defenses don't stack: a player with several sources of Defense has the highest of them.
 - By default the attacker learns whether the Attack succeeded (not the target's Defense), and the target learns
-  the role that attacked them (not the attacker's name or Attack level). The Katana is an exception (R8).
+  the role that attacked them (not the attacker's name or Attack level). A target hit by several Attacks in one
+  night learns the role behind each, including those that failed. The Katana is an exception (R8).
 
 R17 (Protection feedback)
 Protectors (e.g. the Medic) are never told whether their protection stopped an attack, and a protected player is
@@ -378,7 +379,8 @@ Combat
 Medic
   Tokens: 2 medic tokens.
   Night: may protect one player other than yourself, giving them Standard Defense. Spend 1 token to give Strong
-  Defense instead. Spend 1 more token to protect yourself instead (so self-protection with Strong costs 2).
+  Defense instead, and 1 token to protect yourself instead of another player; the two can be combined (so
+  protecting yourself costs 1 token with Standard Defense and 2 with Strong).
 
 Trapper
   Night: may place a trap on one player other than yourself and other than the player your trap is already on, or
