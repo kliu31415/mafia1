@@ -1,0 +1,12 @@
+Setup:
+  Alice    seat 1  Census Taker      anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Coroner           anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Chronicler        anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Clerk             anthropic/claude-haiku-5.5 (via Claude Code)
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Archivist         anthropic/claude-haiku-5.5 (via Claude Code)
+  Grace    seat 7  Arsonist          anthropic/claude-haiku-5.5 (via Claude Code)
+  Katana starts with Dave
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 7 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
