@@ -23,8 +23,8 @@ How it differs from an OpenRouter call:
   70% of the 5-hour and of the 7-day window; --plan-cap), no call starts until that window resets: a game doesn't
   start (check_plan, one small Haiku call that reads the utilization), and a running one waits, or stops for
   --resume when the reset is more than 6 hours away. Starting a game is stricter early in the week, so the week's
-  share isn't spent in its first days: the 7-day cap for a new game grows with the week (start_cap: 0% at the
-  reset, 35% halfway, the full 70% at the next reset); a game already running only stops at the full cap.
+  share isn't spent in its first days: the 7-day cap for a new game grows with the week (start_cap: 10% at the
+  reset, 40% halfway, the full 70% at the next reset); a game already running only stops at the full cap.
 - Thinking comes back summarized (--thinking-display summarized), like Claude's through the API.
 - Effort: both paths send Anthropic's native effort level (5.5 models reject thinking budgets), but answering through
   the CLI's StructuredOutput tool, plus a closing turn after it, costs more output than the API's constrained JSON. On
@@ -56,6 +56,7 @@ MAX_PLAN_WAIT_S = 6 * 3600  # waits this long at most for a subscription limit t
 PLAN_CAPS = {"five_hour": 0.7, "seven_day": 0.7}
 WINDOW_NAMES = {"five_hour": "5-hour", "seven_day": "7-day"}
 WEEK_S = 7 * 86400
+WEEK_START = 0.1  # the 7-day utilization below which a game may start right after the week's reset
 # The parent Claude Code session's variables (session id, remote-session settings, ...) would make the child act
 # as part of that session and add its context; these are the ones the child needs to sign in.
 KEEP_ENV = {"CLAUDE_SESSION_INGRESS_TOKEN_FILE", "CLAUDE_CONFIG_DIR"}
@@ -307,14 +308,15 @@ class ClaudeCodeClient:
 
     def start_cap(self, name: str) -> float:
         """The utilization below which a new game may start. The 5-hour window's is its cap; the 7-day window's
-        follows the week, so early games can't use up the week's share: the cap times the part of the week that has
-        passed (70%: 0% at the reset, 35% halfway, 70% at the next reset)."""
+        follows the week, so early games can't use up the week's share: it rises evenly from WEEK_START at the
+        reset to the cap at the next one (70%: 10% at the reset, 40% halfway, 70% at the end)."""
         cap = self.caps.get(name, 1.0)
         resets = self.plan_resets.get(name)
         if name != "seven_day" or cap >= 1 or resets is None:
             return cap
         passed = min(max(1 - (resets - time.time()) / WEEK_S, 0.0), 1.0)
-        return cap * passed
+        first = min(WEEK_START, cap)
+        return first + (cap - first) * passed
 
     def check_plan(self) -> str:
         """Before a game: reads the subscription's utilization with one small Haiku call (which also shows the CLI

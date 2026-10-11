@@ -263,26 +263,29 @@ def test_plan_cap_option():
             parse_plan_cap(bad)
 
 
-@pytest.mark.parametrize("days_left, start_cap", [(7, 0.0), (5.25, 0.175), (3.5, 0.35), (1.75, 0.525), (0, 0.7)])
-def test_the_weekly_start_cap_rises_evenly_from_0_at_the_reset_to_the_cap_at_the_end(days_left, start_cap):
+@pytest.mark.parametrize("days_left, start_cap", [(7, 0.1), (5.25, 0.25), (3.5, 0.4), (1.75, 0.55), (0, 0.7)])
+def test_the_weekly_start_cap_rises_evenly_from_10_percent_at_the_reset_to_the_cap_at_the_end(days_left, start_cap):
     client = ClaudeCodeClient(None)
     client.plan_resets = {"five_hour": time.time() + 3600, "seven_day": time.time() + days_left * 86400}
     assert client.start_cap("seven_day") == pytest.approx(start_cap, abs=1e-4)
     assert client.start_cap("five_hour") == 0.7  # the 5-hour window has no ramp
     client.caps = {"five_hour": 0.5, "seven_day": 0.4}  # --plan-cap 50,40: the ramp ends at the weekly cap given
-    assert client.start_cap("seven_day") == pytest.approx(start_cap * 0.4 / 0.7, abs=1e-4)
+    assert client.start_cap("seven_day") == pytest.approx(0.1 + (start_cap - 0.1) / 2, abs=1e-4)  # 10% to 40%
+    client.caps = {"five_hour": 0.5, "seven_day": 0.05}  # a weekly cap under the starting figure: flat
+    assert client.start_cap("seven_day") == pytest.approx(0.05)
 
 
 def test_a_new_game_needs_more_of_the_week_left_early_in_the_week():
     def start(week_used, days_left, caps=None):
         return ClaudeCodeClient(None, runner=FakeCli(used(0.1, week_used, week_left=days_left)), caps=caps).check_plan()
-    with pytest.raises(PlanLimitError, match="1% .* 7.0 days left.* only below 0%"):  # the week has just begun
-        start(0.01, 7)
-    assert "7-day window 5% used (games start below 10%)" in start(0.05, 6)  # a day in: 70% x 1/7
-    assert "games start below 35%" in start(0.3, 3.5)  # halfway
-    with pytest.raises(PlanLimitError, match="only below 35%"):
-        start(0.4, 3.5)
-    assert "7-day window 60% used (games start below 65%)" in start(0.6, 0.5)  # late: nearly the cap itself
+    assert "7-day window 5% used (games start below 10%)" in start(0.05, 7)  # the week has just begun
+    with pytest.raises(PlanLimitError, match="12% .* 7.0 days left.* only below 10%"):
+        start(0.12, 7)
+    assert "7-day window 15% used (games start below 19%)" in start(0.15, 6)  # a day in: 10% + 60% x 1/7
+    assert "games start below 40%" in start(0.35, 3.5)  # halfway
+    with pytest.raises(PlanLimitError, match="only below 40%"):
+        start(0.45, 3.5)
+    assert "7-day window 60% used (games start below 66%)" in start(0.6, 0.5)  # late: nearly the cap itself
     assert "games start below 100%" in start(0.9, 7, caps={"five_hour": 1.0, "seven_day": 1.0})  # turned off
     running = ClaudeCodeClient(None, runner=FakeCli(used(0.1, 0.5, week_left=6), {"vote": "Bob"}))
     running.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
@@ -334,11 +337,11 @@ def test_caps_turned_off_never_hold_a_call_even_at_full_use(monkeypatch):
 
 def test_each_cap_is_set_on_its_own_and_the_weekly_ramp_scales_with_it():
     client = capped(used(0.75, 0.2, week_left=3.5), caps={"five_hour": 0.9, "seven_day": 0.5})
-    line = client.check_plan()  # 75% is under a 90% 5-hour cap; halfway through the week 50% allows 25%
+    line = client.check_plan()  # 75% is under a 90% 5-hour cap; halfway through the week 50% allows 30%
     assert "5-hour window 75% used (games start below 90%)" in line
-    assert "7-day window 20% used (games start below 25%)" in line
-    with pytest.raises(PlanLimitError, match="only below 25%.*rising to 50%"):
-        capped(used(0.1, 0.3, week_left=3.5), caps={"five_hour": 0.9, "seven_day": 0.5}).check_plan()
+    assert "7-day window 20% used (games start below 30%)" in line
+    with pytest.raises(PlanLimitError, match="only below 30%.*rising to 50%"):
+        capped(used(0.1, 0.35, week_left=3.5), caps={"five_hour": 0.9, "seven_day": 0.5}).check_plan()
 
 
 def test_the_weekly_ramp_grows_through_the_week_and_never_passes_the_cap():
@@ -348,11 +351,11 @@ def test_the_weekly_ramp_grows_through_the_week_and_never_passes_the_cap():
     for days_left in (7, 6, 5, 4, 3, 2, 1, 0.001):
         client.plan_resets = {"seven_day": time.time() + days_left * 86400}
         seen.append(client.start_cap("seven_day"))
-    assert seen == sorted(seen) and seen[0] == pytest.approx(0, abs=1e-6) and seen[-1] == pytest.approx(0.7, abs=1e-3)
-    assert seen[1] == pytest.approx(0.1) and seen[4] == pytest.approx(0.4)
+    assert seen == sorted(seen) and seen[0] == pytest.approx(0.1, abs=1e-6) and seen[-1] == pytest.approx(0.7, abs=1e-3)
+    assert seen[1] == pytest.approx(0.1 + 0.6 / 7) and seen[4] == pytest.approx(0.1 + 0.6 * 4 / 7)
     for odd in (9, -1):  # a reset time further off than a week, or already past: clamped to the week
         client.plan_resets = {"seven_day": time.time() + odd * 86400}
-        assert 0 <= client.start_cap("seven_day") <= 0.7
+        assert 0.1 <= client.start_cap("seven_day") <= 0.7
     client.plan_resets = {}
     assert client.start_cap("seven_day") == 0.7  # no reset time reported: the flat cap
     assert client.start_cap("five_hour") == 0.7  # the 5-hour window has no ramp
@@ -422,7 +425,7 @@ def test_a_game_at_the_cap_does_not_start_and_leaves_no_log(tmp_path, monkeypatc
     err = capsys.readouterr().err
     assert seen == {"via": True, "caps": None}  # Claude Code and the default caps, with no flag given
     assert "not starting: 50% of the Claude subscription's 7-day window is used with 5.0 days left" in err
-    assert "only below 20%" in err and "--no-claude-code" in err
+    assert "only below 27%" in err and "--no-claude-code" in err
     client_for(FakeCli(used(0.75, 0.05, week_left=1)))
     run_main(monkeypatch, game)
     assert "cap of 70% of the Claude subscription's 5-hour window, which is 75% used" in capsys.readouterr().err
