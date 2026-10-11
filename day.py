@@ -219,6 +219,55 @@ def planned_messages(out: dict) -> list[tuple[str | None, str]]:
     return msgs
 
 
+def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: bool, nomination_fee: float,
+              free_words: int, trial: bool) -> str:
+    """What a speaking turn asks (chat_turn's arguments); writer is the Puppeteer when p is puppeted."""
+    return (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
+            f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
+            f"up to {BUDGET_MAX:g}; at the start of each day, {CARRY_SHARE:.0%} of what you have left "
+            "carries over. You may send one public message and any "
+            f"number of private messages (everyone sees who you messaged, but only the recipient sees "
+            f"the contents), or nothing. The transcript already shows who sent each message, so there's "
+            "no need to start a message with your own name. Messages are "
+            f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}. "
+            "The day ends after a full round where nobody sends a public message.\n"
+            + price_table(rnd, trial) + "\n"
+            + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
+               f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
+               "lost when this turn ends.\n" if trial else "")
+            + (f"Your public message this turn is free up to {free_words} words; beyond that you "
+               "pay only for the extra length.\n" if free_words else "")
+            + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; leave it \"\" to keep it), "
+               "e.g. to match a claim you make today. It's shown to everyone if you die.\n" if writer is p else "")
+            + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
+               f"{CLAIM_WORDS} words; leave it \"\" to keep it): a concise note of what you want everyone to know "
+               "about you: your claimed role, your night visits and results, and your votes in key trials, e.g. "
+               "'Sheriff. N1: checked Bob, Not Evil. N2: checked Dave, Evil. D3: Guilty on Dave'. A new or "
+               "changed claim appears to everyone as a [Claim] line in the history, "
+               "and the public ledger lists every player's latest claim and any earlier ones they changed from, "
+               "as unverified claims.\n")
+            + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
+               f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
+               if can_nominate else ""))
+
+
+def record_claim(game: Game, p: Player, claim: str, puppeted: dict[str, Any]) -> None:
+    """A new or changed claim goes in the public ledger (Game.claim_record) and the chat history."""
+    claim = cap_words(claim.strip(), CLAIM_WORDS)
+    # The ledger already names the player: "Bob: Bob: Lookout" (game_20261011_055615_1112) drops the repeat.
+    while m := re.match(rf"{re.escape(p.name)}\s*[:,]\s*(?=\w)", claim):
+        claim = claim[m.end():]
+    claims = game.claim_record.setdefault(p.name, [])
+    if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
+        claim = claims[-1][1]
+    if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
+        game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim, **puppeted)
+    if claims and claims[-1][0] == game.day:
+        claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
+    elif not claims or claims[-1][1] != claim:
+        claims.append((game.day, claim))
+
+
 def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: bool,
               extra: str = "", free_words: int = 0, trial: bool = False) -> tuple[bool, str | None]:
     """One speaking turn. Returns (whether a public message was sent, nominee or None).
@@ -253,34 +302,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
 
     writer = game.player(game.chat_controller(p.name))
     step = "trial_turn" if trial else "day_turn"
-    task = (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
-            f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
-            f"up to {BUDGET_MAX:g}; at the start of each day, {CARRY_SHARE:.0%} of what you have left "
-            "carries over. You may send one public message and any "
-            f"number of private messages (everyone sees who you messaged, but only the recipient sees "
-            f"the contents), or nothing. The transcript already shows who sent each message, so there's "
-            "no need to start a message with your own name. Messages are "
-            f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}. "
-            "The day ends after a full round where nobody sends a public message.\n"
-            + price_table(rnd, trial) + "\n"
-            + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
-               f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
-               "lost when this turn ends.\n" if trial else "")
-            + (f"Your public message this turn is free up to {free_words} words; beyond that you "
-               "pay only for the extra length.\n" if free_words else "")
-            + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; leave it \"\" to keep it), "
-               "e.g. to match a claim you make today. It's shown to everyone if you die.\n" if writer is p else "")
-            + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
-               f"{CLAIM_WORDS} words; leave it \"\" to keep it): a concise note of what you want everyone to know "
-               "about you: your claimed role, your night visits and results, and your votes in key trials, e.g. "
-               "'Sheriff. N1: checked Bob, Not Evil. N2: checked Dave, Evil. D3: Guilty on Dave'. A new or "
-               "changed claim appears to everyone as a [Claim] line in the history, "
-               "and the public ledger lists every player's latest claim and any earlier ones they changed from, "
-               "as unverified claims.\n")
-            + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
-               f"{nomination_fee:.2f} from your budget this round and is paid before your messages.\n"
-               if can_nominate else "")
-            + extra)
+    task = turn_task(game, p, writer, rnd, can_nominate, nomination_fee, free_words, trial) + extra
     fallback: dict[str, Any] = {"public_message": None, "private_messages": [], "nominate": None}
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate)
@@ -327,19 +349,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     # A claim with no letters or digits (Sol wrote "/" for "no change") or a written-out null keeps the old one.
     # (A Puppeteer may set the puppet's.)
     if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):
-        claim = cap_words(claim.strip(), CLAIM_WORDS)
-        # The ledger already names the player: "Bob: Bob: Lookout" (game_20261011_055615_1112) drops the repeat.
-        while m := re.match(rf"{re.escape(p.name)}\s*[:,]\s*(?=\w)", claim):
-            claim = claim[m.end():]
-        claims = game.claim_record.setdefault(p.name, [])
-        if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
-            claim = claims[-1][1]
-        if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
-            game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim, **puppeted)
-        if claims and claims[-1][0] == game.day:
-            claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
-        elif not claims or claims[-1][1] != claim:
-            claims.append((game.day, claim))
+        record_claim(game, p, claim, puppeted)
     nominee = out.get("nominate") if can_nominate else None
     if nominee:
         if nomination_fee <= p.speaking_budget + 1e-9:
