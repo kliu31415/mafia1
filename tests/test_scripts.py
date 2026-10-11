@@ -99,3 +99,19 @@ def test_a_mock_game_on_a_script_plays_by_its_rules(tmp_path, monkeypatch):
     assert setup["settings"]["script"] == "core" and records[-1]["kind"] == "result"
     played = scripts.rules_for(RULES, "core") + setup_note(None, roles)  # the cut rules, with the default settings
     assert setup["rules_sha256"] == mafia.game_meta(played, {})["rules_sha256"]
+
+
+def test_the_roles_part_is_still_shaped_the_way_scripts_cut_it():
+    """scripts.rules_for cuts rules_1.txt's roles part into blank-line-separated blocks: each role's paragraph is its
+    name (exactly as in ROLES) and then only indented lines, with no blank line inside it; everything else is a
+    heading or the part's intro. If an edit breaks that shape (a blank line inside a role, a renamed role, a new part
+    after the roles), a cut script would keep stray text or lose a heading, so this fails first."""
+    part = RULES.split("PART 6: ROLES", 1)[1]
+    assert "\nPART " not in part and "=== PART" not in part  # the roles part is the last one
+    for block in part.strip("\n= ").split("\n\n"):
+        first, *rest = block.split("\n")
+        if first in ROLES:
+            assert rest and all(line.startswith("  ") for line in rest), f"{first}: its name, then indented lines"
+        else:
+            assert not first.startswith(" "), f"text with no role above it (a blank line inside a role?): {first!r}"
+            assert len(rest) <= 2, f"an unknown block (not a role in ROLES?): {first!r}"
