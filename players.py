@@ -306,12 +306,20 @@ class Players:
         self.shared = shared
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None,
-            context: str = "", shared_with: dict | None = None) -> dict:
+            context: str = "", shared_with: dict | None = None, notes: list[str] | None = None) -> dict:
         """step: what kind of decision this is (one of STEPS), and rnd the chat round if there is one; logged
         with day, phase and latency on every call record, so analysis never has to parse the task's wording.
         context: see player_messages. shared_with: a schema to send instead of shared_schema when this question's
-        fields aren't in it (the post-game questions share one, feedback.POST_GAME_SCHEMA), for the same caching."""
+        fields aren't in it (the post-game questions share one, feedback.POST_GAME_SCHEMA), for the same caching.
+        notes: if given, the program notes for this player (a cut notepad, a fallback) are added to it instead of
+        emitted, for ask_many to emit in job order."""
         assert step in STEPS, step
+
+        def program_note(text: str) -> None:
+            if notes is None:
+                self.game.emit(text, [p.name])
+            else:
+                notes.append(text)
         where = {"step": step, "day": self.game.day, "phase": self.game.phase,
                  **({"round": rnd} if rnd is not None else {})}
         wanted = with_common_fields(schema, self.feedback_field)
@@ -358,8 +366,8 @@ class Players:
                 cap = notepad_words(self.game)
                 after = cap_words(note, cap)
                 if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
-                    self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
-                                   f"to its first {cap}.)", [p.name])
+                    program_note(f"(Program note: your notepad was over {cap} words, so it was cut "
+                                 f"to its first {cap}.)")
             self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task,
                                 **({"effort": effort} if effort != p.effort else {}), output=out,
                                 reasoning=reply.reasoning, cost=reply.cost, usage=reply.usage, latency_s=latency,
@@ -376,11 +384,18 @@ class Players:
                             player=p.name, model=p.model.value, **where, task=task, fallback=fallback)
         # Tell the player, so they don't believe their own choice happened (Heidi thought she had saved a
         # token on purpose after a failed Night 1 answer, game_20261009_084630_739772).
-        self.game.emit(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
-                       f"technical error, so the default was used instead: {json.dumps(fallback)}.)", [p.name])
+        program_note(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
+                     f"technical error, so the default was used instead: {json.dumps(fallback)}.)")
         return fallback
 
     def ask_many(self, jobs: list[tuple[Player, str, dict, dict]], *, step: str, **kw: Any) -> list[dict]:
         """kw: ask's keyword arguments, the same for every job."""
+        # Each job's program notes are emitted after the round, in job order: emitted from the worker threads, their
+        # order in game.events (and so in later prompts) would depend on timing, and a seed wouldn't replay its game.
+        notes: list[list[str]] = [[] for _ in jobs]
         with ThreadPoolExecutor(max_workers=max(1, len(jobs))) as pool:  # a round waits for its slowest call
-            return list(pool.map(lambda j: self.ask(*j, step=step, **kw), jobs))
+            outs = list(pool.map(lambda j, n: self.ask(*j, step=step, notes=n, **kw), jobs, notes))
+        for (p, *_), texts in zip(jobs, notes):
+            for text in texts:
+                self.game.emit(text, [p.name])
+        return outs

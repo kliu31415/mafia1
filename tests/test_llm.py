@@ -86,6 +86,29 @@ def test_a_failed_request_falls_back_instead_of_stopping_the_game(tmp_path):
     assert "couldn't be used" in game.history_for("Alice") and "couldn't be used" not in game.history_for("Bob")
 
 
+def test_program_notes_from_a_parallel_round_are_emitted_in_job_order(tmp_path):
+    """Notes made in ask_many's worker threads go into game.events after the round, in job order, whichever call
+    finished first, so a seed replays its game."""
+    import time
+    import urllib.error
+    from tests.conftest import ScriptedClient
+
+    class DownClient(ScriptedClient):
+        def chat(self, model, messages, **kw):
+            if "You are Alice" in json.dumps(messages[:1]):
+                time.sleep(0.05)  # Alice's calls fail last
+            raise urllib.error.URLError("connection reset")
+    roles = ["Vanilla Villager", "Vanilla Villager", "Grunt"]
+    game, players = make_game(tmp_path, roles, DownClient())  # type: ignore[arg-type]
+    schema = {"type": "object", "properties": {}, "required": []}
+    before = len(game.events)
+    jobs = [(game.player(n), "Vote.", schema, {"fallback": True}) for n in ("Alice", "Bob")]
+    assert players.ask_many(jobs, step="trial_vote") == [{"fallback": True}] * 2
+    notes = game.events[before:]
+    assert [sorted(e.visible_to or ()) for e in notes] == [["Alice"], ["Bob"]]
+    assert all("couldn't be used" in e.text for e in notes)
+
+
 def test_errors_show_in_the_html_and_text_views(tmp_path):
     from log_viewer import render_html
     game, _ = make_game(tmp_path, ["Vanilla Villager", "Grunt"])
