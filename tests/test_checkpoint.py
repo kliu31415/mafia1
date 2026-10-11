@@ -84,3 +84,28 @@ def test_checkpoints_from_before_game_config_still_load():
     config = mafia.GameConfig.from_checkpoint({"play_args": old})
     assert config.moderator == ModelSpec(Model.OPUS_5_5) and config.models == [ModelSpec(Model.HAIKU_5_5)]
     assert config.seed == 4 and config.lessons and config.player_tips == []
+
+
+def test_a_checkpoint_from_older_code_resumes_only_when_forced(tmp_path, monkeypatch):
+    import pickle
+
+    from checkpoint import CHECKPOINT_VERSION
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(mafia, "run_night", lambda game, *args: (_ for _ in ()).throw(RuntimeError("stop")))
+    with pytest.raises(RuntimeError):
+        mafia.play_game(MockClient(1), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 1))
+    [path] = tmp_path.glob("*.ckpt")
+    data = pickle.loads(path.read_bytes())  # as if saved before Game.votes and Player.notepad existed
+    data["version"] = CHECKPOINT_VERSION - 1
+    del data["game"].votes, data["game"].players[0].notepad
+    path.write_bytes(pickle.dumps(data))
+    with pytest.raises(ValueError, match="--force-resume"):
+        load(path)
+    ckpt = load(path, force=True)
+    assert ckpt["game"].votes == {} and ckpt["game"].players[0].notepad == ""
+    assert "Game.votes, Player.notepad" in ckpt["forced"]
+    monkeypatch.undo()
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    resumed = mafia.play_game(MockClient(1), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
+    kinds = [json.loads(line)["kind"] for line in resumed.read_text(encoding="utf-8").splitlines()]
+    assert "resume_forced" in kinds and kinds[-1] == "result"

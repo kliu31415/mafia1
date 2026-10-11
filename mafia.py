@@ -228,6 +228,8 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
             game = resume["game"]
             game.log = log
             resume_log(game, log, resume, client, config.check_nights)
+            if resume.get("forced"):  # a checkpoint from older code (--force-resume)
+                log.error("resume_forced", f"{resume['forced']}; resumed anyway with --force-resume")
             started = time.time() - resume["elapsed_s"]
         else:
             started = time.time()
@@ -537,6 +539,9 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--resume", metavar="CKPT", help="continue a stopped game from its checkpoint, with the "
                     "settings it started with (other game options are ignored); replays the day or night it was "
                     "saved at")
+    ap.add_argument("--force-resume", action="store_true", help="with --resume: resume a checkpoint saved by "
+                    "older code (another checkpoint version) anyway, giving new fields their defaults, with a "
+                    "warning; usually fine after small changes")
     fb = ap.add_argument_group("feedback from the models (written to logs/<game>_feedback.md); on by default, "
                              "turn one off with --no-<flag>")
     fb.add_argument("--debrief", action=argparse.BooleanOptionalAction, default=True,
@@ -591,9 +596,11 @@ def api_client(effort: str | None, via_claude_code: bool) -> LLMClient:
 def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     """--resume: continue a stopped game with the settings it started with."""
     try:
-        ckpt = load_checkpoint(Path(args.resume))
+        ckpt = load_checkpoint(Path(args.resume), force=args.force_resume)
     except Exception as e:  # e.g. damaged, or pickled on another OS
         ap.error(f"can't resume from {args.resume}: {type(e).__name__}: {e}")
+    if ckpt.get("forced"):
+        print_alert("resume_forced", f"{ckpt['forced']}. Resuming anyway (--force-resume): watch for errors")
     if any(r["kind"] == "result" for r in read_records(ckpt["log_path"])[0]):  # e.g. a stale synced .ckpt
         ap.error(f"{ckpt['log_path']} already finished; resuming would replace its ending")
     saved = GameConfig.from_checkpoint(ckpt)

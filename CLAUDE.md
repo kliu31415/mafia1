@@ -133,6 +133,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   record's fields, bump `LOG_VERSION` in `gamelog.py` (it's written in the "setup" record). Likewise bump
   `CHECKPOINT_VERSION` when `Game`, `Player` or `Event` fields change. `tests/test_versions.py` fails when either
   set of fields changes without its bump; after bumping, `uv run pytest --update-versions` records the new fields.
+  An older checkpoint is refused on resume; `--force-resume` resumes it anyway (new fields get their defaults,
+  logged as a `resume_forced` alert), which is usually fine after small changes.
   Tools that read many games go through `gamelogs.py` (log files, setup/result, one dict per player); shims for
   old log versions belong there only.
 - Night checks (`night_check.py`, on by default) log a judge model's verdict on each night's moderator
