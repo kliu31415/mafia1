@@ -5,12 +5,13 @@ nominations, votes) run in code. Night actions are collected from players as str
 then an LLM moderator resolves them through tools (get_state, apply_changes, random_choice, tell,
 ask_player, end_phase), since the role interactions are too varied to hand-code yet.
 
-All LLM calls go through OpenRouter. The API key is read from the OPENROUTER_API_KEY
-environment variable.
+All LLM calls go through OpenRouter (Claude models' through the Claude Code CLI with --claude-code).
+The API key is read from the OPENROUTER_API_KEY environment variable.
 
 Code layout:
     mafia.py       entry point: game loop and CLI
     llm.py         OpenRouter client, model list, offline mock client
+    claude_code.py Claude models through the Claude Code CLI (--claude-code: a Claude subscription's quota)
     roles/         role definitions, the default setup, and per-role hooks (roles/base.py)
     events.py      event categories for game.emit()
     state.py       game state, events with visibility, deaths, win checks
@@ -57,6 +58,7 @@ Usage:
 
 import argparse
 import hashlib
+import os
 import random
 import subprocess
 import time
@@ -68,14 +70,15 @@ from datetime import datetime
 from pathlib import Path
 
 import alerts
+import claude_code
 import sync_logs
 from day import open_game, run_day
 from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
 from gamelog import GameLog, usage_by_caller
 from log_viewer import render_html, usage_lines
-from llm import (EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient, default_effort,
-                 load_api_key, parse_model_spec)
+from llm import (API_KEY_ENV_VAR, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient,
+                 default_effort, load_api_key, parse_model_spec)
 from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
@@ -179,7 +182,8 @@ class GameConfig:
                 "moderator_fallback": str(self.moderator_fallback) if self.moderator_fallback else None,
                 "models": [{"model": m.model.value, "effort": m.effort} for m in self.specs], "roles": self.roles,
                 "seed": self.seed, "max_days": self.day_limit, "effort": getattr(client, "effort", None),
-                "mock": mock, "mod_flags": self.flag_issues, "feedback_field": self.feedback_field,
+                "mock": mock, "claude_code": isinstance(client, claude_code.ClaudeCodeClient),
+                "mod_flags": self.flag_issues, "feedback_field": self.feedback_field,
                 "check_nights": self.check_nights, "checkpoint": checkpoint,
                 "tips": str(self.tips) if self.tips else None, "tips_for": self.tips_for if self.tips else None,
                 "player_tips": [[w, str(f) if f else None] for w, f in self.player_tips],
@@ -232,10 +236,10 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
                 log.error("script_stale", f"the {config.script} script's cached rules revision doesn't match "
                           "rules_1.txt, so this game plays by the plain cut; `uv run scripts.py revise` remakes it")
         game.rule_settings = dict(config.rule_settings)  # a resumed game's own (from_checkpoint)
-        if isinstance(client, OpenRouterClient):
+        if isinstance(client, (OpenRouterClient, claude_code.ClaudeCodeClient)):
             client.on_error = log.error
         players = Players(game, client, rules, feedback_field=config.feedback_field,
-                          shared=isinstance(client, OpenRouterClient))
+                          shared=isinstance(client, (OpenRouterClient, claude_code.ClaudeCodeClient)))
         mod = config.mod
         moderator = Moderator(game, client, players, mod.model, rules, flag_issues=config.flag_issues,
                               effort=mod.effort, fallback=config.moderator_fallback)
@@ -258,7 +262,8 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
                                 moderator_flags=list(moderator.flags), elapsed_s=time.time() - started,
                                 error_counts=dict(log.error_counts), at=at,
                                 client={"mock": isinstance(client, MockClient),
-                                        "effort": getattr(client, "effort", None)}, **extra)
+                                        "effort": getattr(client, "effort", None),
+                                        "claude_code": isinstance(client, claude_code.ClaudeCodeClient)}, **extra)
             except Exception as e:  # the game goes on; it just can't be resumed from here
                 log.error("checkpoint_error", f"saving the {at} {game.day} checkpoint failed: "
                           f"{type(e).__name__}: {e}", traceback=traceback.format_exc())
@@ -521,6 +526,10 @@ def build_parser() -> argparse.ArgumentParser:
                     default=variants.DEFAULTS["nomination_votes"],
                     help="secret (default): only the nominator and the Yes count are announced; public: every vote")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
+    ap.add_argument("--claude-code", action="store_true",
+                    help="run Claude models' calls through the Claude Code CLI on this machine (`claude -p`, the "
+                    "signed-in Claude subscription's quota) instead of OpenRouter; other models still use OpenRouter "
+                    "(claude_code.py)")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
                     help="save the game at the start of each day and night to logs/<game>.ckpt, deleted when the game "
@@ -570,6 +579,15 @@ def build_parser() -> argparse.ArgumentParser:
     return ap
 
 
+def api_client(effort: str | None, via_claude_code: bool) -> LLMClient:
+    """OpenRouter, or with via_claude_code Claude models through the Claude Code CLI (claude_code.py) and the
+    rest through OpenRouter, whose key is then needed only if a game seats another maker's model."""
+    if not via_claude_code:
+        return OpenRouterClient(load_api_key(), effort=effort)
+    other = OpenRouterClient(load_api_key(), effort=effort) if os.environ.get(API_KEY_ENV_VAR, "").strip() else None
+    return claude_code.ClaudeCodeClient(other, effort=effort)
+
+
 def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     """--resume: continue a stopped game with the settings it started with."""
     try:
@@ -582,7 +600,7 @@ def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     if args.no_update_tips or sync_logs.in_cloud():  # the other options are the game's own
         saved.update_tips = None
     resumed_client = (MockClient(saved.seed) if ckpt["client"]["mock"]
-                      else OpenRouterClient(load_api_key(), effort=ckpt["client"]["effort"]))
+                      else api_client(ckpt["client"]["effort"], ckpt["client"].get("claude_code", False)))
     with synced(args.sync and not ckpt["client"]["mock"], saved.update_tips):
         play_game(resumed_client, saved, checkpoint=args.checkpoint, resume=ckpt)
 
@@ -642,7 +660,7 @@ def main() -> None:
         ap.error(str(e))
     update_tips = (None if args.no_update_tips else args.update_tips or (
         MOCK_TIPS if args.mock else None if sync_logs.in_cloud() else DEFAULT_TIPS))
-    client = MockClient(seed) if args.mock else OpenRouterClient(load_api_key(), effort=args.effort)
+    client = MockClient(seed) if args.mock else api_client(args.effort, args.claude_code)
     try:
         player_tips = parse_player_tips(args.player_tips)
     except ValueError as e:
@@ -661,7 +679,7 @@ def main() -> None:
     except ValueError as e:
         ap.error(str(e))
     if args.rules_quiz:
-        if isinstance(client, OpenRouterClient):
+        if isinstance(client, (OpenRouterClient, claude_code.ClaudeCodeClient)):
             client.on_error = print_alert  # the quiz has no game log
         rules = scripts.rules_for(RULES_PATH.read_text(encoding="utf-8"), args.script)
         path = run_quiz(client, models + [moderator], moderator, rules, LOG_DIR)
