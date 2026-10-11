@@ -27,7 +27,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
-from roles import ROLES, Alignment
+from roles import ROLES, Alignment, logic
 from scripts import roles_of
 
 YAKUZA_SHARE = 0.3
@@ -83,8 +83,21 @@ def allowed_roles(pool: str, script: str) -> list[str]:
     return [r for r in roles_of(script) if (pool == "all" or ROLES[r].tested) and r not in EXCLUDED]
 
 
+def fits(roles: list[str]) -> bool:
+    """Whether every role in a random setup accepts the others (RoleLogic.fits_setup, e.g. the Magpie's)."""
+    return all(logic(r).fits_setup(roles) for r in set(roles))
+
+
 def random_setup(n: int, rng: random.Random, pool: str = "all", script: str = "all") -> list[str]:
-    """n role names, drawn as the module docstring describes. pool: "all" or "tested"."""
+    """n role names, drawn as the module docstring describes, redrawn while a role doesn't fit (fits)."""
+    for _ in range(100):
+        if fits(roles := classic_draw(n, rng, pool, script)):
+            break
+    return roles
+
+
+def classic_draw(n: int, rng: random.Random, pool: str, script: str) -> list[str]:
+    """One draw for random_setup. pool: "all" or "tested"."""
     allowed = allowed_roles(pool, script)
 
     def of(alignment: Alignment, *categories: str) -> list[str]:
@@ -200,7 +213,8 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
 
     tried: list[tuple[float, list[str]]] = []
     for n_neutrals in range(wanted, -1, -1):  # one Neutral fewer only when no pick is balanced enough
-        scored = [(abs(score(c)), c) for c in (candidate(n_neutrals) for _ in range(CANDIDATES))]
+        picks = (candidate(n_neutrals) for _ in range(CANDIDATES))
+        scored = [(abs(score(c)) if fits(c) else math.inf, c) for c in picks]
         good = [c for s, c in scored if s <= BAND]
         if good:
             return rng.choice(good)

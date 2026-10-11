@@ -131,8 +131,8 @@ ROLES: dict[str, RoleInfo] = {
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,
-                           tested=True, notes="moderator reports the end-of-night token total; "
-                           "night note says Roleplayers show 0"),
+                           tested=False, notes="moderator records the audit; code tells the true total at the end of "
+                           "the night, after token changes (Magpie steals); Roleplayers show 0"),
     "Medic": RoleInfo(Alignment.GOOD, "Combat", False,
                       summary="Night: protect one other player (Standard Defense; tokens for Strong or for self).",
                       tokens={"medic": 2}, acts_at_night=True,
@@ -264,6 +264,12 @@ ROLES: dict[str, RoleInfo] = {
                               tokens={"attack": 1}, acts_at_night=True,
                               notes="targets, bounty credit (from death killers and Guilty voters), win, loss and "
                               "leaving in code; moderator resolves the attack"),
+    "Magpie": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+                       summary="Night: steal a token from a player; wins and leaves once it has stolen from 3 "
+                       "different players. Basic Defense.",
+                       defense="Basic", acts_at_night=True,
+                       notes="moderator records the steal; code takes the token at the end of the night, tells both, "
+                       "handles the win; random setups need a third of roles with tokens"),
     "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
                        summary="Wins if hanged; then a Guilty voter dies. Reads Evil to the Sheriff.",
                        defense="Basic",

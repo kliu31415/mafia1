@@ -1192,3 +1192,49 @@ def test_talent_agent_counts_only_roles_on_the_script(game_factory):
     game.phase = "night"
     with pytest.raises(ValueError, match="isn't a role"):
         apply_ops(game, players, {"op": "scout_talent", "role": "Wizard", "by": "Alice"})
+
+
+def test_magpie_steals_after_token_use_and_wins_after_three_players(game_factory):
+    game, players = game_factory(["Magpie", "Vigilante", "Medic", "Roleplayer", "Prosecutor", "Accountant", "Grunt"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "steal", "player": "Bob", "by": "Alice"},
+              {"op": "audit", "player": "Bob", "by": "Frank"},
+              {"op": "set_tokens", "player": "Bob", "token": "vigilante", "value": 2})  # Bob shot tonight
+    game.run_night_end_hooks()
+    assert game.player("Bob").tokens["vigilante"] == 1
+    assert told(game, "Alice")[-1].endswith("You stole a token from Bob (1 of 3).")
+    assert told(game, "Bob")[-1].endswith("A Magpie stole one of your vigilante tokens. You have 1 left.")
+    assert told(game, "Frank")[-1].endswith("Your audit: Bob has 1 token in total.")  # after the steal
+    game.day += 1
+    apply_ops(game, players, {"op": "steal", "player": "Bob", "by": "Alice"})
+    game.run_night_end_hooks()
+    assert game.player("Bob").tokens["vigilante"] == 1 and "already stole from Bob" in told(game, "Alice")[-1]
+    game.day += 1
+    rp_tokens = dict(game.player("Dave").tokens)
+    apply_ops(game, players, {"op": "steal", "player": "Dave", "by": "Alice"},
+              {"op": "audit", "player": "Dave", "by": "Frank"})
+    game.run_night_end_hooks()
+    assert game.player("Dave").tokens == rp_tokens and "had no tokens" in told(game, "Alice")[-1]
+    assert not any("Magpie" in t for t in told(game, "Dave"))
+    assert told(game, "Frank")[-1].endswith("Your audit: Dave has 0 tokens in total.")  # a Roleplayer shows 0
+    for night, victim in ((4, "Carol"), (5, "Erin")):
+        game.day = night
+        apply_ops(game, players, {"op": "steal", "player": victim, "by": "Alice"})
+        game.run_night_end_hooks()
+        assert ("Alice" in game.personal_winners) == (victim == "Erin")
+    assert game.player("Alice").status[Status.LEFT]
+    game.phase = "day"
+    game.announce_dawn()
+    assert any("was the Magpie and stole enough tokens" in e.text for e in game.events)
+
+
+def test_random_setups_include_a_magpie_only_with_enough_token_roles():
+    import random
+
+    import setups
+    assert not setups.fits(["Magpie", "Vanilla Villager", "Vanilla Villager", "Grunt", "Sheriff", "Vigilante"])
+    assert setups.fits(["Magpie", "Vanilla Villager", "Medic", "Grunt", "Sheriff", "Vigilante"])
+    for seed in range(8):
+        for draw in (setups.balanced_setup, setups.random_setup):
+            roles = draw(13, random.Random(seed))
+            assert "Magpie" not in roles or setups.fits(roles)

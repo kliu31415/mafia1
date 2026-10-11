@@ -365,7 +365,8 @@ Insomniac
 
 Accountant
   Night: may audit one player. Learn how many tokens they have in total at the end of the night, after any they
-  spent that night (token count, R19). You learn only the total, not what kind of tokens they are.
+  spent that night and any a Magpie stole (token count, R19). You learn only the total, not what kind of tokens
+  they are.
   If their role changed at the end of this night, the role just before the change counts.
 
 Combat
@@ -573,6 +574,16 @@ Bounty Hunter
   (leaving works as for the Executioner). If you have died, you still win and nothing is revealed.
   Lose: once you can no longer claim 2 bounties; if you are alive, the moderator reveals you at once and you leave
   the game.
+
+Magpie
+  Defense: Basic. Never blocks wins (R1). Random setups include a Magpie only if at least a third of the roles have tokens.
+  Night: may steal a token from another player (a visit). It happens at the end of the night, after that night's
+  token use, so a token used tonight can't be stolen. The stolen token is gone (you can't use it). You are told
+  whether you stole one, not its kind; they are told which kind they lost. If they have no tokens, nothing
+  happens and they aren't told.
+  Win: iff you steal tokens from 3 different players (a second steal from the same player takes nothing). If you
+  are alive then, the moderator reveals you at once and you leave the game (as for the Executioner). If you died
+  that night, you still win and nothing is revealed.
 
 Vulture
   Win: alone, if you are alive at the start of a Day (after the night's deaths) and max(floor(N/4), 2) or fewer

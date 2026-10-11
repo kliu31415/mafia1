@@ -72,9 +72,17 @@ class RoleLogic:
     # moderator tell() to them on a night they acted is held once with a note (the moderator resends it
     # if it's about something else, e.g. an attack). Night checks caught redundant and leaking tells.
     code_tells_user: bool = False
+    # Order of at_night_end among roles, lowest first: effects that change tokens (Magpie) before results that read
+    # them (Accountant).
+    night_end_order: int = 0
     # Extra apply_changes ops for the moderator, offered only when someone in the game has the role:
     # op -> (required fields, optional fields, description shown in the tool). apply_op carries them out.
     ops: dict[str, tuple[set[str], set[str], str]] = {}
+
+    def fits_setup(self, roles: list[str]) -> bool:
+        """Whether random setups (setups.py) may include this role among these roles (the Magpie needs enough
+        token holders). Hand-picked role lists aren't checked."""
+        return True
 
     def setup(self, game: Game, p: Player) -> None:
         """After seats and the Katana are assigned. Use game.rng for anything random."""
@@ -187,6 +195,13 @@ def acted_tonight(game: Game, p: Player) -> bool:
     moderator sends them in, and an effect set for the next Day survives its user's death unless it needs them to
     act that Day (R21)."""
     return p.alive or (p.death is not None and p.death["day"] == game.day and p.death["phase"] == "night")
+
+
+def true_tokens(p: Player) -> dict[str, int]:
+    """The tokens p's true role has left (rules R19, token counts). A Roleplayer's tokens are its fake role's, so it
+    has none."""
+    from roles import ROLES
+    return {k: n for k, n in p.tokens.items() if k in ROLES[p.role].tokens and n > 0}
 
 
 def dead_before_tonight(game: Game) -> list[str]:

@@ -1,5 +1,5 @@
 {
- "log_version": 44,
+ "log_version": 45,
  "log": {
   "attacks": ["attackers", "day"],
   "bounty_won": ["claimed", "day", "phase", "player"],
@@ -28,6 +28,7 @@
   "review": ["cost", "issues", "model", "usage"],
   "section": ["title"],
   "setup": ["katana", "log_version", "players"],
+  "steal": ["day", "player", "target", "token"],
   "strategy_review": ["cost", "lessons", "model", "summary", "tips_feedback", "usage"],
   "tell_held": ["day", "players"],
   "tips": ["files", "players", "sha256", "texts"],
