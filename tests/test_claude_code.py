@@ -203,3 +203,17 @@ def test_haiku_defaults_to_medium_only_through_the_cli():
     assert resolve_effort(ModelSpec(Model.HAIKU_5_5), None).effort == "high"
     assert resolve_effort(ModelSpec(Model.OPUS_5_5), None, cli=True).effort == "high"
     assert resolve_effort(ModelSpec(Model.HAIKU_5_5, "high"), None, cli=True).effort == "high"
+
+
+def test_games_use_the_cli_by_default_where_it_is_installed(monkeypatch):
+    from mafia import build_parser, via_claude_code
+    assert build_parser().parse_args([]).claude_code is None  # neither --claude-code nor --no-claude-code
+    assert build_parser().parse_args(["--no-claude-code"]).claude_code is False
+    monkeypatch.setattr(claude_code, "available", lambda: True)
+    assert via_claude_code(None) and via_claude_code(True)
+    assert not via_claude_code(False)
+    assert not via_claude_code(None, mock=True)
+    monkeypatch.setattr(claude_code, "available", lambda: False)  # e.g. GitHub's runners: OpenRouter as before
+    assert not via_claude_code(None)
+    with pytest.raises(ValueError, match="no `claude` command"):
+        via_claude_code(True)

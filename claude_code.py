@@ -1,5 +1,6 @@
 """Claude models through the Claude Code CLI (`claude -p`), so their calls use a Claude subscription's quota
-instead of OpenRouter credits (--claude-code). Other models still go through OpenRouter.
+instead of OpenRouter credits (--claude-code: the default where the CLI is installed; --no-claude-code turns it
+off). Other models still go through OpenRouter, so one game can mix both routes.
 
 Each call is a fresh, non-interactive `claude -p` process: no tools (so no file access and nothing to leak), the
 game's own system prompt in place of Claude Code's (only a short environment note is added: working directory,
@@ -54,6 +55,11 @@ Runner = Callable[[list[str], str, dict[str, str], str, float], tuple[int, str, 
 class PlanLimitError(BaseException):
     """The subscription's usage limit won't reset soon enough. A BaseException, so it isn't taken for a bad answer
     (players' answers fall back to defaults on Exception): it stops the game, which can be resumed (--resume)."""
+
+
+def available() -> bool:
+    """Whether the Claude Code CLI is installed here (a `claude` command on PATH): then games use it by default."""
+    return shutil.which("claude") is not None
 
 
 def routes(model: Model) -> bool:

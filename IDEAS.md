@@ -26,6 +26,22 @@ night actions already run in parallel.
   OpenRouter rate limits. Matters for `stats.py`: with the Yakuza winning about 1 game in 5, telling a
   role's or model's win rate apart from another's takes on the order of 100 games per setup.
 
+## Other ways to run models
+
+- **GPT models through the Codex CLI** (Kevin, Oct 11 2026: backlog unless he moves to a bigger Codex plan). Like
+  `claude_code.py`, but `codex exec` on a ChatGPT subscription. Checked on the PC (codex-cli 0.162.0-alpha, Plus plan):
+  a real night-action prompt gave schema-valid answers from gpt-6-luna and gpt-6-sol in 5-8 s, no tool use, five
+  calls at once. What a module needs: `-c model_instructions_file=FILE` (the game's system prompt in place of
+  Codex's), `--output-schema FILE`, `--json`, `-s read-only --skip-git-repo-check --ephemeral --ignore-user-config`,
+  the prompt on stdin (`-`); the `include_*_instructions=false` keys, `skills.bundled.enabled=false` and
+  `--disable` for tool features; and a model catalog (`-c model_catalog_json=FILE`) made at start-up from
+  `codex debug models` with `tool_mode`, `multi_agent_version` and `model_messages` removed, which is the only way to
+  drop the code-execution tool and the "you lead a team of agents" messages (13.7k -> 0.6k tokens of overhead; check
+  with `codex debug prompt-input`). Usage isn't in the events: `codex app-server` answers `account/rateLimits/read`
+  (5-hour and weekly `usedPercent`, `resetsAt`). The blocker is the limit: 30 small Sol calls used 5% of the 5-hour
+  window and 1% of the week, so an 8-player all-Sol game is about one whole window and a 13-player one about two
+  (rough, within 2x). Not checked: the moderator's tool loop, what a refused call looks like, reasoning summaries.
+
 ## Analysis
 
 - **Suspicion over time.** Who each player thinks is evil, turn by turn, would show how fast each

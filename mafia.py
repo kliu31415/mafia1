@@ -5,7 +5,8 @@ nominations, votes) run in code. Night actions are collected from players as str
 then an LLM moderator resolves them through tools (get_state, apply_changes, random_choice, tell,
 ask_player, end_phase), since the role interactions are too varied to hand-code yet.
 
-All LLM calls go through OpenRouter (Claude models' through the Claude Code CLI with --claude-code).
+All LLM calls go through OpenRouter, except Claude models': those run through the Claude Code CLI where it's
+installed (--no-claude-code sends them through OpenRouter too).
 The API key is read from the OPENROUTER_API_KEY environment variable.
 
 Code layout:
@@ -535,10 +536,11 @@ def build_parser() -> argparse.ArgumentParser:
                     default=variants.DEFAULTS["nomination_votes"],
                     help="secret (default): only the nominator and the Yes count are announced; public: every vote")
     ap.add_argument("--mock", action="store_true", help="no API calls; random player outputs")
-    ap.add_argument("--claude-code", action="store_true",
+    ap.add_argument("--claude-code", action=argparse.BooleanOptionalAction, default=None,
                     help="run Claude models' calls through the Claude Code CLI on this machine (`claude -p`, the "
                     "signed-in Claude subscription's quota) instead of OpenRouter; other models still use OpenRouter "
-                    "(claude_code.py)")
+                    "(claude_code.py). Default: on when the `claude` command is found; --no-claude-code sends "
+                    "Claude models through OpenRouter too")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
                     help="save the game at the start of each day and night to logs/<game>.ckpt, deleted when the game "
@@ -592,6 +594,16 @@ def build_parser() -> argparse.ArgumentParser:
     fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
                     "--moderator models on the rules (graded by the moderator model)")
     return ap
+
+
+def via_claude_code(flag: bool | None, mock: bool = False) -> bool:
+    """Whether a game's Claude models run through the Claude Code CLI: --claude-code / --no-claude-code, else
+    (the default) wherever the CLI is installed. Mock games make no calls."""
+    if mock or flag is False:
+        return False
+    if flag and not claude_code.available():
+        raise ValueError("--claude-code needs the Claude Code CLI, but no `claude` command was found on PATH")
+    return claude_code.available()
 
 
 def api_client(effort: str | None, via_claude_code: bool) -> LLMClient:
@@ -668,6 +680,7 @@ def main() -> None:
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     roles, setup = choose_roles(ap, args, seed)
     try:
+        args.claude_code = via_claude_code(args.claude_code, args.mock)
         # Efforts resolved here, so the log records what each model actually used.
         models = [resolve_effort(parse_model_spec(m), args.effort, args.claude_code) for m in args.players.split(",")]
         moderator = resolve_effort(parse_model_spec(args.moderator), args.effort, args.claude_code)
@@ -678,6 +691,9 @@ def main() -> None:
     update_tips = (None if args.no_update_tips else args.update_tips or (
         MOCK_TIPS if args.mock else None if sync_logs.in_cloud() else DEFAULT_TIPS))
     client = MockClient(seed) if args.mock else api_client(args.effort, args.claude_code)
+    if args.claude_code and any(claude_code.routes(m.model) for m in [*models, moderator]):
+        print("Claude models run through the Claude Code CLI (the subscription's quota); --no-claude-code sends "
+              "them through OpenRouter")
     try:
         player_tips = parse_player_tips(args.player_tips)
     except ValueError as e:

@@ -177,9 +177,12 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   new model or a new schema field fails with HTTP 400 or empty answers, check there first.
 - Every model is pinned to its maker's own OpenRouter provider (`PROVIDERS` in `llm.py`; GLM uses Together,
   since Z.AI's endpoint lacks structured outputs); add one there for a new maker.
-- `--claude-code` runs Claude models' calls through the Claude Code CLI (`claude -p`, the signed-in subscription's
-  quota, $0 in the cost tables; list price and plan utilization are in each call's usage) and other models through
-  OpenRouter. Each call is a fresh CLI process with no tools and the game's own system prompt; the moderator's tools
+- Claude models' calls run through the Claude Code CLI (`claude -p`, the signed-in subscription's
+  quota, $0 in the cost tables; list price and plan utilization are in each call's usage) wherever a `claude`
+  command is on PATH (the default since Oct 11 2026; `--no-claude-code` sends them through OpenRouter, `--claude-code`
+  insists on the CLI), and other models through OpenRouter, so a game can mix both. On Kevin's PC `claude` (and `codex`)
+  are launchers in `~/.local/bin` that run the desktop app's newest bundled CLI (source in `~/.local/share/cli-launcher`).
+  When a Claude seat misbehaves, check whether the CLI route is the cause (`via` in the log) before the game code. Each call is a fresh CLI process with no tools and the game's own system prompt; the moderator's tools
   become an answer schema (details in `claude_code.py`). A subscription limit is waited out, or stops the game for
   `--resume` when it resets more than 6 hours later. The same effort can think more through the CLI, so a model's
   CLI default can differ (`cli_effort` in `MODELS`: Haiku medium). Logs record each player's route (`via`), and
