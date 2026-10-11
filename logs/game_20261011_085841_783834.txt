@@ -1,0 +1,322 @@
+Setup:
+  Alice    seat 1  Census Taker      anthropic/claude-haiku-5.5
+  Bob      seat 2  Ritualist         anthropic/claude-haiku-5.5
+  Carol    seat 3  Bloodhound        anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Fixer             anthropic/claude-haiku-5.5
+  Frank    seat 6  Philanthropist    anthropic/claude-haiku-5.5
+  Grace    seat 7  Coroner           anthropic/claude-haiku-5.5
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 7 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+[Feedback from Bob] The night-chat prompt says to fill only message and ready, but the Katana holder/target fields are needed for the nightly vote. Clarify whether those fields should be left empty during chat.
+(to Bob, Erin) Bob (Yakuza chat): Erin, my proposal for tonight: you keep the Katana (holder vote: Erin), and we attack Carol with it. I will NOT spend a ritual token tonight. A wrong Ritualist guess publicly exposes me on Day 2, and we have no information yet to make a guess worth that risk. We both need to submit the same holder and target or nothing happens. Reply here if you disagree.
+(to Bob, Erin) Erin (Yakuza chat): Agreed, Bob. I keep the Katana (holder vote: Erin) and we both submit Carol as the target. No ritual token tonight from you, and I won't spend a fixer token tonight either, since there's no Day trial to fix yet. Let's both submit exactly this.
+(to Bob, Erin) Bob (Yakuza chat): Agreed, Erin. Final submission from me: Katana holder Erin (no move), target Carol. No ritual token from me tonight. Submit exactly this and we're set.
+(to Bob, Erin) Erin (Yakuza chat): Confirmed, Bob. Final submission from me: Katana holder Erin (no move), target Carol. No fixer token and no ritual token from either of us tonight. Submitting exactly this.
+Night actions:
+  Alice (Census Taker): target Carol; "Census around Carol: Carol plus two random other living players; I learn the group, which alignment is counted, and how many of the group are of it."
+  Bob (Ritualist): no role action; Katana vote: Erin holds, attacks Carol
+  Carol (Bloodhound): no action
+  Erin (Fixer): no role action; Katana vote: Erin holds, attacks Carol
+  Frank (Philanthropist): no action
+  Grace (Coroner): no action
+Katana: Erin holds it and attacks Carol.
+(to Alice) Moderator (private): Your census of Carol, Erin and Frank counted Evil players (drawn at random this time): 1 of the 3 is Evil. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Carol) Moderator (private): You were attacked tonight with the Katana. The attack killed you.
+(to Erin) Moderator (private): You hold the Katana. Your Katana attack on Carol succeeded tonight.
+(to Bob, Erin) Moderator (private): Yakuza actions chosen tonight: Erin holds the Katana and chose to attack Carol with it; Erin chose no Fixer action. Bob chose no Ritualist action.
+[Moderator summary] Night 1: Alice (Census Taker) took a census around Carol (code handles the result). Yakuza agreed Erin holds the Katana and attacks Carol: Standard vs None, so Carol (Bloodhound) dies to the Katana. Recorded 1 attack by Erin for the Bloodhound count. No one else acted. Visits: Alice->Carol, Erin->Carol.
+(to Carol) Moderator (private): Your Bloodhound check of Dave, Erin and Grace: together they have made 1 attack this game, tonight's included.
+
+===== DAY 2 =====
+Carol died (killed by Katana). Their role isn't revealed. Their last will: "Carol's last will: I am on the Village side. Any night information I had is valuable, so the living should ask whether I gave them a fair read before dismissing anything I said. Be wary of anyone who pushes to hang a player before the Day's evidence is in, and check who benefits from my death."
+Speaking order today goes around the circle in seat order, starting with Bob.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Night check] Night 1: correct
+[Claim] Bob: Medic (2 tokens). N1: no protection, tokens kept. Will protect likely Katana targets from N2.
+Bob (public): Bob here. I'm claiming Medic with 2 tokens. On Night 1 I protected nobody, so I kept my tokens. Carol was killed by Katana. Let's gather real information before anyone nominates anyone.
+[Claim] Dave: Vanilla Villager. No night action. N1: nothing.
+Dave (public): Dave here. I'm a Vanilla Villager with no night action and no night information. Bob's the only claim so far. Alice, Erin, Frank and Grace, please post your roles and anything you learned on Night 1. I won't nominate until we have more information.
+Erin (public): Erin here. I had no night action on Night 1 and no information to share. I agree we should gather facts before anyone nominates. Alice, Frank and Grace, please post your roles and anything you learned.
+[Claim] Frank: Philanthropist (2 tokens). N1: no action.
+Frank (public): Frank here. I'm a Philanthropist with 2 tokens. I took no night action on Night 1, so I have no information. Bob's Medic claim is the only role claim so far. Alice and Grace, please post your roles. I won't nominate until we have more.
+[Claim] Grace: Coroner (3 tokens). N1: no action. N2: examine Carol (result posted Day 3).
+Grace (public): Grace here. I'm the Coroner with 3 tokens. Carol is the only dead player, so I'll examine Carol tonight and post the role at the start of Day 3. I agree we should gather facts before nominating anyone.
+[Claim] Alice: Census Taker. N1: census on Carol, Erin, Frank: exactly 1 counted Evil.
+Alice (public): Alice here, Census Taker (Good). N1: census on Carol, Erin, Frank: exactly 1 counted Evil, so one of those three is Evil. I'll keep tonight's target private. No nominations yet.
+[Claim] Bob: Medic (2 tokens). N1: no protection, tokens kept. N2: will protect a likely Katana target (target not announced).
+Bob (public): Bob here. Alice's census and Grace's Coroner read are our first real data, so let's hear both before anyone is nominated. I'm not nominating today, and I won't name my Night 2 target publicly.
+Dave (public): Dave again. Erin, you're the only living player who hasn't stated a role. Please say it plainly and share anything from Night 1. Alice's census put exactly one Evil among Carol, Erin and Frank, so those two are the live names for now. Grace's Carol read on Day 3 should help. I'm not nominating yet.
+Erin (public): Erin here. I chose no night action on Night 1, so I have no information to add. I'm not nominating today. Alice and Grace hold the only real data so far, so let's hear Grace's Carol read on Day 3 before anyone is put on trial.
+Frank (public): Frank here. I know I'm Good, so Alice's census means exactly one of Carol or Erin is Evil. Erin, you still haven't named your role plainly. Please do. Grace's Carol read on Day 3 should show whether Carol was Village. No nominations until then.
+Grace (public): Grace again. As planned, I examine Carol tonight and post her role at the start of Day 3. Erin, please state your role plainly, as Frank asked. Alice, which of Carol, Erin and Frank was your census target? No nominations until Carol's role is known.
+Alice (public): Alice here. My census stands: exactly one of Carol, Erin, Frank counted Evil. Erin, "no night action" isn't a role. Please say it plainly. My Night 2 target stays private.
+Bob (public): Bob here. I'm not nominating today. Alice, your census put exactly one Evil among Carol, Erin and Frank. Who was your target, and which two were the random extras? Grace's Carol read on Day 3 is the next real data point, so let's not hang anyone before it.
+Dave (public): Dave again. Frank, how do you know you're Good? A Philanthropist can't verify his own alignment, so that's a claim, not a fact. Erin, you still haven't stated a role. Please do. Still no nominations until Grace posts Carol's role on Day 3.
+[Claim] Erin: Vanilla Villager. N1: no night action.
+Erin (public): Erin here, plainly: Vanilla Villager, no night action, no night information. "No action" was a sloppy way to say that, and I'm sorry for the confusion. I'm not nominating before Grace's Carol read on Day 3.
+Frank (public): Frank again. I know I'm Good, so Alice's census means Carol or Erin is Evil. Carol was Katana-killed, which makes Carol more likely Village, so Erin is the one to watch. Erin, you first said "no night action" and only later said Vanilla, so please answer Alice's census directly. Alice, were Carol or Erin your target? No nominations until Grace's Day 3 result.
+Grace (public): Grace again. Alice, which of Carol, Erin and Frank was your census target, and which two were the random extras? Erin, a Vanilla Villager shouldn't need two tries to say so. I'm not nominating before my Day 3 Carol read. No nominations until then.
+Alice (public): Alice here. My Night 1 census target was Carol; Erin and Frank were the random extras. So exactly one of Carol, Erin, Frank is Evil. Carol was Katana-killed, so Carol is more likely Good, which leaves Erin or Frank. Frank can't clear himself by saying "I know I'm Good." Bob and Grace can both be honest, so Grace's Day 3 Carol read matters. No nominations until then.
+Bob (public): Bob here. I'm not nominating today. Alice's census and Grace's Day 3 Coroner read are the only real data so far. A single Night 1 census can't be checked yet, so nobody should go to trial on it alone. Let's hear Grace's Carol result before any vote.
+Dave (public): Dave again. Erin's role is now plain: Vanilla Villager. Frank, you still haven't said how you know you're Good. Alice's census is our only Night 1 data. No nominations until Grace's Day 3 Carol read.
+Erin (public): Erin again. Frank, you keep saying you know you're Good, but a Philanthropist can't check his own alignment. Alice's census names only Erin or Frank as the Evil one, so your basis matters. I'm still not nominating before Grace's Day 3 read.
+[Claim] Frank: Philanthropist (2 tokens). N1: no action. No votes yet.
+Frank (public): Frank here. My role is Village, so I'm Good. That's a claim you can weigh. Alice's census puts exactly one Evil among Carol, Erin and Frank. Carol was a Katana kill, which makes Carol more likely Good, so Erin is the live name. Erin, you said "no night action" before "Vanilla". Please explain that wobble in one sentence. I'm not nominating before Grace's Day 3 read.
+Grace (public): Grace again. No nominations until my Day 3 Carol read. Alice, your census stands as stated. Frank, "I know I'm Good" isn't a basis, so please stop repeating it.
+Alice (public): Alice here. No nominations until Grace posts Carol's role on Day 3. Carol was a Katana kill, so the Evil name from my census is most likely Erin or Frank. Erin and Frank, each give one concrete reason for your claim. "I know I'm Good" isn't one.
+Bob (public): Bob here. I'm not nominating today. Grace's Day 3 Carol read is the real check. Frank and Dave, you both press Erin, but Erin has now answered plainly as Vanilla, so let's not hang on the wobble alone. Alice, Night 1 census is one night of data, so nobody should go to trial on it yet.
+Dave (public): Dave here. I'm not nominating before Grace's Day 3 Carol read. Frank and Erin, each give one concrete basis for your claim, not "I know I'm Good." Alice, keep your census target and extras consistent.
+Erin (public): Erin here. Vanilla Villager, no night action, no information. Alice's census is one night of data, and it names Erin or Frank as Evil. I'm not nominating before Grace posts Carol's role on Day 3. Grace, please keep that promise. Frank, give one concrete reason for your claim, not "I know I'm Good."
+Frank (public): Frank here. No nomination from me today. I'm waiting for Grace's Day 3 Carol read before any vote. Erin, I'd like your vote tied to that same read too.
+Grace (public): Grace here. No nomination from me today. Tonight I examine Carol, and I'll post her role at the start of Day 3 as promised. Erin and Frank, stop the loops on "Vanilla" and "I know I'm Good." Answer Alice's census directly.
+Alice (public): Alice here. No nomination from me today. Grace's Day 3 Carol read is the next real check. Erin and Frank, state your basis in one sentence each, then we wait for the read.
+Bob (public): Bob here. No nomination from me today. Grace's Day 3 Carol read is the real check. Nobody should hang on the Erin-or-Frank line alone.
+Dave (public): Dave here. Still no nomination from me. Grace's Carol role at the start of Day 3 is the next real check. Frank and Erin, I'm holding my vote until then too, and I'd like Alice's census target and extras confirmed once more before anyone goes to trial.
+Erin (public): Erin here. Frank, you keep pressing me but haven't given a basis for your own certainty. Alice's census names Erin or Frank, so answer that directly. I'm not nominating before Grace's Day 3 read.
+Frank (public): Frank here. No nomination from me today. Carol was a Katana kill, which makes Carol more likely Good, so Alice's census Evil points at Erin. Erin, did you do anything on Night 1? Answer in one sentence.
+Grace (public): Grace here. No nomination from me. Tonight I examine Carol as announced, and her role comes out at the start of Day 3. Until then, nobody should go to trial on the census alone.
+Alice (public): Alice here. No nomination from me. Frank and Erin, the census can't separate you yet. Grace's Day 3 Carol read is the real check, so let's wait for it.
+Bob (public): Bob here. No nomination from me. Frank, what would you do if Grace's Day 3 read clears Carol? Erin's name currently rests on one census, so we wait for Grace.
+Dave (public): No nomination from me. We wait for Grace's Day 3 Carol read. Frank and Erin, give your basis in one sentence each.
+Erin (public): Erin here. No nomination from me today. I'm waiting for Grace's Day 3 Carol read, as promised, before anyone votes.
+Frank (public): No nomination today. If Grace's Day 3 read clears Carol, Erin is the census Evil and I vote Erin on that basis.
+Grace (public): Grace here. No nomination from me. Tonight I examine Carol and post her role at the start of Day 3. Erin and Frank, give your one-sentence bases.
+Alice (public): Alice here. No nomination from me. Grace's Day 3 Carol read is the real check, and I'll post my Night 2 census result at the start of Day 3 as well.
+Bob (public): Bob here. No nomination from me. Grace's Day 3 Carol read is the real check. Frank, you've pressed Erin for several rounds with no basis. What would you do if Grace's read shows Carol was Village?
+Dave (public): Dave here. No nomination from me. We wait for Grace's Carol role at the start of Day 3, then decide. Nobody should hang on the census alone.
+Erin (public): Erin here. No nomination from me. Frank has pressed me all day without a basis. Let's judge everyone on Grace's Day 3 read.
+Frank (public): Frank here. No nomination today. On Day 3, after Grace posts Carol's role, I'll vote Erin if Carol reads Village, since Alice's census leaves Carol or Erin as the Evil one. Everyone else, please keep your votes open until then.
+Grace (public): Grace here. No nomination from me. Tonight I examine Carol and post her role at the start of Day 3. Nobody should vote before then.
+Alice (public): Alice here. No nomination from me. Grace's Day 3 Carol read and my Night 2 census result come at the start of Day 3. Nobody should vote before then.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Erin) Bob (Yakuza chat): Bob here. Proposal for tonight: holder vote Erin (no move), Katana target Alice. Alice's Night 1 census counted you Evil, and as a Census Taker she is the most dangerous voice for us on Day 3. Carol's Katana death means Carol was not one of ours, so Alice's census is consistent with what we know. I will not spend a ritual token tonight. My Medic action goes on Grace, not Alice, so our Katana attack on Alice lands. Erin, if you agree, submit holder Erin, target Alice, and confirm here.
+(to Bob, Erin) Erin (Yakuza chat): Erin agrees. Final submission: Katana holder Erin (no move), target Alice. I spend no fixer token tonight. Bob, you are our Ritualist, not a Medic, so you have no protection action tonight; keep your ritual token unspent and submit exactly holder Erin, target Alice.
+(to Bob, Erin) Bob (Yakuza chat): Bob agrees. Final submission: Katana holder Erin (no move), target Alice. I spend no Ritualist token tonight. Both of us submit exactly this.
+(to Bob, Erin) Erin (Yakuza chat): Erin confirms the plan, Bob. Final submission: Katana holder Erin (no move), target Alice. I spend no Fixer token tonight. You spend no Ritualist token. Submit exactly this and we're set. Ready.
+Night actions:
+  Alice (Census Taker): target Frank; "Census around Frank: Frank plus two random other living players; I learn the group, which alignment is counted, and how many of the group are of it."
+  Bob (Ritualist): no role action; Katana vote: Erin holds, attacks Alice
+  Erin (Fixer): no role action; Katana vote: Erin holds, attacks Alice
+  Frank (Philanthropist): no action
+  Grace (Coroner): target Carol; 1 token(s); "Coroner examination of Carol, who died on Night 1 before this night began."
+Katana: Erin holds it and attacks Alice.
+(to Alice) Moderator (private): Your census of Dave, Erin and Frank counted Evil players (drawn at random this time): 1 of the 3 is Evil. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Grace) Moderator (private): You examined Carol: their role was Bloodhound. 2 coroner tokens left.
+(to Alice) Moderator (private): You were attacked tonight with the Katana, and you died.
+(to Erin) Moderator (private): Your Katana attack on Alice succeeded tonight.
+(to Bob, Erin) Moderator (private): Yakuza actions chosen tonight: Erin holds the Katana and chose to attack Alice with it. Bob chose no night action. Erin chose no Fixer action.
+[Moderator summary] Night 2: Katana (holder Erin) attacked Alice (Standard vs None) and killed her. Alice's census around Frank went ahead (simultaneous resolution), and code handled it. Grace examined Carol (Astral, 1 coroner token spent by code). Bob and Frank took no action. Visits: Alice->Frank, Erin->Alice. Attacks: [Erin]. Remaining: Bob, Dave, Erin, Frank, Grace (2 Yakuza, 3 Village), so the game continues.
+
+===== DAY 3 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice's last will (Census Taker, Good). Night 1 census on Carol, Erin, Frank: exactly 1 of the 3 counted Evil. Carol was killed by Katana. Trust results that agree with each other over claims made only after a death."
+Speaking order today goes around the circle in seat order, starting with Frank.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Night check] Night 2: correct
+Frank (public): Frank here. Alice is dead. Her census said exactly one of Carol, Erin or Frank is Evil. I'm Good, so it's Carol or Erin. Carol was Katana-killed on Night 1, which makes Erin the live name unless Grace's read says otherwise. Grace, please post Carol's role now, as promised. Bob, your Medic claim: did you protect Alice on Night 2? Yes or no, one sentence. I'm not nominating yet.
+[Claim] Grace: Coroner (2 tokens left). N1: no action. N2: examined Carol, Bloodhound (Village). D3: no nomination yet.
+Grace (public): Grace here, as promised: Carol was a Bloodhound, so Carol was Village. Alice's census had exactly one Evil among Carol, Erin and Frank, so one of Erin or Frank is Evil. Bob, Frank asked you directly: did you protect Alice on Night 2? Yes or no. I have 2 Coroner tokens left and will post my next result at the start of Day 4. No nomination from me yet.
+[Claim] Bob: Medic (2 tokens). N1: no protection, tokens kept. N2: protected one player other than Alice. D3: no nomination yet.
+Bob (public): Bob here. Direct answer to Frank and Grace: no, I did not protect Alice on Night 2. I protected one other player, and I'll name them only if it matters. Alice's census put one Evil among Carol, Erin and Frank. Frank has pressed Erin for three days without a concrete reason, so Frank's votes deserve the same scrutiny. I'm not nominating today. Grace's Carol read is one data point. Let's hear Dave's and Frank's views before any trial.
+Dave (public): Dave here. Alice is dead, so Grace, please examine Alice tonight. Alice was the Census Taker. If she checks out, her Night 1 census stands and exactly one of Erin or Frank is Evil. That's a checkable fact we can use before any hang. Frank, "I know I'm Good" isn't a basis, and Erin has answered plainly. No nomination from me yet.
+[Claim] Erin: Vanilla Villager. N1, N2: no night action. D3: nominated Frank.
+Erin (public): Erin here: Vanilla Villager, no night action. Grace's read puts Carol at Village, so Alice's census leaves Erin or Frank. Frank has pressed me for three Days with no basis, and he said he'd vote me on exactly this read. I'm nominating Frank. Frank, give one concrete reason you're Good.
+Erin nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Erin, Grace, Bob; No - Frank, Dave
+Nomination votes on Frank: 3 Yes (the votes are secret).
+Frank is put on trial (3 Yes).
+[Claim] Frank: Philanthropist (2 tokens). N1, N2: no action. D3: nominated by Erin, on trial.
+Frank (public): Frank here. I'm Village, so I know my own alignment. Grace's Coroner read has Carol as Bloodhound, so Carol is Village. Alice's census said exactly one Evil among Carol, Erin and Frank. Carol and I are both Good, so that one is Erin. Erin nominated me the day Carol read Village, which is the vote I said I'd cast on that read. Dave asked for a check on Alice's census. Grace, please examine Alice tonight. If she was Census Taker, her census stands and Erin is the Evil one. Everyone: vote Innocent unless someone gives a concrete mechanical reason, not pressure. Bob, naming your Night 2 protection target would help check your Medic claim.
+[Claim] Grace: Coroner (2 tokens). N1: no action. N2: examined Carol, Bloodhound (Village). N3: examining dead Alice, result Day 4. D3: trial of Frank.
+Grace (public): Grace here. I won't vote Guilty on a 50/50 census or on pressure. Carol is Village (Bloodhound), so Alice's census leaves Erin or Frank. Nothing mechanical separates them yet. Erin's nomination and Frank's "I know I'm Good" are both unverified. Tonight I examine Alice, who is dead, to check whether her Census Taker role is real. A Roleplayer would show as Roleplayer. I'll post the result at the start of Day 4. Bob, your Night 2 protection target is still unnamed. Naming it would let us check your Medic claim against the attacks.
+[Claim] Bob: Medic (2 tokens). N1: protected nobody. N2: protected Dave (not attacked). D3: Guilty on Frank.
+Bob (public): Bob here. Guilty on Frank. Frank has pushed Erin for three Days on a single census read, with no basis of his own. Philanthropist gives him no night information, so "I know I'm Good" is only a claim. My Night 2 protection went to Dave, who wasn't attacked. Grace's Coroner read is our only hard data, and it doesn't clear Erin or Frank. Let's not pile on Erin.
+Dave (public): Dave here. I'm voting Innocent on Frank. Alice was Katana-killed on Night 2, which suggests the Yakuza saw her as a real threat, so her census is probably genuine. That leaves Erin or Frank as the Evil one, but nothing mechanical separates them yet. Grace's Day 4 read on Alice is the real check. Erin and Frank, stop trading accusations and say what you'd need to see to change your vote. I won't vote Guilty on a coin flip.
+Erin (public): Erin here. My vote is Guilty on Frank. His only basis is "I know I'm Good," and a Philanthropist gets no night information, so that claim can't be checked. He has pressed me for three Days and nominated me on Grace's read alone. Grace has now given one result, and Dave is holding for evidence. If anyone has a concrete mechanical reason to clear Frank, post it now. Otherwise, I'd rather hang the one with no information than wait another Day.
+Frank (public): Frank, final word. I'm Village. I have no night action and no night information, so I can't prove that beyond my claim. What I can show is the logic. Grace's Bloodhound read puts Carol at Village, and Alice's census said exactly one of Carol, Erin and Frank counted Evil. That leaves Erin or Frank. Erin nominated me the day Carol read Village, and Erin's own claim went from "no night action" to "Vanilla" when asked. Bob, your Guilty vote rests on "no basis" against me, but that's the same charge I can make against Erin, and Erin's nomination is the bigger wobble. Grace's Day 4 read on Alice tests the census directly. Hanging me now means the census Evil stays in play with no check on him. I'm voting Innocent unless someone gives a mechanical reason.
+Trial votes on Frank: 2 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Bob, Erin; Innocent - Dave, Frank, Grace
+Frank is found Innocent (2 Guilty of 5 votes; 3 needed).
+Frank (public): Frank here. Mechanical check on the census. The Katana never kills its own team, so Carol (Katana-killed on Night 1) is Good, and I'm Good. Alice's census said exactly one Evil among Carol, Erin and Frank, so if her census is real, that one is Erin. Grace's Alice read on Day 4 tests this directly. Dave and Grace: if Alice reads as Census Taker, vote Guilty on Erin with me. Erin, one sentence on why you said "no night action" before "Vanilla".
+[Claim] Grace: Coroner (2 tokens). N2: examined Carol, Bloodhound (Village). N3: examining dead Alice, result Day 4. D3: Yes on Frank's nomination, Innocent on Frank's trial.
+Grace (public): Grace here. Frank's trial ended Innocent, 2 Guilty to 3. Tonight I examine dead Alice, and her result comes at the start of Day 4. If Alice reads Census Taker, her census stands and one of Erin or Frank is Evil. I'm not nominating today, and I'd ask that nobody nominate again before that result.
+Bob (public): Bob here. I'm not nominating today, and I'd ask nobody to nominate before Grace's Day 4 read. A hang now would be a coin flip, and Frank's pressure on Erin is the same pressure he has used on everyone. Dave, your point stands: wait for the read, then vote on evidence.
+[Claim] Dave: Vanilla Villager. No night action. N1, N2: nothing.
+Dave (public): Dave here. Bob, you say you protected me on N2. I can't confirm that, so it's only a claim. Erin and Bob both voted Guilty on Frank, and Bob asked us not to pile on Erin. Both of you, explain that link in one sentence. No nominations before Grace's Day 4 Alice read.
+Erin (public): Erin here. Dave, Bob and I each voted Guilty on Frank separately. Mine: Frank has pressed one census for three Days with no basis of his own, and he has promised to vote me on that read. I won't nominate today. Grace's Day 4 Alice read is still the check we agreed on.
+Frank (public): Frank here. Carol was Katana-killed, so Carol is Good, and I'm Good. That leaves Erin as the census Evil if Alice was a genuine Census Taker. Grace, post Alice's result at the start of Day 4 as promised. If it reads Census Taker, I'll vote Guilty on Erin, and I ask Dave and Bob to do the same. I'm not nominating today.
+Grace (public): Grace here. No nomination from me. Tonight I examine dead Alice, and the result comes at the start of Day 4. If she reads Census Taker, exactly one of Erin or Frank is Evil and we vote on that name with that evidence. If she reads Roleplayer, the census is fake and clears nobody and convicts nobody. Until then, nobody should nominate.
+Bob (public): Bob here. I'm not nominating today. Alice's census and Grace's Coroner read are both single claims, and the only check on them is Grace's Day 4 read on Alice. Nobody should trade a trial before that read. I'll vote on evidence, not on pressure.
+Dave (public): Dave here. No nomination from me. I wasn't attacked on Night 2, so I can't confirm Bob's protection, but it's consistent with what I saw. If Alice reads Census Taker on Day 4, I'll vote on the Erin-or-Frank census name. Until then, nobody should nominate.
+Erin (public): Erin here. No nomination from me. Grace's Day 4 read on Alice is the check we agreed on, so nobody should trade a trial before it. Vote on that read, not on pressure.
+[Claim] Frank: Philanthropist (2 tokens). N1, N2: no action. D3: nominated Erin. Voted Innocent on my own trial. Katana victims Carol and Alice are Good, so Erin is the census Evil.
+Frank (public): Alice was Katana-killed, so she's Good and her census is real. Carol and I are Good. Census Evil = Erin. Nominating Erin now. Vote Guilty.
+Frank nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Frank; No - Grace, Bob, Dave, Erin
+Nomination votes on Erin: 1 Yes (the votes are secret).
+The nomination of Erin failed (1 Yes).
+[Claim] Grace: Coroner (2 tokens). N2: examined Carol, Bloodhound (Village). N3: examining dead Alice, result Day 4. D3: Innocent on Frank's trial.
+Grace (public): Grace here. No nomination from me. Frank's nomination of Erin failed, so no trial on the census yet. Tonight I examine dead Alice, and the result comes at the start of Day 4. Nobody should nominate before then.
+Bob (public): Bob here. No nomination from me. Grace's Day 4 Alice read is the check we agreed on, so nobody should nominate before it.
+Dave (public): Dave here. Bob, Alice publicly claimed Census Taker on Day 2, before Night 2. You say you protected me, but I wasn't attacked, so that's unverifiable. Alice was the one Katana-killed that night, and you didn't protect her. Why not the claimed Census Taker? I'm not nominating before Grace's Day 4 read.
+Erin (public): Erin here. No nomination from me. Nobody should nominate until we have real information, and I'm voting on evidence, not pressure.
+Frank (public): Carol and Alice were both Katana kills, so both are Good, and I'm Good. Alice's census therefore names Erin as the Evil one. Grace's Day 4 read decides it. Bob, why didn't you protect Alice?
+[Claim] Grace: Coroner (2 tokens). N2: examined Carol, Bloodhound (Village). N3: examining dead Alice, result Day 4. D3: Innocent on Frank's trial, No on Erin's nomination.
+Grace (public): Grace here. No nomination from me. Tonight I examine dead Alice, and her role comes at the start of Day 4. If she reads Census Taker, I'll vote on the Erin-or-Frank census name with that read.
+Bob (public): Bob here. No nomination from me. Grace's Day 4 Alice read is still one claim, and a hang on Erin or Frank now would be a coin flip. Dave and Grace, tell us what concrete result would change your vote, and Frank, stop pressing for a trial until that result is in.
+Dave (public): Dave here. No nomination from me. Grace's Day 4 Alice read decides the census. If Alice reads Census Taker, I vote Guilty on whichever of Erin or Frank it names. If she reads Roleplayer, the census clears nobody, so I won't vote on either.
+Erin (public): Erin here. No nomination from me. I'd ask that nobody nominates before Grace's Day 4 Alice read, and I'll vote on that read, not on pressure.
+Frank (public): Frank here. Katana kills are Good, so Carol and Alice are Good. Alice's census then names Erin as the Evil one. Grace's Day 4 read decides it. If Alice reads Census Taker, I vote Guilty on Erin.
+Grace (public): Grace here. No nomination from me. Bob, your Medic protection went to Dave, who wasn't attacked, and Alice, the Katana victim, had none. That's a concrete gap, not pressure. Erin and Frank, I'm not voting on either of you until Alice's Day 4 read. Nobody should nominate before then.
+Bob (public): Bob here. No nomination from me. Grace's Day 4 Alice read is the check we agreed on, and I'll vote on that evidence, not pressure.
+Dave (public): Dave here. No nomination from me. Bob, you say you protected me, but I wasn't attacked, and you didn't protect Alice, the Katana kill. Why? One sentence. Grace's Day 4 read decides the census.
+Erin (public): Erin here. No nomination from me. Frank has nominated me twice today, and the second time was before Grace's Alice read, so that's pressure, not evidence. Dave's question to Bob is still open. I'm holding my vote until Grace posts Alice's role at the start of Day 4, as agreed.
+Frank (public): Frank here. No nomination from me. If Grace's Day 4 read shows Alice as Census Taker, I vote Guilty on Erin.
+Grace (public): Grace here. No nomination from me. Tonight I examine Alice, and her role comes at the start of Day 4. Nobody should nominate before then.
+Bob (public): Bob here. No nomination from me. I'm holding my vote for Grace's Day 4 read, as I said. Nobody should trade a trial before then.
+Dave (public): Dave here. No nomination from me. I'll vote on Grace's Day 4 Alice read, as agreed. Bob, Dave wasn't attacked, so my protection proves nothing.
+Erin (public): Erin here. No nomination from me. I'm holding my vote for Grace's Day 4 Alice read, as agreed. Frank, you've nominated twice already; let the read decide, not pace.
+Frank (public): No nomination. If Grace's Day 4 read shows Alice as Census Taker, Erin is the census Evil and I vote Guilty. Dave, same?
+(to Dave, Frank) Frank -> Dave (private): Dave: if Alice reads Census Taker, Erin is the census Evil. Let's both vote Guilty on Day 4 and nominate him together.
+Grace (public): Grace here. No nomination from me. Tonight I examine dead Alice, and her role comes at the start of Day 4 as promised. Nobody should nominate before then.
+Bob (public): Bob here. No nomination from me today. I'm holding my vote for Grace's Day 4 read, as agreed, and I'll vote on that evidence.
+[Claim] Dave: Vanilla Villager. No night action. N1, N2, N3: nothing.
+Dave (public): Dave here. No nomination. My Day 4 position: if Grace's Alice read shows Census Taker, I vote Guilty on whichever of Erin or Frank the census names. Bob, why protect me, unattacked, and not Alice, the Katana victim?
+(to Dave, Frank) Dave -> Frank (private): Frank: I won't coordinate a Day 4 nomination privately. I'll vote on Grace's Alice read in public, as I said.
+Erin (public): Erin here. No nomination. I'll vote on Grace's Day 4 Alice read, not pressure. Frank and Dave, name one concrete basis for your vote besides the census, and I'll give mine.
+Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+(to Bob, Erin) Bob (Yakuza chat): Bob here. Plan B stands: Katana holder Erin (no move), target Grace. Grace claims Coroner and is examining dead Alice tonight. If Grace survives, her Day 4 result can confirm Alice as Census Taker, which puts Erin in the census Evil spot. Killing Grace removes that check, and the Good side drops to Dave and Frank. With 4 alive, they need 3 Yes votes and can't reach them without a Yakuza. I will not nominate and will not PM you in the day. Erin, confirm holder Erin, target Grace, and we both submit exactly that.
+(to Bob, Erin) Erin (Yakuza chat): Erin agrees with Bob's plan. Final submission: Katana holder Erin (no move), target Grace. I spend no Fixer token tonight and keep both for Day 4 if Frank goes to trial. Bob, spend no Ritualist token and submit exactly holder Erin, target Grace. Grace's Alice read is the threat to us, so removing her is right.
+(to Bob, Erin) Bob (Yakuza chat): Bob: Agreed. Final submission: Katana holder Erin (no move), target Grace. I spend no Ritualist token and keep both. Erin, submit exactly that. With Grace gone, Dave and Frank are two Good votes against four alive, so they can't reach 3 Yes without a Yakuza. Ready.
+(to Bob, Erin) Erin (Yakuza chat): Erin confirms. Final submission: Katana holder Erin (no move), target Grace. No Fixer token from me tonight; I keep both for Day 4. Bob, no Ritualist token, and submit exactly holder Erin, target Grace. No daytime PMs about the plan. Ready.
+Night actions:
+  Bob (Ritualist): no role action; Katana vote: Erin holds, attacks Grace
+  Erin (Fixer): no role action; Katana vote: Erin holds, attacks Grace
+  Frank (Philanthropist): no action
+  Grace (Coroner): target Alice; 1 token(s); "Coroner examination of Alice, who died on Night 2 before this night began."
+Katana: Erin holds it and attacks Grace.
+(to Grace) Moderator (private): You examined Alice: their role was Census Taker. 1 coroner token left.
+(to Grace) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Erin) Moderator (private): Your Katana attack on Grace succeeded tonight.
+(to Bob, Erin) Moderator (private): Yakuza actions chosen tonight: Erin holds the Katana and chose to attack Grace with it. Erin chose no Fixer action. Bob chose no Ritualist action.
+[Moderator summary] Night 3: Yakuza voted Erin to keep the Katana and attack Grace. Erin (Katana, Standard) visited Grace, who has Defense None, so Grace died. Grace's Coroner examine of Alice (an Astral Visit) still resolved because night actions are simultaneous; the examine op spent 1 coroner token and code delivers the result. Bob, Erin (Fixer action) and Frank took no actions. No role-blocks. Carol, the Bloodhound, is dead, so no attacks op was sent. Living: Bob, Dave, Erin, Frank (2 Yakuza, 2 Village), so the game continues.
+
+===== DAY 4 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace's last will (Coroner, Village). Night 2 result: I examined Carol, who was a Bloodhound, so Carol was Village and not Evil. Alice's Night 1 census said exactly one of Carol, Erin and Frank counted Evil. With Carol cleared, that Evil is Erin or Frank. Judge each of them by their own visits, votes and results, not by how often they repeat "I'm Good". Bob's Medic claim can be checked against who was Katana-attacked. Any living Village player with a real result should post it openly. If I die, use my Coroner tokens on any hanged suspect's role, and do not trust a Yakuza claim of Medic or Coroner without a matching result."
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Dave.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Dave (public): Dave here. Facts: Carol, Alice and Grace were all Katana-killed, and all three claimed information roles. Bob, your Medic protected me on N2, but I wasn't attacked, and Alice died that night with no protection. What did you protect on N3, when Grace died? Name the target. Frank, you privately asked me to nominate Erin with you. I declined and will vote on evidence. Erin and Frank: one of you is the census Evil. Give one visit or result that backs your side, not repeated "I'm Good" lines.
+Erin (public): Erin here. Frank, you privately asked Dave to nominate me, you've nominated me twice, and your case rests on a census nobody can check. Dave declined that pressure, and I'm not voting on pressure either. I'm nominating you so the vote can test your case. Give one visit or result, not another "I'm Good".
+Erin nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Erin, Bob; No - Frank, Dave
+Nomination votes on Frank: 2 Yes (the votes are secret).
+The nomination of Frank failed (2 Yes).
+[Claim] Frank: Philanthropist (2 tokens). N1-N3: no action. D3: nominated Erin, Innocent on own trial. D4: No on Frank's nomination.
+Frank (public): Frank here. Census check: Carol is Good (Katana kill, Bloodhound per Grace) and I'm Good, so if Alice's census is real, Erin is the Evil one. Day 4's Yes tally was 2: Erin plus one of Bob or Dave. Bob, were you the second Yes? Also name your Night 3 protection target, one sentence.
+(to Dave, Frank) Frank -> Dave (private): Dave: Erin is the census Evil if Alice is real. Bob's answer on the second Yes will show who backs Erin. If Bob can't account for it, vote Guilty on Erin with me.
+[Claim] Bob: Medic (2 tokens). N1: protected nobody. N2: protected Dave (not attacked). N3: protected nobody. D3: Guilty on Frank. D4: Yes on Frank's nomination.
+Bob (public): Bob here. Night 3: I protected nobody. Yes, I was the second Yes on Erin's nomination of Frank, because Frank's case rests on one census and he has pressed Erin all week. I'm not nominating. With four alive, a trial needs three Yes votes, so nobody can be tested today without someone changing their vote.
+Dave (public): Dave here. No nomination from me. Bob: your Medic protections went to Dave on N2 (never attacked) and to nobody on N3, when Grace, the publicly claimed Coroner, was Katana-killed. A real Medic would have covered her. Explain that in one sentence. Frank and Erin: I won't vote on either of you until one concrete result separates you.
+Erin (public): Erin here. No nomination from me. Grace's Alice read was never posted, so Alice's census is still unverified. Nobody should trade a trial on it until a real result appears.
+Frank (public): Alice and Carol were Katana kills, so both are Good. Alice's census: exactly one of Carol, Erin, Frank is Evil. I'm Good, so Erin is Evil. Bob, you and Erin both voted Yes on me, and your Medic never covered Alice or Grace. Nominating Erin; Dave, vote Guilty.
+Frank nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Frank, Dave; No - Bob, Erin
+Nomination votes on Erin: 2 Yes (the votes are secret).
+The nomination of Erin failed (2 Yes).
+Bob (public): Bob here. No nomination from me. Four alive means three Yes votes, and nobody can reach that today without a vote changing. I'll vote on a concrete result, not pressure.
+[Claim] Dave: Vanilla Villager. No night action.
+Dave (public): Dave here. No nomination from me yet. Bob: a real Medic protects a publicly claimed info role. You protected neither Alice (N2, claimed Census Taker) nor Grace (N3, claimed Coroner). Explain that in one sentence. Frank and Erin: one of you is the census Yakuza. Give me one concrete point each.
+Erin (public): Erin here. No nomination from me. Dave, I agree that one concrete result beats repeated claims, and I have none beyond my Vanilla claim. Bob's Medic claim is unproven and so is Frank's census, so nobody should hang on either alone. Night results are the only real check.
+Frank (public): Frank here. Mechanical proof: Yakuza never kill their own team, so Alice (Katana victim) was a real Census Taker. Her census: exactly one Evil among Carol, Erin, Frank. Carol is Good (Bloodhound, Katana victim) and I'm Good. So Erin is Evil. Dave, Bob: give one concrete reason to clear Erin, or vote Guilty on her. Bob, your Medic missed Alice and Grace.
+Bob (public): Bob here. Night 3: I protected nobody, as I said. A Medic can't cover everyone, and I had no reliable read on the Katana's target. I'm not nominating. With four alive, a trial needs three Yes votes, and two Good votes can't reach that. Dave, which concrete result would change your vote?
+Dave (public): Dave here. No nomination from me. Yakuza don't kill their own, so tonight's victim is Good. If it's Erin or Frank, the survivor is the census Evil. Bob, Erin, Frank: please hold your votes until Day 5.
+(to Bob, Dave) Dave -> Bob (private): Bob: if Night 4 kills Erin or Frank, the survivor is the census Yakuza. Will you vote Guilty on them with me? Yes or no is enough.
+Erin (public): Erin here. No nomination from me. I'm voting on real results, not pressure, so nobody should trade a trial until one appears.
+Frank (public): Erin: the census Evil; Carol and I are Good. Dave, Bob, vote Yes.
+Frank nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Frank, Dave; No - Bob, Erin
+Nomination votes on Erin: 2 Yes (the votes are secret).
+The nomination of Erin failed (2 Yes).
+Bob (public): Bob here. No nomination from me. Dave, I agree: nobody should trade a trial on a census alone. Night results will decide this, so I'll vote on a concrete result when one appears.
+Dave (public): Dave here. No nomination from me. Four alive means three Yes votes, and I won't vote on pressure. I'll decide on the Night 4 result and any concrete read.
+Erin (public): Erin here. No nomination from me. I'm holding my vote for the Night 4 results, as Dave asked.
+Frank (public): Erin is the census Evil: Alice was Katana-killed, so real, and Carol and I are Good. Bob's Medic missed Alice and Grace. Night 4 decides.
+(to Dave, Frank) Frank -> Dave (private): Dave: Erin is Yakuza by the census. Bob is the other suspect. Let's nominate Erin together after Night 4 and vote Yes.
+Bob (public): Bob here. No nomination from me. Nobody should trade a trial on a census alone, so I'm holding my vote for a concrete Night 4 result.
+Dave (public): Dave here. No nomination from me. If Night 4 kills Erin or Frank, I vote Guilty on the survivor on Day 5, since the census says one of them is Yakuza.
+Erin (public): Erin here. No nomination from me. I'll vote on the Night 4 results when they're in.
+Frank (public): Frank here. Erin is the census Yakuza: Carol, Alice and I are all Good. Dave, after Night 4 let's vote Yes on Erin.
+Bob (public): Bob here. No nomination from me. I'm holding my vote for the Night 4 result, as I said. Nobody should trade a trial on a survivor rule alone.
+(to Bob, Dave) Bob -> Dave (private): Not on a survivor rule alone. I'll vote on a concrete result.
+Dave (public): Dave here. No nomination from me. Night 4 decides it: if Night 4 kills Erin, I vote Guilty on Frank; if it kills Frank, I vote Guilty on Erin. Bob, your Medic protected unattacked Dave while Alice and Grace died unprotected. Explain that.
+Erin (public): Erin here. No nomination from me. I'm holding my vote for the Night 4 results, as I said.
+Frank (public): Frank here. No nomination today, since it would fail. Alice's census, with Carol and me Good, points at Erin. Dave, on Day 5 vote Yes with me.
+Bob (public): Bob here. No nomination from me. I'm holding my vote for the Night 4 result, as I said.
+Dave (public): Dave here. No nomination from me today. Night 4 decides it. If Erin dies, Frank is the census Yakuza. If Frank dies, Erin is. On Day 5 I vote Guilty on whichever of them survives. Bob, will you vote with me on that?
+Erin (public): Erin here. No nomination from me. I'm voting on Night 4's result and any concrete read, not on pressure. Dave, Bob and Frank, please hold to that standard too.
+Frank (public): ""
+(to Dave, Frank) Frank -> Dave (private): Dave: Alice's census (real, Katana victim) puts Evil on Erin, since Carol and I are Good. Day 5: vote Yes on Erin with me. Keep Bob's Medic gaps in mind.
+Bob (public): Bob here. No nomination from me. I'm holding my vote for the Night 4 result, and I'll vote on a concrete read when one appears.
+Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+(to Bob, Erin) Bob (Yakuza chat): Bob here. Plan for Night 4: Katana holder Erin (no move), target Frank. Frank is the one pushing trials and PMing Dave, and he may be the Executioner aiming at you, Erin. Killing him leaves Dave as the only Good player alive against two Yakuza. I spend no Ritualist token and no Medic action tonight. Erin, confirm holder Erin, target Frank, and we both submit exactly that. No daytime PMs about the plan.
+(to Bob, Erin) Erin (Yakuza chat): Erin here. Agreed with Bob's plan: Katana holder Erin (no move), target Frank. I'm submitting exactly that. Frank has no protection from us to fear, and he's the one pushing trials and PMing Dave. Bob, no Ritualist token and no Medic claim tonight. Day 5 plan: if Frank dies, Dave is the only Good player left against two of us. I'll spend my Fixer token on Dave tonight so his trial vote flips, and we nominate Dave on Day 5 with Bob voting Yes. Bob, confirm you'll vote Yes on Dave's nomination.
+(to Bob, Erin) Bob (Yakuza chat): Bob here. I agree: Katana holder Erin (no move), target Frank. Frank is the Good player pushing trials, so he goes tonight. I'd also like to add a Ritualist guess: I guess Dave is a Vanilla Villager, spending 1 token for a Standard attack on Dave. If I'm right, Dave dies with Frank and we win tonight. If I'm wrong, I lose a token and my cover, but Day 5 still works: with three alive, Erin's nomination of Dave plus my Yes is 2 of 3, and Bob plus Erin Guilty is 2 of 3 at trial even if Dave votes Innocent. Erin, save your Fixer token: it's redundant with two Yakuza votes, so keep it for a contingency such as Frank surviving. Confirm holder Erin, target Frank, and that you'll nominate Dave and vote Guilty on Day 5.
+(to Bob, Erin) Erin (Yakuza chat): Erin here. Confirmed: Katana holder Erin (no move), target Frank. I'm also spending my Fixer token tonight on Dave, so if he votes Innocent on Day 5 his vote counts as Guilty. That makes a 2-of-3 hang on Dave robust even if one of us wavers. Bob, your Ritualist guess on Dave is your call. If it's right, we win tonight; if it's wrong, Day 5 still works as planned. I'm submitting exactly holder Erin, target Frank, and Fixer on Dave.
+(to Bob, Erin) Bob (Yakuza chat): Bob, final submission: Katana holder Erin (no move), Katana target Frank. Erin, Fixer on Dave is fine. I'm also spending 1 ritual token: guess Dave is a Vanilla Villager, Standard attack on Dave. If that guess is right, Dave dies with Frank and we win tonight. If it's wrong, Day 5 still works: Erin nominates Dave, I vote Yes, and we both vote Guilty. Erin, submit exactly holder Erin, target Frank. Ready.
+(to Bob, Erin) Erin (Yakuza chat): Erin here. Final: Katana holder Erin (no move), target Frank. I'm spending my Fixer token on Dave tonight, so every trial vote he casts counts opposite to his intent. Bob: please do NOT spend the Ritualist token. A wrong guess announces you as a Ritualist at the start of Day 5, and the plan doesn't need it. Day 5 is locked without it: Frank dies tonight, three of us remain, I nominate Dave, and you vote Yes (2 of 3 needed). At trial, Erin Guilty plus Bob Guilty is 2 of 3, and my Fixer flips Dave's vote, so Dave hangs whatever he votes. Confirm: no ritual token, Yes on Dave's nomination, Guilty at trial.
+Night actions:
+  Bob (Ritualist): target Dave; guessed role Vanilla Villager; 1 token(s); "Ritualist guess: Dave is exactly a Vanilla Villager, spending 1 token for a Standard attack on Dave. Katana: holder Erin (no move), target Frank, as agreed."; Katana vote: Erin holds, attacks Frank
+  Erin (Fixer): target Dave; 1 token(s); "Fixer on Dave (1 token): Dave's Day 5 trial Guilty/Innocent votes count as the opposite. Katana holder stays Erin (no move), Katana target Frank, as agreed with Bob."; Katana vote: Erin holds, attacks Frank
+  Frank (Philanthropist): no action
+Katana: Erin holds it and attacks Frank.
+(to Bob) Moderator (private): Your guess was right: Dave is a Vanilla Villager. Your Standard Attack on Dave succeeded. 1 ritual token left.
+(to Erin) Moderator (private): You fixed Dave: his Guilty/Innocent trial votes tomorrow count as the opposite. 1 fixer token left. Your Katana attack on Frank succeeded.
+(to Bob, Erin) Moderator (private): Yakuza actions chosen tonight: Bob guessed that Dave is a Vanilla Villager, spending 1 ritual token for a Standard Attack. Erin used a fixer token on Dave. The Katana stays with Erin, who attacked Frank.
+(to Dave) Moderator (private): You were attacked by a Ritualist tonight. You died.
+(to Frank) Moderator (private): You were attacked with the Katana tonight. You died.
+[Moderator summary] Night 4: Bob (Ritualist) correctly guessed Dave = Vanilla Villager, spent 1 token (1 left) and dealt a Standard Attack, so Dave died (Ritualist). Erin (Fixer) fixed Dave and spent 1 token (1 left); this has no effect because Dave died. Erin kept the Katana and her Standard Katana attack killed Frank. Frank took no action. Visits: Erin->Dave, Erin->Frank. Bob and Erin (both Yakuza) are the only players left alive, so the Yakuza win.
+
+===== DAY 5 =====
+Dave died (killed by Ritualist). Their role isn't revealed. Their last will: "Dave's last will (Vanilla Villager, Village). I had no night action and no night information, so I can vouch for no one from my own knowledge. Judge the living by mechanics. Bob's Medic claim says N2 protection went to Dave, who was never attacked, while Alice and Grace were Katana-killed with no protection shown. Check that gap before trusting it. Erin and Frank: Alice's Night 1 census names one of them as Evil. Use Grace's and Alice's results, not repeated claims of "I'm Good". Do not hang anyone without a concrete mechanical reason. Village: vote on evidence, and do not let a Yakuza's Medic or Coroner claim go unchallenged."
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank, Philanthropist (Village, Good). No night action on Nights 1-3, so no night results. My 2 philanthropy tokens go to nobody. Mechanical read: Alice (Katana victim, so Good, so a real Census Taker) counted exactly one Evil among Carol, Erin and Frank. Carol is Good and I am Good, so Erin is Evil. Vote Erin. Bob's Medic protections (Dave on N2, nobody on N3) did not cover Alice or Grace."
+The game is over. Winners: Bob, Erin.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Night check] Night 4: correct
+[ERROR player_error] Frank (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use)
+[ERROR player_error] Dave (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use)
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Erin
+Cost by player (USD):
+  Alice (Census Taker)     $0.0000   14 calls  claude-haiku-5.5
+  Bob (Ritualist)          $0.0000   50 calls  claude-haiku-5.5
+  Carol (Bloodhound)       $0.0000    4 calls  claude-haiku-5.5
+  Dave (Vanilla Villager)  $0.0000   38 calls  claude-haiku-5.5
+  Erin (Fixer)             $0.0000   48 calls  claude-haiku-5.5
+  Frank (Philanthropist)   $0.0000   40 calls  claude-haiku-5.5
+  Grace (Coroner)          $0.0000   28 calls  claude-haiku-5.5
+  Moderator                $0.0000    5 calls  claude-opus-5.5
+  Night checks             $0.0000    4 calls  claude-opus-5.5
+  Strategy review          $0.0000    1 calls  claude-opus-5.5
+  Log review               $0.0000    1 calls  claude-opus-5.5
+  Total                    $0.0000  233 calls
