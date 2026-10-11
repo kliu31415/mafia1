@@ -181,7 +181,9 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   quota, $0 in the cost tables; list price and plan utilization are in each call's usage) and other models through
   OpenRouter. Each call is a fresh CLI process with no tools and the game's own system prompt; the moderator's tools
   become an answer schema (details in `claude_code.py`). A subscription limit is waited out, or stops the game for
-  `--resume` when it resets more than 6 hours later.
+  `--resume` when it resets more than 6 hours later. The same effort can think more through the CLI, so a model's
+  CLI default can differ (`cli_effort` in `MODELS`: Haiku medium). Logs record each player's route (`via`), and
+  `stats.py` counts Claude Code seats as their own model ("haiku-5.5 (CC)").
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in
   game logs: each new game updates a verbose notebook (`tips/tips_notebook.json`/`.md`: every tip with its
   evidence, weights and reports against it, changed only through small ops) and the short sheet players get

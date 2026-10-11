@@ -58,7 +58,7 @@ def test_a_player_call_runs_a_toolless_cli_with_the_games_prompt(monkeypatch):
     run = cli.runs[0]
     argv = run["argv"]
     assert argv[argv.index("--model") + 1] == "claude-haiku-5-5"
-    assert argv[argv.index("--effort") + 1] == "high"  # Haiku's default in MODELS
+    assert argv[argv.index("--effort") + 1] == "medium"  # Haiku's cli_effort in MODELS
     assert argv[argv.index("--tools") + 1] == ""  # no tools: no file access
     assert {"--safe-mode", "--no-session-persistence", "--strict-mcp-config"} <= set(argv)
     assert json.loads(argv[argv.index("--json-schema") + 1]) == SCHEMA
@@ -194,3 +194,12 @@ def test_each_seat_records_how_its_model_ran():
     assert [p["via"] for p in players([setup])] == ["claude_code", "api"]
     setup["settings"] = {"claude_code": True}  # log version 46 had only the setting
     assert [p["via"] for p in players([setup])] == ["claude_code", "claude_code"]
+
+
+def test_haiku_defaults_to_medium_only_through_the_cli():
+    from llm import ModelSpec
+    from mafia import resolve_effort
+    assert resolve_effort(ModelSpec(Model.HAIKU_5_5), None, cli=True).effort == "medium"
+    assert resolve_effort(ModelSpec(Model.HAIKU_5_5), None).effort == "high"
+    assert resolve_effort(ModelSpec(Model.OPUS_5_5), None, cli=True).effort == "high"
+    assert resolve_effort(ModelSpec(Model.HAIKU_5_5, "high"), None, cli=True).effort == "high"

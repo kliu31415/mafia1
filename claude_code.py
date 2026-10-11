@@ -183,7 +183,7 @@ class ClaudeCodeClient:
         if tools:
             system += tools_note(tools)
             schema = tools_schema(tools)
-        effort = cli_effort(effort or self.effort or default_effort(model))
+        effort = cli_effort(effort or self.effort or default_effort(model, cli=True))
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", suffix=".txt", delete=False) as f:
             f.write(system)  # a file: a long system prompt passes Windows' 32k-character command-line limit
         try:

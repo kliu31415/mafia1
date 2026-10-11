@@ -60,6 +60,9 @@ class ModelInfo:
     # by measured results). tips.py weights a lesson by its author's strength and the game's average.
     strength: int
     effort: str = "high"  # reasoning effort when nothing sets one (see "Reasoning effort" below)
+    # The default through the Claude Code CLI (--claude-code), where it differs: the same effort can think more there
+    # (claude_code.py's "Effort"), so this keeps a CLI seat's thinking near an API seat's.
+    cli_effort: str | None = None
     short_reason: bool = False  # players get the short "reason" note (see "Reasoning that comes back" below)
     # HACK for a model that starts public messages with "Name:" despite the prompt (day.drop_own_name strips it)
     name_prefix: bool = False
@@ -119,7 +122,9 @@ MODELS: dict[Model, ModelInfo] = {
     # Haiku 5.5 wrote "Name:" at the start of nearly every public message (game_20261009_084630_739772).
     # AA 43 at max, 38 at high. At high it can reason to the 16k cap on long late-game prompts; those turns retry at
     # medium (lower_effort), logged as effort_fallback.
-    Model.HAIKU_5_5: ModelInfo("haiku-5.5", "cheap", 2, short_reason=True, name_prefix=True),
+    # Through the Claude Code CLI, Haiku at high thought ~1.6-3x as much as through the API (5k vs ~1.8k output tokens a
+    # call, 23 s vs 9 s a day turn; game_20261011_085841_783834), and CLI medium matched API high, so it gets medium.
+    Model.HAIKU_5_5: ModelInfo("haiku-5.5", "cheap", 2, short_reason=True, name_prefix=True, cli_effort="medium"),
     Model.GPT_6_LUNA: ModelInfo("gpt-6-luna", "cheap", 2),  # AA 38
     # DeepSeek V4.1 Flash fills some strict-schema answers with whitespace runs to the token limit, like Solar and
     # MiMo but less often: 4 of 65 calls (2 fell back after the retry) in game_20261009_160331_601852, via Together;
@@ -213,8 +218,9 @@ def parse_model_spec(text: str) -> ModelSpec:
     return ModelSpec(parse_model(name), effort or None)
 
 
-def default_effort(model: Model) -> str:
-    return model.info.effort
+def default_effort(model: Model, cli: bool = False) -> str:
+    """The model's effort when nothing sets one; cli: for a call through the Claude Code CLI (ModelInfo.cli_effort)."""
+    return (cli and model.info.cli_effort) or model.info.effort
 
 
 def lower_effort(effort: str) -> str:

@@ -492,9 +492,11 @@ def write_views(log: GameLog, close: bool = False) -> Path | None:
     return report
 
 
-def resolve_effort(spec: ModelSpec, effort: str | None) -> ModelSpec:
-    """A spec's own effort, else --effort, else the model's default (MODELS in llm.py)."""
-    return ModelSpec(spec.model, spec.effort or effort or default_effort(spec.model))
+def resolve_effort(spec: ModelSpec, effort: str | None, cli: bool = False) -> ModelSpec:
+    """A spec's own effort, else --effort, else the model's default (MODELS in llm.py); cli: run through the Claude
+    Code CLI (--claude-code), whose defaults can differ (ModelInfo.cli_effort)."""
+    via_cli = cli and claude_code.routes(spec.model)
+    return ModelSpec(spec.model, spec.effort or effort or default_effort(spec.model, via_cli))
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -667,10 +669,10 @@ def main() -> None:
     roles, setup = choose_roles(ap, args, seed)
     try:
         # Efforts resolved here, so the log records what each model actually used.
-        models = [resolve_effort(parse_model_spec(m), args.effort) for m in args.players.split(",")]
-        moderator = resolve_effort(parse_model_spec(args.moderator), args.effort)
+        models = [resolve_effort(parse_model_spec(m), args.effort, args.claude_code) for m in args.players.split(",")]
+        moderator = resolve_effort(parse_model_spec(args.moderator), args.effort, args.claude_code)
         fallback = (None if args.moderator_fallback == "none"
-                    else resolve_effort(parse_model_spec(args.moderator_fallback), args.effort))
+                    else resolve_effort(parse_model_spec(args.moderator_fallback), args.effort, args.claude_code))
     except ValueError as e:
         ap.error(str(e))
     update_tips = (None if args.no_update_tips else args.update_tips or (
