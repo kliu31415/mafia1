@@ -12,3 +12,19 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 7 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+Night actions:
+  Alice (Census Taker): target Bob; "Census Taker action: take a census around Bob."
+  Bob (Coroner): no action
+  Carol (Chronicler): no action
+  Dave (Clerk): no role action; Katana vote: Dave holds, attacks Frank
+  Frank (Archivist): no action
+  Grace (Arsonist): target Alice; "Douse Alice (no token needed) to start building toward an ignite."
+Katana: Dave holds it and attacks Frank.
+(to Alice) Moderator (private): Your census of Bob, Dave and Frank counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Dave) Moderator (private): Your Katana attack on Frank succeeded tonight.
+(to Grace) Moderator (private): You doused Alice tonight.
+[Moderator summary] Night 1: Alice (Census Taker) took a census around Bob (code resolved). Grace (Arsonist) doused Alice (Good, not told). Dave (Clerk, Katana holder) held the clerk token and attacked Frank with the Katana (Standard vs None): Frank (Archivist) died, killed by Katana. Bob, Carol, Erin, Frank took no actions. Visits: Alice->Bob, Grace->Alice, Dave->Frank.
+[Night check] Night 1: correct
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
