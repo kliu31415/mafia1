@@ -483,3 +483,26 @@ def test_a_game_stopped_at_the_weekly_cap_can_be_resumed(tmp_path, monkeypatch):
     ckpt = load(ckpt_path)
     mafia.play_game(MockClient(seed), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
     assert json.loads(log.read_text(encoding="utf-8").splitlines()[-1])["kind"] == "result"
+
+
+def test_an_answer_cut_off_at_the_output_cap_comes_back_as_length_without_a_retry():
+    """The CLI reports its output cap as a failed call; retrying it the same way fails again, so it comes back like
+    OpenRouter's finish_reason "length", for the caller's retry at lower effort (Players.ask, tips.ask)."""
+    cut = {"type": "result", "subtype": "success", "is_error": True, "stop_reason": "stop_sequence",
+           "result": "API Error: Claude's response exceeded the 200 output token maximum. To configure this behavior, "
+                     "set the CLAUDE_CODE_MAX_OUTPUT_TOKENS environment variable."}
+    cli = FakeCli(("events", [cut]))
+    client = ClaudeCodeClient(None, runner=cli, max_tokens=200)
+    reply = client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    assert reply.finish_reason == "length" and reply.content is None and len(cli.runs) == 1
+    assert cli.runs[0]["env"]["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] == "200"  # set although CLAUDE* variables are dropped
+
+
+def test_tools_outside_games_use_the_cli_where_it_s_installed(monkeypatch):
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setattr(claude_code, "available", lambda: True)
+    client = claude_code.default_client(max_tokens=64_000)
+    assert isinstance(client, ClaudeCodeClient) and client.other is None and client.max_tokens == 64_000
+    monkeypatch.setenv("OPENROUTER_API_KEY", "sk-test")
+    monkeypatch.setattr(claude_code, "available", lambda: False)
+    assert not isinstance(claude_code.default_client(), ClaudeCodeClient)

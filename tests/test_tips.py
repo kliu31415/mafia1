@@ -271,3 +271,22 @@ def test_pinned_entries_are_marked_for_the_sheet(tmp_path):
     assert "PINNED:" not in client.prompts[-1][1]
     with pytest.raises(SystemExit, match="t9"):
         tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t9"])
+
+
+def test_a_tips_answer_cut_off_at_the_output_cap_is_asked_again_one_effort_lower():
+    class CutOnce:
+        def __init__(self):
+            self.efforts: list = []
+            self.alerts: list = []
+            self.on_error = lambda kind, error, **data: self.alerts.append((kind, data))
+
+        def chat(self, model, messages, *, schema=None, schema_name="", effort=None, tools=None):
+            self.efforts.append(effort)
+            cut = len(self.efforts) == 1
+            return LLMReply(content=None if cut else '{"ops": []}', reasoning=None, tool_calls=[], message={},
+                            model=model.value, cost=0.5, usage={}, finish_reason="length" if cut else None)
+    client = CutOnce()
+    spec = ModelSpec(Model.OPUS_5_5, "high")
+    reply = tips.ask(client, spec, [], tips.OPS_SCHEMA, "notebook_ops")  # type: ignore[arg-type]
+    assert client.efforts == ["high", "medium"] and reply.content == '{"ops": []}' and reply.cost == 1.0
+    assert client.alerts == [("effort_fallback", {"from_effort": "high", "to_effort": "medium"})]

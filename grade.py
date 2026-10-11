@@ -17,7 +17,8 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from llm import OpenRouterClient, answer_json, cache_block, load_api_key, parse_model_spec, rules_system
+from claude_code import default_client
+from llm import LLMClient, answer_json, cache_block, parse_model_spec, rules_system
 from players import STR, obj
 import scripts
 import variants
@@ -93,7 +94,7 @@ def reason_notes(records: list[dict], name: str) -> str:
     return "\n".join(lines) or "(none recorded)"
 
 
-def grade_game(client: OpenRouterClient, spec, rules: str, path: Path, out_dir: Path) -> list[dict]:
+def grade_game(client: LLMClient, spec, rules: str, path: Path, out_dir: Path) -> list[dict]:
     records = [json.loads(line) for line in path.open(encoding="utf-8")]
     setup = next(r for r in records if r["kind"] == "setup")
     result: dict = next((r for r in records if r["kind"] == "result"), {})
@@ -139,7 +140,7 @@ def main() -> None:
     ap.add_argument("--out", type=Path, default=ROOT / "grades")
     args = ap.parse_args()
     spec = parse_model_spec(args.judge)
-    client = OpenRouterClient(load_api_key())
+    client = default_client()  # Claude judges through the Claude Code CLI where it's installed
     rules = RULES_PATH.read_text(encoding="utf-8")
     total = sum(r["cost"] for path in args.logs for r in grade_game(client, spec, rules, path, args.out))
     print(f"total ${total:.2f}")

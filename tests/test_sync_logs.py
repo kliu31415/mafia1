@@ -300,7 +300,9 @@ def test_a_pc_game_first_adds_new_cloud_games_to_the_tips(machines, monkeypatch)
     logs, tips = pc.root / "logs", pc.root / "tips"
     assert [w.name for w in sync_logs.catch_up(pc, logs, tips, "opus-5.5")] == ["game_1.jsonl"]
     assert built == [(["game_1.jsonl"], "opus-5.5")]
-    assert sync_logs.catch_up(pc, logs, tips, "opus-5.5") == [] and len(built) == 1  # nothing new: no build
+    # Nothing new to copy, but the build runs again: it adds games an earlier failed build left out (and makes no
+    # call when it has every game)
+    assert sync_logs.catch_up(pc, logs, tips, "opus-5.5") == [] and len(built) == 2
 
 
 def test_get_copies_one_game_s_files_so_a_lost_cloud_game_can_resume_elsewhere(machines):

@@ -182,7 +182,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
 - Claude models' calls run through the Claude Code CLI (`claude -p`, the signed-in subscription's
   quota, $0 in the cost tables; list price and plan utilization are in each call's usage) wherever a `claude`
   command is on PATH (the default since Oct 11 2026; `--no-claude-code` sends them through OpenRouter, `--claude-code`
-  insists on the CLI), and other models through OpenRouter, so a game can mix both. On Kevin's PC `claude` (and `codex`)
+  insists on the CLI), and other models through OpenRouter, so a game can mix both. Tools outside games (tips builds,
+  catch-up and `sync_logs.py pull`, `grade.py`, `scripts.py revise`) route the same way (`claude_code.default_client`). On Kevin's PC `claude` (and `codex`)
   are launchers in `~/.local/bin` that run the desktop app's newest bundled CLI (source in `~/.local/share/cli-launcher`).
   When a Claude seat misbehaves, check whether the CLI route is the cause (`via` in the log) before the game code.
   Each call is a fresh CLI process with no tools and the game's own system prompt; the moderator's tools

@@ -485,7 +485,7 @@ def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None) 
         print(f"Copied {len(written)} files into {log_dir}" + "".join(f"\n  {w.name}" for w in written))
     for name in kept:
         print(f"ALERT sync_error: kept {name}: the local copy differs from the branch's (not overwritten)")
-    if tips_model and any(w.name.startswith("game_") and w.suffix == ".jsonl" for w in written):
+    if tips_model:  # even with no new logs: a build that failed earlier left some games out
         rebase_tips(repo, tips_dir, log_dir)  # the build below adds every game it lacks anyway
         # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
         update_tips(sorted(log_dir.glob("game_*.jsonl")), tips_dir, tips_model)
@@ -495,9 +495,8 @@ def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None) 
 def update_tips(games: list[Path], tips_dir: Path, model: str) -> None:
     """Adds the pulled games' lessons to the tips notebook, as a game run here does when it ends."""
     import tips
-    from llm import OpenRouterClient, load_api_key, parse_model_spec
-    client = OpenRouterClient(load_api_key())
-    client.on_error = tips.print_alert
+    from llm import parse_model_spec
+    client = tips.tool_client()  # Claude models through the Claude Code CLI where it's installed
     try:
         tips.build(games, tips_dir / "tips.md", client, parse_model_spec(model), 800)
     except tips.NoNewGames as e:

@@ -46,8 +46,9 @@ from typing import Any
 
 import gamelogs
 import variants
-from llm import (DEFAULT_STRENGTH, LLMClient, MockClient, ModelSpec, OpenRouterClient, answer_json, load_api_key,
-                 model_strength, parse_model_spec)
+from llm import (DEFAULT_STRENGTH, LLMClient, LLMReply, MockClient, ModelSpec, answer_json, default_effort,
+                 lower_effort, model_strength, parse_model_spec)
+from claude_code import default_client, route
 from players import obj
 from records import read_records, safe_print
 from roles import ROLES
@@ -318,10 +319,26 @@ def update_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, g:
          "contradict the rules, and lessons from players marked as barely playing. Several ops can come "
          "from one lesson, and no ops is fine if the game taught nothing new."},
     ]
-    reply = client.chat(spec.model, messages, schema=OPS_SCHEMA, schema_name="notebook_ops", effort=spec.effort)
+    reply = ask(client, spec, messages, OPS_SCHEMA, "notebook_ops")
     ops = answer_json(reply, OPS_SCHEMA)["ops"]
     skipped = apply_ops(nb, ops, g["game"])
     return len(ops) - skipped, skipped, reply.cost
+
+
+def ask(client: LLMClient, spec: ModelSpec, messages: list[dict], schema: dict, name: str) -> LLMReply:
+    """One structured call; an answer cut off at the output cap is asked again one effort step lower (more room
+    for the answer), as players' turns are. On Oct 11 2026 a notebook update's ops for a lesson-heavy game were cut
+    off at ~22.7k characters (OpenRouter's 16k-token cap), so the pre-game catch-up stopped with the sheet stale."""
+    reply = client.chat(spec.model, messages, schema=schema, schema_name=name, effort=spec.effort)
+    effort = spec.effort or default_effort(spec.model, cli=route(client, spec.model) == "claude_code")
+    if reply.finish_reason == "length" and lower_effort(effort) != effort:
+        if (on_error := getattr(client, "on_error", None)):
+            on_error("effort_fallback", f"a tips answer ({name}) was cut off at the output cap at {effort} effort; "
+                     f"asking again at {lower_effort(effort)}", from_effort=effort, to_effort=lower_effort(effort))
+        retry = client.chat(spec.model, messages, schema=schema, schema_name=name, effort=lower_effort(effort))
+        retry.cost += reply.cost
+        return retry
+    return reply
 
 
 def revise_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, note: str) -> tuple[list[dict], float]:
@@ -343,7 +360,7 @@ def revise_notebook(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, no
          "Leave entries that still hold alone (no op). Don't use support or against."
          + (f"\n\nInstructions for this revision: {note}" if note else "")},
     ]
-    reply = client.chat(spec.model, messages, schema=OPS_SCHEMA, schema_name="notebook_ops", effort=spec.effort)
+    reply = ask(client, spec, messages, OPS_SCHEMA, "notebook_ops")
     ops = [o for o in answer_json(reply, OPS_SCHEMA)["ops"] if o["op"] not in ("support", "against")]
     return ops, reply.cost
 
@@ -395,7 +412,7 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          "advice that relies on what they hide, such as reading a dead player's role or who voted which way.\n"
          f"- At most {max_words} words in total; drop the weakest unpinned tips first."},
     ]
-    reply = client.chat(spec.model, messages, schema=DISTILL_SCHEMA, schema_name="tips", effort=spec.effort)
+    reply = ask(client, spec, messages, DISTILL_SCHEMA, "tips")
     order = {h: i for i, h in enumerate(HEADINGS)}
     out = []
     for s in sorted(answer_json(reply, DISTILL_SCHEMA)["sections"], key=lambda s: order.get(s["heading"], len(order))):
@@ -585,6 +602,14 @@ def pin(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, ids: list
                               f"{'un' if unpin else ''}pinned {', '.join(ids)}")
 
 
+def tool_client(timeout: float | None = None) -> LLMClient:
+    """Builds' client: Claude models through the Claude Code CLI where it's installed (claude_code.default_client),
+    with room for a long answer (REVISE_MAX_TOKENS), and errors printed as ALERT lines."""
+    client = default_client(max_tokens=REVISE_MAX_TOKENS, timeout=timeout)
+    client.on_error = print_alert  # type: ignore[attr-defined]
+    return client
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -618,13 +643,11 @@ def main() -> None:
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
         return
     if args.cmd == "pin":
-        pin(Path(args.out), OpenRouterClient(load_api_key()), parse_model_spec(args.model), args.max_words, args.ids,
-            args.unpin)
+        pin(Path(args.out), tool_client(), parse_model_spec(args.model), args.max_words, args.ids, args.unpin)
         return
     if args.cmd == "revise":
         # one answer covers the whole notebook (hundreds of entries), far past a game turn's 16k-token cap
-        reviser = OpenRouterClient(load_api_key(), max_tokens=REVISE_MAX_TOKENS, timeout=REVISE_DEADLINE_S)
-        reviser.on_error = print_alert
+        reviser = tool_client(timeout=REVISE_DEADLINE_S)
         revise(Path(args.out), reviser, parse_model_spec(args.model), args.max_words, args.note)
         return
     prefix = "mock" if args.mock else "game"
@@ -640,9 +663,7 @@ def main() -> None:
         paths |= set(found)
     paths = {p for p in paths
              if p.suffix == ".jsonl" and re.match(r"(game|mock)_\d", p.name) and p.stem not in excluded}
-    client = MockClient(0) if args.mock else OpenRouterClient(load_api_key())
-    if isinstance(client, OpenRouterClient):
-        client.on_error = print_alert
+    client = MockClient(0) if args.mock else tool_client()
     try:
         build(sorted(paths), out, client, parse_model_spec(args.model), args.max_words, include_mock=args.mock,
               fresh=args.fresh)

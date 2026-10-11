@@ -259,8 +259,8 @@ def main() -> None:
     if args.command == "check" or not todo:
         print("Stale: " + (", ".join(todo) if todo else "none"))
         return
-    from llm import OpenRouterClient, load_api_key
-    client = OpenRouterClient(load_api_key())
+    from claude_code import default_client
+    client = default_client()  # Claude models through the Claude Code CLI where it's installed
     for name in todo:
         meta = revise(client, rules, name, args.reviser)
         print(f"{name}: {len(meta['edits'])} edits, ${meta['cost']:.2f}")

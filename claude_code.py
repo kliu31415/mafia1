@@ -45,7 +45,8 @@ import time
 from collections.abc import Callable
 from typing import Any
 
-from llm import LLMClient, LLMReply, MockClient, Model, default_effort, text_of
+from llm import (API_KEY_ENV_VAR, DEFAULT_MAX_TOKENS, LLMClient, LLMReply, MockClient, Model, OpenRouterClient,
+                 default_effort, load_api_key, text_of)
 
 CLI_EFFORTS = ("low", "medium", "high", "xhigh", "max")
 CALL_DEADLINE_S = 900  # one call, CLI start-up and its own API retries included (Opus turns took up to ~210 s)
@@ -108,6 +109,14 @@ def run_cli(argv: list[str], stdin: str, env: dict[str, str], cwd: str, timeout:
     return p.returncode, p.stdout, p.stderr
 
 
+def cut_off(result: dict) -> bool:
+    """Whether the CLI stopped the answer at its output cap (CLAUDE_CODE_MAX_OUTPUT_TOKENS): it reports that as a
+    failed call ("API Error: Claude's response exceeded the N output token maximum"), not as a max_tokens stop. Like
+    OpenRouter's finish_reason "length", it comes back as a reply with no answer, so a caller can retry at lower
+    effort (llm.lower_effort) instead of the same call failing again."""
+    return "output token maximum" in str(result.get("result") or "")
+
+
 def tools_schema(tools: list[dict]) -> dict:
     """The answer schema for a call with tools: the calls to make, in order, each one tool's name and arguments."""
     options = []
@@ -163,13 +172,31 @@ def unquote_empty(x: Any) -> Any:
     return x
 
 
+def default_client(effort: str | None = None, max_tokens: int = DEFAULT_MAX_TOKENS,
+                   timeout: float | None = None) -> LLMClient:
+    """The client for tools outside a game (tips builds, grading, script revisions): Claude models through the
+    Claude Code CLI where it's installed, as games do (Kevin, Oct 11 2026: the subscription instead of paid API
+    calls; the PLAN_CAPS apply), and other models, or every model without the CLI, through OpenRouter. timeout:
+    one call's deadline (None: each client's default)."""
+    def openrouter() -> OpenRouterClient:
+        client = OpenRouterClient(load_api_key(), effort=effort, max_tokens=max_tokens)
+        client.timeout = timeout or client.timeout
+        return client
+    if not available():
+        return openrouter()
+    return ClaudeCodeClient(openrouter() if os.environ.get(API_KEY_ENV_VAR, "").strip() else None, effort=effort,
+                            timeout=timeout or CALL_DEADLINE_S, max_tokens=max_tokens)
+
+
 class ClaudeCodeClient:
     """An LLMClient that runs Claude models through the Claude Code CLI and passes other models to `other` (an
     OpenRouterClient, or None when there's no key: then a non-Claude model is an error)."""
 
     def __init__(self, other: LLMClient | None, effort: str | None = None, timeout: float = CALL_DEADLINE_S,
-                 runner: Runner = run_cli, cli: str | None = None, caps: dict[str, float] | None = None):
+                 runner: Runner = run_cli, cli: str | None = None, caps: dict[str, float] | None = None,
+                 max_tokens: int | None = None):
         self.other = other
+        self.max_tokens = max_tokens  # None: the CLI's own output cap
         self.caps = dict(PLAN_CAPS if caps is None else caps)
         self.plan_resets: dict[str, float] = {}  # when each window resets (epoch seconds)
         self.cap_lock = threading.Lock()
@@ -226,7 +253,10 @@ class ClaudeCodeClient:
             self._hold_for_caps(model)
             started = time.monotonic()
             try:
-                code, out, err = self.runner(argv, prompt, child_env(), self.cwd, self.timeout)
+                env = child_env()
+                if self.max_tokens:  # child_env drops CLAUDE* variables, so the cap is set here
+                    env["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(self.max_tokens)
+                code, out, err = self.runner(argv, prompt, env, self.cwd, self.timeout)
             except subprocess.TimeoutExpired:
                 code, out, err = -1, "", f"no answer after {self.timeout:g} s"
             except OSError as e:  # e.g. the CLI isn't installed
@@ -241,6 +271,8 @@ class ClaudeCodeClient:
             result = next((e for e in reversed(events) if e.get("type") == "result"), None)
             if result and (result.get("subtype") == "success" and not result.get("is_error")
                            or "structured_output" in str(result.get("subtype"))):  # an unusable answer: no retry
+                return events
+            if result and cut_off(result):  # retrying the same call would be cut off again: the caller decides
                 return events
             if "--thinking-display" in argv and "--thinking-display" in err:  # an older CLI without the option
                 i = argv.index("--thinking-display")
@@ -399,4 +431,4 @@ class ClaudeCodeClient:
                         model=model.value, cost=0.0, usage=usage,
                         stop_note=f"Claude Code: {result.get('subtype')}, stop_reason {result.get('stop_reason')}"
                         + (f", {str(result['errors'])[:300]}" if result.get("errors") else ""),
-                        finish_reason="length" if "max_tokens" in stops else None)
+                        finish_reason="length" if "max_tokens" in stops or cut_off(result) else None)
