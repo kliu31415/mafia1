@@ -189,7 +189,7 @@ ROLES: dict[str, RoleInfo] = {
     "Ritualist": RoleInfo(Alignment.EVIL, "Yakuza", True,
                           summary="Token: guess a player's exact role; if right, attack them, "
                           "if wrong, exposed at dawn.",
-                          tokens={"ritual": 2}, acts_at_night=True,
+                          tokens={"ritual": 2}, acts_at_night=True, tested=True,
                           notes="moderator resolves the guess; its night note says to announce a wrong guess with a "
                           "public tell at night, read out at dawn"),
     "Puppeteer": RoleInfo(Alignment.EVIL, "Yakuza", True,
@@ -219,7 +219,7 @@ ROLES: dict[str, RoleInfo] = {
                                "in the next day's trials"),
     "Fixer": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="Token: one player's trial votes count as the opposite the next Day; nobody is told.",
-                      tokens={"fixer": 2}, acts_at_night=True,
+                      tokens={"fixer": 2}, acts_at_night=True, tested=True,
                       notes="moderator records the use with the fix op (a visit); code reverses the counted vote "
                       "in the next day's trials"),
     "Diviner": RoleInfo(Alignment.EVIL, "Yakuza", True,
