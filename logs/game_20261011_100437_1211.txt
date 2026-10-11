@@ -1,0 +1,244 @@
+Setup:
+  Alice    seat 1  Bounty Hunter     anthropic/claude-haiku-5.5
+  Bob      seat 2  Seer              anthropic/claude-haiku-5.5
+  Carol    seat 3  Trapper           anthropic/claude-haiku-5.5
+  Dave     seat 4  Eavesdropper      anthropic/claude-haiku-5.5
+  Erin     seat 5  Fabricator        anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Puppeteer         anthropic/claude-haiku-5.5
+  Heidi    seat 8  Veteran           anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Erin, Grace) Erin (Yakuza chat): Grace, I propose no Katana attack tonight. Nobody's role is known yet, and an early kill with no information just gives the Village a corpse to read. Katana stays with you. I'll use my Fabricator visit on a Village player to frame them as Evil for tonight. Object now if you disagree, otherwise we both submit no target and keep the Katana where it is.
+(to Erin, Grace) Grace (Yakuza chat): Agreed, Erin. No Katana attack tonight and the Katana stays with me. We both submit no target and I keep my puppet token for later.
+(to Erin, Grace) Erin (Yakuza chat): Agreed. No Katana target tonight, and the Katana stays with Grace. I'll use my Fabricator visit to frame Bob as Evil for tonight, with no forged will and no token spent. Submitting no target.
+(to Erin, Grace) Grace (Yakuza chat): Confirmed: no Katana target tonight and the Katana stays with Grace. Erin's visit on Bob is fine by me. Nothing more from me. Ready.
+Night actions:
+  Alice (Bounty Hunter): no action
+  Bob (Seer): no action
+  Carol (Trapper): target Dave; "Place trap on Dave; it arms from Night 2."
+  Dave (Eavesdropper): target Erin
+  Erin (Fabricator): target Bob; "Fabricator visit on Bob to frame them as Evil for Night 1. No forged will, no token spent."; Katana vote: Grace holds, attacks None
+  Grace (Puppeteer): no role action; Katana vote: Grace holds, attacks None
+  Heidi (Veteran): 1 token(s); "Going on alert for Night 1 as protection against a Standard Katana attack; no target needed."
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Bob) Moderator (private): Seer result for tonight: Heidi and Dave have the same alignment. You have 1 seer token left.
+(to Carol) Moderator (private): You placed your trap on Dave tonight. It is armed from the next night on.
+(to Erin) Moderator (private): You framed Bob tonight (no will forged). You have 1 fabricator token left.
+(to Heidi) Moderator (private): You went on alert tonight. Nobody visited you. You have 2 alert tokens left.
+[Moderator summary] Night 1: No deaths. Carol trapped Dave (armed from N2). Dave eavesdrops Erin for Day 2. Erin framed Bob (no forge, token kept). Grace kept Katana, no attack. Heidi alerted (2 tokens left), no visitors. Bob's random Seer pair: Heidi & Dave, same alignment. Visits: Carol->Dave, Dave->Erin, Erin->Bob.
+(to Erin) Moderator (private): Yakuza night summary: Grace holds the Katana, with no Katana attack. Grace (Puppeteer) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana, with no Katana attack. Erin (Fabricator) chose to act on Bob ("Fabricator visit on Bob to frame them as Evil for Night 1. No forged will, no token spent.").
+
+===== DAY 2 =====
+Nobody died last night.
+(to Dave) You are eavesdropping on Erin today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Erin.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Night check] Night 1: correct
+[Claim] Erin: Sheriff. N1: checked Bob, Evil.
+Erin (public): Erin here. I am claiming Sheriff. Night 1 I checked Bob and got Evil. Bob, please explain your Night 1 and anyone else with a Sheriff claim should speak now.
+Frank (public): Frank here, Vanilla Villager with no night info. Erin's Sheriff claim is a lead. Bob, answer it. Anyone with a conflicting Sheriff claim, speak now.
+Grace (public): Grace here. I have no night info beyond the Night 1 Yakuza chat I can't share. Erin's Sheriff claim and Bob Evil result are a real lead, and Bob needs to answer it plainly: what did you do Night 1, and do you have any counter-claim? I'll judge on his answer.
+Heidi (public): Heidi here. I have no useful Night 1 result to share yet. Bob needs to answer Erin's Evil read directly. I'll hold my role info until it matters.
+Alice (public): Alice here. No night info to share yet. Bob, answer Erin's Evil read directly, then I'll decide my votes.
+[Claim] Bob: Seer. N1: Heidi and Dave have the same alignment. 1 seer token left.
+Bob (public): Bob here. I am the Seer, not a Sheriff, so Erin's Evil read on me is false. My Night 1 Seer result: Heidi and Dave have the same alignment. Erin, which player did you check on Night 1 other than me? Players should weigh Erin's claim against mine.
+Carol (public): Carol here. I have no night result to share yet. Erin and Bob conflict on role, so both should say plainly who they checked on Night 1 and what they did. I'll judge on the answers and on results, not volume.
+Dave (public): Dave here. I have no night result to share. Erin and Bob conflict on role, so each should name every Night 1 target and result. I'll vote on consistency, not volume.
+Erin (public): Erin again. My Sheriff result stands: Bob reads Evil. Bob, a Seer who says Heidi and Dave match does not answer my check. Name your Night 1 target the way I named mine, and vote on the Evil read, not on who talks loudest.
+Frank (public): Frank here. Erin and Bob, each of you name every Night 1 target and result, in full. Erin, did you check anyone besides Bob? Bob, your pair result doesn't answer Erin's Evil read on you. I'll vote on consistency.
+Grace (public): Grace here. Erin's Sheriff check on Bob is specific, and Bob's pair result doesn't answer it. Bob, explain plainly why Erin would have Evil on you, or name the exact reason your Seer result exposes her. I'm leaning toward you until you answer directly.
+[Claim] Heidi: Veteran. N1: went on alert, no visitors. 2 alert tokens left.
+Heidi (public): Heidi here, Veteran, not a Sheriff or Seer. Night 1 I went on alert and nobody visited me. Erin and Bob both need to explain their Night 1 reasoning in full before I vote on either of them.
+Alice (public): Alice here. Erin claims Sheriff and Bob claims Seer, and both can't be true. Erin named one check, and Bob's pair result can't be verified. I'm not voting until one account holds up under questions.
+Bob (public): Bob again. I am the Seer, Good, and Erin's Evil read on me is false. Erin, you have named only one Night 1 check, on me. Name any other target and result. Heidi, did you visit or check anyone on Night 1? Frank, Grace and Carol, vote on answers to questions, not on who talks most. I will post my Night 2 Seer result in the next Day.
+Carol (public): Carol here. I have no night result to share yet. Erin, name every Night 1 target and result. Bob, explain what your pair result tells us. I'll vote on direct answers, not volume.
+Dave (public): Dave here. I know my own alignment is Good. So Bob's pair result, Heidi and Dave the same, means Heidi is Good too, which fits Heidi's Veteran claim. Erin, you have named one check, on Bob. Name any other Night 1 target and result, and Bob, post your pair results in full.
+Erin (public): Erin again. On Night 1 I checked only Bob, and the result was Evil. Bob, a Seer's pair result about Heidi and Dave doesn't answer a Sheriff check on you. Answer it directly: why would a Good Seer read Evil to a Sheriff, and what did you do Night 1 besides the pair? Heidi and Dave both saying Good settles nothing yet.
+Frank (public): Frank here. Dave's point holds: Bob's pair says Heidi and Dave match, and Dave reads Good, so Heidi reads Good too, which fits her Veteran claim. Erin and Bob still directly conflict on Sheriff vs Seer. Bob, why would a Good Seer read Evil to a Sheriff, and what did you learn on Night 2? Erin, who did you check on Night 2?
+[Claim] Grace: Vanilla Villager. No night action, no results.
+Grace (public): Correction to my earlier line: I meant I have no night information, and I'm a Village-side player with no night result. Bob, there is no Night 2 yet, so asking what you learned on Night 2 can't be answered. Your only result is the pair on Heidi and Dave, and Erin's Evil read on you is still just a claim.
+Heidi (public): Heidi here. Bob's pair result says Heidi and Dave match. I know I'm Good, so if Bob is honest, Dave is Good too. Erin, did you check anyone on Night 1 besides Bob? Sheriff and Seer can't both be true, so one of you is lying. I'm holding my vote until someone answers plainly.
+Alice (public): Alice here, no Night 1 action to report. Erin and Bob can't both be true, so I'm watching who answers questions directly. Erin, did you check anyone besides Bob? Bob, what exactly did your pair show?
+Bob (public): Bob again. Erin's Evil read on me is false, because I am a Good Seer. So Erin's Sheriff claim is the lie. My pair result says Heidi and Dave match, and Dave reads Good, so Heidi reads Good too. I'm nominating Erin now. Frank, Grace, Carol, Alice and Heidi, vote on who is lying, not on volume.
+Bob nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Bob, Carol, Heidi; No - Dave, Erin, Frank, Grace, Alice
+Nomination votes on Erin: 3 Yes (the votes are secret).
+The nomination of Erin failed (3 Yes).
+[Claim] Carol: Trapper. N1: trap placed on Dave (armed from N2).
+Carol (public): Carol here. I'm a Trapper, not a Sheriff or Seer. My trap is on Dave, armed from Night 2, and it only goes off if a non-Village player visits Dave. Erin and Bob, one of you is lying, so I'll vote on direct answers and results.
+Dave (public): Dave here. Grace, your first post said you had no night info beyond the Night 1 Yakuza chat you can't share. Vanilla Villagers have no night chat, and you only corrected it after the slip. Explain that plainly. Bob, answer Erin's Sheriff check directly: what did you do on Night 1 besides the pair?
+Erin (public): Erin again. Dave is right that Grace's Yakuza chat slip needs a plain answer, not a correction. On Bob: a Seer's pair result on Heidi and Dave can't be checked, and Bob answers my Evil read on him by naming two other players. My Sheriff check on Bob is Evil, and that stands. Bob, if you were a Seer, state every Night 1 result you have, or the Village should weigh that silence.
+Frank (public): Frank here. Grace, your first post said you had no night info beyond the Night 1 Yakuza chat you can't share. Vanilla Villagers have no night chat, so that slip needs a straight answer, not a correction. Erin and Bob, Night 2 results will show who is lying.
+Grace (public): Grace here. My first line was a slip: I'm a Vanilla Villager with no night chat, and I should not have written 'Yakuza chat'. I voted No on Erin's nomination because Sheriff and Seer can't both be right yet. Bob, how was your Night 1 pair chosen, and what alignment did each player show?
+Heidi (public): Heidi again. Grace, a Vanilla Villager has no Yakuza chat, so 'I can't share my Night 1 Yakuza chat' is the strongest tell on the board. Explain it plainly. I'm still holding my vote between Erin and Bob until we see Night 2 results.
+Alice (public): Alice here. Grace's 'Yakuza chat' slip was not fixed by a correction, and I want a plain answer on it. Erin and Bob: one of you is lying, and I want each Night 2 result stated in full before I vote. I'm not nominating yet.
+Bob (public): Bob again. Grace's 'Yakuza chat' slip is the clearest tell on the board: a Vanilla Villager has no night chat, and a correction after the fact doesn't explain it. Grace, answer plainly why you wrote it. Erin's Sheriff claim still conflicts with my Seer result, and I'll vote once Night 2 results are out.
+Carol (public): Carol here. My trap is on Dave, armed from Night 2, and it only goes off if a non-Village player visits Dave. I'll post a trap hit the morning it happens. Erin and Bob, Night 2 results will decide this, so I'm not nominating yet. Grace, your Yakuza-chat slip still needs a plain answer.
+Dave (public): Dave here. Grace's 'Yakuza chat' slip still has no plain answer, and a correction after the fact doesn't explain it. Erin and Bob: Night 2 results come next Day, so each of you should state now the Night 2 target you plan and the result you expect. I'm voting on consistency, not volume.
+Erin (public): Erin again. My Sheriff check on Bob is Evil, and it stands. Bob, a pair on Heidi and Dave doesn't answer a Sheriff check on you. Grace's slip was corrected on record, so I'm weighing Night 2 results over chat wording. I'm not voting until we see them.
+Frank (public): Grace still hasn't explained the 'Yakuza chat' slip in one plain sentence. Grace, answer that directly. Erin and Bob, state your planned Night 2 targets now. I'm not nominating yet.
+Grace (public): Grace again. The 'Yakuza chat' wording was a mistake. I was thinking of my own private night notes, not any chat. I'm a Vanilla Villager with no night action. I'm not voting until Night 2 results are out, and Erin and Bob should each post theirs in full.
+Heidi (public): Heidi here. I voted Yes on Erin's nomination. I know I'm Good, so Bob's pair makes Dave Good if Bob is honest. Grace, explain the Yakuza chat slip in one sentence. Erin and Bob, state your Night 2 targets.
+Alice (public): Alice here. Grace's 'Yakuza chat' slip still has no plain one-sentence explanation. Erin and Bob, one of you is lying, so state your Night 2 targets now. I'm not nominating yet.
+Bob (public): Bob here. Grace's 'Yakuza chat' slip is still the clearest tell on the board. Erin's Sheriff claim is a lie. My Night 2 pair result comes next Day.
+[Claim] Carol: Trapper. N1: trap placed on Dave (armed from N2). D2: Yes on Erin's nomination.
+Carol (public): Carol again. Erin and Bob still conflict on Sheriff vs Seer, and Night 2 results will settle it. My trap on Dave arms tonight: if a non-Village player visits Dave, it goes off and I'll report that it went off. Grace, the Yakuza-chat slip still needs a one-sentence explanation.
+Dave (public): Dave again. Grace's 'Yakuza chat' slip still has no plain explanation, and I'm weighing it. Erin and Bob, post your Night 2 targets now.
+Erin (public): Erin again. My Sheriff check on Bob stands: Evil. Bob's Seer pair can't settle that, so I'm waiting for Night 2 results before any vote.
+Frank (public): Frank here. Grace's 'Yakuza chat' slip still has no one-sentence explanation, and Erin and Bob still conflict. Erin, Bob: state your Night 2 targets now so Night 2 results can test your claims. I'm not nominating yet.
+Grace (public): Grace here. Erin's Sheriff read and Bob's Seer pair both rest on Night 1 alone, so neither settles it yet. I'm not voting until Night 2 results come out. Bob, if you are the Seer, post your Night 2 target before then so it can be checked.
+Heidi (public): I'm still holding my vote. Grace's 'Yakuza chat' slip has no plain one-sentence explanation. Erin and Bob, post your Night 2 targets before the results come in.
+Alice (public): Alice again. Erin and Bob have both been asked for their Night 2 targets and neither has posted one. Post them, and Grace, give the Yakuza-chat slip one plain sentence. I'm voting after the results.
+Bob (public): Bob again: Erin's Evil read on me is false, I'm the Seer. Grace, the Yakuza-chat slip still needs one plain sentence. I'll post my Night 2 result next Day.
+Carol (public): Carol again. Night 2 results will test Erin and Bob, so I'm not nominating yet. Grace still owes one plain sentence on the Yakuza-chat slip, and the Village should weigh that silence.
+Dave (public): Dave again. Erin and Bob both promised Night 2 targets and neither has posted one, so I'm voting on Night 2 results. Grace, the 'Yakuza chat' slip still has no one-sentence explanation. I'm not nominating yet.
+Erin (public): Erin again. My Sheriff check on Bob is Evil and stands. Bob, name your Night 2 target now, or the Village should weigh your silence on it.
+Frank (public): Frank here. Grace, give the Yakuza-chat slip one plain sentence. Erin and Bob, post your Night 2 targets now. I'm not nominating yet.
+Grace (public): Grace again: my slip meant my private scratch notes, not any chat. I'm a Vanilla Villager with no night action. I'm not nominating; Night 2 results decide Erin vs Bob.
+Heidi (public): Heidi again. I know I'm Good, so Dave is Good only if Bob is honest. Grace's Yakuza-chat slip is still unexplained. Erin and Bob: Night 2 results decide my vote.
+Alice (public): Alice here. I'm not nominating today. Erin and Bob both still owe Night 2 targets, and Grace's Yakuza-chat slip has no plain explanation. Night results decide my vote.
+Bob (public): Night 2 targets stay private so blockers can't use them. Erin's Sheriff claim conflicts with my Seer result. Grace, explain the Yakuza-chat slip.
+Carol (public): Carol again. Grace's 'Yakuza chat' slip is the one unexplained line on the board. Grace, answer it in one sentence. Erin and Bob, Night 2 results decide my vote.
+Dave (public): Dave again. Erin and Bob still owe Night 2 targets, and Grace still owes one plain sentence on the Yakuza-chat slip. I'm not nominating until Night 2 results are out.
+Erin (public): Erin again: my Sheriff check on Bob is Evil, and it stands. Bob's pair can't be verified. Night 2 results will decide this, and I'll post mine after the night.
+[Claim] Frank: Vanilla Villager. No night action, no results. D2: No on Erin's nomination.
+Frank (public): Frank here. Grace, the Yakuza-chat slip still lacks one plain sentence. Erin and Bob, Night 2 results decide it. I'm not nominating today and will vote on those results.
+Grace (public): Grace here. I'm not nominating today. Erin and Bob, post your Night 2 results in full when they come in, and I'll vote on those results.
+Heidi (public): Heidi here: I'm not nominating today. Erin and Bob both owe Night 2 results, and Grace still owes one plain sentence on the Yakuza-chat slip. I'll vote on those answers.
+Alice (public): Alice here. Grace's 'Yakuza chat' slip still has no one-sentence explanation. Erin and Bob, one of you is lying, and I'll vote Guilty on whoever fails to answer Night 2 targets directly.
+Bob (public): Bob again: Erin's Sheriff claim is false, I'm the Seer. Grace, your Yakuza-chat slip is still unexplained. If it stays unexplained, I'll vote Guilty on you at the next trial.
+Carol (public): Trapper, trap on Dave armed tonight; I'll post any hit. Grace's Yakuza-chat slip is still unexplained. Erin and Bob, Night 2 results decide me.
+Dave (public): Dave again. Grace still owes one plain sentence on the Yakuza-chat slip. Erin and Bob, Night 2 results decide my vote, and I'm not nominating today.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Erin, Grace) Erin (Yakuza chat): Erin: Proposal for tonight. Katana holder stays with Grace. Target is Bob, since his Seer claim contradicts my Sheriff check and he is the only player who can explain it. I will use my Fabricator visit on Carol to frame her as Evil, which hurts her Trapper claim. I will not visit Dave, because Carol's trap on Dave is live and would hit us. Grace, confirm Bob as the Katana target and no holder change, and I will submit the same.
+(to Erin, Grace) Grace (Yakuza chat): Agreed, Erin. Bob is the Katana target tonight, and the Katana stays with Grace. Submit the same. Your Carol frame is fine, and neither of us visits Dave while Carol's trap is live. I'm not using my puppet token tonight. Ready.
+(to Erin, Grace) Erin (Yakuza chat): Confirmed: Katana stays with Grace, target Bob, and I visit Carol to frame her. No visit to Dave while Carol's trap is live. I'm submitting the same, so we match. Ready.
+(to Erin, Grace) Grace (Yakuza chat): Agreed, Erin. Bob is the Katana target tonight and the Katana stays with me. Submit the same. Your Carol frame is fine, and neither of us visits Dave while Carol's trap is live. I'm not using my puppet token tonight. Ready.
+Night actions:
+  Alice (Bounty Hunter): target Carol; 1 token(s); "Strong Attack on Carol with my Bounty Hunter token."
+  Bob (Seer): target Erin; second target Grace; 1 token(s); "Seer token: chosen pair Erin and Grace, to test Erin's Sheriff claim against Grace's slip."
+  Carol (Trapper): no action
+  Dave (Eavesdropper): target Bob
+  Erin (Fabricator): target Carol; "Fabricator visit on Carol to frame her as Evil for Night 2. No forged will and no token spent."; Katana vote: Grace holds, attacks Bob
+  Grace (Puppeteer): no role action; Katana vote: Grace holds, attacks Bob
+  Heidi (Veteran): 1 token(s); "Going on alert for Night 2, no target."
+Katana: Grace holds it and attacks Bob.
+(to Alice) Moderator (private): Your bounty on Carol is claimed.
+(to Bob) Moderator (private): Night 2 Seer result: you spent your seer token to choose Erin and Grace. Their alignments are NOT the same. 0 seer tokens left.
+(to Alice) Moderator (private): You spent your attack token on a Strong Attack on Carol. Your attack succeeded: Carol died. 0 attack tokens left.
+(to Grace) Moderator (private): Your Katana attack on Bob succeeded: Bob died.
+(to Erin) Moderator (private): You framed Carol tonight (no will forged). 1 fabricator token left.
+(to Heidi) Moderator (private): You went on alert tonight. Nobody visited you. 1 alert token left.
+[Moderator summary] Night 2: No role-blocks. Alice (Bounty Hunter) Strong Attack killed Carol (cause Bounty Hunter); token spent. Grace held the Katana and her Standard Katana attack killed Bob. Bob spent his seer token on Erin and Grace: not the same (Erin is Evil; Grace read Good as the Katana holder). Erin framed Carol (nobody checked Carol), no forged will. Dave eavesdrops on Bob for Day 3 (Bob is dead). Heidi went on alert with no visitors; 1 alert token left. Carol's trap on Dave stays armed (Dave had no visitors). Visits: Alice→Carol, Bob→Erin, Bob→Grace, Dave→Bob, Erin→Carol, Grace→Bob. Alive: Alice, Dave, Erin, Frank, Grace, Heidi. The game continues.
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): You were attacked tonight (Bounty Hunter) and died.
+(to Erin) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Grace (Puppeteer) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Erin (Fabricator) chose to act on Carol ("Fabricator visit on Carol to frame her as Evil for Night 2. No forged will and no token spent.").
+
+===== DAY 3 =====
+Carol died (killed by Bounty Hunter). Their role isn't revealed. Their last will: "Carol. I have no confirmed results yet. Trust results over volume, and hang suspects only for a concrete mechanical reason."
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "Bob's last will: I have no confirmed information yet. Judge my death by who pushed for it and whether their reasoning holds up, not by my silence."
+(to Dave) Bob died, so you have no one to eavesdrop on today.
+Speaking order today goes around the circle in seat order, starting with Dave.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Night check] Night 2: correct
+Dave (public): Dave here. The Katana killed Bob on Night 2, so the Yakuza went after him. Bob's Night 1 pair said Heidi and Dave match, and I know I'm Good, so his pair was accurate about me. Erin's Evil read on Bob is the outlier, which fits Erin's Sheriff claim being false. Erin, state your Night 2 target and result. Grace, explain the 'Yakuza chat' slip in one sentence.
+Erin (public): Erin again. My Night 1 Sheriff check on Bob read Evil, and I stand by it. Dave, you say Bob's pair was accurate because you know you're Good. That only confirms your own word, not Heidi's. Heidi, what did your Veteran alert show? Frank, what do you make of Dave's point?
+Frank (public): Frank here. Bob died to the Katana, so the Yakuza treated him as a threat and he was not Yakuza. That makes Erin's Evil read on Bob false, unless a Fabricator framed Bob on Night 1. Erin, state your Night 2 target and result. Grace, one plain sentence on the Yakuza chat slip.
+Grace (public): Grace here. Bob died to the Katana, so Bob was not Yakuza. That leaves Erin's Evil read on him unexplained. Erin, what made Bob read Evil to you, and did you check anyone on Night 2? Heidi and Dave, post your Night 1 and Night 2 plans in full so we can compare.
+[Claim] Heidi: Veteran. N1 and N2: on alert, no visitors. 1 alert token left.
+Heidi (public): Heidi again. Bob was killed by the Katana, so Bob was not Yakuza. That makes Erin's Evil read on him false, and a fake Sheriff calling the real Seer Evil fits a Yakuza move. My claim: Veteran, on alert N1 and N2, no visitors, 1 token left. I know I'm Good, and Bob's pair matched me with Dave, so Dave reads Good. Erin, post your Night 2 target and result. Frank and Alice, I'm ready to vote Erin Guilty if she can't answer.
+Alice (public): Alice here. Bob died to the Katana, so the Yakuza saw him as a threat and he was Good. That makes Erin's Evil read on Bob false, and Erin's Sheriff claim a likely lie. Grace, your 'Yakuza chat' slip still has no one-sentence explanation. I'll vote Guilty on whichever of Erin or Grace fails to answer directly. I'm not nominating until both answer.
+Dave (public): Dave again. Bob was killed by the Katana, so the Yakuza treated him as a threat, not a teammate. Bob's Seer claim is likely true, which makes Erin's Sheriff check reading him Evil false. I'm nominating Erin now and voting Yes. Grace, answer the Yakuza-chat slip in one sentence.
+Dave nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Dave, Frank, Heidi, Alice; No - Erin, Grace
+Nomination votes on Erin: 4 Yes (the votes are secret).
+Erin is put on trial (4 Yes).
+[Claim] Erin: Sheriff. N1: checked Bob, Evil. N2: checked Carol, Evil. D2: No on Erin nomination.
+Erin (public): Erin here, Sheriff. My Night 1 check on Bob read Evil, and I stand by it. My Night 2 check was Carol, and she read Evil. Bob and Carol both made claims I can't verify, so vote on mechanics: which claim has a visit log that conflicts with a result? Dave and Heidi, you say Bob was Good because the Katana killed him, but the Katana kills whoever the Yakuza pick, so that doesn't prove a Sheriff read wrong. Heidi says her Veteran alert saw no visitors, and my visit log shows none to her. Frank and Alice, hanging the only Sheriff read on the board leaves Night 3 blind. I ask for an Innocent vote unless you can point to a concrete contradiction.
+[Claim] Frank: Vanilla Villager. No night action or results. D3 trial: Guilty on Erin.
+Frank (public): Frank here. Guilty on Erin. Bob was killed by the Katana, so the Yakuza did not treat him as one of theirs. Erin's Evil read on Bob only works if a Fabricator framed him on Night 1. Bob's Seer pair matches Dave and Heidi, both of whom read Good, and Erin's Sheriff claim conflicts with it. I vote Guilty.
+[Claim] Grace: Vanilla Villager. No night action or results. D3 trial: Innocent on Erin.
+Grace (public): Grace here. Erin's Sheriff read on Bob rests on one check that nobody can verify. Bob's Seer pair matched Dave and Heidi, and nobody has refuted it. Dave and Frank say the Katana proves Bob was Good, but the Katana kills whoever the Yakuza choose, so it proves nothing about alignment either way. I have seen no concrete mechanical contradiction in Erin's visits or results, so I'm voting Innocent unless someone shows one. Frank and Heidi, name the specific visit or result that breaks Erin's claim.
+[Claim] Heidi: Veteran. On alert N1 and N2, no visitors. 1 alert token left. D3 trial: Guilty on Erin.
+Heidi (public): Heidi again. Guilty on Erin, with a concrete mechanical reason. Bob was killed by the Katana, and Yakuza don't attack their own, so Bob was not Yakuza. Erin's Night 1 Evil read on Bob therefore needs a Fabricator frame or a Neutral Jester or Executioner. Erin's Evil reads also hit both other Village claimants, Bob and Carol, and both are now dead. Erin, if you are a true Sheriff, explain why Bob read Evil without a frame. I vote Guilty.
+Alice (public): Alice here. Guilty on Erin. Bob was killed by the Katana, so the Yakuza did not see him as one of theirs. A Sheriff read of Evil on a non-Yakuza needs a frame or a Jester/Executioner, and Erin's read doesn't survive that. Grace, you voted Innocent with no mechanical reason and still haven't explained the Yakuza-chat slip in one sentence. Give a concrete reason or explain it.
+[Claim] Dave: Dave. D3 trial: Guilty on Erin.
+Dave (public): Dave again. Guilty on Erin, with a mechanical reason. Bob died to the Katana, so Bob was not Yakuza, since Yakuza don't target their own. Erin's Night 1 Evil read on Bob then needs a Fabricator frame on Night 1, and Erin hasn't named one. Bob's Seer pair matched Heidi and me, both Good, so his claim holds together. Erin, if you were a real Sheriff, name the frame or admit the read was wrong.
+Erin (public): Erin again. Mechanics for Alice and Frank: Bob's Night 1 Evil result is a single check, and nobody has shown it impossible. Heidi says Bob's Katana death proves he was Good, but that only shows the Yakuza chose him as a target, which tells us nothing about alignment. Dave's claim is just 'Dave' with no role, and his pair argument rests on his own word. Heidi's alert log shows no visitors on N1 and N2, and I have not contradicted it. I ask for an Innocent vote unless someone names a visit or result that breaks my claim.
+Trial votes on Erin: 5 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Alice, Dave, Frank, Grace, Heidi; Innocent - Erin
+Erin is executed by hanging (5 Guilty of 6 votes; 4 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin: Sheriff. N1 checked Bob, Evil. N2 checked Carol, Evil. I stand by both reads. Judge every claim by visit logs, vote totals and mechanical contradictions, not by volume."
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Bounty Hunter): no action
+  Dave (Eavesdropper): target Grace; "Eavesdrop on Grace for Day 4."
+  Grace (Puppeteer): no role action; Katana vote: Grace holds, attacks Alice
+  Heidi (Veteran): 1 token(s); "Going on alert for Night 3, no target."
+Katana: Grace holds it and attacks Alice.
+(to Heidi) Moderator (private): You went on alert tonight. Nobody visited you. 0 alert tokens left.
+(to Grace) Moderator (private): Your Katana attack on Alice succeeded tonight.
+[Moderator summary] Night 3: Grace (Katana holder) attacked Alice with a Standard Katana attack. Alice had no Defense and died (cause Katana). Dave eavesdropped on Grace for Day 4; Grace has no trap, and Carol's trap on Dave didn't go off because nobody visited Dave. Heidi went on alert (0 tokens left) and had no visitors. Visits: Dave->Grace, Grace->Alice. Grace still holds the Katana. Alive: Dave, Frank, Grace, Heidi.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 4 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice's last will: I have no confirmed role or results to share. Judge the town by mechanics, not volume. Erin and Bob's Sheriff and Seer claims were never settled, so check which of them answered direct questions. Watch whoever pushed hardest for a hang without a concrete reason, and whoever defended them."
+(to Dave) You are eavesdropping on Grace today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Heidi.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Night check] Night 3: correct
+Heidi (public): Heidi here. Grace's 'Yakuza chat' slip never got a one-sentence explanation, and she voted Innocent on Erin without a mechanical reason. Bob's pair says Dave is Good and I know I am, so the living Yakuza must be Frank or Grace. I'm nominating Grace now. Dave and Frank, vote Yes if you agree.
+Heidi nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Heidi, Dave, Frank; No - Grace
+Nomination votes on Grace: 3 Yes (the votes are secret).
+Grace is put on trial (3 Yes).
+Grace (public): Grace here. Heidi's case against me is the 'Yakuza chat' slip, which I already explained as my private scratch notes, not any chat. Heidi also argues Bob was Good because the Katana hit him, but the Katana kills whoever the Yakuza choose, so that proves nothing about alignment. Dave, you have only given the name Dave with no role, yet you voted Guilty on Erin using Bob's pair alone. Frank and Heidi, you both lean on that same pair to call Dave Good. Dave, post your role and night plan. I'm a Vanilla Villager with no night action. I'm voting Innocent unless someone names a concrete visit or result that breaks my claim.
+[Claim] Heidi: Veteran. Alert N1-N3, no visitors, 0 tokens left. D3: Guilty on Erin. D4: nominated Grace.
+Heidi (public): Heidi here. Guilty on Grace. Mechanical reason: on Day 2 Grace wrote that she could not share her 'Night 1 Yakuza chat'. A Vanilla Villager has no Yakuza chat. Her 'scratch notes' correction only came after Dave and I pressed her. She also voted Innocent on Erin, whose Evil read on Bob is unexplained because Yakuza don't kill their own, so Bob was Good and Erin's Sheriff read was false. Dave and Frank, Guilty on Grace is the vote that fits the record.
+[Claim] Dave: Eavesdropper. N1: Erin (D2: no PMs seen). N2: Bob (dead). N3: Grace (D4 watch).
+Dave (public): Dave here. I am the Eavesdropper, Good, as my claim says. On Day 2 I eavesdropped Erin and saw no private messages from her. I'm reading Grace today and have seen none from her so far. Grace, your first Day 2 post said you had no night info beyond 'the Night 1 Yakuza chat I can't share'. A Vanilla Villager has no night chat, and your 'scratch notes' fix only came after pressure. You then voted Innocent on Erin with no mechanical reason. My vote is Guilty on Grace.
+[Claim] Frank: Vanilla Villager. No night action or results. D3 trial: Guilty on Erin. D4: Yes on Grace's nomination.
+Frank (public): Frank here. Guilty on Grace. Mechanical reason: on Day 2 Grace wrote that she could not share her 'Night 1 Yakuza chat'. A Vanilla Villager has no Yakuza chat. Her 'scratch notes' fix came only after Dave and Heidi pressed her. She then voted Innocent on Erin, whose Sheriff read on Bob nobody has refuted, and she has never answered Dave's question about her role. I'm not hanging on volume. Grace, state your role and one night result, or the Village should weigh that silence.
+Grace (public): Grace again. I'm a Vanilla Villager with no night action. Heidi's Veteran claim keeps growing: Day 2 'went on alert N1, no visitors'; Day 3 'N1 and N2'; Day 4 'N1-N3, 0 tokens left'. Each Day it gains a night, and nobody has checked it. Dave's Eavesdropper claim appeared only today, after he voted Guilty on Erin as just 'Dave' with no role. No private message has been sent all game, so neither claim can be checked. Frank, you vote Guilty on the 'slip' I already explained. Before the vote, name one visit or result that breaks my claim, and answer the same question about your own night actions.
+Trial votes on Grace: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Grace] Guilty - Dave, Frank, Heidi; Innocent - Grace
+Grace is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace's last will: I am a Vanilla Villager with no night action. Check Heidi's Veteran alert claims and the Day 3 votes on Erin, and judge every claim by visit logs, totals and mechanical contradictions, not by volume."
+The game is over. Winners: Bob (dead), Carol (dead), Dave, Frank, Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol, Dave, Frank, Heidi
+Cost by player (USD):
+  Alice (Bounty Hunter)     $0.0376   21 calls  claude-haiku-5.5
+  Bob (Seer)                $0.0254   14 calls  claude-haiku-5.5
+  Carol (Trapper)           $0.0255   15 calls  claude-haiku-5.5
+  Dave (Eavesdropper)       $0.0448   25 calls  claude-haiku-5.5
+  Erin (Fabricator)         $0.0443   25 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.0336   22 calls  claude-haiku-5.5
+  Grace (Puppeteer)         $0.0560   30 calls  claude-haiku-5.5
+  Heidi (Veteran)           $0.0419   25 calls  claude-haiku-5.5
+  Moderator                 $0.7135    8 calls  claude-opus-5.5
+  Night checks              $0.3139    3 calls  claude-opus-5.5
+  Strategy review           $0.2456    1 calls  claude-opus-5.5
+  Log review                $0.2028    1 calls  claude-opus-5.5
+  Total                     $1.7850  190 calls
