@@ -316,8 +316,11 @@ def test_philanthropist_hands_a_token_of_the_recipients_kind(game_factory):
     game, players = game_factory(["Philanthropist", "Medic", "Vanilla Villager", "Grunt"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     game.phase = "night"
-    mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Bob", "by": "Alice"},
-                                               {"op": "give_token", "player": "Carol", "by": "Alice"}]})
+    mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Bob", "by": "Alice"}]})
+    with pytest.raises(ValueError, match="already has a give_token op in this batch"):  # one action a night
+        mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Carol", "by": "Alice"}] * 2})
+    game.day += 1
+    mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Carol", "by": "Alice"}]})
     assert game.player("Bob").tokens == {"medic": 3} and game.player("Carol").tokens == {}
     assert game.player("Alice").tokens["philanthropy"] == 0
     results = [e for e in game.events if e.cat == "result"]

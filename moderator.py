@@ -412,6 +412,7 @@ class Moderator:
         names = {p.name for p in self.game.players}
         notes, out = [], []
         killed: set[str] = set()
+        acted: set[tuple[str, str]] = set()  # (role op, user)
         for i, c in enumerate(changes):
             if not isinstance(c, dict) or c.get("op") not in self.ops:
                 raise ValueError(f"change {i}: op must be one of {sorted(self.ops)}; nothing was applied")
@@ -467,6 +468,12 @@ class Moderator:
                         notes.append(f"status key {c['key']!r} is not one code reads; did you mean {close[0]!r}?")
             if op in self.op_roles and (why := self.op_roles[op].check_op(self.game, c)):
                 raise bad(why)
+            # A player submits one night action. The checks above don't see the batch's earlier ops, so a second
+            # one would get past "one a night" limits and spend a second token (Talent Agent, Ballot Stuffer).
+            if op in self.op_roles and isinstance(c.get("by"), str):
+                if (op, c["by"]) in acted:
+                    raise bad(f"{c['by']} already has a {op} op in this batch; a player's action is recorded once")
+                acted.add((op, c["by"]))
             if op == "set_last_will" and not isinstance(c["text"], str):
                 raise bad("text must be text (an empty string for no will)")
             if op == "set_katana":
