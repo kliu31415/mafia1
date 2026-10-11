@@ -3,7 +3,7 @@
 import json
 import random
 import re
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -399,9 +399,11 @@ class Game:
 
 
 def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: random.Random, log: GameLog,
-               meta: dict | None = None, rule_settings: dict[str, str] | None = None) -> Game:
+               meta: dict | None = None, rule_settings: dict[str, str] | None = None,
+               via: Callable[[Model], str] | None = None) -> Game:
     """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py). rule_settings:
-    the game's (variants.py, and its script), set before role setup hooks run, since some read them."""
+    the game's (variants.py, and its script), set before role setup hooks run, since some read them. via: how
+    each model's calls are run (claude_code.route), logged per player; "api" if not given."""
     if len(roles) > len(PLAYER_NAMES):
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
@@ -425,7 +427,7 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
     for p in players:
         logic(p.role).setup(game, p)
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
-                                 "role": p.role,
+                                 "via": via(p.model) if via else "api", "role": p.role,
                                  "status": p.status} for p in players], katana=game.katana_holder,
               log_version=LOG_VERSION, **(meta or {}))
     return game

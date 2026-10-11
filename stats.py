@@ -80,7 +80,9 @@ def load_game(path: Path) -> dict | None:
     settings = setup.get("settings") or {}
     game_id = setup.get("game_id") or path.stem
     seated = game_players(records, setup, result)
-    players = [{"name": p["name"], "model": short(p["model"]), "role": p["start_role"], "faction": p["faction"],
+    # A model played through Claude Code plays somewhat differently (claude_code.py), so it counts as its own model.
+    players = [{"name": p["name"], "model": short(p["model"]) + (" (CC)" if p["via"] == "claude_code" else ""),
+                "role": p["start_role"], "faction": p["faction"],
                 "won": p["won"], "alive": p["alive"]} for p in seated]
     winning = result.get("winning_faction")
     if "winning_faction" not in result:

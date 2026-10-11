@@ -304,7 +304,8 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
     """A new game: seats and roles drawn from the seed, the setup record, and who gets which tips."""
     meta = game_meta(rules, config.settings(client, checkpoint))
     game = setup_game(config.roles, config.specs, random.Random(config.seed), log,
-                      meta={"game_id": log.path.stem, **meta}, rule_settings=config.rule_settings)
+                      meta={"game_id": log.path.stem, **meta}, rule_settings=config.rule_settings,
+                      via=lambda m: claude_code.route(client, m))
     if meta["git_commit"] is None:  # analysis across games groups them by code version
         log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
                   "game's code version isn't recorded")
@@ -410,7 +411,8 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
               roles={p.name: p.role for p in game.players},
               models={p.name: p.model.value for p in game.players},
               end_reason=end_reason, winning_faction=winning_faction, duration_s=round(duration),
-              players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "start_role": p.start_role,
+              players=[{"name": p.name, "seat": p.seat, "model": p.model.value,
+                        "via": claude_code.route(client, p.model), "start_role": p.start_role,
                         "final_role": p.role, "faction": p.faction, "alive": p.alive,
                         "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
                         "tips": bool(p.tips),

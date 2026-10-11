@@ -38,7 +38,7 @@ import time
 from collections.abc import Callable
 from typing import Any
 
-from llm import LLMClient, LLMReply, Model, default_effort, text_of
+from llm import LLMClient, LLMReply, MockClient, Model, default_effort, text_of
 
 CLI_EFFORTS = ("low", "medium", "high", "xhigh", "max")
 CALL_DEADLINE_S = 900  # one call, CLI start-up and its own API retries included (Opus turns took up to ~210 s)
@@ -59,6 +59,15 @@ class PlanLimitError(BaseException):
 def routes(model: Model) -> bool:
     """Whether the CLI can run this model: Claude models."""
     return model.value.startswith("anthropic/")
+
+
+def route(client: object, model: Model) -> str:
+    """How a client runs a model's calls, recorded per player in the log (setup and result "via"): claude_code
+    (the CLI), mock, or api (OpenRouter, or a test's scripted client). Claude players play somewhat differently
+    through the CLI (see Effort above), so analysis keeps the two apart."""
+    if isinstance(client, ClaudeCodeClient) and routes(model):
+        return "claude_code"
+    return "mock" if isinstance(client, MockClient) else "api"
 
 
 def cli_model(model: Model) -> str:

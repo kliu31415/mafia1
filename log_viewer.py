@@ -27,13 +27,18 @@ from roles import ROLES
 from texts import blank, describe_action, player_view
 
 
+def via_note(p: dict) -> str:
+    """Marks a setup player whose model ran through the Claude Code CLI (LOG_VERSION 47), not the API."""
+    return " (via Claude Code)" if p.get("via") == "claude_code" else ""
+
+
 def text_line(r: dict) -> str | None:
     k = r["kind"]
     if r.get("alert"):  # GameLog.error
         return f"[ERROR {k}] {r['error']}"
     match k:
         case "setup":
-            lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat'] + 1:<2} {p['role']:<17} {p['model']}"
+            lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat'] + 1:<2} {p['role']:<17} {p['model']}{via_note(p)}"
                                   + (f"  {p['status']}" if p.get("status") else "") for p in r["players"]]
             return "\n".join(lines + [f"  Katana starts with {r.get('katana')}"])
         case "event":
@@ -603,7 +608,7 @@ def render_html(jsonl_path: Path) -> Path:
             believed = {p["name"]: {p["role"], (p.get("status") or {}).get("fake_role")} for p in r["players"]}
             roster = {n: {"alive": True, "death": "", "claim": "", "truth": ""} for n in alive}
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}</td>"
-                           f"<td>{esc(p['model'])}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
+                           f"<td>{esc(p['model'] + via_note(p))}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
             start_phase("Setup")
             out.append(f"<table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr>"

@@ -76,24 +76,30 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
     """Each player of the game in seat order: name, seat, model (full id), start_role, final_role (None
     while the game hasn't ended), faction (of the start role, by faction_of), won, alive, died (a "death"
     record names them: unlike alive, a player who left the game, e.g. an Executioner who won, didn't die)
-    and tips (played with a tips sheet). setup and result default to the log's own records."""
+    tips (played with a tips sheet) and via (how the model's calls ran: api, claude_code or mock; logs before
+    version 47 are api, or mock in mock games). setup and result default to the log's own records."""
     setup = setup or setup_of(records) or {}
     result = result or result_of(records) or {}
     seats = {p.get("name"): p for p in setup.get("players") or []}
     deaths = {r.get("player") for r in records if r.get("kind") == "death"}
     tips_record = first(records, "tips") or {}
+    settings = setup.get("settings") or {}
+    default_via = "mock" if settings.get("mock") else "api"
 
     def player(i: int, name: str, model: str | None, start_role: str | None, final_role: str | None,
-               won: bool, alive: bool | None, tips: bool) -> dict:
+               won: bool, alive: bool | None, tips: bool, via: str | None = None) -> dict:
         seat = seats.get(name) or {}
         start = start_role or seat.get("role") or final_role or "?"
         return {"name": name, "seat": seat.get("seat", i), "model": model or seat.get("model") or "?",
                 "start_role": start, "final_role": final_role, "faction": faction_of(start), "won": won,
-                "alive": name not in deaths if alive is None else alive, "died": name in deaths, "tips": tips}
+                "alive": name not in deaths if alive is None else alive, "died": name in deaths, "tips": tips,
+                "via": via or seat.get("via") or (  # the first --claude-code games (version 46) have only the setting
+                    "claude_code" if settings.get("claude_code") and (model or seat.get("model") or "").startswith(
+                        "anthropic/") else default_via)}
 
     if "players" in result:
         return [player(i, p["name"], p.get("model"), p.get("start_role"), p.get("final_role"), bool(p.get("won")),
-                       p.get("alive"), bool(p.get("tips")))  # a result without "tips": nobody had tips
+                       p.get("alive"), bool(p.get("tips")), p.get("via"))  # a result without "tips": nobody had tips
                 for i, p in enumerate(result["players"])]
     tips_players = tips_record.get("players") or []
     if "roles" in result:  # log versions before 3: the result has roles, models and winners by name

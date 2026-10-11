@@ -1,5 +1,5 @@
 {
- "log_version": 46,
+ "log_version": 47,
  "log": {
   "attacks": ["attackers", "day"],
   "bounty_won": ["claimed", "day", "phase", "player"],

@@ -68,7 +68,7 @@ def summarize(path: Path) -> dict | None:
         "duration_min": round(result["duration_s"] / 60) if result.get("duration_s") else None,
         "n_players": len(seats), "models": seat_models, "frontier_share": share, "mix": mix,
         "moderator": settings.get("moderator", ""), "setup": (settings.get("setup") or {}).get("kind", "fixed"),
-        "players": [{"name": p["name"], "model": p["model"], "role": p["start_role"], "won": p["won"],
+        "players": [{"name": p["name"], "model": p["model"], "via": p["via"], "role": p["start_role"], "won": p["won"],
                      "alive": not p["died"]} for p in seats],
         "roles": sorted(p["start_role"] for p in seats), "errors": sum(errors.values()),
         "error_kinds": dict(errors), "tips": sum(p["tips"] for p in seats), "log_version": setup.get("log_version", 1),

@@ -179,3 +179,18 @@ def test_a_pair_of_quotes_for_no_change_is_read_as_empty():
     cli = FakeCli({"vote": "Bob", "notepad": '""', "claim": "said \"\" twice"})
     reply = ClaudeCodeClient(None, runner=cli).chat(Model.HAIKU_5_5, player_messages(), schema={"type": "object"})
     assert json.loads(reply.content or "") == {"vote": "Bob", "notepad": "", "claim": 'said "" twice'}
+
+
+def test_each_seat_records_how_its_model_ran():
+    from gamelogs import players
+    from llm import MockClient
+    cc = ClaudeCodeClient(None, runner=FakeCli())
+    assert claude_code.route(cc, Model.OPUS_5_5) == "claude_code"
+    assert claude_code.route(cc, Model.GPT_6_LUNA) == "api"
+    assert claude_code.route(MockClient(0), Model.OPUS_5_5) == "mock"
+    setup = {"kind": "setup", "settings": {}, "players": [
+        {"name": "Alice", "seat": 0, "model": Model.OPUS_5_5.value, "role": "Sheriff", "via": "claude_code"},
+        {"name": "Bob", "seat": 1, "model": Model.OPUS_5_5.value, "role": "Grunt"}]}  # before log version 47
+    assert [p["via"] for p in players([setup])] == ["claude_code", "api"]
+    setup["settings"] = {"claude_code": True}  # log version 46 had only the setting
+    assert [p["via"] for p in players([setup])] == ["claude_code", "claude_code"]
