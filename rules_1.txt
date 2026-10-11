@@ -301,13 +301,12 @@ Auditor
 Profiler
   Tokens: 3 profile tokens.
   Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one
-  of which is that player's true role. The other two are drawn at random from the roles of the other players alive at
-  the start of the night (including players who die that night, but not yourself), never repeating the true role.
-  When none of those roles fits what is needed (the Good / not Good split below, or simply a third different role),
-  that one is drawn from all roles in these rules instead, so a listed role is not proof that anyone in the game
-  has it. At least
-  one of the three is a Good role and at least one is not Good (Evil or Neutral), so a result never settles the
-  player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19).
+  of which is that player's true role. Of the other two, one is drawn at random from the roles of the other players
+  alive at the start of the night (including players who die that night, but not yourself), and the other from the
+  roles that no player in the game has. At least one of the three is a Good role and at least one is not Good (Evil
+  or Neutral), so a result never settles the player's alignment on its own; which of the two supplies the missing
+  side is random. When no role fits a draw, that one is drawn from all roles in these rules instead. The three are
+  different and listed in alphabetical order. This is an exact-role check (R19).
 
 Cartographer
   Tokens: 2 map tokens.

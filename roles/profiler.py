@@ -12,27 +12,36 @@ if TYPE_CHECKING:
 
 def profile_candidates(game: Game, profiler: str, target: str) -> list[str]:
     """The target's true role and two decoys, three different roles, at least one Good and one not Good (so one
-    result never settles alignment). Decoys are drawn from the roles of the other players alive at the start of the
-    night (rules R10), not counting the Profiler's own seat, or from every role on the script when those run out.
-    Sorted, so the order doesn't show which is true."""
+    result never settles alignment). One decoy is a role of another player alive at the start of the night (rules
+    R10; not the Profiler's own seat), the other a role nobody in the game has (Kevin, Oct 11 2026: decoys only
+    from roles in play named the Yakuza roles in game_20261010_150921_904458). Which one must be on the other side
+    of Good / not Good is random: always the in-play one would make a Good target's list name a real Evil role.
+    A draw with no fitting role falls back to every role on the script. Sorted, so the order doesn't show which is
+    true."""
     from roles import ROLES
     from scripts import script_roles
     true = game.player(target).role
-    in_play = sorted({p.role for p in game.players if acted_tonight(game, p) and p.name != profiler} - {true})
+    every = sorted(script_roles(game))
+    in_play = sorted({p.role for p in game.players if acted_tonight(game, p) and p.name != profiler})
+    unused = [r for r in every if r not in {p.role for p in game.players}]
 
     def good(role: str) -> bool:
         return ROLES[role].alignment is Alignment.GOOD
 
-    def draw(pool: list[str], want_good: bool | None) -> str:
-        options = [r for r in pool if want_good is None or good(r) == want_good]
-        if not options:  # too few roles in play: any role of that kind
-            options = [r for r in sorted(script_roles(game))
-                       if r not in chosen and (want_good is None or good(r) == want_good)]
-        return game.rng.choice(options)
-
     chosen = [true]
-    chosen.append(draw(in_play, not good(true)))  # the other side of Good / not Good
-    chosen.append(draw([r for r in in_play if r not in chosen], None))
+
+    def draw(pool: list[str], want_good: bool | None) -> None:
+        def fits(r: str) -> bool:
+            return r not in chosen and (want_good is None or good(r) == want_good)
+        chosen.append(game.rng.choice([r for r in pool if fits(r)] or [r for r in every if fits(r)]))
+
+    other_side = not good(true)
+    if game.rng.random() < 0.5:
+        draw(in_play, other_side)
+        draw(unused, None)
+    else:
+        draw(unused, other_side)
+        draw(in_play, None)
     return sorted(chosen)
 
 

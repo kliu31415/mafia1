@@ -664,6 +664,24 @@ def test_profiler_gets_three_roles_one_true_with_both_good_and_not_good(game_fac
     assert "Medic" in result.text and "2 profile tokens left" in result.text
 
 
+def test_profiler_decoys_are_one_role_in_play_and_one_nobody_has(game_factory):
+    import random
+    from collections import Counter
+    from roles.profiler import profile_candidates
+    from roles import ROLES, Alignment
+    game, _ = game_factory(["Profiler", "Medic", "Sheriff", "Grunt", "Jester", "Vanilla Villager"])
+    game.phase = "night"
+    in_play, roles_in_game = {"Sheriff", "Grunt", "Jester", "Vanilla Villager"}, {p.role for p in game.players}
+    names_real_not_good: Counter = Counter()
+    for seed in range(200):
+        game.rng = random.Random(seed)
+        decoys = set(profile_candidates(game, "Alice", "Bob")) - {"Medic"}
+        assert len(decoys & in_play) == 1 and len(decoys - roles_in_game) == 1
+        names_real_not_good[any(r in in_play for r in decoys if ROLES[r].alignment is not Alignment.GOOD)] += 1
+    # Either decoy may supply the not-Good side: always the in-play one would name a real Evil role every time.
+    assert names_real_not_good[True] > 40 and names_real_not_good[False] > 40
+
+
 def test_coroner_examines_only_players_dead_before_the_night(game_factory):
     from players import night_action_schema
     game, players = game_factory(["Coroner", "Roleplayer", "Sheriff", "Grunt", "Executioner", "Vanilla Villager"])

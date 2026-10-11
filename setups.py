@@ -215,8 +215,7 @@ SETUPS = {
                       "aren't Outsiders (at least one "
                       "of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to "
                       "2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides "
-                      "are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles, and newer "
-                      "roles come up more often."),
+                      "are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles."),
     "classic": Setup(random_setup, (11, 15),
                      "about 30% of the players are Yakuza (rounded, at least 1), each with a different Yakuza "
                      "role; 0 to 2 are Neutral (at most 1 below 9 players), each a different Neutral role; the rest "
