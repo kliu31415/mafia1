@@ -4,6 +4,7 @@ import json
 
 from players import BOOL, Players, STR, cap_words, name_enum, night_action_schema, nullable, obj, tokens_left
 from roles import LOGIC, Alignment, Status, logic
+from roles.base import swaps_tonight
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from moderator import Moderator
@@ -76,7 +77,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                                         else "") + " Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n"
         + (f"Code has already moved the Katana from {katana['moved_from']}, who held it when the night began, to "
-           f"{katana['holder']}; get_state shows the new holder.\n" if katana.get("moved_from") else "") + "\n"
+           f"{katana['holder']}; get_state shows the new holder.\n" if katana.get("moved_from") else "")
+        + swap_text(game, katana) + "\n"
         "Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, "
         "role-blocks R9, attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator "
         "frames). Use apply_changes for deaths and token/status changes, tell() for each private result, "
@@ -129,6 +131,19 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             game.log.write("night_effects_undone", day=game.day, player=p.name, undone=undone)
     game.pass_katana()
     game.day += 1
+
+
+def swap_text(game: Game, katana: dict) -> str:
+    """Tonight's swaps for the moderator (rules R23). The JSON above already has them applied, yet a moderator swapped
+    the Katana attack back onto the player it was aimed at (game_20261011_074934_1113, Night 3), so this says so."""
+    swaps = swaps_tonight(game)
+    if not swaps:
+        return ""
+    pairs = "; ".join(f"{by} swapped {x} and {y}" for by, x, y in swaps)
+    attack = f" The Katana attack lands on {katana['attack']}." if katana.get("attack") else ""
+    return (f"Swaps tonight (R23): {pairs}. Code has ALREADY applied them: every target, second_target and the Katana "
+            f"vote result above is the player the action lands on (the user's own pick is kept in chosen_*), so "
+            f"resolve them exactly as given and don't swap anything again.{attack}\n")
 
 
 def snapshot(x):

@@ -594,6 +594,9 @@ def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game
     assert acts["Bob"]["katana_vote_target"] == "Frank"
     katana = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "katana")
     assert katana["result"]["attack"] == "Frank"
+    prompt = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "moderator_prompt")
+    assert ("Alice swapped Erin and Frank. Code has ALREADY applied them" in prompt["instructions"]
+            and "The Katana attack lands on Frank." in prompt["instructions"])
     assert game.player("Alice").tokens["swap"] == 1
     assert any("You swapped Erin and Frank. You have 1 swap token left." in t for t in told(game, "Alice"))
     assert len([t for t in told(game, "Erin") + told(game, "Frank") if "swapped with another player" in t]) == 2

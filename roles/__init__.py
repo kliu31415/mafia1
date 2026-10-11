@@ -55,7 +55,7 @@ ROLES: dict[str, RoleInfo] = {
                        acts_at_night=True, tested=True),
     "Eavesdropper": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Night: pick a player; reads every PM they send or receive the next Day.",
-                             acts_at_night=True,
+                             acts_at_night=True, tested=True,
                              notes="moderator records the target with the eavesdrop op; code shows them the "
                              "target's PMs the next day"),
     "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False,
@@ -97,19 +97,19 @@ ROLES: dict[str, RoleInfo] = {
                         "and tells them"),
     "Juror": RoleInfo(Alignment.GOOD, "Investigative", False,
                       summary="Night: name two players, learn how often they voted the same way all game.",
-                      acts_at_night=True,
+                      acts_at_night=True, tested=True,
                       notes="moderator records the use with the jury op (Astral); code counts the shared votes "
                       "and tells them"),
     "Bloodhound": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Every night: learns how many attacks three random players have made this game. "
                            "Token: choose one of the three.",
-                           tokens={"scent": 2}, acts_at_night=True,
+                           tokens={"scent": 2}, acts_at_night=True, tested=True,
                            notes="moderator lists each night's attackers with the attacks op and records a token use "
                            "with the track op; code draws the group, counts and tells them"),
     "Scrutineer": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: learn how many of a player and two random others voted Guilty in each of "
                            "the Day's trials.",
-                           acts_at_night=True,
+                           acts_at_night=True, tested=True,
                            notes="moderator records the use with the scrutinize op (Astral); code draws the group, "
                            "counts the Guilty votes and tells them"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
@@ -131,7 +131,7 @@ ROLES: dict[str, RoleInfo] = {
     "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,
-                           tested=False, notes="moderator records the audit with the count_tokens op; code tells the "
+                           tested=True, notes="moderator records the audit with the count_tokens op; code tells the "
                            "true total at the end of the night, after token changes (Magpie steals); Roleplayers "
                            "show 0"),
     "Medic": RoleInfo(Alignment.GOOD, "Combat", False,
@@ -236,14 +236,14 @@ ROLES: dict[str, RoleInfo] = {
                           "reveal (and the role or alignment when --flips shows them; cause shown)"),
     "Wiretap": RoleInfo(Alignment.EVIL, "Yakuza", True,
                         summary="Passively reads every Day PM between any players.",
-                        notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),
+                        tested=True, notes="code adds living Wiretaps to every Day PM's audience; not role-blockable"),
     "Informant": RoleInfo(Alignment.EVIL, "Yakuza", True,
                           tested=True, summary="Passively sees how every player voted in each trial.",
                           notes="code tells living Informants each secret trial's votes; not role-blockable"),
     "Talent Agent": RoleInfo(Alignment.EVIL, "Yakuza", True,
                              summary="Token (one a night): learn a random non-Yakuza role in play and one not, or how "
                              "many living players have a named role.",
-                             tokens={"talent": 3}, acts_at_night=True,
+                             tokens={"talent": 3}, acts_at_night=True, tested=True,
                              notes="moderator records the scout_talent op; code reads true roles and tells the result"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
@@ -263,13 +263,13 @@ ROLES: dict[str, RoleInfo] = {
     "Bounty Hunter": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                               summary="Has 3 random targets and one Strong Attack; wins and leaves once 2 targets die "
                               "by its attack or by a hanging it voted Guilty in.",
-                              tokens={"attack": 1}, acts_at_night=True,
+                              tokens={"attack": 1}, acts_at_night=True, tested=True,
                               notes="targets, bounty credit (from death killers and Guilty voters), win, loss and "
                               "leaving in code; moderator resolves the attack"),
     "Magpie": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                        summary="Night: steal a token from a player; wins and leaves once it has stolen from 3 "
                        "different players. Basic Defense.",
-                       defense="Basic", acts_at_night=True,
+                       defense="Basic", acts_at_night=True, tested=True,
                        notes="moderator records the steal; code takes the token at the end of the night, tells both, "
                        "handles the win; random setups need a third of roles with tokens"),
     "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True,

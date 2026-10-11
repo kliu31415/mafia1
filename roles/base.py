@@ -237,11 +237,16 @@ def dead_before_tonight(game: Game) -> list[str]:
             if not p.alive and not p.status.get(Status.LEFT) and not acted_tonight(game, p)]
 
 
+def swaps_tonight(game: Game) -> list[tuple[str, str, str]]:
+    """Tonight's swaps (rules R23) as (swapper, x, y), in the order they were made."""
+    return [(by, x, y) for by, x, y in game.role_state.get("swaps", {}).get(game.day, [])]
+
+
 def swap_partner(game: Game, name: str) -> str | None:
     """Who `name` was swapped with tonight (rules R23), or None. An action that landed on a swapped player was aimed
     at their partner, so its result names the partner; and an action may land on its own user that way, even one
     whose role can't target themselves."""
-    for _, x, y in game.role_state.get("swaps", {}).get(game.day, []):
+    for _, x, y in swaps_tonight(game):
         if name in (x, y):
             return y if name == x else x
     return None
