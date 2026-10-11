@@ -159,35 +159,43 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
         return [r for r in allowed if ROLES[r].alignment is alignment
                 and (not categories or ROLES[r].category in categories)]
 
-    def weighted_order(roles: list[str], weight=lambda r: 1.0) -> list[str]:
-        """roles in a random order where heavier ones tend to come first (weighted sampling without replacement)."""
-        return sorted(roles, key=lambda r: -rng.random() ** (1 / (weight(r) * novelty(r))))
+    def draw(roles: list[str], k: int, weight=lambda r: 1.0, taken: tuple[str, ...] = ()) -> list[str]:
+        """k roles drawn with replacement, heavier ones more often; a role may repeat (Kevin, Oct 11 2026) unless
+        it is unique (rules R2), in which case it never repeats one in `taken` or already drawn."""
+        picked: list[str] = []
+        for _ in range(k):
+            options = [r for r in roles if not (ROLES[r].unique and r in (*taken, *picked))]
+            if not options:
+                break
+            picked += rng.choices(options, [weight(r) * novelty(r) for r in options])
+        return picked
 
     usual = max(1, round(n * 3 / 13))
     shift = rng.choices(list(YAKUZA_ODDS), list(YAKUZA_ODDS.values()))[0]
     n_yakuza = yakuza if yakuza is not None else max(1, usual + shift)
     lean = 0 if n_yakuza == usual else 3 if n_yakuza < usual else -3  # fewer Yakuza: stronger roles
-    evil = weighted_order(of(Alignment.EVIL), lambda r: math.exp(lean * (-power[r] - 0.95)))[:n_yakuza]
+    evil = draw(of(Alignment.EVIL), n_yakuza, lambda r: math.exp(lean * (-power[r] - 0.95)))
     # The Village must outnumber the Yakuza (rules R2) and get its MIN_VILLAGE seats.
     room = n - len(evil) - max(MIN_VILLAGE, len(evil) + 1)
 
     wanted = max(0, min(rng.choices(list(NEUTRAL_ODDS), list(NEUTRAL_ODDS.values()))[0], room))
 
     def candidate(n_neutrals: int) -> list[str]:
-        neutrals = weighted_order(of(Alignment.NEUTRAL))[:n_neutrals]
+        neutrals = draw(of(Alignment.NEUTRAL), n_neutrals)
         slots = n - len(evil) - len(neutrals)
-        village = weighted_order(of(Alignment.GOOD, "Investigative"))[:1]
-        rest = weighted_order([r for r in of(Alignment.GOOD, "Investigative", "Combat", "Misc") if r not in village])
-        outsiders = weighted_order(of(Alignment.GOOD, "Outsider"))[:MAX_OUTSIDERS]
+        village = draw(of(Alignment.GOOD, "Investigative"), 1)
+        rest = [r for r in of(Alignment.GOOD, "Investigative", "Combat", "Misc") if r != "Vanilla Villager"]
+        outsiders = draw(of(Alignment.GOOD, "Outsider"), MAX_OUTSIDERS)
         while len(village) < slots:
             roll = rng.random()
             vanilla = village.count("Vanilla Villager") < MAX_VANILLA
+            more = draw(rest, 1, taken=tuple(village))
             if len(village) >= MIN_VILLAGE and outsiders and roll < 0.2:
                 village.append(outsiders.pop(0))
-            elif (roll < 0.35 and vanilla) or not rest:
+            elif (roll < 0.35 and vanilla) or not more:
                 village.append("Vanilla Villager")
             else:
-                village.append(rest.pop(0))
+                village += more
         return village + evil + neutrals
 
     tried: list[tuple[float, list[str]]] = []
@@ -203,12 +211,10 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
 SETUPS = {
     "standard": Setup(balanced_setup, (13, 13),
                       "usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one "
-                      "more), each with a different Yakuza role; 0 to 3 Neutrals, usually 1 or 2, each a different "
-                      "Neutral role; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one "
+                      "more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that "
+                      "aren't Outsiders (at least one "
                       "of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to "
-                      "2 Outsiders. Every "
-                      "role but the Vanilla Villager appears at most once (this setup never repeats one, though R2 "
-                      "allows it). The roles are picked so that the sides "
+                      "2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides "
                       "are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles, and newer "
                       "roles come up more often."),
     "classic": Setup(random_setup, (11, 15),

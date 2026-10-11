@@ -144,6 +144,7 @@ def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch)
     monkeypatch.setattr(role_power, "FILE", Path("/nonexistent"))  # the priors, not the latest fit
     chances: list[float] = []
     yakuza_counts: Counter = Counter()
+    repeats = 0  # setups that repeat a role other than the Vanilla Villager
     for seed in range(100):
         roles = balanced_setup(13, random.Random(seed))
         assert len(roles) == 13 and all(r in ROLES for r in roles)
@@ -154,9 +155,12 @@ def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch)
         assert sum(ROLES[r].category not in ("Outsider",) for r in village) >= 5
         assert any(ROLES[r].category == "Investigative" for r in village)
         assert sum(ROLES[r].category == "Outsider" for r in village) <= 2
-        assert max(Counter(r for r in roles if r != "Vanilla Villager").values()) == 1
+        assert roles.count("Vanilla Villager") <= 2 and all(roles.count(r) == 1 for r in roles if ROLES[r].unique)
+        others = [r for r in roles if r != "Vanilla Villager"]
+        repeats += len(others) > len(set(others))
         chances.append(role_power.village_chance(roles))
     assert yakuza_counts.most_common(1)[0][0] == 3
+    assert 5 <= repeats <= 95  # roles may repeat (Kevin, Oct 11 2026), but most draws are still varied
     assert sum(0.4 <= c <= 0.6 for c in chances) >= 80  # most setups are roughly balanced
 
 
