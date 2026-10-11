@@ -152,6 +152,20 @@ def test_eavesdropper_reads_its_targets_pms_for_one_day(game_factory):
     assert {e.fields["message"] for e in game.events if e.cat == "pm" and e.visible("Alice")} == heard
 
 
+def test_an_eavesdropper_moved_by_a_swap_listens_to_the_other_player_and_is_told(game_factory):
+    # rules R23 (Kevin, Oct 11 2026): the listening follows the player it landed on, and the user is told why
+    game, players = game_factory(["Eavesdropper", "Vanilla Villager", "Vanilla Villager", "Grunt", "Smuggler"])
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}
+    apply_ops(game, players, {"op": "eavesdrop", "player": "Carol", "by": "Alice"})  # Alice chose Bob
+    game.phase = "day"
+    game.day += 1
+    game.run_dawn_hooks()
+    assert any("A swap moved your eavesdropping from Bob to Carol" in t for t in told(game, "Alice"))
+    assert "You are eavesdropping on Carol today" in told(game, "Alice")[-1]
+    assert logic("Eavesdropper").hears_pm(game, game.player("Alice"), "Carol", "Dave")
+
+
 def test_archivist_sees_one_role_per_other_player_three_quarters_real_once(game_factory):
     game, players = game_factory(["Archivist", "Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt",
                                   "Jester", "Sheriff", "Medic", "Pharmacist"])
