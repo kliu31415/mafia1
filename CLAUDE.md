@@ -108,7 +108,11 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   8. Scripts (`scripts.py`, `--script`, Blood on the Clocktower style): a game's rules list only its script's roles,
      and every role in it comes from the script. `all` (the default, rules unchanged) has every role, so a new role
      needs nothing there; add it to a hand-made script (`core`, 30 roles) only if it fits. Code that draws "any role"
-     (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`.
+     (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`. Each hand-made script's rules are the
+     cut plus small edits an Opus call made once (dropping mentions of off-script roles), cached in `rules_scripts/`.
+     After any edit to `rules_1.txt`, `test_every_script_revision_is_current` fails until `uv run scripts.py revise`
+     remakes the stale ones (about $0.15 each); read the printed edits and the diff of `rules_scripts/*.txt`, then
+     commit them with the rules change. A game on a stale script plays by the plain cut and logs `script_stale`.
   9. `setups.py` draws setups (`--roles standard`, the default: 13 players, balanced with the role powers in
      `role_power.py`: hand-set priors, refit from game results into `tips/role_power.json`/`.md` wherever the tips are
      updated, and carried by the tips commit and publish; `classic` is the older 11-15 player draw; `NAME:N` sets the count) by alignment and category, and tells players how (a note after the rules, never the role list), and `stats.py` scores

@@ -115,3 +115,73 @@ def test_the_roles_part_is_still_shaped_the_way_scripts_cut_it():
         else:
             assert not first.startswith(" "), f"text with no role above it (a blank line inside a role?): {first!r}"
             assert len(rest) <= 2, f"an unknown block (not a role in ROLES?): {first!r}"
+
+
+# --- the cached revision (scripts.revise) ---------------------------------------------------------------------
+
+def test_every_script_revision_is_current():
+    """Fails when rules_1.txt or a script changed since its revision was made: `uv run scripts.py revise` remakes
+    the stale ones (an Opus call each), so games on the script play by a reviewed text."""
+    stale = [s for s in scripts.SCRIPTS if scripts.stale(RULES, s)]
+    assert not stale, f"stale script revisions: {stale}; run `uv run scripts.py revise` and commit rules_scripts/"
+    for name in scripts.SCRIPTS:
+        if scripts.SCRIPTS[name] is not None:
+            assert scripts.role_names(scripts.rules_for(RULES, name)) == scripts.role_names(scripts.cut(RULES, name))
+
+
+class EditsClient:
+    """Answers the reviser's call with the given edits."""
+    def __init__(self, edits):
+        self.edits, self.calls = edits, 0
+
+    def chat(self, model, messages, **kw):
+        from llm import LLMReply
+        self.calls += 1
+        return LLMReply(json.dumps({"edits": self.edits}), None, [], {}, model.value, 0.1, {})
+
+
+def test_a_rules_change_makes_the_revision_stale_until_it_is_remade(tmp_path, monkeypatch):
+    monkeypatch.setattr(scripts, "CACHE_DIR", tmp_path)
+    old = "A role may appear more than once in a game"
+    edits = [{"old": old, "new": "A role may appear more than once", "reason": "test"}]
+    assert scripts.stale(RULES, "core")  # no cache yet: the plain cut
+    assert scripts.rules_for(RULES, "core") == scripts.cut(RULES, "core") + scripts.note("core")
+    client = EditsClient(edits)
+    scripts.revise(client, RULES, "core")
+    assert not scripts.stale(RULES, "core") and client.calls == 1
+    revised = scripts.rules_for(RULES, "core")
+    assert old not in revised and "A role may appear more than once" in revised
+    assert revised.endswith(scripts.note("core"))
+    assert scripts.stale(RULES, "all") is False  # "all" is never revised
+    changed = RULES.replace("R11 (The circle)\nPlayers sit in a circle.", "R11 (The circle)\nPlayers sit in a ring.")
+    assert changed != RULES and scripts.stale(changed, "core")  # any rules edit
+    assert "Players sit in a ring." in scripts.rules_for(changed, "core")  # meanwhile: the new cut, unrevised
+    (tmp_path / "core.txt").write_text(revised.replace("ring", "loop"), encoding="utf-8")
+    assert scripts.stale(RULES, "core")  # a hand-edited cache isn't trusted either
+
+
+def test_edits_must_match_exactly_once_and_keep_roles_and_labels(tmp_path, monkeypatch):
+    monkeypatch.setattr(scripts, "CACHE_DIR", tmp_path)
+    for bad in ([{"old": "no such passage", "new": "", "reason": ""}],
+                [{"old": "Sheriff", "new": "Sheriff", "reason": "occurs many times"}],
+                [{"old": "\nSheriff\n", "new": "\nMarshal\n", "reason": "renames a role"}],
+                [{"old": "R11 (The circle)", "new": "The circle", "reason": "drops a label"}]):
+        try:
+            scripts.revise(EditsClient(bad), RULES, "core")
+        except ValueError:
+            pass
+        else:
+            raise AssertionError(f"accepted {bad}")
+    assert not list(tmp_path.iterdir())  # nothing written
+
+
+def test_a_game_on_a_stale_script_plays_by_the_cut_and_says_so(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    monkeypatch.setattr(scripts, "CACHE_DIR", tmp_path / "none")
+    roles = ["Sheriff", "Medic", "Vanilla Villager", "Lookout", "Grunt", "Pharmacist"]
+    path = mafia.play_game(MockClient(3), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=3,
+                                                           script="core"))
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    assert records[0]["kind"] == "setup" and any(r["kind"] == "script_stale" and r["alert"] for r in records)
+    played = scripts.cut(RULES, "core") + scripts.note("core") + setup_note(None, roles)
+    assert records[0]["rules_sha256"] == mafia.game_meta(played, {})["rules_sha256"]

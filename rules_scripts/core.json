@@ -1,0 +1,45 @@
+{
+ "script": "core",
+ "cut_sha256": "dd338fcb978c3503",
+ "text_sha256": "9465eec1092e11ba",
+ "model": "opus-5.5",
+ "made": "2026-10-11T01:22:22",
+ "cost": 0.134536,
+ "edits": [
+  {
+   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Smuggler, Vulture.",
+   "new": "The list of roles in the game is not public. A role may appear more than once in a game.",
+   "reason": "Both unique roles (Smuggler, Vulture) are not on the script."
+  },
+  {
+   "old": "(Oracle, Diviner, Ritualist, Mortician, Coroner, a Vigilante's kill)",
+   "new": "(Oracle, Ritualist, Mortician, Coroner, a Vigilante's kill)",
+   "reason": "Diviner is not on the script."
+  },
+  {
+   "old": "messages, a Ballot Stuffer's doubled vote); those lapse.",
+   "new": "messages); those lapse.",
+   "reason": "Ballot Stuffer is not on the script; the Puppeteer example remains."
+  },
+  {
+   "old": "   Party Animal, Pharmacist, Smuggler and Veteran can't be role-blocked.",
+   "new": "   Party Animal, Pharmacist and Veteran can't be role-blocked.",
+   "reason": "Smuggler is not on the script."
+  },
+  {
+   "old": "The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions\nabove apply to it.\nExact-role checks see the true role. The Roleplayer is seen as \"Roleplayer\".\nToken counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,\neven though they believe they have their fake role's tokens.\nVisit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.",
+   "new": "Exact-role checks see the true role.\nVisit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.",
+   "reason": "Census Taker, Roleplayer, Accountant, Cartographer and Scout are not on the script."
+  },
+  {
+   "old": "  that. A doubled vote (Ballot Stuffer) shows as a single Guilty or Innocent.",
+   "new": "  that.",
+   "reason": "Ballot Stuffer is not on the script, so doubled votes can't occur."
+  },
+  {
+   "old": "  privately told their role and last will. A Coroner who examines a cleaned player learns nothing, and a\n  cleaned player's role stays hidden even if a Chronicler marked them (the announcement says so). The token is\n  spent even if they survive.",
+   "new": "  privately told their role and last will. A Coroner who examines a cleaned player learns nothing. The token is\n  spent even if they survive.",
+   "reason": "Chronicler is not on the script."
+  }
+ ]
+}

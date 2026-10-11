@@ -1,0 +1,394 @@
+=== PART 1: THE GAME ===
+
+R1 (Overview and winning)
+You are playing a Mafia-style game with around 10 players (depending on setup), each in a faction. An omniscient
+moderator runs the game. The game alternates Night and Day phases, starting with Night 1: there is no Day 1, so
+the first Day is Day 2 (players write their first will before Night 1).
+- For most roles, you win iff your faction wins. A faction typically wins iff it has players alive at the end.
+- The game ends as soon as all living players, ignoring Jesters and Executioners, belong to one faction. This is
+  checked after every death; deaths that happen together at night are checked together.
+- Jesters and Executioners never block another faction's win; their own wins don't depend on how the game ends.
+
+R2 (Factions)
+- Village (Good): the largest faction, but with weaker roles and less information.
+- Yakuza (Evil): fewer players, stronger roles; they know each other and share a night chat.
+- Neutral: each Neutral player is their own one-person faction, even if two players have the same Neutral role.
+The list of roles in the game is not public. A role may appear more than once in a game.
+
+R15 (Alignments)
+Every player has one of three alignments: Good (Village), Evil (Yakuza) or Neutral. Some roles and effects change
+how a player's alignment appears; see R19.
+
+R18 (Terms)
+- Living players: players who haven't died or left. Every count in these rules ("majority", "random player")
+  means living players unless it says otherwise.
+- Majority: strictly more than half; exactly half is not a majority.
+- Action: anything a role does at night by choice or by its rules (investigating, shooting, blocking, ...).
+- Visit: an action on another player counts as A visiting B, unless it is an Astral Visit (R6).
+- Astral Visit: an action that is not a visit. Abilities that react to visits (Tracker, Lookout, Trapper,
+  Fortune Teller) never see or react to it.
+- Alignment check: a result that reports alignment (Sheriff, Seer). See R19 for what they see.
+- Exact-role check: a result that reports or tests an exact role (Oracle, Ritualist, Mortician, Coroner, a Vigilante's kill).
+- Token: a limited-use resource a role starts with. Spent tokens are gone; a role-blocked action spends none.
+
+R11 (The circle)
+Players sit in a circle. The dead (and players who leave) are removed from it.
+
+=== PART 2: THE DAY ===
+
+R4 (Day phase, chat, nominations and trials)
+Chat:
+- There is a public chat and private chats between exactly two players.
+- Private messages are not secret: whenever A sends B a private message, everyone sees that A sent B a private
+  message, but only A and B see its contents.
+Nominations:
+- Any player may publicly nominate someone, including themself. All chat stops at once.
+- Everyone votes Yes/No at the same time; nobody sees another vote before casting their own. The nominator votes
+  Yes by default. There are no abstentions: a player who doesn't vote counts as voting No. Votes are secret: once
+  all votes are in, only the number of Yes votes is announced (the nominator is named), never who voted which way.
+  Each voter is privately reminded of their own vote.
+- If a majority of all votes counted are Yes, the nominee goes on trial.
+Trials:
+- The nominee says the first public message and may defend themself; others may chat publicly and privately.
+  After everyone else has had a turn, the nominee gets one last public message before the vote.
+- Then everyone votes Guilty/Innocent at the same time (no abstentions: a player who doesn't vote counts as voting
+  Innocent). Votes are secret: only the Guilty and Innocent totals are announced, never who voted which way. Each
+  voter is privately reminded of their own vote.
+- If a majority of all votes counted are Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
+  ends immediately.
+- If three nominations pass (failed ones don't count) and all three trials end Innocent, the Day ends.
+- Some roles can change how votes are counted. If an announced vote total doesn't match the number of voters,
+  a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial
+  that Day, so the number of changed totals doesn't show how many times a role was used.
+Voting Yes or Guilty on yourself is allowed.
+
+R16 (Day length)
+Day chat goes around the circle in turns. Each Day the program picks a random living player to speak first;
+turns then go around the circle from them in the same order every round. Besides the endings in R4, the Day ends when a full round passes in
+which nobody sends a public message or nominates, except that anyone sent a private message during that round
+first gets one last turn. The Day also ends after at most 8 rounds.
+
+R22 (Speaking budget)
+Day messages and nominations cost speaking budget. Each player earns budget every round of a Day, up to a cap,
+and part of what they have left carries into the next Day. A message's price grows with its length and, after
+the first rounds of a Day, with the round; private messages cost less than public ones. A nomination costs
+budget too. On a trial turn prices are lower and each speaker also gets a trial-only budget, spent first and lost
+when the turn ends; the accused's first defense message is free up to a set length. The program sets the
+numbers for each game and tells every player at the start.
+
+R23 (Swaps)
+Some roles can swap two players for a night. Every action that night aimed at one of them (including the Katana's
+attack and automatic actions such as the Ex-Con's visit or the Seer's pair) lands on the other instead, as if its
+user had chosen that player. Only the swap itself is not moved (the swapping player's Katana vote is). Results name the player the action's
+user chose, so a swapped action's result doesn't show the swap: a Sheriff who checked A learns B's alignment as
+A's. A result that lists several players (e.g. a group around the target) is built around B, but A and B trade
+places in the list, each named where the other would be; the roles, alignments and counts in it are still the real
+players', so the rest of the group can still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action landed on.
+
+R13 (Last wills)
+Players may write and update a last will before Night 1, at the beginning of each Day (except those who died the
+night before) and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
+
+=== PART 3: THE NIGHT ===
+
+R5 (Night phase)
+Chat is off for most players; some (usually a faction, like the Yakuza) have a private night chat. The moderator
+wakes players one by one, or faction by faction, to act. When the Night ends, the moderator works out every
+effect. By default, effects are announced publicly at the start of the next Day; some are not announced.
+
+R7 (Optional actions)
+Every ability is optional ("may") unless its role says "must": any player may choose not to act at Night, not to
+use a Day ability, and not to spend a token. Effects a role has automatically, with no choice (e.g. the
+Ex-Con's nightly visit), aren't optional, but a role-block still stops them (R9).
+
+R6 (Visits)
+- When A performs an action on B, A visits B, unless the action is an Astral Visit.
+- A role that targets a player may target itself unless its text says otherwise (e.g. "other than yourself").
+- A player whose role can target others but who targets themself shows as visiting themself.
+- A player whose action can only affect themself does not show as visiting anyone.
+- An action that targets no player (e.g. the Clerk's rig) is not a visit.
+- A player who visits the same target with several actions in one night is one visitor to that target: anything
+  that lists, counts or reacts to visitors (a watch, a Veteran's alert, a trap) treats them once.
+
+R9 (Role-blocks)
+A role-blocked player's actions that night have no effect, exactly as if they had chosen not to act: no visit,
+no tokens spent. It lasts only that one night (not the next Day or later nights). Role-blocked players are told
+they were role-blocked. Any player can be role-blocked unless their role says otherwise; blocking a player who
+has no night action, or who chose not to act, has no other effect, but they are still told. A role-blocker learns
+only whether the block failed because its target can't be role-blocked.
+
+R10 (Simultaneous night resolution)
+All night actions happen at the same time. Think of it as two steps: first everyone attempts their actions,
+then all results happen together. So investigations that give their result at the end of the night (e.g. the
+Seer's random pair) draw from and report on everyone alive when the night began, including players who die that
+night.
+
+R21 (Effects that outlast their user)
+An effect set up at night for the following Day (e.g. a Clerk's rig, a Prosecutor's prosecution) still happens if
+its user dies that night, unless it needs its user to act during that Day (e.g. a Puppeteer writing the puppet's
+messages); those lapse. Any token spent on it is gone either way (R18).
+
+R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
+1. Remove actions of role-blocked players (R9), automatic ones included (the Ex-Con's visit, the Seer's pair).
+   Party Animal, Pharmacist and Veteran can't be role-blocked. Swaps (R23) apply before anything else.
+2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
+3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
+   Traps hit non-Village visitors (Trapper).
+4. Results for investigators, using the visits and appearances (R19).
+5. Notifications: attackers learn whether they succeeded, attacked players learn the attacking role (R3, with the
+   Katana exception in R8), protectors learn nothing (R17), role-blocked players are told (R9), Yakuza learn each
+   other's actions (R8).
+6. Deaths are revealed at the start of the Day (R12); the win check runs on all of the night's deaths together (R1).
+
+=== PART 4: ATTACKS, DEATH AND INFORMATION ===
+
+R3 (Attack and Defense)
+- Levels, lowest to highest: None, Basic, Standard, Strong, Divine. Players have Defense None by default.
+- An Attack kills iff its level is strictly higher than the target's Defense.
+- Defenses don't stack: a player with several sources of Defense has the highest of them.
+- By default the attacker learns whether the Attack succeeded (not the target's Defense), and the target learns
+  the role that attacked them (not the attacker's name or Attack level). The Katana is an exception (R8).
+
+R17 (Protection feedback)
+Protectors (e.g. the Medic) are never told whether their protection stopped an attack, and a protected player is
+never told who protected them. A player who is attacked is still told as in R3.
+
+R12 (Death reveals)
+When someone dies, their cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are revealed
+publicly; their role and alignment are not. If several attacks were each fatal, every fatal cause is revealed;
+attacks the player survived aren't. The dead leave the circle and can't take part in the game any more. A player
+whose win ends their part in the game (a hanged Jester, an Executioner who leaves) is the exception: the
+announcement of their win names their role.
+
+R14 (Stall rule)
+If a Day begins and nobody has died in the three previous Nights and three previous Days, everyone loses. Deaths
+from last Night count even though they're announced today. Every death counts; leaving (like the Executioner's)
+doesn't.
+
+R19 (What investigations see)
+Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil) see a player's true alignment,
+except:
+- Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
+- Player framed by the Fabricator that night: Evil.
+- Ex-Con: Evil.
+- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
+  every Neutral as Neutral.)
+Exact-role checks see the true role.
+Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.
+
+=== PART 5: THE YAKUZA ===
+
+R8 (Yakuza and the Katana)
+- One random Yakuza starts with the Katana. The Yakuza share a private chat at night.
+- Each night the Yakuza vote, at the same time, on who holds the Katana that night (and the next Day) and whom it
+  attacks, if anyone. Both choices need a majority of living Yakuza; with two Yakuza alive, both must agree.
+  Without a majority on a target, no attack happens; without a majority on a holder, the Katana doesn't move.
+  A majority may move the Katana without attacking.
+- The Katana attack is Standard and is dealt by whoever holds it at the end of the night. It is an action and a
+  visit by that player (the new holder, if it moved that night): role-blocking them stops it, and Trackers see
+  them visit the target. Passing the Katana is not a visit.
+- The holder may also use their own role's night action.
+- The holder appears Good to alignment checks that night (R19).
+- The attacked player only learns they were attacked with the Katana, not the Yakuza role.
+- At the end of the night, each Yakuza learns what actions the other Yakuza chose, but not their results
+  (e.g. whether the Pharmacist's block worked) or whether a teammate was role-blocked.
+- Role-blocked Yakuza still vote on the Katana's holder and target; the votes aren't actions.
+- If the holder dies, the Katana passes to a random living Yakuza, if any; a holder who dies at night passes it on
+  after that night's results. The living Yakuza are told who holds it now (and so learn that the holder died).
+
+=== PART 6: ROLES ===
+
+Every role lists the same fields. Defaults, unless a role says otherwise: Defense None, no tokens, appears as its
+true alignment (R19), night action is a visit.
+
+--- Village (Good) ---
+
+Townsfolk (most villagers, helpful to the Village)
+
+Vanilla Villager
+  Night: none.
+
+Investigative
+
+Sheriff
+  Night: may investigate one player. Learn Evil or Not Evil (alignment check, R19).
+
+Tracker
+  Night: may track one player. Learn whom they visited.
+
+Lookout
+  Night: may watch one player. Learn who visited them, not counting your own visit.
+
+Seer
+  Tokens: 1 seer token.
+  Night: at the end of every night, you are told two random players other than yourself who were alive when the
+  night began (players who die that night count, R10), and whether their alignments (Good/Neutral/Evil) are the
+  same (alignment check, R19). Instead, you may spend a token to choose the
+  two living players yourself (not including yourself). A chosen pair is a visit to both players; the random
+  pair isn't a visit. A role-block stops both.
+
+Fortune Teller
+  Night: at the end of every night, you learn two numbers about that night, each labeled: how many players were
+  visited (a player visited several times counts once), and how many players visited anyone (a player who visited
+  several players counts once). This needs no action. Self-visits (R6) count in both numbers.
+  Example: A holds the Katana, attacks B and also uses their own role's action on C, D visits B, and E protects
+  themself. Visited: B, C and E, so 3. Visitors: A, D and E, so 3. Equal numbers don't mean nobody was visited
+  twice.
+
+Oracle
+  Night: may guess one player's exact role (Astral Visit). At the end of the night, learn whether you were right.
+
+Coroner
+  Tokens: 3 coroner tokens.
+  Night: may spend a token to examine one player who died before the night began (not one who left the game, and not
+  one who dies tonight). You learn their role, unless a Mortician cleaned them: then you learn only that. This is an
+  Astral Visit (R6) and an exact-role check (R19).
+
+Auditor
+  Night: may audit one player other than yourself. You learn every vote they cast during the Day just before this
+  Night, in order: Yes or No on each nomination and Guilty or Innocent in each trial. If they cast none, you learn
+  that.
+
+Insomniac
+  Tokens: 2 insomniac tokens.
+  Night: may spend a token to stay awake. At the end of the night, you learn the roles of up to 3 players who visited
+  someone that night (R6; a visit to themselves counts), but not who they are: if more than 3 players visited, 3 of
+  them are drawn at random. The roles are listed in alphabetical order, and a role shows twice if two of those
+  players have it. If fewer than 3 players visited, you learn all of their roles, and if nobody visited, you learn
+  that. Players who visited and then died that night count. Only visits count: an action that isn't a visit (e.g.
+  an Astral Visit or a Veteran's alert) doesn't. Staying awake is not a visit. This is an exact-role check (R19).
+
+Combat
+
+Medic
+  Tokens: 2 medic tokens.
+  Night: may protect one player other than yourself, giving them Standard Defense. Spend 1 token to give Strong
+  Defense instead. Spend 1 more token to protect yourself instead (so self-protection with Strong costs 2).
+
+Trapper
+  Night: may place a trap on one player other than yourself and other than the player your trap is already on, or
+  may remove your trap (removing it isn't a visit). You have one trap at a time; a new trap replaces the old one at
+  once. Traps last even after you die. A trap is armed from the next night on: the first time a
+  non-Village player visits the trapped player on a later night, the trap is used up and that visitor is dealt a
+  Strong Attack. If several non-Village players visit that night, one of them, chosen at random, is hit. You learn
+  that your trap went off, and nothing else (not who, nor whether it killed).
+
+Vigilante
+  Tokens: 3 vigilante tokens.
+  Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong. If your shot kills them,
+  you also learn their role (exact-role check, R19).
+
+Veteran
+  Tokens: 3 alert tokens.
+  You can't be role-blocked.
+  Night: may spend a token to go on alert (not a visit, R6, so nothing that reacts to visits counts it). While on
+  alert you have Standard Defense and you deal a Strong Attack to every player who visits you that night, whatever
+  their faction (a role-blocker who visits you is attacked too), however many there are. Astral Visits aren't
+  visits, so they aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how
+  many, and whether your attack on each of them succeeded, but nothing about who they were.
+
+Misc
+
+Prosecutor
+  Tokens: 2 prosecutor tokens.
+  Night: may spend a token to prosecute someone. At the start of the next Day, before anyone speaks, the moderator
+  announces that someone is being prosecuted; this counts as a successful nomination and they go to trial. It
+  counts toward the Day's three-nomination limit, an execution ends the Day as usual, and it can combine with a
+  Clerk's rig. If the trial needs a "nominator", the moderator picks a random player.
+
+Party Animal
+  Immune to role-blocks.
+  Night: may visit one player, role-blocking them.
+
+Outsiders (Village roles: Good, and win with the Village, but the role helps the Village less or can hurt it)
+
+Ex-Con
+  Appears: Evil to alignment checks (R19).
+  Night: every night you visit a random player other than yourself, and you aren't told whom. A role-block stops
+  the visit (R7).
+
+Cardinal
+  If you die, a random living Good player (if any) is dealt a Divine Attack at the end of the night: the night you
+  died, or the night after the Day you died. It comes after all of that night's other actions and attacks, so the
+  victim is drawn from the Good players still alive then, and it counts as a death that night.
+
+--- Yakuza (Evil) ---
+All Yakuza share the Katana and night chat (R8).
+
+Grunt
+  Night: none of its own.
+
+Pharmacist
+  Immune to role-blocks.
+  Night: may role-block one player.
+
+Ritualist
+  Tokens: 2 ritual tokens.
+  Night: may guess one player's exact role (Astral Visit), spending 1 token for a Standard Attack or 2 for a
+  Divine Attack. If right, the Attack is dealt. If wrong, the moderator publicly announces at the start of the
+  next Day that you are a Ritualist.
+
+Puppeteer
+  Tokens: 1 puppet token.
+  Night: may spend a token to puppet someone (not yourself or another Yakuza) for the following Day. That Day, they
+  are told they are being puppeted, and they can't chat or see private messages; nobody else is told. You chat
+  publicly and privately in their place (including seeing their private messages); that is all you can do for
+  them. They still nominate, vote and so on as normal. It lasts one Day.
+
+Fabricator
+  Tokens: 1 fabricator token.
+  Night: may visit one non-Yakuza player to frame them (no token needed): that night they appear Evil to
+  alignment checks (R19); other results are unchanged. On the same visit, you may spend a token to forge that
+  player's last will (not anyone else's): if they die of any cause that night, your forged will replaces theirs.
+  Framing and forging together are one visit.
+
+Clerk
+  Tokens: 1 clerk token.
+  Night: may spend a token to rig the next Day's votes. On a rigged Day, anyone successfully nominated is executed.
+  The Guilty/Innocent vote still happens; if a majority votes Guilty, the rig is not announced, otherwise it is
+  announced publicly.
+
+Mortician
+  Tokens: 3 mortician tokens.
+  Night: may spend a token to try to clean someone. If they die that night by any cause, they are cleaned: their
+  death is revealed publicly with its cause, but their last will shows as "cleaned by mortician". You are
+  privately told their role and last will. A Coroner who examines a cleaned player learns nothing. The token is
+  spent even if they survive.
+
+Informant
+  You passively see how every player voted in each Guilty/Innocent trial vote, right after the vote. This is not a
+  night action or a visit, so role-blocks don't stop it. Nobody is told that an Informant exists, and the other
+  Yakuza aren't told the votes: what you share in the night chat is up to you.
+
+--- Neutral ---
+Each Neutral player is their own faction (R2).
+
+Serial Killer
+  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Win: only alone (not even with another Serial Killer).
+  Night: may deal a Strong Attack to one player.
+
+Arsonist
+  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Win: only alone (not even with another Arsonist).
+  Night: may douse one player, or ignite (Astral Visit), dealing a Strong Attack to every doused player. A doused
+  player who isn't Good (Yakuza or Neutral) is told at the end of the night that an Arsonist doused them; Good
+  players are never told. Igniting uses up every douse: players who survive it are no longer doused.
+
+Jester
+  Defense: Basic. Appears: Evil to the Sheriff.
+  Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
+  alive.
+  Revenge: if you are hanged, the following night a random Guilty voter from your trial who was alive when that
+  night began is dealt a Divine Attack (Astral Visit). If nobody voted Guilty, nothing happens.
+
+Executioner
+  Defense: Basic. Appears: Evil to the Sheriff.
+  At the start you get a random target: any player except yourself.
+  Win: iff your target is hanged during a Day while you are alive (other daytime deaths don't count). You lose if
+  the game ends with your target alive.
+  On winning: the moderator reveals you at once and you leave the game. Leaving works exactly like dying (you
+  leave the circle for good) except it doesn't count as a death. The following night, a random Guilty voter from
+  the trial who was alive when that night began (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
+  Guilty, nothing happens.
+  If your target dies any other way, you become a Jester.

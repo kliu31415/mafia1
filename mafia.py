@@ -208,8 +208,8 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
     """Plays a game and its post-game steps; returns its log's path. checkpoint: save the game at the start
     of each day and night to logs/<game>.ckpt (deleted when the game finishes). resume: a loaded checkpoint
     (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's."""
-    rules = (scripts.rules_for(RULES_PATH.read_text(encoding="utf-8"), config.script)
-             + variants.rules_notes(config.rule_settings)
+    full_rules = RULES_PATH.read_text(encoding="utf-8")
+    rules = (scripts.rules_for(full_rules, config.script) + variants.rules_notes(config.rule_settings)
              + setup_note(config.setup, config.roles))
     if resume:
         log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
@@ -228,6 +228,9 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
         else:
             started = time.time()
             game = start_game(client, config, rules, log, checkpoint)
+            if scripts.stale(full_rules, config.script):  # after the setup record, which a log starts with
+                log.error("script_stale", f"the {config.script} script's cached rules revision doesn't match "
+                          "rules_1.txt, so this game plays by the plain cut; `uv run scripts.py revise` remakes it")
         game.rule_settings = dict(config.rule_settings)  # a resumed game's own (from_checkpoint)
         if isinstance(client, OpenRouterClient):
             client.on_error = log.error

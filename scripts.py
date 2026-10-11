@@ -11,6 +11,12 @@ unchanged. A game's script is in game.rule_settings["script"] and the log's sett
 checkpoints played with "all").
 """
 
+import hashlib
+import json
+import re
+from datetime import datetime
+from pathlib import Path
+
 from roles import ROLES, Alignment
 
 DEFAULT = "all"
@@ -86,18 +92,152 @@ def _filter_roles_part(part: str, keep: set[str]) -> str:
     return "\n\n".join(out)
 
 
-def rules_for(rules: str, script: str) -> str:
-    """The rules text a game on this script plays by: rules_1.txt itself for "all"; otherwise only the script's
-    roles in the roles part, and a note after the rules saying that's the whole pool."""
-    if SCRIPTS[script] is None:
-        return rules
+def cut(rules: str, script: str) -> str:
+    """rules_1.txt with only the script's roles in the roles part (the mechanical cut, before any revision)."""
     end = rules.index("\n", rules.index("PART 6: ROLES"))  # the roles part starts after its heading's line
     head, part = rules[:end], rules[end:]
+    return head + _filter_roles_part(part, set(roles_of(script)))
+
+
+def note(script: str) -> str:
+    """The note after a script's rules saying its roles are the whole pool."""
     names = roles_of(script)
     by_side = {a: sum(ROLES[r].alignment is a for r in names) for a in Alignment}
-    note = (f"\n\n---\n\nScript: this game uses the {script} script, so Part 6 lists only its {len(names)} roles "
+    return (f"\n\n---\n\nScript: this game uses the {script} script, so Part 6 lists only its {len(names)} roles "
             f"({by_side[Alignment.GOOD]} Village, {by_side[Alignment.EVIL]} Yakuza, {by_side[Alignment.NEUTRAL]} "
             "Neutral). Every role in this game is one of them, though most of them aren't in play, and no other "
             "role is. Wherever a rule draws a role from all the roles in these rules, or names roles that aren't "
             "listed (e.g. as examples or as a role to choose from), it means only the listed ones.")
-    return head + _filter_roles_part(part, set(names)) + note
+
+
+# --- the cached revision ------------------------------------------------------------------------------------
+# The cut leaves mentions of roles that aren't on the script (examples, cross-references, lists in general rules).
+# Once per script and rules version, a model tidies them up (Kevin, Oct 11 2026): it returns small edits, applied
+# word for word, so nothing else in the rules can change. The result is kept in rules_scripts/NAME.txt (the text
+# games use; a git diff shows exactly what was revised) and NAME.json (the cut it was made from, the edits, the
+# model). When rules_1.txt or the script changes, the cut changes, the cache goes stale and
+# test_every_script_revision_is_current fails until `uv run scripts.py revise` remakes it: regenerated once, at
+# commit time, so every game on a script plays by the same reviewed text. A game that still finds it stale plays
+# by the plain cut and logs a script_stale alert.
+
+CACHE_DIR = Path(__file__).parent / "rules_scripts"
+REVISER = "opus-5.5"
+
+
+def digest(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+def cached(rules: str, script: str) -> str | None:
+    """The script's revised rules (no note), if the cache was made from this cut; else None."""
+    try:
+        meta = json.loads((CACHE_DIR / f"{script}.json").read_text(encoding="utf-8"))
+        text = (CACHE_DIR / f"{script}.txt").read_text(encoding="utf-8")
+    except (OSError, ValueError):
+        return None
+    if meta.get("cut_sha256") != digest(cut(rules, script)) or meta.get("text_sha256") != digest(text):
+        return None
+    return text
+
+
+def stale(rules: str, script: str) -> bool:
+    """Whether a script needs a (new) revision: any script but "all" whose cache doesn't match its current cut."""
+    return SCRIPTS[script] is not None and cached(rules, script) is None
+
+
+def rules_for(rules: str, script: str) -> str:
+    """The rules text a game on this script plays by: rules_1.txt itself for "all"; otherwise the cached revision
+    of the cut (or the plain cut while it's stale), and the note saying the script's roles are the whole pool."""
+    if SCRIPTS[script] is None:
+        return rules
+    return (cached(rules, script) or cut(rules, script)) + note(script)
+
+
+REVISE_TASK = (
+    'You are tidying the rules of a social deduction game for one game "script". The full rules come first; then '
+    "the same rules cut down to the script: role paragraphs not on the script were removed, nothing else changed. "
+    "The cut can still mention roles that are no longer listed (examples, cross-references, lists of roles in "
+    "general rules or in other roles' paragraphs). Players will be told that only the listed roles exist.\n\n"
+    "Return edits to the CUT rules that remove or reword mentions of roles that aren't on the script, where doing "
+    "so makes the rules clearer or shorter without changing any rule for the listed roles. Each edit replaces one "
+    'exact passage ("old", copied character for character from the cut rules, including line breaks, long enough '
+    'to occur only once) with "new". Keep the text\'s style and line wrapping (about 116 characters, role lines '
+    "indented by two spaces). Keep a mention when removing it would change or weaken a rule, e.g. an example that "
+    "explains a mechanic the listed roles still use (reword it to a listed role if one fits, otherwise leave it). "
+    "Don't rename rule labels (R1, R2, ...), don't touch role names, and don't edit anything that doesn't mention "
+    "an unlisted role. Return no edits if nothing needs changing. Give each edit a short reason."
+)
+
+EDIT_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["edits"], "properties": {
+    "edits": {"type": "array", "items": {"type": "object", "additionalProperties": False,
+                                         "required": ["old", "new", "reason"],
+                                         "properties": {"old": {"type": "string"}, "new": {"type": "string"},
+                                                        "reason": {"type": "string"}}}}}}
+
+
+def apply_edits(text: str, edits: list[dict]) -> str:
+    """The text with each edit's exact passage replaced; raises ValueError if a passage isn't there exactly once,
+    or if the result no longer has the same role paragraphs and rule labels."""
+    out = text
+    for e in edits:
+        if out.count(e["old"]) != 1:
+            raise ValueError(f"edit passage found {out.count(e['old'])} times, not once: {e['old'][:80]!r}")
+        out = out.replace(e["old"], e["new"])
+    if role_names(out) != role_names(text) or rule_labels(out) != rule_labels(text):
+        raise ValueError("the edits changed which roles or rule labels the rules have")
+    return out
+
+
+def role_names(text: str) -> list[str]:
+    """The roles with a paragraph in this rules text (their name on its own line, then indented lines)."""
+    lines = text.split("PART 6: ROLES", 1)[1].splitlines()
+    return [line for i, line in enumerate(lines[:-1]) if line in ROLES and lines[i + 1].startswith("  ")]
+
+
+def rule_labels(text: str) -> list[str]:
+    return re.findall(r"^(R\d+) \(", text, flags=re.M)
+
+
+def revise(client, rules: str, script: str, reviser: str = REVISER) -> dict:
+    """Asks the reviser model for edits to the script's cut and writes the cache; returns its metadata."""
+    from llm import answer_json, parse_model_spec
+    spec = parse_model_spec(reviser)
+    text = cut(rules, script)
+    missing = sorted(set(ROLES) - set(roles_of(script)))
+    task = (f"{REVISE_TASK}\n\nRoles on the script: {', '.join(roles_of(script))}.\nRoles NOT on the script: "
+            f"{', '.join(missing)}.\n\n=== FULL RULES ===\n{rules}\n\n=== CUT RULES (edit these) ===\n{text}")
+    reply = client.chat(spec.model, [{"role": "user", "content": task}], schema=EDIT_SCHEMA, schema_name="edits",
+                        effort=spec.effort)
+    edits = answer_json(reply, EDIT_SCHEMA)["edits"]
+    revised = apply_edits(text, edits)
+    meta = {"script": script, "cut_sha256": digest(text), "text_sha256": digest(revised), "model": str(spec),
+            "made": datetime.now().isoformat(timespec="seconds"), "cost": reply.cost, "edits": edits}
+    CACHE_DIR.mkdir(exist_ok=True)
+    (CACHE_DIR / f"{script}.txt").write_text(revised, encoding="utf-8")
+    (CACHE_DIR / f"{script}.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return meta
+
+
+def main() -> None:
+    import argparse
+    from llm import OpenRouterClient, load_api_key
+    ap = argparse.ArgumentParser(description="Remake scripts' cached rules revisions (see scripts.py).")
+    ap.add_argument("command", choices=["revise", "check"])
+    ap.add_argument("names", nargs="*", help="scripts to revise (default: the stale ones); 'check' lists stale ones")
+    ap.add_argument("--reviser", default=REVISER)
+    args = ap.parse_args()
+    rules = (Path(__file__).parent / "rules_1.txt").read_text(encoding="utf-8")
+    todo = args.names or [s for s in SCRIPTS if stale(rules, s)]
+    if args.command == "check" or not todo:
+        print("Stale: " + (", ".join(todo) if todo else "none"))
+        return
+    client = OpenRouterClient(load_api_key())
+    for name in todo:
+        meta = revise(client, rules, name, args.reviser)
+        print(f"{name}: {len(meta['edits'])} edits, ${meta['cost']:.2f}")
+        for e in meta["edits"]:
+            print(f"  - {e['reason']}")
+
+
+if __name__ == "__main__":
+    main()
