@@ -197,6 +197,7 @@ class Game:
         while `cause` is the public wording."""
         p = self.player(name)
         if not p.alive:
+            self.add_death_cause(p, cause, by)
             return
         p.alive = False
         self.phases_without_death = 0
@@ -222,6 +223,20 @@ class Game:
             logic(q.role).on_other_death(self, q, p, guilty_voters)
         if self.phase != "night":  # a holder who dies at night passes it on after the night's results
             self.pass_katana()
+
+    def add_death_cause(self, p: Player, cause: str, by: str | list[str] | None) -> None:
+        """A second fatal attack on a player who already died tonight, from code (Jester revenge drawing a player
+        the Katana killed, game_20261010_080056_104): every fatal cause is revealed (rules R12), so it joins the
+        dawn announcement and the killers."""
+        i = next((i for i, (n, _) in enumerate(self.pending_deaths) if n == p.name), None)
+        if self.phase != "night" or i is None or cause in self.pending_deaths[i][1]:
+            return
+        self.pending_deaths[i] = (p.name, f"{self.pending_deaths[i][1]} and {cause}")
+        if p.death:
+            p.death["cause"] = self.pending_deaths[i][1]
+            new = [by] if isinstance(by, str) else list(by or [])
+            p.death["killers"] = p.death["killers"] + new
+            p.death["killer_roles"] = p.death["killer_roles"] + [self.player(k).role for k in new]
 
     def pass_katana(self) -> None:
         """If the Katana holder is dead, pass the Katana to a random living Yakuza (rules R8)."""

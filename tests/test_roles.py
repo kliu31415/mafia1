@@ -31,7 +31,9 @@ def test_jester_revenge_draws_from_voters_alive_when_the_night_began(game_factor
     start = {p.name for p in game.alive()}
     game.kill("Bob", "Katana")
     game.resolve_revenge(start)
-    assert [n for n, _ in game.pending_deaths] == ["Bob"]  # nobody else dies
+    # Nobody else dies, and the revenge is revealed as a second fatal cause (R12; game_20261010_080056_104).
+    assert game.pending_deaths == [("Bob", "Katana and Jester's revenge")]
+    assert game.player("Bob").death["killers"] == ["Alice"]
 
 
 def test_jester_killed_at_night_does_not_win(game_factory):

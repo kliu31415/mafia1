@@ -10,7 +10,7 @@ from llm import LLMReply, Model, ModelSpec
 from moderator import Moderator
 from night import run_night
 from players import VOTE_SCHEMA
-from tests.conftest import ScriptedClient
+from tests.conftest import ScriptedClient, told
 
 
 def test_malformed_moderator_ops_change_nothing(game_factory):
@@ -241,7 +241,7 @@ def test_a_token_count_below_zero_is_reset_and_warned(game_factory):
     out = mod.dispatch("apply_changes", {"changes": [
         {"op": "set_tokens", "player": "Alice", "token": "prosecutor", "value": 0},
         {"op": "prosecute", "player": "Carol", "by": "Alice"}]})
-    assert game.player("Alice").tokens["prosecutor"] == 0 and "below 0" in out["notes"][0]
+    assert game.player("Alice").tokens["prosecutor"] == 0 and any("below 0" in n for n in out["notes"])
 
 
 def test_a_night_tell_to_a_player_whose_result_code_delivers_is_held_once(game_factory):
@@ -251,7 +251,7 @@ def test_a_night_tell_to_a_player_whose_result_code_delivers_is_held_once(game_f
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     told = lambda name: [e.text for e in game.events if e.visible_to is not None and name in e.visible_to]  # noqa: E731
     out = mod.dispatch("tell", {"to": ["Alice"], "text": "You handed Bob a token."})
-    assert out["ok"] is False and "code already gives Alice" in out["note"] and not told("Alice")
+    assert out["ok"] is False and "Not sent to Alice: code already gives" in out["note"] and not told("Alice")
     mod.dispatch("tell", {"to": ["Alice"], "text": "You were attacked but survived."})  # resent: goes through
     assert told("Alice") == ["Moderator (private): You were attacked but survived."]
     assert mod.dispatch("tell", {"to": ["Bob"], "text": "Done."})["ok"]  # a Medic's result comes from the moderator
@@ -279,3 +279,39 @@ def test_a_resent_held_tell_lets_the_night_end(game_factory):
     mod.dispatch("tell", {"to": ["Alice"], "text": "You handed Bob a token. You were attacked."})
     mod.dispatch("tell", {"to": ["Alice"], "text": "You were attacked but survived."})
     assert mod.dispatch("end_phase", {"summary": ""})["ok"]
+
+
+def test_a_held_tell_still_reaches_the_other_recipients(game_factory):
+    # Yakuza summaries to the whole team went nowhere when one teammate had a code-given result, then were split.
+    game, players = game_factory(["Archivist", "Grunt", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.phase = "night"
+    game.night_actions[game.day] = {"Alice": {"act": True, "target": None}}
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    out = mod.dispatch("tell", {"to": ["Alice", "Bob", "Carol"], "text": "Yakuza actions tonight: ..."})
+    assert out["ok"] is False and out["note"].startswith("Sent to Bob, Carol. Not sent to Alice")
+    assert told(game, "Bob") == told(game, "Carol") == ["Moderator (private): Yakuza actions tonight: ..."]
+    assert told(game, "Alice") == []
+
+
+def test_tells_to_a_player_killed_tonight_or_whose_op_was_refused_go_through(game_factory):
+    game, players = game_factory(["Archivist", "Profiler", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.phase = "night"
+    game.night_actions[game.day] = {"Alice": {"act": True, "target": None}, "Bob": {"act": True, "target": "Bob"}}
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    game.kill("Alice", "Katana")
+    assert mod.dispatch("tell", {"to": ["Alice"], "text": "You were attacked and died."})["ok"]
+    with pytest.raises(ValueError):  # game_20261010_053523_23052: then the result was made by hand
+        mod.dispatch("apply_changes", {"changes": [{"op": "profile", "player": "Bob", "by": "Bob"}]})
+    assert mod.dispatch("tell", {"to": ["Bob"], "text": "Your profile: ..."})["ok"]
+
+
+def test_a_token_use_counted_by_both_set_tokens_and_the_op_is_noted(game_factory):
+    game, players = game_factory(["Prosecutor", "Vanilla Villager", "Grunt"])
+    game.player("Alice").tokens["prosecutor"] = 2
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    out = mod.dispatch("apply_changes", {"changes": [
+        {"op": "set_tokens", "player": "Alice", "token": "prosecutor", "value": 1}]})
+    assert "notes" not in out
+    out = mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "player": "Carol", "by": "Alice"}]})
+    assert game.player("Alice").tokens["prosecutor"] == 0
+    assert "Check Alice's prosecutor tokens, now 0" in out["notes"][0]

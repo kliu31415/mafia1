@@ -112,6 +112,10 @@ class Moderator:
         self.visits_reminded = False  # end_phase was refused once this night for a missing record_visits
         self.held_unsent: set[str] = set()  # held tells not followed by another tell to that player this phase
         self.held_reminded = False  # end_phase was refused once this night for held_unsent
+        # (player, token kind) set by set_tokens / spent by a role op this phase, to catch a use counted twice
+        self.tokens_set: set[tuple[str, str]] = set()
+        self.tokens_spent: set[tuple[str, str]] = set()
+        self.op_refused: set[str] = set()  # users of a role op that apply_changes refused this phase
         docs = []
         for role in sorted({p.role for p in game.players}):
             for op, (required, optional, doc) in logic(role).ops.items():
@@ -127,6 +131,7 @@ class Moderator:
         transcript: list[dict] = []
         self.code_told, self.tells_held, self.visits_reminded = set(), set(), False
         self.held_unsent, self.held_reminded = set(), False
+        self.tokens_set, self.tokens_spent, self.op_refused = set(), set(), set()
         messages = [
             rules_system(self.rules, "You are the omniscient moderator of "
              "this game. Code stores the state and runs the day phase; you resolve what code can't "
@@ -221,20 +226,29 @@ class Moderator:
                             f"blocked by a content filter ({reply.stop_note})", day=self.game.day,
                             phase=self.game.phase, old=old, new=self.model.value, reason=reply.stop_note)
 
-    def apply_change(self, c: dict) -> None:
-        """Applies one checked apply_changes op."""
+    def apply_change(self, c: dict) -> str | None:
+        """Applies one checked apply_changes op. Returns a note for the moderator if it looks like a mistake."""
         g = self.game
         if c["op"] in self.op_roles:
+            user = g.player(c["by"]) if c.get("by") in {q.name for q in g.players} else None
+            before = dict(user.tokens) if user else {}
             self.op_roles[c["op"]].apply_op(g, c)
             if self.op_roles[c["op"]].code_tells_user and "by" in c:  # not e.g. the attacks op
                 self.code_told.add(c["by"])
-            return
+            spent = {(user.name, k) for k, n in before.items() if user.tokens.get(k, 0) < n} if user else set()
+            self.tokens_spent |= spent
+            if both := sorted(spent & self.tokens_set):
+                return self.double_spend_note(*both[0])
+            return None
         p = g.player(c["player"])  # every core op names a player
         match c["op"]:
             case "kill":
                 g.kill(p.name, c.get("cause", "killed"), by=c.get("by"), katana=c.get("katana", False))
             case "set_tokens":
                 p.tokens[c["token"]] = int(c["value"])
+                self.tokens_set.add((p.name, c["token"]))
+                if (p.name, c["token"]) in self.tokens_spent:
+                    return self.double_spend_note(p.name, c["token"])
             case "set_status":
                 if c.get("value") is None:
                     p.status.pop(c["key"], None)
@@ -244,6 +258,14 @@ class Moderator:
                 p.last_will = c["text"]
             case "set_katana":
                 g.katana_holder = p.name
+        return None
+
+    def double_spend_note(self, name: str, kind: str) -> str:
+        """A set_tokens and a role op that spends the same token, in one night: e.g. set_tokens 1 plus the prosecute
+        op took a Prosecutor from 2 to 0 (from 1 to -1 in game_20261009_232916_370745)."""
+        n = self.game.player(name).tokens.get(kind, 0)
+        return (f"Check {name}'s {kind} tokens, now {n}: you set them with set_tokens, and an op that spends that "
+                "token already took one off itself. If that counted the use twice, set_tokens them back.")
 
     def dispatch(self, name: str, args: dict) -> Any:
         g = self.game
@@ -251,12 +273,23 @@ class Moderator:
             case "get_state":
                 return g.full_state()
             case "apply_changes":
-                changes, notes = self.check_changes(args["changes"])
+                try:
+                    changes, notes = self.check_changes(args["changes"])
+                except ValueError:
+                    # Its user's result now comes from the moderator, if anyone (game_20261010_053523_23052: a
+                    # refused profile op, then the hand-made result was held as if code gave it).
+                    raw = args["changes"] if isinstance(args["changes"], list) else []
+                    self.op_refused |= {c["by"] for c in raw if isinstance(c, dict) and c.get("op") in self.op_roles
+                                        and isinstance(c.get("by"), str)}
+                    raise
                 for note in notes:  # applied anyway, but likely a moderator mistake
                     g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
                 for i, c in enumerate(changes):
                     try:
-                        self.apply_change(c)
+                        if warning := self.apply_change(c):
+                            notes.append(warning)
+                            g.log.error("moderator_warning", f"day {g.day} {g.phase}: {warning}",
+                                        changes=args["changes"])
                     except Exception as e:  # a bug in our code, since the batch passed its checks
                         # The earlier ops stay applied: say so, or the moderator, used to "nothing was applied",
                         # would send them again (two kills, two spent tokens).
@@ -292,13 +325,18 @@ class Moderator:
                 else:
                     for n in to:
                         g.player(n)  # validate names
-                    if held := self.held_tell(to):
-                        return {"ok": False, "note": f"Not sent: code already gives {', '.join(held)} the result of "
-                                "their action tonight (or, by the rules, nothing), so don't tell them about it. If "
-                                "this message is about something else, such as an attack or a role-block, send it "
-                                "again and it will go through."}
-                    g.tell(to, args["text"])
-                    self.held_unsent.difference_update(to)
+                    held = self.held_tell(to)
+                    # Only the covered recipients are held: a Yakuza summary to the whole team went nowhere
+                    # because one teammate had a code-given result, and was then split by hand.
+                    if sent := [n for n in to if n not in held]:
+                        g.tell(sent, args["text"])
+                        self.held_unsent.difference_update(sent)
+                    if held:
+                        return {"ok": False, "note": (f"Sent to {', '.join(sent)}. " if sent else "")
+                                + f"Not sent to {', '.join(held)}: code already gives them the result of their "
+                                "action tonight (or, by the rules, nothing), so don't tell them about it. If this "
+                                "message is about something else, such as an attack, a role-block or the Yakuza's "
+                                f"actions, send it again to {', '.join(held)} only and it will go through."}
                 return {"ok": True}
             case "ask_player":
                 p = g.player(args["player"])
@@ -356,8 +394,10 @@ class Moderator:
         if g.phase != "night":
             return []
         acted = g.night_actions.get(g.day, {})
+        # A player who died tonight is being told about the attack, not their action's result.
         held = [n for n in to if n not in self.tells_held and logic(g.player(n).role).code_tells_user
-                and (n in self.code_told or acted.get(n, {}).get("act"))]
+                and (n in self.code_told or acted.get(n, {}).get("act") and n not in self.op_refused)
+                and g.player(n).alive]
         if held:
             self.tells_held.update(held)
             self.held_unsent.update(held)
