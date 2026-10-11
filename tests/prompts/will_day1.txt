@@ -37,10 +37,10 @@ Private messages sent, per day (sender -> recipient (count)):
 
 Your current last will (revealed to everyone if you die): (none yet)
 
-Your private notepad (only you can see it; it carries over between turns):
+Your private notepad (only you can see it; it carries over between turns; 0 of 300 words used):
 (empty)
 
-Every response has a 'notepad' field: set it to replace your notepad (max 300 words; longer is truncated), or leave it empty ("") to keep it as is. Use it for plans, suspicions and anything you want to remember. A useful habit: one brief line per other player (their claim, key votes or actions, and your current read), e.g. "Bob: claims Sheriff, says Carol is Not Evil; voted Guilty on Dave D2; leaning Yakuza". Keep lines short so they all fit.
+Every response has a 'notepad' field: set it to replace your notepad (max 300 words; longer is truncated), or leave it empty ("") to keep it as is. It is the only place you can keep private notes; how you use the space is up to you.
 
 Every response also has a 'reason' field: why you chose this answer, usually in one short sentence, or a few when the choice was complicated. It is kept in the game's records only; nobody in the game sees it.
 
