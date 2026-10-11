@@ -100,6 +100,12 @@ ROLES: dict[str, RoleInfo] = {
                       acts_at_night=True,
                       notes="moderator records the use with the jury op (Astral); code counts the shared votes "
                       "and tells them"),
+    "Bloodhound": RoleInfo(Alignment.GOOD, "Investigative", False,
+                           summary="Every night: learns how many attacks three random players have made this game. "
+                           "Token: choose one of the three.",
+                           tokens={"scent": 2}, acts_at_night=True,
+                           notes="moderator lists each night's attackers with the attacks op and records a token use "
+                           "with the track op; code draws the group, counts and tells them"),
     "Scrutineer": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Night: learn how many of a player and two random others voted Guilty in each of "
                            "the Day's trials.",

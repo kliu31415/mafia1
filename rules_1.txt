@@ -305,6 +305,16 @@ Juror
   both of them cast count, and not votes on the nomination or trial of either of them. A doubled vote (Ballot
   Stuffer) counts once. You learn only the totals, not which votes they agreed on.
 
+Bloodhound
+  Tokens: 2 scent tokens.
+  Night: at the end of every night, code draws three random players other than you from those alive at the start of
+  the night, and you learn their names and how many Attacks (R3) they have made in total this game, tonight's
+  included, whether or not the Attacks killed anyone. Each player's Katana attacks, shots, alert or trap hits and
+  so on all count; a role-blocked attack never happened, so it doesn't. This needs no action and a role-block
+  doesn't stop it.
+  Night: may also spend a token to track one player other than yourself: they take one of the three places that
+  night and code draws the other two. A role-block stops the tracking (R9) but not the result.
+
 Scrutineer
   Night: may scrutinize one player other than yourself who voted in the Day's trials (Astral Visit). Code adds two
   random other players who voted in those trials (never you), and you learn the three names and, for each trial of

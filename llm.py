@@ -625,6 +625,9 @@ class MockClient:
             if not done and katana:  # the night's visits: the mock moderator only knows the Katana's
                 visits = [[json.loads(katana[1])["holder"], target]] if name == "apply_changes" else []
                 calls.append(("record_visits", {"visits": visits}))
+                if "op:'attacks'" in json.dumps(tools):  # a Bloodhound's game records the night's attacks too
+                    attackers = [json.loads(katana[1])["holder"]] if name == "apply_changes" else []
+                    calls.append(("apply_changes", {"changes": [{"op": "attacks", "attackers": attackers}]}))
             tool_calls = [{"id": f"call_{rng.randrange(10**9)}", "type": "function",
                            "function": {"name": n, "arguments": json.dumps(a)}} for n, a in calls]
         elif schema:

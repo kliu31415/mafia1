@@ -82,7 +82,9 @@ from records import read_records, safe_print
 #     rules_sha256 hashes), setup_note (what players were told about the setup) and players (each player's
 #     opening role briefing); "moderator_prompt" records (day, phase, instructions, state_summary, full_state):
 #     what the moderator was told at the start of each phase it ran
-LOG_VERSION = 42
+# 43: "attacks" records (day, attackers): the attacker of each Attack that night, from the moderator's attacks op
+#     (games with a Bloodhound)
+LOG_VERSION = 43
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

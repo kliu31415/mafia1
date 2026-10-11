@@ -1,6 +1,7 @@
 {
- "log_version": 42,
+ "log_version": 43,
  "log": {
+  "attacks": ["attackers", "day"],
   "briefing": ["players", "rules", "setup_note"],
   "budget_warning": ["budget", "planned", "player"],
   "cardinal": ["victim"],

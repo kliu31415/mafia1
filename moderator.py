@@ -232,7 +232,7 @@ class Moderator:
                 for c in changes:
                     if c["op"] in self.op_roles:
                         self.op_roles[c["op"]].apply_op(g, c)
-                        if self.op_roles[c["op"]].code_tells_user:
+                        if self.op_roles[c["op"]].code_tells_user and "by" in c:  # not e.g. the attacks op
                             self.code_told.add(c["by"])
                         continue
                     p = g.player(c["player"])  # every core op names a player

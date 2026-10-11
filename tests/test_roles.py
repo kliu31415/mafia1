@@ -1070,3 +1070,24 @@ def test_scrutineer_counts_guilty_votes_of_a_group_of_three_per_trial(game_facto
     game.day += 1  # no trials that Day
     apply_ops(game, players, {"op": "scrutinize", "player": "Bob", "by": "Alice"})
     assert told(game, "Alice")[-1].endswith("there were no trials during the Day.")
+
+
+def test_bloodhound_counts_recorded_attacks_of_three_players_over_the_game(game_factory):
+    from roles.bloodhound import attack_count
+    game, players = game_factory(["Bloodhound", "Vigilante", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "attacks", "attackers": ["Dave", "Bob"]})
+    with pytest.raises(ValueError, match="no player named"):
+        apply_ops(game, players, {"op": "attacks", "attackers": ["Zed"]})
+    apply_ops(game, players, {"op": "track", "player": "Dave", "by": "Alice"})
+    game.run_night_end_hooks()
+    text = told(game, "Alice")[-1]
+    group = re.findall(r"Bob|Carol|Dave|Erin", text.split(":", 2)[1])
+    assert "Dave" in group and len(group) == 3 and "1 scent token left" in text
+    assert f"together they have made {attack_count(game, group)} attack" in text
+    game.day += 1  # a night with no token and no attacks op: still a result, and an alert for the missing record
+    game.run_night_end_hooks()
+    assert "this game, tonight's included." in told(game, "Alice")[-1]
+    assert game.log.error_counts == {"attacks_missing": 1}
+    game.role_state["attacks"][game.day] = ["Dave"]
+    assert attack_count(game, ["Dave"]) == 2 and attack_count(game, ["Bob", "Carol"]) == 1

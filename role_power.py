@@ -32,7 +32,7 @@ PRIOR: dict[str, float] = {
     "Vanilla Villager": 0.25, "Sheriff": 0.55, "Tracker": 0.45, "Lookout": 0.45, "Seer": 0.4,
     "Fortune Teller": 0.35, "Oracle": 0.45, "Eavesdropper": 0.4, "Archivist": 0.4, "Surveyor": 0.4,
     "Census Taker": 0.45, "Profiler": 0.45, "Coroner": 0.35, "Chronicler": 0.4, "Auditor": 0.4, "Juror": 0.35,
-    "Scrutineer": 0.3, "Cartographer": 0.35, "Scout": 0.3, "Insomniac": 0.35, "Accountant": 0.35,
+    "Scrutineer": 0.3, "Bloodhound": 0.4, "Cartographer": 0.35, "Scout": 0.3, "Insomniac": 0.35, "Accountant": 0.35,
     "Medic": 0.55, "Trapper": 0.55, "Vigilante": 0.45, "Veteran": 0.5,
     "Prosecutor": 0.4, "Philanthropist": 0.35, "Party Animal": 0.45,
     "Roleplayer": 0.0, "Ex-Con": 0.05, "Cardinal": 0.1,
