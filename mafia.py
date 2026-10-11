@@ -31,7 +31,7 @@ Code layout:
     scripts.py     scripts (--script): the roles a game can use; its rules text lists only those
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     grade.py       an LLM judge grades each player's play in finished games, blind to models (grades/)
-    night_check.py a judge model checks each night's moderator resolution (--check-nights)
+    night_check.py a judge model checks each night's moderator resolution (--check-nights; --fix-nights corrects)
     game_index.py  logs/index.html: every game in one filterable table (by model tier, winner, ...); or `serve`
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
     sync_logs.py   moves logs from cloud games to the PC (and the tips sheet back) through the `logs` branch
@@ -144,6 +144,7 @@ class GameConfig:
     lessons: bool = False
     max_days: int | None = None
     check_nights: bool = False
+    fix_nights: bool = False  # the night check runs before dawn and its findings go back to the moderator
     tips: Path | None = None
     tips_for: str = "all"
     player_tips: list[tuple[str, Path | None]] = field(default_factory=list)
@@ -184,7 +185,8 @@ class GameConfig:
                 "seed": self.seed, "max_days": self.day_limit, "effort": getattr(client, "effort", None),
                 "mock": mock, "claude_code": isinstance(client, claude_code.ClaudeCodeClient),
                 "mod_flags": self.flag_issues, "feedback_field": self.feedback_field,
-                "check_nights": self.check_nights, "checkpoint": checkpoint,
+                "check_nights": self.check_nights, "fix_nights": self.check_nights and self.fix_nights,
+                "checkpoint": checkpoint,
                 "tips": str(self.tips) if self.tips else None, "tips_for": self.tips_for if self.tips else None,
                 "player_tips": [[w, str(f) if f else None] for w, f in self.player_tips],
                 "setup": self.setup or {"kind": "fixed"}, **self.rule_settings}
@@ -247,8 +249,9 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
                               effort=mod.effort, fallback=config.moderator_fallback)
         if resume:
             moderator.flags = resume["moderator_flags"]
-        # The judge is the moderator's model; checks run in the background while the game continues.
-        checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort)
+        # The judge is the moderator's model; checks run in the background while the game continues, or before
+        # dawn with --fix-nights.
+        checker = (NightChecker(client, mod.model, mod.model, rules, log, effort=mod.effort, fix=config.fix_nights)
                    if config.check_nights else None)
         for p in game.players:
             print(f"  {p.name:<8} {p.role:<17} {ModelSpec(p.model, p.effort)}" + ("  +tips" if p.tips else ""))
@@ -563,6 +566,9 @@ def build_parser() -> argparse.ArgumentParser:
     fb.add_argument("--check-nights", action=argparse.BooleanOptionalAction, default=True,
                     help="after each night, have the moderator model check the moderator's resolution against "
                     "the rules, in the background; results are logged as night_check records")
+    fb.add_argument("--fix-nights", action=argparse.BooleanOptionalAction, default=True,
+                    help="with --check-nights: check each night before dawn instead, and send its high-severity "
+                    "findings back to the moderator to verify and correct (adds the check's time to each night)")
     ap.add_argument("--tips", metavar="FILE", type=Path, help="a tips file from past games (build one with "
                     "`uv run tips.py build`), shown in the system prompt of the players --tips-for picks")
     ap.add_argument("--tips-for", default="all", metavar="WHO", help="who gets --tips: all (default), half (a "
@@ -702,7 +708,8 @@ def main() -> None:
         play_game(client, GameConfig(
             models, moderator, roles, seed, debrief=args.debrief, flag_issues=args.mod_flags,
             feedback_field=args.feedback_field, review=args.review, lessons=args.lessons, max_days=args.max_days,
-            check_nights=args.check_nights, tips=args.tips, tips_for=args.tips_for, player_tips=player_tips,
+            check_nights=args.check_nights, fix_nights=args.fix_nights, tips=args.tips, tips_for=args.tips_for,
+            player_tips=player_tips,
             update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips,
             trial_votes=args.trial_votes, nomination_votes=args.nomination_votes, script=args.script),
             checkpoint=args.checkpoint)

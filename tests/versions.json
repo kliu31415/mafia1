@@ -1,5 +1,5 @@
 {
- "log_version": 45,
+ "log_version": 46,
  "log": {
   "attacks": ["attackers", "day"],
   "bounty_won": ["claimed", "day", "phase", "player"],
@@ -19,6 +19,7 @@
   "night_actions": ["actions", "day", "roles"],
   "night_check": ["cost", "error", "issues", "judge", "night", "usage", "verdict"],
   "night_effects_undone": ["day", "player", "undone"],
+  "night_fix": ["issues", "night", "transcript"],
   "nomination_dropped": ["budget", "nominee", "player"],
   "player_call": ["cost", "effort", "latency_s", "model", "notepad_after", "notepad_before", "output", "player", "reasoning", "task", "usage"],
   "player_feedback": ["day", "feedback", "phase", "player", "role", "step"],

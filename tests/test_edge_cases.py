@@ -16,7 +16,7 @@ from llm import LLMReply, MockClient, Model, OpenRouterClient, lower_effort
 from moderator import Moderator
 from players import NOTEPAD_WORDS, truncate_words, word_count
 from roles import DEFAULT_SETUP, Status
-from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, make_game
+from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, make_game, told
 
 ROLES5 = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
 
@@ -770,3 +770,38 @@ def test_a_bug_in_our_own_answer_handling_stops_the_game_instead_of_a_silent_fal
         players.ask(game.player("Alice"), "Vote.", players_module.VOTE_SCHEMA, {"vote": False}, step="trial_vote")
     game.log.close()
     assert not [r for r in records(game.log.path) if r["kind"] in ("player_error", "player_fallback")]
+
+
+def test_fix_nights_sends_high_findings_back_to_the_moderator_before_dawn(game_factory):
+    from night import run_night
+    from night_check import NightChecker
+    issue = {"rule": "R3", "severity": "high", "kind": "missed death", "description": "Carol should have died."}
+
+    def decide(name, task, schema):
+        return {"verdict": "errors", "issues": [issue]} if "verdict" in schema["properties"] else None
+    client = ScriptedClient(decide, moderator_calls=[
+        ("record_visits", {"visits": []}), ("end_phase", {}),  # the night, wrongly with no death
+        ("apply_changes", {"changes": [{"op": "kill", "player": "Carol", "cause": "Katana"}]}), ("end_phase", {})])
+    game, players = game_factory(["Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"], client)
+    checker = NightChecker(client, Model.OPUS_5_5, Model.OPUS_5_5, "(rules)", game.log, fix=True)
+    run_night(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"), checker)
+    checker.finish()
+    assert not game.player("Carol").alive
+    records = [json.loads(line) for line in open(game.log.path)]
+    prompts = [r["instructions"] for r in records if r["kind"] == "moderator_prompt"]
+    assert len(prompts) == 2 and "Carol should have died." in prompts[1]
+    fix = next(r for r in records if r["kind"] == "night_fix")
+    assert fix["issues"] == [issue] and any(c["tool"] == "apply_changes" for c in fix["transcript"])
+    assert any("You were attacked tonight (Katana) and died." in t for t in told(game, "Carol"))
+
+
+def test_without_findings_the_night_is_not_reopened(game_factory):
+    from night import run_night
+    from night_check import NightChecker
+    client = ScriptedClient()
+    game, players = game_factory(["Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"], client)
+    checker = NightChecker(client, Model.OPUS_5_5, Model.OPUS_5_5, "(rules)", game.log, fix=True)
+    run_night(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"), checker)
+    records = [json.loads(line) for line in open(game.log.path)]
+    assert sum(r["kind"] == "moderator_prompt" for r in records) == 1
+    assert not any(r["kind"] == "night_fix" for r in records)

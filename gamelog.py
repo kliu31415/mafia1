@@ -84,7 +84,9 @@ from records import read_records, safe_print
 #     what the moderator was told at the start of each phase it ran
 # 43: "attacks" records (day, attackers): the attacker of each Attack that night, from the moderator's attacks op
 #     (games with a Bloodhound)
-LOG_VERSION = 45
+# 46: settings has fix_nights (--fix-nights: night checks run before dawn and high-severity findings go back to
+#     the moderator); "night_fix" records (night, issues, transcript): what the moderator did about them
+LOG_VERSION = 46
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

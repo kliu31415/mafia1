@@ -115,7 +115,12 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     before = snapshot(game.full_state())
     wills = {p.name: p.last_will for p in game.alive()}
     transcript = moderator.run_phase(instructions)
-    if checker:
+    if checker and checker.fix:
+        issues = checker.check_now(game.day, instructions, before, snapshot(transcript),
+                                   snapshot(game.full_state()), moderator=moderator.model)
+        if issues:
+            correct_night(game, moderator, issues)
+    elif checker:
         checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()),
                        moderator=moderator.model)
     game.resolve_revenge(alive_at_start)
@@ -135,6 +140,23 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             game.log.write("night_effects_undone", day=game.day, player=p.name, undone=undone)
     game.pass_katana()
     game.day += 1
+
+
+def correct_night(game: Game, moderator: Moderator, issues: list[dict]) -> None:
+    """--fix-nights: the night check's high-severity findings go back to the moderator before dawn. A Smuggler swap
+    applied twice let a player who should have died live and hang someone (game_20261011_074934_1113, Night 3),
+    though the check had caught it. The moderator judges each finding itself, since the judge can be wrong too."""
+    found = "\n".join(f"- [{i['rule']}, {i['kind']}] {i['description']}" for i in issues)
+    instructions = (
+        f"A reviewer checked your resolution of Night {game.day} and reports these possible mistakes:\n{found}\n\n"
+        "For each one, check it against the rules, the night's actions and the current state. If it is a real "
+        "mistake, correct it now with apply_changes and tell(): apply a missed death or a token or status change, "
+        "and send a player a missing result. For a private result that was wrong, tell() the player the right "
+        "one, starting 'Correction: ' and saying it replaces the earlier one. A wrong death can't be undone: "
+        "flag it if flag_issue is offered. If the reviewer is wrong, change nothing. Don't redo anything that was "
+        "right, and call record_visits again only if the visit list itself was wrong. Then call end_phase.")
+    transcript = moderator.run_phase(instructions)
+    game.log.write("night_fix", night=game.day, issues=issues, transcript=snapshot(transcript))
 
 
 def tell_night_deaths(game: Game, alive_at_start: set[str]) -> None:

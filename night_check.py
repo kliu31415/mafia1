@@ -1,7 +1,9 @@
 """Night checks: a judge model audits each night's moderator resolution against the rules.
 
-The check only reports; it never changes the game. It runs in a background thread while the game
-continues, on a copy of everything it needs, so it adds little time. Each check is logged as one
+By default the check only reports and runs in a background thread while the game continues, on a copy of
+everything it needs, so it adds little time. With fixes on (--fix-nights), it runs before dawn instead, and its
+high-severity findings go back to the moderator, who checks each against the rules and corrects what is wrong
+(night.correct_night) before anyone acts on the night. Each check is logged as one
 "night_check" record (see CHECK_SCHEMA), which the feedback report and the HTML log show, and which
 is meant for analysis across games (e.g. the moderator's error rate per model or per rule).
 """
@@ -29,8 +31,9 @@ CHECK_SCHEMA = obj(
 
 class NightChecker:
     def __init__(self, client: LLMClient, judge: Model, moderator: Model, rules: str, log: GameLog,
-                 effort: str | None = None):
+                 effort: str | None = None, fix: bool = False):
         self.client, self.judge, self.moderator, self.rules, self.log = client, judge, moderator, rules, log
+        self.fix = fix  # check before dawn and send high-severity findings back to the moderator (--fix-nights)
         self.effort = effort  # the judge's reasoning effort; None: the client's default
         self.pool = ThreadPoolExecutor(max_workers=2)
         self.pending: list[Future] = []
@@ -39,6 +42,17 @@ class NightChecker:
                moderator: Model | None = None) -> None:
         """Queue a check. Everything passed must be a snapshot: the game keeps changing meanwhile. moderator: the
         model that resolved this night, if not the one the game started with (it switched to its fallback)."""
+        self.pending.append(self.pool.submit(self._check, night, *self._request(instructions, before, transcript,
+                                                                               after, moderator)))
+
+    def check_now(self, night: int, instructions: str, before: dict, transcript: list[dict], after: dict,
+                  moderator: Model | None = None) -> list[dict]:
+        """Check at once and return the high-severity issues (none if the check failed)."""
+        out = self._check(night, *self._request(instructions, before, transcript, after, moderator))
+        return [i for i in out["issues"] if i["severity"] == "high"] if out else []
+
+    def _request(self, instructions: str, before: dict, transcript: list[dict], after: dict,
+                 moderator: Model | None) -> tuple[list[dict], dict]:
         user = (f"{instructions}\n\n---\n\nHidden state before the moderator acted:\n{json.dumps(before)}\n\n"
                 f"What the moderator did, in order (tool, arguments, result):\n{json.dumps(transcript, indent=1)}"
                 f"\n\nHidden state after:\n{json.dumps(after)}\n\n---\n\n"
@@ -58,9 +72,9 @@ class NightChecker:
         alive = [p for p in before["players"] if p["alive"]]
         in_play = {"alive": len(alive), "roles_in_play": sorted(p["role"] for p in alive)}  # for analysis
         in_play["moderator"] = (moderator or self.moderator).value
-        self.pending.append(self.pool.submit(self._check, night, messages, in_play))
+        return messages, in_play
 
-    def _check(self, night: int, messages: list[dict], in_play: dict) -> None:
+    def _check(self, night: int, messages: list[dict], in_play: dict) -> dict | None:
         try:
             reply = self.client.chat(self.judge, messages, schema=CHECK_SCHEMA, schema_name="night_check",
                                      effort=self.effort)
@@ -72,11 +86,13 @@ class NightChecker:
                 if issue["severity"] == "high":  # changed who lives or what someone learned
                     self.log.error("night_check_issue", f"night {night}: {issue['description']}",
                                    night=night, issue=issue)
+            return out
         except Exception as e:  # a failed check must never stop the game
             self.log.write("night_check", night=night, judge=self.judge.value,
                            verdict="failed", issues=[], error=f"{type(e).__name__}: {e}", **in_play)
             self.log.error("night_check_error", f"the night {night} check failed: {type(e).__name__}: {e}",
                            night=night)
+            return None
 
     def finish(self) -> None:
         """Wait for the remaining checks (call before the log is closed)."""

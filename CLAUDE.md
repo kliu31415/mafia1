@@ -138,7 +138,9 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   Tools that read many games go through `gamelogs.py` (log files, setup/result, one dict per player); shims for
   old log versions belong there only.
 - Night checks (`night_check.py`, on by default) log a judge model's verdict on each night's moderator
-  resolution as "night_check" records; they never change the game.
+  resolution as "night_check" records. With `--fix-nights` (the default) the check runs before dawn and its
+  high-severity findings go back to the moderator, who verifies each and corrects the real ones ("night_fix"
+  records); the judge never changes the game itself. `--no-fix-nights` runs checks in the background instead.
 - Anything that goes wrong (a failed or empty LLM answer, a fallback, an API retry, a moderator tool
   error, a failed post-game step, a crash) goes through `game.log.error(kind, summary, ...)`, never a
   bare `write` or a silent `except`. It's logged with `alert: true`, counted in the result record, listed
