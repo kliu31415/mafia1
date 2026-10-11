@@ -485,7 +485,7 @@ def resolve_effort(spec: ModelSpec, effort: str | None) -> ModelSpec:
     return ModelSpec(spec.model, spec.effort or effort or default_effort(spec.model))
 
 
-def main() -> None:
+def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--players", default="haiku-5.5",
                     help="comma-separated models, cycled over the seats (seats are shuffled); each may set its "
@@ -567,31 +567,29 @@ def main() -> None:
                     "opus-5.5=tips/tips.md,Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none")
     fb.add_argument("--rules-quiz", action="store_true", help="instead of a game, quiz the --players and "
                     "--moderator models on the rules (graded by the moderator model)")
-    args = ap.parse_args()
-    if args.list_roles:
-        print(role_status_table())
-        return
-    if args.resume:
-        try:
-            ckpt = load_checkpoint(Path(args.resume))
-        except Exception as e:  # e.g. damaged, or pickled on another OS
-            ap.error(f"can't resume from {args.resume}: {type(e).__name__}: {e}")
-        if any(r["kind"] == "result" for r in read_records(ckpt["log_path"])[0]):  # e.g. a stale synced .ckpt
-            ap.error(f"{ckpt['log_path']} already finished; resuming would replace its ending")
-        saved = GameConfig.from_checkpoint(ckpt)
-        if args.no_update_tips or sync_logs.in_cloud():  # the other options are the game's own
-            saved.update_tips = None
-        resumed_client = (MockClient(saved.seed) if ckpt["client"]["mock"]
-                          else OpenRouterClient(load_api_key(), effort=ckpt["client"]["effort"]))
-        with synced(args.sync and not ckpt["client"]["mock"], saved.update_tips):
-            play_game(resumed_client, saved, checkpoint=args.checkpoint, resume=ckpt)
-        return
+    return ap
 
-    if args.max_days is not None and args.max_days < 1:
-        ap.error("--max-days must be at least 1")
-    if args.tips_for != "all" and not args.tips:
-        ap.error("--tips-for picks who gets --tips, so it needs --tips")
-    seed = args.seed if args.seed is not None else random.randrange(10**6)
+
+def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
+    """--resume: continue a stopped game with the settings it started with."""
+    try:
+        ckpt = load_checkpoint(Path(args.resume))
+    except Exception as e:  # e.g. damaged, or pickled on another OS
+        ap.error(f"can't resume from {args.resume}: {type(e).__name__}: {e}")
+    if any(r["kind"] == "result" for r in read_records(ckpt["log_path"])[0]):  # e.g. a stale synced .ckpt
+        ap.error(f"{ckpt['log_path']} already finished; resuming would replace its ending")
+    saved = GameConfig.from_checkpoint(ckpt)
+    if args.no_update_tips or sync_logs.in_cloud():  # the other options are the game's own
+        saved.update_tips = None
+    resumed_client = (MockClient(saved.seed) if ckpt["client"]["mock"]
+                      else OpenRouterClient(load_api_key(), effort=ckpt["client"]["effort"]))
+    with synced(args.sync and not ckpt["client"]["mock"], saved.update_tips):
+        play_game(resumed_client, saved, checkpoint=args.checkpoint, resume=ckpt)
+
+
+def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: int) -> tuple[list[str], dict | None]:
+    """The game's roles in seat order, from --roles (a named setup drawn from the seed, or a list), and the setup
+    record for a drawn one (None for a list)."""
     try:
         named = parse_setup(args.roles)
     except ValueError as e:
@@ -615,6 +613,25 @@ def main() -> None:
         ap.error(f"not on the {args.script} script: {', '.join(off)}")
     if not 1 <= len(roles) <= len(PLAYER_NAMES):
         ap.error(f"a game has 1 to {len(PLAYER_NAMES)} players (one name each), not {len(roles)}")
+    return roles, setup
+
+
+def main() -> None:
+    ap = build_parser()
+    args = ap.parse_args()
+    if args.list_roles:
+        print(role_status_table())
+        return
+    if args.resume:
+        resume_game(ap, args)
+        return
+
+    if args.max_days is not None and args.max_days < 1:
+        ap.error("--max-days must be at least 1")
+    if args.tips_for != "all" and not args.tips:
+        ap.error("--tips-for picks who gets --tips, so it needs --tips")
+    seed = args.seed if args.seed is not None else random.randrange(10**6)
+    roles, setup = choose_roles(ap, args, seed)
     try:
         # Efforts resolved here, so the log records what each model actually used.
         models = [resolve_effort(parse_model_spec(m), args.effort) for m in args.players.split(",")]
