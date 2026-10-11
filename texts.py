@@ -3,6 +3,14 @@
 see it."""
 
 
+def moved(a: dict, key: str) -> str:
+    """The action's target in `key`, with where a swap (rules R23) moved it: "Olivia (swapped to Erin)". Players
+    read the after-game replay as their choices otherwise and reported the moved ones as wrong (Night 3 of
+    game_20261011_225511_1253)."""
+    chosen = a.get(f"chosen_{key}")
+    return f"{chosen} (swapped to {a[key]})" if chosen and chosen != a[key] else str(a[key])
+
+
 def describe_action(a: dict) -> str:
     if a.get("automatic"):  # drawn by code, e.g. the Ex-Con's random visit (RoleLogic.automatic_action)
         return f"automatic: {describe_action({**a, 'automatic': False})}"
@@ -12,7 +20,7 @@ def describe_action(a: dict) -> str:
     if a.get("act"):
         for key in ("target", "second_target", "guessed_role"):
             if a.get(key):
-                parts.append(f"{key.replace('_', ' ')} {a[key]}")
+                parts.append(f"{key.replace('_', ' ')} {moved(a, key)}")
         if a.get("tokens_to_spend"):
             parts.append(f"{a['tokens_to_spend']} token(s)")
         if a.get("details"):
@@ -20,7 +28,8 @@ def describe_action(a: dict) -> str:
     else:
         parts.append("no role action")
     if a.get("katana_vote_holder"):
-        parts.append(f"Katana vote: {a['katana_vote_holder']} holds, attacks {a.get('katana_vote_target')}")
+        target = moved(a, "katana_vote_target") if a.get("katana_vote_target") else None
+        parts.append(f"Katana vote: {a['katana_vote_holder']} holds, attacks {target}")
     return "; ".join(parts)
 
 

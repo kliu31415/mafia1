@@ -615,6 +615,11 @@ def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game
     assert any("You swapped Erin and Frank. You have 1 swap token left." in t for t in told(game, "Alice"))
     assert len([t for t in told(game, "Erin") + told(game, "Frank") if "swapped with another player" in t]) == 2
     assert not any("swapped with another player" in t for t in told(game, "Carol"))
+    from feedback import night_replay  # the after-game replay shows each choice and where the swap moved it
+    replay = night_replay(game)
+    assert "- Carol (Sheriff): target Erin (swapped to Frank)" in replay
+    assert "Bob (Grunt): no role action; Katana vote: Alice holds, attacks Erin (swapped to Frank)" in replay
+    assert "Alice (Smuggler): target Erin; second target Frank;" in replay  # the swap itself isn't moved
 
 
 def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
