@@ -1053,3 +1053,20 @@ def test_juror_counts_shared_votes_over_the_game_skipping_votes_on_either(game_f
             apply_ops(game, players, {"op": "jury", "by": "Alice", **bad})
     from players import night_action_schema
     assert "Erin" in json.dumps(night_action_schema(game, game.player("Alice"))["properties"]["second_target"])
+
+
+def test_scrutineer_counts_guilty_votes_of_a_group_of_three_per_trial(game_factory):
+    game, players = game_factory(["Scrutineer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
+    every = {"Alice": False, "Bob": True, "Carol": True, "Dave": True, "Erin": False}
+    game.votes = {game.day: [{"stage": "nomination", "nominee": "Erin", "votes": {**every}},
+                             {"stage": "trial", "nominee": "Erin", "votes": {**every}},
+                             {"stage": "trial", "nominee": "Dave", "votes": dict.fromkeys(every, False)}]}
+    game.phase = "night"
+    apply_ops(game, players, {"op": "scrutinize", "player": "Bob", "by": "Alice"})
+    text = told(game, "Alice")[-1]
+    group = re.findall(r"Bob|Carol|Dave|Erin", text.split(":", 2)[1])
+    assert "Bob" in group and "Alice" not in text.split(":", 2)[1] and len(set(group)) == 3
+    assert f"{sum(every[n] for n in set(group))} in the trial of Erin; 0 in the trial of Dave." in text
+    game.day += 1  # no trials that Day
+    apply_ops(game, players, {"op": "scrutinize", "player": "Bob", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("there were no trials during the Day.")

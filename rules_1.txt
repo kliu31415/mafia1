@@ -305,6 +305,13 @@ Juror
   both of them cast count, and not votes on the nomination or trial of either of them. A doubled vote (Ballot
   Stuffer) counts once. You learn only the totals, not which votes they agreed on.
 
+Scrutineer
+  Night: may scrutinize one player other than yourself who voted in the Day's trials (Astral Visit). Code adds two
+  random other players who voted in those trials (never you), and you learn the three names and, for each trial of
+  the Day just before this Night, how many of the three voted Guilty, e.g. "2 in the trial of Erin; 0 in the trial
+  of Frank". You don't learn which of them voted which way. A doubled vote (Ballot Stuffer) counts once. If there
+  was no trial that Day, you learn that.
+
 Profiler
   Tokens: 3 profile tokens.
   Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one
