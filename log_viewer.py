@@ -545,7 +545,7 @@ def render_html(jsonl_path: Path) -> Path:
     def line(category: str, badge: str, text: str, who: Iterable[str] = (), body_html: str | None = None,
              extra: str = "") -> None:
         """One event line. who: players it involves besides those named in text (the player filter's data-p)."""
-        b = f"<span class='badge'>{esc(badge)}</span>" if badge else ""
+        b = f"<span class='badge'>{name(badge)}</span>" if badge else ""  # e.g. "Result → Alice": names get icons
         out.append(f"<div class='ev {category}'{involves(name.names_in(text) | set(who))}>{b}"
                    f"{name(text) if body_html is None else body_html}{extra}</div>")
 
