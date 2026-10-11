@@ -156,3 +156,66 @@ Katana: no attack (no target); nobody holds it.
 (to Grace) Moderator (private): You doused Bob tonight.
 [Moderator summary] Night 3: Bob (Coroner) examined Alice via the examine op (Astral Visit, so not recorded as a visit). Carol (Chronicler) marked Bob via the mark op and spent her last chronicler token. Grace (Arsonist) doused Bob, and Bob is not told because he is Good. Erin was already doused, so Bob and Erin are the doused players now. No Yakuza are alive, so there was no Katana attack. There were no attacks or role-blocks and nobody died. Visits recorded: Carol->Bob, Grace->Bob. Win check: Bob, Carol and Erin (Village) and Grace (Arsonist) are alive, so the game continues.
 [Night check] Night 3: correct
+
+===== DAY 4 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Bob.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Bob: Coroner (Good). 3 tokens at start, 1 left. N2: examined Frank: Archivist (Good). N3: examined Alice: Census Taker (Good).
+Bob (public): Bob here, real Coroner. Verified: Frank was Archivist and Alice was Census Taker, both Good. Dave's Clerk reveal fits Alice's Night 1 census exactly (Bob and Frank Good, Dave not). Carol's mark on Dave hit a Yakuza. That leaves one or two Yakuza among Carol, Erin and Grace. Erin and Grace, what did you do on Night 3, and did either of you see anything? I won't nominate until we have more.
+[Claim] Carol: Chronicler, 0 chronicler tokens left. N1: no action. N2: marked Dave (Clerk, hanged D3). N3: marked Bob. D3: Yes on nomination of Dave, Guilty on Dave.
+Carol (public): Carol here, Chronicler. On Night 3 I marked Bob. That's a mark, not a result, and I have 0 tokens left. Dave was Clerk, so the Day 3 hang removed a Yakuza. Bob's Frank and Alice results don't conflict with that. Grace hasn't claimed, so Grace, what did you do on Nights 1 to 3? Erin, do you have anything new? No nomination from me yet.
+[Claim] Erin: Vanilla Villager. N1-N3: no action, no results. D3: nominated Dave (Clerk, Yakuza, hanged).
+Erin (public): Erin here, Vanilla, no night action on Nights 1 to 3. Nobody died on Night 3, so the Yakuza did not use the Katana. Grace, you haven't claimed yet. Please state your role and any night results. Bob and Carol, your claims are both unverified, so whichever of you is lying, say what would expose you. I won't nominate until Grace speaks.
+Grace (public): Grace here, no claim and no nomination yet. Bob's Frank and Alice results fit each other and Dave's Clerk reveal, so I'm not against Bob. Carol and Erin, I want one concrete check on your claims before anyone is nominated.
+Bob (public): Bob here, real Coroner. Dave was a Clerk, so one Yakuza is gone. Carol's Night 2 mark on Dave hit a Yakuza, which fits her claim. Erin's Vanilla claim is unchecked but harmless. Grace, you're the only one who hasn't said a role. Please state it and any night result. I'm not nominating until we hear from you.
+Carol (public): Carol here, Chronicler, Good. My mark on Bob means that if Bob dies for any reason, his true role is revealed to everyone, so that's a built-in check. Grace, you still haven't stated a role, so please do. I'm not nominating yet. Bob's Coroner claim fits Alice's census and Dave's Clerk reveal, but it's still unverified.
+[Claim] Erin: Vanilla Villager. N1-N3: no action, no results.
+Erin (public): Erin here, Vanilla. Grace, you're the only player who hasn't stated a role or night result. Please do so now. Bob's Frank and Alice checks fit Dave's Clerk reveal, and Carol's mark on Dave matches that reveal. I'm not nominating until Grace speaks.
+Grace (public): Grace here. No nomination from me. Bob's Coroner results fit the Clerk reveal, so I'm not against him. Carol and Erin, each of you give one concrete check, and I'll vote on what it shows.
+Bob (public): Bob here, real Coroner. Grace, you're the only player who hasn't stated a role or a night result. Please give both now. Carol, you marked me on Night 3. Why? I'm not nominating yet, but if Grace stays silent next round I'll nominate Grace.
+[Claim] Carol: Chronicler, Good. N1: no action. N2: marked Dave (Clerk, hanged D3). N3: marked Bob. 0 tokens left. D3: Yes on nomination of Dave, Guilty on Dave. D4: Yes on nomination of Grace.
+Carol (public): Carol here, Chronicler, Good. I'm nominating Grace. Grace has given no role and no night result across Days 2 to 4, and Dave's Clerk reveal means Yakuza are still alive. Grace, if you're Good, state your role and any night result now. I vote Yes.
+Carol nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Carol, Erin, Bob; No - Grace
+Nomination votes on Grace: 3 Yes (the votes are secret).
+Grace is put on trial (3 Yes).
+[Claim] Grace: Vanilla Villager. N1-N3: no action, no results. D3: No on nomination of Dave, Innocent on Dave's trial (no, see Day 3 votes). D4: No on nomination of Grace (I was nominated).
+Grace (public): Grace here. I'm a Vanilla Villager with no night action and no results on Nights 1 to 3. I didn't claim earlier because nobody had a result that needed my answer. Carol, you nominated me on Day 4 for silence, but I gave my role and a vote reason in my Day 4 post. Your own record is weaker: on Day 3 you said your Night 2 mark on Dave came only from Alice's census with no independent result, and you marked Bob on Night 3 with no stated reason. Bob's Coroner results fit the Clerk reveal, so I'm not against him. Erin, I've been consistent since Day 2 and haven't pushed a hang on a claim alone. Ask Carol for a concrete basis before you vote Guilty on me.
+[Claim] Bob: Coroner (Good). 3 tokens at start, 1 left. N2: examined Frank: Archivist (Good). N3: examined Alice: Census Taker (Good). D3: Guilty on Dave (Clerk, Yakuza).
+Bob (public): Bob here, real Coroner. Dave's Clerk reveal came from Carol's Night 2 mark, which only a real Chronicler could have produced, so Carol is Good and her mark on Dave was correct. Grace, you still haven't given one check on your own claim, and you stayed quiet until Day 4. Erin, you read Dave correctly, so what is your read on Grace? I lean Guilty on Grace unless she gives a concrete basis.
+Carol (public): Carol here, Chronicler, Good. Grace, your own vote record doesn't add up. You say you voted No on Dave's nomination, but that nomination passed with 4 Yes out of 5. Dave's No leaves Bob, Carol, Erin and Grace all voting Yes, so Grace's No would need Dave to have lied. You also claim Innocent on Dave's trial while saying you leaned Guilty that same day. Which is true? Bob's Coroner results match Alice's census, so I'm not against Bob. I'm voting Guilty on Grace unless you explain the nomination count.
+[Claim] Erin: Vanilla Villager. N1-N3: no action, no results. D3: Yes on nomination of Dave, Guilty on Dave. D4: Yes on nomination of Grace, Guilty on Grace.
+Erin (public): Erin here, Vanilla. Grace, your Day 3 record doesn't match the count. Dave's nomination passed 4 Yes. Erin, Carol and Bob voted Yes, so the fourth Yes was yours, yet you say you voted No. You also said you leaned Guilty on Dave that day, then claimed Innocent. Dave's Chronicler reveal confirms a real Chronicler marked him, and Carol is the only one claiming it. Bob's Coroner results match Alice's census. That leaves you as the player whose record doesn't fit. I'm voting Guilty.
+[Claim] Grace: Vanilla Villager. N1-N3: no action. D3: Yes on nomination of Dave, Guilty on Dave (corrected). D4: No on nomination of Grace.
+Grace (public): Grace here. Carol is right that my Day 3 record was wrong, and the mistake is mine. I wrote No and Innocent, but my real votes were Yes on Dave's nomination and Guilty on Dave's trial. The 4 Yes and 4 Guilty totals only fit that version: Erin, Carol, Bob and I were the Yes votes, and I was one of the Guilty votes. Dave was the Clerk, so both votes were right. I'm correcting this now rather than defending the wrong version. My vote on my own nomination was No, which I stated and which I still hold. I'm not against Bob or Carol. Their Coroner and Chronicler results fit Alice's census and Dave's Clerk reveal. Erin, you're voting Guilty on this record, so name the mechanic that's wrong, beyond the count I've just corrected. I'm Vanilla with no night action, and I won't try to hide that.
+Trial votes on Grace: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Grace] Guilty - Bob, Carol, Erin; Innocent - Grace
+Grace is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "I am a Vanilla Villager with no confirmed results. My Day 3 votes were Yes on Dave's nomination and Guilty on Dave, corrected from an earlier misstatement. Do not hang anyone on a claim alone. Check each claim against the announced visits, results and vote totals, and hang only when the mechanics fit."
+The game is over. Winners: Alice (dead), Bob, Carol, Erin, Frank (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[ERROR player_error] Frank (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'missing_information', root: must have required property 'wanted_but_couldnt', root: must have required property 'bugs_or_oddities', ro)
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Erin, Frank
+Cost by player (USD):
+  Alice (Census Taker)     $0.0000   14 calls  claude-haiku-5.5
+  Bob (Coroner)            $0.0000   27 calls  claude-haiku-5.5
+  Carol (Chronicler)       $0.0000   26 calls  claude-haiku-5.5
+  Dave (Clerk)             $0.0000   21 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)  $0.0000   23 calls  claude-haiku-5.5
+  Frank (Archivist)        $0.0000    5 calls  claude-haiku-5.5
+  Grace (Arsonist)         $0.0000   27 calls  claude-haiku-5.5
+  Moderator                $0.0000    4 calls  claude-opus-5.5
+  Night checks             $0.0000    3 calls  claude-opus-5.5
+  Strategy review          $0.0000    1 calls  claude-opus-5.5
+  Log review               $0.0000    1 calls  claude-opus-5.5
+  Total                    $0.0000  152 calls
