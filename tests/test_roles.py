@@ -727,6 +727,36 @@ def test_recorded_actions_check_their_user_target_and_token(game_factory, role):
     assert action.op in logic(role).night_note
 
 
+@pytest.mark.parametrize("role", [r for r in ROLES if getattr(logic(r).action, "target", "") in ("other", "any")])
+def test_a_swapped_recorded_action_tells_its_user_the_player_they_chose(game_factory, role):
+    """Rules R23: the moderator records the action on the player it landed on (Carol); the private result must name
+    the player its user chose (Bob), in every role, so a new role can't leak the swap by naming its target."""
+    game, players = game_factory([role, "Vanilla Villager", "Vanilla Villager", "Grunt", "Medic", "Smuggler"])
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Frank", "Bob", "Carol"]]}
+    before = len(told(game, "Alice"))
+    action = logic(role).action
+    assert action
+    apply_ops(game, players, {"op": action.op, "by": "Alice", "player": "Carol"})
+    for text in told(game, "Alice")[before:]:  # roles that tell their result later (or never) have nothing here
+        assert "Bob" in text  # e.g. "You marked Bob"; group results list both, with the names traded
+
+
+def test_chronicler_mark_moved_by_a_swap_looks_to_its_user_like_a_mark_on_the_player_they_chose(game_factory):
+    game, players = game_factory(["Chronicler", "Sheriff", "Grunt", "Vanilla Villager", "Medic", "Smuggler"])
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Frank", "Bob", "Carol"]]}
+    apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})  # Alice chose Bob (rules R23)
+    assert game.player("Carol").status[Status.MARKED] == "Alice" and Status.MARKED not in game.player("Bob").status
+    assert "You marked Bob" in told(game, "Alice")[-1]
+    assert logic("Chronicler").briefing(game, game.player("Alice")) == ["Your marks on living players: Bob."]
+    game.role_state["swaps"] = {}
+    with pytest.raises(ValueError, match="Alice already marked Bob"):
+        apply_ops(game, players, {"op": "mark", "player": "Bob", "by": "Alice"})
+    apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})  # not refused: that would show the swap
+    assert "You marked Carol" in told(game, "Alice")[-1]
+
+
 def test_record_visits_checks_names_and_is_needed_before_a_night_ends(game_factory):
     game, players = game_factory(["Cartographer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")

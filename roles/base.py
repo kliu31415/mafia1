@@ -29,7 +29,7 @@ class Status:
     TARGET = "target"  # Executioner's target
     FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
     DOUSED = "doused"  # Arsonist: set by the moderator on a doused player, cleared by an ignite
-    MARKED = "marked"  # Chronicler: on the marked player, the marker's name
+    MARKED = "marked"  # Chronicler: on the marked player, the first Chronicler to mark them
     TRAPPED_BY = "trapped_by"  # Trapper: on the trapped player, the Trapper's name until the trap is used or replaced
     SET_AT_SETUP = (TARGET, FAKE_ROLE)  # role hooks read these directly, so the moderator can't change them
 
@@ -212,6 +212,12 @@ def as_chosen(game: Game, target: str, names: list[str]) -> list[str]:
         return names
     shown = {target: partner, partner: target}
     return [p.name for p in game.players if p.name in {shown.get(n, n) for n in names}]
+
+
+def chosen_name(game: Game, target: str) -> str:
+    """The player a result about `target` names: whoever its user chose, i.e. `target`'s swap partner when a swap
+    moved the action (rules R23). A private result that names its target uses this, never the target's own name."""
+    return swap_partner(game, target) or target
 
 
 def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:
