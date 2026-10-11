@@ -1,0 +1,383 @@
+Setup:
+  Alice    seat 1  Ballot Stuffer    anthropic/claude-haiku-5.5
+  Bob      seat 2  Grunt             anthropic/claude-haiku-5.5
+  Carol    seat 3  Smuggler          anthropic/claude-haiku-5.5
+  Dave     seat 4  Vanilla Villager  anthropic/claude-haiku-5.5
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5
+  Frank    seat 6  Vanilla Villager  anthropic/claude-haiku-5.5
+  Grace    seat 7  Sheriff           anthropic/claude-haiku-5.5
+  Heidi    seat 8  Medic             anthropic/claude-haiku-5.5
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 1 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Bob, Carol) Alice (Yakuza chat): Night 1 proposal: no Katana attack and no move, so Bob keeps the Katana. I'll hold my ballot token for a later Day. Carol, save your swap tokens. Let's not reveal ourselves on Night 1. I'm ready to end chat.
+(to Alice, Bob, Carol) Bob (Yakuza chat): Agreed with Alice: no Katana attack and no move on Night 1, so I keep it. I have no night action as Grunt. Carol, hold your swap tokens. Ready to end chat.
+(to Alice, Bob, Carol) Carol (Yakuza chat): Agreed with you both: Bob keeps the Katana, no attack, no move, and I take no night action tonight. I'll save my swap tokens for a night that matters. Ready to end chat.
+Night actions:
+  Alice (Ballot Stuffer): no role action; Katana vote: Bob holds, attacks None
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks None
+  Carol (Smuggler): no role action; Katana vote: Bob holds, attacks None
+  Grace (Sheriff): target Carol; "Sheriff investigation on Carol"
+  Heidi (Medic): target Alice; "Protect Alice with Standard Defense at no token cost."
+Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
+(to Grace) Moderator (private): You investigated Carol tonight. Result: Evil.
+(to Heidi) Moderator (private): You protected Alice tonight with Standard Defense. 2 medic tokens left.
+[Moderator summary] Night 1: Yakuza kept the Katana with Bob and did not attack. Grace (Sheriff) checked Carol (Smuggler, not the holder, not framed): Evil. Heidi (Medic) protected Alice with Standard Defense, no token spent (2 left). No role-blocks, no swaps, no ballot stuffing, no deaths. Visits: Grace->Carol, Heidi->Alice.
+[Night check] Night 1: correct
+(to Alice) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Bob (Grunt) chose no action; Carol (Smuggler) chose no action.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Alice (Ballot Stuffer) chose no action; Carol (Smuggler) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Alice (Ballot Stuffer) chose no action; Bob (Grunt) chose no action.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Carol.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Carol (public): Morning all. No deaths last night, so we have no information yet. I'd like to hear everyone's read before anyone posts claims or pushes a nomination.
+Dave (public): Dave here, Vanilla Villager, so no night info. Agree no nominations yet. Anyone with night results, post them early so we can compare them.
+[Claim] Erin: Vanilla Villager. No night action, no results.
+Erin (public): Erin here, Vanilla Villager with no night info. No deaths on Night 1, so I agree there's nothing to nominate yet. Anyone with a real result, post it early and say who you checked.
+[Claim] Frank: Vanilla Villager. No night action, no results.
+Frank (public): Frank here, Vanilla Villager with no night info. Agree no nominations yet. Anyone with a real Night 1 result, post it now and name who you checked, so we can cross-check early.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil.
+Grace (public): Grace here, Sheriff. Night 1 I investigated Carol and got Evil. Carol, please explain. I'd like everyone to note this before any nomination.
+Heidi (public): Heidi here. Grace's Sheriff claim names Carol as Evil, so Carol should answer it directly before anyone votes. I won't nominate until we hear Carol's side and see whether anyone else has a Night 1 result.
+[Claim] Alice: Vanilla Villager. No night action, no results.
+Alice (public): Alice here, Vanilla Villager with no night info. Grace's Sheriff claim is a single result on Carol, so I want Carol's answer and any second Sheriff or Tracker result before anyone is nominated. I'm not nominating yet.
+[Claim] Bob: Vanilla Villager. No night action, no results.
+Bob (public): Bob here, Vanilla Villager with no night info. Grace's Carol result is one claim so far. Carol should answer it, and I'd like Grace to explain why Carol, since a single result shouldn't decide a hang. No nomination from me yet.
+[Claim] Carol: Vanilla Villager. N1: no action, no results.
+Carol (public): Carol here, Vanilla Villager, with no night action on Night 1. Grace's Evil read on me is wrong: I'm Village. One Sheriff result isn't enough to hang anyone, so let's see Grace's Night 2 check before any nomination.
+Dave (public): Dave here, still Vanilla. Grace's Carol result is the only real information so far, and one Sheriff claim isn't enough to hang anyone. I won't nominate yet. Grace, please check a second player on Night 2 and post it. Everyone else, let's see who claims what before we vote.
+Erin (public): Erin here, Vanilla. Grace's Carol read is the only hard info and Carol denies it. I want Grace's Night 2 result and any second check before any vote. No nomination from me yet.
+Frank (public): Frank here, Vanilla. Grace's Carol read and Carol's denial conflict, and we have only one Sheriff result so far. I want Grace's Night 2 check and Carol's account of Night 1 before any vote. No nomination from me yet.
+Grace (public): Grace again. My Night 1 result on Carol is Evil, and Carol's denial doesn't change what I saw. Carol, name the two players you find most suspicious. I'll post my Night 2 result at the start of Day 3. I'm not nominating yet, but I'll vote Guilty on Carol if the rest of the Village agrees to hang someone.
+Heidi (public): Heidi here, Medic, not nominating yet. One Sheriff read on Carol isn't enough to hang anyone. Carol should name her two suspects as Grace asked, and we should see Grace's Night 2 result before any vote.
+[Claim] Alice: Vanilla Villager. N1: no action, no results.
+Alice (public): Alice again. I agree with waiting: one Sheriff read isn't enough for a hang. Grace, your Night 2 result matters, and anyone with a second check should post it now. I'm still not nominating.
+Bob (public): Bob again. I'm not nominating yet. Grace, one Night 1 result is thin, so post your Night 2 check on someone other than Carol. Carol, you still haven't named suspects; if you think Grace is lying, give a concrete reason. Heidi, did your Medic protect anyone on Night 1?
+Carol (public): Carol again. I took no action on Night 1 and have no result to give. Grace's Evil read on me is one claim against my denial, and that isn't enough to hang me. Grace, why did you check me on Night 1 instead of someone else? Heidi, did your Medic protect anyone on Night 1? I'm not nominating yet, and I don't want anyone rushed to a hang on a single Sheriff result.
+Dave (public): Dave again. Still no nomination from me. Grace, post your Night 2 check on someone other than Carol. Carol, name your two suspects as Grace asked.
+Erin (public): Erin here, still Vanilla and not nominating. Grace's Carol read is the only hard info, and Carol has denied it. Grace, why Carol on Night 1? Heidi, what did your Medic do on Night 1? Carol, name your two suspects as asked.
+Frank (public): Frank here, Vanilla. Still no nomination from me. Heidi, you said you're the Medic: who did you protect on Night 1? Grace, post your Night 2 check on someone other than Carol before any vote. Carol, name your two suspects as asked.
+Grace (public): Grace again. Night 2 comes after this Day, so I'll check someone tonight and post the result at the start of Day 3. My only result so far is Carol = Evil, and Carol's denial doesn't change it. Carol, name your two suspects as asked. I'd vote Guilty on Carol if the Village moves to a trial.
+[Claim] Heidi: Medic. N1: protected Alice (Standard, no attack, no result). 2 medic tokens left.
+Heidi (public): Heidi, Medic, answering Bob: on Night 1 I protected Alice with Standard Defense. Nobody was attacked, so I have no result to report. Carol still hasn't named suspects as asked, so Carol, please do that now. Grace, post your Night 2 result when you have it rather than holding it until Day 3. I'm not nominating yet.
+Alice (public): Alice again. Grace's Carol read is one result, and Carol has denied it. I want Grace's Night 2 check and a second source before any trial. I won't nominate. Grace, why did you check Carol first?
+Bob (public): Bob again. I'm still not nominating. Grace's Carol read and Carol's denial are each one claim, so neither side has more evidence. Grace, post your Night 2 check now instead of at dawn; a second result on someone else lets us compare. Anyone pushing a hang on Carol before that is moving faster than the evidence.
+Carol (public): Carol again. I'm Village, and my Vanilla claim stands. Grace's Night 1 Evil read on me is still one claim against my denial. Grace, post your Night 2 result now and tell us why you checked me first. Nobody should hang on a single result before that. I'm not nominating.
+Dave (public): Dave here, still Vanilla. Carol has refused three times to name suspects, which is a dodge, not a defense. Grace's Carol = Evil is the only hard result we have, and Carol's denial is just a claim. Grace, post your Night 2 check now, on anyone you like. If it doesn't clash with Grace's Night 1 result, I'm leaning Guilty on Carol at the next trial.
+Erin (public): Erin here, Vanilla. Carol has been asked three times to name suspects and hasn't. A Village player would have a list by now. Grace's Sheriff read on Carol is the only hard information we have. Grace, post your Night 2 check now, not at dawn. If it doesn't clash with your Night 1 result, I'd vote Guilty on Carol at a trial. I'm not nominating yet.
+Frank (public): Frank, Vanilla Villager. I'm not nominating yet. Carol's refusal to name suspects is worth noting, but a single Sheriff read is still our only hard info. Grace, post your Night 2 check now, on someone other than Carol. If it's clean and consistent with your Night 1 result, I'll look at a Guilty vote on Carol at a trial.
+Grace (public): Grace here. I'm nominating Carol for trial. My Night 1 Sheriff check on Carol is Evil, and Carol has refused three times to name suspects. A Yes vote only starts a trial, so please vote Yes and hear Carol's defense. My Night 2 result comes at the start of Day 3.
+Grace nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Grace, Heidi, Dave, Erin, Frank; No - Alice, Bob, Carol
+Nomination votes on Carol: 5 Yes (the votes are secret).
+Carol is put on trial (5 Yes).
+Carol (public): Carol here, Vanilla Villager, with no action on Night 1. You've asked me to name suspects, so here they are: Grace and Dave. Grace's Evil read on me is a single claim, Grace nominated me on Day 2 before any second result, and Grace is holding the Night 2 result until later. Dave has pushed a Guilty vote on me since the start, calling my answers a dodge before I'd named anyone. I'm Village and I have nothing to hide. Grace, why me on Night 1? If nobody has a second source, I'm asking everyone to vote Innocent.
+[Claim] Dave: Vanilla Villager. No night action, no results. D2: Yes on Carol's nomination; Guilty on Carol's trial.
+Dave (public): Dave again. Carol's answer names me, but it doesn't address Grace's Sheriff result. Carol's denial is also just one claim. Naming suspects only after the nomination doesn't clear Carol. Grace's Evil read is still our only hard information, so I'm voting Guilty unless Carol gives a concrete reason. Grace, post your Night 2 check now, as asked.
+Erin (public): Erin again. I'm voting Guilty on Carol. Grace's Sheriff read is the only hard information we have, and Carol only named suspects after being nominated. Naming Grace and Dave is a deflection, not a reason to clear Carol. Dave pushing early doesn't change the Sheriff result. Grace, please post your Night 2 check as promised. I'm open to changing my vote if a concrete reason appears.
+[Claim] Frank: Vanilla Villager. D2: Yes on Carol's nomination; leaning Guilty on Carol's trial.
+Frank (public): Frank here, Vanilla. I voted Yes to start this trial and I'm leaning Guilty. Carol, you named Grace and Dave only after the nomination, and Dave pushing early isn't proof of anything. Grace's Sheriff read is still our only hard info, and it's unchecked. Grace, please post your Night 2 result as soon as you can. Carol, if you have a concrete reason to doubt Grace's read beyond denial, give it now.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. D2: Yes on Carol's nomination; Guilty on Carol's trial.
+Grace (public): Grace again. Carol's Night 1 result is the only Sheriff check we have, and it reads Evil. Naming me and Dave only after the nomination doesn't change that. Carol has given no reason beyond denial. I'm voting Guilty. If Carol is Village, what explains that Evil result?
+[Claim] Heidi: Medic. N1: protected Alice (Standard, no attack, no result). 2 medic tokens left. D2: Yes on Carol's nomination; leaning Guilty on Carol's trial.
+Heidi (public): Heidi, Medic. I voted Yes to start this trial and I'm leaning Guilty on Carol. Grace's Sheriff read is our only hard info, and Carol's answer names Grace and Dave without a concrete reason. Grace, post your Night 2 result now as promised. Carol, give one specific reason Grace would lie.
+[Claim] Alice: Vanilla Villager. N1: no action, no results. D2: Yes on Carol's nomination; leaning Guilty on Carol's trial.
+Alice (public): Alice here. Carol's answer named Grace and Dave only after the nomination, which is a weak defense. Grace's Sheriff read is the only hard information we have, so I'm leaning Guilty unless Carol gives a concrete reason. Grace, please post your Night 2 result now, not at dawn.
+Bob (public): Bob here. Carol's answer names Grace and Dave only after being nominated, and that isn't a concrete reason to clear anyone. Grace's Sheriff read is the only hard information we have, and Carol's denial hasn't explained it. I'm leaning Guilty. Grace, post your Night 2 result now, as you promised, rather than holding it until Day 3.
+Carol (public): Carol, Vanilla Villager, with no Night 1 action. I named suspects when asked, Grace and Dave, and I'm not refusing anything. Grace's whole case is one Night 1 result, and Grace nominated me on Day 2 before Night 2 was even played, while holding that result until dawn. If the Sheriff read is true, it can wait for a second check. Frank and Heidi, you both said you were leaning Guilty. Give one concrete reason beyond the Sheriff read, or vote Innocent. Hanging a Village player on one unchecked result only helps the Evil side.
+Trial votes on Carol: 7 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Alice, Bob, Dave, Erin, Frank, Grace, Heidi; Innocent - Carol
+Carol is executed by hanging (7 Guilty of 8 votes; 5 needed).
+Carol died (executed by hanging). Their role isn't revealed. Their last will: "Carol's will: I was a townsperson with nothing to hide. Trust results that fit together, and hang whoever's claims contradict the visits. Don't let anyone talk you into a rushed hang."
+
+===== NIGHT 2 =====
+(to Alice, Bob) Alice (Yakuza chat): Proposal: Bob keeps the Katana (no move). Target: Grace. Grace is the Sheriff who read Carol as Evil, so she is the one who can expose us with her Night 2 result. Heidi's Medic could protect her, so if we see a block or protection signal we can switch next night. Bob, please submit Katana holder Bob and target Grace. I'll submit the same. No daytime PMs about this. I'll confirm ready once you reply.
+(to Alice, Bob) Bob (Yakuza chat): Agreed: Bob keeps the Katana with no move, and the target is Grace. She is the only Sheriff read on Carol, so removing her is the priority. I'll submit holder Bob and target Grace, the same as you. Alice, please submit the same. If Heidi protects Grace, we switch plans next night. No daytime PMs on this. Ready.
+(to Alice, Bob) Alice (Yakuza chat): Agreed: Bob keeps the Katana with no move, and the target is Grace. I'll submit holder Bob and target Grace, the same as you. Bob, please submit the same. If she is protected, we revisit next night. Ready.
+(to Alice, Bob) Bob (Yakuza chat): Confirmed: Katana holder Bob, no move; target Grace. I'm submitting that now, Alice please submit the same. Ready.
+Night actions:
+  Alice (Ballot Stuffer): no role action; Katana vote: Bob holds, attacks Grace
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Grace
+  Grace (Sheriff): target Dave; "Sheriff investigation on Dave"
+  Heidi (Medic): target Grace; "Protect Grace with Standard Defense at no token cost."
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): Your investigation of Dave tonight: Not Evil. You were also attacked with the Katana tonight, and you survived.
+(to Heidi) Moderator (private): You protect Grace tonight with Standard Defense. 2 medic tokens left.
+(to Bob) Moderator (private): Your Katana attack on Grace failed tonight.
+[Moderator summary] Night 2: Bob held the Katana and made a Standard attack on Grace. Heidi protected Grace with Standard Defense (no token spent), so the attack failed and Grace survived. Grace investigated Dave and got Not Evil. Alice took no action and did not stuff the ballot. Visits: Bob->Grace, Grace->Dave, Heidi->Grace. No deaths.
+[Night check] Night 2: correct
+(to Alice) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Grace. Bob (Grunt) chose no action.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Grace. Alice (Ballot Stuffer) chose no action.
+
+===== DAY 3 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Heidi.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Heidi: Medic. N1: protected Alice (Standard). N2: protected Grace (Standard). 2 medic tokens left. D2: Yes on Carol's nomination; Guilty on Carol's trial.
+Heidi (public): Heidi, Medic. On Night 2 I protected Grace with Standard Defense, so I have no result to add. Nobody died on Night 2, which tells us little. Grace, post your Night 2 check now as you promised, not at dawn. Nobody should nominate until we see whether it clashes with your Night 1 result on Carol.
+Alice (public): Alice here. Carol was hanged on one unchecked Sheriff read, and Carol's denial was never tested. Grace and Heidi, please post your Night 2 results in full, including the target and what you saw. Nobody should nominate until someone has a second source. Dave and Erin, you pushed the Carol hang hardest. What new information do you have?
+Bob (public): Bob here, still Vanilla with no night info. Carol's hang rested on one Sheriff read, and Carol named Grace and Dave before dying, so neither has been cleared. Grace, post your Night 2 check now, with the name and result. Heidi, what did your Night 2 protection of Grace tell you? I'm not nominating yet.
+Dave (public): Dave here, Vanilla. Grace, post your Night 2 target and result now, not at dawn. Heidi, your Medic protects went to Alice and then Grace, and nobody was attacked, so there is nothing to check there. Nobody should nominate until a second result lands. I'm not nominating.
+Erin (public): Erin here, Vanilla. Grace, post your Night 2 target and result now, as you promised, not at dawn. Heidi, you protected Grace on N2, so did you expect an attack on Grace? Nobody should nominate until Grace's N2 result is public.
+Frank (public): Frank here, Vanilla. I voted Guilty on Carol on Grace's single Sheriff read, so I own that vote and want it checked. Grace, post your Night 2 target and result now, not at dawn. Heidi, your Standard protections on Alice and Grace are consistent with no attacks. I'm not nominating until a second check lands.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. N2: checked Dave, Not Evil. Katana attack on me N2, survived. D2: Guilty on Carol.
+Grace (public): Grace, Sheriff. My N2 check on Dave came back Not Evil. I was hit by a Katana on N2 and survived, so a Yakuza holder is active. Katana holders read Good, so Dave's Not Evil doesn't clear him. Heidi, thanks for the N2 protect. Next, I want to hear Dave's and Erin's reads on Dave.
+Heidi (public): Heidi, Medic. Grace's Katana-survival claim fits my Standard protection on her Night 2, so it is consistent, though I can't confirm the attack. Dave, Not Evil doesn't clear you if a Katana holder reads Good, so explain why you pushed Guilty on Carol before any second check. Erin, same question for your early Guilty push. I'm not nominating yet.
+Alice (public): Alice here. Grace's Night 2 Katana survival can't be checked, and Heidi's protection only shows Grace was protected, not that anyone attacked her. Grace, a Katana holder reads Good, so explain why Dave's Not Evil result tells us anything. Dave, Erin and Frank: before anyone nominates, give one concrete reason beyond the Carol result.
+Bob (public): Bob here, Vanilla. Grace's Night 2 story fits Heidi's Standard protection on Grace, so for now I'll treat her Sheriff read as credible. That makes Dave's Not Evil a point in his favor, not proof. Erin and Frank, you both leaned Guilty on Carol from one read. What do you think now that Grace's N2 is public? Dave, where were you on Night 2 and did you see anything? Heidi, did you expect an attack on Grace? I'm not nominating yet.
+Dave (public): Dave, Vanilla Villager. Grace's Not Evil result on me is accurate: I'm Village with no night action. Grace's N2 Katana hit and Heidi's Standard protection on Grace fit together, which makes Grace's Carol Evil read more credible. I'm judging on fit now, not on who pushes hardest. Grace, post your N3 check when you have it. No nomination from me today without a second source.
+[Claim] Erin: Vanilla Villager. No night action. D2: Yes on Carol's nomination; Guilty on Carol's trial.
+Erin (public): Erin here, Vanilla, not nominating yet. Grace's N2 Katana claim fits Heidi's Standard protection, but both claims come from the same two players, so neither is confirmed. Grace, post your N3 result as soon as you have it. Heidi, did you see a Katana hit on Grace or only protect her? Dave, 'judging on fit' still rests on Grace's word. Alice and Bob, what do you make of Grace's N2 result?
+Frank (public): Frank here, Vanilla. Heidi's Standard protect on Grace fits Grace's Katana survival, so I'm inclined to take Grace's Sheriff read as credible for now. That makes Dave's Not Evil a real question, though: a Katana holder reads Good, so Dave could still be the holder. Dave, were you holding the Katana on Night 2? Erin, why did you push Carol so early? I'm not nominating yet.
+Grace (public): Grace again. Dave is the name I can't clear yet. My Not Evil result rules out Dave being a non-holder Yakuza, but a Katana holder reads Good, so Dave could be the one who hit me on Night 2. Dave, did you hold the Katana that night? Alice, Bob and Heidi, post any new information. If nothing better appears, I'll nominate Dave next round.
+Heidi (public): Heidi, Medic. My Standard protection on Grace on N2 would stop a Standard Katana, so Grace's survival fits what I did, though I can't confirm the attack. Dave, answer directly: did you hold the Katana on N2, and where were you? If the answer is vague, I'll back a nomination of you. Grace, post your N3 result when you have it.
+Alice (public): Alice here. Grace's N2 result on Dave is one Sheriff claim, and Heidi's Standard protection of Grace is the only thing that makes the Katana story checkable. I won't nominate yet. Heidi, how did you know Grace would be attacked on N2, and why her and not someone else? I want a second independent check before we hang anyone, Dave included.
+Bob (public): Bob here. Grace's Not Evil on Dave doesn't clear him, since a Katana holder reads Good, and Dave still hasn't said plainly where he was on Night 2. Dave, answer Heidi's question directly. If it stays vague, I'll vote Yes on a nomination of Dave.
+Dave (public): Dave, direct answer: I'm Vanilla with no night action. I held no Katana and visited no one on N2, so Grace's Not Evil on me is accurate. Yakuza attacking Grace on N2 fits a real Sheriff and her Carol Evil read. Heidi, you protected Grace on N2 before any attack was public, so why Grace, and what is your N3 protect target? Grace, post your N3 check now. I'm not nominating until we see both. Bob, 'vague' isn't a concrete reason yet.
+Erin (public): Erin here, Vanilla. Dave has answered directly that he visited no one on N2, so that's a claim we can test later. Grace, your Katana hit and Heidi's Standard protect fit together, but neither proves who attacked. Heidi, what is your N3 protect target? Grace, post your N3 check when it's ready. I'm not nominating until a second source lands.
+[Claim] Frank: Vanilla Villager. N1 and N2: no action, no results. D2: Yes on Carol's nomination; Guilty on Carol's trial.
+Frank (public): Frank again. I'm still Vanilla and not nominating this round. Grace's Sheriff result and Heidi's Medic protect fit together, but they come from the same two players, so I'm treating them as one story, not two confirmations. Dave says he held no Katana and visited no one. Erin hasn't said whether she visited anyone on N2. Grace, post your N3 target and result as soon as you have it. Heidi, name your N3 protect target before any nomination. If Grace's N3 check doesn't clear Dave, I'll vote Yes on him.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. N2: checked Dave, Not Evil; Katana hit N2, survived. D3: nominated Dave.
+Grace (public): I'm nominating Dave. He reads Not Evil on my N2 check, but a Katana holder reads Good, and Heidi's protect was the only thing that saved me on N2. Dave, make your case at trial.
+Grace nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Grace, Heidi, Alice, Bob, Erin, Frank; No - Dave
+Nomination votes on Dave: 6 Yes (the votes are secret).
+Dave is put on trial (6 Yes).
+[Claim] Dave: Vanilla Villager. N1: no action. N2: no action, visited no one. D2: Yes on Carol's nomination; Guilty on Carol's trial. D3: No on Dave's nomination.
+Dave (public): Dave, Vanilla Villager. I had no night action on N1 or N2 and visited no one. Grace's Not Evil on me is the only result touching me, and I accept it as a Village read. I voted Guilty on Carol because Grace's Carol=Evil was the only hard info then. I voted No on Dave's nomination because one Sheriff claim plus one Medic protect is still the same two players, not two confirmations. Grace, you say a Katana hit you on N2 and Heidi's Standard protect stopped it. Who else visited you that night, and what would a Lookout or Tracker see? Heidi, you protected Alice on N1 and Grace on N2. What is your N3 protect target? Before anyone is hanged, I want Grace's N3 check on someone who hasn't been cleared yet.
+[Claim] Erin: Vanilla Villager. N1 and N2: no action. D2: Yes on Carol's nomination; Guilty on Carol's trial. D3: Yes on Dave's nomination; leaning Innocent on Dave's trial.
+Erin (public): Erin here. I voted Yes to bring Dave to trial, but I'm now leaning Innocent. Dave's only hard result is Grace's Not Evil, which clears him unless he held the Katana, and Dave says he visited no one. Grace's Katana story rests on her word and Heidi's protect, so it isn't confirmed. Dave, did you visit anyone on N1 or N2? Grace, post your N3 check on a player nobody has cleared yet.
+[Claim] Frank: Vanilla Villager. N1, N2: no action, no results. D2: Yes on Carol's nomination; Guilty on Carol's trial. D3: Yes on Dave's nomination; Innocent on Dave's trial.
+Frank (public): Frank, Vanilla. I voted Yes to bring Dave to trial, but I'm now leaning Innocent. Grace's Not Evil on Dave is the only hard result on him, and Dave says he visited no one on N2. Grace's Katana story has no independent check yet, so I won't hang Dave on her word alone. Grace, post your N3 check as promised. If it clashes with Dave's Not Evil, I'll revisit before any further nomination.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. N2: checked Dave, Not Evil; Katana hit N2, survived. D2: Guilty on Carol. D3: Yes on Dave's nomination; Innocent on Dave's trial.
+Grace (public): Grace here. I'm voting Innocent on Dave. My Not Evil result only clears him if he wasn't the Katana holder, and a holder must visit their target. Dave says he visited no one on N2, so he wasn't the holder, which makes his Not Evil stand. I can't prove his claim, but it's the only check we have. Erin and Frank, you both pushed Carol early. Why, and what did you base it on?
+Heidi (public): Heidi, Medic. I'm voting Innocent on Dave. Grace's Not Evil is the only hard read on him. A Katana holder must visit the target, and Dave says he visited no one, but nothing I've seen proves or disproves that. Yakuza hitting a fresh Sheriff claim on N2 makes Grace more likely genuine, so I'll take her Dave read seriously, but not a hang on one result. Dave, if Grace's N3 check or any Tracker or Lookout result contradicts you, I'll revisit before any further nomination.
+[Claim] Alice: Vanilla Villager. N1, N2: no action. D3: Yes on Dave's nomination; Innocent on Dave's trial.
+Alice (public): Alice here. I'm voting Innocent on Dave. His only hard touch is Grace's Not Evil result. Dave says he visited no one on N2, and no Tracker or Lookout result touches him. Grace, you've nominated twice and say a Katana hit you, but that only shows someone attacked you, and Heidi's protect only shows you were protected. Heidi, how did you know to protect Grace on N2 and not someone else? Before any more Village hangs, I want a second independent check.
+[Claim] Bob: Vanilla Villager. D2: Guilty on Carol. D3: Yes on Dave's nomination; Innocent on Dave's trial.
+Bob (public): Bob here. I'm voting Innocent on Dave. His only hard touch is Grace's Not Evil result, and Dave says he visited no one on N2. We already hanged Carol on one Sheriff read, and Carol's will warned against that. Grace, post your N3 check on someone not yet cleared. Heidi, why Grace on N2 specifically, before any attack was public?
+Dave (public): Dave, Vanilla Villager, on trial. I had no night action on N1 or N2 and visited no one, so no Tracker or Lookout can expose me either way. Grace's Not Evil on me is the only result touching me. Grace says a Yakuza Katana holder hit her on N2 and Heidi's Standard protect stopped it, but nobody has said who visited Grace that night. Grace, if you are Sheriff, post your N3 check on someone not yet cleared before anyone is hanged. Erin and Frank, you both voted Yes on my nomination and then leaned Innocent, so what changed? A single Not Evil read plus a Katana story only Grace can confirm is not enough to hang a Village player. I'm asking for Innocent.
+Trial votes on Dave: 0 Guilty, 7 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - nobody; Innocent - Alice, Bob, Dave, Erin, Frank, Grace, Heidi
+Dave is found Innocent (0 Guilty of 7 votes; 4 needed).
+[Claim] Heidi: Medic. N1: protected Alice (Standard). N2: protected Grace (Standard). 2 medic tokens left. D2: Yes on Carol's nomination; Guilty on Carol's trial. D3: Innocent on Dave's trial.
+Heidi (public): Heidi, Medic. Dave was cleared 7-0 Innocent. Grace's Katana story fits my N2 Standard protect on her, so I'm treating her Sheriff read as credible for now. Erin and Frank, you both voted Yes on Dave and then went Innocent. What changed? I'm not nominating today. Grace, post your N3 check on someone not yet cleared, and let's hold any hang until it lands.
+Alice (public): Alice here, Vanilla. Grace's Carol Evil read was right, Carol was Smuggler, so Grace is worth hearing out. Heidi's Standard protect on Grace fits Grace's survival, but it still rests on two claims. Nobody should nominate until someone posts a check on an uncleared player. Grace, post your N3 target and result now. Heidi, who are you protecting tonight?
+Bob (public): Bob here. Dave was cleared 7-0, and Grace's Katana hit is still only her word. Heidi, you protected Grace on N2 before any attack was public. How did you know she'd be targeted? Grace, post your N3 result on someone uncleared. I'm not nominating today.
+Dave (public): Dave here. Alice, you said Carol was Smuggler, but Carol's role was never revealed, so how do you know? Heidi, name your N3 protect target. Grace, post your N3 check on someone not yet cleared. Erin and Frank, you both flipped on Dave, so explain what changed.
+Erin (public): Erin again. Alice, you said Carol was Smuggler, but Carol's role was never revealed, and Smuggler is a Yakuza role. How do you know that? If you have a Coroner or other result on Carol, say so now. If you can't explain it plainly, I'll vote Yes on a nomination of you.
+Frank (public): Frank, Vanilla. Alice, you said Carol was Smuggler, but Carol's role was never revealed and no death reveal showed it. Smuggler is a Yakuza role, and Yakuza share a night chat, so how do you know? Answer plainly before anyone is nominated. Grace, post your N3 check on someone uncleared.
+Grace (public): I'm nominating Alice. Carol was my Night 1 Evil result, and Alice knows Carol's role, which only a Yakuza teammate would. Vote Yes.
+Grace nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Grace, Heidi, Dave, Erin, Frank; No - Alice, Bob
+Nomination votes on Alice: 5 Yes (the votes are secret).
+Alice is put on trial (5 Yes).
+Alice (public): Alice here. I'll answer plainly. I have no Coroner or other result on Carol, and I did not learn her role. 'Smuggler' was a bad guess I typed when I meant Grace's Evil read on Carol. I should have said 'Evil' and stopped there. It was a slip, not a reveal. Grace, you nominated me right after I asked why you checked Carol first, and your only support is the same Sheriff read you've relied on since Night 1. If your Sheriff claim is real, your N3 check can clear me or not. I'm Vanilla. I voted Yes on Dave's nomination and Innocent on his trial, like most of you. Vote on the slip itself, not the pile-on.
+[Claim] Bob: Vanilla Villager. N1, N2: no action, no results. D2: Guilty on Carol. D3: Yes on Dave's nomination; Innocent on Dave's trial; No on Alice's nomination.
+Bob (public): Bob here, Vanilla. On Alice's slip: 'Smuggler' was a bad word choice, and she corrected it at once and named it as a mistake. That is not a Yakuza tell. Grace has nominated three times in two days, each time on her own Sheriff read plus a Katana story nobody can check. Dave was cleared 7-0 on that same read. Grace, post your N3 result on someone uncleared, and I'll weigh it. Vote on evidence, not the pile-on.
+[Claim] Dave: Vanilla Villager. N1, N2: no action. D2: Yes on Carol's nomination; Guilty on Carol's trial. D3: No on Dave's nomination; Innocent on Dave's trial; Yes on Alice's nomination.
+Dave (public): Dave here, Vanilla. On Alice: 'Smuggler' isn't a Village guess. Smuggler is a Yakuza-only role, and Carol's role was never revealed. Carol was Grace's Evil read, so Alice naming Carol's role is the only concrete thing on the table. Alice, what made you pick that exact role? I'm leaning Guilty unless you give a plain reason. Grace, your N3 check on an uncleared player is still owed.
+Erin (public): Erin here. I'm voting Guilty on Alice. Carol's role was never revealed, yet Alice named Smuggler, a Yakuza-only role, and then called it a slip for 'Evil'. A Village player guessing Evil would not pick that exact unique role. Alice, name the Village role you would have guessed without knowing Carol's role. If Grace's N3 check on an uncleared player comes back clean, I'll revisit before the next vote.
+[Claim] Frank: Vanilla Villager. N1, N2: no action. D2: Yes on Carol's nomination, Guilty on Carol's trial. D3: Yes on Dave's nomination, Innocent on Dave's trial, Yes on Alice's nomination.
+Frank (public): Frank here, Vanilla. On Alice: the Smuggler slip is odd, but she named it as a slip right away and gave a plausible reason, and nobody has shown a mechanical link to Yakuza. Grace has nominated three times in two days, each time on her own Sheriff read plus a Katana story nobody can check. I voted Yes on Alice's nomination to get a trial, but I'm leaning Innocent unless Grace's N3 check on an uncleared player clashes with something concrete. Grace, post it now.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. N2: checked Dave, Not Evil; Katana hit N2, survived. D3: Yes on Dave's nomination; Innocent on Dave's trial; Yes on Alice's nomination; Guilty on Alice's trial.
+Grace (public): I'm voting Guilty on Alice. She named Smuggler, a Yakuza-only role, for Carol, whose role was never revealed. Her slip explanation doesn't cover that.
+[Claim] Heidi: Medic. N1: protected Alice (Standard). N2: protected Grace (Standard). 2 medic tokens left. D2: Yes on Carol's nomination; Guilty on Carol's trial. D3: Yes on Dave's nomination; Innocent on Dave's trial; Yes on Alice's nomination.
+Heidi (public): Heidi, Medic. Alice, your 'Smuggler' slip is the real problem. Carol's role was never revealed, and Smuggler is a unique Yakuza-only role, so you named the exact role of a dead player with no source. 'I meant Evil' doesn't explain choosing Smuggler. Grace's Sheriff read is the only hard info on the table, and my N2 Standard protect on her fits her Katana survival. I'm voting Guilty on Alice unless you give a plain source for Smuggler.
+Alice (public): Alice here. On the slip: I typed Smuggler when I meant Evil, and I said so at once. I have no Coroner or reveal on Carol. Grace, you have nominated three times in two days: Carol, Dave and me, each on your own Sheriff read. Dave was cleared 7-0 on that same read, so the case against me is a slip plus a nomination on a single unverified check. Heidi, you protected me on N1 and Grace on N2 before any attack was public. How did you pick those targets? Vote on the evidence, not the pile-on. I'm Vanilla and I want a real second check before anyone else goes to the gallows.
+Trial votes on Alice: 4 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Dave, Erin, Grace, Heidi; Innocent - Alice, Bob, Frank
+Alice is executed by hanging (4 Guilty of 7 votes; 4 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice's will: I claimed Vanilla Villager with no night action and no results. Trust trial totals and results that fit together over loud claims. Watch who pushes the earliest nominations, who defends them, and who asks for a hang before any evidence exists. Ask each Night result holder to name a second check before a hang."
+
+===== NIGHT 3 =====
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Heidi
+  Grace (Sheriff): target Erin; "Sheriff investigation on Erin"
+  Heidi (Medic): target Grace; "Protect Grace with Standard Defense at no token cost."
+Katana: Bob holds it and attacks Heidi.
+(to Grace) Moderator (private): You investigated Erin tonight. Result: Not Evil.
+(to Bob) Moderator (private): Your Katana attack on Heidi tonight succeeded.
+(to Heidi) Moderator (private): You protected Grace with Standard Defense tonight. 2 medic tokens left.
+[Moderator summary] Night 3: Bob (Katana holder, Standard) attacked Heidi (Defense None) and killed her. Heidi protected Grace (Standard, no token spent; no attack on Grace). Grace checked Erin: Not Evil. Visits: Bob->Heidi, Grace->Erin, Heidi->Grace. Living: Bob (Yakuza), Dave, Erin, Frank, Grace. No win yet.
+[Night check] Night 3: correct
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 4 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, Village. I have no confirmed information beyond my own actions. Check every claim against the public vote totals and the visits that can be verified. Do not hang anyone on a single unverified result."
+Speaking order today goes around the circle in seat order, starting with Erin.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Erin (public): Erin here, Vanilla. Heidi, the Medic, died to the Katana, which fits her N2 protect on Grace. Grace, your N3 check is owed and hasn't been posted, so post it now. Dave, Grace's N2 Not Evil on you fits a Katana holder, and a holder must visit their target. Did you visit Grace on N2? Answer yes or no, plainly.
+Frank (public): Frank, Vanilla. Heidi died to the Katana, so an active holder is still alive. Grace, you haven't posted a Night 3 target or result; post it now. Dave, Erin asked you a yes-or-no question; answer it plainly. I won't nominate until both are on record.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. N2: checked Dave, Not Evil; Katana hit me, survived. N3: checked Erin, Not Evil. D3: Guilty on Alice.
+Grace (public): Grace, Sheriff, posting my results as asked. N1: Carol, Evil. N2: Dave, Not Evil; Katana hit me and Heidi's protect saved me. N3: Erin, Not Evil. A Katana holder reads Good, so Erin and Dave both still need checking. Erin, why did you push Alice's hang so hard? Dave and Erin, where did you visit on N3?
+[Claim] Bob: Vanilla Villager. N1-N3: no night action, no results. D2: Guilty on Carol. D3: Yes on Dave's nomination; Innocent on Dave's trial; No on Alice's nomination; Innocent on Alice's trial.
+Bob (public): Bob here, Vanilla, not nominating yet. Grace, your Night 3 check on Erin and Night 2 check on Dave both read Not Evil, so I'll weigh those as your word for now. Frank, you said you'd vote on evidence: how much weight do you put on Grace's Katana claim, given Heidi's Medic protect was only on Grace? Erin, why did you push Alice's hang so hard before any second check?
+Dave (public): Dave, Vanilla, not nominating yet. Grace's Sheriff results fit the Katana facts, but Carol's Evil read can't be checked now. Erin, you pushed Carol and Alice early and flipped on Dave; explain that. Bob and Frank, you both voted Innocent on Alice; what evidence moved you?
+Erin (public): Erin here. Grace's N3 check on me, Not Evil, is accurate since I'm Village, so her Sheriff read gains weight. Dave, your no-visit claim can't be checked, and whoever hit Grace on N2 and Heidi on N3 had to visit them. Bob and Frank, what do you make of that? I'm not nominating yet, but I lean toward nominating Dave next round.
+Frank (public): Frank here, Vanilla. Heidi's N2 Standard protect on Grace fits Grace surviving a Katana hit, so I lean toward treating Grace's Sheriff results as real. That points the Katana at Bob, Dave or Erin. Dave, Bob and Erin, state your Night 3 visits plainly. I won't nominate until those answers are in.
+Grace (public): Grace, Sheriff. Tonight I'm checking a player I haven't cleared yet, and the result comes at dawn. Bob and Frank, you have no checks on you and haven't stated your Night 3 visits, so answer plainly. Erin and Dave, my Not Evil results don't clear you if one of you holds the Katana. Who visited Heidi on Night 3?
+[Claim] Bob: Vanilla Villager. N1-N3: no night action, no results. D2: Guilty on Carol. D3: Innocent on Dave's trial; No on Alice's nomination; Innocent on Alice's trial.
+Bob (public): Bob, Vanilla, no night results. Heidi died to the Katana on N3, so the holder visited her, and that visit is still unexplained. Grace has asked twice who visited Heidi, and Dave and Erin have not given a plain answer. Erin, you vouched for Grace's Not Evil on you, but that only tells us Grace's word stands, not who attacked. Dave, answer Grace's question plainly. Frank, state your N3 visit. I'm not nominating yet, but I'll vote Yes on whichever of Dave or Erin keeps dodging.
+Dave (public): Dave here, Vanilla. I visited no one on N2 or N3 and held no Katana. Heidi died to the Katana on N3, so a Yakuza visited her. Grace's Not Evil on Erin doesn't clear Erin if she is the holder, since holders read Good. Erin, Frank and Bob: state directly whether you visited Heidi on N3. If Erin dodges again, I'll nominate Erin next round.
+[Claim] Erin: Vanilla Villager. N1-N3: no night action. D2: Yes and Guilty on Carol. D3: Yes on Dave's nomination, Innocent on his trial, Yes on Alice's nomination, Guilty on her trial.
+Erin (public): Erin, Vanilla. Dave, you say you visited no one on N2 or N3 and held no Katana. Heidi died to the Katana on N3, so a holder visited her, and that visit is still unexplained. Grace's Not Evil on me is accurate, so her Sheriff read is consistent. I'm nominating Dave for trial. Please vote Yes so we can test his claim.
+Erin nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Erin, Frank, Bob; No - Grace, Dave
+Nomination votes on Dave: 3 Yes (the votes are secret).
+Dave is put on trial (3 Yes).
+[Claim] Dave: Vanilla Villager. N1-N3: no night action. D2: Guilty on Carol. D3: Innocent on own trial; Yes and Guilty on Alice. D4: No on Dave's nomination.
+Dave (public): Dave, Vanilla, on trial again. I visited no one on N1-N3 and held no Katana. I'm voting Innocent on myself. My record: Yes on Carol's nomination, Guilty on Carol, Innocent on my own trial, Yes on Alice's nomination, Guilty on Alice. Carol's Evil read from Grace fits Alice's 'Smuggler' slip, which only a Yakuza teammate would name, so Grace's Sheriff line is more credible than it was on Day 2. That makes Erin's pushes the thing to check. She pushed Carol, then Alice, then me, and her only stated reason for me is my answer on Heidi, which I've already given. Erin, Bob and Frank: name the player you would hang next if I'm cleared, and say whether you still think Grace is lying.
+[Claim] Erin: Vanilla Villager. N1-N3: no action, no results. D4: Yes on Dave's nomination.
+Erin (public): Erin, Vanilla. Dave says he visited no one on N2, but Grace was hit by a Katana that night, and the holder had to visit her to do it. Dave, if you weren't the holder, who visited Grace on N2? Bob and Frank, you have both dodged the N3 visit question, and Heidi's N3 killer visited her. Answer plainly before the vote. I'm undecided on Dave's trial until those answers are in.
+[Claim] Frank: Vanilla Villager. N1-N3: no night action, no results. D2: Guilty on Carol. D3: Yes on Dave's nomination, Innocent on Dave's trial, Yes on Alice's nomination, Innocent on Alice's trial. D4: Yes on Dave's nomination.
+Frank (public): Frank, Vanilla. Plainly: I visited no one on N1-N3 and held no Katana. Heidi's N3 killer had to visit her, and Bob, Dave and Erin have each said no action. One of the three is lying or hiding. Not Evil reads on Dave and Erin don't clear them, since a Katana holder reads Good. I'm voting Innocent on Dave for now because I see no visit or contradiction tying him to Heidi. Erin and Bob, state your N3 visits directly before the vote.
+[Claim] Grace: Sheriff. N1: Carol Evil. N2: Dave Not Evil; Katana hit me, survived. N3: Erin Not Evil. D4: Innocent on Dave.
+Grace (public): Grace, Sheriff. I'm voting Innocent on Dave. My N2 check reads Not Evil, and nothing ties him to Heidi's N3 visit except a holder claim. Erin and Dave both pushed the hangs of Carol and Alice, who look Yakuza, so I won't hang Dave on a dodge. Bob and Frank: you're the two I haven't cleared, and you both voted Innocent on Alice. Explain that. I'll post my N4 result at dawn.
+[Claim] Bob: Vanilla Villager. N1-N3: no night action, no results. D2: Guilty on Carol. D3: Innocent on Dave's trial, No on Alice's nomination, Innocent on Alice's trial. D4: Yes on Dave's nomination, Guilty on Dave's trial.
+Bob (public): Bob here. I'm voting Guilty on Dave. I voted Innocent on his first trial on Grace's Not Evil read, but since then he has pushed the Carol and Alice hangs alongside Erin, and he still hasn't explained who visited Grace on Night 2. His defense repeats the no-visit claim, which nobody can test. A Guilty vote is the only way to test it, and I won't nominate again today.
+Dave (public): Dave, final defense. I'm Vanilla: no night action on N1, N2 or N3, no visits, no Katana. I've answered Heidi's and Grace's questions plainly each time. Bob's Guilty says my defense repeats 'no visit,' but nobody has a test that contradicts it. Erin nominated me for not answering about Heidi, and I did answer, so her stated reason is gone. Erin started or joined the early pushes on Carol, Alice and me, and she flipped on me after voting Yes. Grace's Sheriff line fits Carol and Alice behaving like Yakuza, and her Not Evil on me is the only hard result touching me. If Grace is honest, that clears me. Frank and Bob have only said 'no action' about their N3 visits, and neither has explained who could have visited Heidi. Vote Innocent on me, then watch who keeps pushing the next hang.
+Trial votes on Dave: 2 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Bob, Erin; Innocent - Dave, Frank, Grace
+Dave is found Innocent (2 Guilty of 5 votes; 3 needed).
+[Claim] Frank: Vanilla Villager. N1-N3: no night action, no results. D2: Yes on Carol's nomination, Guilty on Carol's trial. D3: Yes on Dave's nomination, Innocent on Dave's trial, Yes on Alice's nomination, Innocent on Alice's trial. D4: Yes on Dave's nomination, Innocent [truncated]
+Frank (public): Frank, Vanilla. Plainly: I visited no one on N1-N3 and held no Katana. Heidi's N3 killer visited her, so the holder is a living player who has not shown a visit. Grace's Not Evil reads on Dave (N2) and Erin (N3) don't clear either of them, since a holder reads Good. I won't nominate today. Grace, post your N4 target and result at dawn. Bob, Dave and Erin, name the player you think is the holder.
+Grace (public): Grace, Sheriff. Dave and Erin each have one Not Evil from me, but a Katana holder reads Good, so neither is cleared. Bob and Frank have no checks on them yet, and neither has given a plain Night 3 visit answer. I'll post my Night 4 result at dawn and won't nominate today.
+[Claim] Bob: Vanilla Villager. N1-N3: no action. D2: Guilty on Carol. D3: Innocent on Dave and Alice. D4: Guilty on Dave.
+Bob (public): Bob, Vanilla. Grace's Sheriff results have held up so far, so I'm treating them as real for now. Erin, you pushed Carol, then Alice, then nominated Dave, and your stated reason was an answer he had already given. Frank, you've voted Yes on most nominations while calling yourself undecided. Explain your Night 3 'no action' and what evidence moved you. I'm not nominating this round, but I'll vote on what Grace's Night 4 result shows.
+[Claim] Dave: Vanilla Villager. N1-N3: no action. D2: Yes and Guilty on Carol. D3: No on Dave, Innocent on his trial; Yes and Guilty on Alice. D4: No on Dave, Innocent on own trial.
+Dave (public): Dave, Vanilla. Erin, you pushed Carol, then Alice, then nominated me, and your stated reason for me was an answer I had already given. Explain why you voted Guilty on Alice before I vote on anything else. Frank and Bob, you have each voted Yes on most nominations while saying you're undecided. State your Night 3 visit plainly. Grace's Night 4 result comes at the next dawn, and I'll weigh it along with who keeps pushing the next hang.
+Erin (public): Nominating Frank. He voted Innocent on Alice, defended her slip, and his Night 3 answer is bare. Vote Yes to start a trial.
+Erin nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Erin, Grace, Bob; No - Frank, Dave
+Nomination votes on Frank: 3 Yes (the votes are secret).
+Frank is put on trial (3 Yes).
+Frank (public): Frank, Vanilla Villager, on trial. I had no night action on N1-N3, visited no one, held no Katana, and have no results. My votes: Guilty on Carol on Grace's Sheriff read, Yes then Innocent on Dave, Innocent on Alice, No on Frank's nomination. Erin, you pushed Carol, then Alice, then Dave, and nominated me with a reason Dave had already answered. Your own N3 answer is also 'no action', so if you're Village, name the player you'd hang next and what evidence it rests on. Grace's Night 4 result is due at dawn; I want it before any more votes. Vote on the evidence, not the pile-on.
+Grace (public): Grace, Sheriff. Frank answered plainly: no action on N1-N3, no Katana, no results. I have no check on Frank yet, so his answer alone isn't enough for me to vote Guilty. Erin, your reason for nominating Frank was that his answer was bare, but he did give one. Erin, name the player you'd hang next and why. My Night 4 result comes at dawn.
+[Claim] Bob: Bob. Vanilla Villager. N1-N3: no night action, no results. D4: Guilty on Dave, Guilty on Frank.
+Bob (public): Bob, Vanilla. I'm voting Guilty on Frank. His record is Yes on Carol's start, then Yes and Innocent on Dave, Yes and Innocent on Alice, then Yes on Dave again on Day 4, and now a bare 'no action' on Night 3 that nobody can check. Erin's stated reason for nominating him is that his answer was bare, and his own answer was the same. I won't hang anyone on pushes alone, but Frank's votes have swung with every nomination. Grace's Night 4 result comes at dawn, and I'll weigh it then.
+Dave (public): Dave, Vanilla. On Frank: his answers match mine, with no visits, no Katana and no hard check on him. Erin, you pushed Carol, then Alice, then me, and now Frank, and your Night 3 answer is also 'no action'. Heidi's Night 3 killer had to visit her, so one living player among Bob, Erin and Frank holds the Katana. Erin, name the player you would hang next and why, plainly. I'm leaning Innocent on Frank unless a concrete visit appears.
+Erin (public): Erin, Vanilla. Frank, you voted Yes on every nomination and Innocent on both Alice and Dave. Why, and where was your Night 3 visit? Bob, why flip to Guilty on Dave now? Grace, post your Night 4 result at dawn.
+[Claim] Frank: Vanilla Villager. N1-N3: no action, no results. D4: Yes on Dave's nomination, Innocent on Dave's trial.
+Frank (public): Frank, Vanilla, on trial. Plainly: no night action on N1-N3, no visits, no Katana, no results. My votes: Guilty on Carol on Grace's Sheriff read; Yes then Innocent on Dave; Yes then Innocent on Alice; No on Frank's nomination. Erin has pushed Carol, Alice, then Dave, and now me. Her stated reason against me was that my answer was bare, but I answered it and Grace agrees. Erin's N3 answer is also 'no action', so that doesn't separate us. Grace's Night 4 result comes at dawn. If she checks me Not Evil, that is a real clearance, so vote on that rather than on the pile-on. Bob, you went Guilty on Dave and now on me: what evidence moved you?
+Trial votes on Frank: 2 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Bob, Erin; Innocent - Dave, Frank, Grace
+Frank is found Innocent (2 Guilty of 5 votes; 3 needed).
+[Claim] Frank: Vanilla Villager. N1-N3: no action, no results. D4: Yes on Dave's nomination; Innocent on Dave's trial; No on Frank's nomination; Innocent on Frank's trial.
+Frank (public): I'm nominating Erin. She pushed Carol, Alice, Dave and me, and she reads Not Evil on Grace's N3 check, like a Katana holder on the night Heidi died.
+(to Frank, Grace) Frank -> Grace (private): Grace, I'm voting Guilty on Erin. Please post your N4 target before the vote if you can.
+Frank nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Frank, Grace, Bob, Dave; No - Erin
+Nomination votes on Erin: 4 Yes (the votes are secret).
+Erin is put on trial (4 Yes).
+[Claim] Erin: Vanilla Villager. N1-N3: no action, no results. D4: Yes on Dave and Frank nominations; Guilty on Dave and Frank trials; No on own nomination.
+Erin (public): Erin, Vanilla, with no night action and no results. My votes: Yes on the Dave and Frank nominations (both mine), Guilty on Dave and Frank, and No on my own nomination. Grace's Not Evil on me is accurate, and her Night 2 Katana survival fits Heidi's Standard protect, so I treat her as the likeliest real Sheriff. Frank, your reason for nominating me was that Grace reads me Not Evil, which leans on her result rather than on any visit of mine. Heidi's Night 3 killer had to visit her, and Bob, Dave and Frank are the only living players who could be the holder. Bob and Frank, name who you think visited Heidi on N3. I won't vote to hang a Village player on a bare reason.
+Frank (public): Frank, Vanilla. I'm voting Innocent on Erin. Her pushes were aggressive, but Grace's Night 3 Not Evil on her fits a Village player. Bob, you voted Guilty on Dave and me with no visit evidence. Give one concrete reason.
+[Claim] Grace: Sheriff. N1: checked Carol, Evil. N2: checked Dave, Not Evil; Katana hit me, survived. N3: checked Erin, Not Evil. D4: Innocent on Dave and Frank; Innocent on Erin.
+Grace (public): Grace, Sheriff. I'm voting Innocent on Erin. My N3 check reads Not Evil, and she pushed the hangs of Carol (my Evil read) and Alice, which fits a Village player. Bob and Frank are the only two who voted Innocent on Alice, and neither has given a concrete Night 3 visit answer, so the living Katana holder is still unexplained. My Night 4 result comes at dawn as promised; I won't name my target today. Bob and Frank, state your Night 3 visits in one plain sentence each.
+[Claim] Bob: Vanilla Villager. N1-N3: no night action, no results. D2: Guilty on Carol. D3: Innocent on Dave and Alice. D4: Guilty on Dave, Guilty on Frank.
+Bob (public): Bob here, Vanilla. I'm voting Guilty on Erin. She opened the Dave and Frank nominations and then pushed Dave's hang after voting Yes on his nomination. Her Night 3 answer is a bare 'no action', and her reason for nominating Frank was an answer Frank had already given. Grace's Not Evil on Erin doesn't clear her if she holds the Katana. Erin, name the player you'd hang next and why.
+Dave (public): Dave, Vanilla. I'm voting Guilty on Erin, for concrete reasons. Erin nominated Dave on Day 4 and then Frank, and both came back Innocent, so two of her three hangs failed. She voted Yes and Guilty on Dave's trial, then pushed Frank. Her Night 3 answer is only 'no action', and Heidi's Night 3 killer is still unexplained, so Erin is one of the living players who could be the holder. Grace's Not Evil on Erin doesn't clear a holder. Erin, if you think Bob or Frank is the holder, name them and give one concrete reason.
+Erin (public): Erin, Vanilla Villager, with no night action and no results. Grace's N3 Not Evil on me is accurate, so I'm not the holder. Heidi was killed on N3 by a living Katana holder who visited her, so the holder is Bob, Dave, Frank or Grace. Dave is the one I can't clear. Grace's N2 Not Evil on him fits a holder on the night the Katana hit Grace, and he has only said 'no visits', which nobody can test. He also pushed Carol and Alice early. Frank voted Innocent on Alice and on Dave's trial, then nominated me, and he sent Grace a private message today. I pushed Dave and Frank, and I own those votes. I'm asking you to judge me on evidence: if you think I'm the holder, name the visit that fits me.
+Trial votes on Erin: 3 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Bob, Dave, Frank; Innocent - Erin, Grace
+Erin is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin, Village, Vanilla Villager. I never had a night action or result. My votes: Guilty on Carol, Yes on Dave's nomination then Innocent on his trial, Yes on Alice's nomination then Guilty on her trial. Do not hang on a single unverified result or a lone Katana story. Trust results that fit the visits and the vote totals, and ask every result holder for a second check before a hang."
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Grace
+  Grace (Sheriff): target Frank; "Sheriff investigation on Frank"
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): You investigated Frank tonight. Result: Not Evil.
+(to Bob) Moderator (private): Your Katana attack on Grace tonight succeeded.
+[Moderator summary] Night 4: Bob (Grunt, Katana holder) made a Standard Katana attack on Grace (Sheriff, Defense None, no protection since Heidi is dead), and Grace died. Grace's Sheriff check on Frank came back Not Evil, and she was told the result. Bob was told his attack succeeded. Recorded visits: Bob->Grace, Grace->Frank. No role-blocks and no tokens spent. Bob (Yakuza), Dave and Frank (both Village) are still alive, so the game goes on.
+[Night check] Night 4: correct
+(to Grace) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 5 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace (seat 7), Sheriff. Night 1: checked Carol, result Evil (Carol was executed on Day 2). Night 2: checked Dave, result Not Evil; I was attacked with the Katana that night and survived, with Heidi's Standard protection on me. Night 3: checked Erin, result Not Evil. Heidi (Medic) died to the Katana on Night 3. A Katana holder reads Good, so Not Evil on Dave or Erin does not clear them. Trust Sheriff results over unverified denials and do not hang anyone on a single claim. Check each trial total against the nominations, and note who pushed the Carol and Alice hangs early and who defended them."
+Speaking order today goes around the circle in seat order, starting with Dave.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Dave (public): Dave here. Erin's trial was 3 Guilty of 5. Bob and I were Guilty, and Frank said publicly he voted Innocent. Grace also said Innocent, and she has a consistent Sheriff record. So the third Guilty vote came from Frank, from Erin voting Guilty on herself, or from Grace. Frank's stated vote doesn't match the count, and he also sent Grace a private message on Day 4. I'm nominating Frank, and I'd like Bob's Yes so we can test it at trial.
+(to Bob, Dave) Dave -> Bob (private): Frank's Innocent-on-Erin story doesn't match the count. Vote Yes with me on Frank.
+Dave nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Dave, Bob; No - Frank
+Nomination votes on Frank: 2 Yes (the votes are secret).
+Frank is put on trial (2 Yes).
+[Claim] Frank: Vanilla Villager. N1-N4: no action, no visits, no results. D4: Innocent on Erin's and Dave's trials. D5: No on Dave's nomination of Frank.
+Frank (public): Frank, Vanilla Villager, on trial. Dave, your count is wrong. I stated Innocent on Erin's trial, and Grace said Innocent too, so the third Guilty in Erin's 3-of-5 can only be Erin voting for herself. My vote doesn't mismatch anything. I've voted Innocent on Dave's trial, on Erin's trial, and on my own nomination, and I've named no visit or Sheriff read that ties me to any death. Dave, you pushed Carol and Alice early, nominated Dave and then me on a miscount, and sent Bob a private message today. Bob, you voted Yes on my nomination on that same miscount. Check it again before you vote Guilty. I'm voting Innocent.
+(to Bob, Frank) Frank -> Bob (private): Bob, Dave's Erin count is wrong: I voted Innocent on Erin. Recheck before you vote Guilty on me.
+[Claim] Bob: Vanilla Villager. N1-N4: no night action, no results. D2-D4: Guilty on Carol, Dave, Alice, Erin, Frank trials as recorded.
+Bob (public): Bob, Vanilla. I voted Guilty on Erin's trial, and Dave's count is right on my side: Bob and Dave were Guilty, so the third Guilty in 3-of-5 was Erin or Frank. Frank says Innocent, Grace says Innocent, so either Erin voted Guilty on herself or Frank is wrong. Frank also messaged Grace on Day 4 and now asks me to recheck before voting, which is pressure, not evidence. Frank's votes have flipped with every push: Yes then Innocent on Dave, Yes then Innocent on Alice, Innocent on his own nomination. With two Village names left, I'd rather hang the one whose votes swing. Guilty on Frank.
+(to Bob, Dave) Bob -> Dave (private): Guilty on Frank with me. His votes have swung with every push, and his Erin count doesn't add up.
+[Claim] Dave: Vanilla Villager. No night actions or results. D2 Guilty on Carol. D3 Innocent on Dave, Guilty on Alice. D4 Innocent on Dave, Guilty on Erin, Innocent on Frank.
+Dave (public): Dave here. I was wrong: Grace also voted Innocent on Erin, so the third Guilty was Erin herself, and Frank's count is right. I'm voting Innocent. Bob, hanging Frank leaves only you and me, so why push it now?
+[Claim] Frank: Vanilla Villager. N1-N4: no action, no visits, no results. Votes: Guilty on Carol; Innocent on Dave, Alice, Erin and Frank trials.
+Frank (public): Frank, Vanilla Villager, on trial. I had no night action, no visits and no results on any night. One correction to my record: on Day 4 I told Grace privately I'd vote Guilty on Erin, but after Erin's defense I voted Innocent and said so publicly, which matches the 3-of-5 total. Bob, you have voted Guilty on every trial since Day 2 and now want the last other Village voice hanged. If I die, only Bob and Dave remain, and one of you is the living Katana holder. A 1-1 pair means the next Katana kill ends the Village. Dave, your Innocent and your Erin correction are appreciated. Bob, give one concrete reason for Guilty and state your Night 4 visit plainly.
+(to Dave, Frank) Frank -> Dave (private): Dave, stay Innocent on me. Bob's Guilty alone can't hang me. If I'm hanged, you and Bob are the last two and the holder kills the other Village player next night. Let's watch Bob's Night 4 answer.
+Trial votes on Frank: 1 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Bob; Innocent - Dave, Frank
+Frank is found Innocent (1 Guilty of 3 votes; 2 needed).
+Frank (public): Frank here. I'm nominating Bob: Guilty on every trial since Day 2 and pushing my hang. Dave, vote Yes so we can test him.
+Frank nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Frank; No - Bob, Dave
+Nomination votes on Bob: 1 Yes (the votes are secret).
+The nomination of Bob failed (1 Yes).
+[Claim] Bob: Vanilla Villager. N1-N4: no night action, no results. D2-D4 votes as recorded.
+Bob (public): Bob here. My Guilty on Frank came from his swinging votes, not from any visit. I'm not nominating today. Anyone who nominates needs a concrete reason, and I'll vote on that reason.
+[Claim] Dave: Vanilla Villager. No night action, no results. D5: Yes on Bob's nomination; Guilty on Bob's trial.
+Dave (public): Nominating Bob. He defended Alice over the Smuggler slip and pushed three Village hangs. Frank, vote Yes.
+Dave nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Dave, Frank; No - Bob
+Nomination votes on Bob: 2 Yes (the votes are secret).
+Bob is put on trial (2 Yes).
+[Claim] Bob: Vanilla Villager. N1-N4: no night action, no results. D2 Guilty on Carol. D4 Guilty on Dave, Guilty on Frank, Guilty on Erin. D5 Guilty on Frank.
+Bob (public): Bob, Vanilla Villager, with no night action and no results. My votes have been Guilty on Carol and on the Day 4 trials of Frank and Erin, and I explained each one when I cast it. Dave's Erin count was wrong, he admitted it, and then he nominated me straight after. Frank told Grace privately on Day 4 that he would vote Guilty on Erin, then voted Innocent in public, and his trial record is almost all Innocent. Two Village names are left and the Katana is still alive. Before anyone votes Guilty, name one concrete mechanical reason I'm Evil. My Guilty votes are a fair thing to question, but they don't prove a visit or a role.
+(to Bob, Frank) Bob -> Frank (private): Frank, Dave's miscount got you nominated and me too. Vote Innocent here and I'll vote Guilty on Dave at the next trial.
+(to Bob, Dave) Bob -> Dave (private): Dave, you admitted your Erin count was wrong, then nominated me at once. Give me a fair look before you vote.
+[Claim] Dave: Vanilla Villager. No night actions, visits or results. D5: Yes on Bob's nomination.
+Dave (public): Dave, Village. Bob defended Alice after the Smuggler slip and voted Innocent on her trial, which fits a Yakuza teammate. Frank, you told Grace privately you'd vote Guilty on Erin, then said Innocent publicly. Explain that. My vote on Bob is Guilty unless someone gives a plain reason.
+(to Dave, Frank) Dave -> Frank (private): Frank, plainly: did you visit Grace on Night 4? Also explain why you voted Yes on Bob's nomination.
+[Claim] Frank: Vanilla Villager. N1-N4: no action, no visits, no results. D5: Guilty on Bob's trial.
+Frank (public): Frank, Vanilla. I'm voting Guilty on Bob. He pushed my hang on Day 4 and again today, and he voted Guilty on Erin even though Grace's Sheriff read cleared her. He defended Alice's Smuggler slip as not a Yakuza tell and voted Innocent on her trial. He also privately offered me a trade: vote Innocent here and he will vote Guilty on Dave. Grace died to the Katana on Night 4, so the holder is Bob or Dave. Bob, explain that offer in one plain sentence.
+(to Dave, Frank) Frank -> Dave (private): Dave: I visited no one on Night 4, and I'm voting Guilty on Bob. He offered me a trade: Innocent for him, Guilty on you.
+Bob (public): Bob, Village, Vanilla Villager with no night action or visits. Frank says I offered him a trade. That's true: I offered to vote Guilty on Dave next trial, because Dave nominated me on a count he later admitted was wrong, and he also pushed the Carol, Alice and Erin hangs early. I'm not asking you to trust me. I'm asking for one Innocent vote on a nomination that came from a miscount. Frank, your votes have swung all game, and so have mine, but neither of us has a visit or a result that ties us to a death. Grace's Night 4 death came from a Katana holder, and nothing I've said or done points to me being that holder. Hanging a Vanilla on a count that was wrong is exactly what Carol's will warned about. Vote on the evidence.
+(to Bob, Frank) Bob -> Frank (private): Frank, my trade was against Dave's miscount, not a deal. One Innocent from you and I'll back a trial of Dave.
+Trial votes on Bob: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Dave, Frank; Innocent - Bob
+Bob is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob, Village on record, Vanilla Villager with no night action and no results. Grace's Night 1 Sheriff read on Carol (Evil) was the first hard information, and Carol was executed on it. Grace's later Not Evil reads on Dave and Erin clear no one, since a Katana holder reads Good. Check each trial total against the nominations, and ask Dave and Frank for concrete visits before any hang."
+The game is over. Winners: Dave, Erin (dead), Frank, Grace (dead), Heidi (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Dave, Erin, Frank, Grace, Heidi
+Cost by player (USD):
+  Alice (Ballot Stuffer)    $0.0486   27 calls  claude-haiku-5.5
+  Bob (Grunt)               $0.1087   51 calls  claude-haiku-5.5
+  Carol (Smuggler)          $0.0227   14 calls  claude-haiku-5.5
+  Dave (Vanilla Villager)   $0.1216   45 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)   $0.0830   35 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.1196   46 calls  claude-haiku-5.5
+  Grace (Sheriff)           $0.0898   37 calls  claude-haiku-5.5
+  Heidi (Medic)             $0.0468   24 calls  claude-haiku-5.5
+  Moderator                 $0.9329    9 calls  claude-opus-5.5
+  Night checks              $0.3813    4 calls  claude-opus-5.5
+  Strategy review           $0.3203    1 calls  claude-opus-5.5
+  Log review                $0.2630    1 calls  claude-opus-5.5
+  Total                     $2.5383  294 calls
