@@ -206,18 +206,35 @@ body.roster-on #roster { display:block; position:fixed; right:8px; bottom:8px; w
 """
 
 JS = """
+// Keeps the line at the top of the window (just under the sticky bar) where it is while a control shows or hides
+// lines: change() runs, then the page scrolls back so that line, or the next one still shown, doesn't move.
+const keepPlace = change => {
+  const below = document.querySelector('.controls').getBoundingClientRect().bottom;
+  const lines = document.querySelectorAll('details.phase > *, body > details:not(.phase)');
+  const near = [];
+  for (const el of lines) {
+    if (!el.getClientRects().length) continue;
+    const r = el.getBoundingClientRect();
+    if (r.bottom <= below) continue;
+    near.push([el, r.top]);
+    if (r.top > innerHeight) break;
+  }
+  change();
+  const kept = near.find(([el]) => el.getClientRects().length);
+  if (kept) scrollBy(0, kept[0].getBoundingClientRect().top - kept[1]);
+};
 const toggle = (id, cls) => {
   const box = document.getElementById(id);
   const apply = () => document.body.classList.toggle(cls, !box.checked);
-  box.addEventListener('change', apply); apply();
+  box.addEventListener('change', () => keepPlace(apply)); apply();
 };
 toggle('showcalls', 'no-calls');
 toggle('showhidden', 'no-hidden');
 toggle('showicons', 'no-icons');
-document.getElementById('expand').addEventListener('click', () =>
-  document.querySelectorAll('details.call').forEach(d => d.open = true));
-document.getElementById('collapse').addEventListener('click', () =>
-  document.querySelectorAll('details.call').forEach(d => d.open = false));
+document.getElementById('expand').addEventListener('click', () => keepPlace(() =>
+  document.querySelectorAll('details.call').forEach(d => d.open = true)));
+document.getElementById('collapse').addEventListener('click', () => keepPlace(() =>
+  document.querySelectorAll('details.call').forEach(d => d.open = false)));
 // Player filter: show only the lines and calls that involve the chosen player (their data-p).
 const focus = document.getElementById('focus');
 const applyFocus = () => {
@@ -225,10 +242,10 @@ const applyFocus = () => {
   document.querySelectorAll('details.phase > .ev, details.phase > details.call').forEach(el =>
     el.classList.toggle('focus-hide', who !== '' && !(el.dataset.p || '').split(' ').includes(who)));
 };
-focus.addEventListener('change', applyFocus); applyFocus();
+focus.addEventListener('change', () => keepPlace(applyFocus)); applyFocus();
 // Legend badges hide or show their category's lines.
-document.querySelectorAll('.legend .badge[data-cat]').forEach(b => b.addEventListener('click', () =>
-  b.classList.toggle('off', document.body.classList.toggle('hide-' + b.dataset.cat))));
+document.querySelectorAll('.legend .badge[data-cat]').forEach(b => b.addEventListener('click', () => keepPlace(() =>
+  b.classList.toggle('off', document.body.classList.toggle('hide-' + b.dataset.cat)))));
 // Jump bar: marks the phase at the top of the window.
 const jumps = [...document.querySelectorAll('#jump a')].map(a => [a, document.getElementById(a.hash.slice(1))]);
 let jumpPending = false;
@@ -257,7 +274,8 @@ if (rosterData) {
   const marks = [...document.querySelectorAll('i.snap')];
   const rosterBox = document.getElementById('showroster');
   rosterBox.checked = window.innerWidth >= 1400;
-  rosterBox.addEventListener('change', () => document.body.classList.toggle('roster-on', rosterBox.checked));
+  rosterBox.addEventListener('change', () =>
+    keepPlace(() => document.body.classList.toggle('roster-on', rosterBox.checked)));
   document.body.classList.toggle('roster-on', rosterBox.checked);
   const top = el => {  // a marker in a collapsed phase has no box: use its phase's
     const r = el.getBoundingClientRect();
