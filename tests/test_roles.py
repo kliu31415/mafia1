@@ -1215,7 +1215,7 @@ def test_talent_agent_scans_and_counts_living_true_roles(game_factory):
     game.player("Bob").alive = False  # died before the night: not in play
     game.player("Bob").death = {"day": 0, "phase": "day"}
     apply_ops(game, players, {"op": "scout_talent", "role": "Sheriff", "by": "Alice"})
-    assert told(game, "Alice")[-1].endswith("Your count: 1 living player has the role Sheriff.")
+    assert told(game, "Alice")[-1].endswith("Your count: 1 player alive when the night began has the role Sheriff.")
     with pytest.raises(ValueError, match="one token a night"):
         apply_ops(game, players, {"op": "scout_talent", "by": "Alice"})
     game.day += 1
@@ -1227,7 +1227,7 @@ def test_talent_agent_scans_and_counts_living_true_roles(game_factory):
     assert ROLES[in_play[2]].alignment.name != "EVIL"
     game.day += 1
     apply_ops(game, players, {"op": "scout_talent", "role": "Roleplayer", "by": "Alice"})
-    assert told(game, "Alice")[-1].endswith("1 living player has the role Roleplayer.")
+    assert told(game, "Alice")[-1].endswith("1 player alive when the night began has the role Roleplayer.")
     game.day += 1
     with pytest.raises(ValueError):  # out of tokens
         apply_ops(game, players, {"op": "scout_talent", "by": "Alice"})

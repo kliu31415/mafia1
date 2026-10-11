@@ -36,7 +36,8 @@ def scan_text(game: Game) -> str:
 
 def count_text(game: Game, role: str) -> str:
     n = in_play(game).count(role)
-    return f"Your count: {n} living player{'' if n == 1 else 's'} {'has' if n == 1 else 'have'} the role {role}."
+    return (f"Your count: {n} player{'' if n == 1 else 's'} alive when the night began "
+            f"{'has' if n == 1 else 'have'} the role {role}.")  # rules R10: tonight's deaths count
 
 
 @register(ROLE)

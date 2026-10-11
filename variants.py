@@ -49,7 +49,9 @@ def rules_notes(settings: dict[str, str]) -> str:
     if not notes:
         return ""
     return ("\n\n---\n\nGame settings for this game. They replace the parts of the rules named below; everything "
-            "else in the rules stays as written.\n" + "\n".join(f"- {n}" for n in notes))
+            "else in the rules stays as written. The rules are written for the default settings: where a detail "
+            "elsewhere doesn't fit these (e.g. a role says nobody learns a vote that is public here), these settings "
+            "win.\n" + "\n".join(f"- {n}" for n in notes))
 
 
 def describe(settings: dict[str, str]) -> str:

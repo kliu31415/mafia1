@@ -261,17 +261,19 @@ def test_malformed_tool_arguments_are_errors(game_factory, name, args):
         mod.dispatch(name, args)
 
 
-def test_a_puppet_op_needs_a_living_puppeteer_and_a_non_yakuza_puppet(game_factory):
+def test_a_puppet_op_needs_a_living_puppeteer_and_may_puppet_anyone(game_factory):
+    # Kevin, Oct 11 2026: any player, so a Smuggler's swap can't make a puppet op fail
     game, players = game_factory(["Puppeteer", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Wiretap"])
+    game.phase = "night"
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     with pytest.raises(ValueError, match="not a Puppeteer"):
         mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Carol", "by": "Bob"}]})
-    with pytest.raises(ValueError, match="themselves"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Alice", "by": "Alice"}]})
-    with pytest.raises(ValueError, match="another Yakuza"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Erin", "by": "Alice"}]})
-    mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Bob", "by": "Alice"}]})
-    assert game.puppets_next == {"Bob": "Alice"}
+    mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Erin", "by": "Alice"}]})  # a Yakuza
+    assert game.puppets_next == {"Erin": "Alice"}
+    game.puppets_next.clear()
+    game.player("Alice").tokens["puppet"] = 1
+    mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Alice", "by": "Alice"}]})  # themselves
+    assert game.puppets_next == {} and game.player("Alice").tokens["puppet"] == 0  # nothing changes but the token
 
 
 # --- Game rules ------------------------------------------------------------------------------------

@@ -329,10 +329,11 @@ Ritualist
 
 Puppeteer
   Tokens: 1 puppet token.
-  Night: may spend a token to puppet someone (not yourself or another Yakuza) for the following Day. That Day, they
-  are told they are being puppeted, and they can't chat or see private messages; nobody else is told. You chat
-  publicly and privately in their place (including seeing their private messages) and can set their claim, which
-  appears in the ledger as theirs; that is all you can do for them. They still nominate, vote and so on as normal. It lasts one Day.
+  Night: may spend a token to puppet any player for the following Day (puppeting yourself changes nothing). That
+  Day, they are told they are being puppeted, and they can't chat or see private messages; nobody else is told. You
+  chat publicly and privately in their place (including seeing their private messages) and can set their claim,
+  which appears in the ledger as theirs; that is all you can do for them. They still nominate, vote and so on as
+  normal. It lasts one Day.
 
 Fabricator
   Tokens: 1 fabricator token.
@@ -392,4 +393,4 @@ Executioner
   leave the circle for good) except it doesn't count as a death. The following night, a random Guilty voter from
   the trial who was alive when that night began (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
   Guilty, nothing happens.
-  If your target dies any other way, you become a Jester.
+  If your target dies any other way, or leaves the game, you become a Jester.

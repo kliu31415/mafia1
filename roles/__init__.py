@@ -193,10 +193,10 @@ ROLES: dict[str, RoleInfo] = {
                           notes="moderator resolves the guess; its night note says to announce a wrong guess with a "
                           "public tell at night, read out at dawn"),
     "Puppeteer": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                          summary="Token: puppet a non-Yakuza player and chat in their place for the next Day.",
+                          summary="Token: puppet a player and chat in their place for the next Day.",
                           tokens={"puppet": 1}, acts_at_night=True,
-                          tested=True, notes="moderator records the puppet; code refuses self or Yakuza puppets "
-                          "and swaps who chats next day"),
+                          tested=True, notes="moderator records the puppet (any player; self does nothing); "
+                          "code swaps who chats next day"),
     "Fabricator": RoleInfo(Alignment.EVIL, "Yakuza", True,
                            summary="Night: frame a player as Evil to alignment checks; a token also forges their will.",
                            tokens={"fabricator": 1}, acts_at_night=True,
