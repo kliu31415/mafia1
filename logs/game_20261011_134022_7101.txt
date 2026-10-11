@@ -1,0 +1,30 @@
+Setup:
+  Alice    seat 1  Ritualist         anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Prosecutor        anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Ballot Stuffer    anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Juror             anthropic/claude-haiku-5.5 (via Claude Code)
+  Erin     seat 5  Scrutineer        anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Juror             anthropic/claude-haiku-5.5 (via Claude Code)
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5 (via Claude Code)
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 7 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Carol) Alice (Yakuza chat): Night 1 plan from Alice: I won't guess a role with the Ritualist tonight, since a wrong guess announces me as a Ritualist at the start of Day 2. I suggest Carol keeps the Katana and we make no attack tonight, because we have no reads yet. We can pick a target once we've seen Day 2 behavior. Carol, if you want an attack, name your target and I'll vote with you, but I'd rather wait.
+(to Alice, Carol) Carol (Yakuza chat): Agreed with Alice: no attack tonight. We have no reads yet, and a Night 1 kill wastes a Katana attack. I'll keep the Katana on me and submit no target. Let's watch Day 2 behavior and pick a target then. Ready.
+Night actions:
+  Alice (Ritualist): no role action; Katana vote: Carol holds, attacks None
+  Bob (Prosecutor): no action
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks None
+  Dave (Juror): no action
+  Erin (Scrutineer): no action
+  Frank (Juror): no action
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+[Moderator summary] Night 1: No player acted. Yakuza kept the Katana with Carol and chose not to attack. No visits, no role-blocks, no attacks, no token changes, no deaths.
+[Night check] Night 1: correct
+(to Alice) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Ballot Stuffer) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Alice (Ritualist) chose no action.
