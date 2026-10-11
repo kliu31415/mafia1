@@ -10,10 +10,12 @@ Tips: the notebook on the PC (tips/) stays the one source of truth. Cloud games 
 sheet and don't update it (mafia.py turns that off in the cloud); `pull` on the PC adds their lessons to the
 notebook (the same `tips.py build` a PC game runs when it ends) and publishes the new sheet for later cloud
 games. mafia.py also calls after_game when a live game ends or stops: a cloud game pushes its logs, and a
-PC game publishes the sheet it just updated. tips/ is also committed to main (commit_tips, on the PC), so a new
-PC can pull the notebook and carry on; main's copy can lag the branch's, so `tips` replaces unedited checkout
-copies. Two PCs' notebooks are never merged by git: before a build, rebase_tips takes main's if it has games
-this one lacks, and the build adds this PC's other games again.
+PC game publishes the sheet it just updated. A cloud game also pushes its logs after each checkpoint (start of every
+day and night), so if its sandbox is lost mid-game, `get GAME` in a new one fetches it to --resume.
+tips/ is also committed to main (commit_tips, on the PC), so a new PC can pull the notebook and carry on; main's
+copy can lag the branch's, so `tips` replaces unedited checkout copies. Two PCs' notebooks are never merged by
+git: before a build, rebase_tips takes main's if it has games this one lacks, and the build adds this PC's other
+games again.
 
 Files merged rather than copied: logs/lessons.jsonl (lines from every machine, each kept once) and
 logs/alerts_reviewed.json (a problem counts as reviewed once any machine reviewed it).
@@ -25,6 +27,7 @@ Usage:
     uv run sync_logs.py pull              # PC: copy new logs into logs/, add their lessons to the tips
                                           # notebook, then publish the new tips sheet to the branch
     uv run sync_logs.py pull --no-tips    # PC: only copy the logs
+    uv run sync_logs.py get GAME          # one game's files (checkpoint too), e.g. to resume a cloud game
 """
 
 import argparse
@@ -201,11 +204,12 @@ def push(repo: Repo, log_dir: Path) -> list[str]:
     return repo.publish(gather, f"Logs from {platform.node()}")[1]
 
 
-def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
+def pull(repo: Repo, log_dir: Path, game: str | None = None) -> tuple[list[Path], list[str]]:
     """Copies the branch's log files that log_dir lacks, and merges the shared ones into log_dir.
     A local file that differs from the branch's copy is kept (e.g. a cloud game resumed here), unless the
     branch's copy just continues it (a log pushed again after the game went on); then that game's other
     files (.txt, .html, feedback, ...) are replaced too, since they were written from the older log.
+    game: only that game's files (e.g. game_20261011_134022_7101), shared files left alone.
     Returns (files written, names kept because they differ)."""
     head = repo.fetch()
     written, kept = [], []
@@ -214,7 +218,7 @@ def pull(repo: Repo, log_dir: Path) -> tuple[list[Path], list[str]]:
     # Game logs first, so the files written from them know whether their log was continued.
     for path, blob_id in sorted(repo.files(head, "logs").items(), key=lambda x: not x[0].endswith(".jsonl")):
         name = path.split("/", 1)[1]
-        if "/" in name:
+        if "/" in name or game and not re.match(re.escape(game) + r"[._]", name):
             continue
         local = log_dir / name
         theirs = repo.blob(blob_id)
@@ -402,6 +406,9 @@ def main() -> None:
     p.add_argument("--no-tips", action="store_true", help="only copy the logs: don't add their lessons to the tips "
                    "notebook (an Opus call per game) or publish the sheet")
     p.add_argument("--tips-model", default="opus-5.5", help="model[:effort] that updates the tips notebook")
+    g = sub.add_parser("get", help="copy one game's files (its checkpoint too) from the branch into logs/, e.g. to "
+                       "resume in a new sandbox a cloud game whose sandbox was lost: then mafia.py --resume")
+    g.add_argument("game", help="the game's name, e.g. game_20261011_134022_7101")
     t = sub.add_parser("tips", help="tips/ from the branch, for cloud games (before games)")
     t.add_argument("--force", action="store_true", help="overwrite local tips files that differ")
     sub.add_parser("publish-tips", help="publish tips/ here to the branch and, on the PC, "
@@ -425,6 +432,15 @@ def main() -> None:
                 changed = put_tips(repo, tips_dir)
                 print(f"Published the tips to {repo.remote}/{repo.branch}" if changed else "Tips on the branch are "
                       "up to date" if (tips_dir / "tips.md").exists() else f"No tips sheet in {tips_dir} to publish")
+        elif args.cmd == "get":
+            game = Path(args.game).name.split(".")[0]
+            written, kept = pull(repo, log_dir, game)
+            print(f"Copied {len(written)} files of {game} into {log_dir}" + "".join(f"\n  {w.name}" for w in written)
+                  if written else f"No files of {game} on {repo.remote}/{repo.branch} that logs/ lacks")
+            for name in kept:
+                print(f"  kept {name}: the local copy differs")
+            if (log_dir / f"{game}.ckpt").exists():
+                print(f"Resume with: uv run mafia.py --resume logs/{game}.ckpt")
         elif args.cmd == "tips":
             written, kept = get_tips(repo, tips_dir, args.force)
             print(f"Tips from {repo.remote}/{repo.branch}: " + (", ".join(str(w) for w in written) or "nothing new"))

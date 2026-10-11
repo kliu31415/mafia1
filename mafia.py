@@ -211,10 +211,11 @@ class GameConfig:
 
 
 def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
-              resume: dict | None = None) -> Path:
+              resume: dict | None = None, after_save: Callable[[], None] | None = None) -> Path:
     """Plays a game and its post-game steps; returns its log's path. checkpoint: save the game at the start
     of each day and night to logs/<game>.ckpt (deleted when the game finishes). resume: a loaded checkpoint
-    (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's."""
+    (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's.
+    after_save: called after each checkpoint is saved (synced: in the cloud, pushes it to the logs branch)."""
     full_rules = RULES_PATH.read_text(encoding="utf-8")
     rules = (scripts.rules_for(full_rules, config.script) + variants.rules_notes(config.rule_settings)
              + setup_note(config.setup, config.roles))
@@ -273,6 +274,13 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
             except Exception as e:  # the game goes on; it just can't be resumed from here
                 log.error("checkpoint_error", f"saving the {at} {game.day} checkpoint failed: "
                           f"{type(e).__name__}: {e}", traceback=traceback.format_exc())
+                return
+            if after_save:
+                try:
+                    after_save()
+                except Exception as e:  # the game goes on; a sandbox lost now loses the game since the last push
+                    log.error("sync_error", f"pushing the {at} {game.day} checkpoint failed: {type(e).__name__}: "
+                              f"{e}", traceback=traceback.format_exc())
 
         stage = "on day {day} {phase}"
         end_reason = run_game(game, players, moderator, checker, config.day_limit, save, resume)
@@ -667,8 +675,8 @@ def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     resumed_client = (MockClient(saved.seed) if ckpt["client"]["mock"]
                       else api_client(ckpt["client"]["effort"], ckpt["client"].get("claude_code", False), plan_cap))
     check_plan(ap, resumed_client, [*saved.models, saved.moderator])
-    with synced(args.sync and not ckpt["client"]["mock"], saved.update_tips):
-        play_game(resumed_client, saved, checkpoint=args.checkpoint, resume=ckpt)
+    with synced(args.sync and not ckpt["client"]["mock"], saved.update_tips) as after_save:
+        play_game(resumed_client, saved, checkpoint=args.checkpoint, resume=ckpt, after_save=after_save)
 
 
 def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: int) -> tuple[list[str], dict | None]:
@@ -760,7 +768,7 @@ def main() -> None:
         except Exception as e:  # the game can still run with the tips it has
             print_alert("sync_error", f"getting cloud games' logs failed: {type(e).__name__}: {e}; "
                         "`uv run sync_logs.py pull` retries")
-    with synced(args.sync and not args.mock, update_tips):
+    with synced(args.sync and not args.mock, update_tips) as after_save:
         play_game(client, GameConfig(
             models, moderator, roles, seed, debrief=args.debrief, flag_issues=args.mod_flags,
             feedback_field=args.feedback_field, review=args.review, lessons=args.lessons, max_days=args.max_days,
@@ -768,15 +776,19 @@ def main() -> None:
             player_tips=player_tips,
             update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips,
             trial_votes=args.trial_votes, nomination_votes=args.nomination_votes, script=args.script),
-            checkpoint=args.checkpoint)
+            checkpoint=args.checkpoint, after_save=after_save)
 
 
 @contextmanager
-def synced(sync: bool, update_tips: Path | None) -> Iterator[None]:
+def synced(sync: bool, update_tips: Path | None) -> Iterator[Callable[[], None] | None]:
     """Runs a game, then (even if it crashed or was stopped) adds it to the game index and syncs it: see --sync
-    and sync_logs.after_game."""
+    and sync_logs.after_game. Yields what play_game calls after each checkpoint: in the cloud, a push of the
+    logs (checkpoint included) to the logs branch, so a game whose sandbox is lost can resume elsewhere
+    (`sync_logs.py get GAME`, then --resume); None otherwise."""
+    def push() -> None:
+        sync_logs.push(sync_logs.Repo(), LOG_DIR)
     try:
-        yield
+        yield push if sync and sync_logs.in_cloud() else None
     finally:
         sync_logs.rebuild_index(LOG_DIR)  # logs/index.html lists the game (game_index.py)
         if sync:

@@ -301,3 +301,14 @@ def test_a_pc_game_first_adds_new_cloud_games_to_the_tips(machines, monkeypatch)
     assert [w.name for w in sync_logs.catch_up(pc, logs, tips, "opus-5.5")] == ["game_1.jsonl"]
     assert built == [(["game_1.jsonl"], "opus-5.5")]
     assert sync_logs.catch_up(pc, logs, tips, "opus-5.5") == [] and len(built) == 1  # nothing new: no build
+
+
+def test_get_copies_one_game_s_files_so_a_lost_cloud_game_can_resume_elsewhere(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    logs = cloud.root / "logs"
+    logs.mkdir()
+    for name in ("game_1.jsonl", "game_1.ckpt", "game_1.txt", "game_12.jsonl", "game_2.jsonl", "lessons.jsonl"):
+        (logs / name).write_text(name)
+    sync_logs.push(cloud, logs)
+    written, kept = sync_logs.pull(pc, pc.root / "logs", "game_1")
+    assert sorted(w.name for w in written) == ["game_1.ckpt", "game_1.jsonl", "game_1.txt"] and kept == []

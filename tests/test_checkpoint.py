@@ -109,3 +109,17 @@ def test_a_checkpoint_from_older_code_resumes_only_when_forced(tmp_path, monkeyp
     resumed = mafia.play_game(MockClient(1), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
     kinds = [json.loads(line)["kind"] for line in resumed.read_text(encoding="utf-8").splitlines()]
     assert "resume_forced" in kinds and kinds[-1] == "result"
+
+
+def test_after_save_runs_after_each_checkpoint_and_a_failure_doesn_t_stop_the_game(tmp_path, monkeypatch):
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    saved: list[bool] = []
+
+    def push() -> None:  # in the cloud, synced's push of the logs to the branch
+        saved.append(any(tmp_path.glob("*.ckpt")))
+        raise RuntimeError("network down")
+    log = mafia.play_game(MockClient(1), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 1),
+                          after_save=push)
+    assert len(saved) >= 3 and all(saved)
+    result = json.loads(log.read_text(encoding="utf-8").splitlines()[-1])
+    assert result["kind"] == "result" and result["errors"]["sync_error"] == len(saved)
