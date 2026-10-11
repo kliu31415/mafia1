@@ -543,10 +543,10 @@ def build_parser() -> argparse.ArgumentParser:
                     "Claude models through OpenRouter too")
     ap.add_argument("--plan-cap", default=None, metavar="FIVE_HOUR,WEEK",
                     help="with Claude Code: the percent of the subscription's 5-hour and 7-day windows that games may "
-                    "use up, leaving the rest for other work (default 80,80; 100,100 turns it off). At a cap a game "
+                    "use up, leaving the rest for other work (default 70,70; 100,100 turns it off). At a cap a game "
                     "doesn't start, and a running one waits for the reset or stops for --resume. Early in the week "
-                    "a game starts only below a lower 7-day figure: 10%% as the week begins, rising to the cap by 7/8 "
-                    "of the way through. A program safeguard, not a rule")
+                    "a game starts only below a lower 7-day figure: the cap times the part of the week that has "
+                    "passed (0%% at the reset, the full cap at the next one). A program safeguard, not a rule")
     ap.add_argument("--list-roles", action="store_true", help="print which roles are implemented, and how")
     ap.add_argument("--checkpoint", action=argparse.BooleanOptionalAction, default=True,
                     help="save the game at the start of each day and night to logs/<game>.ckpt, deleted when the game "

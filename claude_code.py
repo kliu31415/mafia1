@@ -20,11 +20,11 @@ How it differs from an OpenRouter call:
 - Cost: calls are paid by the subscription, so they count $0; the list price the CLI reports is kept in the call's
   usage as list_cost_usd, with the subscription windows' utilization (five_hour, seven_day) as plan_utilization.
 - Caps: games leave part of the subscription for other work. Once a window's utilization reaches its cap (PLAN_CAPS:
-  80% of the 5-hour and of the 7-day window; --plan-cap), no call starts until that window resets: a game doesn't
+  70% of the 5-hour and of the 7-day window; --plan-cap), no call starts until that window resets: a game doesn't
   start (check_plan, one small Haiku call that reads the utilization), and a running one waits, or stops for
   --resume when the reset is more than 6 hours away. Starting a game is stricter early in the week, so the week's
-  share isn't spent in its first days: the 7-day cap for a new game grows with the week (start_cap: 10% as the
-  week begins, the full 80% from 7/8 of the way through); a game already running only stops at the full cap.
+  share isn't spent in its first days: the 7-day cap for a new game grows with the week (start_cap: 0% at the
+  reset, 35% halfway, the full 70% at the next reset); a game already running only stops at the full cap.
 - Thinking comes back summarized (--thinking-display summarized), like Claude's through the API.
 - Effort: both paths send Anthropic's native effort level (5.5 models reject thinking budgets), but answering through
   the CLI's StructuredOutput tool, plus a closing turn after it, costs more output than the API's constrained JSON. On
@@ -53,10 +53,9 @@ RETRIES = 2  # a call that failed (no answer at all) is tried this many more tim
 MAX_PLAN_WAIT_S = 6 * 3600  # waits this long at most for a subscription limit to reset; longer stops the game
 # A program safeguard, not Anthropic's limit: the share of each subscription window that games may use up
 # (utilization 0-1), so other Claude Code work isn't locked out by games. 1 turns a cap off.
-PLAN_CAPS = {"five_hour": 0.8, "seven_day": 0.8}
+PLAN_CAPS = {"five_hour": 0.7, "seven_day": 0.7}
 WINDOW_NAMES = {"five_hour": "5-hour", "seven_day": "7-day"}
 WEEK_S = 7 * 86400
-WEEK_HEAD_START = 0.1  # the 7-day utilization below which a game may start even as the week begins
 # The parent Claude Code session's variables (session id, remote-session settings, ...) would make the child act
 # as part of that session and add its context; these are the ones the child needs to sign in.
 KEEP_ENV = {"CLAUDE_SESSION_INGRESS_TOKEN_FILE", "CLAUDE_CONFIG_DIR"}
@@ -308,14 +307,14 @@ class ClaudeCodeClient:
 
     def start_cap(self, name: str) -> float:
         """The utilization below which a new game may start. The 5-hour window's is its cap; the 7-day window's
-        follows the week, so early games can't use up the week's share: the head start plus the cap times the part
-        of the week that has passed, up to the cap (80%: 10% as the week begins, 50% halfway, 80% from 7/8 on)."""
+        follows the week, so early games can't use up the week's share: the cap times the part of the week that has
+        passed (70%: 0% at the reset, 35% halfway, 70% at the next reset)."""
         cap = self.caps.get(name, 1.0)
         resets = self.plan_resets.get(name)
         if name != "seven_day" or cap >= 1 or resets is None:
             return cap
         passed = min(max(1 - (resets - time.time()) / WEEK_S, 0.0), 1.0)
-        return min(cap, WEEK_HEAD_START + cap * passed)
+        return cap * passed
 
     def check_plan(self) -> str:
         """Before a game: reads the subscription's utilization with one small Haiku call (which also shows the CLI
@@ -334,8 +333,8 @@ class ClaudeCodeClient:
             left = (self.plan_resets["seven_day"] - time.time()) / 86400
             raise PlanLimitError(
                 f"not starting: {week:.0%} of the Claude subscription's 7-day window is used with {left:.1f} days "
-                f"left in it, and this early games start only below {allowed:.0%} (rising to the "
-                f"{self.caps['seven_day']:.0%} cap late in the week); --plan-cap changes the cap, 100 turns it off")
+                f"left in it, and games start only below {allowed:.0%} at this point (rising to "
+                f"{self.caps['seven_day']:.0%} by the week's end); --plan-cap changes the cap, 100 turns it off")
         used = ", ".join(f"{WINDOW_NAMES.get(n, n)} window {u:.0%} used (games start below {self.start_cap(n):.0%})"
                          for n, u in self.plan_utilization.items())
         return f"Claude subscription: {used or 'utilization not reported'}"

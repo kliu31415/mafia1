@@ -232,10 +232,10 @@ def test_games_stop_using_the_subscription_at_its_cap(monkeypatch):
     slept: list[float] = []
     monkeypatch.setattr(time, "sleep", slept.append)
     errors = []
-    cli = FakeCli(used(0.5, 0.3), used(0.85, 0.3), {"vote": "Bob"}, {"vote": "Bob"})
+    cli = FakeCli(used(0.5, 0.3), used(0.75, 0.3), {"vote": "Bob"}, {"vote": "Bob"})
     client = ClaudeCodeClient(None, runner=cli)
     client.on_error = lambda kind, summary, **kw: errors.append((kind, kw.get("window")))
-    assert "5-hour window 50% used (games start below 80%)" in client.check_plan()  # a game may start
+    assert "5-hour window 50% used (games start below 70%)" in client.check_plan()  # a game may start
     client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # this call takes the 5-hour window past its cap
     assert not slept
     client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # so the next waits for that window's reset
@@ -266,13 +266,13 @@ def test_plan_cap_option():
 def test_a_new_game_needs_more_of_the_week_left_early_in_the_week():
     def start(week_used, days_left, caps=None):
         return ClaudeCodeClient(None, runner=FakeCli(used(0.1, week_used, week_left=days_left)), caps=caps).check_plan()
-    assert "7-day window 5% used (games start below 10%)" in start(0.05, 7)  # the week has just begun
-    with pytest.raises(PlanLimitError, match="15% .* 7.0 days left.* only below 10%"):
-        start(0.15, 7)
-    assert "games start below 50%" in start(0.45, 3.5)  # halfway: 10% + 80% x 1/2
-    with pytest.raises(PlanLimitError, match="only below 50%"):
-        start(0.55, 3.5)
-    assert "7-day window 75% used (games start below 80%)" in start(0.75, 0.5)  # late: the cap itself
+    with pytest.raises(PlanLimitError, match="1% .* 7.0 days left.* only below 0%"):  # the week has just begun
+        start(0.01, 7)
+    assert "7-day window 5% used (games start below 10%)" in start(0.05, 6)  # a day in: 70% x 1/7
+    assert "games start below 35%" in start(0.3, 3.5)  # halfway
+    with pytest.raises(PlanLimitError, match="only below 35%"):
+        start(0.4, 3.5)
+    assert "7-day window 60% used (games start below 65%)" in start(0.6, 0.5)  # late: nearly the cap itself
     assert "games start below 100%" in start(0.9, 7, caps={"five_hour": 1.0, "seven_day": 1.0})  # turned off
     running = ClaudeCodeClient(None, runner=FakeCli(used(0.1, 0.5, week_left=6), {"vote": "Bob"}))
     running.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
