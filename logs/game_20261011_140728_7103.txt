@@ -144,3 +144,15 @@ Trial votes on Dave: 4 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Dave] Guilty - Bob, Carol, Erin, Grace; Innocent - Dave
 Dave is executed by hanging (4 Guilty of 5 votes; 3 needed).
 Dave died (executed by hanging). They had been marked by a Chronicler, so their role is revealed: Clerk. Their last will: "I have no confirmed role information. Do not hang anyone on a claim alone. Check every claim against the announced visits, results and vote totals, and only hang someone when the mechanics fit."
+
+===== NIGHT 3 =====
+Night actions:
+  Bob (Coroner): target Alice; 1 token(s); "Coroner examines Alice (dead before tonight), spending 1 coroner token."
+  Carol (Chronicler): target Bob; 1 token(s)
+  Grace (Arsonist): target Bob; "Douse Bob (no token). Builds toward three living doused players for an ignite."
+Katana: no attack (no target); nobody holds it.
+(to Bob) Moderator (private): You examined Alice: their role was Census Taker. 1 coroner token left.
+(to Carol) Moderator (private): You marked Bob: if they die, at any time, their role will be revealed to everyone (unless a Mortician cleans them). 0 chronicler tokens left.
+(to Grace) Moderator (private): You doused Bob tonight.
+[Moderator summary] Night 3: Bob (Coroner) examined Alice via the examine op (Astral Visit, so not recorded as a visit). Carol (Chronicler) marked Bob via the mark op and spent her last chronicler token. Grace (Arsonist) doused Bob, and Bob is not told because he is Good. Erin was already doused, so Bob and Erin are the doused players now. No Yakuza are alive, so there was no Katana attack. There were no attacks or role-blocks and nobody died. Visits recorded: Carol->Bob, Grace->Bob. Win check: Bob, Carol and Erin (Village) and Grace (Arsonist) are alive, so the game continues.
+[Night check] Night 3: correct
