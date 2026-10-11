@@ -221,6 +221,30 @@ class Moderator:
                             f"blocked by a content filter ({reply.stop_note})", day=self.game.day,
                             phase=self.game.phase, old=old, new=self.model.value, reason=reply.stop_note)
 
+    def apply_change(self, c: dict) -> None:
+        """Applies one checked apply_changes op."""
+        g = self.game
+        if c["op"] in self.op_roles:
+            self.op_roles[c["op"]].apply_op(g, c)
+            if self.op_roles[c["op"]].code_tells_user and "by" in c:  # not e.g. the attacks op
+                self.code_told.add(c["by"])
+            return
+        p = g.player(c["player"])  # every core op names a player
+        match c["op"]:
+            case "kill":
+                g.kill(p.name, c.get("cause", "killed"), by=c.get("by"), katana=c.get("katana", False))
+            case "set_tokens":
+                p.tokens[c["token"]] = int(c["value"])
+            case "set_status":
+                if c.get("value") is None:
+                    p.status.pop(c["key"], None)
+                else:
+                    p.status[c["key"]] = c["value"]
+            case "set_last_will":
+                p.last_will = c["text"]
+            case "set_katana":
+                g.katana_holder = p.name
+
     def dispatch(self, name: str, args: dict) -> Any:
         g = self.game
         match name:
@@ -230,27 +254,16 @@ class Moderator:
                 changes, notes = self.check_changes(args["changes"])
                 for note in notes:  # applied anyway, but likely a moderator mistake
                     g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
-                for c in changes:
-                    if c["op"] in self.op_roles:
-                        self.op_roles[c["op"]].apply_op(g, c)
-                        if self.op_roles[c["op"]].code_tells_user and "by" in c:  # not e.g. the attacks op
-                            self.code_told.add(c["by"])
-                        continue
-                    p = g.player(c["player"])  # every core op names a player
-                    match c["op"]:
-                        case "kill":
-                            g.kill(p.name, c.get("cause", "killed"), by=c.get("by"), katana=c.get("katana", False))
-                        case "set_tokens":
-                            p.tokens[c["token"]] = int(c["value"])
-                        case "set_status":
-                            if c.get("value") is None:
-                                p.status.pop(c["key"], None)
-                            else:
-                                p.status[c["key"]] = c["value"]
-                        case "set_last_will":
-                            p.last_will = c["text"]
-                        case "set_katana":
-                            g.katana_holder = p.name
+                for i, c in enumerate(changes):
+                    try:
+                        self.apply_change(c)
+                    except Exception as e:  # a bug in our code, since the batch passed its checks
+                        # The earlier ops stay applied: say so, or the moderator, used to "nothing was applied",
+                        # would send them again (two kills, two spent tokens).
+                        done = f"Changes 0-{i - 1} were applied, and this one may be partly" if i else \
+                            "It may be partly applied"
+                        raise RuntimeError(f"change {i} ({c['op']}) failed: {type(e).__name__}: {e}. {done}; call "
+                                           "get_state before sending anything again") from e
                 # e.g. set_tokens to 0 and then a prosecute op that spends the token too (game_20261009_232916_370745)
                 for q in g.players:
                     for kind, n in q.tokens.items():

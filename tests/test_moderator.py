@@ -26,6 +26,21 @@ def test_malformed_moderator_ops_change_nothing(game_factory):
     assert "unknown fields" in out["notes"][0] and not game.player("Bob").alive
 
 
+def test_an_op_that_fails_after_its_checks_says_which_earlier_ops_were_applied(game_factory, monkeypatch):
+    from roles.prosecutor import Prosecutor
+    game, players = game_factory(["Prosecutor", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.phase = "night"
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+
+    def broken(self, game, c):  # a bug in our own code, which the batch's checks can't catch
+        raise KeyError("oops")
+    monkeypatch.setattr(Prosecutor, "apply_op", broken)
+    changes = [{"op": "kill", "player": "Bob"}, {"op": "prosecute", "by": "Alice", "player": "Dave"}]
+    with pytest.raises(RuntimeError, match="change 1 \\(prosecute\\) failed: KeyError.*Changes 0-0 were applied"):
+        mod.dispatch("apply_changes", {"changes": changes})
+    assert not game.player("Bob").alive  # so the moderator mustn't send the kill again
+
+
 def test_status_key_typo_gets_a_hint(game_factory):
     game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
