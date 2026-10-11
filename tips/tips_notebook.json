@@ -45,9 +45,13 @@
   "game_20261010_102519_201",
   "game_20261010_102519_202",
   "game_20261010_102519_203",
-  "game_20261010_102519_204"
+  "game_20261010_102519_204",
+  "game_20261010_130005_3133",
+  "game_20261010_130005_3134",
+  "game_20261010_142446_120517",
+  "game_20261010_150921_904458"
  ],
- "next_id": 251,
+ "next_id": 264,
  "entries": [
   {
    "id": "t1",
@@ -134,6 +138,16 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator, Judy: Bob, Ivan and Alice posted dated results every Day, which let the town build the visit maps that isolated Heidi and then Frank."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.56,
+     "note": "Moderator, Dave: Dave held his N2 target and posted N3/N4 only with nominations, and the Yakuza called his story 'growing'. Dave's 'hurt' filing is a misapplication: he broke the tip."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Alice, Carol, Erin, Olivia: census, profile, FT, Cartographer and Lookout results posted promptly on D2-D3 interlocked, and the town hanged three Yakuza in three Days."
     }
    ],
    "against": [
@@ -322,6 +336,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator: Erin's switch from a role-named hedge to Vanilla under questioning was the core of the case that hanged her."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Frank fake-claimed Oracle before the real Oracle Grace spoke and was counterclaimed at once. Heidi's Sheriff claim didn't match her 2 tokens and Olivia's profile ruled it out. Ivan, Niaj and Judy filed 'hurt', but the Yakuza broke the tip."
     }
    ],
    "against": [
@@ -735,6 +754,11 @@
      "game": "game_20261010_102519_204",
      "weight": 0.16,
      "note": "Frank: identical Katana votes every night, and the kills on Bob, Carol and Heidi all landed."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.48,
+     "note": "Erin, Frank, Grace: matching Katana votes every night, and the N3 kill on Heidi landed."
     }
    ],
    "against": [],
@@ -903,7 +927,7 @@
   {
    "id": "t8",
    "audience": "Medic",
-   "tip": "Protect the likeliest Katana targets: vocal analysts early, then claimed investigators. Free Standard protection, used night after night, can carry the town. Right after you publicly claim Medic, you are the likeliest target, so spend a token on Standard self-protection that night. After you save a claimed investigator, they usually stay the top target, and the Yakuza will retry them as soon as you look away. Keep free protection on them, or rotate among claimed investigators, rather than spending your last token on yourself. Don't follow a fixed pattern a Pharmacist can predict. Dying with unspent tokens wastes them.",
+   "tip": "Protect the likeliest Katana targets: vocal analysts early, then claimed investigators. Free Standard protection, used night after night, can carry the town. Right after you publicly claim Medic, you are the likeliest target, so spend a token on Standard self-protection that night. After you save a claimed investigator, the Yakuza will either retry them or switch to you. Keep free protection on them on most nights. But while your claim is public and you still hold tokens, spend one on a Standard self-protection within the next night or two rather than dying with both. Standard stops the Katana, and Strong doesn't stop a Divine guess anyway. Don't follow a fixed pattern a Pharmacist or holder can predict. Dying with unspent tokens wastes them.",
    "status": "active",
    "support": [
     {
@@ -1010,6 +1034,21 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator and Bob: Carol's free Standard protection on FT Alice every night stopped the N2 Katana, made Alice credible and kept her alive to solve both holders."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Mallory, Erin, Niaj: Mallory's free protection on confirmed Seer Niaj stopped the N4 Katana. She never self-protected, and on N5 the holder switched to her while she still had 2 tokens."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Grace (0.16): Ivan's free protection stopped the N2 Katana on Heidi. The Yakuza switched to 'hit the protector', and Ivan died N3 with 2 tokens and no self-protection. Heidi then died unprotected N4."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.4,
+     "note": "Moderator: Alice's free protection on corroborated Sheriff Dave N2-N4 stopped the Katana twice and kept him alive to read Erin Evil."
     }
    ],
    "against": [
@@ -1037,6 +1076,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.32,
      "note": "Carol ('hurt') and Ivan ('wrong'): after N2 the Katana avoided the fixed target and killed unprotected Scout Ivan and Party Animal Grace. Rotating among claimed info roles might have saved one of them."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Ivan filed 'hurt': his nightly protection of Heidi was predictable. This is a misapplication: he announced his targets publicly (against t94) and skipped the self-protection clause."
     }
    ],
    "history": [
@@ -1061,6 +1105,12 @@
      "change": "edited",
      "old": "Protect the likeliest Katana targets: vocal analysts early, then claimed investigators. Free Standard protection used night after night can carry the town. After a night when your target survived a Katana attack (or was likely targeted), expect the Yakuza to switch to another claimed investigator. Rotate among the claimed investigators rather than repeating the same protection. Once you have publicly claimed Medic, you are the likeliest target: spend a token to self-protect (Standard, 1 token, already stops the Katana) rather than repeat a predictable protection on someone else. Dying with unspent tokens wastes them.",
      "note": "Erin's self-protection after her claim worked. Her last-token self-protection on N4 let the Yakuza kill the investigator she had saved."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "change": "edited",
+     "old": "Protect the likeliest Katana targets: vocal analysts early, then claimed investigators. Free Standard protection, used night after night, can carry the town. Right after you publicly claim Medic, you are the likeliest target, so spend a token on Standard self-protection that night. After you save a claimed investigator, they usually stay the top target, and the Yakuza will retry them as soon as you look away. Keep free protection on them, or rotate among claimed investigators, rather than spending your last token on yourself. Don't follow a fixed pattern a Pharmacist can predict. Dying with unspent tokens wastes them.",
+     "note": "Mallory protected Niaj three of five nights, never self-protected, and was the N5 Katana kill with 2 tokens unused, right after the N4 save."
     }
    ]
   },
@@ -1214,6 +1264,21 @@
      "game": "game_20261010_090539_3006",
      "weight": 0.32,
      "note": "Alice and Carol (0.16 each): Alice's watches were treated as destinations, not actions. Frank's protection visit to Heidi was kept separate from Heidi's result."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Dave, Heidi, Ivan, Niaj: the corroborated lone visitor to Katana victim Heidi narrowed the holder to Erin or Judy and drove the Judy hang."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.32,
+     "note": "Frank, Niaj: Katana-victim group logic narrowed the holder to Judy, then Erin."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Erin's lone sighting of Bob at Katana victim Grace, corroborated by Carol's FT counts and Dave's map, hanged Bob 10-1 despite his 'only Erin's word' defense. Endorsed by nearly every player and the moderator."
     }
    ],
    "against": [
@@ -1380,7 +1445,13 @@
      "note": "Heidi: her pressure on Grace's unexplained Standard Defense as a possible Arsonist or SK was correct."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.32,
+     "note": "Bob and Mallory filed 'wrong' because no Neutral was in the game. The tip was untested, so this is not evidence against it."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_004910_895267",
@@ -1751,6 +1822,26 @@
      "game": "game_20261010_102519_202",
      "weight": 0.4,
      "note": "Moderator: all three Yakuza voted Guilty on likely-Jester Grace, and the revenge killed Ivan (Ritualist). Erin and Ivan filed 'hurt', but that is a misapplication: they broke the Jester clause. Ivan and Judy add: keep the holder and key roles off the Guilty side.; Ivan and Judy: vote Innocent when the Guilty majority is already secure so teammates stay out of the revenge draw. Ivan's death moved the Katana."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: Frank and Judy were the whole No column on Alice's 7-3 nomination and the Innocent votes on her 7-3 trial. Judy's public Innocent on Frank with no check was cited in the case that hanged her."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.72,
+     "note": "Moderator (0.4), Judy and Heidi (0.16 each): Carol, Dave and Erin publicly voted Innocent on Judy (8-4) and Dave (7-3) when they could not save them. Once Bob's Coroner exams confirmed the hangs, those defenses hanged Dave, Carol and Erin in turn. The moderator's 'hurt' filing is a misapplication: the team ignored the tip."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.56,
+     "note": "Moderator, Grace: all three defended Frank and voted Innocent when it couldn't save him, and that bloc hanged Erin and then Grace."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Moderator: Frank and Heidi voted Guilty on doomed Bob, and Frank on Heidi, which kept Frank's cover alive until D5."
     }
    ],
    "against": [
@@ -1773,6 +1864,11 @@
      "game": "game_20261010_080056_104",
      "weight": 0.16,
      "note": "Ivan filed 'hurt': the D2 bloc and later votes left the team traceable. The tip's bus logic wasn't the cause; the D2 Guilty bloc on a non-teammate was (see t160).; Grace filed 'wrong', saying Yakuza self-nominations and Guilty pushes cost them. This misreads the tip, which is about bussing doomed teammates."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.32,
+     "note": "Erin and Frank filed 'hurt'. Misapplication: they defended doomed teammates against the tip."
     }
    ],
    "history": [
@@ -1998,6 +2094,11 @@
      "game": "game_20261010_080101_104",
      "weight": 0.16,
      "note": "Dave: Frank's false Diviner claim was flagged as a lie but not hanged since a Jester could be the liar."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: Mallory and Niaj seized on Judy's 'Ritualist' slip as a premise-level contradiction. Judy was the Ritualist."
     }
    ],
    "against": [
@@ -2046,6 +2147,11 @@
      "game": "game_20261010_043849_415579",
      "weight": 0.4,
      "note": "Moderator: Judy watched claimed Sheriff Heidi on N2 (saw Ivan) and claimed Seer Grace on N3 (saw only Carol). Those two reports decided both Yakuza hangs."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Erin watched Grace on the night of Grace's planned Party Animal test. Bob killed her, and Erin named him as the lone visitor. The moderator and Erin both advise watching the player whose test threatens the Yakuza."
     }
    ],
    "against": [],
@@ -2315,6 +2421,11 @@
      "game": "game_20261009_214935_178025",
      "weight": 0.43,
      "note": "Moderator: Dave's N1 check on the D1 nominator Carol hit a Yakuza, while Niaj's track of Vanilla Bob gave nothing."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Heidi: her N1 'Dave Evil', posted early, anchored the case on Dave."
     }
    ],
    "against": [],
@@ -2508,6 +2619,21 @@
      "game": "game_20261010_090539_3006",
      "weight": 0.72,
      "note": "Moderator (0.4), Heidi and Dave (0.16 each): Heidi's N4 Not Evil on lone holder Erin was set aside under the holder caveat, and the vote ledger hanged her."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Grace: Bob attached the holder caveat to his N4 Not Evil on Judy, so the town didn't clear the lone holder."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Ivan (0.16): Heidi posted her N3 Not Evil on holder Erin with the holder caveat, which kept Erin under suspicion until she was hanged D6."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.72,
+     "note": "Moderator, Dave, Grace: Dave flagged that Grace's N4 Not Evil could come from holding the Katana, which she did. She was hanged."
     }
    ],
    "against": [],
@@ -2789,9 +2915,20 @@
      "game": "game_20261010_080116_105",
      "weight": 0.4,
      "note": "Moderator, Erin, Carol, Mallory, Dave: Erin's 'the Grunt it lists is me' and her vague 'wording slip' retraction stayed open for days and became the Village's main lead. A plain retraction with a ready cover was needed the same day."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.48,
+     "note": "Bob, Grace, Heidi (0.16 each): Judy said 'Ritualist' and 'night chat' in public while claiming no role. It became the lead case and she was hanged 8-4 on D3. Alice, Carol, Dave, Erin, Frank, Ivan and Judy filed the same lesson."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.48,
+     "note": "Carol and Judy filed 'hurt' over Judy's slip. That is a misapplication: the slip broke the tip. Erin (lone last Yakuza) said the tip gave no help answering holder questions on D5-D6. Weak."
+    }
+   ],
    "history": [
     {
      "game": "game_20261009_100017_447818",
@@ -2957,6 +3094,21 @@
      "game": "game_20261010_090539_3006",
      "weight": 1.0,
      "note": "Moderator (0.4), Alice, Bob, Erin and Heidi (0.16 each): after Bob flipped Smuggler, Dave cited Erin's No and Innocent on Bob, which led to her hang. This was a public-vote game; under secret ballots compare stated votes with the totals."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Dave: stated votes compared with the totals exposed the Yakuza No/Innocent pattern on Alice and Frank, which fed the Judy case."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Mallory (0.16): Coroner-confirmed hangs turned the Innocent voters on Judy into a chain that hanged Dave, Carol and Erin, all Yakuza."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.4,
+     "note": "Moderator: after Frank's hang the town turned on Erin and Grace for defending him and voting Innocent; both were Yakuza."
     }
    ],
    "against": [
@@ -2969,6 +3121,16 @@
      "game": "game_20261010_070234_101",
      "weight": 0.81,
      "note": "Moderator, Frank, Judy: after the Yakuza were dead, Carol and Dave hanged Grace for her No on Alice's nomination and her Guilty on Heidi alongside the Yakuza. She was the Jester; her hang won for her and her revenge killed Carol, while Arsonist Mallory stayed clean on votes."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Grace filed 'wrong': the 'shown Yakuza by a mechanical result' trigger rested on one Coroner claim. Weak: a Coroner exam is an exact-role check, and the chain hit the real Yakuza (Judy). Judy's 'hurt' is a Yakuza complaint that the tip worked."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Erin (Yakuza) filed 'hurt' because the town used the tip against her team. Weak: the tip worked as intended."
     }
    ],
    "history": [
@@ -3296,6 +3458,26 @@
      "game": "game_20261010_102519_203",
      "weight": 0.16,
      "note": "Bob, Grace, Judy, Frank: the Erin, Heidi and Frank convictions each rested on named contradictions (role slip plus failed block, map, Bob's N5 track). All three were Yakuza."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Bob, Erin, Frank, Grace, Ivan, Niaj: every Village Guilty vote named a mechanical chain (anchored pairs, Coroner exams, the Heidi group), and all three hangs hit Yakuza."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.8,
+     "note": "Bob, Frank, Heidi, Mallory, Niaj (0.16 each): demanding a mechanical case kept trials on the map, exams and slips, and all four hangs hit Yakuza."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.88,
+     "note": "Moderator, Alice, Dave, Heidi: the 'Evil result against a Vanilla claim, no frame possible' case beat the Yakuza's repeated contradiction demands."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Every hang rested on a mechanical fit (lone visitor, profile without Sheriff, census not Good). The Jester check on Frank used mechanics and correctly rejected his claim. All players and the moderator endorsed this."
     }
    ],
    "against": [
@@ -3398,6 +3580,16 @@
      "game": "game_20261010_102519_204",
      "weight": 0.56,
      "note": "Moderator (0.4) and Dave (0.16) filed 'hurt': players recited the 'concrete contradiction' standard but filled it with an impossible one (Ivan's 'no night named' after only N1) and stalled for rounds demanding visit-based contradictions instead of analyzing the archive. Partly a misapplication, since t47 covers mechanics. Alice, Bob and Carol (0.16 each) said the standard helped."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.32,
+     "note": "Grace: the strict standard helped acquit holder Erin 5-5 on D4, and Erin then killed again. The moderator attributes the tie to Mallory's misread holder pair and Heidi's hidden Innocent. Erin (Yakuza) also filed 'hurt'; that is weak."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Carol: Frank and Erin recited the contradiction demand to stall for days. The moderator says the mechanical case held anyway."
     }
    ],
    "history": [
@@ -3476,7 +3668,7 @@
   {
    "id": "t39",
    "audience": "Village",
-   "tip": "Investigators (Sheriff, Lookout, Tracker) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist whom to block and tells the Katana where to strike or what to avoid. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's planned target. Once a result exists, post it in full (night, target, exact result) at once. Never stretch secrecy into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. Exception: a Trapper's announced trap works as a deterrent, because killers avoid the trapped player (see the Trapper entries).",
+   "tip": "Investigators (Sheriff, Lookout, Tracker, Oracle) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist or Party Animal whom to block and tells the Katana where to strike or what to avoid. A Wiretap reads the contents of every PM, and nobody is told it exists, so treat every PM as read by the Yakuza. Never suggest another player's night target or test by PM. If someone PMs you one, don't reply confirming it; just act. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's planned target. Once a result exists, post it in full (night, target, exact result) at once. Never stretch secrecy into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. Exception: a Trapper's announced trap works as a deterrent, because killers avoid the trapped player (see the Trapper entries).",
    "status": "active",
    "support": [
     {
@@ -3578,6 +3770,26 @@
      "game": "game_20261010_102519_203",
      "weight": 0.16,
      "note": "Dave, Ivan: keeping night targets private meant no protections or blocks were predicted from Day talk."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Grace kept her survey targets private and was never targeted for them."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 1.0,
+     "note": "Alice, Bob, Dave, Erin, Mallory, Niaj, Judy, Ivan (0.16 each): unannounced night targets left nothing to pre-empt, and Ivan's own public protection targets were the exception that cost him."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.32,
+     "note": "Alice, Heidi: Alice never named a nightly target, so the Katana couldn't plan around it."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Heidi publicly announced she would check Mallory, and Mallory blocked her every night after. Quiet investigators (Alice, Olivia) produced the winning census and profiles."
     }
    ],
    "against": [
@@ -3635,6 +3847,12 @@
      "change": "edited",
      "old": "(Village) Investigators (Sheriff, Lookout, Tracker) and protectors (Medic): never announce tonight's target in public or by private message. Post only resolved results. An announced target tells the Pharmacist whom to block and tells the Katana where to strike or what to avoid. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. Exception: a Trapper's announced trap works as a deterrent, because killers avoid the trapped player (see the Trapper entries).",
      "note": "Limits the secrecy to future targets, after Carol misused it to withhold her N4 result."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "edited",
+     "old": "Investigators (Sheriff, Lookout, Tracker) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist whom to block and tells the Katana where to strike or what to avoid. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's planned target. Once a result exists, post it in full (night, target, exact result) at once. Never stretch secrecy into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. Exception: a Trapper's announced trap works as a deterrent, because killers avoid the trapped player (see the Trapper entries).",
+     "note": "Erin PM'd Grace a plan to guess Mallory = Party Animal and Grace confirmed by PM. Wiretap Bob read it and the Katana killed Grace that night. Alice and Carol filed this as 'hurt' under t40, but it is a breach of this tip. Every player and the moderator endorsed the tip, and Grace added 'don't even reply'."
     }
    ]
   },
@@ -3793,6 +4011,26 @@
      "game": "game_20261010_102519_204",
      "weight": 0.88,
      "note": "Moderator (0.4), Erin, Frank, Ivan, Judy (0.16 each): Erin, Frank and Judy sent zero daytime PMs to each other and were never nominated, while Village PMs (Carol-Bob) drew suspicion."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Alice, Erin, Grace, Heidi, Judy: Alice's D3 PM to Judy ('say nothing new until Ivan's result') was cited against both after Alice was exposed. Frank's 'hurt' filing is a misapplication: the PM broke the tip."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.8,
+     "note": "Carol, Dave, Erin, Judy, Heidi: no daytime PMs were sent, so the Wiretap and PM graph gave nothing."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.32,
+     "note": "Erin, Grace: the visible Frank-to-Bob and Erin-to-Bob PMs became the town's lead. Frank's 'hurt' is a misapplication, since the PMs broke the spirit of the tip."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Bob, Heidi, Grace, moderator: the Yakuza sent zero day PMs, so no PM link tied Bob, Heidi and Frank together. Each fell only to mechanical results."
     }
    ],
    "against": [],
@@ -3960,6 +4198,16 @@
      "game": "game_20261010_102519_201",
      "weight": 0.32,
      "note": "Dave and Frank: the Bob-to-Heidi and Judy-to-Erin PMs before the Bob trial marked the Erin/Heidi pair, but nobody checked it before voting."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Grace, Ivan: the Alice-to-Judy PM was used as a lead only, and votes rested on Coroner reads and visit logs."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.48,
+     "note": "Bob, Dave, Grace: Grace was nominated largely on PM contents only Bob saw. It hit a Yakuza, but players called it the riskiest step. Heidi's 'wrong' is non-application."
     }
    ],
    "against": [
@@ -4174,6 +4422,16 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator, Alice, Carol, Grace: Alice's N2 Katana survival, explained by Carol's protection, made both claims trusted, and both were true."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Grace: Ivan's claimed protection explained Heidi's N2 Katana survival, which made both claims trusted."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Carol: Dave's N2/N4 survivals were explained by Alice's protection, not treated as proof by themselves."
     }
    ],
    "against": [
@@ -4374,6 +4632,16 @@
      "game": "game_20261010_102519_204",
      "weight": 0.72,
      "note": "Moderator (0.4), Erin, Judy (0.16 each): after the N1 Katana failed on Arsonist Grace, the team never retried her and got a kill every remaining night."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Dave (0.16): after the N2 failure on Heidi the Yakuza killed Medic Ivan on N3 and got Heidi unprotected on N4, their most effective play."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.72,
+     "note": "Moderator, Frank, Grace: after the N2 save on Dave they killed spent Insomniac Heidi, retried Dave N4 into Alice's protection again, and never attacked Medic Alice."
     }
    ],
    "against": [
@@ -4566,6 +4834,11 @@
      "game": "game_20261010_102519_201",
      "weight": 0.32,
      "note": "Judy and Ivan: Judy's timing check (Ivan was hanged before the N4 ignite) narrowed the Arsonist to Bob. Judy failed to apply the same check to the blocked prosecution."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Ivan, Carol: checking optional and Astral mechanics kept the table from hanging on false mismatches (Niaj's N2 pair, Dave's lists)."
     }
    ],
    "against": [
@@ -4906,6 +5179,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.16,
      "note": "Judy, Alice: an unanswered question about Carol's N5 protection target cost her credibility. Post past targets and whether they were attacked."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Bob: Alice's posted past protection matched Dave's Katana survival and lent weight to both claims."
     }
    ],
    "against": [],
@@ -4971,6 +5249,11 @@
      "game": "game_20261009_195407_723934",
      "weight": 0.45,
      "note": "Moderator: on N2 Ivan's 2-token Divine guess killed the claimed Lookout Bob, while Erin's protection stopped the Katana."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: Carol's public Oracle confirmation of Seer Niaj was a 100% Ritualist guess that was never used."
     }
    ],
    "against": [],
@@ -4984,7 +5267,7 @@
   {
    "id": "t57",
    "audience": "Yakuza",
-   "tip": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. But a holder with no visiting role has no cover if a Lookout sees them at the victim, so agree a cover story before Day starts. Once a Lookout or Tracker publicly names the holder as a visitor to a victim, move the Katana that same night to an unexposed member: the exposed holder will be blocked, shot or SK-killed, and the Not Evil read doesn't stop any of that. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If the risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+   "tip": "Give the Katana to a member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source, but only if that member is also unlikely to be blocked or watched tonight. Never pass it to a member a blocker (above all a block-immune Party Animal) has already blocked or publicly said they will block. Blockers repeat, and you lose both the kill and that member's own token action. A holder with no visiting role (Vanilla claim) has no cover if a watcher places them at the victim, so agree a cover story before Day starts. Expect the obvious target, e.g. a player whose test you just learned about, to be watched. Move the Katana that same night to an unexposed, unblocked member when either of these happens: a Lookout or Tracker publicly names the holder as a visitor to a victim, or a Cartographer, Scout or Fortune Teller result narrows a victim's visitors to a few names that include the holder. The exposed holder will be blocked, shot or hanged, and the Not Evil read stops none of that. A holder who stays the lone visitor to victim after victim becomes the one name left on every elimination list. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If that risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
    "status": "active",
    "support": [
     {
@@ -5091,6 +5374,11 @@
      "game": "game_20261010_102519_204",
      "weight": 0.32,
      "note": "Alice, Ivan: the Katana stayed on Erin every night and was never contested, since no Lookout or Tracker named her. Rotate only once named."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Alice, Judy: Judy held the Katana N1-N5 and became the lone visitor to several victims. Dave's groups plus elimination left only 'Erin or Judy'."
     }
    ],
    "against": [
@@ -5128,6 +5416,16 @@
      "game": "game_20261010_102519_204",
      "weight": 0.16,
      "note": "Erin filed 'hurt': the fixed holder concentrated risk on her. Misapplication-ish: no watcher ever named her and the team won."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Grace filed 'wrong': as the last Yakuza she had no one to pass the Katana to. Misreading: the tip presumes living teammates."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Bob, Frank, Heidi filed 'hurt': 'least useful' sent the Katana to a Vanilla-claim holder seen at the watched target, then to a member being blocked nightly. Two kills were lost. The edit adds the block/watch condition."
     }
    ],
    "history": [
@@ -5146,6 +5444,18 @@
      "change": "edited",
      "old": "(Yakuza) Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. But a holder with no visiting role has no cover if a Lookout sees them at the victim, so agree a cover story before Day starts. Once a Lookout or Tracker publicly names the holder as a visitor to a victim, move the Katana that same night to an unexposed member: the exposed holder will be blocked, shot or SK-killed, and the Not Evil read doesn't stop any of that. A confident Day 1 organizer is often a Medic or investigator and a good N1 kill, but may be an alerting Veteran; if the risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
      "note": "Revision: there is no Day 1, so the organizer read applies to Day 2 and that night's kill."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "change": "edited",
+     "old": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. But a holder with no visiting role has no cover if a Lookout sees them at the victim, so agree a cover story before Day starts. Once a Lookout or Tracker publicly names the holder as a visitor to a victim, move the Katana that same night to an unexposed member: the exposed holder will be blocked, shot or SK-killed, and the Not Evil read doesn't stop any of that. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If the risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+     "note": "Judy kept the Katana all game after the N2 group isolated Heidi's partner. Group results, not only Lookout logs, should trigger the move."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "edited",
+     "old": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. A holder with no visiting role has no cover if a watcher places them at the victim, so agree a cover story before Day starts. Move the Katana that same night to an unexposed member when either of these happens: a Lookout or Tracker publicly names the holder as a visitor to a victim, or a Cartographer, Scout or Fortune Teller result narrows a victim's visitors to a few names that include the holder. The exposed holder will be blocked, shot or hanged, and the Not Evil read stops none of that. A holder who stays the lone visitor to victim after victim becomes the one name left on every elimination list. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If that risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+     "note": "Frank and Heidi: on N3 the Katana moved to Heidi, whom Mallory had blocked on N2 and kept blocking. The kill and Heidi's ballot token both failed. Bob: moving it to Vanilla-claim Bob put a fresh visit at the obvious target, Grace, and Erin's watch named him."
     }
    ]
   },
@@ -5701,6 +6011,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator, Alice: Alice's N3 4/4 minus the claimed visits (Bob, Grace, Carol) left Frank or Heidi. Her N2 counts plus Ivan's trio left Dave, Heidi or Judy. Heidi, on both lists, was the holder. Alice adds: test every split of the unlabeled numbers before committing."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Carol's counts (e.g. 3/6) lined up against claimed visits corroborated Erin's lone visitor and left no room for hidden Yakuza visits."
     }
    ],
    "against": [],
@@ -5873,6 +6188,16 @@
      "game": "game_20261010_102519_204",
      "weight": 0.32,
      "note": "Erin, Judy: the Ritualist, Smuggler and Clerk tokens all went unused all game. The team won anyway on quiet play, but had no reserve when pressed at 5 alive."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: the Yakuza lost with the puppet token, both swap tokens and both ritual tokens unspent. The 'hurt' filings from Alice and Judy are misapplications: they held tokens against the tip."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: the puppet and both Ritualist tokens went unused, and their holders were hanged."
     }
    ],
    "against": [
@@ -5999,6 +6324,11 @@
      "game": "game_20261010_102519_201",
      "weight": 0.32,
      "note": "Alice and Heidi: Erin's and Heidi's identical lockstep reasoning on Ivan and Bob made the bloc readable to Dave and Ivan."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 1.0,
+     "note": "Moderator, Alice, Bob, Carol, Erin, Frank, Heidi: the trio's identical 'one Sheriff read isn't enough' defenses hanged Erin and Grace."
     }
    ],
    "against": [],
@@ -6171,6 +6501,16 @@
      "game": "game_20261010_102519_201",
      "weight": 0.32,
      "note": "Dave and Bob: early claimers Frank, Grace and Carol died while quiet players lived."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Heidi claimed Scout on D2 with no result to post and was the N2 Katana kill. Her 'hurt' on t32 actually confirms this tip."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Niaj: the loud early claimants Heidi and Mallory drew the attacks and pushes."
     }
    ],
    "against": [],
@@ -6327,6 +6667,16 @@
      "game": "game_20261010_102519_202",
      "weight": 0.4,
      "note": "Moderator: Dave tracked holder Ivan, and Bob took his census around Erin (2 of 3 Evil), on the nights they died. Neither will named the target, so the info was lost."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Alice: wills held plans and past results, and results were posted by day."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Alice kept a full census log in her will and flagged Frank before N4, so the case would have survived her death. Judy's will named her Archivist plan before N1."
     }
    ],
    "against": [
@@ -6334,6 +6684,11 @@
      "game": "game_20261010_064845_116212",
      "weight": 1.0,
      "note": "Olivia: against a Mortician the N1 and N2 victims' wills were cleaned, so posting results publicly by day mattered more than the will."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Dave filed 'wrong', saying will-planned targets made his reads predictable. Weak: the moderator notes the opposite, since his N3 map on Judy was lost because his will didn't name it. The revisions he cites were public posts, not will plans."
     }
    ],
    "history": [
@@ -6502,6 +6857,16 @@
      "game": "game_20261010_080121_107",
      "weight": 0.32,
      "note": "Frank and Erin: Carol's right Diviner guess on Grace drew the Katana the next night. Post exact results promptly so they outlive you."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Frank: his RIGHT guesses on Mallory, Ivan and Niaj built the confirmed-claim list. His N1 and N4 guesses on low-information targets were wasted."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Grace: aim guesses at a claimed role in a live dispute (Mallory = Party Animal), not blindly at quiet players. That is why the Yakuza killed her to stop it."
     }
    ],
    "against": [],
@@ -6635,6 +7000,11 @@
      "game": "game_20261009_121338_61703",
      "weight": 1.0,
      "note": "Alice, Olivia and the moderator: the holders were chosen deliberately, and Judy's counts fit the Yakuza stories."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Bob and Frank: with an FT and a Cartographer posting, every unexplained Yakuza visit (Katana or own action) became a counted slot. A Diviner claiming no visits must skip, or pick a target already explained."
     }
    ],
    "against": [],
@@ -6824,6 +7194,11 @@
      "game": "game_20261010_102519_204",
      "weight": 0.4,
      "note": "Moderator, Alice, Bob, Grace, Ivan, Judy: Alice called herself a 'fair target' for two Days, then nominated herself. She was hanged 6-2, won, and her revenge killed Profiler Dave. Frank (Yakuza) named the Jester read aloud and still voted Guilty. Ivan's 'hurt' filing is a misapplication: the tip says to leave the Jester alive."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Niaj and Ivan: census-cleared non-power players should take the Guilty votes on possible-Jester trials, so confirmed info roles can stay Innocent and the revenge pool stays small."
     }
    ],
    "against": [
@@ -6831,6 +7206,11 @@
      "game": "game_20261010_080126_107",
      "weight": 0.16,
      "note": "Bob filed 'hurt': five days without hanging Judy let the Katana kill. Misapplication: the stall came from not hanging Grace, not from sparing the Jester. See the new trial-slot tip."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Ivan filed 'wrong': no Jester was in the game. Untested."
     }
    ],
    "history": [
@@ -6930,7 +7310,7 @@
   {
    "id": "t93",
    "audience": "Yakuza",
-   "tip": "Never flatly deny a night visit that a Lookout or Tracker could have seen. Agree on a plausible cover action in night chat before Day starts, and if a visit is exposed, admit it at once with that cover. A denial followed by a reversal is far more damning than the visit itself. Don't publicly endorse a Village player's account of a night when you visited the same target (e.g. backing a Medic's protection claim on your Katana target). A cover revealed later then reads as a second, invented claim.",
+   "tip": "Never flatly deny a night visit that any visit result could expose: a Lookout or Tracker log, a Cartographer or Scout group, or a Fortune Teller count. The Katana holder always shares a group with the victim. Once a Cartographer, Scout or FT is claimed, assume the kill visit can be isolated to a few names. Agree a plausible cover action in night chat before Day starts. If you are asked or a visit is exposed, admit it at once with that cover. A denial followed by a reversal is far more damning than the visit itself. Don't publicly endorse a Village player's account of a night when you visited the same target (e.g. backing a Medic's protection claim on your Katana target). A cover revealed later then reads as a second, invented claim.",
    "status": "active",
    "support": [
     {
@@ -7007,6 +7387,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator, Bob, Frank: Frank, claiming Vanilla, flatly denied the N5 visit to Grace that Bob had tracked. Alice's counts fit the track, and Frank was hanged 4-1 on D6."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Erin, Niaj, Heidi, Dave, Bob: Judy (Smuggler, Katana holder) flatly denied the N2 Heidi visit while Dave's sizes isolated Heidi's 2-group partner, and that denial hanged her D6. The 'hurt' filings from Alice, Frank and Judy are misapplications: they broke the tip."
     }
    ],
    "against": [
@@ -7031,6 +7416,12 @@
      "change": "edited",
      "old": "Never flatly deny a night visit that a Lookout or Tracker could have seen. Agree on a plausible cover action in night chat before Day starts, and if a visit is exposed, admit it at once with that cover. A denial followed by a reversal is far more damning than the visit itself.",
      "note": "Moderator, Frank, Dave, Peggy: Frank endorsed Mallory's Medic claim on Heidi on D3. His D4 'I'm also Medic' claim, made after Olivia saw his visit, got him hanged 10-2."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "change": "edited",
+     "old": "Never flatly deny a night visit that a Lookout or Tracker could have seen. Agree on a plausible cover action in night chat before Day starts, and if a visit is exposed, admit it at once with that cover. A denial followed by a reversal is far more damning than the visit itself. Don't publicly endorse a Village player's account of a night when you visited the same target (e.g. backing a Medic's protection claim on your Katana target). A cover revealed later then reads as a second, invented claim.",
+     "note": "The game showed Cartographer group sizes, not a Lookout, exposing the denial. The old wording named only Lookouts and Trackers."
     }
    ]
   },
@@ -7084,6 +7475,16 @@
      "game": "game_20261010_090539_3006",
      "weight": 0.56,
      "note": "Moderator (0.4) and Frank (0.16): Frank announced his N1 and N2 protections, the Yakuza could map his cover, and he died N4 with 2 tokens left."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Mallory: her repeated protection of Niaj was easy to read. Free Standard protection stopped the Standard Katana on N4."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Ivan: announcing his protection target by day made it predictable, and the Yakuza killed him and then Heidi."
     }
    ],
    "against": [],
@@ -7486,7 +7887,7 @@
   {
    "id": "t105",
    "audience": "Seer",
-   "tip": "A random-pair result only compares two appearances. Once either player is proven by a mechanical result (exact-role check, self-proving action, verified log), chain the result at once. Before calling anyone cleared or caught, check the exceptions: the Katana holder reads Good that night, an Ex-Con reads Evil, and a framed player reads Evil. A DIFFERENT pair doesn't say which member is which, and it may come from an Ex-Con or a Good-reading holder rather than a Yakuza. Spend your chosen-pair token on one known-alignment player plus a suspect, so the result is a clean read.",
+   "tip": "A random-pair result only compares two appearances. Chain it once either player is anchored as Good by an independent source (a Sheriff Not Evil plus an Oracle RIGHT on a Village role, a self-proving action, a verified log). Chain again when an exact-role check (a Coroner exam, an Oracle guess) confirms a hanged player's role. Before calling anyone cleared or caught, check the exceptions: the Katana holder reads Good that night, an Ex-Con reads Evil, and a framed player reads Evil. A DIFFERENT pair doesn't say which member is which. Spend your chosen-pair token on one anchored-Good player plus a suspect. Never spend it on a pair that includes the likely holder, above all when only one Yakuza can be left: that player reads Good every night, so a SAME result with them proves nothing and never means 'both Yakuza'.",
    "status": "active",
    "support": [
     {
@@ -7498,6 +7899,11 @@
      "game": "game_20261009_232916_370745",
      "weight": 0.18,
      "note": "Ivan and Carol: a pair result is a comparison of appearances. A Yakuza paired SAME with a Good player means the Yakuza held the Katana that night. Ivan's N3 pair (Grace and Frank differ, while Frank wasn't holding) sealed Frank's hang."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: on N3 Mallory spent her chosen pair on Erin/Frank while Erin held the Katana. She got 'same', argued Erin was Good and voted Innocent, and Erin survived 5-5."
     }
    ],
    "against": [],
@@ -7517,6 +7923,12 @@
      "change": "edited",
      "old": "A random-pair result only compares two appearances. Once either player flips or is proven, chain the result at once. Before calling anyone cleared or caught, check the exceptions: the Katana holder reads Good that night, an Ex-Con reads Evil, and a framed player reads Evil. A DIFFERENT pair doesn't say which member is which, and it may come from an Ex-Con or a Good-reading holder rather than a Yakuza. Spend your chosen-pair token on one known-alignment player plus a suspect, so the result is a clean read.",
      "note": "Flips no longer reveal roles."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "change": "edited",
+     "old": "A random-pair result only compares two appearances. Once either player is proven by a mechanical result (exact-role check, self-proving action, verified log), chain the result at once. Before calling anyone cleared or caught, check the exceptions: the Katana holder reads Good that night, an Ex-Con reads Evil, and a framed player reads Evil. A DIFFERENT pair doesn't say which member is which, and it may come from an Ex-Con or a Good-reading holder rather than a Yakuza. Spend your chosen-pair token on one known-alignment player plus a suspect, so the result is a clean read.",
+     "note": "Moderator, Niaj: on N5 Niaj spent his token on Erin/Judy, got SAME and called both Yakuza, but Judy was the lone holder reading Good. His anchored N2-N3 pairs were what hanged Alice and Frank."
     }
    ]
   },
@@ -7651,6 +8063,11 @@
      "game": "game_20261010_102519_202",
      "weight": 0.72,
      "note": "Moderator, Ivan, Erin, Judy: the Katana killed Tracker Dave, Lookout Alice and Census Taker Bob in turn, removing the town's cross-checks. Judy adds: kill a census taker as soon as their cross-night pattern emerges."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Bob and Frank: the FT, the Cartographer and the Census Taker were never killed, and their combined results cornered every Yakuza."
     }
    ],
    "against": [],
@@ -7900,6 +8317,11 @@
      "game": "game_20261010_003734_551955",
      "weight": 0.27,
      "note": "Niaj blocked the Katana holder on N3-N5, stopping every kill. He notes the town should then hang the blocked holder by day."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Moderator, Mallory and others: Mallory blocked Heidi on N2 (ballot token lost) and N3 (holder, no kill), then Frank on N4 (holder, no kill). The no-kill nights became key evidence in both hangs."
     }
    ],
    "against": [],
@@ -8096,7 +8518,7 @@
   {
    "id": "t121",
    "audience": "Village",
-   "tip": "(Village) An Evil Sheriff result on someone who claims Vanilla, a role that doesn't explain the result, is a real case, but it fits a Jester or Executioner (both read Evil, both have 0 tokens) as well as a Yakuza. 'Could be a frame' is a possibility, not evidence. Before the trial ask for a claim and an audit, and weigh whether the player has pushed for their own hang. If you hang, keep Guilty votes to a bare majority so a Jester's revenge has few targets. A claim that exactly explains the result but can't be checked (Ex-Con, Jester) is not an acquittal either. Plan a mechanical test that night: a Tracker or Lookout on the claimant (an Ex-Con visits someone every night), or an Oracle guess of 'Ex-Con'. Hang the next day if the test fails. A blocked or missing test is no result, not a clearance. If the Yakuza are near a voting majority, hang today instead of waiting.",
+   "tip": "An Evil Sheriff result on someone who claims Vanilla, a role that doesn't explain the result, is a real case, but it fits a Jester or Executioner (both read Evil, both have 0 tokens) as well as a Yakuza. 'Could be a frame' is a possibility, not evidence. Check it against visit-role data: if an Insomniac list or a Lookout watch on that player shows no Fabricator visited, the frame excuse is gone, and the result is a mechanical contradiction worth hanging on. Before the trial ask for a claim and an audit, and weigh whether the player has pushed for their own hang. If you hang, keep Guilty votes to a bare majority so a Jester's revenge has few targets. A claim that exactly explains the result but can't be checked (Ex-Con, Jester) is not an acquittal either. Plan a mechanical test that night: a Tracker or Lookout on the claimant (an Ex-Con visits someone every night), or an Oracle guess of 'Ex-Con'. Hang the next day if the test fails. A blocked or missing test is no result, not a clearance. If the Yakuza are near a voting majority, hang today instead of waiting.",
    "status": "active",
    "support": [
     {
@@ -8122,6 +8544,12 @@
      "change": "edited",
      "old": "An Evil Sheriff result on someone who claims Vanilla, a role that doesn't explain the result, is a real case. 'Could be a frame or a Neutral' is a possibility, not evidence; unless someone gives a specific counter-explanation, vote Guilty. A claim that exactly explains the result but can't be checked (Ex-Con, Jester) is not an acquittal either. Plan a mechanical test that night: a Tracker or Lookout on the claimant (an Ex-Con visits someone every night), or an Oracle guess of 'Ex-Con'. Hang the next day if the test fails. A blocked or missing test is no result, not a clearance. If the Yakuza are near a voting majority, hang today instead of waiting.",
      "note": "Bob claimed Vanilla against Grace's N1 Evil, audited 0, and was hanged 13-0 as a Jester. The old wording ('vote Guilty') pushed the pile-on."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "change": "edited",
+     "old": "(Village) An Evil Sheriff result on someone who claims Vanilla, a role that doesn't explain the result, is a real case, but it fits a Jester or Executioner (both read Evil, both have 0 tokens) as well as a Yakuza. 'Could be a frame' is a possibility, not evidence. Before the trial ask for a claim and an audit, and weigh whether the player has pushed for their own hang. If you hang, keep Guilty votes to a bare majority so a Jester's revenge has few targets. A claim that exactly explains the result but can't be checked (Ex-Con, Jester) is not an acquittal either. Plan a mechanical test that night: a Tracker or Lookout on the claimant (an Ex-Con visits someone every night), or an Oracle guess of 'Ex-Con'. Hang the next day if the test fails. A blocked or missing test is no result, not a clearance. If the Yakuza are near a voting majority, hang today instead of waiting.",
+     "note": "Moderator: Heidi's N1 'Medic, Sheriff' list plus Alice's Medic claim ruled out a frame on Frank. 'A Vanilla can't read Evil, and no frame was possible' won the D3 vote, and Frank was the Fixer."
     }
    ]
   },
@@ -8469,6 +8897,11 @@
      "game": "game_20261010_003734_551955",
      "weight": 0.45,
      "note": "Moderator, Peggy: the Divine guess 'Heidi = Surveyor' killed her through Mallory's Standard protection without outing Peggy."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Frank: Niaj was Oracle-confirmed as Seer by D3. On N4 Frank backed off a Divine guess, the Katana failed to the Medic, and Frank was hanged with 2 tokens."
     }
    ],
    "against": [],
@@ -8515,6 +8948,16 @@
      "game": "game_20261009_184056_395772",
      "weight": 0.44,
      "note": "Moderator, Heidi, Mallory, Judy: Heidi never posted her N2 pair. Alice built her defense and will on the gap, and Ivan, Carol and Dave pressed it on D4 before Heidi posted it."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Niaj posted his N2 and N3 pairs late, which let the Yakuza call them unverified."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.32,
+     "note": "Niaj, Mallory: Mallory's N2 pair account shifted from chosen to random, which drew suspicion onto the real Seer. Label each pair random or chosen once and keep it."
     }
    ],
    "against": [],
@@ -8665,6 +9108,11 @@
      "game": "game_20261009_212707_751277",
      "weight": 0.44,
      "note": "Moderator: Carol asked Frank (Party Animal) by PM to block Niaj. Frank posted it, and Olivia and Peggy called it the clearest act of the day."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.48,
+     "note": "Frank, Erin, Dave: Frank's D3 and Erin's D4 PMs to Bob urging doubt of the Sheriff were exposed by Bob and drove the Grace nomination."
     }
    ],
    "against": [],
@@ -8705,6 +9153,16 @@
      "game": "game_20261010_102519_202",
      "weight": 0.48,
      "note": "Moderator: Bob's N3 census (Carol/Frank/Judy: 2 of 3 Good) plus Frank's profile-backed Vanilla claim left Carol or Judy. Carol's profiles checked out and Judy never claimed, yet the town hanged Carol. Press the unclaimed member, not the claimant whose results check out.; Frank, Dave and Carol: keep a written census-trio ledger and look at which names repeat, but check a repeated name against visit lists and claims before acting on it."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Grace (0.16): Grace's N1 survey (Wiretap among Carol, Dave, Erin) crossed with Heidi's N1 'Dave Evil' pointed at Dave, who was the Wiretap."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Moderator: Alice's N2 '3/3 Good' was confirmed by Carol, Dave and Mallory on themselves. Her N3 '1 of Heidi/Ivan Evil' and N4 'Frank not Good' then pinned the Yakuza by subtraction."
     }
    ],
    "against": [],
@@ -8877,6 +9335,11 @@
      "game": "game_20261010_090539_3006",
      "weight": 0.16,
      "note": "Heidi: the town tested the hidden premise in Erin's 'only Village remains if I die' argument, and it exposed the last Yakuza."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Grace: demanding the source of Judy's slip drew pressure and a trial that hit a Yakuza."
     }
    ],
    "against": [],
@@ -9221,6 +9684,11 @@
      "game": "game_20261010_013419_977337",
      "weight": 1.0,
      "note": "Ivan blocked Mallory N2 and Heidi N4, both no-kill nights; Olivia confirmed her N3 block after Pharmacist Niaj had flipped. Heidi was hanged D5 as the last Yakuza. Reported by Ivan, Dave, Erin, Grace, Judy, Carol, Frank, Olivia and the moderator; Alice added the skip-to-frame caveat."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "The N4 no-kill night on which only Frank was blocked was central to his D5 hang. Niaj, Grace and the moderator called it near-proof."
     }
    ],
    "against": [],
@@ -9257,6 +9725,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator: the Yakuza left Party Animal Grace alive. Her N4 block on holder Frank cost a kill, and her N5 death came only after she stopped blocking him."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Frank: the Yakuza never targeted Party Animal Mallory, who had openly blocked their members, and two wasted Katana nights cost the game."
     }
    ],
    "against": [],
@@ -9412,6 +9885,11 @@
      "game": "game_20261010_090539_3006",
      "weight": 0.4,
      "note": "Moderator: both Yakuza took the same Vanilla cover, which drew suspicion to both once the archive was public."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.4,
+     "note": "Moderator: Erin, Frank and Grace all claimed Vanilla (half the table), and the bloc became the case against each of them."
     }
    ],
    "against": [],
@@ -9550,6 +10028,11 @@
      "game": "game_20261010_102519_203",
      "weight": 0.4,
      "note": "Moderator: Heidi never used her puppet token and was hanged D4 still holding it."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Alice held the puppet all game and was hanged with it. Niaj's pairs and Dave's sizes were never disrupted."
     }
    ],
    "against": [],
@@ -9615,7 +10098,7 @@
   {
    "id": "t176",
    "audience": "Yakuza",
-   "tip": "Never claim a role that exists only on the Yakuza side (Mortician, Clerk, Diviner, Puppeteer, Ballot Stuffer, Wiretap, Pharmacist, etc.), whether as a fake claim or as the truth. That includes a role-limited hedge like 'my Puppeteer role took no action', which names your role as clearly as a claim. Any Good player can point out that a Village player can't hold it, and one Sheriff check finishes you. Before Day 2, agree in night chat on a safe Village claim for each member. It must fit the unseen archive slots and your token count, and it must hold up when a neighbour-based survey or slot math corners you. When asked about your night actions, answer with that prepared claim in one plain sentence.",
+   "tip": "Never claim a role that exists only on the Yakuza side (Mortician, Clerk, Diviner, Puppeteer, Ballot Stuffer, Wiretap, Pharmacist, Ritualist, etc.), whether as a fake claim or as the truth. That includes a role-limited hedge like 'my Puppeteer role took no action' and any public use of Yakuza-only vocabulary ('Ritualist', 'night chat'), which names your role as clearly as a claim. Any Good player can point out that a Village player can't hold it, and one Sheriff check finishes you. Before Day 2, agree in night chat on a safe Village claim for each member. It must fit the unseen archive slots, your token count and your real visits, and it must hold up when a neighbour-based survey, a map group or slot math corners you. 'Village, no claim, no action' is not a safe claim in an info-heavy game: once the claimed roles are cross-checked, the one unclaimed member of a victim's group is named the holder. When asked about your night actions, answer with that prepared claim in one plain sentence.",
    "status": "active",
    "support": [
     {
@@ -9680,6 +10163,12 @@
      "change": "edited",
      "old": "Never claim a role that exists only on the Yakuza side (Mortician, Clerk, Diviner, Ballot Stuffer, Wiretap, Pharmacist, etc.), whether as a fake claim or as the truth. Any Good player can point out that a Village player can't hold it, and one Sheriff check finishes you. Before Day 2, agree in night chat on a safe Village claim for each member. It must fit the unseen archive slots and your token count, and it must hold up when a neighbour-based survey or slot math corners you.",
      "note": "Adds the role-limited hedge, from Bob's 'my Puppeteer role took no action' answer, which hanged him the same Day."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "change": "edited",
+     "old": "Never claim a role that exists only on the Yakuza side (Mortician, Clerk, Diviner, Puppeteer, Ballot Stuffer, Wiretap, Pharmacist, etc.), whether as a fake claim or as the truth. That includes a role-limited hedge like 'my Puppeteer role took no action', which names your role as clearly as a claim. Any Good player can point out that a Village player can't hold it, and one Sheriff check finishes you. Before Day 2, agree in night chat on a safe Village claim for each member. It must fit the unseen archive slots and your token count, and it must hold up when a neighbour-based survey or slot math corners you. When asked about your night actions, answer with that prepared claim in one plain sentence.",
+     "note": "Moderator (0.4): all four Yakuza stayed 'no claim, no action'. The Village narrowed each victim's group to its only unclaimed member: Judy on D3, then Erin on D4 and D6. Judy also named 'Ritualist' while 'not claiming'. Carol and Erin filed the same lesson."
     }
    ]
   },
@@ -9906,6 +10395,11 @@
      "game": "game_20261010_042021_144648",
      "weight": 0.4,
      "note": "Moderator: Carol's N4 pair Heidi/Judy matched. With Frank confirmed by his shot and Erin attacked, the holder had to be Judy, Grace or Carol. The town dismissed the pair and hanged Carol, the Seer; Judy then killed Erin. Carol and Heidi stressed the holder caveat."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: chaining pairs through anchored-Good Carol and Coroner-confirmed Alice produced two correct Yakuza hangs."
     }
    ],
    "against": [],
@@ -10008,6 +10502,16 @@
      "game": "game_20261010_080131_107",
      "weight": 0.16,
      "note": "Erin, Ivan, Grace: Heidi's dodged N5 visit question and Ivan's refusals to answer yes/no became the cases that hanged them."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Bob: Carol, Niaj and Ivan answered plainly and became checkable. Judy's multi-round dodge of Erin's yes/no on D3 made her the prime suspect."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.72,
+     "note": "Moderator (0.4), Frank, Judy (0.16 each): Judy dodged naming her N2 target for a whole Day, and it was cited in nearly every Guilty vote. Her 'hurt' filing admits a clean first answer would have ended it."
     }
    ],
    "against": [],
@@ -10021,7 +10525,7 @@
   {
    "id": "t189",
    "audience": "Yakuza",
-   "tip": "Assume a freshly claimed investigator is both protected by the Medic and watched by a Lookout. Never send the Katana at a player a Lookout or Tracker has publicly said they will watch. Kill the watcher first, or hit someone else. A Katana holder sent straight at a watched target will be named as a visitor even if the attack fails, and a low-value holder with a Vanilla claim has no answer for that visit. Prefer an unclaimed or less obvious target, or a holder whose agreed public claim explains a visit there. Don't let the holder be the lone visitor to a victim while a Lookout may be alive.",
+   "tip": "Assume a freshly claimed investigator is both protected by the Medic and watched by a Lookout. Never send the Katana at a player a Lookout or Tracker has publicly said they will watch. Kill the watcher first, or hit someone else. When your Wiretap or Eavesdropper reads a Village PM plan (e.g. 'guess X tonight'), assume the players in that exchange will watch or guard the tester. Killing the tester then exposes the holder, so kill the sender instead, or send a holder whose agreed public claim explains a visit there. A Katana holder sent straight at a watched target will be named as a visitor even if the attack fails, and a low-value holder with a Vanilla claim has no answer for that visit. Prefer an unclaimed or less obvious target. Don't let the holder be the lone visitor to a victim while a Lookout may be alive.",
    "status": "active",
    "support": [
     {
@@ -10041,6 +10545,12 @@
      "change": "edited",
      "old": "Assume a freshly claimed investigator is both protected by the Medic and watched by a Lookout. A Katana holder sent straight at them will be named as a visitor even if the attack fails, and a low-value holder with a Vanilla claim has no answer for that visit. Prefer an unclaimed or less obvious target, or a holder whose agreed public claim explains a visit there. Don't let the holder be the lone visitor to a victim while a Lookout may be alive.",
      "note": "Moderator, Heidi: Bob announced on D2 he would watch Judy on N2. Grace still Katana'd Judy, Bob named her as the only other visitor, and she was hanged D3."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "edited",
+     "old": "Assume a freshly claimed investigator is both protected by the Medic and watched by a Lookout. Never send the Katana at a player a Lookout or Tracker has publicly said they will watch. Kill the watcher first, or hit someone else. A Katana holder sent straight at a watched target will be named as a visitor even if the attack fails, and a low-value holder with a Vanilla claim has no answer for that visit. Prefer an unclaimed or less obvious target, or a holder whose agreed public claim explains a visit there. Don't let the holder be the lone visitor to a victim while a Lookout may be alive.",
+     "note": "Bob read Erin's PM plan for Grace's Oracle test and killed Grace. Erin, who sent the plan, was watching Grace and named Bob, who was hanged 10-1. Reported by Bob, Heidi and the moderator."
     }
    ]
   },
@@ -10582,6 +11092,11 @@
      "game": "game_20261010_080106_105",
      "weight": 0.4,
      "note": "Moderator: Grace (the nominator), Ivan, Judy and Dave said they leaned Guilty on Erin and then voted Innocent, which saved the Katana holder 2-7."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: Heidi announced Guilty on holder Erin but voted Innocent. Erin was acquitted on a 5-5 tie on D4 and then kept killing."
     }
    ],
    "against": [],
@@ -10654,6 +11169,11 @@
      "game": "game_20261010_080036_102",
      "weight": 0.4,
      "note": "Bob killed Oracle Carol on N2 while Cartographer Alice mapped him. He then claimed Lookout with declared-Neutral Heidi as the only other visitor and was hanged 9-1 on D3; his own teammates had to agree. The swaps and a Katana pass went unused. Reported by the moderator, Frank and Bob."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: with Cartographer Dave and Scout Heidi claimed, Judy kept the Katana, never swapped and claimed Vanilla. Both swap tokens went unused."
     }
    ],
    "against": [],
@@ -10704,6 +11224,16 @@
      "game": "game_20261010_102519_204",
      "weight": 0.32,
      "note": "Frank, Erin: Frank held both swap tokens for the whole game. Use them to redirect a known protection."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Judy (Smuggler) held both swaps all game. She notes a swap could have moved Mallory's protection or Niaj's pair."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: Erin held both swaps all game. A swap could have redirected Heidi's check or Mallory's pair on the holder, or moved the Katana onto an unprotected target."
     }
    ],
    "against": [],
@@ -10717,7 +11247,7 @@
   {
    "id": "t215",
    "audience": "Cartographer",
-   "tip": "Post your nightly group sizes in your first speech every Day, and post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. A map in your will after you die comes too late. Don't announce whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report before naming a holder.",
+   "tip": "Post your nightly group sizes in your first speech every Day, labeled by night. Before posting any deduction from them, place every claimed visit and put yourself correctly. Then post once and never revise in public: each correction hands the Yakuza a 'his lists keep changing' defense. Post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. Write tonight's planned map target in your will, because a map result from the night you die never reaches it. Don't announce in public whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report, or with elimination of the confirmed members, before naming a holder.",
    "status": "active",
    "support": [
     {
@@ -10729,6 +11259,16 @@
      "game": "game_20261010_080041_102",
      "weight": 0.16,
      "note": "Alice: post the group sizes and named groups early, before you die."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Dave, Erin, Frank, Mallory, Heidi: Dave mapped Judy N3 but died before posting it, and his repeatedly revised group lists became the Yakuza's main defense."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.16,
+     "note": "Niaj: post named groups with the sizes, and only what the moderator actually gave."
     }
    ],
    "against": [],
@@ -10736,6 +11276,12 @@
     {
      "game": "game_20261010_080036_102",
      "change": "added"
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "change": "edited",
+     "old": "Post your nightly group sizes in your first speech every Day, and post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. A map in your will after you die comes too late. Don't announce whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report before naming a holder.",
+     "note": "Dave's N2 sizes solved the holder, but his several public corrections let Judy, Frank and Alice discredit them through D6. His N3 map on Judy was lost with him."
     }
    ]
   },
@@ -10749,6 +11295,21 @@
      "game": "game_20261010_080036_102",
      "weight": 0.16,
      "note": "Alice and Bob: the group linking Bob, Carol and Heidi didn't pin the holder by itself; Bob's own Lookout claim did."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Heidi, Niaj, Ivan, Dave: Dave's N2 sizes, with Bob's, Mallory's and Grace's visits placed, left Heidi's lone 2-group partner as the holder. Elimination named Judy."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 1.0,
+     "note": "Moderator (0.4); Alice, Grace, Frank, Ivan, Mallory (0.16 each): Niaj's N2 map (Grace, Heidi, Ivan, Judy, Mallory) plus the claimed visits of Grace, Heidi and Ivan left Judy unexplained. She dodged and was hanged."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Dave mapped the Katana suspect and crossed group membership with Carol's counts, turning Erin's word into a mechanical case against Bob."
     }
    ],
    "against": [],
@@ -10882,9 +11443,25 @@
      "game": "game_20261010_102519_204",
      "weight": 0.4,
      "note": "Moderator, Bob, Heidi, Ivan, Judy: repeated 'name the night' and 'Grace, name the hit' demands burned budget for rounds while nobody analyzed the archive list."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Grace, Heidi, Ivan: repeated restatements and re-asked yes/no questions burned budget. Carol's 'hurt' filing is a misapplication: the team re-asked instead of building a check, against the tip."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Niaj (0.16): on D2 nearly everyone repeated 'Niaj, name the fourth member', and by round 7 Dave, Erin and Heidi couldn't afford a public message."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.32,
+     "note": "Heidi ('hurt') and Judy ('wrong'): the repeated N2-target demands on Judy burned rounds. This is a misapplication: the table broke the ask-once rule."
+    }
+   ],
    "history": [
     {
      "game": "game_20261010_080041_102",
@@ -10982,6 +11559,11 @@
      "game": "game_20261010_102519_202",
      "weight": 0.16,
      "note": "Ivan: skipping the N1 kill cost tempo with nothing gained, and gave the Village time to build visit lists."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: Carol pushed for no N1 kill. Heidi, Grace, Niaj, Mallory and Frank all got results that fed D2-D3."
     }
    ],
    "against": [],
@@ -11001,7 +11583,7 @@
   {
    "id": "t225",
    "audience": "Ex-Con",
-   "tip": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Evasive 'I can't name a target' answers build a case for your trial.",
+   "tip": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Ask for a Census Taker check: the census counts true alignment, so it is the one tool that clears you. Keep a will that maps where Cartographer, FT and Lookout data place your random visit each night, so sightings of you aren't misread. Evasive 'I can't name a target' answers build a case for your trial.",
    "status": "active",
    "support": [
     {
@@ -11015,6 +11597,12 @@
     {
      "game": "game_20261010_080051_104",
      "change": "added"
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "edited",
+     "old": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Evasive 'I can't name a target' answers build a case for your trial.",
+     "note": "Ivan (Ex-Con, won): claiming early, asking for census checks and mapping his random visits kept him from being misread in a visit-heavy game."
     }
    ]
   },
@@ -11174,6 +11762,11 @@
      "game": "game_20261010_102519_204",
      "weight": 0.4,
      "note": "Moderator: Erin, Frank and Judy echoed the Village's own reasoning, joined the crowd hangs of Ivan, Alice and Grace, and were never seriously suspected."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Erin (0.16): four silent, unclaimed, no-action Yakuza became the obvious pool once the claimed roles were cross-checked."
     }
    ],
    "against": [],
@@ -11363,13 +11956,18 @@
   {
    "id": "t240",
    "audience": "Village",
-   "tip": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Post the full three-role list and write it into your will the same Day. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist) means that role is held by a living player: match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap decoy. Cross every profile with deaths and confirmed claims to strike options. Spend tokens on unclaimed players or on claims that conflict with a visit result, whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
+   "tip": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Before posting a profile, ask the target to state their exact role publicly, so they can't tailor a claim to the list. A list that omits their claimed role is a hard, hangable contradiction. Post the full three-role list and write it into your will the same Day. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist, Diviner, Ballot Stuffer) means that role is held by a living player. Post it at once and match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap decoy. A Wiretap decoy also means every PM should be treated as read. Cross every profile with deaths, census results and confirmed claims to strike options. Spend tokens on unclaimed players or on the contested side of a claim fight (e.g. two visitors to a Katana victim), whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
    "status": "active",
    "support": [
     {
      "game": "game_20261010_102519_202",
      "weight": 0.56,
      "note": "Moderator (0.4): Carol's N3 profile of Vanilla Frank listed Clerk and Wiretap as decoys, nearly proving Erin (who had quoted a PM) was the Wiretap. Nobody used it, Carol was hanged, and the Yakuza won. Carol (0.16): combine profiles with deaths to eliminate options."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Olivia's profiles on cleared players listed Diviner, Wiretap and Ballot Stuffer as decoys, proving those roles were in play. The town stopped PMing. Dave, Judy and Bob noted the same."
     }
    ],
    "against": [],
@@ -11383,6 +11981,12 @@
      "change": "edited",
      "old": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Post the full three-role list. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist) means that role is held by a living player: match it to suspects, e.g. a player who quoted a PM plus a Wiretap decoy. Cross every profile with deaths and confirmed claims to strike options, and spend tokens on players whose role would decide a vote.",
      "note": "Moderator (0.4) and Dave (0.16): Dave profiled Carol twice (Archivist/Arsonist/Smuggler, then Archivist/Ritualist/Smuggler). The decoys proved Smuggler, Ritualist and Arsonist were in play, but the second result died with him, and unclaimed Erin, Frank and Judy (all Yakuza) were never profiled."
+    },
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "edited",
+     "old": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Post the full three-role list and write it into your will the same Day. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist) means that role is held by a living player: match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap decoy. Cross every profile with deaths and confirmed claims to strike options. Spend tokens on unclaimed players or on claims that conflict with a visit result, whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
+     "note": "Olivia: getting the claim first made the result a clean test. Heidi's Sheriff claim was missing from her list, which exposed her. Decoys revealed Diviner and Wiretap."
     }
    ]
   },
@@ -11476,6 +12080,11 @@
      "game": "revision 20261010_215157",
      "weight": 0.0,
      "note": "Added in a revision at the instructions' request, not from a game. It draws on t11, t159, t180 and t221 and is worded for hidden roles."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Grace: the town read the causes of death and kept the Katana/Sheriff picture straight. Weak, since no Neutral was in the game."
     }
    ],
    "against": [],
@@ -11497,9 +12106,30 @@
      "game": "revision 20261010_215157",
      "weight": 0.0,
      "note": "Added in a revision at the instructions' request, not from a game, because trial and nomination votes are now secret."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.16,
+     "note": "Grace, Dave: stating votes in advance kept the totals checkable, and the gaps pointed at the hidden Yakuza votes."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.64,
+     "note": "Carol, Dave, Ivan, Niaj (0.16 each): stated votes made the totals checkable and exposed the Innocent-voting Yakuza."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.8,
+     "note": "Alice, Bob, Carol, Dave, Heidi: stated votes compared with totals (and Carol's audits) caught Bob's walk-back and matched the Yakuza bloc."
     }
    ],
-   "against": [],
+   "against": [
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator filed 'hurt'. The Yakuza who stated Innocent on doomed Judy were condemned by it, but that is a t16 misapplication. Heidi broke the tip by voting against her stated Guilty."
+    }
+   ],
    "history": [
     {
      "game": "revision 20261010_215157",
@@ -11518,6 +12148,21 @@
      "game": "revision 20261010_215721",
      "weight": 0.0,
      "note": "From a revision at the instructions' request, not from a game. Log evidence: 72% of Clerks never rigged, and most Puppeteers, Ritualists and Vigilantes held their tokens until they died. Worded as 'can't use once dead' rather than 'lost', since an Accountant still counts a dead player's tokens."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: Puppeteer Alice, Smuggler Judy and Ritualist Frank each died holding every token. Medic Mallory died with 2 tokens."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: the puppet, 2 swaps and 2 ritual tokens went unused, and Medic Ivan died with 2 tokens."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.4,
+     "note": "Moderator: Frank died holding both fixer tokens, and one fix the night before his trial would have saved him."
     }
    ],
    "against": [],
@@ -11539,6 +12184,11 @@
      "game": "revision 20261010_215721",
      "weight": 0.0,
      "note": "From a revision at the instructions' request, not from a game. Logs show teams vetoed the Smuggler's swap on 6 of 7 nights because 'it could redirect our own attack'. The mechanics follow R23: results name the player the action's user chose."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: no swap was used while investigators checked holder Erin. A self-swap would have dodged the N3 check and pair."
     }
    ],
    "against": [],
@@ -11560,6 +12210,11 @@
      "game": "revision 20261010_232528",
      "weight": 0.0,
      "note": "From a revision, not a game. It covers the new Fixer, Auditor and Informant roles, which change how vote-total arithmetic in t5, t34, t48 and t239 must be read."
+    },
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.16,
+     "note": "Carol (Auditor): her audits confirmed stated votes against the totals."
     }
    ],
    "against": [],
@@ -11581,6 +12236,16 @@
      "game": "revision 20261010_232528",
      "weight": 0.0,
      "note": "From a revision, not a game. The new Coroner is the main way a dead player's role becomes known now that death hides roles, so it needs targeting and posting guidance."
+    },
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator, Erin, Mallory, Ivan: Ivan's exams confirmed Alice as Puppeteer and Frank as Ritualist and extended the pair chain. Ivan adds that he could have asked for them earlier."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Bob (0.16): Bob examined each hanged player (Ritualist, Wiretap, Puppeteer) and posted the results, which chained cases from Judy to Erin."
     }
    ],
    "against": [],
@@ -11591,6 +12256,271 @@
     }
    ],
    "pinned": true
+  },
+  {
+   "id": "t251",
+   "audience": "Village",
+   "tip": "A Seer pair becomes a mechanical case only through an anchor. An unanchored DIFFERENT pair shows only that the two read differently, which may come from an Ex-Con, a framed player or a Good-reading holder rather than a Yakuza. It is a lead, never a hang on its own. Once one member is independently confirmed Good (a Sheriff Not Evil plus an Oracle RIGHT, a self-proving action, a verified log), a DIFFERENT pair names the other as non-Good, so nominate them. After a hang, a Coroner exam confirming the hanged player's role extends the chain. A SAME pair between a confirmed Yakuza and another player points at that player too, unless the confirmed Yakuza held the Katana that night (then the partner read Good). Before the vote, say which anchor the chain rests on.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_130005_3133",
+     "weight": 0.4,
+     "note": "Moderator: Carol was anchored by Bob's Not Evil and two Oracle hits, so Niaj's N3 'Carol/Alice different' hanged Alice. Ivan's Puppeteer exam plus the N2 'Alice/Frank same' hanged Frank. Ten players said a lone pair is only a lead, and the anchor is what made these pairs decisive."
+    },
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.96,
+     "note": "Alice, Bob, Carol, Ivan, Niaj, Mallory: lone pair reads were unreliable. Moderator: the decisive N4 random pair (Heidi/Carol differ) was anchored by Sheriff Heidi's N2 Katana survival and exposed Carol."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_130005_3133",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t252",
+   "audience": "Yakuza",
+   "tip": "Once a Coroner claims and starts posting exams, kill them before the next hang can be confirmed. Roles stay hidden on death, so the Coroner is the town's main way to learn that a hang hit a Yakuza. Each confirmation turns the hanged player's defenders, Innocent voters and PM partners into the next suspects, and the chain runs through your whole team. A claimed Coroner is also a sure Ritualist guess, and a Divine one goes through a Medic.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_130005_3134",
+     "weight": 0.4,
+     "note": "Moderator: Bob's exams confirmed Judy (Ritualist), Dave (Wiretap) and Carol (Puppeteer). The Yakuza never targeted him, and each exam drove the next hang."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_130005_3134",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t253",
+   "audience": "Fixer",
+   "tip": "Before each night, count the likely Guilty votes on any trial that could hang a teammate. If fixing one pro-hang voter breaks the Guilty majority (a tie acquits), spend a token on that voter the night before. The trial on your own exposed teammate, or on yourself, is the trial that matters, so don't hoard tokens for a later one. Pick a voter who has said they will vote Guilty, since the fix flips the vote they actually cast. Remember the totals then won't match that player's stated vote, which casts suspicion on them, not on you.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.56,
+     "note": "Moderator (0.4), Frank (0.16): Frank was read Evil on N1 and the D2 nomination drew 4 Yes. He held both tokens and was hanged 5-3 on D3. One fixed Guilty would have made it 4-4 and saved him."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_142446_120517",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t254",
+   "audience": "Insomniac",
+   "tip": "Post the exact visitor roles in your first message the next Day. Say plainly what they prove and what they don't. They show which roles visited, never whom: they can rule out a Fabricator frame or an Ex-Con visit, and they can confirm that a claimed Sheriff or Medic acted, but they can't tie a visit to a particular target. Once you have named a Yakuza-linked role or backed a key claim, expect to be killed, so post before that night.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.64,
+     "note": "Heidi, Bob, Carol, Dave (0.16 each): Heidi's N1 'Medic, Sheriff' backed Dave's Evil read on Frank and ruled out a frame. Several players stressed that it shows roles, not targets."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_142446_120517",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t255",
+   "audience": "Village",
+   "tip": "Before nominating, count the stated Yes votes and nominate only when a majority is clearly there. A failed nomination followed by a public walk-back of your Yes wastes a round and gives opponents a lasting line against you. If the case isn't ready, post it and let the votes build, then nominate on a later round or Day.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_142446_120517",
+     "weight": 0.4,
+     "note": "Moderator: Bob nominated Frank on D2 with 4 Yes (5 needed), then retracted his Yes. The Yakuza used it against him for days. Frank was hanged D3 once the case was stronger."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_142446_120517",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t256",
+   "audience": "Village",
+   "tip": "Test a late Jester or Executioner claim on trial with mechanics, not the revenge threat. (1) Win check: Jesters and Executioners never block a win. If the game didn't end when the last known Yakuza died, some non-Village, non-Jester player is still alive. If the claimant is the only plausible one left, the Neutral claim fails. (2) Night pattern: a no-kill night on which only the claimant was blocked fits them holding the Katana. (3) Foreknowledge: did they name a role before its owner claimed it? That points to a Yakuza info role (Diviner, Wiretap), not an Executioner. (4) True-alignment counts: a census 'not Good' fits Neutral or Yakuza, so it decides nothing alone but combines with the above. If these converge, hang with a bare Guilty majority and keep confirmed info roles on Innocent.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Frank (Diviner) claimed Jester on D5. Alice, Carol, Dave, Erin, Grace, Ivan, Judy, Mallory, Niaj, Olivia and the moderator all cited the same proof: the game hadn't ended at Heidi's hang, N4 had no kill while only Frank was blocked, he had claimed Oracle before Grace spoke, and the census read him not Good. Hanging him won the game."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t257",
+   "audience": "Yakuza",
+   "tip": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another non-Village player is plausibly alive. Run the win check yourself first: if your teammate's death would have ended the game with only Village and Neutral non-blockers left, the town will say someone non-Village is still alive and point at you. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Frank and Heidi: Frank's Oracle, then Roleplayer, then Jester retreat failed on the R1 check and the N4 blocked no-kill night, and he was hanged D5."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t258",
+   "audience": "Village",
+   "tip": "Note on your notepad anyone who claims or names a role before its real holder has spoken, e.g. a Day 2 Oracle claim made before the real Oracle claims, which then forces a counterclaim. Picking exactly the role a silent player holds suggests exact-role or PM knowledge (Diviner, Wiretap), not luck. It is a lead on Day 2. It becomes decisive later, when the player retreats through cover claims (Roleplayer, Jester, Executioner) that can't explain that knowledge.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Carol, Ivan, Mallory, Niaj, Judy: Frank's D2 Oracle counterclaim came before Grace spoke. He was a Diviner, and the foreknowledge helped break his later Jester claim."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t259",
+   "audience": "Census Taker",
+   "tip": "Your count reads true alignment: the Katana holder's Good disguise, frames and Ex-Con readings don't fool it. Build a chain of cleared players. Ask every member of a group to confirm the count against what they know of themselves, so your claim becomes trusted. Then aim each census at one unknown, ideally where cleared players are likely to be drawn, so that once the other members are cleared an 'X of 3 Good' names the remaining player exactly. Post the group, the alignment counted and the count at once. Neutrals are never counted, so phrase a gap as 'not Good' (Yakuza or Neutral), not 'Evil'. Keep the full log in your will.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Alice: N2 '3/3 Good' was confirmed by Carol, Dave and Mallory on themselves. N3 '1 of Heidi/Ivan Evil' and N4 'Frank not Good' pinned two Yakuza, and the 'not Good' wording let the town weigh Frank's Jester claim properly."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t260",
+   "audience": "Everyone",
+   "tip": "When a count or group result includes you (a census, an FT count, a Cartographer group), say publicly whether it fits what you know of yourself, e.g. 'the census counted me Good, which I know is true'. Several members confirming one result turn an unverifiable claimant into a trusted source, and later results from that source can then be used for elimination.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Carol and the moderator: self-confirmations of Alice's census made it the backbone of every case."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t261",
+   "audience": "Yakuza",
+   "tip": "Kill a claimed Census Taker early, ahead of Oracles and Profilers. Its count reads true alignment, so the holder's disguise and frames don't fool it, and each night it lives it chains new confirmed-Good players and narrows your team by subtraction. It also makes a fake 'I'm Neutral' dodge checkable.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Bob and Heidi: Alice's census was never attacked, and it pinned Heidi and Frank."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t262",
+   "audience": "Village",
+   "tip": "Each morning, combine the visit-based results into one ledger: Fortune Teller counts, Cartographer sizes and named map groups, and Lookout or Tracker logs. Have every claimed visitor post their exact target, then reconcile. Together the counts fix how many hidden visitors exist and which groups they sit in. A single unexplained visitor, a 'no action' claim from a player in a group with an unexplained slot, or a missing kill on a block night almost always names the Katana holder.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Alice, Carol, Dave, Erin, Ivan, Judy, Mallory, Niaj: Carol's counts plus Dave's sizes and map plus Erin's watches left one unexplained visitor each night and drove all three hangs."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t263",
+   "audience": "Yakuza",
+   "tip": "As a fake investigator, never announce tomorrow's check target in public. It gives the target and any blocker a public reason to role-block you every night, which also silences your real actions and tokens. It also shows that your 'result' is chosen, not found. If you need a fake result, post it the next day without pre-announcing, on a target your claim's token count and visits can support.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261010_150921_904458",
+     "weight": 1.0,
+     "note": "Moderator, Heidi: Heidi announced on D2 she'd 'check Mallory'. Mallory blocked her N2-N3, both ballot tokens and the N3 Katana failed, and she never posted a fake result."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261010_150921_904458",
+     "change": "added"
+    }
+   ]
   }
  ]
 }
