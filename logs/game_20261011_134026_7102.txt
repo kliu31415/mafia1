@@ -133,3 +133,64 @@ Katana: Dave holds it and attacks Frank.
 (to Dave) Moderator (private): You divined Bob; the group was Alice, Bob and Erin. The role drawn is Insomniac (60% chance it is Bob's, otherwise one of the others').
 (to Frank) Moderator (private): You tracked Dave tonight. Dave visited Bob and Frank (you).
 [Moderator summary] Night 2: Dave (Diviner, Katana holder) divined Bob and killed Frank with the Katana (Standard vs None). Frank tracked Dave and saw visits to Bob and Frank. Erin mapped Frank, whose group was Dave, Bob and Frank. Bob stayed awake with his last insomniac token and saw the Diviner and the Tracker as visitors. Living: Alice, Bob, Dave, Erin, Grace. Game continues.
+(to Dave) Moderator (private): Your Katana attack on Frank tonight succeeded.
+[Moderator summary] Night 2: Dave held the Katana and killed Frank with it (Standard attack against no Defense). Dave, the Diviner, also divined Bob, and code drew that result. Frank tracked Dave and learned that Dave visited Bob and Frank. Erin mapped Frank, whose group was Dave, Bob and Frank. Bob used his last insomniac token to stay awake, and code drew the roles from the recorded visitors. Nobody was role-blocked. Still alive: Alice, Bob, Dave, Erin and Grace.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): Tonight's visit groups have sizes 3, 1, 1, 1. You mapped Frank: their group is Bob, Dave and Frank. 1 map token left.
+(to Bob) Moderator (private): You lay awake all night and heard every player who visited someone tonight. Their roles: Diviner, Tracker. 0 insomniac tokens left.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 3 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank's last will: I was a Tracker. I post my Tracker results publicly at the start of the Day after each night I use them. I never reveal a night's target before its results are posted. Vote on the evidence, not on who speaks loudest."
+Speaking order today goes around the circle in seat order, starting with Grace.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Grace: Vanilla Villager. No night action. N1: visited no one. N2: visited no one. D2: Yes on Carol, Innocent on Carol trial.
+Grace (public): Grace here, Vanilla Villager. Frank was killed by Katana, so the Yakuza are alive and Frank's Tracker claim looks credible. His N2 track was never posted. Erin, please post your N2 map sizes. Bob, please post your N2 visitor roles. Dave, your N1 Diviner result is the only one left, so keep it consistent. No nomination from me until we have these results.
+Alice (public): Alice here. Frank's N2 track was never posted, and Erin's N2 map is missing too. Dave, Erin and Bob, please post your Night 2 results now. No nomination from me yet.
+[Claim] Bob: Insomniac. N1 and N2: stayed awake, heard visitors Diviner and Tracker. 0 insomniac tokens left. D3: nominated Dave.
+Bob (public): Bob here. On N2 I heard exactly two visitors: a Diviner and a Tracker. Frank died to the Katana, and the Katana holder has to visit its target, so the holder was one of those two. Frank is the only Tracker claim, so the holder was the Diviner visitor. Dave is the only Diviner claim, and Diviner is a Yakuza role here. I'm nominating Dave. Vote Yes.
+Bob nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Bob, Erin, Grace; No - Dave, Alice
+Nomination votes on Dave: 3 Yes (the votes are secret).
+Dave is put on trial (3 Yes).
+[Feedback from Dave] The rules say the Katana passed to Dave publicly, so the holder question is hard to hide; a rule clarifying what the Village can infer from a Katana-holder pass would help.
+[Claim] Dave: Diviner. N1: divined Frank, group Erin/Frank/Grace, one Tracker. N2: divined Bob, group Alice/Bob/Erin, one Insomniac. D2: Yes on Carol. D3: No on Dave's nomination.
+Dave (public): Dave here, Diviner. My Night 1 result (divined Frank: Erin, Frank, Grace, one Tracker) fits Frank's Tracker claim and Erin's 3,1,1,1,1 map. My Night 2 result (divined Bob: Alice, Bob, Erin, one Insomniac) matches Bob's Insomniac claim. Bob's N1 and N2 visitor reports line up with my visits and Frank's track, so Bob's claim checks out. Frank's N2 track was never posted, and Erin's N2 map is still missing. Alice and Bob pushed Carol hard on an unfinished plan and are now pushing me on Bob's logic. Erin and Grace: please ask for Frank's N2 track and Erin's N2 map before you vote. I'm not asking for a vote on a single claim.
+[Claim] Erin: Cartographer. 1 map token left. N1: groups 3,1,1,1,1 (trio Dave-Frank-Grace). N2: groups 3,1,1,1; mapped Frank = Bob, Dave, Frank. D3: Guilty on Dave.
+Erin (public): Erin here. My Night 2 map put Bob, Dave and Frank in one visit group. Frank was killed by the Katana, so the holder visited Frank. Bob reports only two visitors, a Diviner and a Tracker. Frank was the Tracker, so the Katana visit to Frank has to come from the Diviner visitor, Dave. Dave's Night 1 and Night 2 results fit my map, but a Diviner claim that lines up with a Katana kill is exactly what a Yakuza would post. Frank's N2 track is still unposted, so it can't clear Dave. I'm voting Guilty on Dave.
+[Claim] Grace: Vanilla Villager. No night action. N1, N2: visited no one. D2: Yes on Carol, Innocent. D3: Guilty on Dave.
+Grace (public): Grace here. I'm voting Guilty on Dave. Bob's N2 report lists only two visitors, a Diviner and a Tracker. Frank was the Tracker, and he was Katana-killed, so the Katana holder visited Frank and has to be the Diviner visitor, Dave. Erin's N2 map (Bob, Dave, Frank linked) fits that. Dave, your N2 post names only Bob. Who else did you visit on N2? Did you visit Frank?
+[Claim] Alice: Vanilla Villager. No night action. D2: Guilty on Carol. D3: Guilty on Dave.
+Alice (public): Alice here. Dave, Bob's N2 report lists only two visitors: a Diviner and a Tracker. Frank, the Tracker, was Katana-killed, so the Katana visit came from the Diviner visitor, which is you. Erin's N2 map also links you to Frank. Katana holders are Yakuza, so that points to you. Did you visit Frank on N2, yes or no? I'm voting Guilty.
+[Claim] Bob: Insomniac. N1, N2: stayed awake, heard visitors Diviner and Tracker. 0 insomniac tokens left. D3: nominated Dave. Guilty on Dave.
+Bob (public): Bob here. Frank was killed by the Katana, so the holder visited Frank. My Insomniac report says the only N2 visitors were a Diviner and a Tracker. Frank is the Tracker, so the Katana visit came from the Diviner visitor, Dave. Erin's map also links Dave to Frank. Dave, did you visit Frank on N2, yes or no? I'm voting Guilty.
+Dave (public): Dave here, Diviner. My two results are on record: Night 1 on Frank (Erin, Frank, Grace, one Tracker) and Night 2 on Bob (Alice, Bob, Erin, one Insomniac). They match Erin's maps and Bob's Insomniac reads. The case against me depends on the Night 2 Katana hit on Frank, but Frank's Night 2 track was never posted, so nobody knows whom he tracked. Erin's linked group {Bob, Dave, Frank} also fits Frank visiting Bob or me without any other link. Grace and Erin, before you vote Guilty, ask for Frank's Night 2 track. I'm asking for an Innocent vote on the evidence, not on who pushes hardest.
+Trial votes on Dave: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Alice, Bob, Erin, Grace; Innocent - Dave
+Dave is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave's last will: I am the Diviner. My Night 1 result: group Erin, Frank and Grace, with one of them a Tracker. My Night 2 Diviner pick was Bob, and the group was Alice, Bob and Erin with one Insomniac. Judge every claim by whether its visits and results fit the mechanics, and do not hang anyone on a single unexplained result."
+The game is over. Winners: Alice, Bob, Erin, Frank (dead), Grace. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Erin, Frank, Grace
+Cost by player (USD):
+  Alice (Vanilla Villager)  $0.0000   19 calls  claude-haiku-5.5
+  Bob (Insomniac)           $0.0000   20 calls  claude-haiku-5.5
+  Carol (Smuggler)          $0.0000   17 calls  claude-haiku-5.5
+  Dave (Diviner)            $0.0000   22 calls  claude-haiku-5.5
+  Erin (Cartographer)       $0.0000   20 calls  claude-haiku-5.5
+  Frank (Tracker)           $0.0000   16 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0000   19 calls  claude-haiku-5.5
+  Moderator                 $0.0000    4 calls  claude-opus-5.5
+  Night checks              $0.0000    2 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  141 calls
