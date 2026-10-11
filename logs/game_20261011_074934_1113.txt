@@ -1,0 +1,226 @@
+Setup:
+  Alice    seat 1  Medic             anthropic/claude-haiku-5.5
+  Bob      seat 2  Vanilla Villager  anthropic/claude-haiku-5.5
+  Carol    seat 3  Smuggler          anthropic/claude-haiku-5.5
+  Dave     seat 4  Sheriff           anthropic/claude-haiku-5.5
+  Erin     seat 5  Bounty Hunter     anthropic/claude-haiku-5.5
+  Frank    seat 6  Lookout           anthropic/claude-haiku-5.5
+  Grace    seat 7  Juror             anthropic/claude-haiku-5.5
+  Heidi    seat 8  Vanilla Villager  anthropic/claude-haiku-5.5
+  Ivan     seat 9  Scrutineer        anthropic/claude-haiku-5.5
+  Judy     seat 10 Fixer             anthropic/claude-haiku-5.5
+  Mallory  seat 11 Ritualist         anthropic/claude-haiku-5.5
+  Niaj     seat 12 Vanilla Villager  anthropic/claude-haiku-5.5
+  Olivia   seat 13 Ballot Stuffer    anthropic/claude-haiku-5.5
+  Katana starts with Judy
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 3 to 5 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Judy, Mallory, Olivia) Carol (Yakuza chat): Night 1 plan: no Katana attack tonight, since a Night 1 kill gives the Village a free death to read and no info for us. Judy keeps the Katana. I won't use the Smuggler's swaps tonight. Mallory and Olivia, please don't use your tokens yet either. Please confirm in chat and I'll vote with you.
+(to Carol, Judy, Mallory, Olivia) Judy (Yakuza chat): Agree with Carol: no Night 1 attack. Judy keeps the Katana. Nobody spends tokens tonight, including Mallory's and Olivia's. Carol doesn't swap. Save our one-shot tools for when they can change a vote or remove a real threat. Ready.
+(to Carol, Judy, Mallory, Olivia) Mallory (Yakuza chat): Agreed: no attack tonight, Judy keeps the Katana, no swaps, and no tokens spent. I won't guess a role either, since a wrong Ritualist guess is announced publicly on Day 2. Ready.
+(to Carol, Judy, Mallory, Olivia) Olivia (Yakuza chat): Olivia confirms: no Night 1 attack, Judy keeps the Katana, no swaps, and I spend no tokens tonight. Saving my ballot tokens for a close trial. Ready.
+Night actions:
+  Alice (Medic): target Carol; "Medic: give Carol Standard Defense for free (another player with Standard costs 0 tokens). No self-protection."
+  Carol (Smuggler): no role action; Katana vote: Judy holds, attacks None
+  Dave (Sheriff): target Bob; "Sheriff investigation on Bob."
+  Erin (Bounty Hunter): no action
+  Frank (Lookout): target Heidi; "Lookout watch on Heidi."
+  Grace (Juror): no action
+  Ivan (Scrutineer): no action
+  Judy (Fixer): no role action; Katana vote: Judy holds, attacks None
+  Mallory (Ritualist): no role action; Katana vote: Judy holds, attacks None
+  Olivia (Ballot Stuffer): no role action; Katana vote: Judy holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Judy holds it.
+(to Alice) Moderator (private): You protect Carol tonight, giving them Standard Defense. You have 2 medic tokens left.
+(to Dave) Moderator (private): You investigate Bob tonight. Result: Not Evil.
+(to Frank) Moderator (private): You watch Heidi tonight. Nobody else visits Heidi.
+(to Carol, Judy, Mallory, Olivia) Moderator (private): Yakuza night summary: Judy holds the Katana, and there is no Katana attack tonight. No Yakuza chose a night action: Carol (no swap), Judy (no fix), Mallory (no ritual), Olivia (no ballot stuffing).
+[Moderator summary] Night 1: Alice (Medic) protected Carol with Standard Defense, no token spent. Dave (Sheriff) checked Bob and got Not Evil. Frank (Lookout) watched Heidi and saw no visitors. The Yakuza kept the Katana with Judy and made no attack. No other actions. No deaths. Visits: Alice->Carol, Dave->Bob, Frank->Heidi.
+
+===== DAY 2 =====
+Nobody died last night.
+[Night check] Night 1: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Claim] Frank: Lookout. N1: watched Heidi, nobody visited Heidi.
+Frank (public): Frank here, Lookout. N1: I watched Heidi and nobody visited Heidi. Nobody died, so let's hear everyone's Night 1 actions.
+Grace (public): Grace here. I took no Night 1 action, so I have nothing to report yet. Thanks, Frank. Let's hear the rest of the Night 1 reports before anyone is nominated.
+Heidi (public): Heidi here, Vanilla Villager with no night action, so I have nothing to hide. Frank's Lookout claim is on record. Let's hear everyone's Night 1 report before anyone is nominated.
+Ivan (public): Ivan here, no Night 1 action. I'll track every nomination and trial vote against the announced totals. Let's hear the remaining Night 1 reports before anyone is nominated.
+Judy (public): Judy here, no Night 1 action, nothing to add yet. Thanks Frank. Let's hear the remaining Night 1 reports before anyone is nominated.
+Mallory (public): Mallory here, no Night 1 action. Frank's Lookout claim is on record. Alice, Bob, Carol and Dave, please report your Night 1 actions before anyone is nominated.
+[Claim] Niaj: Vanilla Villager. N1: no night action.
+Niaj (public): Niaj here, Vanilla Villager with no Night 1 action. Alice, Bob, Carol, Dave, Erin and Olivia, please report your Night 1 actions. Frank's Lookout claim is one report, so I'd like more before any nomination.
+[Claim] Olivia: Vanilla Villager. N1: no night action.
+Olivia (public): Olivia here, Vanilla Villager with no Night 1 action. I agree with Heidi and Ivan: let's hear every Night 1 report before any nomination. Alice, Bob, Carol, Dave and Erin, please report, and Frank, please say whether anyone else could have visited Heidi.
+[Claim] Alice: Medic. N1: protected Carol with Standard Defense (free). 2 medic tokens left.
+Alice (public): Alice here, Medic. N1: I gave Carol Standard Defense. Nobody died, so there was no save to report. I'll keep my 2 remaining medic tokens for a real threat. Bob, Carol, Dave and Erin, please post your Night 1 reports before anyone is nominated.
+[Claim] Bob: Vanilla Villager. N1: no night action.
+Bob (public): Bob here, Vanilla Villager with no Night 1 action. Frank (Lookout) and Alice (Medic) are on record. Carol, Dave and Erin, please report before anyone is nominated, and Carol, please confirm whether Alice's protection reached you.
+[Claim] Carol: Vanilla Villager. N1: no night action.
+Carol (public): Carol here. I took no Night 1 action. Protected players aren't told who protected them, so I can't confirm Alice's save. Dave and Erin, please post your Night 1 reports before anyone is nominated.
+[Claim] Dave: Sheriff. N1: checked Bob, Not Evil.
+Dave (public): Dave here, Sheriff. N1: I checked Bob, result Not Evil. Frank (Lookout), Alice (Medic) and Bob (Vanilla) are on record. Erin, please post your Night 1 report before anyone is nominated, and I'll track every vote against the announced totals.
+[Claim] Erin: Vanilla Villager. N1: no night action.
+Erin (public): Erin here. I took no Night 1 action, so I'm a Vanilla Villager on record. Frank (Lookout), Alice (Medic) and Dave (Sheriff) are all on record, so I'd like to see whether their results line up before anyone is nominated.
+Frank (public): Frank here. No conflicts yet: my Lookout result (nobody visited Heidi) fits Heidi's Vanilla claim, and Dave's Sheriff result on Bob is not contradicted. Nobody should be nominated until more Night 2 information comes in, and I won't announce my target.
+Grace (public): Grace here, no Night 1 action. Frank (Lookout), Alice (Medic) and Dave (Sheriff) are on record. I'll track every vote against the announced totals and want Night 2 results before any nomination.
+Heidi (public): Heidi here. Night 1 had no deaths, so every claim is unverified for now. I want Night 2 results before any nomination. Frank, Dave and Alice, please keep your results precise so we can cross-check them.
+Ivan (public): Ivan here, no Night 1 action. I agree with waiting for Night 2 results before any nomination. Frank, Alice and Dave are on record, and I'll check their results against each other once more claims come in.
+[Claim] Judy: Vanilla Villager. N1: no night action.
+Judy (public): Judy here, Vanilla Villager with no Night 1 action, so nothing to add. Agreed: we should wait for Night 2 results before any nomination, and each result should be stated precisely.
+Mallory (public): Mallory here, no Night 1 action. I agree with waiting for Night 2 results before any nomination. Frank, Alice and Dave have each made a claim, so I want their Night 2 results stated precisely and checked against the visits.
+Niaj (public): Niaj here. I agree with waiting for Night 2 results before any nomination. Frank, Alice and Dave: please post your exact targets and results each night so we can check them against visits and deaths.
+Olivia (public): Olivia here, still a Vanilla Villager with no Night 1 action. I agree with waiting for Night 2 results before any nomination. Frank, Dave and Alice: after each night, post your exact target and result so we can check them against the visits.
+Alice (public): Alice here, Medic. My only action so far was Standard protection on Carol on Night 1, with 2 medic tokens left. Frank and Dave each have one claim on record, so I'd like their Night 2 results stated exactly before any nomination.
+Bob (public): Bob here, Vanilla Villager. Dave's Sheriff result on me is consistent with what I know: I'm Not Evil. Frank (Lookout), Alice (Medic) and Dave (Sheriff) can't all be verified yet, so I want their Night 2 targets and results stated exactly before anyone is nominated.
+Carol (public): Carol here, Vanilla Villager. I agree with waiting for Night 2 results before any nomination. Frank, Alice and Dave: please post your exact Night 2 targets and results so we can check them against visits.
+Dave (public): Dave here, Sheriff. My Night 1 result on Bob (Not Evil) stands. I'll post my Night 2 target and result at the start of Day 3, and I agree no nomination until Night 2 results are in.
+Erin (public): Erin here. Still a Vanilla Villager with no Night 1 action. I agree we wait for Night 2 results before any nomination, and I'll vote only on checked evidence. Frank, Alice and Dave: please post exact Night 2 targets and results.
+Frank (public): Frank here. I agree: no nomination until Night 2 results are in. I'll post my Night 2 Lookout target and result at the start of Day 3, as I did for Night 1.
+Grace (public): Grace here. Agreed, no nomination until Night 2 results are in. Frank, Alice and Dave: post your exact Night 2 targets and results at the start of Day 3, and I'll check them against visits and deaths.
+Heidi (public): Heidi here. Agreed: no nomination until Night 2 results are in. Frank, Dave and Alice, please post your exact Night 2 targets and results at the start of Day 3 as promised.
+Ivan (public): Ivan here, no Night 1 action. I agree we wait for Night 2 results before any nomination. Frank, Alice and Dave: please post exact Night 2 targets and results at the start of Day 3 so we can check them against visits and deaths.
+Judy (public): Judy here, Vanilla Villager with no Night 1 action. I agree we wait for Night 2 results before any nomination. Frank, Dave and Alice, please post exact Night 2 targets and results at the start of Day 3 so we can check them against visits and deaths.
+Mallory (public): Mallory here, no Night 1 action. I agree with waiting for Night 2 results before any nomination, and I'll check each posted result against the visits when it comes in.
+Niaj (public): Niaj here. Agreed, no nomination until Night 2 results are in. Frank, Dave and Alice: please post your exact Night 2 targets and results at the start of Day 3, and say whether any visit could have affected them.
+Olivia (public): Olivia here, Vanilla Villager. I agree: no nomination until Night 2 results are posted. Frank, Dave and Alice, please post exact Night 2 targets and results at the start of Day 3 so we can check them against visits.
+Alice (public): Alice here, Medic. Agreed, no nomination before Night 2 results are in. I'll post my Night 2 target and result at the start of Day 3, as promised.
+Bob (public): Bob here. Dave's Night 1 result on me (Not Evil) is accurate, since I'm a Vanilla Villager. That doesn't prove Dave's claim, but it's one check. Frank and Alice, please post exact Night 2 targets and results at the start of Day 3. I won't nominate until those are in.
+Carol (public): Carol here, Vanilla Villager. I agree we wait for Night 2 results before any nomination. Frank, Dave and Alice: at the start of Day 3, please post your exact Night 2 targets and results, and say who could have visited each of you.
+Dave (public): Dave here, Sheriff. My Night 1 check on Bob was Not Evil, and I'll post my Night 2 target and result at the start of Day 3 as promised. I agree with no nomination until then.
+Erin (public): Erin here, still a Vanilla Villager on record. I agree: no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave, please keep your exact targets and results precise so we can check them against visits.
+Frank (public): Frank here. Agreed: no nomination until Night 2 results are posted. I'll post my Lookout result and the visit list for my target at the start of Day 3.
+Grace (public): Grace here, Juror. Agreed: no nomination until Night 2 results are posted at the start of Day 3. I'll post my Night 2 action then, with exact results and visits.
+Heidi (public): Heidi here. Grace, you said 'no Night 1 action' and later 'Juror'. A Juror has a night action, so which is it? Please clarify before anyone is nominated.
+Ivan (public): Ivan here. Heidi, Juror's night action is optional (R7), so Grace's 'no Night 1 action' and 'Juror' don't conflict. Still no nomination until Night 2 results are posted.
+Judy (public): Judy here. Agreed: no nomination until Night 2 results are posted. Frank, Dave and Alice, please post exact Night 2 targets, results, and who could have visited you.
+[Claim] Mallory: Vanilla Villager. N1: no night action.
+Mallory (public): Mallory here, Vanilla Villager with no Night 1 action. I agree: no nomination until Night 2 results are posted at the start of Day 3.
+Niaj (public): Niaj here, still a Vanilla Villager. I'm not nominating until Frank, Alice and Dave post their Night 2 targets and results at the start of Day 3, as promised.
+Olivia (public): Olivia here, Vanilla Villager. Agreed: no nomination until the Night 2 results are posted at the start of Day 3. I'll vote only on checked evidence and track every announced total.
+Alice (public): Alice here, Medic. Still no nomination until Night 2 results are posted. I'll post my Night 2 target and result at the start of Day 3, as promised.
+Bob (public): Bob here. Agreed: no nomination until Night 2 results are posted at the start of Day 3. Grace, please state your role plainly then, since Juror and no Night 1 action need one clear claim.
+Carol (public): Carol here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave, post exact targets and results then.
+Dave (public): Dave here, Sheriff. My only result is N1: checked Bob, Not Evil. Frank and Alice are still unverified until their Night 2 results come in at the start of Day 3. No nomination from me yet.
+Erin (public): Erin here, still a Vanilla Villager on record. No nomination until Night 2 results are posted at the start of Day 3. Grace, please state your role in one clear sentence.
+Frank (public): Frank here. Still no nomination until Night 2 results are posted. I'll post my Night 2 Lookout result and visitor list at the start of Day 3.
+[Claim] Grace: Juror. N1: no action.
+Grace (public): Grace here: I am a Juror, a Good Village role, and I took no Night 1 action. I'll post my Night 2 action and results at the start of Day 3, as promised. No nomination from me until Night 2 results are in.
+Heidi (public): Heidi here, Vanilla Villager. Still no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave: please post exact targets, results and possible visitors.
+Ivan (public): Ivan here. Agreed: no nomination until Night 2 results are posted at the start of Day 3, with exact targets and possible visitors.
+Judy (public): Judy here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3, with exact targets and possible visitors.
+Mallory (public): Mallory here, Vanilla Villager. I agree we wait for Night 2 results before any nomination. Frank, Alice and Dave, post exact targets, results and possible visitors at the start of Day 3 as promised.
+Niaj (public): Niaj here. Still no nomination from me. Frank, Alice and Dave each hold a power claim, and only the Night 2 results posted at the start of Day 3 can check them against visits and deaths.
+Olivia (public): Olivia here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3.
+Alice (public): Alice here, Medic. Still no nomination until Night 2 results are posted at the start of Day 3, as promised.
+Bob (public): Bob here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave, post exact targets and results then.
+Carol (public): Carol here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave, give exact targets, results and possible visitors then.
+Dave (public): Dave here, Sheriff. My Night 1 result on Bob (Not Evil) stands. I'll post my Night 2 check at the start of Day 3. No nominations before then.
+Erin (public): Erin here, still a Vanilla Villager on record. Agreed: no nomination until Night 2 results are posted at the start of Day 3.
+Frank (public): Frank here. Still no nomination from me until Night 2 results are posted at the start of Day 3.
+Grace (public): Grace here, Juror. Agreed: no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave, give exact targets, results and possible visitors then.
+[Claim] Heidi: Vanilla Villager. N1: no night action.
+Heidi (public): Heidi here, Vanilla Villager. Still no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave: exact targets, results and possible visitors, please.
+Ivan (public): Ivan here. Still no nomination from me. Frank, Alice and Dave: at the start of Day 3, give your exact Night 2 targets, results and possible visitors. I'll check them against the announced deaths.
+Judy (public): Judy here. Agreed: no nomination until Night 2 results are posted at the start of Day 3.
+Mallory (public): Mallory here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3.
+Niaj (public): Niaj here. Still no nomination from me. Frank, Alice and Dave each hold an unverified power claim, so I want their Night 2 results checked against visits and deaths at the start of Day 3.
+Olivia (public): Olivia here, Vanilla Villager. Agreed: no nomination until the Night 2 results are posted at the start of Day 3.
+Alice (public): Alice here, Medic. I'm still making no nomination until Night 2 results are posted at the start of Day 3. Frank and Dave, please post your exact targets, results and possible visitors then.
+Bob (public): Bob here. Agreed: no nomination until Night 2 results are posted. Dave, Frank and Alice, post exact targets, results and possible visitors at the start of Day 3.
+Carol (public): Carol here, Vanilla Villager. No nomination until Night 2 results are posted at the start of Day 3. Frank, Dave and Alice: give exact targets, results and possible visitors then.
+Dave (public): Dave here, Sheriff. My Night 1 result on Bob (Not Evil) stands. I'll post my Night 2 target and result at the start of Day 3. No nomination from me yet.
+Erin (public): Erin here. Still no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave: exact targets, results and possible visitors, please.
+Frank (public): Frank here, Lookout. Agreed: no nomination until Night 2 results are posted at the start of Day 3. I'll post my result and visitor list then.
+Heidi (public): Heidi here. Still no nomination until Night 2 results are posted at the start of Day 3, with exact targets and possible visitors.
+Mallory (public): Mallory here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3, with exact targets and visitors.
+Niaj (public): Niaj here. Still no nomination from me. Frank, Alice and Dave: at the start of Day 3, post your exact Night 2 targets, results and possible visitors.
+Olivia (public): Olivia here. Still agreed: no nomination until Night 2 results are posted at the start of Day 3.
+[Claim] Alice: Medic. N1: Standard protection on Carol. 2 medic tokens left.
+Alice (public): Alice here, Medic. Still no nomination from me until Night 2 results are posted at the start of Day 3, with exact targets and visitors.
+Bob (public): Bob here, Vanilla Villager. I can confirm Dave's Not Evil result on me is accurate, since I'm Good. I'm not nominating before Night 2 results. Frank, Alice and Dave: post exact targets, results and possible visitors at the start of Day 3.
+Carol (public): Carol here, Vanilla Villager. Still agreed: no nomination until Night 2 results are posted at the start of Day 3, with exact targets and visitors.
+Erin (public): Erin here. Still agreed: no nomination until Night 2 results are posted at the start of Day 3.
+Frank (public): Frank here, Lookout. Still no nomination until Night 2 results are posted at the start of Day 3, when I'll post my Lookout result and visitor list.
+Grace (public): Grace here, Juror. Agreed: no nomination until the Night 2 results are posted at the start of Day 3. I'll check each result against visits and deaths.
+Heidi (public): Heidi here, Vanilla Villager. Still no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave: exact targets, results and possible visitors, please.
+Ivan (public): Ivan here. Still no nomination until Night 2 results are posted at the start of Day 3.
+Judy (public): Judy here, Vanilla Villager. I agree: no nomination until Night 2 results are posted at the start of Day 3. Frank, Alice and Dave, give exact targets, results and possible visitors then.
+Mallory (public): Mallory here, Vanilla Villager. I agree: no nomination until the Night 2 results are posted at the start of Day 3, with exact targets and visitors.
+Niaj (public): Niaj here. Still no nomination from me. Frank, Alice and Dave: at the start of Day 3, post your exact Night 2 targets, results and possible visitors, and I'll check them against deaths.
+Alice (public): Alice here, Medic. No nomination from me. Frank and Dave, post your exact Night 2 targets, results and possible visitors at the start of Day 3 as promised.
+Bob (public): Bob here, Vanilla Villager. Frank, Alice and Dave: post exact Night 2 targets, results and possible visitors at the start of Day 3, as promised. No nomination from me until then.
+Carol (public): Carol here, Vanilla Villager. Agreed: no nomination until Night 2 results are posted at the start of Day 3.
+Dave (public): Dave here, Sheriff. My Night 2 target stays private until my result is posted at the start of Day 3. Frank and Alice, who could have visited you on Night 1?
+Erin (public): Erin here. Still no nomination from me until Frank, Alice and Dave post their Night 2 targets and results at the start of Day 3.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Judy, Mallory, Olivia) Carol (Yakuza chat): Carol here. Proposal for Night 2: Judy keeps the Katana, and the target is Dave. He is the only Sheriff claim that could expose us tonight, and he has already posted a Not Evil result. Standard attack. Alice has 2 medic tokens, so if she protects Dave with Standard it fails, and I'll hold my swap unless Alice shows she's protecting him. Please each submit Judy as holder and Dave as target, and reply to confirm.
+(to Carol, Judy, Mallory, Olivia) Judy (Yakuza chat): Judy: Agreed. Judy holds the Katana and the target is Dave, Standard attack. I'll submit that. I'm spending no tokens tonight and won't guess a role. Ready.
+(to Carol, Judy, Mallory, Olivia) Mallory (Yakuza chat): Mallory: Agreed. Judy holds the Katana, target Dave, Standard attack. I submit that, spend no tokens, and guess no role. Ready.
+(to Carol, Judy, Mallory, Olivia) Olivia (Yakuza chat): Olivia: Agreed. Judy holds the Katana and the target is Dave, Standard attack. I submit that and spend no tokens. If Alice protects Dave with Standard, the attack fails, and we should not change the plan in chat. Ready.
+(to Carol, Judy, Mallory, Olivia) Carol (Yakuza chat): Carol: Agreed. Judy holds the Katana and the target is Dave, Standard attack. I submit that and will spend no swap tonight. Ready.
+(to Carol, Judy, Mallory, Olivia) Judy (Yakuza chat): Judy: Confirmed. I hold the Katana, target Dave, Standard attack. I submit that, spend no tokens, and guess no role. Ready.
+(to Carol, Judy, Mallory, Olivia) Mallory (Yakuza chat): Mallory: Confirmed. Judy holds the Katana, target Dave, Standard attack. I submit that, spend no tokens and guess no role. If Alice's Medic protects Dave, we accept the failed attack and reassess from Day 3 results. No plan change from me. Ready.
+(to Carol, Judy, Mallory, Olivia) Olivia (Yakuza chat): Olivia: Confirmed. Judy holds the Katana, target Dave, Standard attack. I submit that and spend no tokens or swaps. No plan change. Ready.
+Night actions:
+  Alice (Medic): target Dave; "Medic: give Dave Standard Defense for free (another player with Standard costs 0 tokens). No self-protection."
+  Carol (Smuggler): no role action; Katana vote: Judy holds, attacks Dave
+  Dave (Sheriff): target Grace; "Sheriff investigation on Grace."
+  Erin (Bounty Hunter): target Frank; 1 token(s); "Spend my Bounty Hunter attack token: a Strong Attack on Frank."
+  Frank (Lookout): target Dave; "Lookout watch on Dave."
+  Grace (Juror): no action
+  Ivan (Scrutineer): no action
+  Judy (Fixer): no role action; Katana vote: Judy holds, attacks Dave
+  Mallory (Ritualist): no role action; Katana vote: Judy holds, attacks Dave
+  Olivia (Ballot Stuffer): no role action; Katana vote: Judy holds, attacks Dave
+Katana: Judy holds it and attacks Dave.
+(to Erin) Moderator (private): Your bounty on Frank is claimed.
+(to Alice) Moderator (private): You protect Dave with Standard Defense tonight (no token spent). You have 2 medic tokens left.
+(to Dave) Moderator (private): Your investigation result: Grace is Not Evil. You were also attacked tonight with the Katana, and you survived.
+(to Erin) Moderator (private): You spend your attack token on a Strong Attack against Frank. Your attack succeeds. You have 0 attack tokens left.
+(to Frank) Moderator (private): Your Lookout result: Dave was visited tonight by Alice and Judy. You were also attacked tonight by a Bounty Hunter, and you died.
+(to Judy) Moderator (private): You hold the Katana. Your Katana attack on Dave fails. You used no Fixer token tonight. You have 2 fixer tokens left.
+(to Carol, Judy, Mallory, Olivia) Moderator (private): Yakuza actions tonight: Judy keeps the Katana and uses it to attack Dave. Carol, Judy, Mallory and Olivia chose no role actions of their own.
+[Moderator summary] Night 2: Alice (Medic) protected Dave with Standard Defense for free. Judy kept the Katana and attacked Dave with it (Standard attack against Standard Defense), so the attack failed. Dave (Sheriff) checked Grace: Not Evil. Erin (Bounty Hunter) spent her token on a Strong Attack on Frank, and Frank died. Frank (Lookout) watched Dave and saw Alice and Judy visit. Nobody was role-blocked and there were no swaps. The other Yakuza took no actions. Visits recorded: Alice→Dave, Dave→Grace, Erin→Frank, Frank→Dave, Judy→Dave.
+
+===== DAY 3 =====
+Frank died (killed by Bounty Hunter). Their role isn't revealed. Their last will: "Frank, Village. If I die, check who visited me on the night of my death, and treat any name that appears in several visitor lists as the prime suspect. Do not trust a claimed role that cannot explain its own visits."
+[Night check] Night 2: correct
+Speaking order today goes around the circle in seat order, starting with Grace.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Claim] Grace: Juror. N1: no action. N2: no action.
+Grace (public): Grace here, Juror, with no action on Night 1 or Night 2. Frank died to a Bounty Hunter attack, so Frank's Night 2 Lookout watch matters. Alice and Dave, you promised Night 2 targets and results at the start of Day 3, and I haven't seen them. Post them now, before any nomination.
+Heidi (public): Heidi here, Vanilla Villager. Frank died to a Bounty Hunter on Night 2, and his Lookout watch was on someone's visit list. Alice and Dave, you both promised Night 2 targets and results at the start of Day 3. Post them now, with exact visitors, before anyone is nominated. Grace, your Juror claim is on record too.
+Ivan (public): Ivan here, no action on Nights 1 or 2. Frank's death is the key fact: Frank's will says to check who visited him on the night he died. Alice and Dave, post your Night 2 targets, results and possible visitors now, as promised. I'm making no nomination until those are in.
+[Claim] Judy: Vanilla Villager. N1: no night action. N2: no night action.
+Judy (public): Judy here, Vanilla Villager. Frank's will is the right lead: whoever appears on several visitor lists, and any claimed role whose visits cannot explain its results. Alice and Dave still have not posted their Night 2 targets, results and possible visitors, so I agree with Grace and Ivan that no nomination should come before they do.
+Mallory (public): Mallory here, Vanilla Villager. I agree with Grace, Heidi and Ivan: Alice and Dave must post their Night 2 targets, results and possible visitors before anyone is nominated. Frank's will gives us a concrete check, so I'll vote only on checked evidence.
+[Claim] Niaj: Vanilla Villager. N1: no night action. N2: no night action.
+Niaj (public): Niaj here, Vanilla Villager. Frank died to a Bounty Hunter, which is a Strong Attack, so only Strong protection would have stopped it. Alice and Dave: post your Night 2 targets and results now, with any visitors you know of. I won't nominate until those are in.
+[Claim] Olivia: Vanilla Villager. N1: no night action. N2: no night action.
+Olivia (public): Olivia here, Vanilla Villager. Frank died to a Bounty Hunter, a Neutral Strong attacker, so Frank's night visitor list is the lead his will points to. Alice and Dave: post your Night 2 targets, results and visitors now, as promised. I'm making no nomination until those are in.
+[Claim] Alice: Medic. N1: Standard protection on Carol. N2: Standard protection on Dave (free). 2 medic tokens left.
+Alice (public): Alice here, Medic. As promised: on Night 2 I gave Dave Standard protection for free, no token spent, and I learned nothing from it. Frank died to a Strong Bounty Hunter attack I did not cover, so the visitor list his will points to is the lead. Frank's Night 2 Lookout watch target is the key fact we still lack.
+Bob (public): Bob here, Vanilla Villager, with no N1 or N2 action. Frank is dead, so his N2 Lookout watch and its visitor list are the only way to check the Bounty Hunter lead. Dave, post your N2 check now, since the Sheriff result is the one we still lack. I'm not nominating anyone yet.
+Carol (public): Carol here, Vanilla Villager. Dave, please post your Night 2 target and result now. Alice, your Standard save on Dave fits a Katana attack, but Frank died to a Strong Bounty Hunter hit, so Frank's visitor list is the lead his will points to. No nomination from me yet.
+[Claim] Dave: Sheriff. N1: checked Bob, Not Evil. N2: checked Grace, Not Evil. Attacked by Katana N2, survived Alice's save.
+Dave (public): Dave here, Sheriff. N1: checked Bob, Not Evil. N2: checked Grace, Not Evil. On N2 I was attacked with the Katana and survived Alice's Standard save, so a Yakuza with the Katana is alive. A Katana holder reads Good that night, so Grace's Not Evil doesn't fully clear her. I'm not nominating until we have more checks.
+Erin (public): Erin here, Vanilla Villager. Dave's Sheriff claim and Alice's Medic claim both fit Dave surviving a Standard Katana attack, so their Night 2 visits need to be checked against Frank's visitor list. Grace, your Juror claim has no results at all, so please say what you would have done with it on Nights 1 and 2. I won't nominate until Frank's visitors are posted.
+Grace (public): Grace here, Juror. I hold no results, so I can't add evidence yet. Dave's Katana survival and Alice's Standard save fit each other, but they are two claims that depend on each other, so one of them could be false. Frank's Lookout target and visitor list are the check we still lack. Alice and Dave, if either of you knows who could have visited you on Night 2, say so now. I won't nominate until Frank's visit list is public or a Night 3 result comes in.
+Heidi (public): Heidi here, Vanilla Villager. Dave's Sheriff claim and Alice's Medic claim fit each other: Standard Katana vs Standard save fails, so Dave surviving is consistent. Frank's N2 Lookout list is still missing, and Grace's Juror claim has no results. Frank's visitors must be posted before any nomination from me.
+[Claim] Ivan: Scrutineer. N1: no action. N2: no action. D3: no trial yet, no vote.
+Ivan (public): Ivan here, Scrutineer, no action yet. Dave and Alice: Standard save on Standard Katana is consistent, but it can't be verified alone. Dave, do you know anyone who visited you on Night 2? Frank's Bounty Hunter kill is the bigger threat, and no nomination from me until the visitor picture is clearer.
+Judy (public): Judy here, Vanilla Villager. Frank's will points at his visitor list, but his Night 2 Lookout target is still missing. Dave and Alice, your Standard save and the Katana survival can't both be checked yet, so please name who could have visited Dave. I won't nominate until Frank's watch target is posted.
+Mallory (public): Mallory here, Vanilla Villager. Alice's Standard save and Dave's Katana survival fit each other, and I can't check either alone. Frank's Night 2 Lookout target and visitor list are still missing, so I'm not nominating yet. Frank's will is the concrete lead, so let's get that list before any trial.
+Niaj (public): Niaj here. Frank's Night 2 Lookout target is the missing check. Alice and Dave, you both have Night 2 claims that depend on each other. Dave, you said a Katana holder reads Good, so your Not Evil on Grace doesn't clear her. Who could have visited you on Night 2? I'm making no nomination until we have the visitor picture.
+Olivia (public): Olivia here, Vanilla Villager. Frank's will is right: his Night 2 Lookout target is the missing check, so I want it posted before any nomination. Dave, you said a Katana holder reads Good, so explain why your Grace Not Evil result is meaningful. Grace, as a Juror with no results, what would you have done on Night 2? Ivan, what did your Scrutineer do on Night 2?
+Alice (public): Alice here, Medic. I can confirm my own action: I gave Dave Standard protection on Night 2. I can't see whether it stopped anything. A Katana Standard attack would fail against Standard Defense, so Dave surviving fits Dave's claim. Frank's Night 2 Lookout target is still missing, so I'm making no nomination until it's posted. Anyone who was on Frank's visit list, please say so.
+Bob (public): Bob here, Vanilla Villager. Dave's Katana survival and Alice's Standard save fit each other, but they can't be checked alone. Dave, a Katana holder reads Good, so your Not Evil on Grace doesn't clear her. Frank's Night 2 Lookout target is still unposted, and that's the check we need. I'm not nominating until it's public.
