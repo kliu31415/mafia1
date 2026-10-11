@@ -19,6 +19,13 @@ How it differs from an OpenRouter call:
 - Cost: calls are paid by the subscription, so they count $0; the list price the CLI reports is kept in the call's
   usage as list_cost_usd, with the subscription windows' utilization (five_hour, seven_day) as plan_utilization.
 - Thinking comes back summarized (--thinking-display summarized), like Claude's through the API.
+- Effort: both paths send Anthropic's native effort level (5.5 models reject thinking budgets), but answering through
+  the CLI's StructuredOutput tool, plus a closing turn after it, costs more output than the API's constrained JSON. On
+  one real night-action prompt (3 runs each, 2026-10-11; output tokens, reasoning in brackets, API -> CLI): Opus high
+  1168 (376) -> 1740 (418), medium 1015 (313) -> 1346 (278), so Opus thinks the same; Haiku high 1164 (971) ->
+  2213 (1572), medium 685 (494) -> 1459 (900). On long day turns Haiku's gap was ~3x (5k output tokens a call vs
+  ~1.8k in API games, 23 s vs 9 s a turn, game_20261011_085841_783834). So CLI Haiku at medium matches API Haiku at
+  high; Opus needs no change.
 """
 
 import json
