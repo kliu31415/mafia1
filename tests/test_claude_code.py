@@ -219,11 +219,11 @@ def test_games_use_the_cli_by_default_where_it_is_installed(monkeypatch):
         via_claude_code(True)
 
 
-def used(five_hour, week, resets_in=3600.0):
-    """A call that answers and reports this much of each subscription window used."""
+def used(five_hour, week, resets_in=3600.0, week_left=0.5):
+    """A call that answers and reports this much of each subscription window used (week_left: days to its reset)."""
     return ("events", [{"type": "rate_limit_event", "rate_limit_info": {"status": "allowed", "unifiedWindows": {
                 "five_hour": {"utilization": five_hour, "resetsAt": time.time() + resets_in},
-                "seven_day": {"utilization": week, "resetsAt": time.time() + 3 * 86400}}}},
+                "seven_day": {"utilization": week, "resetsAt": time.time() + week_left * 86400}}}},
             {"type": "result", "subtype": "success", "is_error": False, "structured_output": {"vote": "Bob"},
              "result": "ok", "usage": {}}])
 
@@ -235,7 +235,7 @@ def test_games_stop_using_the_subscription_at_its_cap(monkeypatch):
     cli = FakeCli(used(0.5, 0.3), used(0.85, 0.3), {"vote": "Bob"}, {"vote": "Bob"})
     client = ClaudeCodeClient(None, runner=cli)
     client.on_error = lambda kind, summary, **kw: errors.append((kind, kw.get("window")))
-    assert "5-hour window 50% used (cap 80%)" in client.check_plan()  # a game may start
+    assert "5-hour window 50% used (games start below 80%)" in client.check_plan()  # a game may start
     client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # this call takes the 5-hour window past its cap
     assert not slept
     client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # so the next waits for that window's reset
@@ -243,7 +243,7 @@ def test_games_stop_using_the_subscription_at_its_cap(monkeypatch):
     client.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # and after it calls go on as usual
     assert len(slept) == 1 and len(cli.runs) == 4
 
-    week = ClaudeCodeClient(None, runner=FakeCli(used(0.2, 0.9), {"vote": "Bob"}))
+    week = ClaudeCodeClient(None, runner=FakeCli(used(0.2, 0.9, week_left=3), {"vote": "Bob"}))
     with pytest.raises(PlanLimitError, match="not starting.*7-day window, which is 90% used"):
         week.check_plan()
     with pytest.raises(PlanLimitError, match="--resume"):  # mid-game: the week resets too late to wait for
@@ -261,3 +261,19 @@ def test_plan_cap_option():
     for bad in ("80", "0,50", "120,50", "a,b"):
         with pytest.raises(ValueError):
             parse_plan_cap(bad)
+
+
+def test_a_new_game_needs_more_of_the_week_left_early_in_the_week():
+    def start(week_used, days_left, caps=None):
+        return ClaudeCodeClient(None, runner=FakeCli(used(0.1, week_used, week_left=days_left)), caps=caps).check_plan()
+    assert "7-day window 5% used (games start below 10%)" in start(0.05, 7)  # the week has just begun
+    with pytest.raises(PlanLimitError, match="15% .* 7.0 days left.* only below 10%"):
+        start(0.15, 7)
+    assert "games start below 50%" in start(0.45, 3.5)  # halfway: 10% + 80% x 1/2
+    with pytest.raises(PlanLimitError, match="only below 50%"):
+        start(0.55, 3.5)
+    assert "7-day window 75% used (games start below 80%)" in start(0.75, 0.5)  # late: the cap itself
+    assert "games start below 100%" in start(0.9, 7, caps={"five_hour": 1.0, "seven_day": 1.0})  # turned off
+    running = ClaudeCodeClient(None, runner=FakeCli(used(0.1, 0.5, week_left=6), {"vote": "Bob"}))
+    running.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)
+    running.chat(Model.OPUS_5_5, player_messages(), schema=SCHEMA)  # a game under way goes on up to the cap

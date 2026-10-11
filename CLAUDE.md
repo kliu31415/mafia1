@@ -188,7 +188,9 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   `--resume` when it resets more than 6 hours later. Games also leave part of the subscription for Kevin's other
   work (a program safeguard): at 80% of the 5-hour or 7-day window (`PLAN_CAPS` in `claude_code.py`; `--plan-cap
   5H,WEEK` in percent, `100,100` for none) a game doesn't start (one small Haiku call reads the utilization and
-  prints it), and a running one waits for the reset (a `plan_cap` alert) or stops for `--resume`. The same effort can think more through the CLI, so a model's
+  prints it), and a running one waits for the reset (a `plan_cap` alert) or stops for `--resume`. Early in the
+  week a new game needs more room: it starts only below 10% of the 7-day window as the week begins, rising with the
+  week to the cap at 7/8 of the way through (`start_cap`). The same effort can think more through the CLI, so a model's
   CLI default can differ (`cli_effort` in `MODELS`: Haiku medium). Logs record each player's route (`via`), and
   `stats.py` counts Claude Code seats as their own model ("haiku-5.5 (CC)").
 - Tips from past games (`tips.py`): `uv run tips.py build` distills the lessons and strategy reviews in
