@@ -2,7 +2,7 @@
 
 import json
 
-from players import BOOL, Players, STR, cap_words, name_enum, night_action_schema, nullable, obj, tokens_left
+from players import BOOL, Players, STR, as_chosen, cap_words, name_enum, night_action_schema, nullable, obj, tokens_left
 from roles import LOGIC, Alignment, Status, logic
 from roles.base import swaps_tonight
 from events import PHASE, YAKUZA_CHAT
@@ -19,6 +19,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.phase = "night"
     game.emit(f"Night {game.day} begins.", cat=PHASE)
     alive_at_start = {p.name for p in game.alive()}  # the revenge draw's pool (R10)
+    yakuza_at_start = [y.name for y in game.yakuza()]
     if len(game.yakuza()) > 1:
         yakuza_chat(game, players, YAKUZA_CHAT_ROUNDS,
                     "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. "
@@ -87,9 +88,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "make the cause just the source as the rules allow it to be known (e.g. 'Katana', 'Vigilante', "
         "'Serial Killer', 'Trap'). For each kill also set `by` to the player whose action killed them "
         "(the trap's owner for a trap) and katana=true for the Katana attack; these are recorded for "
-        "analysis, never shown. Don't tell() deaths to all. Every attacked player, including those who died, "
-        "gets their attack notice (R20 step 5), saying whether they died; moderators have skipped it, or left out "
-        "the death, for players who died. "
+        "analysis, never shown. Don't tell() deaths to all. Code tells each player who dies tonight that they "
+        "were attacked and died, with the kill's cause, at the end of the night; you tell every attacked player who "
+        "survived (R20 step 5). "
         "Tell each role-blocked player that they were role-blocked, even one with no night action or who chose not to "
         "act (R9); a role-blocker learns only whether the "
         "block failed because its target can't be role-blocked (R9). "
@@ -98,9 +99,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "Every player who used an ability gets a private result line, even when nothing "
         "else happened (e.g. 'You went on alert. 1 alert token left.'), stating any tokens they have left, "
         "except where a role note below says otherwise (e.g. code tells them, so don't tell() them a second result). "
-        "Tell all Yakuza which actions each Yakuza chose but not the results, nor whether a teammate was "
-        "role-blocked (R8); role-blocked Yakuza's Katana votes still count. "
-        "only the attacker learns whether the Katana attack succeeded. Update token counts for any "
+        "Code tells the Yakuza which actions each of them chose and the Katana's holder and target (R8), so don't "
+        "tell() them that; role-blocked Yakuza's Katana votes still count. Only the attacker learns whether the "
+        "Katana attack succeeded: tell them. Update token counts for any "
         "tokens spent. "
         "Before end_phase, call record_visits once with every visit that happened tonight (R6, R20 steps 1-2), "
         "as [visitor, target] pairs, a self-visit as [X, X] (an empty list if there were none). Easy to miss: the "
@@ -118,6 +119,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                        moderator=moderator.model)
     game.resolve_revenge(alive_at_start)
     game.run_night_end_hooks()  # after revenge: a Cardinal it kills curses this same night
+    tell_night_deaths(game, alive_at_start)
+    tell_yakuza_summary(game, actions, katana, yakuza_at_start)
     # A forged will and a Mortician's clean only take effect if their target died tonight; the moderator may
     # apply them before knowing (any op order is fine), so survivors get theirs back.
     for p in game.alive():
@@ -131,6 +134,49 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             game.log.write("night_effects_undone", day=game.day, player=p.name, undone=undone)
     game.pass_katana()
     game.day += 1
+
+
+def tell_night_deaths(game: Game, alive_at_start: set[str]) -> None:
+    """Rules R3, R20 step 5: each player who died tonight learns they were attacked and by what. Moderators left it
+    out for about one victim in ten (moderator accuracy audit, Oct 11 2026), so code sends it."""
+    for p in game.players:
+        if p.name in alive_at_start and not p.alive and p.death and p.death["phase"] == "night" \
+                and p.death["day"] == game.day:
+            game.tell([p.name], f"You were attacked tonight ({p.death['cause']}) and died.")
+
+
+def describe_choice(a: dict) -> str:
+    """A teammate's chosen night action for the Yakuza summary (R8), as chosen (a swap stays hidden, R23)."""
+    if not a.get("act"):
+        return "no action"
+    text = "to act"
+    if a.get("target"):
+        text += f" on {a['target']}" + (f" and {a['second_target']}" if a.get("second_target") else "")
+    if a.get("guessed_role"):
+        text += f", naming {a['guessed_role']}"
+    if a.get("tokens_to_spend"):
+        text += f", spending {a['tokens_to_spend']} token(s)"
+    return text + (f' ("{a["details"]}")' if a.get("details") else "")
+
+
+def tell_yakuza_summary(game: Game, actions: dict[str, dict], katana: dict, yakuza_at_start: list[str]) -> None:
+    """Rules R8: at the end of the night each Yakuza learns the actions the other Yakuza chose, not their results or
+    blocks. Code writes it from the submitted actions; moderators worded it two ways for a blocked teammate and
+    misnamed the holder after a move (moderator accuracy audit, Oct 11 2026)."""
+    living = [y.name for y in game.yakuza()]
+    if len(yakuza_at_start) < 2 or not living:
+        return
+    chosen = {n: as_chosen(actions.get(n, {})) for n in yakuza_at_start}
+    votes = [chosen[n].get("katana_vote_target") for n in yakuza_at_start]
+    target = katana.get("attack") and next((t for t in set(votes) if t and majority(votes.count(t), len(votes))),
+                                           katana["attack"])
+    holder = katana.get("holder")
+    line = (f"{holder} holds the Katana" + (f" (moved from {katana['moved_from']})" if katana.get("moved_from") else "")
+            + (f" and chose to attack {target}." if target else ", with no Katana attack."))
+    for name in living:
+        others = [f"{n} ({game.player(n).role}) chose {describe_choice(chosen[n])}" for n in yakuza_at_start
+                  if n != name]
+        game.tell([name], f"Yakuza night summary: {line} " + "; ".join(others) + ".")
 
 
 def swap_text(game: Game, katana: dict) -> str:

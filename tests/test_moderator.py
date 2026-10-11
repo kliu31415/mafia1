@@ -315,3 +315,22 @@ def test_a_token_use_counted_by_both_set_tokens_and_the_op_is_noted(game_factory
     out = mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "player": "Carol", "by": "Alice"}]})
     assert game.player("Alice").tokens["prosecutor"] == 0
     assert "Check Alice's prosecutor tokens, now 0" in out["notes"][0]
+
+
+def test_code_tells_the_yakuza_their_choices_and_night_victims_their_death(game_factory):
+    # Moderator accuracy audit, Oct 11 2026: hand-written summaries and death notices were inconsistent.
+    def decide(name, task, schema):
+        if name in ("Alice", "Bob"):
+            return {"act": name == "Bob", "target": "Dave" if name == "Bob" else None,
+                    "katana_vote_holder": "Alice", "katana_vote_target": "Carol"}
+    game, players = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager", "Medic"],
+                                 ScriptedClient(decide, moderator_calls=[("apply_changes", {"changes": [
+                                     {"op": "kill", "player": "Carol", "cause": "Katana", "by": "Alice",
+                                      "katana": True}]})]))
+    run_night(game, players, Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)"))
+    assert told(game, "Carol")[-1] == "Moderator (private): You were attacked tonight (Katana) and died."
+    assert told(game, "Alice")[-1] == ("Moderator (private): Yakuza night summary: Alice holds the Katana and chose to "
+                                       "attack Carol. Bob (Pharmacist) chose to act on Dave.")
+    assert told(game, "Bob")[-1] == ("Moderator (private): Yakuza night summary: Alice holds the Katana and chose to "
+                                     "attack Carol. Alice (Grunt) chose no action.")
+    assert not any("Yakuza night summary" in t for n in ("Carol", "Dave", "Erin") for t in told(game, n))
