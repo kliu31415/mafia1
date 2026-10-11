@@ -71,12 +71,12 @@ ROLES: dict[str, RoleInfo] = {
     "Census Taker": RoleInfo(Alignment.GOOD, "Investigative", False,
                              summary="Night: count the Good or the Evil players (drawn at random) among a chosen "
                              "player and two random others.",
-                             acts_at_night=True,
+                             acts_at_night=True, tested=True,
                              notes="moderator records the use with the census op; code draws the group and the "
                              "alignment counted, counts true alignment and tells them"),
     "Profiler": RoleInfo(Alignment.GOOD, "Investigative", False,
                          summary="Token: profile a player, learn three candidate roles for them, one true.",
-                         tokens={"profile": 3}, acts_at_night=True,
+                         tokens={"profile": 3}, acts_at_night=True, tested=True,
                          notes="moderator records the use with the profile op; code draws the decoys and tells them"),
     "Coroner": RoleInfo(Alignment.GOOD, "Investigative", False,
                         summary="Token: examine a player who died before tonight, learn their role (not if a "
@@ -87,7 +87,7 @@ ROLES: dict[str, RoleInfo] = {
     "Chronicler": RoleInfo(Alignment.GOOD, "Investigative", False,
                            summary="Token: marks a player; if they ever die, their role is revealed to everyone "
                            "(unless a Mortician cleans them).",
-                           tokens={"chronicler": 2}, acts_at_night=True,
+                           tokens={"chronicler": 2}, acts_at_night=True, tested=True,
                            notes="moderator records the use with the mark op (a visit); code sets status 'marked', "
                            "and the death announcement reveals the role or says the clean hid it"),
     "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False,
@@ -167,7 +167,7 @@ ROLES: dict[str, RoleInfo] = {
                              acts_at_night=True, tested=True),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False,
                            summary="Thinks they are a random Investigative role; gets usually false results.",
-                           acts_at_night=True,
+                           acts_at_night=True, tested=True,
                            notes="code assigns the fake role (with its tokens and night prompts); "
                            "moderator invents its results"),
     "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True,
@@ -189,7 +189,8 @@ ROLES: dict[str, RoleInfo] = {
                           summary="Token: guess a player's exact role; if right, attack them, "
                           "if wrong, exposed at dawn.",
                           tokens={"ritual": 2}, acts_at_night=True,
-                          notes="failed guesses must be announced publicly at dawn"),
+                          notes="moderator resolves the guess; its night note says to announce a wrong guess with a "
+                          "public tell at night, read out at dawn"),
     "Puppeteer": RoleInfo(Alignment.EVIL, "Yakuza", True,
                           summary="Token: puppet a non-Yakuza player and chat in their place for the next Day.",
                           tokens={"puppet": 1}, acts_at_night=True,
@@ -247,12 +248,12 @@ ROLES: dict[str, RoleInfo] = {
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                         summary="Wins alone if alive when few enough players remain at dawn. Learns a role for each "
                         "death, true only half the time.",
-                        unique=True,
+                        unique=True, tested=True,
                         notes="code checks the living count at each dawn and ends the game when it wins; code tells "
                         "the death reports at dawn"),
     "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                               summary="Night: Strong Attack on one player. Wins alone. Standard Defense.",
-                              defense="Standard", acts_at_night=True),
+                              defense="Standard", acts_at_night=True, tested=True),
     "Arsonist": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                          summary="Night: douse a player (only non-Good ones are told), or ignite all doused players "
                          "with a Strong Attack. Wins alone.",

@@ -347,3 +347,14 @@ def test_the_text_log_lists_secret_votes_for_reviewers(game_factory):
     run_trial(game, players, game.player("Alice"), "Bob", rnd=1)
     lines = [text_line(r) for r in records if r["kind"] == "vote"]
     assert lines and (lines[0] or "").startswith("[Secret trial votes on Bob] Guilty - ")
+
+
+def test_a_claim_that_repeats_the_players_name_drops_it(game_factory):
+    def decide(name, task, schema):
+        if "public_message" in schema["properties"] and name == "Alice":
+            return {"public_message": "Hi.", "claim": "Alice: Alice, Sheriff."}
+        return None
+    game, players = game_factory(VILLAGE5, ScriptedClient(decide))
+    game.player("Alice").speaking_budget = 8.0
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
+    assert game.claim_record["Alice"][-1][1] == "Sheriff."

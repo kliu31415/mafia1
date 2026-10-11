@@ -328,6 +328,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     # (A Puppeteer may set the puppet's.)
     if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):
         claim = cap_words(claim.strip(), CLAIM_WORDS)
+        # The ledger already names the player: "Bob: Bob: Lookout" (game_20261011_055615_1112) drops the repeat.
+        while m := re.match(rf"{re.escape(p.name)}\s*[:,]\s*(?=\w)", claim):
+            claim = claim[m.end():]
         claims = game.claim_record.setdefault(p.name, [])
         if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
             claim = claims[-1][1]

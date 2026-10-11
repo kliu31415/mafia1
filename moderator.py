@@ -47,7 +47,8 @@ MODERATOR_TOOLS = [
     tool("random_choice", "Pick k distinct items uniformly at random using the game's RNG. "
          "Always use this instead of choosing 'randomly' yourself.",
          options={"type": "array", "items": {"type": "string"}}, k={"type": "integer"}),
-    tool("tell", "Send a message. to = list of player names, or ['all'] for a public announcement.",
+    tool("tell", "Send a message. to = list of player names, or ['all'] for a public announcement "
+         "(sent at night, it is read out at the start of the next Day).",
          to={"type": "array", "items": {"type": "string"}}, text={"type": "string"}),
     tool("ask_player", "Ask one player a question and get their free-text answer.",
          player={"type": "string"}, question={"type": "string"}),
