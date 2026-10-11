@@ -27,7 +27,7 @@ class Vulture(RoleLogic):
                 "(counting yourself)."]
 
     def at_dawn(self, game: Game) -> None:
-        vultures = [p for p in game.alive() if p.role == "Vulture"]
+        vultures = [p for p in game.alive() if p.role == self.role]
         report_deaths(game, vultures)
         if vultures and len(game.alive()) <= threshold(game):
             game.sole_winner = vultures[0].name

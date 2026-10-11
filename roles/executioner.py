@@ -46,7 +46,7 @@ class Executioner(RoleLogic):
 
     def at_dawn(self, game: Game) -> None:
         for name in game.role_state.pop(TURN_JESTER, []):
-            if (me := game.player(name)).alive and me.role == "Executioner":
+            if (me := game.player(name)).alive and me.role == self.role:
                 turn_jester(game, me)
 
 

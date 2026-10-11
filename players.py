@@ -63,6 +63,11 @@ def truncate_words(text: str, words: int) -> str:
     return " ".join(kept) + " [truncated]"
 
 
+def cap_words(text: str, words: int) -> str:
+    """text, or its first `words` words (truncate_words) if it is longer."""
+    return truncate_words(text, words) if word_count(text) > words else text
+
+
 def nullable(schema: dict) -> dict:
     return {"anyOf": [schema, {"type": "null"}]}
 
@@ -351,7 +356,7 @@ class Players:
             after = before
             if isinstance(note := out.get("notepad"), str) and not blank(note):  # "" keeps it, like null
                 cap = notepad_words(self.game)
-                after = truncate_words(note, cap) if word_count(note) > cap else note
+                after = cap_words(note, cap)
                 if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
                     self.game.emit(f"(Program note: your notepad was over {cap} words, so it was cut "
                                    f"to its first {cap}.)", [p.name])

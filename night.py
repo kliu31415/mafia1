@@ -2,8 +2,7 @@
 
 import json
 
-from players import (BOOL, Players, STR, name_enum, night_action_schema, nullable, obj, tokens_left, truncate_words,
-                     word_count)
+from players import BOOL, Players, STR, cap_words, name_enum, night_action_schema, nullable, obj, tokens_left
 from roles import LOGIC, Alignment, Status, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
@@ -45,7 +44,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     katana = tally_katana(game, actions)
     revote: dict[str, str | None] = {}  # Yakuza -> target, if there was a revote
     yakuza = game.yakuza()
-    if katana.get("note", "").startswith("no majority") and len(yakuza) > 1:
+    if katana.get("note") == NO_MAJORITY and len(yakuza) > 1:
         # No majority: show the votes, one more round of chat, then a Katana-only revote.
         votes = "; ".join(f"{y.name}: holder {actions[y.name].get('katana_vote_holder')}, target "
                           f"{actions[y.name].get('katana_vote_target')}" for y in yakuza)
@@ -160,8 +159,7 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
                 "ready=true if you have nothing more to discuss; chat ends when everyone is ready.",
                 schema, {"message": None, "ready": True}, step="yakuza_chat", rnd=rnd)
             if (msg := out.get("message") or "").strip():
-                if word_count(msg) > YAKUZA_MESSAGE_WORDS:
-                    msg = truncate_words(msg, YAKUZA_MESSAGE_WORDS)
+                msg = cap_words(msg, YAKUZA_MESSAGE_WORDS)
                 game.emit(f"{y.name} (Yakuza chat): {msg}", names, cat=YAKUZA_CHAT, speaker=y.name, message=msg)
             ready.append(out.get("ready", True))
         if all(ready):
@@ -177,6 +175,9 @@ def katana_majority_note(game: Game) -> str:
     return (f"There is no attack unless at least {need} of the {n} living Yakuza vote for the same target{both}. "
             f"The holder vote is separate: the Katana moves only if at least {need} vote for the same new holder, "
             "and otherwise the current holder keeps it and makes any attack.")
+
+
+NO_MAJORITY = "no majority on a target; no attack"  # tally_katana's note when the Yakuza get a revote
 
 
 def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
@@ -196,4 +197,4 @@ def tally_katana(game: Game, actions: dict[str, dict]) -> dict:
         return {"attack": target, "holder": game.katana_holder, **moved, "attack_level": "Standard"}
     if majority(targets.count(None), len(yakuza)):
         return {"attack": None, "holder": game.katana_holder, **moved, "note": "the Yakuza agreed not to attack"}
-    return {"attack": None, "holder": game.katana_holder, **moved, "note": "no majority on a target; no attack"}
+    return {"attack": None, "holder": game.katana_holder, **moved, "note": NO_MAJORITY}

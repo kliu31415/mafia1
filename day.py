@@ -5,8 +5,8 @@ import re
 from typing import Any
 
 from llm import Model
-from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, day_turn_schema, name_enum, nullable, obj,
-                     truncate_words, word_count)
+from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, day_turn_schema, name_enum, nullable,
+                     obj, truncate_words, word_count)
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import logic
 from state import Game, Player, majority
@@ -96,7 +96,7 @@ def write_wills(game: Game, players: Players) -> None:
         will = out["last_will"]
         if blank(will):  # blank (or a written-out null) means no change, as on day turns
             continue
-        p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
+        p.last_will = cap_words(will, LAST_WILL_WORDS)
 
 
 def open_game(game: Game, players: Players) -> None:
@@ -318,7 +318,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             out["nominate"] = nominee
 
     if writer is p and isinstance(will := out.get("last_will"), str) and not blank(will):
-        p.last_will = truncate_words(will, LAST_WILL_WORDS) if word_count(will) > LAST_WILL_WORDS else will
+        p.last_will = cap_words(will, LAST_WILL_WORDS)
         if p.last_will != will:  # Sol's wills were cut 40 times unnoticed (game_20261009_152409_117630)
             game.emit(f"(Program note: your last will was over {LAST_WILL_WORDS} words, so it was cut to its "
                       f"first {LAST_WILL_WORDS}.)", [p.name])
@@ -327,7 +327,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     # A claim with no letters or digits (Sol wrote "/" for "no change") or a written-out null keeps the old one.
     # (A Puppeteer may set the puppet's.)
     if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):
-        claim = truncate_words(claim, CLAIM_WORDS) if word_count(claim) > CLAIM_WORDS else claim.strip()
+        claim = cap_words(claim.strip(), CLAIM_WORDS)
         claims = game.claim_record.setdefault(p.name, [])
         if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
             claim = claims[-1][1]

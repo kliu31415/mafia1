@@ -28,7 +28,7 @@ class Smuggler(RoleLogic):
     def before_resolution(self, game: Game, actions: dict[str, dict]) -> None:
         for name, a in list(actions.items()):
             me = game.player(name)
-            if me.role != "Smuggler" or not a.get("act"):
+            if me.role != self.role or not a.get("act"):
                 continue
             x, y = a.get("target"), a.get("second_target")
             if me.tokens.get("swap", 0) < 1 or not x or not y or x == y:
