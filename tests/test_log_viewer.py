@@ -134,3 +134,12 @@ def test_jump_bar():
                        log_viewer.jump_html(phases))
     assert links == [("phase-0", "Setup", ""), ("phase-1", "N1", "††"), ("phase-2", "D2", ""),
                      ("phase-3", "Post-game", ""), ("phase-5", "Game over", "")]
+
+
+def test_secret_votes_show_who_voted_which_way():
+    name = log_viewer.Namer({"Ann": "Sheriff", "Bob": "Grunt", "Cat": "Medic"})
+    trial = {"stage": "trial", "nominee": "Bob", "outcome": "Guilty", "votes": {"Cat": True, "Ann": True},
+             "weights": {"Cat": 2}, "reversed": ["Ann"]}
+    text = re.sub("<[^>]+>", "", log_viewer.vote_split(trial, name, ["Ann", "Bob", "Cat"]))
+    assert text == ("trial of Bob (Guilty) · Guilty (3): Ann (reversed by a Fixer), Cat (×2) · "
+                    "Innocent (0): nobody")

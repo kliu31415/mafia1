@@ -637,6 +637,8 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "vote":
             votes.append(r)
             day_votes.append(r)
+            if r.get("secret"):  # players saw only the totals: show who voted which way where the vote happened
+                line("hidden", "Secret votes", "", who=r["votes"], body_html=vote_split(r, name, alive_order))
         elif k == "player_call":
             last_call[r["player"]] = r
             o = dict(r.get("output") or {})
@@ -742,7 +744,7 @@ def render_html(jsonl_path: Path) -> Path:
             f"<style>{CSS}{icons_css()}</style>"
             f"</head><body><h1>{esc(title)}</h1><div class='legend'>{legend}</div><div class='controls'>"
             f"<label><input type='checkbox' id='showcalls' checked> Model details</label>"
-            f"<label><input type='checkbox' id='showhidden' checked> Hidden night info</label>"
+            f"<label><input type='checkbox' id='showhidden' checked> Hidden info</label>"
             f"<label><input type='checkbox' id='showicons' checked> Role icons</label>"
             f"<span><button id='expand'>Expand all</button> <button id='collapse'>Collapse all</button></span>"
             f"<label><input type='checkbox' id='showroster'> Roster</label>"
@@ -760,6 +762,23 @@ def render_html(jsonl_path: Path) -> Path:
 def involves(names: Iterable[str]) -> str:
     """The data-p attribute the player filter reads: the players a line or call involves."""
     return f" data-p='{esc(' '.join(sorted(names)))}'" if names else ""
+
+
+def vote_split(v: dict, name: Namer, seats: list[str]) -> str:
+    """One vote record as "Guilty (n): names · Innocent (n): names" in seat order, marking doubled and reversed
+    votes."""
+    yes, no = ("Guilty", "Innocent") if v["stage"] == "trial" else ("Yes", "No")
+    weights, flipped = v.get("weights") or {}, set(v.get("reversed") or [])
+
+    def who(n: str) -> str:
+        notes = ([f"×{weights[n]}"] if weights.get(n, 1) != 1 else []) + (["reversed by a Fixer"] if n in flipped else [])
+        return name(n) + (f" <span class='muted'>({', '.join(notes)})</span>" if notes else "")
+    groups = [(label, [n for n in sorted(v["votes"], key=lambda n: seats.index(n) if n in seats else len(seats))
+                                       if v["votes"][n] is side]) for label, side in ((yes, True), (no, False))]
+    return (f"<span class='muted'>{esc(v['stage'])} of</span> {name(v['nominee'])} "
+            f"<span class='muted'>({esc(str(v['outcome']))})</span> · "
+            + " · ".join(f"<b>{label}</b> ({sum(weights.get(n, 1) for n in names)}): "
+                         f"{', '.join(map(who, names)) or 'nobody'}" for label, names in groups))
 
 
 def votes_html(votes: list[dict], name: Namer, seats: list[str], title: str, show_day: bool = False) -> str:
