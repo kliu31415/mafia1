@@ -2,7 +2,7 @@
  "script": "core",
  "cut_sha256": "dd338fcb978c3503",
  "text_sha256": "9465eec1092e11ba",
- "model": "opus-5.5",
+ "made_by": "opus-5.5",
  "made": "2026-10-11T01:22:22",
  "cost": 0.134536,
  "edits": [

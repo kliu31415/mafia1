@@ -154,10 +154,11 @@ def rules_for(rules: str, script: str) -> str:
 
 
 REVISE_TASK = (
-    'You are tidying the rules of a social deduction game for one game "script". The full rules come first; then '
-    "the same rules cut down to the script: role paragraphs not on the script were removed, nothing else changed. "
-    "The cut can still mention roles that are no longer listed (examples, cross-references, lists of roles in "
-    "general rules or in other roles' paragraphs). Players will be told that only the listed roles exist.\n\n"
+    'You are tidying the rules of a social deduction game for one game "script". The full rules are above; the '
+    "user's message has the same rules cut down to the script: role paragraphs not on the script were removed, "
+    "nothing else changed. The cut can still mention roles that are no longer listed (examples, cross-references, "
+    "lists of roles in general rules or in other roles' paragraphs). Players will be told that only the listed "
+    "roles exist.\n\n"
     "Return edits to the CUT rules that remove or reword mentions of roles that aren't on the script, where doing "
     "so makes the rules clearer or shorter without changing any rule for the listed roles. Each edit replaces one "
     'exact passage ("old", copied character for character from the cut rules, including line breaks, long enough '
@@ -198,39 +199,64 @@ def rule_labels(text: str) -> list[str]:
     return re.findall(r"^(R\d+) \(", text, flags=re.M)
 
 
-def revise(client, rules: str, script: str, reviser: str = REVISER) -> dict:
-    """Asks the reviser model for edits to the script's cut and writes the cache; returns its metadata."""
-    from llm import answer_json, parse_model_spec
-    spec = parse_model_spec(reviser)
-    text = cut(rules, script)
+def script_task(script: str, text: str) -> str:
+    """The script-specific part of the revision task: which roles are (not) on it, and the cut to edit."""
     missing = sorted(set(ROLES) - set(roles_of(script)))
-    task = (f"{REVISE_TASK}\n\nRoles on the script: {', '.join(roles_of(script))}.\nRoles NOT on the script: "
-            f"{', '.join(missing)}.\n\n=== FULL RULES ===\n{rules}\n\n=== CUT RULES (edit these) ===\n{text}")
-    reply = client.chat(spec.model, [{"role": "user", "content": task}], schema=EDIT_SCHEMA, schema_name="edits",
-                        effort=spec.effort)
-    edits = answer_json(reply, EDIT_SCHEMA)["edits"]
+    return (f"Roles on the script: {', '.join(roles_of(script))}.\nRoles NOT on the script: {', '.join(missing)}."
+            f"\n\n=== CUT RULES (edit these) ===\n{text}")
+
+
+def record(rules: str, script: str, edits: list[dict], made_by: str, cost: float = 0.0) -> dict:
+    """Checks the edits against the script's current cut (apply_edits) and writes the cache; returns its metadata."""
+    text = cut(rules, script)
     revised = apply_edits(text, edits)
-    meta = {"script": script, "cut_sha256": digest(text), "text_sha256": digest(revised), "model": str(spec),
-            "made": datetime.now().isoformat(timespec="seconds"), "cost": reply.cost, "edits": edits}
+    meta = {"script": script, "cut_sha256": digest(text), "text_sha256": digest(revised), "made_by": made_by,
+            "made": datetime.now().isoformat(timespec="seconds"), "cost": cost, "edits": edits}
     CACHE_DIR.mkdir(exist_ok=True)
     (CACHE_DIR / f"{script}.txt").write_text(revised, encoding="utf-8")
     (CACHE_DIR / f"{script}.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return meta
 
 
+def revise(client, rules: str, script: str, reviser: str = REVISER) -> dict:
+    """Asks the reviser model for edits to the script's cut and writes the cache; returns its metadata."""
+    from llm import answer_json, parse_model_spec, rules_system
+    spec = parse_model_spec(reviser)
+    # The full rules and the task come first, cached (llm.rules_system), so revising several scripts in a row pays
+    # for them once; only the script's own part differs between calls.
+    system = rules_system(rules, f"The text above is the FULL RULES.\n\n{REVISE_TASK}")
+    reply = client.chat(spec.model, [system, {"role": "user", "content": script_task(script, cut(rules, script))}],
+                        schema=EDIT_SCHEMA, schema_name="edits", effort=spec.effort)
+    return record(rules, script, answer_json(reply, EDIT_SCHEMA)["edits"], str(spec), reply.cost)
+
+
 def main() -> None:
     import argparse
-    from llm import OpenRouterClient, load_api_key
-    ap = argparse.ArgumentParser(description="Remake scripts' cached rules revisions (see scripts.py).")
-    ap.add_argument("command", choices=["revise", "check"])
-    ap.add_argument("names", nargs="*", help="scripts to revise (default: the stale ones); 'check' lists stale ones")
-    ap.add_argument("--reviser", default=REVISER)
+    ap = argparse.ArgumentParser(description="Remake scripts' cached rules revisions (see scripts.py). A Claude Code "
+                                 "session can write the edits itself instead of an API call: `task NAME` prints what "
+                                 "to edit, then `apply NAME FILE` records a JSON file of edits (EDIT_SCHEMA).")
+    ap.add_argument("command", choices=["check", "revise", "task", "apply"])
+    ap.add_argument("names", nargs="*", help="check/revise: scripts (default: the stale ones); task: one script; "
+                    "apply: one script and the edits file")
+    ap.add_argument("--reviser", default=REVISER, help="the model revise asks")
+    ap.add_argument("--made-by", default="a Claude Code session", help="apply: who wrote the edits, for the cache")
     args = ap.parse_args()
     rules = (Path(__file__).parent / "rules_1.txt").read_text(encoding="utf-8")
+    if args.command == "task":
+        (name,) = args.names
+        print(f"{REVISE_TASK}\n\nThe FULL RULES are rules_1.txt.\n\n{script_task(name, cut(rules, name))}")
+        return
+    if args.command == "apply":
+        name, file = args.names
+        edits = json.loads(Path(file).read_text(encoding="utf-8"))
+        meta = record(rules, name, edits["edits"] if isinstance(edits, dict) else edits, args.made_by)
+        print(f"{name}: {len(meta['edits'])} edits recorded")
+        return
     todo = args.names or [s for s in SCRIPTS if stale(rules, s)]
     if args.command == "check" or not todo:
         print("Stale: " + (", ".join(todo) if todo else "none"))
         return
+    from llm import OpenRouterClient, load_api_key
     client = OpenRouterClient(load_api_key())
     for name in todo:
         meta = revise(client, rules, name, args.reviser)

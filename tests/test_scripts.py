@@ -185,3 +185,15 @@ def test_a_game_on_a_stale_script_plays_by_the_cut_and_says_so(tmp_path, monkeyp
     assert records[0]["kind"] == "setup" and any(r["kind"] == "script_stale" and r["alert"] for r in records)
     played = scripts.cut(RULES, "core") + scripts.note("core") + setup_note(None, roles)
     assert records[0]["rules_sha256"] == mafia.game_meta(played, {})["rules_sha256"]
+
+
+def test_edits_written_in_a_session_are_recorded_like_an_api_revision(tmp_path, monkeypatch):
+    """`scripts.py apply NAME FILE`: a Claude Code session writes the edits instead of an API call."""
+    monkeypatch.setattr(scripts, "CACHE_DIR", tmp_path)
+    edits = tmp_path / "edits.json"
+    edits.write_text(json.dumps({"edits": [{"old": "A role may appear more than once in a game",
+                                            "new": "A role may appear more than once", "reason": "test"}]}))
+    monkeypatch.setattr("sys.argv", ["scripts.py", "apply", "core", str(edits)])
+    scripts.main()
+    assert not scripts.stale(RULES, "core")
+    assert json.loads((tmp_path / "core.json").read_text())["made_by"] == "a Claude Code session"
