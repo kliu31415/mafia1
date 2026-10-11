@@ -17,16 +17,29 @@ def mock_game_records(tmp_path, monkeypatch, seed: int) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
 
 
-def test_the_mock_games_exercise_private_chat(tmp_path, monkeypatch):
+@pytest.fixture(scope="module")
+def mock_games(tmp_path_factory):
+    """seed -> the records of a mock game with that seed, each game played once for the tests below."""
+    games: dict[int, list[dict]] = {}
+
+    def records(seed: int) -> list[dict]:
+        if seed not in games:
+            with pytest.MonkeyPatch.context() as monkeypatch:
+                games[seed] = mock_game_records(tmp_path_factory.mktemp(f"seed{seed}"), monkeypatch, seed)
+        return games[seed]
+    return records
+
+
+def test_the_mock_games_exercise_private_chat(mock_games):
     # Mock answers depend on the prompt text, so any single seed may happen to skip a category
     # (e.g. after a rules edit); between them, the seeds below must cover private chat.
-    seen = {r.get("cat") for seed in range(5) for r in mock_game_records(tmp_path / str(seed), monkeypatch, seed)}
+    seen = {r.get("cat") for seed in range(5) for r in mock_games(seed)}
     assert {"pm", "yak", "chat"} <= seen
 
 
 @pytest.mark.parametrize("seed", range(5))
-def test_private_events_reach_only_their_audience(tmp_path, monkeypatch, seed):
-    records = mock_game_records(tmp_path, monkeypatch, seed)
+def test_private_events_reach_only_their_audience(mock_games, seed):
+    records = mock_games(seed)
     setup = next(r for r in records if r["kind"] == "setup")
     yakuza = {p["name"] for p in setup["players"] if ROLES[p["role"]].alignment is Alignment.EVIL}
     wiretaps = {p["name"] for p in setup["players"] if p["role"] == "Wiretap"}
@@ -63,13 +76,11 @@ def test_briefings_reveal_only_what_a_role_knows(game_factory):
             assert (f"{q.name} ({q.role})" in briefing) == teammates, (p.name, briefing)
 
 
-def test_mock_games_replay_from_their_seed(tmp_path, monkeypatch):
+def test_mock_games_replay_from_their_seed(mock_games, tmp_path, monkeypatch):
     """Players are asked in parallel threads, so this fails if answers depend on call order."""
-    def events(sub):
-        (tmp_path / sub).mkdir()
-        recs = mock_game_records(tmp_path / sub, monkeypatch, seed=77)
+    def events(recs):
         return [r["text"] for r in recs if r["kind"] == "event"]
-    assert events("a") == events("b")
+    assert events(mock_games(0)) == events(mock_game_records(tmp_path, monkeypatch, seed=0))
 
 
 def test_night_history_shows_only_your_own_actions_and_results(game_factory):
