@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RoleLogic, register
+from roles.base import Alignment, RoleLogic, record_attack, register
 
 CURSES = "cardinal_curses"  # game.role_state key: dead Cardinals whose curse strikes at the end of the night
 
@@ -33,3 +33,4 @@ class Cardinal(RoleLogic):
                     victim = game.rng.choice(good)
                     game.log.write("cardinal", victim=victim)
                     game.kill(victim, "Cardinal's curse", by=cardinal)  # by: for deaths-by-role analysis
+                    record_attack(game, cardinal)  # a Divine Attack

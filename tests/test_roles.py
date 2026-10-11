@@ -901,9 +901,20 @@ def test_vigilante_learns_the_role_of_a_player_it_kills(game_factory):
     game, players = game_factory(["Vigilante", "Roleplayer", "Grunt", "Vanilla Villager", "Vanilla Villager"])
     game.phase = "night"
     apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Vigilante", "by": "Alice"})
-    assert told(game, "Alice")[-1].endswith("Your shot killed Bob. Their role was Roleplayer.")  # exact-role (R19)
     game.kill("Dave", "Katana", by="Carol", katana=True)
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your shot killed Bob. Their role was Roleplayer.")  # exact-role (R19)
     assert not any("Dave" in t for t in told(game, "Alice"))  # someone else's kill tells the Vigilante nothing
+
+
+def test_a_vigilante_killed_earlier_in_the_resolution_still_learns_its_victims_role(game_factory):
+    # rules R10: the order of the moderator's ops within a night doesn't matter
+    game, players = game_factory(["Vigilante", "Grunt", "Vanilla Villager", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana", "by": "Bob", "katana": True},
+              {"op": "kill", "player": "Bob", "cause": "Vigilante", "by": "Alice"})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your shot killed Bob. Their role was Grunt.")
 
 
 def test_only_doused_players_who_arent_good_are_told(game_factory):
@@ -1109,6 +1120,20 @@ def test_bloodhound_counts_recorded_attacks_of_three_players_over_the_game(game_
     assert game.log.error_counts == {"attacks_missing": 1}
     game.role_state["attacks"][game.day] = ["Dave"]
     assert attack_count(game, ["Dave"]) == 2 and attack_count(game, ["Bob", "Carol"]) == 1
+
+
+def test_bloodhound_counts_the_cardinals_curse_and_a_dead_trappers_trap(game_factory):
+    game, players = game_factory(["Bloodhound", "Cardinal", "Trapper", "Grunt", "Vanilla Villager"])
+    game.player("Carol").alive, game.player("Carol").death = False, None  # died on an earlier day; the trap lasts
+    game.phase = "night"
+    apply_ops(game, players, {"op": "attacks", "attackers": ["Carol", "Dave"]},
+              {"op": "kill", "player": "Bob", "cause": "Katana", "by": "Dave", "katana": True},
+              {"op": "track", "player": "Bob", "by": "Alice"})
+    game.run_night_end_hooks()  # the Cardinal killed tonight curses Alice or Erin, then the Bloodhound counts
+    group = re.findall(r"Bob|Dave|Erin", told(game, "Alice")[-1].split(":", 2)[1])
+    assert "Bob" in group and len(group) == 3  # Bob: the curse (a Divine Attack), Dave: the Katana
+    from roles.bloodhound import attack_count
+    assert attack_count(game, ["Bob"]) == 1 and attack_count(game, group) == 2
 
 
 def bounty_game(game_factory, roles=("Bounty Hunter", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager",

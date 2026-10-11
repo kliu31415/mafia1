@@ -198,6 +198,15 @@ def acted_tonight(game: Game, p: Player) -> bool:
         or game.role_state.get(LEFT_AT, {}).get(p.name) == [game.day, "night"]
 
 
+CODE_ATTACKS = "code_attacks"  # game.role_state: night -> attackers of attacks code made that night (record_attack)
+
+
+def record_attack(game: Game, attacker: str) -> None:
+    """An attack that code carries out at night (the Cardinal's curse), for results that count attacks (the
+    Bloodhound's), alongside the ones the moderator lists."""
+    game.role_state.setdefault(CODE_ATTACKS, {}).setdefault(game.day, []).append(attacker)
+
+
 LEFT_AT = "left_at"  # game.role_state: player -> [day, phase] they left the game
 
 

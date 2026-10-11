@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, acted_tonight, as_chosen, join_names, register, tokens_left_text
+from roles.base import (CODE_ATTACKS, RecordedAction, RoleLogic, acted_tonight, as_chosen, join_names, register,
+                        tokens_left_text)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -14,13 +15,16 @@ TRACKS = "bloodhound_tracks"  # game.role_state: Bloodhound -> the player they t
 
 
 def attack_count(game: Game, names: list[str]) -> int:
-    """Attacks made by these players over the game so far, tonight's included (the moderator's attacks op)."""
-    return sum(a in names for night in game.role_state.get(ATTACKS, {}).values() for a in night)
+    """Attacks made by these players over the game so far, tonight's included (the moderator's attacks op, and
+    attacks code made, such as the Cardinal's curse)."""
+    return sum(a in names for key in (ATTACKS, CODE_ATTACKS) for night in game.role_state.get(key, {}).values()
+               for a in night)
 
 
 @register("Bloodhound")
 class Bloodhound(RoleLogic):
     roleplayer_can_fake = False  # code draws the group and counts
+    night_end_order = 1  # after the Cardinal's curse, which counts as an attack tonight
     code_tells_user = True
     action = RecordedAction(
         "track", "tracks player (code puts them in tonight's group of three)",
@@ -40,10 +44,8 @@ class Bloodhound(RoleLogic):
         if not isinstance(attackers, list) or not all(isinstance(a, str) for a in attackers):
             return "attackers must be a list of player names"
         for a in attackers:
-            if a not in names:
+            if a not in names:  # a dead player is fine: a Trapper's trap lasts after the Trapper dies
                 return f"no player named {a!r}"
-            if not acted_tonight(game, game.player(a)):
-                return f"{a} wasn't alive at the start of the night"
         return None
 
     def apply_op(self, game: Game, change: dict) -> None:
