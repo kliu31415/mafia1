@@ -30,7 +30,8 @@ R18 (Terms)
 - Astral Visit: an action that is not a visit. Abilities that react to visits (Tracker, Lookout, Trapper,
   Fortune Teller) never see or react to it.
 - Alignment check: a result that reports alignment (Sheriff, Seer). See R19 for what they see.
-- Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician, Coroner, a Vigilante's kill).
+- Exact-role check: a result that reports or tests an exact role (Oracle, Diviner, Ritualist, Mortician, Coroner,
+  Talent Agent, a Vigilante's kill).
 - Token: a limited-use resource a role starts with. Spent tokens are gone; a role-blocked action spends none.
 
 R11 (The circle)
@@ -517,6 +518,14 @@ Informant
   You passively see how every player voted in each Guilty/Innocent trial vote, right after the vote. This is not a
   night action or a visit, so role-blocks don't stop it. Nobody is told that an Informant exists, and the other
   Yakuza aren't told the votes: what you share in the night chat is up to you.
+
+Talent Agent
+  Tokens: 3 talent tokens, at most one a night.
+  Night: may spend a token on one of these (not a visit; it targets no player). "In play" means the true role of a
+  player alive when the night began (an exact-role check, R19):
+  - Scan: learn one random non-Yakuza role that is in play and one random non-Yakuza role from these rules that
+    isn't.
+  - Count: name any role in these rules and learn how many players have it in play.
 
 --- Neutral ---
 Each Neutral player is their own faction (R2).

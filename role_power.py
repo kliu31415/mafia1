@@ -39,7 +39,7 @@ PRIOR: dict[str, float] = {
     # Yakuza
     "Grunt": -0.85, "Pharmacist": -1.1, "Ritualist": -1.0, "Puppeteer": -1.0, "Fabricator": -1.0, "Clerk": -0.95,
     "Smuggler": -0.9, "Ballot Stuffer": -0.95, "Fixer": -0.95, "Diviner": -1.05, "Mortician": -0.95,
-    "Wiretap": -1.0, "Informant": -0.95,
+    "Wiretap": -1.0, "Informant": -0.95, "Talent Agent": -0.95,
     # Neutral
     "Vulture": -0.25, "Serial Killer": -0.6, "Arsonist": -0.8, "Jester": -0.15, "Executioner": -0.2,
     "Bounty Hunter": -0.3,

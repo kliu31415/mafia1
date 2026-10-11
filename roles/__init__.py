@@ -238,6 +238,11 @@ ROLES: dict[str, RoleInfo] = {
     "Informant": RoleInfo(Alignment.EVIL, "Yakuza", True,
                           tested=True, summary="Passively sees how every player voted in each trial.",
                           notes="code tells living Informants each secret trial's votes; not role-blockable"),
+    "Talent Agent": RoleInfo(Alignment.EVIL, "Yakuza", True,
+                             summary="Token (one a night): learn a random non-Yakuza role in play and one not, or how "
+                             "many living players have a named role.",
+                             tokens={"talent": 3}, acts_at_night=True,
+                             notes="moderator records the scout_talent op; code reads true roles and tells the result"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                         summary="Wins alone if alive when few enough players remain at dawn. Learns a role for each "

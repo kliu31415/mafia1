@@ -1161,3 +1161,34 @@ def test_bounty_hunter_never_blocks_a_win(game_factory):
     game, _, _ = bounty_game(game_factory, ("Bounty Hunter", "Vanilla Villager", "Grunt"))
     game.kill("Carol", "executed by hanging", guilty_voters=["Bob"])
     assert game.check_winner() is not None
+
+
+def test_talent_agent_scans_and_counts_living_true_roles(game_factory):
+    game, players = game_factory(["Talent Agent", "Sheriff", "Sheriff", "Roleplayer", "Vanilla Villager"])
+    game.phase = "night"
+    game.player("Bob").alive = False  # died before the night: not in play
+    game.player("Bob").death = {"day": 0, "phase": "day"}
+    apply_ops(game, players, {"op": "scout_talent", "role": "Sheriff", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("Your count: 1 living player has the role Sheriff.")
+    with pytest.raises(ValueError, match="one token a night"):
+        apply_ops(game, players, {"op": "scout_talent", "by": "Alice"})
+    game.day += 1
+    apply_ops(game, players, {"op": "scout_talent", "by": "Alice"})
+    scan = told(game, "Alice")[-1]
+    in_play = re.search(r"Your scan: (.+) is in play, and (.+) is not in play\.", scan)
+    assert in_play and in_play[1] in {"Sheriff", "Roleplayer", "Vanilla Villager"}
+    assert in_play[2] not in {"Sheriff", "Roleplayer", "Vanilla Villager", "Talent Agent"}
+    assert ROLES[in_play[2]].alignment.name != "EVIL"
+    game.day += 1
+    apply_ops(game, players, {"op": "scout_talent", "role": "Roleplayer", "by": "Alice"})
+    assert told(game, "Alice")[-1].endswith("1 living player has the role Roleplayer.")
+    game.day += 1
+    with pytest.raises(ValueError):  # out of tokens
+        apply_ops(game, players, {"op": "scout_talent", "by": "Alice"})
+
+
+def test_talent_agent_counts_only_roles_on_the_script(game_factory):
+    game, players = game_factory(["Talent Agent", "Sheriff", "Vanilla Villager"])
+    game.phase = "night"
+    with pytest.raises(ValueError, match="isn't a role"):
+        apply_ops(game, players, {"op": "scout_talent", "role": "Wizard", "by": "Alice"})
