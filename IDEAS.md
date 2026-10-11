@@ -57,6 +57,11 @@ night actions already run in parallel.
 - **Tips on a script.** Players on the core script read tips about the Fixer and Ballot Stuffer, which aren't on
   it, and one asked for those to be dropped (game_20261011_011316_850196). The tips sheet could leave out role
   sections for roles off the script, and the general sections' mentions of them.
+- **Script revisions at scale** (Kevin, Oct 11 2026). Every rules edit makes every hand-made script's cached
+  revision stale (`rules_scripts/`), and each is remade by hand or by an Opus call. Fine for a few scripts; with
+  many, explore not regenerating on every change: e.g. reapply the old edits automatically when their passages are
+  still there and only flag scripts whose edited passages changed, revise only the paragraphs that changed, or let
+  a stale script keep its old edits with a warning instead of failing the test.
 - **Random scripts.** Besides hand-made scripts, draw a ~25-role script for each game (always containing the roles
   in play), so role stats stay poolable across games once there are too many roles to show them all.
 

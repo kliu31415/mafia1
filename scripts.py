@@ -118,7 +118,8 @@ def note(script: str) -> str:
 # model). When rules_1.txt or the script changes, the cut changes, the cache goes stale and
 # test_every_script_revision_is_current fails until `uv run scripts.py revise` remakes it: regenerated once, at
 # commit time, so every game on a script plays by the same reviewed text. A game that still finds it stale plays
-# by the plain cut and logs a script_stale alert.
+# by the plain cut and logs a script_stale alert. With many scripts, regenerating all of them on every rules edit
+# gets costly: see "Script revisions at scale" in IDEAS.md.
 
 CACHE_DIR = Path(__file__).parent / "rules_scripts"
 REVISER = "opus-5.5"
