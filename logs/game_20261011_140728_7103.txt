@@ -93,3 +93,20 @@ Carol (public): Carol here, Chronicler with 2 tokens and no marks. No nomination
 Dave (public): Dave here, still Vanilla. I won't nominate today. Alice's census and Bob's Frank result are both due Day 3, so we check them then. Alice, your census put Bob, Dave or Frank as non-Good; which one does your Night 2 result add to?
 Erin (public): Erin here, Vanilla. No nomination from me. If Frank is Good, Alice's census points at Dave, so Dave, explain Night 1 when results come in.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+Night actions:
+  Alice (Census Taker): target Dave; "Census Taker action: take a census around Dave."
+  Bob (Coroner): target Frank; 1 token(s); "Coroner examines Frank (dead before tonight), spending 1 coroner token."
+  Carol (Chronicler): target Dave; 1 token(s); "Chronicler mark on Dave. Dave is the non-Good candidate under Alice's census if Frank reads Good. If Dave dies, his true role is revealed to everyone."
+  Dave (Clerk): no role action; Katana vote: Dave holds, attacks Alice
+  Grace (Arsonist): target Erin; "Douse Erin (no token needed) to build toward three doused players for an ignite."
+Katana: Dave holds it and attacks Alice.
+(to Alice) Moderator (private): Your census of Dave, Erin and Grace counted Good players (drawn at random this time): 1 of the 3 is Good. It counts true alignment, so frames and disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as either Good or Evil.
+(to Bob) Moderator (private): You examined Frank: their role was Archivist. 2 coroner tokens left.
+(to Carol) Moderator (private): You marked Dave: if they die, at any time, their role will be revealed to everyone (unless a Mortician cleans them). 1 chronicler token left.
+(to Dave) Moderator (private): Your Katana attack on Alice succeeded tonight.
+(to Grace) Moderator (private): You doused Erin tonight.
+[Moderator summary] Night 2: Alice (Census Taker) took a census around Dave (census op). Bob (Coroner) examined Frank (astral, examine op, 1 token spent). Carol (Chronicler) marked Dave (mark op, 1 token spent). Dave holds the Katana and attacked Alice with a Standard attack; Alice had no Defense and died (Katana). Dave did not use his Clerk rig. Grace (Arsonist) doused Erin, so Erin is doused, and Alice was already doused. No role-blocks. Visits: Alice->Dave, Carol->Dave, Dave->Alice, Grace->Erin. Living: Bob, Carol, Dave, Erin, Grace. No win yet.
+[Night check] Night 2: correct
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
