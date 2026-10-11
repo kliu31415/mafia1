@@ -267,7 +267,8 @@ class ClaudeCodeClient:
             "via": "claude_code", "list_cost_usd": result.get("total_cost_usd"),
             # turns: 2 when the answer came on the first try; more when the CLI had the model redo an answer that broke
             # the schema (its tokens add up over the turns)
-            "duration_api_ms": result.get("duration_api_ms"), "turns": result.get("num_turns"), "plan_utilization": dict(self.plan_utilization)}
+            "duration_api_ms": result.get("duration_api_ms"), "turns": result.get("num_turns"),
+            "plan_utilization": dict(self.plan_utilization)}
         with self.cost_lock:
             self.total_cost[model.value] = self.total_cost.get(model.value, 0.0)
         message: dict[str, Any] = {"role": "assistant", "content": content}
