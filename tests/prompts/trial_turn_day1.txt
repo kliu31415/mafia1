@@ -56,7 +56,7 @@ Every response also has a 'reason' field: why you chose this answer, usually in 
 
 ---
 
-It is Day 1, round 1 of at most 8. It's your turn. Your speaking budget is 0.37; you earn 2.5 per round, carrying over up to 8; at the start of each day, 50% of what you have left carries over. You may send one public message and any number of private messages (everyone sees who you messaged, but only the recipient sees the contents), or nothing. The transcript already shows who sent each message, so there's no need to start a message with your own name. Messages are capped at 800 words. Prices grow each round after round 3, so late messages are only worth it if important. The day ends after a full round where nobody sends a public message, so a message that only repeats what you already said keeps the day going for everyone: if you have nothing new, send nothing.
+It is Day 1, round 1 of at most 8. It's your turn. Your speaking budget is 0.37; you earn 2.5 per round, carrying over up to 8; at the start of each day, 50% of what you have left carries over. You may send one public message and any number of private messages (everyone sees who you messaged, but only the recipient sees the contents), or nothing. The transcript already shows who sent each message, so there's no need to start a message with your own name. Messages are capped at 800 words. Prices grow each round after round 3. The day ends after a full round where nobody sends a public message.
 Message prices during this trial (1.00x):
    10 words: public 1.17, private 0.29
    25 words: public 1.43, private 0.36
@@ -65,7 +65,7 @@ Message prices during this trial (1.00x):
   200 words: public 5.33, private 1.33
   400 words: public 11.67, private 2.92
   800 words: public 30.33, private 7.58
-This is a trial turn: prices are 1x whatever the round, and you also get a trial-only budget of 2.00, spent before your regular budget. Unspent trial budget is lost when this turn ends, but don't speak just to use it up: say nothing if you have nothing to add.
+This is a trial turn: prices are 1x whatever the round, and you also get a trial-only budget of 2.00, spent before your regular budget. Unspent trial budget is lost when this turn ends.
 You may also replace your last will (free, max 300 words; leave it "" to keep it), e.g. to match a claim you make today. It's shown to everyone if you die.
 You may also set your claim (free, max 40 words; leave it "" to keep it): a concise note of what you want everyone to know about you: your claimed role, your night visits and results, and your votes in key trials, e.g. 'Sheriff. N1: checked Bob, Not Evil. N2: checked Dave, Evil. D3: Guilty on Dave'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
 Dave is on trial. This turn is only for discussion: after everyone has spoken, all players vote Guilty/Innocent in a separate, simultaneous vote.

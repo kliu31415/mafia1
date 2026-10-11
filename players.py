@@ -202,8 +202,10 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
     from day import budget_parameters  # day imports this module
     general += f"\n\n{budget_parameters()}"
     if p.tips and (tips := player_view(p.tips)):
-        general += ("\n\n---\n\nTips from past games (lessons that players and moderators drew from earlier "
-                    f"games of this variant; use your own judgment):\n\n{tips}")
+        general += ("\n\n---\n\nTips from past games: what players and moderators have learned from earlier "
+                    "games of this variant. They are not rules and shouldn't always be followed rigorously: most "
+                    "games play out quite differently, so weigh each tip against what is actually happening in "
+                    f"this game.\n\n{tips}")
     earlier, current = game.history_split(p.name)
     own = f"\n\n---\n\nSeating order (clockwise): {order}.\n{role_briefing(game, p)}"
     if earlier and not context:  # the post-game context has the whole game already

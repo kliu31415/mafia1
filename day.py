@@ -258,14 +258,12 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "
             f"the contents), or nothing. The transcript already shows who sent each message, so there's "
             "no need to start a message with your own name. Messages are "
-            f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}, "
-            "so late messages are only worth it if important. The day ends after a full round where "
-            "nobody sends a public message, so a message that only repeats what you already said keeps "
-            "the day going for everyone: if you have nothing new, send nothing.\n" + price_table(rnd, trial) + "\n"
+            f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}. "
+            "The day ends after a full round where nobody sends a public message.\n"
+            + price_table(rnd, trial) + "\n"
             + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
                f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
-               "lost when this turn ends, but don't speak just to use it up: say nothing if you have "
-               "nothing to add.\n" if trial else "")
+               "lost when this turn ends.\n" if trial else "")
             + (f"Your public message this turn is free up to {free_words} words; beyond that you "
                "pay only for the extra length.\n" if free_words else "")
             + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; leave it \"\" to keep it), "
