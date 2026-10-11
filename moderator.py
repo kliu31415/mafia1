@@ -143,6 +143,9 @@ class Moderator:
              f"refresh after changes):\n{json.dumps(self.game.full_state())}\n\nPublic history so far:\n"
              f"{self.game.history_for('__moderator_public__')}")]},
         ]
+        # What the moderator is told this phase (the public history is left out: it is the log's public events).
+        self.game.log.write("moderator_prompt", day=self.game.day, phase=self.game.phase, instructions=instructions,
+                            state_summary=self.game.state_summary(), full_state=self.game.full_state())
         for _ in range(MAX_MODERATOR_STEPS):
             started = time.monotonic()
             reply = self.chat(messages)

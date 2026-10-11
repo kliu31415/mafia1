@@ -78,7 +78,11 @@ from records import read_records, safe_print
 # 40: settings.setup has name (random setups); players are told how roles were chosen (setups.setup_note)
 # 41: settings has script (scripts.py: the roles the game could use, and the only ones in its rules text; older
 #     logs mean "all")
-LOG_VERSION = 41
+# 42: "briefing" record after setup (and tips): rules (the full rules text every prompt starts with, which
+#     rules_sha256 hashes), setup_note (what players were told about the setup) and players (each player's
+#     opening role briefing); "moderator_prompt" records (day, phase, instructions, state_summary, full_state):
+#     what the moderator was told at the start of each phase it ran
+LOG_VERSION = 42
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

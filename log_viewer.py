@@ -56,6 +56,8 @@ def text_line(r: dict) -> str | None:
         case "moderator_tool" if r["name"] == "end_phase":
             summary = tool_args(r["args"]).get("summary", "")
             return f"[Moderator summary] {summary}"
+        case "briefing":
+            return f"[Setup note to players] {r['setup_note']}"
         case "claim":
             return f"[Claim] {r['player']}: {r['claim']}"
         case "moderator_flag":
@@ -588,6 +590,12 @@ def render_html(jsonl_path: Path) -> Path:
             start_phase("Setup")
             out.append(f"<table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr>"
                        f"{rows}</table><div class='muted'>Katana starts with {name(str(r.get('katana')))}</div>")
+        elif k == "briefing":
+            out.append(f"<div class='muted'>{esc(r['setup_note'])}</div>"
+                       "<details class='call'><summary>What every player was told at the start</summary>"
+                       + pre("Rules as played (rules, rule settings and setup note)", r["rules"])
+                       + "".join(pre(f"Role briefing: {who} ({roles.get(who, '?')})", text)
+                                 for who, text in r["players"].items()) + "</details>")
         elif k == "tips":
             files = tips_files(r)
             out.append(f"<div class='muted'>Tips from past games given to: {esc(', '.join(r['players']) or 'nobody')}"
@@ -648,6 +656,10 @@ def render_html(jsonl_path: Path) -> Path:
                        + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason, REASON_HINT)
                        + pre("Output", o) + notepad
                        + pre("Task prompt", r["task"]) + pre("Usage", r.get("usage")) + "</details>")
+        elif k == "moderator_prompt":
+            out.append("<details class='call'><summary>Moderator's instructions for this phase</summary>"
+                       + pre("Instructions", r["instructions"]) + pre("State summary", r["state_summary"])
+                       + pre("Full state", r["full_state"]) + "</details>")
         elif k == "moderator_call":
             calls = ", ".join(c["function"]["name"] for c in r.get("tool_calls") or []) or "no tool call"
             out.append(f"<details class='call'><summary>Moderator ({esc(r['model'].split('/')[-1])}) → "

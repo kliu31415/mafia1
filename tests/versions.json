@@ -1,6 +1,7 @@
 {
- "log_version": 41,
+ "log_version": 42,
  "log": {
+  "briefing": ["players", "rules", "setup_note"],
   "budget_warning": ["budget", "planned", "player"],
   "cardinal": ["victim"],
   "death": ["cause", "day", "katana", "killer", "killer_role", "killer_roles", "killers", "phase", "player", "role"],
@@ -11,6 +12,7 @@
   "message_dropped": ["player", "to", "words"],
   "moderator_call": ["content", "cost", "day", "latency_s", "model", "phase", "reasoning", "tool_calls", "usage"],
   "moderator_flag": ["day", "issue", "phase"],
+  "moderator_prompt": ["day", "full_state", "instructions", "phase", "state_summary"],
   "moderator_tool": ["args", "name", "result"],
   "night_actions": ["actions", "day", "roles"],
   "night_check": ["cost", "error", "issues", "judge", "night", "usage", "verdict"],

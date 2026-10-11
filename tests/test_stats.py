@@ -193,5 +193,13 @@ def test_players_get_the_setup_note_and_their_tips(tmp_path, monkeypatch):
         review=False, check_nights=False, setup={"kind": "random", "name": "standard", "players": 13, "yakuza": 3}),
         checkpoint=False)
     assert all("Its roles were drawn at random by the standard setup" in s for s in systems)
+    # The log keeps what they were told: the setup note and the whole rules text their prompts start with.
+    log = next(tmp_path.glob("mock_*.jsonl"))
+    briefing = next(r for r in map(json.loads, log.read_text(encoding="utf-8").splitlines()) if r["kind"] == "briefing")
+    assert "drawn at random by the standard setup" in briefing["setup_note"]
+    assert all(briefing["rules"] in s for s in systems if "Its roles were drawn" in s)
+    assert set(briefing["players"]) == set(mafia.PLAYER_NAMES[:13])
+    assert "[Setup note to players] Setup (the role list itself is secret)." in log.with_suffix(".txt").read_text(
+        encoding="utf-8")
     assert any("A tip only this test writes." in s for s in systems)
     assert not any(", ".join(roles) in s for s in systems)

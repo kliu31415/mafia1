@@ -79,7 +79,7 @@ from llm import (EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterCli
 from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
-from players import Players
+from players import Players, role_briefing
 from roles import ROLES, Status, role_status_table
 from setups import POOLS, SETUPS, parse_setup, players_for, setup_note
 from events import PHASE
@@ -307,6 +307,11 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
             p.tips = texts[str(files[p.name])] if p.name in files else ""
         log.write("tips", players=list(files), files={n: str(f) for n, f in files.items()},
                   sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
+    # The texts every prompt is built on, which the log otherwise keeps only as rules_sha256: the rules as played
+    # (the script's rules, the rule settings' notes and the setup note) and each player's opening role briefing.
+    told = setup_note(config.setup, config.roles).strip().removeprefix("---").strip()
+    log.write("briefing", rules=rules, setup_note=told,
+              players={p.name: role_briefing(game, p) for p in game.players})
     return game
 
 
