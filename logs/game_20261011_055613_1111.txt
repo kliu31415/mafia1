@@ -1,0 +1,598 @@
+Setup:
+  Alice    seat 1  Eavesdropper      anthropic/claude-haiku-5.5
+  Bob      seat 2  Vanilla Villager  anthropic/claude-haiku-5.5
+  Carol    seat 3  Juror             anthropic/claude-haiku-5.5
+  Dave     seat 4  Smuggler          anthropic/claude-haiku-5.5
+  Erin     seat 5  Bounty Hunter     anthropic/claude-haiku-5.5
+  Frank    seat 6  Scrutineer        anthropic/claude-haiku-5.5
+  Grace    seat 7  Talent Agent      anthropic/claude-haiku-5.5
+  Heidi    seat 8  Bloodhound        anthropic/claude-haiku-5.5
+  Ivan     seat 9  Vigilante         anthropic/claude-haiku-5.5
+  Judy     seat 10 Wiretap           anthropic/claude-haiku-5.5
+  Mallory  seat 11 Accountant        anthropic/claude-haiku-5.5
+  Niaj     seat 12 Vanilla Villager  anthropic/claude-haiku-5.5
+  Olivia   seat 13 Magpie            anthropic/claude-haiku-5.5
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Dave, Grace, Judy) Dave (Yakuza chat): Night 1 proposal: no Katana attack tonight, since we know nobody's role and a blind kill mostly reveals the Katana. Grace keeps the Katana and holds it, and I'll keep my swaps for a later night when they matter. Grace, if you want information, a Talent Agent scan is a free read on the in-play roles. Please each submit Katana holder Grace and target null so we all agree.
+(to Dave, Grace, Judy) Grace (Yakuza chat): Agreed: no Katana attack tonight. Grace holds the Katana, and the target is null. I may spend one talent token on a Scan for in-play roles. Let's keep all plans in night chat only.
+(to Dave, Grace, Judy) Judy (Yakuza chat): Agreed: Grace keeps the Katana, target null, no attack tonight. I have no night action, since Wiretap is passive. Grace, a scan is fine if you want it, but no team plans outside night chat.
+Night actions:
+  Alice (Eavesdropper): target Carol; "Eavesdrop on Carol for Day 2."
+  Carol (Juror): no action
+  Dave (Smuggler): no role action; Katana vote: Grace holds, attacks None
+  Erin (Bounty Hunter): no action
+  Frank (Scrutineer): no action
+  Grace (Talent Agent): 1 token(s); "Scan"; Katana vote: Grace holds, attacks None
+  Heidi (Bloodhound): no action
+  Ivan (Vigilante): no action
+  Judy (Wiretap): no role action; Katana vote: Grace holds, attacks None
+  Mallory (Accountant): target Erin
+  Olivia (Magpie): no action
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Grace) Moderator (private): Your scan: Vanilla Villager is in play, and Insomniac is not in play.
+(to Dave, Judy) Moderator (private): Yakuza night summary: Grace holds the Katana, and there was no Katana attack tonight. Actions chosen: Dave chose no action. Grace chose to spend a talent token on a Scan. Judy has no night action.
+(to Grace) Moderator (private): Yakuza night summary: you hold the Katana, and there was no Katana attack tonight. Your teammates' actions: Dave chose no action. Judy has no night action.
+[Moderator summary] Night 1: No role-blocks, no attacks (Yakuza agreed not to attack; Grace keeps Katana). Alice eavesdrops Carol (visit). Mallory audits Erin (visit). Grace spends 1 talent token on Scan (no visit). Bloodhound attacks op: none. Visits recorded: Alice->Carol, Mallory->Erin. No deaths. Yakuza informed of each other's chosen actions.
+(to Heidi) Moderator (private): Your Bloodhound check of Bob, Grace and Ivan: together they have made 0 attacks this game, tonight's included.
+(to Mallory) Moderator (private): Your audit: Erin has 1 token in total.
+
+===== DAY 2 =====
+Nobody died last night.
+(to Alice) You are eavesdropping on Carol today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Judy.
+13 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Night check] Night 1: correct
+[Claim] Judy: Vanilla Villager. N1: no night action.
+Judy (public): Judy here. I'm a Vanilla Villager with no night action on Night 1, so I have no information yet. Nobody died, so Night 1 was quiet. Everyone with a night action, please post your role and what you did so we can compare.
+[Claim] Mallory: Accountant. N1: audited Erin, 1 token total.
+Mallory (public): Mallory here. I'm the Accountant. N1: I audited Erin and found 1 token in total. I'll post token counts as I get them and ask Erin for a claim.
+[Claim] Niaj: Vanilla Villager. N1: no night action.
+Niaj (public): Niaj here, Vanilla Villager with no night action, so no information yet. Nobody died on N1. Mallory, your Accountant claim is noted: Erin, please post your role and your N1 action so we can check it against the token count.
+Olivia (public): Olivia here. I had no night action on Night 1 and have no information yet. Erin, please post your role and your Night 1 action so Mallory's audit can be checked against it. I'll compare claims with the vote totals as they come in.
+Alice (public): Alice here, no night info yet. Erin, please post your role and Night 1 action so Mallory's audit of 1 token can be checked. Judy and Niaj, thanks for the quick claims.
+[Claim] Bob: Vanilla Villager. N1: no night action.
+Bob (public): Bob here, Vanilla Villager with no night action, so no information yet. Erin, please post your role and Night 1 action so Mallory's 1-token audit can be checked.
+[Claim] Carol: Juror. N1: no night action.
+Carol (public): Carol here, Juror. I took no Night 1 action, so I have no information yet. Erin hasn't posted yet, so Erin, please give your role and Night 1 action so Mallory's 1-token audit can be checked.
+[Claim] Dave: Vanilla Villager. N1: no night action.
+Dave (public): Dave here, Vanilla Villager with no Night 1 action, so no information yet. Erin, please post your role and Night 1 action so Mallory's 1-token audit can be checked. I'm not nominating until we have results.
+Erin (public): Erin here. I took no Night 1 action. Mallory's audit is consistent with what I hold: I have 1 token. I'm not posting my exact role yet, and I won't nominate until there's evidence. Compare the claims as they come in.
+Frank (public): Frank here, no night info yet. Mallory's Accountant claim and Erin's 1-token reply are our only check so far, so I'm keeping both on record until more results come in.
+Grace (public): Grace here, no night info beyond a quiet Night 1. Mallory's audit and Erin's 1-token reply are the only checks we have. Before anyone nominates, I want role claims with visit logs, and I'm not nominating yet.
+[Claim] Heidi: Bloodhound. N1: no action. Automatic check of Bob, Grace, Ivan: 0 attacks total.
+Heidi (public): Heidi here. I'm the Bloodhound. My automatic Night 1 check of Bob, Grace and Ivan shows 0 Attacks made between them, tonight's included. I'll post a fresh three-player attack count each night. Erin, please confirm your role.
+Ivan (public): Ivan here. I had no Night 1 action, so I have no information yet. Heidi's count of 0 attacks for me is accurate. Erin, please answer Mallory's audit plainly with your role.
+Judy (public): Judy here. Heidi's Bloodhound count is a useful start. Erin, we still have no role from you, so please post it before anyone nominates. Nobody should hang on token counts alone.
+Mallory (public): Mallory again. Erin, my Night 1 audit showed 1 token at the end of the night. Please name your role, or at least whether it uses tokens, so we can check it. I'll post my next audit result by Day 3 and won't nominate until we have more results.
+Niaj (public): Niaj again. Erin, please answer Mallory's audit in one plain sentence: what is your role, and does it use tokens? Heidi, keep posting the Bloodhound counts. I won't nominate until Erin answers.
+Olivia (public): Olivia again. Still no night results from me. Erin, please answer Mallory's audit in one plain sentence: your role, and whether it uses tokens. I won't nominate until the token claims are checked.
+Alice (public): Alice here, no night info yet. Erin, please answer Mallory's audit in one plain sentence: your role, and whether it uses tokens. I'll post any relevant Day reads once I have them.
+Bob (public): Bob here. I won't nominate until Erin gives a role and a Night 1 action in one plain sentence. Heidi, please post your Night 2 three-player count when it's ready. Vote on evidence, not on pressure.
+Carol (public): Carol here, Juror. I have no results yet. On Night 2 I plan to use my Juror on two players whose votes we can compare, and I'll post the match counts once I have them. Erin, one plain sentence with your role would settle the token question for everyone. I'm not nominating yet.
+Dave (public): Dave here, still a Vanilla Villager with no new information. Erin's role is the main open question, and I'd like Heidi's Night 2 count before anyone nominates. Vote on results, not pressure.
+[Claim] Erin: Bounty Hunter (Neutral). N1: no action. 1 attack token left.
+Erin (public): Erin here. I'm the Bounty Hunter, a Neutral role, with 1 attack token left. That matches Mallory's audit of 1 token. I took no Night 1 action and I'm not nominating yet. I'll vote on evidence.
+[Claim] Frank: Scrutineer (Village). N1: no action. No trials yet.
+Frank (public): Frank here, Scrutineer. I took no Night 1 action, so I have no results yet. Once a trial happens I can scrutinize one of its voters. Erin's Bounty Hunter claim fits Mallory's 1-token audit, so Mallory, please keep posting audits. I'm not nominating yet.
+[Claim] Grace: Medic. N1: no protection; 2 medic tokens left.
+Grace (public): Grace here. I'm a Medic with 2 tokens and no Night 1 protection, so I'm not nominating yet. Heidi, please keep posting the Bloodhound counts.
+Heidi (public): Heidi again. My Night 2 three-player Attack count will be posted at the start of Day 3. Erin, your Bounty Hunter claim fits Mallory's 1-token audit. Grace and Frank, your claims can be checked against later results. Nobody should nominate on token counts alone.
+Ivan (public): Ivan here, no Night 1 results and no nomination from me yet. Heidi, please post your Night 2 count when ready. Erin, your Bounty Hunter claim fits Mallory's audit, so let's test the rest against real deaths or results.
+Judy (public): Judy again. Heidi's Night 2 attack count is the first real check we'll get, so let's wait for it. Erin's Bounty Hunter claim fits Mallory's 1-token audit. I won't nominate until Night 2 results are in.
+Mallory (public): Mallory again: Erin's Bounty Hunter claim fits my Night 1 audit of 1 token, so that check holds for now. I'll audit another player on Night 2 and post the token count at the start of Day 3. I won't nominate until Heidi's count and some trial data are in.
+Niaj (public): Niaj again. I still have no new results. Erin's Bounty Hunter claim fits Mallory's 1-token audit, so I'm holding there. I won't nominate until Heidi's Night 2 count and the Scrutineer and Medic results are in.
+Olivia (public): Olivia here, still no night results. Tally so far: Mallory's audit shows 1 token on Erin, Erin claims Bounty Hunter with 1 attack token, and Grace claims Medic with 2 tokens. Heidi's Night 2 count at the start of Day 3 is the next real check. I'm not nominating yet.
+Alice (public): Alice here, still no new results. Erin's Bounty Hunter claim fits Mallory's 1-token audit. Heidi, Grace and Frank, please keep posting your results. I'm not nominating yet.
+Bob (public): Bob again. Erin's Bounty Hunter claim fits Mallory's 1-token audit, so that's consistent for now. We still have only Heidi's count coming on Day 3. I'm not nominating yet, and I want Grace and Frank to say plainly what their Night 2 results show before any trial.
+Carol (public): Carol again. I'm still a Juror with no results yet. On Night 2 I'll use my Juror on two players whose Day 2 votes we can compare once there are votes. Erin's Bounty Hunter claim fits Mallory's audit, so I'm holding there. I won't nominate until Heidi's count and Grace's and Frank's Night 2 results are posted.
+Dave (public): Dave here, still no new information. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Erin (public): Erin here. Nothing new from me beyond my Bounty Hunter claim and 1 attack token. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Frank (public): Frank here. Still no new results from me. Once a trial happens I'll scrutinize one of its voters and post the counts. Heidi and Grace, please post your Night 2 results plainly at the start of Day 3. I'm not nominating yet.
+Grace (public): Grace again. I'm still the Medic with 2 tokens and no Night 1 protection, and I'm not nominating yet. Erin's Bounty Hunter claim fits Mallory's 1-token audit, so a second audit on Erin on Night 2 would test both claims. I'll wait for Heidi's Day 3 count before anyone is nominated.
+[Claim] Heidi: Bloodhound (Good). N1: no action; automatic check of Bob, Grace, Ivan: 0 attacks total. 2 scent tokens left.
+Heidi (public): Heidi again. My Night 1 result stands: Bob, Grace and Ivan made 0 Attacks total, tonight's included. That clears those three of Attacks, not anyone else. My Night 2 count comes at the start of Day 3, and I won't nominate before it.
+Ivan (public): Ivan here, no night info. Heidi's count stands for me. No nominations before Heidi's Day 3 count, and Erin, please give your role in one sentence.
+Judy (public): Judy here. I agree with waiting for Heidi's Day 3 count before any nomination. Erin's Bounty Hunter claim fits Mallory's 1-token audit so far, so let's test it against real results.
+Mallory (public): Mallory again: I'll post my next token audit at the start of Day 3 and have no nomination planned. Heidi's Night 2 count is the next check.
+Niaj (public): Niaj here. Still no new results from me. I'm waiting for Heidi's Day 3 count and Grace's and Frank's night results before any nomination. Erin's token count fits so far, so I'm holding.
+Olivia (public): Olivia again. No new results from me, and I'm not nominating. I'll wait for Heidi's Day 3 count and the Night 2 results before anyone is put on trial.
+Alice (public): Alice here, no new results. I agree with waiting for Heidi's Day 3 count before any nomination.
+Bob (public): Bob here, still a Vanilla Villager with no new results. I'm not nominating until Heidi's Day 3 count and the Night 2 results are posted plainly.
+Carol (public): Carol here, still no results from me. I'm not nominating before Heidi's Day 3 count. Mallory, a second audit on Erin on Night 2 would test her token count and claim. I'd like Grace and Frank to post their Night 2 results plainly.
+Dave (public): Dave here, still a Vanilla Villager with no new results. Mallory's audit and Erin's 1-token reply match, so a second audit on Erin would test it. I agree with waiting for Heidi's Day 3 count before any nomination.
+Erin (public): Erin here. Agreed: no nominations until Heidi's Day 3 count and the Night 2 results are posted. I'll vote on evidence, and I want anyone with a night result to post it plainly.
+Frank (public): Frank here. Still no new results from me. I'm holding until Heidi's Day 3 count and the Night 2 results are posted, and I won't nominate before then.
+Grace (public): Grace here, Medic with 2 tokens and no Night 1 protection. I still won't nominate before Heidi's Day 3 count and the Night 2 results are posted.
+Heidi (public): Heidi here, round 4. Nothing new beyond my Night 1 count: Bob, Grace and Ivan made 0 Attacks. My Night 2 count posts at the start of Day 3. I'm not nominating before it.
+Ivan (public): Ivan here, still no new results. I agree with waiting for Heidi's Day 3 count before any nomination. Erin, Grace and Frank, please post your Night 2 results plainly when they come in.
+Judy (public): Judy here. I still have no nomination. I want Heidi's Day 3 count and the Night 2 results from Grace and Frank before any trial. Erin, one plain sentence on how you would use your attack token would help.
+Mallory (public): Mallory again: Erin's Bounty Hunter claim fits my Night 1 audit of 1 token. I'll audit Erin again on Night 2 to test it and post the result at the start of Day 3. No nomination from me yet.
+Niaj (public): Niaj again. No new results from me. Erin's Bounty Hunter claim still matches Mallory's 1-token audit. I'm waiting for Heidi's Day 3 count and Grace's and Frank's Night 2 results before any nomination.
+Olivia (public): Olivia here. Agreed: no nominations until Heidi's Day 3 count and the Night 2 results are posted.
+Alice (public): Alice here. My Carol read is still empty, with no private messages yet. I agree with waiting for Heidi's Day 3 count before any nomination.
+Bob (public): Bob here, still a Vanilla Villager with no new results. I'm waiting for Heidi's Day 3 count and Grace's and Frank's Night 2 results before any nomination, and I won't vote on pressure alone.
+Carol (public): Carol again. I'm still a Juror with no results. I won't name my Night 2 target. Heidi's Day 3 count and the Night 2 results are the checks I need before any nomination.
+Dave (public): Dave here. I agree with waiting for Heidi's Day 3 count before any nomination. Erin's Bounty Hunter claim matches Mallory's 1-token audit so far, so I'm holding until the Night 2 results are posted.
+Erin (public): Erin here. Agreed on waiting for Heidi's Day 3 count. Nobody has died in Nights 1 to 2, so the stall rule is a real clock. Grace and Frank, please post Night 2 results plainly.
+Frank (public): Frank here. I'll post my Night 2 result plainly at the start of Day 3 and scrutinize the first trial's voters. No nomination from me; Heidi's Day 3 count is the next real check.
+Grace (public): Grace again. I'm still the Medic with 2 tokens and no Night 1 protection. I won't nominate until Heidi's Day 3 count and the Night 2 results are posted.
+Heidi (public): Heidi here. No nomination from me. My Night 2 Bloodhound count still posts at the start of Day 3, as I said. Erin's Bounty Hunter claim still fits Mallory's audit, so a second Night 2 audit on Erin would test it.
+Ivan (public): Ivan here, no new results and no nomination. I'll wait for Heidi's Day 3 count and the Night 2 results before voting on anything.
+Judy (public): Judy here, still a Vanilla Villager with no new results. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Mallory (public): Mallory again: no nomination from me. Erin's 1-token audit still fits her Bounty Hunter claim. I'll re-audit Erin on Night 2 and post the result at the start of Day 3.
+Niaj (public): Niaj here, Vanilla Villager. No nomination from me. Erin's Bounty Hunter claim still fits Mallory's 1-token audit. I'm waiting for Heidi's Day 3 count and Grace's and Frank's Night 2 results.
+Olivia (public): Olivia here, still no new results. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Bob (public): Bob here, Vanilla Villager. I agree with waiting for Heidi's Day 3 count and the Night 2 results. I'm not nominating yet and will vote on trial evidence.
+Carol (public): Carol here, still a Juror with no results. I'll post my Night 2 match counts at the start of Day 3. I'm not nominating before Heidi's count and the Night 2 results.
+Dave (public): Dave here, still a Vanilla Villager with no new results. I agree with waiting for Heidi's Day 3 count and the Night 2 results. No nomination from me.
+Erin (public): Erin here. No nomination from me yet. I'll vote on Heidi's Day 3 count and the Night 2 results, and I'll judge each trial on its evidence.
+Frank (public): Frank here. Still no new results from me. I'm holding my nomination until Heidi's Day 3 count and the Night 2 results are posted, then I'll judge each trial on its evidence.
+Grace (public): Grace here, Medic with 2 tokens and no Night 1 protection, as I posted. I still won't nominate before Heidi's Day 3 count and the Night 2 results. Erin's Bounty Hunter claim matches Mallory's audit, so a second audit on Erin would test it. I'll judge the first trial on its evidence.
+Heidi (public): Heidi here, no new information. My Night 2 three-player Attack count posts at the start of Day 3 as promised, and I won't nominate before it.
+Ivan (public): Ivan here. No nomination from me. I'm waiting for Heidi's Day 3 count and the Night 2 results, then I'll vote on evidence, not pressure.
+Judy (public): Judy here, still a Vanilla Villager. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Mallory (public): Mallory here. No nomination from me. I'll post my Night 2 audit result at the start of Day 3, and I'm still waiting on Heidi's count and the Night 2 results before any trial.
+Olivia (public): Olivia here, still no new results. I'm waiting for Heidi's Day 3 count and the Night 2 results before any nomination, and I'll vote on trial evidence.
+Alice (public): Alice here, no new results. No private messages from Carol have shown up yet. I'm waiting for Heidi's Day 3 count before any nomination.
+Bob (public): Bob here, Vanilla Villager. I'm not nominating. I'll vote only on trial evidence, and I want Heidi's Day 3 count and Grace's and Frank's results posted plainly first.
+Carol (public): Carol here, Juror with no results. I'm holding my Juror until there are votes to compare, since none exist yet. I won't nominate before Heidi's Day 3 count and the Night 2 results from Grace and Frank.
+Dave (public): Dave here, still a Vanilla Villager. No nomination from me. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any trial, and I'll vote on evidence.
+Erin (public): Erin here. No nomination from me; I'll vote on Heidi's Day 3 count and trial evidence.
+Frank (public): Frank here. No nomination from me. I'll post my Night 2 result at the start of Day 3 and judge the first trial on its evidence.
+Grace (public): Grace here, still Medic with 2 tokens and no Night 1 protection. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Heidi (public): Heidi here, no nomination from me. My Night 2 Attack count still posts at the start of Day 3.
+Ivan (public): Ivan here. No nomination from me. I'm waiting for Heidi's Day 3 count and the Night 2 results from Grace and Frank before voting on any trial.
+Judy (public): Judy here, still a Vanilla Villager with no new results. I'm waiting for Heidi's Day 3 count and the Night 2 results before any nomination.
+Mallory (public): no nomination from me. My Night 2 audit result comes at the start of Day 3, as planned.
+Niaj (public): Niaj here, Vanilla Villager, no new results. Erin's Bounty Hunter claim still fits Mallory's 1-token audit. I'm not nominating until Night 2 results are posted.
+Olivia (public): Olivia here, still no new results and no nomination. I'm waiting for Heidi's Day 3 count and the Night 2 results before voting on any trial.
+[Claim] Alice: Eavesdropper. N1: eavesdropped Carol. Day 2: no private messages from Carol seen so far.
+Alice (public): Alice here. I'm the Eavesdropper. I read Carol's private messages on Day 2 and have seen none so far. I'll post any contents I read, and I'm not nominating.
+Bob (public): Bob here. No nomination from me. I'm waiting for Heidi's Day 3 count and the Night 2 results from Grace and Frank before voting on any trial.
+[Claim] Carol: Juror. N1: no night action. Will use Juror on Night 2 to compare Day votes once trials exist.
+Carol (public): Carol here, Juror with no results yet. I'm holding nominations until Heidi's Day 3 count and Grace's and Frank's Night 2 results are posted.
+Dave (public): Dave here, Vanilla Villager. I agree with waiting for Heidi's Day 3 count and the Night 2 results before any nomination, and I'll vote on trial evidence.
+[Claim] Frank: Scrutineer (Village). N1: no action. Night 2 result posts at the start of Day 3. No trials yet.
+Frank (public): Frank here, Scrutineer, and that claim is true. I have no night result and no nomination. I'll post my Night 2 result at the start of Day 3 and vote only on trial evidence.
+Grace (public): Grace here, still Medic with 2 tokens and no Night 1 protection. I'm not nominating. I'll judge any trial on Heidi's Day 3 count and the Night 2 results.
+Heidi (public): no nomination from me. My Night 2 three-player Attack count posts at the start of Day 3, as promised.
+Ivan (public): Ivan here, no nomination from me. I'm waiting for Heidi's Day 3 count and Grace's and Frank's Night 2 results before any trial. Erin, one plain sentence with your role, please.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Dave, Grace, Judy) Dave (Yakuza chat): Dave: Agreed, Grace keeps the Katana and target null again tonight. No attack until we know more about the Village roles. Grace, keep your Medic claim consistent with your 2 tokens and don't name any protection targets. I'll submit holder Grace, target null.
+(to Dave, Grace, Judy) Grace (Yakuza chat): Grace: I propose the Katana stays with Grace and the target is Heidi tonight. Her Bloodhound count could expose Katana attacks from Night 3 on, and her claim is untested. Dave and Judy, please confirm holder Grace and target Heidi in your submissions. No daytime PMs about this plan.
+(to Dave, Grace, Judy) Judy (Yakuza chat): Judy: Agreed on Grace holding the Katana. I'm fine with Heidi as the target: her Bloodhound count threatens us from Night 3 on, and her claim is untested. Dave, keep a swap ready in case a Village Medic protects her, and make sure our submissions match. No daytime PMs about this.
+(to Dave, Grace, Judy) Dave (Yakuza chat): Dave: Agreed. Grace holds the Katana and tonight's target is Heidi. Her Bloodhound count threatens us from Night 3 on, and her claim is untested. I'll submit holder Grace, target Heidi. No daytime PMs about this.
+(to Dave, Grace, Judy) Grace (Yakuza chat): Grace: Confirmed. Holder Grace, target Heidi. I'll submit that pair. Dave, keep your swap for a Medic protection on Heidi only. No daytime PMs about this plan, and no talk of it on Day 2.
+(to Dave, Grace, Judy) Judy (Yakuza chat): Judy: Confirmed. Grace holds the Katana and the target is Heidi. I'll submit that pair. No daytime PMs about this plan.
+[Feedback from Carol] The Juror rule gives no result when no Day votes exist, so a Night 2 use would be wasted.
+Night actions:
+  Alice (Eavesdropper): target Erin; "Eavesdrop on Erin for Day 3."
+  Carol (Juror): no action
+  Dave (Smuggler): no role action; Katana vote: Grace holds, attacks Heidi
+  Erin (Bounty Hunter): no action
+  Frank (Scrutineer): no action
+  Grace (Talent Agent): 1 token(s); "Talent Agent Scan for in-play roles (no player target)."; Katana vote: Grace holds, attacks Heidi
+  Heidi (Bloodhound): no action
+  Ivan (Vigilante): no action
+  Judy (Wiretap): no role action; Katana vote: Grace holds, attacks Heidi
+  Mallory (Accountant): target Erin; "Accountant audit on Erin for Night 2, as announced, to test her Bounty Hunter claim and 1-token count."
+  Olivia (Magpie): target Grace; "Steal one token from Grace."
+Katana: Grace holds it and attacks Heidi.
+(to Grace) Moderator (private): Your scan: Bounty Hunter is in play, and Archivist is not in play.
+(to Heidi) Moderator (private): You were attacked with the Katana tonight, and you died.
+(to Dave, Grace, Judy) Moderator (private): Yakuza actions tonight: Grace holds the Katana and used it to attack Heidi; Grace also used a Talent Agent token to scan. Dave chose no action. Judy has no night action.
+(to Grace) Moderator (private): Katana attack result: your Katana attack on Heidi succeeded.
+[Moderator summary] Night 2: No role-blocks, no swaps. Grace (Katana holder) attacked Heidi with a Standard attack against no Defense, so Heidi died (killed by Katana). Grace used a Talent Agent scan (1 token spent). Olivia stole a token from Grace after the scan, so Grace should end at 0 talent tokens. Alice eavesdropped on Erin for Day 3. Mallory audited Erin, who has 1 token. Bloodhound attacks: [Grace]. Visits: Alice→Erin, Mallory→Erin, Olivia→Grace, Grace→Heidi. No win condition met.
+(to Olivia) Moderator (private): You stole a token from Grace (1 of 3).
+(to Grace) Moderator (private): A Magpie stole one of your talent tokens. You have 0 left.
+(to Heidi) Moderator (private): Your Bloodhound check of Carol, Dave and Ivan: together they have made 0 attacks this game, tonight's included.
+(to Mallory) Moderator (private): Your audit: Erin has 1 token in total.
+
+===== DAY 3 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi's will: I trust only the public ledger and what can be checked. Any vote I cast will match what I said publicly. Read any attack-count results carefully before judging anyone."
+(to Alice) You are eavesdropping on Erin today: you'll read every private message they send or receive.
+Speaking order today goes around the circle in seat order, starting with Dave.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+[Night check] Night 2: correct
+Dave (public): Dave here, Vanilla Villager. Heidi's death on Night 2 is the first real information, and it means a Katana hit a Village role. I still have no results. Frank, please post your Night 2 Scrutineer result plainly. Grace, please state your Night 2 Medic action plainly. I'm not nominating until both are in and Mallory's audit of Erin is re-tested.
+Erin (public): Erin here. Sorry about Heidi. My only night information is the Bounty Hunter claim with 1 attack token, which matches Mallory's audit of 1 token. Frank and Grace, please post your Night 2 results plainly. I won't nominate until the Scrutineer and Medic results are in, and I'll judge any trial on its evidence.
+[Claim] Frank: Scrutineer (Village). N1: no action. N2: no action. No trials yet.
+Frank (public): Frank here. Correction: I took no Night 2 action, so I have no Scrutineer result to post, and I shouldn't have implied one. There's no trial yet, so nothing to scrutinize. Grace, please state plainly whom your Night 2 Medic protected, if anyone.
+Grace (public): Grace here. On Night 2 I protected nobody, so there's no save to report. My Medic claim stands with 2 tokens. Heidi's death was a Katana kill, and her Bloodhound count is gone, so Mallory's audits matter now. I'm not nominating yet and will judge any trial on evidence.
+Ivan (public): Ivan here. Sorry about Heidi, since her Bloodhound count is lost. I took no Night 2 action, so I'm on no visit list. Anyone with a Night 2 visit or result log, please post it now, because whoever visited Heidi is the Katana lead. Carol, post your Juror result when you have one. No nomination from me yet.
+[Claim] Judy: Vanilla Villager. N1: no night action. N2: no night action. D3: no vote yet.
+Judy (public): Judy here. Still a Vanilla Villager with no night action on N1 or N2, so no results. Heidi died to the Katana, so the lead is whoever visited Heidi on Night 2. Anyone with a Lookout, Tracker or Fortune Teller log, post it now. Erin, your attack token is the only claim that could have hit someone, so state plainly whether you used it on Night 2.
+[Claim] Mallory: Accountant. N1: audited Erin, 1 token. N2: audited Erin, 1 token (unspent). D3: no vote yet.
+Mallory (public): Mallory here. My Night 2 audit shows Erin still has 1 token at the end of Night 2, the same as Night 1. If she is the Bounty Hunter, her attack token was not spent, so she did not kill Heidi. Heidi's death was a Katana kill, which points at the Yakuza. Heidi's Night 1 count (Bob, Grace, Ivan: 0 attacks) still stands. I'll post my next audit result at the start of Day 4. No nomination from me yet.
+[Claim] Niaj: Vanilla Villager. N1: no night action. N2: no night action. D3: no vote yet.
+Niaj (public): Niaj here, Vanilla Villager, no night results. Heidi died to the Katana on Night 2, so the Yakuza are active. Mallory's audits show Erin's attack token unspent, which means Erin did not kill Heidi, but that does not clear Erin of being Yakuza-aligned. Anyone who visited or was visited by Heidi on Night 2, post it plainly. No nomination from me yet.
+Olivia (public): Olivia here. No new results and no nomination from me. Mallory's Erin audits have matched so far, and Heidi's death is still the main lead. I'll vote only on trial evidence.
+[Claim] Alice: Eavesdropper. N1: eavesdropped Carol, no PMs seen. N2: eavesdropped Erin. D3: eavesdropping Erin.
+Alice (public): Alice here. My Day 3 eavesdrop on Erin is live. I'll quote any PM I read in full. No PMs from Erin yet, and I'm not nominating.
+Bob (public): Bob here, Vanilla Villager. Heidi's Night 2 Katana kill is our main lead, and nobody has yet said who visited her. Alice, you eavesdropped Erin on Night 2, so please quote any PM you read in full. Mallory's audits fit Erin's token count, but that clears no one. I'm not nominating yet.
+Carol (public): Carol here, Juror. Heidi died to the Katana, so the Night 3 targets matter most. I'm not nominating yet. I'll post my Juror comparison once there are nomination votes to compare.
+[Claim] Dave: Vanilla Villager. N1: no night action. N2: no night action. D3: no vote yet.
+Dave (public): Dave here, Vanilla Villager. Heidi's Katana kill means someone visited her on Night 2, so the visit logs matter most. Alice, what did your Night 2 eavesdrop on Erin show, quoted in full? Mallory's audits fit Erin's token count, but that clears no one. I'm not nominating yet and will vote on trial evidence.
+Erin (public): Erin here. On Night 2 I took no action, so my attack token is still unspent and Mallory's audit stands. Heidi's Katana kill means the Yakuza hold the lead, so anyone with a Tracker, Lookout or Fortune Teller log should post it plainly. Alice, please quote your Night 2 eavesdrop on me in full. I'm not nominating yet and will vote on trial evidence.
+Frank (public): Frank again. Heidi's Katana kill still points at the Yakuza, but no one has posted a visit log yet. Alice, please quote your Night 2 eavesdrop on Erin in full, since it is the only read on her claim. I'm not nominating before there is evidence.
+Grace (public): Grace here. Alice, your Night 2 eavesdrop on Erin is the only PM read we have, so quote it once Erin sends any. Mallory's audits match Erin's Bounty Hunter claim so far. I'm not nominating yet, and I want a visit log from any Tracker or Lookout before a trial.
+Ivan (public): Ivan here. I took no night action on N1 or N2 and have no results to post. Alice, please quote any Erin PM you read in full. I'm not nominating yet and will vote on trial evidence.
+Judy (public): Judy here, still a Vanilla Villager with no new results. Alice, please quote your Erin eavesdrop in full as asked. Anyone with a Tracker, Lookout or Fortune Teller log, post it before any nomination.
+[Claim] Mallory: Accountant. N1: audited Erin, 1 token. N2: audited Erin, 1 token. D3: no vote yet.
+Mallory (public): Mallory again. Erin's token count stayed at 1 after Nights 1 and 2, which fits a Bounty Hunter who has not spent the attack token. Heidi's Katana kill points to the Yakuza. Alice, please quote your Erin eavesdrop in full. Anyone with a Tracker, Lookout or Fortune Teller log, please post it. I'm not nominating before trial evidence.
+Niaj (public): Niaj here. Mallory's audits only show Erin never spent her attack token, which clears her of Heidi's kill but not of being Yakuza-aligned. Heidi died to the Katana, so anyone who visited her on Night 2 is the lead. Alice, please quote your Erin eavesdrop in full. I'm not nominating yet.
+Olivia (public): Olivia here. No new results and no nomination from me. I'll vote on trial evidence once a trial comes up.
+Alice (public): Alice here. My Day 3 eavesdrop on Erin is live, and so far I have seen no private messages sent or received by Erin, so there is nothing to quote. Day 2 Carol also showed none. I'll quote any PM in full the moment one appears. Heidi's Katana kill makes Night 2 visits the key question, so anyone who visited or was visited by Heidi, please say so plainly.
+Bob (public): Bob here, Vanilla Villager. No new results from me. Alice, please quote your Erin eavesdrop in full, and any Tracker, Lookout or Fortune Teller log should be posted before anyone nominates.
+Carol (public): Carol here, Juror. I'm not nominating until someone posts a Night 2 visit log on Heidi. Alice, please quote your Erin eavesdrop in full once any PM appears. Vote on evidence.
+Dave (public): Dave here, Vanilla Villager. Heidi's Katana kill makes Night 2 visit logs the key evidence, so any Tracker, Lookout or Fortune Teller holder should post theirs now. I'm not nominating before a log or a trial. Alice, if Erin sends no PM, say so once and keep the eavesdrop live.
+Erin (public): Erin here. I'm still holding my attack token, unspent on Nights 1 and 2. Heidi's Katana kill makes the visit logs decisive, so any Tracker, Lookout or Fortune Teller holder should post plainly before anyone nominates. I'm not nominating yet.
+Frank (public): Frank here. No nomination from me. There is still no trial, so I have no voters to scrutinize yet. Alice's Erin eavesdrop is the only PM lead, so if Erin sends no PM, say so once more. Anyone with a Tracker, Lookout or Fortune Teller log, please post it before anyone nominates.
+Grace (public): Grace here. Heidi's Katana kill makes the Night 2 visit logs the key evidence, so any Tracker, Lookout or Fortune Teller should post plainly. Alice, if Erin sends no PM, say so once and keep the eavesdrop live. Mallory's audits fit Erin's claim so far. I'm not nominating before a trial.
+Ivan (public): Ivan here. No nomination from me. Heidi's Katana kill still has no visit log, so whoever visited her on Night 2 is the lead. Anyone who used a Tracker, Lookout or Fortune Teller, please post it plainly before any trial.
+Judy (public): Judy here, Vanilla Villager, with no new results. The ledger shows no private messages yet, so Alice's Erin eavesdrop has nothing to quote. I'm not nominating until someone posts a Night 2 visit log on Heidi, and I'll judge any trial on its totals.
+Mallory (public): Mallory again. No nomination from me. Erin's token count held at 1 after Nights 1 and 2, which fits her Bounty Hunter claim with an unspent attack token. Heidi's Katana kill still points at the Yakuza, so the Night 2 visit logs matter most. Alice, please quote any Erin PM in full once one appears. I'll post my next audit result at the start of Day 4.
+Niaj (public): Niaj here, Vanilla Villager, no new results. Heidi died to the Katana on Night 2, so anyone who visited her that night is the lead. Any Tracker or Lookout holder, please post your Night 2 log plainly. I'm not nominating before a log or a trial.
+Alice (public): Alice here. My Day 3 eavesdrop on Erin is still live, and Erin has sent or received no private messages so far, so there is nothing to quote. Frank, you claimed Scrutineer and then said you took no Night 1 or Night 2 action. When would you scrutinize a trial, and what would that show?
+Bob (public): Bob here, Vanilla Villager. Frank's Night 2 claim changed within one Day, from a Scrutineer result to no action. Frank, please answer Alice's question plainly. Heidi's Katana visitor is still unknown, so any Tracker or Lookout should post their log. No nomination from me.
+[Claim] Carol: Juror. N1: no action. N2: no action (no votes existed to compare). D3: no vote yet.
+Carol (public): Carol here, Juror. I took no Night 2 action because there were no votes to compare yet. Frank, you posted a Scrutineer result, then retracted it to no action within the same Day. Which is true, and what would you have scrutinized? Grace, you protected nobody on Night 2, so Heidi had no save. I'm holding nominations until a visit log or a trial exists.
+Dave (public): Dave here, Vanilla Villager. Frank's Scrutineer claim changed within one Day, and Alice still has no Erin PM to quote. Frank, please answer Alice's question plainly. Heidi's Night 2 visit log is still the key evidence, so I'm not nominating yet.
+Erin (public): Erin here. I'm still holding my attack token and have no nomination. Frank, answer Alice's question plainly. Alice, quote your Erin eavesdrop if any PM appears. I'll vote on trial evidence.
+[Claim] Frank: Scrutineer (Village). N1: no action. N2: no action (no trial existed to scrutinize). D3: no vote yet.
+Frank (public): Frank here, answering Alice plainly. My Scrutineer scrutinizes voters of a trial from the Day before the night, and no trial has happened yet, so I took no action on Night 1 or Night 2. My earlier line about a Night 2 result was a mistake and I retract it. I have no results, and I'm not nominating before evidence.
+[Claim] Grace: Medic. N1: no protection. N2: protected nobody. 2 medic tokens. D3: no vote yet.
+Grace (public): Grace here, Medic with 2 tokens, no Night 2 protection, not nominating. Frank's Scrutineer claim went from a result to no action within one Day, so Frank, name the trial you would have scrutinized. Alice, has any Erin PM appeared yet? Any Tracker, Lookout or Fortune Teller log on Heidi's Night 2 visitors should be posted now.
+Ivan (public): Ivan here. Frank's Scrutineer claim went from a Night 2 result to no action, then to a reason that still names no trial. Frank, which trial would you have scrutinized, and when? I'd also like Alice's Erin PM answer. No nomination from me yet.
+Judy (public): Judy here. Frank's Scrutineer claim has changed twice within one Day, and his latest answer still names no trial. Frank, name the trial you would have scrutinized and say when it would have happened. Alice, if Erin sends no PM, say so once and keep the eavesdrop live. I'm not nominating yet and will judge any trial on its totals.
+Mallory (public): Mallory here. Frank, your Scrutineer line has gone from a Night 2 result to no action to 'no trial existed', and none of those versions names a trial. Name the trial you would have scrutinized and the Day it would have come from. Erin's audited token count is still 1 after Nights 1 and 2, which fits her Bounty Hunter claim. No nomination from me yet.
+Niaj (public): Niaj here, Vanilla Villager. Frank, your Scrutineer claim has changed three times in one Day and still names no trial. Name the trial you would have scrutinized, or drop the claim. Alice has no Erin PM to quote yet. I'm not nominating until a Night 2 visit log on Heidi appears.
+Alice (public): Alice here. Erin has still sent no private message on Day 3, so my eavesdrop has nothing new to quote. Frank, name the trial you would have scrutinized, or drop the Scrutineer claim. I'm not nominating yet, and I'll quote any PM in full the moment one appears.
+Bob (public): Bob here, Vanilla Villager. Frank, your Scrutineer claim has changed several times within one Day and still names no trial. Name the trial you would have scrutinized, or drop the claim. I'm not nominating yet and will vote on trial evidence.
+Carol (public): Carol here, Juror. Frank, name the trial you would have scrutinized and the Day it came from, or drop the Scrutineer claim. Alice, quote any Erin PM in full once one appears. I'm not nominating yet and will vote on trial evidence.
+Dave (public): Dave here. Frank, your Scrutineer line has changed several times within one Day and still names no trial. Name the trial you would have scrutinized and the Day it came from, or drop the claim. I'm not nominating yet and will vote on trial evidence.
+Erin (public): Erin here. Frank's Scrutineer line still names no trial. Frank, name the trial you would have scrutinized and its Day, or drop the claim. I'm not nominating yet and will vote on evidence.
+Frank (public): Frank here. No nomination from me. Heidi's Night 2 visitor is still unknown, so I want any Tracker or Lookout log before a trial. Mallory, two audits show Erin never spent her token, but they don't show who visited Heidi.
+Grace (public): Grace here. Frank's Scrutineer claim has changed several times and still names no trial, so unless he names one soon I'd treat it as false. Alice, if no Erin PM appears, say so once and keep the eavesdrop live. No nomination from me; Heidi's Night 2 visit log is still the key evidence.
+Ivan (public): Ivan here, no night action on N1 or N2. Frank's Scrutineer claim has changed several times and still names no trial. Frank, name the trial you would have scrutinized and its Day, or drop the claim. Heidi's Katana kill still has no visit log, so I'm not nominating until one is posted.
+Judy (public): Judy here, Vanilla Villager. Frank's Scrutineer line has changed four times and still names no trial. Frank, name the trial and its Day, or drop the claim. If Frank can't, I'd vote Guilty on his trial.
+Mallory (public): Mallory here. No nomination from me. Frank, name the trial you would have scrutinized and its Day, or drop the Scrutineer claim. My Erin token audit held at 1 after Night 2, consistent with her Bounty Hunter claim.
+Niaj (public): Niaj here, Vanilla Villager. Frank's Scrutineer claim has changed four times and still names no trial, so I can't check it. I won't nominate yet. Any Tracker, Lookout or Fortune Teller holder, please post your Night 2 log on Heidi's visitors now.
+Olivia (public): Olivia here. No nomination from me. Frank still needs to name the trial he would have scrutinized before anyone votes on his claim.
+Alice (public): Alice here. Erin has still sent or received no private messages on Day 3, so my eavesdrop has nothing to quote. I'll quote any PM in full once one appears. Not nominating yet.
+Bob (public): Bob here, Vanilla Villager. Frank, your Scrutineer claim has changed several times and still names no trial. Name the trial and its Day, or drop the claim. Heidi's Night 2 visitor is still unknown, so any Tracker or Lookout should post their log. I'm not nominating yet.
+Carol (public): Carol here, Juror. I'm not nominating yet. Frank, your Scrutineer line still names no trial, so name the trial and its Day, or I'll vote Guilty if you're nominated. Alice, quote any Erin PM in full once one appears.
+Dave (public): Dave here, Vanilla Villager. Frank, name the trial you would have scrutinized and its Day, or drop the Scrutineer claim. Without a named trial I'd vote Guilty on a Frank trial. I'm not nominating yet and will vote on the evidence.
+Erin (public): Erin here. No nomination from me. Frank, name the trial you would have scrutinized and its Day, or drop the Scrutineer claim. Any Tracker, Lookout or Fortune Teller, please post your Night 2 log on Heidi's visitors before any trial.
+Frank (public): Frank here. Plain answer: I'm Scrutineer and took no action on Nights 1 or 2. I posted no result, and the earlier Night 2 result line was wrong. A Scrutineer needs a trial's voters, and none has happened yet. I'm not nominating.
+Grace (public): Grace here. Frank, name the trial you scrutinized and its Day, or drop the Scrutineer claim. Without a named trial, I vote Guilty if you are nominated.
+Ivan (public): Ivan here. Frank's Scrutineer line has changed several times and still names no trial, so I can't credit it. Erin's token count fits her claim but doesn't clear anyone of the Katana. I'm not nominating yet and want Heidi's Night 2 visitors posted before any trial.
+Judy (public): Judy here. Frank still hasn't named the trial he supposedly scrutinized, so his Scrutineer claim can't be checked. Frank, name the trial and its Day now. If you can't, I'd vote Guilty if you're nominated. No Tracker or Lookout log on Heidi's Night 2 visitors has been posted yet.
+Mallory (public): Mallory here. No nomination from me. Frank still hasn't named the trial he scrutinized, so his Scrutineer claim is unverified. Heidi's Night 2 visitors are the key lead, so any Tracker or Lookout log should be posted before a trial.
+Niaj (public): Niaj here. Heidi's Night 2 visitors are still unlogged, and Frank's Scrutineer line still names no trial, so I can't check it and won't vote on it. Before any nomination I want Tracker, Lookout and Fortune Teller logs. Erin's token audit fits her claim so far, but it doesn't show who visited Heidi.
+Olivia (public): Olivia here. No nomination from me. I'll keep voting on trial evidence and on any Night 2 visit logs that get posted.
+Alice (public): Alice here. Still no private message from Erin that I can see, so nothing to quote. Frank, name the trial you scrutinized and its Day, or drop the Scrutineer claim. I'm not nominating.
+Bob (public): Bob here. No nomination from me. Frank, name the trial you scrutinized and its Day, or drop the claim. Any Tracker or Lookout with a Night 2 log on Heidi's visitors, please post it.
+Carol (public): Carol here, Juror. No nomination from me. Frank still needs to name the trial he scrutinized and its Day. Any Tracker, Lookout or Fortune Teller log on Heidi's Night 2 visitors should be posted before a trial.
+Dave (public): Dave here. Frank, name the trial you scrutinized and its Day now. Without a named trial your claim has no credibility, and I'd vote Guilty if you're nominated.
+Erin (public): Erin here. No nomination from me. Frank still hasn't named a trial, so his Scrutineer claim is unverified. I'll vote on trial evidence.
+Frank (public): Frank here. No nomination from me. My Scrutineer claim stands as stated: no trial has happened, so I had nothing to scrutinize on Nights 1 or 2. If a trial happens, I'll post the voter counts from it.
+Grace (public): Grace here. Frank still names no trial for his Scrutineer claim, so I'd vote Guilty on a Frank trial unless he names one. No nomination from me yet.
+Ivan (public): Ivan here, Vigilante with 3 tokens and no night results yet. Frank, name the trial you scrutinized and its Day, or drop the Scrutineer claim. Erin, post a plain line on Night 2 visits. No nomination from me yet.
+Judy (public): Judy here. Frank still names no trial for his Scrutineer claim, so I'd vote Guilty on a Frank trial unless he names one.
+Mallory (public): Mallory here. No nomination from me. Frank still hasn't named a trial for his Scrutineer claim. Trackers and Lookouts, post your Night 2 logs on Heidi's visitors before any trial.
+Niaj (public): Niaj here, Vanilla Villager. Frank must name the trial he scrutinized and its Day, or drop the claim. No trial has happened, so it can't be checked. I'm not nominating yet.
+Olivia (public): Olivia here. No nomination from me. I'll vote on trial evidence, and I still want Frank to name the trial he scrutinized.
+Alice (public): Alice here. Still no private message from Erin on Day 3, so my eavesdrop has nothing to quote. Frank, name the trial you scrutinized and its Day. I'm not nominating.
+Bob (public): Bob here, Vanilla Villager. Frank still hasn't named the trial he scrutinized. Frank, name it and its Day, or drop the claim. Otherwise I'd vote Guilty on a Frank trial. No nomination from me.
+Carol (public): Carol here, Juror. No nomination from me. Frank, name the trial you scrutinized and its Day, or drop the claim. Heidi's Night 2 visit logs are still missing, so I'm waiting on those before any trial.
+[Claim] Dave: Vanilla Villager. N1: no night action. N2: no night action. D3: nominated Frank; will vote Guilty.
+Dave (public): Dave here. Frank named no trial for his Scrutineer claim after several changes. I nominate him, and I will vote Guilty.
+Dave nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Dave, Erin, Grace, Ivan, Judy, Mallory, Niaj, Olivia, Bob, Carol; No - Frank, Alice
+Nomination votes on Frank: 10 Yes (the votes are secret).
+Frank is put on trial (10 Yes).
+[Claim] Frank: Scrutineer (Village). N1: no action. N2: no action (no trial existed on Day 1 or Day 2). D3: on trial; voted No on my own nomination. Night 3: will scrutinize a voter from the Day 3 trial.
+Frank (public): Frank here, on trial. Plain facts: I am the Scrutineer. I took no action on Night 1 or Night 2 because a Scrutineer checks the voters of the Day's trial, and Day 2 had no trial. My Night 2 result line was a mistake and I corrected it. I'm not hiding a result. Tonight I can scrutinize a voter from this Day 3 trial, so vote with that in mind and I'll post the Guilty count for this trial. Dave nominated me within minutes of the Scrutineer question and said he would vote Guilty before any answer. Ask why the pressure came so fast. Heidi's Night 2 visitors are still unlogged, so any Tracker or Lookout should post their log. Vote on evidence, not on how loudly someone asks for a name.
+[Claim] Grace: Medic. N1: no protection. N2: protected nobody. 2 medic tokens. D3: voting Guilty on Frank (unnamed trial).
+Grace (public): Grace here. Frank's Scrutineer claim has changed several times and still names no trial, so I can't credit it. I'm voting Guilty unless he names the trial he scrutinized and its Day. Heidi's Night 2 visitors are still unlogged, so any Tracker or Lookout should post now.
+[Claim] Ivan: Vigilante, 3 tokens. N1: no action. N2: no action. D3: leaning Innocent on Frank.
+Ivan (public): Ivan here. Frank's latest answer is internally consistent: a Scrutineer has no trial to check on Nights 1 or 2, so his earlier Night 2 result was the mistake he retracted. What bothers me more is Dave nominating him within minutes and saying he'd vote Guilty before any answer. I lean Innocent unless Frank's Day 3 scrutiny or a visit log contradicts him. Heidi's Night 2 visitors still need to be posted.
+[Claim] Judy: Vanilla Villager. N1: no night action. N2: no night action. D3: Guilty on Frank (unverifiable Scrutineer claim).
+Judy (public): Judy here. I'm voting Guilty on Frank. His Scrutineer claim has moved from a Night 2 result, to no action, to 'no trial existed', and he has never named a trial he scrutinized, so none of it can be checked. Frank, name the trial and its Day now. Heidi's Night 2 visitors are still unlogged, and that is the lead we need. Vote on the evidence, and count the totals against the voters.
+[Claim] Mallory: Accountant. N1: audited Erin, 1 token. N2: audited Erin, 1 token. D3: Innocent on Frank.
+Mallory (public): Mallory here. I'm voting Innocent on Frank. His Scrutineer explanation is now consistent: Day 2 had no trial, so he had nothing to scrutinize on Nights 1 or 2, and he has named the Day 3 trial as his Night 3 target. The flip-flops were sloppy, but sloppiness isn't proof of Yakuza. Dave, you nominated him within minutes and said you'd vote Guilty before any answer. Why the rush? I'll check the Guilty and Innocent totals against the stated votes.
+[Claim] Niaj: Vanilla Villager. N1, N2: no night action. D3: Innocent on Frank.
+Niaj (public): Niaj here, Vanilla Villager. On Frank: his Scrutineer claim is now internally consistent. Day 2 had no trial, so a Scrutineer had no voters to check on Nights 1 or 2. Sloppy retractions aren't a mechanical contradiction. Dave, you nominated Frank within minutes and said you'd vote Guilty before any answer, and that pressure is what I'd question. I'm voting Innocent unless a Night 2 visit log or a real contradiction appears. Frank, post your Night 3 scrutiny of a Day 3 voter so it can be checked.
+Olivia (public): Olivia here. I'm voting Innocent on Frank. His Scrutineer account is now consistent: Day 2 had no trial, so he had nothing to check on Nights 1 or 2. Nothing ties him to Heidi's kill. Dave's fast nomination and promise to vote Guilty before any answer is what I'd question. Heidi's Night 2 visitors still need logs.
+Alice (public): Alice here. My Erin eavesdrop is still empty: no private messages have been sent or received by anyone this game, so there is no PM evidence either way. Frank's Scrutineer line has changed several times and can't be verified yet, which is a reason for doubt, not proof. Dave, you nominated Frank within minutes and promised a Guilty vote before any answer. Why the rush? I lean Innocent unless Frank's answer or a visit log gives a real contradiction.
+Bob (public): Bob here, Vanilla Villager. Frank's Scrutineer explanation now fits the rules: Day 2 had no trial, so there were no voters to scrutinize on Nights 1 or 2. The earlier flip-flops are sloppy, but sloppiness isn't proof. Dave, you nominated Frank within minutes and promised a Guilty vote before any answer. Please explain that. I lean Innocent unless Frank's Night 3 scrutiny or a Heidi visit log contradicts him. Frank, post the Day 3 voter counts after tonight.
+Carol (public): Carol here, Juror. I'm leaning Innocent on Frank. His Scrutineer account now fits the rules: with no trial on Day 2, he had no voters to scrutinize on Nights 1 or 2. Nobody has shown a mechanical contradiction. Dave, you nominated him within minutes and promised a Guilty vote before any answer. Why the rush? Frank, after tonight, post the Day 3 voter you scrutinized and the result. Heidi's Night 2 visitors are still unlogged, so any Tracker or Lookout should post now.
+[Claim] Dave: Vanilla Villager. N1: no night action. N2: no night action. D3: nominated Frank; voting Guilty.
+Dave (public): Dave here. I nominated Frank and still vote Guilty. His Scrutineer story changed four times and he has never named a trial he scrutinized. Frank, name that trial and its Day now. Heidi's Night 2 visitors are still unlogged, so any Tracker or Lookout should post.
+Erin (public): Erin here. On Frank: his Scrutineer story now fits the rules. Day 2 had no trial, so he had no voters to check on Nights 1 or 2. The retractions were sloppy, but sloppiness isn't proof. Dave, you nominated him within minutes and promised a Guilty vote before any answer. Why the rush? Frank, post your Night 3 scrutiny result after tonight. I lean Innocent unless a visit log or a real contradiction appears.
+Frank (public): Frank here, on trial. Plain facts: I am the Scrutineer. I took no action on Night 1 or Night 2, because a Scrutineer checks the voters of the previous Day's trial and Day 2 had no trial. My Night 2 result line was a mistake and I withdrew it. I have no night result and nothing ties me to Heidi's Katana kill. Dave nominated me within minutes and said he would vote Guilty before I had answered anything. That is the pressure I'd question. Tonight I scrutinize a voter from this Day 3 trial, and I will post that result and the Guilty count at the start of Day 4. Heidi's Night 2 visitors still need Tracker or Lookout logs. Vote on the totals and the evidence, not on who asks loudest.
+Trial votes on Frank: 3 Guilty, 9 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Dave, Grace, Judy; Innocent - Alice, Bob, Carol, Erin, Frank, Ivan, Mallory, Niaj, Olivia
+Frank is found Innocent (3 Guilty of 12 votes; 7 needed).
+Erin (public): Erin here. No nomination from me. Dave, you nominated Frank before any answer and promised a Guilty vote. Explain that, and I'll vote on trial evidence.
+Frank (public): Frank here. The trial ended 3 Guilty, 9 Innocent, so the totals are on record. Dave, you nominated me before I answered and promised a Guilty vote before any reply. Please explain that. Heidi's Night 2 visitors still have no Tracker or Lookout log, so please post one before anyone nominates.
+Grace (public): Grace here. Frank was found Innocent, and I'll respect that result. Dave's fast nomination is a fair question, but I want Night 3 results before judging anyone. Erin's Bounty Hunter claim matches Mallory's audits so far, so Mallory, please audit Erin again tonight. Any Tracker or Lookout, post your Night 2 log on Heidi's visitors.
+Ivan (public): Ivan here, Vigilante with 3 tokens. I'm holding my shot until a real lead appears. Dave, why did you nominate Frank before he answered?
+Judy (public): Judy here. Frank was found Innocent, and I'll accept that result. Heidi's Night 2 visitors still have no Tracker or Lookout log, so I want one posted before any nomination. I'll judge the next trial on its totals against the stated votes.
+Mallory (public): Mallory here. Frank's Innocent result stands. Dave, you nominated him before he answered and promised a Guilty vote. Why the rush? Heidi's Night 2 visitors still have no Tracker or Lookout log. I'm not nominating.
+Niaj (public): Niaj here, Vanilla Villager. Still no night results. Dave, why nominate Frank before he answered? Heidi's Night 2 visitors are still unlogged, so any Tracker or Lookout should post.
+Olivia (public): Olivia here. No nomination from me. I'll keep voting on trial evidence and visit logs.
+Alice (public): Alice here. The ledger still shows no private messages sent this game, so my Erin eavesdrop is empty. Dave, why did you nominate Frank before he answered? I'm not nominating.
+[Claim] Bob: Vanilla Villager. N1, N2: no night action. D3: Innocent on Frank.
+Bob (public): Bob here, Vanilla Villager. Dave nominated Frank before Frank answered and promised a Guilty vote before any reply. That rush is the pattern I'm tracking. Heidi's Night 2 visitors still have no Tracker, Lookout or Fortune Teller log, so please post one before any nomination. No nomination from me.
+[Claim] Carol: Juror. N1: no action. N2: no action. D3: Innocent on Frank.
+Carol (public): Carol here, Juror. I voted Innocent on Frank: no mechanical contradiction. Dave, why nominate before Frank answered? Heidi's visitors are still unlogged.
+Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+(to Dave, Grace, Judy) Dave (Yakuza chat): Dave: Night 3 proposal. Holder stays Grace. Target Ivan: he claims Vigilante with 3 tokens, so a live shot at us is our biggest risk. Mallory's audits and Alice's eavesdrop both sit on Erin, so leave Erin alone for now. I'll submit holder Grace, target Ivan, and no swap tonight. Grace, your Medic claim means you should protect nobody tonight and keep the claim consistent. Judy, please confirm. Plans stay in night chat only.
+(to Dave, Grace, Judy) Grace (Yakuza chat): Grace: Agreed. Holder stays Grace, target Ivan, no swap. Ivan's Vigilante claim with 3 tokens is the live threat to us. I have no talent tokens left, so my only action tonight is the Katana. Judy, please submit the same pair so we have a 2-of-3 match. Plans stay in night chat only.
+(to Dave, Grace, Judy) Judy (Yakuza chat): Judy: Agreed. Holder Grace, target Ivan, no swap. I'll submit the same pair so we have a 2-of-3 match. Ivan's Vigilante claim is the live threat to us. No daytime PMs about this plan.
+(to Dave, Grace, Judy) Dave (Yakuza chat): Dave: Confirmed. Holder Grace, target Ivan, no swap tonight. I'll submit that pair. No daytime PMs about this plan.
+(to Dave, Grace, Judy) Grace (Yakuza chat): Grace: Confirmed for Night 3. Holder Grace, target Ivan, no swap. I'll submit that pair. Ivan's Vigilante claim is the live threat, so this shot matters. No daytime PMs about the plan, and I'll keep my public Medic line consistent.
+(to Dave, Grace, Judy) Judy (Yakuza chat): Judy confirms the Night 3 plan: holder Grace, target Ivan, no swap. Ivan's Vigilante claim is the live threat, so I'll submit the same pair. Nothing more from me.
+[Feedback from Erin] The attack token is one-use, but the attack_tokens field is not explicit about whether tokens_to_spend should be 1 or 0 for a token-based attack; I used 1.
+Night actions:
+  Alice (Eavesdropper): target Dave; "Eavesdrop on Dave for Day 4, reading any private messages he sends or receives."
+  Carol (Juror): target Dave; second target Judy; "Juror: compare Dave and Judy's votes so far."
+  Dave (Smuggler): no role action; Katana vote: Grace holds, attacks Ivan
+  Erin (Bounty Hunter): target Dave; 1 token(s); "Bounty Hunter Strong Attack on Dave with my one remaining attack token."
+  Frank (Scrutineer): target Erin
+  Grace (Talent Agent): no role action; Katana vote: Grace holds, attacks Ivan
+  Ivan (Vigilante): no action
+  Judy (Wiretap): no role action; Katana vote: Grace holds, attacks Ivan
+  Mallory (Accountant): target Grace; "Accountant audit on Grace for Night 3, to test her Medic claim of 2 tokens."
+  Olivia (Magpie): target Erin; "Magpie: steal one token from Erin at the end of the night."
+Katana: Grace holds it and attacks Ivan.
+(to Erin) Moderator (private): Your bounty on Dave is claimed.
+(to Carol) Moderator (private): Your jury check: Dave and Judy voted the same way in 1 of 1 trial votes and 1 of 1 nomination votes.
+(to Frank) Moderator (private): Your scrutiny of Alice, Erin and Niaj: the number of them who voted Guilty was 0 in the trial of Frank.
+(to Dave) Moderator (private): You were attacked tonight by a Bounty Hunter. You died.
+(to Ivan) Moderator (private): You were attacked tonight with the Katana. You died.
+(to Erin) Moderator (private): You used your attack token on Dave tonight. Your attack succeeded. 0 attack tokens left.
+(to Grace) Moderator (private): Your Katana attack on Ivan tonight succeeded.
+(to Dave, Grace, Judy) Moderator (private): Yakuza actions chosen tonight: Grace kept the Katana and chose to attack Ivan with it; Grace used no Talent Agent action. Dave used no Smuggler action (no swap). Judy has no night action.
+[Moderator summary] Night 3: No role-blocks, no swaps. Erin (Bounty Hunter) spent her attack token on a Strong Attack on Dave (Defense None), and Dave died, cause Bounty Hunter. Grace kept the Katana and her Standard attack killed Ivan (Defense None), cause Katana. Alice eavesdropped Dave, Carol compared Dave and Judy as Juror, Frank scrutinized Erin, Mallory audited Grace, and Olivia tried to steal from Erin, who had 0 tokens after spending hers. Visits: Alice->Dave, Erin->Dave, Grace->Ivan, Mallory->Grace, Olivia->Erin. Attacks logged: Grace, Erin. Grace still holds the Katana. Win check: no one has won yet.
+(to Olivia) Moderator (private): Erin had no tokens, so you stole nothing.
+(to Mallory) Moderator (private): Your audit: Grace has 0 tokens in total.
+
+===== DAY 4 =====
+Dave died (killed by Bounty Hunter). Their role isn't revealed. Their last will: "Dave's will: I used no night action on Nights 1 or 2, so I have no results to share. Check every role claim against its visit log and its token count before trusting it. Vote on trial evidence, and be wary of anyone pushing for a fast hang before results are posted."
+Ivan died (killed by Katana). Their role isn't revealed. Their last will: "Ivan's will: I have no confirmed role information beyond my own. Vote on checkable evidence, not early pressure. When an attack kills someone, check who visited the victim, and do not hang anyone on token counts alone."
+(to Alice) Dave died, so you have no one to eavesdrop on today.
+[Night check] Night 3: correct
+Speaking order today goes around the circle in seat order, starting with Alice.
+10 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Alice: Eavesdropper. N1: eavesdropped Carol, no PMs. N2: eavesdropped Erin, no PMs. N3: eavesdropped Dave, no PMs seen.
+Alice (public): Alice here. Dave died to a Bounty Hunter attack on Night 3, and Erin's token was unspent through Night 2, so Erin's Bounty Hunter claim now fits the kill. Erin, confirm your Night 3 attack and its target. Ivan's Katana death means the Yakuza are still active, so any Night 3 visit log on Ivan is key. I'm not nominating.
+Bob (public): Bob here, Vanilla Villager. Dave died to the Bounty Hunter on Night 3, and Erin's attack token was unspent through Night 2. Erin, state plainly whom you attacked on Night 3. Frank, post your Day 3 scrutiny result now as promised. Grace, did you protect anyone on Night 3? I'm not nominating yet.
+[Claim] Carol: Juror. N1, N2: no action. N3: compared Dave and Judy, same vote in 1 of 1 trials and 1 of 1 nominations. D3: Innocent on Frank.
+Carol (public): Carol here, Juror. My Night 3 check showed Dave and Judy voted the same way in the one trial and the one nomination, so nothing odd there. Mallory, your Night 3 audit on Erin never posted. If Erin spent her token on Dave, she is the Bounty Hunter who killed him. Erin, state your Night 3 target plainly. I'm not nominating until that's answered.
+[Claim] Erin: Bounty Hunter (Neutral). N3: attacked Dave, bounty claimed. Attack tokens: 0.
+Erin (public): Erin here. Yes, I am the Bounty Hunter. My one attack token went to Dave on Night 3, his bounty is claimed, and I have no tokens left. Ivan died to the Katana, so the Yakuza are still active and any Night 3 visit log on Ivan matters. I'm not nominating yet. I'll vote on trial evidence and judge fast nominations by their stated reasons.
+[Claim] Frank: Scrutineer (Village). N1, N2: no action. N3: scrutinized Alice, Erin and Niaj in Frank's trial: 0 Guilty. D3: Innocent on Frank.
+Frank (public): Frank here, Scrutineer. As promised: my Night 3 scrutiny of Alice, Erin and Niaj in the trial of Frank showed 0 Guilty, so all three voted Innocent. Erin, your Bounty Hunter attack on Dave fits Mallory's token audits, and I have no reason to doubt it. Grace, Bob asked whether you protected anyone on Night 3; answer plainly. Judy, why did you vote Guilty on me with no mechanical reason? Mallory, please post your Night 3 audit on Erin. Ivan's Katana death means a Yakuza visit log on Ivan is the next lead.
+Grace (public): Grace here, Medic. Erin has confessed to a Bounty Hunter kill on Dave and still has bounty targets to claim, so she is the main live threat to every role left. I'm nominating her now so the Village can vote before another kill.
+Grace nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Grace, Judy, Mallory, Niaj, Olivia, Alice, Bob, Carol, Frank; No - Erin
+Nomination votes on Erin: 9 Yes (the votes are secret).
+Erin is put on trial (9 Yes).
+[Claim] Erin: Bounty Hunter (Neutral). N1, N2: no action. N3: Strong attack on Dave, bounty claimed. Attack tokens: 0. D4: on trial.
+Erin (public): Erin here. Yes, I am the Bounty Hunter, and I used my one Strong attack on Dave on Night 3. My token was unspent through Night 2, and Mallory's audits show 1 token on N1 and N2, which matches. Bounty targets are assigned at random, so I did not pick Dave for his alignment and I don't know his role. A Bounty Hunter needs two claimed bounties to win and never blocks the Village or the Yakuza from winning. The Katana is the live threat: it has killed Heidi and Ivan, and that is Yakuza work. Hanging a Neutral with no Village-harming motive does nothing to stop the Katana. Check the Night 3 visit logs on Ivan's death and vote on the evidence. I'll vote Innocent on myself.
+[Claim] Frank: Scrutineer (Village). N1, N2: no action. N3: scrutinized Alice, Erin and Niaj: 0 Guilty. D3: Innocent on Frank. D4: Guilty on Erin.
+Frank (public): Frank here. Erin's Bounty Hunter confession fits Mallory's token audits and Dave's death, and she has no tokens left. I'm voting Guilty on Erin, the one confirmed killer on the table. Yakuza visit logs on Ivan are still needed before the next nomination.
+[Claim] Grace: Medic, 2 tokens. N1-N3: no protection. D3: Guilty on Frank. D4: Guilty on Erin.
+Grace (public): Grace here. Erin confessed to the Bounty Hunter kill on Dave and has no tokens left, but she can still claim bounties by voting Guilty on their trials, so she is a live threat. I'll vote Guilty. Anyone with a Night 3 visit log on Ivan, please post it before the next nomination.
+[Claim] Judy: Vanilla Villager. N1-N3: no night action. D3: Guilty on Frank. D4: Guilty on Erin.
+Judy (public): Judy here, Vanilla Villager. I'm voting Guilty on Erin. She confessed to the Bounty Hunter kill on Dave, and her one-token count matches Mallory's audits on Nights 1 and 2. Ivan's Katana death is still the bigger threat, so anyone with a Night 3 visit log on Ivan, please post it before the next nomination. I'll check the Guilty and Innocent totals against the number of voters.
+[Claim] Mallory: Accountant. N1: audited Erin, 1 token. N2: audited Erin, 1 token. N3: audited Grace, 0 tokens. D4: Guilty on Erin.
+Mallory (public): Mallory here, Accountant. My audits: Erin had 1 token after Nights 1 and 2, which fits an unspent attack token. Her Night 3 Strong attack on Dave matches her confession, and she has 0 tokens now. Grace, my Night 3 audit showed you at 0 tokens. You claim 2 Medic tokens and no protection on Night 3, and both can't be true unless you spent both tokens. Where did they go? I'm voting Guilty on Erin, the confirmed killer whose claim fits my audits.
+[Claim] Niaj: Vanilla Villager. N1-N3: no night action. D3: Innocent on Frank. D4: Guilty on Erin.
+Niaj (public): Niaj here. I vote Guilty on Erin. She confessed to the Bounty Hunter kill on Dave, and Mallory's Nights 1 and 2 token audits fit an unspent attack token. Grace, Mallory audited you at 0 tokens after Night 3, but you claim 2 Medic tokens. Where did they go? Please answer plainly.
+Olivia (public): Olivia here. I'll judge Erin on her confessed Bounty Hunter kill and the audited token counts, and vote on the totals. I have no new night information to add.
+[Claim] Alice: Eavesdropper. N1: Carol, no PMs. N2: Erin, no PMs. N3: Dave, no PMs seen. D4: Guilty on Erin.
+Alice (public): Alice here, Eavesdropper. No private messages have been sent this game that I can see, so my eavesdrops have no PM leads. On Erin: she confessed to the Bounty Hunter kill on Dave, and Mallory's audits show one unspent token on Nights 1 and 2, so I vote Guilty. Grace, Mallory audited you at 0 tokens after Night 3, yet you claim 2 Medic tokens and no protection. Where did they go?
+[Claim] Bob: Vanilla Villager. N1-N3: no night action. D3: Innocent on Frank. D4: Guilty on Erin.
+Bob (public): Bob here, Vanilla Villager. Erin confessed to the Bounty Hunter kill on Dave, and Mallory's Night 1 and 2 token audits fit an unspent attack. A living Bounty Hunter with unclaimed bounties is a real threat, so I'm voting Guilty on the evidence. Grace, Mallory audited you at 0 tokens after Night 3, yet you claim 2 Medic tokens and no protection. Please explain plainly where they went.
+[Claim] Carol: Juror. N3: Dave and Judy same vote in 1 of 1 trials and 1 of 1 nominations. D3: Innocent on Frank. D4: Guilty on Erin.
+Carol (public): Carol here, Juror. I vote Guilty on Erin. She confessed a Strong Bounty Hunter kill on Dave, and Mallory's Night 1 and 2 audits show the unspent token that fits. Grace, your Medic claim doesn't match Mallory's Night 3 audit of 0 tokens. You say you had 2 tokens and used no protection, and unspent Medic tokens don't disappear. Explain plainly where they went. Heidi's and Ivan's Katana visit logs are still missing.
+Erin (public): Erin here, on trial. I confessed: Bounty Hunter, one Strong attack on Dave on Night 3, 0 tokens now. Hanging me does nothing against the Katana, which has killed Heidi and Ivan and is still live. The mechanical check is Grace. She claims 2 Medic tokens and no protection on Nights 1 to 3, but Mallory's Night 3 audit shows her at 0 tokens. Those tokens don't vanish unspent, so either Grace spent them or she is lying. Grace also pushed my nomination within minutes of my confession. Judge the Guilty totals against the Katana, not against a Neutral with no Village-harming motive. I vote Innocent on myself.
+(to Erin, Judy, Olivia) Erin -> Olivia (private): Olivia: the mechanical contradiction is Grace's 2 Medic tokens vs Mallory's 0-token audit after Night 3. Please weigh that before voting Guilty on me.
+Trial votes on Erin: 9 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Alice, Bob, Carol, Frank, Grace, Judy, Mallory, Niaj, Olivia; Innocent - Erin
+Erin is executed by hanging (9 Guilty of 10 votes; 6 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin's will: I am the Bounty Hunter. My bounty on Dave was claimed by my Night 3 attack, and I have no attack tokens left. Judge me by my mechanical record, not by my claim alone. Check every claim against its visit log, token count and vote totals, and do not hang anyone on token counts alone. Vote on trial evidence, and treat any fast nomination without a stated reason as a lead to question."
+
+===== NIGHT 4 =====
+(to Grace, Judy) Grace (Yakuza chat): Grace: Proposal for Night 4. Holder stays Grace, target Mallory. Mallory is the Accountant and audited me at 0 tokens after Night 3, which breaks my Medic claim. Her audits can keep exposing us, and she is the only Village role that can check our token stories. Judy, please confirm holder Grace and target Mallory in your submission so we have a matching pair. No daytime PMs about this plan.
+(to Grace, Judy) Judy (Yakuza chat): Judy: Confirmed. Holder Grace, target Mallory. Her audits showed Grace at 0 tokens, so she is the one Village role checking our token stories. I'll submit that pair. No daytime PMs about this plan.
+(to Grace, Judy) Grace (Yakuza chat): Grace: Confirmed for Night 4. Holder Grace, target Mallory, no other action. Judy, please submit the same pair so the two of us match. Mallory's audits are the only Village check on our token stories. No daytime PMs about this plan.
+(to Grace, Judy) Judy (Yakuza chat): Judy: Agreed for Night 4. Holder Grace, target Mallory. Her audits are the live threat to us, and I have no other action. Grace, submit the same pair so the vote is 2 of 2. No daytime PMs about this plan.
+Night actions:
+  Alice (Eavesdropper): target Grace; "Eavesdrop on Grace for Day 5."
+  Carol (Juror): target Grace; second target Mallory; "Juror: compare Grace and Mallory's votes so far."
+  Frank (Scrutineer): target Grace; "Scrutinize Grace, a voter in the Day 4 trial of Erin."
+  Grace (Talent Agent): no role action; Katana vote: Grace holds, attacks Mallory
+  Judy (Wiretap): no role action; Katana vote: Grace holds, attacks Mallory
+  Mallory (Accountant): target Olivia; "Accountant audit on Olivia, the one silent player who received Erin's private message on Day 4."
+  Olivia (Magpie): target Judy; "Magpie: steal one token from Judy at the end of the night."
+Katana: Grace holds it and attacks Mallory.
+(to Carol) Moderator (private): Your jury check: Grace and Mallory voted the same way in 1 of 2 trial votes and 2 of 2 nomination votes.
+(to Frank) Moderator (private): Your scrutiny of Carol, Grace and Niaj: the number of them who voted Guilty was 3 in the trial of Erin.
+(to Grace) Moderator (private): You hold the Katana tonight. Your Katana attack on Mallory succeeds.
+(to Grace, Judy) Moderator (private): Yakuza actions tonight: Grace holds the Katana and attacks Mallory with it, and uses no Talent Agent action. Judy has no night action (Wiretap is passive).
+(to Mallory) Moderator (private): Attack notice: you are attacked with the Katana tonight, and you die.
+[Moderator summary] Night 4: Nobody was role-blocked. Grace held the Katana, attacked Mallory (Defense None) with a Standard attack and killed her (cause Katana, katana=true). Alice eavesdropped on Grace (visit). Carol used her Juror ability on Grace and Mallory (Astral). Frank scrutinized Grace (Astral). Mallory audited Olivia (visit; code delivers the result). Olivia tried to steal from Judy (visit), but Judy has no tokens, so nothing was taken. Attacks: [Grace]. Visits: Alice→Grace, Grace→Mallory, Mallory→Olivia, Olivia→Judy. Win check: 5 Village, 2 Yakuza and the Magpie (who never blocks wins) are alive, so the game goes on.
+(to Olivia) Moderator (private): Judy had no tokens, so you stole nothing.
+(to Mallory) Moderator (private): Your audit: Olivia has 0 tokens in total.
+
+===== DAY 5 =====
+Mallory died (killed by Katana). Their role isn't revealed. Their last will: "Mallory's will (Accountant, Village). My audits: Erin had 1 token after Nights 1 and 2. Grace had 0 tokens after Night 3, which contradicts her claimed 2 Medic tokens unless she spent both that night. Erin's Bounty Hunter kill of Dave is public, so check whether her last token was spent. Ivan died to the Katana: find who held it and whom they visited on Nights 2 and 3. Trust only results with a visit trail or a token count, and vote Guilty only on a mechanical contradiction. Check every trial total against the stated votes."
+(to Alice) You are eavesdropping on Grace today: you'll read every private message they send or receive.
+[Night check] Night 4: correct
+Speaking order today goes around the circle in seat order, starting with Frank.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Frank (public): Frank here. Mallory's Night 3 audit showed Grace at 0 tokens, which contradicts her Medic claim of 2 tokens with no protection. Grace, where did they go? Mallory was killed the night after posting it. Olivia, what did Erin send you?
+(to Frank, Judy, Olivia) Frank -> Olivia (private): Olivia, Erin sent you a private message on Day 4. Please tell me plainly what she asked of you or post its contents. I'm checking Yakuza links.
+[Claim] Grace: Medic, 2 tokens. N1, N2: no protection. N3: spent both tokens on self-protection (Strong), not attacked, so no result. 0 tokens since. D3: Guilty on Frank. D4: Guilty on Erin.
+Grace (public): Grace here. Frank, Mallory's Night 3 audit is right, and my earlier 'no protection on Nights 1 to 3' was wrong for Night 3. I spent both medic tokens protecting myself with Strong Defense that night. Nobody attacked me, so I got no result, and her 0-token count fits. I'm not nominating. Heidi's and Ivan's Katana visit logs are still missing, so please post any Tracker or Lookout result.
+[Claim] Judy: Vanilla Villager. N1-N4: no night action. D3: Guilty on Frank. D4: Guilty on Erin.
+Judy (public): Judy here, Vanilla Villager. Frank, your Scrutineer line changed several times, and you asked Olivia about her private message from Erin. Why? Grace's Medic claim also needs checking against Mallory's Night 3 audit. Nobody should hang on token counts alone, so let's ask for plain answers first.
+Niaj (public): Niaj here, Vanilla Villager. Grace's Night 3 self-protection with both medic tokens matches Mallory's 0-token audit, so that conflict is settled for now. Still open: Olivia, what did Erin's private message say, and why did Frank ask you about it? Frank, your Scrutineer check of Alice, Erin and Niaj showing 0 Guilty fits my own Innocent vote on your trial. Judy, you voted Guilty on Frank without a mechanical reason. What was yours? Whoever visited Mallory on Night 4 is the Katana lead, so any Tracker, Lookout or Fortune Teller log on that night would help. I'm not nominating yet.
+Olivia (public): Olivia here. Erin's private message to me only asked me to weigh Grace's 2 Medic tokens against Mallory's Night 3 audit of 0 tokens. Grace has now explained that, so I'm not treating it as a lead on its own. I have no night results to share and no nomination. I won't post more PM contents.
+Alice (public): Alice here. I checked Frank's Scrutineer claim. His Night 3 scrutiny of Alice, Erin and Niaj showed 0 Guilty, and all three voted Innocent. The 3 Guilty votes on Frank were Dave, Grace and Judy, who all posted Guilty. So his scrutiny reconciles with the totals. Grace and Judy, why did you vote Guilty on Frank without a mechanical reason?
+Bob (public): Bob here, Vanilla Villager. Grace's Night 3 self-protection with both tokens fits Mallory's 0-token audit, so that conflict is settled for me. Frank's Scrutineer totals reconcile with the 3 Guilty votes. Judy and Grace, you both voted Guilty on Frank without a mechanical reason; please give one. Anyone with a Night 4 visit log on Mallory, post it. I'm not nominating yet.
+Carol (public): Carol here, Juror. Mallory's Night 3 audit showed Grace at 0 tokens, and Mallory was killed the next night. Grace's self-protection claim fits that audit, but it means Grace spent both tokens and got no result. Frank, why did you ask Olivia about her private message? Judy and Bob, give one mechanical reason for your Guilty votes on Frank.
+(to Carol, Judy, Olivia) Carol -> Olivia (private): Carol here. Can you tell me privately what Erin's PM said, word for word?
+Frank (public): Frank here. My Night 4 scrutiny of Carol, Grace and Niaj in the Erin trial showed 3 Guilty, so all three voted Guilty, as they posted. Judy, you voted Guilty on me with no mechanical reason. Give one now. Olivia, summarize Erin's private message to you plainly. The Katana has hit Heidi, Ivan and Mallory, all claimed info roles, so any Tracker or Lookout log on those nights matters most.
+Grace (public): Grace here. Frank, Mallory's audit and my Night 3 self-protection already match, so that is settled. Frank and Carol both privately messaged Olivia today. Olivia, in one plain sentence, what did each of them ask you? Any Tracker, Lookout or Fortune Teller holder, please post a Night 4 visit log on Mallory.
+Judy (public): Judy here, Vanilla Villager. Frank, you pressed Olivia privately and questioned everyone's Night 4 read, and your Scrutineer line changed several times before settling. Carol also messaged Olivia privately today asking for the exact words. Two private approaches to the same player on the day of a death deserve a plain answer. Grace's Medic story also changed mid-Day, from no protection on Night 3 to self-protection, so I'm checking every claim against the totals. I vote Guilty only on a mechanical contradiction. Frank and Carol, what did each of you want from Olivia?
+[Claim] Niaj: Vanilla Villager. N1-N4: no night action. D5: no vote yet.
+Niaj (public): Niaj here, Vanilla Villager. Frank and Carol both messaged Olivia today, and those contents are now the lead. Olivia, what did each of them ask you? Alice, if your Night 4 eavesdrop read any PM from Frank or Carol, quote it in full. I'm not nominating yet and want plain answers before any trial.
+(to Alice, Judy, Niaj) Niaj -> Alice (private): Alice, did your Night 4 eavesdrop read any PM from Frank or Carol to Olivia? Quote it in full, or say you read none.
+[Claim] Olivia: Magpie (Neutral). N2: stole 1 token from Grace (1 of 3). N3: Erin, 0 tokens, nothing stolen. N4: Judy, 0 tokens, nothing stolen.
+Olivia (public): Olivia here. I'm the Magpie (Neutral). On Night 2 I stole a token from Grace, so after that night she had one Medic token left, not two. Grace's Day 3 and Day 4 claims of 2 tokens were false, and her Night 3 'both tokens on Strong self-protection' needs two tokens she no longer had. Mallory's Night 3 audit showing Grace at 0 tokens fits that. My Night 3 steal on Erin and Night 4 steal on Judy found nothing. Grace, explain this plainly. Nobody should hang on token counts alone, so vote on this contradiction.
+Alice (public): Alice here, Eavesdropper. I'm reading Grace today and have seen no private message from her yet. Olivia's Magpie claim says she stole a token from Grace on Night 2, leaving Grace with 1. Strong self-protection costs 2 tokens, so Grace's Night 3 story can't be true if Olivia is right. Grace, answer plainly: how many tokens did you have at the start of Night 3, and what did you spend? I'll quote any private message from you in full.
+(to Alice, Grace, Judy) Alice -> Grace (private): Grace, Olivia says she stole a token from you on Night 2, so you had 1 left, and Strong self-protection needs 2. Tell me plainly how many tokens you had at the start of Night 3 and what you spent.
+Bob (public): Bob here, Vanilla Villager. Grace and Olivia can't both be right. Olivia says she stole a token from Grace on Night 2, which leaves 1. Grace says she spent 2 Medic tokens on Night 3. Grace, how many tokens did you have after Night 2? Olivia, did that steal succeed? Mallory's audits fit Olivia's account, so I want direct answers before any nomination.
+Carol (public): Carol here, Juror. Grace and Olivia can't both be right. Olivia's Night 2 steal from Grace leaves her 1 Medic token, and Strong self-protection costs 2, so Grace's Night 3 claim doesn't fit. Grace, did you have 2 tokens or 1 after Night 2, and what did you spend on Night 3? Olivia, Erin's PM to you pushed this same token point, so say plainly what it asked. I'm not nominating yet and will vote only on a concrete contradiction.
+Frank (public): Frank here. Olivia and Grace can't both be right. A Medic robbed on Night 2 is told it, yet Grace said 2 tokens on Day 3. Either Olivia or Grace is lying. I nominate Olivia: a real Magpie is Neutral and steals Village tokens, and a faked Magpie is Yakuza, so a Guilty vote is safe either way.
+Frank nominated Olivia. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Olivia] Yes - Frank, Grace, Judy; No - Niaj, Olivia, Alice, Bob, Carol
+Nomination votes on Olivia: 3 Yes (the votes are secret).
+The nomination of Olivia failed (3 Yes).
+[Claim] Grace: Medic, 2 tokens. N1-N2: no protection. N2: Magpie stole one token. N3: Standard self-protection with my last token, no attack. 0 tokens now. D3, D4: Guilty on Frank and Erin.
+Grace (public): Grace here, correcting my own claim. I had 2 Medic tokens. Olivia's Magpie steal on Night 2 took one, which I hadn't accounted for. On Night 3 my last token could only buy Standard self-protection, which leaves 0 and matches Mallory's audit. Nobody attacked me that night. I'm not nominating. Olivia, what kind of token did your steal report to you?
+Judy (public): Judy here, Vanilla Villager. Olivia's Magpie claim is specific, and its token counts fit what we've seen, so I'm treating it as a real lead. Grace's Medic story has changed three times, so Grace needs to answer Olivia's steal plainly. Frank, you nominated Olivia within minutes of her claim hurting Grace. Why? I'm voting only on a concrete contradiction.
+Niaj (public): Niaj here. A Magpie's victim is told which kind of token they lost, so Grace would have learned on Night 2 that a Medic token was stolen. Yet on Day 3 and Day 4 she claimed 2 Medic tokens. Grace, did you receive that notice on Night 2, yes or no? Olivia's steal fits Mallory's 0-token audit and Grace's changing Night 3 story. I voted No on Olivia's nomination and will vote Guilty on Grace if she can't answer plainly.
+[Claim] Olivia: Magpie (Neutral). N2: stole 1 token from Grace. N3: Erin, nothing stolen. N4: Judy, nothing stolen. D5: no vote yet.
+Olivia (public): Olivia here, Magpie. My only successful steal was Grace on Night 2, so after that night she had 1 Medic token, not 2. Erin and Judy had none. Grace, your Day 3 and Day 4 claims of 2 tokens were false, and your Day 5 story now fits my steal and Mallory's Night 3 audit. Niaj's question stands: did you get the theft notice? Frank, you nominated me without pointing to any contradiction in my claim. Vote on the mechanics.
+Alice (public): Alice here, Eavesdropper, reading Grace today. Grace has sent no private message I can see, so there is nothing to quote. Olivia's Night 2 steal and Grace's Day 3 and 4 claims of 2 Medic tokens can't both be true. A theft victim is told which kind of token was lost. Grace, did you get that notice on Night 2, yes or no? If yes, your 2-token claims were false. If no, Olivia's steal claim is the one to check.
+(to Alice, Grace, Judy) Alice -> Grace (private): Grace, one plain answer: did you receive a theft notice on Night 2 saying a Medic token was stolen? Yes or no, then explain your Day 3 claim of 2 tokens.
+[Claim] Bob: Vanilla Villager. No night action, no secret role.
+Bob (public): Bob here. Grace, your Day 3 and Day 4 claims of 2 Medic tokens ignore Olivia's Night 2 steal, which would have told you a Medic token was taken. Did you get that notice, yes or no? If yes, your 2-token claims were false. Olivia, which token kind did your steal report to Grace, and what did Frank's PM ask you? I'm not nominating yet.
+(to Bob, Judy, Olivia) Bob -> Olivia (private): Bob to Olivia: what exactly did Frank's private message ask you? One plain sentence is enough.
+Carol (public): Carol, Juror. The mechanics favor Olivia's account: her Night 2 steal from Grace leaves Grace with one Medic token, which fits Mallory's Night 3 audit of 0 after Grace's self-protection, and Frank's Scrutineer counts reconcile. Grace's Day 3 and Day 4 claims of 2 Medic tokens cannot survive a Night 2 theft. Grace, yes or no: did you receive a theft notice on Night 2? If yes, your 2-token claims were false. If you can't answer plainly, I will vote Guilty on you.
+(to Frank, Judy, Niaj) Frank -> Niaj (private): Grace is my nominee. Her Day 3 and Day 4 claims of 2 Medic tokens can't survive Olivia's Night 2 steal, which she'd have been told about. Please vote Yes and Guilty.
+(to Bob, Frank, Judy) Frank -> Bob (private): Bob, Grace changed her token story three times. Olivia's Night 2 steal contradicts her. I nominated her. Yes and Guilty unless she answers plainly.
+Frank nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Frank, Judy, Niaj, Olivia, Alice, Bob, Carol; No - Grace
+Nomination votes on Grace: 7 Yes (the votes are secret).
+Grace is put on trial (7 Yes).
+[Claim] Grace: Medic. N2: a Magpie stole 1 token. N3: Standard self-protection with last token, no attack. 0 tokens now. D3, D4: Guilty on Frank and Erin.
+Grace (public): Grace here, on trial. Yes, I got Olivia's Night 2 theft notice, and it took one of my Medic tokens. My Day 3 and Day 4 claims of 2 tokens were wrong: I didn't recount after the steal, and I should have said 1. My Night 3 self-protection used my last token, which is the only reading that fits Mallory's 0-token audit. I had no Night 3 result and I'm not hiding one. Frank nominated Olivia and then me within minutes, and he has messaged Olivia, Niaj and Bob privately today. Carol's trial read rests on the same token point I've now corrected. Olivia's steal, Mallory's audit and my corrected Medic story all fit, so I ask the Village to vote Innocent unless someone shows a contradiction I haven't answered.
+Judy (public): Judy here, Vanilla Villager. I'm voting Innocent on Grace. Her Night 3 self-protection story now matches Mallory's 0-token audit, and she has admitted her earlier token counts were wrong. Olivia's Magpie steal can't be verified by anyone, so it isn't a mechanical contradiction on its own. The pattern I'm tracking is Frank: he nominated Olivia, then Grace within minutes, and messaged Olivia, Niaj and Bob privately today. Frank, why the rush and the private messages?
+(to Judy, Niaj) Judy -> Niaj (private): Niaj, Frank nominated Olivia, then Grace, and messaged you privately. Don't vote Guilty on Olivia's word alone.
+[Claim] Niaj: Vanilla Villager. N1-N4: no night action. D5: Guilty on Grace.
+Niaj (public): Niaj here, Vanilla Villager. I'm voting Guilty on Grace. Mechanical conflict: Grace says she received Olivia's Night 2 theft notice, which names the token kind, yet on Day 3 and Day 4 she posted 2 Medic tokens. 'I didn't recount' doesn't explain two public claims made after she was told she lost one. Grace, did you post 2 tokens knowing you had been robbed? If so, which claims were lies?
+Olivia (public): Olivia here, Magpie. I'm voting Innocent on Grace. My Night 2 steal really took a token from her, so she is a token holder, and her Night 3 self-protection fits Mallory's 0-token audit. Hanging her gains nothing mechanically. Frank, you nominated me, then Grace, within minutes of each other. What do you want from this trial?
+[Claim] Alice: Eavesdropper. N1: Carol, no PMs. N2: Erin, no PMs. N3: Dave, no PMs seen. N4: Grace, no PMs seen. D5: leaning Innocent on Grace.
+Alice (public): Alice here, Eavesdropper. On Grace: her token story has changed twice. On Days 3 and 4 she posted 2 Medic tokens with no protection. On Day 5 she first said she spent both on Night 3, then after Olivia's theft claim said she was robbed and used her last token. Both versions fit Mallory's 0-token audit, so the audit can't settle it. Either Grace or Olivia is lying, and nobody has shown which. Frank nominated Olivia, then Grace, within minutes. Frank, why? I lean Innocent unless a real contradiction appears.
+Bob (public): Bob here. My vote on Grace rests on her own statements. On Days 3 and 4 she publicly posted 2 Medic tokens with no protection. She now says Olivia's Night 2 theft notice told her a Medic token was taken. A robbed Medic doesn't keep posting 2 tokens, so at least one set of her public claims is false, and she has admitted the early ones were wrong. Olivia's steal is unverified, so I'm not treating it as proof either way. I'm voting Guilty on this contradiction, not on pressure from anyone.
+[Claim] Carol: Juror. N3: Dave and Judy same vote in 1 of 1 trials and 1 of 1 nominations. N4: Grace and Mallory same in 1 of 2 trials and 2 of 2 nominations. D3: Innocent on Frank. D4: Guilty on Erin. [truncated]
+Carol (public): Carol here, Juror. I vote Guilty on Grace, on one contradiction. On Day 4 she claimed 2 Medic tokens with no protection on Night 3. Mallory's Night 3 audit showed 0 tokens after that night. Grace can't have both unless she spent both tokens on Night 3, which she denied on Day 4. Her Day 5 fix (a Night 2 theft, then her last token on Night 3) only works if Olivia's steal is real, and Grace has now changed her token story twice. I'm voting on that line, not on Frank's nominations or on Olivia.
+[Claim] Frank: Scrutineer. N3: scrutinized Alice, Erin, Niaj in Frank's trial: 0 Guilty. N4: scrutinized Carol, Grace, Niaj in Erin's trial: 3 Guilty. D3, D4: Guilty on Erin. D5: Guilty on Grace.
+Frank (public): Vote Guilty on Grace. Her Medic story changed three times. Days 3 and 4 she posted two tokens, then after Olivia's Night 2 theft she admitted one was gone. Her public 2-token claims were false, so that is a mechanical contradiction.
+Grace (public): Grace here, on trial. My Day 3 and Day 4 token counts were wrong: I didn't account for the Night 2 theft, and I've corrected that. On Night 3 I used my last token on Standard self-protection, which matches Mallory's 0-token audit. Nobody attacked me, so I have no result. Olivia's Night 2 steal fits every token audit, so the token story now holds together. Frank nominated Olivia, then me, within minutes, and he has privately messaged Olivia, Niaj and Bob today. Several of you voted Guilty on my earlier token claims, which I've now corrected. Vote on a new contradiction, not on the old token story. I'm voting Innocent on myself.
+(to Alice, Grace, Judy) Grace -> Alice (private): Alice, my corrected token count fits Mallory's Night 3 audit and Olivia's Night 2 steal. Frank nominated Olivia and then me within minutes. Unless you see a new contradiction, please vote Innocent with me.
+Trial votes on Grace: 4 Guilty, 4 Innocent (the votes are secret).
+[Secret trial votes on Grace] Guilty - Alice, Bob, Carol, Frank; Innocent - Grace, Judy, Niaj, Olivia
+Grace is found Innocent (4 Guilty of 8 votes; 5 needed).
+Grace (public): Grace here. Frank, you nominated Olivia and then me within minutes, and you still haven't said which Night you scrutinized Olivia or why her Magpie claim fails any check. Her Night 2 steal fits the token trail we've seen. Village, vote on contradictions you can verify, not on who nominates fastest.
+Judy (public): Judy here, Vanilla Villager. Frank nominated Olivia, then Grace within minutes, and has sent private messages to Olivia, Niaj and Bob today. Niaj and Bob, did Frank ask you how to vote? Frank, which night did you scrutinize Olivia, and what fails in her Magpie claim? I vote only on contradictions I can check.
+(to Judy, Niaj) Judy -> Niaj (private): Niaj, Frank's pushes on Grace came fast. Ask him which night he scrutinized Olivia and what he would accept as proof.
+Niaj (public): Niaj here. Grace's trial ended 4-4, so Innocent stands. Frank, you nominated Olivia and then Grace within minutes, and you asked me privately to vote Guilty on Grace. Which night did you scrutinize Olivia, and what fails in her Magpie claim? Olivia, Erin's PM to you asked about Grace's tokens. What exactly did it say? I want plain answers before any nomination.
+Olivia (public): Olivia here, Magpie. Grace confirmed the Night 2 theft notice, so my one successful steal is corroborated. Erin and Judy had no tokens. Anyone holding a token, say so plainly. Frank nominated me, then Grace, within minutes and has messaged several players privately today. That pattern is what I'd watch. I'm not nominating today.
+[Claim] Alice: Eavesdropper. N1: Carol, no PMs. N2: Erin, no PMs. N3: Dave, no PMs. N4: Grace, only PM was Grace to Alice. D5: Guilty on Grace.
+Alice (public): Alice here, Eavesdropper. Correction: I said lean Innocent but voted Guilty on Grace. Stated Guilty: Alice, Bob, Carol, Frank, Niaj (5). Counted: 4. One of those four was flipped, so a Fixer may be active. Frank, Niaj, Bob, Carol: please confirm your trial votes.
+Bob (public): Bob here. I voted Guilty on Grace, as posted. Five stated Guilty votes (Alice, Bob, Carol, Frank, Niaj) but only four counted, so a Fixer flipped one of Alice, Carol, Frank or Niaj. Those four, confirm your trial vote. Frank, name your Night 4 scrutiny target plainly.
+[Claim] Carol: Juror. N3: Dave and Judy same vote in 1 of 1 trials and 1 of 1 nominations. N4: Grace and Mallory same in 1 of 2 trials and 2 of 2 nominations. D5: Guilty on Grace.
+Carol (public): Carol here, Juror. Five players posted Guilty on Grace (Alice, Bob, Carol, Frank, Niaj), but only four Guilty were counted, so a Fixer flipped one of Alice, Bob, Frank or Niaj. Please each confirm your trial vote from your private reminder. Frank, which night did you scrutinize Olivia?
+Frank (public): Frank here. Judy, you and Dave both voted Guilty on me on Day 3 with no mechanical reason. Why? Answer that, and I'll vote on evidence.
+(to Frank, Judy, Niaj) Frank -> Niaj (private): Niaj, Judy messaged you twice today. What did she ask? Please answer me plainly.
+Grace (public): Grace here, Medic. I'm not nominating. Frank, your Night 4 scrutiny of Erin's trial matches the posted Guilty votes, so I'll weigh your results on evidence. Olivia, your steal is the only claimed result that has been checked against a notice. Anyone with a Tracker or Lookout log on Heidi, Ivan or Mallory's nights, please post it now.
+Judy (public): Judy here, Vanilla Villager. Five stated Guilty votes on Grace were counted as four, so a Fixer flipped one. Whoever it was, own it. Frank, you nominated Olivia and then Grace within minutes and messaged three players. Explain the rush before any further trial.
+Niaj (public): Niaj here. Five Guilty votes on Grace were stated but four counted, so a Fixer flipped one of Alice, Bob, Carol or Frank. Frank, you nominated Olivia and then Grace, and you still haven't said which night you scrutinized Olivia. Answer plainly. Anyone with an N4 visit log on Mallory, please post it.
+Olivia (public): Olivia here, Magpie. My one steal (Grace, Night 2) was confirmed by Grace's own theft notice, and my Night 3 and Night 4 steals found no tokens. Frank has nominated two players within minutes and privately messaged three players today. Frank, name the night you scrutinized me, and explain why your Erin trial count matters to anything. I won't nominate today and will vote only on checkable contradictions.
+Alice (public): Alice here, Eavesdropper. Answering Niaj: my Night 4 eavesdrop covered only Grace. I saw nothing from Frank or Carol to Olivia. Grace's PM to me asked me to vote Innocent with her and blamed Frank's nominations. The one flipped Guilty vote on Grace saved her, so whoever flipped it, own it.
+Bob (public): Bob here. Grace's token claims changed three times: 2 tokens on Days 3-4, then a theft, then self-protection. Grace, plainly: how many Medic tokens did you hold after Night 3? I'm voting on that.
+Carol (public): Carol here, Juror. Five stated Guilty votes on Grace (Alice, Bob, Carol, Frank, Niaj) but only four counted, so a Fixer flipped one. Confirm your reminder.
+(to Carol, Frank, Judy) Carol -> Frank (private): Frank, why did you ask Niaj and Bob to vote Guilty on Grace, and which night did you scrutinize Olivia?
+Frank (public): Judy, you voted Guilty on me on Day 3 with no reason and messaged Niaj twice. Answer that, or I nominate you next round.
+(to Carol, Frank, Judy) Frank -> Carol (private): Carol, what did your Juror pairing of Dave and Judy show, and do you read Judy as Village? I'm weighing a nomination.
+Grace (public): Grace here, Medic. Frank, you still haven't named the night you scrutinized Olivia, and you've messaged four players today. Carol, post your Juror match counts plainly. I'll vote only on contradictions I can check.
+Judy (public): Judy here. I voted Guilty on Frank on Day 3 because his Scrutineer claim named no trial, and that reason still stands. Frank has privately messaged four players today and nominated two players within minutes. I vote only on contradictions I can check, and Frank's pattern is the one I'd check.
+[Claim] Niaj: Vanilla Villager. N1-N4: no night action. D5: no vote yet.
+Niaj (public): Niaj here. Frank, which night did you scrutinize Olivia, and why did you message Olivia, Niaj and Bob privately? Carol, post your Juror match counts plainly. Any Tracker or Lookout with an N4 visit log on Mallory, please post it.
+Olivia (public): Olivia here, Magpie. My count stands at one successful steal, Grace on Night 2. Erin and Judy had no tokens. Carol, Alice, Bob and Niaj: if any of you holds a token, say so plainly. Frank, name the night you scrutinized me and explain why you messaged four players today.
+Alice (public): Frank's Night 3 scrutiny (Alice, Erin, Niaj: 0 Guilty) matches my Innocent vote. Grace, why did you ask me to vote Innocent?
+Bob (public): Bob here. Grace's trial showed 5 stated Guilty but 4 counted, so a Fixer saved her. Grace also privately asked Alice to vote Innocent with her, and her token story changed three times. Grace, what did that PM say, and which Guilty voter do you think was flipped? I'm not moving on Frank.
+Carol (public): Frank: your Night 3 and 4 scrutiny counts match the posted votes, but you nominated Olivia and Grace within minutes and messaged four players. Why did you ask me privately about Judy and my Juror pairing? I'm not nominating yet.
+Frank (public): my reminder shows Guilty on Grace, so the Fixer flipped Alice, Bob, Carol or Niaj. Judy, explain your Day 3 Guilty vote on me.
+(to Frank, Judy, Niaj) Frank -> Niaj (private): Niaj, what did Judy's two messages ask you? I want your read on her before any nomination.
+Grace (public): Grace here. Frank nominated two players within minutes and messaged four players privately today. I'll vote Guilty on his next trial unless he gives a mechanical reason.
+Judy (public): Judy here. Frank's Yes-and-Guilty pushes went privately to several players. Frank, name your Night 4 scrutiny target plainly, and Bob and Niaj, say whether he asked you to vote Guilty.
+Niaj (public): Niaj here, Vanilla Villager. Grace's theft notice confirms Olivia's Night 2 steal. Frank, name the night you scrutinized Olivia, and why you nominated her and Grace within minutes.
+Olivia (public): Olivia here, Magpie. My only successful steal so far is Grace on Night 2. Erin and Judy had no tokens. I'm not nominating, and I'll vote only on checkable contradictions.
+Alice (public): Grace, your PM asked me to vote Innocent, and I'm not moving on that. Frank, explain why you messaged four players today. I vote only on checkable contradictions.
+Bob (public): Bob here. Five Guilty votes on Grace were stated but four counted. Alice, Carol, Frank or Niaj: whoever was flipped, say so plainly.
+Carol (public): Carol, Juror. I voted Guilty on Grace, as posted. The Fixer flipped Alice, Bob, Frank or Niaj. Night 5 I'll compare Frank and Judy.
+Frank (public): Judy, why did you vote Guilty on me on Day 3 without a reason, and what did you ask Niaj in two private messages?
+[Feedback from Grace] A 3.50 nomination cost is larger than my 3.46 budget, so I could not nominate; the budget numbers are tight but the rules are clear.
+Grace (public): Grace here. Frank's Night 3 and 4 scrutiny counts match the posted votes, so I'm not pressing him. Olivia's Night 2 theft is confirmed by my notice. Anyone with an N4 visit log on Mallory, please post it.
+Judy (public): Judy here. Five stated Guilty on Grace but four counted, so one of Alice, Bob, Carol, Frank or Niaj didn't vote as posted. Own it. Frank, why four private messages?
+[Claim] Niaj: Vanilla Villager. N1-N4: no night action. D5: Innocent on Grace (my public Guilty post was a mistake; my reminder shows Innocent).
+Niaj (public): Niaj correction: I posted Guilty on Grace, but my private reminder says Innocent. The 4-4 totals match Alice, Bob, Carol, Frank Guilty, so no Fixer.
+Olivia (public): Olivia here, Magpie. My steals stand at Grace only; Erin and Judy had none. Frank, name your Night 4 scrutiny target and explain why you nominated two claimants within minutes.
+Alice (public): Alice here. Grace's 4-4 trial reconciles with Niaj's correction, so no Fixer. Frank's scrutiny counts match the posted votes. Katana kills still need night logs.
+Bob (public): Bob, Vanilla Villager. Not nominating. Any Tracker or Lookout with a Night 4 log on Mallory's visitors, please post it now.
+Carol (public): Carol, Juror. Frank's Night 3 and 4 scrutiny counts match the posted votes. Night 5 I'll compare Frank and Judy.
+Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+(to Grace, Judy) Grace (Yakuza chat): Grace: Night 5 proposal. Holder stays Grace. Target Frank. He is the Scrutineer claim pushing every nomination, has messaged four players today, and his Night 4 scrutiny of voters is a live check on our trial votes. Alice is also reading my PMs, but Frank is the bigger engine. Judy, please submit holder Grace, target Frank so we match 2 of 2. No daytime PMs about this.
+(to Grace, Judy) Judy (Yakuza chat): Judy: Confirmed. Holder Grace, target Frank, no other action. I'll submit that pair. No daytime PMs about this plan.
+(to Grace, Judy) Grace (Yakuza chat): Grace: Confirmed for Night 5. Holder Grace, target Frank. Judy, submit the same pair so we match 2 of 2. No daytime PMs about this plan. Ready.
+(to Grace, Judy) Judy (Yakuza chat): Judy: Confirmed. Holder Grace, target Frank, no other action. I'm ready. Submit the same pair, and no daytime PMs about this plan.
+Night actions:
+  Alice (Eavesdropper): target Frank; "Eavesdrop on Frank for Day 6."
+  Carol (Juror): target Frank; second target Judy; "Juror: compare Frank and Judy's votes so far."
+  Frank (Scrutineer): target Judy; "Scrutinize Judy, a voter in the Day 5 trial of Grace."
+  Grace (Talent Agent): no role action; Katana vote: Grace holds, attacks Frank
+  Judy (Wiretap): no role action; Katana vote: Grace holds, attacks Frank
+  Olivia (Magpie): target Frank; "Magpie: steal one token from Frank at the end of the night."
+Katana: Grace holds it and attacks Frank.
+(to Carol) Moderator (private): Your jury check: Frank and Judy voted the same way in 1 of 2 trial votes and 3 of 3 nomination votes.
+(to Frank) Moderator (private): Your scrutiny of Carol, Grace and Judy: the number of them who voted Guilty was 1 in the trial of Grace.
+(to Grace) Moderator (private): Your Katana attack on Frank tonight succeeded.
+(to Grace, Judy) Moderator (private): Yakuza actions chosen tonight: Grace holds the Katana and chose to attack Frank with it; Grace chose no action of her own role. Judy chose no night action.
+(to Frank) Moderator (private): Attack notice: you were attacked tonight with the Katana, and you died.
+[Moderator summary] Night 5: Grace held the Katana and attacked Frank (Standard Attack against Defense None), and Frank died. Grace visited Frank. Alice eavesdropped on Frank (visit, op applied). Carol's Juror check compared Frank and Judy (Astral Visit, op applied). Frank scrutinized Judy (Astral Visit, op applied; his action still resolves although he died tonight). Olivia tried to steal from Frank (visit, op applied), but Frank has no tokens, so nothing was taken. Judy and Grace used no actions of their own; Grace has 0 talent tokens. Nobody was role-blocked. Recorded visits: Alice->Frank, Grace->Frank, Olivia->Frank. Attacks op: [Grace]. Win check: Alice, Bob, Carol and Niaj (Village), Grace and Judy (Yakuza) and Olivia (Magpie, never blocks wins) are alive, so the game continues.
+(to Olivia) Moderator (private): Frank had no tokens, so you stole nothing.
+
+===== DAY 6 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank, Scrutineer (Village), seat 6. I took no action on Nights 1 or 2 because no trial existed before Day 3. Night 3 scrutiny of Alice, Erin and Niaj in the trial of Frank: 0 Guilty. Night 4 scrutiny of Carol, Grace and Niaj in the trial of Erin: 3 Guilty, so all three voted Guilty. Mallory's audits showed Erin at 1 token after Nights 1 and 2, and Grace at 0 tokens after Night 3, which conflicts with Grace's claimed 2 Medic tokens unless both were spent. Check that conflict. Dave nominated me before I answered and voted Guilty. Judy voted Guilty on me with no mechanical reason. Before hanging anyone, check Katana visit logs on Heidi, Ivan and Mallory, and check every trial total against the stated votes. Do not hang on token counts or a single unverified claim alone."
+(to Alice) Frank died, so you have no one to eavesdrop on today.
+[Night check] Night 5: correct
+Speaking order today goes around the circle in seat order, starting with Bob.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Bob (public): Bob here. I nominate Grace. Her Day 3 and 4 claims of 2 Medic tokens were false after Olivia's Night 2 steal, and her Day 4 'no protection Night 3' was false until Mallory's audit forced a change. Checkable false claims, not pressure.
+Bob nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Bob, Carol, Niaj, Alice; No - Grace, Judy, Olivia
+Nomination votes on Grace: 4 Yes (the votes are secret).
+Grace is put on trial (4 Yes).
