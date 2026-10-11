@@ -12,9 +12,11 @@ from roles import logic
 from state import Game, Player, majority
 
 
-# Speaking budget. A message costs round_multiplier * (MESSAGE_BASE_COST + length_cost(words)),
-# times PRIVATE_COST_FACTOR if private. Players earn BUDGET_PER_ROUND each round, carrying over up
-# to BUDGET_MAX; at the start of each day, CARRY_SHARE of what's left carries over.
+# Speaking budget. A message costs MESSAGE_BASE_COST + round_multiplier * length_cost(words), times
+# PRIVATE_COST_FACTOR if private: the base fee doesn't grow with the round, so a short question stays cheap late in
+# the day (Kevin, Oct 11 2026; the base fee was most of a short message's price). Players earn
+# BUDGET_PER_ROUND each round, carrying over up to BUDGET_MAX; at the start of each day, CARRY_SHARE of what's
+# left carries over.
 BUDGET_PER_ROUND = 2.5
 BUDGET_MAX = 8.0
 CARRY_SHARE = 0.5
@@ -50,17 +52,17 @@ def round_multiplier(rnd: int) -> float:
 def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> float:
     if words == 0:
         return 0.0
-    cost = MESSAGE_BASE_COST + length_cost(words)
+    cost = MESSAGE_BASE_COST + length_cost(words) * round_multiplier(rnd)
     if free_words:
-        cost = 0.0 if words <= free_words else length_cost(words) - length_cost(free_words)
-    return cost * round_multiplier(rnd) * (PRIVATE_COST_FACTOR if private else 1.0)
+        cost = 0.0 if words <= free_words else (length_cost(words) - length_cost(free_words)) * round_multiplier(rnd)
+    return cost * (PRIVATE_COST_FACTOR if private else 1.0)
 
 
 def budget_parameters() -> str:
     """The speaking-budget numbers (rules R22), shown to every player at the start of the game."""
     return (f"Speaking budget numbers for this game (rules R22): you earn {BUDGET_PER_ROUND:g} per round, up to "
             f"{BUDGET_MAX:g}; at the start of each Day {CARRY_SHARE:.0%} of what you have left carries over. A "
-            f"public message costs ({MESSAGE_BASE_COST:g} + words/60 + (words/200)^2) x the round multiplier; "
+            f"public message costs {MESSAGE_BASE_COST:g} + (words/60 + (words/200)^2) x the round multiplier; "
             f"a private one costs {PRIVATE_COST_FACTOR:g} of that. The multiplier is 1 for rounds 1-"
             f"{FULL_PRICE_ROUNDS} and rises by {ROUND_COST_STEP:g} each later round (round {MAX_DAY_ROUNDS}: "
             f"{round_multiplier(MAX_DAY_ROUNDS):g}x). A nomination costs {NOMINATION_COST:g} x the multiplier. "
