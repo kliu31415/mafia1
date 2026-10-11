@@ -48,6 +48,7 @@ import gamelogs
 import variants
 from llm import (DEFAULT_STRENGTH, LLMClient, MockClient, ModelSpec, OpenRouterClient, answer_json, load_api_key,
                  model_strength, parse_model_spec)
+from players import obj
 from records import read_records, safe_print
 from roles import ROLES
 from texts import player_view
@@ -187,10 +188,6 @@ def describe_game(g: dict) -> str:
     return "\n".join(lines)
 
 
-def _obj(**props: dict) -> dict:  # players.obj; not imported, since players.py imports this module
-    return {"type": "object", "properties": props, "required": list(props), "additionalProperties": False}
-
-
 def system_prompt(rules: str, role: str) -> str:
     return (f"{rules}\n\n---\n\nYou coach players of this game. {role} Lessons come from past games, written "
             "by the players (each tagged with their role, whether they won, their model and a weight) and by "
@@ -204,7 +201,7 @@ def system_prompt(rules: str, role: str) -> str:
 # The notebook: every tip ever learned, with its evidence, in JSON (<sheet>_notebook.json, plus a
 # readable .md). The model updates it one game at a time with small ops, so nothing it once knew is
 # lost to a rewrite, including ideas with thin evidence that aren't worth a place on the sheet yet.
-OPS_SCHEMA = _obj(ops={"type": "array", "items": _obj(
+OPS_SCHEMA = obj(ops={"type": "array", "items": obj(
     op={"type": "string", "enum": ["add", "support", "against", "edit", "retire", "restore"]},
     id={"type": "string"},  # an existing entry's id; "" for add
     audience={"type": "string", "enum": HEADINGS},  # for add (and edit, to move it)
@@ -365,9 +362,9 @@ def render_notebook(nb: dict) -> str:
     return "\n".join(out)
 
 
-DISTILL_SCHEMA = _obj(sections={"type": "array", "items": _obj(
+DISTILL_SCHEMA = obj(sections={"type": "array", "items": obj(
     heading={"type": "string", "enum": HEADINGS},
-    tips={"type": "array", "items": _obj(tip={"type": "string"},
+    tips={"type": "array", "items": obj(tip={"type": "string"},
                                          games={"type": "integer"})})})  # games: how many games support it
 
 
