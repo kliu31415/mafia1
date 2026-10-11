@@ -40,7 +40,7 @@ Deaths and departures:
 - none yet
 Nominations and trials:
 - Day 1: Alice nominated Dave; 6 Yes (secret vote); passed
-Claims (what players say about their own role and results; unverified, they may lie):
+Claims (what players say about themselves: role, night visits and results, key votes; unverified, they may lie):
 - Alice: Day 1: Sheriff
 Private messages sent, per day (sender -> recipient (count)):
 - none yet
@@ -67,7 +67,7 @@ Message prices during this trial (1.00x):
   800 words: public 30.33, private 7.58
 This is a trial turn: prices are 1x whatever the round, and you also get a trial-only budget of 2.00, spent before your regular budget. Unspent trial budget is lost when this turn ends, but don't speak just to use it up: say nothing if you have nothing to add.
 You may also replace your last will (free, max 300 words; leave it "" to keep it), e.g. to match a claim you make today. It's shown to everyone if you die.
-You may also set your claim (free, max 30 words; leave it "" to keep it): a claimed role and night results, e.g. 'Sheriff. N1: Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
+You may also set your claim (free, max 40 words; leave it "" to keep it): a concise note of what you want everyone to know about you: your claimed role, your night visits and results, and your votes in key trials, e.g. 'Sheriff. N1: checked Bob, Not Evil. N2: checked Dave, Evil. D3: Guilty on Dave'. A new or changed claim appears to everyone as a [Claim] line in the history, and the public ledger lists every player's latest claim and any earlier ones they changed from, as unverified claims.
 Dave is on trial. This turn is only for discussion: after everyone has spoken, all players vote Guilty/Innocent in a separate, simultaneous vote.
 
 Answer in these fields: public_message, private_messages, claim, last_will (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

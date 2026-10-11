@@ -276,7 +276,8 @@ class Game:
             for name, history in self.claim_record.items()) or "- none yet"
         return (f"Alive, in seat order: {alive}\nDeaths and departures:\n{deaths}\n"
                 f"Nominations and trials:\n{votes}\n"
-                f"Claims (what players say about their own role and results; unverified, they may lie):\n{claims}\n"
+                "Claims (what players say about themselves: role, night visits and results, key votes; "
+                f"unverified, they may lie):\n{claims}\n"
                 f"Private messages sent, per day (sender -> recipient (count)):\n{pms}")
 
     def revealed_identity(self, p: Player) -> str:

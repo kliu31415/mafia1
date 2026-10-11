@@ -191,7 +191,8 @@ R8 (Yakuza and the Katana)
   A majority may move the Katana without attacking.
 - The Katana attack is Standard and is dealt by whoever holds it at the end of the night. It is an action and a
   visit by that player (the new holder, if it moved that night): role-blocking them stops it, and Trackers see
-  them visit the target. Passing the Katana is not a visit.
+  them visit the target. Moving or passing the Katana isn't an action: a role-block doesn't stop it (a blocked
+  new holder still gets the Katana, but their attack fails), and it isn't a visit.
 - The holder may also use their own role's night action.
 - The holder appears Good to alignment checks that night (R19).
 - The attacked player only learns they were attacked with the Katana, not the Yakuza role.

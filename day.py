@@ -34,7 +34,7 @@ NOMINATION_COST = 1.0  # times the round multiplier, paid from the speaking budg
 
 
 LAST_WILL_WORDS = 300  # longer wills are truncated
-CLAIM_WORDS = 30  # claims (in the public ledger) are short and free, so they can't replace chat
+CLAIM_WORDS = 40  # claims (in the public ledger) are short and free, so they can't replace chat
 
 
 def length_cost(words: int) -> float:
@@ -271,8 +271,10 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; leave it \"\" to keep it), "
                "e.g. to match a claim you make today. It's shown to everyone if you die.\n" if writer is p else "")
             + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
-               f"{CLAIM_WORDS} words; leave it \"\" to keep it): a claimed role and night results, e.g. 'Sheriff. N1: "
-               "Bob Not Evil'. A new or changed claim appears to everyone as a [Claim] line in the history, "
+               f"{CLAIM_WORDS} words; leave it \"\" to keep it): a concise note of what you want everyone to know "
+               "about you: your claimed role, your night visits and results, and your votes in key trials, e.g. "
+               "'Sheriff. N1: checked Bob, Not Evil. N2: checked Dave, Evil. D3: Guilty on Dave'. A new or "
+               "changed claim appears to everyone as a [Claim] line in the history, "
                "and the public ledger lists every player's latest claim and any earlier ones they changed from, "
                "as unverified claims.\n")
             + (f"You may nominate a player for trial, which stops chat for a vote. Nominating costs "
