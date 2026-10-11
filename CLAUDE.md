@@ -110,9 +110,11 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      needs nothing there; add it to a hand-made script (`core`, 30 roles) only if it fits. Code that draws "any role"
      (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`. Each hand-made script's rules are the
      cut plus small edits an Opus call made once (dropping mentions of off-script roles), cached in `rules_scripts/`.
-     After any edit to `rules_1.txt`, `test_every_script_revision_is_current` fails until `uv run scripts.py revise`
-     remakes the stale ones (about $0.15 each); read the printed edits and the diff of `rules_scripts/*.txt`, then
-     commit them with the rules change. A game on a stale script plays by the plain cut and logs `script_stale`.
+     After any edit to `rules_1.txt`, `test_every_script_revision_is_current` fails until the stale ones are remade.
+     A Claude session that edits the rules writes the edits itself (Kevin, Oct 11 2026: no API call needed):
+     `uv run scripts.py task NAME` prints what to edit, `uv run scripts.py apply NAME FILE` records a JSON file of
+     edits (start from the previous ones in `rules_scripts/NAME.json`); `uv run scripts.py revise` asks Opus instead
+     (about $0.10 each), e.g. after a hand edit. Check the diff of `rules_scripts/*.txt` and commit it with the rules. A game on a stale script plays by the plain cut and logs `script_stale`.
   9. `setups.py` draws setups (`--roles standard`, the default: 13 players, balanced with the role powers in
      `role_power.py`: hand-set priors, refit from game results into `tips/role_power.json`/`.md` wherever the tips are
      updated, and carried by the tips commit and publish; `classic` is the older 11-15 player draw; `NAME:N` sets the count) by alignment and category, and tells players how (a note after the rules, never the role list), and `stats.py` scores

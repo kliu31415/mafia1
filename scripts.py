@@ -160,13 +160,15 @@ REVISE_TASK = (
     "lists of roles in general rules or in other roles' paragraphs). Players will be told that only the listed "
     "roles exist.\n\n"
     "Return edits to the CUT rules that remove or reword mentions of roles that aren't on the script, where doing "
-    "so makes the rules clearer or shorter without changing any rule for the listed roles. Each edit replaces one "
+    "so makes the rules clearer or shorter without changing any rule for the listed roles. Also remove a sentence "
+    "that only explains an effect no listed role can cause (e.g. vote totals that don't match the voters when no "
+    "listed role changes how votes are counted), since players would otherwise expect it. Each edit replaces one "
     'exact passage ("old", copied character for character from the cut rules, including line breaks, long enough '
     'to occur only once) with "new". Keep the text\'s style and line wrapping (about 116 characters, role lines '
     "indented by two spaces). Keep a mention when removing it would change or weaken a rule, e.g. an example that "
     "explains a mechanic the listed roles still use (reword it to a listed role if one fits, otherwise leave it). "
-    "Don't rename rule labels (R1, R2, ...), don't touch role names, and don't edit anything that doesn't mention "
-    "an unlisted role. Return no edits if nothing needs changing. Give each edit a short reason."
+    "Don't rename rule labels (R1, R2, ...), don't touch role names, and don't edit anything else. Return no "
+    "edits if nothing needs changing. Give each edit a short reason."
 )
 
 EDIT_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["edits"], "properties": {

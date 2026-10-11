@@ -54,6 +54,9 @@ night actions already run in parallel.
   known not to be in the game, which narrows fake claims and helps the Village. As in Blood on the Clocktower, the
   Yakuza could be told 2-3 script roles that aren't in play, as safe claims. Open choices: how many, whether
   Neutrals get some, and whether script size is enough of a lever on its own.
+- **Tips on a script.** Players on the core script read tips about the Fixer and Ballot Stuffer, which aren't on
+  it, and one asked for those to be dropped (game_20261011_011316_850196). The tips sheet could leave out role
+  sections for roles off the script, and the general sections' mentions of them.
 - **Random scripts.** Besides hand-made scripts, draw a ~25-role script for each game (always containing the roles
   in play), so role stats stay poolable across games once there are too many roles to show them all.
 

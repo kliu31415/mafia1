@@ -57,9 +57,6 @@ Trials:
 - If a majority of all votes counted are Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
   ends immediately.
 - If three nominations pass (failed ones don't count) and all three trials end Innocent, the Day ends.
-- Some roles can change how votes are counted. If an announced vote total doesn't match the number of voters,
-  a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial
-  that Day, so the number of changed totals doesn't show how many times a role was used.
 Voting Yes or Guilty on yourself is allowed.
 
 R16 (Day length)

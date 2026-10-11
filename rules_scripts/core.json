@@ -1,10 +1,10 @@
 {
  "script": "core",
  "cut_sha256": "dd338fcb978c3503",
- "text_sha256": "9465eec1092e11ba",
- "made_by": "opus-5.5",
- "made": "2026-10-11T01:22:22",
- "cost": 0.134536,
+ "text_sha256": "01eb0fde798dbdfe",
+ "made_by": "a Claude Code session",
+ "made": "2026-10-11T02:16:15",
+ "cost": 0.0,
  "edits": [
   {
    "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Smuggler, Vulture.",
@@ -40,6 +40,11 @@
    "old": "  privately told their role and last will. A Coroner who examines a cleaned player learns nothing, and a\n  cleaned player's role stays hidden even if a Chronicler marked them (the announcement says so). The token is\n  spent even if they survive.",
    "new": "  privately told their role and last will. A Coroner who examines a cleaned player learns nothing. The token is\n  spent even if they survive.",
    "reason": "Chronicler is not on the script."
+  },
+  {
+   "old": "- Some roles can change how votes are counted. If an announced vote total doesn't match the number of voters,\n  a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial\n  that Day, so the number of changed totals doesn't show how many times a role was used.\n",
+   "new": "",
+   "reason": "No role on the script changes how votes are counted, so announced totals always match the voters (a player in game_20261011_011316_850196 expected otherwise)."
   }
  ]
 }
