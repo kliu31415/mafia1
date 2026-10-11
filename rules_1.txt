@@ -233,9 +233,9 @@ Seer
   pair isn't a visit. A role-block stops both.
 
 Fortune Teller
-  Day: at the start of each Day (the first is Day 2), you get two numbers, each labeled: how many players were visited
-  last night (a player visited several times counts once), and how many players visited anyone last night (a
-  player who visited several players counts once). Self-visits (R6) count in both numbers.
+  Night: at the end of every night, you learn two numbers about that night, each labeled: how many players were
+  visited (a player visited several times counts once), and how many players visited anyone (a player who visited
+  several players counts once). This needs no action. Self-visits (R6) count in both numbers.
   Example: A holds the Katana, attacks B and also uses their own role's action on C, D visits B, and E protects
   themself. Visited: B, C and E, so 3. Visitors: A, D and E, so 3. Equal numbers don't mean nobody was visited
   twice.
@@ -272,7 +272,8 @@ Census Taker
   (players who die that night can be drawn; if fewer than two others are left, the group is smaller). It also
   draws at random whether to count Good or Evil players. You are told who was in the group, which alignment was
   counted, and how many of the group are of it. It counts true alignment and is not an alignment check (R19):
-  the Katana holder, framed players and the Ex-Con count as what they really are. Neutral players are never
+  the Katana holder, framed players and the Ex-Con count as what they really are, and
+  Outsiders (e.g. the Roleplayer and the Ex-Con) count as Good. Neutral players are never
   counted, as either Good or Evil.
 
 Coroner
@@ -300,8 +301,10 @@ Profiler
   Tokens: 3 profile tokens.
   Night: may spend a token to profile one player other than yourself. You learn three different roles, exactly one
   of which is that player's true role. The other two are drawn at random from the roles of the other players alive at
-  the start of the night (including players who die that night, but not yourself), or from all roles in these rules
-  if too few are in play, so a listed role is not proof that anyone in the game has it. At least
+  the start of the night (including players who die that night, but not yourself), never repeating the true role.
+  When none of those roles fits what is needed (the Good / not Good split below, or simply a third different role),
+  that one is drawn from all roles in these rules instead, so a listed role is not proof that anyone in the game
+  has it. At least
   one of the three is a Good role and at least one is not Good (Evil or Neutral), so a result never settles the
   player's alignment on its own. The three are listed in alphabetical order. This is an exact-role check (R19).
 
@@ -388,7 +391,7 @@ Philanthropist
   If their role has no tokens, they are told they threw it away because they have no use for it, so it doesn't
   count toward their tokens (e.g. for the Accountant). You are not told which happened.
 
-Outsiders (Village, but the role can hurt the Village)
+Outsiders (Village roles: Good, and win with the Village, but the role helps the Village less or can hurt it)
 
 Roleplayer
   You are told your role is X, chosen at random at the start from Sheriff, Tracker, Lookout, Seer, Fortune Teller,

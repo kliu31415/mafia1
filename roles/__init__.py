@@ -47,8 +47,8 @@ ROLES: dict[str, RoleInfo] = {
                      tokens={"seer": 1}, acts_at_night=True,
                      tested=True, notes="random pair each night unless a token is spent"),
     "Fortune Teller": RoleInfo(Alignment.GOOD, "Investigative", False,
-                               summary="Each Day: two labeled numbers, how many players were visited "
-                               "and how many visited last night.",
+                               summary="Every night: two labeled numbers, how many players were visited "
+                               "and how many visited someone that night.",
                                tested=True, notes="numbers told at the end of the night"),
     "Oracle": RoleInfo(Alignment.GOOD, "Investigative", False,
                        summary="Night: guess one player's exact role, learn whether it was right.",

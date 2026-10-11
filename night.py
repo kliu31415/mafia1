@@ -92,6 +92,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "Tell each role-blocked player that they were role-blocked, even one with no night action or who chose not to "
         "act (R9); a role-blocker learns only whether the "
         "block failed because its target can't be role-blocked (R9). "
+        "Write private results in the present, about tonight ('You were role-blocked tonight'), never 'last "
+        "night': they are delivered at the end of this night. "
         "Every player who used an ability gets a private result line, even when nothing "
         "else happened (e.g. 'You went on alert. 1 alert token left.'), stating any tokens they have left, "
         "except where a role note below says otherwise (e.g. code tells them, so don't tell() them a second result). "
