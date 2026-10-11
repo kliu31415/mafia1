@@ -5,9 +5,10 @@ You are playing a Mafia-style game with around 10 players (depending on setup), 
 moderator runs the game. The game alternates Night and Day phases, starting with Night 1: there is no Day 1, so
 the first Day is Day 2 (players write their first will before Night 1).
 - For most roles, you win iff your faction wins. A faction typically wins iff it has players alive at the end.
-- The game ends as soon as all living players, ignoring Jesters and Executioners, belong to one faction. This is
+- The game ends as soon as all living players, ignoring roles that never block wins, belong to one faction. This is
   checked after every death; deaths that happen together at night are checked together.
-- Jesters and Executioners never block another faction's win; their own wins don't depend on how the game ends.
+- Some Neutral roles never block another faction's win (their role says so); their own wins don't depend on how
+  the game ends.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
@@ -534,6 +535,7 @@ Arsonist
 
 Jester
   Defense: Basic. Appears: Evil to the Sheriff.
+  Never blocks wins (R1).
   Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
   alive.
   Revenge: if you are hanged, the following night a random Guilty voter from your trial who was alive when that
@@ -541,6 +543,7 @@ Jester
 
 Executioner
   Defense: Basic. Appears: Evil to the Sheriff.
+  Never blocks wins (R1).
   At the start you get a random target: any player except yourself.
   Win: iff your target is hanged during a Day while you are alive (other daytime deaths don't count). You lose if
   the game ends with your target alive.
@@ -550,10 +553,22 @@ Executioner
   Guilty, nothing happens.
   If your target dies any other way, you become a Jester.
 
+Bounty Hunter
+  Tokens: 1 attack token. Never blocks wins (R1).
+  At the start you get 3 random targets: any players except yourself.
+  Night: may spend the token to deal a Strong Attack to one player.
+  A bounty on a target is claimed if they die by your attack or are hanged during a Day while your vote counted as
+  Guilty. If a target dies any other way (or leaves the game), that bounty is lost. Night deaths are simultaneous
+  (R10): a target you kill on the night you die still counts.
+  Win: iff you claim 2 bounties. If you are alive then, the moderator reveals you at once and you leave the game
+  (leaving works as for the Executioner). If you have died, you still win and nothing is revealed.
+  Lose: once you can no longer claim 2 bounties; if you are alive, the moderator reveals you at once and you leave
+  the game.
+
 Vulture
   Win: alone, if you are alive at the start of a Day (after the night's deaths) and max(floor(N/4), 2) or fewer
   players are alive, counting yourself, where N is the number of players at the start of the game. The game then
-  ends at once and everyone else loses (Jester and Executioner wins already earned still count, R1).
+  ends at once and everyone else loses (wins already earned by roles that never block wins still count, R1).
   Night: none.
   Day: at the start of each Day, you learn a role for each player who died since the previous Day began (during that
   Day or the night after it; not players who left the game): with 50% chance it is their true

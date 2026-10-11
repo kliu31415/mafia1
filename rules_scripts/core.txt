@@ -5,9 +5,10 @@ You are playing a Mafia-style game with around 10 players (depending on setup), 
 moderator runs the game. The game alternates Night and Day phases, starting with Night 1: there is no Day 1, so
 the first Day is Day 2 (players write their first will before Night 1).
 - For most roles, you win iff your faction wins. A faction typically wins iff it has players alive at the end.
-- The game ends as soon as all living players, ignoring Jesters and Executioners, belong to one faction. This is
+- The game ends as soon as all living players, ignoring roles that never block wins, belong to one faction. This is
   checked after every death; deaths that happen together at night are checked together.
-- Jesters and Executioners never block another faction's win; their own wins don't depend on how the game ends.
+- Some Neutral roles never block another faction's win (their role says so); their own wins don't depend on how
+  the game ends.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
@@ -375,6 +376,7 @@ Arsonist
 
 Jester
   Defense: Basic. Appears: Evil to the Sheriff.
+  Never blocks wins (R1).
   Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
   alive.
   Revenge: if you are hanged, the following night a random Guilty voter from your trial who was alive when that
@@ -382,6 +384,7 @@ Jester
 
 Executioner
   Defense: Basic. Appears: Evil to the Sheriff.
+  Never blocks wins (R1).
   At the start you get a random target: any player except yourself.
   Win: iff your target is hanged during a Day while you are alive (other daytime deaths don't count). You lose if
   the game ends with your target alive.

@@ -253,6 +253,12 @@ ROLES: dict[str, RoleInfo] = {
                          "with a Strong Attack. Wins alone.",
                          defense="Standard", acts_at_night=True,
                          tested=True, notes="douses tracked as player status; code tells doused non-Good players"),
+    "Bounty Hunter": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+                              summary="Has 3 random targets and one Strong Attack; wins and leaves once 2 targets die "
+                              "by its attack or by a hanging it voted Guilty in.",
+                              tokens={"attack": 1}, acts_at_night=True,
+                              notes="targets, bounty credit (from death killers and Guilty voters), win, loss and "
+                              "leaving in code; moderator resolves the attack"),
     "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
                        summary="Wins if hanged; then a Guilty voter dies. Reads Evil to the Sheriff.",
                        defense="Basic",

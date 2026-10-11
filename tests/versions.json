@@ -1,7 +1,8 @@
 {
- "log_version": 43,
+ "log_version": 44,
  "log": {
   "attacks": ["attackers", "day"],
+  "bounty_won": ["claimed", "day", "phase", "player"],
   "briefing": ["players", "rules", "setup_note"],
   "budget_warning": ["budget", "planned", "player"],
   "cardinal": ["victim"],

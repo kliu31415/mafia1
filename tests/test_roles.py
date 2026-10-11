@@ -1091,3 +1091,73 @@ def test_bloodhound_counts_recorded_attacks_of_three_players_over_the_game(game_
     assert game.log.error_counts == {"attacks_missing": 1}
     game.role_state["attacks"][game.day] = ["Dave"]
     assert attack_count(game, ["Dave"]) == 2 and attack_count(game, ["Bob", "Carol"]) == 1
+
+
+def bounty_game(game_factory, roles=("Bounty Hunter", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager",
+                                     "Grunt")):
+    from roles.bounty_hunter import bounty
+    game, players = game_factory(list(roles))
+    b = bounty(game, "Alice")
+    b["targets"], b["claimed"], b["lost"] = ["Bob", "Carol", "Dave"], [], []
+    return game, players, b
+
+
+def test_bounty_hunter_gets_three_other_targets(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from players import role_briefing
+    from roles.bounty_hunter import bounty
+    from state import setup_game
+    game = setup_game(["Bounty Hunter"] + VILLAGE5 + ["Grunt"], [Model.HAIKU_5_5], random.Random(3),
+                      GameLog(tmp_path / "t.jsonl"))
+    hunter = next(p for p in game.players if p.role == "Bounty Hunter")
+    targets = bounty(game, hunter.name)["targets"]
+    assert len(set(targets)) == 3 and hunter.name not in targets
+    assert "You win once 2 of them" in role_briefing(game, hunter)
+
+
+def test_bounty_hunter_wins_and_leaves_after_a_kill_and_a_guilty_hanging(game_factory):
+    game, _, b = bounty_game(game_factory)
+    game.phase = "night"
+    game.kill("Bob", "Bounty Hunter", by="Alice")
+    game.run_night_end_hooks()
+    assert b["claimed"] == ["Bob"] and game.player("Alice").alive
+    game.phase = "day"
+    game.kill("Carol", "executed by hanging", guilty_voters=["Alice", "Erin"])
+    alice = game.player("Alice")
+    assert "Alice" in game.personal_winners and not alice.alive and alice.status[Status.LEFT]
+    assert game.death_count() == 2  # leaving isn't a death
+    assert any("was the Bounty Hunter and claimed their bounties" in e.text for e in game.events)
+
+
+def test_bounty_hunter_needs_its_own_guilty_vote_and_its_own_kill(game_factory):
+    game, _, b = bounty_game(game_factory)
+    game.kill("Bob", "executed by hanging", guilty_voters=["Erin"])
+    assert b["lost"] == ["Bob"] and game.player("Alice").alive
+    game.phase = "night"
+    game.kill("Carol", "Katana", by="Erin")
+    game.run_night_end_hooks()
+    alice = game.player("Alice")  # two bounties lost: it can't win any more
+    assert not alice.alive and alice.status[Status.LEFT] and "Alice" not in game.personal_winners
+    game.phase = "day"
+    game.announce_dawn()
+    assert any("can no longer claim enough bounties" in e.text for e in game.events)
+
+
+def test_bounty_hunter_dying_the_night_it_kills_its_second_target_still_wins(game_factory):
+    game, _, b = bounty_game(game_factory)
+    b["claimed"] = ["Bob"]
+    game.phase = "night"
+    game.kill("Alice", "Katana", by="Erin")  # dies first, so on_other_death skips it for Carol's death
+    game.kill("Carol", "Bounty Hunter", by="Alice")
+    game.run_night_end_hooks()
+    alice = game.player("Alice")
+    assert "Alice" in game.personal_winners and not alice.status.get(Status.LEFT)
+    assert not any("was the Bounty Hunter" in e.text for e in game.events)  # a dead winner isn't revealed
+
+
+def test_bounty_hunter_never_blocks_a_win(game_factory):
+    game, _, _ = bounty_game(game_factory, ("Bounty Hunter", "Vanilla Villager", "Grunt"))
+    game.kill("Carol", "executed by hanging", guilty_voters=["Bob"])
+    assert game.check_winner() is not None

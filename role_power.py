@@ -42,6 +42,7 @@ PRIOR: dict[str, float] = {
     "Wiretap": -1.0, "Informant": -0.95,
     # Neutral
     "Vulture": -0.25, "Serial Killer": -0.6, "Arsonist": -0.8, "Jester": -0.15, "Executioner": -0.2,
+    "Bounty Hunter": -0.3,
 }
 
 
