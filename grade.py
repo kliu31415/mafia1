@@ -19,6 +19,7 @@ from pathlib import Path
 
 from llm import OpenRouterClient, answer_json, cache_block, load_api_key, parse_model_spec, rules_system
 from players import STR, obj
+import scripts
 import variants
 from setups import setup_note
 
@@ -99,6 +100,7 @@ def grade_game(client: OpenRouterClient, spec, rules: str, path: Path, out_dir: 
     log_text = blind_log(path.with_suffix(".txt").read_text(encoding="utf-8"),
                          {p["model"] for p in setup["players"]})
     settings = setup.get("settings") or {}
+    rules = scripts.rules_for(rules, settings.get("script", scripts.DEFAULT))  # the roles this game could use
     rules += variants.rules_notes(variants.full(settings))  # the settings this game was played with
     if setup.get("log_version", 0) >= 40:  # players were told about the setup (setups.setup_note) since log 40
         rules += setup_note(settings.get("setup"), settings["roles"])

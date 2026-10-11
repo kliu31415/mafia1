@@ -16,13 +16,14 @@ if TYPE_CHECKING:
 
 def archive_roles(game: Game, by: Player) -> tuple[int, int, list[str]]:
     """(N, how many are real, the N roles shown in random order). The real ones are the roles of randomly chosen
-    other players alive when the night began; each fake is any role in the rules, in play or not, except a second
-    copy of a unique role (rules R2)."""
+    other players alive when the night began; each fake is any role on the game's script (scripts.py), in play or
+    not, except a second copy of a unique role (rules R2)."""
     from roles import ROLES
+    from scripts import script_roles
     others = [p for p in game.players if p is not by and acted_tonight(game, p)]
     shown = [p.role for p in game.rng.sample(others, int(len(others) * SHARE))]
     real = len(shown)
-    every_role = sorted(ROLES)
+    every_role = sorted(script_roles(game))
     while len(shown) < len(others):
         fake = game.rng.choice([r for r in every_role if not (ROLES[r].unique and r in shown)])
         shown.append(fake)

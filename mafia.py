@@ -27,6 +27,7 @@ Code layout:
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
     setups.py      setups: how roles are drawn (--roles standard[:N]) and what players are told about it
+    scripts.py     scripts (--script): the roles a game can use; its rules text lists only those
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     grade.py       an LLM judge grades each player's play in finished games, blind to models (grades/)
     night_check.py a judge model checks each night's moderator resolution (--check-nights)
@@ -85,6 +86,7 @@ from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
 import role_power
+import scripts
 import variants
 from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
 
@@ -149,6 +151,7 @@ class GameConfig:
     flips: str = variants.DEFAULTS["flips"]
     trial_votes: str = variants.DEFAULTS["trial_votes"]
     nomination_votes: str = variants.DEFAULTS["nomination_votes"]
+    script: str = scripts.DEFAULT  # the roles the game can use (scripts.py)
 
     def __post_init__(self) -> None:
         self.player_tips = self.player_tips or []
@@ -184,7 +187,8 @@ class GameConfig:
 
     @property
     def rule_settings(self) -> dict[str, str]:
-        return {name: getattr(self, name) for name in variants.SETTINGS}
+        """The rule settings (variants.py) and the script, which game.rule_settings and the log's settings keep."""
+        return {**{name: getattr(self, name) for name in variants.SETTINGS}, "script": self.script}
 
     @classmethod
     def from_checkpoint(cls, ckpt: dict) -> "GameConfig":
@@ -204,7 +208,8 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
     """Plays a game and its post-game steps; returns its log's path. checkpoint: save the game at the start
     of each day and night to logs/<game>.ckpt (deleted when the game finishes). resume: a loaded checkpoint
     (checkpoint.load) to continue instead of starting a game; config is then GameConfig.from_checkpoint's."""
-    rules = (RULES_PATH.read_text(encoding="utf-8") + variants.rules_notes(config.rule_settings)
+    rules = (scripts.rules_for(RULES_PATH.read_text(encoding="utf-8"), config.script)
+             + variants.rules_notes(config.rule_settings)
              + setup_note(config.setup, config.roles))
     if resume:
         log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
@@ -286,7 +291,7 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
     """A new game: seats and roles drawn from the seed, the setup record, and who gets which tips."""
     meta = game_meta(rules, config.settings(client, checkpoint))
     game = setup_game(config.roles, config.specs, random.Random(config.seed), log,
-                      meta={"game_id": log.path.stem, **meta})
+                      meta={"game_id": log.path.stem, **meta}, rule_settings=config.rule_settings)
     if meta["git_commit"] is None:  # analysis across games groups them by code version
         log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
                   "game's code version isn't recorded")
@@ -487,6 +492,9 @@ def main() -> None:
                     "; or comma-separated role names (see setups.py)")
     ap.add_argument("--yakuza", type=int, default=None, help="for the standard setup: exactly this many Yakuza "
                     "(players are still told the setup's usual range)")
+    ap.add_argument("--script", default=scripts.DEFAULT, choices=scripts.SCRIPTS, help="the roles this game can "
+                    "use (scripts.py): players see only these roles' rules, and every role in the game is one of "
+                    "them; 'all' is every role")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
@@ -588,13 +596,15 @@ def main() -> None:
         options = {"yakuza": args.yakuza} if args.yakuza is not None else {}
         if options and name != "standard":
             ap.error("--yakuza only works with the standard setup")
-        roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), args.role_pool, **options)
+        roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), args.role_pool, script=args.script, **options)
         setup = {"kind": "random", "name": name, "players": n, "pool": args.role_pool, **options}
     else:
         roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
     if unknown:
         ap.error(f"unknown roles: {unknown}")
+    if off := scripts.off_script(args.script, roles):
+        ap.error(f"not on the {args.script} script: {', '.join(off)}")
     if not 1 <= len(roles) <= len(PLAYER_NAMES):
         ap.error(f"a game has 1 to {len(PLAYER_NAMES)} players (one name each), not {len(roles)}")
     try:
@@ -628,7 +638,8 @@ def main() -> None:
     if args.rules_quiz:
         if isinstance(client, OpenRouterClient):
             client.on_error = print_alert  # the quiz has no game log
-        path = run_quiz(client, models + [moderator], moderator, RULES_PATH.read_text(encoding="utf-8"), LOG_DIR)
+        rules = scripts.rules_for(RULES_PATH.read_text(encoding="utf-8"), args.script)
+        path = run_quiz(client, models + [moderator], moderator, rules, LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return
     if args.sync and update_tips == DEFAULT_TIPS:  # a PC game: cloud games' lessons go in the tips first
@@ -643,7 +654,7 @@ def main() -> None:
             feedback_field=args.feedback_field, review=args.review, lessons=args.lessons, max_days=args.max_days,
             check_nights=args.check_nights, tips=args.tips, tips_for=args.tips_for, player_tips=player_tips,
             update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips,
-            trial_votes=args.trial_votes, nomination_votes=args.nomination_votes),
+            trial_votes=args.trial_votes, nomination_votes=args.nomination_votes, script=args.script),
             checkpoint=args.checkpoint)
 
 

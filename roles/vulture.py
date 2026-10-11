@@ -37,8 +37,8 @@ class Vulture(RoleLogic):
 
 def report_deaths(game: Game, vultures: list[Player]) -> None:
     """Rules (Vulture): a role for each player who died since the last report (not those who left), true with
-    TRUE_SHARE chance, else a different role from all the rules' roles (exact-role check: a Roleplayer is one)."""
-    from roles import ROLES
+    TRUE_SHARE chance, else a different role from the script's roles (exact-role check: a Roleplayer is one)."""
+    from scripts import script_roles
     reported: list[str] = game.role_state.setdefault(REPORTED, [])
     new = [p for p in game.players if p.death and not p.status.get(Status.LEFT) and p.name not in reported]
     reported += [p.name for p in new]
@@ -47,7 +47,7 @@ def report_deaths(game: Game, vultures: list[Player]) -> None:
     for v in vultures:
         lines = []
         for p in new:
-            fakes = sorted(r for r in ROLES if r != p.role)
+            fakes = sorted(r for r in script_roles(game) if r != p.role)
             role = p.role if game.rng.random() < TRUE_SHARE else game.rng.choice(fakes)
             lines.append(f"{p.name}: {role}")
         game.tell([v.name], "Your report on the dead (each role is the true one with 50% chance, otherwise a "

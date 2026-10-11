@@ -50,6 +50,12 @@ night actions already run in parallel.
   until there's data. Options then: draw them less often in random setups, or give the Roleplayer a tell.
 - **Ritualist under hidden roles.** Most Village roles are claimed, so its exact-role guesses get easier and its
   Divine attack ignores the Medic. Watch its kills per game before changing it.
+- **Yakuza bluffs on a script** (Kevin, Oct 11 2026: backlog). With a script (`scripts.py`), a role not on it is
+  known not to be in the game, which narrows fake claims and helps the Village. As in Blood on the Clocktower, the
+  Yakuza could be told 2-3 script roles that aren't in play, as safe claims. Open choices: how many, whether
+  Neutrals get some, and whether script size is enough of a lever on its own.
+- **Random scripts.** Besides hand-made scripts, draw a ~25-role script for each game (always containing the roles
+  in play), so role stats stay poolable across games once there are too many roles to show them all.
 
 ## Turned down for now
 

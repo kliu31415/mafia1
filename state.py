@@ -383,8 +383,9 @@ class Game:
 
 
 def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: random.Random, log: GameLog,
-               meta: dict | None = None) -> Game:
-    """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py)."""
+               meta: dict | None = None, rule_settings: dict[str, str] | None = None) -> Game:
+    """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py). rule_settings:
+    the game's (variants.py, and its script), set before role setup hooks run, since some read them."""
     if len(roles) > len(PLAYER_NAMES):
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
@@ -400,6 +401,8 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
     players = [Player(n, i, m.model, r, effort=m.effort, tokens=dict(ROLES[r].tokens))
                for i, (n, m, r) in enumerate(zip(names, seat_models, shuffled))]
     game = Game(players, rng, log)
+    if rule_settings:
+        game.rule_settings = dict(rule_settings)
     yakuza = game.yakuza()
     if yakuza:
         game.katana_holder = rng.choice(yakuza).name

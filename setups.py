@@ -28,6 +28,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from roles import ROLES, Alignment
+from scripts import roles_of
 
 YAKUZA_SHARE = 0.3
 MIN_PLAYERS = 5
@@ -37,7 +38,7 @@ POOLS = ("all", "tested")  # --role-pool: every role, or only roles seen working
 
 @dataclass(frozen=True)
 class Setup:
-    draw: Callable[..., list[str]]  # (players, rng, pool, **options) -> role names
+    draw: Callable[..., list[str]]  # (players, rng, pool, script=..., **options) -> role names
     players: tuple[int, int]  # the player count range when --roles gives none (drawn from the seed)
     describe: str  # what players are told about it, after "This game's roles were drawn by the ... setup:"
 
@@ -77,9 +78,14 @@ def setup_note(setup: dict | None, roles: list[str]) -> str:
     return f"\n\n---\n\nSetup (the role list itself is secret).\n{text}"
 
 
-def random_setup(n: int, rng: random.Random, pool: str = "all") -> list[str]:
+def allowed_roles(pool: str, script: str) -> list[str]:
+    """The roles a setup may draw: on the script (scripts.py), not EXCLUDED, and live-tested if pool is "tested"."""
+    return [r for r in roles_of(script) if (pool == "all" or ROLES[r].tested) and r not in EXCLUDED]
+
+
+def random_setup(n: int, rng: random.Random, pool: str = "all", script: str = "all") -> list[str]:
     """n role names, drawn as the module docstring describes. pool: "all" or "tested"."""
-    allowed = [r for r, info in ROLES.items() if (pool == "all" or info.tested) and r not in EXCLUDED]
+    allowed = allowed_roles(pool, script)
 
     def of(alignment: Alignment, *categories: str) -> list[str]:
         return [r for r in allowed if ROLES[r].alignment is alignment
@@ -128,7 +134,8 @@ def role_uses(log_dir: Path = LOG_DIR) -> Counter:
     return uses
 
 
-def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None) -> list[str]:
+def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None,
+                   script: str = "all") -> list[str]:
     """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4
     (about 3/13 of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village
     roles, the rest Good. With fewer Yakuza than usual their roles lean strong, with more they lean weak. Then
@@ -142,7 +149,7 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
     def score(roles: list[str]) -> float:
         return offset + sum(power[r] for r in roles)
 
-    allowed = [r for r, info in ROLES.items() if (pool == "all" or info.tested) and r not in EXCLUDED]
+    allowed = allowed_roles(pool, script)
     uses = role_uses()
 
     def novelty(r: str) -> float:  # Kevin, Oct 10 2026: lean towards newer and less used roles

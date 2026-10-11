@@ -105,7 +105,11 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   7. `roles/icons/<role-name>.svg` (e.g. `ex-con.svg`): the icon next to the role's players in the HTML log, a
      24x24 color drawing, distinct from the other roles at a glance (the viewer puts it on a badge tinted by faction).
      A test checks every role has one.
-  8. `setups.py` draws setups (`--roles standard`, the default: 13 players, balanced with the role powers in
+  8. Scripts (`scripts.py`, `--script`, Blood on the Clocktower style): a game's rules list only its script's roles,
+     and every role in it comes from the script. `all` (the default, rules unchanged) has every role, so a new role
+     needs nothing there; add it to a hand-made script (`core`, 30 roles) only if it fits. Code that draws "any role"
+     (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`.
+  9. `setups.py` draws setups (`--roles standard`, the default: 13 players, balanced with the role powers in
      `role_power.py`: hand-set priors, refit from game results into `tips/role_power.json`/`.md` wherever the tips are
      updated, and carried by the tips commit and publish; `classic` is the older 11-15 player draw; `NAME:N` sets the count) by alignment and category, and tells players how (a note after the rules, never the role list), and `stats.py` scores
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there

@@ -13,9 +13,10 @@ if TYPE_CHECKING:
 def profile_candidates(game: Game, profiler: str, target: str) -> list[str]:
     """The target's true role and two decoys, three different roles, at least one Good and one not Good (so one
     result never settles alignment). Decoys are drawn from the roles of the other players alive at the start of the
-    night (rules R10), not counting the Profiler's own seat, or from every role when those run out. Sorted, so the
-    order doesn't show which is true."""
+    night (rules R10), not counting the Profiler's own seat, or from every role on the script when those run out.
+    Sorted, so the order doesn't show which is true."""
     from roles import ROLES
+    from scripts import script_roles
     true = game.player(target).role
     in_play = sorted({p.role for p in game.players if acted_tonight(game, p) and p.name != profiler} - {true})
 
@@ -25,7 +26,8 @@ def profile_candidates(game: Game, profiler: str, target: str) -> list[str]:
     def draw(pool: list[str], want_good: bool | None) -> str:
         options = [r for r in pool if want_good is None or good(r) == want_good]
         if not options:  # too few roles in play: any role of that kind
-            options = [r for r in sorted(ROLES) if r not in chosen and (want_good is None or good(r) == want_good)]
+            options = [r for r in sorted(script_roles(game))
+                       if r not in chosen and (want_good is None or good(r) == want_good)]
         return game.rng.choice(options)
 
     chosen = [true]

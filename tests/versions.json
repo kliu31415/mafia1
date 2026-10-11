@@ -1,5 +1,5 @@
 {
- "log_version": 40,
+ "log_version": 41,
  "log": {
   "budget_warning": ["budget", "planned", "player"],
   "cardinal": ["victim"],

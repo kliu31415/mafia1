@@ -19,8 +19,10 @@ class Roleplayer(RoleLogic):
     # They must not be able to tell they aren't the real role: same tokens, alignment and night prompts.
     def setup(self, game: Game, p: Player) -> None:
         from roles import ROLES, logic
-        fake = game.rng.choice([r for r, i in ROLES.items() if i.category == "Investigative"
-                                and logic(r).roleplayer_can_fake])
+        from scripts import script_roles
+        options = [r for r, i in ROLES.items() if i.category == "Investigative" and logic(r).roleplayer_can_fake]
+        on_script = [r for r in options if r in script_roles(game)]  # a fake role off the script would give it away
+        fake = game.rng.choice(on_script or options)
         p.status[Status.FAKE_ROLE] = fake
         p.tokens = dict(ROLES[fake].tokens)
 
