@@ -67,10 +67,18 @@ def merge_reviewed(ours: bytes, theirs: bytes) -> bytes:
 MERGED = {"lessons.jsonl": merge_lessons, "alerts_reviewed.json": merge_reviewed}
 
 
+PARTIAL_REMOTE = "sync-logs-trees"  # the remote a partial Repo fetches through (blob:none), so the filter it
+# records in the git config applies to it alone, never to the checkout's own fetches
+
+
 class Repo:
-    def __init__(self, root: Path = ROOT, remote: str = REMOTE, branch: str = BRANCH):
+    def __init__(self, root: Path = ROOT, remote: str = REMOTE, branch: str = BRANCH, partial: bool | None = None):
+        """partial (default: in the cloud): fetch the branch's commits and file lists but not its files, which git
+        downloads only when one is read (a merged file such as lessons.jsonl). A cloud game's push then costs a few
+        KB, not the whole branch (52 MB at 76 games); the PC, which pulls every file, fetches them all."""
         self.root, self.remote, self.branch = root, remote, branch
         self.tracking = f"refs/remotes/{remote}/{branch}"
+        self.partial = in_cloud() if partial is None else partial
 
     def git(self, *args: str, input: bytes | None = None, env: dict | None = None, check: bool = True) -> bytes:
         r = subprocess.run(["git", *args], cwd=self.root, input=input, capture_output=True,
@@ -83,8 +91,21 @@ class Repo:
         """The branch's latest commit on the remote (fetched), or None if it doesn't exist yet."""
         if not self.git("ls-remote", "--heads", self.remote, self.branch).strip():
             return None
-        self.git("fetch", "--quiet", self.remote, f"+refs/heads/{self.branch}:{self.tracking}")
+        refspec = f"+refs/heads/{self.branch}:{self.tracking}"
+        if self.partial:
+            self.git("fetch", "--quiet", "--filter=blob:none", self.partial_remote(), refspec)
+        else:
+            self.git("fetch", "--quiet", self.remote, refspec)
         return self.git("rev-parse", self.tracking).decode().strip()
+
+    def partial_remote(self) -> str:
+        """PARTIAL_REMOTE, set to self.remote's URL (or self.remote itself if it is a URL or path)."""
+        named = self.git("remote", "get-url", self.remote, check=False).decode().strip()
+        url = named or self.remote
+        if self.git("remote", "get-url", PARTIAL_REMOTE, check=False).decode().strip() != url:
+            self.git("remote", "remove", PARTIAL_REMOTE, check=False)
+            self.git("remote", "add", PARTIAL_REMOTE, url)
+        return PARTIAL_REMOTE
 
     def files(self, commit: str | None, prefix: str) -> dict[str, str]:
         """Path -> blob id of the files under prefix/ in commit."""
@@ -118,7 +139,8 @@ class Repo:
                     continue
                 blob_id = self.git("hash-object", "-w", "--no-filters", "--stdin", input=content).decode().strip()
                 self.git("update-index", "--add", "--cacheinfo", f"100644,{blob_id},{path}", env=env)
-            tree = self.git("write-tree", env=env).decode().strip()
+            # --missing-ok: in a partial Repo, the parent's files stay on the remote instead of being downloaded
+            tree = self.git("write-tree", "--missing-ok", env=env).decode().strip()
         finally:
             index.unlink(missing_ok=True)
         if parent and tree == self.git("rev-parse", f"{parent}^{{tree}}").decode().strip():

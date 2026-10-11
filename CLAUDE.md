@@ -30,7 +30,7 @@ environment, but their sandbox is deleted afterwards, so the logs go through the
    `--tips tips/tips.md --tips-for ...` to a game to give players tips).
 2. Games detect the cloud (`CLAUDE_CODE_REMOTE=true`): they don't update the tips (the notebook on Kevin's PC
    is the one source of truth; a cloud copy would fork it), and when one ends, crashes or is stopped it
-   pushes logs/ to the branch itself (`--sync`, on by default). If that prints `ALERT sync_error`, run
+   pushes logs/ to the branch itself (`--sync`, on by default); it fetches only the branch's file lists, plus the files it merges). If that prints `ALERT sync_error`, run
    `uv run sync_logs.py push` before saying the game is done; logs that aren't pushed are lost with the sandbox.
 On the PC, `uv run sync_logs.py pull` copies new logs into logs/ (a game pushed again, e.g. after a
 mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback files), adds their lessons to

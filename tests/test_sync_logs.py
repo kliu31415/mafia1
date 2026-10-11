@@ -20,6 +20,7 @@ def machines(tmp_path, monkeypatch):
         monkeypatch.setenv(k, v)
     remote = tmp_path / "remote.git"
     run(tmp_path, "init", "--bare", "-b", "main", str(remote))
+    run(remote, "config", "uploadpack.allowFilter", "true")  # GitHub allows the cloud side's blob:none fetch
     seed = tmp_path / "seed"
     run(tmp_path, "clone", str(remote), str(seed))
     (seed / "code.py").write_text("x = 1\n")
@@ -29,7 +30,7 @@ def machines(tmp_path, monkeypatch):
     out = {}
     for name in ("cloud", "pc"):
         run(tmp_path, "clone", str(remote), str(tmp_path / name))
-        out[name] = sync_logs.Repo(tmp_path / name)
+        out[name] = sync_logs.Repo(tmp_path / name, partial=name == "cloud")
     return out
 
 
@@ -54,6 +55,27 @@ def test_logs_go_from_the_cloud_to_the_pc_without_touching_main(machines):
     assert (pc.root / "logs" / "game_1.html").read_text() == "resumed here"
     assert not (pc.root / "logs" / "mock_2.jsonl").exists()
     assert pc.git("ls-tree", "-r", "--name-only", "HEAD").decode().split() == ["code.py"]
+
+
+def test_a_partial_fetch_downloads_files_only_when_read_and_leaves_the_checkout_alone(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    (pc.root / "logs").mkdir()
+    (pc.root / "logs" / "game_pc.html").write_text("big" * 1000)
+    (pc.root / "logs" / "lessons.jsonl").write_text('{"game": "game_pc"}\n')
+    sync_logs.push(pc, pc.root / "logs")
+    logs = cloud.root / "logs"
+    logs.mkdir()
+    (logs / "lessons.jsonl").write_text('{"game": "game_cloud"}\n')
+    sync_logs.push(cloud, logs)  # merging lessons.jsonl reads the branch's copy, fetched on demand
+    missing = cloud.git("rev-list", "--objects", "--missing=print", cloud.tracking).decode().split()
+    pc_html = pc.git("rev-parse", f"{pc.tracking}:logs/game_pc.html").decode().strip()
+    assert "?" + pc_html in missing  # never downloaded
+    assert cloud.git("config", "--get", "remote.origin.partialclonefilter", check=False).strip() == b""
+    assert cloud.git("config", "--get", f"remote.{sync_logs.PARTIAL_REMOTE}.partialclonefilter").strip() == b"blob:none"
+    sync_logs.pull(pc, pc.root / "logs")
+    lessons = (pc.root / "logs" / "lessons.jsonl").read_text().splitlines()
+    assert lessons == ['{"game": "game_pc"}', '{"game": "game_cloud"}']
+    assert (pc.root / "logs" / "game_pc.html").read_text() == "big" * 1000
 
 
 def test_shared_files_are_merged_and_pushes_from_two_machines_both_land(machines):
