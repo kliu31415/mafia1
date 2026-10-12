@@ -266,14 +266,14 @@ def trait_odds(players: int) -> dict[int, int]:
 
 def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     """Traits for a drawn setup (traits.py, rules R24): a count from trait_odds, and for each count TRAIT_SAMPLES random
-    trait sets; one set is picked by its count's odds, scaled down the further it leaves role_power.score from
-    even (Kevin: traits help balance setups, semi-randomly). Each trait is drawn from those its players could get
-    (an eligible seat without a trait yet: a drawn setup gives a player at most one). A trait that can go to more
+    trait sets; one set is picked by its count's odds, scaled down the further role_power.score (of the roles and
+    the set's traits, with their fitted powers) leaves even (Kevin: traits help balance setups, semi-randomly). Each
+    trait is drawn from those its players could get (an eligible seat without a trait yet: a drawn setup gives a
+    player at most one). A trait that can go to more
     than one faction is drawn with the faction of the seat it goes to ("Grudge@Yakuza"), so the balance knows
     which side it helps."""
     import role_power
-    from traits import FACTIONS, TRAITS, village_power
-    base = role_power.score(roles)
+    from traits import FACTIONS, TRAITS
     faction_name = {a: f for f, a in FACTIONS.items()}
 
     def sample(n: int) -> list[tuple[str, Alignment]]:
@@ -295,7 +295,7 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
             for _ in range(TRAIT_SAMPLES)]
     # Each set's odds, scaled down the further it leaves the setup from even (in units of BAND), so traits lean
     # towards what evens the sides without overriding the odds.
-    weight = [odds * math.exp(-((base + sum(village_power(t, a) for t, a in c)) / BAND) ** 2) for odds, c in sets]
+    weight = [odds * math.exp(-(role_power.score(roles, traits=c) / BAND) ** 2) for odds, c in sets]
     chosen = rng.choices([c for _, c in sets], weight)[0]
     return [t if len(TRAITS[t].alignments) == 1 else f"{t}@{faction_name[a]}" for t, a in chosen]
 

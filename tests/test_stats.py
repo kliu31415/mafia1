@@ -172,14 +172,89 @@ def test_every_role_has_a_power():
 
 def test_role_powers_are_refit_from_results_towards_the_priors(tmp_path):
     base = ["Sheriff", "Medic", "Vanilla Villager", "Vanilla Villager", "Grunt"]
-    data = [(base + ["Jester"], 0, 1.0)] * 12 + [(base + ["Vulture"], 1, 1.0)] * 12
-    offset, power = role_power.fit(data)
+    data = [role_power.Played(base + ["Jester"], 0)] * 12 + [role_power.Played(base + ["Vulture"], 1)] * 12
+    offset, power, trait_power = role_power.fit(data)
+    assert trait_power == role_power.TRAIT_PRIOR  # no traits dealt: they stay at their priors
     assert power["Jester"] < role_power.PRIOR["Jester"] - 0.1 and power["Vulture"] > role_power.PRIOR["Vulture"] + 0.1
     assert power["Seer"] == role_power.PRIOR["Seer"]  # never seen: stays at its prior
     path = tmp_path / "role_power.json"
     role_power.update(tmp_path, path)  # no games: the priors
     assert role_power.load(path) == (role_power.OFFSET_PRIOR, role_power.PRIOR)
+    assert role_power.load_traits(path) == role_power.TRAIT_PRIOR
     assert "| Sheriff | Good | +0.55 | +0.55 | 0 |" in path.with_suffix(".md").read_text(encoding="utf-8")
+
+
+def test_trait_powers_are_refit_by_their_holder_s_side(tmp_path, monkeypatch):
+    G, E = Alignment.GOOD, Alignment.EVIL
+    base = ["Sheriff", "Medic", "Vanilla Villager", "Vanilla Villager", "Grunt"]
+    # The Village keeps losing with a Martyr (so it helps less than its prior says), and keeps losing against a
+    # Yakuza Grudge (so a Yakuza's Grudge helps the Yakuza more): each moves the right way, and only its own key.
+    data = ([role_power.Played(base, 0, traits=(("Martyr", G),))] * 12 + [role_power.Played(base, 1)] * 12
+            + [role_power.Played(base, 0, traits=(("Grudge", E),))] * 12)
+    offset, power, trait_power = role_power.fit(data)
+    prior = role_power.TRAIT_PRIOR
+    assert trait_power["Martyr"] < prior["Martyr"] - 0.1
+    assert trait_power["Grudge@Yakuza"] > prior["Grudge@Yakuza"] + 0.1
+    assert trait_power["Grudge"] == prior["Grudge"] and trait_power["Armed"] == prior["Armed"]
+    # A Neutral holder's trait counts for neither side, so it isn't fitted.
+    neutral = [role_power.Played(base + ["Jester"], 0, traits=(("Loud", Alignment.NEUTRAL),))] * 12
+    assert role_power.fit(neutral)[2]["Loud"] == prior["Loud"]
+
+    # The fit round-trips through the file, and scores use it.
+    path = tmp_path / "role_power.json"
+    monkeypatch.setattr(role_power, "games", lambda log_dir: data)
+    role_power.update(tmp_path, path)
+    saved = role_power.load_traits(path)
+    assert saved == {k: round(v, 3) for k, v in trait_power.items()}
+    assert json.loads(path.read_text(encoding="utf-8"))["traits"]["Martyr"]["games"] == 12
+    md = path.with_suffix(".md").read_text(encoding="utf-8")
+    assert f"| Grudge | Yakuza | +0.30 | {trait_power['Grudge@Yakuza']:+.2f} | 12 |" in md
+    assert "| Grudge | Village, Neutral | +0.10 | +0.10 | 0 |" in md
+    roles = base + ["Jester"]
+    plain = role_power.score(roles, path)
+    assert role_power.score(roles, path, traits=[("Martyr", G)]) == pytest.approx(plain + saved["Martyr"])
+    assert role_power.score(roles, path, traits=[("Grudge", E)]) == pytest.approx(plain - saved["Grudge@Yakuza"])
+    assert role_power.score(roles, path, traits=[("Loud", Alignment.NEUTRAL)]) == pytest.approx(plain)
+
+
+def test_an_old_role_power_file_without_traits_still_loads(tmp_path):
+    path = tmp_path / "role_power.json"
+    path.write_text(json.dumps({"written": "2026-10-11 10:00 UTC", "games": 3, "offset": -0.2,
+                                "roles": {"Sheriff": {"prior": 0.55, "power": 0.7, "games": 3}}}), encoding="utf-8")
+    offset, power = role_power.load(path)
+    assert offset == -0.2 and power["Sheriff"] == 0.7 and power["Medic"] == role_power.PRIOR["Medic"]
+    assert role_power.load_traits(path) == role_power.TRAIT_PRIOR  # traits keep their hand-set power
+
+
+def test_role_power_reads_each_game_s_traits_and_the_cardinal_as_cursed(tmp_path):
+    records = game_records()
+    for seat in records[0]["players"]:
+        seat["traits"] = {"Alice": ["Martyr"], "Frank": ["Grudge"]}.get(seat["name"], [])
+    write_log(tmp_path / "game_a.jsonl", records)
+    old = game_records("Yakuza")
+    old[0]["game_id"] = "game_20261009_120000_2"
+    for p in [*old[0]["players"], *old[-1]["players"]]:
+        if p["name"] == "Dave":  # a Cardinal (log version 16, before v51): a Vanilla Villager with the Cursed trait
+            p.update({"role": "Cardinal"} if "role" in p else {"start_role": "Cardinal", "final_role": "Cardinal"})
+    write_log(tmp_path / "game_b.jsonl", old)
+    a, b = role_power.games(tmp_path)
+    assert sorted(role_power.terms(a)) == [("Grudge@Yakuza", -1), ("Martyr", 1)] and a.won == 1
+    assert b.traits == (("Cursed", Alignment.GOOD),) and b.won == 0
+    assert "Cardinal" not in b.roles and b.roles.count("Vanilla Villager") == 1
+
+
+def test_drawn_traits_balance_with_the_fitted_trait_powers(tmp_path, monkeypatch):
+    # A fit that makes the Martyr hugely good for the Village: a setup the Village already favors never gets one.
+    path = tmp_path / "role_power.json"
+    role_power.update(tmp_path, path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["traits"]["Martyr"]["power"] = 5.0
+    path.write_text(json.dumps(data), encoding="utf-8")
+    monkeypatch.setattr(role_power, "FILE", path)
+    roles = ["Sheriff", "Medic", "Vigilante", "Seer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    assert role_power.score(roles, traits=[("Martyr", Alignment.GOOD)]) > 5
+    drawn = [setups.draw_traits(roles, random.Random(seed)) for seed in range(30)]
+    assert not any("Martyr" in t for t in drawn) and any(t for t in drawn)
 
 
 def test_players_get_the_setup_note_and_their_tips(tmp_path, monkeypatch):

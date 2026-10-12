@@ -86,7 +86,7 @@ def load_game(path: Path) -> dict | None:
     # A model played through Claude Code plays somewhat differently (claude_code.py), so it counts as its own model.
     players = [{"name": p["name"], "model": short(p["model"]) + (" (CC)" if p["via"] == "claude_code" else ""),
                 "role": p["start_role"], "faction": p["faction"],
-                "won": p["won"], "alive": p["alive"]} for p in seated]
+                "won": p["won"], "alive": p["alive"], "traits": p["traits"]} for p in seated]
     winning = result.get("winning_faction")
     if "winning_faction" not in result:
         factions = {p["faction"] for p in players if p["won"]} & {"Village", "Yakuza"}
@@ -283,7 +283,7 @@ def write_csv(games: list[dict], folder: Path) -> list[Path]:
                    "end_reason", "cost", "duration_s", "roles", "frontier_share", "mix", "moderator"]
     tables = {
         "games.csv": [{**{k: g[k] for k in game_fields}, "roles": ";".join(g["roles"])} for g in games],
-        "players.csv": [{"game": g["game"], **p} for g in games for p in g["players"]],
+        "players.csv": [{"game": g["game"], **p, "traits": ";".join(p["traits"])} for g in games for p in g["players"]],
         "decisions.csv": [d for g in games for d in g["decisions"]],
     }
     paths = []

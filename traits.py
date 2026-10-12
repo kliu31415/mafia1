@@ -1,9 +1,10 @@
 """Traits (rules R24): an extra ability some players have on top of their role, e.g. Martyr. The player knows their
 own trait; nobody else is told, investigations never see traits, and whether a game has any is secret.
 
-A trait is a TraitInfo entry in TRAITS (who can get it, the line its holder is told, its power for setups.py)
-plus a TraitLogic subclass for what code carries out, using the same hooks as roles (roles/base.py) where they
-apply. A trait stays with its player when their role changes (an Executioner becoming a Jester)."""
+A trait is a TraitInfo entry in TRAITS (who can get it, the line its holder is told, its power for setups.py,
+refit from game results by role_power.py) plus a TraitLogic subclass for what code carries out, using the same hooks
+as roles (roles/base.py) where they apply. A trait stays with its player when their role changes (an Executioner
+becoming a Jester)."""
 
 from __future__ import annotations
 
@@ -25,7 +26,7 @@ class TraitInfo:
     hover: str  # one short line shown when hovering its holder's icon in the HTML log
     # Logit units like role_power.PRIOR: how much it helps its holder's own side (negative: it hurts them), so it
     # keeps its meaning if the alignments it can go to change (Kevin, Oct 12 2026). setups.py counts it towards the
-    # Village by the holder's alignment (village_power).
+    # Village by the holder's alignment (village_power). It's the prior: role_power.py refits it from game results.
     power: float
     # A small SVG drawn in the top-right corner of its holder's role icon in the HTML log (log_viewer.py): mostly
     # opaque (the icon shows through a little), in a color no faction uses, so it doesn't read as a faction tint.
@@ -417,12 +418,37 @@ def parse_item(item: str) -> tuple[list[str], Alignment | None]:
     return names.split("+"), FACTIONS.get(faction)
 
 
-def village_power(trait: str, alignment: Alignment) -> float:
-    """What a trait held by a player of this alignment adds to the Village's side (setups.draw_traits): its power for
-    a Village holder, minus it for a Yakuza; a Neutral plays for itself, so 0."""
-    info = TRAITS[trait]
-    power = (info.power_for or {}).get(alignment, info.power)
-    return {Alignment.GOOD: power, Alignment.EVIL: -power}.get(alignment, 0.0)
+def power_key(trait: str, alignment: Alignment) -> str:
+    """The name a trait's power has for a holder of this alignment (role_power fits one power per key): the trait's
+    own name, or "Grudge@Yakuza" where power_for gives that alignment its own power."""
+    if alignment in (TRAITS[trait].power_for or {}):
+        return f"{trait}@{next(f for f, a in FACTIONS.items() if a is alignment)}"
+    return trait
+
+
+def hand_powers() -> dict[str, float]:
+    """Each power_key's hand-set power (TraitInfo.power and power_for): role_power's priors for traits."""
+    out: dict[str, float] = {}
+    for t, info in TRAITS.items():
+        out[t] = info.power
+        for a, power in (info.power_for or {}).items():
+            out[power_key(t, a)] = power
+    return out
+
+
+def village_sign(alignment: Alignment) -> int:
+    """How a trait's power counts towards the Village: +1 for a Village holder, -1 for a Yakuza (it helps the
+    holder's side), 0 for a Neutral (who plays for itself)."""
+    return {Alignment.GOOD: 1, Alignment.EVIL: -1}.get(alignment, 0)
+
+
+def village_power(trait: str, alignment: Alignment, powers: dict[str, float] | None = None) -> float:
+    """What a trait held by a player of this alignment adds to the Village's side (role_power.score, which
+    setups.draw_traits balances with): its power (from `powers`, role_power's fit, by power_key, else hand-set) for a
+    Village holder, minus it for a Yakuza; a Neutral plays for itself, so 0."""
+    key = power_key(trait, alignment)
+    power = (powers or {}).get(key, hand_powers()[key])
+    return village_sign(alignment) * power
 
 
 def night_traits(game: Game, p: Player) -> list[str]:
