@@ -456,3 +456,61 @@ Katana: Grace holds it and attacks Mallory.
 (to Mallory) Moderator (private): You were attacked tonight (Katana) and died.
 (to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Mallory. Heidi (Ballot Stuffer) chose to act, spending 1 token(s).
 (to Heidi) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Mallory. Grace (Talent Agent) chose no action.
+
+===== DAY 6 =====
+Mallory died (killed by Katana). Their role isn't revealed. Their last will: "Mallory - real Auditor (Good). N1: no audit. N2: audited Dave -> Yes on my nom, Guilty on me (matches). N3: audited Niaj -> No on his own nom, Yes on Dave's nom, Guilty on Dave (matches). N4: audited Olivia -> Yes on Niaj's nom, Guilty on Niaj (matches). Dave's N1 profile on me included my true role (Auditor), so Bob was the fake. N4 deaths: Carol (Katana), Judy (ARSONIST), Alice (curse). D5: Yes/Guilty on Olivia. The trial came in 4G/1I, which matches what everyone stated. The game didn't end, so hostiles are still among Frank, Grace and Heidi. N5: audited Heidi (Alice's last Oracle guess was Heidi = Informant, and an Informant could fake Juror results). Frank claims Veteran: don't visit him. If I die tonight, compare Frank's, Grace's and Heidi's claims for anything that can be checked."
+Speaking order today goes around the circle in seat order, starting with Grace.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Grace: Scout (passive, no visits). N5: Mallory, Heidi, Frank. D6: nominating Frank, Yes/Guilty.
+Grace (public): Frank lined up behind every hang and his Veteran claim can't be checked. Nominating Frank.
+Grace nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Grace, Heidi; No - Frank
+Nomination votes on Frank: 2 Yes (the votes are secret).
+Frank is put on trial (2 Yes).
+[Claim] Frank: Veteran. N3-N5 alert, nobody visited, 0 tokens. D6: Innocent on me. Grace's N5 Scout (Mallory, Heidi separate groups) is impossible: Mallory audited Heidi N5.
+Frank (public): Heidi, Grace's own N5 Scout claim breaks her. Scout names have to come from three DIFFERENT visit groups. Mallory's will says she audited YOU on N5. An audit is a visit, so it links Mallory and Heidi into the same group. Grace still claims "Mallory, Heidi, Frank" as three separate groups. That can't happen unless Mallory's audit was blocked, and only a Yakuza would know that. Grace made up names after Mallory's will was already public and didn't check them.
+
+Look at the rest too. She nominated in round 1 with no data, again, just like she did with Olivia. My claim has held all game: three alerts, nobody visited, 0 tokens left. If you hang me and I'm Good, Grace kills you tonight and the game is over. Vote Innocent, then nominate Grace.
+(to Frank, Heidi) Frank -> Heidi (private): Mallory audited you N5, which puts you and Mallory in the same visit group. Grace's Scout result lists Mallory and Heidi as separate groups, which is impossible. If you're Good, Grace is the Yakuza and she kills you tonight if I hang. Vote Innocent and nominate Grace. I'll vote Yes/Guilty on her.
+Grace (public): Still Guilty. Scout groups are random draws from the night's visit groups, and I posted mine as I got them.
+Heidi (public): Guilty. Scout names are random draws, and a blocked or redirected audit is enough to split those groups. Your Veteran claim has never been checkable, Frank.
+Frank (public): Heidi, read the Scout rule again. Every name has to come from a different group. It's random which name is drawn from each group, but two players in the same group can never both be named. Grace never answered that. Now take your own explanation, the blocked audit. Who blocks? A Yakuza. Was it you? You know it wasn't. And Mallory died to the Katana, so the holder visited her and sits in her group. If you're Good, the Katana holder is Grace or me. I was on alert three nights and nobody visited me. I have no way to kill, and my claim has matched the archive's two Veterans since Day 4. Grace nominated in round 1 with no data, two Days in a row. If you hang me, you're alone with Grace tonight, and the Katana ends the game. Vote Innocent and nominate Grace. Then I'll vote Guilty on her.
+Trial votes on Frank: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Grace, Heidi; Innocent - Frank
+Frank is executed by hanging (3 Guilty of 4 votes; 3 needed; there are more votes than the 3 voters because a role manipulated the count on purpose (rules R4), not because of an error).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank: Veteran (Good). N1/N2: no alert. N3, N4, N5: ON ALERT, nobody visited me any of those nights. 0 tokens left. Votes: D2 No/Innocent Mallory. D3 Yes/Guilty Dave. D4 Yes/Guilty Niaj. D5 Yes/Guilty Olivia. D6: No/Innocent on me.
+KEY: Grace's N5 Scout claim (Mallory, Heidi, Frank = 3 different groups) is impossible. Mallory's will says she audited Heidi on N5, and that visit puts Mallory and Heidi in the same group. Grace is lying, so Grace is the Yakuza. She nominated in round 1 with no data on D5 and again on D6."
+The game is over. Winners: Grace, Heidi, Niaj (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Dave] Interface worked fine. The main difficulty was deduction across many sources of role data, not the rules.
+[Feedback from Frank] The game ran consistently with the rules. The main friction was tracking visit counts by hand, and not seeing traits in the end-of-game reveal.
+[Feedback from Carol] I died on N4 while my trap appears to have stopped the ignite on Alice that same night, and I never got a "trap went off" notice. Please clarify whether a dead Trapper gets that notice.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Grace, Heidi, Niaj
+Cost by player (USD):
+  Alice (Oracle)          $0.0000   28 calls  claude-opus-5.5
+  Bob (Auditor)           $0.0000   15 calls  claude-opus-5.5
+  Carol (Trapper)         $0.0000   28 calls  claude-opus-5.5
+  Dave (Profiler)         $0.0000   21 calls  claude-opus-5.5
+  Erin (Kitsune)          $0.0000   15 calls  claude-opus-5.5
+  Frank (Veteran)         $0.0000   39 calls  claude-opus-5.5
+  Grace (Talent Agent)    $0.0000   48 calls  claude-opus-5.5
+  Heidi (Ballot Stuffer)  $0.0000   49 calls  claude-opus-5.5
+  Ivan (Executioner)      $0.0000   22 calls  claude-opus-5.5
+  Judy (Archivist)        $0.0000   28 calls  claude-opus-5.5
+  Mallory (Auditor)       $0.0000   34 calls  claude-opus-5.5
+  Niaj (Diviner)          $0.0000   34 calls  claude-opus-5.5
+  Olivia (Arsonist)       $0.0000   33 calls  claude-opus-5.5
+  Moderator               $0.0000   12 calls  claude-opus-5.5
+  Night checks            $0.0000    5 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.0000  413 calls
