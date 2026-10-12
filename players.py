@@ -130,6 +130,7 @@ def night_action_schema(game: Game, p: Player) -> dict:
         props = {}  # asked only for a trait's action
     if traits := night_traits(game, p):
         props["trait_actions"] = trait_actions_schema(traits, [n for n in game.alive_names() if n != p.name])
+    props["last_will"] = STR  # everyone, rules R13 ("" keeps it)
     return obj(**props)
 
 

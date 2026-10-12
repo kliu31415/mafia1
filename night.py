@@ -2,7 +2,9 @@
 
 import json
 
-from players import BOOL, Players, STR, as_chosen, cap_words, name_enum, night_action_schema, nullable, obj, tokens_left
+from players import (BOOL, Players, STR, as_chosen, blank, cap_words, name_enum, night_action_schema, nullable, obj,
+                     tokens_left)
+from day import LAST_WILL_WORDS
 from roles import LOGIC, Alignment, Status, logic
 from roles.base import swaps_tonight
 from events import PHASE, YAKUZA_CHAT
@@ -26,24 +28,39 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                     "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. "
                     + katana_majority_note(game))
 
+    # Everyone is asked, if only for their will (rules R13: a will can be updated with the night's choice).
     actors = [p for p in game.alive() if logic(p.role).acts_at_night(p) or p.info.alignment is Alignment.EVIL
               or night_traits(game, p)]
+    asked = game.alive()
     jobs = []
-    for p in actors:
+    for p in asked:
         schema = night_action_schema(game, p)
         if "act" in schema["properties"]:
             task = (f"It is Night {game.day}. Choose your night action for your role, following the rules. "
                     "Set act=false to do nothing. Fill only the fields your role needs."
                     + (f" You have {tokens_left(p)}." if p.tokens else ""))
-        else:
+        elif "trait_actions" in schema["properties"]:
             task = f"It is Night {game.day}. Your role has no night action, but your trait has one."
+        else:
+            task = f"It is Night {game.day}. Your role has no night action."
         if p.info.alignment is Alignment.EVIL:
             task += (" Also vote on who should hold the Katana and who the Katana should attack (or null). "
                      + katana_majority_note(game))
         task += "".join(f" {trait_logic(t).action_task}" for t in night_traits(game, p))
-        default: dict = {"act": False} if "act" in schema["properties"] else {"trait_actions": []}
-        jobs.append((p, task, schema, default))
-    actions = dict(zip([p.name for p in actors], players.ask_many(jobs, step="night_action")))
+        task += (f" You may also update your last will (max {LAST_WILL_WORDS} words; an empty last_will keeps it). "
+                 "This is your last chance before tonight resolves: tonight's results arrive after it.")
+        default: dict = ({"act": False} if "act" in schema["properties"] else
+                         {"trait_actions": []} if "trait_actions" in schema["properties"] else {})
+        jobs.append((p, task, schema, {**default, "last_will": ""}))
+    answers = players.ask_many(jobs, step="night_action")
+    for p, a in zip(asked, answers):  # rules R13: the new will stands before anything tonight resolves
+        will = a.pop("last_will", "")
+        if isinstance(will, str) and not blank(will):
+            p.last_will = cap_words(will, LAST_WILL_WORDS)
+            if p.last_will != will:
+                game.emit(f"(Program note: your last will was over {LAST_WILL_WORDS} words, so it was cut to its "
+                          f"first {LAST_WILL_WORDS}.)", [p.name])
+    actions = {p.name: a for p, a in zip(asked, answers) if p in actors}
     for a in actions.values():  # one use of each trait a night (rules R24): a repeat is dropped
         if "trait_actions" in a:
             first: dict[str, dict] = {}

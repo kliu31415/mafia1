@@ -70,6 +70,6 @@ Every response also has a 'reason' field: why you chose this answer, usually in 
 
 ---
 
-It is Night 1. Choose your night action for your role, following the rules. Set act=false to do nothing. Fill only the fields your role needs.
+It is Night 1. Choose your night action for your role, following the rules. Set act=false to do nothing. Fill only the fields your role needs. You may also update your last will (max 300 words; an empty last_will keeps it). This is your last chance before tonight resolves: tonight's results arrive after it.
 
-Answer in these fields: act, target, second_target, guessed_role, tokens_to_spend, details (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.
+Answer in these fields: act, target, second_target, guessed_role, tokens_to_spend, details, last_will (plus the ones every answer has). The other fields aren't used for this answer: leave them empty (null, "", false, 0 or []). In a text field, "" means none, the same as null.

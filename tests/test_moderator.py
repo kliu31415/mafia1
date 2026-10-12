@@ -334,3 +334,26 @@ def test_code_tells_the_yakuza_their_choices_and_night_victims_their_death(game_
     assert told(game, "Bob")[-1] == ("Moderator (private): Yakuza night summary: Alice holds the Katana and chose to "
                                      "attack Carol. Alice (Grunt) chose no action.")
     assert not any("Yakuza night summary" in t for n in ("Carol", "Dave", "Erin") for t in told(game, n))
+
+
+def test_everyone_can_update_their_will_with_the_night_action_and_it_stands_if_they_die(game_factory):
+    # Kevin, Oct 12 2026 (rules R13): three players died with that night's target missing from their will.
+    def decide(name, task, schema):
+        if name == "Alice":
+            return {"katana_vote_holder": "Alice", "katana_vote_target": "Carol"}
+        if name in ("Carol", "Dave"):
+            return {"last_will": f"{name}: no night action, Vanilla."}
+        if name == "Erin":
+            return {"act": True, "target": "Dave", "last_will": "Erin - Medic. N1: protecting Dave."}
+    game, players = game_factory(["Grunt", "Pharmacist", "Vanilla Villager", "Vanilla Villager", "Medic"],
+                                 ScriptedClient(decide, moderator_calls=[("apply_changes", {"changes": [
+                                     {"op": "kill", "player": "Carol", "cause": "Katana", "by": "Alice",
+                                      "katana": True}]})]))
+    run_night(game, players, Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)"))
+    assert {n for n, task in players.client.asked if "update your last will" in task} == {
+        "Alice", "Bob", "Carol", "Dave", "Erin"}  # Vanilla Villagers too
+    assert "Carol" not in game.night_actions[1] and "Dave" not in game.night_actions[1]  # no action to record
+    assert all("last_will" not in a for a in game.night_actions[1].values())
+    assert not game.player("Carol").alive and game.player("Carol").last_will == "Carol: no night action, Vanilla."
+    assert game.player("Erin").last_will == "Erin - Medic. N1: protecting Dave."
+    assert game.player("Bob").last_will == ""  # an empty answer keeps the old will

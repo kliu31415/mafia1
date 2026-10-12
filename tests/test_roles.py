@@ -1491,7 +1491,7 @@ def test_an_armed_martyr_shoots_once_at_night_and_is_revealed_when_hanged(game_f
     assert game.night_actions[1]["Alice"] == {"trait_actions": [{"trait": "Armed", "target": "Dave"}]}
     asked = [t for n, t in players.client.asked if n == "Alice"]
     assert len(asked) == 1 and "You are Armed" in asked[0] and "Your role has no night action" in asked[0]
-    assert not any(n == "Bob" for n, _ in players.client.asked)  # no trait, no night action
+    assert "Bob" not in game.night_actions[1]  # no trait, no night action: asked only for his will (rules R13)
     prompt = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "moderator_prompt")
     assert "Armed (a trait, R24)" in prompt["instructions"]
     assert not game.player("Dave").alive and game.role_state[ARMED_USED] == ["Alice"]
@@ -1501,7 +1501,7 @@ def test_an_armed_martyr_shoots_once_at_night_and_is_revealed_when_hanged(game_f
         apply_ops(game, players, {"op": "fire_gun", "player": "Erin", "by": "Alice"})
     players.client.asked.clear()
     run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
-    assert not any(n == "Alice" for n, _ in players.client.asked)  # the shot is spent
+    assert "Alice" not in game.night_actions[2]  # the shot is spent: asked only for her will (rules R13)
     game.kill("Alice", "executed by hanging", guilty_voters=["Erin"])
     assert any("Alice was a Martyr" in e.text and "Erin" in e.text for e in game.events)
 
