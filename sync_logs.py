@@ -326,8 +326,9 @@ def commit_tips(repo: Repo, tips_dir: Path, branch: str = "main") -> str | None:
     notebook. Only tips_dir's files go in the commit: other staged work stays staged. Skipped unless `branch`
     is checked out. Then pushes it: as is when it's the only commit the remote lacks, else as an equal
     tips-only commit on the remote's branch (so it never pushes anyone's unpushed work, and the local one
-    merges cleanly later). Not pushed if the remote's notebook has games this one lacks: the next build takes
-    them first (rebase_tips). Returns the local commit, or None. Failures are printed as ALERT lines."""
+    merges cleanly later), which adds and updates tips files but never deletes the remote's. Not pushed if the
+    remote's notebook has games this one lacks: the next build takes them first (rebase_tips). Returns the local
+    commit, or None. Failures are printed as ALERT lines."""
     try:
         rel = tips_dir.resolve().relative_to(repo.root.resolve()).as_posix()
         if repo.git("rev-parse", "--abbrev-ref", "HEAD").decode().strip() != branch:
@@ -350,7 +351,9 @@ def commit_tips(repo: Repo, tips_dir: Path, branch: str = "main") -> str | None:
         theirs = repo.files(parent, rel)
         if not notebook_games(repo.blob(theirs[nb]) if nb in theirs else None) <= mine:
             raise LaterBuild
-        return {p: repo.blob(b) for p, b in ours.items()} | {p: None for p in theirs if p not in ours}
+        # Adds and updates only: a file the remote has and this commit lacks (e.g. another PC's history/ sheet)
+        # stays. Which notebook wins is rebase_tips's call, made before the build.
+        return {p: repo.blob(b) for p, b in ours.items()}
 
     try:
         head, _ = main_tips(repo, rel, branch)

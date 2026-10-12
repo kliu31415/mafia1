@@ -238,16 +238,18 @@ def test_tips_are_committed_to_main_alone_and_pushed_when_that_s_a_fast_forward(
 
     run(cloud.root, "pull", "-q", "origin", "main")
     (cloud.root / "more.py").write_text("y = 2\n")  # main moves on elsewhere
-    run(cloud.root, "add", "more.py")
+    (cloud.root / "tips" / "history" / "tips_2.md").write_text("another PC's old sheet\n")
+    run(cloud.root, "add", "more.py", "tips")
     run(cloud.root, "commit", "-m", "more")
     run(cloud.root, "push", "origin", "HEAD:main")
     run(pc.root, "commit", "-q", "-m", "work")  # and this PC has work it hasn't pushed
     (tips / "tips.md").write_text("newer sheet\n")
-    (tips / "history" / "tips_1.md").unlink()
     later = sync_logs.commit_tips(pc, tips)
     remote = pc.git("ls-remote", "origin", "main").decode().split()[0]
     assert later and remote != later  # an equal tips-only commit on the remote's main, without work.py
-    assert pc.git("ls-tree", "-r", "--name-only", remote).decode().split() == ["code.py", "more.py", "tips/tips.md"]
+    # that only adds and updates: the remote's tips_2.md, which this PC's tips lack, stays
+    assert pc.git("ls-tree", "-r", "--name-only", remote).decode().split() == [
+        "code.py", "more.py", "tips/history/tips_1.md", "tips/history/tips_2.md", "tips/tips.md"]
     assert pc.git("show", f"{remote}:tips/tips.md").decode() == "newer sheet\n"
     run(pc.root, "pull", "-q", "--rebase", "origin", "main")  # the local tips commit goes away cleanly
     assert pc.git("log", "--format=%s", "origin/main..HEAD").decode().split("\n")[0] == "work"
