@@ -366,7 +366,7 @@ def tell_swap_moves(game: Game) -> None:
     """At dawn, tells each living user whose next-Day effect a swap moved where it went (rules R23)."""
     for user, effect, chosen, landed in game.role_state.pop(SWAP_MOVED, []):
         if game.player(user).alive:
-            game.emit(f"A swap moved your {effect} from {chosen} to {landed} last night (rules R23).", [user])
+            game.tell([user], f"A swap moved your {effect} from {chosen} to {landed} last night (rules R23).")
 
 
 def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:
