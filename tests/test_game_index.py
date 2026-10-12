@@ -76,3 +76,25 @@ def test_the_index_is_never_synced(tmp_path):
     for name in (game_index.INDEX, game_index.CACHE, "game_1.jsonl"):
         (tmp_path / name).write_text("{}")
     assert [p.name for p in sorted(tmp_path.iterdir()) if sync_logs.syncable(p)] == ["game_1.jsonl"]
+
+
+def test_serve_re_renders_a_page_older_than_its_log_or_the_viewer(tmp_path, monkeypatch):
+    import json
+    import os
+    records = [{"kind": "setup", "log_version": 50, "players": [{"name": "Bob", "seat": 0, "role": "Cardinal",
+                                                                 "model": "m"}], "katana": None},
+               {"kind": "result", "winners": ["Bob"], "cost": {}}]
+    log = tmp_path / "game_1.jsonl"
+    log.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+    page = log.with_suffix(".html")
+    page.write_text("stale", encoding="utf-8")
+    os.utime(page, (1, 1))
+    game_index.fresh_log_page(tmp_path, "/game_1.html")
+    assert "i-r-cardinal" in page.read_text(encoding="utf-8")  # rebuilt, with the retired role's own icon
+    page.write_text("fresh", encoding="utf-8")  # newer than the log and the viewer: kept
+    game_index.fresh_log_page(tmp_path, "/game_1.html")
+    assert page.read_text(encoding="utf-8") == "fresh"
+    monkeypatch.setattr(game_index, "viewer_mtime", lambda: page.stat().st_mtime + 1)  # the viewer changed
+    game_index.fresh_log_page(tmp_path, "/game_1.html")
+    assert page.read_text(encoding="utf-8") != "fresh"
+    game_index.fresh_log_page(tmp_path, "/../x.html")  # not a game page: nothing happens

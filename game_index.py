@@ -15,6 +15,8 @@ import argparse
 import html
 import json
 import os
+import threading
+import urllib.parse
 import webbrowser
 from collections import Counter
 from collections.abc import Iterable
@@ -173,6 +175,38 @@ def build(log_dir: Path = LOG_DIR, include_mock: bool = False) -> Path:
     return out
 
 
+# What a game's HTML page is built from besides its log: when any of it changes, `serve` re-renders a page as it's
+# opened, so old games show the current viewer, icons and role descriptions (Kevin, Oct 12 2026).
+VIEWER_SOURCES = ["log_viewer.py", "gamelogs.py", "texts.py", "traits.py", "roles/__init__.py", "rules_1.txt",
+                  "roles/icons/*.svg", "roles/icons/retired/*.svg"]
+RENDER_LOCK = threading.Lock()  # one render at a time, so two clicks don't write the same page together
+
+
+def viewer_mtime() -> float:
+    here = Path(__file__).parent
+    return max(p.stat().st_mtime for pattern in VIEWER_SOURCES for p in here.glob(pattern))
+
+
+def fresh_log_page(log_dir: Path, url_path: str) -> None:
+    """Re-renders a game's HTML page before `serve` sends it, if it's older than its log or the viewer code (about a
+    second per 10 MB of log, once per change). A failed render leaves the old page."""
+    name = urllib.parse.unquote(url_path).lstrip("/")
+    if not name.endswith(".html") or "/" in name or name == INDEX:
+        return
+    page, log = log_dir / name, (log_dir / name).with_suffix(".jsonl")
+    if not log.exists():
+        return
+    with RENDER_LOCK:
+        built = page.stat().st_mtime if page.exists() else 0.0
+        if built >= max(log.stat().st_mtime, viewer_mtime()):
+            return
+        try:
+            import log_viewer
+            log_viewer.render_html(log)
+        except Exception as e:  # serve keeps going; the old page (if any) is sent
+            print(f"ALERT render_error: couldn't re-render {name}: {type(e).__name__}: {e}")
+
+
 def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> None:
     class Handler(SimpleHTTPRequestHandler):
         def __init__(self, *a, **kw):
@@ -180,6 +214,7 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
 
         def do_GET(self) -> None:
             if self.path.split("?")[0] not in ("/", f"/{INDEX}"):
+                fresh_log_page(log_dir, self.path.split("?")[0])
                 super().do_GET()
                 return
             page = render(load_summaries(log_dir, include_mock), datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

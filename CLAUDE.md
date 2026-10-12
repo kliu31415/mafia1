@@ -67,7 +67,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   Logs are on Kevin's PC; `--csv DIR` exports the tables.
 - `uv run game_index.py build` writes `logs/index.html`, one filterable table of every game (models by tier,
   winner, cost, errors, tips) linking to each HTML log; games and `sync_logs.py pull` rebuild it, and
-  `uv run game_index.py serve` shows an always-current copy on localhost. `stats.py` takes the same filters
+  `uv run game_index.py serve` shows an always-current copy on localhost (and re-renders a game page as it opens
+  when the page is older than its log or the viewer code, `game_index.VIEWER_SOURCES`). `stats.py` takes the same filters
   (`--mix frontier`, `--min-frontier 0.7`, `--model`, `--winner`, ...; `--list` lists the games). Model tiers
   are each model's `tier` in `MODELS` (`llm.py`), relative to today's frontier: re-check them when a new
   frontier model comes out.
