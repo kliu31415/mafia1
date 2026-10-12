@@ -38,6 +38,7 @@ import platform
 import re
 import subprocess
 import sys
+import time
 from collections.abc import Callable
 from pathlib import Path
 
@@ -154,7 +155,7 @@ class Repo:
     def publish(self, gather, message: str) -> tuple[str | None, list[str]]:
         """Pushes a commit of gather(parent) -> {path: content} onto the branch, retrying from the new
         head when another machine pushed first. Returns (commit or None if nothing changed, paths sent)."""
-        for _ in range(PUSH_TRIES):
+        for attempt in range(PUSH_TRIES):
             parent = self.fetch()
             files = gather(parent) | ({} if parent else {"README.md": README})
             commit = self.commit(parent, files, message)
@@ -168,9 +169,15 @@ class Repo:
                                    *([parent] if parent else [])).decode().split()
                 return commit, changed
             err = r.stderr.decode(errors="replace")
+            # GitHub sometimes refuses a push for a moment ("fatal error in commit_refs", game_20261012_115758_746205
+            # lost two checkpoint pushes that way): wait a little and try again.
+            if "commit_refs" in err:
+                time.sleep(2 ** attempt)
+                continue
             if "fetch first" not in err and "non-fast-forward" not in err:  # not a race: no use retrying
                 raise RuntimeError(f"git push to {self.remote} {self.branch} failed: {err.strip()}")
-        raise RuntimeError(f"git push to {self.remote} {self.branch} kept losing races with other pushes")
+        raise RuntimeError(f"git push to {self.remote} {self.branch} kept losing races with other pushes or being "
+                           "refused")
 
 
 LOCAL_FILES = ("index.html", "index_cache.json")  # game_index.py's page and cache: each machine builds its own
