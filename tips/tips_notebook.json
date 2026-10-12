@@ -407,7 +407,7 @@
   {
    "id": "t3",
    "audience": "Executioner",
-   "tip": "Fake-claim Sheriff early and report an Evil result on your target with a simple, believable reason. Leading first makes any later counterclaim from the target look reactionary.",
+   "tip": "Fake-claim Sheriff early on Day 2, the first Day a result can exist: Day 1 is talk only, so a claim there has no check behind it and no nomination can follow. Report an Evil result on your target with a simple, believable reason (something they did in the Day 1 talk works). Leading first makes any later counterclaim from the target look reactionary.",
    "status": "active",
    "support": [
     {
@@ -421,6 +421,12 @@
     {
      "game": "game_20261009_004910_895267",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Fake-claim Sheriff early and report an Evil result on your target with a simple, believable reason. Leading first makes any later counterclaim from the target look reactionary.",
+     "note": "Day 1 is back as a talk-only Day, so 'early' has to mean Day 2: no check exists and no nomination is possible on Day 1. The evidence (a reason taken from Day 1 talk, target hanged) is unchanged."
     }
    ]
   },
@@ -5219,7 +5225,7 @@
   {
    "id": "t40",
    "audience": "Yakuza",
-   "tip": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on the first Day (Day 2). Night chat is open from Night 1, so plan there. On any Day a teammate is nominated or under pressure, send no PMs at all: even PMs to Village voters read as vote-buying, and the sender becomes the next suspect. If you must DM, summarize the content publicly at once, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
+   "tip": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on Day 1 or Day 2. Day 1 is talk only and comes before the first night chat, so nothing is agreed yet: hold all team talk until Night 1 and plan in night chat from then on. On any Day a teammate is nominated or under pressure, send no PMs at all: even PMs to Village voters read as vote-buying, and the sender becomes the next suspect. If you must DM, summarize the content publicly at once, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
    "status": "active",
    "support": [
     {
@@ -5527,6 +5533,12 @@
      "change": "edited",
      "old": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on the first Day (Day 2). Night chat is open from Night 1, so plan there. If you must DM, also message villagers, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
      "note": "Grace, Frank, Carol (helped) and Bob: Carol's two Day 4 PMs to the living Village voters Erin and Grace were cited as a deal and fed her hang. Messaging villagers did not provide cover."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Never put team plans (Katana holder, targets, check-dodging, claims) in daytime private messages on any Day. An Eavesdropper or Wiretap reads them word for word, and the town can publish them. Don't PM teammates at all on the first Day (Day 2). Night chat is open from Night 1, so plan there. On any Day a teammate is nominated or under pressure, send no PMs at all: even PMs to Village voters read as vote-buying, and the sender becomes the next suspect. If you must DM, summarize the content publicly at once, and never all repeat the same public explanation for your DMs. A visible PM triangle becomes the town's lead for the whole game.",
+     "note": "The entry called Day 2 'the first Day' and assumed night chat came before any Day talk. With Day 1 back, the first Day comes before the first night chat, so the no-teammate-PM rule now covers Day 1 as well."
     }
    ]
   },
@@ -7013,7 +7025,7 @@
   {
    "id": "t57",
    "audience": "Yakuza",
-   "tip": "Give the Katana to a member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source, but only if that member is also unlikely to be blocked or watched tonight. Never pass it to a member a blocker (above all a block-immune Party Animal) has already blocked or publicly said they will block. Blockers repeat, and you lose both the kill and that member's own token action. A holder with no visiting role (Vanilla claim) has no cover if a watcher places them at the victim, so agree a cover story before Day starts. Expect the obvious target, e.g. a player whose test you just learned about, to be watched. Move the Katana that same night to an unexposed, unblocked member when either of these happens: a Lookout or Tracker publicly names the holder as a visitor to a victim, or a Cartographer, Scout or Fortune Teller result narrows a victim's visitors to a few names that include the holder. The exposed holder will be blocked, shot or hanged, and the Not Evil read stops none of that. A holder who stays the lone visitor to victim after victim becomes the one name left on every elimination list. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If that risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+   "tip": "Give the Katana to a member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source, but only if that member is also unlikely to be blocked or watched tonight. Never pass it to a member a blocker (above all a block-immune Party Animal) has already blocked or publicly said they will block. Blockers repeat, and you lose both the kill and that member's own token action. A holder with no visiting role (Vanilla claim) has no cover if a watcher places them at the victim, so agree a cover story before Day starts. Expect the obvious target, e.g. a player whose test you just learned about, to be watched. Move the Katana that same night to an unexposed, unblocked member when either of these happens: a Lookout or Tracker publicly names the holder as a visitor to a victim, or a Cartographer, Scout or Fortune Teller result narrows a victim's visitors to a few names that include the holder. The exposed holder will be blocked, shot or hanged, and the Not Evil read stops none of that. A holder who stays the lone visitor to victim after victim becomes the one name left on every elimination list. A confident organizer on Day 1 or Day 2 is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If that risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
    "status": "active",
    "support": [
     {
@@ -7212,6 +7224,12 @@
      "change": "edited",
      "old": "Give the Katana to the member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source. A holder with no visiting role has no cover if a watcher places them at the victim, so agree a cover story before Day starts. Move the Katana that same night to an unexposed member when either of these happens: a Lookout or Tracker publicly names the holder as a visitor to a victim, or a Cartographer, Scout or Fortune Teller result narrows a victim's visitors to a few names that include the holder. The exposed holder will be blocked, shot or hanged, and the Not Evil read stops none of that. A holder who stays the lone visitor to victim after victim becomes the one name left on every elimination list. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If that risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
      "note": "Frank and Heidi: on N3 the Katana moved to Heidi, whom Mallory had blocked on N2 and kept blocking. The kill and Heidi's ballot token both failed. Bob: moving it to Vanilla-claim Bob put a fresh visit at the obvious target, Grace, and Erin's watch named him."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Give the Katana to a member whose own role matters least (Wiretap, Grunt), not your Diviner or other info source, but only if that member is also unlikely to be blocked or watched tonight. Never pass it to a member a blocker (above all a block-immune Party Animal) has already blocked or publicly said they will block. Blockers repeat, and you lose both the kill and that member's own token action. A holder with no visiting role (Vanilla claim) has no cover if a watcher places them at the victim, so agree a cover story before Day starts. Expect the obvious target, e.g. a player whose test you just learned about, to be watched. Move the Katana that same night to an unexposed, unblocked member when either of these happens: a Lookout or Tracker publicly names the holder as a visitor to a victim, or a Cartographer, Scout or Fortune Teller result narrows a victim's visitors to a few names that include the holder. The exposed holder will be blocked, shot or hanged, and the Not Evil read stops none of that. A holder who stays the lone visitor to victim after victim becomes the one name left on every elimination list. A confident organizer on the first Day (Day 2) is often a Medic or investigator and a good kill that night, but may be an alerting Veteran. If that risk is real, have the Diviner give the holder Strong Defense, or use an Astral Ritualist guess.",
+     "note": "Only the 'first Day (Day 2)' wording changed. Day 1 is back as a talk-only Day, so the organizer read applies to Day 1 (for the Night 1 kill) as well as Day 2."
     }
    ]
   },
@@ -7459,7 +7477,7 @@
   {
    "id": "t61",
    "audience": "Yakuza",
-   "tip": "Agree the team's claim set in night chat before Day 2. Once a role list is public, count the unseen slots first: subtract roles proven by public effects or exact-role checks and your own unlisted Yakuza roles (an unseen Mortician fills one). Assign at most that many off-list claims across the whole team, and never put two members in one slot or both on Vanilla. Never fake-claim a role the list shows once while its holder may be alive, and never a Unique role (Vulture, Smuggler) whose holder may be alive: their counterclaim disproves you for free. A cover that fits your tokens and visits can still collide with a real holder: a duplicated claim, like a Vanilla claim, is the first thing an Oracle guesses, and one WRONG ends it. If a real holder counterclaims, expect the test that night and kill the likeliest exact-role checker (t294) rather than hoping the duel stays open. Roles stay hidden on death, so a listed role whose known claimant is dead is the safest choice. Pick it early and keep it: switching claims once cornered is fatal.",
+   "tip": "Agree the team's claim set in Night 1 chat, before Day 2. Day 1 is talk only and comes before any night chat, so no member should claim a role there: an unagreed claim can collide with a teammate's cover or with a real holder. Once a role list is public, count the unseen slots first: subtract roles proven by public effects or exact-role checks and your own unlisted Yakuza roles (an unseen Mortician fills one). Assign at most that many off-list claims across the whole team, and never put two members in one slot or both on Vanilla. Never fake-claim a role the list shows once while its holder may be alive, and never a Unique role (Vulture, Smuggler) whose holder may be alive: their counterclaim disproves you for free. A cover that fits your tokens and visits can still collide with a real holder: a duplicated claim, like a Vanilla claim, is the first thing an Oracle guesses, and one WRONG ends it. If a real holder counterclaims, expect the test that night and kill the likeliest exact-role checker (t294) rather than hoping the duel stays open. Roles stay hidden on death, so a listed role whose known claimant is dead is the safest choice. Pick it early and keep it: switching claims once cornered is fatal.",
    "status": "active",
    "support": [
     {
@@ -7553,6 +7571,12 @@
      "change": "edited",
      "old": "Agree the team's claim set in night chat before Day 2. Once a role list is public, count the unseen slots first: subtract roles proven by public effects or exact-role checks and your own unlisted Yakuza roles (an unseen Mortician fills one). Assign at most that many off-list claims across the whole team, and never put two members in one slot or both on Vanilla. Never fake-claim a role the list shows once while its holder may be alive, and never a Unique role (Vulture, Smuggler) whose holder may be alive: their counterclaim disproves you for free. Roles stay hidden on death, so a listed role whose known claimant is dead is the safest choice. Pick it early and keep it: switching claims once cornered is fatal.",
      "note": "Carol's visit-matched Party Animal cover and Dave's Tracker cover each met a real holder's counterclaim; Ivan's guess on the duplicated PA claim broke Carol, and his guess on Alice's Vanilla broke her."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Agree the team's claim set in night chat before Day 2. Once a role list is public, count the unseen slots first: subtract roles proven by public effects or exact-role checks and your own unlisted Yakuza roles (an unseen Mortician fills one). Assign at most that many off-list claims across the whole team, and never put two members in one slot or both on Vanilla. Never fake-claim a role the list shows once while its holder may be alive, and never a Unique role (Vulture, Smuggler) whose holder may be alive: their counterclaim disproves you for free. A cover that fits your tokens and visits can still collide with a real holder: a duplicated claim, like a Vanilla claim, is the first thing an Oracle guesses, and one WRONG ends it. If a real holder counterclaims, expect the test that night and kill the likeliest exact-role checker (t294) rather than hoping the duel stays open. Roles stay hidden on death, so a listed role whose known claimant is dead is the safest choice. Pick it early and keep it: switching claims once cornered is fatal.",
+     "note": "With Day 1 back, the team talks in public before its first night chat. The new sentence says claims wait until the Night 1 chat has set them; it follows from the rules and the entry's own no-collision advice, not from a new game."
     }
    ]
   },
@@ -8398,7 +8422,7 @@
   {
    "id": "t78",
    "audience": "Village",
-   "tip": "On the first Day (Day 2), power roles with no result worth posting (Party Animal, Medic, investigators with an empty Night 1) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common Katana target that night. Investigators with a useful Night 1 result should still post it (t1); save the rest of your influence for when you have information. Staying quiet means not claiming yet, never a false Vanilla claim. A Vanilla claim later upgraded to a power role reads as a cornered switch, gets Oracle-tested, and the excuse 'I was hiding as the tips advise' convinces nobody. Village: a Vanilla-to-power switch right after a group or count places the player is a Yakuza tell, whatever reason they give (t292).",
+   "tip": "On Day 1 (talk only, when nobody has a result) and on Day 2, power roles with no result worth posting (Party Animal, Medic, investigators with an empty Night 1) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common Katana target that night, Night 1 included. Investigators with a useful Night 1 result should still post it on Day 2 (t1); save the rest of your influence for when you have information. Staying quiet means not claiming yet, never a false Vanilla claim. A Vanilla claim later upgraded to a power role reads as a cornered switch, gets Oracle-tested, and the excuse 'I was hiding as the tips advise' convinces nobody. Village: a Vanilla-to-power switch right after a group or count places the player is a Yakuza tell, whatever reason they give (t292).",
    "status": "active",
    "support": [
     {
@@ -8495,6 +8519,12 @@
      "change": "edited",
      "old": "On the first Day (Day 2), power roles with no result worth posting (Party Animal, Medic, investigators with an empty Night 1) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common Katana target that night. Investigators with a useful Night 1 result should still post it (t1); save the rest of your influence for when you have information.",
      "note": "Seven players said Bob (Wiretap) cited this tip to excuse his Vanilla-to-Medic switch. The edit closes that excuse and separates staying unclaimed from claiming Vanilla."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "On the first Day (Day 2), power roles with no result worth posting (Party Animal, Medic, investigators with an empty Night 1) should avoid being the voice that steers discussion or calls out quiet players. The most leader-like voice is a common Katana target that night. Investigators with a useful Night 1 result should still post it (t1); save the rest of your influence for when you have information. Staying quiet means not claiming yet, never a false Vanilla claim. A Vanilla claim later upgraded to a power role reads as a cornered switch, gets Oracle-tested, and the excuse 'I was hiding as the tips advise' convinces nobody. Village: a Vanilla-to-power switch right after a group or count places the player is a Yakuza tell, whatever reason they give (t292).",
+     "note": "The entry called Day 2 'the first Day'. Day 1 is back as a talk-only Day, and its loudest voice is the Night 1 Katana target (as t32, t174 and t224 already record), so the advice now covers both Days."
     }
    ]
   },
@@ -10263,7 +10293,7 @@
   {
    "id": "t104",
    "audience": "Executioner",
-   "tip": "Stay quiet on the first Day (Day 2), because the loudest protective or info-sounding voice draws the Katana that night, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
+   "tip": "Stay quiet on Day 1 and Day 2, because the loudest protective or info-sounding voice draws the Katana that night, and you can only win while alive. Day 1 is talk only: no nomination is possible, so a push there can't hang your target and only marks you for Night 1. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
    "status": "active",
    "support": [
     {
@@ -10295,6 +10325,12 @@
      "change": "edited",
      "old": "Stay quiet on Day 1, because the loudest protective or info-sounding voice draws the first Katana, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
      "note": "Revision: there is no Day 1, so this now refers to the first Day."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Stay quiet on the first Day (Day 2), because the loudest protective or info-sounding voice draws the Katana that night, and you can only win while alive. Don't run a visible personal vendetta on your target; quietly join any legitimate wagon against them and vote Guilty.",
+     "note": "The entry called Day 2 'the first Day'. Day 1 is back as a talk-only Day, and the entry's own evidence was a Day 1 push that drew the Night 1 Katana, so it now names both Days."
     }
    ]
   },
@@ -12855,7 +12891,7 @@
   {
    "id": "t170",
    "audience": "Jester",
-   "tip": "Make yourself the town's concrete lead. A mild but reasonable dissent on the first Day (Day 2), e.g. 'a no-hang day gives Yakuza a free night', draws checks that night, and you read Evil to the Sheriff. One short early PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
+   "tip": "Make yourself the town's concrete lead. Day 1 is talk only, so nothing can hang you there: stay mild and don't lead or claim, because that voice is the usual Night 1 Katana kill, your Basic Defense doesn't stop it, and a night death wins nothing. A mild but reasonable dissent on Day 2, the first Day with nominations, e.g. 'a no-hang day gives Yakuza a free night', draws checks that night, and you read Evil to the Sheriff. One short early PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
    "status": "active",
    "support": [
     {
@@ -12906,6 +12942,12 @@
      "change": "edited",
      "old": "Make yourself the town's concrete lead. A mild but reasonable Day 1 dissent (e.g. 'a no-hang day gives Yakuza a free night') draws N1 checks, and you read Evil to the Sheriff. One short Day 1 PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
      "note": "Revision: there is no Day 1, so the dissent and PM move to the first Day (Day 2)."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Make yourself the town's concrete lead. A mild but reasonable dissent on the first Day (Day 2), e.g. 'a no-hang day gives Yakuza a free night', draws checks that night, and you read Evil to the Sheriff. One short early PM to a single pushy or quiet player becomes a link if they're later exposed as Yakuza. On trial, claim Vanilla (it matches your 0 tokens), give a short, weak defense that blames the accuser, and vote Guilty on yourself (ballots are secret, so it only shows in the total). A strong defense or any Jester hint makes careful players vote Innocent.",
+     "note": "The entry called Day 2 'the first Day'. With Day 1 back and no trial possible there, the hang-seeking play starts on Day 2. The Day 1 caution comes from the rules (Katana is Standard, Jester Defense is Basic) and from t224 and t237, not from a new game."
     }
    ]
   },
@@ -13271,7 +13313,7 @@
   {
    "id": "t179",
    "audience": "Executioner",
-   "tip": "Pressure your target on the first Day (Day 2) so they make a weak or bare claim (e.g. Vanilla). Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
+   "tip": "Pressure your target on Day 1 or early on Day 2 so they make a weak or bare claim (e.g. Vanilla). Day 1 is talk only, so no nomination can follow until Day 2. Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
    "status": "active",
    "support": [
     {
@@ -13296,6 +13338,12 @@
      "change": "edited",
      "old": "Pressure your target on Day 1 so they make a weak or bare claim (e.g. Vanilla). Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
      "note": "Revision: there is no Day 1, so the pressure starts on Day 2."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Pressure your target on the first Day (Day 2) so they make a weak or bare claim (e.g. Vanilla). Then attach yourself to the first hard result against them, keep repeating that result rather than your own opinion, and stay calm when your PMs are questioned. Argue in public; private Yes-vote requests become the case against you.",
+     "note": "The entry called Day 2 'the first Day'. Day 1 is back, and the entry's own evidence was Day 1 pressure that forced a Vanilla claim. It still partly conflicts with t104's 'stay quiet', as before."
     }
    ]
   },
@@ -14725,7 +14773,7 @@
   {
    "id": "t220",
    "audience": "Everyone",
-   "tip": "Speaking budget is limited, and late-round messages cost more. Ask a concrete question once, by name, and repeat it only when something changes. Save budget for your trial defense and for the late rounds when votes are decided.",
+   "tip": "Speaking budget is limited, and late-round messages cost more. Day 1 is two rounds of talk and nothing carries over from it, so budget saved there is simply lost: use it, briefly. From Day 2 on, ask a concrete question once, by name, and repeat it only when something changes. Save budget for your trial defense and for the late rounds when votes are decided.",
    "status": "active",
    "support": [
     {
@@ -14855,6 +14903,12 @@
     {
      "game": "game_20261010_080041_102",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Speaking budget is limited, and late-round messages cost more. Ask a concrete question once, by name, and repeat it only when something changes. Save budget for your trial defense and for the late rounds when votes are decided.",
+     "note": "Day 1 is back, with two rounds, no trials and no budget carry-over (R16, R22). 'Save budget' is wrong for that Day, so the saving advice is now scoped to Day 2 onward."
     }
    ]
   },
@@ -15937,7 +15991,7 @@
   {
    "id": "t247",
    "audience": "Everyone",
-   "tip": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first. Never fire one on Day 2 before any night result exists, and never at a bare claim clash. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Once you have a lead, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
+   "tip": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first. Never fire one on Day 1, which is talk only and gives nothing to aim on, or on Day 2 before any night result has been posted, and never at a bare claim clash. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Once you have a lead, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
    "status": "active",
    "support": [
     {
@@ -16065,6 +16119,12 @@
      "change": "edited",
      "old": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Vigilante and Sniper shots, Medic tokens, ...) while they can still matter. Pick the first Day or night where a token can change a vote or remove a threat, and use it then rather than waiting for a perfect moment. A claimed or suspected player can die any night. Early still means on a lead: a kill token fired at a bare claim clash (a second claimant of your own non-Unique role) can kill a real teammate. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
      "note": "Moderator (0.4), Bob, Grace (0.16 each): the lead requirement for kill tokens now sits right after the opening, and the parity case is added. Bob's D2 shot killed a real Sniper; his D5 shot at 2 v 2 won the game."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first. Never fire one on Day 2 before any night result exists, and never at a bare claim clash. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Once you have a lead, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
+     "note": "The kill-token warning named Day 2 as the earliest Day. With Day 1 back, the same warning has to cover Day 1, when no result of any kind exists. Nothing else changed."
     }
    ],
    "pinned": true
@@ -17860,7 +17920,7 @@
   {
    "id": "t313",
    "audience": "Sniper",
-   "tip": "Shoot on a mechanical lead, never on a claim clash, and never on Day 2 before any night result exists. Sniper isn't Unique, so a second Sniper claimant may be real; twice now two real Snipers have shot at each other and the Village lost one. Ask them for their token count, test them with a vote or a Sheriff check, and shoot only if another result breaks their claim. Never shoot a player with a corroborated Not Evil read. Good leads: an Evil read the claim doesn't explain, a broken or copied claim, the PM partner of a player a death cause showed to be an attacker, the players who nominated and stated Guilty against a corroborated clear, or one of the last two names an elimination leaves once tracks, blocks on the kill night and proven roles have struck the rest. Nobody is told who shot, so don't announce a shot: a declared shot invites one back. Your shot fires after a random delay of up to n-1 speaking turns and not at all if you die first (R25), so a shot fired back at someone who already shot at you often loses the race. Night protection is gone by Day but innate Defense is not: a Basic shot fails on a Jester or Executioner, and only Strong beats a Serial Killer or Arsonist. The outcome of a Day shot is announced to everyone, so a 1-token shot that a suspect survives shows innate Defense to the whole table: a cheap public test of a Neutral-killer suspect you can't kill, with the hang to follow. Don't hold your last token for proof: fire it at your best unchecked suspect before the Yakuza can hold half the votes. If they already hold half (e.g. 2 v 2), they vote down every nomination and the next night kill ends the game, so shoot that Day even on a coin flip between two suspects: a hit gives the Village back its hanging majority. Or use the token as the innate-Defense test once only a Neutral killer is left.",
+   "tip": "Shoot on a mechanical lead, never on a claim clash, never on Day 1 (talk only, when nothing exists to aim on) and never on Day 2 before any night result has been posted. Sniper isn't Unique, so a second Sniper claimant may be real; twice now two real Snipers have shot at each other and the Village lost one. Ask them for their token count, test them with a vote or a Sheriff check, and shoot only if another result breaks their claim. Never shoot a player with a corroborated Not Evil read. Good leads: an Evil read the claim doesn't explain, a broken or copied claim, the PM partner of a player a death cause showed to be an attacker, the players who nominated and stated Guilty against a corroborated clear, or one of the last two names an elimination leaves once tracks, blocks on the kill night and proven roles have struck the rest. Nobody is told who shot, so don't announce a shot: a declared shot invites one back. Your shot fires after a random delay of up to n-1 speaking turns and not at all if you die first (R25), so a shot fired back at someone who already shot at you often loses the race. Night protection is gone by Day but innate Defense is not: a Basic shot fails on a Jester or Executioner, and only Strong beats a Serial Killer or Arsonist. The outcome of a Day shot is announced to everyone, so a 1-token shot that a suspect survives shows innate Defense to the whole table: a cheap public test of a Neutral-killer suspect you can't kill, with the hang to follow. Don't hold your last token for proof: fire it at your best unchecked suspect before the Yakuza can hold half the votes. If they already hold half (e.g. 2 v 2), they vote down every nomination and the next night kill ends the game, so shoot that Day even on a coin flip between two suspects: a hit gives the Village back its hanging majority. Or use the token as the innate-Defense test once only a Neutral killer is left.",
    "status": "active",
    "support": [
     {
@@ -17896,6 +17956,12 @@
      "change": "edited",
      "old": "Shoot on a mechanical lead, never on a claim clash. Sniper isn't Unique, so a second Sniper claimant may be real: test them with a vote or a Sheriff check, and shoot only if another result breaks their claim. Never shoot a player with a corroborated Not Evil read. Good leads: an Evil read the claim doesn't explain, a broken or copied claim, the PM partner of a player a death cause showed to be an attacker, or the players who nominated and stated Guilty against a corroborated clear. Your shot fires after a random delay of up to n-1 speaking turns and not at all if you die first (R25), so a shot fired back at someone who already shot at you often loses the race. Night protection is gone by Day but innate Defense is not: a Basic shot fails on a Jester or Executioner, and only Strong beats a Serial Killer or Arsonist. The outcome of a Day shot is announced to everyone, so a 1-token shot that a suspect survives shows innate Defense to the whole table: a cheap public test of a Neutral-killer suspect you can't kill, with the hang to follow. Don't hold your last token for proof: fire it at your best unchecked suspect before the Yakuza can hold half the votes, or as that test once only a Neutral killer is left.",
      "note": "Moderator (0.4), Bob, Grace, Alice, Erin, Heidi (0.16 each): added 'never on Day 2 before any night result', the elimination lead and the shoot-at-parity rule. The D2 Sniper duel killed Grace; the D5 coin-flip shot on Carol at 2 v 2 won."
+    },
+    {
+     "game": "revision 20261012_135059",
+     "change": "edited",
+     "old": "Shoot on a mechanical lead, never on a claim clash, and never on Day 2 before any night result exists. Sniper isn't Unique, so a second Sniper claimant may be real; twice now two real Snipers have shot at each other and the Village lost one. Ask them for their token count, test them with a vote or a Sheriff check, and shoot only if another result breaks their claim. Never shoot a player with a corroborated Not Evil read. Good leads: an Evil read the claim doesn't explain, a broken or copied claim, the PM partner of a player a death cause showed to be an attacker, the players who nominated and stated Guilty against a corroborated clear, or one of the last two names an elimination leaves once tracks, blocks on the kill night and proven roles have struck the rest. Nobody is told who shot, so don't announce a shot: a declared shot invites one back. Your shot fires after a random delay of up to n-1 speaking turns and not at all if you die first (R25), so a shot fired back at someone who already shot at you often loses the race. Night protection is gone by Day but innate Defense is not: a Basic shot fails on a Jester or Executioner, and only Strong beats a Serial Killer or Arsonist. The outcome of a Day shot is announced to everyone, so a 1-token shot that a suspect survives shows innate Defense to the whole table: a cheap public test of a Neutral-killer suspect you can't kill, with the hang to follow. Don't hold your last token for proof: fire it at your best unchecked suspect before the Yakuza can hold half the votes. If they already hold half (e.g. 2 v 2), they vote down every nomination and the next night kill ends the game, so shoot that Day even on a coin flip between two suspects: a hit gives the Village back its hanging majority. Or use the token as the innate-Defense test once only a Neutral killer is left.",
+     "note": "The entry named Day 2 as the earliest Day a shot could be misfired. With Day 1 back, the 'no shot before a result' rule has to cover Day 1 too. The evidence (two games of real Snipers duelling on D2) is unchanged."
     }
    ]
   },
