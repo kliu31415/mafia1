@@ -21,3 +21,14 @@ class Puppeteer(RoleLogic):
         assert target
         if target is not by:  # puppeting yourself changes nothing (the token is still spent)
             game.puppets_next[target.name] = by.name
+
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        # Killed mid-Day (a Sniper shot): a dead player can't act, so its puppets speak for themselves from now on, as
+        # when the Puppeteer dies overnight (rules R21).
+        if game.phase != "day":
+            return
+        freed = [puppet for puppet, by in game.puppets.items() if by == p.name]
+        for puppet in freed:
+            del game.puppets[puppet]
+        if freed:
+            game.log.write("puppeting_lapsed", player=p.name, puppets=freed)

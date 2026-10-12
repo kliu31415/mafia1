@@ -1741,7 +1741,7 @@ def test_a_sniper_shot_lands_mid_day_and_can_end_the_game(game_factory):
 def test_a_held_shot_is_dropped_if_its_shooter_dies_and_refunded_if_its_target_does(game_factory):
     from day import chat_turn
     from roles import logic
-    game, players = game_factory(["Sniper", "Sniper", "Sniper", "Grunt", "Grunt", "Vanilla Villager"],
+    game, players = game_factory(["Sniper", "Sniper", "Sniper", "Grunt", "Grunt", "Vanilla Villager", "Grunt"],
                                  ScriptedClient(sniper_decide({"Alice": ("Erin", 1), "Bob": ("Dave", 1),
                                                                "Carol": ("Frank", 1)})))
     game.day, game.phase = 2, "day"
@@ -1769,6 +1769,45 @@ def test_sniper_shots_due_together_fire_one_at_a_time(game_factory):
     set_delays(game, 0, 0)
     sniper_turns(game, 1)
     assert game.player("Alice").alive and not game.player("Bob").alive  # rules R25: Alice's first, Bob's dropped
+
+
+def test_sniper_shots_due_together_stop_once_one_decides_the_game(game_factory):
+    from roles.sniper import HELD
+    game, players = game_factory(["Sniper", "Sniper", "Vanilla Villager", "Grunt", "Vanilla Villager"])
+    game.day, game.phase = 2, "day"
+    game.role_state[HELD] = [["Alice", "Dave", "Basic", 0], ["Bob", "Carol", "Basic", 0]]  # due after the same turn
+    sniper_turns(game, 1)
+    assert not game.player("Dave").alive and game.check_winner() is not None  # the last Yakuza died: Village won
+    assert game.player("Carol").alive  # so Bob's shot isn't fired after the game is decided
+    assert [e.text for e in game.events if e.text.startswith("A shot rings out")] == [
+        "A shot rings out: someone shot at Dave."]
+
+
+def test_a_mid_day_death_restates_the_living_count_and_nomination_threshold(game_factory):
+    game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt",
+                                  "Grunt"], ScriptedClient(sniper_decide({"Alice": ("Bob", 2)}, talk=True)))
+    game.day = 2
+    game.rng.randint = lambda a, b: 0  # type: ignore[method-assign]  # fired right after Alice's turn
+    run_day(game, players)
+    texts = [e.text for e in game.events]
+    shot = texts.index("A shot rings out: someone shot at Bob.")
+    assert "6 players are alive, so a nomination needs 4 Yes votes (rules R4)." in texts[:shot]
+    assert "5 players are alive, so a nomination needs 3 Yes votes (rules R4)." in texts[shot:]
+
+
+def test_a_puppeteer_killed_mid_day_stops_writing_for_its_puppet(game_factory):
+    from day import chat_turn
+    from roles.sniper import fire
+    game, players = game_factory(["Puppeteer", "Sniper", "Vanilla Villager", "Grunt", "Vanilla Villager"],
+                                 ScriptedClient(sniper_decide({}, talk=True)))
+    game.day, game.phase = 2, "day"
+    game.puppets = {"Carol": "Alice"}
+    fire(game, "Bob", "Alice", "Basic")  # rules R25: Bob's day shot kills the Puppeteer
+    assert not game.player("Alice").alive and game.puppets == {}
+    players.client.asked.clear()  # type: ignore[attr-defined]
+    chat_turn(game, players, game.player("Carol"), rnd=2, can_nominate=False)
+    assert {n for n, _ in players.client.asked} == {"Carol"}  # type: ignore[attr-defined]
+    assert not any(e.fields.get("puppeteer") for e in game.events if e.cat == "chat")
 
 
 def test_no_sniper_shot_on_a_trial_turn_while_puppeted_or_with_bad_tokens(game_factory):

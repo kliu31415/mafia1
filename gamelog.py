@@ -103,7 +103,9 @@ from records import caller_of, read_records, redact, safe_print
 #     day) records for the Kitsune
 # 55: "trap" records (trapper, target, attacks, stopped, day) when a trap meets attacks: from now on a trap stops one
 #     attack and hits its attacker back if it was a visit (before, it hit the first non-Village visitor)
-LOG_VERSION = 55
+# 56: "puppeting_lapsed" records (player, puppets) when a Puppeteer dies mid-Day; "day_shot_dropped" gains reason
+#     ("game over") for shots not fired because an earlier one decided the game
+LOG_VERSION = 56
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

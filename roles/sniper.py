@@ -64,13 +64,21 @@ class Sniper(RoleLogic):
             shot[3] -= 1
         if waiting:
             game.role_state[HELD] = waiting
-        for shooter, target, attack, _ in due:  # one at a time: a shot can kill a Sniper whose shot is due next
-            fire(game, shooter, target, attack)
+        fire_all(game, due)
 
     def at_day_end(self, game: Game) -> None:
         # The Day ended (a hanging, say) before these were due: they fire now, before Night (Oct 12 2026).
-        for shooter, target, attack, _ in game.role_state.pop(HELD, []):
-            fire(game, shooter, target, attack)
+        fire_all(game, game.role_state.pop(HELD, []))
+
+
+def fire_all(game: Game, shots: list[list]) -> None:
+    """Fires shots one at a time (one can kill a Sniper whose shot is next), stopping once one decides the game, as
+    the Day does (check_winner)."""
+    for shooter, target, attack, _ in shots:
+        if game.check_winner() is not None:
+            game.log.write("day_shot_dropped", player=shooter, target=target, reason="game over")
+            continue
+        fire(game, shooter, target, attack)
 
 
 def fire(game: Game, shooter: str, target: str, attack: str) -> None:

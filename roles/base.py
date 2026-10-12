@@ -282,8 +282,8 @@ CODE_ATTACKS = "code_attacks"  # game.role_state: night -> attackers of attacks 
 
 
 def record_attack(game: Game, attacker: str) -> None:
-    """An attack that code carries out at night (a Cursed player's curse, traits.py), for results that count attacks
-    (the Bloodhound's), alongside the ones the moderator lists."""
+    """An attack that code carries out (a Cursed player's curse at night, traits.py; a Sniper's day shot), for results
+    that count attacks (the Bloodhound's), alongside the ones the moderator lists."""
     game.role_state.setdefault(CODE_ATTACKS, {}).setdefault(game.day, []).append(attacker)
 
 

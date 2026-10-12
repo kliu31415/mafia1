@@ -8,7 +8,7 @@ from llm import Model
 from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, day_turn_schema, name_enum, nullable,
                      obj, truncate_words, word_count)
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
-from roles import logic
+from roles import RoleLogic, logic
 from state import Game, Player, majority
 
 
@@ -109,8 +109,22 @@ def open_game(game: Game, players: Players) -> None:
 def run_day(game: Game, players: Players) -> None:
     play_day(game, players)
     if game.check_winner() is None:
-        for role in sorted({q.role for q in game.players}):  # rules R25: day actions still waiting
-            logic(role).at_day_end(game)
+        for role_logic in day_action_logics(game):  # rules R25: day actions still waiting
+            role_logic.at_day_end(game)
+
+
+def day_action_logics(game: Game) -> list[RoleLogic]:
+    """The logic of each role among the game's players, in name order, for day-action hooks (rules R25)."""
+    return [logic(role) for role in sorted({q.role for q in game.players})]
+
+
+def end_day_after_three_trials(game: Game) -> None:
+    game.emit("Three trials ended in Innocent verdicts. The day ends.")
+
+
+def announce_votes_needed(game: Game) -> None:
+    n_alive = len(game.alive())  # players asked for the day's numbers (game_20261009_084630_739772)
+    game.emit(f"{n_alive} players are alive, so a nomination needs {n_alive // 2 + 1} Yes votes (rules R4).")
 
 
 def play_day(game: Game, players: Players) -> None:
@@ -152,15 +166,14 @@ def play_day(game: Game, players: Players) -> None:
             return
         trials += 1
     if trials >= MAX_TRIALS_PER_DAY:
-        game.emit("Three trials ended in Innocent verdicts. The day ends.")
+        end_day_after_three_trials(game)
         return
     # Turns go around the circle in seat order from a random start, the same every round, so nobody
     # speaks last in one round and first in the next.
     start = game.rng.choice(game.alive()).seat
     game.emit(f"Speaking order today goes around the circle in seat order, starting with "
               f"{game.players[start].name}.")
-    n_alive = len(game.alive())  # players asked for the day's numbers (game_20261009_084630_739772)
-    game.emit(f"{n_alive} players are alive, so a nomination needs {n_alive // 2 + 1} Yes votes (rules R4).")
+    announce_votes_needed(game)
     for rnd in range(1, MAX_DAY_ROUNDS + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
@@ -182,11 +195,14 @@ def play_day(game: Game, players: Players) -> None:
                 over = outcome == "executed"  # an execution ends the day
                 trials += outcome == "innocent"  # failed nominations don't count toward the limit
                 if not over and trials >= MAX_TRIALS_PER_DAY:
-                    game.emit("Three trials ended in Innocent verdicts. The day ends.")
+                    end_day_after_three_trials(game)
                     over = True
             if not over:  # rules R25: day actions due after this turn (an ending Day fires the rest in run_day)
-                for role in sorted({q.role for q in game.players}):
-                    logic(role).after_day_turn(game, p)
+                n_alive = len(game.alive())
+                for role_logic in day_action_logics(game):
+                    role_logic.after_day_turn(game, p)
+                if len(game.alive()) != n_alive and game.check_winner() is None:
+                    announce_votes_needed(game)  # a death mid-Day (a day action) changes the count
             return over or game.check_winner() is not None
 
         over = False  # did a turn end the day?
