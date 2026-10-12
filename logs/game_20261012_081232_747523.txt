@@ -1,0 +1,13 @@
+Setup:
+  Alice    seat 1  Medic             anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Trapper           anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Pharmacist        anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Grunt             anthropic/claude-haiku-5.5 (via Claude Code)
+  Erin     seat 5  Vanilla Villager  anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Kitsune           anthropic/claude-haiku-5.5 (via Claude Code)
+  Grace    seat 7  Serial Killer     anthropic/claude-haiku-5.5 (via Claude Code)
+  Heidi    seat 8  Sheriff           anthropic/claude-haiku-5.5 (via Claude Code)
+  Katana starts with Dave
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Village players may also have a trait (R24).
