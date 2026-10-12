@@ -5,8 +5,8 @@ role strength can be estimated across many mixes. Players never see the role lis
 (setup_note) describes how it was drawn: Kevin, Oct 10 2026, so they don't play blind, though without exact
 counts. A hand-picked list (--roles A,B,C) is described by rough faction counts instead.
 
-"standard" (the default, balanced by role_power.py) is balanced_setup; "classic" (also "random", the
-draw before Oct 10 2026) is described below:
+"standard" (the default, balanced by role_power.py) is balanced_setup, which may repeat any role that isn't
+unique; "classic" (also "random", the draw before Oct 10 2026, without repeats) is described below:
 
 The rules don't say how setups are built (only that Village outnumbers Yakuza, R2), so these
 proportions are a choice of this program, modelled on DEFAULT_SETUP (10 players: 6 Village incl. two
