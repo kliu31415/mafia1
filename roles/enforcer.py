@@ -18,9 +18,10 @@ class Enforcer(RoleLogic):
         "1 for a second target and 1 for a Strong Attack: with two targets, 1 token means Basic and 2 mean Strong; "
         "with one, 1 token means Strong. Tokens are spent whether or not it attacks (set_tokens). If a player it "
         "visited made an Attack of their own choosing tonight (fatal or not; a Katana attack counts for its holder; "
-        "not if role-blocked; a Veteran's alert, a trap or a revenge doesn't count), the Enforcer deals them a Basic Attack, or Strong if paid for; if both "
-        "did, random_choice picks one. Tell the Enforcer whether it attacked and whether that killed, or that it "
-        "didn't attack; with two targets never say which of them it attacked (with one, naming it is fine).")
+        "not if role-blocked; a Veteran's alert, a trap or a revenge doesn't count), the Enforcer deals them a "
+        "Basic Attack, or Strong if paid for; if both did, random_choice picks one. Tell the Enforcer whether it "
+        "attacked and whether that killed, or that it didn't attack; with two targets never say which of them it "
+        "attacked (with one, naming it is fine).")
 
     def briefing(self, game: Game, p: Player) -> list[str]:
         # The Medic's two independent token costs were misread until its briefing listed them (Oct 2026).
