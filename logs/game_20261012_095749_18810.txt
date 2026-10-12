@@ -327,3 +327,17 @@ Trial votes on Grace: 4 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Grace] Guilty - Alice, Frank, Ivan, Judy; Innocent - Grace
 Grace is executed by hanging (4 Guilty of 5 votes; 3 needed).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace - Vanilla Villager. No night action, so no results of my own. N4: I was told I was role-blocked (presumably Judy's Party Animal block, which costs me nothing since I have no action). Frank's N1 Sheriff check on me: Not Evil. Heidi tracked me N1 but was blocked, and she died before getting any result. There was no SK kill on N4 after Erin was hanged, which strongly suggests Erin was the SK. Carol died to the Enforcer N3, so she was the Katana-holding Yakuza (Pharmacist). Bob died to the Katana N4, so at least one Yakuza is still alive. Frank (Katana target N2, confirmed by Olivia) and Ivan (outed Carol) look Village. That points the Yakuza search at Alice and Judy. Judy's blocks are confirmed only by single sources (Ivan N2, Alice N3), and Olivia's final lean was Judy. If Judy and Alice cover for each other, that's the pair. Follow the mechanics."
+
+===== NIGHT 5 =====
+Night actions:
+  Alice (Talent Agent): no role action; Katana vote: Alice holds, attacks Ivan
+  Frank (Sheriff): target Ivan
+  Ivan (Oracle): target Alice; guessed role Vanilla Villager
+  Judy (Party Animal): target Alice
+Katana: Alice holds it and attacks Ivan.
+(to Alice) Moderator (private): You were role-blocked tonight. Your actions tonight had no effect.
+(to Frank) Moderator (private): You investigated Ivan tonight. Result: Not Evil.
+(to Ivan) Moderator (private): You guessed that Alice is a Vanilla Villager tonight. Result: WRONG.
+(to Judy) Moderator (private): You role-blocked Alice tonight. The block did not fail because of immunity: Alice can be role-blocked.
+[Moderator summary] Night 5: Judy (Party Animal) role-blocked Alice, the Katana holder. That stopped the Katana attack on Ivan (R8/R9), so there was no attack and no deaths. Frank (Sheriff) checked Ivan: Not Evil. Ivan (Oracle) guessed Alice = Vanilla Villager: WRONG (she is the Talent Agent). Alice had no talent tokens and took no action of her own. Recorded visits: Frank->Ivan, Judy->Alice. No tokens spent. Win check: no change. Alive: Alice (Yakuza), Frank, Ivan, Judy.
+[Night check] Night 5: correct
