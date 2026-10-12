@@ -68,7 +68,10 @@ def trait_logic(name: str) -> TraitLogic:
 
 
 def eligible(p: Player, trait: str) -> bool:
-    return p.info.alignment in TRAITS[trait].alignments and not p.traits  # at most one trait each
+    # At most one trait each while Martyr is the only one. Kevin (Oct 12 2026): once a second trait exists, a player
+    # may have several (never the same one twice): change this, R24's "at most one trait", setups.draw_traits'
+    # seat check, and give each extra mark its own corner in log_viewer.icons_css.
+    return p.info.alignment in TRAITS[trait].alignments and not p.traits
 
 
 def briefing(p: Player) -> list[str]:
