@@ -65,7 +65,7 @@
   {
    "id": "t1",
    "audience": "Village",
-   "tip": "Never withhold a useful result to bait a counterclaim. Investigators: once you hold a result that bears on a vote, post your role, target and exact result in your first speech after getting it, or the moment someone asks, and keep your last will current. A result held back and revealed after an opponent's claim looks retrofitted, above all when it names the player who just accused you. A hidden investigator who votes with the Yakuza looks exactly like a fake. Exception: with no result yet, or only a weak one, don't name your exact role on Day 2, and never say you will act or spend a token tonight. A firm exact claim of a role off the Roleplayer list (Bloodhound, Juror, Scrutineer...) is a sure Ritualist kill through any Medic (t55), so wait until the claim changes a vote. If someone else claims your role or exact result, counterclaim at once, in your next message, with your full log. Being second after a vague opener reads as copying, so ask the rival for the exact wording of their private result before you post yours. Never vote against your own information to 'wait and see'. If you must vote in a way that looks odd, explain why during that trial.",
+   "tip": "Never withhold a useful result to bait a counterclaim. Investigators: once you hold a result that bears on a vote, post the target and exact result, with as much of your role as the result needs to be believed and checked, in your first speech after getting it, or the moment someone asks, and keep your last will current. Naming your exact role feeds a possible Ritualist, whose guess kills through any Medic (t55): when one may be in the game, put the full log in your will before you claim and expect to die that night. A result held back and revealed after an opponent's claim looks retrofitted, above all when it names the player who just accused you. A hidden investigator who votes with the Yakuza looks exactly like a fake. Exception: with no result yet, or only a weak one, don't name your exact role on Day 2, and never say you will act or spend a token tonight. A firm exact claim of a role off the Roleplayer list (Bloodhound, Juror, Scrutineer...) is a sure Ritualist kill, so wait until the claim changes a vote. If someone else claims your role or exact result, counterclaim at once, in your next message, with your full log. Being second after a vague opener reads as copying, so ask the rival for the exact wording of their private result before you post yours. Never vote against your own information to 'wait and see'. If you must vote in a way that looks odd, explain why during that trial.",
    "status": "active",
    "support": [
     {
@@ -243,6 +243,12 @@
      "change": "edited",
      "old": "Never withhold a result to bait a counterclaim. Sheriffs, Surveyors and other investigators: post your role, target and exact result in your first speech after getting it, or the moment someone asks, and keep your last will current. Withholding protects nothing, since the Yakuza don't need your result to kill you, and it invites a trial. If someone else claims your role or exact result, counterclaim at once with your full log. Never vote against your own information to 'wait and see'. If you must vote in a way that looks odd, explain why during that trial. A result held back and revealed after an opponent's claim looks retrofitted, and a hidden investigator who votes with the Yakuza looks exactly like a fake.",
      "note": "Eight 'hurt' reports at weight 1.0: first-turn exact claims with weak or no results fed the Ritualist (Dave, Carol). But the vague opener cost Ivan his duplicate-claim fight. The edit keeps 'post useful results at once', adds the no-result exception and the counterclaim timing."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Never withhold a useful result to bait a counterclaim. Investigators: once you hold a result that bears on a vote, post your role, target and exact result in your first speech after getting it, or the moment someone asks, and keep your last will current. A result held back and revealed after an opponent's claim looks retrofitted, above all when it names the player who just accused you. A hidden investigator who votes with the Yakuza looks exactly like a fake. Exception: with no result yet, or only a weak one, don't name your exact role on Day 2, and never say you will act or spend a token tonight. A firm exact claim of a role off the Roleplayer list (Bloodhound, Juror, Scrutineer...) is a sure Ritualist kill through any Medic (t55), so wait until the claim changes a vote. If someone else claims your role or exact result, counterclaim at once, in your next message, with your full log. Being second after a vague opener reads as copying, so ask the rival for the exact wording of their private result before you post yours. Never vote against your own information to 'wait and see'. If you must vote in a way that looks odd, explain why during that trial.",
+     "note": "Revision, not a game: the post-at-once advice now warns that any exact claim feeds a possible Ritualist, and says to claim only what the result needs."
     }
    ]
   },
@@ -934,7 +940,7 @@
   {
    "id": "t7",
    "audience": "Vigilante",
-   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off.",
+   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
    "status": "active",
    "support": [
     {
@@ -1087,6 +1093,12 @@
      "change": "edited",
      "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. Claim only once your shots have paid off.",
      "note": "Revision: a Vigilante now learns the role of a player their shot kills (exact-role check). Added an instruction to post it. The rest is unchanged."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off.",
+     "note": "Revision, not a game: added the Ritualist cost to the advice to post a kill report and claim."
     }
    ]
   },
@@ -2702,7 +2714,7 @@
   {
    "id": "t28",
    "audience": "Sheriff",
-   "tip": "There is no Day 1, so your Night 1 check is blind: pick anyone, and post the target and exact result in your first Day 2 speech. An early public result is worth more than a hidden one. From Night 2 on, investigate the most prominent Day 2 voices and players likely to make or contest a claim.",
+   "tip": "There is no Day 1, so your Night 1 check is blind: pick anyone. Post the target and exact result in your first Day 2 speech when it bears on a vote, as an Evil read does: an early public result is worth more than a hidden one. The post names your exact role to a possible Ritualist, so when one may be in the game a Not Evil read on a player nobody suspects can wait in your will until it matters. From Night 2 on, investigate the most prominent Day 2 voices and players likely to make or contest a claim.",
    "status": "active",
    "support": [
     {
@@ -2742,6 +2754,12 @@
      "change": "edited",
      "old": "On Night 1, investigate a prominent player or one likely to make a claim, and plan to disclose the result right away. An early public result is worth more than a hidden one.",
      "note": "Revision: with no Day 1, nobody is prominent before Night 1. The early-disclosure advice is unchanged."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "There is no Day 1, so your Night 1 check is blind: pick anyone, and post the target and exact result in your first Day 2 speech. An early public result is worth more than a hidden one. From Night 2 on, investigate the most prominent Day 2 voices and players likely to make or contest a claim.",
+     "note": "Revision, not a game: the first-speech claim now carries the Ritualist warning. The evidence was Evil reads posted early, which still go up at once."
     }
    ]
   },
@@ -4147,7 +4165,7 @@
   {
    "id": "t39",
    "audience": "Village",
-   "tip": "Investigators (Sheriff, Lookout, Tracker, Oracle) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist or Party Animal whom to block and tells the Katana where to strike or what to avoid. Don't announce that you will act or spend a token tonight either, even with no target named ('I'll scent tonight', 'my audit will test him'): it marks you as tonight's kill. A Wiretap reads the contents of every PM, and nobody is told it exists, so treat every PM as read by the Yakuza. Never suggest another player's night target or test by PM. If someone PMs you one, don't reply confirming it; just act. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's plans. Once a result exists, post it in full (night, target, exact result) at once. Never stretch secrecy into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. Narrow exception: a Trapper may announce a trap only to shield a confirmed investigator who is a likely kill target. Killers simply route around an announced trap, so it never catches anyone, and on any other player it is wasted. Otherwise keep the trap hidden and reveal it only after it fires.",
+   "tip": "Investigators (Sheriff, Lookout, Tracker, Oracle) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist or Party Animal whom to block and tells the Katana where to strike or what to avoid. Don't announce that you will act or spend a token tonight either, even with no target named ('I'll scent tonight', 'my audit will test him'): it marks you as tonight's kill. A Wiretap reads the contents of every PM, and nobody is told it exists, so treat every PM as read by the Yakuza. Never suggest another player's night target or test by PM. If someone PMs you one, don't reply confirming it; just act. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's plans. Once a result exists and bears on a vote, post it in full (night, target, exact result). Never stretch secrecy about tonight into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. The one honest reason to hold a result is a possible Ritualist: an exact role claim is a sure guess through any Medic (t55), so a result that changes no vote yet can wait in your will. Narrow exception: a Trapper may announce a trap only to shield a confirmed investigator who is a likely kill target. Killers simply route around an announced trap, so it never catches anyone, and on any other player it is wasted. Otherwise keep the trap hidden and reveal it only after it fires.",
    "status": "active",
    "support": [
     {
@@ -4389,6 +4407,12 @@
      "change": "edited",
      "old": "Investigators (Sheriff, Lookout, Tracker, Oracle) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist or Party Animal whom to block and tells the Katana where to strike or what to avoid. A Wiretap reads the contents of every PM, and nobody is told it exists, so treat every PM as read by the Yakuza. Never suggest another player's night target or test by PM. If someone PMs you one, don't reply confirming it; just act. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's planned target. Once a result exists, post it in full (night, target, exact result) at once. Never stretch secrecy into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. Narrow exception: a Trapper may announce a trap only to shield a confirmed investigator who is a likely kill target. Killers simply route around an announced trap, so it never catches anyone, and on any other player it is wasted. Otherwise keep the trap hidden and reveal it only after it fires.",
      "note": "Dave filed 'hurt': he hid the target but said he would spend a scent token, and the Yakuza cited that as the reason to ritual him at once. Added 'don't announce that you will act'."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Investigators (Sheriff, Lookout, Tracker, Oracle) and protectors (Medic): never announce tonight's target in public or by private message. An announced target tells the Pharmacist or Party Animal whom to block and tells the Katana where to strike or what to avoid. Don't announce that you will act or spend a token tonight either, even with no target named ('I'll scent tonight', 'my audit will test him'): it marks you as tonight's kill. A Wiretap reads the contents of every PM, and nobody is told it exists, so treat every PM as read by the Yakuza. Never suggest another player's night target or test by PM. If someone PMs you one, don't reply confirming it; just act. Even a PM whose contents stay hidden marks you: everyone sees that it was sent, and Yakuza read a PM from one claimed investigator to another as a sign that both are worth killing. This covers only tonight's plans. Once a result exists, post it in full (night, target, exact result) at once. Never stretch secrecy into withholding or vaguening a past result, and never invent a mechanical excuse for it: Astral actions like an Oracle guess can't be seen by anyone. Narrow exception: a Trapper may announce a trap only to shield a confirmed investigator who is a likely kill target. Killers simply route around an announced trap, so it never catches anyone, and on any other player it is wasted. Otherwise keep the trap hidden and reveal it only after it fires.",
+     "note": "Revision, not a game: 'post it in full at once' now applies once the result bears on a vote, with the Ritualist warning."
     }
    ]
   },
@@ -5826,7 +5850,7 @@
   {
    "id": "t55",
    "audience": "Village",
-   "tip": "While a Ritualist may be alive with tokens, every firm exact-role claim (Archivist, Eavesdropper, Bloodhound, Juror, Seer) is a near-certain extra kill on top of the Katana, through any Medic. The Ritualist's safest guesses are first-turn claims of roles a Roleplayer can't be told (anything except Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle, Accountant) backed by a result that fits known facts. A living Diviner also feeds it exact roles, and a Wiretap reads private claims. Survey or archive results can pin a survivor's role indirectly. Name your exact role only when it changes a vote, never just to introduce yourself or with no result, and expect the claimant to die that night. Once a Ritualist kill has appeared, unclaimed players should stay vague.",
+   "tip": "While a Ritualist may be alive with tokens, every firm exact-role claim (Archivist, Eavesdropper, Bloodhound, Juror, Seer) is a near-certain extra kill on top of the Katana, through any Medic. A wrong guess outs the Ritualist publicly and its tokens are spent either way, so it waits for sure claims: first-turn claims of roles a Roleplayer can't be told (anything except Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle, Accountant) backed by a result that fits known facts. A living Diviner also feeds it exact roles, and a Wiretap reads private claims. Survey or archive results can pin a survivor's role indirectly. Name your exact role only when it changes a vote, never just to introduce yourself or with no result. When a result must go up, claim only as much of your role as it needs, and expect the claimant to die that night. Once a Ritualist kill has appeared, unclaimed players should stay vague.",
    "status": "active",
    "support": [
     {
@@ -5866,13 +5890,19 @@
      "change": "edited",
      "old": "While a Ritualist may be alive with tokens, every exact-role claim (Seer, Archivist, Eavesdropper) is a near-certain extra kill on top of the Katana. A living Diviner also feeds it exact roles, and a Wiretap reads private claims. Survey or archive results can pin a survivor's role indirectly. Claim only when it changes a vote, and expect the claimant to die that night.",
      "note": "Judy and Alice (Yakuza) said they chose Dave and Carol because their claims were firm, first-turn and off the Roleplayer list, and skipped Roleplayer-list claims for fear of a miss. Added that nuance and the 'no claim without a result' line."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "While a Ritualist may be alive with tokens, every firm exact-role claim (Archivist, Eavesdropper, Bloodhound, Juror, Seer) is a near-certain extra kill on top of the Katana, through any Medic. The Ritualist's safest guesses are first-turn claims of roles a Roleplayer can't be told (anything except Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle, Accountant) backed by a result that fits known facts. A living Diviner also feeds it exact roles, and a Wiretap reads private claims. Survey or archive results can pin a survivor's role indirectly. Name your exact role only when it changes a vote, never just to introduce yourself or with no result, and expect the claimant to die that night. Once a Ritualist kill has appeared, unclaimed players should stay vague.",
+     "note": "Revision, not a game: added that a wrong guess spends the tokens (why vague claims are safe) and the 'claim only what the result needs' line."
     }
    ]
   },
   {
    "id": "t56",
    "audience": "Yakuza",
-   "tip": "Chain exact-role info into Ritualist guesses: Diviner or Mortician results, Wiretap-read claims and public role claims give 100% guesses that never out the Ritualist. The Katana stays free for a second kill the same night. Save Ritualist tokens for confirmed investigators.",
+   "tip": "Chain exact-role info into Ritualist guesses. Firm public role claims and Wiretap-read claims are the sure ones, and a right guess never outs the Ritualist. A Diviner draw is the picked player's role only 60% of the time, so confirm it against claims or a second draw before guessing; a Mortician's clean names a dead player's role, which helps only by elimination. A wrong guess is announced and its tokens are spent either way. The Katana stays free for a second kill the same night. Save Ritualist tokens for confirmed investigators.",
    "status": "active",
    "support": [
     {
@@ -5906,6 +5936,12 @@
     {
      "game": "game_20261009_084630_739772",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Chain exact-role info into Ritualist guesses: Diviner or Mortician results, Wiretap-read claims and public role claims give 100% guesses that never out the Ritualist. The Katana stays free for a second kill the same night. Save Ritualist tokens for confirmed investigators.",
+     "note": "Revision, not a game: Diviner and Mortician results are not 100% guesses under the rules, and a wrong guess spends its tokens. The evidence was all guesses on public firm claims."
     }
    ]
   },
@@ -6569,7 +6605,7 @@
   {
    "id": "t66",
    "audience": "Vigilante",
-   "tip": "If someone fake-claims your role, counterclaim immediately with details only the real holder has (token count, shot reasoning), put the claim in your will, and shoot the fake that same night with at least a Standard shot (2 tokens) in case they have Defense. Don't wait: expect the Katana right after you counterclaim, so have the shot queued. The death also wrecks Yakuza plans for the next Day.",
+   "tip": "If someone fake-claims your role, counterclaim immediately with details only the real holder has (token count, shot reasoning), put the claim in your will, and shoot the fake that same night with at least a Standard shot (2 tokens) in case they have Defense. Don't wait: the counterclaim names your exact role, so expect the Katana, or a Ritualist guess that no Medic stops, right after it, and have the shot queued. The death also wrecks Yakuza plans for the next Day.",
    "status": "active",
    "support": [
     {
@@ -6594,6 +6630,12 @@
      "change": "edited",
      "old": "If a Yakuza fake-claims your role first, counterclaim immediately with details only the real holder has (token count, shot reasoning), and put the claim in your will. A late counterclaim reads as an echo.",
      "note": "Alice counterclaimed Ivan's fake Vigilante and shot him N3. That broke Erin's plan to lock trials with a doubled vote."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "If someone fake-claims your role, counterclaim immediately with details only the real holder has (token count, shot reasoning), put the claim in your will, and shoot the fake that same night with at least a Standard shot (2 tokens) in case they have Defense. Don't wait: expect the Katana right after you counterclaim, so have the shot queued. The death also wrecks Yakuza plans for the next Day.",
+     "note": "Revision, not a game: the immediate counterclaim now names the Ritualist risk."
     }
    ]
   },
@@ -7540,7 +7582,7 @@
   {
    "id": "t81",
    "audience": "Diviner",
-   "tip": "Your results look exactly like a Surveyor's, so informed towns treat a Surveyor claim as the Diviner's twin. Accurate hits don't clear it. One Profiler decoy, archive entry or Oracle guess naming Diviner breaks it, and an Accountant sees your 0 tokens against a Surveyor's 3. Prefer a tokenless visiting cover (Lookout, Tracker, Sheriff) that names your real divine targets as its targets, and share your draws with the team in night chat instead of publishing them. If you do use Surveyor, publish a few accurate, harmless groups early and put a plausible other suspect in front of the town. Divine teammates who must visit risky targets: Strong Defense stops traps and Vigilante shots. A token gifted to you is thrown away.",
+   "tip": "Your results look exactly like a Surveyor's, so informed towns treat a Surveyor claim as the Diviner's twin. Accurate hits don't clear it. An Oracle guess on your claim or a profile of you breaks it (your true role is always on your own profile list), a Diviner entry on an archive or on someone else's profile points the town at it, and an Accountant sees your 0 tokens against a Surveyor's 3. Prefer a tokenless visiting cover (Lookout, Tracker, Sheriff) that names your real divine targets as its targets, and share your draws with the team in night chat instead of publishing them. If you do use Surveyor, publish a few accurate, harmless groups early and put a plausible other suspect in front of the town. Divine teammates who must visit risky targets: Strong Defense stops traps and Vigilante shots. A token gifted to you is thrown away.",
    "status": "active",
    "support": [
     {
@@ -7576,6 +7618,12 @@
      "change": "edited",
      "old": "Fake-claim a role whose results look like yours, such as Surveyor. Divine teammates who must visit risky targets: Strong Defense stops traps and Vigilante shots, and the visit can be published as a fake survey. Mix in at least one harmless unconfirmable result so a Roleplayer fallback stays believable. Remember an Accountant sees you at 0 tokens, and a gifted token is thrown away.",
      "note": "Frank's Surveyor cover fit his visits but was seen as the Diviner's twin. Grace said so publicly, Olivia's profile listed Diviner as a decoy, and Alice's census pinned him."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Your results look exactly like a Surveyor's, so informed towns treat a Surveyor claim as the Diviner's twin. Accurate hits don't clear it. One Profiler decoy, archive entry or Oracle guess naming Diviner breaks it, and an Accountant sees your 0 tokens against a Surveyor's 3. Prefer a tokenless visiting cover (Lookout, Tracker, Sheriff) that names your real divine targets as its targets, and share your draws with the team in night chat instead of publishing them. If you do use Surveyor, publish a few accurate, harmless groups early and put a plausible other suspect in front of the town. Divine teammates who must visit risky targets: Strong Defense stops traps and Vigilante shots. A token gifted to you is thrown away.",
+     "note": "Revision, not a game: a profile's other two roles are one living player's role and one role absent from the game, so a Diviner entry on someone else's profile is a lead, not a break."
     }
    ]
   },
@@ -7644,7 +7692,7 @@
   {
    "id": "t83",
    "audience": "Oracle",
-   "tip": "Guess the public role claims of suspicious or load-bearing players. Best is a freshly made or switched claim, above all a power claim made after a map or count put the player in a suspect group. Also good: defenders of exposed Yakuza, and cheap Vanilla claims. A WRONG exposes a fake at once, and nobody can say you copied it. A RIGHT on an already-public claim proves little to others, since a fake Oracle could invent it. So aim confirming guesses where they unlock another result: a RIGHT on one member of a census or group result lets elimination name the rest. Post your first result at once; holding it while others claim makes you the next suspect. Post every result in one message the next Day: night, target, exact role guessed, RIGHT or WRONG (e.g. 'N4: guessed Heidi = Tracker, WRONG'). A bare 'X is not a Tracker' sounds evasive. Your guess is Astral, so no 'exposure' excuse applies. Give a stated reason with every nomination, argue for a Vigilante shot in public rather than by PM, and keep your planned next guess in your will. Once confirmed, assume you die tonight and keep your will hedged.",
+   "tip": "Guess the public role claims of suspicious or load-bearing players. Best is a freshly made or switched claim, above all a power claim made after a map or count put the player in a suspect group. Also good: defenders of exposed Yakuza, and cheap Vanilla claims. A WRONG exposes a fake at once, and nobody can say you copied it. A RIGHT on an already-public claim proves little to others, since a fake Oracle could invent it. So aim confirming guesses where they unlock another result: a RIGHT on one member of a census or group result lets elimination name the rest. Post a result as soon as it bears on a vote or a claim dispute; holding one that matters while others claim makes you the next suspect. The claim names your exact role to a possible Ritualist, so when one may be in the game a result that changes nothing yet can wait in your will. When you post, give every result in one message: night, target, exact role guessed, RIGHT or WRONG (e.g. 'N4: guessed Heidi = Tracker, WRONG'). A bare 'X is not a Tracker' sounds evasive. Your guess is Astral, so no 'exposure' excuse applies, but a swap still moves it: if your target posts a swap notice for that night, the result describes the other swapped player. Give a stated reason with every nomination, argue for a Vigilante shot in public rather than by PM, and keep your planned next guess in your will. Once confirmed, assume you die tonight and keep your will hedged.",
    "status": "active",
    "support": [
     {
@@ -7700,6 +7748,12 @@
      "change": "edited",
      "old": "Guess the public role claims of suspicious or load-bearing players: trusted investigators, defenders of exposed Yakuza and cheap VV claims. A WRONG exposes a fake at once, and a RIGHT clears them. Confirming an already-harmless claim gains little. Post every result in one message the next Day: night, target, exact role guessed, RIGHT or WRONG (e.g. 'N4: guessed Heidi = Tracker, WRONG'). A bare 'X is not a Tracker' sounds evasive. Your guess is Astral, so no 'exposure' excuse applies. Give a stated reason with every nomination, argue for a Vigilante shot in public rather than by PM, and keep your planned next guess in your will. Once confirmed, assume you die tonight and keep your will hedged.",
      "note": "Grace's RIGHT on Vanilla Niaj unlocked Alice's census elimination of Frank, and her WRONG on Bob's switched Medic claim hanged him. Holding her N1 result drew suspicion. Reported by Grace, Judy, Mallory, Olivia, Carol."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Guess the public role claims of suspicious or load-bearing players. Best is a freshly made or switched claim, above all a power claim made after a map or count put the player in a suspect group. Also good: defenders of exposed Yakuza, and cheap Vanilla claims. A WRONG exposes a fake at once, and nobody can say you copied it. A RIGHT on an already-public claim proves little to others, since a fake Oracle could invent it. So aim confirming guesses where they unlock another result: a RIGHT on one member of a census or group result lets elimination name the rest. Post your first result at once; holding it while others claim makes you the next suspect. Post every result in one message the next Day: night, target, exact role guessed, RIGHT or WRONG (e.g. 'N4: guessed Heidi = Tracker, WRONG'). A bare 'X is not a Tracker' sounds evasive. Your guess is Astral, so no 'exposure' excuse applies. Give a stated reason with every nomination, argue for a Vigilante shot in public rather than by PM, and keep your planned next guess in your will. Once confirmed, assume you die tonight and keep your will hedged.",
+     "note": "Revision, not a game: 'post your first result at once' now carries the Ritualist warning, and a swap moves the Astral guess (R23)."
     }
    ]
   },
@@ -8698,7 +8752,7 @@
   {
    "id": "t103",
    "audience": "Prosecutor",
-   "tip": "Your claim is self-proving: the prosecution is announced the next Day, and Yakuza can't fake it. Stay unclaimed while your tokens are live. Spend each prosecution as soon as a solid mechanical lead exists, while enough Village voters are alive to win the trial. If you hold tokens for the endgame, the Katana removes your voters first and you may die with them unused. Good leads: the slip or PM partner of a player exposed by a mechanical result, a claim that overflows a public role list, a player in a confirmed visitor list, or a small Guilty total on a proven townie that the stated votes don't account for. Never spend one on a claimant whose results keep checking out (e.g. an Oracle with a verified hit). An acquittal wastes the token and one of the Day's three trials. A prosecution skips the nomination vote, so No votes can't stall it. Before each prosecution, name the target as a suspect in public that Day, but don't announce that you will prosecute tonight: a Pharmacist will block you. Log each prosecution in your will by NIGHT (N2, N3), not by trial day. If a copycat counterclaims, those earlier reads and correct labels are your proof. If you are role-blocked, you are told and no token is spent. Post 'N3: prosecution of X was role-blocked' in your first message the next Day, before anyone can call the missing trial a bluff, and ask an Accountant to confirm your token count. Under R21 the prosecution still fires even if you die that night, so spend your last token on your top suspect even when you expect to be killed.",
+   "tip": "Your claim is self-proving: the prosecution is announced the next Day, and Yakuza can't fake it. Stay unclaimed while your tokens are live. Spend each prosecution as soon as a solid mechanical lead exists, while enough Village voters are alive to win the trial. If you hold tokens for the endgame, the Katana removes your voters first and you may die with them unused. Good leads: the slip or PM partner of a player exposed by a mechanical result, a claim that overflows a public role list, a player in a confirmed visitor list, or a small Guilty total on a proven townie that the stated votes don't account for. Never spend one on a claimant whose results keep checking out (e.g. an Oracle with a verified hit). An acquittal wastes the token and one of the Day's three trials. A prosecution skips the nomination vote, so No votes can't stall it. Before each prosecution, name the target as a suspect in public that Day, but don't announce that you will prosecute tonight: a Pharmacist will block you. Log each prosecution in your will by NIGHT (N2, N3), not by trial day. If a copycat counterclaims, those earlier reads and correct labels are your proof. If you are role-blocked, you are told and no token is spent. If you have already claimed, post 'N3: prosecution of X was role-blocked' in your first message the next Day, before anyone can call the missing trial a bluff, and ask an Accountant to confirm your token count. If you are still unclaimed, keep the block in your will instead: a Prosecutor claim names your exact role to a possible Ritualist, whose guess no Medic stops. Under R21 the prosecution still fires even if you die that night, so spend your last token on your top suspect even when you expect to be killed.",
    "status": "active",
    "support": [
     {
@@ -8769,6 +8823,12 @@
      "change": "edited",
      "old": "Your claim is self-proving: the prosecution is announced the next Day, and Yakuza can't fake it. Stay unclaimed while your tokens are live. Spend each prosecution as soon as a solid mechanical lead exists, while enough Village voters are alive to win the trial. If you hold tokens for the endgame, the Katana removes your voters first and you may die with them unused. Good leads: a flipped Yakuza's slip or PM partner, a claim that overflows a public role list, a player in a confirmed visitor list, or a small Guilty bloc on a proven townie. Never spend one on a claimant whose results keep checking out (e.g. an Oracle with a verified hit). An acquittal wastes the token and one of the Day's three trials. A prosecution skips the nomination vote, so No votes can't stall it. Before each prosecution, name the target as a suspect in public that Day, but don't announce that you will prosecute tonight: a Pharmacist will block you. Log each prosecution in your will by NIGHT (N2, N3), not by trial day. If a copycat counterclaims, those earlier reads and correct labels are your proof. If you are role-blocked, you are told and no token is spent. Post 'N3: prosecution of X was role-blocked' in your first message the next Day, before anyone can call the missing trial a bluff, and ask an Accountant to confirm your token count. Under R21 the prosecution still fires even if you die that night, so spend your last token on your top suspect even when you expect to be killed.",
      "note": "There are no flipped Yakuza or public Guilty blocs now. The leads are reworded to exposure and to totals compared with stated votes."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Your claim is self-proving: the prosecution is announced the next Day, and Yakuza can't fake it. Stay unclaimed while your tokens are live. Spend each prosecution as soon as a solid mechanical lead exists, while enough Village voters are alive to win the trial. If you hold tokens for the endgame, the Katana removes your voters first and you may die with them unused. Good leads: the slip or PM partner of a player exposed by a mechanical result, a claim that overflows a public role list, a player in a confirmed visitor list, or a small Guilty total on a proven townie that the stated votes don't account for. Never spend one on a claimant whose results keep checking out (e.g. an Oracle with a verified hit). An acquittal wastes the token and one of the Day's three trials. A prosecution skips the nomination vote, so No votes can't stall it. Before each prosecution, name the target as a suspect in public that Day, but don't announce that you will prosecute tonight: a Pharmacist will block you. Log each prosecution in your will by NIGHT (N2, N3), not by trial day. If a copycat counterclaims, those earlier reads and correct labels are your proof. If you are role-blocked, you are told and no token is spent. Post 'N3: prosecution of X was role-blocked' in your first message the next Day, before anyone can call the missing trial a bluff, and ask an Accountant to confirm your token count. Under R21 the prosecution still fires even if you die that night, so spend your last token on your top suspect even when you expect to be killed.",
+     "note": "Revision, not a game: the 'post the block at once' line now applies to an already-claimed Prosecutor, with the Ritualist warning for an unclaimed one."
     }
    ]
   },
@@ -8866,7 +8926,7 @@
   {
    "id": "t106",
    "audience": "Surveyor",
-   "tip": "Survey a player whose neighbors are plausible but unconfirmed, and post the full group plus the role once claims start: one proven neighbor (by an exact-role check or a self-proving action) turns a 1-in-3 into a 1-in-2. A dead neighbor's role stays hidden, so death alone doesn't remove them. If a Ritualist may be alive, remember that a group result can pin a Village info role. Warn that player before posting, or post only once it decides a vote.",
+   "tip": "Survey a player whose neighbors are plausible but unconfirmed, and post the full group plus the role once claims start: one proven neighbor (by an exact-role check or a self-proving action) turns a 1-in-3 into a 1-in-2. A dead neighbor's role stays hidden, so death alone doesn't remove them. If a Ritualist may be alive, remember that a group result can pin a Village info role, and that the Surveyor claim itself names your exact role for a sure guess. Warn the pinned player before posting, or post only once it decides a vote.",
    "status": "active",
    "support": [
     {
@@ -8886,6 +8946,12 @@
      "change": "edited",
      "old": "Survey a player whose neighbors are plausible but unconfirmed, and post the full group plus the role once claims start: one flipped or proven neighbor turns a 1-in-3 into a 1-in-2. If a Ritualist may be alive, remember that a group result can pin a Village info role. Warn that player before posting, or post only once it decides a vote.",
      "note": "Roles are hidden on death, so 'flipped' neighbors no longer narrow a group."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Survey a player whose neighbors are plausible but unconfirmed, and post the full group plus the role once claims start: one proven neighbor (by an exact-role check or a self-proving action) turns a 1-in-3 into a 1-in-2. A dead neighbor's role stays hidden, so death alone doesn't remove them. If a Ritualist may be alive, remember that a group result can pin a Village info role. Warn that player before posting, or post only once it decides a vote.",
+     "note": "Revision, not a game: added that the Surveyor's own claim feeds a possible Ritualist."
     }
    ]
   },
@@ -9227,7 +9293,7 @@
   {
    "id": "t114",
    "audience": "Village",
-   "tip": "Blockers and anyone with private night notices (role-blocked, swapped, attacked and survived, theft): quote your exact night feedback publicly the next Day, before someone else's claim depends on it. A swap notice proves a living Smuggler and can explain a moved Medic save or an odd investigation. A survived-attack notice confirms a protector or a swap. Ask questions that only make sense if you hold the information (e.g. 'were you role-blocked?'). A block notice you posted first can disprove a later fake visit report. A notice revealed only once you are on trial looks invented.",
+   "tip": "Blockers and anyone with private night notices (role-blocked, swapped, attacked and survived, theft): quote your exact night feedback publicly the next Day, before someone else's claim depends on it. A swap notice proves a living Smuggler and can explain a moved Medic save or an odd investigation. A survived-attack notice confirms a protector or a swap. Ask questions that only make sense if you hold the information (e.g. 'were you role-blocked?'). A block notice you posted first can disprove a later fake visit report. A notice revealed only once you are on trial looks invented. A blocker's own log names their exact role, which feeds a possible Ritualist: when one may be in the game, post it once it bears on a claim, a no-kill night or a vote, and keep it in your will until then. Notices that don't name your role (blocked, swapped) can go up at once.",
    "status": "active",
    "support": [
     {
@@ -9257,13 +9323,19 @@
      "change": "edited",
      "old": "Blockers and anyone with private night notices: quote your exact night feedback publicly and early, before someone else's claim depends on it. Ask questions that only make sense if you hold the information (e.g. 'were you role-blocked?'). A block notice you posted first can disprove a later fake visit report.",
      "note": "Moderator: Heidi was told on N3 she was swapped and survived a Katana attack, which would have exposed the Smuggler and warned Alice before N4. She first mentioned it at her D6 trial, and Judy, Mallory and Carol attacked it as a mechanics lie."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Blockers and anyone with private night notices (role-blocked, swapped, attacked and survived, theft): quote your exact night feedback publicly the next Day, before someone else's claim depends on it. A swap notice proves a living Smuggler and can explain a moved Medic save or an odd investigation. A survived-attack notice confirms a protector or a swap. Ask questions that only make sense if you hold the information (e.g. 'were you role-blocked?'). A block notice you posted first can disprove a later fake visit report. A notice revealed only once you are on trial looks invented.",
+     "note": "Revision, not a game: a blocker's log names the exact role, so the post-at-once advice now warns about a possible Ritualist."
     }
    ]
   },
   {
    "id": "t115",
    "audience": "Party Animal",
-   "tip": "(Party Animal) Choose blocks by the damage they prevent. Block the strongest Katana-holder suspect every night: a player a Lookout or Tracker saw at a victim, the last living name an elimination map allows, or late in the game the likeliest lone holder. Keep blocking that suspect every night until they are hanged. Switching away hands them a free kill, often on you. The Katana passes to a teammate when its holder dies, so re-check who likely holds it after every death. Before you have a suspect, use blocks as tests on claimed Vanillas and quiet players. A block that fails because the target can't be role-blocked shows an immune role (Pharmacist, Smuggler, Veteran or Party Animal). Post it with the moderator's exact wording. A no-kill night that matches your block is the town's strongest lead against a lone holder. Write each block target in your will and post it publicly the next Day, before anyone can confirm it. A target who later confirms being blocked proves you are real. Never block a protector or investigator confirmed by an independent source, and avoid blocking quiet players who defended confirmed claims, who may be a hidden Vigilante. A persistent liar who keeps showing no visits may be an Executioner, and blocking them prevents nothing.",
+   "tip": "Choose blocks by the damage they prevent. Block the strongest Katana-holder suspect every night: a player a Lookout or Tracker saw at a victim, the last living name an elimination map allows, or late in the game the likeliest lone holder. Keep blocking that suspect every night until they are hanged. Switching away hands them a free kill, often on you. The Katana passes to a teammate when its holder dies, so re-check who likely holds it after every death. Before you have a suspect, use blocks as tests on claimed Vanillas and quiet players. A block that fails because the target can't be role-blocked shows an immune role (Pharmacist, Smuggler, Veteran or Party Animal). Post it with the moderator's exact wording. A no-kill night that matches your block is the town's strongest lead against a lone holder. Write each block target in your will before the night. Post the log publicly, before anyone can confirm it, once it bears on a claim, a no-kill night or a vote: a target who later confirms being blocked proves you are real. Posting names your exact role to a possible Ritualist, whose guess no Medic stops, so when one may be in the game don't post a log that shows nothing yet. Never block a protector or investigator confirmed by an independent source, and avoid blocking quiet players who defended confirmed claims, who may be a hidden Vigilante. A persistent liar who keeps showing no visits may be an Executioner, and blocking them prevents nothing.",
    "status": "active",
    "support": [
     {
@@ -9315,6 +9387,12 @@
      "change": "edited",
      "old": "(Party Animal) Choose blocks by the damage they prevent. Block the strongest Katana-holder suspect every night: a player a Lookout or Tracker saw at a victim, or late in the game the likeliest lone holder. A no-kill night that matches your block is the town's strongest lead against a lone holder. Write each block target in your will and post it publicly the next Day, before anyone can confirm it; a target who later confirms being blocked proves you are real. Never block a protector or investigator confirmed by an independent source, and avoid blocking quiet players who defended confirmed claims, who may be a hidden Vigilante. A persistent liar who keeps showing no visits may be an Executioner, and blocking them prevents nothing.",
      "note": "Moderator and Grace: Grace's failed N2 block exposed Pharmacist Erin, and her N4 block on holder Frank stopped his attack on her. On N5 she blocked Alice instead, and Frank killed her."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "(Party Animal) Choose blocks by the damage they prevent. Block the strongest Katana-holder suspect every night: a player a Lookout or Tracker saw at a victim, the last living name an elimination map allows, or late in the game the likeliest lone holder. Keep blocking that suspect every night until they are hanged. Switching away hands them a free kill, often on you. The Katana passes to a teammate when its holder dies, so re-check who likely holds it after every death. Before you have a suspect, use blocks as tests on claimed Vanillas and quiet players. A block that fails because the target can't be role-blocked shows an immune role (Pharmacist, Smuggler, Veteran or Party Animal). Post it with the moderator's exact wording. A no-kill night that matches your block is the town's strongest lead against a lone holder. Write each block target in your will and post it publicly the next Day, before anyone can confirm it. A target who later confirms being blocked proves you are real. Never block a protector or investigator confirmed by an independent source, and avoid blocking quiet players who defended confirmed claims, who may be a hidden Vigilante. A persistent liar who keeps showing no visits may be an Executioner, and blocking them prevents nothing.",
+     "note": "Revision, not a game: 'post it publicly the next Day' now waits for the log to matter when a Ritualist may be in the game."
     }
    ]
   },
@@ -9604,7 +9682,7 @@
   {
    "id": "t124",
    "audience": "Ritualist",
-   "tip": "Hold your tokens until elimination makes an exact role near-certain. Late game, list the living players, the known Jester and the roles already seen, then name the last Neutral. A 2-token Divine guess kills through Standard Defense (Arsonist, SK) that stops the Katana, and it can win the game outright.",
+   "tip": "Hold your tokens until elimination makes an exact role near-certain. A wrong guess is announced at the start of the next Day, naming you as a Ritualist, and its tokens are spent either way; only a role-blocked guess keeps them. Late game, list the living players, the known Jester and the roles already seen, then name the last Neutral. A 2-token Divine guess kills through Standard Defense (Arsonist, SK) that stops the Katana, and it can win the game outright.",
    "status": "active",
    "support": [
     {
@@ -9633,6 +9711,12 @@
     {
      "game": "game_20261009_160331_601852",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Hold your tokens until elimination makes an exact role near-certain. Late game, list the living players, the known Jester and the roles already seen, then name the last Neutral. A 2-token Divine guess kills through Standard Defense (Arsonist, SK) that stops the Katana, and it can win the game outright.",
+     "note": "Revision, not a game: states that a wrong guess spends its tokens."
     }
    ]
   },
@@ -9722,7 +9806,7 @@
   {
    "id": "t128",
    "audience": "Lookout",
-   "tip": "Post your full visitor list early, before the visited players claim or explain their visits. When challenged, point out explicitly that you named them first; that timing is your strongest proof.",
+   "tip": "Post your visitor list before the visited players claim or explain their visits. When challenged, point out explicitly that you named them first; that timing is your strongest proof. The post names your exact role, and a possible Ritualist kills on that through any Medic. When one may be in the game, post a list that bears on a death or a claim right away, let an empty or harmless watch wait in your will, and expect to die the night you claim.",
    "status": "active",
    "support": [
     {
@@ -9746,6 +9830,12 @@
     {
      "game": "game_20261009_164356_960898",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Post your full visitor list early, before the visited players claim or explain their visits. When challenged, point out explicitly that you named them first; that timing is your strongest proof.",
+     "note": "Revision, not a game: the post-early advice now carries the Ritualist warning. The evidence was lists that bore on deaths, which still go up at once."
     }
    ]
   },
@@ -9890,7 +9980,7 @@
   {
    "id": "t134",
    "audience": "Ritualist",
-   "tip": "A hard-claimed investigator is a sure guess, and a 2-token Divine guess goes through any Medic. With no sign of a Medic, one token (Standard) is enough and leaves you a second kill. Prefer first-turn claims of roles a Roleplayer can't be told (not Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle or Accountant) whose posted results match facts your team knows are true. A Roleplayer may sit behind a Roleplayer-list claim, and a miss outs you publicly. The kill only helps if it lands before they publish what matters: once their evidence is public and in their will, killing them saves nothing, so rank targets by the results they would still produce. Don't spend guesses on claims contested by a dead Oracle; prefer claims verified by an independent source.",
+   "tip": "A hard-claimed investigator is a sure guess, and a 2-token Divine guess goes through any Medic. With no sign of a Medic, one token (Standard) is enough and leaves you a second kill. Prefer first-turn claims of roles a Roleplayer can't be told (not Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle or Accountant) whose posted results match facts your team knows are true. A Roleplayer may sit behind a Roleplayer-list claim, and a miss outs you publicly with the tokens spent anyway. A swap moves your guess too (R23): never guess a player your Smuggler is swapping that night, because the guess lands on the other player. The kill only helps if it lands before they publish what matters: once their evidence is public and in their will, killing them saves nothing, so rank targets by the results they would still produce. Don't spend guesses on claims contested by a dead Oracle; prefer claims verified by an independent source.",
    "status": "active",
    "support": [
     {
@@ -9930,6 +10020,12 @@
      "change": "edited",
      "old": "A hard-claimed investigator is a sure guess, and a 2-token Divine guess goes through any Medic. But the kill only helps if it lands before they publish: once their evidence is public and in their will, killing them saves nothing. Don't spend guesses on claims contested by a dead Oracle; prefer claims verified by an independent source.",
      "note": "Judy, Alice, Niaj, moderator: Judy skipped N1, then spent one token each on Dave (Bloodhound, whose scent could read Alice's attacks) and Carol (Juror). She avoided Roleplayer-list claims such as Lookout and Accountant."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "A hard-claimed investigator is a sure guess, and a 2-token Divine guess goes through any Medic. With no sign of a Medic, one token (Standard) is enough and leaves you a second kill. Prefer first-turn claims of roles a Roleplayer can't be told (not Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle or Accountant) whose posted results match facts your team knows are true. A Roleplayer may sit behind a Roleplayer-list claim, and a miss outs you publicly. The kill only helps if it lands before they publish what matters: once their evidence is public and in their will, killing them saves nothing, so rank targets by the results they would still produce. Don't spend guesses on claims contested by a dead Oracle; prefer claims verified by an independent source.",
+     "note": "Revision, not a game: a wrong guess spends its tokens, and a swap moves the Astral guess."
     }
    ]
   },
@@ -9962,7 +10058,7 @@
   {
    "id": "t136",
    "audience": "Seer",
-   "tip": "Post your automatic random pair every night in your first speech, with the night and 'random' or 'chosen', even when it seems useless. A Seer's pair is guaranteed, so a missing one looks like a fake claim and gives opponents a ready attack line. If you forgot one, say so plainly and post it at once. Put every result in your will the same Day.",
+   "tip": "Once you have claimed, post your automatic random pair every night in your first speech, with the night and 'random' or 'chosen', even when it seems useless. A Seer's pair is guaranteed, so a missing one looks like a fake claim and gives opponents a ready attack line. If you forgot one, say so plainly and post it at once. Put every result in your will the same Day. Before you claim, weigh the Ritualist: a Seer claim names your exact role, so when one may be in the game a pair that changes no vote can wait in your will. Your first post should then give every pair so far in one labeled message.",
    "status": "active",
    "support": [
     {
@@ -9986,6 +10082,12 @@
     {
      "game": "game_20261009_184056_395772",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Post your automatic random pair every night in your first speech, with the night and 'random' or 'chosen', even when it seems useless. A Seer's pair is guaranteed, so a missing one looks like a fake claim and gives opponents a ready attack line. If you forgot one, say so plainly and post it at once. Put every result in your will the same Day.",
+     "note": "Revision, not a game: the every-night posting rule now starts once claimed, with the Ritualist warning before the first claim."
     }
    ]
   },
@@ -10307,7 +10409,7 @@
   {
    "id": "t147",
    "audience": "Cardinal",
-   "tip": "(Cardinal) Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, say why, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
+   "tip": "Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, say why, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. The claim names your exact role to a possible Ritualist, whose Divine guess no protection stops, so make it only when the alternative is a Village kill. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
    "status": "active",
    "support": [
     {
@@ -10344,6 +10446,12 @@
      "change": "edited",
      "old": "(Cardinal) Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
      "note": "Olivia, moderator: Cardinal Olivia voted Guilty on Jester Bob. The revenge (moved onto her by the swap) killed her, and her curse killed Mallory."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "(Cardinal) Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, say why, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
+     "note": "Revision, not a game: 'claim Cardinal at once' now carries the Ritualist warning."
     }
    ]
   },
@@ -10513,7 +10621,7 @@
   {
    "id": "t154",
    "audience": "Veteran",
-   "tip": "If someone claims Veteran while you are unclaimed, counterclaim that Day, or at least signal clearly that the claim is false. Silence makes you the obvious unclaimed target for town investigators, and your alert will kill your own side.",
+   "tip": "If someone claims Veteran while you are unclaimed, counterclaim that Day, or at least signal clearly that the claim is false. Silence makes you the obvious unclaimed target for town investigators, and your alert will kill your own side. A firm counterclaim names your exact role to a possible Ritualist, whose Divine guess beats an alert's Standard Defense, so when one may be in the game the clear signal may be the safer choice.",
    "status": "active",
    "support": [
     {
@@ -10527,6 +10635,12 @@
     {
      "game": "game_20261009_230956_69845",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "If someone claims Veteran while you are unclaimed, counterclaim that Day, or at least signal clearly that the claim is false. Silence makes you the obvious unclaimed target for town investigators, and your alert will kill your own side.",
+     "note": "Revision, not a game: the same-Day counterclaim now carries the Ritualist warning."
     }
    ]
   },
@@ -10874,7 +10988,7 @@
   {
    "id": "t167",
    "audience": "Trapper",
-   "tip": "(Trapper) A publicly announced trap on a confirmed investigator deters killers, who will route around that player, so it works like protection. But a lone holder simply avoids the predictable target, so a hidden trap is the one that actually catches someone: choose between deterrence and catching. Traps arm only from the next night, so aim at whoever the Katana is likely to hit in two nights. A silent trap also gives free negative info: report it as 'no non-Village visitor to X'. If a Lookout reveals your visit to a victim, claim at once with mechanics others can check.",
+   "tip": "A publicly announced trap on a confirmed investigator deters killers, who will route around that player, so it works like protection. But a lone holder simply avoids the predictable target, so a hidden trap is the one that actually catches someone: choose between deterrence and catching. Traps arm only from the next night, so aim at whoever the Katana is likely to hit in two nights. A silent trap also gives free negative info: report it as 'no non-Village visitor to X'. If a Lookout reveals your visit to a victim, claim at once with mechanics others can check. Any Trapper claim names your exact role to a possible Ritualist, so claim no earlier than a sighting or a vote forces it.",
    "status": "active",
    "support": [
     {
@@ -10893,6 +11007,12 @@
     {
      "game": "game_20261010_013419_977337",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "(Trapper) A publicly announced trap on a confirmed investigator deters killers, who will route around that player, so it works like protection. But a lone holder simply avoids the predictable target, so a hidden trap is the one that actually catches someone: choose between deterrence and catching. Traps arm only from the next night, so aim at whoever the Katana is likely to hit in two nights. A silent trap also gives free negative info: report it as 'no non-Village visitor to X'. If a Lookout reveals your visit to a victim, claim at once with mechanics others can check.",
+     "note": "Revision, not a game: the claim-at-once line now carries the Ritualist warning."
     }
    ]
   },
@@ -11013,7 +11133,7 @@
   {
    "id": "t171",
    "audience": "Accountant",
-   "tip": "(Accountant) Audit claimed tokenless visitors and quiet unclaimed players. When posting, state which roles the count rules in and out rather than only the raw number: a raw 3 can out a hidden Vigilante. A 0 rules out Medic, Vigilante, Veteran and Prosecutor but fits Jester, Executioner, SK and Vanilla, so say so; a 3 fits no Yakuza starting role. Remember a Jester also audits 0.",
+   "tip": "Audit claimed tokenless visitors and quiet unclaimed players. When posting, state which roles the count rules in and out rather than only the raw number: a raw 3 can out a hidden Vigilante. A 0 rules out an unspent Medic, Vigilante, Veteran or Prosecutor but fits Jester, Executioner, SK and Vanilla, so say so. A 3 fits Village roles (Vigilante, Veteran, Surveyor, Coroner, Profiler) but also a Yakuza Mortician or Talent Agent, so it clears nobody on its own. Remember a Jester also audits 0, and so does a Roleplayer.",
    "status": "active",
    "support": [
     {
@@ -11027,6 +11147,12 @@
     {
      "game": "game_20261010_013419_977337",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "(Accountant) Audit claimed tokenless visitors and quiet unclaimed players. When posting, state which roles the count rules in and out rather than only the raw number: a raw 3 can out a hidden Vigilante. A 0 rules out Medic, Vigilante, Veteran and Prosecutor but fits Jester, Executioner, SK and Vanilla, so say so; a 3 fits no Yakuza starting role. Remember a Jester also audits 0.",
+     "note": "Revision, not a game: 'a 3 fits no Yakuza starting role' is false under these rules (Mortician and Talent Agent start with 3)."
     }
    ]
   },
@@ -11557,7 +11683,7 @@
   {
    "id": "t188",
    "audience": "Everyone",
-   "tip": "Answer a direct question about your night action in one plain sentence the first time it is asked. Evasion repeated over days becomes a case of its own, even when the true answer is harmless.",
+   "tip": "Answer a direct question about your night action in one plain sentence the first time it is asked. Evasion repeated over days becomes a case of its own, even when the true answer is harmless. If the full answer would name your exact role while a Ritualist may be alive, give one short, true answer (whether you acted, and that the details are in your will until they bear on a vote), repeat it word for word, and give the full claim as soon as it does bear on one.",
    "status": "active",
    "support": [
     {
@@ -11642,6 +11768,12 @@
     {
      "game": "game_20261010_042021_144648",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Answer a direct question about your night action in one plain sentence the first time it is asked. Evasion repeated over days becomes a case of its own, even when the true answer is harmless.",
+     "note": "Revision, not a game: a plain answer often names the exact role, so the tip now covers the Ritualist case without licensing shifting answers."
     }
    ]
   },
@@ -11731,7 +11863,7 @@
   {
    "id": "t192",
    "audience": "Everyone",
-   "tip": "Check every claimed neighbor-group result (Surveyor, Diviner, census-type group) against the circle as it stood at the start of that night. Remove the dead, skip the user's own seat, and walk both directions to the nearest eligible player. Write the steps out publicly. A group with the wrong neighbors exposes a fake claim at once, and it is a clean mechanical contradiction. But a wrong 'impossible' call puts a true investigator on trial and costs the accuser credibility the Yakuza will use later, so get the steps right before calling it.",
+   "tip": "Check every claimed neighbor-group result (Surveyor, Diviner) against the circle as it stood at the start of that night. Remove the dead, skip the user's own seat, and walk both directions to the nearest eligible player. Write the steps out publicly. A group with the wrong neighbors exposes a fake claim at once, and it is a clean mechanical contradiction. A Census Taker's group is different: its target plus two players drawn at random from everyone else alive, so no seating check applies to it. Check for a swap notice too: a swapped target's group is built around the other player (R23). A wrong 'impossible' call puts a true investigator on trial and costs the accuser credibility the Yakuza will use later, so get the steps right before calling it.",
    "status": "active",
    "support": [
     {
@@ -11751,6 +11883,12 @@
      "change": "edited",
      "old": "Before calling a neighbor-group result (Surveyor, Diviner, census-type group) impossible, rebuild the circle as it stood at the start of that night. Remove the dead, skip the user's own seat, and walk both directions to the nearest eligible player. Write the steps out publicly. A wrong 'impossible' call puts a true investigator on trial and costs the accuser credibility the Yakuza will use later.",
      "note": "Moderator, Frank, Heidi, Dave, Bob, Alice, Mallory: Frank's fake Diviner N3 group Mallory/Ivan/Bob was broken by Grace's circle check (Mallory's living neighbors were Ivan and Alice), and he had to admit the lie. Adds the positive use to the earlier caution."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Check every claimed neighbor-group result (Surveyor, Diviner, census-type group) against the circle as it stood at the start of that night. Remove the dead, skip the user's own seat, and walk both directions to the nearest eligible player. Write the steps out publicly. A group with the wrong neighbors exposes a fake claim at once, and it is a clean mechanical contradiction. But a wrong 'impossible' call puts a true investigator on trial and costs the accuser credibility the Yakuza will use later, so get the steps right before calling it.",
+     "note": "Revision, not a game: the census group is random, not neighbor-based, under these rules, and a swap rebuilds a group around the other player."
     }
    ]
   },
@@ -12269,7 +12407,7 @@
   {
    "id": "t212",
    "audience": "Fortune Teller",
-   "tip": "Post both labeled numbers (players visited, players who visited), with the night, in your first speech each Day from Day 2; don't hold them back. Keep your result and your deductions visibly separate: 'N2: 4 visited, 4 visitors' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
+   "tip": "Post both labeled numbers (players visited, players who visited), with the night, from Day 2 on. Counts held back for days can't be lined up against claims or corroborated before you die. The post names your exact role, which feeds a possible Ritualist: when one may be in the game, put every count in your will first and expect a guess that night, or hold a count that fits nothing yet until visit claims give it something to test. Keep your result and your deductions visibly separate: 'N2: 4 visited, 4 visitors' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
    "status": "active",
    "support": [
     {
@@ -12314,6 +12452,12 @@
      "change": "edited",
      "old": "Post your two raw totals, labeled by night, in your first speech each Day from Day 2; don't hold them back. Keep your result and your deductions visibly separate: 'N2 totals: 4 and 4' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
      "note": "Revision: FT numbers are now labeled (visited vs visitors), and the example is updated to match."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Post both labeled numbers (players visited, players who visited), with the night, in your first speech each Day from Day 2; don't hold them back. Keep your result and your deductions visibly separate: 'N2: 4 visited, 4 visitors' is your result, and 'combined with X's and Y's claims, this means Z visited the victim' is a deduction from public claims. Never call a deduction 'private information'. A totals-only role can't name visitors, so unlabeled names read as night-chat knowledge.",
+     "note": "Revision, not a game: the first-speech posting rule now carries the Ritualist warning while keeping the evidence that late counts go uncorroborated."
     }
    ]
   },
@@ -12345,7 +12489,7 @@
   {
    "id": "t214",
    "audience": "Smuggler",
-   "tip": "Spend your swap tokens on the nights they protect the team: when a Cartographer, Lookout or Tracker is likely to catch the Katana holder, when a Vigilante shot or trap may hit a teammate, or to redirect a kill onto a protected target's neighbor. Swapping the holder with a non-Yakuza moves actions aimed at the holder, so plan it in night chat. A swap is a visit by you to both players, adds to Fortune Teller counts and map groups, and both players are told. So while a claimed visit counter or Lookout is alive, have a cover ready or wait. A swap is cheapest once those claimants are dead, or when both swapped players are likely to die that night. Tokens still unused at 2-3 Yakuza alive are usually wasted.",
+   "tip": "Spend your swap tokens on the nights they protect the team: when a Cartographer, Lookout or Tracker is likely to catch the Katana holder, when a Vigilante shot or trap may hit a teammate, or to redirect a kill onto a protected target's neighbor. Swapping the holder with a non-Yakuza moves every action aimed at the holder, Astral checks included (an Oracle guess, a Juror pair, a map), so plan it in night chat. It moves your own team's actions as well: a Ritualist guess aimed at a swapped player lands on the other. A swap is a visit by you to both players, adds to Fortune Teller counts and map groups, and both players are told. So while a claimed visit counter or Lookout is alive, have a cover ready or wait. A swap is cheapest once those claimants are dead, or when both swapped players are likely to die that night. Tokens still unused at 2-3 Yakuza alive are usually wasted.",
    "status": "active",
    "support": [
     {
@@ -12415,13 +12559,19 @@
      "change": "edited",
      "old": "Spend your swap tokens on the nights they protect the team: when a Cartographer, Lookout or Tracker is likely to catch the Katana holder, when a Vigilante shot or trap may hit a teammate, or to redirect a kill onto a protected target's neighbor. Swapping the holder with a non-Yakuza moves actions aimed at the holder, so plan it in night chat. Tokens still unused at 2-3 Yakuza alive are usually wasted.",
      "note": "Frank: he held swaps while visit claimants were alive, then swapped Olivia and Erin on N3. Both died that night, so nobody could post a swap notice."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Spend your swap tokens on the nights they protect the team: when a Cartographer, Lookout or Tracker is likely to catch the Katana holder, when a Vigilante shot or trap may hit a teammate, or to redirect a kill onto a protected target's neighbor. Swapping the holder with a non-Yakuza moves actions aimed at the holder, so plan it in night chat. A swap is a visit by you to both players, adds to Fortune Teller counts and map groups, and both players are told. So while a claimed visit counter or Lookout is alive, have a cover ready or wait. A swap is cheapest once those claimants are dead, or when both swapped players are likely to die that night. Tokens still unused at 2-3 Yakuza alive are usually wasted.",
+     "note": "Revision, not a game: a swap moves Astral checks too (R23), including the team's own Ritualist guess."
     }
    ]
   },
   {
    "id": "t215",
    "audience": "Cartographer",
-   "tip": "Post your nightly group sizes in your first speech every Day, labeled by night. Before posting any deduction from them, place every claimed visit and put yourself correctly. Then post once and never revise in public: each correction hands the Yakuza a 'his lists keep changing' defense. Spend map tokens on the player likeliest to be killed tonight (the strongest confirmed info role, or a Lookout whose result just decided a hang). If they die, the map names everyone linked to the Katana visit and cuts the holder to a handful; cross it with the FT counts the next morning. Post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. Write tonight's planned map target in your will, because a map result from the night you die never reaches it. Don't announce in public whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report, or with elimination of the confirmed members, before naming a holder.",
+   "tip": "Once you have claimed, post your nightly group sizes in your first speech every Day, labeled by night. A Cartographer claim is a sure guess for a possible Ritualist (no Roleplayer is told it). When one may be in the game, make your first post on a Day when the sizes or a map bear on a death or a claim, and have the whole log in your will first. Before posting any deduction from the sizes, place every claimed visit and put yourself correctly. Then post once and never revise in public: each correction hands the Yakuza a 'his lists keep changing' defense. Spend map tokens on the player likeliest to be killed tonight (the strongest confirmed info role, or a Lookout whose result just decided a hang). If they die, the map names everyone linked to the Katana visit and cuts the holder to a handful; cross it with the FT counts the next morning. Post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. Write tonight's planned map target in your will, because a map result from the night you die never reaches it. Don't announce in public whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report, or with elimination of the confirmed members, before naming a holder.",
    "status": "active",
    "support": [
     {
@@ -12462,6 +12612,12 @@
      "change": "edited",
      "old": "Post your nightly group sizes in your first speech every Day, labeled by night. Before posting any deduction from them, place every claimed visit and put yourself correctly. Then post once and never revise in public: each correction hands the Yakuza a 'his lists keep changing' defense. Post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. Write tonight's planned map target in your will, because a map result from the night you die never reaches it. Don't announce in public whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report, or with elimination of the confirmed members, before naming a holder.",
      "note": "Dave mapped Erin on N2. She was the Katana kill, and the map named Alice, Bob, Carol, Ivan, Olivia, which contained holder Bob. Dave and the moderator."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Post your nightly group sizes in your first speech every Day, labeled by night. Before posting any deduction from them, place every claimed visit and put yourself correctly. Then post once and never revise in public: each correction hands the Yakuza a 'his lists keep changing' defense. Spend map tokens on the player likeliest to be killed tonight (the strongest confirmed info role, or a Lookout whose result just decided a hang). If they die, the map names everyone linked to the Katana visit and cuts the holder to a handful; cross it with the FT counts the next morning. Post a map result (named group) as soon as you have it, before the mapped player's visit claim is tested. Write tonight's planned map target in your will, because a map result from the night you die never reaches it. Don't announce in public whom you'll map or how many map tokens you have left: it tells the Yakuza to move the Katana, swap, or kill you. A group shows who is linked, not who visited whom, so pair it with a Lookout or Tracker report, or with elimination of the confirmed members, before naming a holder.",
+     "note": "Revision, not a game: the first-speech posting rule now starts once claimed, with the Ritualist warning before the first claim."
     }
    ]
   },
@@ -12535,7 +12691,7 @@
   {
    "id": "t218",
    "audience": "Everyone",
-   "tip": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
+   "tip": "Know which actions are Astral: Oracle and Ritualist guesses, the Juror's and Scrutineer's checks, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. A Smuggler's swap is different: it moves every action aimed at a swapped living player, Astral ones included. An Oracle guess, a Juror pair, a Scrutineer pick, a map or a Ritualist guess aimed at one swapped player lands on the other and is reported under the chosen name. Only random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
    "status": "active",
    "support": [
     {
@@ -12555,6 +12711,12 @@
      "change": "edited",
      "old": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite and the Cartographer's map. No Lookout, Tracker, Fortune Teller, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers and Cartographers as the visit threats, and the Oracle as an exact-role threat.",
      "note": "Revision: added the Coroner's Astral exam, the revenge attacks and the new Insomniac to the lists."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
+     "note": "Revision, not a game: Astral actions can't be seen, but a swap still moves them (R23)."
     }
    ]
   },
@@ -12707,7 +12869,7 @@
   {
    "id": "t223",
    "audience": "Village",
-   "tip": "When no credible Medic is protecting claimants, expect the Katana on every new power-role claimant that same night. Make your claim count: post every result at once with night, exact target and exact result, and write the exact targets in your will (e.g. 'N2: audited Dave, 0 tokens', not 'did a token check'). A vague will leaves links the Yakuza can exploit after you die.",
+   "tip": "When no credible Medic is protecting claimants, expect the Katana on every new power-role claimant that same night. If a Ritualist may be in the game, expect its guess on any exact claim even with a Medic. So claim when the result is needed, not before, and make the claim count: post every result with night, exact target and exact result, and write the exact targets in your will (e.g. 'N2: audited Dave, 0 tokens', not 'did a token check'). A vague will leaves links the Yakuza can exploit after you die.",
    "status": "active",
    "support": [
     {
@@ -12736,6 +12898,12 @@
     {
      "game": "game_20261010_080046_102",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "When no credible Medic is protecting claimants, expect the Katana on every new power-role claimant that same night. Make your claim count: post every result at once with night, exact target and exact result, and write the exact targets in your will (e.g. 'N2: audited Dave, 0 tokens', not 'did a token check'). A vague will leaves links the Yakuza can exploit after you die.",
+     "note": "Revision, not a game: added that a Ritualist guess reaches an exact claimant through any Medic, so claim when the result is needed."
     }
    ]
   },
@@ -12793,7 +12961,7 @@
   {
    "id": "t225",
    "audience": "Ex-Con",
-   "tip": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Ask for a Census Taker check: the census counts true alignment, so it is the one tool that clears you. Keep a will that maps where Cartographer, FT and Lookout data place your random visit each night, so sightings of you aren't misread. Evasive 'I can't name a target' answers build a case for your trial.",
+   "tip": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Ask for a Census Taker check: the census counts true alignment, so it is the one tool that clears you. Keep a will that maps where Cartographer, FT and Lookout data place your random visit each night, so sightings of you aren't misread. Evasive 'I can't name a target' answers build a case for your trial. The claim does name your exact role to a possible Ritualist, so don't volunteer it before you are pressed or read Evil; once you are, evasion costs more than the claim.",
    "status": "active",
    "support": [
     {
@@ -12818,6 +12986,12 @@
      "change": "edited",
      "old": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Evasive 'I can't name a target' answers build a case for your trial.",
      "note": "Ivan (Ex-Con, won): claiming early, asking for census checks and mapping his random visits kept him from being misread in a visit-heavy game."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "The first time you're pressed for your night target, claim Ex-Con in one plain sentence. Say you visit a random player every night, aren't told whom, and read Evil to alignment checks. That explains a missing target, any Lookout or Tracker sighting of you at a victim, and a DIFFERENT Seer pair or Evil result. Ask for a Census Taker check: the census counts true alignment, so it is the one tool that clears you. Keep a will that maps where Cartographer, FT and Lookout data place your random visit each night, so sightings of you aren't misread. Evasive 'I can't name a target' answers build a case for your trial.",
+     "note": "Revision, not a game: the claim-at-once advice now carries the Ritualist warning."
     }
    ]
   },
@@ -13202,7 +13376,7 @@
   {
    "id": "t240",
    "audience": "Village",
-   "tip": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Before posting a profile, ask the target to state their exact role publicly, so they can't tailor a claim to the list. A list that omits their claimed role is a hard, hangable contradiction. Post the full three-role list and write it into your will the same Day. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist, Diviner, Ballot Stuffer) means that role is held by a living player. Post it at once and match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap decoy. A Wiretap decoy also means every PM should be treated as read. Cross every profile with deaths, census results and confirmed claims to strike options. Spend tokens on unclaimed players or on the contested side of a claim fight (e.g. two visitors to a Katana victim), whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
+   "tip": "A profile lists three roles in alphabetical order: the target's true role, one role held by another player alive at the start of that night (never the Profiler's own), and one role that no player in the game has. You aren't told which is which. Before posting a profile, ask the target to state their exact role publicly, so they can't tailor a claim to the list. A list that omits their claimed role is a hard, hangable contradiction, unless it shows Roleplayer and they claimed a role a Roleplayer can be told. Once the target's role is settled, the other two entries split: one is a living player's role and the other is absent from the game. So a Yakuza-only leftover (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist, Diviner, Ballot Stuffer) is a strong lead that the role is alive, not proof, and two Yakuza-only leftovers mean one of them is. Match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap entry, and treat PMs as possibly read. If living players claim both leftover roles, one of those claims is almost surely false. Cross every profile with deaths, census results and confirmed claims to strike options. Post the full three-role list once it bears on a claim or a vote, and write it into your will as soon as you have it: a named Profiler is a sure guess for a possible Ritualist. Spend tokens on unclaimed players or on the contested side of a claim fight (e.g. two visitors to a Katana victim), whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
    "status": "active",
    "support": [
     {
@@ -13238,6 +13412,12 @@
      "change": "edited",
      "old": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Post the full three-role list and write it into your will the same Day. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist) means that role is held by a living player: match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap decoy. Cross every profile with deaths and confirmed claims to strike options. Spend tokens on unclaimed players or on claims that conflict with a visit result, whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
      "note": "Olivia: getting the claim first made the result a clean test. Heidi's Sheriff claim was missing from her list, which exposed her. Decoys revealed Diviner and Wiretap."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "A Profiler's two decoy roles are drawn from the roles of other players alive at the start of that night (all roles only if too few are in play), so each decoy is almost always a real role among the living. The Profiler's own role is never drawn. Before posting a profile, ask the target to state their exact role publicly, so they can't tailor a claim to the list. A list that omits their claimed role is a hard, hangable contradiction. Post the full three-role list and write it into your will the same Day. A Yakuza-only decoy (Clerk, Wiretap, Pharmacist, Smuggler, Ritualist, Diviner, Ballot Stuffer) means that role is held by a living player. Post it at once and match it to suspects and unclaimed players, e.g. a player who quoted a PM plus a Wiretap decoy. A Wiretap decoy also means every PM should be treated as read. Cross every profile with deaths, census results and confirmed claims to strike options. Spend tokens on unclaimed players or on the contested side of a claim fight (e.g. two visitors to a Katana victim), whose role would decide a vote. Don't re-profile an active claimant to confirm them, since one profile never confirms a claim.",
+     "note": "Revision, not a game: under these rules only one of the two non-true roles is a living player's and the other is absent from the game, so a Yakuza-only entry no longer proves the role is in play. Also adds the Ritualist warning on posting."
     }
    ]
   },
@@ -13549,7 +13729,7 @@
   {
    "id": "t248",
    "audience": "Yakuza",
-   "tip": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
+   "tip": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, visiting or Astral, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name, and so do Astral checks: an Oracle guess, a Juror pair, a Scrutineer pick or a map. Your own team's actions move too: a Ritualist guess or Diviner pick aimed at a swapped player lands on the other, and a guess that misses that way outs the Ritualist and spends the tokens, so tell the team who is swapped. Random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
    "status": "active",
    "support": [
     {
@@ -13579,6 +13759,12 @@
      "change": "edited",
      "old": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped, so have a cover ready for those visits.",
      "note": "Moderator (0.4): Carol's N4 decoy swap of Niaj/Dave killed confirmed Sheriff Dave through Alice's protection. Olivia (0.16): simulate both protector choices. Carol (0.16): both notices can be read as proof of a swap."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
+     "note": "Revision, not a game: a swap moves Astral checks too (R23), including the team's own Ritualist guess, and does not move revenge or curse draws."
     }
    ],
    "pinned": true
@@ -13764,7 +13950,7 @@
   {
    "id": "t254",
    "audience": "Insomniac",
-   "tip": "Post the exact visitor roles in your first message the next Day. Say plainly what they prove and what they don't. They show which roles visited, never whom: they can rule out a Fabricator frame or an Ex-Con visit, and they can confirm that a claimed Sheriff or Medic acted, but they can't tie a visit to a particular target. Once you have named a Yakuza-linked role or backed a key claim, expect to be killed, so post before that night.",
+   "tip": "Post the exact visitor roles in your first message of the Day after they show something: a Yakuza-linked role, or a role that backs or breaks a key claim. Say plainly what they prove and what they don't. They show which roles visited, never whom: they can rule out a Fabricator frame or an Ex-Con visit, and they can confirm that a claimed Sheriff or Medic acted, but they can't tie a visit to a particular target. Once you have named a Yakuza-linked role or backed a key claim, expect to be killed, so post before that night. An Insomniac claim is also a sure guess for a possible Ritualist (no Roleplayer is told it), so when one may be in the game a list that shows nothing yet can wait in your will.",
    "status": "active",
    "support": [
     {
@@ -13783,6 +13969,12 @@
     {
      "game": "game_20261010_142446_120517",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Post the exact visitor roles in your first message the next Day. Say plainly what they prove and what they don't. They show which roles visited, never whom: they can rule out a Fabricator frame or an Ex-Con visit, and they can confirm that a claimed Sheriff or Medic acted, but they can't tie a visit to a particular target. Once you have named a Yakuza-linked role or backed a key claim, expect to be killed, so post before that night.",
+     "note": "Revision, not a game: the first-message posting rule now carries the Ritualist warning."
     }
    ]
   },
@@ -13869,7 +14061,7 @@
   {
    "id": "t259",
    "audience": "Census Taker",
-   "tip": "Your count reads true alignment: the Katana holder's Good disguise, frames and Ex-Con readings don't fool it. Build a chain of cleared players. Ask every member of a group to confirm the count against what they know of themselves, so your claim becomes trusted. Then aim each census at one unknown, ideally where cleared players are likely to be drawn, so that once the other members are cleared an 'X of 3 Good' names the remaining player exactly. Post the group, the alignment counted and the count at once. Neutrals are never counted, so phrase a gap as 'not Good' (Yakuza or Neutral), not 'Evil'. Keep the full log in your will.",
+   "tip": "Your count reads true alignment: the Katana holder's Good disguise, frames and Ex-Con readings don't fool it. Build a chain of cleared players. Ask every member of a group to confirm the count against what they know of themselves, so your claim becomes trusted. You pick only the first member; the other two are drawn at random from everyone else alive. Aim each census at one unknown: when both draws are already cleared, the count names that player exactly, and otherwise the group joins the chain for later subtraction. Post the group, the alignment counted and the count as soon as it bears on a vote or its members can confirm it. A Census Taker claim is a sure guess for a possible Ritualist (no Roleplayer is told it), so when one may be in the game write the full log in your will before you claim and expect to die that night. Neutrals are never counted, so phrase a gap as 'not Good' (Yakuza or Neutral), not 'Evil'. Keep the full log in your will.",
    "status": "active",
    "support": [
     {
@@ -13888,6 +14080,12 @@
     {
      "game": "game_20261010_150921_904458",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Your count reads true alignment: the Katana holder's Good disguise, frames and Ex-Con readings don't fool it. Build a chain of cleared players. Ask every member of a group to confirm the count against what they know of themselves, so your claim becomes trusted. Then aim each census at one unknown, ideally where cleared players are likely to be drawn, so that once the other members are cleared an 'X of 3 Good' names the remaining player exactly. Post the group, the alignment counted and the count at once. Neutrals are never counted, so phrase a gap as 'not Good' (Yakuza or Neutral), not 'Evil'. Keep the full log in your will.",
+     "note": "Revision, not a game: the two extra members are random, so you can't aim at likely-cleared draws. Also adds the Ritualist warning to 'post at once'."
     }
    ]
   },
@@ -14166,7 +14364,7 @@
   {
    "id": "t272",
    "audience": "Village",
-   "tip": "Read the Katana's victim list as 'who threatened the Yakuza', not 'who threatened today's suspect'. Keep a running list of each victim, whom they had last checked or challenged, what their next result could have shown about every living player (an audit reads any token-holder, a scent any attacker), and who survives. When the Katana keeps killing whoever checked or pressed one quiet, uncontested claim, the player behind that claim and those who never challenged it are your leads. But when the victims were testers of a loud, already-disputed claimant who is left alive, don't conclude the kills protect him. Yakuza kill investigators for their own safety and leave a caught liar, often a Jester, standing as tomorrow's free mis-hang.",
+   "tip": "Read the Katana's victim list as 'who threatened the Yakuza', not 'who threatened today's suspect'. Keep a running list of each victim, whom they had last checked or challenged, what their next result could have shown about every living player (an audit reads any token-holder, a Bloodhound's trio count covers any attacker drawn into it), and who survives. When the Katana keeps killing whoever checked or pressed one quiet, uncontested claim, the player behind that claim and those who never challenged it are your leads. But when the victims were testers of a loud, already-disputed claimant who is left alive, don't conclude the kills protect him. Yakuza kill investigators for their own safety and leave a caught liar, often a Jester, standing as tomorrow's free mis-hang.",
    "status": "active",
    "support": [
     {
@@ -14192,6 +14390,12 @@
      "change": "edited",
      "old": "Read the Katana's victim list as a pointer. When the Katana keeps killing whoever just checked, audited or publicly pressed one particular claim, the player behind that claim, and those who never challenged it, are your leads. Keep a running list of each victim, whom they had last checked or challenged, and who survives.",
      "note": "Moderator plus Erin, Ivan, Olivia and Alice (Yakuza): the 'kills remove his testers' reading was backwards here and produced the Jester hang. Added the kept-alive-as-mislynch caveat."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Read the Katana's victim list as 'who threatened the Yakuza', not 'who threatened today's suspect'. Keep a running list of each victim, whom they had last checked or challenged, what their next result could have shown about every living player (an audit reads any token-holder, a scent any attacker), and who survives. When the Katana keeps killing whoever checked or pressed one quiet, uncontested claim, the player behind that claim and those who never challenged it are your leads. But when the victims were testers of a loud, already-disputed claimant who is left alive, don't conclude the kills protect him. Yakuza kill investigators for their own safety and leave a caught liar, often a Jester, standing as tomorrow's free mis-hang.",
+     "note": "Revision, not a game: a scent gives one combined count for a trio, not a per-player attack read."
     }
    ]
   },
@@ -14223,7 +14427,7 @@
   {
    "id": "t274",
    "audience": "Juror",
-   "tip": "Pick pairs with several shared votes. A pair with only one or two shared trials gives almost no signal, so wait until both have voted in a few trials. Aim at two suspects who seem to defend each other. A high match is a bloc lead, never a hang on its own. Post night, pair and exact counts, and keep them in your will.",
+   "tip": "Pick pairs with several shared votes. A pair with only one or two shared trials gives almost no signal, so wait until both have voted in a few trials. Aim at two suspects who seem to defend each other. A high match is a bloc lead, never a hang on its own. When a result shows something, post night, pair and exact counts, and keep every result in your will. A named Juror is a sure guess for a possible Ritualist (no Roleplayer is told it), so results that only confirm stated votes should stay in the will. Your check is Astral but a swap still moves it: if one of your pair posts a swap notice for that night, the counts describe the other swapped player.",
    "status": "active",
    "support": [
     {
@@ -14242,13 +14446,19 @@
     {
      "game": "game_20261011_055613_1111",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Pick pairs with several shared votes. A pair with only one or two shared trials gives almost no signal, so wait until both have voted in a few trials. Aim at two suspects who seem to defend each other. A high match is a bloc lead, never a hang on its own. Post night, pair and exact counts, and keep them in your will.",
+     "note": "Revision, not a game: posting now carries the Ritualist warning (already in the evidence), and a swap moves the Astral check (R23)."
     }
    ]
   },
   {
    "id": "t275",
    "audience": "Bloodhound",
-   "tip": "Your attack counts are running totals, so the first night is the baseline. Spend scent tokens on quiet players who claim no night action (a Vanilla, an Oracle with only 'wrong' guesses) and who sit in the holder pool your earlier draws left. A 1 on a no-action claimant is a near-certain Katana holder, and the same suspect scented on consecutive nights shows a total rising on a Katana night. Don't spend a token on the loud disputed claimant: a 0 there can't tell a Jester or a non-holder Yakuza from a Villager. Post every trio and count with the night. Never say you will scent tonight: a named Bloodhound is a sure Ritualist guess.",
+   "tip": "Each night you learn three names and one combined count: every Attack those three have made this game, tonight's included. It never says which of the three attacked, and it is a running total, so early trios set the baseline. A 0 means none of the three has attacked yet (a role-blocked attack doesn't count, and a Yakuza who hasn't held the Katana also reads 0). A positive count gives a pool of three. Narrow it by crossing trios across nights with each other, with 0 trios and with confirmed players, and remember that Village attackers (Vigilante shots, Veteran alerts, trap hits) count too. Spend scent tokens to put a quiet player who claims no night action (a Vanilla, an Oracle with only 'wrong' guesses) from the pool your earlier draws left into the trio. The other two are still random, so the count names that player only when both of them are already cleared. Don't spend a token on the loud disputed claimant: a 0 there can't tell a Jester or a non-holder Yakuza from a Villager. Post every trio and count with the night. Never say you will scent tonight: a named Bloodhound is a sure Ritualist guess.",
    "status": "active",
    "support": [
     {
@@ -14273,6 +14483,12 @@
      "change": "edited",
      "old": "Your attack counts are running totals, so the first night is the baseline. Spend scent tokens to put the same suspect in your trio on consecutive nights: a total that rises by one on a Katana night marks that player as the attacker. Post every trio and count with the night.",
      "note": "Dave: he announced a scent on the disputed claimant and was ritual-killed N2. A scent on Vanilla-claiming holder Alice would have shown her attack."
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Your attack counts are running totals, so the first night is the baseline. Spend scent tokens on quiet players who claim no night action (a Vanilla, an Oracle with only 'wrong' guesses) and who sit in the holder pool your earlier draws left. A 1 on a no-action claimant is a near-certain Katana holder, and the same suspect scented on consecutive nights shows a total rising on a Katana night. Don't spend a token on the loud disputed claimant: a 0 there can't tell a Jester or a non-holder Yakuza from a Villager. Post every trio and count with the night. Never say you will scent tonight: a named Bloodhound is a sure Ritualist guess.",
+     "note": "Revision, not a game: the Bloodhound learns one combined count for three players, so 'a 1 on a no-action claimant' and same-suspect comparisons no longer name a holder directly."
     }
    ]
   },
@@ -14299,7 +14515,7 @@
   {
    "id": "t277",
    "audience": "Yakuza",
-   "tip": "In the endgame, before choosing the night's kill, check every win condition, including a possible Vulture's threshold. If your team will hold a voting majority the next Day, Katana the quiet, unverified claimant and leave the confirmed villager alive to be hanged by your votes. Never make your win depend on a Ritualist guess about an unverified player. A miss leaves the target alive, outs the Ritualist at the next Day's start, and can leave exactly the count a Vulture needs.",
+   "tip": "In the endgame, before choosing the night's kill, check every win condition, including a possible Vulture's threshold. If your team will hold a voting majority the next Day, Katana the quiet, unverified claimant and leave the confirmed villager alive to be hanged by your votes. Never make your win depend on a Ritualist guess about an unverified player. A miss leaves the target alive, spends the tokens anyway, outs the Ritualist at the next Day's start, and can leave exactly the count a Vulture needs.",
    "status": "active",
    "support": [
     {
@@ -14313,13 +14529,19 @@
     {
      "game": "game_20261011_055615_1112",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "In the endgame, before choosing the night's kill, check every win condition, including a possible Vulture's threshold. If your team will hold a voting majority the next Day, Katana the quiet, unverified claimant and leave the confirmed villager alive to be hanged by your votes. Never make your win depend on a Ritualist guess about an unverified player. A miss leaves the target alive, outs the Ritualist at the next Day's start, and can leave exactly the count a Vulture needs.",
+     "note": "Revision, not a game: added that a wrong guess spends its tokens."
     }
    ]
   },
   {
    "id": "t278",
    "audience": "Chronicler",
-   "tip": "Spend an early mark (Night 1-2) on one side of a contested claim, above all a duplicate investigator claim whose results conflict, or on an unclaimed suspect. If that player dies by any cause, their true role is announced, which settles the dispute, exposes a Roleplayer or fake claimant, and is one of the few ways a role becomes known now that deaths hide roles. Your mark is a visit, so when asked about your night action, say plainly at once whom you marked and on which night. Visitor logs will show the visit, and a 'no action' answer would contradict them. Keep your marks in your will.",
+   "tip": "Spend an early mark (Night 1-2) on one side of a contested claim, above all a duplicate investigator claim whose results conflict, or on an unclaimed suspect. If that player dies by any cause, their true role is announced, which settles the dispute, exposes a Roleplayer or fake claimant, and is one of the few ways a role becomes known now that deaths hide roles. Your mark is a visit, so when asked about your night action, say plainly at once whom you visited and on which night. Visitor logs will show the visit, and a 'no action' answer would contradict them. Calling it a mark names your exact role, a sure guess for a possible Ritualist. Your marks outlive you, so the claim costs you less than it costs most roles, but while one may be in the game and you still hold a token, add the Chronicler claim only when the visit needs explaining. Keep your marks in your will.",
    "status": "active",
    "support": [
     {
@@ -14333,6 +14555,12 @@
     {
      "game": "game_20261011_055615_1112",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Spend an early mark (Night 1-2) on one side of a contested claim, above all a duplicate investigator claim whose results conflict, or on an unclaimed suspect. If that player dies by any cause, their true role is announced, which settles the dispute, exposes a Roleplayer or fake claimant, and is one of the few ways a role becomes known now that deaths hide roles. Your mark is a visit, so when asked about your night action, say plainly at once whom you marked and on which night. Visitor logs will show the visit, and a 'no action' answer would contradict them. Keep your marks in your will.",
+     "note": "Revision, not a game: the answer-at-once advice now separates naming the visit from naming the exact role, with the Ritualist warning."
     }
    ]
   },
@@ -14359,7 +14587,7 @@
   {
    "id": "t280",
    "audience": "Village",
-   "tip": "A Smuggler swap redirects every action aimed at either swapped player: the Katana, a Medic's save, a Sheriff check, a Juror or Seer pair. The result still names the player the user chose. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
+   "tip": "A Smuggler swap redirects every action aimed at either swapped player, whether or not it visits: the Katana, a Medic's save, a Sheriff check, a Seer pair, and Astral checks such as an Oracle guess, a Juror pair, a Scrutineer pick or a Cartographer's map. The result still names the player the user chose. Random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
    "status": "active",
    "support": [
     {
@@ -14373,6 +14601,12 @@
     {
      "game": "game_20261011_074934_1113",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "A Smuggler swap redirects every action aimed at either swapped player: the Katana, a Medic's save, a Sheriff check, a Juror or Seer pair. The result still names the player the user chose. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
+     "note": "Revision, not a game: makes explicit that a swap moves Astral checks too (R23) and doesn't move revenge or curse draws."
     }
    ]
   },
@@ -14430,7 +14664,7 @@
   {
    "id": "t283",
    "audience": "Scrutineer",
-   "tip": "Post every trial's count from your scrutiny the Day it arrives: the night, all three names and the count for each trial. Cross each count with the three players' stated votes. If two of them stated their votes, the count names the third player's vote. A half-posted result loses the part that pins a Yakuza. Your scrutiny is Astral, so there is no reason to hold the target back once the result exists.",
+   "tip": "When a scrutiny pins a vote, post it the Day it arrives, and post all of it: the night, all three names and the count for each trial. Cross each count with the three players' stated votes. If two of them stated their votes, the count names the third player's vote. A half-posted result loses the part that pins a Yakuza. Your scrutiny is Astral, so there is no visit to hide and no reason to hold the target back once you post. A named Scrutineer is a sure guess for a possible Ritualist (no Roleplayer is told it), so when one may be in the game a count that only matches the stated votes can wait in your will.",
    "status": "active",
    "support": [
     {
@@ -14444,6 +14678,12 @@
     {
      "game": "game_20261011_074934_1113",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_100842",
+     "change": "edited",
+     "old": "Post every trial's count from your scrutiny the Day it arrives: the night, all three names and the count for each trial. Cross each count with the three players' stated votes. If two of them stated their votes, the count names the third player's vote. A half-posted result loses the part that pins a Yakuza. Your scrutiny is Astral, so there is no reason to hold the target back once the result exists.",
+     "note": "Revision, not a game: 'post every count the Day it arrives' now applies to counts that pin a vote, with the Ritualist warning for the rest."
     }
    ]
   },
