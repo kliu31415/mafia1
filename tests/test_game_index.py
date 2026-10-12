@@ -98,3 +98,28 @@ def test_serve_re_renders_a_page_older_than_its_log_or_the_viewer(tmp_path, monk
     game_index.fresh_log_page(tmp_path, "/game_1.html")
     assert page.read_text(encoding="utf-8") != "fresh"
     game_index.fresh_log_page(tmp_path, "/../x.html")  # not a game page: nothing happens
+
+
+def test_serve_sends_a_placeholder_while_a_page_rebuilds(tmp_path, monkeypatch):
+    import threading
+    log = tmp_path / "game_2.jsonl"
+    log.write_text('{"kind": "setup", "players": [], "katana": null}', encoding="utf-8")
+    started = threading.Event()
+    release = threading.Event()
+
+    def slow_render(path):
+        started.set()
+        release.wait(5)
+        path.with_suffix(".html").write_text("built", encoding="utf-8")
+    import log_viewer
+    monkeypatch.setattr(log_viewer, "render_html", slow_render)
+    assert game_index.rebuilding(tmp_path, "/game_2.html")  # starts the render in the background
+    assert started.wait(5) and game_index.rebuilding(tmp_path, "/game_2.html")  # still building: placeholder again
+    release.set()
+    for _ in range(100):
+        if not game_index.BUILDING:
+            break
+        threading.Event().wait(0.05)
+    assert not game_index.rebuilding(tmp_path, "/game_2.html")  # built: the page itself goes out
+    assert (tmp_path / "game_2.html").read_text(encoding="utf-8") == "built"
+    assert "Rebuilding" in game_index.REBUILDING_PAGE and 'http-equiv="refresh"' in game_index.REBUILDING_PAGE

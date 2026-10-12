@@ -832,10 +832,10 @@ def render_html(jsonl_path: Path) -> Path:
             else:
                 out.append(pre("Cost by model (USD)", r.get("cost")))
     end_phase()
-    body = "".join(out)
-    for n, info in nights.items():
-        body = body.replace(f"\0night {n}\0", night_html(n, info, name))
-    body = re.sub("\0night [0-9]+\0", "", body)
+    # One pass over the page for every night card (a replace per night took a third of the render time)
+    body = re.sub("\0night ([0-9]+)\0",
+                  lambda m: night_html(int(m[1]), nights[int(m[1])], name) if int(m[1]) in nights else "",
+                  "".join(out))
 
     legend = "".join(f"<span class='badge {c}' data-cat='{c}' title='Click to hide or show these lines'>{esc(label)}"
                      "</span>" for c, label in CATEGORY_LABELS.items())

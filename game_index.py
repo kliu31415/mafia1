@@ -187,24 +187,63 @@ def viewer_mtime() -> float:
     return max(p.stat().st_mtime for pattern in VIEWER_SOURCES for p in here.glob(pattern))
 
 
-def fresh_log_page(log_dir: Path, url_path: str) -> None:
-    """Re-renders a game's HTML page before `serve` sends it, if it's older than its log or the viewer code (about a
-    second per 10 MB of log, once per change). A failed render leaves the old page."""
+def stale_log(log_dir: Path, url_path: str) -> Path | None:
+    """The log of a game page that's older than it or than the viewer code (so it needs re-rendering), else None."""
     name = urllib.parse.unquote(url_path).lstrip("/")
-    if not name.endswith(".html") or "/" in name or name == INDEX:
-        return
+    if not name.endswith(".html") or "/" in name or "\\" in name or name == INDEX:
+        return None
     page, log = log_dir / name, (log_dir / name).with_suffix(".jsonl")
     if not log.exists():
-        return
+        return None
+    built = page.stat().st_mtime if page.exists() else 0.0
+    return log if built < max(log.stat().st_mtime, viewer_mtime()) else None
+
+
+BUILDING: set[Path] = set()  # logs whose page a background thread is re-rendering
+FAILED: dict[Path, float] = {}  # log -> its mtime when its re-render failed (not retried until it changes)
+STATE_LOCK = threading.Lock()
+
+
+def fresh_log_page(log_dir: Path, url_path: str) -> None:
+    """Re-renders a game's HTML page if it's older than its log or the viewer code (about a second per 10 MB of log,
+    once per change). A failed render leaves the old page and isn't retried until the log changes."""
     with RENDER_LOCK:
-        built = page.stat().st_mtime if page.exists() else 0.0
-        if built >= max(log.stat().st_mtime, viewer_mtime()):
+        if not (log := stale_log(log_dir, url_path)):
             return
         try:
             import log_viewer
             log_viewer.render_html(log)
         except Exception as e:  # serve keeps going; the old page (if any) is sent
-            print(f"ALERT render_error: couldn't re-render {name}: {type(e).__name__}: {e}")
+            FAILED[log] = log.stat().st_mtime
+            print(f"ALERT render_error: couldn't re-render {log.with_suffix('.html').name}: {type(e).__name__}: {e}")
+
+
+def rebuilding(log_dir: Path, url_path: str) -> bool:
+    """For `serve`: whether this game page is being re-rendered in the background, so a placeholder goes out instead
+    (REBUILDING_PAGE, which reloads itself). Starts the re-render if it isn't running."""
+    log = stale_log(log_dir, url_path)
+    if not log or FAILED.get(log) == log.stat().st_mtime:
+        return False
+    with STATE_LOCK:
+        if log not in BUILDING:
+            BUILDING.add(log)
+
+            def run() -> None:
+                try:
+                    fresh_log_page(log_dir, url_path)
+                finally:
+                    with STATE_LOCK:
+                        BUILDING.discard(log)
+            threading.Thread(target=run, daemon=True).start()
+    return True
+
+
+# Sent while a game page is re-rendered (Kevin, Oct 12 2026: show that it's building); it reloads every second.
+REBUILDING_PAGE = """<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="1">
+<title>Rebuilding...</title><style>body{font:16px system-ui,sans-serif;margin:3em;color:#222;background:#fff}
+@media (prefers-color-scheme:dark){body{color:#ddd;background:#1b1b1b}}</style></head><body>
+<p><b>Rebuilding this game's page...</b></p><p>Its log or the log viewer changed since the page was last built. This
+page reloads by itself when it's ready (about a second per 10 MB of log).</p></body></html>"""
 
 
 def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> None:
@@ -214,11 +253,15 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
 
         def do_GET(self) -> None:
             if self.path.split("?")[0] not in ("/", f"/{INDEX}"):
-                fresh_log_page(log_dir, self.path.split("?")[0])
-                super().do_GET()
+                if rebuilding(log_dir, self.path.split("?")[0]):
+                    self.send_page(REBUILDING_PAGE.encode())
+                else:
+                    super().do_GET()
                 return
             now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-            page = render(load_summaries(log_dir, include_mock), now, live=True).encode()
+            self.send_page(render(load_summaries(log_dir, include_mock), now, live=True).encode())
+
+        def send_page(self, page: bytes) -> None:
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(page)))
