@@ -223,3 +223,52 @@ Katana: Frank holds it and attacks Carol.
 (to Carol) Moderator (private): You were attacked tonight (Katana) and died.
 (to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Carol. Grace (Pharmacist) chose to act on Alice ("Pharmacist role-block on Alice, as agreed in the Yakuza night chat, so her Medic protection cannot reach Carol.").
 (to Grace) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Carol. Frank (Grunt) chose no action.
+
+===== DAY 4 =====
+Carol died (killed by Katana). Their role isn't revealed. Their last will: "Carol, Sheriff (Good). N1: checked Dave, Not Evil. N2: checked Bob, EVIL. Bob claimed Seer and reads Evil, so treat Bob as Yakuza or a Neutral Jester/Executioner and vote Guilty. Erin's Tracker read (N1: Carol visited Dave) matches my check. Look for mechanical fits before trusting any claim."
+Alice died (killed by Jester's revenge). Their role isn't revealed. Their last will: "Alice, Medic (Village). Night 1: protected Carol. Night 2: my protection was role-blocked. Erin's Night 1 track and Carol's Sheriff check put Dave Not Evil. Carol's Night 2 check says Bob is EVIL; I voted Guilty on Bob. Vote on mechanical results, not claims."
+Speaking order today goes around the circle in seat order, starting with Grace.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Grace (public): Grace, Vanilla Villager. I'm nominating Dave now. His Sniper claim conflicts with Heidi's, and he shot a Village claimant. Vote Guilty on his trial.
+(to Frank, Grace) Grace -> Frank (private): Nominating Dave now. Vote Yes on the nomination and Guilty at trial, same as Day 2.
+Grace nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Grace, Frank; No - Dave
+Nomination votes on Dave: 2 Yes (the votes are secret).
+Dave is put on trial (2 Yes).
+Dave (public): Dave, real Sniper (Village). If the town hangs me, two players are left. If one of you is Yakuza, the Katana wins the next night, so weigh that before voting. My Night 1 Sheriff read (Not Evil) is corroborated by Erin's Tracker read, and Carol's Night 2 check on Bob (EVIL) fits Bob being the Jester, so Carol's line has held up. Heidi's will is the only thing against me, and her Sniper claim was false by my own knowledge. Frank and Grace, you both pushed this hang on Heidi's will alone. Name one mechanical reason to hang me. I'll use my last sniper token on a Day turn only on a clear Evil read, which needs me alive.
+[Claim] Frank: Vanilla Villager. No night actions or results. D2: nominated Dave, Guilty on Dave. D3: Guilty on Bob. D4: Guilty on Dave.
+Frank (public): Frank, Vanilla Villager. Nothing new from me. Dave's Sniper claim conflicts with Heidi's, he shot her, and no mechanical result clears him. I'm voting Guilty.
+[Claim] Grace: Vanilla Villager. No night actions with results. D2: nominated Dave, Guilty on Dave. D3: Guilty on Bob. D4: Guilty on Dave.
+Grace (public): Grace, Vanilla Villager. I'm voting Guilty on Dave. He shot Heidi on Day 2, and no result clears him. Nothing new from me.
+[Claim] Dave: Sniper (Village). N1: no action. D2: Standard shot at Heidi (killed). 1 sniper token left. D3: Guilty on Bob. D4: Innocent on self.
+Dave (public): Dave, real Sniper (Village). Three of us are alive, so count the Yakuza. Erin and Carol were both killed by the Katana, so a living Yakuza holds it, and that has to be Frank or Grace. Carol's Night 1 Sheriff check on me was Not Evil. Her Night 2 check on Bob read EVIL, and Bob was the Jester, so her checks have been accurate. Erin's Tracker result on Carol's visit to me fits that. If you hang me, two remain: the Katana holder kills the other Village player next night and wins one-on-one. Frank and Grace both pushed this hang on Heidi's will, which is one unverified claim. Neither of you has a mechanical result against me. I'm voting Innocent on myself. Judge me on the evidence, and don't hand the Yakuza the game.
+Trial votes on Dave: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Frank, Grace; Innocent - Dave
+Dave is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave, Village, real Sniper. 1 sniper token left. Day 2: I shot Heidi, whose Sniper claim was false. Carol's Night 1 Sheriff check on me was Not Evil, and Erin's Tracker read of Carol's visit to me matches it. Carol's Night 2 check on Bob (EVIL) was accurate, since Bob was the Jester. The Katana killed Erin and Carol, so one of Frank or Grace is Yakuza and holds it. Hanging Dave leaves Yakuza one-on-one with a Village player, so test the mechanical reads before hanging anyone. Do not hang on a will alone."
+The game is over. Winners: Frank, Grace, Bob (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Frank, Grace, Bob
+Cost by player (USD):
+  Alice (Medic)       $0.0000   24 calls  claude-haiku-5.5
+  Bob (Jester)        $0.0000   20 calls  claude-haiku-5.5
+  Carol (Sheriff)     $0.0000   23 calls  claude-haiku-5.5
+  Dave (Sniper)       $0.0000   26 calls  claude-haiku-5.5
+  Erin (Tracker)      $0.0000   18 calls  claude-haiku-5.5
+  Frank (Grunt)       $0.0000   34 calls  claude-haiku-5.5
+  Grace (Pharmacist)  $0.0000   34 calls  claude-haiku-5.5
+  Heidi (Sniper)      $0.0000    7 calls  claude-haiku-5.5
+  Moderator           $0.0000    4 calls  claude-opus-5.5
+  Night checks        $0.0000    3 calls  claude-opus-5.5
+  Strategy review     $0.0000    1 calls  claude-opus-5.5
+  Log review          $0.0000    1 calls  claude-opus-5.5
+  Total               $0.0000  195 calls
