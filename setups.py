@@ -232,6 +232,10 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
         if good:
             return rng.choice(good)
         tried += scored
+    if yakuza is None and n_yakuza < usual:
+        # Two Yakuza in 13 seats often can't be balanced by any roles (21 of 44 such draws): fall back to the usual
+        # count (Kevin's to veto, Oct 12 2026).
+        return balanced_setup(n, rng, pool, usual, script)
     return min(tried, key=lambda x: x[0])[1]
 
 
