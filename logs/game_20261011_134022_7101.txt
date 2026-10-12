@@ -1,0 +1,290 @@
+Setup:
+  Alice    seat 1  Ritualist         anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Prosecutor        anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Ballot Stuffer    anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Juror             anthropic/claude-haiku-5.5 (via Claude Code)
+  Erin     seat 5  Scrutineer        anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Juror             anthropic/claude-haiku-5.5 (via Claude Code)
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5 (via Claude Code)
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 7 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Carol) Alice (Yakuza chat): Night 1 plan from Alice: I won't guess a role with the Ritualist tonight, since a wrong guess announces me as a Ritualist at the start of Day 2. I suggest Carol keeps the Katana and we make no attack tonight, because we have no reads yet. We can pick a target once we've seen Day 2 behavior. Carol, if you want an attack, name your target and I'll vote with you, but I'd rather wait.
+(to Alice, Carol) Carol (Yakuza chat): Agreed with Alice: no attack tonight. We have no reads yet, and a Night 1 kill wastes a Katana attack. I'll keep the Katana on me and submit no target. Let's watch Day 2 behavior and pick a target then. Ready.
+Night actions:
+  Alice (Ritualist): no role action; Katana vote: Carol holds, attacks None
+  Bob (Prosecutor): no action
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks None
+  Dave (Juror): no action
+  Erin (Scrutineer): no action
+  Frank (Juror): no action
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+[Moderator summary] Night 1: No player acted. Yakuza kept the Katana with Carol and chose not to attack. No visits, no role-blocks, no attacks, no token changes, no deaths.
+[Night check] Night 1: correct
+(to Alice) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Ballot Stuffer) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Alice (Ritualist) chose no action.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Frank.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Frank (public): No deaths last night, so we have no information yet. I'd rather not nominate blind. Let's hear everyone's read on the others before anyone commits to a hang.
+[Claim] Grace: Vanilla Villager. No night action.
+Grace (public): Grace here, Vanilla Villager, no night action and no results. I agree with Frank: no blind nomination. Anyone with a night result, please post it early and clearly.
+Alice (public): Alice here. Agreed, no blind nomination yet. Anyone with a night result, please post it. I'll read votes and claims before I push anyone.
+Bob (public): Bob here. Agreed, no blind nomination. I have no night result to share yet. Let's see who pushes early and who defends them.
+Carol (public): Carol here. Agreed, no blind nomination yet. Anyone with a real night result, post it now. I'd like to see who pushes early before I commit a vote.
+Dave (public): Dave here. Agreed, no blind nomination yet. I have no result from Night 1. Let's see who pushes early.
+Erin (public): Erin here. Agreed, no blind nomination. I have no night result yet, so I'll read votes and who pushes early before I commit.
+Frank (public): Frank again. Still no info, so no nomination from me yet. Whoever pushes a hang on Day 2 with nothing to back it up should explain why.
+Grace (public): Grace again. Still no information, so no nomination from me. Whoever has a night result, please post it now, with your target and who visited you.
+Alice (public): Alice here. Still no reads, so no nomination from me. Grace's Vanilla claim is noted. Anyone who pushes a hang before we have results should explain why.
+Bob (public): Bob again. Still no results, so no nomination from me. Whoever has a night action, please say who you targeted and what you learned, even if it was nothing.
+Carol (public): Carol again. No reads yet, so no nomination from me. Anyone who has a Night 1 result, post it now with the target and who visited you.
+Dave (public): Dave again. Still no nomination from me. Night 1 gave nobody a result I can share. Since Grace is the only claim so far, I'd like the others to say whether they hold any role with a night action, even if the result was empty.
+Erin (public): Erin again. Answering Dave: I do hold a night action, but it reads past trials, so there was nothing to get on Night 1. No nomination from me yet. I'll post any real result as soon as one exists.
+Frank (public): Frank again. Erin, you say your night action reads past trials. Which role is it, and what would it show you on Night 2? Grace's Vanilla claim stands for now. Still no nomination from me.
+[Claim] Grace: Vanilla Villager. No night action, no results.
+Grace (public): Grace again. Erin, if your role reads past trials, Night 1 would have shown you nothing, so your claim can't be checked yet. Name the role and I'll weigh it with everything else. Still no nomination from me. Night 2 results are what I want to see before anyone is hanged.
+Alice (public): Alice again. Still no nomination from me. Erin, you still haven't named your role. Name it, and let's get Night 2 results before anyone hangs.
+Bob (public): Bob again. Erin, "reads past trials" doesn't name a role. Name it now so we can check it against Night 2 results. No nomination from me yet.
+Carol (public): Carol again. Erin has now dodged naming the role twice. Erin, name it in your next message. Everyone with a night action, post your Night 2 target and result as soon as you have it. No nomination from me yet.
+Dave (public): Dave again. Erin, you still haven't named your role. "Reads past trials" is not an answer. Name it, or we treat that as a dodge. I hold a night action and will post my Night 2 result in my next turn. No nomination from me yet.
+[Claim] Erin: Scrutineer (Good). N1: no action, no trials yet. Will scrutinize a trial voter once a trial has happened.
+Erin (public): Erin here. My role is Scrutineer. It reads the voters of the Day's trials, so Night 1 had nothing to read. I should have named it earlier. I'll post my Night 2 result as soon as there's a trial to read. No nomination from me yet.
+[Claim] Frank: Juror (Good). Night action: pick two players and learn how often they voted the same way. Will post results.
+Frank (public): Frank here. I'm the Juror (Good). Each night I can name two players and learn how often they voted the same way, so I'll post a result once I have one. Erin, Scrutineer is a Good claim, so scrutinize the first trial voters and post the result. Still no nomination from me.
+[Claim] Grace: 'Vanilla Villager. No night action, no results.'
+Grace (public): Grace again. Frank, Juror is a Good claim, so name the pair you chose for your result and what it showed. Erin, Scrutineer needs a trial to read, so post the voter result once one happens. No nomination from me yet.
+Alice (public): Alice again. No nomination from me yet. Erin and Frank both hold claims with results still pending. Erin, the Scrutineer read needs a trial, so propose one we can check. Frank, name the pair you tested. Grace, your Vanilla claim stands for now.
+Bob (public): Bob here. Still no nomination from me. Frank and Erin both hold Good claims with results pending, so Frank, name the pair you tested. Erin, a Scrutineer read needs a trial, so we should get one soon.
+Carol (public): Carol again. No nomination from me yet. Frank, name the pair you tested. Erin, let's get a trial so your Scrutineer read can be checked. Hanging anyone before that is premature.
+[Claim] Dave: Juror (Good). N1: no action. Will post Night 2 pair result.
+Dave (public): Dave again. I'm also a Juror (Good). I submitted no pair on Night 1, so I have nothing to post yet. Frank, post the pair you tested and its result. Erin, your Scrutineer read needs a trial, so I'll back one if we get a reasonable nominee. No nomination from me yet.
+Erin (public): Erin here. Frank and Dave both claim Juror, so at least one of them is lying. Both should post their pair and result now, and the other Juror can check it. I'll scrutinize the first trial's voters once there is a trial. No nomination from me yet.
+Frank (public): Frank again. Dave, I'm the Juror. Only one of us can be the real one, so Dave, post your pair and result now. Erin, I'd support a trial once someone nominates, but I won't nominate blind.
+[Claim] Grace: Vanilla Villager. No night action, no results.
+Grace (public): Frank and Dave can't both be Juror. Dave, you said you submitted no pair on Night 1, so post what you'd have tested and why. Frank, name your pair and result. Stall rule: no deaths yet, so we must hang someone by Day 4. If neither Juror gives a checkable result, I'll back a nomination of whichever one dodges.
+Alice (public): Alice here. Frank and Dave can't both be Juror, and Dave's "no pair submitted" gives us nothing to check. Dave, say who you would have tested. Frank, post your pair and result. No nomination from me yet.
+Bob (public): Bob again. Frank and Dave can't both be Juror. Frank, post your pair and its result now. Dave, post the pair you would have tested. If neither gives a checkable result next round, I'll nominate whoever dodged.
+Carol (public): Carol again. Frank and Dave both claim Juror, and only one can be real. Dave, you say you submitted no pair on Night 1, so you have no result to check. Frank, you have a pair but haven't named it. I'd like both to say which two players they tested and what it showed, now. If Dave can't give a checkable result by next round, I'll back his nomination.
+[Claim] Dave: Juror (Good). N1: no action. N2: will post pair result.
+Dave (public): Dave here, and I'm the real Juror. Frank, you claimed Juror too, so one of us is faking. I'll post my Night 2 pair result. Frank, name the pair you tested and what it showed. No nomination from me until we have Night 2 results.
+Erin (public): Erin again. Frank and Dave both claim Juror, and neither has posted a checkable result yet. Frank, name your pair and result now. Dave, post the pair you'd have tested. Once a trial happens I'll scrutinize its voters and post the result. No nomination from me yet.
+[Claim] Frank: Juror (Good). N1: no action, no pair submitted. N2: will test a pair and post the result.
+Frank (public): Frank here. To be clear, I submitted no pair on Night 1, so I have no result to post yet. I'll test a pair on Night 2 and post it with the outcome. Dave and I both claim Juror, so Night 2 results will settle it. No nomination from me yet.
+Grace (public): Grace here. Still no nomination from me. Frank and Dave both claimed Juror with nothing to check yet, so the Night 2 pair results decide it. Erin, if a trial comes up, scrutinize its voters and post the result.
+Alice (public): Alice again. Frank and Dave can't both be Juror, so the one who posts a checkable pair result next round should be believed. Stall rule: no deaths yet, so we need a trial or a death by Day 4. I'll back a nomination of whichever Juror still dodges a checkable result.
+Bob (public): Bob here. No nomination from me yet. Frank and Dave, post your checkable pair results next round. Whoever dodges gets my vote, and we need a trial before the stall rule bites.
+Carol (public): Carol again. Frank and Dave, post your checkable pair results now. Erin, if a trial happens, scrutinize its voters. No nomination from me yet.
+Dave (public): Dave here, the real Juror. Frank, you can't also be Juror. I'll post my Night 2 pair result, and no nomination from me yet.
+Erin (public): Erin here. Frank and Dave can't both be Juror. Both post the pair you tested and the result now. I'll scrutinize the first trial's voters as soon as one happens. No nomination from me yet.
+Frank (public): I'm the real Juror, so Dave is the one lying. I'll post my Night 2 pair result at dawn. No nomination from me yet.
+Grace (public): Grace here. Frank and Dave can't both be Juror. Next round, whichever one gives no checkable pair result gets my vote to hang. Erin, we need a trial.
+Alice (public): Alice again. Frank and Dave can't both be Juror. Both of you, name your pair and result now. Whoever dodges gets my vote.
+Bob (public): Bob again. No nomination from me yet. Frank and Dave, post your checkable pair results at dawn. Whoever dodges again gets my vote.
+Carol (public): Carol here. Frank and Dave, post your checkable pair results at dawn. Whoever dodges again gets my vote. No nomination from me yet.
+Dave (public): Dave here. I'm the real Juror, so Frank is the one faking. Frank, post your Night 2 pair and result now or it's a dodge. No nomination from me yet.
+Erin (public): Erin here. Still no trial, so no nomination from me. Frank and Dave, post your checkable pair results before this Day ends.
+Frank (public): Frank here, the real Juror. I know my own role, so Dave's Juror claim is false. Dave, explain why you're faking it.
+Grace (public): Grace here. Frank and Dave conflict, and neither has posted a checkable result. Whichever Juror dodges again next Day gets my vote to hang.
+Alice (public): Alice here. Frank and Dave can't both be Juror. Post your checkable pair results at the start of Day 3, and whoever dodges again gets my vote. No nomination from me yet.
+Bob (public): Bob here. No nomination from me this Day. Frank and Dave, post your checkable pair results at the start of Day 3. Whoever still dodges gets my vote, and we need a trial before the stall rule bites.
+Carol (public): Carol here. No nomination from me yet. Frank and Dave, post your checkable pair results at the start of Day 3. Whoever still dodges gets my vote, and we need a trial before the stall rule bites.
+[Feedback from Dave] The nominate field and the vote field are both set by this form; the first attempt failed on JSON parsing of nulls, so plain values work better.
+Dave (public): Dave here, the real Juror. Frank has dodged his pair result twice. Nominating Frank.
+Dave nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Dave, Erin, Grace, Alice, Bob, Carol; No - Frank
+Nomination votes on Frank: 6 Yes (the votes are secret).
+Frank is put on trial (6 Yes).
+[Claim] Frank: Juror (Good). N1: no pair submitted. N2: will test a pair and post the result at dawn.
+Frank (public): Frank here, the real Juror. I submitted no pair on Night 1, so I have no result to post yet. I'll test a pair on Night 2 and post it at dawn with the outcome. Dave's nomination is a hang on a claim against a claim, with nothing checkable behind it. Only one of us can be the real Juror, and the Night 2 results will show which. Don't hang a Juror before then. Dave, post your pair and result now. I'm voting Innocent on myself.
+Grace (public): Grace here. I'm a Vanilla, so I have no result to add. Frank and Dave are a claim against a claim, and nothing checkable exists yet. Frank, name the pair you'll test tonight and post it at dawn. Dave, same. I'll vote on whoever gives a checkable result, not on who pushed.
+[Claim] Alice: Ritualist (Evil). Votes: Yes on Frank's nomination. Trial: undecided pending discussion.
+Alice (public): Alice here. Frank and Dave both claim Juror, and this trial is a claim against a claim with nothing checkable behind it. Frank, you say you'll test a pair at dawn, so name the pair you'd test tonight and say why. Dave, the same goes for you. I'm not voting Guilty on a push alone. I want a concrete, checkable reason before I commit.
+Bob (public): Bob here. Frank and Dave are a claim against a claim, and neither has posted a checkable result. I'm leaning Innocent on Frank for now. Frank, post your Night 2 pair at dawn. Dave, name the pair you'd test too. Whoever dodges again gets my Guilty vote.
+Carol (public): Carol here. Frank and Dave both claim Juror, and nobody has a checkable result yet. A hang on a claim against a claim isn't enough for me, so I'm voting Innocent on Frank. Both Jurors should post their Night 2 pair results at dawn.
+[Claim] Dave: Juror (Good). N1: no action. N2: will post pair result at dawn. Guilty on Frank (D2 trial).
+Dave (public): Dave here, the real Juror. Frank has claimed Juror but never posted a checkable pair result, only promises. Two Jurors can't both be real, and I know my own role. I'm voting Guilty on Frank.
+[Claim] Erin: Scrutineer (Good). N1: no action. D2: leaning Innocent on Frank. N2: will scrutinize a Day-2 trial voter and post the Guilty count.
+Erin (public): Erin here. Frank and Dave are still claim against claim, and nobody has a checkable result yet. I'm leaning Innocent on Frank. Hanging a Juror on a push with no evidence is a risk. My Scrutineer reads the voters of this trial tonight, and I'll post the Guilty count at dawn. Whoever wants Guilty should give a concrete reason first.
+Frank (public): Frank here, the real Juror. My Night 2 pair is tested tonight, so there was nothing to post on Night 1, and I didn't dodge anything. Dave's case is only that I haven't posted a result yet. Dave makes the same Juror claim I do, so one of us is lying, and only a checked result can settle it. Erin's Scrutineer count also comes at dawn. Hanging a Juror before any result exists would throw away the one check we can run tonight. Vote Innocent unless you have a concrete reason tied to something I did, not to who pushed the nomination.
+Trial votes on Frank: 1 Guilty, 6 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Dave; Innocent - Alice, Bob, Carol, Erin, Frank, Grace
+Frank is found Innocent (1 Guilty of 7 votes; 4 needed).
+Erin (public): Frank was found Innocent with 1 Guilty, which is Dave's vote by his own account. Tonight I'll scrutinize a Day-2 trial voter and post the Guilty count at dawn. Dave, post your Night 2 pair result at dawn too.
+Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Carol) Alice (Yakuza chat): Alice here. Proposal for tonight: Carol keeps the Katana (holder vote Carol) and we attack Erin. Erin claims Scrutineer, which can read trial voters, and that is a direct threat to us. Both of us submit Erin as the Katana target. I won't use my Ritualist tonight, since a wrong guess exposes me. Carol, confirm in chat and we both submit the same vote.
+(to Alice, Carol) Carol (Yakuza chat): Carol here. Agreed with Alice: I keep the Katana (holder vote: Carol), and Erin is the target. Erin's Scrutineer read threatens us, so I'll submit Erin as the Katana target alongside you. Both submit the same vote tonight.
+(to Alice, Carol) Alice (Yakuza chat): Alice here. Agreed: Carol holds the Katana, and we both submit Erin as the target. I won't use my Ritualist tonight. Submit the same vote and we're set. Ready.
+(to Alice, Carol) Carol (Yakuza chat): Carol here. Confirmed: I hold the Katana (holder vote Carol), and the target is Erin. Erin's Scrutineer claim threatens us, and the Frank/Dave Juror dispute gives us cover while we wait for Night 2 results. Both of us submit Erin as the target tonight. I'll keep my ballot tokens for later, since a doubled vote matters most once a trial is on the line. Ready.
+Night actions:
+  Alice (Ritualist): no role action; Katana vote: Carol holds, attacks Erin
+  Bob (Prosecutor): target Alice; 1 token(s); "Prosecute Alice to force a trial at the start of Day 3. She publicly claimed Ritualist (an Evil role) on Day 2, and the stall rule needs a death or trial soon."
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks Erin
+  Dave (Juror): target Frank; second target Alice
+  Erin (Scrutineer): target Dave; "Scrutinize Dave, who voted in the Day 2 trial of Frank, to check whether his claimed Guilty vote is real."
+  Frank (Juror): target Dave; second target Alice
+Katana: Carol holds it and attacks Erin.
+(to Dave) Moderator (private): Your jury check: Frank and Alice have no shared votes yet.
+(to Frank) Moderator (private): Your jury check: Dave and Alice voted the same way in 0 of 1 trial votes and 1 of 1 nomination votes.
+(to Erin) Moderator (private): Your scrutiny of Carol, Dave and Grace: the number of them who voted Guilty was 1 in the trial of Frank.
+(to Carol) Moderator (private): Your Katana attack on Erin succeeded.
+(to Bob) Moderator (private): You prosecute Alice. She goes on trial at the start of the next Day. 1 prosecutor token left.
+[Moderator summary] Night 2: Carol, holding the Katana, attacked Erin with a Standard attack. Erin had Defense None and died (Katana). Bob prosecuted Alice (1 token left), so her trial runs at the start of Day 3. Dave used Juror on Frank/Alice and Frank used Juror on Dave/Alice (jury ops). Erin's scrutiny of Dave still resolves, since actions are simultaneous. Alice and Carol took no own-role actions. Visits: Bob->Alice, Carol->Erin.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Erin. Carol (Ballot Stuffer) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Erin. Alice (Ritualist) chose no action.
+
+===== DAY 3 =====
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "I am a Good player, Scrutineer. I scrutinize trial voters to check claims. Vote with checkable evidence, not pressure."
+Alice is being prosecuted and goes straight to trial.
+[Claim] Alice: Ritualist (Evil). N1, N2: no guess, no action. D2: Yes on Frank's nomination, Innocent in Frank's trial.
+Alice (public): Alice here. I haven't nominated anyone, and I haven't pushed a hang on a claim against a claim. On Day 2 I voted Yes on Dave's nomination of Frank so a checkable result could come out, then Innocent at trial because none did. I used no Ritualist guess on either night, so there's no wrong-guess exposure to weigh. Erin's Scrutineer read is the lead we lost. Frank and Dave still conflict, and I want both Juror pair results before anyone votes Guilty. Judge my votes: Yes once, Innocent once, no pushes.
+Bob (public): Bob here. I'm voting Guilty on Alice. On Day 2 she publicly claimed Ritualist, a Yakuza-only role, and she used no guesses on either night. A Village player has no reason to advertise an Evil role, so she is either Yakuza or dodging. Alice, why would you name that role publicly? Frank and Dave, post your pair results now. No more dodging, since the stall rule means we need a death or hanging by Day 4.
+Carol (public): Carol here. I'm voting Innocent on Alice. Bob's case is that her Ritualist claim proves she's Evil, but the claim alone is not a checkable result. She made no guesses on either night, so nothing she did can be tested. The open question is still Frank vs Dave on Juror, and the pair results they promised for dawn will settle that. Hanging Alice on a role claim with no mechanical fit would be premature, so I'm not voting Guilty on it.
+[Claim] Dave: Juror (Good). N1: no action. N2: paired Frank & Alice; result "no shared votes yet." D2: Guilty on Frank.
+Dave (public): Dave here, the real Juror. My Night 2 pair was Frank and Alice. The moderator returned "no shared votes yet." But Alice says she voted Innocent on Frank's trial, Frank says he did too, and only Dave was Guilty. If both voted Innocent as they say, they overlap, so at least one of them is misreporting. Frank still hasn't posted his N2 pair result. Alice, a public Ritualist claim is an Evil role; explain why you made it. Erin's Scrutineer claim died to the Katana, which fits a Good power role being hit. Frank, post your pair now.
+[Claim] Frank: Juror (Good). N1: no pair. N2: Dave & Alice: 0 of 1 trial votes, 1 of 1 nomination votes same. D2: Innocent on Frank's trial.
+Frank (public): Frank here, the real Juror. Dave's Night 2 pair result doesn't fit the record. Frank and Alice both voted Innocent in Frank's Day 2 trial, so they shared a trial vote, and "no shared votes yet" is false. My own pair, Dave and Alice, shared 1 nomination vote and 0 trial votes, which fits Dave being Guilty and Alice Innocent. Dave, that's a lie about a checkable result, so you're the one faking. Alice, you've said Innocent at trial and Yes on the nomination, and you've been asked to explain your Ritualist claim. Answer that now. I'll decide my trial vote on your answer, but Dave's false result is the strongest read on the table.
+Grace (public): Grace here. Dave's pair result is provably false. Frank's Day 2 trial had 1 Guilty (Dave) and 6 Innocent, and Frank and Alice both voted Innocent there, so they shared a trial vote. Dave's "no shared votes yet" is a lie about a checkable result. Frank's result on Dave and Alice fits the record. Alice, your Ritualist claim is the open question. A Village player wouldn't claim an Evil role, so explain in plain words why you made it. I'm not voting Guilty on the claim alone, but Dave is my strongest Yakuza read.
+Alice (public): Alice here. I hold Ritualist and I have not guessed on either night, because a wrong guess announces me. That is why my claim can't be tested, and why I'd rather you judge my votes than the claim. Ritualist is a role I'm stating plainly, not a push.
+
+On Dave: his Night 2 pair result says Frank and Alice had "no shared votes yet." Frank and I both voted Innocent at Frank's Day 2 trial, and Grace's count confirms that. So Dave's result on a checkable question is false. Frank's result on Dave and me fits the record: one shared nomination vote, no shared trial vote. Dave is the cleanest lead on the table. Frank, post your pair results every night, and Dave, explain the false one.
+
+I voted Yes on Dave's nomination of Frank and Innocent at Frank's trial. I'm asking the Village to test Dave's claim before hanging anyone on a push.
+Trial votes on Alice: 4 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Bob, Dave, Frank, Grace; Innocent - Alice, Carol
+Alice is executed by hanging (4 Guilty of 6 votes; 4 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice: no confirmed reads yet. Frank and Dave are a claim against a claim (both Juror). Judge whoever posts a checkable Juror result and whoever dodges it. Vote on evidence, not on who pushes a nomination. Erin's Scrutineer read, if it was real, is the best lead the Village lost; check the trial voters of Day 2 against the Guilty counts when they are posted."
+
+===== NIGHT 3 =====
+Night actions:
+  Bob (Prosecutor): target Dave; 1 token(s); "Prosecute Dave to force a trial at the start of Day 4. Dave's Night 2 pair result ("no shared votes yet") is false: Frank and Alice both voted Innocent at Frank's trial, as Grace's count confirms. Frank's result on Dave and Alice matches the record."
+  Carol (Ballot Stuffer): 1 token(s); "Spend 1 ballot token so my vote counts twice in Day 4 trials. Katana holder: Carol (me). Katana target: Frank. Frank's Juror pair result matches the public record, while Dave's pair result ("no shared votes yet") is provably false, so Frank is the real information source."; Katana vote: Carol holds, attacks Frank
+  Dave (Juror): target Frank; second target Grace
+  Frank (Juror): target Dave; second target Bob; "Juror check: Dave and Bob, to test Dave's Juror claim against a player I have no read on."
+Katana: Carol holds it and attacks Frank.
+(to Dave) Moderator (private): Your jury check: Frank and Grace voted the same way in 1 of 1 trial votes.
+(to Frank) Moderator (private): Your jury check: Dave and Bob voted the same way in 1 of 2 trial votes and 1 of 1 nomination votes.
+(to Carol) Moderator (private): Your Katana attack on Frank succeeds. You spent a ballot token, so your vote counts twice in every Guilty/Innocent trial vote during Day 4. 1 ballot token left.
+(to Bob) Moderator (private): You prosecute Dave. He goes to trial at the start of Day 4. 0 prosecutor tokens left.
+[Moderator summary] Night 3: Nobody was role-blocked. Carol held the Katana and attacked Frank (Standard vs None), and Frank died (Katana). Carol stuffed the ballot for Day 4 (1 ballot token left). Bob prosecuted Dave, so Dave goes to trial at the start of Day 4 (0 prosecutor tokens left). Dave used Juror on Frank & Grace and Frank used Juror on Dave & Bob; both are Astral Visits and code sends the results. Visits: Carol->Frank, Bob->Dave. Alive: Bob, Carol, Dave, Grace, so 3 Village and 1 Yakuza and the game continues.
+[Night check] Night 3: correct
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 4 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank, Juror (Good). My Night 2 pair check: Dave and Alice voted the same way in 0 of 1 trial votes and 1 of 1 nomination votes. Dave claimed Juror and reported Frank & Alice as "no shared votes", but Frank and Alice both voted Innocent at Frank's trial. Trust checkable results over claims or pressure."
+Dave is being prosecuted and goes straight to trial.
+[Claim] Dave: Juror (Good). N2: Frank & Alice "no shared votes yet". N3: Frank & Grace 1 of 1 trial votes same. D2: Guilty on Frank.
+Dave (public): Dave here, the real Juror. My checks: N2 Frank & Alice "no shared votes yet"; N3 Frank & Grace 1 of 1 trial votes the same. Frank's Dave & Alice result matches the public record exactly. Frank died to the Katana, and Yakuza don't Katana their own, so he was probably Good, which makes his Juror claim credible. Alice claimed Ritualist, a Yakuza-only role, so she was likely Yakuza. Carol defended Alice and voted Innocent on her. Bob pushed her early. My only real action was Guilty on Frank, which matched the record. Hanging the Juror now helps the Yakuza. Vote Innocent unless you can name a mechanical fit against me.
+[Claim] Grace: Vanilla Villager. No night action. D2: Innocent on Frank's trial. D3: Guilty on Alice's trial.
+Grace (public): Grace here. I'm voting Guilty on Dave. Mechanical fit: Dave's Night 2 result said Frank and Alice had "no shared votes yet." The Day 2 trial record shows both voted Innocent on Frank, so they did share a trial vote, and Dave's result is false. Frank's pair on Dave and Alice (0 of 1 trial, 1 of 1 nomination) matches the record exactly. Dave's Juror claim rests on a provably false check, so I don't believe it. Guilty.
+[Claim] Bob: Prosecutor (Good). N2: prosecuted Alice (executed). N3: prosecuted Dave (Day 4 trial). D2: Innocent on Frank. D3: Guilty on Alice. D4: Guilty on Dave.
+Bob (public): Bob here. I'm voting Guilty on Dave. His Night 2 result said Frank and Alice had "no shared votes yet," but Frank and Alice both voted Innocent at Frank's Day 2 trial. That is a checkable lie. Frank's pair result matched the record, and Frank died to the Katana, which fits a real Juror. Dave's Juror claim rests on a false check. Carol, you defended Alice and voted Innocent on her after her public Ritualist claim. Explain that in plain words before the vote.
+Carol (public): Carol here. I'm voting Guilty on Dave. His Night 2 pair said Frank and Alice had "no shared votes yet," but both voted Innocent at Frank's Day 2 trial, so that checkable result is false. A false Juror check means his Juror claim is false. Guilty.
+[Claim] Dave: Juror (Good). N2 pair Frank & Alice: "no shared votes yet." N3 pair Frank & Grace: 1 of 1 trial votes same. D2: Guilty on Frank. D3: Guilty on Alice. D4: Innocent on self.
+Dave (public): Dave here, the real Juror, and I'm voting Innocent. My two checks, reported exactly as the moderator gave them: N2 Frank & Alice "no shared votes yet"; N3 Frank & Grace 1 of 1 trial votes the same. The N3 result matches the record. The N2 line doesn't: Frank and Alice both voted Innocent at Frank's Day 2 trial, so I can't reconcile it. I haven't changed it and I'm not hiding it. Frank's own check (Dave & Alice: 0 of 1 trial, 1 of 1 nomination) matches the record exactly. Frank died to the Katana, which points Good. You're hanging a Juror on one line I can't explain, so please weigh that doubt before the vote.
+Trial votes on Dave: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Bob, Carol, Grace; Innocent - Dave
+Dave is executed by hanging (4 Guilty of 5 votes; 3 needed; there are more votes than the 4 voters because a role manipulated the count on purpose (rules R4), not because of an error).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave, real Juror (Good). Night 2 pair Frank & Alice: "no shared votes yet" (conflicts with the Day 2 trial record, which I cannot explain). Night 3 pair Frank & Grace: 1 of 1 trial votes same. Frank's Dave & Alice result matches the record. Vote on checkable evidence, not pressure."
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Prosecutor): no action
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks Bob
+Katana: Carol holds it and attacks Bob.
+(to Carol) Moderator (private): Your Katana attack on Bob succeeded.
+[Moderator summary] Night 4: Carol (Ballot Stuffer, Yakuza) kept the Katana, made no Ballot Stuffer action and attacked Bob with the Standard Katana attack. Bob (Prosecutor, Defense None, no protection) died to the Katana. No other actions, so no role-blocks or investigations. Visits: Carol->Bob. Carol and Grace are left alive.
+[Night check] Night 4: correct
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 5 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "Bob, Prosecutor (Good). I prosecuted Alice (executed; she claimed Ritualist, an Evil role) and Dave (Day 4 trial). Dave's Night 2 pair result ("no shared votes yet" for Frank and Alice) was false, since Frank and Alice both voted Innocent at Frank's Day 2 trial. Frank's pair result matched the record. Treat Dave as my strongest Yakuza read and judge the Day 4 trial on checkable votes, not on pressure. Erin, Frank and Alice are all gone, so the Katana holder is still alive. Watch who visits whom, and do not let the stall rule end the game."
+Speaking order today goes around the circle in seat order, starting with Grace.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Grace (public): Grace here. Only Carol and I are alive, and the game hasn't ended, so one of us is not Good. I'm Vanilla and Good, so Carol, that leaves you. I'm nominating you to test that. If you're Good, vote Yes and show it.
+Grace nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Grace; No - Carol
+Nomination votes on Carol: 1 Yes (the votes are secret).
+The nomination of Carol failed (1 Yes).
+Carol (public): Carol here. I voted No on Grace's nomination because a two-player hang on a bare claim is a coin flip. Grace, I have no checkable information either, so I'm not pushing anyone today.
+[Feedback from Grace] The StructuredOutput JSON was rejected when I wrapped fields in a raw string; fields passed individually work fine.
+[Claim] Grace: Vanilla Villager. No night action. D2: Innocent on Frank. D3: Guilty on Alice. D4: Guilty on Dave. D5: Nominated Carol.
+Grace (public): Grace here. Bob died to the Katana on Night 4. Only Carol and I were alive, and I'm Vanilla with no night action, so Carol held the Katana that night. That makes Carol the last Yakuza. Carol, if you're Good, vote Yes on this nomination and prove it.
+Grace nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Grace; No - Carol
+Nomination votes on Carol: 1 Yes (the votes are secret).
+The nomination of Carol failed (1 Yes).
+Carol (public): Carol here. I'm not nominating and I'm voting No on nominations until someone has a checkable result. Grace, your Vanilla claim has no result to test, so neither of us can prove anything today.
+Grace (public): Grace here. Only Carol and I are alive. I'm Vanilla with no protection, so a Yakuza win needs me dead, and I can't stop it. I won't nominate blind. Carol, if you're Good, nominate yourself and vote Yes, and I'll vote Yes too. That's the only test left, and it costs you nothing.
+Carol (public): Carol here. Still no checkable result from either of us, so I won't nominate. I'm voting No on nominations until someone has a real result to test.
+[Claim] Grace: Vanilla Villager. No night action. D2: Innocent on Frank. D3: Guilty on Alice. D4: Guilty on Dave. D5: Nominated Carol (Yes), no trial. Night 4: Carol held the Katana (last Yakuza).
+Grace (public): Grace here. Night 4 Bob died to the Katana, and only Carol and I were alive, so the Katana holder was Carol. Carol, you're the last Yakuza. I'm Vanilla with no protection, so I can't stop a Night 5 attack. If you're Good, vote Yes on this nomination. I'm voting Yes and Guilty on you if you're trialed.
+Grace nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Grace; No - Carol
+Nomination votes on Carol: 1 Yes (the votes are secret).
+The nomination of Carol failed (1 Yes).
+Carol (public): Carol here. Grace, a bare Vanilla claim gives us nothing to check, and a two-player hang on claims alone is a coin flip. I'm voting No on nominations until someone posts a real result. Nobody gets my nomination today.
+(to Carol, Grace) Grace -> Carol (private): Carol, if you're Good, vote Yes now. Your vote is the only test left.
+Grace nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Grace; No - Carol
+Nomination votes on Carol: 1 Yes (the votes are secret).
+The nomination of Carol failed (1 Yes).
+Carol (public): Carol here. Still no checkable result from either of us, so I'm voting No on nominations and nominating nobody today.
+[Claim] Grace: Vanilla Villager. No night action. D2: Innocent on Frank. D3: Guilty on Alice. D4: Guilty on Dave. D5: Yes on Carol's nominations (failed). Night 4: Carol held the Katana (last Yakuza).
+Grace (public): Grace here. By elimination, Carol held the Katana on Night 4 and is the last Yakuza. I'll vote Yes on any nomination of Carol.
+Carol (public): Carol here. I'm not nominating anyone today. I'll keep voting No on nominations until someone posts a real checkable result.
+Grace (public): Grace here. Carol, you held the Katana on Night 4, so you are the last Yakuza. If you're Good, prove it with a Yes vote on my nomination.
+Carol (public): Carol here. Still no checkable result from either of us, so I'm voting No on nominations and nominating nobody today.
+Grace (public): Grace here. Carol held the Katana on Night 4, so she is the last Yakuza. Carol, if you're Good, prove it with a Yes vote.
+Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks Grace
+Katana: Carol holds it and attacks Grace.
+(to Carol) Moderator (private): Your Katana attack on Grace succeeded tonight. You did not use your Ballot Stuffer ability: 1 ballot token left.
+[Moderator summary] Night 5: Carol (Ballot Stuffer, Yakuza) held the Katana and attacked Grace (Vanilla Villager, Defense None) with a Standard Attack. Grace died. Carol did not use her own ability (1 ballot token left). Visits: Carol -> Grace. Only Carol is still alive, so the Yakuza should win when the win check runs.
+[Night check] Night 5: correct
+(to Grace) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 6 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace, Vanilla Villager, no night action. Carol held the Katana on Night 4 (Bob was killed by it), so Carol is the last Yakuza. Vote Carol Guilty if she is ever on trial."
+The game is over. Winners: Alice (dead), Carol. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Grace] Please check how Juror pair results are computed. Dave's Night 2 result conflicts with the public Day 2 trial record.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[Feedback from Grace] The Juror rule's exclusion (votes on either tested player's trial don't count) is easy to miss and was central to the Day 3-4 dispute. Stating it more prominently in the Juror role text would help.
+[Feedback from Frank] The Juror line "X and Y have no shared votes yet" was ambiguous. It read like a wrong result when the vote record showed a shared vote, and that wording misled the table.
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol
+Cost by player (USD):
+  Alice (Ritualist)         $0.0000   24 calls  claude-haiku-5.5
+  Bob (Prosecutor)          $0.0000   25 calls  claude-haiku-5.5
+  Carol (Ballot Stuffer)    $0.0000   42 calls  claude-haiku-5.5
+  Dave (Juror)              $0.0000   24 calls  claude-haiku-5.5
+  Erin (Scrutineer)         $0.0000   17 calls  claude-haiku-5.5
+  Frank (Juror)             $0.0000   22 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0000   31 calls  claude-haiku-5.5
+  Moderator                 $0.0000    6 calls  claude-opus-5.5
+  Night checks              $0.0000    5 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  198 calls

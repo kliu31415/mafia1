@@ -1,0 +1,196 @@
+Setup:
+  Alice    seat 1  Vanilla Villager  anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Insomniac         anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Smuggler          anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Diviner           anthropic/claude-haiku-5.5 (via Claude Code)
+  Erin     seat 5  Cartographer      anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Tracker           anthropic/claude-haiku-5.5 (via Claude Code)
+  Grace    seat 7  Vanilla Villager  anthropic/claude-haiku-5.5 (via Claude Code)
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 7 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least one of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Dave) Carol (Yakuza chat): Proposal for Night 1: no Katana attack tonight. We know nothing about anyone's role yet, and a Night 1 kill mostly removes a Village player without info. Katana stays with me (Carol). Dave, use your Diviner pick on someone you want information on; I'll hold my Smuggler swap token for a later night when it matters. Object now if you disagree, otherwise I'll vote no target tonight.
+(to Carol, Dave) Dave (Yakuza chat): Agreed, Carol: no Katana attack tonight, and the Katana stays with you. I'll use my Diviner pick on a Village player for information and share the result when it's useful. I'll also vote no target tonight.
+Night actions:
+  Bob (Insomniac): 1 token(s); "Staying awake (spending 1 insomniac token) to learn the roles of up to 3 players who visited someone tonight."
+  Carol (Smuggler): no role action; Katana vote: Carol holds, attacks None
+  Dave (Diviner): target Frank; Katana vote: Carol holds, attacks None
+  Erin (Cartographer): no action
+  Frank (Tracker): target Grace
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Dave) Moderator (private): You divined Frank; the group was Erin, Frank and Grace. The role drawn is Tracker (60% chance it is Frank's, otherwise one of the others').
+(to Frank) Moderator (private): You tracked Grace tonight. Grace did not visit anyone.
+[Moderator summary] Night 1: Bob (Insomniac) stayed awake (1 token left; code reports visitor roles: Diviner, Tracker). Carol (Smuggler) made no swap and stays Katana holder; Yakuza chose not to attack. Dave (Diviner) divined Frank (divine op). Erin (Cartographer) used no token; she gets group sizes from code. Frank (Tracker) tracked Grace, who visited no one. Visits: Dave->Frank, Frank->Grace. No deaths.
+[Night check] Night 1: correct
+(to Erin) Moderator (private): Tonight's visit groups have sizes 3, 1, 1, 1, 1.
+(to Bob) Moderator (private): You lay awake all night and heard every player who visited someone tonight. Their roles: Diviner, Tracker. 1 insomniac token left.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Dave (Diviner) chose to act on Frank.
+(to Dave) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Smuggler) chose no action.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Alice.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Alice: Vanilla Villager. No night action.
+Alice (public): Alice here, Vanilla Villager with no night action. Nobody died, so let's have any power roles share results and watch for early pushes to hang.
+[Claim] Bob: Insomniac. N1: stayed awake (1 token left). Visitors that night were a Diviner and a Tracker.
+Bob (public): Bob here, Insomniac. N1 I stayed awake and heard the visitors: one Diviner and one Tracker. No deaths, so no hang yet. Diviner and Tracker, please share results when you can.
+Carol (public): Carol here. No night action on N1 and no information yet. I'd like to hear from the Tracker and Diviner before anyone pushes a hang. Let's not hang on a single claim.
+Dave (public): Dave here. I hold a Night 1 result and will share it when it's most useful. Bob's Insomniac read of one Diviner and one Tracker fits Night 1, so let's hear from the Tracker before any hang.
+[Claim] Erin: Cartographer. 2 map tokens left. N1: group sizes 3,1,1,1,1 (no visit of mine).
+Erin (public): Erin here, Cartographer, with 2 map tokens left. My Night 1 result: visit groups were 3,1,1,1,1, so one group of three was linked by visits and the other four players had no visits in either direction. I'll post my group sizes every night. Tracker and Diviner, please share your results so we can compare.
+[Claim] Frank: Tracker. N1: tracked Grace, Grace visited no one.
+Frank (public): Frank here, Tracker. N1 I tracked Grace: Grace visited nobody. I'll post each night's result.
+[Claim] Grace: Vanilla Villager. No night action. N1: visited no one.
+Grace (public): Grace here, Vanilla Villager. I had no night action and visited nobody on N1, so Frank's Tracker result on me is accurate. Frank, Bob, Erin: Diviner, please post your result. Nobody hangs until we hear it.
+Alice (public): Alice here. Erin's 3,1,1,1,1 fits Bob's two visitors. Frank visited Grace, so the third member of that group must have visited Frank or Grace, and that visitor is the Diviner. Dave, you hinted at a Night 1 result. Please claim your role and result now so we can check it against Erin's groups.
+[Claim] Bob: Insomniac. N1: stayed awake (1 insomniac token left). Heard visitors: Diviner and Tracker.
+Bob (public): Bob again. Erin's 3,1,1,1,1 means the Diviner visited Frank or Grace, and Erin and Alice don't fit that visit. So the Diviner is Carol or Dave. Dave, please post your Night 1 result. Carol, if you aren't the Diviner, say so.
+Carol (public): Carol again. I'm not the Diviner and I had no night action on N1. Erin's 3,1,1,1,1 fits Frank tracking Grace and a Diviner visiting Frank, which is the link Alice found. Diviner, post your Frank result when it helps. No hang on one claim yet.
+[Claim] Dave: Diviner. N1: divined Frank; group Erin, Frank, Grace; one of them Tracker (Frank 60%).
+Dave (public): Dave here. Yes, I'm the Diviner, and I should have said so earlier. N1 I divined Frank. The group was Erin, Frank and Grace, and one of them is a Tracker. Frank's Tracker claim fits that group, and Erin's 3,1,1,1,1 fits my visit to Frank plus Frank's visit to Grace. Frank, if you're the Tracker, please keep posting your tracks. No hang on this yet, since Bob's Insomniac read and my result already give us a lot to check.
+Erin (public): Erin again. My 3,1,1,1,1 shows one linked trio and nobody else visiting anyone. That fits Bob's two visitors, Dave visiting Frank, and Frank tracking Grace. Dave's and Frank's claims don't contradict each other, so no hang yet. Night 2 results before any vote, please.
+[Claim] Frank: Tracker. N1: tracked Grace, Grace visited nobody. Will post each night's track result at the start of the next Day.
+Frank (public): Frank again. I'm the Tracker, and my N1 track on Grace is real: Grace visited nobody. Dave's Diviner claim fits Erin's 3,1,1,1,1 and Bob's two visitors, so I see no contradiction yet. I'll post my Night 2 track at the start of next Day, and I'm not hanging anyone before the Day 3 results.
+Grace (public): Grace again. I can confirm Frank's N1 track: I visited nobody. Dave's Diviner claim fits Erin's 3,1,1,1,1, so I see no contradiction yet. No hang until we hear Night 2 results.
+Alice (public): Alice again. Dave's and Frank's Night 1 claims fit Erin's 3,1,1,1,1 and Bob's two visitors, so I see no conflict. I won't nominate until we have Night 2 results. Please post them.
+Bob (public): Bob again. My Insomniac result says the only N1 visitors were a Diviner and a Tracker. Erin's 3,1,1,1,1 links Dave to Frank to Grace, which fits those two visitors. I'm not nominating before Night 2 results.
+[Claim] Carol: Smuggler. N1: no night action.
+Carol (public): Carol again. Dave's Diviner claim and Frank's Tracker track both fit Erin's 3,1,1,1,1 and Bob's two visitors, so I see no contradiction. I'm not nominating before the Night 2 results. Please post them.
+Dave (public): Dave again. My N1 Diviner result stands: group Erin, Frank, Grace, with one Tracker. Agreed, no nominations before Night 2 results. Please post them.
+Erin (public): Erin again. My Night 1 map shows one linked trio, Dave, Frank and Grace, and every other player is unlinked. That matches Bob's two visitors (a Diviner and a Tracker), Dave's visit to Frank, Frank's track on Grace, and Grace visiting no one. No contradiction, so no hang yet. I'll post Night 2 group sizes at the start of Day 3.
+[Claim] Frank: Tracker. N1: tracked Grace, Grace visited nobody. N2: will post result at start of Day 3.
+Frank (public): Frank again. I'm the real Tracker, and nothing in Erin's 3,1,1,1,1 or Bob's two visitors contradicts Dave's Diviner claim. I'll post my Night 2 track at the start of Day 3. No nominations from me today.
+Grace (public): Grace again. I'm a Vanilla Villager with no night action, and I visited nobody on N1, so Frank's track on me is accurate. Dave's group of Erin, Frank and Grace fits Frank being the Tracker, since I'm not one. I'm not nominating before the Night 2 results. Carol, you first said no night action and not Diviner, and now you claim Smuggler. Please keep your story consistent.
+Alice (public): Alice again. Dave's and Frank's N1 claims both match Erin's 3,1,1,1,1 and Bob's two visitors, so I see no conflict there. Carol, you first said no night action, then claimed Smuggler with no night action. Which is accurate, and what did you do on N2?
+Bob (public): Bob again. Dave's and Frank's N1 claims both fit my two visitors and Erin's trio, so I see no reason to nominate yet. I plan to spend my last insomniac token on N2 to learn the visitor roles and will post them on Day 3. Carol, you sat outside the N1 trio, so Smuggler with no N1 action is consistent. Please say what you plan to do on N2.
+[Claim] Carol: Smuggler. N1: no night action. 2 swap tokens left.
+Carol (public): Carol again: I'm the Smuggler. I did nothing on N1, which matches what I said earlier. I agree with no nominations until the Night 2 results are posted.
+Dave (public): Dave again. I agree with waiting for the Night 2 results before any nomination. Frank, please post your N2 track as you said. Bob, your N2 Insomniac read on the visitors would help us all.
+Erin (public): Erin again. Dave's group Erin, Frank, Grace fits the seating: Frank's neighbours are Erin and Grace. My 3,1,1,1,1 fits Dave visiting Frank and Frank tracking Grace, so Dave and Frank don't contradict each other. I'll post Night 2 group sizes at the start of Day 3. No nominations until then.
+[Claim] Frank: Tracker. N1: tracked Grace, Grace visited nobody. N2: will post at start of Day 3.
+Frank (public): Frank again. My N1 track on Grace is real: Grace visited nobody, and that fits Erin's trio of Dave, Frank and Grace. Carol, you first said no night action and not Diviner, then claimed Smuggler. Please say plainly what you did on N1 and what your swap tokens are for. I'm not nominating yet.
+Grace (public): Grace again. Dave's and Frank's N1 claims both match Erin's trio, Bob's two visitors, and Frank's track on me. I'm not nominating until the Night 2 results are posted. Carol, one plain answer: did you use your Smuggler action on N1, yes or no?
+Alice (public): Alice again. Carol, Grace asked a yes-or-no question: did you use your Smuggler action on N1? Please answer plainly. Dave and Frank still fit Erin's trio, so I'm not nominating before the Night 2 results.
+Bob (public): Bob again. Insomniac with one token left, which I'll spend on N2 to read the visitor roles. N1 checks out: Dave to Frank and Frank to Grace match Erin's trio. No nominations before Day 3 results.
+[Claim] Carol: Smuggler. N1: no action (no swap, no visit). 2 swap tokens left.
+Carol (public): Carol again, plainly: no, I did not use my Smuggler action on N1. I swapped nobody and visited nobody. I'm holding my 2 swap tokens and not nominating before the Night 2 results.
+Dave (public): Dave again. I agree with no nominations until Night 2 results are posted. Frank, please post your N2 track at the start of Day 3.
+Erin (public): Erin again. Carol's story has shifted: first no night action and not Diviner, then Smuggler with no N1 action. Carol, please state your N2 plan plainly. I'm not nominating today, and I'll post Night 2 map sizes at the start of Day 3.
+Frank (public): Frank again. Carol, you first said no night action and not Diviner, then claimed Smuggler, and now you say you did nothing on N1. That's consistent, but tell us your N2 plan. I'm still not nominating before the Day 3 results.
+Grace (public): Grace again. No nominations until Night 2 results are posted. Carol, please state your N2 plan plainly.
+Alice (public): Alice again. Carol has now said no action, then Smuggler with no N1 action. Carol, what is your N2 plan? I'm not nominating before Night 2 results.
+[Claim] Bob: Insomniac. N1: stayed awake, heard visitors Diviner and Tracker (consistent with Dave->Frank and Frank->Grace). 1 insomniac token left, spending it N2.
+Bob (public): Bob again. Carol, you still haven't answered the N2 plan question. Please answer it directly. I'm not nominating before Day 3 results.
+Carol (public): Carol here. Plainly: my N2 plan is no public action, and any Katana move gets settled with the team in night chat. I'm holding my 2 swap tokens until there's a clear need. I won't nominate before the Day 3 results.
+Dave (public): Dave again. Carol has now answered plainly: no N1 action. I agree with no nominations until the Night 2 results are posted.
+Erin (public): Erin here. No nomination from me yet. Carol, your Night 2 plan still isn't clear. I'll post my Night 2 map sizes at the start of Day 3.
+Frank (public): Frank again. No nominations from me. Carol, your Night 2 plan is still unclear. I'll post my Night 2 track at the start of Day 3.
+Grace (public): Grace again. Carol says no N1 action, so Smuggler is unexplained so far. Carol, please say what your 2 swap tokens are for. No nominations before the Night 2 results.
+Alice (public): Alice here. Carol still hasn't said what the 2 Smuggler swap tokens are for, or what the N2 plan is. I'm not nominating before the Day 3 results.
+[Claim] Bob: Insomniac. N1: stayed awake, heard visitors Diviner and Tracker. 1 insomniac token left, spending it N2.
+Bob (public): Bob here. Carol, you still haven't said what your 2 Smuggler swap tokens are for. If you're the Smuggler, say whether you plan to swap on N2. Otherwise, Carol is my Day 3 nomination lead.
+Carol (public): Carol here, plainly: I'm Smuggler, no N1 action, 2 swap tokens held. I haven't decided a Night 2 action and won't announce one. Nobody should hang before the Day 3 results. Bob, a Day 3 nomination on me now would be premature.
+Dave (public): Dave again. Carol has answered plainly: Smuggler, no N1 action. I agree with no nominations until the Night 2 results are posted.
+Erin (public): Erin here. No nomination from me. Carol, state your Night 2 plan plainly. I'll post my Night 2 map sizes at the start of Day 3.
+Frank (public): Frank here. No nomination from me. Carol, answer the Night 2 plan question directly. I'll post my Night 2 track at the start of Day 3.
+Grace (public): Grace here. Carol, you still haven't said what your 2 swap tokens are for. Until Day 3 results, no nomination from me.
+Alice (public): Alice here. I'm nominating Carol. Her claim shifted from no action to Smuggler, and she never gave a clear N2 plan. Vote Yes.
+Alice nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Alice, Bob, Erin, Frank, Grace; No - Carol, Dave
+Nomination votes on Carol: 5 Yes (the votes are secret).
+Carol is put on trial (5 Yes).
+Carol (public): Carol, plainly: I'm the Smuggler. I used no action on N1: no swap, no visit. I hold 2 swap tokens. I didn't swap because a swap on a night with no information spends a token for nothing. I'm outside Erin's trio of Dave, Frank and Grace, and nothing I've said conflicts with Erin's 3,1,1,1,1, Bob's two visitors, or Frank's track on Grace. Alice's case is that my N2 plan is unfinished, not that anything I did is wrong. Hanging a Smuggler with tokens on an unfinished plan gains nothing. Please wait for Frank's N2 track and Erin's N2 map before you vote.
+Dave (public): Dave here. Carol's trial is about a plan that hasn't been finished, and nobody has a checkable result that touches Carol. I'll vote on what Frank's N2 track and Erin's N2 map show, and I'd like both posted before anyone votes Guilty.
+Erin (public): Erin here. Carol's Smuggler claim can't be checked yet, and my N1 map (3,1,1,1,1) shows no visit by Carol. Nothing concrete ties her to a bad result. Carol, say in one line which player you would swap on N2 and why. I lean Innocent unless a real contradiction appears before the vote.
+[Claim] Frank: Tracker. N1: tracked Grace, Grace visited nobody. N2: result posted at start of Day 3.
+Frank (public): Frank here. I have no Tracker result on Carol: my only track was Grace on N1, and Grace visited nobody. Carol's story is consistent now: no N1 action, Smuggler, 2 swap tokens. Alice's case is that her N2 plan is unclear, which is not a visit or a result. I lean Innocent unless someone shows a concrete contradiction before the vote. I'll post my N2 track at the start of Day 3.
+[Claim] Grace: Vanilla Villager. No night action. N1: visited no one. Nominations: Day 2 Yes on Carol. Trial vote: Innocent for now.
+Grace (public): Grace here. Carol, you said "I had no night action" when asked about N1, then claimed Smuggler. That is the one concrete contradiction so far, and you still haven't said what the 2 swap tokens are for. I'm voting Innocent for now because I have no result on you. If Frank's N2 track or Erin's N2 map shows you, I'll switch to Guilty.
+Alice (public): Alice here. Carol, you first said no night action, then claimed Smuggler, and still haven't said what your 2 swap tokens were for. Smuggler is a Yakuza role, and idle swap tokens with no stated plan are my concrete concern. I'm voting Guilty unless Frank's N2 track or Erin's N2 map clears you.
+[Claim] Bob: Insomniac
+Bob (public): Bob here. Carol's N1 story changed from no action, to Smuggler, to no action on N1, and she still hasn't said what her 2 swap tokens are for. A Yakuza-only role with unused tokens and no stated plan is a concrete concern. I'm voting Guilty unless someone shows a real result that clears her.
+Carol (public): Carol again. I'm the Smuggler. I used no action on N1, and Erin's map shows no visit by me. Alice's case is that my N2 plan is unclear, but I have not done anything that a result contradicts. A swap token is for a real need: a night when a Katana target is protected and needs a decoy swap. Spending it on a blank night wastes it. I'm not asking anyone to take my word on the plan. Wait for Frank's N2 track and Erin's N2 map. If either shows a visit to me or a bad result, vote Guilty then.
+Trial votes on Carol: 4 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Alice, Bob, Frank, Grace; Innocent - Carol, Dave, Erin
+Carol is executed by hanging (4 Guilty of 7 votes; 4 needed).
+Carol died (executed by hanging). Their role isn't revealed. Their last will: "I have no role information to share. Judge every claim by whether its visits and results fit the mechanics, and do not hang anyone on a single unexplained result."
+(to Dave) The Katana passed to Dave.
+[Resumed from the checkpoint at the start of night 2]
+
+===== NIGHT 2 =====
+Night actions:
+  Bob (Insomniac): 1 token(s); "Stay awake with my last insomniac token to learn the roles of visitors tonight."
+  Dave (Diviner): target Bob; "Diviner pick on Bob to check the Insomniac claim against the group result."; Katana vote: Dave holds, attacks Frank
+  Erin (Cartographer): target Frank; 1 token(s); "Spend one map token to map Frank (Astral Visit), to confirm whether Dave, Frank and Grace form the group from Night 1."
+  Frank (Tracker): target Dave
+Katana: Dave holds it and attacks Frank.
+(to Dave) Moderator (private): You divined Bob; the group was Alice, Bob and Erin. The role drawn is Insomniac (60% chance it is Bob's, otherwise one of the others').
+(to Frank) Moderator (private): You tracked Dave tonight. Dave visited Bob and Frank (you).
+[Moderator summary] Night 2: Dave (Diviner, Katana holder) divined Bob and killed Frank with the Katana (Standard vs None). Frank tracked Dave and saw visits to Bob and Frank. Erin mapped Frank, whose group was Dave, Bob and Frank. Bob stayed awake with his last insomniac token and saw the Diviner and the Tracker as visitors. Living: Alice, Bob, Dave, Erin, Grace. Game continues.
+(to Dave) Moderator (private): Your Katana attack on Frank tonight succeeded.
+[Moderator summary] Night 2: Dave held the Katana and killed Frank with it (Standard attack against no Defense). Dave, the Diviner, also divined Bob, and code drew that result. Frank tracked Dave and learned that Dave visited Bob and Frank. Erin mapped Frank, whose group was Dave, Bob and Frank. Bob used his last insomniac token to stay awake, and code drew the roles from the recorded visitors. Nobody was role-blocked. Still alive: Alice, Bob, Dave, Erin and Grace.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): Tonight's visit groups have sizes 3, 1, 1, 1. You mapped Frank: their group is Bob, Dave and Frank. 1 map token left.
+(to Bob) Moderator (private): You lay awake all night and heard every player who visited someone tonight. Their roles: Diviner, Tracker. 0 insomniac tokens left.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 3 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank's last will: I was a Tracker. I post my Tracker results publicly at the start of the Day after each night I use them. I never reveal a night's target before its results are posted. Vote on the evidence, not on who speaks loudest."
+Speaking order today goes around the circle in seat order, starting with Grace.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Grace: Vanilla Villager. No night action. N1: visited no one. N2: visited no one. D2: Yes on Carol, Innocent on Carol trial.
+Grace (public): Grace here, Vanilla Villager. Frank was killed by Katana, so the Yakuza are alive and Frank's Tracker claim looks credible. His N2 track was never posted. Erin, please post your N2 map sizes. Bob, please post your N2 visitor roles. Dave, your N1 Diviner result is the only one left, so keep it consistent. No nomination from me until we have these results.
+Alice (public): Alice here. Frank's N2 track was never posted, and Erin's N2 map is missing too. Dave, Erin and Bob, please post your Night 2 results now. No nomination from me yet.
+[Claim] Bob: Insomniac. N1 and N2: stayed awake, heard visitors Diviner and Tracker. 0 insomniac tokens left. D3: nominated Dave.
+Bob (public): Bob here. On N2 I heard exactly two visitors: a Diviner and a Tracker. Frank died to the Katana, and the Katana holder has to visit its target, so the holder was one of those two. Frank is the only Tracker claim, so the holder was the Diviner visitor. Dave is the only Diviner claim, and Diviner is a Yakuza role here. I'm nominating Dave. Vote Yes.
+Bob nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Bob, Erin, Grace; No - Dave, Alice
+Nomination votes on Dave: 3 Yes (the votes are secret).
+Dave is put on trial (3 Yes).
+[Feedback from Dave] The rules say the Katana passed to Dave publicly, so the holder question is hard to hide; a rule clarifying what the Village can infer from a Katana-holder pass would help.
+[Claim] Dave: Diviner. N1: divined Frank, group Erin/Frank/Grace, one Tracker. N2: divined Bob, group Alice/Bob/Erin, one Insomniac. D2: Yes on Carol. D3: No on Dave's nomination.
+Dave (public): Dave here, Diviner. My Night 1 result (divined Frank: Erin, Frank, Grace, one Tracker) fits Frank's Tracker claim and Erin's 3,1,1,1,1 map. My Night 2 result (divined Bob: Alice, Bob, Erin, one Insomniac) matches Bob's Insomniac claim. Bob's N1 and N2 visitor reports line up with my visits and Frank's track, so Bob's claim checks out. Frank's N2 track was never posted, and Erin's N2 map is still missing. Alice and Bob pushed Carol hard on an unfinished plan and are now pushing me on Bob's logic. Erin and Grace: please ask for Frank's N2 track and Erin's N2 map before you vote. I'm not asking for a vote on a single claim.
+[Claim] Erin: Cartographer. 1 map token left. N1: groups 3,1,1,1,1 (trio Dave-Frank-Grace). N2: groups 3,1,1,1; mapped Frank = Bob, Dave, Frank. D3: Guilty on Dave.
+Erin (public): Erin here. My Night 2 map put Bob, Dave and Frank in one visit group. Frank was killed by the Katana, so the holder visited Frank. Bob reports only two visitors, a Diviner and a Tracker. Frank was the Tracker, so the Katana visit to Frank has to come from the Diviner visitor, Dave. Dave's Night 1 and Night 2 results fit my map, but a Diviner claim that lines up with a Katana kill is exactly what a Yakuza would post. Frank's N2 track is still unposted, so it can't clear Dave. I'm voting Guilty on Dave.
+[Claim] Grace: Vanilla Villager. No night action. N1, N2: visited no one. D2: Yes on Carol, Innocent. D3: Guilty on Dave.
+Grace (public): Grace here. I'm voting Guilty on Dave. Bob's N2 report lists only two visitors, a Diviner and a Tracker. Frank was the Tracker, and he was Katana-killed, so the Katana holder visited Frank and has to be the Diviner visitor, Dave. Erin's N2 map (Bob, Dave, Frank linked) fits that. Dave, your N2 post names only Bob. Who else did you visit on N2? Did you visit Frank?
+[Claim] Alice: Vanilla Villager. No night action. D2: Guilty on Carol. D3: Guilty on Dave.
+Alice (public): Alice here. Dave, Bob's N2 report lists only two visitors: a Diviner and a Tracker. Frank, the Tracker, was Katana-killed, so the Katana visit came from the Diviner visitor, which is you. Erin's N2 map also links you to Frank. Katana holders are Yakuza, so that points to you. Did you visit Frank on N2, yes or no? I'm voting Guilty.
+[Claim] Bob: Insomniac. N1, N2: stayed awake, heard visitors Diviner and Tracker. 0 insomniac tokens left. D3: nominated Dave. Guilty on Dave.
+Bob (public): Bob here. Frank was killed by the Katana, so the holder visited Frank. My Insomniac report says the only N2 visitors were a Diviner and a Tracker. Frank is the Tracker, so the Katana visit came from the Diviner visitor, Dave. Erin's map also links Dave to Frank. Dave, did you visit Frank on N2, yes or no? I'm voting Guilty.
+Dave (public): Dave here, Diviner. My two results are on record: Night 1 on Frank (Erin, Frank, Grace, one Tracker) and Night 2 on Bob (Alice, Bob, Erin, one Insomniac). They match Erin's maps and Bob's Insomniac reads. The case against me depends on the Night 2 Katana hit on Frank, but Frank's Night 2 track was never posted, so nobody knows whom he tracked. Erin's linked group {Bob, Dave, Frank} also fits Frank visiting Bob or me without any other link. Grace and Erin, before you vote Guilty, ask for Frank's Night 2 track. I'm asking for an Innocent vote on the evidence, not on who pushes hardest.
+Trial votes on Dave: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Alice, Bob, Erin, Grace; Innocent - Dave
+Dave is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave's last will: I am the Diviner. My Night 1 result: group Erin, Frank and Grace, with one of them a Tracker. My Night 2 Diviner pick was Bob, and the group was Alice, Bob and Erin with one Insomniac. Judge every claim by whether its visits and results fit the mechanics, and do not hang anyone on a single unexplained result."
+The game is over. Winners: Alice, Bob, Erin, Frank (dead), Grace. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Erin, Frank, Grace
+Cost by player (USD):
+  Alice (Vanilla Villager)  $0.0000   19 calls  claude-haiku-5.5
+  Bob (Insomniac)           $0.0000   20 calls  claude-haiku-5.5
+  Carol (Smuggler)          $0.0000   17 calls  claude-haiku-5.5
+  Dave (Diviner)            $0.0000   22 calls  claude-haiku-5.5
+  Erin (Cartographer)       $0.0000   20 calls  claude-haiku-5.5
+  Frank (Tracker)           $0.0000   16 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0000   19 calls  claude-haiku-5.5
+  Moderator                 $0.0000    4 calls  claude-opus-5.5
+  Night checks              $0.0000    2 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  141 calls
