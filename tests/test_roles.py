@@ -1482,3 +1482,35 @@ def test_each_set_of_trait_marks_has_its_own_icon_rule():
     assert "tn2 t0-martyr t1-armed" in span and "Trait: Armed:" in span
     css = log_viewer.icons_css()
     assert ".n.ic.tn2.t0-martyr.t1-armed::before" in css and ".n.ic.tn1.t0-armed::before" in css
+
+
+def test_an_avenger_killed_at_night_takes_every_fatal_attacker_with_them(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt", "Serial Killer"])
+    game.player("Alice").traits = ["Avenger"]
+    game.phase = "night"
+    game.kill("Alice", "Katana and Serial Killer", by=["Dave", "Frank"], katana=True)
+    assert [(n, c) for n, c in game.pending_deaths] == [("Alice", "Katana and Serial Killer"), ("Dave", "Avenger"),
+                                                        ("Frank", "Avenger")]
+    assert game.player("Dave").death["killer"] == "Alice"
+    assert game.role_state["code_attacks"][game.day] == ["Alice", "Alice"]  # counted for the Bloodhound
+
+
+def test_an_avenger_hanged_or_killed_by_a_dead_player_sets_nothing_off(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Jester", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.player("Alice").traits = ["Avenger"]
+    game.player("Erin").traits = ["Avenger"]
+    game.kill("Alice", "executed by hanging", guilty_voters=["Carol", "Dave"])  # by Day: no attack
+    game.kill("Bob", "executed by hanging", guilty_voters=["Erin"])
+    game.phase = "night"
+    game.resolve_revenge()  # the Jester's revenge hits Erin, its only Guilty voter; the Jester is dead already
+    assert [p.name for p in game.players if p.alive] == ["Carol", "Dave"]
+
+
+def test_two_avengers_who_kill_each_other_stop_there(game_factory):
+    game, _ = game_factory(["Vigilante", "Vigilante", "Sheriff", "Grunt"])
+    for name in ("Alice", "Bob"):
+        game.player(name).traits = ["Avenger"]
+    game.phase = "night"
+    game.kill("Alice", "Vigilante", by="Bob")
+    assert not game.player("Bob").alive and game.player("Carol").alive
+    assert game.player("Bob").death["cause"] == "Avenger"

@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 
 from events import DEATH
 from roles import Alignment
-from roles.base import acted_tonight, join_names, swap_partner
+from roles.base import acted_tonight, join_names, record_attack, swap_partner
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -48,6 +48,14 @@ TRAITS: dict[str, TraitInfo] = {
                              "<circle cx='5' cy='5' r='4.4' fill='#0f766e' stroke='#fff' stroke-width='1'/>"
                              "<circle cx='5' cy='5' r='2.3' fill='none' stroke='#fff' stroke-width='0.9'/>"
                              "<path d='M5 1.6V8.4M1.6 5H8.4' stroke='#fff' stroke-width='0.9'/></svg>")),  # crosshairs
+    "Avenger": TraitInfo(frozenset({Alignment.GOOD}),
+                         "If you are killed at night, every player whose attack killed you is dealt a Divine Attack "
+                         "and dies too (rules R24).",
+                         "If killed at night, every player whose attack killed them dies too (a Divine Attack).",
+                         power=0.4,
+                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                               "<circle cx='5' cy='5' r='4.4' fill='#1e3a8a' stroke='#fff' stroke-width='1'/>"
+                               "<path d='M5.8 1.8L3.2 5.4H5L4.2 8.2L6.8 4.6H5Z' fill='#fde047'/></svg>")),  # a bolt
 }
 
 
@@ -87,6 +95,24 @@ class Martyr(TraitLogic):
         game.log.write("martyr", player=p.name, guilty=guilty_voters, day=game.day)
 
 
+class Avenger(TraitLogic):
+    night_note = ("Avenger (a trait, R24): when you kill an Avenger at night, code deals a Divine Attack to every "
+                  "player in that kill's `by` who is still alive and kills them (cause 'Avenger'), so list in `by` "
+                  "every player whose attack would have killed them (R12). Don't resolve it yourself; you don't "
+                  "tell() those deaths either.")
+
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        if game.phase != "night" or not p.death:  # rules R24: only a night death; a hanging isn't an attack
+            return
+        # A killer already dead isn't hit: that's also how code-made attacks (a Jester's revenge, a Cardinal's
+        # curse) are left out, since their user is gone by then.
+        for name in p.death["killers"]:
+            if game.player(name).alive:
+                record_attack(game, p.name)  # for the Bloodhound's counts
+                game.log.write("avenger", player=p.name, killed=name, day=game.day)
+                game.kill(name, "Avenger", by=p.name)
+
+
 ARMED_USED = "armed_used"  # game.role_state: players who have fired their hidden gun (it's one shot a game)
 
 
@@ -124,7 +150,7 @@ class Armed(TraitLogic):
         game.role_state.setdefault(ARMED_USED, []).append(change["by"])
 
 
-LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed()}
+LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger()}
 assert set(LOGIC) == set(TRAITS)
 
 

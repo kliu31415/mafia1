@@ -124,7 +124,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
      when the role's choices have a clear right answer.
 
-- Traits (`traits.py`, rules R24, e.g. Martyr, Armed): an extra ability on top of a player's role; a player may hold
+- Traits (`traits.py`, rules R24: Martyr, Armed, Avenger): an extra ability on top of a player's role; a player may hold
   several, never one twice, and keeps them if the role changes. A trait is a `TRAITS` entry (who can get it, the
   holder's line, its power, its corner mark in the HTML log) plus a `TraitLogic` with the hooks it needs; a night
   action (Armed's shot) is `can_act` + `action_task` + `ops`, asked for in the night answer's `trait_actions` list.

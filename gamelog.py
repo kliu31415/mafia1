@@ -91,7 +91,8 @@ from records import read_records, safe_print
 #     (player, guilty, day) when a Martyr is hanged
 # 49: night_actions may have trait_actions ([{trait, target}], e.g. Armed's shot), and a player asked only for one
 #     has no act; settings traits may bundle several for one player ("Martyr+Armed")
-LOG_VERSION = 49
+# 50: "avenger" records (player, killed, day) when an Avenger's vengeance kills an attacker
+LOG_VERSION = 50
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
