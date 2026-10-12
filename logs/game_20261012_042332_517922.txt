@@ -190,3 +190,26 @@ Trial votes on Erin: 7 Guilty, 0 Innocent (the votes are secret).
 Erin is executed by hanging (7 Guilty of 7 votes; 4 needed).
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin's last will: I was a Village-leaning player with no night information. Bob's Standard shot killed Grace on Day 2 before any Night 2 data existed, so Bob needs a clear explanation. Alice's and Frank's Night 1 results on Bob agree, so check their Night 2 results first. Do not hang anyone on a lean alone, and check stated votes against the announced totals."
 Erin was the Jester: being hanged wins them the game.
+
+===== NIGHT 3 =====
+(to Carol, Heidi) Carol (Yakuza chat): Carol: Night 3 proposal. Katana holder: Carol (keep it). Katana target: Alice. She is the Sheriff who survived our N2 hit, and her Evil read on Erin matched the Jester, so she is credible and dangerous. Her survival means someone gave her Standard protection on N2. Frank was blocked, Alice isn't on Veteran alert (I'm alive and was a visitor-free Katana holder), so the medic is likely Bob or Dave. My Pharmacist block goes on Dave, the quiet one who hasn't claimed anything. Heidi, confirm holder Carol and target Alice. If you think Bob is the medic instead, say so now and I'll switch the block. I'll finalize after your reply.
+(to Carol, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Holder Carol, Katana target Alice. Alice's Erin read is accurate, since Erin was the Jester and reads Evil, so she is a real threat. I agree with the Dave block: Dave hasn't claimed anything, and Frank was already blocked on N2, so he is less likely to be the medic. I'm ready to finalize.
+(to Carol, Heidi) Carol (Yakuza chat): Carol: Confirmed. Holder Carol, Katana target Alice, my Pharmacist block on Dave. Bob can't be the medic: his real Standard shot on Grace proves he's the Sniper, and one role per player. That leaves Dave as the only possible medic who could have protected Alice on N2, so the block goes there. Heidi, submit holder Carol and target Alice. I'm ready.
+(to Carol, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Holder Carol, Katana target Alice, Pharmacist block on Dave. Alice's Erin read matches the Jester's Evil alignment, so she is the threat. I'm ready.
+Night actions:
+  Alice (Sheriff): target Dave; "Sheriff investigation on Dave. Learn Evil or Not Evil."
+  Carol (Pharmacist): target Dave; "Pharmacist role-block on Dave, to stop the suspected medic's protection on Alice. Katana holder vote: Carol. Katana target vote: Alice."; Katana vote: Carol holds, attacks Alice
+  Dave (Medic): target Alice; "Standard protection on Alice at no token cost. She survived a Katana attack on Night 2 that my protection stopped, and her Evil read on Erin is consistent with Erin being the Jester. She remains the most likely Yakuza target."
+  Frank (Tracker): target Bob; "Tracking Bob. He is the prime suspect after his unexplained Day 2 Standard shot on Grace, and his night visits, if any, would show whether he is the Katana holder."
+  Heidi (Grunt): no role action; Katana vote: Carol holds, attacks Alice
+Katana: Carol holds it and attacks Alice.
+(to Alice) Moderator (private): Night 3 result: you investigated Dave. Result: Not Evil.
+(to Frank) Moderator (private): Night 3 result: you tracked Bob. Bob visited no one tonight.
+(to Dave) Moderator (private): You were role-blocked tonight. Your protection had no effect. You still have 2 medic tokens.
+(to Carol) Moderator (private): Night 3 result: your role-block on Dave did not fail because of immunity. Your Katana attack on Alice succeeded.
+[Moderator summary] Night 3: Carol (Pharmacist, Katana holder) role-blocked Dave (Medic), so his Standard protection on Alice did not happen. Carol's Katana Standard attack killed Alice (Defense None). Alice's Sheriff check on Dave: Not Evil. Frank tracked Bob: no visits. Heidi took no action. Visits: Carol->Dave, Carol->Alice, Alice->Dave, Frank->Bob. Jester revenge is left to code.
+[Night check] Night 3: correct
+[Revenge] Erin's Divine Attack hits Alice.
+(to Alice) Moderator (private): You were attacked tonight (Katana and Jester's revenge) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Heidi (Grunt) chose no action.
+(to Heidi) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Carol (Pharmacist) chose to act on Dave ("Pharmacist role-block on Dave, to stop the suspected medic's protection on Alice. Katana holder vote: Carol. Katana target vote: Alice.").
