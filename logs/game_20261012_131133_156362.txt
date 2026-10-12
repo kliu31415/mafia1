@@ -300,3 +300,14 @@ Trial votes on Erin: 1 Guilty, 3 Innocent (the votes are secret).
 [Secret trial votes on Erin] Guilty - Ivan; Innocent - Bob, Dave, Erin
 The verdict was Innocent (1 Guilty of 4 votes; 3 needed), but the vote was rigged by a Clerk, so Erin is executed by hanging anyway.
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin's last will: I make no role claim and have no verified night results. Judge the Day 2 and Day 3 records on the mechanical facts. Alice's and Heidi's stories both have gaps: Heidi's Kitsune charm was never tied to a release target, and Alice gave several conflicting Night 1 accounts. Bob's Medic protections hit nobody who was attacked, so they can't be checked. Ivan and Dave pushed hard on thin reads, and Dave acted on Frank's Bounty Hunter claim without a vote-bearing result. The Katana holder is still alive among Bob, Dave and Ivan. Hang on results, not on leans."
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Medic): target Bob; chose to spend 2 token(s); "Strong Defense on myself (Medic). This blocks both the Yakuza Katana (Standard) and the living Strong Serial Killer. Costs 2 tokens, leaving 0."
+  Ivan (Clerk): no role action; Katana vote: Ivan holds, attacks Dave
+Katana: Ivan holds it and attacks Dave.
+(to Bob) Moderator (private): You protected yourself tonight, giving yourself Strong Defense. 0 medic tokens left.
+(to Ivan) Moderator (private): Your Katana attack on Dave succeeded: Dave was killed.
+[Moderator summary] Night 4: Bob (Medic) self-protected with Strong Defense (spent 2 medic tokens, 0 left); not attacked. Ivan held the Katana and attacked Dave (Standard vs Defense None): Dave dies, cause Katana. Visits: Ivan->Dave, Bob->Bob. Living: Bob (Village), Ivan (Yakuza); game continues.
+[Night check] Night 4: correct
+(to Dave) Moderator (private): You were attacked tonight (Katana) and died.
