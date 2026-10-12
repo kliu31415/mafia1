@@ -144,3 +144,26 @@ Grace (public): Grace, Vanilla Villager. No nomination from me this round. Bob's
 Alice (public): Alice, Medic. Still Innocent on Dave unless new mechanical evidence shows him Evil. Bob, post your second Seer pair before any new trial.
 Bob (public): Bob again. My Seer pair is untested. If you doubt me, a Guilty vote on me next Day is a fair test.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Frank, Grace) Frank (Yakuza chat): Frank: Proposal for Night 2. Katana holder stays Frank, and the Katana attacks Erin (Standard). Grace, please use your Pharmacist block on Alice, so her Medic protection can't stop the attack. Reason: Erin's Tracker claim could see our Katana visit, and Alice's protection is the only thing that could save Erin. Reply here with agreement. If you want a different target, say so now.
+(to Frank, Grace) Grace (Yakuza chat): Agreed. Katana holder stays Frank, Katana attacks Erin (Standard). I block Alice with my Pharmacist block, so her protection can't reach Erin. Ready.
+(to Frank, Grace) Frank (Yakuza chat): Agreed. Katana holder stays Frank, and the Katana attacks Erin (Standard). Grace blocks Alice so her protection can't reach Erin. Both of us submit exactly this in the night vote. Ready.
+(to Frank, Grace) Grace (Yakuza chat): Grace agrees. Katana holder stays Frank (holder vote: Frank), Katana attacks Erin (Standard). My Pharmacist block goes on Alice so her Medic protection can't reach Erin. I'll submit exactly this in the night vote. Ready.
+Night actions:
+  Alice (Medic): target Carol; "Standard protection on Carol (Sheriff claimant, a likely Katana target), costing no tokens. Not announced."
+  Carol (Sheriff): target Bob; "Sheriff investigation on Bob, to test his untested Seer claim."
+  Erin (Tracker): target Alice; "Tracker: tracking Alice to check whether her claimed Medic visit went to Carol."
+  Frank (Grunt): no role action; Katana vote: Frank holds, attacks Erin
+  Grace (Pharmacist): target Alice; "Pharmacist role-block on Alice, as agreed in Yakuza night chat."; Katana vote: Frank holds, attacks Erin
+Katana: Frank holds it and attacks Erin.
+(to Alice) Moderator (private): You were role-blocked tonight. Your action had no effect. You have 2 medic tokens left.
+(to Grace) Moderator (private): You role-blocked Alice tonight. Your block did not fail: Alice can be role-blocked.
+(to Carol) Moderator (private): You investigated Bob tonight. Result: Evil.
+(to Erin) Moderator (private): You tracked Alice tonight. Alice visited no one.
+(to Frank) Moderator (private): Your Katana attack on Erin tonight succeeded.
+[Moderator summary] Night 2: Grace (Pharmacist) role-blocked Alice (Medic), so Alice did not protect Carol (no token spent). Carol (Sheriff) checked Bob (Jester), result Evil. Erin (Tracker) tracked Alice and saw no visit because Alice was blocked. Frank held the Katana and made a Standard attack on Erin (Defense None), killing her. Visits: Grace->Alice, Carol->Bob, Erin->Alice, Frank->Erin.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Erin. Grace (Pharmacist) chose to act on Alice ("Pharmacist role-block on Alice, as agreed in Yakuza night chat.").
+(to Grace) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Erin. Frank (Grunt) chose no action.
