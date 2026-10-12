@@ -231,3 +231,17 @@ Heidi (public): Heidi here. No nomination from me. I'm still waiting on Dave's a
 Ivan (public): Ivan here, Sniper. No nomination from me. Erin and Dave, post your Night 3 results with targets at the start of Day 4. Nobody goes up on claims alone.
 Dave (public): Dave here. No nomination from me. Ivan's Sniper shot on Bob is the only hard event so far. Erin and Frank, post your Night 3 results with targets at the start of Day 4. I'll vote only on hard results and stated votes.
 Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+Night actions:
+  Dave (Archivist): no action
+  Erin (Profiler): target Dave; 1 token(s); "Profile Dave with my last profile token to test the Archivist claim."
+  Frank (Auditor): no action
+  Grace (Medic): target Frank; "Standard protection on Frank at no token cost. Frank is a claimed Auditor whose audits bear on trials, so a Yakuza kill there would hurt the Village most."
+  Heidi (Arsonist): target Frank; "Douse Frank. Dousing is my visit; he is doused for a later ignite."
+Katana: no attack (no target); nobody holds it.
+(to Erin) Moderator (private): You profiled Dave: their role is Archivist, Arsonist or Puppeteer (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 0 profile tokens left.
+(to Grace) Moderator (private): You protected Frank tonight, giving him Standard Defense. You have 2 medic tokens left.
+(to Heidi) Moderator (private): You doused Frank tonight.
+[Moderator summary] Night 3: No Yakuza alive; no Katana attack. Erin profiled Dave (profile op, last token spent). Grace protected Frank (Standard, no tokens spent, 2 left). Heidi (Arsonist) doused Frank; Frank is Good, so he isn't told. Dave, Frank and Ivan took no action. No attacks, no deaths. Visits: Erin->Dave, Grace->Frank, Heidi->Frank.
+[Night check] Night 3: correct
