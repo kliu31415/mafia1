@@ -256,3 +256,39 @@ Trial votes on Mallory: 8 Guilty, 4 Innocent (the votes are secret).
 Mallory is executed by hanging (8 Guilty of 12 votes; 7 needed).
 Mallory died (executed by hanging). Their role isn't revealed. Their last will: "I am Mallory. My Vanilla Villager claim was false and I have retracted it. I have no night results. I pushed Frank's nomination on Day 2 while others waited for his Night 2 pair. Judge that push and my votes on their own merits. Frank's last will named Erin and Carol as a mismatched pair; test that against any checkable night result."
 Mallory was the Jester: being hanged wins them the game.
+
+===== NIGHT 3 =====
+(to Dave, Heidi, Judy) Dave (Yakuza chat): Dave: Proposal for Night 3. Dave keeps the Katana (holder vote: Dave) and the target is Niaj (attack vote: Niaj). Niaj's Tracker claim can expose any visit we make, and tracking Frank already put Niaj in a position to read Yakuza movement. Heidi: Diviner on a non-Yakuza group of your choice, and nobody visits you tonight because of Alice's trap. Judy: no action, stay passive. Confirm or object with your holder and target votes.
+(to Dave, Heidi, Judy) Heidi (Yakuza chat): Heidi: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Niaj (attack vote: Niaj). Niaj's Tracker result on Frank's Night 2 visits makes Niaj the most dangerous info role. I'll use the Diviner on Erin tonight: the group is Dave, Erin and Grace, and it tests Frank's Erin/Carol pair. I will not visit anyone else and nobody needs to visit me because of Alice's trap. Judy, no action. Ready.
+(to Dave, Heidi, Judy) Judy (Yakuza chat): Judy: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Niaj (attack vote: Niaj). I have no night action and will stay passive. Heidi, your Diviner group on Erin is fine. Ready.
+(to Dave, Heidi, Judy) Dave (Yakuza chat): Dave: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Niaj (attack vote: Niaj). Heidi, the Diviner on Erin's group is fine, and please visit nobody else. Judy, no action. I have no further changes. Ready.
+[Feedback from Heidi] Schema rejected quoted names in the Katana vote fields; plain names work.
+(to Dave, Heidi, Judy) Heidi (Yakuza chat): Heidi: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Niaj (attack vote: Niaj). My Diviner stays on Erin's group (Dave, Erin, Grace). I will not visit anyone else and need no visit from anyone. Judy, no action. Ready.
+(to Dave, Heidi, Judy) Judy (Yakuza chat): Judy: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Niaj (attack vote: Niaj). Niaj's Tracker claim is the most dangerous info role right now, since it can expose our visits. Heidi, the Diviner stays on Erin's group as planned, and please visit nobody else. I have no night action and will stay passive. Ready.
+Night actions:
+  Alice (Trapper): no action
+  Bob (Juror): target Erin; second target Carol; "Juror: checking Erin and Carol for how often they voted the same way."
+  Carol (Coroner): target Frank; 1 token(s); "Coroner examines Frank (died Night 2) to verify his Seer claim. Astral visit, so no visit is shown."
+  Dave (Puppeteer): no role action; Katana vote: Dave holds, attacks Niaj
+  Erin (Serial Killer): target Niaj; "Strong Attack on Niaj (claimed Tracker). A tracker can see my visits and the Katana holder's visits, so Niaj is the most dangerous informed claimant to me."
+  Heidi (Diviner): target Erin; "Diviner on Erin. Group should be Dave, Erin and Grace (Erin's circle neighbours). Katana: Dave holds, attacks Niaj."; Katana vote: Dave holds, attacks Niaj
+  Ivan (Profiler): target Erin; 1 token(s); "Profile Erin, the player Frank's will and Carol's Coroner claim point to as the non-Good side of the Erin/Carol pair. Mallory's profile is now resolved as Jester by the hanging, so this token tests the remaining mismatch."
+  Judy (Informant): no role action; Katana vote: Dave holds, attacks Niaj
+  Niaj (Tracker): target Erin; "Tracking Erin: she is the player Frank's last will and Carol's Coroner claim single out as the mismatch, and she has posted no night result. A tracked visit shows whether she is acting on the night of a Katana or Serial Killer attack."
+  Olivia (Vigilante): no action
+Katana: Dave holds it and attacks Niaj.
+(to Bob) Moderator (private): Your jury check: Erin and Carol voted the same way in 0 of 1 trial votes and 1 of 2 nomination votes.
+(to Carol) Moderator (private): You examined Frank: their role was Seer. 2 coroner tokens left.
+(to Heidi) Moderator (private): You divined Erin; the group was Dave, Erin and Grace. The role drawn is Puppeteer (60% chance it is Erin's, otherwise one of the others').
+(to Ivan) Moderator (private): You profiled Erin: their role is Juror, Serial Killer or Wiretap (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 1 profile token left.
+(to Dave) Moderator (private): Your Katana attack on Niaj succeeds tonight. You did not use your puppet token: 1 puppet token left.
+(to Erin) Moderator (private): You attacked Niaj tonight. Your attack succeeds.
+(to Niaj) Moderator (private): You tracked Erin tonight. Erin visited Niaj.
+[Moderator summary] Night 3: No role-blocks or swaps. Dave (Katana holder, Standard) and Erin (Serial Killer, Strong) both attacked Niaj (Defense None); both fatal -> Niaj dies (Katana and Serial Killer). Bob juried Erin/Carol (astral). Carol examined Frank (astral, token spent via op). Heidi divined Erin (non-Yakuza, op used). Ivan profiled Erin (token spent via op). Niaj tracked Erin: Erin visited Niaj. Nobody visited Heidi, so Alice's trap stays armed. Grace (Cardinal) alive, no Cardinal effect. Mallory's Jester revenge left to code.
+[Night check] Night 3: correct
+[Revenge] Mallory's Divine Attack hits Dave.
+(to Dave) Moderator (private): You were attacked tonight (Jester's revenge) and died.
+(to Niaj) Moderator (private): You were attacked tonight (Katana and Serial Killer) and died.
+(to Heidi) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Niaj. Dave (Puppeteer) chose no action; Judy (Informant) chose no action.
+(to Judy) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Niaj. Dave (Puppeteer) chose no action; Heidi (Diviner) chose to act on Erin ("Diviner on Erin. Group should be Dave, Erin and Grace (Erin's circle neighbours). Katana: Dave holds, attacks Niaj.").
+(to Heidi, Judy) The Katana passed to Judy.
