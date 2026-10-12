@@ -86,7 +86,7 @@ def price_table(rnd: int, trial: bool = False) -> str:
 
 
 def write_wills(game: Game, players: Players) -> None:
-    """Last wills, written at the beginning of each Day and before Night 1; also on day turns. Rules R13."""
+    """Last wills, written at the beginning of each Day; also on day turns and with the night action. Rules R13."""
     task = (f"Write or update your last will (max {LAST_WILL_WORDS} words). If you die, it is revealed "
             "to ALL players, including other factions, so think about what each of them would learn from it. "
             "An empty answer keeps your current will.")
@@ -101,10 +101,9 @@ def write_wills(game: Game, players: Players) -> None:
 
 def open_game(game: Game, players: Players) -> None:
     """There is no Day 1 (rules R1, Kevin Oct 10: in 38 live games it hanged someone twice, both Jesters, and was
-    otherwise a round of "no blind hang"). Players write a first will, then Night 1 starts."""
+    otherwise a round of "no blind hang"). Players write their first will with their Night 1 action (R13)."""
     game.emit("There is no Day 1: the game starts with Night 1 (rules R1), and the first Day is Day 2. Nobody has "
               "spoken yet, so Night 1 actions are chosen without any Day discussion.", cat=PHASE)
-    write_wills(game, players)
 
 
 def run_day(game: Game, players: Players) -> None:
