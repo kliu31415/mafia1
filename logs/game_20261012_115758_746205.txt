@@ -619,3 +619,31 @@ Night actions:
 Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
 [Moderator summary] Night 9: The Yakuza (Carol) kept the Katana with Carol and made no attack. Carol took no action of her own and has 0 fixer tokens. Alice's automatic Ex-Con visit landed on Carol; Alice is not told her target. There were no role-blocks, attacks or deaths, and Heidi's trap on Alice was not triggered. Visits recorded: Alice to Carol. Nobody has died since Night 6 (Heidi), so no one died on Nights 7, 8 or 9 or on Days 7, 8 or 9. Under the stall rule (R14), everyone loses when Day 10 begins.
 [Night check] Night 9: correct
+Nobody died for three days and three nights. Everyone loses.
+The game is over. Winners: nobody.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Grace] Nothing broke for me; the main friction was duplicate-looking ledger entries and the stall rule being unclear until late.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: nobody
+Cost by player (USD):
+  Alice (Ex-Con)        $0.0000   86 calls  claude-haiku-5.5
+  Bob (Fortune Teller)  $0.0000   14 calls  claude-haiku-5.5
+  Carol (Fixer)         $0.0000   98 calls  claude-haiku-5.5
+  Dave (Enforcer)       $0.0000   27 calls  claude-haiku-5.5
+  Erin (Accountant)     $0.0000   43 calls  claude-haiku-5.5
+  Frank (Juror)         $0.0000   37 calls  claude-haiku-5.5
+  Grace (Talent Agent)  $0.0000   50 calls  claude-haiku-5.5
+  Heidi (Trapper)       $0.0000   54 calls  claude-haiku-5.5
+  Moderator             $0.0000   14 calls  claude-opus-5.5
+  Night checks          $0.0000    9 calls  claude-opus-5.5
+  Strategy review       $0.0000    1 calls  claude-opus-5.5
+  Log review            $0.0000    1 calls  claude-opus-5.5
+  Total                 $0.0000  434 calls
