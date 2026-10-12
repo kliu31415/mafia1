@@ -341,3 +341,69 @@ Katana: Alice holds it and attacks Ivan.
 (to Judy) Moderator (private): You role-blocked Alice tonight. The block did not fail because of immunity: Alice can be role-blocked.
 [Moderator summary] Night 5: Judy (Party Animal) role-blocked Alice, the Katana holder. That stopped the Katana attack on Ivan (R8/R9), so there was no attack and no deaths. Frank (Sheriff) checked Ivan: Not Evil. Ivan (Oracle) guessed Alice = Vanilla Villager: WRONG (she is the Talent Agent). Alice had no talent tokens and took no action of her own. Recorded visits: Frank->Ivan, Judy->Alice. No tokens spent. Win check: no change. Alive: Alice (Yakuza), Frank, Ivan, Judy.
 [Night check] Night 5: correct
+
+===== DAY 6 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Alice.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Alice: Vanilla Villager. No night action. N3 and N5: told I was role-blocked (Judy). D4: Guilty on Erin. D5: Yes and Guilty on Grace.
+Alice (public): I was role-blocked again on N5, and there was no Katana kill. Judy is the only blocker left, so she will say "I blocked Alice and nobody died, so Alice holds the Katana." Look at what that requires, though. If Judy holds the Katana, she can block a Vanilla, skip her own kill, and get a free hang on me. One quiet night is cheap for her when it decides the endgame. Both Olivia's will and Erin's will leaned Judy, and on N1 she said her block "landed", which no blocker is told. Frank, Ivan: please post your N5 targets and exact results before anyone nominates. Ivan, if you guessed Judy, tell us what you guessed.
+[Claim] Frank: Sheriff. N1 Grace NE, N2 Judy NE (Katana hit me N2), N3 Carol NE (Katana holder), N4 Alice NE, N5 Ivan NE. D4: Guilty on Erin. D5: Yes and Guilty on Grace.
+Frank (public): N5: I checked Ivan and got Not Evil. With one Yakuza left, the holder always reads clean, so that doesn't clear him. Where things stand: a Katana holder who wasn't blocked would have killed last night. So this is most likely Alice (blocked holder) or Judy (a holder who blocked a Vanilla and skipped her kill). Judy, please post your exact N5 block target. Ivan, please post your N5 guess and result. Nobody nominate until both have posted.
+[Claim] Ivan: Oracle. N1 Heidi=VV WRONG. N2 blocked. N3 Carol=PA WRONG. N4 Grace=SK RIGHT. N5 Alice=Vanilla Villager WRONG (Alice lied, Yakuza).
+Ivan (public): N5: I guessed Alice = Vanilla Villager. Result: WRONG. Alice isn't Vanilla, so her claim is a lie and she's the Yakuza. Her attack on Judy before anyone spoke fits a blocked holder. Judy, post your N5 block. Then I'll nominate Alice. Vote Yes and Guilty.
+[Claim] Judy: Party Animal. N1 Niaj, N2 Ivan (confirmed), N3 Alice (confirmed), N4 Grace (no SK kill), N5 Alice (not immune), and no kill N5. D4: Guilty on Erin. D5: Guilty on Grace.
+Judy (public): N5: I blocked Alice. I was told the block didn't fail on immunity, and then nobody died. That's my result, as I wrote in my will before today. Ivan's WRONG on "Alice = Vanilla" fits it: she's lying about her role, and a blocked Katana holder explains the quiet night. I'm nominating Alice now. Frank and Ivan, vote Yes and Guilty.
+Judy nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Judy, Frank, Ivan; No - Alice
+Nomination votes on Alice: 3 Yes (the votes are secret).
+Alice is put on trial (3 Yes).
+[Claim] Alice: Vanilla Villager. No night action. N3 and N5: told I was role-blocked. Frank N4: Alice Not Evil. Ivan's 'WRONG' is unverified. D4: Guilty on Erin. D5: Guilty on Grace.
+Alice (public): Frank, this comes down to you. Ivan, Judy and I are all just claims, and you're the only confirmed Villager. Look at what convicts me: Ivan's word and Judy's word, and they've only ever confirmed each other. Judy "blocked" Ivan on N2, and Ivan "confirmed" it. Ivan "outed" Carol after she was already dead. Ivan guessed "SK" on Grace first try, and nobody can check it. If those two are a Yakuza pair and you hang me, it's 1 against 2 tonight and you lose.
+
+An Innocent costs you nothing. Judy says she blocks me every night. If she's real, she blocks me again tonight and I can't kill anyone. Tonight you check Judy. If she's a Yakuza who isn't holding the Katana, she reads Evil, and then you know. Your N4 check on me came back Not Evil. One more night settles it for certain. Vote Innocent.
+[Claim] Frank: Sheriff. N1 Grace NE, N2 Judy NE (Katana hit me N2), N3 Carol NE, N4 Alice NE, N5 Ivan NE. D6: Yes and Guilty on Alice.
+Frank (public): Guilty. Alice, your "Ivan and Judy are a pair" story fails on N5. With 4 alive, a Yakuza pair kills me or you that night and then wins the 3-player vote. Nobody blocks Ivan or Judy, so they skip that kill for no reason. A lone Yakuza Ivan would also have killed, since Judy blocked you, not him. The quiet night only fits a blocked holder, and that's you. Ivan's WRONG on you as Vanilla agrees.
+Ivan (public): Guilty. Frank has it right: a Yakuza pair would have killed on N5 at 4 alive. Only a blocked holder explains the quiet night, and my WRONG result shows Alice lied about being Vanilla.
+Judy (public): Guilty. My N5 block on Alice, the quiet night, and Ivan's WRONG on her Vanilla claim all point the same way. A Yakuza pair would have killed someone on N5.
+Alice (public): Frank, your pair argument is fair, so drop it. Look at a lone Yakuza instead. Ivan or Judy holding the Katana alone gains nothing by killing on N5. If she kills, it's 3 alive and she still needs a hang. If she skips, she "blocks" a Vanilla, gets a free hang on me, and it's 3 alive with her holding the Katana anyway. Same position for her, except Frank's vote does the work. The quiet night fits a lone holder skipping her kill just as well as a blocked holder. Every piece of evidence against me is a result nobody can check: Judy's block and Ivan's WRONG. Your own check on me came back Not Evil. If I'm innocent and you hang me, you lose tomorrow. If you vote Innocent, Judy "blocks" me again tonight. Then if anyone dies, it can't be me, and you've found your Yakuza. One Innocent saves the game. Check Judy tonight.
+Trial votes on Alice: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Frank, Ivan, Judy; Innocent - Alice
+Alice is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice's will: I'm a Vanilla Villager with no night action. N3 and N5: told I was role-blocked. Frank's N4 check on me: Not Evil. Every case against me rests on results nobody can check (Ivan's WRONG, Judy's blocks). A lone Yakuza holder gains just as much by skipping the N5 kill and getting a Vanilla hanged. Frank: if someone dies tonight, Judy or Ivan is the holder. Check Judy first. Olivia's and Erin's wills both leaned Judy."
+The game is over. Winners: Bob (dead), Erin (dead), Frank, Heidi (dead), Ivan, Judy, Mallory (dead), Niaj (dead), Olivia (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Judy] The way blocker results were worded caused avoidable confusion in play. Otherwise the interface worked fine.
+[Feedback from Carol] Wills can't be edited at night, so my planned N3 cover never reached my will before I died. The double-negative block notice also caused public mistakes on both sides.
+[Feedback from Niaj] I had no way to put my Night 1 watch target in my will once I'd chosen it. For an investigator killed on the first night, that small piece of information is all the role can leave behind.
+[Feedback from Olivia] After death, my own will display showed the Fabricator's forged text with no label.
+[Feedback from Dave] The double-negative wording of the role-blocker feedback caused real in-game confusion. The reveal's token and verb labels are slightly misleading.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Erin, Frank, Heidi, Ivan, Judy, Mallory, Niaj, Olivia
+Cost by player (USD):
+  Alice (Talent Agent)   $0.0000   39 calls  claude-opus-5.5
+  Bob (Enforcer)         $0.0000   22 calls  claude-opus-5.5
+  Carol (Pharmacist)     $0.0000   22 calls  claude-opus-5.5
+  Dave (Fabricator)      $0.0000   22 calls  claude-opus-5.5
+  Erin (Medic)           $0.0000   22 calls  claude-opus-5.5
+  Frank (Sheriff)        $0.0000   32 calls  claude-opus-5.5
+  Grace (Serial Killer)  $0.0000   26 calls  claude-opus-5.5
+  Heidi (Tracker)        $0.0000    9 calls  claude-opus-5.5
+  Ivan (Oracle)          $0.0000   32 calls  claude-opus-5.5
+  Judy (Party Animal)    $0.0000   31 calls  claude-opus-5.5
+  Mallory (Vigilante)    $0.0000    4 calls  claude-opus-5.5
+  Niaj (Lookout)         $0.0000    4 calls  claude-opus-5.5
+  Olivia (Kitsune)       $0.0000   16 calls  claude-opus-5.5
+  Moderator              $0.0000   11 calls  claude-opus-5.5
+  Night checks           $0.0000    5 calls  claude-opus-5.5
+  Strategy review        $0.0000    1 calls  claude-opus-5.5
+  Log review             $0.0000    1 calls  claude-opus-5.5
+  Total                  $0.0000  299 calls
