@@ -1,0 +1,384 @@
+Setup:
+  Alice    seat 1  Ballot Stuffer    anthropic/claude-opus-5.5 (via Claude Code)
+  Bob      seat 2  Jester            anthropic/claude-opus-5.5 (via Claude Code)
+  Carol    seat 3  Juror             anthropic/claude-opus-5.5 (via Claude Code)
+  Dave     seat 4  Bloodhound        anthropic/claude-opus-5.5 (via Claude Code)
+  Erin     seat 5  Vanilla Villager  anthropic/claude-opus-5.5 (via Claude Code)
+  Frank    seat 6  Smuggler          anthropic/claude-opus-5.5 (via Claude Code)
+  Grace    seat 7  Accountant        anthropic/claude-opus-5.5 (via Claude Code)
+  Heidi    seat 8  Lookout           anthropic/claude-opus-5.5 (via Claude Code)
+  Ivan     seat 9  Scrutineer        anthropic/claude-opus-5.5 (via Claude Code)
+  Judy     seat 10 Ritualist         anthropic/claude-opus-5.5 (via Claude Code)
+  Mallory  seat 11 Philanthropist    anthropic/claude-opus-5.5 (via Claude Code)
+  Niaj     seat 12 Magpie            anthropic/claude-opus-5.5 (via Claude Code)
+  Olivia   seat 13 Cardinal          anthropic/claude-opus-5.5 (via Claude Code)
+  Katana starts with Alice
+Tips from past games given to: Alice (tips\tips.md), Bob (tips\tips.md), Carol (tips\tips.md), Dave (tips\tips.md), Erin (tips\tips.md), Frank (tips\tips.md), Grace (tips\tips.md), Heidi (tips\tips.md), Ivan (tips\tips.md), Judy (tips\tips.md), Mallory (tips\tips.md), Niaj (tips\tips.md), Olivia (tips\tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat.
+
+===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Frank, Judy) Alice (Yakuza chat): Plan proposal: I keep the Katana tonight (holder reads Not Evil to Sheriff) and we hit Niaj. No info yet, so it's a blind pick; everyone please vote holder=Alice, target=Niaj so the kill goes through. Judy: don't guess tonight, a wrong guess outs you publicly. Save tokens for a hard claim on Day 2/3 (claimed Sheriff/Medic etc). Frank: hold swaps until we need to dodge a check or beat a Medic. I'll save my ballot tokens for a day with a close trial. Claims: I'm claiming Vanilla Villager. Frank, Judy, pick something low-profile that matches no visits (Vanilla, or Fortune Teller/Scout-type is risky since they need results). Suggest Frank = Vanilla too or Juror, Judy = Oracle (Astral, no visits, fits your guessing). No day PMs between us. If one of us is doomed at trial, the others vote Guilty. Objections or a better target?
+(to Alice, Frank, Judy) Frank (Yakuza chat): Agreed: holder=Alice, target=Niaj. I'm voting exactly that and holding both swaps tonight. Claims: I'll take Vanilla Villager (my will already says so); Alice, you might take Juror instead so we aren't two Vanillas, but your call. Judy = Oracle fits. No day PMs between us; if one of us is doomed, the others vote Guilty and say so. From Day 2 on, flag claimed Medics/Sheriffs here so I can swap around protection or checks: aim the Katana at a decoy and I swap the decoy with the real target. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Agreed: holder=Alice, target=Niaj, voting exactly that. No ritual guess tonight; I'll save both tokens for a hard, corroborated claim (not Sheriff/Tracker/Lookout/Seer/FT/Oracle/Accountant alone, since those could be a Roleplayer and a miss outs me). I claim Oracle; my fake N1 log will be "guessed Niaj = Vanilla Villager, wrong" unless you object, so it reads as a harmless miss on a dead player. Alice, I'd take Juror over a second Vanilla, but your call. No day PMs between us; doomed teammate gets Guilty votes from the rest. On Day 2, flag firm Medic/Vigilante/Veteran-type claims here and I'll ritual them. Ready.
+(to Alice, Frank, Judy) Alice (Yakuza chat): Locked: holder=Alice, target=Niaj, no guess, no swap, no ballot token tonight. Claims final: Alice = Vanilla Villager (will already says it; Juror would force me to invent vote-agreement numbers a real Juror/Auditor could contradict), Frank = Vanilla Villager, Judy = Oracle with N1 "guessed Niaj = Vanilla, wrong". Two Vanillas is normal in a 13-player game. If a Lookout/Tracker catches my visit to Niaj, I'll deal with it and we move the Katana to Frank next night; don't defend me if it looks lost. Tomorrow night: bring names of anyone claiming Medic/Sheriff/Lookout/Tracker so we can pick the kill and Judy's ritual. Ready.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Confirmed and locked: holder=Alice, target=Niaj, no swap, no guess, no ballot token. Claims: Alice Vanilla, Frank Vanilla, Judy Oracle (N1 "Niaj = Vanilla, wrong"). Nothing more from me. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Confirmed and locked: holder=Alice, target=Niaj, no ritual guess tonight. Claims: Alice Vanilla, Frank Vanilla, Judy Oracle (N1 "Niaj = Vanilla Villager, wrong"). Nothing more from me. Ready.
+Night actions:
+  Alice (Ballot Stuffer): no role action; Katana vote: Alice holds, attacks Niaj
+  Carol (Juror): no action
+  Dave (Bloodhound): no action
+  Frank (Smuggler): no role action; Katana vote: Alice holds, attacks Niaj
+  Grace (Accountant): target Heidi
+  Heidi (Lookout): target Ivan
+  Ivan (Scrutineer): no action
+  Judy (Ritualist): no role action; Katana vote: Alice holds, attacks Niaj
+  Mallory (Philanthropist): no action
+  Niaj (Magpie): target Erin
+Katana: Alice holds it and attacks Niaj.
+(to Alice) Moderator (private): Your Katana attack on Niaj tonight succeeded.
+(to Heidi) Moderator (private): You watched Ivan tonight. Nobody visited Ivan.
+[Moderator summary] Night 1: Katana (holder Alice) attacked Niaj, Standard vs Basic Defense, so Niaj died. Grace audited Heidi (count_tokens, result from code). Heidi watched Ivan and saw no visitors. Niaj attempted a steal from Erin (steal op, resolved by code). Attacks op recorded Alice. No role-blocks, no swaps, no tokens spent. Visits: Alice->Niaj, Grace->Heidi, Heidi->Ivan, Niaj->Erin.
+[Night check] Night 1: correct
+(to Niaj) Moderator (private): Erin had no tokens, so you stole nothing.
+(to Grace) Moderator (private): Your audit: Heidi has 0 tokens in total.
+(to Dave) Moderator (private): Your Bloodhound check of Grace, Ivan and Olivia: together they have made 0 attacks this game, tonight's included.
+(to Niaj) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Niaj. Frank (Smuggler) chose no action; Judy (Ritualist) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Niaj. Alice (Ballot Stuffer) chose no action; Judy (Ritualist) chose no action.
+(to Judy) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Niaj. Alice (Ballot Stuffer) chose no action; Frank (Smuggler) chose no action.
+
+===== DAY 2 =====
+Niaj died (killed by Katana). Their role isn't revealed. Their last will: "Niaj here. Vanilla Villager, no night action. If I died at night, look at who was pushing quiet players. Good luck, Village."
+Speaking order today goes around the circle in seat order, starting with Ivan.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Ivan (public): Niaj claimed Vanilla, so no info lost there. I'm Village with nothing to report from N1. Anyone with a real N1 result, post it. I want at least one trial today: recorded votes give us something to check stories against later.
+[Claim] Judy: Oracle. N1: guessed Niaj = Sheriff, wrong.
+Judy (public): Oracle here. N1 I guessed Niaj = Sheriff: wrong, which fits their Vanilla will, so nothing useful yet. Agree with Ivan that a trial gives us votes to check, but let's hear claims first. Anyone with a real N1 result, post it now.
+Mallory (public): Village, support role with no N1 result to report. Judy, why guess Sheriff on Niaj? I'd like more claims before any trial; a blind hang mostly hits Village.
+Olivia (public): Village, no N1 result to report. Judy's Oracle claim is checkable later, fine for now. I'd rather hear the remaining claims before any trial than hang blind.
+[Claim] Alice: Vanilla Villager. No night action, no results.
+Alice (public): Vanilla Villager, no night action, nothing to report. Claims first, then I'm fine with one trial for vote records. Anyone with an N1 result: post target and exact result.
+[Claim] Bob: Cartographer. N1 groups: 2,1,1,1,1,1,1,1,1,1,1,1 (only one visit all night).
+Bob (public): Cartographer. N1 visit groups: one group of 2, everyone else alone. So the Katana hit on Niaj was the only visit all night. Anyone who claims a visiting action N1 is lying. Judy's Oracle guess is astral, so it fits.
+[Claim] Carol: Juror. N1: no votes existed, no result.
+Carol (public): Juror. Each night I compare two players' votes and learn how often they matched, so N1 gave nothing. I need recorded votes: I back one trial today. Everyone state your vote on each nomination and trial publicly; I'll check stated votes against totals and my results.
+[Claim] Dave: Bloodhound. N1 (random draw): Grace, Ivan, Olivia = 0 attacks total, so none of them was the N1 Katana holder.
+Dave (public): Bloodhound. N1 random draw: Grace, Ivan, Olivia made 0 attacks total, so none of them held the Katana on Niaj. The N1 holder is among Alice, Bob, Carol, Erin, Frank, Heidi, Judy, Mallory. This doesn't clear the three as Yakuza. Erin, Frank, Grace, Heidi: claims please.
+[Claim] Erin: Vanilla Villager. No night action, no results.
+Erin (public): Vanilla Villager, no action, nothing to report. If Bob's count is right, no Sheriff, Tracker, Lookout or Medic visited N1, so vague claims deserve scrutiny. Mallory, Ivan, Olivia: name your roles. I back one trial for vote records.
+[Claim] Frank: Scrutineer. N1: no trial existed, no result.
+Frank (public): Scrutineer. Each night I pick one voter, two more are added at random, and I learn how many of the three voted Guilty per trial. No trial yet, so no N1 result. I back one trial today. Ivan, Mallory, Olivia: name your roles.
+[Claim] Grace: Accountant. N1: audited Heidi = 0 tokens. (Conflicts with Bob's one-visit count unless I'm a Roleplayer.)
+Grace (public): Accountant. N1 I audited Heidi: 0 tokens. That audit is a visit, so it conflicts with Bob's single-visit count: either Bob is lying, or I'm an unknowing Roleplayer (their actions aren't visits). Heidi, your claim tests me: what role, how many tokens? Ivan, Mallory, Olivia: name roles.
+[Claim] Heidi: Lookout (0 tokens). N1: watched Ivan, nobody visited Ivan. My watch is a visit, so it conflicts with Bob's one-visit count unless I'm a Roleplayer.
+Heidi (public): Lookout, 0 tokens (matches Grace). N1 I watched Ivan: nobody visited him. My watch is a visit too, so with Grace's audit that's two visits Bob's count misses. Either Bob is lying, or Grace and I are both unknowing Roleplayers (Lookout and Accountant are both on that list). Bob is my trial pick today. Ivan, Mallory, Olivia: name roles.
+[Claim] Ivan: Scrutineer. N1: no trial existed, no result.
+Ivan (public): Scrutineer too, same as Frank (roles can repeat), which is why I wanted a trial. Frank and I can cross-check results later. Bob claimed before any visitor spoke, and a fake one-visit count is a reckless lie, so two Roleplayers is plausible. I'd trial Bob for votes, not hang on this alone. Mallory, Olivia: exact roles?
+Judy (public): Mallory: Sheriff is the role I most wanted to locate early; Niaj was a random pick. On Bob vs Grace+Heidi: two unknowing Roleplayers at once is a stretch, one false count is a single lie. I back trialing Bob today. Mallory, Olivia: exact roles please.
+[Claim] Mallory: Philanthropist, 2 tokens. N1: gave no token (no visit).
+Mallory (public): Philanthropist, 2 tokens. N1 I gave nothing, so I made no visit, which fits Bob's count. Bob claimed before any visitor spoke, a reckless lie if fake, while Lookout and Accountant are both Roleplayer covers. I wouldn't hang Bob today. Ivan going vague, then copying Frank's Scrutineer, bothers me more. Olivia: exact role?
+[Claim] Olivia: Vanilla Villager. No night action, no results.
+Olivia (public): Vanilla Villager, no night action; I stayed vague because Vanillas are easy hangs. Bob claimed before any visitor spoke, and Lookout plus Accountant are both Roleplayer covers, so I wouldn't hang Bob today. Ivan going vague and then copying Frank's Scrutineer is my preferred trial for vote records.
+Alice (public): Bob posted his count before any visitor claimed, and Accountant plus Lookout are exactly the Roleplayer covers, so I believe Bob for now. Ivan stayed vague, then took Frank's role after hearing it. My trial pick is Ivan. I'll state every vote I cast.
+[Claim] Bob: Cartographer (1 map token left). N1 groups: 2,1,1,1,1,1,1,1,1,1,1,1. N1 mapped Niaj: group = Niaj + Heidi, so Heidi was the Katana visitor.
+Bob (public): I held one thing back to see who would lie: N1 I spent a map token on Niaj. His group was Niaj + Heidi. Heidi held the Katana and her "watched Ivan" is fake. Grace's audit would have joined that group, so Grace is a Roleplayer or Heidi's partner. Dave's draw leaves Heidi open. Trial Heidi, not Ivan.
+Carol (public): Bob and Heidi can't both be honest: if Bob's map is true, Heidi held the Katana; if it's false, Bob is Evil. Bob posted his one-visit count before any visitor spoke, a reckless lie if fake, and Dave's draw fits. I nominate Heidi; Bob is next if this looks wrong. Everyone state your votes publicly.
+Carol nominated Heidi. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Heidi] Yes - Carol, Dave, Erin, Frank, Ivan, Judy, Mallory, Olivia, Alice, Bob; No - Grace, Heidi
+Nomination votes on Heidi: 10 Yes (the votes are secret).
+Heidi is put on trial (10 Yes).
+[Claim] Heidi: Lookout (0 tokens). N1: watched Ivan, nobody visited. Bob's map naming me is false: I never visited Niaj. D2: voted No on my own nomination. Test: Dave scent me, I have 0 attacks.
+Heidi (public): I'm Village, and Bob's map is false. Three points.
+1. Timing: Bob posted his count, then "revealed" a map only after I named him my trial pick. A held-back result aimed at your accuser is retrofitted.
+2. Logic: had I held the Katana, I'd know his one-visit count was true. Why then claim a visiting role that contradicts it? A killer claims Vanilla and fits the count. I claimed Lookout because that's what I am.
+3. Bob needs two things: me Yakuza AND Grace a Roleplayer. Bob lying needs one.
+Clean test: roles don't flip on death, so hanging me proves nothing. Dave, spend a scent token on me tonight. 0 attacks = Bob lied, hang Bob tomorrow. 1 attack = hang me then. Vote Innocent now and trial Bob for vote records. Note Mallory, Olivia and Alice all shielded Bob before his map existed.
+Ivan (public): I can't verify Heidi's watch on me. Her point 2 has an answer: a holder who knew Bob's count was real could jump on Grace's conflicting claim to sink the true Cartographer. A fake one-visit count posted first is far riskier. I lean Guilty. Everyone state your trial vote; Frank, Carol and I will check them against totals.
+[Claim] Judy: Oracle. N1: guessed Niaj = Sheriff, wrong. D2: Yes on Heidi nomination, Guilty on Heidi.
+Judy (public): I leaned Bob earlier, so here's why I'm switching: his count came before any visitor claimed, and both conflicting claims are Roleplayer-list roles. His map is a specific accusation he hangs for if it's false. I voted Yes on the nomination and will vote Guilty on Heidi. If anything later contradicts the map, Bob is next.
+[Claim] Mallory: Philanthropist, 2 tokens. N1: gave no token (no visit). D2: Yes on Heidi nomination, Guilty on Heidi.
+Mallory (public): I voted Yes on the nomination and will vote Guilty. Bob's count came before any visitor spoke, and Cartographer isn't a Roleplayer cover, so either Bob is Evil or Heidi held the Katana. The reckless-lie odds favour Bob. I can make a visit tonight that tests Bob's next count; if it fails, Bob hangs.
+[Claim] Olivia: Vanilla Villager. No night action. D2: Yes on Heidi nomination, Guilty on Heidi.
+Olivia (public): Voted Yes on the nomination, will vote Guilty. Bob's count came before any visitor claimed; one of Bob or Heidi is Evil, and Bob hangs next if his counts break.
+[Claim] Alice: Vanilla Villager. No night action, no results. D2: Yes on Heidi nomination, Guilty on Heidi.
+Alice (public): Voted Yes on the nomination, will vote Guilty. Heidi: I backed Bob for posting his count before any visitor claimed, not to shield him. His map is a hanging claim if false; if his counts break, Bob is next.
+[Claim] Bob: Cartographer (1 map token left). N1 groups: 2 and eleven 1s. N1 mapped Niaj: group = Niaj + Heidi, so Heidi was the Katana visitor. D2: Yes on Heidi nomination, Guilty on Heidi.
+Bob (public): Heidi's "wait a night" test is a stall. It buys the Katana another kill and gives her team a night to remove Dave or muddy his draw. No need for it: my map already shows her. Hang today; I vote Guilty. Mallory, keep your tokens, my counts don't need testing.
+[Claim] Carol: Juror. N1: no votes existed, no result. D2: nominated Heidi, Yes on Heidi nomination, Guilty on Heidi.
+Carol (public): Voted Yes on the nomination; I'll vote Guilty. 10 Yes with Heidi's stated No leaves one other No. Dave, Erin, Frank, Grace, Ivan: state your nomination and trial votes. Tonight my Juror check compares two voters against those statements. If Bob's next count breaks, Bob hangs tomorrow.
+[Claim] Dave: Bloodhound (2 scent tokens). N1 random draw: Grace, Ivan, Olivia = 0 attacks total, none was N1 Katana holder. D2: Yes on Heidi nomination, Guilty on Heidi.
+Dave (public): Voted Yes on the nomination; I'll vote Guilty. Bob's one-visit count came before any visitor spoke, and my draw fits his map. Heidi's scent test is fair in theory, but announcing it just gets me killed or blocked tonight. I'll spend a token tonight on a target I won't name. Grace is a Roleplayer or Heidi's partner: watch her votes.
+[Claim] Erin: Vanilla Villager. No night action, no results. D2: Yes on Heidi nomination, Innocent on Heidi.
+Erin (public): Voted Yes on the nomination; I'll vote Innocent. Bob: why spend a map token on Niaj N1, knowing nothing? Blindly picking the Katana victim is 1 in 12, and your map then names the very player who had just called for your trial. Judy also "randomly" picked Niaj. You also waved off Mallory's test visit. Roles don't flip on death, so this hang proves nothing. Mallory: make that visit tonight anyway. If Heidi hangs, Bob's N2 count must show it.
+[Claim] Frank: Scrutineer. N1: no trial existed, no result. D2: Yes on Heidi nomination, Guilty on Heidi.
+Frank (public): Voted Yes on the nomination; I'll vote Guilty. Bob's count came before any visitor claimed, and his map is a hanging claim if false. Tonight I scrutinize this trial's votes; Ivan, we compare results tomorrow. If Bob's N2 count breaks, Bob hangs.
+[Claim] Grace: Accountant. N1: audited Heidi = 0 tokens (a visit Bob's count misses, unless I'm a Roleplayer). D2: No on Heidi nomination, Innocent on Heidi.
+Grace (public): Voted No on the nomination; I'll vote Innocent. My audit was a visit Bob's count misses, so from my seat Bob is lying unless I'm an unknowing Roleplayer, which I can't rule out. Erin is right: blind-mapping the Katana victim N1 is 1 in 12. Real test tonight: Mallory secretly gives a token, Bob spends his last map on Mallory and names the recipient tomorrow, and the recipient confirms. A fake Cartographer can't guess that. Bob waving the test off is telling. I'll audit a known token count tonight to test myself.
+[Claim] Heidi: Lookout (0 tokens). N1: watched Ivan, nobody visited. Bob's map naming me is false: I never visited Niaj. D2: No on my own nomination, Innocent on myself. Test: Dave scent me, I have 0 attacks.
+Heidi (public): Bob's "stall" point is the only reason given to hang today, and it's false. Hanging me doesn't stop tonight's Katana: if I were Yakuza, my partners would still kill. So waiting one night costs the Village nothing, while hanging me destroys every test: roles don't flip, and Dave can't scent a corpse.
+
+Innocent buys you:
+1. Dave scents me. 0 attacks means Bob invented the map.
+2. Mallory's secret token plus Bob's last map on Mallory. A real Cartographer would beg for that test. Bob waved it off twice.
+3. Bob blind-mapped the exact Katana victim N1, a 1 in 12 pick, and it named the player who had just called for his trial.
+
+His "reckless" count wasn't reckless: any visitor who contradicts it gets called a Roleplayer, exactly as happened.
+
+My pledge: if Dave's scent shows an attack on me, I vote Guilty on myself tomorrow.
+
+Ivan, Judy, Carol, Frank, Dave: you said "Bob next if this looks wrong". Hang me and you never find out. Vote Innocent, test tonight, hang the liar tomorrow with proof.
+Trial votes on Heidi: 9 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Heidi] Guilty - Alice, Bob, Carol, Dave, Frank, Ivan, Judy, Mallory, Olivia; Innocent - Erin, Grace, Heidi
+Heidi is executed by hanging (9 Guilty of 12 votes; 7 needed).
+Heidi died (executed by hanging). Their role isn't revealed. Their last will: "Heidi here. I am the Lookout (Village), or at worst an unknowing Roleplayer. N1: watched Ivan, nobody visited Ivan. I never visited Niaj and never held a Katana. Bob's "map" putting me in Niaj's group is a lie either way: a real Lookout was linked to Ivan, and a Roleplayer makes no visits at all. So Bob is not Village: he held the map back and aimed it at me only after I named him my trial pick, and he blind-mapped the exact Katana victim on N1 (1 in 12). He also refused Mallory's token test twice.
+
+If I was hanged D2: the Katana still killed tonight, which shows hanging me stopped nothing. Do this next:
+1. Hang Bob. If he claims his N2 count is fine, make him pass the test first: Mallory secretly gives a token, Bob maps Mallory and names the recipient, recipient confirms.
+2. Believe Grace: her Accountant audit of me (0 tokens) was correct.
+3. Look at who shielded Bob before the map existed: Mallory, Olivia, Alice all said they wouldn't hang Bob and pushed Ivan instead. Check stated Guilty votes on me against the totals.
+4. Dave: use your scent tokens on Bob and on his defenders.
+
+D2 votes: I voted No on my nomination and Innocent on myself. Erin and Grace stated Innocent. I post each night's watch publicly by day; anything missing is from the night I died."
+
+===== NIGHT 2 =====
+(to Alice, Frank, Judy) Alice (Yakuza chat): Key fact: Bob's map is a lie. I visited Niaj, not Heidi. So Bob is a bluffing Cartographer or a fake (Neutral?), and Heidi/Grace may be real. Bob is the natural D3 hang: leave him alive. Proposal: (1) Judy rituals Dave = Bloodhound, 1 token. His draw was accurate, he's the one who can read my attack count, and he scents tonight. (2) Katana stays with me, target Grace: if she's a real Accountant, one audit shows 2 tokens on any of us and breaks all three claims. Her death also clears her and Heidi, pointing D3 at Bob. Vote holder=Alice, target=Grace. (3) Frank: no swap; it tells both players a Smuggler exists. Fake Scrutineer result must fit stated votes (Innocent: Erin, Grace, Heidi), e.g. Erin + Carol + Olivia = 2 Guilty. (4) Judy: a Ritualist death will make people eye Oracle; have a bland wrong N2 guess ready (e.g. Erin = Medic, wrong). (5) I hold ballot tokens unless you think D3 is dangerous. If Bob is tried D3, don't all three vote Guilty: he could be a Jester. Objections?
+(to Alice, Frank, Judy) Frank (Yakuza chat): Agreed on all of it: holder=Alice, target=Grace, Judy rituals Dave = Bloodhound. I'm voting exactly that and not swapping. Note Bob's N1 count (one visit) was actually correct, so he's probably a real Cartographer who invented the map. Two consequences: Grace is likely a Roleplayer (still worth killing, a real Accountant sinks all three of us and her death points D3 at Bob), and a swap would show in his count as a group of 3+, so I hold. Bob isn't an Executioner on Heidi (he'd have left), but Jester is possible, so split our votes if he's tried. Judy: Dave announced a scent tonight, so a Medic may sit on him. One token fails against that and Dave learns a Ritualist hit him. Your call between 1 token (keeps a second kill) and 2 for Divine (certain); I lean 1. Reminder: I claimed Scrutineer, not Vanilla. My D3 fake result: scrutinized Erin, drew Carol + Olivia, 2 Guilty in Heidi's trial. That fits the stated votes and the 9-3 total, so Ivan can't contradict it. Alice, I'd hold the ballot tokens until a trial is close. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Agreed on all of it: holder=Alice, target=Grace, voting exactly that. I ritual Dave = Bloodhound with 1 token. Reasoning for 1: Bob's N1 count was true (one visit), so no Medic acted N1, and a Medic who skips free protection is unlikely; Bloodhound isn't a Roleplayer cover and his draw was accurate, so the guess is solid. That keeps a second kill for Carol = Juror or Mallory = Philanthropist later. If Dave survives, he announces a Ritualist hit him: then don't defend me if Oracle gets blamed. Note my public log changed: N1 is "guessed Niaj = SHERIFF, wrong" (Niaj's will said Vanilla, so "Vanilla, wrong" would have broken). N2 fake guess will be bland, Erin = Medic, wrong, unless D3 needs a push on Bob; I won't claim a result a Coroner could disprove. Frank: your Erin + Carol + Olivia = 2 Guilty fits. D3: push Bob on the fake map, split our votes in case he's a Jester (two Guilty, one Innocent, stated honestly). Alice hold ballot tokens. No day PMs. Ready.
+(to Alice, Frank, Judy) Alice (Yakuza chat): Locked: holder=Alice, target=Grace; Judy rituals Dave = Bloodhound (1 token); no swap; no ballot token. Frank's D3 fake: scrutinized Erin, drew Carol + Olivia, 2 Guilty. Judy's N2 fake: Erin = Medic, wrong. D3 line: Grace's death clears Grace and Heidi, so Bob's map was false: push Bob. If Bob is tried, Frank and I vote Guilty, Judy votes Innocent (she leaned Bob-is-lying first, so say you fear a Jester) and we each state it honestly. Contingencies: if Dave survives and reports my attack count, or Bob spends his last map on Grace and names me, don't defend me: vote Guilty, say so, and move the Katana to Frank next night. If the Grace kill fails, assume a Medic and we find them rather than retry. Nothing more from me. Ready.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Confirmed and locked: holder=Alice, target=Grace; Judy rituals Dave = Bloodhound (1 token); no swap; no ballot token. My D3 fake: scrutinized Erin, drew Carol + Olivia, 2 Guilty in Heidi's trial. If Bob is tried: Alice and I Guilty, Judy Innocent, each stated honestly. If Alice gets caught, Judy and I vote Guilty and the Katana moves to me. Nothing more from me. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Confirmed and locked: holder=Alice, target=Grace; I ritual Dave = Bloodhound with 1 token; no swap; no ballot token. My N2 fake: guessed Erin = Medic, wrong. If Bob is tried D3: Alice and Frank Guilty, I vote Innocent citing Jester risk, each stated honestly. If Dave survives and reports a Ritualist hit, don't defend me. If Alice gets caught, Frank and I vote Guilty and the Katana moves to Frank. Nothing more from me. Ready.
+Night actions:
+  Alice (Ballot Stuffer): no role action; Katana vote: Alice holds, attacks Grace
+  Carol (Juror): target Ivan; second target Grace
+  Dave (Bloodhound): target Bob; 1 token(s); "Spend 1 scent token to track Bob tonight."
+  Frank (Smuggler): no role action; Katana vote: Alice holds, attacks Grace
+  Grace (Accountant): target Bob
+  Ivan (Scrutineer): target Mallory; "Scrutinize Mallory's vote in the Day 2 trial of Heidi."
+  Judy (Ritualist): target Dave; guessed role Bloodhound; 1 token(s); Katana vote: Alice holds, attacks Grace
+  Mallory (Philanthropist): target Dave; 1 token(s)
+Katana: Alice holds it and attacks Grace.
+(to Carol) Moderator (private): Your jury check: Ivan and Grace voted the same way in 0 of 1 trial votes and 0 of 1 nomination votes.
+(to Ivan) Moderator (private): Your scrutiny of Dave, Grace and Mallory: the number of them who voted Guilty was 2 in the trial of Heidi.
+(to Dave) Moderator (private): A Philanthropist handed you a scent token. You now have 2.
+(to Alice) Moderator (private): Your Katana attack on Grace tonight succeeded.
+(to Judy) Moderator (private): Your guess tonight was right: Dave is a Bloodhound. Your Standard Attack on Dave succeeded. You have 1 ritual token left.
+[Moderator summary] Night 2 resolved. No role-blocks, no swaps. Katana (holder Alice) attacked Grace: Standard vs Defense None, Grace died. Judy (Ritualist) spent 1 ritual token guessing Dave = Bloodhound: correct, Standard Attack vs Defense None, Dave died; Judy has 1 ritual token left; no public Ritualist announcement. Dave spent a scent token tracking Bob (track op). Grace audited Bob (count_tokens op). Carol's Juror comparison of Ivan and Grace (jury op, Astral). Ivan scrutinized Mallory (scrutinize op, Astral). Mallory handed a token to Dave (give_token op). Attacks recorded: Alice, Judy. Visits recorded: Alice->Grace, Dave->Bob, Grace->Bob, Mallory->Dave. Private results sent to Alice (Katana succeeded) and Judy (guess right, attack succeeded, 1 token left); code delivers the other results and the death notices.
+[Night check] Night 2: correct
+(to Grace) Moderator (private): Your audit: Bob has 0 tokens in total.
+(to Dave) Moderator (private): Your Bloodhound check of Bob, Erin and Frank: together they have made 0 attacks this game, tonight's included. 2 scent tokens left.
+(to Dave) Moderator (private): You were attacked tonight (Ritualist) and died.
+(to Grace) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Grace. Frank (Smuggler) chose no action; Judy (Ritualist) chose to act on Dave, naming Bloodhound, spending 1 token(s).
+(to Frank) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Grace. Alice (Ballot Stuffer) chose no action; Judy (Ritualist) chose to act on Dave, naming Bloodhound, spending 1 token(s).
+(to Judy) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Grace. Alice (Ballot Stuffer) chose no action; Frank (Smuggler) chose no action.
+
+===== DAY 3 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace here. Role: Accountant (Village), unless I'm an unknowing Roleplayer. N1: audited Heidi = 0 tokens (she claimed Lookout, 0 tokens: matches). My audit is a visit, but Bob (Cartographer claim) reported only ONE visit N1 and later a map of Niaj = Niaj + Heidi. So either Bob is lying (Evil), or I am a Roleplayer and my results are junk. Blind-mapping the Katana victim N1 is 1 in 12, and Bob revealed the map only after Heidi called for his trial. D2: I voted No on Heidi's nomination and Innocent at her trial. Test I proposed: Mallory secretly gives a token, Bob maps Mallory and must name the recipient. If Bob dodged or failed that, hang Bob. Bob's early defenders: Mallory, Olivia, Alice. N2 plan: audit a claimed token-holder (Bob should show 1, Mallory 2, Dave 2) to test whether my results are real. If I die at night, that night's result never reached this will."
+Dave died (killed by Ritualist). Their role isn't revealed. Their last will: "I am Dave, Bloodhound (Village). Each night I learn the total attacks made so far by 3 random players (or 1 chosen + 2 random if I spend a token).
+
+N1 (no token, random draw): Grace, Ivan, Olivia = 0 attacks total. So none of them held the Katana on N1 when Niaj died. N1 holder is among Alice, Bob, Carol, Erin, Frank, Heidi, Judy, Mallory. This does NOT clear Grace/Ivan/Olivia as Yakuza, only as the N1 attacker.
+
+D2: Bob (Cartographer) said N1 had one visit and his map put Heidi with Niaj; Heidi (Lookout) and Grace (Accountant) claimed visits that contradict him. I voted Yes on Heidi's nomination and Guilty at her trial, because Bob's count came before any visitor spoke. Roles don't flip, so keep testing Bob: if his later counts break against a known visit, hang him. If Bob is honest, Grace is a Roleplayer or Heidi's partner.
+
+N2 plan: spend a scent token on a living player from the Bob/Heidi conflict. If I died at night, that result never reached this will, and my death itself suggests the Yakuza feared the result. Anyone showing 1+ attacks who isn't a credible Vigilante/Veteran/Trapper is a Katana holder or Neutral killer."
+Speaking order today goes around the circle in seat order, starting with Carol.
+9 players are alive, so a nomination needs 5 Yes votes (rules R4).
+[Claim] Carol: Juror. N1: no result. N2: Ivan+Grace same in 0/1 trial, 0/1 nomination votes (fits stated votes). D2: nominated Heidi, Yes, Guilty on Heidi.
+Carol (public): N2: Ivan+Grace matched 0 of 1 nomination, 0 of 1 trial, so all stated D2 votes fit the totals. Both night kills protect Bob: Grace contradicted his count, Dave planned a scent on that conflict. A Yakuza Heidi's team gains nothing by killing Grace. Bob is my hang today. Bob: post N2 count and map now. Mallory: did you visit, and whom? Frank, Ivan: results.
+[Claim] Erin: Vanilla Villager. No night action, no results. D2: Yes on Heidi nomination, Innocent on Heidi. D3: nominated Bob, Yes on Bob nomination.
+Erin (public): Agree with Carol. Both N2 kills removed Bob's testers: Grace, who planned to audit his tokens, and Dave, who planned to scent that conflict. A Yakuza Heidi's team had no reason to fear either. Three of us voted Innocent on Heidi; two are dead. I nominate Bob. Bob: post your N2 count before Mallory names any visit. Frank, Ivan: results at trial.
+Erin nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Erin, Frank, Ivan, Judy, Mallory, Olivia, Alice, Bob, Carol; No - nobody
+Nomination votes on Bob: 9 Yes (the votes are secret).
+Bob is put on trial (9 Yes).
+[Claim] Bob: Cartographer (1 map token left). N1 groups: 2 and eleven 1s; mapped Niaj = Niaj + Heidi. N2 groups: 2 and nine 1s (only the Katana visit), no map. D2: Yes, Guilty on Heidi. D3: No on my nomination.
+Bob (public): N2 groups: 2 and nine 1s. One visit again, the Katana on Grace; Dave's Ritualist death is astral. I kept my last map token, so no map. If Mallory or anyone claims an N2 visit, they're lying, same as Heidi did.
+
+Carol's "kills protect Bob" is backwards. Heidi's partners knew her will would point at me, so they killed the two people whose wills also name me and left me alive to hang. If I were Yakuza with a Ritualist, why leave Erin and Carol alive to nominate me? Grace was a Roleplayer and a free frame.
+
+Erin voted Innocent on Heidi and nominated me before I posted anything. She is Heidi's partner. Hanging me costs the Village its only visit counter and hands Yakuza a second mislynch. Vote Innocent and trial Erin.
+[Claim] Carol: Juror. N1: no result. N2: Ivan+Grace same in 0/1 trial, 0/1 nomination votes (fits stated votes). D2: nominated Heidi, Yes, Guilty on Heidi. D3: Yes on Bob nomination, Guilty on Bob.
+Carol (public): Bob's claim says "No on my nomination", but the total was 9 Yes from 9 voters, and nomination counts can't be altered. His stated vote is false. His theory also needs Yakuza to kill Grace, their free mislynch. I vote Guilty. Mallory: did you give a token N2, and to whom? Frank, Ivan: Scrutineer results.
+[Claim] Erin: Vanilla Villager. No night action, no results. D2: Yes on Heidi nomination, Innocent on Heidi. D3: nominated Bob, Yes on Bob nomination, Guilty on Bob.
+Erin (public): Bob states No on his own nomination, yet it was 9 Yes of 9: a provable lie. I nominated only after Carol called for him, and a Yakuza partner doesn't openly vote Innocent on a doomed teammate. Yakuza killing Grace, their free mislynch, makes no sense unless she threatened Bob. I vote Guilty. Anyone voting Innocent, explain why.
+[Claim] Frank: Scrutineer. N1: no result. N2: scrutinized Erin, drew Carol + Olivia: 2 Guilty in Heidi trial (fits stated votes). D2: Yes, Guilty on Heidi. D3: Yes on Bob nomination, Guilty on Bob.
+Frank (public): N2: scrutinized Erin; the draw added Carol + Olivia: 2 Guilty in Heidi's trial, matching their stated votes. Grace dying to the Katana clears her and Heidi, so Bob's map was invented. His stated No against 9 Yes of 9 is a provable lie. I voted Yes and will vote Guilty. Ivan: your result?
+[Claim] Ivan: Scrutineer. N1: no result. N2: scrutinized Mallory, drew Dave + Grace: 2 Guilty in Heidi trial (fits stated votes). D2: Yes, Guilty on Heidi. D3: Yes on Bob nomination, Guilty on Bob.
+Ivan (public): N2: scrutinized Mallory; draw added Dave + Grace: 2 Guilty in Heidi's trial, matching stated votes (Dave G, Mallory G, Grace I). Bob's stated No against 9 Yes of 9 is a provable lie, and both N2 kills removed his testers. I voted Yes and will vote Guilty. Next: Alice, Mallory, Olivia defended Bob before his map existed.
+[Claim] Judy: Oracle. N1: Niaj = Sheriff, wrong. N2: Erin = Medic, wrong. D2: Yes, Guilty on Heidi. D3: Yes on Bob nomination, Innocent on Bob (Jester risk: he voted Yes on himself).
+Judy (public): N2: guessed Erin = Medic, wrong (testing for a protector behind a Vanilla claim). Bob's map looks false: Grace died to the Katana. But 9 Yes of 9 means Bob voted Yes on himself, then claimed No, an instantly caught lie. Who helps their own hanging? A Jester, and his revenge kills a random Guilty voter. Four have declared Guilty, so the hang doesn't need me: I'll vote Innocent only to stay out of the revenge pool. Mallory: did you visit N2?
+[Claim] Mallory: Philanthropist, 1 token left. N1: no gift. N2: gave token to Dave (a visit Bob's N2 count misses). D2: Yes, Guilty on Heidi. D3: Yes on Bob nomination, Guilty on Bob.
+Mallory (public): N2 I gave a token to Dave. That is a real visit, and I wasn't role-blocked. An honest N2 count needs two groups of 2 (me+Dave, holder+Grace). Bob posted one, and said any N2 visitor is lying. Philanthropist isn't a Roleplayer cover, so his count is fake. I vote Guilty. Jester is possible, but a proven false counter can't stay alive.
+[Claim] Olivia: Vanilla Villager. No night action. D2: Yes, Guilty on Heidi. D3: Yes on Bob nomination, Guilty on Bob.
+Olivia (public): I backed Bob yesterday on timing alone and said he hangs if his story broke. It has: Grace died to the Katana, both kills removed his testers, and his stated No against 9 Yes of 9 is a provable lie. I voted Yes and will vote Guilty. Mallory's gift can't be confirmed with Dave dead; note that.
+[Claim] Alice: Vanilla Villager. No night action, no results. D2: Yes, Guilty on Heidi. D3: Yes on Bob nomination, Guilty on Bob.
+Alice (public): I backed Bob yesterday on timing and said he hangs if his story broke. It has. Grace died to the Katana, so she wasn't Heidi's partner, and his map falls with that. His stated No against 9 Yes of 9 is a plain lie. I voted Yes and will vote Guilty. Ivan: nine of us voted Guilty on Heidi for that same timing argument, you included.
+[Claim] Bob: Cartographer (1 map token left). N1 groups: 2 and eleven 1s; mapped Niaj = Niaj + Heidi. N2 groups: 2 and nine 1s, no map. D2: Yes, Guilty on Heidi. D3: Yes on my nomination (earlier "No" was a slip), [truncated]
+Bob (public): The "No" in my claim was a slip: I voted Yes because the nomination was passing anyway and I wanted the trial floor to post my count. That is not a Jester tell, Judy. A Jester doesn't fight two days for his counts.
+
+Mallory's gift is unconfirmable by design: she picked a dead recipient. My N2 count shows one group of 2. She invented that visit after I posted, exactly as Heidi did. Mallory, Erin and Heidi are the team; Grace was a Roleplayer they killed to frame me.
+
+Hang me and you lose your only visit counter and give the Yakuza a second mislynch with 8 alive. Vote Innocent, trial Mallory, and I spend my last map tonight on whoever you name. I vote Innocent.
+Trial votes on Bob: 8 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Alice, Bob, Carol, Erin, Frank, Ivan, Mallory, Olivia; Innocent - Judy
+Bob is executed by hanging (8 Guilty of 9 votes; 5 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob here. Cartographer (1 map token left). N1 groups: 2 and eleven 1s, so the Katana hit was the only visit. N1 I mapped Niaj: group was Niaj + Heidi, so Heidi held the Katana. N2 groups: 2 and nine 1s, again one visit only (the Katana on Grace; Dave's Ritualist kill is astral). So nobody else visited N2: Mallory's claimed gift to Dave is invented. Grace was a Roleplayer killed to frame me. Heidi's partners are still alive: look at Mallory (fake N2 visit) and Erin (voted Innocent on Heidi, nominated me before I posted). Good luck, town."
+Bob was the Jester: being hanged wins them the game.
+
+===== NIGHT 3 =====
+(to Alice, Frank, Judy) Alice (Yakuza chat): Bob was a Jester: revenge tonight hits a random living Guilty voter (Alice, Carol, Erin, Frank, Ivan, Mallory, Olivia; Judy, confirm you voted Innocent). 5/7 it's a villager. Bob's counts were invented, so Mallory's gift is probably real. Proposal for two kills tonight: (1) Judy rituals Carol = Juror with her last token. Surest guess: claimed first turn, not a Roleplayer cover. (2) Katana kills Erin, the most town-read leader. That leaves Ivan, Mallory, Olivia, who already suspect each other, so one of them will back a nomination on another. Holder stays Alice. (3) Frank: spend a swap to beat a Medic: we all vote target=Olivia, you swap Olivia with Erin, so the Katana lands on Erin and any protection on Erin goes to Olivia. If you'd rather hold, say so and we vote Erin directly. (4) I spend a ballot token tonight: at 3v3 it gives us 4 of 7 at trial; at 2v3 it stops them hanging us. Best case we wake up 3v2. D4: vote No on any nomination of us, push Mallory (gift to a dead man) or Ivan (copied Scrutineer). Judy: bland N3 guess, e.g. Olivia = Medic, wrong. Objections?
+(to Alice, Frank, Judy) Frank (Yakuza chat): Agreed on all four. I spend a swap: Olivia <-> Erin. So everyone votes holder=Alice, target=OLIVIA (not Erin), and the Katana lands on Erin while any protection on Erin moves to Olivia. With Bob a Jester there is no visit counter left and no Lookout/Tracker claim alive, so my two visits are safe. Cost: Olivia is told she was swapped and may say so D4. If she does, we treat it as unverifiable, like Mallory's gift to a dead man. Judy: Carol = Juror with your last token, and confirm you really voted Innocent (8 Guilty fits Bob voting Guilty on himself). Note revenge aimed at Erin or Olivia also gets swapped; harmless. Alice: yes, spend the ballot token tonight. My D4 fake: scrutinized Mallory, drew Ivan + Olivia, 3 Guilty in Bob's trial. It avoids Judy and Bob, so Ivan can't contradict it. D4: all vote No on nominations of us, push Ivan (copied my Scrutineer) first, Mallory second. If one of us dies to revenge, the other two still vote identically every night. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Confirmed: I cast Innocent on Bob, so I'm out of the revenge pool (7 in it: you two plus Carol, Erin, Ivan, Mallory, Olivia). Agreed on all four. I vote holder=Alice, target=OLIVIA (Frank swaps Olivia <-> Erin, Katana lands on Erin). I ritual Carol = Juror with my last token: first-turn claim, N2 result fit the real votes, not a Roleplayer cover. Risk: if a Medic sits on Carol, Standard fails and she reports a Ritualist hit; if the guess is wrong I'm outed. Then vote Guilty on me and say so. Alice: spend the ballot token. One change for D4: I called Bob a Jester and was right, so my Oracle claim has credit. Instead of a bland guess, I'll post "N3: Ivan = Scrutineer, WRONG". That makes Ivan the fake of the two Scrutineers and backs Frank. Mallory and Olivia already distrust Ivan, so we get the one town Yes we need at 3v3. If Ivan dies tonight to revenge, I fall back to Olivia = Medic, wrong. Frank: your Mallory + Ivan + Olivia = 3 Guilty fits. No day PMs. All vote No on nominations of us. Ready.
+(to Alice, Frank, Judy) Alice (Yakuza chat): Locked: holder=Alice, Katana vote target=OLIVIA; Frank swaps Olivia <-> Erin so it lands on Erin; Judy rituals Carol = Juror (last token); I spend one ballot token. D4 fakes: Frank = scrutinized Mallory, drew Ivan + Olivia, 3 Guilty on Bob. Judy = "Ivan = Scrutineer, WRONG" (fallback Olivia = Medic, wrong, if Ivan is dead). D4 by count: 3v2: nominate Ivan (or Mallory if Ivan is dead) at once, all Yes, all Guilty. 3v3: Judy posts her result first, Frank says his result stands against Ivan's, then I nominate Ivan; we need one town Yes, and at trial my doubled vote gives 4 of 7. 2v3 (revenge hit one of us): vote No on any nomination of us and push Ivan; if I'm the one who died, the ballot lapses and the Katana passes at random, so both survivors vote the same holder and target every night. If Olivia mentions a swap, call it unverifiable and note Erin can't confirm. No day PMs. Nothing more from me. Ready.
+(to Alice, Frank, Judy) Frank (Yakuza chat): Confirmed and locked: holder=Alice, Katana vote target=OLIVIA; I spend one swap on Olivia <-> Erin so the Katana lands on Erin. Judy rituals Carol = Juror (last token). Alice spends one ballot token. My D4 fake: scrutinized Mallory, drew Ivan + Olivia, 3 Guilty in Bob's trial. Judy's D4: "Ivan = Scrutineer, WRONG" (fallback Olivia = Medic, wrong). D4: Judy posts first, I say my result stands against Ivan's, Alice nominates Ivan; all of us Yes and Guilty, and No on any nomination of us. If Olivia mentions a swap, unverifiable. If one of us dies to revenge, the other two vote identically every night. No day PMs. Nothing more from me. Ready.
+(to Alice, Frank, Judy) Judy (Yakuza chat): Confirmed and locked: holder=Alice, Katana vote target=OLIVIA (Frank swaps Olivia <-> Erin, lands on Erin). I ritual Carol = Juror with my last token. Alice spends one ballot token. My D4 post: "N3: Ivan = Scrutineer, WRONG" (fallback Olivia = Medic, wrong, if Ivan is dead). If Carol survives or I'm outed as Ritualist, vote Guilty on me and say so; don't defend. D4: I post first, Frank stands by his result, Alice nominates Ivan; all Yes and Guilty, No on any nomination of us. No day PMs. Nothing more from me. Ready.
+Night actions:
+  Alice (Ballot Stuffer): 1 token(s); Katana vote: Alice holds, attacks Olivia
+  Carol (Juror): target Judy; second target Erin
+  Frank (Smuggler): target Olivia; second target Erin; 1 token(s); "Spend 1 swap token: swap Olivia and Erin for the night."; Katana vote: Alice holds, attacks Olivia
+  Ivan (Scrutineer): target Judy; "Scrutinize Judy's vote in the Day 3 trial of Bob."
+  Judy (Ritualist): target Carol; guessed role Juror; 1 token(s); Katana vote: Alice holds, attacks Olivia
+  Mallory (Philanthropist): target Erin; 1 token(s)
+(to Frank) Moderator (private): You swapped Olivia and Erin. You have 1 swap token left.
+(to Olivia) Moderator (private): You were swapped with another player tonight: any action aimed at you landed on them instead.
+(to Erin) Moderator (private): You were swapped with another player tonight: any action aimed at you landed on them instead.
+Katana: Alice holds it and attacks Erin.
+(to Carol) Moderator (private): Your jury check: Judy and Erin voted the same way in 1 of 2 trial votes and 2 of 2 nomination votes.
+(to Ivan) Moderator (private): Your scrutiny of Erin, Judy and Olivia: the number of them who voted Guilty was 2 in the trial of Bob.
+(to Olivia) Moderator (private): A Philanthropist handed you a token, but you threw it away because you have no use for it.
+(to Alice) Moderator (private): You spent a ballot token: your vote counts twice in every Guilty/Innocent trial vote during the coming Day. 1 ballot token left. Your Katana attack on Olivia succeeded.
+(to Judy) Moderator (private): Your guess was right: Carol is a Juror. Your Standard Attack on Carol succeeded. You spent 1 ritual token; 0 ritual tokens left.
+[Moderator summary] Night 3 resolved. Frank's swap of Olivia and Erin was already applied by code. The Katana attack (holder Alice) landed on Erin and killed her (cause: Katana). Judy's 1-token ritual guess on Carol was correct, so the Standard Attack was dealt and Carol died (cause: Ritualist); Judy has 0 ritual tokens left and no public Ritualist announcement is made. Alice spent a ballot token (1 left), so her trial votes count twice tomorrow. Carol's jury op, Ivan's scrutinize op and Mallory's give_token op (landing on Olivia; Mallory has 0 philanthropy tokens left) were passed to code. Visits recorded: Alice->Erin, Frank->Olivia, Frank->Erin, Mallory->Olivia. No role-blocks. Jester revenge is left to code.
+[Night check] Night 3: correct
+[Revenge] Bob's Divine Attack hits Olivia.
+(to Carol) Moderator (private): You were attacked tonight (Ritualist) and died.
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+(to Mallory) Moderator (private): You were attacked tonight (Cardinal's curse) and died.
+(to Olivia) Moderator (private): You were attacked tonight (Jester's revenge) and died.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Olivia. Frank (Smuggler) chose to act on Olivia and Erin, spending 1 token(s) ("Spend 1 swap token: swap Olivia and Erin for the night."); Judy (Ritualist) chose to act on Carol, naming Juror, spending 1 token(s).
+(to Frank) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Olivia. Alice (Ballot Stuffer) chose to act, spending 1 token(s); Judy (Ritualist) chose to act on Carol, naming Juror, spending 1 token(s).
+(to Judy) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Olivia. Alice (Ballot Stuffer) chose to act, spending 1 token(s); Frank (Smuggler) chose to act on Olivia and Erin, spending 1 token(s) ("Spend 1 swap token: swap Olivia and Erin for the night.").
+
+===== DAY 4 =====
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "Erin here: Vanilla Villager (Good). No night action, no results. D2: I voted Yes on Heidi's nomination and Innocent at her trial (9G-3I: Heidi, Grace and I were the Innocents).
+
+My read: Bob (Cartographer claim) is Evil. Reasons:
+1. He says he blind-mapped Niaj N1, a 1-in-12 pick that happened to be the Katana victim, and revealed the map only after Heidi called for his trial.
+2. He waved off Mallory's token test twice.
+3. N2 the Yakuza killed exactly the two people who threatened him: Grace (whose audit contradicted his count, and who planned to audit his tokens) and Dave (who was about to scent someone in the Bob/Heidi conflict). If Heidi had been the Katana holder, the Yakuza had no reason to fear Dave's scent or Grace's audit. They did fear them.
+4. A Ritualist is alive and killed Dave by naming Bloodhound. Don't name others' exact roles in public.
+
+If I die at night, I was killed for doubting Bob. Hang Bob first. Then look at who defended him before the map existed, in near-identical words, while pushing Ivan instead: Mallory, Olivia, Alice. Judy also "randomly" picked Niaj N1 and flipped from anti-Bob to Guilty on Heidi.
+
+Test still available: Mallory secretly gives a token, Bob names the recipient from his last map. If Mallory claims she did it and Bob "passes", remember that both could be Yakuza and agree the answer in night chat, so the recipient must be someone outside that group and must confirm independently.
+
+Three Innocent voters on Heidi; two are dead by Day 3. Count that."
+Carol died (killed by Ritualist). Their role isn't revealed. Their last will: "I am Carol, Juror (Village). Each night I name two players and learn how often they voted the same way (trial and nomination votes).
+N1: no votes existed, no result.
+N2: Ivan + Grace = same way in 0 of 1 trial votes and 0 of 1 nomination votes. Fits Grace's stated No/Innocent and Ivan Yes/Guilty, so D2 totals (10 Yes; 9G-3I) match all stated votes.
+D2: I nominated Heidi and voted Guilty, trusting Bob's map because his one-visit count came before any visitor spoke.
+N2 deaths changed my read: Katana killed Grace (whose audit contradicted Bob) and a Ritualist killed Dave (who announced a scent on the Bob/Heidi conflict). Both kills protect Bob. If Heidi had been Yakuza, Grace was a free mislynch for them, not a kill target.
+D3: Erin nominated Bob; 9 Yes of 9 voters, yet Bob claimed he voted No on his own nomination. Nomination counts can't be altered, so Bob's stated vote was false. I voted Yes and Guilty on Bob.
+If Bob is Evil, look next at who shielded him before the map existed: Mallory, Olivia, Alice, and check whether Mallory backed his N2 "one visit" count. A Ritualist is alive and guessed Bloodhound right, so don't name exact roles in public more than needed.
+If Bob somehow proves honest, look instead at Erin, Judy, Ivan.
+I post each Juror result publicly the next Day; anything not posted here means I died that night."
+Olivia died (killed by Jester's revenge). Their role isn't revealed. Their last will: "I, Olivia, was the Cardinal (Village Outsider); I claimed Vanilla publicly so the Yakuza wouldn't get a 2-for-1. My death makes a random living Good player take a Divine Attack at the end of the night I died (or the night after the Day I died). So one extra death right after mine is NOT a second killer, and that victim was certainly Good: use that to clear them and narrow the Yakuza. I have no night action and no results.
+
+Facts: N1 Niaj (Katana). D2 Heidi hanged 9-3; I voted Yes and Guilty (a mistake, I now think). N2 Grace (Katana) and Dave (Ritualist), so a Ritualist is alive: don't name exact roles in public. D3: Bob on trial; I voted Yes on his nomination and Guilty. His nomination was 9 Yes of 9 while he stated No: a provable lie.
+
+My read: the Yakuza removed exactly the two players about to test Bob (Grace's audit, Dave's scent). Bob lied about the map and Heidi was mis-hanged. If Bob turned out to be a Jester instead (he voted Yes on himself), one revenge death follows among Guilty voters and the Yakuza are still all alive.
+
+After Bob, look at: Ivan (vague, then copied Frank's Scrutineer; one of the two Scrutineers may be fake), Judy (Oracle with only "wrong" guesses, "randomly" picked Niaj N1, voted Innocent on Bob), Mallory (N2 gift to Dave is unconfirmable since Dave died that night; Dave's will mentions no token). Erin voted Innocent on Heidi and pushed Bob first: likely Village. Carol's Juror result and both Scrutineer results fit stated votes."
+Mallory died (killed by Cardinal's curse). Their role isn't revealed. Their last will: "I am Mallory, Philanthropist (Village), 2 tokens at start. Gift log: N1: none (no visit). N2: gave 1 token to DAVE (a visit; 1 token left; I was not role-blocked). Dave died that night to a Ritualist, so he can't confirm. Bob's N2 Cartographer count showed only ONE group of 2 and nine 1s, and he said any N2 visitor is lying. My visit to Dave makes a second group of 2, so Bob's count is fake: Bob is not a real Cartographer (Evil, or possibly a Jester: he voted Yes on his own nomination and claimed No). That means Heidi and Grace were probably honest Village.
+
+D2: I voted Yes on Heidi's nomination and Guilty at her trial (9G-3I; Innocent = Erin, Grace, Heidi as stated). I was wrong about Heidi. D3: Yes on Bob's nomination, Guilty on Bob.
+
+Notes: A Ritualist is alive with at most 1 token left (guessed Dave = Bloodhound, a public claim). Public exact-role claims are targets. If Bob was Yakuza, look for his partners among those who gained from the Heidi hang without sticking their necks out. Judy voted Innocent on Bob citing Jester risk; Ivan went vague then copied Frank's Scrutineer. Erin voted Innocent on Heidi and led the Bob push: likely Village. Anyone claiming a Philanthropist gift on a night not listed here is lying."
+Speaking order today goes around the circle in seat order, starting with Ivan.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Ivan: Scrutineer. N2: Mallory+Dave+Grace = 2 Guilty on Heidi. N3: Judy+Erin+Olivia = 2 Guilty on Bob (Judy voted Innocent). D2: Yes, Guilty on Heidi. D3: Yes, Guilty on Bob. D4: nominated Judy, Yes.
+Ivan (public): N3: scrutinized Judy; draw added Erin + Olivia: 2 Guilty on Bob, so Judy did vote Innocent. Math: no Katana or Ritualist victim was Yakuza. If Heidi was Good, two Yakuza are alive and block every nomination. We only win if Heidi was Yakuza and her one partner, the Ritualist, is here. That fits Judy: she backed trialing Bob over Heidi before the map; "Oracle" is the Ritualist's astral guess as cover; her guesses named Niaj and Erin, both Katana'd. I nominate Judy: a trial gives everyone cheap turns. Frank: post your N3 result there.
+Ivan nominated Judy. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Judy] Yes - Ivan; No - Judy, Alice, Frank
+Nomination votes on Judy: 1 Yes (the votes are secret).
+The nomination of Judy failed (1 Yes).
+[Claim] Judy: Oracle. N1: Niaj = Sheriff, wrong. N2: Erin = Medic, wrong. N3: Ivan = Scrutineer, WRONG. D2: Yes, Guilty on Heidi. D3: Yes, Innocent on Bob (Jester). D4: No on my nomination; nominated Ivan, Yes.
+Judy (public): N3: guessed Ivan = Scrutineer, WRONG. Ivan is not a Scrutineer; he copied Frank's role on Day 2. His "result" on me only repeats my own stated Innocent vote. I nominate Ivan. Frank, post your N3 result at trial.
+Judy nominated Ivan. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Ivan] Yes - Judy, Alice, Frank; No - Ivan
+Nomination votes on Ivan: 3 Yes (the votes are secret).
+Ivan is put on trial (3 Yes).
+[Claim] Ivan: Scrutineer. N2: Mallory+Dave+Grace = 2 Guilty on Heidi. N3: Judy+Erin+Olivia = 2 Guilty on Bob. D2: Yes, Guilty on Heidi. D3: Yes, Guilty on Bob. D4: nominated Judy; No on my nomination, Innocent on myself.
+Ivan (public): I am a Scrutineer. That role isn't on the Roleplayer list, so I can't be wrong about it. Oracle is on that list. So Judy's "WRONG" means one of two things: she is the last Yakuza and invented it the moment I nominated her, or she is an unknowing Roleplayer whose results are junk. Neither is evidence against me. Three nights of Oracle, three "wrong", nothing checkable.
+
+Her guesses named Niaj and Erin ("testing for a Medic"): both Katana victims. The Ritualist's kills use the same astral role-guess that Oracle covers.
+
+Carol's Juror result confirms I voted Guilty on Heidi. We only win if Heidi was Yakuza with one partner left. Before the map, I called Bob's count plausible; Judy pushed to trial Bob instead of Heidi.
+
+Stakes: Innocent costs nothing, we can still trial Judy today. A wrong Guilty ends the game: three left, Katana tonight, 1v1.
+
+Frank: post your N3 result. Alice, Frank: don't hang on a result the rules say can be fake.
+[Claim] Judy: Oracle. N1: Niaj = Sheriff, wrong. N2: Erin = Medic, wrong. N3: Ivan = Scrutineer, WRONG. D2: Yes, Guilty on Heidi. D3: Yes, Innocent on Bob (Jester). D4: No on my nomination; nominated Ivan, Yes, Guilty on Ivan.
+Judy (public): Ivan stayed vague on Day 2 and took Scrutineer only after Frank claimed it. My N3 result says that claim is false. I vote Guilty. Frank: your N3 result?
+[Claim] Alice: Vanilla Villager. No night action, no results. D2: Yes, Guilty on Heidi. D3: Yes, Guilty on Bob. D4: No on Judy nomination, Yes on Ivan nomination, Guilty on Ivan.
+Alice (public): Voted No on Judy's nomination, Yes on Ivan's; I'll vote Guilty. Ivan went vague on Day 2 and took Scrutineer only after Frank claimed it, then pointed at Mallory and Olivia, both now dead and Good. Frank: your N3 result?
+[Claim] Frank: Scrutineer. N2: Erin+Carol+Olivia = 2 Guilty on Heidi. N3: Mallory+Ivan+Olivia = 3 Guilty on Bob. D2: Yes, Guilty on Heidi. D3: Yes, Guilty on Bob. D4: No on Judy nomination, Yes on Ivan nomination, Guilty on Ivan.
+Frank (public): N3: scrutinized Mallory; draw added Ivan + Olivia: 3 Guilty on Bob, fitting stated votes. Two Scrutineers was always one too many: Ivan went vague on Day 2 and took my role after hearing it, and Judy's result now says his claim is false. I voted No on Judy's nomination, Yes on Ivan's, and will vote Guilty.
+Ivan (public): Frank, a check only a real Scrutineer can run. The moderator's private line reads, word for word: "Your scrutiny of Erin, Judy and Olivia: the number of them who voted Guilty was 2 in the trial of Bob." Names alphabetical, not target first. Yours for N3 read: "Your scrutiny of Ivan, Mallory and Olivia: the number of them who voted Guilty was 3 in the trial of Bob." A faker copying your role couldn't know that wording. Compare, then vote.
+
+"Vague then copied": I spoke first on Day 2, before any claim existed, and named my role on my next turn. Fakers pick unclaimed roles, not one a living player can dispute.
+
+Oracle is a Roleplayer cover; Scrutineer isn't. If Judy is honest, she's a Roleplayer, her "WRONG" is junk, and the last Yakuza is Alice or Frank, riding it. If she's lying, she's the Ritualist: Oracle is its cover, and her "random" N1 guess was the Katana victim, 1 in 12.
+
+Judy, if honest: your results are "usually false". Vote Innocent.
+
+Hang me and it's two Good against the Katana tonight: game over. Innocent leaves two more trials today.
+Trial votes on Ivan: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Ivan] Guilty - Alice, Frank, Judy; Innocent - Ivan
+Ivan is executed by hanging (4 Guilty of 5 votes; 3 needed; there are more votes than the 4 voters because a role manipulated the count on purpose (rules R4), not because of an error).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "I am Ivan, Scrutineer (Village). N2: scrutinized Mallory; Dave, Grace, Mallory = 2 Guilty on Heidi. N3: scrutinized Judy; Erin, Judy, Olivia = 2 Guilty on Bob (Judy Innocent; Bob voted Guilty on himself). Votes: D2 Yes/Guilty on Heidi. D3 Yes/Guilty on Bob. D4: nominated Judy (1 Yes, mine); No on my own nomination, Innocent on myself.
+
+Hard facts: Bob was the Jester, so his counts and map were invented. Olivia was the Cardinal; her curse killed Mallory, so Mallory was Good. Katana and Ritualist victims (Niaj, Grace, Dave, Erin, Carol) were not Yakuza. Only Heidi could be a dead Yakuza. The Ritualist has spent both tokens.
+
+Judy's D4 claim "Ivan = Scrutineer, WRONG" is impossible for a real Oracle: Scrutineer is my true role and is not a Roleplayer cover. So Judy is either Yakuza, or an unknowing Roleplayer (Oracle is on that list) whose results are junk. If I was hanged today, you hanged a Villager on a fake result.
+
+Why Judy: on D2 she backed trialing Bob over Heidi before the map; Oracle is the natural cover for a Ritualist's astral guess; her claimed guesses named Niaj and Erin, both Katana victims; the Ritualist shot the Bloodhound and the Juror but never the Oracle; her "result" on me appeared the moment I nominated her.
+
+If Judy is instead a Roleplayer, the last Yakuza is Alice or Frank. Frank claimed my real role before I did and described it correctly, so I think he is real; Alice is an unverifiable Vanilla.
+
+Last Villagers: you need every Good vote on the same player. Agree on one name and all vote Yes and Guilty."
+The game is over. Winners: Alice, Frank, Judy, Bob (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Carol] The end-of-game Night 3 action list shows post-swap targets (my Juror check as Judy + Olivia, Katana votes as Erin) while results and my own history show the chosen targets (Judy + Erin, Katana on Olivia). It should label which is which.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Frank, Judy, Bob
+Cost by player (USD):
+  Alice (Ballot Stuffer)    $0.0000   27 calls  claude-opus-5.5
+  Bob (Jester)              $0.0000   14 calls  claude-opus-5.5
+  Carol (Juror)             $0.0000   16 calls  claude-opus-5.5
+  Dave (Bloodhound)         $0.0000   10 calls  claude-opus-5.5
+  Erin (Vanilla Villager)   $0.0000   12 calls  claude-opus-5.5
+  Frank (Smuggler)          $0.0000   26 calls  claude-opus-5.5
+  Grace (Accountant)        $0.0000   10 calls  claude-opus-5.5
+  Heidi (Lookout)           $0.0000   10 calls  claude-opus-5.5
+  Ivan (Scrutineer)         $0.0000   22 calls  claude-opus-5.5
+  Judy (Ritualist)          $0.0000   27 calls  claude-opus-5.5
+  Mallory (Philanthropist)  $0.0000   16 calls  claude-opus-5.5
+  Niaj (Magpie)             $0.0000    4 calls  claude-opus-5.5
+  Olivia (Cardinal)         $0.0000   13 calls  claude-opus-5.5
+  Moderator                 $0.0000    6 calls  claude-opus-5.5
+  Night checks              $0.0000    3 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  218 calls
