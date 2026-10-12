@@ -408,7 +408,7 @@ def name_span(name: str, role: str, traits: list[str] | tuple[str, ...] = ()) ->
     traits.py) and, on hover, the role's name, faction and one-line summary, then each trait's."""
     info = ROLES.get(role)
     hover = f"{role} ({faction_of(role)})" + (f": {info.summary}" if info and info.summary else "")
-    hover += "".join(f"\nTrait: {t}. {TRAITS[t].summary}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
+    hover += "".join(f"\nTrait: {t}: {TRAITS[t].hover}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
     marks = "".join(f" t-{trait_slug(t)}" for t in traits)
     return (f"<span class='n {faction_of(role)} ic i-{icon_slug(role)}{marks}' title='{esc(hover)}'>"
             f"{esc(name)}</span>")
