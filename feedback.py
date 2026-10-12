@@ -59,10 +59,17 @@ def full_log(game: Game) -> str:
                      if not e.notice)  # "X sent Y a private message" would repeat the message shown above it
 
 
+def revealed_roles(game: Game) -> str:
+    """Every player's role, and traits (R24), for the post-game reveal (Frank in game_20261012_150142_930656
+    missed the traits)."""
+    return ", ".join(f"{p.name}: {p.role}" + (f" (trait: {', '.join(p.traits)})" if p.traits else "")
+                     for p in game.players)
+
+
 def post_game_context(game: Game) -> str:
     """The reveal every post-game player question starts from. It goes in a cached part of the prompt
     (Players.ask's context), so the debrief and lessons calls share it."""
-    roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
+    roles = revealed_roles(game)
     return (f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
             f"The whole game, now revealed (every event, with who could see it):\n{full_log(game)}\n\n"
             f"What happened each night (now revealed):\n{night_replay(game)}")
@@ -70,7 +77,7 @@ def post_game_context(game: Game) -> str:
 
 def debrief_task(game: Game, with_reveal: bool = True) -> str:
     """with_reveal: start with the roles and night replay (the moderator's debrief, which has its own log)."""
-    roles = ", ".join(f"{p.name}: {p.role}" for p in game.players)
+    roles = revealed_roles(game)
     questions = "\n".join(f"- {k}: {q}" for k, q in DEBRIEF_QUESTIONS.items())
     return ((f"The game is over. {game.winners_line()} Everyone's roles: {roles}.\n\n"
              f"What happened each night (now revealed):\n{night_replay(game)}\n\n" if with_reveal else "")
