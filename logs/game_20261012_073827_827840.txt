@@ -124,3 +124,48 @@ Katana: Bob holds it and attacks Heidi.
 (to Erin) Moderator (private): You were attacked tonight (Serial Killer) and died.
 (to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Heidi. Carol (Grunt) chose no action.
 (to Carol) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Heidi. Bob (Grunt) chose no action.
+
+===== DAY 3 =====
+Erin died (killed by Serial Killer). Their role isn't revealed. Their last will: "Erin, Medic. Night 1 I protected Alice (Standard). I had no other confirmed information. Judge players by their results and votes, and watch who pushed early hangs before Night 2 results were in."
+Speaking order today goes around the circle in seat order, starting with Alice.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Alice: Enforcer. N1: visited Dave, no attack. N2: visited Heidi, no attack. 3 enforcer tokens left.
+Alice (public): Alice here, Enforcer. On Night 2 I visited Heidi and attacked no one, so I have no kill result to add. Bob and Heidi, post your Night 2 targets and results now. Erin died to the Serial Killer that night, so a Sheriff whose read is contradicted by the deaths or visits goes first. No nomination from me yet.
+[Claim] Bob: Sheriff. N1: checked Erin, Not Evil. N2: checked Grace, Not Evil.
+Bob (public): Bob here, Sheriff. N2 I checked Grace, Not Evil. Erin is dead and her Medic claim can't be checked, so both Sheriff reads stay unverified. Grace and Alice, which Sheriff do you find more credible, and why? I'm not nominating yet.
+[Claim] Carol: Vanilla Villager. No night action. N1: no action. N2: no action.
+Carol (public): Carol here, Vanilla Villager. Both Sheriff reads are still unverified: Heidi's Dave read and Bob's Erin read both fit the deaths, and an SK reads Not Evil. Heidi, please post your Night 2 target and result now. Grace and Alice, I want to hear your Night 2 results before anyone is nominated. I'm not nominating yet.
+Grace (public): Grace here. No nomination from me. Both Sheriffs have one unverified read each. Bob and Heidi, post your Night 3 targets and results at dawn, as promised.
+[Claim] Heidi: Sheriff. N1: checked Dave, Not Evil. N2: checked Grace, Not Evil. Katana-attacked N2, survived.
+Heidi (public): Heidi, the real Sheriff. Night 2 I checked Grace (Not Evil) and was hit by the Katana but survived. Alice, you visited me Night 2, so did anyone else? I'd like both Sheriffs' full visit lists before any vote. No nomination from me today.
+Alice (public): Alice here, Enforcer. Mechanically: Heidi was hit by the Katana on Night 2, so the Katana holder visited Heidi that night. I visited Heidi too and attacked no one, so I'm not the holder. Heidi, who else do you know visited you? Grace, both Sheriffs read you Not Evil on Night 2, and the Katana holder reads Good to a Sheriff that night. What did you do on Night 2? I'm not nominating yet.
+Bob (public): Bob here, Sheriff. I'm nominating Heidi. Heidi and I can't both be Sheriff, and Heidi's Dave read and my Erin read are both unverifiable. Heidi survived a Katana hit on Night 2 and is now questioning everyone else. Alice and Grace, three Yes votes sends Heidi to trial. Vote on the claims, and I'll weigh both Sheriffs at the trial.
+(to Bob, Carol) Bob -> Carol (private): Nominating Heidi now. Vote Yes. I need one of Alice or Grace to reach three.
+Bob nominated Heidi. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Heidi] Yes - Bob, Carol; No - Grace, Heidi, Alice
+Nomination votes on Heidi: 2 Yes (the votes are secret).
+The nomination of Heidi failed (2 Yes).
+Carol (public): Carol here, Vanilla Villager. Both Sheriffs read Grace as Not Evil, and Grace hasn't claimed or said what Grace did on Nights 1 and 2. Erin died to the Serial Killer, and an SK reads Not Evil too. Grace, what was your role action on Nights 1 and 2? I want that answered before anyone is nominated.
+[Claim] Grace: Vanilla Villager. No night action. N1: no action. N2: no action.
+Grace (public): Grace here. Answering Carol: I'm a Vanilla Villager with no night action. N1 and N2 I did nothing. Bob, you nominated Heidi, the Sheriff who was hit by the Katana on Night 2 and survived, and then you PM'd Carol. A Yakuza holding the Katana wouldn't attack a teammate, so Heidi's survival is a point for her. Both Sheriffs read me Not Evil, which tells us nothing. I'm nominating Bob so we can test the claims at trial.
+(to Grace, Heidi) Grace -> Heidi (private): Grace here. Heidi, you survived a Katana hit on Night 2, so the holder didn't see you as a teammate. I'm nominating Bob and I'd like your vote. Bob's PM to Carol plus his push on you looks like coordination.
+Grace nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Grace, Heidi, Alice; No - Bob, Carol
+Nomination votes on Bob: 3 Yes (the votes are secret).
+Bob is put on trial (3 Yes).
+[Claim] Bob: Sheriff. N1: checked Erin, Not Evil. N2: checked Grace, Not Evil. D2-3: Yes on Heidi nomination (failed).
+Bob (public): Bob here, Sheriff. My reads: N1 Erin, Not Evil. N2 Grace, Not Evil. Erin is dead, so the Medic claim can't be checked either way. I nominated Heidi because two real Sheriffs can't both exist, and her Dave read can't be verified. Heidi says she was Katana-hit on N2 and survived, which means someone protected her that night. Her claim doesn't settle which Sheriff is real. Grace nominated me within minutes of my nomination of Heidi, and she says a Vanilla Villager with no action. Both Sheriffs read Grace Not Evil, which doesn't prove anything, but she's pushing a trial with no result behind it. I'm not asking you to trust me on claims alone. Judge the nominations and votes against the announced totals, and vote on the evidence, not on who pushed the trial first.
+[Claim] Carol: Vanilla Villager. N1: no action. N2: no action. D3: voted No on Bob's nomination.
+Carol (public): Carol here, Vanilla Villager. Before the Guilty vote, look at what this trial rests on. Neither Sheriff read can be checked: Erin is dead, and Heidi's Dave read only fits the SK. Grace nominated Bob about ten seconds after Bob nominated Heidi, which is retaliation, not a result. Heidi survived a Katana hit on Night 2, which shows a holder visited her and someone protected her, but it doesn't show who the holder was. Alice, who else did you see visit Heidi on Night 2? I'm voting Innocent unless someone posts a result that contradicts Bob's read.
+[Claim] Grace: Vanilla Villager. No night action. N1: no action. N2: no action. D3: Nominated Bob. Guilty vote on Bob.
+Grace (public): Grace here, Vanilla Villager. Bob pushed the hang on Heidi, a Katana survivor, before any result existed, then PM'd Carol. That pattern is what I'm weighing. I'm voting Guilty on Bob. Carol and Alice, if Bob's Sheriff read on me is real, what were his Night 1 and 2 results on Erin and me, and does Heidi's Night 2 visit list match yours?
+[Claim] Heidi: Sheriff (real). N1: checked Dave, Not Evil. N2: checked Grace, Not Evil. Katana-hit N2, survived. D3: Guilty on Bob.
+Heidi (public): Heidi, the real Sheriff. Bob's Sheriff claim is the one that doesn't fit. I checked Dave on N1 and Grace on N2, and I was Katana-hit on N2 and survived. Bob nominated me before any result existed, then PM'd Carol. Bob, what did you see on N2 that made you push me? Alice, you visited me on N2. Did anyone else visit me? Whoever visited me on N2 is the Katana holder, and I want that answered before the Guilty vote. I'm voting Guilty on Bob.
+Alice (public): Alice here. Mechanics as I see them: Heidi was Katana-hit on N2, so the holder visited her. I also visited her and attacked no one, so I'm not the holder. Frank died to the Katana on N1, so the holder has visited Frank and Heidi. Bob nominated Heidi before any result existed, and Grace nominated Bob minutes later. Both Sheriffs read Grace Not Evil on N2, which doesn't separate them. Bob, what made you nominate a Katana survivor? Heidi, besides me, who do you know visited you on N2? I won't vote Guilty on a lean.
+Bob (public): Bob here, Sheriff. My reads haven't changed: N1 Erin, Not Evil. N2 Grace, Not Evil. Erin's Medic claim fits a Good read, so that's consistent with my result. Heidi's only check is Dave, which fits an SK as well as a Sheriff. The two Guilty votes so far are Heidi and Grace, and Grace PM'd Heidi during this Day, so they're coordinating. Grace's nomination of me came minutes after my nomination of Heidi, which is retaliation, not evidence. Alice, your Night 2 visit to Heidi shows where you went, not what Heidi did. Vote on the claims against the results, not on who pushed first. I'm voting Innocent.
+(to Alice, Bob) Bob -> Alice (private): Alice, the trial is Heidi and Grace voting Guilty so far. Neither has a result that proves a holder. I'd ask you to hold Innocent unless someone posts a result that contradicts my reads. Your Enforcer visits don't prove anything either way.
+Trial votes on Bob: 3 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Alice, Grace, Heidi; Innocent - Bob, Carol
+Bob is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's last will: Frank was killed by the Katana on Night 1. Dave and Erin were killed by a Serial Killer on Nights 1 and 2, so a Serial Killer is alive and is the main threat. Judge every claim against the nightly results and the announced vote totals. Do not hang anyone on a claim that no result supports."
+(to Carol) The Katana passed to Carol.
