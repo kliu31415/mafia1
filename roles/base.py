@@ -31,7 +31,7 @@ class Status:
     FAKE_ROLE = "fake_role"  # the role a Roleplayer believes they have
     DOUSED = "doused"  # Arsonist: set by the moderator on a doused player, cleared by an ignite
     MARKED = "marked"  # Chronicler: on the marked player, the first Chronicler to mark them
-    TRAPPED_BY = "trapped_by"  # Trapper: on the trapped player, the Trapper's name until the trap is used or replaced
+    TRAPPED_BY = "trapped_by"  # Trapper: on a trapped player, the Trappers whose traps are on them (roles/trapper.py)
     SET_AT_SETUP = (TARGET, TARGETS, FAKE_ROLE)  # role hooks read these directly, so the moderator can't change them
 
 

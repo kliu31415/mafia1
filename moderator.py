@@ -443,7 +443,8 @@ class Moderator:
                 if unknown := [b for b in c["by"] if b not in names]:
                     raise bad(f"no player named {unknown[0]!r}")
             for key in ("player", "by"):
-                if key in c and not isinstance(c[key], list) and c[key] not in names:
+                if key in c and not isinstance(c[key], list) and c[key] not in names \
+                        and not (c[key] is None and key not in required):  # an optional name may be null
                     raise bad(f"no player named {c[key]!r}")
             if op == "kill":
                 if "katana" in c and not isinstance(c["katana"], bool):

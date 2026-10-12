@@ -569,11 +569,10 @@ def test_ex_con_visit_is_drawn_by_code_and_hidden_from_the_ex_con(game_factory):
 
 def test_trapper_is_told_whether_their_trap_still_stands(game_factory):
     from players import role_briefing
-    from roles import Status
     game, _ = game_factory(["Trapper", "Vanilla Villager", "Grunt"])
     trapper = game.player("Alice")
     assert "no trap set" in role_briefing(game, trapper)
-    game.player("Bob").status[Status.TRAPPED_BY] = "Alice"
+    game.role_state["traps"] = {"Alice": "Bob"}
     assert "Your trap is on Bob" in role_briefing(game, trapper)
     assert "can't trap Bob again" in role_briefing(game, trapper)  # Kevin, Oct 10: removing it is allowed instead
     assert "trap" not in role_briefing(game, game.player("Bob"))
@@ -581,10 +580,9 @@ def test_trapper_is_told_whether_their_trap_still_stands(game_factory):
 
 def trapped_night(game_factory, roles):
     """A game where Alice (the Trapper) trapped Bob on Night 1; it's now Night 2, with the trap armed."""
-    from roles import Status
     game, players = game_factory(roles)
     game.phase = "night"
-    game.player("Bob").status[Status.TRAPPED_BY] = "Alice"
+    apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Bob"})
     with pytest.raises(ValueError, match="no armed trap"):  # rules: Trapper (armed from the next night on)
         apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": []})
     game.run_night_end_hooks()
@@ -602,7 +600,7 @@ def test_a_trap_stops_one_attack_and_hits_a_visiting_attacker_back(game_factory)
     assert "stopped Dave's Standard Attack ('Katana')" in out["results"][0]  # Divine Attacks ignore the trap
     assert "hits Dave back with a Strong Attack" in out["results"][0]
     assert Status.TRAPPED_BY not in game.player("Bob").status
-    with pytest.raises(ValueError, match="already used up"):
+    with pytest.raises(ValueError, match="no armed trap"):  # used up
         apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": []})
     game.run_night_end_hooks()
     assert told(game, "Alice")[-1].endswith("Your trap went off tonight and is used up.")
@@ -626,7 +624,7 @@ def test_a_trap_hits_back_any_visiting_attacker_but_not_an_astral_one_and_ignore
         {"by": "Dave", "attack": "Divine", "cause": "X", "visit": True}]})
     assert "stays armed" in out["results"][0]
     game.run_night_end_hooks()
-    assert game.role_state["armed_traps"] == {"Bob": "Alice"} and "trap" not in " ".join(told(game, "Alice"))
+    assert game.role_state["armed_traps"] == {"Alice": "Bob"} and "trap" not in " ".join(told(game, "Alice"))
     with pytest.raises(ValueError, match="visit"):
         apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [
             {"by": "Dave", "attack": "Basic", "cause": "X"}]})
@@ -2055,8 +2053,7 @@ def test_a_trap_replaced_earlier_in_the_batch_doesnt_act_and_charm_and_trap_matc
     from roles import Status
     game, players = trapped_night(game_factory, ["Trapper", "Vanilla Villager", "Serial Killer", "Grunt",
                                                  "Kitsune"])
-    out = apply_ops(game, players, {"op": "set_status", "player": "Bob", "key": "trapped_by", "value": None},
-                    {"op": "set_status", "player": "Erin", "key": "trapped_by", "value": "Alice"},
+    out = apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Erin"},
                     {"op": "spring_trap", "player": "Bob", "attacks": [
                         {"by": "Carol", "attack": "Basic", "cause": "Serial Killer", "visit": True}]})
     assert "was replaced or removed tonight" in out["results"][-1]  # rules: Trapper (replaced at once)
@@ -2066,7 +2063,7 @@ def test_a_trap_replaced_earlier_in_the_batch_doesnt_act_and_charm_and_trap_matc
                               "attacks": [{"by": "Dave", "attack": "Standard", "cause": "Katana"}]})
     out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [  # the cause worded otherwise
         {"by": "Dave", "attack": "Standard", "cause": "Katana attack", "visit": True}]})
-    assert "stays armed" in out["results"][0] and game.player("Bob").status[Status.TRAPPED_BY] == "Alice"
+    assert "stays armed" in out["results"][0] and game.player("Bob").status[Status.TRAPPED_BY] == ["Alice"]
 
 
 def test_an_avenger_hits_a_killer_who_died_earlier_the_same_night_whatever_the_op_order(game_factory):
@@ -2164,3 +2161,73 @@ def test_the_moderator_is_told_a_notorious_player_reads_evil_only_when_one_is_in
     game.player("Alice").traits = ["Notorious"]
     assert "reads a Notorious player as Evil" in role_notes(game)
     assert "Evil" in TRAITS["Notorious"].summary
+
+
+def test_several_traps_on_one_player_each_stop_a_different_attack(game_factory):
+    # rules: Trapper (Kevin, Oct 12 2026: several Trappers may trap one player; their traps act in random order)
+    game, players = game_factory(["Trapper", "Trapper", "Vanilla Villager", "Serial Killer", "Grunt", "Grunt"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Carol"},
+              {"op": "set_trap", "by": "Bob", "player": "Carol"})
+    assert game.player("Carol").status["trapped_by"] == ["Alice", "Bob"]
+    game.run_night_end_hooks()
+    game.day += 1
+    out = apply_ops(game, players, {"op": "spring_trap", "player": "Carol", "attacks": [
+        {"by": "Dave", "attack": "Basic", "cause": "Serial Killer", "visit": True},
+        {"by": "Erin", "attack": "Standard", "cause": "Katana", "visit": True},
+        {"by": "Frank", "attack": "Basic", "cause": "X", "visit": False}]})
+    text = out["results"][0]
+    assert "Alice's trap" in text and "Bob's trap" in text and text.count("stopped") == 2
+    assert not game.role_state["traps"] and "trapped_by" not in game.player("Carol").status
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("went off tonight and is used up.")
+    assert told(game, "Bob")[-1].endswith("went off tonight and is used up.")
+
+
+def test_placing_removing_and_a_swapped_trap(game_factory):
+    # rules: Trapper (not yourself, not the player your trap is on; no target removes it) and R23 (the user is told
+    # at dawn that a swap moved a lasting effect)
+    game, players = game_factory(["Trapper", "Vanilla Villager", "Vanilla Villager", "Serial Killer", "Grunt"])
+    game.phase = "night"
+    with pytest.raises(ValueError, match="can't trap themselves"):
+        apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Alice"})
+    with pytest.raises(ValueError, match="no trap to remove"):
+        apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": None})
+    apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Bob"})
+    game.run_night_end_hooks()
+    game.day += 1
+    with pytest.raises(ValueError, match="already on Bob"):
+        apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Bob"})
+    apply_ops(game, players, {"op": "set_trap", "by": "Alice"})  # acted with no target: removed
+    assert not game.role_state["traps"] and "trapped_by" not in game.player("Bob").status
+    game.run_night_end_hooks()
+    game.day += 1
+    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}  # chose Bob, landed on Carol
+    apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Carol"})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("A swap moved your trap from Bob to Carol (rules R23).")
+    assert game.role_state["armed_traps"] == {"Alice": "Carol"}
+
+
+def test_a_trap_from_an_older_checkpoint_kept_as_status_still_works(game_factory):
+    game, players = game_factory(["Trapper", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.player("Bob").status["trapped_by"] = "Alice"  # how traps were kept before several could share a player
+    game.role_state["armed_traps"] = {"Bob": "Alice"}  # trapped player -> Trapper
+    out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [
+        {"by": "Carol", "attack": "Basic", "cause": "Serial Killer", "visit": True}]})
+    assert "Alice's trap on Bob stopped Carol's Basic Attack" in out["results"][0]
+
+
+def test_a_kitsune_pays_for_charming_itself_when_it_chose_itself_wherever_a_swap_moved_the_charm(game_factory):
+    # Kevin, Oct 12 2026: the token cost follows what the Kitsune chose (R23: "as if its user had chosen")
+    game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Smuggler"])
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Erin", "Alice", "Bob"]]}
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob", "attacks": []})  # chose itself
+    assert game.player("Alice").tokens["kitsune"] == 0
+    game.run_night_end_hooks()
+    game.day += 1
+    game.role_state["swaps"][game.day] = [["Erin", "Alice", "Bob"]]
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Alice", "attacks": []})  # chose Bob
+    assert game.player("Alice").tokens["kitsune"] == 0  # nothing more to spend, and none needed

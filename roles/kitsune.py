@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from roles.base import (RoleLogic, acted_tonight, attacks_error, chosen_name, register, spend_token, stop_one_attack,
-                        swap_partner, token_user_error)
+                        token_user_error)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -29,8 +29,10 @@ class Kitsune(RoleLogic):
     night_note = (
         "Kitsune: a Kitsune with no swallowed attack who acted (and wasn't role-blocked) laid a fox charm on its "
         f"target. Resolve the charm FIRST, before any other protection (Medic, Trapper, ...): use the {CHARM} op "
-        "with every non-Divine Attack on the charmed player tonight, each as {by, attack (its level), cause (how its "
-        "kill would be announced, e.g. 'Katana', 'Serial Killer')}, [] if none. Code picks the one the charm "
+        "with every non-Divine Attack on the charmed player tonight (work them all out first, including attacks "
+        "other actions set off, such as a Veteran's alert, an Enforcer's attack or a trap's hit-back), each as "
+        "{by, attack (its level), cause (how its kill would be announced, e.g. 'Katana', 'Serial Killer')}, [] if "
+        "none. Code picks the one the charm "
         "swallows and says which: treat it as stopped (its attacker and target are told as for any failed attack, "
         "R3; its visit still happened), then resolve the other attacks normally. Several charms on one player: one "
         f"{CHARM} op each, every one listing all the attacks; code has them act in random order, each swallowing a "
@@ -75,12 +77,12 @@ class Kitsune(RoleLogic):
         if change["op"] == RELEASE:
             if not charge:
                 return f"{by.name} holds no swallowed attack to release"
-            if target is by and not swap_partner(game, by.name):
+            if chosen_name(game, target.name) == by.name:  # it chose itself (a swap may land it elsewhere)
                 return "a Kitsune can't release its attack on itself"
             return None
         if charge:
             return f"{by.name} holds a swallowed attack, so it can't charm until it releases it ({RELEASE})"
-        if target is by and not swap_partner(game, by.name) and by.tokens.get(TOKEN, 0) < 1:
+        if chosen_name(game, target.name) == by.name and by.tokens.get(TOKEN, 0) < 1:
             return f"{by.name} has no {TOKEN} token left to charm themselves"
         return attacks_error(game, change["attacks"])
 
@@ -95,7 +97,7 @@ class Kitsune(RoleLogic):
                     f"{target.name}'s Defense like any attack. If it kills, kill with cause '{charge['cause']}' and by "
                     f"'{by.name}' (katana false); if not, {target.name} is told they were attacked by the "
                     f"{charge['cause']} (R3).")
-        if target is by and not swap_partner(game, by.name):
+        if chosen_name(game, target.name) == by.name:  # Kevin, Oct 12 2026: the cost follows what it chose (R23)
             spend_token(game, by.name, TOKEN)
         # rules: Kitsune (one at random). Several charms on one player: each picks at random among the attacks the
         # earlier ones left, the same as acting in random order

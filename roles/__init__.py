@@ -145,9 +145,10 @@ ROLES: dict[str, RoleInfo] = {
                         "deals a visiting attacker a Strong Attack.",
                         acts_at_night=True,
                         tested=False,
-                        notes="persistent traps tracked as player status; acting with no target removes the trap; "
-                        "moderator lists the attacks on a trapped player (spring_trap op), code checks the trap is "
-                        "armed, picks the stopped attack, clears the trap and tells the Trapper"),
+                        notes="moderator records each trap with the set_trap op (null: removed); code keeps the traps "
+                        "(several may share a player), and for the attacks the moderator lists on a trapped player "
+                        "(spring_trap op) checks which are armed, picks the stopped attacks, clears them and tells the "
+                        "Trappers"),
     "Kitsune": RoleInfo(Alignment.GOOD, "Protective", False,
                         summary="Night: a fox charm swallows one attack on a player; the Kitsune must later "
                         "release it, same level and cause.",

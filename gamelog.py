@@ -112,7 +112,9 @@ from records import caller_of, read_records, redact, safe_print
 # 60: "grudge" records (player, victim, day): whom a hanged Grudge holder's attack strikes (rules R24); setup
 #     "traits" items may name a faction ("Grudge@Yakuza")
 # 61: "confidant" records (player, to, day): a Confidant's hidden private message (rules R24)
-LOG_VERSION = 61
+# 62: "trap_set" records (trapper, target or null for a removal, day): code keeps the traps, and several Trappers
+#     may trap one player; "trap" records come one per trap that acted
+LOG_VERSION = 62
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

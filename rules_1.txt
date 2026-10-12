@@ -157,8 +157,8 @@ R20 (Night resolution checklist): a summary of the rules above, in the order the
    A trap stops one attack before Defense and may hit its attacker back (Trapper).
 4. Results for investigators, using the visits and appearances (R19).
 5. Notifications: attackers learn whether they succeeded, attacked players learn the attacking role (R3, with the
-   Katana exception in R8), protectors learn nothing (R17), role-blocked players are told (R9), Yakuza learn each
-   other's actions (R8).
+   Katana exception in R8), protectors learn whether they stopped an attack (R17), role-blocked players are told
+   (R9), Yakuza learn each other's actions (R8).
 6. Deaths are revealed at the start of the Day (R12); the win check runs on all of the night's deaths together (R1).
 
 === PART 4: ATTACKS, DEATH AND INFORMATION ===
@@ -172,8 +172,8 @@ R3 (Attack and Defense)
   night learns the role behind each, including those that failed. The Katana is an exception (R8).
 
 R17 (Protection feedback)
-Protectors (e.g. the Medic) are never told whether their protection stopped an attack, and a protected player is
-never told who protected them. A player who is attacked is still told as in R3.
+Protectors (e.g. the Medic) are told whether their protection stopped an attack, but not whose attack it was, and a
+protected player is never told who protected them. A player who is attacked is still told as in R3.
 
 R12 (Death reveals)
 When someone dies, their cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are revealed
@@ -440,23 +440,25 @@ Trapper
   may remove your trap (removing it isn't a visit). You have one trap at a time; a new trap replaces the old one at
   once. Traps last even after you die. A trap is armed from the next night on: the first time anyone makes a Basic,
   Standard or Strong Attack on the trapped player on a later night, the trap is used up and stops that attack
-  (chosen at random if there are several; Divine Attacks ignore it); any other attacks resolve as usual. The trap
-  acts before Defense, after any protection that acts before all others. If the stopped attack was a visit, its
-  attacker is dealt a Strong Attack, whatever their faction; an Astral attack is stopped without one. You learn
-  that your trap went off, and nothing else (not whose attack, nor whether the trap killed).
+  (chosen at random if there are several; Divine Attacks ignore it); any other attacks resolve as usual. Several
+  traps on one player act one at a time, in random order, each stopping a different attack. The trap acts before
+  Defense, after any protection that acts before all others. If the stopped attack was a visit, its attacker is
+  dealt a Strong Attack, whatever their faction; an Astral attack is stopped without one. You learn that your trap
+  went off, and nothing else (not whose attack, nor whether the trap killed).
 
 Kitsune
   Tokens: 1 kitsune token.
   Night: if you hold no swallowed attack, may lay a fox charm on one player other than yourself (on yourself, spend
   the token). The charm acts before any other protection: it swallows one Basic, Standard or Strong Attack on that
-  player tonight (chosen at random if there are several; Divine Attacks ignore it), which then has no effect (its
-  attacker and target are told as for any failed attack, R3); any other attacks on them resolve as usual. Several
-  charms on one player act one at a time, in random order, each swallowing a different attack. You keep the
-  swallowed attack and learn its level and how its kill would be announced. While you hold it you can't lay a charm:
-  on a night you choose a target, you release it on that player (not yourself), as an Attack of the same level whose
-  kill is announced with the same cause (a released Katana attack reads as a Katana death), and a survivor is told
-  it came from that cause's role. You keep the attack until you release it, and it's lost if you die. You learn
-  whether your charm swallowed an attack, and whether your release killed.
+  player tonight, including attacks that other actions set off (chosen at random if there are several; Divine
+  Attacks ignore it), which then has no effect (its attacker and target are told as for any failed attack, R3); any
+  other attacks on them resolve as usual. Several charms on one player act one at a time, in random order, each
+  swallowing a different attack. You keep the swallowed attack and learn its level and how its kill would be
+  announced. While you hold it you can't lay a charm: on a night you choose a target, you release it on that player
+  (not yourself), as an Attack of the same level whose kill is announced with the same cause (a released Katana
+  attack reads as a Katana death), and a survivor is told it came from that cause's role. You keep the attack until
+  you release it, and it's lost if you die. You learn whether your charm swallowed an attack, and whether your
+  release killed.
 
 Killing
 
@@ -468,11 +470,11 @@ Vigilante
 Enforcer
   Tokens: 3 enforcer tokens.
   Night: may visit one player other than yourself. If they made an Attack of their own choosing tonight (fatal or
-  not; a Katana attack counts for its holder; a Veteran's alert, a trap or a revenge doesn't count), you deal them a
-  Basic Attack. Spend 1 token to also visit a second player, and 1 token to make your Attack Strong; the two can be
-  combined. If both players you visit made an Attack, one of them, chosen at random, is attacked. Tokens are spent
-  whether or not you attack. You learn whether you attacked and whether it killed; with one target you know whom,
-  with two you aren't told which.
+  not; a Katana attack counts for its holder, and releasing a swallowed attack counts; a Veteran's alert, a trap or
+  a revenge doesn't count), you deal them a Basic Attack. Spend 1 token to also visit a second player, and 1 token
+  to make your Attack Strong; the two can be combined. If both players you visit made an Attack, one of them, chosen
+  at random, is attacked. Tokens are spent whether or not you attack. You learn whether you attacked and whether it
+  killed; with one target you know whom, with two you aren't told which.
 
 Veteran
   Tokens: 3 alert tokens.
