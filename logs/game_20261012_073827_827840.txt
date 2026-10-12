@@ -13,3 +13,29 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Village players may also have a trait (R24).
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Bob, Carol) Bob (Yakuza chat): Bob here. Proposal for Night 1: I keep the Katana (holder: Bob) and we Katana Frank. Frank is a quiet seat with no obvious claim pattern to protect, and an early kill removes a potential info role before Day 2. Carol, please vote holder=Bob and target=Frank. If you have a reason to prefer a different target, say it now and we can settle it before voting.
+(to Bob, Carol) Carol (Yakuza chat): Agreed. Holder Bob, target Frank. No reason to prefer another seat tonight.
+(to Bob, Carol) Bob (Yakuza chat): Agreed: holder Bob, target Frank. I'll vote that tonight. Before Day 2, let's agree on distinct cover claims in night chat. Both of us are Grunts with no night action, so we need a plausible non-Yakuza role for each of us that never contradicts the other. Don't name a Yakuza-only role in public.
+(to Bob, Carol) Carol (Yakuza chat): Agreed: holder Bob, target Frank, I'll vote that tonight. Cover claims, distinct and consistent with our real visits: I claim Vanilla Villager, with no night action and no info. Bob, pick a role with a night action you can justify not using on Frank, for example Sheriff investigating someone living who is not Frank, or Vanilla. Don't claim Tracker or Lookout, since those would show Bob visiting Frank. Neither of us names a Yakuza-only role in public.
+Night actions:
+  Alice (Enforcer): target Dave; "Night 1 visit to Dave with one target (0 tokens). If Dave makes an attack of their own choosing tonight, I deal them a Basic Attack."
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Frank
+  Carol (Grunt): no role action; Katana vote: Bob holds, attacks Frank
+  Dave (Enforcer): no action
+  Erin (Medic): target Alice; "Standard protection on Alice at no token cost, as a blind guess since there is no information yet."
+  Grace (Serial Killer): target Dave; "Strong Attack on Dave. No information yet, so this is a blind kill to reduce the number of players who could hunt me."
+  Heidi (Sheriff): target Dave
+Katana: Bob holds it and attacks Frank.
+(to Alice) Moderator (private): You visited Dave tonight. You did not attack anyone. You have 3 enforcer tokens left.
+(to Erin) Moderator (private): You protected Alice tonight, giving them Standard Defense. You have 2 medic tokens left.
+(to Heidi) Moderator (private): You investigated Dave tonight. Result: Not Evil.
+(to Grace) Moderator (private): You attacked Dave tonight. Your attack succeeded.
+(to Bob) Moderator (private): Your Katana attack on Frank tonight succeeded.
+[Moderator summary] Night 1: Bob (Katana holder) killed Frank with the Katana (Standard vs None). Grace (Serial Killer) killed Dave (Strong vs None). Alice (Enforcer, 0 tokens) visited Dave, who made no attack, so Alice didn't attack. Erin protected Alice (Standard, 0 tokens); Alice wasn't attacked. Heidi checked Dave: Not Evil. No role-blocks. Still alive: Alice, Bob, Carol, Erin, Grace, Heidi. The game isn't over.
+[Night check] Night 1: correct
+(to Dave) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Frank. Carol (Grunt) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Frank. Bob (Grunt) chose no action.
