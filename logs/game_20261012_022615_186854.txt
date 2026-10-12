@@ -200,3 +200,26 @@ Trial votes on Bob: 6 Guilty, 0 Innocent (the votes are secret).
 Bob is executed by hanging (6 Guilty of 6 votes; 4 needed).
 Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's last will (updated Day 3). My claim is Seer. Night 1 pair: Alice and Dave, same alignment. I have 1 Seer token left. The pair is untested, so weigh it as a claim, not a fact. Erin's will and Carol's Sheriff read both put Dave on the Good side, and Heidi's will called Dave Yakuza; those conflict, so test Dave and Carol with new mechanical results before any hang. Don't hang on wills alone. Ask Carol and Alice for their Night 2 results, and check whether any Night 2 result contradicts Carol's Not Evil read on Dave."
 Bob was the Jester: being hanged wins them the game.
+
+===== NIGHT 3 =====
+(to Frank, Grace) Frank (Yakuza chat): Frank: Night 3 proposal. Katana holder stays Frank (holder vote: Frank). Katana attacks Carol (Standard). Carol is the real Sheriff: Bob was the Jester, and Jester reads Evil, so her Night 2 check on Bob is accurate. Grace, please use your Pharmacist block on Alice again, so her Medic protection can't reach Carol. Reply here with agreement or a different plan now, then submit exactly this.
+(to Frank, Grace) Grace (Yakuza chat): Grace agrees. Katana holder stays Frank (holder vote: Frank), Katana attacks Carol (Standard). I block Alice so her Medic protection can't reach Carol. Carol's Night 2 EVIL read on Bob matches Bob being the Jester, so she's likely the real Sheriff. Submit exactly this.
+(to Frank, Grace) Frank (Yakuza chat): Agreed. Frank holds the Katana (holder vote: Frank), and the Katana attacks Carol (Standard). Grace blocks Alice so her Medic protection can't reach Carol. I'll submit exactly this in the night vote. Ready.
+(to Frank, Grace) Grace (Yakuza chat): Grace agrees with Frank's plan. Katana holder stays Frank (holder vote: Frank), Katana attacks Carol (Standard). My Pharmacist block goes on Alice so her Medic protection can't reach Carol. Carol's Night 2 EVIL read on Bob fits Bob being the Jester, so she is likely the real Sheriff. Submitting exactly this.
+Night actions:
+  Alice (Medic): target Carol; "Standard protection on Carol at no token cost. Carol is the Sheriff claimant with the Bob EVIL result, the most likely Katana target. Standard Defense blocks a Standard Katana attack."
+  Carol (Sheriff): target Dave; "Sheriff investigation on Dave. A second check tests my Night 1 Not Evil read, which a Katana holder could have hidden."
+  Frank (Grunt): no role action; Katana vote: Frank holds, attacks Carol
+  Grace (Pharmacist): target Alice; "Pharmacist role-block on Alice, as agreed in the Yakuza night chat, so her Medic protection cannot reach Carol."; Katana vote: Frank holds, attacks Carol
+Katana: Frank holds it and attacks Carol.
+(to Carol) Moderator (private): Your investigation result tonight: Dave is Not Evil.
+(to Alice) Moderator (private): You were role-blocked tonight. Your protection had no effect. You have 2 medic tokens left.
+(to Grace) Moderator (private): You role-blocked Alice tonight. Your block was not resisted.
+(to Frank) Moderator (private): Your Katana attack on Carol tonight succeeded.
+[Moderator summary] Night 3: Grace (Pharmacist) role-blocked Alice, so her Standard protection on Carol did nothing (0 tokens spent, 2 medic left). Frank kept the Katana and attacked Carol (Standard vs None): Carol died. Carol's Sheriff check on Dave came back Not Evil (the result is still delivered under R10). Visits: Grace->Alice, Frank->Carol, Carol->Dave. Code handles the Jester revenge.
+[Night check] Night 3: correct
+[Revenge] Bob's Divine Attack hits Alice.
+(to Alice) Moderator (private): You were attacked tonight (Jester's revenge) and died.
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Carol. Grace (Pharmacist) chose to act on Alice ("Pharmacist role-block on Alice, as agreed in the Yakuza night chat, so her Medic protection cannot reach Carol.").
+(to Grace) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Carol. Frank (Grunt) chose no action.
