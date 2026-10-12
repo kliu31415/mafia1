@@ -365,3 +365,26 @@ The game is over. Winners: Grace (dead), Ivan. Dead players still win with their
 [ERROR player_error] Carol (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'missing_information', root: must have required property 'wanted_but_couldnt', root: must have required property 'bugs_or_oddities', ro)
 
 ===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[Feedback from Heidi] The Day 4 ledger truncated Bob's claim after 40 words, so part of his line was not visible to the other players; the note said so, but the cut-off hid a live claim.
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Grace, Ivan
+Cost by player (USD):
+  Alice (Auditor)        $0.0000   30 calls  claude-haiku-5.5
+  Bob (Medic)            $0.0000   48 calls  claude-haiku-5.5
+  Carol (Profiler)       $0.0000   30 calls  claude-haiku-5.5
+  Dave (Sniper)          $0.0000   34 calls  claude-haiku-5.5
+  Erin (Serial Killer)   $0.0000   33 calls  claude-haiku-5.5
+  Frank (Bounty Hunter)  $0.0000   20 calls  claude-haiku-5.5
+  Grace (Wiretap)        $0.0000   19 calls  claude-haiku-5.5
+  Heidi (Kitsune)        $0.0000   17 calls  claude-haiku-5.5
+  Ivan (Clerk)           $0.0000   46 calls  claude-haiku-5.5
+  Moderator              $0.0000    7 calls  claude-opus-5.5
+  Night checks           $0.0000    5 calls  claude-opus-5.5
+  Strategy review        $0.0000    1 calls  claude-opus-5.5
+  Log review             $0.0000    1 calls  claude-opus-5.5
+  Total                  $0.0000  291 calls
