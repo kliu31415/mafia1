@@ -149,7 +149,7 @@ ROLES: dict[str, RoleInfo] = {
     "Kitsune": RoleInfo(Alignment.GOOD, "Protective", False,
                         summary="Night: a fox charm swallows one attack on a player; the Kitsune must later "
                         "release it, same level and cause.",
-                        tokens={"kitsune": 1}, acts_at_night=True,
+                        tokens={"kitsune": 1}, acts_at_night=True, tested=True,
                         notes="moderator records the charm's attacks and the release with ops; code picks the "
                         "swallowed attack, keeps the charge and tells the Kitsune"),
     "Vigilante": RoleInfo(Alignment.GOOD, "Killing", False,
