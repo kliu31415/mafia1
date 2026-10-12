@@ -53,8 +53,9 @@ class Kitsune(RoleLogic):
     def briefing(self, game: Game, p: Player) -> list[str]:
         charge = game.role_state.get(CHARGE, {}).get(p.name)
         if charge:
-            return [f"You hold a swallowed attack: {charge_text(charge)}. You can't lay a charm until you release it: "
-                    "each night, name a target (not yourself) to release it on them."]
+            return [f"You hold a swallowed attack: {charge_text(charge)}. You can't lay a charm until you release it. "
+                    "To release it, name a target (not yourself); to keep holding it, don't act. It's lost if you "
+                    "die."]
         return ["You hold no swallowed attack: each night you may lay your fox charm on another player (on yourself "
                 "it costs your kitsune token; set tokens_to_spend to 1)."]
 
