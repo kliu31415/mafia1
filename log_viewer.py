@@ -422,9 +422,10 @@ def icons_css() -> str:
     for path in sorted(ICONS.glob("*.svg")):
         slug, svg = path.stem, " ".join(path.read_text(encoding="utf-8").split())
         rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
-    for t, info in TRAITS.items():  # a trait rings the icon's badge in its own color (a ring keeps the badge's size)
-        rules.append(f".n.ic.t-{trait_slug(t)}::before {{ border-color:{info.ring}; "
-                     f"box-shadow:0 0 0 1px #fff, 0 0 0 2.5px {info.ring}; }}")
+    for t, info in TRAITS.items():  # a trait's mark sits in the icon's top-right corner, over the role's icon
+        mark = urllib.parse.quote(" ".join(info.mark.split()))
+        rules.append(f".n.ic.t-{trait_slug(t)}::before {{ background:url(\"data:image/svg+xml,{mark}\") "
+                     "top right/45% no-repeat, var(--icon) center/80% no-repeat, var(--tint); }")
     return "\n".join(rules)
 
 

@@ -24,7 +24,9 @@ class TraitInfo:
     summary: str  # what its holder is told, after "Your trait: NAME."
     hover: str  # one short line shown when hovering its holder's icon in the HTML log
     power: float  # logit units like role_power.PRIOR: what it adds to the Village's side when drawn (setups.py)
-    ring: str  # CSS color of the ring marking its holder's role icon in the HTML log (log_viewer.py)
+    # A small SVG drawn in the top-right corner of its holder's role icon in the HTML log (log_viewer.py): opaque,
+    # in a color no faction uses, so it doesn't read as a faction tint.
+    mark: str
 
 
 TRAITS: dict[str, TraitInfo] = {
@@ -32,7 +34,10 @@ TRAITS: dict[str, TraitInfo] = {
                         "If you are hanged, your death announcement says you were a Martyr and names every player "
                         "whose vote counted as Guilty in your trial (rules R24).",
                         "If hanged, reveals this trait and every Guilty voter (not the role).",
-                        power=0.15, ring="#b91c1c"),
+                        power=0.15,
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><circle cx='5' cy='5' r='4.4' "
+                              "fill='#6d28d9' stroke='#fff' stroke-width='1'/><ellipse cx='5' cy='5' rx='2.4' ry='1.3' "
+                              "fill='none' stroke='#fde047' stroke-width='1.1'/></svg>")),  # a halo
 }
 
 
