@@ -248,9 +248,10 @@ SETUPS = {
 }
 
 
-# Kevin, Oct 12 2026: about a quarter of the players get a trait, give or take 2 (13 players: usually 3, 1-5).
+# Kevin, Oct 12 2026: about a quarter of the players get a trait, give or take 3, so a 13-player game has none now
+# and then (usually 3, 0-6).
 TRAIT_SHARE = 0.25
-TRAIT_SPREAD = {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}  # odds of each count around TRAIT_SHARE of the players
+TRAIT_SPREAD = {-3: 1, -2: 2, -1: 4, 0: 5, 1: 4, 2: 2, 3: 1}  # odds of each count around TRAIT_SHARE of the players
 TRAIT_SAMPLES = 8  # random trait sets tried per count; balance picks among them all
 
 

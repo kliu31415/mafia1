@@ -1499,8 +1499,8 @@ def test_drawn_traits_go_one_to_a_player(tmp_path):
 
 def test_about_a_quarter_of_the_players_get_a_trait():
     import setups
-    assert setups.trait_odds(13) == {1: 1, 2: 3, 3: 4, 4: 3, 5: 1}  # Kevin, Oct 12 2026
-    assert setups.trait_odds(4) == {0: 4, 1: 4, 2: 3, 3: 1}
+    assert setups.trait_odds(13) == {0: 1, 1: 2, 2: 4, 3: 5, 4: 4, 5: 2, 6: 1}  # Kevin, Oct 12 2026: 0 allowed
+    assert setups.trait_odds(4) == {0: 7, 1: 5, 2: 4, 3: 2, 4: 1}
 
 
 def test_a_traits_power_counts_for_its_holders_side():
