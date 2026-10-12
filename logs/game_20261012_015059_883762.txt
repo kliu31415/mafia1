@@ -118,3 +118,23 @@ Erin (public): Erin, Veteran. No nomination from me. Night 2 results decide my v
 Frank (public): Frank here. Erin's Night 1 account is the only one matching a Strong kill and the Katana hit. Alice and Bob both fit Grace's counts. Night 2 results decide my vote.
 Grace (public): Grace here. No nomination from me. I'll post my Night 2 counts at dawn and vote on them.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+Night actions:
+  Alice (Eavesdropper): target Bob
+  Bob (Medic): target Erin; "Standard Defense on Erin (another player, no token cost)."
+  Erin (Veteran): 1 token(s); "Going on alert with 1 token (2 left before, 1 left after). Standard Defense blocks a Standard Katana, and any visitor gets a Strong Attack."
+  Frank (Philanthropist): no action
+  Heidi (Bounty Hunter): target Grace; 1 token(s); "Strong Bounty Hunter attack on Grace, using my only attack token."
+  Ivan (Wiretap): no role action; Katana vote: Ivan holds, attacks Grace
+Katana: Ivan holds it and attacks Grace.
+(to Heidi) Moderator (private): Your bounty on Grace is claimed.
+(to Erin) Moderator (private): You went on alert tonight. 1 player visited you: your attack killed them. 1 alert token left.
+(to Heidi) Moderator (private): Your attack on Grace succeeded: it killed them. 0 attack tokens left.
+(to Ivan) Moderator (private): The Katana attack on Grace succeeded: it killed them.
+(to Bob) Moderator (private): You protected Erin with Standard Defense tonight. 2 medic tokens left.
+(to Grace) Moderator (private): Fortune Teller result for tonight: 3 players were visited; 4 players visited someone.
+[Moderator summary] Night 2: Alice eavesdropped Bob (Bob died). Bob protected Erin (Standard) and visited alerting Veteran Erin (1 alert token left) -> Bob killed by Veteran's Strong attack. Ivan (Katana, Standard) and Heidi (Bounty Hunter, Strong, token spent) both attacked Grace (Defense None) -> Grace killed, cause Katana and Bounty Hunter. Fortune Teller: 3 visited, 4 visitors. Bob was Dave's Executioner target, died at night -> code converts Dave to Jester. No win: Alice, Erin, Frank (Village), Ivan (Yakuza), plus non-blocking Neutrals Dave and Heidi.
+[Night check] Night 2: correct
+(to Bob) Moderator (private): You were attacked tonight (Veteran) and died.
+(to Grace) Moderator (private): You were attacked tonight (Katana and Bounty Hunter) and died.
