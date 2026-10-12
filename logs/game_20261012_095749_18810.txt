@@ -62,3 +62,40 @@ Katana: Alice holds it and attacks Mallory.
 (to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Mallory. Carol (Pharmacist) chose to act on Heidi; Dave (Fabricator) chose to act on Niaj ("Frame Niaj only. Don't forge the will.").
 (to Carol) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Mallory. Alice (Talent Agent) chose to act, naming Medic, spending 1 token(s) ("Count: Medic"); Dave (Fabricator) chose to act on Niaj ("Frame Niaj only. Don't forge the will.").
 (to Dave) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Mallory. Alice (Talent Agent) chose to act, naming Medic, spending 1 token(s) ("Count: Medic"); Carol (Pharmacist) chose to act on Heidi.
+
+===== DAY 2 =====
+Mallory died (killed by Katana). Their role isn't revealed. Their last will: "Mallory - Vigilante (Good). Night 1: no shot fired yet. I'll keep this will updated with every shot and result."
+Niaj died (killed by Serial Killer). Their role isn't revealed. Their last will: "Niaj - Lookout (Village). I'll log each night's watch target and who visited them here. N1: no results yet."
+Speaking order today goes around the circle in seat order, starting with Alice.
+11 players are alive, so a nomination needs 6 Yes votes (rules R4).
+[Claim] Alice: Vanilla Villager. No night action, no results.
+Alice (public): Two killers last night: the Katana got Mallory and a Serial Killer got Niaj. I'm a Vanilla Villager, so I have no results. Investigators, please post your night, target and exact result early. Remember that a Sheriff reads the SK as Not Evil, so a clean read doesn't clear anyone.
+Bob (public): Agreed. Two killing factions are active, so we can't waste hangs. Investigators, post what you have. I have a small result of my own and will share it when it matters for a vote.
+[Claim] Carol: Party Animal (role-blocker, immune to blocks). N1: blocked Heidi (random).
+Carol (public): Getting ahead of this: I'm the Party Animal. N1 I blocked Heidi, a random pick since there was no info yet. Heidi, you'll have been told you were role-blocked. That was me, sorry. What's your role? From now on I'll block whoever we agree looks most like the SK.
+[Claim] Dave: Tracker. N1: tracked Niaj, Niaj visited no one.
+Dave (public): Tracker here. N1 I tracked Niaj (random pick). Result: Niaj visited no one. So either Niaj didn't use the Lookout watch on N1 or someone else blocked them. Carol says she blocked Heidi, so it wasn't her. Bob, if your result touches Niaj or Mallory, please post it now.
+Erin (public): I have a Village role that I'd rather not claim yet. It's worth more to us unclaimed, and I'll claim it if I'm nominated. Heidi, please confirm the block Carol says she put on you. Bob, please share your result before any vote.
+Frank (public): Heidi, please confirm whether you were told you were role-blocked last night. That's the one claim we can check right away. Bob and Erin, holding results back is fine for now, but post them before any vote, not after.
+[Claim] Grace: Vanilla Villager. No night action, no results.
+Grace (public): Vanilla Villager here, so no results. Agree with Frank: Heidi confirming Carol's block is the quickest check we have. Dave's Niaj result is odd but fits Niaj just not acting N1.
+[Claim] Heidi: Tracker. N1: tracked Grace, role-blocked (confirms Carol's block claim), no result.
+Heidi (public): Confirmed: I was told I was role-blocked N1. I'm also a Tracker. I tracked Grace, so I have no result. Roles can repeat, so Dave isn't necessarily lying, but I'm noting it. Carol, a Pharmacist could make the same claim, so your block on me doesn't clear you.
+Ivan (public): I'm Village with a result. It's consistent with what's been claimed so far, so I'll hold my claim for now. Two Trackers is possible since roles repeat. Judy and Olivia, please claim. Bob, please post your result before any vote.
+[Claim] Judy: Party Animal (role-blocker, immune to blocks). N1: blocked Niaj (random), block landed. Explains Dave's 'Niaj visited no one'.
+Judy (public): I'm also a Party Animal. N1 I blocked Niaj (random pick), and I was told the block landed. That explains Dave's result exactly: Niaj visited no one because I blocked him. So Dave's Tracker claim fits. Carol, roles can repeat, but a Pharmacist would give Heidi the same block notice, so I'm not clearing you yet. Bob, please post your result.
+[Claim] Olivia: Village protective role (exact role held for now; will claim if nominated).
+Olivia (public): Village, protective role. I'll hold the exact claim so the Katana has a harder time playing around me, and I'll claim fully if nominated. We have two Party Animal claims and two Tracker claims; Judy's claim neatly covers Dave's result, so either both are real or it's coordinated. Bob, please post your result.
+Alice (public): Judy's block on Niaj matches Dave's result, so that's a real cross-check. Neither Party Animal claim can be checked yet. Bob, Erin and Ivan, three held results is a lot. Please post them before we vote on anyone.
+[Claim] Bob: Village. N1: visited Heidi; result: Heidi made no attack N1 (consistent with Carol's block). Exact role held until nominated.
+Bob (public): My result, as asked: N1 I visited Heidi (random pick). It shows Heidi made no attack N1. That fits Carol's block, since a blocked player can't attack anyway. So it backs up the block story but doesn't clear Heidi. I'll hold my exact role so the killers can't plan around it. I'll claim it if I'm nominated.
+Carol (public): Two Party Animals can both be real, since roles repeat. Heidi and Bob have both confirmed my block. Judy, let's not double up: tomorrow we each post our block target. For tonight I'd lean towards blocking whoever stays quietest about their role, since that's where the SK hides.
+Dave (public): Thanks Judy, that fits my result. Note that Niaj had at least two visitors N1: Judy's block and the SK's kill. Nobody has a mechanical case yet, so I'd rather not hang on a guess today with two killers out there. Held-result players, a hint at your role type would help us pick tonight's blocks.
+Erin (public): Agree with Dave: no mechanical case yet, so no hang on a guess today. Frank is the only one who hasn't said anything about his role. Frank, please give us at least your role type. Party Animals, please block unclaimed or silent players, not the ones who've said they're protective.
+[Claim] Frank: Village investigative. N1: result on Grace, consistent with her VV claim. Exact role held until it matters for a vote.
+Frank (public): Fair ask. I'm Village investigative. My N1 result was on Grace, and it's consistent with her Vanilla claim. I'll give my exact role and result once a result of mine bears on a vote. Two Party Animals plus two Trackers is a lot of doubling, so that's where I'll look next.
+Grace (public): Thanks Frank. Agree with Dave and Erin: no mechanical case yet, so no hang on a guess today. Party Animals, please split your blocks across the unclaimed or held-result players tonight.
+Heidi (public): Agree, no hang today without a mechanical case. Bob's result fits the block. I'll track someone tonight and post the exact result tomorrow.
+Judy (public): Agree, no hang today. I'll pick tonight's block privately and post target and result tomorrow.
+Olivia (public): Agree, no hang today. Party Animals, please post your targets tomorrow so we can cross-check them against Tracker results. Held-result players, keep your wills updated in case you die tonight.
+A full round passed with no public messages. The day ends.
