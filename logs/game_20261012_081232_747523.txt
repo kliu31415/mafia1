@@ -103,3 +103,23 @@ Carol (public): Carol here, no nomination. Heidi's Sheriff claim stands on recor
 Dave (public): Dave here, no nomination. I'll wait for Heidi's Night 2 result at the start of Day 3 before voting on anyone.
 Erin (public): Erin here, Vanilla Villager, no nomination. Still no Night 2 result from anyone, so I won't vote yet. Heidi, post your N2 result at the start of Day 3 as you said.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Dave) Carol (Yakuza chat): Carol: Agreed. Dave keeps the Katana (no holder change) and we attack Heidi tonight. I'll cast the same two votes, and I won't block anyone. Heidi's Sheriff claim is the only real info we have, so if Heidi is the Sheriff, removing them is worth it. Let's not split votes.
+(to Carol, Dave) Dave (Yakuza chat): Dave here. Agreed with Carol: I keep the Katana (holder vote: Dave), and we attack Heidi tonight (target vote: Heidi). I won't block or take any other action. Carol, cast the same two votes so the kill isn't cancelled.
+Night actions:
+  Bob (Trapper): no action
+  Carol (Pharmacist): target Heidi; "Pharmacist role-block on Heidi (Sheriff claim), so their night check doesn't land if they are protected. Katana holder Dave, target Heidi."; Katana vote: Dave holds, attacks Heidi
+  Dave (Grunt): no role action; Katana vote: Dave holds, attacks Heidi
+  Grace (Serial Killer): target Heidi; "Serial Killer Strong Attack on Heidi, the claimed Sheriff. Heidi's N1 Not Evil on Alice matches a Serial Killer, so the claim is consistent and worth removing."
+  Heidi (Sheriff): target Grace
+Katana: Dave holds it and attacks Heidi.
+(to Heidi) Moderator (private): You were role-blocked tonight. Your investigation had no effect.
+(to Carol) Moderator (private): You role-blocked Heidi tonight.
+(to Dave) Moderator (private): Your Katana attack on Heidi succeeded tonight.
+(to Grace) Moderator (private): Your attack on Heidi succeeded tonight.
+[Moderator summary] Night 2: Carol (Pharmacist) role-blocked Heidi (Sheriff), so Heidi's check on Grace did nothing. Dave (Katana holder) dealt a Standard Katana attack and Grace (SK) dealt a Strong attack, both on Heidi (Defense None, no trap or protection). Both were fatal, so Heidi died to Katana and Serial Killer. Bob took no action and his trap stays on Carol; nobody attacked Carol. Visits: Carol->Heidi, Dave->Heidi, Grace->Heidi. Alive: Bob, Erin (Village), Carol, Dave (Yakuza), Grace (SK). No win yet.
+[Night check] Night 2: correct
+(to Heidi) Moderator (private): You were attacked tonight (Katana and Serial Killer) and died.
+(to Carol) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Heidi. Dave (Grunt) chose no action.
+(to Dave) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Heidi. Carol (Pharmacist) chose to act on Heidi ("Pharmacist role-block on Heidi (Sheriff claim), so their night check doesn't land if they are protected. Katana holder Dave, target Heidi.").
