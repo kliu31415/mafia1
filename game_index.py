@@ -20,7 +20,7 @@ import urllib.parse
 import webbrowser
 from collections import Counter
 from collections.abc import Iterable
-from datetime import datetime
+from datetime import datetime, timezone
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
 INDEX = "index.html"
 CACHE = "index_cache.json"
-CACHE_VERSION = 2  # bump when summarize()'s fields change, so cached summaries are rebuilt
+CACHE_VERSION = 3  # bump when summarize()'s fields change, so cached summaries are rebuilt
 TIER_ORDER = ["frontier", "mid", "cheap", "unknown"]
 
 
@@ -50,7 +50,7 @@ def summarize(path: Path) -> dict | None:
     share, mix = mix_of(seat_models)
     game_id = setup.get("game_id") or path.stem
     try:
-        started = datetime.fromtimestamp(setup["t"]).strftime("%Y-%m-%d %H:%M")
+        started = datetime.fromtimestamp(setup["t"], timezone.utc).strftime("%Y-%m-%d %H:%M")
     except (KeyError, TypeError, ValueError, OSError):
         started = ""
     errors = Counter(r["kind"] for r in records if r.get("alert"))
@@ -170,7 +170,7 @@ def build(log_dir: Path = LOG_DIR, include_mock: bool = False) -> Path:
     games = load_summaries(log_dir, include_mock)
     out = log_dir / INDEX
     tmp = out.with_name(INDEX + ".tmp")
-    tmp.write_text(render(games, datetime.now().strftime("%Y-%m-%d %H:%M")), encoding="utf-8")
+    tmp.write_text(render(games, datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")), encoding="utf-8")
     os.replace(tmp, out)
     return out
 
@@ -217,8 +217,8 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
                 fresh_log_page(log_dir, self.path.split("?")[0])
                 super().do_GET()
                 return
-            page = render(load_summaries(log_dir, include_mock), datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                          live=True).encode()
+            now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+            page = render(load_summaries(log_dir, include_mock), now, live=True).encode()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(page)))

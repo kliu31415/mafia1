@@ -224,6 +224,9 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   changes a rule without editing the file: it adds a note after the rules text, so every prompt sees it. Code reads
   `game.rule_settings`; logs without them used `variants.LEGACY` (role flips, public votes), as did the rules text
   before Oct 10 2026. Keep rules wording in line with the defaults when they change.
+- Times the code writes (game ids and log names, tips sheet stamps, script revisions, the game index) are UTC,
+  via `datetime.now(timezone.utc)`, never the local time; log records' `t` is Unix time. Ids from before
+  Oct 12 2026 used the PC's local time and stay as they are.
 - Program safeguards that aren't rules from `rules_1.txt` are marked as such in code and in game text.
   Currently: a game stops with no winner after (players + 10) days (`EXTRA_DAYS` and `--max-days` in
   `mafia.py`), so a stuck game can't run forever.

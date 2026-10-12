@@ -14,7 +14,7 @@ checkpoints played with "all").
 import hashlib
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from roles import ROLES, Alignment
@@ -217,7 +217,7 @@ def record(rules: str, script: str, edits: list[dict], made_by: str, cost: float
     text = cut(rules, script)
     revised = apply_edits(text, edits)
     meta = {"script": script, "cut_sha256": digest(text), "text_sha256": digest(revised), "made_by": made_by,
-            "made": datetime.now().isoformat(timespec="seconds"), "cost": cost, "edits": edits}
+            "made": datetime.now(timezone.utc).isoformat(timespec="seconds"), "cost": cost, "edits": edits}
     CACHE_DIR.mkdir(exist_ok=True)
     (CACHE_DIR / f"{script}.txt").write_text(revised, encoding="utf-8")
     (CACHE_DIR / f"{script}.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")

@@ -3,7 +3,7 @@ and a report collecting everything (including moderator flags and in-game feedba
 
 import json
 from collections import Counter
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from events import RESULT
@@ -425,7 +425,7 @@ def run_quiz(client: LLMClient, specs: list[ModelSpec], grader: ModelSpec, rules
                 i = r["question"] - 1
                 answer = answers_by_model[m][i] if i < len(answers_by_model[m]) else "(none)"
                 out.append(f"- **Q{i + 1}, {m}:** {answer} *({r['note']})*")
-    path = out_dir / f"quiz_{datetime.now():%Y%m%d_%H%M%S}.md"
+    path = out_dir / f"quiz_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}.md"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(out) + "\n", encoding="utf-8", errors="replace")
     return path

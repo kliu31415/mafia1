@@ -40,7 +40,7 @@ import re
 import time
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -525,7 +525,7 @@ def current_rules() -> str:
 def keep_old_sheet(out: Path) -> str:
     """Copies the sheet as it is to <out dir>/history/ (the notebook's old versions are in git history); returns the
     timestamp it used."""
-    stamp = f"{datetime.now():%Y%m%d_%H%M%S_%f}"
+    stamp = f"{datetime.now(timezone.utc):%Y%m%d_%H%M%S_%f}"
     if out.exists():
         (out.parent / "history").mkdir(parents=True, exist_ok=True)
         (out.parent / "history" / f"{out.stem}_{stamp}{out.suffix}").write_bytes(out.read_bytes())
@@ -545,7 +545,8 @@ def _rewrite_sheet(out: Path, nb: dict, client: LLMClient, spec: ModelSpec, rule
                  "kept as it was")
         write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
         return out
-    header = (f"# Tips from past games\n\nWritten {datetime.now():%Y-%m-%d %H:%M} by {spec} with `uv run tips.py "
+    written = f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC"
+    header = (f"# Tips from past games\n\nWritten {written} by {spec} with `uv run tips.py "
               f"build`, from the {active} active entries of {nb_path.name} ({len(nb['games'])} games). Players never "
               "see this preamble; they see every section below. Earlier sheets are in history/.\n\n")
     write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))

@@ -15,7 +15,7 @@ the intuition; `uv run role_power.py` refits by hand.
 import argparse
 import json
 import math
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import variants
@@ -108,7 +108,7 @@ def update(log_dir: Path, path: Path | None = None) -> Path:
     data = games(log_dir)
     offset, power = fit(data)
     seen = {r: sum(r in roles for roles, _, _ in data) for r in PRIOR}
-    written = f"{datetime.now():%Y-%m-%d %H:%M}"
+    written = f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"written": written, "games": len(data), "offset": round(offset, 3),
                                 "roles": {r: {"prior": PRIOR[r], "power": round(power[r], 3), "games": seen[r]}

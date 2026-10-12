@@ -68,7 +68,7 @@ import traceback
 from collections.abc import Callable, Iterator, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass, field, fields
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import alerts
@@ -451,9 +451,10 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
 
 
 def new_log(prefix: str, seed: int | None) -> GameLog:
-    """A new game's log, named by its start time and seed; never another game's (parallel games with the
+    """A new game's log, named by its start time (UTC, so names sort in start order across machines and time
+    zones; logs named before Oct 12 2026 used the local time) and seed; never another game's (parallel games with the
     same seed can start in the same second)."""
-    stem = f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}_{seed}"
+    stem = f"{prefix}_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}_{seed}"
     for n in range(1, 100):
         try:
             return GameLog(LOG_DIR / (stem + (f"_{n}" if n > 1 else "") + ".jsonl"), exclusive=True)
