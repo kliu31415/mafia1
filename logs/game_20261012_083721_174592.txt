@@ -179,3 +179,21 @@ Trial votes on Alice: 3 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Alice] Guilty - Carol, Dave, Heidi; Innocent - Alice, Frank
 Alice is executed by hanging (3 Guilty of 5 votes; 3 needed).
 Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice, Village (claimed Trapper). N1: trap on Frank, never triggered; survived an SK attack N1 (Grace's charm). N2: trap moved to Grace (dead, no effect). Not attacked N2. Frank's trap is still live if he is attacked. Bob's Erin trap was legal, so Bob may be a real second Trapper. Trust only verifiable results. Vote for whoever's story conflicts with the mechanics, not whoever pushes hardest."
+
+===== NIGHT 3 =====
+(to Carol, Dave) Carol (Yakuza chat): Carol here. Katana stays with me (holder vote: Carol). Target: Frank. The Serial Killer is immune to the Katana (Standard vs Standard), so the SK can't be our kill. Of Frank and Heidi, one of them is the SK and one is Village. Frank has pushed the most pressure and questions since Day 2, and Heidi's reasoning on Alice has matched the facts, so Frank is the one I'd remove. Dave, reply with your vote; both of us must agree on Frank.
+(to Carol, Dave) Dave (Yakuza chat): Dave here. Agreed: Katana stays with Carol, target Frank. Frank is the non-SK-immune pick we can actually kill. One caution: Bob said his N2 trap went on a live player, and Alice's trap moved to dead Grace, so a trap on Frank is possible from Bob's side. If Carol is hit by a trap, I take the Katana. I'm locked on Frank.
+(to Carol, Dave) Carol (Yakuza chat): Dave here. Confirmed: Katana stays with Carol, target Frank. I'm locked on that. Ready.
+(to Carol, Dave) Dave (Yakuza chat): Dave here. Confirmed: Katana stays with Carol, target Frank. I'm locked on that. If the trap goes off on Carol, I'll take the Katana and we re-plan from there.
+Night actions:
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Frank
+  Dave (Grunt): no role action; Katana vote: Carol holds, attacks Frank
+  Heidi (Serial Killer): target Dave; "Serial Killer Strong Attack on Dave."
+Katana: Carol holds it and attacks Frank.
+(to Carol) Moderator (private): Your Katana attack on Frank succeeded: Frank died tonight.
+(to Heidi) Moderator (private): Your attack on Dave succeeded: Dave died tonight.
+[Moderator summary] Night 3: Carol (Katana holder) dealt a Standard Katana attack to Frank (Defense None, no trap on him since Alice's trap had been moved to Grace) and killed him. Heidi (Serial Killer) dealt a Strong attack to Dave (Defense None) and killed him. No role-blocks, protections or traps were involved. Carol (Yakuza) and Heidi (Serial Killer) remain alive, so the game continues.
+[Night check] Night 3: correct
+(to Dave) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Frank. Dave (Grunt) chose no action.
