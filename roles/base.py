@@ -253,6 +253,26 @@ def attacks_error(game: Game, attacks: object, visit: bool = False) -> str | Non
     return None
 
 
+STOPPED = "stopped_attacks"  # game.role_state: {"night": day, target: [(by, cause), ...]}, attacks stopped tonight
+CATCHABLE = ATTACK_LEVELS[1:4]  # Basic, Standard, Strong: Divine Attacks ignore protections that stop one attack
+
+
+def stop_one_attack(game: Game, target: str, attacks: list[dict]) -> dict | None:
+    """Picks at random the one non-Divine attack in `attacks` that a protection stopping a single attack (a fox charm,
+    a trap) stops on `target`, never one another such protection already stopped there tonight, whatever the order
+    or lists the moderator sends."""
+    store = game.role_state.get(STOPPED)
+    if not store or store.get("night") != game.day:
+        store = game.role_state[STOPPED] = {"night": game.day}
+    done = store.setdefault(target, [])
+    left = [a for a in attacks if a["attack"] in CATCHABLE and [a["by"], a["cause"].strip().lower()] not in done]
+    if not left:
+        return None
+    stopped = game.rng.choice(left)
+    done.append([stopped["by"], stopped["cause"].strip().lower()])
+    return stopped
+
+
 CODE_ATTACKS = "code_attacks"  # game.role_state: night -> attackers of attacks code made that night (record_attack)
 
 

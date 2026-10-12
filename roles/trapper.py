@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import ATTACK_LEVELS, RoleLogic, Status, attacks_error, register
+from roles.base import RoleLogic, Status, attacks_error, register, stop_one_attack
 
 if TYPE_CHECKING:
     from state import Game
@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 SPRING = "spring_trap"
 ARMED = "armed_traps"  # game.role_state: trapped player -> Trapper, traps standing at the end of the last night
 WENT_OFF = "traps_went_off"  # game.role_state: Trapper -> trapped player, traps that went off tonight
-CATCHABLE = ATTACK_LEVELS[1:4]  # Basic, Standard, Strong: a Divine Attack ignores the trap (rules: Trapper)
 
 
 @register("Trapper")
@@ -58,12 +57,12 @@ class Trapper(RoleLogic):
     def apply_op(self, game: Game, change: dict) -> str | None:
         target = game.player(change["player"])
         trapper = game.role_state[ARMED][target.name]
-        catchable = [a for a in change["attacks"] if a["attack"] in CATCHABLE]
-        stopped = game.rng.choice(catchable) if catchable else None  # rules: Trapper (one at random)
+        stopped = stop_one_attack(game, target.name, change["attacks"])  # rules: Trapper (one at random)
         game.log.write("trap", trapper=trapper, target=target.name, attacks=change["attacks"], stopped=stopped,
                        day=game.day)
         if not stopped:
-            return f"No non-Divine attack on {target.name}: {trapper}'s trap stays armed. Resolve as usual."
+            return (f"No non-Divine attack on {target.name} that wasn't already stopped: {trapper}'s trap stays "
+                    "armed. Resolve as usual.")
         target.status.pop(Status.TRAPPED_BY, None)
         game.role_state.setdefault(WENT_OFF, {})[trapper] = target.name
         if stopped["visit"]:  # Kevin, Oct 12 2026: whatever the attacker's faction

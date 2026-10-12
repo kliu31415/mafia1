@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (ATTACK_LEVELS, RoleLogic, acted_tonight, attacks_error, register, spend_token, swap_partner,
+from roles.base import (RoleLogic, acted_tonight, attacks_error, register, spend_token, stop_one_attack, swap_partner,
                         token_user_error)
 
 if TYPE_CHECKING:
@@ -16,7 +16,6 @@ TOKEN = "kitsune"  # charming yourself spends one
 CHARM, RELEASE = "kitsune_charm", "kitsune_release"
 CHARGE = "kitsune_charge"  # game.role_state: Kitsune -> {"attack": level, "cause": its announced cause}, until released
 TONIGHT = "kitsune_tonight"  # game.role_state: Kitsune -> what it did tonight, for its result at the end of the night
-CATCHABLE = ATTACK_LEVELS[1:4]  # Basic, Standard, Strong: a Divine Attack ignores the charm (Kevin, Oct 12 2026)
 
 
 def charge_text(charge: dict) -> str:
@@ -91,8 +90,7 @@ class Kitsune(RoleLogic):
                     f"{charge['cause']} (R3).")
         if target is by and not swap_partner(game, by.name):
             spend_token(game, by.name, TOKEN)
-        catchable = [a for a in change["attacks"] if a["attack"] in CATCHABLE]
-        swallowed = game.rng.choice(catchable) if catchable else None  # rules: Kitsune (one at random)
+        swallowed = stop_one_attack(game, target.name, change["attacks"])  # rules: Kitsune (one at random)
         if swallowed:
             charge = {"attack": swallowed["attack"], "cause": swallowed["cause"].strip()}
             game.role_state.setdefault(CHARGE, {})[by.name] = charge

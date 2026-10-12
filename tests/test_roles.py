@@ -641,7 +641,8 @@ def test_a_fox_charm_and_a_trap_on_one_player_each_stop_an_attack(game_factory):
     out = apply_ops(game, players, {"op": "kitsune_charm", "by": "Erin", "player": "Bob", "attacks": attacks})
     charged = game.role_state["kitsune_charge"]["Erin"]
     rest = [a for a in attacks if a["cause"] != charged["cause"]]
-    out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": rest})
+    # the moderator lists the swallowed attack too: code still never stops one attack twice
+    out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": attacks})
     assert f"stopped {rest[0]['by']}'s" in out["results"][0]
     game.run_night_end_hooks()
     assert told(game, "Alice")[-1].endswith("Your trap went off tonight and is used up.")
