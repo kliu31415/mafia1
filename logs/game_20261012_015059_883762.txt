@@ -138,3 +138,101 @@ Katana: Ivan holds it and attacks Grace.
 [Night check] Night 2: correct
 (to Bob) Moderator (private): You were attacked tonight (Veteran) and died.
 (to Grace) Moderator (private): You were attacked tonight (Katana and Bounty Hunter) and died.
+
+===== DAY 3 =====
+Bob died (killed by Veteran). Their role isn't revealed. Their last will: "Bob, Medic. N1: protected Carol (Standard), no info. I trust only results with a night, target and exact outcome, checked against the visit counts."
+Grace died (killed by Katana and Bounty Hunter). Their role isn't revealed. Their last will: "Grace's last will: I am the Fortune Teller. N1 result: 2 players visited, 3 visitors. Erin and Carol visited each other, so the third visitor hit Carol. Do not hang on a single claim; check visit counts against every claim."
+(to Alice) Bob died, so you have no one to eavesdrop on today.
+(to Dave) Your target died other than by hanging. You are now a Jester.
+[Feedback from Dave] Night 1 vs. Day 2 info is clear; the Executioner-to-Jester transition was clear too.
+Speaking order today goes around the circle in seat order, starting with Alice.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Alice: Eavesdropper (Village). N1: eavesdropped Carol (no reads, Carol died). N2: eavesdropped Bob (died that night, nothing to read). Armed shot unused.
+Alice (public): Alice here. My N2 target was Bob, and he died that night, so I have no PM contents and nothing to read today. Erin, you claim Veteran with an alert on N2. Bob died to a Veteran attack, so post that night's exact result: who visited you, and whether your alert hit Bob. Grace's will only has N1 counts, so the N2 Katana and Bounty Hunter hits are still unexplained. I'm not nominating yet.
+Dave (public): Dave here. Nobody has a checkable Night 2 result yet, and I have no night info either. I'm nominating myself so the town votes on a player whose claims are all unverified. Vote on evidence, not on who talks most.
+Dave nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Dave, Heidi, Ivan, Alice; No - Erin, Frank
+Nomination votes on Dave: 4 Yes (the votes are secret).
+Dave is put on trial (4 Yes).
+Dave (public): Dave here. I nominated myself because nobody has a checkable Night 2 result, and I have no night information to add. My Night 2 claims are blank, so don't trust me any more than the others. Erin's Veteran account has held up best, and Alice and Bob's Carol visits are still unresolved. If you think I'm the wrong one to keep alive, vote me. I won't argue for my life with claims I can't back up.
+[Claim] Erin: Veteran. N1: alert; Carol was my only visitor and died to my alert (Katana holder, Yakuza). N2: alert; Bob was my only visitor and died to my alert. D3: Innocent on Dave.
+Erin (public): Erin, Veteran. Night 2: Bob was my only visitor and my alert killed him. No Katana hit me. Dave, you nominated yourself and wrote "vote me" without a role or a night result. That reads like a push to be hanged, not evidence. I'm voting Innocent unless someone shows a checkable result on Dave. A living Yakuza still holds the Katana, so Night 3 matters.
+[Claim] Frank: Philanthropist (Village). N1, N2: no action. 2 philanthropy tokens left.
+Frank (public): Frank here, Philanthropist. Dave's self-nomination is odd, but nothing shows he's Yakuza. Erin's Veteran account is the only one with specific results, and it matches Grace's N1 counts. Unless someone posts a Night 2 result that contradicts Dave, I'm voting Innocent. The Katana passed to a living Yakuza after Carol died, so Night 3 matters most.
+Heidi (public): Heidi here. I'm voting Guilty on Dave. He nominated himself with no role and no night result, then said "vote me" and gave us nothing to check. Erin and Frank are voting Innocent on Erin's account, but that account is also unverified: Erin claims a Carol Katana visit and a Bob alert kill, and nobody can check either. The Katana is still alive and Dave has offered no reason to trust him. I have no checkable result to share, so I'm judging by behavior.
+Ivan (public): Ivan here. I'm voting Guilty on Dave. He nominated himself, gave no role or night result, and asked to be voted. Erin's Veteran account is also unverified, and it's the only source of kills so far. Erin, if you're Veteran, say whether you'll alert tonight and why, so Night 3 can be checked.
+Alice (public): Alice here. I'm voting Innocent on Dave. His "vote me" with no role or night result looks like a Jester push, and a hanged Jester wins outright, which would be a bad result for the Village. If Dave posts a checkable role or result, I'll reconsider. Erin's Veteran account still fits the deaths, and I'd like her Night 3 alert result posted.
+Dave (public): Dave here. I'm voting Guilty on myself. I have no night result to add, and a self-nomination with no checkable role isn't a case for keeping me alive. Erin's Veteran account rests on Grace's N1 counts, and Grace is dead, so nobody can recheck them. Alice's and Erin's claims are also unverified. Vote on what can be checked tonight. If Erin posts a Night 3 alert result with the visitor, that settles more than my defense does.
+Trial votes on Dave: 3 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Dave, Heidi, Ivan; Innocent - Alice, Erin, Frank
+Dave is found Innocent (3 Guilty of 6 votes; 4 needed).
+[Claim] Erin: Veteran. N1: alert, Katana hit me and I survived, killed Carol (only visitor). N2: alert, killed Bob (only visitor). Armed unused. D3: Innocent on Dave.
+Erin (public): Erin, Veteran. Nothing new from me for Night 3. Bob was my only Night 2 visitor and my alert killed him. Grace's Katana hit means a living Yakuza holds the Katana. Heidi and Ivan, what checkable result moved you to vote Guilty on Dave? Alice, what did Bob's Night 2 visit to Carol look like from your side?
+Frank (public): Frank here. Erin's Veteran account is still the only one with specific results, and it fits Grace's N1 counts, so I lean Innocent on it for now. Heidi and Ivan, your Guilty votes on Dave rested on behavior, not a checkable result. Erin's Night 3 alert result will decide my next vote. No nomination from me.
+Heidi (public): Heidi here. Erin, your Night 3 alert result is the check we need. Post who visited you and whether your shot hit anyone. Dave's self-nomination still lacks a checkable role, so I'm not treating his Innocent as settled. No nomination from me yet.
+(to Heidi, Ivan) Heidi -> Ivan (private): Ivan, I'm Guilty on any nominee who gives no checkable result. Let's both watch Erin's Night 3 result before we nominate again.
+Ivan (public): Ivan here. No night info. Erin's Veteran line has matched every death so far, so I want her Night 3 result posted in full: who visited her and whether her alert hit anyone. Heidi, your Dave vote was also based on behavior, so let's not hang anyone until that result is in.
+(to Heidi, Ivan) Ivan -> Heidi (private): Ivan here. Agreed. I'll hold my vote until Erin's Night 3 result is posted. No nomination from me.
+Alice (public): Alice here, Eavesdropper. I have nothing new: my N2 eavesdrop on Bob returned nothing because he died that night. Erin's Veteran account is still the only one with specific results, so I'm treating it as the working line. Night 3 results decide my vote: Erin, post your N3 visitors and whether your alert hit anyone. No nomination from me yet.
+Dave (public): Dave here. Still no checkable result on anyone, and Erin's counts rest on dead Grace. I'm nominating myself again. Vote me, and let Night 3 show who is lying.
+(to Dave, Ivan) Dave -> Ivan (private): Ivan, Erin's counts can't be rechecked. Vote Yes on me and push for Guilty.
+Dave nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Dave, Heidi; No - Erin, Frank, Ivan, Alice
+Nomination votes on Dave: 2 Yes (the votes are secret).
+The nomination of Dave failed (2 Yes).
+[Claim] Erin: Veteran. N1: alert, Katana hit me, survived; killed Carol (only visitor). N2: alert, killed Bob (only visitor). D3: Innocent on Dave, No on Dave's second nomination. 1 alert token left, Armed unused.
+Erin (public): Erin, Veteran. Dave's second self-nomination drew 2 Yes, so someone besides Dave wants him tried. Dave, a self-nomination is not a role claim. Heidi and Ivan, your Guilty votes rest on behavior, so name one checkable point. I'm not nominating today and will vote on what can be checked after Night 3.
+Frank (public): Frank here. No new info. Erin's Night 3 visitors and alert result are the check we need, and I won't nominate before they're posted. Ivan and Heidi, what would move you off Dave?
+Heidi (public): Heidi here. I'm still Guilty on Dave. He has nominated himself twice with no checkable role or result, and his "vote me" line is a push, not evidence. Frank and Alice, you're Innocent on Erin's account, which rests on Grace's dead N1 counts. Erin, post your N3 visitors and whether your alert hit anyone. I'll vote on that result.
+(to Heidi, Ivan) Heidi -> Ivan (private): Ivan, Heidi here. Dave's second nomination got only 2 Yes, so we need one of Alice or Frank to move. Let's see Erin's N3 result before any new nomination.
+Ivan (public): Ivan here. No new night info. Erin, post your Night 3 visitors and whether your alert hit anyone, in full, before any nomination. Dave, you PM'd me asking me to push Guilty on you. That's a push, not a checkable point, and I'm not nominating anyone until Night 3 is posted.
+Alice (public): Alice here. No new night info. Heidi and Ivan, you've sent each other several private messages, and Dave messaged Ivan asking him to push Guilty on him. Summarize what those PMs were about. Erin, post your Night 3 visitors and whether your alert hit anyone. I won't nominate until Night 3 is posted.
+Dave (public): Dave here. I still have no checkable role or result, and Erin's counts rest on dead Grace, so nothing on the table can clear me. If the town wants one vote it can verify, it's a Guilty on me at trial. Erin, Alice and Frank, vote on that rather than on unverified lines.
+(to Dave, Frank, Ivan) Dave -> Frank (private): Frank, you said you'd vote on checkable results. Nothing checkable exists for Erin or me, so Guilty on me is the cleanest vote available.
+[Claim] Erin: Veteran. N1: alert, Katana hit me and I survived; killed Carol (only visitor). N2: alert, killed Bob (only visitor). D3: Innocent on Dave, No on Dave's second nomination. 1 alert token left, Armed unused.
+Erin (public): Erin, Veteran. Nothing new beyond my claim: N1 and N2 visitors were only Carol and Bob, and both died to my alerts. I'll post my Night 3 visitors at dawn. Dave's PM to Ivan asking for a Guilty push is the clearest tell so far. Heidi and Ivan, you PM'd each other several times and both voted Guilty on Dave. What were those PMs about?
+Frank (public): Frank here, Philanthropist, no new info. Erin's Night 3 visitors and alert result are still owed, and I won't nominate before they're posted. Dave has nominated himself twice and PM'd Ivan and me asking for a Guilty push, which fits a Jester trying to get hanged. Heidi and Ivan, you PM'd each other several times. What was it about?
+Heidi (public): Heidi here. Dave has nominated himself twice with no role or result, and he PM'd Ivan and Frank asking for a Guilty push. Asking the town to hang you is a Jester pattern. Dave, if you're a Jester, say so. Otherwise I'm Guilty on you again, and I'd like Alice and Frank to weigh that over Erin's unverified counts.
+(to Alice, Heidi, Ivan) Heidi -> Alice (private): Heidi here. Dave is the only player who has asked for his own hanging, twice, and he sent PMs to Ivan and Frank pushing a Guilty vote on him. That fits a Jester far better than a Village player. Please reconsider Innocent on him if his next trial comes up.
+Ivan (public): Ivan here. No new night info. I won't nominate until Erin posts her Night 3 visitors and alert result in full. Heidi, what checkable result do you have beyond Dave's behavior?
+Alice (public): Alice here. I'm still Innocent on Dave. He has asked to be hanged twice and PM'd Ivan and Frank for a Guilty push, which is the Jester pattern, and a hanged Jester wins outright. Heidi and Ivan, you PM'd each other several times and then both voted Guilty. What was that about? Erin, post your Night 3 visitors and whether your alert hit anyone. I'm not nominating yet.
+Dave (public): Dave here. Erin's whole account rests on one Veteran claim that nobody can recheck now. Heidi and Ivan have judged me on behavior. If you can't verify Erin's line, vote Guilty on me.
+(to Dave, Frank, Ivan) Dave -> Frank (private): Frank, Erin's Night 3 visitors are the real check. Until they're posted, Guilty on me is your cleanest vote.
+Erin (public): Erin, Veteran. I'll post my Night 3 visitors and alert result at dawn. Heidi and Ivan, you PM'd each other and both voted Guilty on Dave. What did those PMs say? Dave's repeated self-nominations and PM push fit a Jester, but I want a checkable point before anyone hangs.
+Frank (public): Frank here, Philanthropist, no new info. Erin, post your Night 3 visitors and alert result in full as promised. Heidi and Ivan, what did your PMs say? I won't nominate until Night 3 results are posted.
+Heidi (public): Heidi here. I'm still Guilty on Dave. He has asked to be hanged twice and sent PMs pushing for Guilty. Erin, post your Night 3 visitors and alert result as promised.
+(to Frank, Heidi, Ivan) Heidi -> Frank (private): Frank, Heidi here. Dave PM'd you asking for a Guilty push, and he's asked the town to hang him twice. That's a Jester tell. Consider Guilty on him at any trial.
+Ivan (public): Ivan here. No nomination from me. Erin, post your Night 3 visitors and whether your alert hit anyone, as promised. Dave and Heidi are both pushing votes on behavior, so I want that result before I vote.
+Alice (public): Alice here. No nomination from me. Erin, post your Night 3 visitors and alert result in full, as promised. Dave, you PM'd Ivan and Frank asking for a Guilty vote on you. State your role, or say plainly whether you're a Jester.
+Dave (public): Dave here. Erin's Night 3 visitors and alert result are still owed, and nobody should hang anyone before they're posted. If the town wants a vote it can check now, Guilty on me is the cleanest option. Erin, post your result.
+(to Dave, Frank, Ivan) Dave -> Frank (private): Frank, Erin's Night 3 result is the only real check. Until it's posted, Guilty on me is the vote you can defend.
+Erin (public): Erin, Veteran. Correction: it's still Day 3, so Night 3 hasn't happened. My Night 3 visitors and alert result will be posted at Day 4 dawn. Don't hang anyone while waiting for it.
+Frank (public): Frank here, Philanthropist. No nomination from me. Night 3 comes before any vote, so I'll decide on Erin's posted N3 visitors and alert result. Dave, stop asking for Guilty votes in PMs and state your role or stay quiet.
+Heidi (public): Heidi here. I'm still Guilty on Dave. He has asked to be hanged twice and pushed PMs for a Guilty vote. I'll weigh Erin's Night 3 result when it's posted and won't nominate before then.
+(to Frank, Heidi, Ivan) Heidi -> Frank (private): Frank, Heidi here. Dave's PMs pushing you to vote Guilty on him are a tell. Weigh Erin's posted Night 3 result, and if it doesn't check out, Guilty on Dave is what I'd do.
+Ivan (public): Ivan here. No new night info. I'm not nominating. Erin, post your Night 3 visitors and alert result in full at dawn, as promised.
+[Claim] Alice: Eavesdropper (Village). N1: eavesdropped Carol (no reads). N2: eavesdropped Bob (died, nothing). Armed unused. D3: Innocent on Dave.
+Alice (public): Alice here. Grace's N1 counts only fit if Carol visited Erin, since I and Bob both visited Carol, so Erin's Veteran line holds. Dave's self-nominations and Guilty pleas fit a Jester, and a hanged Jester wins, so I stay Innocent. Heidi and Ivan, why push Dave so hard?
+Dave (public): Dave here. No nomination from me. Guilty on me stays the cleanest vote.
+(to Dave, Frank, Ivan) Dave -> Frank (private): Frank, Erin's N3 result comes at dawn. Until then, Guilty on me is the only checkable vote.
+Erin (public): Erin, Veteran. Still no Night 3 result, and I'll post my visitors and alert outcome at Day 4 dawn. I'm voting Innocent on Dave. A Jester hang wins for him and ends the Village, so I want a mechanical reason first. Heidi and Ivan, you've both pushed Dave hard. What is your checkable reason?
+Frank (public): Frank here, Philanthropist, no new info. No nomination from me. Erin, post your Night 3 visitors and alert result at dawn as promised. Heidi and Ivan, I still want your checkable reason for Guilty on Dave.
+Heidi (public): Heidi here. Still Guilty on Dave. He has asked to be hanged twice and pushed PMs for Guilty votes. Erin's Night 3 result is due at dawn, and I'll vote on it. Nobody should wait on Dave's words.
+(to Alice, Heidi, Ivan) Heidi -> Alice (private): Alice, Heidi here. Dave has asked for his own hanging twice and pushed Frank and Ivan for Guilty. Please reconsider Guilty on his next trial. Erin's counts rest on dead Grace, so I want a checkable result first.
+Ivan (public): Ivan here. No new night info. I'm still Guilty on Dave: he has asked to be hanged twice and pushed PMs for Guilty votes, which is a Jester pattern. Erin's Night 3 visitors and alert result are due at dawn, and I'll vote on that. No nomination from me.
+Alice (public): Alice here. No nomination from me. Erin, post your Night 3 visitors and alert result at dawn. Heidi and Ivan, your Dave votes rest on behavior, so I stay Innocent.
+Dave (public): Dave here. No new info. Erin's Night 3 result is the check, so I'll stay out of the vote until it's posted.
+(to Dave, Frank, Ivan) Dave -> Frank (private): Frank, I'm done pushing. Judge Erin's dawn N3 result on its own, not my words.
+Erin (public): Erin, Veteran. I go on alert tonight with my last alert token, so any visitor is attacked. I'm voting on Night 3 results, not on pushes. No nomination from me.
+Frank (public): Frank here. No nomination from me. Erin's Night 3 result decides my vote. Heidi and Ivan, what was in your PMs?
+Heidi (public): still Guilty on Dave. Erin's N3 result first.
+(to Frank, Heidi, Ivan) Heidi -> Frank (private): Frank, Heidi here. Dave's PMs are a Jester tell. Guilty if N3 is unclear.
+Ivan (public): Ivan here. No nomination from me. Erin's Night 3 visitors and alert result are the check, and I'll vote on them at dawn.
+Alice (public): Alice here. No nomination from me. Erin's Night 3 visitors and alert result at dawn will decide my next vote. Dave stays Innocent unless a checkable role appears.
+(to Dave, Frank, Ivan) Dave -> Frank (private): Frank, Erin's Night 3 result comes at dawn. Until it's posted, Guilty on me is the vote you can defend. I'm done pushing after this.
+Erin (public): Erin, Veteran. On alert tonight with my last token, so any visitor is hit Strong. Heidi, Ivan: name the checkable point behind your Dave votes.
+[Claim] Frank: Philanthropist (Village). N1, N2: no action. 2 philanthropy tokens left. D3: no nomination.
+Frank (public): Frank here. No nomination. Erin's Night 3 visitors and alert result at dawn decide my vote. Heidi and Ivan, what did your PMs say?
+Heidi (public): Heidi here. Still Guilty on Dave. Erin's Night 3 result first, then I vote.
+Ivan (public): Ivan here. No nomination from me. I'll vote on Erin's Night 3 visitors and alert result at dawn, as promised. Heidi and Dave, keep your votes tied to that result.
+Discussion time is over. The day ends.
