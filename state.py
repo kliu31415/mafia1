@@ -407,11 +407,13 @@ class Game:
 
 def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: random.Random, log: GameLog,
                meta: dict | None = None, rule_settings: dict[str, str] | None = None,
-               via: Callable[[Model], str] | None = None, traits: Sequence[str] = ()) -> Game:
+               via: Callable[[Model], str] | None = None, traits: Sequence[str] = (),
+               one_trait_each: bool = False) -> Game:
     """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py). rule_settings:
     the game's (variants.py, and its script), set before role setup hooks run, since some read them. via: how
     each model's calls are run (claude_code.route), logged per player; "api" if not given. traits: trait names
-    (traits.py) dealt to random eligible players, or "A+B" for one player with both."""
+    (traits.py) dealt to random eligible players, or "A+B" for one player with both. one_trait_each: no player gets
+    two (drawn setups, Kevin, Oct 12 2026; setups.draw_traits leaves enough seats of each alignment)."""
     if len(roles) > len(PLAYER_NAMES):
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
@@ -438,7 +440,7 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         bundle, alignment = parse_trait(item)
         if len(set(bundle)) == len(bundle) and (
                 candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
-                               and alignment in (None, p.info.alignment)]):
+                               and alignment in (None, p.info.alignment) and not (one_trait_each and p.traits)]):
             rng.choice(candidates).traits.extend(bundle)
         else:
             log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once), "

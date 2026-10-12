@@ -1464,22 +1464,43 @@ def test_traits_go_to_eligible_players_and_only_their_holder_is_told(tmp_path):
     assert "setup_error" in game.log.error_counts  # the third Martyr had no eligible player
 
 
-def test_drawn_traits_stay_within_the_odds_and_the_village_seats():
+def test_drawn_traits_stay_within_the_odds_and_the_eligible_seats():
     import random
 
     import setups
     roles = ["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt", "Jester"]
     for seed in range(20):
         traits = setups.draw_traits(roles, random.Random(seed))
-        assert len(traits) <= 3
+        assert len(traits) <= max(setups.trait_odds(len(roles)))
         for item in traits:
             bundle, alignment = parse_trait(item)
             assert len(bundle) == 1 and bundle[0] in TRAITS
             # A trait any faction can get names the faction it was drawn for, one with a seat in this setup.
             assert (alignment is None) == (len(TRAITS[bundle[0]].alignments) == 1)
             assert alignment is None or any(ROLES[r].alignment is alignment for r in roles)
-        assert all(traits.count(t) <= 3 for t in traits)  # 3 Village seats: each holds a trait at most once
-        assert all(traits.count(t) <= 1 for t in traits if t.endswith("@Neutral"))  # one Neutral seat
+        # At most one trait a player: 3 Village seats, 2 Yakuza, 1 Neutral.
+        sides = [parse_trait(t)[1] or Alignment.GOOD for t in traits]
+        assert sides.count(Alignment.GOOD) <= 3 and sides.count(Alignment.EVIL) <= 2
+        assert sides.count(Alignment.NEUTRAL) <= 1
+
+
+
+def test_drawn_traits_go_one_to_a_player(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    roles = ["Sheriff", "Medic", "Grunt", "Jester"]
+    for seed in range(10):
+        game = setup_game(roles, [Model.HAIKU_5_5], random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"),
+                          traits=["Kindred", "Faultline"], one_trait_each=True)
+        assert sorted(len(p.traits) for p in game.players if p.info.alignment is Alignment.GOOD) == [1, 1]
+
+
+def test_about_a_quarter_of_the_players_get_a_trait():
+    import setups
+    assert setups.trait_odds(13) == {1: 1, 2: 3, 3: 4, 4: 3, 5: 1}  # Kevin, Oct 12 2026
+    assert setups.trait_odds(4) == {0: 4, 1: 4, 2: 3, 3: 1}
 
 
 def test_a_traits_power_counts_for_its_holders_side():

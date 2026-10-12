@@ -329,7 +329,9 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
     meta = game_meta(rules, config.settings(client, checkpoint))
     game = setup_game(config.roles, config.specs, random.Random(config.seed), log,
                       meta={"game_id": log.path.stem, **meta}, rule_settings=config.rule_settings,
-                      via=lambda m: claude_code.route(client, m), traits=config.traits)
+                      via=lambda m: claude_code.route(client, m), traits=config.traits,
+                      # Drawn traits: at most one a player (Kevin, Oct 12 2026); --traits may stack them.
+                      one_trait_each=bool(config.setup) and not (config.setup or {}).get("traits_given"))
     if meta["git_commit"] is None:  # analysis across games groups them by code version
         log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
                   "game's code version isn't recorded")
