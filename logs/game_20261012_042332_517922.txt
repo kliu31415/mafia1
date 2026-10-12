@@ -266,3 +266,23 @@ Bob (public): Bob here. I'm holding my last Sniper token until Frank's N4 track 
 Carol (public): Carol here. No nomination from me. I'll vote on Frank's N4 track result at Day 5 start, not on a lean. Bob still needs to explain his Day 2 shot on Grace.
 Dave (public): Dave here. Grace and Bob both fired real Sniper shots, so Bob is Village. The Yakuza are Carol, Frank or Heidi. Frank's Day 5 track matters.
 Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+(to Carol, Heidi) Carol (Yakuza chat): Carol: Night 4 proposal. Holder: Carol (keep the Katana). Katana target: Frank. Frank is the Tracker whose N3 track on Bob and Day 5 result could expose our holder visits, and he has been voting against us. My Pharmacist block goes on Dave, the real Medic, so his protection on Frank fails. Heidi, if you agree, confirm holder Carol and target Frank in the channel. If you see a reason to hit Dave or Bob instead, say so now.
+(to Carol, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Holder Carol, Katana target Frank, Pharmacist block on Dave. Frank is the Tracker whose Day 5 result could expose our holder visits, and the block stops Dave's protection. Nothing to add. I'm ready.
+(to Carol, Heidi) Carol (Yakuza chat): Heidi: Confirmed, Carol. Holder Carol, Katana target Frank, Pharmacist block on Dave. I'm ready and will not change this plan.
+(to Carol, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. Holder Carol, Katana target Frank, Pharmacist block on Dave. Nothing to add. I'm ready.
+Night actions:
+  Carol (Pharmacist): target Dave; "Pharmacist role-block on Dave, so his Medic protection on Frank fails. Katana holder vote: Carol (keep). Katana target vote: Frank, the Tracker who could expose our holder visits."; Katana vote: Carol holds, attacks Frank
+  Dave (Medic): target Frank; "Standard protection on Frank (Tracker claim), at no token cost. Frank is the investigator whose track results are our only night data, and the Yakuza blocked him on N2, so he is a likely kill target."
+  Frank (Tracker): target Carol; "Tracking Carol. Carol and Heidi both claim no visits, and the N2 and N3 Katana holder who visited Alice must be one of them. Dave's Medic protection on N2 stopped a Katana attack on Alice, so the holder visited her then too. Carol is the first one to track."
+  Heidi (Grunt): no role action; Katana vote: Carol holds, attacks Frank
+Katana: Carol holds it and attacks Frank.
+(to Dave) Moderator (private): You were role-blocked tonight, so your action had no effect. 2 medic tokens left.
+(to Carol) Moderator (private): Your role-block on Dave was not resisted: Dave is not immune to role-blocks. Your Katana attack on Frank succeeded.
+(to Frank) Moderator (private): You tracked Carol tonight. Carol visited Dave and Frank.
+[Moderator summary] Night 4: Carol (Pharmacist, Katana holder) role-blocked Dave, so Dave's Standard protection on Frank failed (no tokens spent). Carol's Katana attack (Standard) killed Frank (Defense None). Frank's track on Carol happened and showed Carol visiting Dave and Frank, but Frank died. Heidi took no action. Visits: Carol->Dave, Carol->Frank, Frank->Carol. Alive: Bob, Dave (Village), Carol, Heidi (Yakuza). 2 v 2, so the game goes on.
+[Night check] Night 4: correct
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Frank. Heidi (Grunt) chose no action.
+(to Heidi) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Frank. Carol (Pharmacist) chose to act on Dave ("Pharmacist role-block on Dave, so his Medic protection on Frank fails. Katana holder vote: Carol (keep). Katana target vote: Frank, the Tracker who could expose our holder visits.").
