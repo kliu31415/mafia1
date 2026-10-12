@@ -39,8 +39,8 @@ class Magpie(RoleLogic):
             chosen = chosen_name(game, target_name)  # rules R23
             robbed = game.role_state.setdefault(ROBBED, {}).setdefault(name, [])
             if target_name in robbed:
-                game.tell([name], f"You already stole from {chosen}, so you took nothing: a Magpie needs two different "
-                          "players.")
+                game.tell([name], f"You already stole from {chosen}, so you took nothing: a Magpie needs {NEEDED} "
+                          "different players.")
                 continue
             if not (tokens := true_tokens(target)):
                 game.tell([name], f"{chosen} had no tokens, so you stole nothing.")

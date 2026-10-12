@@ -253,6 +253,9 @@ def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: boo
 
 def record_claim(game: Game, p: Player, claim: str, puppeted: dict[str, Any]) -> None:
     """A new or changed claim goes in the public ledger (Game.claim_record) and the chat history."""
+    if word_count(claim) > CLAIM_WORDS:  # said, so the writer can shorten it (game_20261011_225511_1253)
+        game.emit(f"(Program note: your claim was over {CLAIM_WORDS} words, so the ledger shows only its first "
+                  f"{CLAIM_WORDS}, ending in [truncated].)", [puppeted.get("puppeteer", p.name)])
     claim = cap_words(claim.strip(), CLAIM_WORDS)
     # The ledger already names the player: "Bob: Bob: Lookout" (game_20261011_055615_1112) drops the repeat.
     while m := re.match(rf"{re.escape(p.name)}\s*[:,]\s*(?=\w)", claim):

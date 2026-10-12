@@ -307,6 +307,16 @@ def test_a_symbol_only_claim_keeps_the_old_one_and_a_cut_will_says_so(game_facto
     assert any("your last will was over 300 words" in e.text for e in game.events if e.visible_to == {"Alice"})
 
 
+def test_a_cut_claim_says_so(game_factory):
+    # Bob's claim was cut mid-sentence unnoticed (game_20261011_225511_1253).
+    def decide(name, task, schema):
+        return {"claim": "word " * 50} if name == "Alice" and "claim" in schema["properties"] else None
+    game, players = game_factory(TOWN4_GRUNT, ScriptedClient(decide))
+    run_day(game, players)
+    assert game.claim_record["Alice"][-1][1].endswith("[truncated]")
+    assert any("your claim was over 40 words" in e.text for e in game.events if e.visible_to == {"Alice"})
+
+
 def test_a_claim_that_only_drops_a_period_is_not_a_new_claim():
     from day import same_claim
     assert same_claim("Sheriff. N1: Carol Evil.", "sheriff. N1:  Carol Evil")
