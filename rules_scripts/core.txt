@@ -184,8 +184,9 @@ Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any 
 R24 (Traits)
 Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start;
 nobody else is told, and whether a game has any traits is secret. Investigations never see traits: they report
-roles and alignments only. A trait stays with you if your role changes. Each player has at most one trait, and each
-trait says which players can get it.
+roles and alignments only. A trait stays with you if your role changes. Traits are always true: a Roleplayer's
+trait is real even though its role isn't. Each player has at most one trait, and each trait says which players
+can get it.
 - Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
   names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
   other way shows nothing.

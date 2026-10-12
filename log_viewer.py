@@ -22,6 +22,7 @@ from collections.abc import Iterable
 from typing import Any
 
 from gamelogs import faction_of
+from traits import TRAITS
 from records import read_records
 from roles import ROLES
 from texts import blank, describe_action, player_view
@@ -392,18 +393,25 @@ def usage_html(usage: list[dict]) -> str:
 ICONS = Path(__file__).parent / "roles" / "icons"  # <role-slug>.svg; generic.svg for roles without one
 
 
+def trait_slug(trait: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", trait.lower()).strip("-")
+
+
 def icon_slug(role: str) -> str:
     """The icon file name for a role, e.g. "Ex-Con" -> "ex-con", "Vanilla Villager" -> "vanilla-villager"."""
     slug = re.sub(r"[^a-z0-9]+", "-", role.lower()).strip("-")
     return slug if (ICONS / f"{slug}.svg").exists() else "generic"
 
 
-def name_span(name: str, role: str) -> str:
-    """A player's (escaped) name colored by faction, with their role's icon and, on hover, the role's name,
-    faction and one-line summary."""
+def name_span(name: str, role: str, traits: list[str] | tuple[str, ...] = ()) -> str:
+    """A player's (escaped) name colored by faction, with their role's icon (its border marking any trait,
+    traits.py) and, on hover, the role's name, faction and one-line summary, then each trait's."""
     info = ROLES.get(role)
     hover = f"{role} ({faction_of(role)})" + (f": {info.summary}" if info and info.summary else "")
-    return f"<span class='n {faction_of(role)} ic i-{icon_slug(role)}' title='{esc(hover)}'>{esc(name)}</span>"
+    hover += "".join(f"\nTrait: {t}. {TRAITS[t].summary}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
+    marks = "".join(f" t-{trait_slug(t)}" for t in traits)
+    return (f"<span class='n {faction_of(role)} ic i-{icon_slug(role)}{marks}' title='{esc(hover)}'>"
+            f"{esc(name)}</span>")
 
 
 def icons_css() -> str:
@@ -414,14 +422,17 @@ def icons_css() -> str:
     for path in sorted(ICONS.glob("*.svg")):
         slug, svg = path.stem, " ".join(path.read_text(encoding="utf-8").split())
         rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
+    for t, info in TRAITS.items():  # a trait rings the icon's badge in its own color (a ring keeps the badge's size)
+        rules.append(f".n.ic.t-{trait_slug(t)}::before {{ border-color:{info.ring}; "
+                     f"box-shadow:0 0 0 1px #fff, 0 0 0 2.5px {info.ring}; }}")
     return "\n".join(rules)
 
 
 class Namer:
     """Escapes text and wraps player names in spans colored by faction, with their role's icon."""
 
-    def __init__(self, roles: dict[str, str]):
-        self.spans = {n: name_span(n, role) for n, role in roles.items()}
+    def __init__(self, roles: dict[str, str], traits: dict[str, list[str]] | None = None):
+        self.spans = {n: name_span(n, role, (traits or {}).get(n, ())) for n, role in roles.items()}
         names = sorted(roles, key=len, reverse=True)
         self.pattern = re.compile(r"\b(" + "|".join(map(re.escape, names)) + r")\b") if names else None
 
@@ -496,6 +507,7 @@ def classify_legacy(r: dict) -> tuple[str, str, str]:
 def render_html(jsonl_path: Path) -> Path:
     records, unreadable = read_records(jsonl_path)
     roles: dict[str, str] = {}
+    traits: dict[str, list[str]] = {}
     models: dict[str, str] = {}
     name = Namer({})
     alive: list[str] = []  # in seat order; shown at the start of each Day
@@ -603,7 +615,8 @@ def render_html(jsonl_path: Path) -> Path:
         elif k == "setup":
             roles = {p["name"]: p["role"] for p in r["players"]}
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
-            name = Namer(roles)
+            traits = {p["name"]: p.get("traits") or [] for p in r["players"]}
+            name = Namer(roles, traits)
             alive = [p["name"] for p in sorted(r["players"], key=lambda p: p["seat"])]
             alive_order = list(alive)
             believed = {p["name"]: {p["role"], (p.get("status") or {}).get("fake_role")} for p in r["players"]}
@@ -778,7 +791,7 @@ def render_html(jsonl_path: Path) -> Path:
             f"<nav id='jump'>{jump_html(phases)}</nav></div>"
             f"{errors_html(errors, unreadable)}"
             f"{votes_html(votes, name, alive_order, 'Votes (whole game)', show_day=True)}"
-            f"{body}{roster_html(snaps, alive_order, roles, models)}<script>{JS}</script></body></html>")
+            f"{body}{roster_html(snaps, alive_order, roles, models, traits)}<script>{JS}</script></body></html>")
     html_path = jsonl_path.with_suffix(".html")
     html_path.write_text(page, encoding="utf-8", errors="replace")
     return html_path
@@ -871,12 +884,13 @@ def night_html(n: int, info: dict, name: Namer) -> str:
             f"<th>Told</th></tr>{rows}{told}</table></div>{extra}</details>")
 
 
-def roster_html(snaps: list[dict], seats: list[str], roles: dict[str, str], models: dict[str, str]) -> str:
+def roster_html(snaps: list[dict], seats: list[str], roles: dict[str, str], models: dict[str, str],
+                traits: dict[str, list[str]] | None = None) -> str:
     """The roster panel: every player's alive or dead state and latest claim as of the part of the log on screen.
     The page marks where each snapshot starts (<i class='snap'>), and the script shows the last one above."""
     if not snaps:
         return ""
-    data = {"players": [{"n": n, "html": name_span(n, roles[n]), "role": roles[n], "model": models.get(n, "")}
+    data = {"players": [{"n": n, "html": name_span(n, roles[n], (traits or {}).get(n, ())), "role": roles[n], "model": models.get(n, "")}
                         for n in seats],
             "snaps": [{n: [s[n]["alive"], esc(s[n]["death"]), esc(s[n]["claim"]), s[n]["truth"]] for n in seats}
                       for s in snaps]}

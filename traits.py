@@ -23,13 +23,14 @@ class TraitInfo:
     alignments: frozenset[Alignment]  # whose true role's alignment can get it (faction-specific for now)
     summary: str  # what its holder is told, after "Your trait: NAME."
     power: float  # logit units like role_power.PRIOR: what it adds to the Village's side when drawn (setups.py)
+    ring: str  # CSS color of the ring marking its holder's role icon in the HTML log (log_viewer.py)
 
 
 TRAITS: dict[str, TraitInfo] = {
     "Martyr": TraitInfo(frozenset({Alignment.GOOD}),
                         "If you are hanged, your death announcement says you were a Martyr and names every player "
                         "whose vote counted as Guilty in your trial (rules R24).",
-                        power=0.15),
+                        power=0.15, ring="#b91c1c"),
 }
 
 
