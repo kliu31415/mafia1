@@ -101,7 +101,9 @@ from records import read_records, safe_print
 #     "day_shot_dropped" records (player, target) when a held shot's shooter died first
 # 54: "kitsune_charm" (player, target, attacks, swallowed, day) and "kitsune_release" (player, target, attack, cause,
 #     day) records for the Kitsune
-LOG_VERSION = 54
+# 55: "trap" records (trapper, target, attacks, stopped, day) when a trap meets attacks: from now on a trap stops one
+#     attack and hits its attacker back if it was a visit (before, it hit the first non-Village visitor)
+LOG_VERSION = 55
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

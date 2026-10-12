@@ -141,11 +141,13 @@ ROLES: dict[str, RoleInfo] = {
                       tokens={"medic": 2}, acts_at_night=True,
                       tested=True, notes="tokens tracked via set_tokens; briefing lists token costs"),
     "Trapper": RoleInfo(Alignment.GOOD, "Protective", False,
-                        summary="Night: trap a player; the first non-Village visitor on a later night "
-                        "takes a Strong Attack.",
+                        summary="Night: trap a player; on a later night the trap stops one attack on them and "
+                        "deals a visiting attacker a Strong Attack.",
                         acts_at_night=True,
-                        tested=True,
-                        notes="persistent traps tracked as player status; acting with no target removes the trap"),
+                        tested=False,
+                        notes="persistent traps tracked as player status; acting with no target removes the trap; "
+                        "moderator lists the attacks on a trapped player (spring_trap op), code checks the trap is "
+                        "armed, picks the stopped attack, clears the trap and tells the Trapper"),
     "Kitsune": RoleInfo(Alignment.GOOD, "Protective", False,
                         summary="Night: a fox charm swallows one attack on a player; the Kitsune must later "
                         "release it, same level and cause.",

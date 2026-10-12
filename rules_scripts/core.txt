@@ -26,7 +26,7 @@ R18 (Terms)
 - Majority: strictly more than half; exactly half is not a majority.
 - Action: anything a role does at night by choice or by its rules (investigating, shooting, blocking, ...).
 - Visit: an action on another player counts as A visiting B, unless it is an Astral Visit (R6).
-- Astral Visit: an action that is not a visit. Abilities that react to visits (Tracker, Lookout, Trapper,
+- Astral Visit: an action that is not a visit. Abilities that react to visits (Tracker, Lookout,
   Fortune Teller) never see or react to it.
 - Alignment check: a result that reports alignment (Sheriff, Seer). See R19 for what they see.
 - Exact-role check: a result that reports or tests an exact role (Oracle, Ritualist, Mortician, Coroner, a Vigilante's kill).
@@ -120,7 +120,7 @@ R6 (Visits)
 - A player whose action can only affect themself does not show as visiting anyone.
 - An action that targets no player (e.g. the Clerk's rig) is not a visit.
 - A player who visits the same target with several actions in one night is one visitor to that target: anything
-  that lists, counts or reacts to visitors (a watch, a Veteran's alert, a trap) treats them once.
+  that lists, counts or reacts to visitors (a watch, a Veteran's alert) treats them once.
 
 R9 (Role-blocks)
 A role-blocked player's actions that night have no effect, exactly as if they had chosen not to act: no visit,
@@ -147,7 +147,7 @@ R20 (Night resolution checklist): a summary of the rules above, in the order the
    Party Animal, Pharmacist and Veteran can't be role-blocked. Swaps (R23) apply before anything else.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
-   Traps hit non-Village visitors (Trapper).
+   A trap stops one attack before Defense and may hit its attacker back (Trapper).
 4. Results for investigators, using the visits and appearances (R19).
 5. Notifications: attackers learn whether they succeeded, attacked players learn the attacking role (R3, with the
    Katana exception in R8), protectors learn nothing (R17), role-blocked players are told (R9), Yakuza learn each
@@ -306,10 +306,12 @@ Medic
 Trapper
   Night: may place a trap on one player other than yourself and other than the player your trap is already on, or
   may remove your trap (removing it isn't a visit). You have one trap at a time; a new trap replaces the old one at
-  once. Traps last even after you die. A trap is armed from the next night on: the first time a
-  non-Village player visits the trapped player on a later night, the trap is used up and that visitor is dealt a
-  Strong Attack. If several non-Village players visit that night, one of them, chosen at random, is hit. You learn
-  that your trap went off, and nothing else (not who, nor whether it killed).
+  once. Traps last even after you die. A trap is armed from the next night on: the first time anyone makes a Basic,
+  Standard or Strong Attack on the trapped player on a later night, the trap is used up and stops that attack
+  (chosen at random if there are several; Divine Attacks ignore it); any other attacks resolve as usual. The trap
+  acts before Defense, after any protection that acts before all others. If the stopped attack was a visit, its
+  attacker is dealt a Strong Attack, whatever their faction; an Astral attack is stopped without one. You learn
+  that your trap went off, and nothing else (not whose attack, nor whether the trap killed).
 
 Killing
 

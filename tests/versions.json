@@ -1,5 +1,5 @@
 {
- "log_version": 54,
+ "log_version": 55,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -43,6 +43,7 @@
   "tell_held": ["day", "players"],
   "tips": ["files", "players", "sha256", "texts"],
   "tips_update": ["cost", "model"],
+  "trap": ["attacks", "day", "stopped", "target", "trapper"],
   "visits": ["day", "visits"],
   "vote": ["day", "nominator", "nominee", "outcome", "prosecuted", "reversed", "secret", "stage", "votes", "weights"]
  },

@@ -6,7 +6,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import ATTACK_LEVELS, RoleLogic, acted_tonight, register, spend_token, swap_partner, token_user_error
+from roles.base import (ATTACK_LEVELS, RoleLogic, acted_tonight, attacks_error, register, spend_token, swap_partner,
+                        token_user_error)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -75,18 +76,7 @@ class Kitsune(RoleLogic):
             return f"{by.name} holds a swallowed attack, so it can't charm until it releases it ({RELEASE})"
         if target is by and not swap_partner(game, by.name) and by.tokens.get(TOKEN, 0) < 1:
             return f"{by.name} has no {TOKEN} token left to charm themselves"
-        attacks = change["attacks"]
-        if not isinstance(attacks, list) or not all(isinstance(a, dict) for a in attacks):
-            return "attacks must be a list of {by, attack, cause}"
-        names = {q.name for q in game.players}
-        for a in attacks:
-            if a.get("by") not in names:
-                return f"each attack needs `by`, a player's name (got {a.get('by')!r})"
-            if a.get("attack") not in ATTACK_LEVELS[1:]:
-                return f"each attack's level must be one of {list(ATTACK_LEVELS[1:])} (got {a.get('attack')!r})"
-            if not isinstance(a.get("cause"), str) or not a["cause"].strip():
-                return "each attack needs a cause: how its kill would be announced, e.g. 'Katana'"
-        return None
+        return attacks_error(game, change["attacks"])
 
     def apply_op(self, game: Game, change: dict) -> str | None:
         by, target = game.player(change["by"]), game.player(change["player"])

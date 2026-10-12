@@ -234,6 +234,25 @@ def acted_tonight(game: Game, p: Player) -> bool:
         or game.role_state.get(LEFT_AT, {}).get(p.name) == [game.day, "night"]
 
 
+def attacks_error(game: Game, attacks: object, visit: bool = False) -> str | None:
+    """What's wrong with an op's list of tonight's attacks on a player, each {by, attack (its level), cause (how its
+    kill would be announced)}, plus a `visit` flag when asked for (Kitsune, Trapper)."""
+    fields = "{by, attack, cause, visit}" if visit else "{by, attack, cause}"
+    if not isinstance(attacks, list) or not all(isinstance(a, dict) for a in attacks):
+        return f"attacks must be a list of {fields}"
+    names = {q.name for q in game.players}
+    for a in attacks:
+        if a.get("by") not in names:
+            return f"each attack needs `by`, a player's name (got {a.get('by')!r})"
+        if a.get("attack") not in ATTACK_LEVELS[1:]:
+            return f"each attack's level must be one of {list(ATTACK_LEVELS[1:])} (got {a.get('attack')!r})"
+        if not isinstance(a.get("cause"), str) or not a["cause"].strip():
+            return "each attack needs a cause: how its kill would be announced, e.g. 'Katana'"
+        if visit and not isinstance(a.get("visit"), bool):
+            return "each attack needs visit: true if it was a visit by its attacker, false if Astral or no visit"
+    return None
+
+
 CODE_ATTACKS = "code_attacks"  # game.role_state: night -> attackers of attacks code made that night (record_attack)
 
 
