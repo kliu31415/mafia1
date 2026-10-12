@@ -9,9 +9,9 @@ import mafia
 from day import run_day
 from llm import MockClient, Model
 from moderator import Moderator
-from roles import ROLES, Status, logic
-from traits import ARMED_USED, TRAITS
-from tests.conftest import VILLAGE5, ScriptedClient, apply_ops, told, votes
+from roles import ROLES, Alignment, Status, logic
+from traits import ARMED_USED, TRAITS, parse_item as parse_trait
+from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, apply_ops, told, votes
 
 
 def test_hanged_jester_wins_and_takes_revenge_on_a_guilty_voter(game_factory):
@@ -1471,8 +1471,88 @@ def test_drawn_traits_stay_within_the_odds_and_the_village_seats():
     roles = ["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt", "Jester"]
     for seed in range(20):
         traits = setups.draw_traits(roles, random.Random(seed))
-        assert len(traits) <= 3 and set(traits) <= set(TRAITS)
+        assert len(traits) <= 3
+        for item in traits:
+            bundle, alignment = parse_trait(item)
+            assert len(bundle) == 1 and bundle[0] in TRAITS
+            # A trait any faction can get names the faction it was drawn for, one with a seat in this setup.
+            assert (alignment is None) == (len(TRAITS[bundle[0]].alignments) == 1)
+            assert alignment is None or any(ROLES[r].alignment is alignment for r in roles)
         assert all(traits.count(t) <= 3 for t in traits)  # 3 Village seats: each holds a trait at most once
+        assert all(traits.count(t) <= 1 for t in traits if t.endswith("@Neutral"))  # one Neutral seat
+
+
+def test_a_traits_power_counts_for_its_holders_side():
+    # Kevin, Oct 12 2026: power is how much a trait helps its holder's side, so moving a trait to another faction
+    # keeps the sign right.
+    from traits import village_power
+    assert village_power("Martyr", Alignment.GOOD) == TRAITS["Martyr"].power > 0
+    assert village_power("Grudge", Alignment.GOOD) == TRAITS["Grudge"].power
+    assert village_power("Grudge", Alignment.EVIL) == -(TRAITS["Grudge"].power_for or {})[Alignment.EVIL] < 0
+    assert village_power("Loud", Alignment.EVIL) == -TRAITS["Loud"].power
+    assert village_power("Curt", Alignment.EVIL) == -TRAITS["Curt"].power > 0  # hurts the Yakuza holding it
+    assert village_power("Grudge", Alignment.NEUTRAL) == 0
+
+
+def test_a_trait_with_a_faction_goes_to_a_player_of_that_faction(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    roles = ["Sheriff", "Vanilla Villager", "Grunt", "Jester"]
+    for seed in range(5):
+        game = setup_game(roles, [Model.HAIKU_5_5], random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"),
+                          traits=["Grudge@Yakuza", "Loud@Neutral", "Curt"])
+        assert {p.role: p.traits for p in game.players if p.traits}.get("Grunt", [])[:1] == ["Grudge"]
+        assert "Loud" in next(p for p in game.players if p.role == "Jester").traits
+    with pytest.raises(ValueError):
+        parse_trait("Grudge@Mafia")
+
+
+def test_grudge_attacks_a_random_guilty_voter_the_next_night(game_factory):
+    from night import role_notes
+    game, _ = game_factory(["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"])
+    game.player("Dave").traits = ["Grudge"]  # a Yakuza holder
+    game.kill("Dave", "hanged", guilty_voters=["Alice", "Bob", "Bob", "Erin"])  # Bob's vote doubled
+    game.player("Alice").alive = False  # died before the night began: can't be drawn
+    assert not any("Grudge" in e.text or "grudge" in e.text for e in game.events)  # not revealed at the hanging
+    game.phase = "night"
+    notes = role_notes(game)
+    victim = next(r["victim"] for r in map(json.loads, open(game.log.path)) if r["kind"] == "grudge")
+    assert victim in ("Bob", "Erin")
+    assert f"{victim} is dealt a Standard Attack" in notes and "by Dave" in notes
+    assert "Standard Attack" not in role_notes(game)  # drawn once
+    game.kill("Erin", "Katana", by="Erin")
+    assert "Standard Attack" not in role_notes(game)  # a death any other way sets nothing off
+    game.player("Carol").traits = ["Grudge"]
+    game.phase = "night"
+    game.kill("Carol", "Katana", by="Erin")
+    assert "Standard Attack" not in role_notes(game)
+
+
+def test_loud_and_curt_change_the_holders_budget_and_prices_as_the_rules_say(game_factory):
+    from day import BUDGET_MAX, BUDGET_PER_ROUND, earn, message_cost, price_table, turn_task
+    from pathlib import Path
+
+    from traits import CURT_FACTOR, LOUD_FACTOR
+    RULES_TEXT = " ".join(Path("rules_1.txt").read_text().split())
+    assert f"{LOUD_FACTOR:g} times the usual speaking budget" in RULES_TEXT
+    assert CURT_FACTOR == 2 and "is doubled" in RULES_TEXT
+    game, _ = game_factory(TOWN4_GRUNT)
+    alice, bob = game.player("Alice"), game.player("Bob")
+    alice.traits, bob.traits = ["Loud"], ["Curt"]
+    for p in (alice, bob):
+        p.speaking_budget = 0.0
+    for _ in range(10):
+        earn(alice)
+        earn(bob)
+    assert alice.speaking_budget == BUDGET_MAX * LOUD_FACTOR and bob.speaking_budget == BUDGET_MAX
+    task = turn_task(game, alice, alice, 1, True, 1.0, 0, False)
+    assert (f"you earn {BUDGET_PER_ROUND * LOUD_FACTOR:g} per round, carrying over up to "
+            f"{BUDGET_MAX * LOUD_FACTOR:g}") in task
+    base = message_cost(1, 1, False, length_factor=0)
+    assert message_cost(100, 4, False, length_factor=2) - base == 2 * (message_cost(100, 4, False) - base)
+    assert price_table(1, length_factor=2) in turn_task(game, bob, bob, 1, True, 1.0, 0, False)
 
 
 def test_investigative_roles_and_only_they_have_a_subcategory():

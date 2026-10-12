@@ -80,10 +80,10 @@ def setup_note(setup: dict | None, roles: list[str]) -> str:
                 f"{max(1, yakuza - 1)} to {yakuza + 1} Yakuza, 0 to {neutral + 1} Neutrals, and the rest Village. "
                 "Any role in the rules may be in it, and roles may repeat.")
     if setup and setup.get("kind") == "random" and not setup.get("traits_given"):  # not chosen with --traits
-        text += (f" Separately, 0 to {MAX_TRAITS} traits (R24) are dealt to Village players, usually 1 or 2 (one "
-                 "player may get several), drawn to help balance the sides.")
+        text += (f" Separately, 0 to {MAX_TRAITS} traits (R24) are dealt, usually 1 or 2 (one player may get "
+                 "several), drawn to help balance the sides; most can go only to Village players.")
     else:
-        text += " Village players may also have a trait (R24)."
+        text += " Players may also have a trait (R24)."
     return f"\n\n---\n\nSetup (the role list itself is secret).\n{text}"
 
 
@@ -254,25 +254,32 @@ MAX_TRAITS = max(TRAIT_ODDS)
 def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     """Traits for a drawn setup (traits.py, rules R24): a count from TRAIT_ODDS, weighted towards the counts that
     bring role_power.score closest to even (Kevin: traits help balance setups). Each trait is drawn from those
-    its players could get (enough eligible seats)."""
+    its players could get (enough eligible seats). A trait that can go to more than one faction is drawn with the
+    faction of the seat it goes to ("Grudge@Yakuza"), so the balance knows which side it helps."""
     import role_power
-    from traits import TRAITS
+    from traits import FACTIONS, TRAITS, village_power
     base = role_power.score(roles)
+    faction_name = {a: f for f, a in FACTIONS.items()}
     picks = {}
     for n in TRAIT_ODDS:
-        chosen: list[str] = []
+        chosen: list[tuple[str, Alignment]] = []
         for _ in range(n):
             # A player has each trait at most once: a trait needs a seat of its alignments not already holding it.
-            options = [t for t, info in TRAITS.items()
-                       if sum(ROLES[r].alignment in info.alignments for r in roles) > chosen.count(t)]
+            free = {t: [a for r in roles if (a := ROLES[r].alignment) in info.alignments]
+                    for t, info in TRAITS.items()}
+            for t, a in chosen:
+                free[t].remove(a)
+            options = [t for t, seats in free.items() if seats]
             if not options:
                 break
-            chosen.append(rng.choice(options))
+            t = rng.choice(options)
+            chosen.append((t, rng.choice(free[t])))  # as if dealt to a random free seat
         picks[n] = chosen
     # Each count's odds, scaled down the further it leaves the setup from even (in units of BAND), so traits lean
     # towards what evens the sides without overriding the odds: with only pro-Village traits, a Village-leaning
     # setup gets fewer.
-    weight = {n: TRAIT_ODDS[n] * math.exp(-((base + sum(TRAITS[t].power for t in c)) / BAND) ** 2)
+    weight = {n: TRAIT_ODDS[n] * math.exp(-((base + sum(village_power(t, a) for t, a in c)) / BAND) ** 2)
               for n, c in picks.items()}
-    return picks[rng.choices(list(weight), list(weight.values()))[0]]
+    chosen = picks[rng.choices(list(weight), list(weight.values()))[0]]
+    return [t if len(TRAITS[t].alignments) == 1 else f"{t}@{faction_name[a]}" for t, a in chosen]
 

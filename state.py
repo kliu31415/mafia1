@@ -12,7 +12,7 @@ from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE
-from traits import LOGIC as TRAIT_LOGIC, TRAITS, eligible as trait_eligible, trait_logic
+from traits import LOGIC as TRAIT_LOGIC, TRAITS, eligible as trait_eligible, parse_item as parse_trait, trait_logic
 import variants
 
 
@@ -434,10 +434,11 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         logic(p.role).setup(game, p)
-    for item in traits:  # "Martyr+Armed": one player gets both
-        bundle = item.split("+")
+    for item in traits:  # "Martyr+Armed": one player gets both; "Grudge@Yakuza": a Yakuza player gets it
+        bundle, alignment = parse_trait(item)
         if len(set(bundle)) == len(bundle) and (
-                candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)]):
+                candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
+                               and alignment in (None, p.info.alignment)]):
             rng.choice(candidates).traits.extend(bundle)
         else:
             log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once), "

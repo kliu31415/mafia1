@@ -20,13 +20,17 @@ if TYPE_CHECKING:
 
 @dataclass(frozen=True)
 class TraitInfo:
-    alignments: frozenset[Alignment]  # whose true role's alignment can get it (faction-specific for now)
+    alignments: frozenset[Alignment]  # whose true role's alignment can get it; may be any (Grudge)
     summary: str  # what its holder is told, after "Your trait: NAME."
     hover: str  # one short line shown when hovering its holder's icon in the HTML log
-    power: float  # logit units like role_power.PRIOR: what it adds to the Village's side when drawn (setups.py)
+    # Logit units like role_power.PRIOR: how much it helps its holder's own side (negative: it hurts them), so it
+    # keeps its meaning if the alignments it can go to change (Kevin, Oct 12 2026). setups.py counts it towards the
+    # Village by the holder's alignment (village_power).
+    power: float
     # A small SVG drawn in the top-right corner of its holder's role icon in the HTML log (log_viewer.py): mostly
     # opaque (the icon shows through a little), in a color no faction uses, so it doesn't read as a faction tint.
     mark: str
+    power_for: dict[Alignment, float] | None = None  # power for some alignments, where it differs from `power`
 
 
 TRAITS: dict[str, TraitInfo] = {
@@ -96,6 +100,37 @@ TRAITS: dict[str, TraitInfo] = {
                                  "<circle cx='5' cy='5' r='4.4' fill='#111827' stroke='#fff' stroke-width='1'/>"
                                  "<path d='M2.4 4.4Q5 2.6 7.6 4.4Q5 6.2 2.4 4.4Z' fill='#fff'/>"
                                  "<circle cx='5' cy='4.4' r='0.9' fill='#111827'/></svg>")),  # an eye
+    # Any faction (Kevin, Oct 12 2026). More use to a Yakuza: the Village hangs Yakuza far more than its own, and those
+    # Guilty voters are mostly Village.
+    "Grudge": TraitInfo(frozenset(Alignment),
+                        "If you are hanged, one random player whose vote counted as Guilty in your trial is dealt a "
+                        "Standard Attack the next night (rules R24).",
+                        "If hanged, a random Guilty voter is dealt a Standard Attack the next night.",
+                        power=0.1, power_for={Alignment.EVIL: 0.3},
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                              "<circle cx='5' cy='5' r='4.4' fill='#7f1d1d' stroke='#fff' stroke-width='1'/>"
+                              "<path d='M2.6 3.4L4.4 4.4M7.4 3.4L5.6 4.4M3.2 7.2Q5 5.6 6.8 7.2' fill='none' "
+                              "stroke='#fff' stroke-width='0.9'/></svg>")),  # a scowl
+    # Any faction (Kevin, Oct 12 2026): a loud Yakuza and a loud Villager look the same.
+    "Loud": TraitInfo(frozenset(Alignment),
+                      "You earn 1.5 times the usual speaking budget each round, and can hold 1.5 times as much "
+                      "(rules R22, R24).",
+                      "Earns 1.5x speaking budget per round, with a 1.5x cap.",
+                      power=0.1,
+                      mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                            "<circle cx='5' cy='5' r='4.4' fill='#b45309' stroke='#fff' stroke-width='1'/>"
+                            "<path d='M2.4 4H3.8L5.8 2.6V7.4L3.8 6H2.4Z' fill='#fff'/>"
+                            "<path d='M6.9 3.6Q7.8 5 6.9 6.4' fill='none' stroke='#fff' "
+                            "stroke-width='0.8'/></svg>")),  # a speaker
+    # Any faction (Kevin, Oct 12 2026): short messages stay cheap, long ones don't; harmful to its holder's side.
+    "Curt": TraitInfo(frozenset(Alignment),
+                      "The length part of your message prices is doubled; each message's base fee and nominations "
+                      "cost the usual amount (rules R22, R24).",
+                      "Pays double for message length (not the base fee).",
+                      power=-0.1,
+                      mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                            "<circle cx='5' cy='5' r='4.4' fill='#475569' stroke='#fff' stroke-width='1'/>"
+                            "<path d='M2.8 5H7.2' stroke='#fff' stroke-width='1.3'/></svg>")),  # a closed mouth
 }
 
 
@@ -108,6 +143,8 @@ class TraitLogic:
     # the game, with night_note.
     ops: dict[str, tuple[set[str], set[str], str]] = {}
     night_note: str = ""
+    budget_factor = 1.0  # multiplies the speaking budget earned each round and its cap (rules R22; Loud)
+    length_factor = 1.0  # multiplies the length part of message prices (rules R22; Curt)
     code_tells_user: bool = False
     action_task: str = ""  # how the night task asks for this trait's action
 
@@ -128,6 +165,11 @@ class TraitLogic:
 
     def at_night_end(self, game: Game) -> None:
         """End of each night, with the roles' at_night_end hooks. Called whether or not anyone has the trait."""
+
+    def tonight_note(self, game: Game) -> str:
+        """A note for the moderator about this night only (night.role_notes), e.g. whom a Grudge strikes; code may
+        draw what it needs here, since it's called once a night, as the night's resolution begins."""
+        return ""
 
     def after_trial_vote(self, game: Game, nominee: str, cast: dict[str, bool], guilty: list[str]) -> None:
         """Right after a trial's votes are counted, before the verdict. cast: each voter's vote as cast (True is
@@ -271,6 +313,42 @@ class Faultline(TraitLogic):
                       cat=VOTE)
 
 
+LOUD_FACTOR, CURT_FACTOR = 1.5, 2.0  # rules R24 states both numbers (a test checks)
+
+
+class Loud(TraitLogic):
+    budget_factor = LOUD_FACTOR
+
+
+class Curt(TraitLogic):
+    length_factor = CURT_FACTOR
+
+
+GRUDGES = "grudges"  # game.role_state: [holder, Guilty voters] for each Grudge holder hanged since the last night
+GRUDGE_CAUSE = "a grudge"
+
+
+class Grudge(TraitLogic):
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        if guilty_voters is not None:  # rules R24: only a hanging; the votes as counted (a Fixer may reverse one)
+            game.role_state.setdefault(GRUDGES, []).append([p.name, list(dict.fromkeys(guilty_voters))])
+
+    def tonight_note(self, game: Game) -> str:
+        # Code draws the victim, like a Jester's revenge, from the Guilty voters alive as the night begins (R10); a
+        # swap doesn't move it (R23). The moderator resolves the attack, since Defense and protection apply.
+        lines = []
+        for holder, voters in game.role_state.pop(GRUDGES, []):
+            if targets := [v for v in voters if game.player(v).alive]:
+                victim = game.rng.choice(targets)
+                game.log.write("grudge", player=holder, victim=victim, day=game.day)
+                lines.append(f"{holder}, hanged today, had the Grudge trait (R24): {victim} is dealt a Standard Attack "
+                             "tonight, an Astral Visit (not a visit) that no role-block stops; code drew them. Resolve "
+                             "it with the night's other attacks against their Defense (R3; protection applies). If it "
+                             f"kills, cause '{GRUDGE_CAUSE}', by {holder}; if it fails, tell {victim} they were "
+                             f"attacked by {GRUDGE_CAUSE}. Never say that {holder} had the trait.")
+        return "\n- ".join(lines)
+
+
 class Notorious(TraitLogic):
     night_note = ("Notorious (a trait; see each player's traits): every alignment check reads a Notorious player as "
                   "Evil (Sheriff: Evil; Seer: Evil), like the Ex-Con (R19). The Census Taker's count still sees "
@@ -278,7 +356,8 @@ class Notorious(TraitLogic):
 
 
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
-                                "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious()}
+                                "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious(),
+                                "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt()}
 assert set(LOGIC) == set(TRAITS)
 
 
@@ -292,6 +371,26 @@ ACTION_TRAITS = [t for t, lg in LOGIC.items() if lg.ops]  # traits with a night 
 def eligible(p: Player, trait: str) -> bool:
     # A player may have several traits, never the same one twice (Kevin, Oct 12 2026).
     return p.info.alignment in TRAITS[trait].alignments and trait not in p.traits
+
+
+FACTIONS = {"Village": Alignment.GOOD, "Yakuza": Alignment.EVIL, "Neutral": Alignment.NEUTRAL}
+
+
+def parse_item(item: str) -> tuple[list[str], Alignment | None]:
+    """A --traits item or a drawn one: "Martyr", "Martyr+Armed" (one player gets both) or "Grudge@Yakuza" (dealt to
+    a Yakuza player). Raises ValueError for an unknown faction."""
+    names, _, faction = item.partition("@")
+    if faction and faction not in FACTIONS:
+        raise ValueError(f"unknown faction {faction!r} in {item!r} (known: {', '.join(FACTIONS)})")
+    return names.split("+"), FACTIONS.get(faction)
+
+
+def village_power(trait: str, alignment: Alignment) -> float:
+    """What a trait held by a player of this alignment adds to the Village's side (setups.draw_traits): its power for
+    a Village holder, minus it for a Yakuza; a Neutral plays for itself, so 0."""
+    info = TRAITS[trait]
+    power = (info.power_for or {}).get(alignment, info.power)
+    return {Alignment.GOOD: power, Alignment.EVIL: -power}.get(alignment, 0.0)
 
 
 def night_traits(game: Game, p: Player) -> list[str]:

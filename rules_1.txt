@@ -204,11 +204,11 @@ Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are 
 
 R24 (Traits)
 Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start;
-nobody else is told, and whether a game has any traits is secret. Investigations never see traits: they report
-roles and alignments only. A trait stays with you if your role changes. Traits are always true: a Roleplayer's
-trait is real even though its role isn't. A player may have more than one trait, but never the same one twice.
-Each trait says which players can get it. A trait's night action is used in addition to your role's own, and a
-role-block stops it too.
+nobody else is told, not even your teammates, and whether a game has any traits is secret. Investigations never see
+traits: they report roles and alignments only. A trait stays with you if your role changes. Traits are always true:
+a Roleplayer's trait is real even though its role isn't. A player may have more than one trait, but never the same
+one twice. Each trait says which players can get it. A trait's night action is used in addition to your role's own,
+and a role-block stops it too.
 - Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
   names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
   other way shows nothing.
@@ -230,6 +230,13 @@ role-block stops it too.
   that). It needs no action, so a role-block doesn't stop it.
 - Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con. Checks that see
   true alignment, such as the Census Taker's count, aren't fooled.
+- Grudge (any player): if you are hanged, the next night one random player whose vote counted as Guilty in your
+  trial, among those alive when that night begins, is dealt a Standard Attack (an Astral Visit). Defense and
+  protection apply as usual. A kill's cause is "a grudge". It needs no action, so a role-block doesn't stop it.
+- Loud (any player): you earn 1.5 times the usual speaking budget each round, and your cap is 1.5 times the usual
+  (R22). Your prices and trial-only budget are the usual ones.
+- Curt (any player): the length part of your message prices (R22) is doubled, so long messages cost you much more;
+  each message's base fee, nominations and your trial-only budget are the usual ones.
 
 === PART 5: THE YAKUZA ===
 

@@ -258,6 +258,8 @@ def role_notes(game: Game) -> str:
     notes = [logic(r).night_note for r in sorted({p.role for p in game.players}) if logic(r).night_note]
     notes += [trait_logic(t).night_note for t in sorted({t for p in game.players for t in p.traits})
               if trait_logic(t).night_note]  # traits are secret, but the moderator knows them
+    notes += [note for t in sorted({t for p in game.players for t in p.traits})
+              if (note := trait_logic(t).tonight_note(game))]  # e.g. whom a Grudge strikes tonight
     if not notes:
         return ""
     return ("Also handle these roles' effects, using random_choice for anything random:\n"

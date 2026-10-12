@@ -1,6 +1,7 @@
 """The day phase: speaking budget, chat turns, nominations and simultaneous votes."""
 
 import json
+import math
 import re
 from typing import Any
 
@@ -10,7 +11,7 @@ from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, d
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import RoleLogic, logic
 from state import Game, Player, majority
-from traits import LOGIC as TRAIT_LOGIC
+from traits import LOGIC as TRAIT_LOGIC, trait_logic
 
 
 # Speaking budget. A message costs MESSAGE_BASE_COST + round_multiplier * length_cost(words), times
@@ -51,6 +52,22 @@ LAST_WILL_WORDS = 300  # longer wills are truncated
 CLAIM_WORDS = 40  # claims (in the public ledger) are short and free, so they can't replace chat
 
 
+def budget_factor(p: Player) -> float:
+    """How much more p earns per round and can hold than BUDGET_PER_ROUND and BUDGET_MAX (the Loud trait, R24)."""
+    return math.prod(trait_logic(t).budget_factor for t in p.traits)
+
+
+def length_factor(p: Player) -> float:
+    """What multiplies the length part of p's message prices (the Curt trait, R24)."""
+    return math.prod(trait_logic(t).length_factor for t in p.traits)
+
+
+def earn(p: Player) -> None:
+    """A round's speaking budget (rules R22)."""
+    f = budget_factor(p)
+    p.speaking_budget = min(BUDGET_MAX * f, p.speaking_budget + BUDGET_PER_ROUND * f)
+
+
 def length_cost(words: int) -> float:
     """Cheap for short and medium messages, superlinear for long ones. budget_parameters spells this out."""
     return words / 60 + (words / 200) ** 2
@@ -61,12 +78,14 @@ def round_multiplier(rnd: int) -> float:
     return 1 + ROUND_COST_STEP * max(0, rnd - FULL_PRICE_ROUNDS)
 
 
-def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> float:
+def message_cost(words: int, rnd: int, private: bool, free_words: int = 0, length_factor: float = 1.0) -> float:
+    """length_factor: multiplies the length part (the Curt trait, R24), not the base fee."""
     if words == 0:
         return 0.0
-    cost = MESSAGE_BASE_COST + length_cost(words) * round_multiplier(rnd)
+    cost = MESSAGE_BASE_COST + length_cost(words) * round_multiplier(rnd) * length_factor
     if free_words:
-        cost = 0.0 if words <= free_words else (length_cost(words) - length_cost(free_words)) * round_multiplier(rnd)
+        cost = 0.0 if words <= free_words else ((length_cost(words) - length_cost(free_words)) * round_multiplier(rnd)
+                                                * length_factor)
     return cost * (PRIVATE_COST_FACTOR if private else 1.0)
 
 
@@ -85,11 +104,11 @@ def budget_parameters() -> str:
             "price table.")
 
 
-def price_table(rnd: int, trial: bool = False) -> str:
-    """trial: the 1x prices of a trial turn, whatever the round."""
+def price_table(rnd: int, trial: bool = False, length_factor: float = 1.0) -> str:
+    """trial: the 1x prices of a trial turn, whatever the round. length_factor: the player's (the Curt trait)."""
     price_rnd = 1 if trial else rnd
-    rows = [f"  {w:>3} words: public {message_cost(w, price_rnd, False):.2f}, "
-            f"private {message_cost(w, price_rnd, True):.2f}"
+    rows = [f"  {w:>3} words: public {message_cost(w, price_rnd, False, length_factor=length_factor):.2f}, "
+            f"private {message_cost(w, price_rnd, True, length_factor=length_factor):.2f}"
             for w in (10, 25, 50, 100, 200, 400, MAX_MESSAGE_WORDS)]
     if trial:
         return "Message prices during this trial (1.00x):\n" + "\n".join(rows)
@@ -165,7 +184,7 @@ def play_day(game: Game, players: Players) -> None:
     game.prosecutions.clear()
     if prosecuted:
         for p in game.alive():
-            p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
+            earn(p)
     for name in prosecuted:
         if trials >= MAX_TRIALS_PER_DAY or not game.player(name).alive:
             break
@@ -191,7 +210,7 @@ def play_day(game: Game, players: Players) -> None:
     for rnd in range(1, day_rounds(game) + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
-                p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
+                earn(p)
         alive = game.alive()
         order = [p for p in alive if p.seat >= start] + [p for p in alive if p.seat < start]
         active = False  # did anyone send a public message or nominate this go-around?
@@ -267,16 +286,16 @@ def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: boo
               free_words: int, trial: bool) -> str:
     """What a speaking turn asks (chat_turn's arguments); writer is the Puppeteer when p is puppeted."""
     return (f"It is Day {game.day}, round {rnd} of at most {day_rounds(game)}. It's your turn. Your speaking "
-            f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
-            f"up to {BUDGET_MAX:g}; at the start of each day, {CARRY_SHARE:.0%} of what you have left "
-            "carries over" + (" (nothing carries over from Day 1)" if talk_only(game) else "")
+            f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND * budget_factor(p):g} per round, "
+            f"carrying over up to {BUDGET_MAX * budget_factor(p):g}; at the start of each day, {CARRY_SHARE:.0%} of "
+            "what you have left carries over" + (" (nothing carries over from Day 1)" if talk_only(game) else "")
             + ". You may send one public message and any "
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "
             f"the contents), or nothing. The transcript already shows who sent each message, so there's "
             "no need to start a message with your own name. Messages are "
             f"capped at {MAX_MESSAGE_WORDS} words. Prices grow each round after round {FULL_PRICE_ROUNDS}. "
             "The day ends after a full round where nobody sends a public message.\n"
-            + price_table(rnd, trial) + "\n"
+            + price_table(rnd, trial, length_factor(p)) + "\n"
             + (f"This is a trial turn: prices are 1x whatever the round, and you also get a trial-only "
                f"budget of {TRIAL_BUDGET:.2f}, spent before your regular budget. Unspent trial budget is "
                "lost when this turn ends.\n" if trial else "")
@@ -329,7 +348,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     trial_budget = TRIAL_BUDGET if trial else 0.0
 
     def cost_of(i: int, to: str | None, words: int) -> float:
-        return message_cost(words, price_rnd, private=to is not None,
+        return message_cost(words, price_rnd, private=to is not None, length_factor=length_factor(p),
                             free_words=free_words if i == 0 and to is None else 0)
 
     def available() -> float:
