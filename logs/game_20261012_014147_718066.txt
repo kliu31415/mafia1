@@ -165,3 +165,37 @@ Niaj (public): Niaj here, Tracker. No nomination from me. Frank's Night 2 pair a
 Olivia (public): Olivia here. No nomination from me. I'm holding my night action until Frank's Night 2 pair and Alice's trap result are posted on Day 3.
 Alice (public): Alice here, Trapper. No nomination from me. My trap on Heidi is armed, and I'll post right away if it goes off.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Dave, Heidi, Judy) Dave (Yakuza chat): Dave here. Proposal for Night 2: Dave keeps the Katana and attacks Frank (Seer). Frank is a Village-side claim, and his pair (Erin/Carol) can't include a Yakuza, so his read is either a real Neutral or a lie. Either way he's the most dangerous info role. Heidi, please don't visit anyone who could be linked to Alice's trap, and make sure nobody visits you tonight. Judy, no action needed. Heidi, use the Diviner on a non-Yakuza whose group is useful. Confirm or object, and I'll submit Frank as the target.
+(to Dave, Heidi, Judy) Heidi (Yakuza chat): Heidi: Confirmed. Katana stays with Dave, and the target is Frank (the Seer claim is the most dangerous info role). Nobody visits me tonight, so Alice's trap stays quiet. I'll use the Diviner on Niaj: the group is Niaj with Mallory and Olivia, which also tests Mallory's Vanilla claim. Judy, no action needed.
+(to Dave, Heidi, Judy) Judy (Yakuza chat): Judy: Confirmed. Dave keeps the Katana and the target is Frank. I have no action tonight and I'm staying passive. Heidi, your Diviner group on Niaj is fine. Ready.
+(to Dave, Heidi, Judy) Dave (Yakuza chat): Dave: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Frank (attack vote: Frank). Heidi, don't visit anyone tonight and keep the Diviner on Niaj's group as planned. Judy, no action. Ready.
+(to Dave, Heidi, Judy) Heidi (Yakuza chat): Heidi: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Frank (attack vote: Frank). I'm using the Diviner on Niaj's group (Niaj, Mallory, Olivia) and will not visit myself or anyone else tonight. Ready.
+(to Dave, Heidi, Judy) Judy (Yakuza chat): Judy: Confirmed. Dave keeps the Katana (holder vote: Dave) and the target is Frank (attack vote: Frank). I have no night action and will stay passive. Heidi, your Diviner on Niaj's group is fine. Ready.
+Night actions:
+  Alice (Trapper): no action
+  Bob (Juror): target Mallory; second target Frank; "Juror: checking Mallory and Frank, the nominator and the nominee from Day 2."
+  Carol (Coroner): no action
+  Dave (Puppeteer): no role action; Katana vote: Dave holds, attacks Frank
+  Erin (Serial Killer): target Frank; "Strong Attack on Frank, the Seer claimant. Frank's pair (Erin and Carol, different) fits the truth, so he's a plausible Village investigator. Avoided Heidi because Alice's trap would hit me as a non-Village visitor."
+  Frank (Seer): target Mallory; second target Alice; 1 token(s)
+  Heidi (Diviner): target Niaj; "Diviner: investigate Niaj. Group should be Mallory, Niaj, Olivia (Niaj's circle neighbours)."; Katana vote: Dave holds, attacks Frank
+  Ivan (Profiler): target Mallory; 1 token(s); "Profile Mallory. Mallory claimed Vanilla Villager, but Vanilla Villager is not in this game, so the claim is false and the true role is worth knowing."
+  Judy (Informant): no role action; Katana vote: Dave holds, attacks Frank
+  Niaj (Tracker): target Frank; "Tracking Frank to see whom he visits. If he uses his Seer token on Erin and Carol, that visit should show, which checks his Night 2 claim."
+  Olivia (Vigilante): no action
+Katana: Dave holds it and attacks Frank.
+(to Bob) Moderator (private): Your jury check: Mallory and Frank have no shared votes yet.
+(to Heidi) Moderator (private): You divined Niaj; the group was Mallory, Niaj and Olivia. The role drawn is Tracker (60% chance it is Niaj's, otherwise one of the others').
+(to Ivan) Moderator (private): You profiled Mallory: their role is Cartographer, Jester or Serial Killer (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 2 profile tokens left.
+(to Frank) Moderator (private): You spent your seer token to compare Mallory and Alice: their alignments are DIFFERENT. 0 seer tokens left.
+(to Niaj) Moderator (private): You tracked Frank tonight. Frank visited Alice and Mallory.
+(to Dave) Moderator (private): Your Katana attack on Frank tonight succeeded.
+(to Erin) Moderator (private): Your attack on Frank tonight succeeded.
+[Moderator summary] Night 2: Frank (Seer) was hit by both the Katana (Dave, Standard) and the Serial Killer (Erin, Strong). He had no Defense, so he died of both: 'Katana and Serial Killer'. Frank spent his seer token on Mallory and Alice (Jester vs Good, so DIFFERENT) and visited both. Niaj tracked Frank and saw him visit Alice and Mallory. Bob used the Juror on Mallory and Frank (jury op). Heidi used the Diviner on Niaj, who isn't Yakuza (divine op). Ivan profiled Mallory (profile op, token spent). Nobody visited Heidi, so Alice's trap stays armed. There were no role-blocks.
+[Night check] Night 2: correct
+(to Frank) Moderator (private): You were attacked tonight (Katana and Serial Killer) and died.
+(to Dave) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Frank. Heidi (Diviner) chose to act on Niaj ("Diviner: investigate Niaj. Group should be Mallory, Niaj, Olivia (Niaj's circle neighbours)."); Judy (Informant) chose no action.
+(to Heidi) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Frank. Dave (Puppeteer) chose no action; Judy (Informant) chose no action.
+(to Judy) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Frank. Dave (Puppeteer) chose no action; Heidi (Diviner) chose to act on Niaj ("Diviner: investigate Niaj. Group should be Mallory, Niaj, Olivia (Niaj's circle neighbours).").
