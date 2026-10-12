@@ -1,5 +1,5 @@
 {
- "log_version": 57,
+ "log_version": 58,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -14,6 +14,7 @@
   "death": ["cause", "day", "katana", "killer", "killer_role", "killer_roles", "killers", "phase", "player", "role"],
   "debrief": ["answers", "cost", "model", "role", "usage", "who"],
   "katana": ["day", "result", "revote_targets"],
+  "kindred": ["day", "named", "nominee", "player"],
   "kitsune_charm": ["attacks", "day", "player", "swallowed", "target"],
   "kitsune_release": ["day", "player", "target"],
   "left": ["day", "phase", "player"],

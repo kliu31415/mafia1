@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from events import DEATH
+from events import DEATH, VOTE
 from roles import Alignment
 from roles.base import REVENGE_CAUSE, acted_tonight, join_names, record_attack, swap_partner
 
@@ -68,6 +68,16 @@ TRAITS: dict[str, TraitInfo] = {
                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                                "<circle cx='5' cy='5' r='4.4' fill='#1e3a8a' stroke='#fff' stroke-width='1'/>"
                                "<path d='M5.8 1.8L3.2 5.4H5L4.2 8.2L6.8 4.6H5Z' fill='#fde047'/></svg>")),  # a bolt
+    "Kindred": TraitInfo(frozenset({Alignment.GOOD}),
+                         "After each trial vote you cast, you privately learn up to two random other players whose "
+                         "votes counted the same way as the vote you cast (rules R24).",
+                         "After each trial, learns two random players who voted the same way.",
+                         power=0.15,
+                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                               "<circle cx='5' cy='5' r='4.4' fill='#9d174d' stroke='#fff' stroke-width='1'/>"
+                               "<circle cx='3.9' cy='5' r='1.7' fill='none' stroke='#fff' stroke-width='0.9'/>"
+                               "<circle cx='6.1' cy='5' r='1.7' fill='none' stroke='#fff' "
+                               "stroke-width='0.9'/></svg>")),  # two linked rings
 }
 
 
@@ -100,6 +110,10 @@ class TraitLogic:
 
     def at_night_end(self, game: Game) -> None:
         """End of each night, with the roles' at_night_end hooks. Called whether or not anyone has the trait."""
+
+    def after_trial_vote(self, game: Game, nominee: str, cast: dict[str, bool], guilty: list[str]) -> None:
+        """Right after a trial's votes are counted, before the verdict. cast: each voter's vote as cast (True is
+        Guilty); guilty: the voters whose vote counted as Guilty (after a Fixer's reversal)."""
 
 
 class Martyr(TraitLogic):
@@ -202,7 +216,26 @@ class Armed(TraitLogic):
         game.role_state.setdefault(ARMED_USED, []).append(change["by"])
 
 
-LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed()}
+class Kindred(TraitLogic):
+    def after_trial_vote(self, game: Game, nominee: str, cast: dict[str, bool], guilty: list[str]) -> None:
+        # Compared with the holder's vote as cast, so a Fixer's hidden reversal of it isn't revealed (Fixer: "nobody
+        # is told"); the others' votes are as counted, like the Auditor's. rules R24
+        for name, vote in cast.items():
+            if "Kindred" not in game.player(name).traits:
+                continue
+            same = [n for n in cast if n != name and (n in guilty) == vote]
+            picked = sorted(game.rng.sample(same, min(2, len(same))), key=list(cast).index)
+            way = "Guilty" if vote else "Innocent"
+            text = (f"nobody else's vote counted as {way}" if not picked else
+                    f"{join_names(picked)}'s votes counted as {way}" if len(picked) == 2 else
+                    f"only {picked[0]}'s vote counted as {way}")
+            game.log.write("kindred", day=game.day, player=name, nominee=nominee, named=picked)
+            game.emit(f"(Only you see this) Kindred: in the trial of {nominee}, you voted {way}, and {text}"
+                      + (" too." if picked else "."), [name], kind="notice", cat=VOTE)
+
+
+LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
+                                "Kindred": Kindred()}
 assert set(LOGIC) == set(TRAITS)
 
 

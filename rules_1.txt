@@ -222,6 +222,9 @@ role-block stops it too.
 - Avenger (Village players only): if you are killed at night, every player whose attack would have killed you is
   dealt a Divine Attack and dies too, with the cause "Avenger". Attacks that weren't fatal on their own, and deaths
   by Day, set nothing off. It needs no action, so a role-block doesn't stop it.
+- Kindred (Village players only): after each trial vote you cast, you privately learn up to two random other
+  players whose votes counted the same way as the vote you cast (if fewer did, you learn that). It needs no action,
+  so a role-block doesn't stop it.
 
 === PART 5: THE YAKUZA ===
 

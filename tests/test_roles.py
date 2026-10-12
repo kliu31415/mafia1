@@ -2013,3 +2013,26 @@ def test_the_setup_note_doesnt_say_traits_were_drawn_when_they_were_chosen():
     drawn = {"kind": "random", "name": "standard", "players": 13}
     assert "drawn to help balance" in setup_note(drawn, ["Sheriff"] * 13)
     assert "drawn to help balance" not in setup_note({**drawn, "traits_given": True}, ["Sheriff"] * 13)
+
+
+def test_a_kindred_player_learns_two_random_players_whose_votes_counted_like_theirs(game_factory):
+    # rules R24 (Kevin, Oct 12 2026): compared with the Kindred's vote as cast, the others' as counted
+    from traits import trait_logic
+    game, players = game_factory(["Vanilla Villager", "Sheriff", "Medic", "Grunt", "Grunt", "Vanilla Villager"])
+    game.player("Alice").traits = ["Kindred"]
+    game.day, game.phase = 2, "day"
+    cast = {"Alice": True, "Bob": True, "Carol": True, "Dave": True, "Erin": False, "Frank": False}
+    trait_logic("Kindred").after_trial_vote(game, "Frank", cast, guilty=["Alice", "Bob", "Carol", "Dave"])
+    text = told(game, "Alice")[-1]
+    named = [n for n in ("Bob", "Carol", "Dave") if n in text]
+    assert len(named) == 2 and "Erin" not in text and "you voted Guilty" in text
+    assert not any("Kindred" in t for n in ("Bob", "Carol", "Dave", "Erin", "Frank") for t in told(game, n))
+    # a Fixer reversed Alice's vote (counted Innocent) and Erin's (counted Guilty): Alice still reads her vote as cast
+    trait_logic("Kindred").after_trial_vote(game, "Dave", cast, guilty=["Bob", "Carol", "Dave", "Erin"])
+    assert "you voted Guilty" in told(game, "Alice")[-1] and "Frank" not in told(game, "Alice")[-1]
+    # fewer than two the same way
+    cast2 = {"Alice": False, "Bob": True, "Carol": True, "Dave": False}
+    trait_logic("Kindred").after_trial_vote(game, "Bob", cast2, guilty=["Bob", "Carol"])
+    assert told(game, "Alice")[-1].endswith("you voted Innocent, and only Dave's vote counted as Innocent too.")
+    trait_logic("Kindred").after_trial_vote(game, "Bob", {"Alice": False, "Bob": True}, guilty=["Bob"])
+    assert told(game, "Alice")[-1].endswith("you voted Innocent, and nobody else's vote counted as Innocent.")

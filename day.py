@@ -10,6 +10,7 @@ from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, d
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import RoleLogic, logic
 from state import Game, Player, majority
+from traits import LOGIC as TRAIT_LOGIC
 
 
 # Speaking budget. A message costs MESSAGE_BASE_COST + round_multiplier * length_cost(words), times
@@ -560,6 +561,8 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     else:
         game.emit(f"Trial votes on {nominee}: Guilty - {', '.join(guilty) or 'nobody'}; "
                   f"Innocent - {', '.join(innocent) or 'nobody'}.", cat=VOTE)
+    for t in TRAIT_LOGIC.values():  # rules R24, e.g. the Kindred's result
+        t.after_trial_vote(game, nominee, {v.name: o["vote"] for v, o in zip(voters, outs)}, guilty)
     tally = f"{guilty_votes} Guilty of {total_votes} votes; {total_votes // 2 + 1} needed"  # rules R4: a majority
     if total_votes != len(voters):
         tally += (f"; there are more votes than the {len(voters)} voters because a role manipulated the count on "
