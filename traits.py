@@ -35,8 +35,9 @@ TRAITS: dict[str, TraitInfo] = {
                         "whose vote counted as Guilty in your trial (rules R24).",
                         "If hanged, reveals this trait and every Guilty voter (not the role).",
                         power=0.15,
-                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><circle cx='5' cy='5' r='4.4' "
-                              "fill='#6d28d9' stroke='#fff' stroke-width='1'/><ellipse cx='5' cy='5' rx='2.4' ry='1.3' "
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><circle cx='5' cy='5' "
+                              "r='4.4' fill='#6d28d9' stroke='#fff' stroke-width='1'/><ellipse cx='5' cy='5' rx='2.4' "
+                              "ry='1.3' "
                               "fill='none' stroke='#fde047' stroke-width='1.1'/></svg>")),  # a halo
 }
 
