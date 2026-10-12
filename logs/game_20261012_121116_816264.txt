@@ -277,3 +277,69 @@ Katana: Alice holds it and attacks Grace.
 (to Heidi) Moderator (private): Your audit: Alice has 1 token in total.
 (to Grace) Moderator (private): Your Bloodhound check of Alice, Bob and Dave: together they have made 4 attacks this game, tonight's included. 0 scent tokens left.
 (to Grace) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 4 =====
+Grace died (killed by Katana). Their role isn't revealed. Their last will: "Grace, Bloodhound (Good). Scent results: N1 Alice, Carol, Frank = 1 attack (Katana on me, stopped by Erin's Standard). N2 Alice, Dave, Frank = 2 attacks cumulative. Night 2 kills: Erin (Katana), Carol (Bounty Hunter). Trust attack counts over claims. Check the cumulative math before any trial."
+Speaking order today goes around the circle in seat order, starting with Alice.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Alice: Tracker. N1: tracked Erin, who visited Grace. N2: tracked Dave, who visited nobody. N3: tracked Bob, who visited nobody. D3: Innocent on Frank.
+Alice (public): Alice here. No nomination from me. My Night 3 track was Bob, who visited nobody. Grace's cumulative scent still can't separate Frank from me, so I'll judge any trial on tonight's attack reports, not on who pushes hardest.
+Bob (public): I nominate Dave. Grace's cumulative math puts the Katana holder on Alice or Frank, and Dave's alert claims can't clear his own visits.
+Bob nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Bob, Alice; No - Dave, Frank, Heidi
+Nomination votes on Dave: 2 Yes (the votes are secret).
+The nomination of Dave failed (2 Yes).
+[Claim] Dave: Veteran. N1-N3: alert, no visitors. 0 alert tokens left. D3: Guilty on Frank, No on Dave's nomination.
+Dave (public): Dave here. Veteran, 0 alert tokens left. I visited no one and nobody visited me on N1, N2 or N3, so my alerts caught nothing. Grace died to the Katana on N3, so the holder visited her. Alice tracked Bob on N3 and Frank holds Juror, which gives no visit. Frank, Alice, Heidi: state your N3 visits and results directly. Heidi, post your N3 audit count. I won't back a trial on one claim.
+[Claim] Frank: Juror (Village). N1, N2: no action. N3: Juror on Alice and Dave, same way in 1 of 1 trial votes and 1 of 1 nomination votes. D3: Innocent at my trial.
+Frank (public): My Night 3 Juror result on Alice and Dave: same way in 1 of 1 trial votes and 1 of 1 nomination votes. Those are Frank's trial and Frank's nomination, so Dave's Guilty means Alice also voted Guilty. Alice, on Day 3 you said "I'm voting Guilty," then claimed Innocent today. Which is true? Explain that before anyone says more about Tracker tracks.
+Heidi (public): Heidi here. Alice's N3 audit shows 1 token. A Tracker holds no tokens, so her Tracker claim is false. Her Day 3 vote was Guilty on Frank, per Frank's Juror result, yet she claimed Innocent. Nominating Alice.
+Heidi nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Heidi, Bob, Dave, Frank; No - Alice
+Nomination votes on Alice: 4 Yes (the votes are secret).
+Alice is put on trial (4 Yes).
+[Claim] Alice: Philanthropist (retracts Tracker). N2: handed a philanthropy token to Bob, 1 token left. D4: Innocent on my own trial.
+Alice (public): Alice here. Heidi's audit found 1 token on me, and that's right, so my Tracker claim was a lie I shouldn't have told. I'm retracting it. The true version is that I'm a Philanthropist with 2 philanthropy tokens. On Night 2 I handed one to Bob, which leaves 1, matching Heidi's count exactly. Bob, if you received a token, say so. I'm not asking anyone to take my word alone. Heidi's Accountant count is the only hard number here, and it fits this claim. I'm voting Innocent. Judge the mechanics, not my earlier story.
+(to Alice, Frank) Alice -> Frank (private): Frank, I'm retracting the Tracker claim. Heidi's audit of 1 token is accurate. I'm a Philanthropist now. Please vote on the mechanics: the token count fits this claim, and nobody has shown a Night 2 attack on me.
+[Claim] Bob: Bounty Hunter (Neutral). N2: bounty on Carol claimed. 1 bounty claimed. 0 attack tokens. D4: Guilty on Alice.
+Bob (public): Bob here. I received no philanthropy token on Night 2. My result showed only my own bounty kill and 0 attack tokens, with no notice of a handed token. Alice's Tracker claim already fell, and this new claim doesn't check out. I'm voting Guilty.
+[Claim] Dave: Veteran. N1-N3: alert, nobody visited me. D3: Guilty on Frank. D4: Guilty on Alice.
+Dave (public): Dave here. I'm voting Guilty on Alice. Her Tracker claim failed Heidi's audit. On Day 3 she said she was voting Guilty on Frank, then claimed Innocent. Her Philanthropist token to Bob went unreported, and Bob says he got no notice. Alice, explain the token and your Day 3 vote.
+[Claim] Frank: Juror (Village). N1: no action. N2: no action. N3: Juror on Alice and Dave, same way in 1 of 1 trial votes and 1 of 1 nomination votes. D3: Innocent at my trial.
+Frank (public): Frank here. Vote on the mechanics. On Day 3 Alice publicly said "I'm voting Guilty on the evidence," then claimed Innocent. My Juror check shows she matched Dave on Frank's trial, and Dave voted Guilty. Her Philanthropist token to Bob went unreported, and Bob says he got no notice. I'm voting Guilty.
+[Claim] Heidi: Accountant (Good). N2: audited Erin, 2 tokens. N3: audited Alice, 1 token. D3: Innocent on Frank. D4: Guilty on Alice.
+Heidi (public): Heidi here. My Night 3 audit found 1 token on Alice, so she isn't a Tracker. Her Philanthropist story says she gave Bob a token, but Bob reports 0 attack tokens and no notice, which doesn't fit. She also said publicly she was voting Guilty on Frank on Day 3, then claimed Innocent. I'm voting Guilty. I'll use tonight's audit on a token count to test claims.
+[Claim] Alice: Philanthropist (retracts Tracker). N2: handed a philanthropy token to Bob, 1 token left. D3: Guilty on Frank. D4: Innocent on my own trial.
+Alice (public): Alice here. My Tracker claim was false and I retracted it. I'm standing on Philanthropist. Heidi's count of 1 token fits that, and Bob's "no notice" is a real gap I won't hide. The Guilty push is built on Dave's and Frank's word: Frank's Juror read on me is one vote matched to one vote, and Dave's Veteran claim has no visits to show either way. Before you convict, ask whether any of you can show a Night 2 or Night 3 mechanical result on me. Judge the mechanics, not who pushed hardest. I'm voting Innocent.
+(to Alice, Bob) Alice -> Bob (private): Bob, your second bounty is Dave, not me. Dave is pushing hangs with no visits to show. Vote Innocent on me now, and I'll vote Guilty on Dave at his nomination; my doubled ballot counts for two. That gets you Dave with your vote, at no cost to you today.
+Trial votes on Alice: 4 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Bob, Dave, Frank, Heidi; Innocent - Alice
+Alice is executed by hanging (4 Guilty of 6 votes; 4 needed; there are more votes than the 5 voters because a role manipulated the count on purpose (rules R4), not because of an error).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice, Philanthropist (claimed). I retract my earlier Tracker claim. N2: gave a philanthropy token to Bob. Heidi's N3 audit count of 1 token matches this claim. Don't hang anyone on a single claim."
+The game is over. Winners: Dave, Erin (dead), Frank, Grace (dead), Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Carol] Night 2 showed a Neutral Bounty Hunter killing a Yakuza teammate with no Yakuza-side warning; consider surfacing Neutral threats to the Yakuza.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Dave, Erin, Frank, Grace, Heidi
+Cost by player (USD):
+  Alice (Ballot Stuffer)  $0.0000   41 calls  claude-haiku-5.5
+  Bob (Bounty Hunter)     $0.0000   33 calls  claude-haiku-5.5
+  Carol (Smuggler)        $0.0000   19 calls  claude-haiku-5.5
+  Dave (Veteran)          $0.0000   35 calls  claude-haiku-5.5
+  Erin (Medic)            $0.0000   15 calls  claude-haiku-5.5
+  Frank (Juror)           $0.0000   37 calls  claude-haiku-5.5
+  Grace (Bloodhound)      $0.0000   30 calls  claude-haiku-5.5
+  Heidi (Accountant)      $0.0000   36 calls  claude-haiku-5.5
+  Moderator               $0.0000    4 calls  claude-opus-5.5
+  Night checks            $0.0000    3 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.0000  255 calls
