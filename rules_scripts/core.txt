@@ -84,8 +84,9 @@ players (e.g. a group around the target) is built around B, but A and B trade pl
 the other would be; the roles, alignments and counts in it are still the real players', so the rest of the group can
 still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action
 landed on. An effect that lasts into the next Day (e.g. listening in on private messages) follows B, and its user is
-told at dawn that a swap moved it to B. Effects that pick their own victim at random (e.g. the Jester's revenge or
-a Cursed player's curse, R24) aren't actions aimed at a player, so a swap doesn't move them: they hit whoever they draw.
+told at dawn that a swap moved it to B, unless its role says nobody is told. Effects that pick their own victim at
+random (e.g. the Jester's revenge or a Cursed player's curse, R24) aren't actions aimed at a player, so a swap doesn't
+move them: they hit whoever they draw.
 
 R13 (Last wills)
 Players may write and update a last will at the start of each Night, when they choose their night action
@@ -99,9 +100,9 @@ not on a trial turn, and not while you are puppeted. It takes effect after a ran
 after that turn to n-1 speaking turns later, n being the number of players alive when it was taken, every delay
 equally likely. Only Day speaking turns count, not trial turns; a turn that starts a trial ends with that trial. So
 its timing doesn't show whose turn it was. If the Day ends first, it takes effect as the Day ends. If you died since
-taking it, it doesn't take effect. Day actions due at the same time take effect one at a time. A death it causes is
-announced at once (R12), and the game ends if that leaves one faction (R1). A day action isn't a visit, and night
-protections don't last into the Day.
+taking it, it doesn't take effect. Day actions due at the same time take effect one at a time, in random order. A
+death it causes is announced at once (R12), and the game ends if that leaves one faction (R1). A day action isn't a
+visit, and night protections don't last into the Day.
 
 === PART 3: THE NIGHT ===
 
@@ -152,8 +153,8 @@ R20 (Night resolution checklist): a summary of the rules above, in the order the
    A trap stops one attack before Defense and may hit its attacker back (Trapper).
 4. Results for investigators, using the visits and appearances (R19).
 5. Notifications: attackers learn whether they succeeded, attacked players learn the attacking role (R3, with the
-   Katana exception in R8), protectors learn nothing (R17), role-blocked players are told (R9), Yakuza learn each
-   other's actions (R8).
+   Katana exception in R8), protectors learn whether they stopped an attack (R17), role-blocked players are told
+   (R9), Yakuza learn each other's actions (R8).
 6. Deaths are revealed at the start of the Day (R12); the win check runs on all of the night's deaths together (R1).
 
 === PART 4: ATTACKS, DEATH AND INFORMATION ===
@@ -167,8 +168,8 @@ R3 (Attack and Defense)
   night learns the role behind each, including those that failed. The Katana is an exception (R8).
 
 R17 (Protection feedback)
-Protectors (e.g. the Medic) are never told whether their protection stopped an attack, and a protected player is
-never told who protected them. A player who is attacked is still told as in R3.
+Protectors (e.g. the Medic) are told whether their protection stopped an attack, but not whose attack it was, and a
+protected player is never told who protected them. A player who is attacked is still told as in R3.
 
 R12 (Death reveals)
 When someone dies, their cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are revealed
@@ -326,10 +327,11 @@ Trapper
   may remove your trap (removing it isn't a visit). You have one trap at a time; a new trap replaces the old one at
   once. Traps last even after you die. A trap is armed from the next night on: the first time anyone makes a Basic,
   Standard or Strong Attack on the trapped player on a later night, the trap is used up and stops that attack
-  (chosen at random if there are several; Divine Attacks ignore it); any other attacks resolve as usual. The trap
-  acts before Defense, after any protection that acts before all others. If the stopped attack was a visit, its
-  attacker is dealt a Strong Attack, whatever their faction; an Astral attack is stopped without one. You learn
-  that your trap went off, and nothing else (not whose attack, nor whether the trap killed).
+  (chosen at random if there are several; Divine Attacks ignore it); any other attacks resolve as usual. Several
+  traps on one player act one at a time, in random order, each stopping a different attack. The trap acts before
+  Defense, after any protection that acts before all others. If the stopped attack was a visit, its attacker is
+  dealt a Strong Attack, whatever their faction; an Astral attack is stopped without one. You learn that your trap
+  went off, and nothing else (not whose attack, nor whether the trap killed).
 
 Killing
 

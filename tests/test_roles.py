@@ -177,7 +177,8 @@ def test_a_puppeteer_moved_by_a_swap_puppets_the_other_player_and_is_told(game_f
     game.phase = "day"
     game.day += 1
     game.run_dawn_hooks()
-    assert any(t.endswith("A swap moved your puppeting from Bob to Carol last night (rules R23).") for t in told(game, "Alice"))
+    notice = "A swap moved your puppeting from Bob to Carol last night (rules R23)."
+    assert any(t.endswith(notice) for t in told(game, "Alice"))
     assert not any("swap moved" in e.text for e in game.events if e.visible_to != frozenset({"Alice"}))
 
 
