@@ -492,7 +492,7 @@ def refit_powers(log_dir: Path) -> None:
     """Refits tips/role_power.json from the games in log_dir (role_power.py); a failure is an ALERT, not raised."""
     import role_power
     try:
-        role_power.update(log_dir)
+        role_power.update(log_dir, on_new_off=lambda line: print(f"ALERT power_off: {line}", file=sys.stderr))
     except Exception as e:
         print(f"ALERT power_error: refitting the role powers failed: {type(e).__name__}: {e}; "
               "`uv run role_power.py` retries", file=sys.stderr)

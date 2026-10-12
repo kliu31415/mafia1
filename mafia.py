@@ -466,7 +466,8 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
         if not plan_stop:  # the build itself may have hit the limit
             log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
         if update_tips == DEFAULT_TIPS and not mock:  # next to the tips, so their commit and publish carry it
-            step("Refitting the role powers", lambda: role_power.update(LOG_DIR), llm=False)
+            step("Refitting the role powers", lambda: role_power.update(
+                LOG_DIR, on_new_off=lambda line: log.error("power_off", line)), llm=False)
     return usage
 
 

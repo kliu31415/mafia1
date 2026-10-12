@@ -217,6 +217,29 @@ def test_trait_powers_are_refit_by_their_holder_s_side(tmp_path, monkeypatch):
     assert role_power.score(roles, path, traits=[("Loud", Alignment.NEUTRAL)]) == pytest.approx(plain)
 
 
+def test_a_power_the_games_pull_far_from_its_prior_is_flagged_once(tmp_path, monkeypatch):
+    rng = random.Random(1)
+    village = ["Sheriff", "Lookout", "Tracker", "Vanilla Villager", "Vanilla Villager", "Grunt", "Pharmacist"]
+    # Games with a Medic: the Village wins 95%, far above what its prior (+0.55) predicts; the rest are even.
+    data = [role_power.Played(village + ["Medic"], int(rng.random() < 0.95)) for _ in range(60)]
+    data += [role_power.Played(village + ["Seer"], int(rng.random() < 0.5)) for _ in range(60)]
+    monkeypatch.setattr(role_power, "games", lambda log_dir: data)
+    path = tmp_path / "role_power.json"
+    alerts: list[str] = []
+    role_power.update(tmp_path, path, on_new_off=alerts.append)
+    flagged = json.loads(path.read_text(encoding="utf-8"))["off"]
+    assert flagged["Medic"] >= role_power.OFF_FLAG and "Sheriff" not in flagged
+    assert len(alerts) == 1 and "Medic fitted" in alerts[0]
+    assert "| Medic | +0.55 |" in path.with_suffix(".md").read_text(encoding="utf-8")
+    role_power.update(tmp_path, path, on_new_off=alerts.append)  # still flagged: no new alert
+    assert len(alerts) == 1
+    # Even games bring it back under OFF_CLEAR: it's no longer listed.
+    data[60:] = [role_power.Played(village + ["Medic"], i % 2) for i in range(400)]
+    role_power.update(tmp_path, path, on_new_off=alerts.append)
+    assert "Medic" not in json.loads(path.read_text(encoding="utf-8"))["off"] and len(alerts) == 1
+    assert role_power.off([], role_power.OFFSET_PRIOR, dict(role_power.PRIOR), dict(role_power.TRAIT_PRIOR)) == {}
+
+
 def test_an_old_role_power_file_without_traits_still_loads(tmp_path):
     path = tmp_path / "role_power.json"
     path.write_text(json.dumps({"written": "2026-10-11 10:00 UTC", "games": 3, "offset": -0.2,

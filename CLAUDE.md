@@ -123,7 +123,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      (about $0.10 each), e.g. after a hand edit. Check the diff of `rules_scripts/*.txt` and commit it with the rules. A game on a stale script plays by the plain cut and logs `script_stale`.
   9. `setups.py` draws setups (`--roles standard`, the default: 13 players, no Vanilla Villager or Grunt (`Setup.off`, told to players and left out of `script_roles`), balanced with the role powers in
      `role_power.py`: hand-set priors (traits' from their `TRAITS` power, signed by the holder's side), refit from game results into `tips/role_power.json`/`.md` wherever the tips are
-     updated, and carried by the tips commit and publish; `classic` is the older 11-15 player draw; `NAME:N` sets the count) by alignment and category, and tells players how (a note after the rules, never the role list), and `stats.py` scores
+     updated, and carried by the tips commit and publish; a refit flags powers the games pull far from their priors, with a
+     `power_off` alert when one is new; `classic` is the older 11-15 player draw; `NAME:N` sets the count) by alignment and category, and tells players how (a note after the rules, never the role list), and `stats.py` scores
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
      when the role's choices have a clear right answer.
 

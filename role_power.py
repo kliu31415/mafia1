@@ -13,13 +13,14 @@ few games, so a role or trait seen in few games stays near its prior). The resul
 which setups read (a file without "traits", from before traits were fitted, leaves them at their hand-set power),
 and tips/role_power.md, a readable table. They're rebuilt where the tips are (a PC game's end, `sync_logs.py
 pull`), so the existing tips commit and publish carry them to main and to cloud games. Edit PRIOR or TRAITS to
-change the intuition; `uv run role_power.py` refits by hand.
+change the intuition; `uv run role_power.py` refits by hand. Each refit also lists the powers the games pull far
+from their priors (`off`; a "Looks off" table in the .md), with a `power_off` alert only when one is newly flagged.
 """
 
 import argparse
 import json
 import math
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,6 +35,11 @@ OFFSET_PRIOR = -0.3  # hidden flips and secret votes favor the Yakuza (Oct 10 ga
 PRIOR_SD = 0.3  # how far data may move a power: the prior's weight (smaller = stickier)
 OFFSET_SD = 0.5
 OTHER_SETTINGS_WEIGHT = 0.5  # games played under other rule settings than today's defaults count half
+# A power "looks off" when the games pull it from its prior by this many of the pulls the prior itself expects (off);
+# it stays flagged until that falls below OFF_CLEAR, so a power near the line doesn't flag again every game. Tested
+# Oct 12 2026 on the 80 live games then: nothing flagged (largest 1.8); outcomes simulated from the fit flagged about
+# one wrong power per 8 refits, and a power 1.0 off in truth (about 25 points) reached 2 in about a third of runs.
+OFF_FLAG, OFF_CLEAR = 2.0, 1.5
 
 PRIOR: dict[str, float] = {
     # Village
@@ -162,6 +168,26 @@ def fit(data: list[Played], steps: int = 3000,
     return offset, power, trait_power
 
 
+def off(data: list[Played], offset: float, power: dict[str, float],
+        trait_power: dict[str, float]) -> dict[str, float]:
+    """How far the games pulled each power from its prior, in units of the pull the prior expects (a z-score): if the
+    priors were right, a power's shift would spread with variance PRIOR_SD**2 minus its fitted variance (from the
+    fit's curvature, each power on its own). Roles and trait keys no game had are left out."""
+    curve = {k: 1 / PRIOR_SD ** 2 for k in [*power, *trait_power]}
+    for g in data:
+        tt = terms(g)
+        x = offset + sum(power[r] for r in g.roles) + sum(sign * trait_power[k] for k, sign in tt)
+        v = g.weight / (2 + math.exp(x) + math.exp(-x))  # weight * p * (1 - p)
+        for r in set(g.roles):
+            curve[r] += v * g.roles.count(r) ** 2
+        for k, _ in tt:
+            curve[k] += v
+    fitted = {**power, **trait_power}
+    prior = {**PRIOR, **TRAIT_PRIOR}
+    return {k: (fitted[k] - prior[k]) / math.sqrt(spread) for k, c in curve.items()
+            if (spread := PRIOR_SD ** 2 - 1 / c) > 1e-9}
+
+
 def trait_holder(key: str) -> str:
     """Whose trait a key's power is, for the table: "Yakuza" for "Grudge@Yakuza", else the factions that can hold the
     trait without a power_for of their own."""
@@ -172,12 +198,19 @@ def trait_holder(key: str) -> str:
     return ", ".join(f for f, a in FACTIONS.items() if a in info.alignments and a not in (info.power_for or {}))
 
 
-def update(log_dir: Path, path: Path | None = None) -> Path:
-    """Refits from log_dir's games and writes path (default FILE, .json) and its .md table. Returns it."""
+def update(log_dir: Path, path: Path | None = None, on_new_off: Callable[[str], object] | None = None) -> Path:
+    """Refits from log_dir's games and writes path (default FILE, .json) and its .md table. Returns it. Powers that
+    look off (`off`) are listed in both; on_new_off gets a line for those that weren't flagged in the last fit."""
     from roles import ROLES
     path = path or FILE
     data = games(log_dir)
     offset, power, trait_power = fit(data)
+    try:
+        was = json.loads(path.read_text(encoding="utf-8")).get("off", {})
+    except (OSError, ValueError):
+        was = {}
+    z = off(data, offset, power, trait_power)
+    flagged = {k: round(v, 2) for k, v in z.items() if abs(v) >= (OFF_CLEAR if k in was else OFF_FLAG)}
     seen = {r: sum(r in g.roles for g in data) for r in PRIOR}
     trait_seen = {k: sum(k in dict(terms(g)) for g in data) for k in TRAIT_PRIOR}
     written = f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC"
@@ -186,7 +219,8 @@ def update(log_dir: Path, path: Path | None = None) -> Path:
                                 "roles": {r: {"prior": PRIOR[r], "power": round(power[r], 3), "games": seen[r]}
                                           for r in PRIOR},
                                 "traits": {k: {"prior": TRAIT_PRIOR[k], "power": round(trait_power[k], 3),
-                                               "games": trait_seen[k]} for k in TRAIT_PRIOR}},
+                                               "games": trait_seen[k]} for k in TRAIT_PRIOR},
+                                "off": flagged},
                                indent=1) + "\n", encoding="utf-8")
     village = sum(g.won for g in data)
     rows = sorted(PRIOR, key=lambda r: (ROLES[r].alignment.value, -power[r]))
@@ -201,7 +235,20 @@ def update(log_dir: Path, path: Path | None = None) -> Path:
               "| Trait | Holder | Prior | Power | Games |", "|---|---|---|---|---|"]
     lines += [f"| {k.partition('@')[0]} | {trait_holder(k)} | {TRAIT_PRIOR[k]:+.2f} | {trait_power[k]:+.2f} | "
               f"{trait_seen[k]} |" for k in sorted(TRAIT_PRIOR, key=lambda k: -trait_power[k])]
+    if flagged:
+        lines += ["", f"## Looks off\n\nThe games pull these powers from their priors by {OFF_FLAG:g} or more times "
+                  "what the prior expects (z; listed until it falls below "
+                  f"{OFF_CLEAR:g}): check the prior, or the role's design.\n", "| Role or trait | Prior | Power | z |",
+                  "|---|---|---|---|"]
+        prior, fitted = {**PRIOR, **TRAIT_PRIOR}, {**power, **trait_power}
+        lines += [f"| {k} | {prior[k]:+.2f} | {fitted[k]:+.2f} | {v:+.1f} |"
+                  for k, v in sorted(flagged.items(), key=lambda kv: -abs(kv[1]))]
     path.with_suffix(".md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if on_new_off and (new := [k for k in flagged if k not in was]):
+        prior, fitted = {**PRIOR, **TRAIT_PRIOR}, {**power, **trait_power}
+        on_new_off("role power looks off: " + "; ".join(
+            f"{k} fitted {fitted[k]:+.2f} vs prior {prior[k]:+.2f} (z {flagged[k]:+.1f})" for k in new)
+            + " (tips/role_power.md); check the prior or the role")
     return path
 
 
@@ -209,5 +256,5 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--logs", type=Path, default=ROOT / "logs", help="folder of game logs")
     args = ap.parse_args()
-    out = update(args.logs)
+    out = update(args.logs, on_new_off=lambda line: print(f"ALERT power_off: {line}"))
     print(f"Wrote {out} and {out.with_suffix('.md')}")
