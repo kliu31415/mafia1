@@ -353,3 +353,60 @@ Alice (public): Alice here, no nomination. Carol and Grace, yes or no: did eithe
 Carol (public): Carol here, no nomination. I'm waiting for the Night 4 results at dawn before anyone votes.
 Erin (public): Erin here, no nomination. Carol, which role uses your 2 tokens? Carol and Grace: yes or no, did you visit Dave on Night 3? No hang before Night 4 results post at dawn.
 Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+(to Carol, Grace) Carol (Yakuza chat): Carol: Agreed. Holder Grace, target Frank. His Juror checks on Dave/Carol and Carol/Grace are the most dangerous thing left. I'm voting Grace as holder and Frank as target, and I'm holding my Fixer token tonight. Alice stays off the table because of Heidi's armed trap. Ready.
+(to Carol, Grace) Grace (Yakuza chat): Grace: Agreed. Holder Grace, target Frank. His Juror checks on Dave/Carol and Carol/Grace are the most dangerous read left. Carol, keep your Fixer token. No other moves. Ready.
+Night actions:
+  Carol (Fixer): no role action; Katana vote: Grace holds, attacks Frank
+  Erin (Accountant): target Grace; "Accountant audit on Grace to test her Talent Agent claim (expected 1 token if accurate)."
+  Frank (Juror): target Carol; second target Grace
+  Grace (Talent Agent): no role action; Katana vote: Grace holds, attacks Frank
+  Heidi (Trapper): target Carol; "Moving the trap from Alice (Good, so no Katana threat there) to Carol, who is one of the three possible Night 3 Katana visitors and has denied all visits while trading many PMs with Grace."
+  Alice (Ex-Con): automatic: target Frank; "random visit"
+Katana: Grace holds it and attacks Frank.
+(to Frank) Moderator (private): Your jury check: Carol and Grace have no shared votes yet.
+(to Grace) Moderator (private): Your Katana attack on Frank tonight succeeded: Frank died.
+[Moderator summary] Night 4: No role-blocks. Grace (Katana holder) attacked Frank with a Standard Katana attack; Frank had no Defense and wasn't trapped, so he died (Katana, by Grace). Erin audited Grace (count_tokens). Frank's Juror check on Carol/Grace went through via the jury op (Astral, and the result still comes even though he died tonight). Heidi moved her trap from Alice to Carol (armed from Night 5). Alice's Ex-Con automatic visit landed on Frank. Carol took no action. Visits: Grace->Frank, Erin->Grace, Heidi->Carol, Alice->Frank. Living after tonight: Alice, Carol, Erin, Grace, Heidi (3 Village, 2 Yakuza), so the game goes on.
+[Moderator summary] Night 4: No role-blocks. Grace (Katana holder) attacked Frank with a Standard Katana attack. Frank had no Defense and no trap, so he died (Katana, by Grace). Erin audited Grace (count_tokens). Frank's Juror check on Carol and Grace was resolved through the jury op (an Astral Visit, resolved simultaneously). Heidi moved her trap from Alice to Carol (armed from Night 5); code gives Heidi her result. Alice's automatic Ex-Con visit landed on Frank. Carol took no action. Visits: Grace->Frank, Erin->Grace, Heidi->Carol, Alice->Frank. Living: Alice, Carol, Erin, Grace, Heidi (3 Village, 2 Yakuza). The game continues.
+[Night check] Night 4: correct
+(to Erin) Moderator (private): Your audit: Grace has 0 tokens in total.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Frank. Grace (Talent Agent) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Frank. Carol (Fixer) chose no action.
+[ERROR sync_error] pushing the day 5 checkpoint failed: RuntimeError: git push to origin logs failed: remote: fatal error in commit_refs        
+To https://github.com/kliu31415/mafia1
+ ! [remote rejected] 5d4623d49314aee901abce1ac571c32a3a772859 -> logs (failure)
+error: failed to push some refs to 'https://github.com/kliu31415/mafia1'
+
+===== DAY 5 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank (Village, Juror). Votes: Day 3 I voted Yes on Grace's nomination and Innocent in her trial, which passed Innocent (2 Guilty of 7). Night 3 Juror check on Dave and Carol: they voted differently in the one nomination and the one trial. Bob and Dave both died to the Katana, so the living holder visited Dave on Night 3. Trust mechanical evidence over claims. Grace and Carol have not stated their Night 3 actions; both denied only Nights 1 and 2."
+Speaking order today goes around the circle in seat order, starting with Heidi.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Heidi (public): Heidi here, Trapper, no nomination. Frank died to the Katana on Night 4, so the holder visited him that night. Erin, Carol and Grace: say plainly who you visited on Night 3 and Night 4. Whoever holds the Katana has to come forward before anyone is hanged.
+Alice (public): Alice here, no nomination. Erin, your Night 4 audit result was promised at dawn and hasn't been posted. Please post it now. Carol and Grace, Dave's Night 3 Katana visitor is one of you, so answer yes or no before anyone is hanged.
+Carol (public): Carol here, no nomination. Erin, your Night 4 audit result was promised at dawn, so please post it now. Heidi and Alice, who do you think visited Frank on Night 4? No one should be hanged on one claim alone, so let's check the Night 4 visits before anyone votes.
+[Claim] Erin: Accountant (Village). N1: audited Dave, 3 tokens. N2: audited Bob (visit), 0 tokens. N3: audited Carol, 2 tokens. N4: audited Grace, 0 tokens.
+Erin (public): Erin here, Accountant. Grace claimed Talent Agent with 3 tokens and used Scan and Count, so she should have 1 left. My Night 4 audit shows 0, so her claim is false. She also never stated a Night 3 or Night 4 action, and she and Carol have traded about 15 PMs. I'm nominating Grace. Please vote Yes.
+Erin nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Erin, Heidi, Alice; No - Grace, Carol
+Nomination votes on Grace: 3 Yes (the votes are secret).
+Grace is put on trial (3 Yes).
+[Claim] Grace: Talent Agent (Village). N1: Scan (Juror in play, Arsonist not). N2: Count Fortune Teller = 1. N3: Count Enforcer = 1. 0 tokens left. D3: Innocent on Grace.
+Grace (public): Grace here. Erin, your audit showing 0 tokens matches my claim. I used three Talent Agent actions, not two: Night 1 Scan (Juror in play, Arsonist not), Night 2 Count (Fortune Teller: 1, Bob), and Night 3 Count (Enforcer: 1, Dave). Three tokens, zero left. My last will wrongly said one token was left, and I've corrected it. Your "should have 1" assumed two uses, so the 0 reading supports me, not the nomination. The Count results match the two deaths, so the claim can be checked against the public deaths. I'm asking for Innocent. Please don't hang the Talent Agent on a token miscount.
+(to Alice, Grace) Grace -> Alice (private): Alice, Erin's 'should have 1 token' math assumes I used only two Talent actions. I used three: Scan N1, Count N2, Count N3. Zero left, which matches her 0 reading. Please keep Innocent; a Village hang on a miscount helps nobody but whoever holds the Katana.
+(to Grace, Heidi) Grace -> Heidi (private): Heidi, check Erin's Night 4 audit against my three uses: Scan N1, Count N2, Count N3, all public-death-checkable. 0 tokens fits. Please vote Innocent unless you have a visit result that contradicts it.
+Heidi (public): Heidi here. I'm leaning Innocent on Grace. Her Talent Agent counts match the public deaths (Fortune Teller, Enforcer, Juror), and Erin's 0-token audit fits. Carol, you're the one who has denied every visit while trading PMs with Grace. State your Night 2 and Night 3 actions plainly before anyone is hanged.
+Alice (public): Alice here. Grace's Talent Agent counts match public deaths (Count FT on Bob, Count Enforcer on Dave), and Erin's audit of her showed 0 tokens, so her claim fits. I'm voting Innocent on Grace. The real gap is Carol: she denies every visit, has PM'd Grace constantly, and hasn't said what her 2 tokens are. Carol, state your role and your Night 3 and 4 actions plainly.
+Carol (public): Carol here. I'm voting Innocent on Grace. Her three Talent Agent uses (Scan N1, Count Fortune Teller N2, Count Enforcer N3) fit the 0-token audit from Erin, and both counts line up with the claimed roles of Bob and Dave. Erin's nomination assumed two uses, so its basis is a miscount. Hanging a Talent Agent on that, with the Katana holder still hidden, is a bad trade for the town. If anyone has a concrete mechanical contradiction for Grace, post it before the vote.
+[Claim] Erin: Accountant (Village). N1: audited Dave, 3 tokens. N2: audited Bob (visit), 0 tokens. N3: audited Carol, 2 tokens. N4: audited Grace, 0 tokens. D5: Guilty on Grace (Talent Agent is a Yakuza role).
+Erin (public): Erin here. Correction: my nomination assumed two Talent Agent uses, but Grace's three uses fit my 0-token audit. The bigger issue: the role list puts Talent Agent under Yakuza, not Village, so Grace's "Talent Agent (Village)" claim is wrong. I'm voting Guilty. Carol, state your role and your source of 2 tokens.
+[Claim] Grace: Talent Agent (Village). N1: Scan (Juror in play, Arsonist not). N2: Count Fortune Teller = 1. N3: Count Enforcer = 1. 0 tokens left. D3: Innocent on Grace. D5: Innocent on Grace.
+Grace (public): Grace here. Three points for the vote. (1) Erin's 0-token audit of me matches my three Talent Agent uses: Scan on N1, Count Fortune Teller on N2, Count Enforcer on N3. Both Count results match the Fortune Teller and Enforcer deaths, so they can be checked against the public record. (2) Erin's point about the faction label is a question about the role list, not a mechanical contradiction, and I won't use it to hang anyone. (3) The open question is still who visited Dave on Night 3, and Carol has not stated her Night 3 action. I'm asking for Innocent until a concrete mechanical contradiction shows up.
+(to Grace, Heidi) Grace -> Heidi (private): Heidi, my counts match the public deaths and Erin's audit shows 0 tokens. Erin's only other point is a label question. Please vote Innocent and press Carol on her Night 3 action.
+(to Alice, Grace) Grace -> Alice (private): Alice, the Count results match Bob and Dave, and Erin's audit fits my three uses. A hang on a label while the Night 3 visitor is unidentified helps no one. Please keep Innocent.
+Trial votes on Grace: 3 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Grace] Guilty - Alice, Erin, Heidi; Innocent - Carol, Grace
+Grace is executed by hanging (3 Guilty of 5 votes; 3 needed).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace, Talent Agent. Night 1 scan: Juror in play, Arsonist not in play. Night 2 count: 1 Fortune Teller in play (Bob). Night 3 count: 1 Enforcer in play (Dave). All three talent tokens are spent. Those counts match the deaths. Check claims against visits and death causes, not leans or private chats. Do not hang anyone on claims alone."
+(to Carol) The Katana passed to Carol.
