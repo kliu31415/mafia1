@@ -195,3 +195,20 @@ Trial votes on Grace: 3 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Grace] Guilty - Bob, Carol, Dave; Innocent - Erin, Grace
 Grace is executed by hanging (3 Guilty of 5 votes; 3 needed).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace's last will: Night 1 and Night 2 each had a death by a Serial Killer attack, and Frank died to the Katana. Heidi (claimed Sheriff, N1 Not Evil on Alice) died to the Katana and a Serial Killer attack on Night 2. Heidi's claim was never confirmed by anyone else, so weigh it accordingly. Alive at my death: Bob, Carol, Dave, Erin, and me. Treat any role claim without mechanical backing with suspicion. Check every nomination against the printed totals, and watch who pushes hard for quick hangings and who defends the nominee."
+
+===== NIGHT 3 =====
+(to Carol, Dave) Carol (Yakuza chat): Carol: Dave keeps the Katana (holder vote: Dave) and we attack Bob tonight (target vote: Bob). Bob is the only one of Bob and Erin who has claimed a night action, and a Trapper can place a trap on Dave or me that goes off on a later night, so I'll use my Pharmacist block on Bob to stop any new trap. Dave, please cast the same two votes so the kill isn't cancelled. I won't block anyone else.
+(to Carol, Dave) Dave (Yakuza chat): Dave here. I agree with Carol's plan: I keep the Katana (holder vote: Dave) and we attack Bob tonight (target vote: Bob). Carol, your Pharmacist block on Bob also stops any new trap from him. I'll cast both votes as stated. Nothing else from me.
+Night actions:
+  Bob (Trapper): no action
+  Carol (Pharmacist): target Bob; "Pharmacist role-block on Bob, so any new trap placement from Bob's Trapper action fails. Katana vote: Dave keeps the Katana and attacks Bob."; Katana vote: Dave holds, attacks Bob
+  Dave (Grunt): no role action; Katana vote: Dave holds, attacks Bob
+Katana: Dave holds it and attacks Bob.
+(to Bob) Moderator (private): You were role-blocked tonight.
+(to Carol) Moderator (private): You role-blocked Bob tonight. Your block did not fail because of role-block immunity.
+(to Dave) Moderator (private): Your Katana attack on Bob succeeded tonight.
+[Moderator summary] Night 3: Carol (Pharmacist) role-blocked Bob (who chose no action anyway; told he was role-blocked). The Katana stayed with Dave, who made a Standard attack on Bob (Defense None, not trapped, not protected), so Bob died to the Katana. Bob's trap stays on Carol: nobody attacked her. Visits: Carol->Bob and Dave->Bob. Alive: Carol, Dave, Erin.
+[Night check] Night 3: correct
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Bob. Dave (Grunt) chose no action.
+(to Dave) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Bob. Carol (Pharmacist) chose to act on Bob ("Pharmacist role-block on Bob, so any new trap placement from Bob's Trapper action fails. Katana vote: Dave keeps the Katana and attacks Bob.").
