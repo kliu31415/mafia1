@@ -51,12 +51,14 @@ class Sniper(RoleLogic):
                   f"of turns ends, and you'll be told then. {tokens_left_text(p, TOKEN)}.")
 
     def at_round_end(self, game: Game) -> None:
-        # In the order they were taken. A Sniper who died since (hanged, say) doesn't fire (Kevin, Oct 12 2026).
-        for shooter, target, attack in game.role_state.pop(HELD, []):
-            if not game.player(shooter).alive:
-                continue
+        # All of a round's shots fire together (rules R25), so who fires is decided before any of them lands: two
+        # Snipers shooting each other both fire (game_20261012_022615_186854). A Sniper who died since (hanged, say)
+        # doesn't fire (Kevin, Oct 12 2026).
+        held = [s for s in game.role_state.pop(HELD, []) if game.player(s[0]).alive]
+        alive = set(game.alive_names())
+        for shooter, target, attack in held:
             victim = game.player(target)
-            if not victim.alive:  # hanged or shot earlier in this round: not fired, tokens back (Kevin, Oct 12 2026)
+            if target not in alive:  # died this round (hanged, say): not fired, tokens back (Kevin, Oct 12 2026)
                 me = game.player(shooter)
                 me.tokens[TOKEN] = me.tokens.get(TOKEN, 0) + ATTACK_LEVELS.index(attack)
                 game.tell([shooter], f"{target} died before your shot was fired, so it wasn't fired and its tokens "

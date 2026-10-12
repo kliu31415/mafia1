@@ -95,8 +95,9 @@ R25 (Day actions)
 Some roles act during the Day. A day action is taken on one of your own speaking turns, along with your messages;
 not on a trial turn, and not while you are puppeted. It takes effect when that round of turns ends (also when a
 hanging or the trial limit ends the round early), so its timing doesn't show whose turn it was; if you died since
-taking it, it doesn't take effect. A death it causes is announced at once (R12), and the game ends if that leaves
-one faction (R1). A day action isn't a visit, and night protections don't last into the Day.
+taking it, it doesn't take effect. Day actions taken in the same round take effect together, like night actions
+(R10). A death it causes is announced at once (R12), and the game ends if that leaves one faction (R1). A day action
+isn't a visit, and night protections don't last into the Day.
 
 === PART 3: THE NIGHT ===
 

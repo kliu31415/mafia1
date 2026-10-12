@@ -1667,6 +1667,18 @@ def test_held_shots_need_a_living_shooter_and_target_when_the_round_ends(game_fa
         "A shot rings out: someone shot at Erin."]
 
 
+def test_snipers_who_shoot_each_other_in_one_round_both_fire(game_factory):
+    from day import chat_turn
+    from roles import logic
+    game, players = game_factory(["Sniper", "Sniper", "Vanilla Villager", "Grunt", "Grunt"],
+                                 ScriptedClient(sniper_decide({"Alice": ("Bob", 1), "Bob": ("Alice", 1)})))
+    game.day, game.phase = 2, "day"
+    for name in ("Alice", "Bob"):
+        chat_turn(game, players, game.player(name), rnd=1, can_nominate=False)
+    logic("Sniper").at_round_end(game)
+    assert not game.player("Alice").alive and not game.player("Bob").alive  # rules R25: together
+
+
 def test_no_sniper_shot_on_a_trial_turn_while_puppeted_or_with_bad_tokens(game_factory):
     from day import chat_turn
     from roles import logic
