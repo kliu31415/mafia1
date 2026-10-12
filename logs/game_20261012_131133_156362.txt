@@ -257,3 +257,21 @@ Dave (public): Dave here. No nomination from me. Erin and Ivan, name the result 
 Erin (public): Erin here. No nomination from me. I'll vote only on a result that bears on a vote.
 Ivan (public): Ivan here. No nomination from me. My Day 2 votes were Yes on Alice's nomination, Guilty on Alice, and Guilty on Grace. Alice's audit and Carol's profiles are the only results so far, and I'll vote on whatever result bears on a vote tomorrow.
 Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Auditor): target Erin; "Auditor action: audit Erin to see her Day 3 nomination vote (Carol nomination) and any other votes she cast."
+  Bob (Medic): target Carol; "Standard protection on Carol, no token cost. Carol is my only live investigator claim (Profiler), and a Serial Killer or Katana holder is likely to target a claimed role."
+  Carol (Profiler): target Erin; chose to spend 1 token(s); "Profile Erin with my last profile token."
+  Erin (Serial Killer): target Carol; "Strong attack on Carol. She is the Profiler who could expose me with an exact-role check, and she has a live profile token."
+  Ivan (Clerk): target Alice; chose to spend 1 token(s); "Clerk: spend my last clerk token to rig the next Day's votes. Katana: I keep the Katana and attack Alice, the Auditor claim who can read votes."; Katana vote: Ivan holds, attacks Alice
+Katana: Ivan holds it and attacks Alice.
+(to Alice) Moderator (private): Your audit of Erin's votes during the Day, in order: Yes on the nomination of Carol.
+(to Carol) Moderator (private): You profiled Erin: their role is Auditor, Serial Killer or Trapper (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 0 profile tokens left.
+(to Erin) Moderator (private): Your attack on Carol tonight succeeded: Carol died.
+(to Ivan) Moderator (private): You rigged the next Day's votes. 0 clerk tokens left. The Katana attack on Alice tonight succeeded: Alice died.
+(to Bob) Moderator (private): You protected Carol tonight with Standard Defense. 2 medic tokens left.
+[Moderator summary] Night 3: Alice audited Erin; Carol profiled Erin (last token). Bob gave Carol Standard protection (no token). Erin's SK Strong attack beat Bob's Standard Defense and killed Carol. Ivan held the Katana, and its Standard attack killed Alice, who had no defense. Ivan spent his clerk token to rig Day 4. No role-blocks. Bob, Dave, Erin and Ivan remain alive, so the game doesn't end.
+[Night check] Night 3: correct
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): You were attacked tonight (Serial Killer) and died.
