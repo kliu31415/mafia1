@@ -136,3 +136,30 @@ Erin (public): Erin here. Day 2 is ending, so no nomination from me. Frank, Alic
 Frank (public): Frank here. No nomination from me. Night 2 results first.
 Grace (public): Grace here. No nomination from me. My Night 2 scent names and attack count post once tonight resolves. Frank and Erin, answer Heidi's questions directly on Day 3.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Carol) Alice (Yakuza chat): Alice: Proposal for tonight. I keep the Katana and we both attack Erin. She's the only claimed Medic, and her Night 1 protection is the only thing that stopped a hit, so removing her before she protects again is the best use of tonight. Grace's Standard hit on Grace would likely just be blocked again. Carol, please confirm your vote on Erin. Don't swap, since a swap could move Erin's self-protection onto someone else and muddy the result. I'm not spending a ballot token tonight. Ready once you confirm.
+(to Alice, Carol) Carol (Yakuza chat): Carol confirmed: Alice keeps the Katana and we both attack Erin tonight. Erin's Night 1 protection is the only reason Grace survived, so she is the right target. I won't swap by default. I'm holding my swap tokens in case Erin protects herself and we need to redirect. If we do, I'll say so before the night resolves. Ready.
+(to Alice, Carol) Alice (Yakuza chat): Alice confirmed. I keep the Katana and we both attack Erin with it, no swap, no ballot token. If Erin self-protects at Standard, the hit fails and we reassess on Day 3. Ready.
+(to Alice, Carol) Carol (Yakuza chat): Carol confirmed. Alice keeps the Katana and we both attack Erin, no swap from me. I'm not spending a swap: if Erin self-protects, a swap just moves her protection and the hit onto whoever I swap in, so it doesn't help. If the hit fails we reassess on Day 3. Ready.
+Night actions:
+  Alice (Ballot Stuffer): no role action; Katana vote: Alice holds, attacks Erin
+  Bob (Bounty Hunter): target Carol
+  Carol (Smuggler): no role action; Katana vote: Alice holds, attacks Erin
+  Dave (Veteran): chose to spend 1 token(s); "Going on alert with a Standard-defense shield. Any visitor takes a Strong Attack."
+  Erin (Medic): target Grace; "Standard protection on Grace at no token cost, since she was the Night 1 Katana target and is the only claimed Bloodhound with a scent result."
+  Frank (Juror): no action
+  Grace (Bloodhound): target Frank; chose to spend 1 token(s); "Spend one scent token to track Frank tonight."
+  Heidi (Accountant): target Erin; "Audit Erin's token count. Erin claims to be a Medic with 2 tokens left, and her Standard protection on Grace is the only explanation for Grace surviving."
+Katana: Alice holds it and attacks Erin.
+(to Bob) Moderator (private): Your bounty on Carol is claimed.
+(to Alice) Moderator (private): Your Katana attack on Erin succeeded: they died.
+(to Bob) Moderator (private): Your attack on Carol killed them. 0 attack tokens left.
+(to Dave) Moderator (private): You went on alert. Nobody visited you tonight. 1 alert token left.
+[Moderator summary] Night 2: Alice (Katana holder) attacked Erin with Standard Katana; Erin (Defense None, protecting Grace) died. Bob (Bounty Hunter) spent his attack token on a Strong Attack on Carol (Smuggler, bounty target); Carol died. Dave on alert (1 token left), no visitors. Erin's protection on Grace unused. Grace tracked Frank (scent token spent). Heidi audited Erin's tokens (2). No role-blocks or swaps. Katana stays with Alice. Remaining: Alice (Yakuza), Bob (Neutral), Dave, Frank, Grace, Heidi (Village).
+[Night check] Night 2: correct
+(to Heidi) Moderator (private): Your audit: Erin has 2 tokens in total.
+(to Grace) Moderator (private): Your Bloodhound check of Alice, Dave and Frank: together they have made 2 attacks this game, tonight's included. 1 scent token left.
+(to Carol) Moderator (private): You were attacked tonight (Bounty Hunter) and died.
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Erin. Carol (Smuggler) chose no action.
