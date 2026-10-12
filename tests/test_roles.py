@@ -2267,7 +2267,9 @@ def test_placing_removing_and_a_swapped_trap(game_factory):
     game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}  # chose Bob, landed on Carol
     apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Carol"})
     game.run_night_end_hooks()
-    assert told(game, "Alice")[-1].endswith("A swap moved your trap from Bob to Carol (rules R23).")
+    game.run_dawn_hooks()
+    assert any(e.text.endswith("A swap moved your trap from Bob to Carol last night (rules R23).")
+               and list(e.visible_to or []) == ["Alice"] for e in game.events)
     assert game.role_state["armed_traps"] == {"Alice": "Carol"}
 
 

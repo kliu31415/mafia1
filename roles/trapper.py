@@ -8,8 +8,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RoleLogic, Status, acted_tonight, attacks_error, chosen_name, register, stop_one_attack,
-                        token_user_error)
+from roles.base import (RoleLogic, Status, acted_tonight, attacks_error, chosen_name, note_swap_move, register,
+                        stop_one_attack, token_user_error)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -18,7 +18,6 @@ SET, SPRING = "set_trap", "spring_trap"
 TRAPS = "traps"  # game.role_state: Trapper -> the player its trap is on, until it's used up, replaced or removed
 ARMED = "armed_traps"  # game.role_state: Trapper -> trapped player, traps standing at the end of the last night
 WENT_OFF = "traps_went_off"  # game.role_state: Trappers whose trap went off tonight
-MOVED = "traps_moved"  # game.role_state: Trapper -> [chosen, landed], traps a swap moved tonight (rules R23)
 
 
 def traps(game: Game) -> dict[str, str]:
@@ -116,8 +115,7 @@ class Trapper(RoleLogic):
                 show_traps(game)
                 return f"{by}'s trap is removed."
             traps(game)[by] = name
-            if (chosen := chosen_name(game, name)) != name:  # rules R23: the user is told the swap moved it
-                game.role_state.setdefault(MOVED, {})[by] = [chosen, name]
+            note_swap_move(game, game.player(by), game.player(name), "trap")  # rules R23: told at dawn
             game.log.write("trap_set", trapper=by, target=name, day=game.day)
             show_traps(game)
             return f"{by}'s trap is now on {name} (armed from tomorrow night); any old trap of theirs is gone."
@@ -151,9 +149,6 @@ class Trapper(RoleLogic):
         for trapper in game.role_state.pop(WENT_OFF, []):
             if game.player(trapper).alive:
                 game.tell([trapper], "Your trap went off tonight and is used up.")
-        for trapper, (chosen, landed) in game.role_state.pop(MOVED, {}).items():
-            if game.player(trapper).alive and traps(game).get(trapper) == landed:
-                game.tell([trapper], f"A swap moved your trap from {chosen} to {landed} (rules R23).")
         standing = {by: on for by, on in traps(game).items() if game.player(on).alive}
         if standing != traps(game):  # a trap on a player who died is gone
             game.role_state[TRAPS] = standing
