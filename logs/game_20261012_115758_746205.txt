@@ -556,3 +556,23 @@ Alice (public): Alice here, no nomination. I won't nominate myself. Carol, your 
 Carol (public): Carol here, no nomination. The stall rule is real: if no one dies on Nights 8 and 9, everyone loses on Day 10. A trial is the only way out for both of us. Alice, if you're Good, nominate yourself today. I'll vote Yes on it and Innocent at your trial.
 (to Alice, Carol) Carol -> Alice (private): Alice, the stall rule makes a trial the only exit for both of us. Nominate yourself today. I'll vote Yes on it and Innocent at your trial. Vote Innocent yourself too.
 Alice (public): Alice here, no nomination. I won't nominate myself. Both Carol trials on Day 6 showed a Guilty counted as Innocent, which fits a Fixer, and your Innocent promise can be flipped. A hang needs both of us, so nothing happens unless one of us votes Yes on the other. I'll vote Yes on any nomination of Carol.
+Carol (public): Carol here, no nomination. The stall rule is real: if nobody dies on Nights 8 and 9, everyone loses on Day 10. Alice, a trial is the only way out for both of us. Nominate yourself and I'll vote Yes, then Innocent at your trial, as I offered.
+(to Alice, Carol) Carol -> Alice (private): Alice: self-nominate today. I'll vote Yes with you. If you're Good, vote Innocent at your own trial; that's the clean way to clear yourself and end the stall.
+Alice (public): Alice here, no nomination. I won't self-nominate: with two of us left, a Fixer could flip my Innocent to Guilty, and Carol's offer would hang me. I'll vote Yes on any nomination of Carol. Heidi's trap on me is armed, so any Katana attack on me kills its user.
+Carol (public): Nominating Alice. Vote Yes if you're Good.
+(to Alice, Carol) Carol -> Alice (private): Alice, vote Yes on your own nomination. It ends the stall, and if you're Good your Innocent vote clears you.
+Carol nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Carol; No - Alice
+Nomination votes on Alice: 1 Yes (the votes are secret).
+The nomination of Alice failed (1 Yes).
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown. D7: No on Carol's nomination. D8: No on Alice's nomination (self). Will vote Yes on any Carol nomination.
+Alice (public): Alice here, no nomination. Two of us are alive, so a hang needs both votes. Any Katana attack on me kills Carol through Heidi's trap, so the stall rule is the only path left.
+Carol (public): Carol here. Alice, nominate yourself and vote Yes. I'll vote Innocent at your trial, so you walk free. Refusing only looks worse.
+Alice (public): Alice here, no nomination. I'll vote Yes on any nomination of Carol and No on any nomination of myself. Carol, any Katana attack on me triggers Heidi's trap and kills you.
+Carol (public): Carol here, no nomination. Two of us can't convict without both Guilty votes, so no hang happens unless someone votes against themselves.
+(to Alice, Carol) Carol -> Alice (private): Alice, nobody wins by stall. Nothing changes unless one of us votes against themself.
+Alice (public): Alice here, no nomination. I won't self-nominate, since a Fixer could flip my vote. A stall loses for both of us, so Carol, if you want a trial, nominate yourself and I'll vote Guilty.
+Carol (public): Carol here, no nomination. Stall still ends both of us. I'm not attacking while the trap is armed.
+(to Alice, Carol) Carol -> Alice (private): Alice, any strike on you costs me my life through the trap, so I won't make one. Only a vote from both of us can end this, and you won't vote Yes on yourself. The stall is a loss for both of us.
+Alice (public): Alice here, no nomination. I'll vote Yes on any nomination of Carol and No on any nomination of myself. Heidi's trap stays armed on me, so any Katana attack on me kills its user.
+Discussion time is over. The day ends.
