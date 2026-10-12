@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 import log_viewer
-from records import caller_of, read_records, safe_print
+from records import caller_of, read_records, redact, safe_print
 
 
 # Bump when a record's fields change in a way analysis code has to handle (written in "setup").
@@ -166,7 +166,7 @@ class GameLog:
         self.write(record["kind"], **{k: v for k, v in record.items() if k != "kind"})
 
     def write(self, kind: str, **data: Any) -> None:
-        line = json.dumps({"t": time.time(), "kind": kind, **data}, default=str)
+        line = redact(json.dumps({"t": time.time(), "kind": kind, **data}, default=str))
         text = log_viewer.text_line(json.loads(line))
         with self.lock:
             self.f.write(line + "\n")

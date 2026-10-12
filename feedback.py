@@ -11,7 +11,7 @@ from llm import LLMClient, Model, ModelSpec, answer_json, rules_system
 from texts import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
-from records import read_records
+from records import read_records, redact
 from state import Game
 from texts import player_view
 from tips import print_alert
@@ -172,9 +172,9 @@ def run_lessons(game: Game, players: Players, lessons_file: Path) -> None:
             game.log.write("lessons", who=p.name, role=p.role, model=p.model.value, lessons=out["lessons"],
                            **({"tips_feedback": out.get("tips_feedback", [])} if p.tips else {}))
             for lesson in out["lessons"]:
-                f.write(json.dumps({"game": game.log.path.stem, "source": "player", "player": p.name,
+                f.write(redact(json.dumps({"game": game.log.path.stem, "source": "player", "player": p.name,
                                     "role": p.role, "model": p.model.value,
-                                    "won": p.name in (game.winners or []), **lesson}) + "\n")
+                                    "won": p.name in (game.winners or []), **lesson})) + "\n")
 
 
 STRATEGY_SCHEMA = obj(summary=STR, lessons={"type": "array", "items": obj(
@@ -222,8 +222,8 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:
         for lesson in lessons:
-            f.write(json.dumps({"game": game.log.path.stem, "source": "moderator", "player": None,
-                                "role": "Moderator", "model": model.value, "won": None, **lesson}) + "\n")
+            f.write(redact(json.dumps({"game": game.log.path.stem, "source": "moderator", "player": None,
+                                "role": "Moderator", "model": model.value, "won": None, **lesson})) + "\n")
 
 
 def write_report(jsonl_path: Path) -> Path | None:

@@ -1,5 +1,7 @@
 """Game logs: the records analysis relies on."""
 
+import json
+
 import mafia
 from llm import Model
 from tests.conftest import ScriptedClient, votes
@@ -113,3 +115,35 @@ def test_every_call_record_says_what_step_it_was_and_how_long_it_took(tmp_path, 
     assert {"will", "day_turn", "night_action", "debrief", "lessons"} <= steps
     assert all("round" in r for r in calls if r["step"] in ("day_turn", "yakuza_chat"))
     assert all("latency_s" in r and "day" in r for r in records if r["kind"] == "moderator_call")
+
+
+def test_logs_never_hold_secrets_or_email(tmp_path, monkeypatch):
+    """Logs get shared: an API key (by its env var or its shape), an email address or the home folder's path
+    never reaches the JSONL, .txt or .html, even when an error message or a model's answer contains one."""
+    import log_viewer
+    import records
+    from gamelog import GameLog
+    from pathlib import Path
+    key = "sk-or-v1-" + "0123456789abcdef" * 4
+    monkeypatch.setenv("SOME_SERVICE_TOKEN", "tok_abcdefghijklmnopqrstuvwxyz")
+    monkeypatch.setattr(Path, "home", staticmethod(lambda: Path("/home/someuser")))
+    records.secret_values.cache_clear()
+    records.home_dirs.cache_clear()
+    try:
+        path = tmp_path / "game.jsonl"
+        log = GameLog(path)
+        log.write("setup", players=[])
+        log.error("api_retry", f"HTTP 401 for Bearer {key}: tok_abcdefghijklmnopqrstuvwxyz",
+                  traceback='File "/home/someuser/mafia1/llm.py", line 1')
+        log.write("chat", who="Alice", text="My owner is someone@example.com, ask them", cat="chat")
+        log.close()
+        old = tmp_path / "old.jsonl"  # a log written before redaction renders clean too
+        old.write_text(json.dumps({"t": 0, "kind": "api_retry", "alert": True, "error": key}) + "\n")
+        texts = [p.read_text(encoding="utf-8") for p in (path, path.with_suffix(".txt"), path.with_suffix(".html"),
+                                                         log_viewer.render_html(old))]
+    finally:
+        records.secret_values.cache_clear()
+        records.home_dirs.cache_clear()
+    for text in texts:
+        assert key not in text and "tok_abc" not in text and "someone@" not in text and "someuser" not in text
+    assert "[redacted secret]" in texts[0] and "[redacted email]" in texts[0] and "~/mafia1/llm.py" in texts[0]

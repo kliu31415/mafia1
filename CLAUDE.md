@@ -163,6 +163,9 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   at the top of the feedback report and of the HTML view (each error is also marked in red where it
   happened, and in the .txt as `[ERROR kind]`), and printed as an `ALERT ...` line. When running a live game,
   watch its output for `ALERT` lines and tell Kevin about new kinds of errors as they happen.
+- Logs get shared (HTML logs are standalone pages), so `records.redact` takes API keys (env vars named like
+  secrets, and key shapes), email addresses and the home folder's path out of every line `GameLog` writes and every
+  log `read_records` reads. Write log files through those two, not around them.
 - Player answers are checked against their schema (`players.schema_errors`) before the game uses them; one
   that breaks it is a `player_error`, retried and then replaced by the fallback. Moderator ops that apply but
   look wrong (e.g. killing a dead player) come back to the moderator as notes and are `moderator_warning`s.
