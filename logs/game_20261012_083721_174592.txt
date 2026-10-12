@@ -13,3 +13,27 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Village players may also have a trait (R24).
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Dave) Carol (Yakuza chat): Proposal: Katana stays with Carol (no holder move). Target: Erin. We have no information yet, so this is a blind kill on a quiet seat; with 6 Village players, early kills matter. Dave, if you want a different target, say so now; otherwise let's both vote Erin so the attack goes through.
+(to Carol, Dave) Dave (Yakuza chat): Agreed with Carol: Katana stays with Carol, and I vote Erin as the target so the attack goes through. I have no reason to prefer anyone else tonight. Ready.
+Night actions:
+  Alice (Trapper): target Frank; "Place my trap on Frank. It arms from Night 2 and stops the first Basic, Standard or Strong attack on Frank after that."
+  Bob (Trapper): target Erin
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Erin
+  Dave (Grunt): no role action; Katana vote: Carol holds, attacks Erin
+  Erin (Sheriff): target Bob
+  Grace (Kitsune): target Alice; "Lay the fox charm on Alice. It costs no token."
+  Heidi (Serial Killer): target Alice; "Serial Killer Strong Attack on Alice."
+Katana: Carol holds it and attacks Erin.
+(to Carol) Moderator (private): Your Katana attack on Erin succeeded: Erin died.
+(to Erin) Moderator (private): You investigated Bob. Result: Not Evil.
+(to Heidi) Moderator (private): Your attack on Alice failed: Alice survived.
+[Moderator summary] Night 1: Grace's fox charm on Alice swallowed Heidi's Strong Serial Killer attack, so Alice survived and was told a Serial Killer attacked her, and Heidi was told the attack failed. Alice trapped Frank and Bob trapped Erin; both traps arm from Night 2. Carol (Katana holder) dealt a Standard Katana attack to Erin (Defense None), who died: cause Katana, by Carol, katana true. Erin's Sheriff check on Bob came back Not Evil, and she still got the result because night actions resolve together. Dave took no action. Code delivers Grace's result.
+(to Alice) Moderator (private): You were attacked tonight by a Serial Killer, but you survived.
+[Moderator summary] Night 1: Grace's fox charm on Alice stopped Heidi's Strong Serial Killer attack. Alice survived and was told a Serial Killer attacked her; Heidi was told the attack failed. Alice trapped Frank and Bob trapped Erin; both traps arm from Night 2. Carol, holding the Katana, dealt a Standard attack to Erin, who had no Defense and died (cause Katana, by Carol, katana true). Erin's Sheriff check on Bob came back Not Evil; she still got it because night actions resolve together. Dave took no action. Code tells Grace, Alice and Bob their own action results.
+[Night check] Night 1: correct
+(to Grace) Moderator (private): Your fox charm on Alice swallowed a Strong Attack announced as 'Serial Killer'. Release it on a later night (you can't charm until you do).
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Erin. Dave (Grunt) chose no action.
+(to Dave) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Erin. Carol (Grunt) chose no action.
