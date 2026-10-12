@@ -13,3 +13,21 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Village players may also have a trait (R24).
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Heidi) Carol (Yakuza chat): Heidi, Night 1 plan: I keep the Katana (holder vote: Carol). No attack tonight, since we have no information on who is a Village power role and an early Katana kill would just reveal our hand. I will not block anyone tonight either. Reply if you disagree; otherwise I vote the same and we both pass.
+(to Carol, Heidi) Heidi (Yakuza chat): Agreed, Carol. No attack tonight, you keep the Katana (holder vote: Carol), and no block. An early kill would only reveal us, and we can't tell yet who the Village power roles are. I'm ready.
+Night actions:
+  Alice (Sheriff): target Bob; "Sheriff investigation on Bob. Learn Evil or Not Evil."
+  Carol (Pharmacist): no role action; Katana vote: Carol holds, attacks None
+  Dave (Medic): target Frank; "Standard protection on Frank, at no token cost. No information yet, so this is a guess at a likely target."
+  Frank (Tracker): target Bob
+  Heidi (Grunt): no role action; Katana vote: Carol holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Alice) Moderator (private): You investigated Bob tonight. Result: Not Evil.
+(to Dave) Moderator (private): You protected Frank tonight, giving them Standard Defense. You have 2 medic tokens left.
+(to Frank) Moderator (private): You tracked Bob tonight. Bob did not visit anyone.
+[Moderator summary] Night 1: Alice (Sheriff) checked Bob -> Not Evil. Dave (Medic) gave Frank Standard protection, no token spent (2 left). Frank (Tracker) tracked Bob -> no visits. Carol (Pharmacist) did not act. Yakuza kept the Katana with Carol, no attack. No deaths.
+[Night check] Night 1: correct
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Heidi (Grunt) chose no action.
+(to Heidi) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Pharmacist) chose no action.
