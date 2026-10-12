@@ -212,3 +212,57 @@ Katana: Dave holds it and attacks Bob.
 (to Bob) Moderator (private): You were attacked tonight (Katana) and died.
 (to Carol) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Bob. Dave (Grunt) chose no action.
 (to Dave) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Bob. Carol (Pharmacist) chose to act on Bob ("Pharmacist role-block on Bob, so any new trap placement from Bob's Trapper action fails. Katana vote: Dave keeps the Katana and attacks Bob.").
+
+===== DAY 4 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "Bob, Village (Trapper). Trap on Carol, armed from N2, no alert through N2. Heidi (Sheriff, Good, N1 checked Alice Not Evil) was killed by Katana and Serial Killer on N2. Trust verified results and votes over unverified claims. Watch who pushes for quick hangings and who defends them."
+Speaking order today goes around the circle in seat order, starting with Erin.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Erin: Vanilla Villager. No night action, no results. D3: voted No on Carol's nomination of Grace, Innocent at Grace's trial.
+Erin (public): Erin here. Three are alive: Carol, Dave and me. The Katana holder is still alive, and the Serial Killer may be too. Carol opened the Grace nomination with no result, Dave voted Guilty before any defense answer, and the two of you have been PMing across Days 2 and 3. Bob's trap was on Carol, so her "no alert" is not a check on anyone. Carol and Dave, state what you did on Night 3 and who you think the killer is. If neither of you gives a concrete answer, I'll nominate Carol next round.
+(to Dave, Erin) Erin -> Dave (private): Dave, I'm considering nominating Carol next round. Would you vote Yes? Tell me what your Carol PMs were about, in one line.
+[Claim] Carol: Villager, no night action. N1: no action. N2: no action. N3: no action. Alive. D3: nominated Grace, voted Guilty on Grace. D4: nominated Erin.
+Carol (public): Carol here, Villager. Erin has given no checkable info, pushed the Grace hang on a "no rush" argument, and has been PMing Dave. I'm nominating Erin for trial now.
+Carol nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Carol, Dave; No - Erin
+Nomination votes on Erin: 2 Yes (the votes are secret).
+Erin is put on trial (2 Yes).
+[Claim] Erin: Vanilla Villager. No night action, no results. D3: Innocent on Grace. D4: No on Carol's nomination of Erin.
+Erin (public): Erin here, Vanilla Villager, no night action and no results. Carol opened the Grace nomination with no result, and now she's opened mine with no result either. Carol has no check on anyone, and "no rush" is not a crime. Here is what's checkable: three players are alive, Carol, Dave and me. The Katana killed Frank, Heidi and Bob, so a Yakuza is alive, and I'm Village. That means one of Carol or Dave is Yakuza. If I'm hanged, only those two remain, and the Yakuza kills the other one with the Katana the next night. Dave, you're the one who decides this vote. Voting Innocent keeps a Good vote alive. I'm not claiming more than I know: I'll vote Carol on the next nomination if I survive.
+(to Dave, Erin) Erin -> Dave (private): Dave: one of you two is Yakuza. If I'm hanged, the Katana finishes the Good one of you next night. Vote Innocent with me and I'll back a Carol nomination next Day.
+Carol (public): Carol here. Erin is asking Dave to vote Innocent for her, with no checkable result behind her. Two Guilty votes hang her. I vote Guilty.
+(to Carol, Dave) Carol -> Dave (private): Dave, Guilty from me. Erin's PMs to you are pressure, not evidence. Let's match our votes.
+Dave (public): Dave here, Villager. Erin, your defense is that Carol and I are Yakuza, and that I should vote Innocent to save you. That is the same pressure you put on me in private, and it's not a result. Only a Guilty vote can be checked against the totals. Carol and I have both said what we did each night, and you've posted no night result at all. I vote Guilty.
+(to Carol, Dave) Dave -> Carol (private): Guilty from me, matching your vote. Keep the totals consistent with what we said publicly.
+[Claim] Erin: Vanilla Villager. No night action, no results. D3: Innocent on Grace. D4: No on Carol's nomination of Erin; Innocent at my trial.
+Erin (public): Erin here, final words. I'm a Vanilla Villager with no night action and no results, and I have nothing to add beyond what I've said. Carol and Dave both claim no night action, so the Katana holder is one of you, and the Serial Killer is probably the other or already dead. Carol opened the Grace nomination and then mine, both with no result. Dave voted Guilty on Grace before any answer, and has voted Guilty on me without a result either. Both of you have been PMing each other across Days 2 to 4. Watch the totals: they show who flipped and who didn't. I'm voting Innocent. Whoever survives, check the Katana target next night and don't let the other one decide the vote alone.
+Trial votes on Erin: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Carol, Dave; Innocent - Erin
+Erin is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin (Village, Vanilla Villager). No night action or result ever. D3: Innocent on Grace. D4: No on Carol's nomination of Erin, Innocent at my trial. Carol and Dave: one of you is Yakuza since the Katana is still alive. Vote on checkable facts, not pressure."
+The game is over. Winners: Carol, Dave.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Dave] Night summaries that include a teammate's full free-text reasoning are more than a Yakuza needs and may be worth trimming.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Dave
+Cost by player (USD):
+  Alice (Medic)            $0.0000    4 calls  claude-haiku-5.5
+  Bob (Trapper)            $0.0000   26 calls  claude-haiku-5.5
+  Carol (Pharmacist)       $0.0000   33 calls  claude-haiku-5.5
+  Dave (Grunt)             $0.0000   34 calls  claude-haiku-5.5
+  Erin (Vanilla Villager)  $0.0000   29 calls  claude-haiku-5.5
+  Frank (Kitsune)          $0.0000    4 calls  claude-haiku-5.5
+  Grace (Serial Killer)    $0.0000   26 calls  claude-haiku-5.5
+  Heidi (Sheriff)          $0.0000   14 calls  claude-haiku-5.5
+  Moderator                $0.0000    5 calls  claude-opus-5.5
+  Night checks             $0.0000    3 calls  claude-opus-5.5
+  Strategy review          $0.0000    1 calls  claude-opus-5.5
+  Log review               $0.0000    1 calls  claude-opus-5.5
+  Total                    $0.0000  180 calls
