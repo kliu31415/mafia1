@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "2a8998fded6ca108",
- "text_sha256": "c2a27828a6a05651",
+ "cut_sha256": "cc05d5727d4d8a62",
+ "text_sha256": "aa13de757dbc52ce",
  "made_by": "a Claude Code session",
- "made": "2026-10-12T12:30:48+00:00",
+ "made": "2026-10-12T12:42:36+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -55,6 +55,11 @@
    "old": "A trait stays with you if your role changes. Traits are always true: a Roleplayer's\ntrait is real even though its role isn't. A player may have more than one trait, but never the same one twice.",
    "new": "A trait stays with you if your role changes. A player may have\nmore than one trait, but never the same one twice.",
    "reason": "The Roleplayer is not on the script."
+  },
+  {
+   "old": "- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con. Checks that see\n  true alignment, such as the Census Taker's count, aren't fooled.",
+   "new": "- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con.",
+   "reason": "Census Taker is not on the script."
   }
  ]
 }

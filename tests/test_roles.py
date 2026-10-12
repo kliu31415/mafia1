@@ -2052,3 +2052,14 @@ def test_a_faultline_player_learns_one_random_voter_from_each_side(game_factory)
     trait_logic("Faultline").after_trial_vote(game, "Erin", cast, guilty=["Bob", "Carol", "Dave", "Erin"])
     assert told(game, "Alice")[-1].endswith("in the trial of Erin, every other vote counted as Guilty.")
     assert not any("Faultline" in t for n in ("Bob", "Carol", "Dave", "Erin") for t in told(game, n))
+
+
+def test_the_moderator_is_told_a_notorious_player_reads_evil_only_when_one_is_in_the_game(game_factory):
+    # rules R19, R24 (Kevin, Oct 12 2026): applied by the moderator, like the Ex-Con
+    from night import role_notes
+    from traits import TRAITS
+    game, players = game_factory(["Vanilla Villager", "Sheriff", "Grunt", "Vanilla Villager"])
+    assert "Notorious" not in role_notes(game)
+    game.player("Alice").traits = ["Notorious"]
+    assert "reads a Notorious player as Evil" in role_notes(game)
+    assert "Evil" in TRAITS["Notorious"].summary

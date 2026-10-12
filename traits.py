@@ -87,6 +87,15 @@ TRAITS: dict[str, TraitInfo] = {
                                  "<circle cx='5' cy='5' r='4.4' fill='#9a3412' stroke='#fff' stroke-width='1'/>"
                                  "<path d='M4.4 1.4L5.8 3.8L4.2 5.6L5.9 8.6' fill='none' stroke='#fff' "
                                  "stroke-width='1.1'/></svg>")),  # a crack
+    # Harmful to its holder's side, like Cursed: alignment checks can't clear them (Kevin, Oct 12 2026).
+    "Notorious": TraitInfo(frozenset({Alignment.GOOD}),
+                           "Alignment checks see you as Evil, though you are Village (rules R19, R24).",
+                           "Reads Evil to alignment checks, like the Ex-Con.",
+                           power=-0.1,
+                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                 "<circle cx='5' cy='5' r='4.4' fill='#111827' stroke='#fff' stroke-width='1'/>"
+                                 "<path d='M2.4 4.4Q5 2.6 7.6 4.4Q5 6.2 2.4 4.4Z' fill='#fff'/>"
+                                 "<circle cx='5' cy='4.4' r='0.9' fill='#111827'/></svg>")),  # an eye
 }
 
 
@@ -262,8 +271,14 @@ class Faultline(TraitLogic):
                       cat=VOTE)
 
 
+class Notorious(TraitLogic):
+    night_note = ("Notorious (a trait; see each player's traits): every alignment check reads a Notorious player as "
+                  "Evil (Sheriff: Evil; Seer: Evil), like the Ex-Con (R19). The Census Taker's count still sees "
+                  "their true alignment. Don't tell anyone a player is Notorious.")
+
+
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
-                                "Kindred": Kindred(), "Faultline": Faultline()}
+                                "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious()}
 assert set(LOGIC) == set(TRAITS)
 
 

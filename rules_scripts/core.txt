@@ -187,7 +187,7 @@ Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil
 except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
-- Ex-Con: Evil.
+- Ex-Con, and a player with the Notorious trait (R24): Evil.
 - Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
   every Neutral as Neutral.)
 Exact-role checks see the true role.
@@ -219,6 +219,7 @@ role-block stops it too.
 - Faultline (Village players only): after each trial vote you cast, you privately learn one random other player
   whose vote counted as Guilty and one whose vote counted as Innocent (if all the others voted one way, you learn
   that). It needs no action, so a role-block doesn't stop it.
+- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con.
 
 === PART 5: THE YAKUZA ===
 
