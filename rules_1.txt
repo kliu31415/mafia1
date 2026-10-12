@@ -225,6 +225,9 @@ role-block stops it too.
 - Kindred (Village players only): after each trial vote you cast, you privately learn up to two random other
   players whose votes counted the same way as the vote you cast (if fewer did, you learn that). It needs no action,
   so a role-block doesn't stop it.
+- Faultline (Village players only): after each trial vote you cast, you privately learn one random other player
+  whose vote counted as Guilty and one whose vote counted as Innocent (if all the others voted one way, you learn
+  that). It needs no action, so a role-block doesn't stop it.
 
 === PART 5: THE YAKUZA ===
 

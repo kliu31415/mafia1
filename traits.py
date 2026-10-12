@@ -78,6 +78,15 @@ TRAITS: dict[str, TraitInfo] = {
                                "<circle cx='3.9' cy='5' r='1.7' fill='none' stroke='#fff' stroke-width='0.9'/>"
                                "<circle cx='6.1' cy='5' r='1.7' fill='none' stroke='#fff' "
                                "stroke-width='0.9'/></svg>")),  # two linked rings
+    "Faultline": TraitInfo(frozenset({Alignment.GOOD}),
+                           "After each trial vote you cast, you privately learn one random other player whose vote "
+                           "counted as Guilty and one whose vote counted as Innocent (rules R24).",
+                           "After each trial, learns one random Guilty voter and one random Innocent voter.",
+                           power=0.15,
+                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                 "<circle cx='5' cy='5' r='4.4' fill='#9a3412' stroke='#fff' stroke-width='1'/>"
+                                 "<path d='M4.4 1.4L5.8 3.8L4.2 5.6L5.9 8.6' fill='none' stroke='#fff' "
+                                 "stroke-width='1.1'/></svg>")),  # a crack
 }
 
 
@@ -234,8 +243,27 @@ class Kindred(TraitLogic):
                       + (" too." if picked else "."), [name], kind="notice", cat=VOTE)
 
 
+class Faultline(TraitLogic):
+    def after_trial_vote(self, game: Game, nominee: str, cast: dict[str, bool], guilty: list[str]) -> None:
+        # Others' votes as counted, like the Auditor's; the holder's own vote plays no part. rules R24
+        for name in cast:
+            if "Faultline" not in game.player(name).traits:
+                continue
+            sides = {way: [n for n in cast if n != name and (n in guilty) == way] for way in (True, False)}
+            picked = {way: game.rng.choice(sides[way]) if sides[way] else None for way in (True, False)}
+            game.log.write("faultline", day=game.day, player=name, nominee=nominee, guilty=picked[True],
+                           innocent=picked[False])
+            if picked[True] and picked[False]:
+                text = (f"{picked[True]}'s vote counted as Guilty and {picked[False]}'s as Innocent (each picked at "
+                        "random from that side).")
+            else:
+                text = f"every other vote counted as {'Guilty' if picked[True] else 'Innocent'}."
+            game.emit(f"(Only you see this) Faultline: in the trial of {nominee}, {text}", [name], kind="notice",
+                      cat=VOTE)
+
+
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
-                                "Kindred": Kindred()}
+                                "Kindred": Kindred(), "Faultline": Faultline()}
 assert set(LOGIC) == set(TRAITS)
 
 

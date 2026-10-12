@@ -108,7 +108,8 @@ from records import caller_of, read_records, redact, safe_print
 # 57: Day 1 is back, talk only (rules R1): no nominations or trials, at most 2 rounds, no will round (the first
 #     will comes with the Night 1 action); log versions 36-56 have no Day 1
 # 58: "kindred" records (player, nominee, named, day): a Kindred trait's result after a trial vote (rules R24)
-LOG_VERSION = 58
+# 59: "faultline" records (player, nominee, guilty, innocent, day): a Faultline trait's result (rules R24)
+LOG_VERSION = 59
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

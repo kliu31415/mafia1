@@ -2036,3 +2036,19 @@ def test_a_kindred_player_learns_two_random_players_whose_votes_counted_like_the
     assert told(game, "Alice")[-1].endswith("you voted Innocent, and only Dave's vote counted as Innocent too.")
     trait_logic("Kindred").after_trial_vote(game, "Bob", {"Alice": False, "Bob": True}, guilty=["Bob"])
     assert told(game, "Alice")[-1].endswith("you voted Innocent, and nobody else's vote counted as Innocent.")
+
+
+def test_a_faultline_player_learns_one_random_voter_from_each_side(game_factory):
+    # rules R24 (Kevin, Oct 12 2026): others' votes as counted; the holder's own vote plays no part
+    from traits import trait_logic
+    game, players = game_factory(["Vanilla Villager", "Sheriff", "Medic", "Grunt", "Grunt"])
+    game.player("Alice").traits = ["Faultline"]
+    game.day, game.phase = 2, "day"
+    cast = {"Alice": True, "Bob": True, "Carol": False, "Dave": True, "Erin": False}
+    trait_logic("Faultline").after_trial_vote(game, "Erin", cast, guilty=["Alice", "Bob", "Dave"])
+    text = told(game, "Alice")[-1]
+    assert ("Bob's vote counted as Guilty" in text or "Dave's vote counted as Guilty" in text)
+    assert "Carol's as Innocent" in text or "Erin's as Innocent" in text
+    trait_logic("Faultline").after_trial_vote(game, "Erin", cast, guilty=["Bob", "Carol", "Dave", "Erin"])
+    assert told(game, "Alice")[-1].endswith("in the trial of Erin, every other vote counted as Guilty.")
+    assert not any("Faultline" in t for n in ("Bob", "Carol", "Dave", "Erin") for t in told(game, n))
