@@ -91,6 +91,13 @@ R13 (Last wills)
 Players may write and update a last will before Night 1, at the beginning of each Day (except those who died the
 night before) and during any of their own Day turns. When a player dies, their last will is shared publicly at once.
 
+R25 (Day actions)
+Some roles act during the Day. A day action is taken on one of your own speaking turns, along with your messages;
+not on a trial turn, and not while you are puppeted. It takes effect when that round of turns ends (also when a
+hanging or the trial limit ends the round early), so its timing doesn't show whose turn it was; if you died since
+taking it, it doesn't take effect. A death it causes is announced at once (R12), and the game ends if that leaves
+one faction (R1). A day action isn't a visit, and night protections don't last into the Day.
+
 === PART 3: THE NIGHT ===
 
 R5 (Night phase)

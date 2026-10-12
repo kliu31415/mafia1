@@ -85,10 +85,11 @@ def name_enum(names: list[str]) -> dict:
     return {"type": "string", "enum": names}
 
 
-def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = True) -> dict:
+def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = True,
+                    action: dict[str, dict] | None = None) -> dict:
     """own_turn: false when a Puppeteer writes this turn. They can set the puppet's claim, since it's
     public chat in effect (and a claim that never changes on puppeted days would expose the puppeting),
-    but not the puppet's will."""
+    but not the puppet's will. action: a day action's fields (roles.base.DayAction), if this turn offers one."""
     others = [n for n in game.alive_names() if n != me]
     props = {
         "public_message": nullable(STR),
@@ -99,7 +100,7 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = Tr
         props["last_will"] = nullable(STR)  # so a claim made today can be in the will by tonight
     if can_nominate:
         props["nominate"] = nullable(name_enum(game.alive_names()))
-    return obj(**props)
+    return obj(**props, **(action or {}))
 
 
 VOTE_SCHEMA = obj(vote=BOOL)

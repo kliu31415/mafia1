@@ -50,6 +50,23 @@ class RecordedAction:
     note: str = ""  # anything else the moderator must know, appended to the night note
 
 
+@dataclass(frozen=True)
+class DayAction:
+    """What a role may do on its own Day speaking turns (not trial turns, not while puppeted; rules R25), offered by
+    RoleLogic.day_action, taken by RoleLogic.carry_out_day_action and carried out in RoleLogic.at_round_end."""
+
+    fields: dict[str, dict]  # extra answer fields, named as in players.SHARED_FIELDS so the shared schema stays fixed
+    text: str  # what the turn's task tells the player about them
+
+
+ATTACK_LEVELS = ("None", "Basic", "Standard", "Strong", "Divine")  # rules R3, lowest first
+
+
+def attack_kills(attack: str, defense: str) -> bool:
+    """Rules R3: an Attack kills iff its level is strictly higher than the target's Defense."""
+    return ATTACK_LEVELS.index(attack) > ATTACK_LEVELS.index(defense)
+
+
 class RoleLogic:
     """Defaults for every hook. Subclass it in roles/<role>.py and decorate with @register.
     Per-game state a role needs goes in game.role_state, keyed by something role-specific."""
@@ -121,6 +138,18 @@ class RoleLogic:
         """Whether this living, unpuppeted player also reads the contents of a Day private message from
         `speaker` to `to` (Wiretap, Eavesdropper)."""
         return False
+
+    def day_action(self, game: Game, p: Player) -> DayAction | None:
+        """What this living player may do on this Day speaking turn (rules R25), or None."""
+        return None
+
+    def carry_out_day_action(self, game: Game, p: Player, answer: dict) -> None:
+        """Takes the day_action fields of this player's turn answer (any may be null: nothing to do). Its effect
+        waits for at_round_end, so its timing doesn't show whose turn it was (rules R25)."""
+
+    def at_round_end(self, game: Game) -> None:
+        """The end of each Day go-around, including the one a hanging or the trial limit cuts short: day actions
+        taken this round take effect (rules R25). Called once per role among the game's players, in name order."""
 
     def reverses_trial_vote(self, game: Game, voter: Player) -> bool:
         """Whether this role's effect counts `voter`'s Guilty/Innocent vote today as the opposite (Fixer). Called once

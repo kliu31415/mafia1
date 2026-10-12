@@ -156,6 +156,12 @@ ROLES: dict[str, RoleInfo] = {
                         "and a Strong Attack on every visitor.",
                         tokens={"alert": 3}, acts_at_night=True,
                         tested=True, notes="moderator resolves the alert; night note lists its effects"),
+    "Sniper": RoleInfo(Alignment.GOOD, "Killing", False,
+                       summary="Day: an anonymous shot with 1-3 tokens (Basic, Standard or Strong Attack), fired "
+                       "when the round ends; everyone hears it.",
+                       tokens={"sniper": 3},
+                       notes="day action (R25): taken on its own speaking turn, fired by code when the round "
+                       "ends; no moderator"),
     "Prosecutor": RoleInfo(Alignment.GOOD, "Support", False,
                            summary="Token: prosecute a player, who goes straight to trial the next Day.",
                            tokens={"prosecutor": 2}, acts_at_night=True,

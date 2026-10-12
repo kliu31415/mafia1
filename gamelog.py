@@ -95,7 +95,9 @@ from records import read_records, safe_print
 # 51: setup has role_info (every script role and role in play: alignment, category, summary, rules paragraph) and
 #     trait_info (every trait: alignments, summary, hover), so a log reads the same after roles change; the Cardinal
 #     role became the Cursed trait (roles.RETIRED), and "cardinal" records became "curse" (victim, cursed)
-LOG_VERSION = 51
+# 52: "day_shot" records (player, target, attack, day) when a Sniper's held shot fires (rules R25), and
+#     "day_action_refused" (player, target, tokens) for a day action with a bad token count
+LOG_VERSION = 52
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

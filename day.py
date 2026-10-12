@@ -180,10 +180,12 @@ def run_day(game: Game, players: Players) -> None:
                     return True
             return False
 
+        over = False  # did a turn end the day?
         for p in order:
             if p.alive and turn(p, rnd):
-                return
-        if not active:
+                over = True
+                break
+        if not over and not active:
             # Rules R16: before a silent round ends the day, anyone sent a
             # private message this round gets one last turn to react to it (or the day just ends).
             got_pm = {e.fields["to"] for e in game.events[round_start:] if e.cat == PM}
@@ -191,7 +193,12 @@ def run_day(game: Game, players: Players) -> None:
                 if turn(p, rnd, extra="Nobody spoke publicly this round, so the day ends after this turn unless "
                                  "someone does. You get this last turn because you were sent a private "
                                  "message this round.\n"):
-                    return
+                    over = True
+                    break
+        for role in sorted({q.role for q in game.players}):  # rules R25: day actions held to the round's end
+            logic(role).at_round_end(game)
+        if over or game.check_winner() is not None:
+            return
         if not active:
             game.emit("A full round passed with no public messages. The day ends.")
             return
@@ -307,8 +314,13 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     step = "trial_turn" if trial else "day_turn"
     task = turn_task(game, p, writer, rnd, can_nominate, nomination_fee, free_words, trial) + extra
     fallback: dict[str, Any] = {"public_message": None, "private_messages": [], "nominate": None}
+    # Rules R25: a day action only on a player's own speaking turn, not a trial turn or while puppeted.
+    action = logic(p.role).day_action(game, p) if writer is p and not trial else None
+    if action:
+        task += action.text + "\n"
+        fallback |= dict.fromkeys(action.fields)
     if writer is p:
-        schema = day_turn_schema(game, p.name, can_nominate)
+        schema = day_turn_schema(game, p.name, can_nominate, action=action.fields if action else None)
         out = players.ask(p, task, schema, fallback, step=step, rnd=rnd)
         out = drop_own_name(out, p.name, writer.model)
     else:
@@ -396,6 +408,8 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.alive() if q.name not in (p.name, to, *readers)], kind="notice")
+    if action:
+        logic(p.role).carry_out_day_action(game, p, out)
     return public, nominee
 
 
