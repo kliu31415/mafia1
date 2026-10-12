@@ -107,8 +107,9 @@ class Martyr(TraitLogic):
         if guilty_voters is None:  # rules R24: only a hanging reveals a Martyr
             return
         # The votes as counted (a Fixer may reverse one); a doubled vote (Ballot Stuffer) names its voter once.
-        game.emit(f"{p.name} was a Martyr (a trait, R24). Guilty votes in their trial: "
-                  f"{join_names(list(dict.fromkeys(guilty_voters))) or 'none'}.", cat=DEATH)
+        voters = join_names(list(dict.fromkeys(guilty_voters))) or "none"
+        game.emit(f"{p.name} was a Martyr (a trait, R24). Guilty votes in their trial: {voters}.", cat=DEATH)
+        game.death_record.append(f"Day {game.day}: {p.name} was a Martyr; Guilty votes: {voters}")  # the ledger
         game.log.write("martyr", player=p.name, guilty=guilty_voters, day=game.day)
 
 

@@ -61,7 +61,8 @@ class TalentAgent(RoleLogic):
         if by in game.role_state.get(USED, {}).get(game.day, []):
             return "a Talent Agent can spend only one token a night"
         if "role" in change and change["role"] not in script_roles(game):
-            return f"{change['role']!r} isn't a role in this game's rules"
+            return (f"{change['role']!r} isn't a role this game can have (it's not in its script, or its setup "
+                    "leaves it out)")
         return None
 
     def apply_op(self, game: Game, change: dict) -> None:

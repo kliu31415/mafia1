@@ -1422,6 +1422,7 @@ def test_a_hanged_martyr_reveals_the_trait_and_the_guilty_voters(game_factory):
     game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Dave"])
     text = next(e.text for e in game.events if "was a Martyr" in e.text)
     assert e_public(game, text) and "Bob and Dave" in text and "Sheriff" not in text
+    assert "Alice was a Martyr; Guilty votes: Bob and Dave" in game.death_record[-1]  # the ledger players reread
 
 
 def e_public(game, text):
