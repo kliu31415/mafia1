@@ -336,3 +336,26 @@ Trial votes on Erin: 6 Guilty, 3 Innocent (the votes are secret).
 [Secret trial votes on Erin] Guilty - Alice, Bob, Carol, Grace, Ivan, Olivia; Innocent - Erin, Heidi, Judy
 Erin is executed by hanging (6 Guilty of 9 votes; 5 needed).
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin's last will: I have no confirmed night results to share. Frank's Night 1 pair (Erin/Carol) is one random pair from a dead Seer, and Carol's Coroner exam only confirms Frank's role. Do not hang anyone on that pair alone. Ask Carol why she held three Coroner tokens until Night 3 and nominated me on Day 4."
+
+===== NIGHT 4 =====
+(to Heidi, Judy) Heidi (Yakuza chat): Heidi: Confirmed. Judy holds the Katana (holder vote: Judy) and the target is Carol (attack vote: Carol). Carol's Coroner exam is the threat, so she goes tonight. I will not visit or be visited by anyone except my Diviner on Olivia's group (Olivia, Judy, Alice). Judy, you're the holder, so submit Carol and keep your Informant passive. Ready.
+(to Heidi, Judy) Judy (Yakuza chat): Judy: Confirmed. Judy holds the Katana (holder vote: Judy) and the target is Carol (attack vote: Carol). Heidi, your Diviner on Olivia's group is fine. I have no other action and will stay passive. Ready.
+Night actions:
+  Alice (Trapper): no action
+  Bob (Juror): target Alice; second target Judy; "Juror: checking Alice and Judy for how often they voted the same way."
+  Carol (Coroner): target Niaj; 1 token(s); "Coroner examines Niaj (died Night 3) to verify the Tracker claim, since Niaj's N1 and N2 results are the only checks on Alice's trap claim and the Frank visit."
+  Heidi (Diviner): target Olivia; "Diviner on Olivia. Group is Olivia's circle neighbours plus Olivia: Judy, Olivia, Alice. Matches the Yakuza night chat plan."; Katana vote: Judy holds, attacks Carol
+  Ivan (Profiler): target Judy; 1 token(s); "Profile Judy. Judy is one of the two unclaimed players, and she has pushed both recent trials while exchanging a private-message cluster with Heidi."
+  Judy (Informant): no role action; Katana vote: Judy holds, attacks Carol
+  Olivia (Vigilante): no action
+Katana: Judy holds it and attacks Carol.
+(to Carol) Moderator (private): You examined Niaj: their role was Tracker. 1 coroner token left.
+(to Bob) Moderator (private): Your jury check: Alice and Judy voted the same way in 1 of 2 trial votes and 2 of 3 nomination votes.
+(to Heidi) Moderator (private): You divined Olivia; the group was Judy, Olivia and Alice. The role drawn is Vigilante (60% chance it is Olivia's, otherwise one of the others').
+(to Ivan) Moderator (private): You profiled Judy: their role is Cardinal, Cartographer or Informant (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 0 profile tokens left.
+(to Judy) Moderator (private): Your Katana attack on Carol tonight succeeded.
+[Moderator summary] Night 4: Judy (Katana holder) attacked Carol with the Standard Katana. Carol has no defense and dies (cause: Katana). Carol's Coroner exam of Niaj still resolves, since actions are simultaneous (examine op, 1 token left). Bob's Juror check on Alice and Judy resolved (Astral Visit). Heidi divined Olivia (non-Yakuza, divine op). Ivan profiled Judy (profile op, 0 tokens left). Alice and Olivia did not act. Nobody visited Heidi, so Alice's trap stays armed. Nobody was role-blocked. Visits: Heidi->Olivia, Ivan->Judy, Judy->Carol. 7 players are left alive (Alice, Bob, Grace, Heidi, Ivan, Judy, Olivia), so the game goes on.
+[Night check] Night 4: correct
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Heidi) Moderator (private): Yakuza night summary: Judy holds the Katana and chose to attack Carol. Judy (Informant) chose no action.
+(to Judy) Moderator (private): Yakuza night summary: Judy holds the Katana and chose to attack Carol. Heidi (Diviner) chose to act on Olivia ("Diviner on Olivia. Group is Olivia's circle neighbours plus Olivia: Judy, Olivia, Alice. Matches the Yakuza night chat plan.").
