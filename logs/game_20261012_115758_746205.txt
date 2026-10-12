@@ -13,3 +13,27 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 8 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Separately, 0 to 3 traits (R24) are dealt to Village players, usually 1 or 2 (one player may get several), drawn to help balance the sides.
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Grace) Carol (Yakuza chat): Carol here. Night 1 is blind, so I propose no attack tonight. A first-night body tells the town very little and mostly gives them a lead. Grace keeps the Katana (vote Grace as holder, no target). Grace, if your Talent Agent scan costs nothing to the team, use it tonight; it doesn't visit anyone. I'm holding my fixer tokens until we know who the investigators are. Vote on holder Grace, target none, unless you have a strong reason otherwise.
+(to Carol, Grace) Grace (Yakuza chat): Agreed with Carol: no attack tonight, Grace keeps the Katana, no target. I'll use the Talent Agent scan tonight, since it visits no one and gives us information on which roles are in play. Ready.
+(to Carol, Grace) Carol (Yakuza chat): Agreed. No attack tonight, no target. Grace keeps the Katana. Grace, go ahead with the Talent Agent scan, since it visits no one. I'm holding my fixer tokens until we know who the investigators are. Ready from my side.
+(to Carol, Grace) Grace (Yakuza chat): Agreed with Carol. No attack tonight, no target. Grace keeps the Katana. I'm ready.
+Night actions:
+  Carol (Fixer): no role action; Katana vote: Grace holds, attacks None
+  Dave (Enforcer): target Erin; "Visiting Erin with a Basic Attack (no token cost). If Erin makes an attack of their own choosing tonight, they are attacked."
+  Erin (Accountant): target Dave
+  Frank (Juror): no action
+  Grace (Talent Agent): chose to spend 1 token(s); "Talent Agent: Scan (learn one random non-Yakuza role in play and one random non-Yakuza role not in play). Non-visit."; Katana vote: Grace holds, attacks None
+  Heidi (Trapper): target Alice
+  Alice (Ex-Con): automatic: target Dave; "random visit"
+Katana: no attack (the Yakuza agreed not to attack); Grace holds it.
+(to Grace) Moderator (private): Your scan: Juror is in play, and Arsonist is not in play.
+(to Dave) Moderator (private): You visited Erin tonight. You did not attack anyone. 3 enforcer tokens left.
+(to Bob) Moderator (private): Tonight: 3 players were visited; 4 players visited someone.
+[Moderator summary] Night 1: No role-blocks, no attacks (Yakuza kept Katana with Grace, no target). Dave (Enforcer) visited Erin with 0 tokens; Erin made no attack, so no Enforcer attack; 3 tokens left. Erin (Accountant) counted Dave's tokens (3). Grace (Talent Agent) scanned (1 token spent by op). Heidi (Trapper) trapped Alice (armed from Night 2). Alice (Ex-Con) auto-visited Dave. Visits: Dave->Erin, Erin->Dave, Heidi->Alice, Alice->Dave. Fortune Teller Bob: 3 visited, 4 visitors. No deaths.
+[Moderator summary] Night 1: No role-blocks, no attacks (Yakuza kept the Katana with Grace, no target). Dave (Enforcer) visited Erin with 0 tokens; Erin made no attack, so no Enforcer attack; 3 tokens left. Erin (Accountant) counted Dave's tokens (3). Grace (Talent Agent) scanned (1 token spent by the op). Heidi (Trapper) trapped Alice (armed from Night 2; her result is given by code). Alice (Ex-Con) auto-visited Dave. Visits: Dave->Erin, Erin->Dave, Heidi->Alice, Alice->Dave. Fortune Teller Bob: 3 visited, 4 visitors. No deaths.
+[Night check] Night 1: correct
+(to Erin) Moderator (private): Your audit: Dave has 3 tokens in total.
+(to Carol) Moderator (private): Yakuza night summary: Grace holds the Katana, with no Katana attack. Grace (Talent Agent) chose to act, spending 1 token(s) ("Talent Agent: Scan (learn one random non-Yakuza role in play and one random non-Yakuza role not in play). Non-visit.").
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana, with no Katana attack. Carol (Fixer) chose no action.
