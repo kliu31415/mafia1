@@ -122,7 +122,7 @@ def classic_draw(n: int, rng: random.Random, pool: str, script: str) -> list[str
     if outsiders and village_slots > 3 and rng.random() < 0.4:
         village.append(rng.choice(outsiders))
     village += ["Vanilla Villager"] * rng.randint(0, village_slots // 3)
-    rest = [r for r in of(Alignment.GOOD, "Investigative", "Combat", "Misc") if r not in village]
+    rest = [r for r in of(Alignment.GOOD, *POWER_CATEGORIES) if r not in village]
     rng.shuffle(rest)
     while len(village) < village_slots:
         village.append(rest.pop() if rest else "Vanilla Villager")
@@ -132,8 +132,10 @@ def classic_draw(n: int, rng: random.Random, pool: str, script: str) -> list[str
 YAKUZA_ODDS = {-1: 20, 0: 65, 1: 15}  # standard: Yakuza count around round(3/13 of the seats)
 NEUTRAL_ODDS = {0: 15, 1: 35, 2: 35, 3: 15}
 MAX_OUTSIDERS = 2  # standard
+VILLAGE_NEEDS = {"Investigative": 2, "Killing": 1, "Protective": 1}  # standard: Kevin, Oct 12 2026
+POWER_CATEGORIES = ("Investigative", "Killing", "Protective", "Support")  # Village roles with a power
 MAX_VANILLA = 2  # standard: Kevin, Oct 10 2026: many Vanilla Villagers make a game less strategic
-MIN_VILLAGE = 5  # standard: non-Outsider Village roles, at least one Investigative
+MIN_VILLAGE = 5  # standard: non-Outsider Village roles, VILLAGE_NEEDS among them
 BAND = 0.4  # standard: a setup counts as balanced when |role_power.score| <= BAND (Village win chance 40-60%)
 CANDIDATES = 60  # standard: Neutral and Village picks tried per setup
 LOG_DIR = Path(__file__).parent / "logs"  # past games, for role_uses
@@ -154,13 +156,13 @@ def role_uses(log_dir: Path = LOG_DIR) -> Counter:
 
 def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None,
                    script: str = "all") -> list[str]:
-    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4
-    (about 3/13 of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village
-    roles, the rest Good. With fewer Yakuza than usual their roles lean strong, with more they lean weak. Then
-    CANDIDATES random picks of the Neutral and Village roles are tried, and a random one within BAND of a
-    role_power.score of 0 is kept (with one Neutral fewer only if none is; else the closest): e.g. weaker
-    Village roles and more Outsiders against weak Yakuza. Every draw leans towards newer roles (not live-tested
-    yet) and roles in fewer past games (logs/), so a seed's setup can change as games are added."""
+    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4 (about
+    3/13 of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village roles
+    (VILLAGE_NEEDS among them: Kevin, Oct 12 2026), the rest Good. With fewer Yakuza than usual their roles lean
+    strong, with more they lean weak. Then CANDIDATES random picks of the Neutral and Village roles are tried, and a
+    random one within BAND of a role_power.score of 0 is kept (with one Neutral fewer only if none is; else the
+    closest): e.g. weaker Village roles and more Outsiders against weak Yakuza. Every draw leans towards newer roles
+    (not live-tested yet) and roles in fewer past games (logs/), so a seed's setup can change as games are added."""
     import role_power
     offset, power = role_power.load()
 
@@ -201,8 +203,8 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
     def candidate(n_neutrals: int) -> list[str]:
         neutrals = draw(of(Alignment.NEUTRAL), n_neutrals)
         slots = n - len(evil) - len(neutrals)
-        village = draw(of(Alignment.GOOD, "Investigative"), 1)
-        rest = [r for r in of(Alignment.GOOD, "Investigative", "Combat", "Misc") if r != "Vanilla Villager"]
+        village = [r for category, k in VILLAGE_NEEDS.items() for r in draw(of(Alignment.GOOD, category), k)]
+        rest = [r for r in of(Alignment.GOOD, *POWER_CATEGORIES) if r != "Vanilla Villager"]
         outsiders = draw(of(Alignment.GOOD, "Outsider"), MAX_OUTSIDERS)
         while len(village) < slots:
             roll = rng.random()
@@ -231,10 +233,10 @@ SETUPS = {
     "standard": Setup(balanced_setup, (13, 13),
                       "usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one "
                       "more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that "
-                      "aren't Outsiders (at least one "
-                      "of them Investigative), plus any mix of Village roles, up to 2 Vanilla Villagers and up to "
-                      "2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides "
-                      "are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles."),
+                      "aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix "
+                      "of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except "
+                      "unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. "
+                      "fewer Yakuza tend to get stronger roles."),
     "classic": Setup(random_setup, (11, 15),
                      "about 30% of the players are Yakuza (rounded, at least 1), each with a different Yakuza "
                      "role; 0 to 2 are Neutral (at most 1 below 9 players), each a different Neutral role; the rest "

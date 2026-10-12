@@ -26,7 +26,7 @@ Decisions are scored from the player's faction's point of view, using the true r
     medic_protect     the Medic protected a player who was attacked that night
     vigilante_shot    the Vigilante shot a player the Village wants dead
     katana_target     a Yakuza voted for the Katana target that was attacked, and it was a Village power
-                      role (Investigative, Combat or Misc)
+                      role (Investigative, Killing, Protective or Support)
 A Jester counts as not wanted dead by the Village (hanging it is its win); an Executioner as neither,
 so votes on it aren't scored. Neutral players' own decisions aren't scored. Vote records exist from
 log version 2 and night_actions from early on; older logs count only toward win rates.
@@ -45,11 +45,12 @@ from gamelogs import faction_of, log_files, mix_of, result_of, setup_of, short
 from gamelogs import players as game_players
 from records import read_records
 from roles import ROLES, Alignment, logic
+from setups import POWER_CATEGORIES
 
 ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
 ATTACKERS = {"Vigilante", "Serial Killer", "Ritualist"}  # night actions that attack their target
-POWER_CATEGORIES = {"Investigative", "Combat", "Misc"}
+
 DECISION_ORDER = ["nomination", "nomination_vote", "trial_vote", "deceived_voter", "sheriff_check",
                   "medic_protect", "vigilante_shot", "katana_target"]
 

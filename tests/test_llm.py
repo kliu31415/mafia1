@@ -62,13 +62,26 @@ def test_errors_are_alerted_counted_and_reported(tmp_path, monkeypatch, capsys):
     path = mafia.play_game(client, mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=3, review=True))
     out = capsys.readouterr().out
     assert "ALERT player_fallback: Bob" in out and "ALERT feedback_error: Reviewing the log failed" in out
-    assert out.count("ALERT player_error: Bob") == 3  # then only logged
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    # How many calls Bob makes depends on the mock game, which any change to the prompts reshuffles.
+    assert out.count("ALERT player_error: Bob") == min(3, sum(r["kind"] == "player_error" for r in records))
     result = records[-1]
     assert result["kind"] == "result" and result["errors"]["feedback_error"] == 1
-    assert result["errors"]["player_error"] == sum(r["kind"] == "player_error" for r in records) > 3
+    assert result["errors"]["player_error"] == sum(r["kind"] == "player_error" for r in records) >= 2
     report = path.with_name(path.stem + "_feedback.md").read_text(encoding="utf-8")
     assert "## Errors (things to fix)" in report and "content_filter via Azure" in report
+
+
+def test_only_the_first_alerts_per_kind_and_player_are_printed(tmp_path, capsys):
+    from gamelog import ALERT_LINES_PER_SOURCE, GameLog
+    log = GameLog(tmp_path / "t.jsonl")
+    for _ in range(ALERT_LINES_PER_SOURCE + 2):
+        log.error("player_error", "Bob: empty answer", player="Bob")
+    log.error("player_error", "Carol: empty answer", player="Carol")
+    log.close()
+    out = capsys.readouterr().out
+    assert out.count("ALERT player_error: Bob") == ALERT_LINES_PER_SOURCE and "ALERT player_error: Carol" in out
+    assert log.error_counts == {"player_error": ALERT_LINES_PER_SOURCE + 3}
 
 
 def test_a_failed_request_falls_back_instead_of_stopping_the_game(tmp_path):

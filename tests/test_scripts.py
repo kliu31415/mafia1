@@ -47,7 +47,7 @@ def test_headings_without_roles_on_the_script_are_dropped(monkeypatch):
     part = scripts.rules_for(RULES, "tiny").split("PART 6: ROLES", 1)[1]
     lines = set(part.splitlines())
     assert {"Townsfolk (most villagers, helpful to the Village)", "Investigative", "--- Yakuza (Evil) ---"} <= lines
-    assert not {"Combat", "Misc", "--- Neutral ---"} & lines
+    assert not {"Killing", "Protective", "Support", "--- Neutral ---"} & lines
     assert not any(line.startswith("Outsiders") for line in lines)
     assert "Every role lists the same fields" in part and "(2 Village, 1 Yakuza, 0 Neutral)" in part
 

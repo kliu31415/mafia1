@@ -274,7 +274,7 @@ Insomniac
   that. Players who visited and then died that night count. Only visits count: an action that isn't a visit (e.g.
   an Astral Visit or a Veteran's alert) doesn't. Staying awake is not a visit. This is an exact-role check (R19).
 
-Combat
+Protective
 
 Medic
   Tokens: 2 medic tokens.
@@ -290,6 +290,8 @@ Trapper
   Strong Attack. If several non-Village players visit that night, one of them, chosen at random, is hit. You learn
   that your trap went off, and nothing else (not who, nor whether it killed).
 
+Killing
+
 Vigilante
   Tokens: 3 vigilante tokens.
   Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong. If your shot kills them,
@@ -304,7 +306,7 @@ Veteran
   visits, so they aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how
   many, and whether your attack on each of them succeeded, but nothing about who they were.
 
-Misc
+Support
 
 Prosecutor
   Tokens: 2 prosecutor tokens.

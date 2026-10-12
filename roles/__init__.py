@@ -15,7 +15,7 @@ from roles.base import (LOGIC, Alignment, RoleLogic, Status, code_hooks, logic, 
 @dataclass(frozen=True)
 class RoleInfo:
     alignment: Alignment
-    category: str
+    category: str  # the heading its rules paragraph is under (Investigative, Killing, Protective, Yakuza, ...)
     sheriff_evil: bool  # how the role appears to a Sheriff, before Katana/Fabricator effects (Ex-Con: to Seers too)
     summary: str = ""  # one line for the hover text on the role's icon in HTML logs; rules_1.txt is the full text
     defense: str = "None"
@@ -24,6 +24,7 @@ class RoleInfo:
     unique: bool = False  # at most one player in a game may have this role
     tested: bool = False  # seen working in at least one live (API) game; update when it first is
     notes: str = ""  # implementation notes for --list-roles
+    subcategory: str = ""  # Investigative roles only: what they learn (Alignment check, Role info, ...); in code only
 
 
 ROLES: dict[str, RoleInfo] = {
@@ -31,140 +32,140 @@ ROLES: dict[str, RoleInfo] = {
     "Vanilla Villager": RoleInfo(Alignment.GOOD, "Townsfolk", False,
                                  summary="No night action.",
                                  tested=True),
-    "Sheriff": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Sheriff": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Alignment check",
                         summary="Night: investigate one player, learn Evil or Not Evil.",
                         acts_at_night=True,
                         tested=True, notes="Katana holder and framed players handled by the moderator"),
-    "Tracker": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Tracker": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Visit info",
                         summary="Night: track one player, learn whom they visited.",
                         acts_at_night=True, tested=True),
-    "Lookout": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Lookout": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Visit info",
                         summary="Night: watch one player, learn who visited them.",
                         acts_at_night=True, tested=True),
-    "Seer": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Seer": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Alignment check",
                      summary="Each night: told whether two random players share an alignment; "
                      "a token lets them pick the pair.",
                      tokens={"seer": 1}, acts_at_night=True,
                      tested=True, notes="random pair each night unless a token is spent"),
-    "Fortune Teller": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Fortune Teller": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Visit info",
                                summary="Every night: two labeled numbers, how many players were visited "
                                "and how many visited someone that night.",
                                tested=True, notes="numbers told at the end of the night"),
-    "Oracle": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Oracle": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
                        summary="Night: guess one player's exact role, learn whether it was right.",
                        acts_at_night=True, tested=True),
-    "Eavesdropper": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Eavesdropper": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                              summary="Night: pick a player; reads every PM they send or receive the next Day.",
                              acts_at_night=True, tested=True,
                              notes="moderator records the target with the eavesdrop op; code shows them the "
                              "target's PMs the next day"),
-    "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Archivist": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
                           summary="Once (token): sees one role per other player, unnamed and shuffled; "
                           "half are real, the rest fakes.",
                           tokens={"archive": 1}, acts_at_night=True, tested=True,
                           notes="moderator records the use with the archive op; code draws the real half "
                           "and the fakes (any role, never a second unique one), and tells it at once"),
-    "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
                          summary="Token: survey a player; learns one random role among them and their two neighbors.",
                          tokens={"survey": 3}, acts_at_night=True, tested=True,
                          notes="moderator records the use with the survey op; code picks the group and draws the role"),
-    "Census Taker": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Census Taker": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Alignment check",
                              summary="Night: count the Good or the Evil players (drawn at random) among a chosen "
                              "player and two random others.",
                              acts_at_night=True, tested=True,
                              notes="moderator records the use with the census op; code draws the group and the "
                              "alignment counted, counts true alignment and tells them"),
-    "Profiler": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Profiler": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
                          summary="Token: profile a player, learn three candidate roles for them, one true.",
                          tokens={"profile": 3}, acts_at_night=True, tested=True,
                          notes="moderator records the use with the profile op; code draws the decoys and tells them"),
-    "Coroner": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Coroner": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
                         summary="Token: examine a player who died before tonight, learn their role (not if a "
                         "Mortician cleaned them).",
                         tokens={"coroner": 3}, acts_at_night=True, tested=True,
                         notes="moderator records the use with the examine op (a dead target, not a visit); code "
                         "tells them the role, or that the body was cleaned"),
-    "Chronicler": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Chronicler": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                            summary="Token: marks a player; if they ever die, their role is revealed to everyone "
                            "(unless a Mortician cleans them).",
                            tokens={"chronicler": 2}, acts_at_night=True, tested=True,
                            notes="moderator records the use with the mark op (a visit); code sets status 'marked', "
                            "and the death announcement reveals the role or says the clean hid it"),
-    "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Auditor": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                         summary="Night: audit a player, learn all their nomination and trial votes from that Day.",
                         acts_at_night=True, tested=True,
                         notes="moderator records the use with the audit op (a visit); code reads the Day's votes "
                         "and tells them"),
-    "Juror": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Juror": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                       summary="Night: name two players, learn how often they voted the same way all game.",
                       acts_at_night=True, tested=True,
                       notes="moderator records the use with the jury op (Astral); code counts the shared votes "
                       "and tells them"),
-    "Bloodhound": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Bloodhound": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                            summary="Every night: learns the total attacks three random players have made this game. "
                            "Token: choose one of the three.",
                            tokens={"scent": 2}, acts_at_night=True, tested=True,
                            notes="moderator lists each night's attackers with the attacks op and records a token use "
                            "with the track op; code draws the group, counts and tells them"),
-    "Scrutineer": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Scrutineer": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                            summary="Night: learn how many of a player and two random others voted Guilty in each of "
                            "the Day's trials.",
                            acts_at_night=True, tested=True,
                            notes="moderator records the use with the scrutinize op (Astral); code draws the group, "
                            "counts the Guilty votes and tells them"),
-    "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Visit info",
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",
                              tokens={"map": 2}, acts_at_night=True, tested=True,
                              notes="moderator lists every night's visits with record_visits and records a token use "
                              "with the map op; code finds the groups and tells them"),
-    "Scout": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Scout": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Visit info",
                       summary="Every night: learns three players (maybe themselves) who were each in a different "
                       "visit group.", tested=True,
                       notes="passive; code draws the names from the moderator's record_visits list and tells them"),
-    "Insomniac": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Insomniac": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
                           summary="Token: learns the roles (no names) of up to 3 random players who visited someone "
                           "that night.",
                           tokens={"insomniac": 2}, acts_at_night=True, tested=True,
                           notes="moderator records the use with the stay_awake op; code draws the visitors from "
                           "record_visits and tells them at the end of the night"),
-    "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False,
+    "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                            summary="Night: audit one player, learn their total token count.",
                            acts_at_night=True,
                            tested=True, notes="moderator records the audit with the count_tokens op; code tells the "
                            "true total at the end of the night, after token changes (Magpie steals); Roleplayers "
                            "show 0"),
-    "Medic": RoleInfo(Alignment.GOOD, "Combat", False,
+    "Medic": RoleInfo(Alignment.GOOD, "Protective", False,
                       summary="Night: protect a player (Standard Defense; 1 token for Strong, 1 token to protect "
                       "yourself).",
                       tokens={"medic": 2}, acts_at_night=True,
                       tested=True, notes="tokens tracked via set_tokens; briefing lists token costs"),
-    "Trapper": RoleInfo(Alignment.GOOD, "Combat", False,
+    "Trapper": RoleInfo(Alignment.GOOD, "Protective", False,
                         summary="Night: trap a player; the first non-Village visitor on a later night "
                         "takes a Strong Attack.",
                         acts_at_night=True,
                         tested=True,
                         notes="persistent traps tracked as player status; acting with no target removes the trap"),
-    "Vigilante": RoleInfo(Alignment.GOOD, "Combat", False,
+    "Vigilante": RoleInfo(Alignment.GOOD, "Killing", False,
                           summary="Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack; "
                           "learns the role of a player it kills.",
                           tokens={"vigilante": 3}, acts_at_night=True,
                           tested=True, notes="moderator resolves the shot; code tells the victim's role on a kill"),
-    "Veteran": RoleInfo(Alignment.GOOD, "Combat", False,
+    "Veteran": RoleInfo(Alignment.GOOD, "Killing", False,
                         summary="Can't be role-blocked. Token: go on alert, Standard Defense "
                         "and a Strong Attack on every visitor.",
                         tokens={"alert": 3}, acts_at_night=True,
                         tested=True, notes="moderator resolves the alert; night note lists its effects"),
-    "Prosecutor": RoleInfo(Alignment.GOOD, "Misc", False,
+    "Prosecutor": RoleInfo(Alignment.GOOD, "Support", False,
                            summary="Token: prosecute a player, who goes straight to trial the next Day.",
                            tokens={"prosecutor": 2}, acts_at_night=True,
                            tested=True, notes="moderator records the prosecution; code runs the trial next day"),
-    "Philanthropist": RoleInfo(Alignment.GOOD, "Misc", False,
+    "Philanthropist": RoleInfo(Alignment.GOOD, "Support", False,
                                summary="Token: hand a player one token of their own role's kind.",
                                tokens={"philanthropy": 2}, acts_at_night=True,
                                tested=True, notes="moderator records the gift with the give_token op; "
                                "code adds the token and tells the recipient"),
-    "Party Animal": RoleInfo(Alignment.GOOD, "Misc", False,
+    "Party Animal": RoleInfo(Alignment.GOOD, "Support", False,
                              summary="Night: role-block one player. Immune to role-blocks.",
                              acts_at_night=True, tested=True),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False,

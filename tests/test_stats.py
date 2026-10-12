@@ -153,8 +153,9 @@ def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch)
         assert 2 <= by[Alignment.EVIL] <= 4 and by[Alignment.NEUTRAL] <= 3
         village = [r for r in roles if ROLES[r].alignment is Alignment.GOOD]
         assert sum(ROLES[r].category not in ("Outsider",) for r in village) >= 5
-        assert any(ROLES[r].category == "Investigative" for r in village)
-        assert sum(ROLES[r].category == "Outsider" for r in village) <= 2
+        categories = Counter(ROLES[r].category for r in village)
+        assert categories["Investigative"] >= 2 and categories["Killing"] >= 1 and categories["Protective"] >= 1
+        assert categories["Outsider"] <= 2
         assert roles.count("Vanilla Villager") <= 2 and all(roles.count(r) == 1 for r in roles if ROLES[r].unique)
         others = [r for r in roles if r != "Vanilla Villager"]
         repeats += len(others) > len(set(others))

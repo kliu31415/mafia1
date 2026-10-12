@@ -386,7 +386,7 @@ Accountant
   they are.
   If their role changed at the end of this night, the role just before the change counts.
 
-Combat
+Protective
 
 Medic
   Tokens: 2 medic tokens.
@@ -402,6 +402,8 @@ Trapper
   Strong Attack. If several non-Village players visit that night, one of them, chosen at random, is hit. You learn
   that your trap went off, and nothing else (not who, nor whether it killed).
 
+Killing
+
 Vigilante
   Tokens: 3 vigilante tokens.
   Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong. If your shot kills them,
@@ -416,7 +418,7 @@ Veteran
   visits, so they aren't attacked. At the end of the night you learn whether anyone visited you and, if so, how
   many, and whether your attack on each of them succeeded, but nothing about who they were.
 
-Misc
+Support
 
 Prosecutor
   Tokens: 2 prosecutor tokens.

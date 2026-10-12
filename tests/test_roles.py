@@ -1380,3 +1380,8 @@ def test_drawn_traits_stay_within_the_odds_and_the_village_seats():
     for seed in range(20):
         traits = setups.draw_traits(roles, random.Random(seed))
         assert len(traits) <= 3 and set(traits) <= {"Martyr"}
+
+
+def test_investigative_roles_and_only_they_have_a_subcategory():
+    investigative = {r for r, i in ROLES.items() if i.category == "Investigative"}
+    assert {r for r, i in ROLES.items() if i.subcategory} == investigative
