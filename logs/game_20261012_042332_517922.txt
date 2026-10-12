@@ -286,3 +286,76 @@ Katana: Carol holds it and attacks Frank.
 (to Frank) Moderator (private): You were attacked tonight (Katana) and died.
 (to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Frank. Heidi (Grunt) chose no action.
 (to Heidi) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Frank. Carol (Pharmacist) chose to act on Dave ("Pharmacist role-block on Dave, so his Medic protection on Frank fails. Katana holder vote: Carol (keep). Katana target vote: Frank, the Tracker who could expose our holder visits.").
+
+===== DAY 5 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank (Tracker, Village). Results: N1 tracked Bob, no visits. N2 track role-blocked, no result. N3 tracked Bob, Bob visited no one, so Bob was not the Katana holder who killed Alice. Alice's N2 Evil read on Erin was accurate, but Erin was the Jester, not Yakuza. Erin's hanging was a Jester win, so Alice's Evil read did not point at a Yakuza. A Katana holder is still alive and has killed Alice on N3. Check Carol, Dave and Heidi's visits and votes against the N3 Katana attack. Do not hang on a lean alone. Check stated votes against the announced totals."
+Speaking order today goes around the circle in seat order, starting with Carol.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Carol: Vanilla Villager. No night actions or results.
+Carol (public): Carol here. No nomination from me. I had no night action on N3 and I'm not voting on a lean. Dave, your Medic claim is the only protection data we have, so post your N5 plan. Bob, your Day 2 shot on Grace still needs a real explanation. Nobody should be nominated until Night 5 results are in.
+[Claim] Dave: Medic. N1: protected Frank (Standard). N2: protected Alice, stopped a Katana attack. N3: role-blocked, Alice died. N4: role-blocked. 2 tokens left.
+Dave (public): Dave here, Medic. Frank's N4 track never posted, so the open question is Carol or Heidi. Both denied night visits and both pushed the Bob hang on Day 3. Carol and Heidi, state plainly whether you visited anyone on N4, and why you pushed Bob. Bob's Standard shot proves he is a real Sniper, so I read him as Village. I'm not nominating yet and will post my Night 5 result.
+Heidi (public): Heidi here. No nomination from me yet. Dave's Medic claim fits the N2 stop on Alice. Bob's Day 2 Standard shot on Grace is still the one kill nobody has explained. Bob, explain it directly. Everyone, state your N3 and N4 visits plainly, and I won't vote on a lean.
+[Claim] Bob: Sniper (real). 1 token left. No night action N1-N4. D2: Standard shot at Grace (killed her).
+Bob (public): Bob here, real Sniper, 1 token left. I took no night action on N1-N4. The Katana killed on N3 and N4, so one of Carol or Heidi visited a victim and is lying about having no visits. Carol and Heidi: state your N3 and N4 visits, if any, and whom you visited. I'm holding my last shot until one of you answers.
+(to Bob, Dave) Bob -> Dave (private): Dave, I'm not shooting until I know whether Carol or Heidi is the holder. If you have a Medic token on N5, protect me. I'm trusting your Medic claim for now.
+Carol (public): Carol here. No nomination from me. I'm not voting on a lean, so let's see Night 5 results first. Dave, state your Night 5 protection target and whether you were blocked. Bob, keep your last token until we have that data.
+[Claim] Dave: Medic. N1 protected Frank, N2 protected Alice (stopped a Katana attack), N3 and N4 role-blocked. 2 tokens left.
+Dave (public): Dave here. No nomination from me yet. Carol and Heidi, the N3 and N4 Katana holder is one of you, and you both denied visits. Name your N4 visit before Night 5 resolves.
+(to Bob, Dave) Dave -> Bob (private): Dave: I'm giving you a free Standard protection tonight. Keep your last shot until we have a real lead.
+[Claim] Heidi: Vanilla Villager. No night action or results. D3: Guilty on Bob (found Innocent), Guilty on Erin.
+Heidi (public): Heidi here. No nomination or vote from me. I took no night action on N1 to N4, as I said before. Dave, your Medic line fits the N2 stop on Alice, so post who you protect on N5 and whether you were blocked. Bob, your Day 2 Standard shot on Grace is still the one kill nobody has explained. I won't vote on a lean, and nobody should be nominated until the N5 results are out.
+Bob (public): Bob here, real Sniper. I'm firing my last token at Carol now. On Day 5 she answered only N3 and dodged N4, while Heidi stated N1 to N4 plainly. Dave, stay alive: protect yourself and Bob tonight.
+(to Bob, Dave) Bob -> Dave (private): Dave: I'm shooting Carol now. Please use your token to protect yourself tonight, and protect me too. Let's hang Heidi or whoever is left on Day 6 if the Yakuza is still alive.
+(to Bob) Moderator (private): You took a Basic shot at Carol. It will be fired after a random number of speaking turns (possibly right after this one), and you'll be told then. 0 sniper tokens left.
+A shot rings out: someone shot at Carol.
+Carol died (shot by the Sniper). Their role isn't revealed. Their last will: "Carol's last will (updated Day 5): I am a Vanilla Villager with no night actions or results, as I have said. Facts: Bob fired a Standard shot at Grace on Day 2 before any Night 2 data existed, and he still has not given a real reason for it, so he is the most unexplained player alive. Dave's Medic claim fits the mechanics: his N2 protection stopped a Katana attack on Alice, and he was role-blocked on N3. Frank's Tracker claim has one block and some results, but Frank's will is his own word. Erin was the Jester. Do not hang on a lean alone. Check every stated vote against the announced totals, and ask for the Night 5 results before any trial."
+(to Heidi) The Katana passed to Heidi.
+(to Bob) Moderator (private): Your shot at Carol was just fired: it killed them.
+Dave (public): Dave here, Medic. Heidi is the only living player who can be Yakuza. Carol's death did not end the game, and the Katana holder killed Alice on N3 and Frank on N4. I'm nominating Heidi. Bob and I should vote Guilty.
+(to Bob, Dave) Dave -> Bob (private): Bob: Heidi is the only living Yakuza, so if she's hanged the Village wins. Vote Guilty with me. I'm giving you a free Standard protection tonight in case the vote fails.
+Dave nominated Heidi. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Heidi] Yes - Dave, Bob; No - Heidi
+Nomination votes on Heidi: 2 Yes (the votes are secret).
+Heidi is put on trial (2 Yes).
+[Claim] Heidi: Vanilla Villager. No night actions or results N1 to N4. Katana passed to me on Day 5 when Carol died. D3: Guilty on Bob, Guilty on Erin.
+Heidi (public): Heidi here, on trial. I'm a Vanilla Villager with no night action and no results on N1 to N4. The Katana was Carol's until she died on Day 5, so every Katana visit on N2 to N4 was hers, not mine. Dave's Medic claim is only his word. Nobody can verify that his N2 protection stopped anything, and his N3 and N4 blocks are equally unverifiable. Bob's Standard shot on Grace is still unexplained. Bob and Dave have been privately messaging each other all Day, and that's the pair pushing my hang. Before you vote Guilty, ask who gains from hanging the last player who has no unexplained kill. I'm voting Innocent. If you hang me, the Village wins on two claims nobody can check.
+(to Bob, Heidi) Heidi -> Bob (private): Bob, if you and Dave hang me, you're trusting a Medic claim nobody can check. Vote Innocent, then we see Dave's Night 5 result together. Your Day 2 shot on Grace is still the only kill nobody has explained, and you know it.
+[Claim] Bob: Sniper (real, Village). 0 tokens left. N1-N4 no action. D2 Standard shot at Grace (killed). D5 Basic shot at Carol (killed). D5: Guilty on Heidi.
+Bob (public): Bob here, real Sniper, Village. Heidi, your claim says the Katana was Carol's on N2-N4, which makes Carol Yakuza. Carol died to my shot, and she was a Vanilla claim. You pushed the Bob hang on Day 3 and the Erin hang on Alice's read, and now you blame a dead player. I'm voting Guilty on Heidi.
+(to Bob, Dave) Bob -> Dave (private): Dave: I'm voting Guilty on Heidi. Protect yourself tonight if you can.
+Dave (public): Dave here. Heidi's own claim settles it. A Katana passes only to a living Yakuza, and she says it reached her when Carol died. So Heidi is Yakuza, the last one alive. Voting Guilty.
+(to Bob, Dave) Dave -> Bob (private): Bob: Heidi's claim that the Katana reached her makes her Yakuza. Vote Guilty with me.
+[Claim] Heidi: Vanilla Villager. No night action or results N1-N4. D3: Guilty on Bob, Guilty on Erin. D5: Innocent on Heidi (self, if voting), Katana passed to me when Carol died.
+Heidi (public): Heidi again. Two points before the vote. First, I have no kill and no visit on any night, and my Katana vote was Carol's until she died, so nothing I did killed anyone. Second, Bob and Dave are the only two players left, and both of you vote Guilty on the same case. Dave nominated me after privately messaging Bob three times today. Dave's Medic claim is consistent with the N2 stop on Alice, but nobody can verify it, and Bob's Standard shot on Grace has still never been explained. If you hang me, the game ends on your two unchecked claims. Vote Innocent and make Dave's Night 5 result the first real data we have.
+(to Bob, Heidi) Heidi -> Bob (private): Bob, if you and Dave hang me, the game ends on two claims nobody can check. Vote Innocent, then we see Dave's Night 5 result. Your Day 2 shot on Grace is still unexplained, and you know it.
+Trial votes on Heidi: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Heidi] Guilty - Bob, Dave; Innocent - Heidi
+Heidi is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Heidi died (executed by hanging). Their role isn't revealed. Their last will: "Heidi, claimed Vanilla Villager. No night action and no night results. Votes on record: Guilty on Bob (Day 3, found Innocent), Guilty on Erin (executed, Jester win). Carol held the Katana N2-N4 and was the Katana holder for every attack on Alice and Frank. Bob's Day 2 Standard shot on Grace was never explained. Do not hang anyone on a lean or a lone claim. Check stated votes against the announced totals."
+The game is over. Winners: Alice (dead), Bob, Dave, Frank (dead), Grace (dead), Erin (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Frank, Grace, Erin
+Cost by player (USD):
+  Alice (Sheriff)     $0.0000   23 calls  claude-haiku-5.5
+  Bob (Sniper)        $0.0000   36 calls  claude-haiku-5.5
+  Carol (Pharmacist)  $0.0000   43 calls  claude-haiku-5.5
+  Dave (Medic)        $0.0000   40 calls  claude-haiku-5.5
+  Erin (Jester)       $0.0000   20 calls  claude-haiku-5.5
+  Frank (Tracker)     $0.0000   34 calls  claude-haiku-5.5
+  Grace (Sniper)      $0.0000    8 calls  claude-haiku-5.5
+  Heidi (Grunt)       $0.0000   47 calls  claude-haiku-5.5
+  Moderator           $0.0000    5 calls  claude-opus-5.5
+  Night checks        $0.0000    4 calls  claude-opus-5.5
+  Strategy review     $0.0000    1 calls  claude-opus-5.5
+  Log review          $0.0000    1 calls  claude-opus-5.5
+  Total               $0.0000  262 calls
