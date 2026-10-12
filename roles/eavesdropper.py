@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, chosen_name, register
+from roles.base import RecordedAction, RoleLogic, note_swap_move, register
 
 NEXT = "eavesdrops_next"  # game.role_state: Eavesdropper -> target, recorded tonight for the next day
-MOVED = "eavesdrops_moved"  # game.role_state: Eavesdropper -> the player they chose, when a swap moved it (R23)
 TODAY = "eavesdrops"  # game.role_state: Eavesdropper -> target, today
 
 if TYPE_CHECKING:
@@ -25,16 +24,11 @@ class Eavesdropper(RoleLogic):
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
         game.role_state.setdefault(NEXT, {})[by.name] = target.name
-        if (chosen := chosen_name(game, target.name)) != target.name:  # rules R23: told at dawn, so it isn't a bug
-            game.role_state.setdefault(MOVED, {})[by.name] = chosen
+        note_swap_move(game, by, target, "eavesdropping")  # rules R23: told at dawn
 
     def at_dawn(self, game: Game) -> None:
         game.role_state[TODAY] = game.role_state.pop(NEXT, {})
-        moved = game.role_state.pop(MOVED, {})
         for me, target in game.role_state[TODAY].items():
-            if me in moved and game.player(me).alive:
-                game.emit(f"A swap moved your eavesdropping from {moved[me]} to {target} last night (rules R23).",
-                          [me])
             if game.player(me).alive and not game.player(target).alive:
                 game.emit(f"{target} died, so you have no one to eavesdrop on today.", [me])
             elif game.player(me).alive:

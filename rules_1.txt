@@ -89,8 +89,9 @@ players (e.g. a group around the target) is built around B, but A and B trade pl
 the other would be; the roles, alignments and counts in it are still the real players', so the rest of the group can
 still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action
 landed on. An effect that lasts into the next Day (e.g. listening in on private messages) follows B, and its user is
-told at dawn that a swap moved it to B. Effects that pick their own victim at random (e.g. the Jester's revenge or
-a Cursed player's curse, R24) aren't actions aimed at a player, so a swap doesn't move them: they hit whoever they draw.
+told at dawn that a swap moved it to B, unless its role says nobody is told. Effects that pick their own victim at
+random (e.g. the Jester's revenge or a Cursed player's curse, R24) aren't actions aimed at a player, so a swap doesn't
+move them: they hit whoever they draw.
 
 R13 (Last wills)
 Players may write and update a last will at the start of each Night, when they choose their night action
@@ -104,9 +105,9 @@ not on a trial turn, and not while you are puppeted. It takes effect after a ran
 after that turn to n-1 speaking turns later, n being the number of players alive when it was taken, every delay
 equally likely. Only Day speaking turns count, not trial turns; a turn that starts a trial ends with that trial. So
 its timing doesn't show whose turn it was. If the Day ends first, it takes effect as the Day ends. If you died since
-taking it, it doesn't take effect. Day actions due at the same time take effect one at a time. A death it causes is
-announced at once (R12), and the game ends if that leaves one faction (R1). A day action isn't a visit, and night
-protections don't last into the Day.
+taking it, it doesn't take effect. Day actions due at the same time take effect one at a time, in random order. A
+death it causes is announced at once (R12), and the game ends if that leaves one faction (R1). A day action isn't a
+visit, and night protections don't last into the Day.
 
 === PART 3: THE NIGHT ===
 
@@ -487,8 +488,9 @@ Sniper
   Tokens: 3 sniper tokens.
   Day: on one of your own speaking turns (once a Day), may take a shot at one player: 1 token for a Basic Attack, 2
   for Standard, 3 for Strong. It is fired after a random delay (R25): everyone is told that someone shot at that
-  player, then whether they died; nobody is told who shot. If the target died before then, the shot isn't fired
-  and its tokens come back. A Defense from a night effect (e.g. the Medic's) has ended by Day.
+  player, then whether they died; nobody is told who shot. If the target died before then, the shot isn't fired:
+  its tokens come back, and you may take another shot that Day. A Defense from a night effect (e.g. the Medic's) has
+  ended by Day.
 
 Support
 
