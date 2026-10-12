@@ -344,3 +344,42 @@ Dave (public): Dave, Village. No nomination from me. I'm voting No on any nomina
 Alice (public): Alice, Vanilla. No nomination from me. Dave, I'm voting No on any nomination, and a stall loses for both of us.
 (to Alice, Dave) Alice -> Dave (private): Dave, nobody can hang anyone without both of us, so waiting only ends in a stall loss for us both.
 Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks None
+  Dave (Serial Killer): target Alice; "Strong Attack on Alice. She is the last other living player, so this leaves only me alive and wins the game for the Serial Killer."
+Katana: no attack (the Yakuza agreed not to attack); Alice holds it.
+(to Dave) Moderator (private): You attacked Alice tonight. Your attack succeeded: Alice was killed.
+[Moderator summary] Night 5: Alice (Grunt, Yakuza, Katana holder) was not protected and had no Defense (None). Dave (Serial Killer) dealt her a Strong Attack, which killed her. The Yakuza voted not to attack, and the Katana stayed with Alice. The only visit was Dave to Alice. Dave is the only living player, so the Serial Killer wins alone.
+[Night check] Night 5: correct
+(to Alice) Moderator (private): You were attacked tonight (Serial Killer) and died.
+
+===== DAY 6 =====
+Alice died (killed by Serial Killer). Their role isn't revealed. Their last will: "Alice, Vanilla Villager. No night action or results. Dave survived a Standard Katana on Night 1 with no named protector, and the Serial Killer kills on Bob, Carol, Erin and Heidi point at Dave. Do not hang anyone on one claim or phrase. Compare every vote with the announced totals."
+The game is over. Winners: Dave.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Dave
+Cost by player (USD):
+  Alice (Grunt)             $0.0000   49 calls  claude-haiku-5.5
+  Bob (Tracker)             $0.0000    4 calls  claude-haiku-5.5
+  Carol (Sheriff)           $0.0000   22 calls  claude-haiku-5.5
+  Dave (Serial Killer)      $0.0000   49 calls  claude-haiku-5.5
+  Erin (Kitsune)            $0.0000   22 calls  claude-haiku-5.5
+  Frank (Grunt)             $0.0000   24 calls  claude-haiku-5.5
+  Grace (Vanilla Villager)  $0.0000   31 calls  claude-haiku-5.5
+  Heidi (Kitsune)           $0.0000   36 calls  claude-haiku-5.5
+  Moderator                 $0.0000   11 calls  claude-opus-5.5
+  Night checks              $0.0000    5 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  255 calls
