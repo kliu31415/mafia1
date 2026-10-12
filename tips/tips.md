@@ -1,43 +1,44 @@
 # Tips from past games
 
-Written 2026-10-12 10:18 by opus-5.5 with `uv run tips.py build`, from the 303 active entries of tips_notebook.json (59 games). Players never see this preamble; they see every section below. Earlier sheets are in history/.
+Written 2026-10-12 11:30 by opus-5.5 with `uv run tips.py build`, from the 303 active entries of tips_notebook.json (59 games). Players never see this preamble; they see every section below. Earlier sheets are in history/.
 
 ## Everyone
-- Ballots are secret, so keep a notepad of every stated vote, the announced totals and your own vote. Keep your votes matching your stated reads; another player's mismatch is usually a lead, not a verdict. (seen in 33 games)
-- Totals can be changed: a Ballot Stuffer adds a trial vote and a Fixer silently flips one player's trial votes. If totals don't fit, first have everyone re-check their private reminder; nomination counts can't be altered, so they test liars best. (seen in 5 games)
-- Dead players spend nothing: use one-shot tokens (rig, puppet, ritual guess, shots) on the first night they can change a vote or remove a threat, because holders who wait usually die with them. (seen in 23 games)
-- A visit shows a destination, not an action. A corroborated lone unexplained visitor to a Katana victim is near-proof, but one unverified claimant's held-back report is only their word. (seen in 34 games)
-- Keep past results and tonight's planned target in your will. The result of the night you die never reaches it, so post results that matter publicly while alive. (seen in 33 games)
-- Check the rules before calling a contradiction: actions are optional, roles can repeat, and a role-block or swap explains a missing or odd result. (seen in 29 games)
+- Ballots are secret: keep a notepad of each player's stated vote, the announced totals and your own vote, ask for stated votes beforehand, and treat mismatches as leads, not proof. (seen in 33 games)
+- Totals can be altered: a Ballot Stuffer adds a trial vote and a Fixer silently flips one player's trial votes. First have everyone re-check their vote reminder; nomination counts can't be altered, so a Yes mismatch shows a liar, possibly a Jester. (seen in 5 games)
+- Dead players spend nothing: use one-shot tokens (shots, rig, puppet, ritual, swaps) the first time they can swing a vote or remove a threat; a puppet or doubled ballot lapses if you die that night. (seen in 23 games)
+- Keep your will current with past results and tonight's planned target; the result from the night you die never reaches it, so post important results while alive. (seen in 33 games)
+- A visit shows a destination, not an action. A corroborated lone visitor to a Katana victim is near-proof; one unverified claimant's held-back report is only their word. (seen in 34 games)
+- Check mechanics before calling a contradiction: actions are optional, roles can repeat, a role-block explains a missing result and a swap an odd one. (seen in 29 games)
 
 ## Village
-- Post a result that bears on a vote in your first speech, with night, target and exact result; held-back results look retrofitted. With nothing useful, avoid naming your exact role on Day 2: a Ritualist's guess kills through any Medic. (seen in 24 games)
-- Avoid announcing tonight's target or that you will act, publicly or by PM: it tells blockers and the Katana where to go, and a Wiretap may read every PM. (seen in 31 games)
-- Before voting Guilty, name a corroborated mechanical fit: an Evil read the claim doesn't explain, a broken claim, elimination from a group result. On the last Day before the Yakuza can block nominations, though, hang your best case. (seen in 45 games)
-- Once a mechanical result shows someone is Yakuza, look next at whoever defended them or argued for delay. A player merely caught lying may be a Jester, and PM links are leads, not proof. (seen in 35 games)
-- Before a hang, ask whether the nominee wants it (self-nominations, reckless lies). If you hang a possible Jester, keep Guilty votes to a bare majority with power roles Innocent, because revenge kills a random Guilty voter. (seen in 17 games)
-- Hunt Neutral killers on purpose: read every cause of death (a Serial Killer attack or ignite proves one is alive) and test unwatched Vanilla claimants and unexplained attack survivors. While the Katana still kills, avoid spending hangs on Neutrals who never block your win. (seen in 17 games)
-- The Katana holder reads Not Evil that night, so a clean read on a suspected attacker clears little; still rank unchecked players above Not Evil reads. (seen in 20 games)
+- Hunt Neutral killers deliberately: read every cause of death (a Serial Killer attack or ignite proves one alive) and list unwatched Vanilla claimants and unexplained survivors; quiet nights don't clear an Arsonist. But avoid hanging a Jester, Executioner, Bounty Hunter or Magpie, who never block your win, while the Katana still kills. (seen in 4 games)
+- Convict on corroborated mechanical fits (an Evil read against a claim that can't explain it, elimination to one unexplained visitor, a broken claim), not leans, PM trails or wording. Still, hang your best case before the Yakuza reach half the voters and can block every nomination. (seen in 45 games)
+- Once a mechanical result shows someone Yakuza, look at who defended them or urged delay, and check stated votes against totals for hidden Innocents; a mere liar may be a Jester. (seen in 35 games)
+- Investigators usually do best posting night, target and exact result as soon as it bears on a vote; held-back results look retrofitted. Counterclaim a duplicate claim immediately. (seen in 24 games)
+- Avoid announcing tonight's target or token plans, even by PM, and avoid firm exact-role claims without a result: both invite a block, the Katana, or a Ritualist guess no Medic stops. (seen in 31 games)
+- Before any hang, ask whether the nominee wants it (self-nominations, reckless lies). If you hang a likely Jester, keep Guilty votes to a bare majority, with power roles voting Innocent. (seen in 17 games)
+- The Katana holder reads Not Evil that night, so a clean Sheriff read only lowers suspicion, and means nothing once one Yakuza remains. (seen in 20 games)
 
 ## Yakuza
-- Defend a doomed teammate only if night-chat vote math says your votes can save them; otherwise vote Guilty with the town and say so, because totals get compared with stated votes. (seen in 46 games)
-- Plan in night chat, not daytime PMs: everyone sees who messaged whom, and a visible PM cluster often becomes the town's lead. (seen in 40 games)
-- Confirm the Katana holder and target in night chat and submit exactly that; with two Yakuza, one missing vote cancels the kill. (seen in 27 games)
-- Agree cover claims on Night 1 that fit your token count and real visits. Using Yakuza-only role names, leaking night-chat knowledge or switching claims once cornered tends to hang you. (seen in 23 games)
-- Move the Katana off any member a watcher, map or count has tied to a victim, and avoid flatly denying a visit a log could show: admit it with a prepared cover. (seen in 22 games)
-- Kill whoever's future results narrow your team (Census Taker, Cartographer, Fortune Teller) before someone whose result is already posted; after a failed attack, block or kill the likely protector before retrying. (seen in 23 games)
+- Do the vote math in night chat: if you can't save a doomed teammate, vote Guilty and say so, because totals reveal hidden Innocents and defenders become the next suspects. (seen in 46 games)
+- Plan only in night chat; daytime teammate PMs are visible to all, readable by an Eavesdropper, and often become the town's main lead. (seen in 40 games)
+- Confirm the Katana holder and target every night; with two Yakuza alive, one missing vote cancels the kill. (seen in 27 games)
+- Agree distinct cover claims before Day 2 that fit your tokens and real visits; switching when cornered, naming a Yakuza-only role or voicing night-chat knowledge usually gets you hanged. (seen in 23 games)
+- Choose a holder whose claim explains a visit, move the Katana once watchers or counts name them, and admit an exposed visit with a prepared cover rather than deny it. (seen in 22 games)
+- After a failed Katana, deal with the protector first, or suspect innate Defense and push a hang instead. (seen in 23 games)
+- Kill roles whose future results narrow you (Census Taker, Cartographer, Fortune Teller, Coroner, blockers), not one whose result is already public. (seen in 16 games)
 
 ## Coroner
-- Examine bodies that settle a live question (a hanged suspect, one side of a duplicate claim), not an undisputed Katana victim. Post night, target and exact role the next Day, and avoid announcing tomorrow's exam. (seen in 3 games)
+- Examine bodies that settle a live question (a hanged suspect, one side of a duplicate claim), not undisputed Katana victims; post night, target and role next Day, and avoid announcing tomorrow's exam. (seen in 3 games)
 
 ## Medic
-- Protect the likeliest Katana targets (claimed investigators, vocal analysts) without announcing it or repeating a pattern. After claiming, spend a token on self-protection soon; Medics often die holding both. (seen in 27 games)
+- Free Standard protection stops the Katana: guard likely targets such as claimed investigators, vary and don't announce them, and spend a token on self-protection after claiming. (seen in 27 games)
 
 ## Vigilante
-- Set a concrete trigger by Day 2-3 and fire a Basic shot on a good lead rather than waiting for proof; dying with unused shots is the usual failure. (seen in 13 games)
+- Dying with unused shots is the usual failure: set a trigger by Day 3 and shoot on a solid lead, not proof. (seen in 13 games)
+
+## Clerk
+- Rig early, for a Day when a non-teammate can be nominated but not convicted, and not when a teammate is the likely nominee. Village: a passed nomination may then mean execution. (seen in 18 games)
 
 ## Smuggler
-- Vetoing swaps out of fear is usually a mistake: a swap moves only actions aimed at the two swapped players. Aim the Katana at a decoy swapped with the Medic's likely ward, or swap yourself with a Villager to dodge a check; both are told, so expect posted notices. (seen in 11 games)
-
-## Arsonist
-- Ignite once three living players are doused, or two if you're being questioned; each extra dousing night tends to get you hanged first. (seen in 12 games)
+- Teams often veto swaps wrongly: a swap moves exactly the actions aimed at the two swapped players. To beat a Medic, aim the Katana at a decoy and swap the decoy with the real target; to dodge a check, swap yourself with a Villager. Warn teammates, whose guesses move too. (seen in 11 games)
