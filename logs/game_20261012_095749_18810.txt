@@ -22,3 +22,43 @@ This game has 13 players. Its roles were picked by hand, not drawn by a standard
 ===== NIGHT 1 =====
 (to Alice, Carol, Dave) Alice (Yakuza chat): Plan proposal: I keep the Katana (my Talent Agent action isn't a visit, so the Katana hit is my only visit, and I read Good tonight). Attack Mallory. It's random on N1, and she's far from all three of us in the circle. I'll use a Count token on Medic so we know whether kills can be blocked. Carol: block someone random, say Heidi. Dave: frame someone random, say Niaj, so a Sheriff might get an Evil read we can push tomorrow. Cover claims: I'm Vanilla Villager (already in my will). Carol and Dave, pick claims that explain a visit (Tracker/Lookout-type) and don't duplicate each other, and say which ones here. Please vote holder=Alice, target=Mallory.
 (to Alice, Carol, Dave) Carol (Yakuza chat): Agreed: holder=Alice, target=Mallory. I'll block Heidi. My cover is Party Animal (a Village role-blocker that's immune to blocks), so my real block visits match it exactly, and it's already in my will. Dave, take something like Tracker or Lookout so the frame visit is explained. Let's not duplicate. Tomorrow: no daytime PMs between us. If a Sheriff posts an Evil read on Niaj, I'll be careful about pushing too hard so I don't look tied to it.
+(to Alice, Carol, Dave) Dave (Yakuza chat): Agreed: holder=Alice, target=Mallory. I'll frame Niaj and keep my forge token for later, maybe for a kill victim whose will could matter once claims are out. My cover is Tracker, already in my will. My "result" tomorrow will be that Niaj went nowhere or somewhere vague, so I don't contradict anyone too early. No daytime PMs between us. If the Sheriff flags Niaj, I'll go along without leading the push.
+(to Alice, Carol, Dave) Alice (Yakuza chat): Confirmed: holder=Alice, target=Mallory. Covers: me Vanilla, Carol Party Animal, Dave Tracker. I'll post the Medic count tonight. Tomorrow: if a real Party Animal or Tracker counterclaims, don't dig in. Let it play out quietly and we'll talk it over at night. Ready.
+(to Alice, Carol, Dave) Carol (Yakuza chat): Confirmed, all set: holder=Alice, target=Mallory, I block Heidi. Ready.
+(to Alice, Carol, Dave) Dave (Yakuza chat): Confirmed: holder=Alice, target=Mallory. I frame Niaj. Ready.
+Night actions:
+  Alice (Talent Agent): guessed role Medic; 1 token(s); "Count: Medic"; Katana vote: Alice holds, attacks Mallory
+  Bob (Enforcer): target Heidi
+  Carol (Pharmacist): target Heidi; Katana vote: Alice holds, attacks Mallory
+  Dave (Fabricator): target Niaj; "Frame Niaj only. Don't forge the will."; Katana vote: Alice holds, attacks Mallory
+  Erin (Medic): target Judy; "Standard protection on Judy (free)."
+  Frank (Sheriff): target Grace
+  Grace (Serial Killer): target Niaj
+  Heidi (Tracker): target Grace
+  Ivan (Oracle): target Heidi; guessed role Vanilla Villager
+  Judy (Party Animal): target Niaj
+  Mallory (Vigilante): no action
+  Niaj (Lookout): target Grace
+  Olivia (Kitsune): target Dave
+Katana: Alice holds it and attacks Mallory.
+(to Alice) Moderator (private): Your count: 1 player alive when the night began has the role Medic.
+(to Frank) Moderator (private): You investigated Grace tonight. Result: Not Evil.
+(to Ivan) Moderator (private): You guessed that Heidi is a Vanilla Villager tonight. Your guess was wrong.
+(to Heidi) Moderator (private): You were role-blocked tonight. Your action had no effect.
+(to Niaj) Moderator (private): You were role-blocked tonight. Your action had no effect.
+(to Bob) Moderator (private): You visited Heidi tonight. You did not attack. 3 enforcer tokens left.
+(to Erin) Moderator (private): You protected Judy tonight with Standard Defense. 2 medic tokens left.
+(to Carol) Moderator (private): You role-blocked Heidi tonight. Your block did not fail because of role-block immunity.
+(to Judy) Moderator (private): You role-blocked Niaj tonight. Your block did not fail because of role-block immunity.
+(to Dave) Moderator (private): You framed Niaj tonight (no will forged). 1 fabricator token left.
+(to Grace) Moderator (private): You attacked Niaj tonight. Your attack succeeded.
+[Moderator summary] Night 1: Carol (Pharmacist) blocked Heidi; Judy (Party Animal) blocked Niaj. Katana (Alice) killed Mallory (no protection). Grace (SK) killed Niaj with a Strong Attack. Bob (Enforcer) visited Heidi, who made no attack, so there was no Enforcer attack. Erin protected Judy (Standard, free). Olivia charmed Dave; nothing to swallow. Frank: Grace Not Evil. Ivan guessed Heidi as Vanilla Villager: wrong. Dave framed Niaj (no forged will). Alice spent a talent token on a Count of Medic.
+(to Alice) Moderator (private): Your Katana attack on Mallory tonight succeeded.
+[Moderator summary] Night 1: Carol (Pharmacist) blocked Heidi, and Judy (Party Animal) blocked Niaj. The Katana (held by Alice) killed Mallory, who was unprotected. Grace (Serial Killer) killed Niaj with a Strong Attack. Bob (Enforcer) visited Heidi, who made no attack, so Bob did not attack. Erin protected Judy (Standard, no token spent). Olivia charmed Dave, and the charm had nothing to swallow. Frank checked Grace: Not Evil. Ivan guessed Heidi was a Vanilla Villager: wrong. Dave framed Niaj and did not forge a will. Alice spent a talent token to count Medic (code delivers the result). Alice was told the Katana attack succeeded, sent again on its own after the first message was held.
+[Night check] Night 1: correct
+(to Olivia) Moderator (private): Your fox charm on Dave swallowed no attack tonight.
+(to Mallory) Moderator (private): You were attacked tonight (Katana) and died.
+(to Niaj) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Mallory. Carol (Pharmacist) chose to act on Heidi; Dave (Fabricator) chose to act on Niaj ("Frame Niaj only. Don't forge the will.").
+(to Carol) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Mallory. Alice (Talent Agent) chose to act, naming Medic, spending 1 token(s) ("Count: Medic"); Dave (Fabricator) chose to act on Niaj ("Frame Niaj only. Don't forge the will.").
+(to Dave) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Mallory. Alice (Talent Agent) chose to act, naming Medic, spending 1 token(s) ("Count: Medic"); Carol (Pharmacist) chose to act on Heidi.
