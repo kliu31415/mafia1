@@ -435,8 +435,8 @@ Kitsune
   swallowed attack and learn its level and how its kill would be announced. While you hold it you can't lay a charm:
   on a night you choose a target, you release it on that player (not yourself), as an Attack of the same level whose
   kill is announced with the same cause (a released Katana attack reads as a Katana death), and a survivor is told
-  it came from that cause's role. You keep the attack until you release it. You learn whether your charm swallowed
-  an attack, and whether your release killed.
+  it came from that cause's role. You keep the attack until you release it, and it's lost if you die. You learn
+  whether your charm swallowed an attack, and whether your release killed.
 
 Killing
 
@@ -448,10 +448,11 @@ Vigilante
 Enforcer
   Tokens: 3 enforcer tokens.
   Night: may visit one player other than yourself. If they made an Attack of their own choosing tonight (fatal or
-  not; a Veteran's alert, a trap or a revenge doesn't count), you deal them a Basic Attack. Spend 1 token to also
-  visit a second player, and 1 token to make your Attack Strong; the two can be combined. If both players you visit
-  made an Attack, one of them, chosen at random, is attacked. Tokens are spent whether or not you attack. You learn
-  whether you attacked and whether it killed; with one target you know whom, with two you aren't told which.
+  not; a Katana attack counts for its holder; a Veteran's alert, a trap or a revenge doesn't count), you deal them a
+  Basic Attack. Spend 1 token to also visit a second player, and 1 token to make your Attack Strong; the two can be
+  combined. If both players you visit made an Attack, one of them, chosen at random, is attacked. Tokens are spent
+  whether or not you attack. You learn whether you attacked and whether it killed; with one target you know whom,
+  with two you aren't told which.
 
 Veteran
   Tokens: 3 alert tokens.

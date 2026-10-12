@@ -21,11 +21,11 @@ def describe_action(a: dict) -> str:
     if "act" not in a:
         pass  # a role with no night action, asked only for a trait's
     elif a.get("act"):
-        for key in ("target", "second_target", "guessed_role"):
+        for key, label in (("target", "target"), ("second_target", "second target"), ("guessed_role", "named role")):
             if a.get(key):
-                parts.append(f"{key.replace('_', ' ')} {moved(a, key)}")
-        if a.get("tokens_to_spend"):
-            parts.append(f"{a['tokens_to_spend']} token(s)")
+                parts.append(f"{label} {moved(a, key)}")
+        if a.get("tokens_to_spend"):  # what they chose; a role-block spends none (R9)
+            parts.append(f"chose to spend {a['tokens_to_spend']} token(s)")
         if a.get("details"):
             parts.append(f'"{a["details"]}"')
     else:
