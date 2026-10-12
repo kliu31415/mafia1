@@ -1712,3 +1712,57 @@ def test_no_sniper_shot_on_a_trial_turn_while_puppeted_or_with_bad_tokens(game_f
     logic("Sniper").at_day_end(game)
     assert game.player("Dave").alive and game.player("Alice").tokens["sniper"] == 2
     assert any("tokens_to_spend must be 1 to 2" in e.text for e in game.events if e.visible_to == {"Alice"})
+
+
+def test_a_kitsune_charm_swallows_one_non_divine_attack_and_its_release_copies_it(game_factory):
+    game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    out = apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob", "attacks": [
+        {"by": "Dave", "attack": "Standard", "cause": "Katana"}, {"by": "Carol", "attack": "Divine", "cause": "X"}]})
+    assert "swallowed Dave's Standard Attack ('Katana')" in out["results"][0]  # Divine Attacks ignore the charm
+    game.run_night_end_hooks()
+    assert "swallowed a Standard Attack announced as 'Katana'" in told(game, "Alice")[-1]
+    assert "Dave" not in told(game, "Alice")[-1]  # the role or weapon, never the player
+    game.day += 1
+    with pytest.raises(ValueError, match="holds a swallowed attack"):  # a charge must be released first
+        apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob", "attacks": []})
+    with pytest.raises(ValueError, match="can't release its attack on itself"):
+        apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Alice"})
+    out = apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Erin"},
+                    {"op": "kill", "player": "Erin", "cause": "Katana", "by": "Alice"})
+    assert "a Standard Attack announced as 'Katana'" in out["results"][0]
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your released attack on Erin killed them.")
+    assert "kitsune_charge" not in game.role_state or not game.role_state["kitsune_charge"]
+    assert not game.log.error_counts
+
+
+def test_a_kitsune_charm_picks_one_of_several_attacks_and_charming_yourself_spends_the_token(game_factory):
+    game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    attacks = [{"by": "Dave", "attack": "Standard", "cause": "Katana"},
+               {"by": "Carol", "attack": "Basic", "cause": "Serial Killer"}]
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Alice", "attacks": attacks})
+    assert game.player("Alice").tokens["kitsune"] == 0
+    assert game.role_state["kitsune_charge"]["Alice"] in [{"attack": a["attack"], "cause": a["cause"]}
+                                                          for a in attacks]
+    game.run_night_end_hooks()
+    game.day += 1
+    game.role_state["kitsune_charge"] = {}
+    with pytest.raises(ValueError, match="no kitsune token left"):
+        apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Alice", "attacks": []})
+    with pytest.raises(ValueError, match="holds no swallowed attack"):
+        apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Bob"})
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob", "attacks": []})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your fox charm on Bob swallowed no attack tonight.")
+
+
+def test_a_kitsune_release_killing_under_another_cause_is_an_alert(game_factory):
+    game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.role_state["kitsune_charge"] = {"Alice": {"attack": "Basic", "cause": "Serial Killer"}}
+    apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Dave"},
+              {"op": "kill", "player": "Dave", "cause": "Kitsune", "by": "Alice"})
+    game.run_night_end_hooks()
+    assert game.log.error_counts == {"kitsune_cause": 1}

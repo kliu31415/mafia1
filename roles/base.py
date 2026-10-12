@@ -188,14 +188,16 @@ class RoleLogic:
             return f"{'an' if self.role[0] in 'AEIOU' else 'a'} {self.role} can't target themselves"
         return self.target_error(game, by, target)
 
-    def apply_op(self, game: Game, change: dict) -> None:
+    def apply_op(self, game: Game, change: dict) -> str | None:
         """Carry out one of this role's ops. Fields are already checked against `ops`, and player
-        names against the game. For a RecordedAction: spends the token, then carry_out."""
+        names against the game. For a RecordedAction: spends the token, then carry_out. May return a result the
+        moderator needs to go on (shown in apply_changes' answer), e.g. which attack a Kitsune's charm swallowed."""
         assert self.action, f"{self.role} has ops but no RecordedAction: override check_op and apply_op"
         by = game.player(change["by"])
         if self.action.token:
             spend_token(game, by.name, self.action.token)
         self.carry_out(game, by, game.player(change["player"]) if self.action.target else None)
+        return None
 
     def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
         """A RecordedAction's role-specific check (e.g. a Puppeteer can't puppet a Yakuza): why it can't be

@@ -99,7 +99,9 @@ from records import read_records, safe_print
 #     "day_action_refused" (player, target, tokens) for a day action with a bad token count
 # 53: "day_shot_taken" records (player, target, attack, delay: speaking turns until it fires, rules R25) and
 #     "day_shot_dropped" records (player, target) when a held shot's shooter died first
-LOG_VERSION = 53
+# 54: "kitsune_charm" (player, target, attacks, swallowed, day) and "kitsune_release" (player, target, attack, cause,
+#     day) records for the Kitsune
+LOG_VERSION = 54
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

@@ -48,11 +48,12 @@ class Bloodhound(RoleLogic):
                 return f"no player named {a!r}"
         return None
 
-    def apply_op(self, game: Game, change: dict) -> None:
+    def apply_op(self, game: Game, change: dict) -> str | None:
         if change["op"] != ATTACKS:
             return super().apply_op(game, change)
         game.role_state.setdefault(ATTACKS, {})[game.day] = list(change["attackers"])  # a resend replaces it
         game.log.write("attacks", day=game.day, attackers=change["attackers"])
+        return None
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target

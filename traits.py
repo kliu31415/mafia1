@@ -90,8 +90,8 @@ class TraitLogic:
     def check_op(self, game: Game, change: dict) -> str | None:
         return None
 
-    def apply_op(self, game: Game, change: dict) -> None:
-        pass
+    def apply_op(self, game: Game, change: dict) -> str | None:
+        return None
 
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """After p's death is announced (or queued, at night). guilty_voters is set only for a hanging."""

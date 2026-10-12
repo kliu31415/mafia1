@@ -117,6 +117,7 @@ class Moderator:
         self.tokens_set: set[tuple[str, str]] = set()
         self.tokens_spent: set[tuple[str, str]] = set()
         self.op_refused: set[str] = set()  # users of a role op that apply_changes refused this phase
+        self.op_results: list[str] = []  # what this apply_changes call's role ops told the moderator (apply_op)
         docs = []
         for role in sorted({p.role for p in game.players}):
             for op, (required, optional, doc) in logic(role).ops.items():
@@ -238,7 +239,8 @@ class Moderator:
         if c["op"] in self.op_roles:
             user = g.player(c["by"]) if c.get("by") in {q.name for q in g.players} else None
             before = dict(user.tokens) if user else {}
-            self.op_roles[c["op"]].apply_op(g, c)
+            if result := self.op_roles[c["op"]].apply_op(g, c):  # e.g. which attack a Kitsune's charm swallowed
+                self.op_results.append(result)
             if self.op_roles[c["op"]].code_tells_user and "by" in c:  # not e.g. the attacks op
                 self.code_told.add(c["by"])
             spent = {(user.name, k) for k, n in before.items() if user.tokens.get(k, 0) < n} if user else set()
@@ -279,6 +281,7 @@ class Moderator:
             case "get_state":
                 return g.full_state()
             case "apply_changes":
+                self.op_results = []
                 try:
                     changes, notes = self.check_changes(args["changes"])
                 except ValueError:
@@ -312,7 +315,8 @@ class Moderator:
                                     "spends a token already does it, so don't also set_tokens for it")
                             notes.append(note)
                             g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
-                return {"ok": True, **({"notes": notes} if notes else {})}
+                return {"ok": True, **({"results": self.op_results} if self.op_results else {}),
+                        **({"notes": notes} if notes else {})}
             case "random_choice":
                 options, k = args["options"], args.get("k", 1)
                 if not isinstance(options, list) or not isinstance(k, int) or isinstance(k, bool):

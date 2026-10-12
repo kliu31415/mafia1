@@ -146,6 +146,12 @@ ROLES: dict[str, RoleInfo] = {
                         acts_at_night=True,
                         tested=True,
                         notes="persistent traps tracked as player status; acting with no target removes the trap"),
+    "Kitsune": RoleInfo(Alignment.GOOD, "Protective", False,
+                        summary="Night: a fox charm swallows one attack on a player; the Kitsune must later "
+                        "release it, same level and cause.",
+                        tokens={"kitsune": 1}, acts_at_night=True,
+                        notes="moderator records the charm's attacks and the release with ops; code picks the "
+                        "swallowed attack, keeps the charge and tells the Kitsune"),
     "Vigilante": RoleInfo(Alignment.GOOD, "Killing", False,
                           summary="Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack; "
                           "learns the role of a player it kills.",
