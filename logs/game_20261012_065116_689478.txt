@@ -113,3 +113,25 @@ Frank (public): Frank, Vanilla Villager. No nomination from me. I'm waiting for 
 Grace (public): Grace, Vanilla. No nomination. I'm waiting for Carol's Day 3 Sheriff check before anyone is hanged.
 Heidi (public): Heidi, real Kitsune. No nomination. Waiting on Carol's Day 3 check.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Frank) Alice (Yakuza chat): Alice here. Proposal: Frank keeps the Katana (no holder move), and we both vote Carol as the attack target. Carol is the player whose claim can expose us: a Sheriff who checked Dave on N1 and plans a Day 3 check on a Kitsune claimant. Erin and Heidi are fighting over Kitsune, so Carol is the investigator most likely to land a real read on us. If you disagree, say so now; otherwise confirm and I'm ready.
+(to Alice, Frank) Frank (Yakuza chat): Frank here. Confirmed: I keep the Katana (no holder move) and I vote Carol as the attack target. Carol's Sheriff claim is the main threat to us, so I'm ready.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Frank holds, attacks Carol
+  Carol (Sheriff): target Erin; "Sheriff investigation on Erin, one of the two Kitsune claimants, as promised."
+  Dave (Serial Killer): target Carol; "Strong Attack on Carol, who claims Sheriff. Removing a claimed investigator whose read on me is Not Evil keeps the Village's information lower."
+  Erin (Kitsune): target Carol; "Lay the fox charm on Carol again. She is the Sheriff claimant and the most likely Serial Killer target. If an attack lands on her, the charm swallows it and I learn its level and cause."
+  Frank (Grunt): no role action; Katana vote: Frank holds, attacks Carol
+  Heidi (Kitsune): target Carol
+Katana: Frank holds it and attacks Carol.
+[Moderator flag] Kitsune: two Kitsune (Erin and Heidi) both charmed Carol on Night 2, and Carol takes two non-Divine attacks (Katana Standard from Frank, Serial Killer Strong from Dave). The rules don't say how two charms on one player interact. My reading: each charm swallows one attack. I pick at random which charm resolves first; it swallows one of the two attacks, and the second charm can only swallow the attack that is left.
+(to Carol) Moderator (private): Night 2 result: Erin is Not Evil. You were also attacked twice tonight: once with the Katana and once by a Serial Killer. You survived both attacks.
+(to Dave) Moderator (private): Night 2 result: your attack on Carol failed. Carol survived.
+(to Frank) Moderator (private): Night 2 result: your Katana attack on Carol failed. Carol survived.
+[Moderator summary] Night 2. Both Heidi and Erin charmed Carol. I flagged the double charm as an issue and settled it by random order: Heidi's charm went first. Heidi's charm swallowed Dave's Serial Killer attack (Strong). Erin's charm swallowed Frank's Katana attack (Standard). Carol survived and was told about both attacks. Carol's Sheriff check on Erin returned Not Evil. Dave and Frank were each told their attack failed. Code tells the Kitsunes their own results. Nobody died. No tokens were spent. Visits recorded: Carol->Erin, and Dave, Erin, Heidi and Frank each visited Carol.
+[Night check] Night 2: unsure. [medium, Kitsune / R10, other] Two Kitsune charmed Carol, who took two non-Divine attacks (Frank's Katana, Standard; Dave's Serial Killer, Strong). The rules don't say how two charms on one player interact. The moderator applied them one after the other, so each swallowed a different attack and Carol survived. Under simultaneous resolution (R10), each charm could pick at random from both attacks, so both might swallow the same one and the other attack would kill Carol (Defense None). The moderator flagged this. Its reading is reasonable, but the rules don't settle it, and it decides whether Carol lives. Everything else checks out: Erin reads Not Evil to the Sheriff, Carol learns both attacking roles, Dave and Frank are told their attacks failed, no tokens are spent, and the visit list is right.
+(to Heidi) Moderator (private): Your fox charm on Carol swallowed a Strong Attack announced as 'Serial Killer'. Release it on a later night (you can't charm until you do).
+(to Erin) Moderator (private): Your fox charm on Carol swallowed a Standard Attack announced as 'Katana'. Release it on a later night (you can't charm until you do).
+(to Alice) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Carol. Frank (Grunt) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Carol. Alice (Grunt) chose no action.
