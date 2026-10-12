@@ -14,3 +14,28 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 9 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Separately, 0 to 3 traits (R24) are dealt to Village players, usually 1 or 2 (one player may get several), drawn to help balance the sides.
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Bob, Carol) Bob (Yakuza chat): Night 1 proposal: no Katana attack tonight. We know nothing about anyone yet, so a random Standard hit would mostly burn a Village role we might need later and would tell its target a Katana was used. Carol keeps the Katana and holds it. I'll keep my Fabricator token for a frame later, when a Sheriff or Seer read matters. Carol, don't use the Ritualist guess tonight either. If you agree, vote no attack and keep Carol as holder.
+(to Bob, Carol) Carol (Yakuza chat): Agreed, Bob. No attack tonight, Carol keeps the Katana, and no Ritualist guess on Night 1. Nothing to gain yet and a wrong guess would expose my role. I'm ready.
+(to Bob, Carol) Bob (Yakuza chat): Agreed: no attack tonight, Carol keeps the Katana, no Ritualist guess. I'm ready.
+(to Bob, Carol) Carol (Yakuza chat): Agreed. No Katana attack tonight, Carol keeps the Katana, no Ritualist guess. Ready.
+Night actions:
+  Alice (Cartographer): no action
+  Bob (Fabricator): no role action; Katana vote: Carol holds, attacks None
+  Carol (Ritualist): no role action; Katana vote: Carol holds, attacks None
+  Dave (Archivist): no action
+  Erin (Profiler): target Bob; 1 token(s)
+  Frank (Auditor): no action
+  Grace (Medic): target Dave; "Standard protection on Dave at no token cost. No information yet, so this is a blind guess. I am keeping my Armed shot for later."
+  Heidi (Arsonist): target Carol; "Douse Carol. Dousing is my visit; the doused player is set up for an ignite (Strong Attack on all doused) on a later night."
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Erin) Moderator (private): You profiled Bob: their role is Cartographer, Fabricator or Mortician (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 2 profile tokens left.
+(to Grace) Moderator (private): You protect Dave tonight, giving them Standard Defense. You have 2 medic tokens left.
+(to Heidi) Moderator (private): You doused Carol tonight.
+[Moderator summary] Night 1: Yakuza kept the Katana with Carol and made no attack. Erin profiled Bob (1 profile token spent, done by code). Grace gave Dave Standard protection with no token spent. Heidi doused Carol, who is now doused. No role-blocks, no attacks, no deaths. Visits: Erin->Bob, Grace->Dave, Heidi->Carol.
+[Night check] Night 1: correct
+(to Carol) Moderator (private): An Arsonist doused you tonight. You stay doused until the Arsonist ignites.
+(to Alice) Moderator (private): Tonight's visit groups have sizes 2, 2, 2, 1, 1, 1.
+(to Bob) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Ritualist) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Bob (Fabricator) chose no action.
