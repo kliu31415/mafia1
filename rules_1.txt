@@ -429,13 +429,14 @@ Kitsune
   Tokens: 1 kitsune token.
   Night: if you hold no swallowed attack, may lay a fox charm on one player other than yourself (on yourself, spend
   the token). The charm acts before any other protection: it swallows one Basic, Standard or Strong Attack on that
-  player tonight (chosen at random if there are several; Divine Attacks ignore it), which then has no effect; any
-  other attacks on them resolve as usual. Several charms on one player act one at a time, in random order, each
-  swallowing a different attack. You keep the swallowed attack and learn its level and how its kill would be
-  announced. While you hold it you can't lay a charm: on a night you choose a target, you release it on that
-  player (not yourself), as an Attack of the same level whose kill is announced with the same cause (a released
-  Katana attack reads as a Katana death), and a survivor is told it came from that cause's role. You keep the
-  attack until you release it. You learn whether your charm swallowed an attack, and whether your release killed.
+  player tonight (chosen at random if there are several; Divine Attacks ignore it), which then has no effect (its
+  attacker and target are told as for any failed attack, R3); any other attacks on them resolve as usual. Several
+  charms on one player act one at a time, in random order, each swallowing a different attack. You keep the
+  swallowed attack and learn its level and how its kill would be announced. While you hold it you can't lay a charm:
+  on a night you choose a target, you release it on that player (not yourself), as an Attack of the same level whose
+  kill is announced with the same cause (a released Katana attack reads as a Katana death), and a survivor is told
+  it came from that cause's role. You keep the attack until you release it. You learn whether your charm swallowed
+  an attack, and whether your release killed.
 
 Killing
 
