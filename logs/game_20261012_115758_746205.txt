@@ -584,3 +584,23 @@ Night actions:
 Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
 [Moderator summary] Night 8: Carol (Fixer, Katana holder, 0 fixer tokens) took no action; Yakuza agreed not to attack, Katana stays with Carol. Alice's automatic Ex-Con visit landed on Carol (visit only, no effect). No role-blocks, no attacks, no deaths. Heidi's trap on Alice remains armed and untriggered. Last death was Heidi on Night 6; stall rule will trigger at Day 10 if no one dies on Day 9 or Night 9.
 [Night check] Night 8: correct
+
+===== DAY 9 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Carol.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Carol: Carol (no role claim). Votes: Innocent on Grace (D3, D5), Innocent on Carol (D6), No on Carol's nomination (D7).
+Carol (public): Carol here, no nomination. Two of us are left, so the stall ends both of us on Day 10 unless someone dies on Night 9. Alice, if you're Good, a self-nomination costs you nothing: I'll vote Yes to bring it to trial and Innocent at the trial, and you need two Guilty votes to fall.
+Alice (public): Alice here, no nomination. I won't self-nominate. With two of us alive, a Fixer flip on me would turn my Innocent into Guilty, and your Guilty would make it a hang. Heidi's trap stays armed on me, so any Katana attack costs you your life. If you want a trial, nominate yourself and I'll vote Guilty.
+Carol (public): Carol here, no nomination. Two of us are left, and a hang needs both votes, so nothing happens unless one of us votes against themself. Alice, if you want a trial, nominate yourself and I'll vote Guilty.
+Alice (public): Alice here, no nomination. Two of us are alive, so a hang needs both votes and neither of us will vote Guilty on ourselves. If nobody dies on Night 9, the stall rule ends us both on Day 10. Any Katana attack on me triggers Heidi's trap and kills its user. I'll vote Yes on any nomination of Carol and No on any nomination of myself.
+Carol (public): Carol here, no nomination. If nobody dies on Night 9, the stall ends us both on Day 10. Alice, nominate yourself. I'll vote Yes to bring it to trial, and the verdict is up to you.
+(to Alice, Carol) Carol -> Alice (private): Alice: the stall ends us both on Day 10 unless someone dies, and a self-nomination is the only move left. I'll vote Yes. Think carefully about how you vote at your own trial.
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown. D7-D9: No on any nomination of myself, Yes on any nomination of Carol.
+Alice (public): Alice here, no nomination. I won't nominate myself or vote Guilty on myself. With two of us alive, a trial needs both votes Guilty, so nothing happens unless one of us votes against themself. Carol, if you're Good, nominate yourself and vote Guilty. Otherwise, I'll vote Yes on any nomination of you.
+Carol (public): Carol here, no nomination. With two of us alive, the stall ends both of us on Day 10 unless someone dies on Night 9. Alice, a self-nomination is the only way to end it, and I'll vote Yes on it.
+Alice (public): Alice here, no nomination. Carol, any Katana attack on me triggers Heidi's trap and kills you, so Night 9 can't end the stall that way. I won't vote Guilty on myself, and I'll vote Yes on any nomination of you.
+(to Alice, Carol) Carol -> Alice (private): Alice: nobody can win by waiting. If nobody dies on Night 9, everyone loses on Day 10. If you nominate yourself and vote Guilty, you end it, and I'll vote Guilty with you. Your Innocent vote doesn't stop a stall.
+Alice (public): Alice here, no nomination. I won't nominate myself or vote Guilty on myself. Carol, Heidi's trap stays armed on me, so any Katana attack on me kills you. A hang needs both of us, so I'll vote Yes on any nomination of you.
+Carol (public): Carol here, no nomination. Two of us are alive, and nobody can be hanged unless one of us votes Guilty on ourselves. If nobody dies on Night 9, the stall ends us both on Day 10.
+(to Alice, Carol) Carol -> Alice (private): Alice: the stall loses for both of us on Day 10. The only move that changes anything is a self-nomination with a Guilty vote. I'll vote Guilty with you.
