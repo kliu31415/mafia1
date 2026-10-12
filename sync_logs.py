@@ -24,8 +24,9 @@ Mock games, lock and temporary files are never synced.
 Usage:
     uv run sync_logs.py tips              # cloud, before games: tips/ from the branch (the PC's latest sheet)
     uv run sync_logs.py push              # cloud, after games: push new files in logs/ to the branch
-    uv run sync_logs.py pull              # PC: copy new logs into logs/, add their lessons to the tips
-                                          # notebook, then publish the new tips sheet to the branch
+    uv run sync_logs.py pull              # PC: copy new logs into logs/, remove finished games' checkpoints
+                                          # (branch and logs/), add their lessons to the tips notebook,
+                                          # then publish the new tips sheet to the branch
     uv run sync_logs.py pull --no-tips    # PC: only copy the logs
     uv run sync_logs.py get GAME          # one game's files (checkpoint too), e.g. to resume a cloud game
 """
@@ -181,6 +182,13 @@ def syncable(path: Path) -> bool:
             and path.suffix not in (".lock", ".tmp") and not path.name.endswith(".ckpt.tmp"))
 
 
+def finished(log_dir: Path, ckpt_name: str) -> bool:
+    """Whether the game of checkpoint ckpt_name (GAME.ckpt) has a log in log_dir with a result: the game is over, so
+    its checkpoint is stale (mafia.py refuses to resume a finished game anyway)."""
+    log = log_dir / ckpt_name.replace(".ckpt", ".jsonl")
+    return ckpt_name.endswith(".ckpt") and log.is_file() and b'"kind": "result"' in log.read_bytes()
+
+
 def push(repo: Repo, log_dir: Path) -> list[str]:
     """Sends every log file in log_dir (top level) the branch doesn't have, and merges the shared
     files into the branch's copies. Returns the paths that changed on the branch."""
@@ -197,8 +205,7 @@ def push(repo: Repo, log_dir: Path) -> list[str]:
             out[key] = data
         # A checkpoint pushed mid-game outlives its game on the branch (the game deletes it here when it ends).
         for key in theirs:
-            log = log_dir / key.split("/", 1)[1].replace(".ckpt", ".jsonl")
-            if key.endswith(".ckpt") and key not in out and log.is_file() and b'"kind": "result"' in log.read_bytes():
+            if key not in out and finished(log_dir, key.split("/", 1)[1]):
                 out[key] = None
         return out
     return repo.publish(gather, f"Logs from {platform.node()}")[1]
@@ -222,6 +229,8 @@ def pull(repo: Repo, log_dir: Path, game: str | None = None) -> tuple[list[Path]
         if "/" in name or game and not re.match(re.escape(game) + r"(\.|_[a-z])", name):
             continue
         local = log_dir / name
+        if finished(log_dir, name):  # its log (copied above, game logs first) has a result: prune_checkpoints
+            continue                 # removes it from the branch
         theirs = repo.blob(blob_id)
         if name in MERGED:
             data = MERGED[name](local.read_bytes() if local.exists() else b"", theirs)
@@ -244,6 +253,21 @@ def pull(repo: Repo, log_dir: Path, game: str | None = None) -> tuple[list[Path]
         os.replace(tmp, local)
         written.append(local)
     return written, kept
+
+
+def prune_checkpoints(repo: Repo, log_dir: Path) -> tuple[list[str], list[Path]]:
+    """Removes the checkpoints of finished games (whose log in log_dir has a result) from the branch and from
+    log_dir. A push removes only the ones whose log the pushing machine has, so a cloud sandbox never cleans up
+    after another; `pull` runs this on the PC, which has every log (pull copies them first, so the branch's logs
+    needn't be read here). Returns (paths removed from the branch, local files deleted)."""
+    def gather(parent: str | None) -> dict[str, bytes | None]:
+        return {key: None for key in repo.files(parent, "logs") if finished(log_dir, key.split("/", 1)[1])}
+    removed = (repo.publish(gather, f"Remove finished games' checkpoints ({platform.node()})")[1]
+               if repo.fetch() else [])  # no branch yet: nothing to remove (publish would create it)
+    deleted = [p for p in sorted(log_dir.glob("*.ckpt")) if finished(log_dir, p.name)] if log_dir.is_dir() else []
+    for p in deleted:
+        p.unlink()
+    return removed, deleted
 
 
 def in_cloud() -> bool:
@@ -427,6 +451,11 @@ def main() -> None:
         elif args.cmd == "pull":
             if not catch_up(repo, log_dir, tips_dir, None if args.no_tips else args.tips_model):
                 print(f"No new logs on {repo.remote}/{repo.branch}")
+            removed, deleted = prune_checkpoints(repo, log_dir)
+            if removed or deleted:
+                print(f"Removed finished games' checkpoints: {len(removed)} from {repo.remote}/{repo.branch}, "
+                      f"{len(deleted)} from {log_dir}"
+                      + "".join(f"\n  {p}" for p in removed + [str(d) for d in deleted]))
             rebuild_index(log_dir)
             if not args.no_tips:
                 refit_powers(log_dir)

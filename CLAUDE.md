@@ -35,7 +35,8 @@ environment, but their sandbox is deleted afterwards, so the logs go through the
    new one: `uv run sync_logs.py get GAME`, then `uv run mafia.py --resume logs/GAME.ckpt`. If that prints `ALERT sync_error`, run
    `uv run sync_logs.py push` before saying the game is done; logs that aren't pushed are lost with the sandbox.
 On the PC, `uv run sync_logs.py pull` copies new logs into logs/ (a game pushed again, e.g. after a
-mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback files), adds their lessons to
+mid-game push, replaces its earlier copy and that copy's .txt/.html/feedback files), removes finished games'
+checkpoints from the branch and logs/ (`sync_logs.prune_checkpoints`; a push removes only its own), adds their lessons to
 the tips notebook and publishes the new sheet to the branch (`--no-tips` only copies logs). A PC game also
 publishes the sheet when it updates it, so cloud games get it without a pull. A PC game (with `--sync`, the
 default) also does the pull's first part before it starts (`sync_logs.catch_up`: new cloud logs, and their
