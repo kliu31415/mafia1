@@ -404,3 +404,19 @@ Dave (public): Dave here, Archivist, 0 tokens. No nomination from me. Nobody has
 Erin (public): Erin here, Profiler. No nomination from me. Grace and Heidi, state your Night 5 targets before any Day 6 vote.
 Frank (public): Frank here, Auditor. No nomination from me. My Night 5 audit of Heidi is set, and I'll post her Day 5 votes at the start of Day 6.
 Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Dave (Archivist): no action
+  Erin (Profiler): no action
+  Frank (Auditor): target Heidi; "Auditor action on Heidi, to check her Day 5 votes."
+  Grace (Medic): target Ivan; "Standard protection on Ivan (claimed Sniper), at no token cost."
+  Heidi (Arsonist): "Ignite (Astral Visit). Strong Attack on every doused player: Frank and Ivan."
+Katana: no attack (no target); nobody holds it.
+(to Frank) Moderator (private): Your audit: Heidi cast no nomination or trial votes during the Day.
+(to Grace) Moderator (private): You protect Ivan tonight, giving them Standard Defense. You have 2 medic tokens left.
+(to Heidi) Moderator (private): You ignite tonight. Your attack on Frank succeeds, and your attack on Ivan succeeds. No players are doused now.
+[Moderator summary] Night 5: The Katana has no holder and there was no Yakuza vote (no Yakuza alive). Frank audited Heidi (audit op). Grace gave Ivan Standard protection (no token spent). Heidi ignited (Astral) and dealt a Strong Attack to the doused players Frank and Ivan. Frank (Defense None) died. Ivan (Standard Defense from the Medic) died, since Strong beats Standard. Both causes are Arsonist, by Heidi. Douses were cleared. Visits: Frank->Heidi, Grace->Ivan. Living: Dave, Erin, Grace (Village), Heidi (Arsonist); the game continues.
+[Night check] Night 5: correct
+(to Frank) Moderator (private): You were attacked tonight (Arsonist) and died.
+(to Ivan) Moderator (private): You were attacked tonight (Arsonist) and died.
