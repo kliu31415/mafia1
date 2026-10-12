@@ -606,3 +606,15 @@ def test_tools_outside_games_use_the_cli_where_it_s_installed(monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", "sk-test")
     monkeypatch.setattr(claude_code, "available", lambda: False)
     assert not isinstance(claude_code.default_client(), ClaudeCodeClient)
+
+
+def test_child_env_keeps_subscription_sign_in_and_drops_api_keys(monkeypatch):
+    for k, v in {"CLAUDE_CODE_OAUTH_TOKEN": "oauth", "CLAUDE_CONFIG_DIR": "/cfg", "CLAUDECODE": "1",
+                 "CLAUDE_CODE_SESSION_ID": "s", "ANTHROPIC_API_KEY": "key", "ANTHROPIC_AUTH_TOKEN": "tok",
+                 "AI_AGENT": "x", "MAFIA_TEST_VAR": "kept"}.items():
+        monkeypatch.setenv(k, v)
+    env = claude_code.child_env()
+    assert env["CLAUDE_CODE_OAUTH_TOKEN"] == "oauth" and env["CLAUDE_CONFIG_DIR"] == "/cfg"
+    assert env["MAFIA_TEST_VAR"] == "kept"
+    for gone in ("CLAUDECODE", "CLAUDE_CODE_SESSION_ID", "ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "AI_AGENT"):
+        assert gone not in env

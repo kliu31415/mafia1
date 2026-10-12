@@ -63,8 +63,12 @@ WINDOW_NAMES = {"five_hour": "5-hour", "seven_day": "7-day"}
 WEEK_S = 7 * 86400
 WEEK_START = 0.1  # the 7-day utilization below which a game may start right after the week's reset
 # The parent Claude Code session's variables (session id, remote-session settings, ...) would make the child act
-# as part of that session and add its context; these are the ones the child needs to sign in.
-KEEP_ENV = {"CLAUDE_SESSION_INGRESS_TOKEN_FILE", "CLAUDE_CONFIG_DIR"}
+# as part of that session and add its context; these are the ones the child needs to sign in
+# (CLAUDE_CODE_OAUTH_TOKEN is a headless sign-in made with `claude setup-token`).
+KEEP_ENV = {"CLAUDE_SESSION_INGRESS_TOKEN_FILE", "CLAUDE_CONFIG_DIR", "CLAUDE_CODE_OAUTH_TOKEN"}
+# An API key would make `claude -p` bill the API instead of the subscription, while the logs record these calls
+# at $0, so the child never sees one.
+DROP_ENV = {"AI_AGENT", "ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN"}
 
 Runner = Callable[[list[str], str, dict[str, str], str, float], tuple[int, str, str]]
 
@@ -108,7 +112,7 @@ def cli_effort(effort: str) -> str:
 
 def child_env() -> dict[str, str]:
     return {k: v for k, v in os.environ.items()
-            if not (k.startswith("CLAUDE") and k not in KEEP_ENV) and k != "AI_AGENT"}
+            if not (k.startswith("CLAUDE") and k not in KEEP_ENV) and k not in DROP_ENV}
 
 
 def run_cli(argv: list[str], stdin: str, env: dict[str, str], cwd: str, timeout: float) -> tuple[int, str, str]:
