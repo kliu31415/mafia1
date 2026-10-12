@@ -311,3 +311,36 @@ Katana: Ivan holds it and attacks Dave.
 [Moderator summary] Night 4: Bob (Medic) self-protected with Strong Defense (spent 2 medic tokens, 0 left); not attacked. Ivan held the Katana and attacked Dave (Standard vs Defense None): Dave dies, cause Katana. Visits: Ivan->Dave, Bob->Bob. Living: Bob (Village), Ivan (Yakuza); game continues.
 [Night check] Night 4: correct
 (to Dave) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 5 =====
+Dave died (killed by Katana). Their role isn't revealed. Their last will: "Dave's will (Sniper, Village). Results so far: Day 2 I voted Guilty on Grace, who was hanged; she had claimed Wiretap and then withdrew it. Day 3 my Basic shot killed Frank, who claimed Bounty Hunter. Heidi's death line and Frank's will both back that. Day 4 I voted Innocent on Erin. The count was 1 Guilty of 4, but Erin was still hanged after a Clerk rig. A rig means a living Yakuza Clerk. Only Bob, Ivan and I are alive, so one of Bob or Ivan is Yakuza. The Serial Killer who killed Carol is also alive, so the other is likely the SK. Bob's Medic protections hit nobody who was attacked, so they can't be checked. Ivan pushed Guilty on Alice, Grace and Erin with no result behind any of them. Vote on results, not pushes. I hold 2 sniper tokens for a confirmed Yakuza or SK; if I die they are lost, so use them early on a clear lead."
+Speaking order today goes around the circle in seat order, starting with Bob.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Bob (public): Bob here, Medic, Good. Only Ivan and I are alive. Ivan, state your role and what you did on Nights 1 to 4. I'll vote Guilty on any nomination of you unless you give a checkable result.
+(to Bob, Ivan) Bob -> Ivan (private): Ivan, name your role and night actions plainly. Two of us are left, so vote on results.
+Ivan (public): Ivan here. No role claim and no new night result. I won't nominate, and I'll vote only on a result that bears on a vote.
+[Claim] Bob: Medic (Good). N1 Standard on Frank, N2 Standard on Carol, N3 Standard on Carol, N4 Strong on self. 0 tokens left. D4: Innocent on Erin.
+Bob (public): Bob here, Medic, Good. Ivan, I have no tokens left and can't protect myself tonight. Name your role, or vote only on checkable results.
+(to Bob, Ivan) Bob -> Ivan (private): Ivan, if you're Good, name your role and night actions plainly. If you're the last Yakuza, you already know this ends tonight.
+Ivan (public): Ivan here. No nomination from me. I'll vote only on a checkable result, and I'm not making a role claim today.
+[Claim] Bob: Medic (Good). N1 Standard on Frank, N2 Standard on Carol, N3 Standard on Carol, N4 Strong on self. 0 tokens left. D4: Innocent on Erin. D5: Guilty on Ivan.
+Bob (public): Ivan is the last other living player, and Dave's will shows a Clerk rig, so Ivan is Yakuza. I nominated him. Vote Guilty.
+Bob nominated Ivan. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Ivan] Yes - Bob; No - Ivan
+Nomination votes on Ivan: 1 Yes (the votes are secret).
+The nomination of Ivan failed (1 Yes).
+Ivan (public): Ivan here. No nomination from me. I'll vote only on a checkable result.
+Bob (public): Bob here, Medic. Ivan, if you're Good, name your role and I'll vote on any checkable result.
+(to Bob, Ivan) Bob -> Ivan (private): Ivan, name your role plainly. I have no tokens left.
+Ivan (public): Ivan here. No nomination from me. I'll vote only on a checkable result, and I'll keep watching Bob's claim for mechanical contradictions.
+Bob (public): Bob here, Medic. Ivan, Dave's will shows a Clerk rig, and you're the last other player alive. Name your role or give a checkable result.
+Ivan (public): Ivan here. No nomination from me. I'll vote only on a checkable result, and I'm holding my reasoning for the trial if one comes.
+Bob (public): Ivan, name your role or give a checkable reason you're Good.
+(to Bob, Ivan) Bob -> Ivan (private): Ivan, if you're Good, say so plainly. I have no tokens left and no more to add.
+[Claim] Bob: Medic (Good). N1: Standard on Frank. N2: Standard on Carol. N3: Standard on Carol. N4: Strong on self. 0 tokens left. D4: Innocent on Erin. D5: Guilty on Ivan.
+Bob (public): Ivan is the last Yakuza. I vote Guilty.
+(to Bob, Ivan) Bob -> Ivan (private): Ivan, Dave's Clerk rig points at you. Show me a result.
+Ivan (public): Ivan here. No nomination from me. I'll vote only on a checkable result.
+[Claim] Bob: "Medic (Good). N1 Standard on Frank. N2 Standard on Carol. N3 Standard on Carol. N4 Strong on self. 0 tokens left. D4: Innocent on Erin. D5: Guilty on Ivan (nomination failed, 1 Yes)."
+Bob (public): Bob here, Medic. Ivan, name your role or show a checkable result.
+Discussion time is over. The day ends.
