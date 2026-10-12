@@ -1,5 +1,5 @@
 """Small I/O helpers every tool shares: reading game logs (JSONL) that may end in a half-written line,
-e.g. a game killed mid-write, and printing text from models to any console."""
+e.g. a game killed mid-write, printing text from models to any console, and whose call a record is."""
 
 import json
 import sys
@@ -33,3 +33,18 @@ def read_records(path: Path) -> tuple[list[dict], int]:
         else:
             unreadable += 1
     return records, unreadable
+
+
+# Who a model call's cost belongs to, for records that aren't a player's or the moderator's own call.
+# These all run on the moderator's model.
+CALLER_BY_KIND = {"moderator_call": "Moderator", "night_check": "Night checks", "review": "Log review",
+                  "strategy_review": "Strategy review"}
+
+
+def caller_of(record: dict) -> str | None:
+    """Whose call a record is: a player's name, "Moderator", a post-game step, or None (not a call)."""
+    if record["kind"] == "player_call" or (record["kind"] == "player_error" and "cost" in record):
+        return record["player"]  # a failed answer that was paid for counts too
+    if record["kind"] == "debrief" and record.get("who") == "moderator":
+        return "Moderator"
+    return CALLER_BY_KIND.get(record["kind"]) if "cost" in record else None

@@ -27,7 +27,7 @@ from typing import Any
 
 from gamelogs import faction_of
 from traits import TRAITS
-from records import read_records
+from records import caller_of, read_records
 from role_summaries import role_paragraphs
 from roles import RETIRED, RETIRED_BY_LABEL, ROLES, log_role, role_info
 from texts import blank, describe_action, player_view
@@ -184,6 +184,9 @@ div.usage.total { font-weight:650; padding:3px 0 3px 16px; }
 .usage .who { display:inline-block; width:240px; } .usage .model { display:inline-block; width:200px; }
 .usage .cost { display:inline-block; width:80px; text-align:right; margin-right:14px; font-variant-numeric:tabular-nums; }
 details.usage table { margin:4px 0 8px 16px; }
+label.apicost { display:block; margin:4px 0; } .costs .cost.api { display:none; }
+.costs:has(label.apicost input:checked) .cost.api { display:inline-block; }
+.costs:has(label.apicost input:checked) .cost.paid { display:none; }
 body.no-calls details.call { display:none; } body.no-hidden .ev.hidden { display:none; }
 body.no-hidden .ev.error { display:none; }
 body.no-calls details.why { display:none; }
@@ -371,17 +374,41 @@ def usage_lines(usage: list[dict]) -> list[str]:
     return lines
 
 
-def usage_html(usage: list[dict]) -> str:
+def claude_code_costs(records: list[dict]) -> dict[str, float]:
+    """What each caller's Claude Code calls (cost $0, on the subscription) would have cost at API list price: the
+    CLI's own figure (list_cost_usd), which prices its cache writes at the 1-hour rate (2x input)."""
+    costs: dict[str, float] = {}
+    for r in records:
+        usage = r.get("usage")
+        who = caller_of(r)
+        if who and isinstance(usage, dict) and usage.get("via") == "claude_code":
+            costs[who] = costs.get(who, 0.0) + float(usage.get("list_cost_usd") or 0)
+    return costs
+
+
+def usage_html(usage: list[dict], cc_costs: dict[str, float] | None = None) -> str:
     """The cost table at the end of the HTML view: one expandable row per player, the moderator and
-    each post-game step, with its calls and tokens inside."""
+    each post-game step, with its calls and tokens inside. cc_costs (claude_code_costs) adds a checkbox that
+    shows the cost with Claude Code calls priced at API rates."""
+    cc_costs = {who: c for who, c in (cc_costs or {}).items() if c}
+
     def num(n: float) -> str:
         return f"{n:,}"
+
+    def cost(paid: float, who: str | None = None) -> str:
+        """The paid cost, and with cc_costs also the API-equivalent cost (only one shows, by the checkbox)."""
+        api = paid + (cc_costs.get(who, 0.0) if who else sum(cc_costs.values()))
+        if not cc_costs:
+            return f"<span class='cost'>${paid:.4f}</span>"
+        return f"<span class='cost paid'>${paid:.4f}</span><span class='cost api'>${api:.4f}</span>"
     rows = []
     for u in usage:
         who = name_span(u['who'], u['role']) if u.get("role") \
             else esc(u["who"])
+        cc = cc_costs.get(u["who"])
         detail = {"Role": u.get("role"), "Models": ", ".join(u["models"]), "Calls": u["calls"],
                   "Cost per call": f"${u['cost'] / u['calls']:.4f}" if u["calls"] else None,
+                  "Claude Code calls at API price": f"${cc:.4f}" if cc else None,
                   "Prompt tokens": num(u["prompt_tokens"]), "Cached prompt tokens": num(u["cached_tokens"]),
                   "Completion tokens": num(u["completion_tokens"]),
                   "Reasoning tokens": num(u["reasoning_tokens"]),
@@ -392,13 +419,16 @@ def usage_html(usage: list[dict]) -> str:
         role = f" <span class='muted'>({esc(u['role'])})</span>" if u.get("role") else ""
         rows.append(f"<details class='usage'><summary><span class='who'>{who}{role}</span>"
                     f"<span class='model'>{esc(', '.join(short_model(m) for m in u['models']) or '?')}</span>"
-                    f"<span class='cost'>${u['cost']:.4f}</span><span class='muted'>{u['calls']} calls</span>"
+                    f"{cost(u['cost'], u['who'])}<span class='muted'>{u['calls']} calls</span>"
                     f"</summary><table>{cells}</table></details>")
     total = sum(u["cost"] for u in usage)
     rows.append(f"<div class='usage total'><span class='who'>Total</span><span class='model'></span>"
-                f"<span class='cost'>${total:.4f}</span>"
-                f"<span class='muted'>{sum(u['calls'] for u in usage)} calls</span></div>")
-    return "<div class='muted'>Cost by player (USD), click a row for calls and tokens</div>" + "".join(rows)
+                f"{cost(total)}<span class='muted'>{sum(u['calls'] for u in usage)} calls</span></div>")
+    toggle = ("<label class='apicost'><input type='checkbox'> Include Claude Code calls at API price "
+              "<span class='muted'>(they cost $0 on the subscription; this is Claude Code's own list-price figure, "
+              "with cache writes at the 1-hour rate)</span></label>") if cc_costs else ""
+    return ("<div class='costs'><div class='muted'>Cost by player (USD), click a row for calls and tokens</div>"
+            + toggle + "".join(rows) + "</div>")
 
 
 ICONS = Path(__file__).parent / "roles" / "icons"  # <role-slug>.svg; generic.svg for roles without one
@@ -834,7 +864,7 @@ def render_html(jsonl_path: Path) -> Path:
             start_phase("Game over")
             line("result", "Winners", ", ".join(r["winners"] or []) or "nobody")
             if "usage" in r:  # LOG_VERSION 10+
-                out.append(usage_html(r["usage"]))
+                out.append(usage_html(r["usage"], claude_code_costs(records)))
             else:
                 out.append(pre("Cost by model (USD)", r.get("cost")))
     end_phase()

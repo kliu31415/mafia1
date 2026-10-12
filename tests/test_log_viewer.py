@@ -143,3 +143,23 @@ def test_secret_votes_show_who_voted_which_way():
     text = re.sub("<[^>]+>", "", log_viewer.vote_split(trial, name, ["Ann", "Bob", "Cat"]))
     assert text == ("trial of Bob (Guilty) · Guilty (3): Ann (reversed by a Fixer), Cat (×2) · "
                     "Innocent (0): nobody")
+
+
+def test_claude_code_calls_priced_at_api_rates_behind_a_checkbox():
+    records = [{"kind": "player_call", "player": "Alice", "cost": 0.0, "usage": {"via": "claude_code",
+                                                                              "list_cost_usd": 0.25}},
+               {"kind": "player_call", "player": "Alice", "cost": 0.0, "usage": {"via": "claude_code",
+                                                                              "list_cost_usd": 0.5}},
+               {"kind": "player_call", "player": "Bob", "cost": 0.1, "usage": {}},
+               {"kind": "night_check", "cost": 0.0, "usage": {"via": "claude_code", "list_cost_usd": 1.0}}]
+    costs = log_viewer.claude_code_costs(records)
+    assert costs == {"Alice": 0.75, "Night checks": 1.0}
+    row = {"role": None, "models": ["m"], "calls": 1, "prompt_tokens": 0, "cached_tokens": 0,
+           "completion_tokens": 0, "reasoning_tokens": 0}
+    usage = [{**row, "who": "Alice", "cost": 0.0}, {**row, "who": "Bob", "cost": 0.1},
+             {**row, "who": "Night checks", "cost": 0.0}]
+    html = log_viewer.usage_html(usage, costs)
+    assert "label class='apicost'" in html
+    assert "<span class='cost paid'>$0.0000</span><span class='cost api'>$0.7500</span>" in html
+    assert "<span class='cost paid'>$0.1000</span><span class='cost api'>$1.8500</span>" in html  # the total
+    assert "apicost" not in log_viewer.usage_html(usage)  # no Claude Code calls: no checkbox
