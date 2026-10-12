@@ -236,3 +236,17 @@ Frank (public): Frank here. No nomination. Erin's Night 3 visitors and alert res
 Heidi (public): Heidi here. Still Guilty on Dave. Erin's Night 3 result first, then I vote.
 Ivan (public): Ivan here. No nomination from me. I'll vote on Erin's Night 3 visitors and alert result at dawn, as promised. Heidi and Dave, keep your votes tied to that result.
 Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Eavesdropper): target Heidi
+  Erin (Veteran): 1 token(s); "Going on alert with my last alert token. Standard Defense blocks a Standard Katana, and any visitor is hit with a Strong Attack. Armed shot held until I have a real lead."
+  Frank (Philanthropist): no action
+  Heidi (Bounty Hunter): no action
+  Ivan (Wiretap): no role action; Katana vote: Ivan holds, attacks Heidi
+Katana: Ivan holds it and attacks Heidi.
+(to Erin) Moderator (private): You went on alert tonight. Nobody visited you. 0 alert tokens left.
+(to Ivan) Moderator (private): Your Katana attack on Heidi succeeded tonight.
+[Moderator summary] Night 3: Erin went on alert (last token, now 0) and had no visitors. Alice eavesdropped on Heidi (a visit). Ivan held the Katana and attacked Heidi with a Standard Attack against her None Defense, so Heidi (Bounty Hunter) died to the Katana. Nobody was role-blocked. Visits: Alice to Heidi, Ivan to Heidi.
+[Night check] Night 3: correct
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
