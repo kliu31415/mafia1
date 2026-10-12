@@ -127,3 +127,29 @@ Dave (public): Dave here. No nomination from me. Bob's Fortune Teller line has s
 Erin (public): Erin here, still Accountant. My only result is N1: Dave has 3 tokens. No nomination from me. Bob, keep your FT counts fixed. No vote until Night 2 results are posted and checked against deaths.
 Frank (public): Frank here. No nomination from me. Night 2 results are needed before any vote, and I'll compare Juror checks against stated votes once trials happen.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Grace) Carol (Yakuza chat): Carol: Night 2 proposal. Grace keeps the Katana (holder Grace). Target: Bob. His Fortune Teller line has shifted several times, and a real FT is the most dangerous claim to leave alive. I'll hold my Fixer token tonight. Grace, confirm holder Grace and target Bob, or tell me why not and I'll follow your call.
+(to Carol, Grace) Grace (Yakuza chat): Grace here. Agreed with Carol: Grace keeps the Katana (holder Grace), target Bob. His Fortune Teller line has shifted several times, and a consistent real FT is the biggest threat to us. Vote holder Grace and target Bob tonight. I'm ready.
+(to Carol, Grace) Carol (Yakuza chat): Carol: Agreed. Grace keeps the Katana (holder Grace), target Bob. I'm holding my Fixer token tonight. Grace, if the Katana kill goes through, we don't need anything else from me tonight. Ready.
+(to Carol, Grace) Grace (Yakuza chat): Grace: Agreed. Katana stays with Grace, target Bob. No changes from me. Ready.
+Night actions:
+  Carol (Fixer): no role action; Katana vote: Grace holds, attacks Bob
+  Dave (Enforcer): target Bob; "Visiting Bob with a Basic Attack (no token cost). If Bob makes an attack of their own choosing tonight, they are attacked."
+  Erin (Accountant): target Bob
+  Frank (Juror): no action
+  Grace (Talent Agent): named role Fortune Teller; chose to spend 1 token(s); "Talent Agent Count: how many players have the Fortune Teller role in play. Non-visit, no target."; Katana vote: Grace holds, attacks Bob
+  Heidi (Trapper): no action
+  Alice (Ex-Con): automatic: target Frank; "random visit"
+Katana: Grace holds it and attacks Bob.
+(to Grace) Moderator (private): Your count: 1 player alive when the night began has the role Fortune Teller.
+(to Dave) Moderator (private): You visited Bob tonight. You did not attack. 3 enforcer tokens left.
+(to Bob) Moderator (private): Fortune Teller result for tonight: 2 players were visited; 4 players visited someone.
+[Moderator summary] Night 2: No role-blocks. Grace (Katana holder) attacked Bob with a Standard Katana attack; Bob (Defense None, not trapped, unprotected) dies, cause Katana. Grace's Talent Agent count of Fortune Teller resolved via scout_talent before the death (Bob was alive at the start of the night). Erin audited Bob (count_tokens; 0 tokens). Dave's Enforcer visit to Bob caused no attack because Bob made no attack; 3 tokens unchanged. Alice (Ex-Con) made an automatic visit to Frank. Heidi took no action, so her trap stays on Alice and didn't go off. Carol and Frank took no action. FT numbers: 2 visited (Bob, Frank), 4 visitors (Grace, Dave, Erin, Alice).
+(to Grace) Moderator (private): Your Katana attack on Bob succeeded.
+[Moderator summary] Night 2: No role-blocks. Grace held the Katana and attacked Bob with a Standard attack. Bob had Defense None, no trap and no protection, so he dies; the cause is Katana. Grace's Talent Agent count of Fortune Teller ran through scout_talent. Erin audited Bob with count_tokens. Dave's Enforcer visit to Bob didn't attack, because Bob made no attack; Dave still has 3 tokens. Alice (Ex-Con) made her automatic visit to Frank. Heidi didn't act, so her trap stays on Alice and didn't go off. Carol and Frank didn't act. Fortune Teller numbers: 2 players visited (Bob, Frank), 4 visitors (Grace, Dave, Erin, Alice). Grace was told her Katana attack succeeded.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): Your audit: Bob has 0 tokens in total.
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Grace (Talent Agent) chose to act, naming Fortune Teller, spending 1 token(s) ("Talent Agent Count: how many players have the Fortune Teller role in play. Non-visit, no target.").
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Carol (Fixer) chose no action.
