@@ -100,3 +100,27 @@ Grace (public): Grace here. No nomination from me. Bob and Heidi, post your Nigh
 Heidi (public): Heidi, the real Sheriff. I'm not nominating today. I'll post my Night 2 result at dawn, and Bob should do the same.
 Alice (public): Alice here, Enforcer. No nomination from me. Both Sheriffs, post your Night 2 targets and results at dawn. Whoever's result is contradicted goes first.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Carol) Bob (Yakuza chat): Bob: Proposal. Holder stays Bob. Target Heidi. Heidi is the only one contesting my Sheriff claim, and a real Sheriff counterclaim is the biggest threat to us. Erin may protect, so if you think Erin is more likely to be on Heidi, say so now. Carol, confirm holder=Bob, target=Heidi and I'll vote that tonight.
+(to Bob, Carol) Carol (Yakuza chat): Carol: Agreed. Holder stays Bob, target Heidi. Heidi is the only real counterclaim to Bob's Sheriff read, so Heidi is the priority. I'll vote holder=Bob, target=Heidi tonight. Erin's Medic claim could be a block on Heidi, but we can't cover that tonight, so let's just commit.
+(to Bob, Carol) Bob (Yakuza chat): Bob: Agreed. Holder stays Bob, target Heidi. Carol, vote holder=Bob and target=Heidi tonight. Erin's Medic claim is a risk we can't cover, so let's commit and not change the plan.
+(to Bob, Carol) Carol (Yakuza chat): Carol: Confirmed. Holder Bob, target Heidi. I'll vote holder=Bob and target=Heidi tonight. Bob, keep the Katana and make the Heidi attack. If Erin protects Heidi, we still have to cover the Sheriff claim at dawn, so keep your cover story consistent.
+Night actions:
+  Alice (Enforcer): target Heidi; "Visit Heidi with one target (0 tokens). If Heidi makes an attack of her own choosing tonight, I deal her a Basic Attack."
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Heidi
+  Carol (Grunt): no role action; Katana vote: Bob holds, attacks Heidi
+  Erin (Medic): target Heidi; "Standard protection on Heidi, free, since she is one of the two Sheriff claimants and a likely Katana or Serial Killer target. Keeping my 2 tokens for later."
+  Grace (Serial Killer): target Erin; "Strong Attack on Erin. She is the only claimed protector who can stop my Strong attack with a Strong (1-token) medic shield, so removing her keeps my kills reliable."
+  Heidi (Sheriff): target Grace
+Katana: Bob holds it and attacks Heidi.
+(to Heidi) Moderator (private): You investigated Grace tonight: Not Evil. You were attacked tonight with the Katana, but you survived.
+(to Bob) Moderator (private): Your Katana attack on Heidi tonight failed: Heidi survived.
+(to Grace) Moderator (private): Your attack on Erin tonight succeeded: Erin died.
+(to Alice) Moderator (private): You visited Heidi tonight. You did not attack. 3 enforcer tokens left.
+(to Erin) Moderator (private): You protected Heidi tonight with Standard Defense. 2 medic tokens left.
+[Moderator summary] Night 2: Bob (Katana holder) attacked Heidi with a Standard attack; Erin's free Standard protection on Heidi stopped it, and Heidi survived. Grace (SK) killed Erin with a Strong attack. Alice (Enforcer) visited Heidi, but Heidi made no attack, so Alice didn't attack and spent no tokens. Heidi checked Grace and got Not Evil (SK reads Not Evil). No role-blocks. Alive: Alice, Bob, Carol, Grace, Heidi.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Heidi. Carol (Grunt) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Heidi. Bob (Grunt) chose no action.
