@@ -3,11 +3,12 @@ and a report collecting everything (including moderator flags and in-game feedba
 
 import json
 from collections import Counter
+from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 
 from events import RESULT
-from llm import LLMClient, Model, ModelSpec, answer_json, rules_system
+from llm import LLMClient, LLMReply, Model, ModelSpec, answer_json, rules_system
 from texts import describe_action
 from moderator import Moderator
 from players import STR, Players, obj
@@ -78,6 +79,11 @@ def debrief_task(game: Game, with_reveal: bool = True) -> str:
             f"nothing to say.\n{questions}")
 
 
+# A post-game model call whose reply a step writes to the log: made by the step itself, or started earlier in
+# another thread (mafia.after_game runs the moderator model's calls alongside the players' rounds), its result
+# then the future's result. Only the call runs early: every step still writes its records in the usual order.
+Ask = Callable[[], LLMReply]
+
 POST_GAME_SECTIONS = {  # "section" records: the log views start a titled section for each post-game step
     "debrief": "Post-game feedback: rules, interface and bugs (debrief)",
     "lessons": "Post-game lessons: tips players wish they'd known, and how past tips went",
@@ -86,7 +92,21 @@ POST_GAME_SECTIONS = {  # "section" records: the log views start a titled sectio
 }
 
 
-def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
+def moderator_debrief_ask(game: Game, moderator: Moderator) -> Ask:
+    """The moderator's debrief call (not yet made). Its prompt is built now, from the game as it stands."""
+    flags = "\n".join(f"- {f}" for f in moderator.flags) or "(none)"
+    messages = [
+        rules_system(moderator.rules, "You were the moderator of this game."),
+        {"role": "user", "content": f"Everything that happened (with who could see each event):\n{full_log(game)}\n\n"
+         f"Issues you flagged during the game:\n{flags}\n\n{debrief_task(game)}\nAnswer as the moderator: also cover "
+         "rules you had to interpret, and tools or state you were missing."},
+    ]
+    return lambda: moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
+                                         effort=moderator.effort)
+
+
+def run_debrief(game: Game, players: Players, moderator: Moderator, moderator_reply: Ask | None = None) -> None:
+    """moderator_reply: the moderator's debrief call (moderator_debrief_ask), if already started; else asked here."""
     game.log.write("section", title=POST_GAME_SECTIONS["debrief"])
     task = debrief_task(game, with_reveal=False)  # the reveal is in the context
     fallback = dict.fromkeys(DEBRIEF_QUESTIONS, "")
@@ -95,36 +115,33 @@ def run_debrief(game: Game, players: Players, moderator: Moderator) -> None:
     for p, out in zip(game.players, outs):
         game.log.write("debrief", who=p.name, role=p.role, model=p.model.value, answers=out)
 
-    events = full_log(game)
-    flags = "\n".join(f"- {f}" for f in moderator.flags) or "(none)"
-    messages = [
-        rules_system(moderator.rules, "You were the moderator of this game."),
-        {"role": "user", "content": f"Everything that happened (with who could see each event):\n{events}\n\n"
-         f"Issues you flagged during the game:\n{flags}\n\n{debrief_task(game)}\nAnswer as the moderator: also cover "
-         "rules you had to interpret, and tools or state you were missing."},
-    ]
-    reply = moderator.client.chat(moderator.model, messages, schema=DEBRIEF_SCHEMA, schema_name="debrief",
-                                  effort=moderator.effort)
+    reply = (moderator_reply or moderator_debrief_ask(game, moderator))()
     game.log.write("debrief", who="moderator", role="Moderator", model=moderator.model.value,
                    answers=answer_json(reply, DEBRIEF_SCHEMA), cost=reply.cost, usage=reply.usage)
 
 
-def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
-               effort: str | None = None) -> None:
-    """An outside model reads the whole human-readable log and lists problems it sees."""
-    game.log.write("section", title=POST_GAME_SECTIONS["review"])
+def review_ask(client: LLMClient, model: Model, rules: str, log_text: str, effort: str | None = None) -> Ask:
+    """The outside review's call (not yet made) on `log_text`, the human-readable log."""
     messages = [
         rules_system(rules, "You review logs of LLMs playing this game, which "
          "is run by a program plus an LLM moderator. Find problems: rules ambiguities, program bugs, "
          "moderator mistakes, prompt problems, and places players seemed confused about the rules or "
-         "interface. Ignore ordinary bad strategy. This text log leaves out the answers to the post-game "
-         "questions (debrief, lessons, strategy review), which are stored separately, so those sections "
-         "look empty."),
-        {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}"},
+         "interface. Ignore ordinary bad strategy. This text log leaves out the post-game questions "
+         "(debrief, lessons, strategy review) and their answers, which are stored separately, so any of their "
+         "section headings in it look empty."),
+        {"role": "user", "content": f"Game log:\n{log_text}"},
     ]
-    reply = client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
-    game.log.write("review", model=model.value, issues=answer_json(reply, REVIEW_SCHEMA)["issues"],
-                   cost=reply.cost, usage=reply.usage)
+    return lambda: client.chat(model, messages, schema=REVIEW_SCHEMA, schema_name="review", effort=effort)
+
+
+def run_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
+               effort: str | None = None, reply: Ask | None = None) -> None:
+    """An outside model reads the whole human-readable log and lists problems it sees. reply: its call
+    (review_ask), if already started."""
+    game.log.write("section", title=POST_GAME_SECTIONS["review"])
+    answer = (reply or review_ask(client, model, rules, text_log.read_text(encoding="utf-8"), effort))()
+    game.log.write("review", model=model.value, issues=answer_json(answer, REVIEW_SCHEMA)["issues"],
+                   cost=answer.cost, usage=answer.usage)
 
 
 LESSON_TOPICS = ["rules and mechanics", "deduction", "deception", "persuasion and voting",
@@ -184,13 +201,13 @@ STRATEGY_SCHEMA = obj(summary=STR, lessons={"type": "array", "items": obj(
     evidence=STR)})  # the moment in this game that shows it
 
 
-def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
-                        lessons_file: Path, effort: str | None = None) -> None:
-    """The moderator model, which saw everything, reads the whole log and draws general strategy
-    lessons: things to do and to avoid, per role or faction. Saved to the game log and appended to
-    `lessons_file` alongside the players' lessons (source "moderator"). If some players had tips from
-    past games (tips.py), it also says which of those tips went especially well or badly."""
-    game.log.write("section", title=POST_GAME_SECTIONS["strategy"])
+def strategy_schema(game: Game) -> dict:
+    return with_tips_feedback(STRATEGY_SCHEMA) if any(p.tips for p in game.players) else STRATEGY_SCHEMA
+
+
+def strategy_review_ask(game: Game, client: LLMClient, model: Model, rules: str, log_text: str,
+                        effort: str | None = None) -> Ask:
+    """The strategy review's call (not yet made) on `log_text`, the human-readable log."""
     with_tips = [p for p in game.players if p.tips]
     sheets: dict[str, list[str]] = {}  # tips text -> who had it
     for p in with_tips:
@@ -205,19 +222,33 @@ def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str,
     messages = [
         rules_system(rules, "You moderated this game and saw everything, "
          "including hidden events and night actions. Now analyze it as a strategy coach."),
-        {"role": "user", "content": f"Game log:\n{text_log.read_text(encoding='utf-8')}\n\n"
+        {"role": "user", "content": f"Game log:\n{log_text}\n\n"
          "Write a short summary of why the game went the way it did (the decisive plays and mistakes), "
          "then 3-8 general strategy lessons: things to do or to avoid that would help a player of this "
          "game in future games, not a recap. Each lesson has a topic, who it applies to (a role, a "
          "faction, or 'everyone'), the tip, and the evidence: the moment in this game that shows it. "
          "Cover good and evil play, and ignore problems with the rules or the program." + tips_task},
     ]
-    schema = with_tips_feedback(STRATEGY_SCHEMA) if with_tips else STRATEGY_SCHEMA
-    reply = client.chat(model, messages, schema=schema, schema_name="strategy_review", effort=effort)
-    out = answer_json(reply, schema)
+    schema = strategy_schema(game)
+    return lambda: client.chat(model, messages, schema=schema, schema_name="strategy_review", effort=effort)
+
+
+def run_strategy_review(game: Game, client: LLMClient, model: Model, rules: str, text_log: Path,
+                        lessons_file: Path, effort: str | None = None, reply: Ask | None = None) -> None:
+    """The moderator model, which saw everything, reads the whole log and draws general strategy
+    lessons: things to do and to avoid, per role or faction. Saved to the game log and appended to
+    `lessons_file` alongside the players' lessons (source "moderator"). If some players had tips from
+    past games (tips.py), it also says which of those tips went especially well or badly. reply: its call
+    (strategy_review_ask), if already started."""
+    game.log.write("section", title=POST_GAME_SECTIONS["strategy"])
+    with_tips = any(p.tips for p in game.players)
+    schema = strategy_schema(game)
+    answer = (reply or strategy_review_ask(game, client, model, rules, text_log.read_text(encoding="utf-8"),
+                                           effort))()
+    out = answer_json(answer, schema)
     lessons = out.get("lessons", [])
     game.log.write("strategy_review", model=model.value, summary=out.get("summary", ""), lessons=lessons,
-                   cost=reply.cost, usage=reply.usage,
+                   cost=answer.cost, usage=answer.usage,
                    **({"tips_feedback": out.get("tips_feedback", [])} if with_tips else {}))
     lessons_file.parent.mkdir(parents=True, exist_ok=True)
     with lessons_file.open("a", encoding="utf-8") as f:

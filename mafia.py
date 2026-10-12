@@ -67,6 +67,7 @@ import subprocess
 import time
 import traceback
 from collections.abc import Callable, Iterator, Sequence
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
 from dataclasses import dataclass, field, fields
 from datetime import datetime, timezone
@@ -77,7 +78,8 @@ import claude_code
 import sync_logs
 from day import run_day
 from checkpoint import load as load_checkpoint, save as save_checkpoint
-from feedback import run_debrief, run_lessons, run_quiz, run_review, run_strategy_review, write_report
+from feedback import (Ask, moderator_debrief_ask, review_ask, run_debrief, run_lessons, run_quiz, run_review,
+                      run_strategy_review, strategy_review_ask, write_report)
 from gamelog import GameLog, usage_by_caller
 from log_viewer import render_html, usage_lines
 from llm import (API_KEY_ENV_VAR, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient,
@@ -425,16 +427,46 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
     mock = isinstance(client, MockClient)
     lessons_file = LOG_DIR / ("mock_lessons.jsonl" if mock else "lessons.jsonl")
     text_log = log.path.with_suffix(".txt")
-    if config.debrief:
-        step("Debriefing players and moderator", lambda: run_debrief(game, players, moderator))
-    if config.lessons:
-        step("Collecting lessons from players", lambda: run_lessons(game, players, lessons_file))
-        step("Collecting the moderator's strategy review",
-             lambda: run_strategy_review(game, client, mod.model, rules, text_log, lessons_file, effort=mod.effort))
-    if checker:
-        step("Waiting for night checks", checker.finish, llm=False)  # already running: just waits
-    if config.review:
-        step("Reviewing the log", lambda: run_review(game, client, mod.model, rules, text_log, effort=mod.effort))
+    # The moderator model's calls (its debrief, the strategy review, the log review) don't depend on each other or
+    # on the players' answers, so they start now, in threads, while the players' rounds (debrief, then lessons, in
+    # this order so the lessons reuse the debrief's cached prompt) run here. Their prompts are built here, and each
+    # step still writes its records in the usual order when its turn comes, so the log reads as before. A thread's
+    # exception (PlanLimitError too) comes back from its result() inside that step.
+    pool = ThreadPoolExecutor(max_workers=3, thread_name_prefix="post-game")
+
+    def early(enabled: bool, make: Callable[[], Ask]) -> Ask | None:
+        """make's call, started now in a thread; None if the step is off, or if building the call failed (the step
+        then builds it again itself, so the failure is logged there like any step's)."""
+        if not enabled:
+            return None
+        try:
+            return pool.submit(make()).result
+        except Exception:
+            return None
+
+    try:
+        mod_debrief = early(config.debrief, lambda: moderator_debrief_ask(game, moderator))
+        strategy = early(config.lessons, lambda: strategy_review_ask(
+            game, client, mod.model, rules, text_log.read_text(encoding="utf-8"), effort=mod.effort))
+        if checker:
+            # already running: just waits. Before the review starts, which reads the checks' verdicts in the log.
+            step("Waiting for night checks", checker.finish, llm=False)
+        review = early(config.review, lambda: review_ask(
+            client, mod.model, rules, text_log.read_text(encoding="utf-8"), effort=mod.effort))
+        if config.debrief:
+            step("Debriefing players and moderator", lambda: run_debrief(game, players, moderator, mod_debrief))
+        if config.lessons:
+            step("Collecting lessons from players", lambda: run_lessons(game, players, lessons_file))
+            step("Collecting the moderator's strategy review",
+                 lambda: run_strategy_review(game, client, mod.model, rules, text_log, lessons_file,
+                                             effort=mod.effort, reply=strategy))
+        if config.review:
+            step("Reviewing the log", lambda: run_review(game, client, mod.model, rules, text_log, effort=mod.effort,
+                                                         reply=review))
+    finally:
+        # Normally every call is done by now. If a step was skipped (a subscription limit) or this is unwinding
+        # (e.g. Ctrl-C), don't wait for calls nobody will read.
+        pool.shutdown(wait=False, cancel_futures=True)
     faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
     winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
     if end_reason == "win" and winning_faction is None:

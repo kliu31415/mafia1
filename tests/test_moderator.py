@@ -4,6 +4,7 @@ import json
 
 import pytest
 
+import feedback
 import mafia
 import moderator
 from llm import LLMReply, Model, ModelSpec
@@ -357,3 +358,55 @@ def test_everyone_can_update_their_will_with_the_night_action_and_it_stands_if_t
     assert not game.player("Carol").alive and game.player("Carol").last_will == "Carol: no night action, Vanilla."
     assert game.player("Erin").last_will == "Erin - Medic. N1: protecting Dave."
     assert game.player("Bob").last_will == ""  # an empty answer keeps the old will
+
+
+def test_the_moderator_models_post_game_calls_run_together_and_the_log_keeps_its_order(tmp_path, monkeypatch):
+    """after_game starts the moderator's debrief, the strategy review and the log review in threads while the
+    players' rounds run; each step still writes its records in order (the log views start a section per step)."""
+    import threading
+    from llm import MockClient
+
+    met = threading.Barrier(3, timeout=20)  # passes only if all three calls are running at once
+    threads: list[str] = []
+
+    class Client(MockClient):
+        def chat(self, model, messages, **kw):
+            if threading.current_thread().name.startswith("post-game"):
+                threads.append(kw["schema_name"])
+                met.wait()
+            return super().chat(model, messages, **kw)
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(Client(1), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
+                                                       debrief=True, lessons=True, review=True))
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    assert sorted(threads) == ["debrief", "review", "strategy_review"]
+    assert not [r for r in records if r.get("alert")]
+    post = [r["kind"] if r["kind"] != "debrief" else f"debrief:{r['who'] == 'moderator'}" for r in records
+            if r["kind"] in ("section", "debrief", "lessons", "strategy_review", "review")]
+    n = len(roles)
+    assert post == (["section", *["debrief:False"] * n, "debrief:True", "section", *["lessons"] * n,
+                     "section", "strategy_review", "section", "review"])
+    sections = [r["title"] for r in records if r["kind"] == "section"]
+    assert sections == list(feedback.POST_GAME_SECTIONS.values())
+
+
+def test_a_plan_limit_in_a_post_game_thread_stops_its_step_and_skips_the_later_ones(tmp_path, monkeypatch):
+    from claude_code import PlanLimitError
+    from llm import MockClient
+
+    class Client(MockClient):
+        def chat(self, model, messages, **kw):
+            if kw.get("schema_name") == "strategy_review":
+                raise PlanLimitError("games have a cap of 70% of the Claude subscription's 7-day window")
+            return super().chat(model, messages, **kw)
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]
+    path = mafia.play_game(Client(1), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=1,
+                                                       debrief=True, lessons=True, review=True))
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    [stop] = [r for r in records if r["kind"] == "plan_limit"]
+    assert stop["step"] == "Collecting the moderator's strategy review"
+    assert {"debrief", "lessons"} <= {r["kind"] for r in records}
+    assert not [r for r in records if r["kind"] in ("strategy_review", "review", "crash")]
+    assert records[-1]["kind"] == "result" and records[-1]["errors"] == {"plan_limit": 1}
