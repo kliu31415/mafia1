@@ -249,3 +249,23 @@ N2: Dave = Vanilla Villager -> CORRECT (guessed before Dave claimed; Dave confir
 N3: Erin = Seer -> WRONG.
 If I was hanged as a real Oracle, Erin is not a Seer (she's a Roleplayer or lying), and Heidi's Notorious claim, made only after the Evil pair came out, was a Yakuza cover. Coroner: examine me. Accountant: check Heidi (a Vigilante with no shots has 3 tokens). Suspects: Heidi, Olivia (Grace's Reading B, nominated me), Mallory (led the push on me).
 D3: Yes and Guilty on Niaj. D4: No on my nomination, Innocent."
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Auditor): target Heidi
+  Bob (Auditor): target Dave
+  Dave (Smuggler): no role action; Katana vote: Dave holds, attacks Heidi
+  Erin (Seer): no action
+  Heidi (Vigilante): target Dave; chose to spend 1 token(s)
+  Mallory (Trapper): no action
+Katana: Dave holds it and attacks Heidi.
+(to Alice) Moderator (private): Your audit of Heidi's votes during the Day, in order: Yes on the nomination of Frank; Guilty in the trial of Frank.
+(to Bob) Moderator (private): Your audit of Dave's votes during the Day, in order: No on the nomination of Frank; Guilty in the trial of Frank.
+(to Heidi) Moderator (private): You shot Dave tonight with a Basic Attack (1 token). Your shot killed them. 2 vigilante tokens left.
+(to Dave) Moderator (private): Your Katana attack on Heidi tonight succeeded.
+(to Erin) Moderator (private): Your random pair tonight: Heidi and Alice. Their alignments are DIFFERENT. 0 seer tokens left.
+[Moderator summary] Night 4: Dave (Katana holder) attacked Heidi with the Katana (Standard) and killed her. Heidi (Vigilante) shot Dave with a Basic Attack (1 token, 2 left) and killed him. Alice audited Heidi and Bob audited Dave. Erin's random pair was Heidi (Notorious, reads Evil) and Alice, so DIFFERENT. Mallory kept her trap on Erin, and no attack was made on Erin. There were no role-blocks or swaps. All Yakuza are now dead, so no one can take the Katana. Living players: Alice, Bob, Carol, Erin, Mallory (Village) and Olivia (Vulture, which blocks wins), so the game continues. No Bloodhound is alive, so I skipped the attacks op.
+[Night check] Night 4: correct
+(to Heidi) Moderator (private): Your shot killed Dave. Their role was Smuggler.
+(to Dave) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
