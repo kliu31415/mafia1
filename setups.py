@@ -161,13 +161,14 @@ def role_uses(log_dir: Path = LOG_DIR) -> Counter:
 
 def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None,
                    script: str = "all") -> list[str]:
-    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4 (about
-    3/13 of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village roles
+    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4 (about 3/13
+    of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village roles
     (VILLAGE_NEEDS among them: Kevin, Oct 12 2026), the rest Good. With fewer Yakuza than usual their roles lean
-    strong, with more they lean weak. Then CANDIDATES random picks of the Neutral and Village roles are tried, and a
-    random one within BAND of a role_power.score of 0 is kept (with one Neutral fewer only if none is; else the
-    closest): e.g. weaker Village roles and more Outsiders against weak Yakuza. Every draw leans towards newer roles
-    (not live-tested yet) and roles in fewer past games (logs/), so a seed's setup can change as games are added."""
+    strong, with more they lean weak. Then CANDIDATES random picks of the Yakuza, Neutral and Village roles are
+    tried, and a random one within BAND of a role_power.score of 0 is kept (with one Neutral fewer only if none
+    is; else the closest): e.g. weaker Village roles and more Outsiders against weak Yakuza. Every draw leans
+    towards newer roles (not live-tested yet) and roles in fewer past games (logs/), so a seed's setup can change
+    as games are added."""
     import role_power
     offset, power = role_power.load()
 
@@ -199,13 +200,15 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
     shift = rng.choices(list(YAKUZA_ODDS), list(YAKUZA_ODDS.values()))[0]
     n_yakuza = yakuza if yakuza is not None else max(1, usual + shift)
     lean = 0 if n_yakuza == usual else 3 if n_yakuza < usual else -3  # fewer Yakuza: stronger roles
-    evil = draw(of(Alignment.EVIL), n_yakuza, lambda r: math.exp(lean * (-power[r] - 0.95)))
     # The Village must outnumber the Yakuza (rules R2) and get its MIN_VILLAGE seats.
-    room = n - len(evil) - max(MIN_VILLAGE, len(evil) + 1)
+    room = n - n_yakuza - max(MIN_VILLAGE, n_yakuza + 1)
 
     wanted = max(0, min(rng.choices(list(NEUTRAL_ODDS), list(NEUTRAL_ODDS.values()))[0], room))
 
     def candidate(n_neutrals: int) -> list[str]:
+        # The Yakuza roles are redrawn with the rest (Kevin, Oct 12 2026): weak ones drawn once left 18% of setups
+        # unbalanced, since no Village mix made up for them.
+        evil = draw(of(Alignment.EVIL), n_yakuza, lambda r: math.exp(lean * (-power[r] - 0.95)))
         neutrals = draw(of(Alignment.NEUTRAL), n_neutrals)
         slots = n - len(evil) - len(neutrals)
         village = [r for category, k in VILLAGE_NEEDS.items() for r in draw(of(Alignment.GOOD, category), k)]
