@@ -35,3 +35,29 @@ Carol (public): Carol here. No claim yet. I'll post any night result once it bea
 Dave (public): Dave here, still no claim and no night info. I'll read Day 2 nominations for a stated reason and check who votes against the evidence.
 Erin (public): Erin here, still no claim. I'll post reads once there's night information to work with.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Grace, Ivan) Grace (Yakuza chat): Grace: no Katana attack tonight, Ivan keeps it. Please confirm.
+(to Grace, Ivan) Ivan (Yakuza chat): Ivan: Agreed with Grace. No Katana attack tonight. I keep the Katana, so no holder change. Night 1 has no information to act on, and an early kill would only expose us. Ready.
+(to Grace, Ivan) Grace (Yakuza chat): Grace: Agreed. No attack tonight, and Ivan keeps the Katana. I'm voting Ivan as holder and no target. Nothing else to add. Ready.
+(to Grace, Ivan) Ivan (Yakuza chat): Ivan: Agreed. Ivan keeps the Katana and no target tonight. Ready.
+[Feedback from Alice] On Night 1 the Auditor's audit is necessarily empty (no votes on Day 1), so the prompt could note that to avoid wasted decisions.
+Night actions:
+  Alice (Auditor): no action
+  Bob (Medic): target Frank; "Standard protection on Frank, costing no tokens. No information to act on yet, so this is a cheap guess to cover a possible Katana target."
+  Carol (Profiler): target Frank; chose to spend 1 token(s); "Profiling Frank with one profile token. Frank spoke first on Day 1 and pushed the watch-for-nominations plan, so an early read on them is useful."
+  Erin (Serial Killer): target Alice; "Strong attack on Alice. No night information yet; early pressure on a player who reasons carefully and may become a leader or investigator."
+  Frank (Bounty Hunter): no action
+  Grace (Wiretap): no role action; Katana vote: Ivan holds, attacks None
+  Heidi (Kitsune): target Alice
+  Ivan (Clerk): no role action; Katana vote: Ivan holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Ivan holds it.
+(to Carol) Moderator (private): You profiled Frank: their role is Auditor, Bounty Hunter or Scout (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 2 profile tokens left.
+(to Alice) Moderator (private): You were attacked tonight by a Serial Killer, but you survived.
+(to Erin) Moderator (private): You attacked Alice tonight. Your attack failed: Alice survived.
+(to Bob) Moderator (private): You protected Frank tonight with Standard Defense. 2 medic tokens left.
+[Moderator summary] Night 1: Heidi (Kitsune) charmed Alice and swallowed Erin's Strong Serial Killer attack; Alice survived and was told she was attacked by a Serial Killer; Erin told the attack failed. Bob (Medic) gave Frank Standard protection, no tokens spent. Carol profiled Frank (profile op, code delivers result). Yakuza kept Katana on Ivan, no attack. Ivan did not rig. No role-blocks, no deaths. Visits: Bob->Frank, Carol->Frank, Erin->Alice, Heidi->Alice.
+[Night check] Night 1: correct
+(to Heidi) Moderator (private): Your fox charm on Alice swallowed a Strong Attack announced as 'Serial Killer'. Release it on a later night (you can't charm until you do).
+(to Grace) Moderator (private): Yakuza night summary: Ivan holds the Katana, with no Katana attack. Ivan (Clerk) chose no action.
+(to Ivan) Moderator (private): Yakuza night summary: Ivan holds the Katana, with no Katana attack. Grace (Wiretap) chose no action.
