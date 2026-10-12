@@ -169,3 +169,51 @@ Trial votes on Bob: 3 Guilty, 2 Innocent (the votes are secret).
 Bob is executed by hanging (3 Guilty of 5 votes; 3 needed).
 Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's last will: Frank was killed by the Katana on Night 1. Dave and Erin were killed by a Serial Killer on Nights 1 and 2, so a Serial Killer is alive and is the main threat. Judge every claim against the nightly results and the announced vote totals. Do not hang anyone on a claim that no result supports."
 (to Carol) The Katana passed to Carol.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Enforcer): target Grace; 1 token(s); "Enforcer visit on Grace with a Strong Attack (1 token). If Grace makes an attack of her own choosing tonight, she takes a Strong Attack from me, which kills a Serial Killer (Standard) or a Yakuza (no Defense)."
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Heidi
+  Grace (Serial Killer): target Alice; "Strong Attack on Alice."
+  Heidi (Sheriff): target Carol; "Sheriff investigation on Carol. Carol voted Innocent on Bob and had PM contact with Bob, so I want her alignment checked."
+Katana: Carol holds it and attacks Heidi.
+(to Alice) Moderator (private): You visited Grace with a Strong Attack (1 token spent). Grace made an Attack tonight, so you attacked her, and your attack killed her. 2 enforcer tokens left.
+(to Grace) Moderator (private): Your attack on Alice succeeded: it killed her.
+(to Carol) Moderator (private): Your Katana attack on Heidi succeeded: it killed her.
+(to Heidi) Moderator (private): You investigated Carol tonight. Result: Not Evil.
+[Moderator summary] Night 3: Grace (SK) made a Strong Attack on Alice (Defense None), killing her. Carol (Katana holder) made a Standard Katana attack on Heidi (Defense None), killing her. Alice (Enforcer, 1 token for Strong, 3->2) visited Grace; Grace had attacked, so Alice dealt her a Strong Attack, which beat Grace's Standard Defense and killed her. Heidi's Sheriff check on Carol came back Not Evil because Carol held the Katana. Visits: Alice->Grace, Grace->Alice, Carol->Heidi, Heidi->Carol. No role-blocks. Only Carol (Yakuza) is left alive, so the Yakuza should win.
+[Night check] Night 3: correct
+(to Alice) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Grace) Moderator (private): You were attacked tonight (Enforcer) and died.
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 4 =====
+Alice died (killed by Serial Killer). Their role isn't revealed. Their last will: "Alice was a Village Enforcer. Night 1: visited Dave, attacked no one. Night 2: visited Heidi, attacked no one. Frank died to the Katana and Dave and Erin to Serial Killers, so a Yakuza holds the Katana and at least one Serial Killer may be alive. Trust mechanical results over claims. Do not vote on a lean or a late push. Require a result that contradicts a claim before voting Guilty."
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, the real Sheriff (Village). Night 1: checked Dave, Not Evil. Night 2: checked Grace, Not Evil. I was attacked by the Katana on Night 2 and survived. Frank died to the Katana. Dave and Erin died to a Serial Killer, so a Serial Killer is alive. Bob also claims Sheriff. Trust the Sheriff whose results match this will."
+Grace died (killed by Enforcer). Their role isn't revealed. Their last will: "Grace's last will: I'm a Vanilla Villager with no night action. Dave and Erin were killed by a Serial Killer and Frank by the Katana, so a Yakuza holds the Katana and a Serial Killer is alive. Don't trust either Sheriff read until the night results confirm it. Bob pushed the hang on Heidi, who survived a Katana hit; check that push first."
+The game is over. Winners: Bob (dead), Carol. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol
+Cost by player (USD):
+  Alice (Enforcer)          $0.0000   22 calls  claude-haiku-5.5
+  Bob (Grunt)               $0.0000   25 calls  claude-haiku-5.5
+  Carol (Grunt)             $0.0000   26 calls  claude-haiku-5.5
+  Dave (Enforcer)           $0.0000    4 calls  claude-haiku-5.5
+  Erin (Medic)              $0.0000   14 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.0000    3 calls  claude-haiku-5.5
+  Grace (Serial Killer)     $0.0000   21 calls  claude-haiku-5.5
+  Heidi (Sheriff)           $0.0000   21 calls  claude-haiku-5.5
+  Moderator                 $0.0000    4 calls  claude-opus-5.5
+  Night checks              $0.0000    3 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  145 calls
