@@ -365,3 +365,34 @@ Trial votes on Niaj: 8 Guilty, 1 Innocent (the votes are secret).
 Niaj is executed by hanging (8 Guilty of 9 votes; 5 needed).
 Niaj died (executed by hanging). Their role isn't revealed. Their last will: "Niaj: Scrutineer (no tokens). N1: no trial. N2: Ivan (+Carol, Judy) -> 0 Guilty in Mallory's trial. N3: Frank (+Carol, Alice) -> 3 Guilty in Dave's trial. Mallory's N3 audit of me matched my claim. Votes: D2 Yes/Guilty on Mallory (wrong). D3 No on my own nomination, Yes/Guilty on Dave. D4 No/Innocent on my trial.
 LEAD: Olivia's Fortune Teller numbers. Public N2 visits: Katana->Erin, Erin's release->Bob, Dave->Bob, Bob's audit->Erin, Mallory's audit->Dave = 5 visitors, 3 visited. Olivia claims 6 visiting/5 visited. Her fix needed Carol's protection, but Carol says she took no action on N2. So her numbers need an unverifiable extra two-target visit. Either a Smuggler swapped, or Olivia is lying or a Roleplayer. Test her every night's numbers against the claims. Ivan was killed so that his will would frame me."
+
+===== NIGHT 4 =====
+(to Grace, Heidi) Grace (Yakuza chat): Niaj is gone, so it's the two of us against 6. We need kills and a mislynch. My Coroner count came back 0, so nobody can examine Dave or Bob. My tokens are all spent now.
+Kill proposal: Alice. Her Oracle is the one exact-role check left that can break you: she's already guessed Ballot Stuffer twice and will keep fishing for it. Mallory's audits can't hurt us as long as our votes match what we say. Frank is the Veteran, so never visit him. Carol is probably the Trapper. Her trap could be on Alice, but it could just as easily be on Mallory or Olivia, so I'll take that risk. I keep the Katana.
+D5 plan: Niaj's will already points at Olivia's FT numbers, so let's push Olivia as the mislynch, gently and from different angles. We don't PM each other, and we don't both lead. Carol is the backup: her protective claim is vague. Hold your ballot tokens unless a trial on one of us is close. A mismatched total would revive Dave's lists.
+Vote holder=Grace, target=Alice.
+(to Grace, Heidi) Heidi (Yakuza chat): Agreed, Grace keeps the Katana. I'd swap the target to Carol, though. If she's the Trapper, the likeliest place for her trap is Alice: the N1 Katana target, the one whose claim was confirmed, and the obvious next victim. A trap there means you take a Strong Attack and die, and Alice lives. Carol can't trap herself, and a Medic needs a token to protect herself. That makes Carol the one protective player we can hit with almost no risk, and losing her opens Alice up for N5. Her vague "protective" claim also means her death won't point at either of us. On Alice's Oracle: she's guessed Mallory twice and Bob once. She'd have to choose me AND name Ballot Stuffer in the same guess, and if she does, it costs her a night. I'll accept that risk for one night to keep you alive. If you'd still rather go for Alice, I'll go along with it, but I vote Carol. D5 plan is fine: push Olivia from different angles, no PMs. I'm holding my ballot tokens unless a trial on one of us gets close.
+(to Grace, Heidi) Grace (Yakuza chat): You're right, Heidi. If Carol is the Trapper, Alice is exactly where her trap would be, and with only two of us left I can't afford to eat a Strong Attack. Switching: holder=Grace, target=Carol. If she's a Medic who self-protects and it bounces, we'll know her role and go after Alice on N5 with Carol's trap logic cleared. D5: we push Olivia from different angles, using Niaj's N2 6/5 math. You lead the numbers, and I'll come in later and more mildly. No PMs. Keep your ballot tokens unless a trial on one of us gets close. If Carol dies, her trap stays where it is, so Alice still carries some risk on N5. We can talk that through tomorrow night. Final: holder=Grace, target=Carol. Ready.
+(to Grace, Heidi) Heidi (Yakuza chat): Confirmed: holder Grace, target Carol. I'm holding my ballot tokens tonight. D5: I'll lead on Olivia's numbers, using Niaj's N2 6/5 math now that Carol has said she took no action, and you come in later and milder. If Carol's death turns town toward one of us, tell me on N5 and I'll spend a token for D6. No PMs. Ready.
+Night actions:
+  Alice (Oracle): target Heidi; named role Informant
+  Carol (Trapper): no action
+  Frank (Veteran): chose to spend 1 token(s)
+  Grace (Talent Agent): no role action; Katana vote: Grace holds, attacks Carol
+  Heidi (Ballot Stuffer): no role action; Katana vote: Grace holds, attacks Carol
+  Judy (Archivist): no action
+  Mallory (Auditor): target Olivia
+  Olivia (Arsonist): "Ignite (kill all doused players: Alice, Judy)"
+Katana: Grace holds it and attacks Carol.
+(to Mallory) Moderator (private): Your audit of Olivia's votes during the Day, in order: Yes on the nomination of Niaj; Guilty in the trial of Niaj.
+(to Alice) Moderator (private): Your guess tonight, that Heidi is the Informant, is WRONG. You were attacked tonight by an Arsonist, and you survived.
+(to Frank) Moderator (private): You went on alert tonight. Nobody visited you. 1 alert token left.
+(to Grace) Moderator (private): Your Katana attack on Carol succeeded: it killed her.
+(to Olivia) Moderator (private): You ignited tonight. Your attack killed Judy and failed on Alice. No players are doused now.
+[Moderator summary] Night 4: Alice (Oracle) guessed Heidi = Informant, which was wrong (Astral). Frank went on alert (1 token left) and nobody visited him. The Katana (holder Grace) killed Carol (Trapper, Cursed; code handles the curse). Mallory audited Olivia. Olivia (Arsonist) ignited: Judy was killed; the Strong Attack on Alice was stopped by Carol's armed trap (Astral, so no hit-back) and Alice survived. All douses were cleared. Visits: Grace->Carol, Mallory->Olivia.
+[Night check] Night 4: correct
+(to Alice) Moderator (private): You were attacked tonight (a curse) and died.
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Judy) Moderator (private): You were attacked tonight (Arsonist) and died.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Carol. Heidi (Ballot Stuffer) chose no action.
+(to Heidi) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Carol. Grace (Talent Agent) chose no action.
