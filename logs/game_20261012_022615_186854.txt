@@ -167,3 +167,36 @@ Katana: Frank holds it and attacks Erin.
 (to Erin) Moderator (private): You were attacked tonight (Katana) and died.
 (to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Erin. Grace (Pharmacist) chose to act on Alice ("Pharmacist role-block on Alice, as agreed in Yakuza night chat.").
 (to Grace) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Erin. Frank (Grunt) chose no action.
+
+===== DAY 3 =====
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "Erin (Tracker). Night 1: I tracked Carol and saw Carol visit Dave, which matches Carol's Sheriff claim. Heidi and Dave both claimed Sniper; Heidi's will calls Dave Yakuza, unverified. Do not hang anyone on claims alone; look for a mechanical fit first."
+Speaking order today goes around the circle in seat order, starting with Frank.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Frank: Vanilla Villager. No night actions or results. D2: nominated Dave, Guilty on Dave.
+Frank (public): Frank, Vanilla Villager. Erin's will confirms Carol's Night 1 track on Dave, and Carol's Not Evil read on Dave fits that, so I'm trusting Carol's check. Bob's Seer pair is the one claim still untested. Bob, post a second pair at dawn, or I'll vote Guilty on you next round. I'm not nominating today.
+[Claim] Grace: Vanilla Villager. No night actions with results. N2: no public result.
+Grace (public): Grace, Vanilla Villager. I agree with Frank. Bob's Seer pair is still untested, and he nominated himself without a second pair. Bob, post a Night 2 pair. Carol's Night 1 Not Evil on Dave and Erin's track on Carol still stand, so I'm not nominating yet. I'll vote on whatever Bob's answer shows.
+[Claim] Alice: Medic. N1: protected Carol (Standard, no tokens). N2: protection on Carol was role-blocked. 2 medic tokens left.
+Alice (public): Alice, Medic. My Night 2 protection on Carol was role-blocked, so a blocker is active tonight. Erin's Night 1 track and Carol's Sheriff check agree, so Dave reads Good. Bob, please post your Night 2 Seer pair. Heidi's will is unverified. I'm not nominating yet.
+Bob (public): Bob, Seer. I won't spend my last Seer token to prove myself. I'm nominating myself, so test me.
+Bob nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Bob, Carol, Dave, Frank, Grace, Alice; No - nobody
+Nomination votes on Bob: 6 Yes (the votes are secret).
+Bob is put on trial (6 Yes).
+Bob (public): Bob, Seer. I'm on trial, so test me. My only claim is the Night 1 pair, Alice and Dave, same alignment. I won't spend my last Seer token to prove it, and nobody can verify it either way. Carol's Sheriff read and Erin's track are the only results on the table, and they've been consistent. If you think Carol is lying or Bob is lying, a Guilty vote is how you test that. I'm not asking for sympathy. Vote on what you think is true.
+[Claim] Carol: Sheriff. N1: checked Dave, Not Evil. N2: checked Bob, EVIL. D2: Innocent on Dave. D3: Guilty on Bob.
+Carol (public): Carol, Sheriff. My Night 2 check on Bob came back EVIL, as I posted privately in my notes and now publicly. Bob's Seer claim is false or he's a Jester or Executioner, since those also read Evil. I'm voting Guilty on Bob. Dave's Night 1 Not Evil still stands.
+[Claim] Dave: Sniper (Village). N1: no action. D2: Standard shot at Heidi (killed). 1 sniper token left. D3: Guilty on Bob.
+Dave (public): Dave, real Sniper (Village). I'm voting Guilty on Bob. Carol's Night 2 check on Bob came back EVIL. Carol's Night 1 check on me (Not Evil) is consistent with my own role, and Erin's Tracker read of Carol visiting me corroborates it before she died. Bob won't spend his last Seer token to prove his pair, and he pushed for a vote on me while his pair was untested. I'd hang Bob on this evidence.
+[Claim] Frank: Vanilla Villager. No night actions or results. D2: nominated Dave, Guilty on Dave. D3: Guilty on Bob.
+Frank (public): Frank, Vanilla Villager. Carol's Night 2 check says Bob is EVIL. Bob's Seer pair can't be verified, and he has nominated himself twice without proving it. Carol's Night 1 Not Evil on Dave still stands. I'm voting Guilty on Bob.
+[Claim] Grace: Vanilla Villager. No night actions with results. D2: nominated Dave, Guilty on Dave. D3: Guilty on Bob.
+Grace (public): Grace, Vanilla Villager. Bob's Seer pair is still unproven, and he won't spend his last Seer token to test it. Carol's Night 2 Sheriff check says Bob is EVIL, and nothing in Bob's story contradicts it. Bob has also nominated himself twice without a second pair. I'm voting Guilty on Bob.
+[Claim] Alice: Medic. N1: protected Carol. N2: protection role-blocked. 2 medic tokens left. D3: Guilty on Bob.
+Alice (public): Alice, Medic. The only mechanical reads are Carol's Night 2 check (Bob EVIL) and Erin's Night 1 track, which backs Carol's Night 1 check on Dave. Bob's Seer pair can't be verified. I'm voting Guilty on Bob.
+Bob (public): Bob, Seer. I have nothing new to add, and I won't spend my last Seer token to prove myself. Carol's Night 2 result says I'm EVIL, and that's the only fresh mechanical read in this game. If you think Carol is lying, a Guilty vote is how you test her. If you think I'm telling the truth, a Guilty vote costs you nothing you can't get back at the next trial. I'm not asking for sympathy. Vote on what you believe.
+Trial votes on Bob: 6 Guilty, 0 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Alice, Bob, Carol, Dave, Frank, Grace; Innocent - nobody
+Bob is executed by hanging (6 Guilty of 6 votes; 4 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's last will (updated Day 3). My claim is Seer. Night 1 pair: Alice and Dave, same alignment. I have 1 Seer token left. The pair is untested, so weigh it as a claim, not a fact. Erin's will and Carol's Sheriff read both put Dave on the Good side, and Heidi's will called Dave Yakuza; those conflict, so test Dave and Carol with new mechanical results before any hang. Don't hang on wills alone. Ask Carol and Alice for their Night 2 results, and check whether any Night 2 result contradicts Carol's Not Evil read on Dave."
+Bob was the Jester: being hanged wins them the game.
