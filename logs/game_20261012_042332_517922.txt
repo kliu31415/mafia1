@@ -119,3 +119,24 @@ Frank (public): Frank here. Bob's Standard shot killed Grace before any Night 2 
 Heidi (public): Heidi here. No vote or nomination from me. Bob, explain the shot on Grace. Alice and Frank, post your Night 2 results at Day 3 start as promised.
 Alice (public): Alice (Sheriff) here. My N1 Not Evil on Bob is true, but a Katana holder reads Not Evil that night, so it doesn't fully clear him. Bob, explain your Standard shot on Grace before anyone votes.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Heidi) Carol (Yakuza chat): Heidi, proposal for tonight. Katana target: Alice (claims Sheriff, and her Night 1 check on Bob is the one thing standing against us). I keep the Katana (holder vote: Carol). I'll use my Pharmacist block on Frank, so his Tracker result can't show my visit to Alice. Both of us vote Alice as the target, and I'll confirm my holder vote in the night channel. If you see a reason to pick a different target, say so now.
+(to Carol, Heidi) Heidi (Yakuza chat): Agreed, Carol. Alice is the target: her Sheriff check on Bob is the main obstacle. I vote Carol as holder and Alice as the Katana target. Block Frank as you proposed. I have no other action. Confirm in the channel once you've submitted.
+(to Carol, Heidi) Carol (Yakuza chat): Carol: Confirmed. I hold the Katana, and the target is Alice. I'm blocking Frank tonight so his Tracker result can't show my visit. I'll submit the holder vote (Carol) and the target vote (Alice) in the night channel. No other actions from me.
+(to Carol, Heidi) Heidi (Yakuza chat): Heidi: Confirmed. I vote Carol as Katana holder and Alice as the target. Carol, your Pharmacist block on Frank covers the visit to Alice. I have no other action tonight. I'm ready.
+Night actions:
+  Alice (Sheriff): target Erin; "Sheriff investigation on Erin. Learn Evil or Not Evil."
+  Carol (Pharmacist): target Frank; "Pharmacist role-block on Frank, so his Tracker visit fails and cannot show my visit to Alice. Katana holder vote: Carol. Katana target vote: Alice."; Katana vote: Carol holds, attacks Alice
+  Dave (Medic): target Alice; "Standard protection on Alice (Sheriff) at no token cost. Alice is a likely night target for a Yakuza kill, and her claim is one of the two investigator claims still in play."
+  Frank (Tracker): target Bob; "Tracking Bob again on Night 2. He is the player whose Day 2 shot killed Grace, and a Katana holder would show up as a visit here."
+  Heidi (Grunt): no role action; Katana vote: Carol holds, attacks Alice
+Katana: Carol holds it and attacks Alice.
+(to Alice) Moderator (private): Night 2 result: You investigated Erin. Result: Evil. You were also attacked tonight by the Katana, but you survived.
+(to Carol) Moderator (private): Night 2 result: You role-blocked Frank. Your block did not fail: Frank can be role-blocked. Your Katana attack on Alice did not succeed: Alice survived.
+(to Dave) Moderator (private): Night 2 result: You protected Alice with Standard Defense. No tokens spent; you have 2 medic tokens left.
+(to Frank) Moderator (private): Night 2 result: You were role-blocked tonight. Your track had no effect.
+[Moderator summary] Night 2: Carol (Pharmacist, Katana holder) blocked Frank (Tracker) so his track on Bob failed. The Katana (Carol, Standard) hit Alice, but Dave's free Standard protection stopped it, so Alice survived and was told she was attacked by the Katana. Alice's Sheriff check on Erin (Jester) came back Evil. Heidi did not act. No deaths and no token changes. Visits: Alice->Erin, Carol->Frank, Carol->Alice, Dave->Alice.
+[Night check] Night 2: correct
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Heidi (Grunt) chose no action.
+(to Heidi) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Carol (Pharmacist) chose to act on Frank ("Pharmacist role-block on Frank, so his Tracker visit fails and cannot show my visit to Alice. Katana holder vote: Carol. Katana target vote: Alice.").
