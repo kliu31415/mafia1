@@ -13,3 +13,27 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Village players may also have a trait (R24).
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Alice, Frank) Alice (Yakuza chat): Frank, I'm Alice. Proposal for tonight: Frank keeps the Katana (no move), and we attack Dave with it. We have no information yet, so an early kill on a player we know nothing about is the cleanest play, and we both vote the same target. If you disagree, say so now; otherwise I'm ready.
+(to Alice, Frank) Frank (Yakuza chat): Agreed, Alice. No information yet, so Dave is as good a target as any. Frank keeps the Katana (no move), and we both vote Dave as the attack target. I'm ready.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Frank holds, attacks Dave
+  Bob (Tracker): target Dave
+  Carol (Sheriff): target Dave; "Sheriff investigation on Dave, the first target with no information yet."
+  Dave (Serial Killer): target Bob; "Strong Attack on Bob. No information yet, so the pick is arbitrary. Killing early thins the Village and I need to be the last one standing."
+  Erin (Kitsune): target Carol; "Lay the fox charm on Carol. It costs nothing and swallows one Basic, Standard or Strong attack on her tonight, and I learn its level and cause. No information on any player yet, so this is a guess."
+  Frank (Grunt): no role action; Katana vote: Frank holds, attacks Dave
+  Heidi (Kitsune): target Alice; "Laying my fox charm on Alice. It costs nothing and can swallow one Basic, Standard or Strong attack on her tonight."
+Katana: Frank holds it and attacks Dave.
+(to Bob) Moderator (private): You tracked Dave tonight. Dave visited Bob.
+(to Carol) Moderator (private): You investigated Dave tonight. Result: Not Evil.
+(to Dave) Moderator (private): Your attack on Bob succeeded. You were attacked with the Katana tonight and survived.
+(to Frank) Moderator (private): Your Katana attack on Dave failed.
+[Moderator summary] Night 1: Frank (Katana holder) attacked Dave with Standard Katana; it failed against the Serial Killer's Standard Defense. Dave (SK) dealt a Strong Attack to Bob, killing him. Bob tracked Dave and saw that Dave visited Bob. Carol investigated Dave: Not Evil (SK). Erin charmed Carol and Heidi charmed Alice. No attacks were made on either, so nothing was swallowed. Visits: Frank->Dave, Bob->Dave, Carol->Dave, Dave->Bob, Erin->Carol, Heidi->Alice.
+[Night check] Night 1: correct
+(to Erin) Moderator (private): Your fox charm on Carol swallowed no attack tonight.
+(to Heidi) Moderator (private): Your fox charm on Alice swallowed no attack tonight.
+(to Bob) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Alice) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Dave. Frank (Grunt) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Dave. Alice (Grunt) chose no action.
