@@ -14,3 +14,23 @@ This game has 8 players. Its roles were picked by hand, not drawn by a standard 
 [Resumed from the checkpoint at the start of day 1]
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Frank, Grace) Frank (Yakuza chat): Proposal for Night 1: I keep the Katana (holder vote: Frank). No Katana attack tonight. Attacking blind on Night 1 gives the town a Katana reveal and a free lead, and we have no information on who is a power role yet. Grace, if you have a Pharmacist block, hold it too unless you have a reason to use it. Reply here with your agreement; if you want a different plan, say so now and we'll settle before dawn.
+(to Frank, Grace) Grace (Yakuza chat): Agreed, Frank. Katana stays with you, no attack tonight. I'll hold my Pharmacist block too, since a blind block on Night 1 only wastes it. We revisit on Night 2 once Day 2 gives us information.
+(to Frank, Grace) Frank (Yakuza chat): Agreed. Frank keeps the Katana, no attack tonight, and Grace holds the Pharmacist block. We revisit on Night 2 with Day 2 information. Ready.
+(to Frank, Grace) Grace (Yakuza chat): Agreed. Frank keeps the Katana (holder vote: Frank), no attack tonight, and I hold my Pharmacist block. We revisit on Night 2 with Day 2 information. Ready.
+Night actions:
+  Alice (Medic): target Carol; "Standard protection on Carol at no token cost, with no announcement."
+  Carol (Sheriff): target Dave
+  Erin (Tracker): target Carol
+  Frank (Grunt): no role action; Katana vote: Frank holds, attacks None
+  Grace (Pharmacist): no role action; Katana vote: Frank holds, attacks None
+Katana: no attack (the Yakuza agreed not to attack); Frank holds it.
+(to Alice) Moderator (private): You protected Carol tonight with Standard Defense. You spent no tokens; you have 2 medic tokens left.
+(to Carol) Moderator (private): You investigated Dave tonight. Result: Not Evil.
+(to Erin) Moderator (private): You tracked Carol tonight. Carol visited Dave.
+[Moderator summary] Night 1: Alice (Medic) protected Carol with Standard Defense, no tokens spent. Carol (Sheriff) checked Dave: Not Evil. Erin (Tracker) tracked Carol: visited Dave. Yakuza kept the Katana with Frank and did not attack. Grace (Pharmacist) took no action. No role-blocks, no attacks, no deaths.
+[Night check] Night 1: correct
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana, with no Katana attack. Grace (Pharmacist) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Frank holds the Katana, with no Katana attack. Frank (Grunt) chose no action.
