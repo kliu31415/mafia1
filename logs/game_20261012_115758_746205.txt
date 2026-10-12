@@ -481,3 +481,55 @@ Trial votes on Carol: 1 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Carol] Guilty - Alice; Innocent - Carol, Heidi
 Carol is found Innocent (1 Guilty of 3 votes; 2 needed).
 Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 6 =====
+Night actions:
+  Carol (Fixer): no role action; Katana vote: Carol holds, attacks Heidi
+  Heidi (Trapper): target Alice; "Moving the trap from Carol to Alice. The trap is armed from Night 7, so it can't affect tonight's attacks."
+  Alice (Ex-Con): automatic: target Heidi; "random visit"
+Katana: Carol holds it and attacks Heidi.
+(to Carol) Moderator (private): Your Katana attack on Heidi succeeded: they died. You have 1 fixer token left.
+(to Heidi) Moderator (private): You moved your trap to Alice tonight. It is armed from Night 7 on.
+[Moderator summary] Night 6: Carol (Katana holder) attacked Heidi with a Standard Katana attack; Heidi had no Defense and wasn't trapped, so she died (Katana). Heidi moved her trap from Carol to Alice (a visit; armed from Night 7; the trap stays after her death). Alice's automatic Ex-Con visit landed on Heidi. No traps sprang and no tokens were spent. Visits: Carol->Heidi, Heidi->Alice, Alice->Heidi. Alice (Village) and Carol (Yakuza) are left alive; any Cursed effect is left to code.
+[Night check] Night 6: correct
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+[ERROR sync_error] pushing the day 7 checkpoint failed: RuntimeError: git push to origin logs failed: remote: fatal error in commit_refs        
+To https://github.com/kliu31415/mafia1
+ ! [remote rejected] 18f0d2868993ffa4fb2ceba5e8b1143da656fd78 -> logs (failure)
+error: failed to push some refs to 'https://github.com/kliu31415/mafia1'
+
+===== DAY 7 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, Trapper (Village). Trap moved to Alice on Night 6 (armed Night 7). Night 1 count (3 visited, 4 visitors) fits Alice's random Ex-Con visit as the fourth visitor. Grace (Talent Agent, Yakuza role) was likely the Katana holder on Nights 2 to 4, and Carol PM'd her about "Night 2 cover." Katana passed to Carol on Grace's death, and Carol killed Erin on Night 5. Carol's 2 tokens fit a Fixer, which explains the flipped Guilty on Day 6. Vote Guilty on Carol. Check claims against visits and death causes, not leans."
+Speaking order today goes around the circle in seat order, starting with Alice.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown. D7: nominated Carol. Carol holds the Katana.
+Alice (public): Alice here. Heidi died to the Katana on Night 6, and Carol was the only living Yakuza able to hold it then. I'm nominating Carol. Vote Yes.
+Alice nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Alice; No - Carol
+Nomination votes on Carol: 1 Yes (the votes are secret).
+The nomination of Carol failed (1 Yes).
+[Claim] Carol: Carol (no role claim). Votes: Innocent on Grace (D3, D5), Innocent on Carol (D6). D7: No on Carol's nomination.
+Carol (public): Carol here, no nomination. Two of us are left, so a hang needs both of us to agree, and I won't agree to one based on elimination logic. Alice, Heidi's will says her trap moved to you on Night 6. Any attack on you from now on should trigger it, so check what happens if anyone comes for you. I'm voting No on any nomination of me unless someone shows a concrete mechanical contradiction.
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown to me. D7: No on Carol's nomination.
+Alice (public): Alice here, no nomination. With two of us alive, a hang needs both of us to agree on a Yes or Guilty vote, so nobody can be hanged unless the other side goes along with it. Carol, Heidi's trap on me is armed from Night 7, so any Katana attack on me kills its user. I'll vote Yes on any nomination of you.
+Carol (public): Carol here, no nomination. Two of us are left, so a hang needs both of us to vote Yes on the same nominee. I see no mechanical reason to hang anyone, and I'll keep voting No on any nomination of me unless someone shows a concrete contradiction.
+Alice (public): Alice here, no nomination. Carol, Heidi's trap on me is armed from Night 7, so any Katana attack on me kills its user. If you hold the Katana, attacking me costs you your life. I'll vote Yes on any nomination of you.
+Carol (public): Carol here, no nomination. With two of us alive, a hang needs both of us to vote Yes, and I won't vote Yes on a nomination of myself. Alice, the same applies to you. Let's stop trading threats and look at the mechanics before Night 7 resolves.
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown. D7: No on Carol's nomination (passed to Yes vote on any Carol nomination going forward).
+Alice (public): Alice here, no nomination. A hang needs both of us, and I'll vote Yes on any nomination of Carol. Carol, if you go for me on Night 7, Heidi's trap stops it and the attacker takes a Strong Attack.
+Carol (public): Carol here, no nomination. I won't nominate anyone today, and I won't attack Alice while Heidi's trap is armed. A hang needs both of us, so let's hear each other out before Day 8.
+(to Alice, Carol) Carol -> Alice (private): Alice, a trial is the only way either of us can settle this, and an acquittal would prove you're Good to everyone. If you nominate yourself on Day 8, I'll vote Yes with you, and I'll vote Innocent at your trial, so you walk free. Keep my Katana quiet tonight as agreed.
+Alice (public): Alice here, no nomination. I won't vote Yes on myself, so a hang needs Carol to vote Yes on herself, which she won't. Attacking me triggers Heidi's trap and kills the attacker.
+Carol (public): Carol here, no nomination today. I'm not voting Yes on a nomination of myself, and I won't start one.
+(to Alice, Carol) Carol -> Alice (private): Alice, a trial is the only clean way to settle this. If you nominate yourself on Day 8, I'll vote Yes with you and vote Innocent at your trial, so you walk free.
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown. D7: No on Carol's nomination. Will vote Yes on any Carol nomination.
+Alice (public): Alice here, no nomination. Carol's private offer (nominate myself, Carol votes Yes, then Innocent at trial) is a stall, and I'm not taking it. My Yes on any Carol nomination stands. Heidi's trap on me is armed, so any attack on me kills its user.
+Carol (public): Carol here, no nomination. Neither of us should be hanged on elimination logic. Alice, if you're Good, a self-nomination is the clean test, and I'll vote Innocent at your trial.
+(to Alice, Carol) Carol -> Alice (private): Alice, I meant the offer. If you nominate yourself on Day 8, I'll vote Yes with you and Innocent at your trial. Two Good-looking votes would clear you, and nobody else can decide this.
+Alice (public): Alice here, no nomination. I won't nominate myself, and I'll vote Yes on any nomination of Carol. Attacking me on Night 7 triggers Heidi's trap and kills the attacker.
+Carol (public): Carol here, no nomination. A hang needs both of us, so let's see whether Day 8 brings anything new.
+(to Alice, Carol) Carol -> Alice (private): Alice, the offer stands. If you nominate yourself on Day 8, I'll vote Yes with you and Innocent at your trial, so you walk free.
+Alice (public): Alice here, no nomination. Neither of us can hang the other: a hang needs both votes, and I won't vote Yes on myself. Carol, any Katana attack on me triggers Heidi's trap and kills you.
+Carol (public): Carol here, no nomination. Two of us are left, so a trial is the only clean test. Alice, if you're Good, nominate yourself on Day 8. I'll vote Yes with you and Innocent at your trial, and you walk free. Refusing a test you can pass looks worse than taking it.
+(to Alice, Carol) Carol -> Alice (private): Alice: self-nominate on Day 8 and I'll vote Yes with you and Innocent at your trial. That's the cleanest way to clear yourself.
+Discussion time is over. The day ends.
