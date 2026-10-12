@@ -344,3 +344,24 @@ Ivan (public): Ivan here. No nomination from me. I'll vote only on a checkable r
 [Claim] Bob: "Medic (Good). N1 Standard on Frank. N2 Standard on Carol. N3 Standard on Carol. N4 Strong on self. 0 tokens left. D4: Innocent on Erin. D5: Guilty on Ivan (nomination failed, 1 Yes)."
 Bob (public): Bob here, Medic. Ivan, name your role or show a checkable result.
 Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Bob (Medic): no action
+  Ivan (Clerk): no role action; Katana vote: Ivan holds, attacks Bob
+Katana: Ivan holds it and attacks Bob.
+(to Ivan) Moderator (private): Your Katana attack on Bob succeeded tonight: Bob was killed.
+[Moderator summary] Night 5: Bob took no action. Ivan kept the Katana and made a Standard Katana attack on Bob. Bob's Defense was None: he had no medic tokens, no protection and no traps, so the attack killed him. Bob's traits (Curt) have no death effects. Visits: Ivan->Bob. Ivan (Yakuza) is the only living player, so the Yakuza win.
+[Night check] Night 5: correct
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 6 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "Bob, Medic (Good), not Yakuza, holds no Katana. Protections: N1 Frank, N2 Carol, N3 Carol (Standard, no tokens); N4 Strong on self. 0 tokens left. Ivan is the last other living player and very likely the last Yakuza: Dave's will shows a Clerk rig on Day 4 while only Bob, Ivan and Dave were alive, and Ivan pushed Guilty on Alice, Grace and Erin with no result behind any of them. Vote Guilty on Ivan. Dead: Frank (BH), Heidi (Kitsune), Grace, Alice, Carol (SK), Erin, Dave (Sniper)."
+The game is over. Winners: Grace (dead), Ivan. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Heidi] The Kitsune release instructions were the hardest part to act on. The night prompt should offer a release choice explicitly.
+[ERROR player_error] Grace (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'missing_information', root: must have required property 'wanted_but_couldnt', root: must have required property 'bugs_or_oddities', ro)
+[ERROR player_error] Carol (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'missing_information', root: must have required property 'wanted_but_couldnt', root: must have required property 'bugs_or_oddities', ro)
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====

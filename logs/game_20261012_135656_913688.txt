@@ -1,0 +1,18 @@
+Setup:
+  Alice    seat 1  Auditor           anthropic/claude-opus-5.5 (via Claude Code)
+  Bob      seat 2  Auditor           anthropic/claude-opus-5.5 (via Claude Code)  trait: Grudge
+  Carol    seat 3  Sniper            anthropic/claude-opus-5.5 (via Claude Code)
+  Dave     seat 4  Smuggler          anthropic/claude-opus-5.5 (via Claude Code)
+  Erin     seat 5  Seer              anthropic/claude-opus-5.5 (via Claude Code)
+  Frank    seat 6  Roleplayer        anthropic/claude-opus-5.5 (via Claude Code)  {'fake_role': 'Oracle'}
+  Grace    seat 7  Bloodhound        anthropic/claude-opus-5.5 (via Claude Code)
+  Heidi    seat 8  Vigilante         anthropic/claude-opus-5.5 (via Claude Code)  trait: Notorious
+  Ivan     seat 9  Jester            anthropic/claude-opus-5.5 (via Claude Code)  trait: Grudge
+  Judy     seat 10 Puppeteer         anthropic/claude-opus-5.5 (via Claude Code)  trait: Loud
+  Mallory  seat 11 Trapper           anthropic/claude-opus-5.5 (via Claude Code)
+  Niaj     seat 12 Clerk             anthropic/claude-opus-5.5 (via Claude Code)
+  Olivia   seat 13 Vulture           anthropic/claude-opus-5.5 (via Claude Code)
+  Katana starts with Judy
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Players may also have a trait (R24).
