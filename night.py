@@ -117,7 +117,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "and end_phase when done. "
         "Deaths you apply are announced publicly at dawn automatically, including the kill's cause, so "
         "make the cause just the source as the rules allow it to be known (e.g. 'Katana', 'Vigilante', "
-        "'Serial Killer', 'Trap'). For each kill also set `by` to the player whose action killed them "
+        "'Serial Killer', 'Trapper'). For each kill also set `by` to the player whose action killed them "
         "(the trap's owner for a trap) and katana=true for the Katana attack; these are recorded for "
         "analysis, never shown. Don't tell() deaths to all. Code tells each player who dies tonight that they "
         "were attacked and died, with the kill's cause, at the end of the night; you tell every attacked player who "

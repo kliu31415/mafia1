@@ -30,6 +30,7 @@ Code layout:
     feedback.py    debriefs, log review, lessons, strategy review and the rules quiz
     tips.py        distills lessons from past games into a tips file; --tips gives it to players
     setups.py      setups: how roles are drawn (--roles standard[:N]) and what players are told about it
+    role_power.py  each role's estimated effect on the Village's chance to win, which standard setups balance
     scripts.py     scripts (--script): the roles a game can use; its rules text lists only those
     stats.py       cross-game statistics: win rates by faction, role and model, per-decision skill
     grade.py       an LLM judge grades each player's play in finished games, blind to models (grades/)

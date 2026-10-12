@@ -1865,3 +1865,53 @@ def test_an_enforcer_is_told_its_token_costs_and_the_moderator_how_to_resolve_it
     brief = " ".join(logic("Enforcer").briefing(game, game.player("Alice")))
     assert "two targets (target and second_target) with a Basic Attack cost 1" in brief and "3 enforcer" in brief
     assert "never say which of them it attacked" in role_notes(game)
+
+
+def test_a_kitsune_acts_once_a_night_and_its_results_name_the_player_it_chose(game_factory):
+    # rules: Kitsune (a charm or, while holding an attack, a release: one action a night); R23 (results name the
+    # chosen player, not the one a swap moved the action onto)
+    game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob",
+                              "attacks": [{"by": "Carol", "attack": "Basic", "cause": "Serial Killer"}]})
+    with pytest.raises(ValueError, match="kitsune_charm is already recorded tonight"):  # a later batch, same night
+        apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Dave"})
+    game.run_night_end_hooks()
+    game.day += 1
+    game.role_state["swaps"] = {game.day: [["Dave", "Bob", "Erin"]]}  # the Smuggler swapped Bob and Erin
+    apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Erin"})
+    with pytest.raises(ValueError, match="kitsune_release is already recorded tonight"):
+        apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Erin", "attacks": []})
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your released attack on Bob didn't kill them.")
+
+
+def test_a_dead_kitsunes_swallowed_attack_is_lost(game_factory):
+    # rules: Kitsune ("it's lost if you die"), whether it died on a night it didn't act or was hanged
+    game, players = game_factory(["Kitsune", "Kitsune", "Serial Killer", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.role_state["kitsune_charge"] = {n: {"attack": "Basic", "cause": "Serial Killer"} for n in ("Alice", "Bob")}
+    game.kill("Alice", "Serial Killer")
+    game.run_night_end_hooks()
+    assert set(game.role_state["kitsune_charge"]) == {"Bob"}
+    game.phase = "day"
+    game.kill("Bob", "executed by hanging")
+    assert not game.role_state["kitsune_charge"]
+
+
+def test_a_trap_replaced_earlier_in_the_batch_doesnt_act_and_charm_and_trap_match_attacks_by_attacker(game_factory):
+    from roles import Status
+    game, players = trapped_night(game_factory, ["Trapper", "Vanilla Villager", "Serial Killer", "Grunt",
+                                                 "Kitsune"])
+    out = apply_ops(game, players, {"op": "set_status", "player": "Bob", "key": "trapped_by", "value": None},
+                    {"op": "set_status", "player": "Erin", "key": "trapped_by", "value": "Alice"},
+                    {"op": "spring_trap", "player": "Bob", "attacks": [
+                        {"by": "Carol", "attack": "Basic", "cause": "Serial Killer", "visit": True}]})
+    assert "was replaced or removed tonight" in out["results"][-1]  # rules: Trapper (replaced at once)
+    game, players = trapped_night(game_factory, ["Trapper", "Vanilla Villager", "Serial Killer", "Grunt",
+                                                 "Kitsune"])
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Erin", "player": "Bob",
+                              "attacks": [{"by": "Dave", "attack": "Standard", "cause": "Katana"}]})
+    out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [  # the cause worded otherwise
+        {"by": "Dave", "attack": "Standard", "cause": "Katana attack", "visit": True}]})
+    assert "stays armed" in out["results"][0] and game.player("Bob").status[Status.TRAPPED_BY] == "Alice"

@@ -254,23 +254,26 @@ def attacks_error(game: Game, attacks: object, visit: bool = False) -> str | Non
     return None
 
 
-STOPPED = "stopped_attacks"  # game.role_state: {"night": day, target: [(by, cause), ...]}, attacks stopped tonight
+STOPPED = "stopped_attacks"  # game.role_state: {"night": day, target: [[by, level], ...]}, attacks stopped tonight
 CATCHABLE = ATTACK_LEVELS[1:4]  # Basic, Standard, Strong: Divine Attacks ignore protections that stop one attack
 
 
 def stop_one_attack(game: Game, target: str, attacks: list[dict]) -> dict | None:
     """Picks at random the one non-Divine attack in `attacks` that a protection stopping a single attack (a fox charm,
     a trap) stops on `target`, never one another such protection already stopped there tonight, whatever the order
-    or lists the moderator sends."""
+    or lists the moderator sends. Attacks match by attacker and level, not by cause, whose wording the moderator
+    may vary between ops (e.g. 'Katana' and 'Katana attack')."""
     store = game.role_state.get(STOPPED)
     if not store or store.get("night") != game.day:
         store = game.role_state[STOPPED] = {"night": game.day}
     done = store.setdefault(target, [])
-    left = [a for a in attacks if a["attack"] in CATCHABLE and [a["by"], a["cause"].strip().lower()] not in done]
+    left = [a for a in attacks if a["attack"] in CATCHABLE]
+    for key in done:  # each attack already stopped takes one matching attack out (one attacker may make two)
+        left = next(([a for a in left if a is not m] for m in left if [m["by"], m["attack"]] == key), left)
     if not left:
         return None
     stopped = game.rng.choice(left)
-    done.append([stopped["by"], stopped["cause"].strip().lower()])
+    done.append([stopped["by"], stopped["attack"]])
     return stopped
 
 

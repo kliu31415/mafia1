@@ -6,8 +6,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RoleLogic, acted_tonight, attacks_error, register, spend_token, stop_one_attack, swap_partner,
-                        token_user_error)
+from roles.base import (RoleLogic, acted_tonight, attacks_error, chosen_name, register, spend_token, stop_one_attack,
+                        swap_partner, token_user_error)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -59,13 +59,17 @@ class Kitsune(RoleLogic):
         return ["You hold no swallowed attack: each night you may lay your fox charm on another player (on yourself "
                 "it costs your kitsune token; set tokens_to_spend to 1)."]
 
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        if game.phase == "day":  # at night the charge waits for the end of the night: a release tonight still acts
+            game.role_state.get(CHARGE, {}).pop(p.name, None)
+
     def check_op(self, game: Game, change: dict) -> str | None:
         by, target = game.player(change["by"]), game.player(change["player"])
         charge = game.role_state.get(CHARGE, {}).get(by.name)
         if error := token_user_error(game, by.name, self.role):
             return error
-        if any(change["op"] == done[0] for done in game.role_state.get(TONIGHT, {}).get(by.name, [])):
-            return f"{by.name}'s {change['op']} is already recorded tonight"
+        if done := game.role_state.get(TONIGHT, {}).get(by.name):  # one action a night: a charm or a release
+            return f"{by.name}'s {done[0][0]} is already recorded tonight"
         if not acted_tonight(game, target):
             return f"{target.name} wasn't alive at the start of the night"
         if change["op"] == RELEASE:
@@ -85,7 +89,7 @@ class Kitsune(RoleLogic):
         tonight = game.role_state.setdefault(TONIGHT, {}).setdefault(by.name, [])
         if change["op"] == RELEASE:
             charge = game.role_state[CHARGE].pop(by.name)
-            tonight.append([RELEASE, target.name, charge])
+            tonight.append([RELEASE, target.name, charge, chosen_name(game, target.name)])
             game.log.write("kitsune_release", player=by.name, target=target.name, **charge, day=game.day)
             return (f"{by.name}'s released attack on {target.name} is {charge_text(charge)}: resolve it against "
                     f"{target.name}'s Defense like any attack. If it kills, kill with cause '{charge['cause']}' and by "
@@ -99,7 +103,8 @@ class Kitsune(RoleLogic):
         if swallowed:
             charge = {"attack": swallowed["attack"], "cause": swallowed["cause"].strip()}
             game.role_state.setdefault(CHARGE, {})[by.name] = charge
-        tonight.append([CHARM, target.name, swallowed and game.role_state[CHARGE][by.name]])
+        tonight.append([CHARM, target.name, swallowed and game.role_state[CHARGE][by.name],
+                        chosen_name(game, target.name)])
         game.log.write("kitsune_charm", player=by.name, target=target.name, attacks=change["attacks"],
                        swallowed=swallowed, day=game.day)
         if not swallowed:
@@ -110,18 +115,19 @@ class Kitsune(RoleLogic):
     def at_night_end(self, game: Game) -> None:
         for name, done in game.role_state.pop(TONIGHT, {}).items():
             me = game.player(name)
-            for op, target, charge in done:
+            for op, target, charge, chosen in done:  # results name the chosen player, not a swap's (rules R23)
                 if op == CHARM:
-                    game.tell([name], f"Your fox charm on {target} swallowed {charge_text(charge)}. Release it on a "
-                              "later night (you can't charm until you do)." if charge else
-                              f"Your fox charm on {target} swallowed no attack tonight.")
+                    game.tell([name], f"Your fox charm on {chosen} swallowed {charge_text(charge)}."
+                              + (" Release it on a later night (you can't charm until you do)." if me.alive else "")
+                              if charge else f"Your fox charm on {chosen} swallowed no attack tonight.")
                     continue
                 death = game.player(target).death
                 killed = bool(death and death["day"] == game.day and name in death["killers"])
                 if killed and death and charge["cause"].lower() not in death["cause"].lower():
                     game.log.error("kitsune_cause", f"night {game.day}: {target} died to {name}'s released attack "
                                    f"with cause {death['cause']!r}, not {charge['cause']!r}", day=game.day)
-                game.tell([name], f"Your released attack on {target} " + ("killed them." if killed else
+                game.tell([name], f"Your released attack on {chosen} " + ("killed them." if killed else
                                                                           "didn't kill them."))
-            if not me.alive:
-                game.role_state.get(CHARGE, {}).pop(name, None)  # a dead Kitsune's swallowed attack is gone
+        for name in list(game.role_state.get(CHARGE, {})):  # a dead Kitsune's swallowed attack is gone
+            if not game.player(name).alive:
+                del game.role_state[CHARGE][name]
