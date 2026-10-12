@@ -75,8 +75,10 @@ class Trapper(RoleLogic):
         # Trappers lost track of whether their trap still stood (game_20261009_121338_61703).
         on = traps(game).get(p.name)
         # Kevin, Oct 10: re-trapping the same player is not allowed; removing the trap is.
-        return [f"Your trap is on {on} and hasn't gone off yet. You can't trap {on} again; to remove the trap "
-                "without placing a new one, act with no target." if on else "You have no trap set."]
+        # Mallory (game_20261012_135656_913688) couldn't tell the two "nothing" answers apart: spell out both.
+        return [f"Your trap is on {on} and hasn't gone off yet. You can't trap {on} again. To keep it there, don't "
+                "act (act false). To remove it without placing a new one, act with no target (act true, target "
+                "null). To move it, act on another player." if on else "You have no trap set."]
 
     def check_op(self, game: Game, change: dict) -> str | None:
         if change["op"] == SET:
