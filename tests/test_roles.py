@@ -1272,6 +1272,9 @@ def test_bounty_hunter_gets_three_other_targets(tmp_path):
     targets = bounty(game, hunter.name)["targets"]
     assert len(set(targets)) == 3 and hunter.name not in targets
     assert "You win once 2 of them" in role_briefing(game, hunter)
+    setup = next(json.loads(line) for line in (tmp_path / "t.jsonl").read_text().splitlines()
+                 if json.loads(line).get("kind") == "setup")  # the log's setup table shows the targets
+    assert next(p for p in setup["players"] if p["name"] == hunter.name)["status"]["targets"] == targets
 
 
 def test_bounty_hunter_wins_and_leaves_after_a_kill_and_a_guilty_hanging(game_factory):

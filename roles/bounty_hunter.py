@@ -33,7 +33,8 @@ class BountyHunter(RoleLogic):
 
     def setup(self, game: Game, p: Player) -> None:
         others = [q.name for q in game.players if q is not p]
-        bounty(game, p.name)["targets"] = game.rng.sample(others, min(TARGETS, len(others)))
+        targets = bounty(game, p.name)["targets"] = game.rng.sample(others, min(TARGETS, len(others)))
+        p.status[Status.TARGETS] = list(targets)  # shown in the log's setup table, like the Executioner's target
 
     def briefing(self, game: Game, p: Player) -> list[str]:
         return [f"Your targets are {join_names(bounty(game, p.name)['targets'])}. You win once {NEEDED} of them "

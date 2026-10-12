@@ -33,6 +33,12 @@ from roles import RETIRED, RETIRED_BY_LABEL, ROLES, log_role, role_info
 from texts import blank, describe_action, player_view
 
 
+def status_text(status: dict | None) -> str:
+    """A setup row's status, e.g. "target: Bob; targets: Bob, Carol, Dave"."""
+    return "; ".join(f"{k}: {', '.join(map(str, v)) if isinstance(v, list) else v}"
+                     for k, v in (status or {}).items())
+
+
 def via_note(p: dict) -> str:
     """Marks a setup player whose model ran through the Claude Code CLI (LOG_VERSION 47), not the API."""
     return " (via Claude Code)" if p.get("via") == "claude_code" else ""
@@ -689,7 +695,7 @@ def render_html(jsonl_path: Path) -> Path:
             roster = {n: {"alive": True, "death": "", "claim": "", "truth": ""} for n in alive}
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}"
                            f"{' (' + esc(', '.join(p['traits'])) + ')' if p.get('traits') else ''}</td>"
-                           f"<td>{esc(p['model'] + via_note(p))}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
+                           f"<td>{esc(p['model'] + via_note(p))}</td><td class='muted'>{name(status_text(p.get('status')))}</td></tr>"
                            for p in r["players"])
             start_phase("Setup")
             out.append(f"<table><tr><th>Player</th><th>Seat</th><th>Role</th><th>Model</th><th></th></tr>"
