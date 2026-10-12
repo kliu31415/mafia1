@@ -492,10 +492,14 @@ def test_a_timed_out_call_kills_the_cli_a_launcher_started(tmp_path):
         claude_code.run_cli([sys.executable, "-c", launcher], "", dict(os.environ), str(tmp_path), 2)
     assert time.monotonic() - started < 10
     pid = int(pidfile.read_text())
-    for _ in range(50):  # killed: gone, or a zombie until its parent (also killed) is reaped
-        if sys.platform == "win32" or not os.path.exists(f"/proc/{pid}"):
-            break
-        if open(f"/proc/{pid}/stat").read().split(") ")[1][0] == "Z":
+    def gone() -> bool:  # killed: gone, or a zombie until its parent (also killed) is reaped
+        try:
+            with open(f"/proc/{pid}/stat") as f:
+                return f.read().split(") ")[1][0] == "Z"
+        except OSError:  # no such process (it may vanish between checks)
+            return True
+    for _ in range(50):
+        if sys.platform == "win32" or gone():
             break
         time.sleep(0.1)
     else:
