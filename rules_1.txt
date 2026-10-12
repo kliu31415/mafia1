@@ -441,6 +441,14 @@ Vigilante
   Night: may shoot one player: 1 token for a Basic Attack, 2 for Standard, 3 for Strong. If your shot kills them,
   you also learn their role (exact-role check, R19).
 
+Enforcer
+  Tokens: 3 enforcer tokens.
+  Night: may visit one player other than yourself. If they made an Attack of their own choosing tonight (fatal or
+  not; a Veteran's alert, a trap or a revenge doesn't count), you deal them a Basic Attack. Spend 1 token to also
+  visit a second player, and 1 token to make your Attack Strong; the two can be combined. If both players you visit
+  made an Attack, one of them, chosen at random, is attacked. Tokens are spent whether or not you attack. You learn
+  whether you attacked and whether it killed; with one target you know whom, with two you aren't told which.
+
 Veteran
   Tokens: 3 alert tokens.
   You can't be role-blocked.

@@ -1766,3 +1766,12 @@ def test_a_kitsune_release_killing_under_another_cause_is_an_alert(game_factory)
               {"op": "kill", "player": "Dave", "cause": "Kitsune", "by": "Alice"})
     game.run_night_end_hooks()
     assert game.log.error_counts == {"kitsune_cause": 1}
+
+
+def test_an_enforcer_is_told_its_token_costs_and_the_moderator_how_to_resolve_it(game_factory):
+    from night import role_notes
+    from roles import logic
+    game, _ = game_factory(["Enforcer", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
+    brief = " ".join(logic("Enforcer").briefing(game, game.player("Alice")))
+    assert "two targets (target and second_target) with a Basic Attack cost 1" in brief and "3 enforcer" in brief
+    assert "never say which of them it attacked" in role_notes(game)
