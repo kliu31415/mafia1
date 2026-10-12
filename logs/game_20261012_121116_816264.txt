@@ -258,3 +258,22 @@ The nomination of Dave failed (2 Yes).
 Dave (public): Dave here. I go on alert tonight with my last token. Any visitor to me takes a Strong Attack, so Day 4 reports will show it. Bob, don't hang me on your word.
 Frank (public): Frank here. No nomination from me. Alice and Dave, the N1/N2 Katana math still points at one of you. My Juror result and Heidi's audit decide my Day 4 vote.
 Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Ballot Stuffer): chose to spend 1 token(s); "Spend one ballot token so my Day 4 trial vote counts twice."; Katana vote: Alice holds, attacks Grace
+  Bob (Bounty Hunter): no action
+  Dave (Veteran): chose to spend 1 token(s); "Going on alert with my last token (Standard defense; any visitor takes a Strong Attack)."
+  Frank (Juror): target Alice; second target Dave; "Juror: naming Alice and Dave to count how often they voted the same way across the Day 1-3 votes. Alice claims Innocent on Frank and Dave claims Guilty on Frank, so the totals test those claims against each other."
+  Grace (Bloodhound): target Alice; chose to spend 1 token(s); "Spending my last scent token to track Alice tonight."
+  Heidi (Accountant): target Alice; "Audit Alice's token count. She claims Tracker, which holds no tokens. I'm not auditing Dave, since he says he goes on alert tonight and my audit would be a visit that gets me hit with a Strong Attack."
+Katana: Alice holds it and attacks Grace.
+(to Frank) Moderator (private): Your jury check: Alice and Dave voted the same way in 1 of 1 trial votes and 1 of 1 nomination votes.
+(to Bob) Moderator (private): Grace died other than by your attack or a hanging you voted Guilty in: that bounty is lost.
+(to Alice) Moderator (private): Your Katana attack on Grace succeeded: Grace died. You spent a ballot token, so your vote counts twice in every Guilty/Innocent trial vote tomorrow. 1 ballot token left.
+(to Dave) Moderator (private): You went on alert tonight. Nobody visited you. 0 alert tokens left.
+[Moderator summary] Night 3: No role-blocks or swaps. Alice (Katana holder) attacked Grace with the Katana (Standard) vs Defense None, so Grace died (cause Katana). Alice stuffed her ballot for Day 4 (ballot 2->1). Dave went on alert (alert 1->0, Standard Defense); nobody visited him. Frank used Juror on Alice and Dave (Astral, jury op). Grace used her last scent token to track Alice (track op). Heidi audited Alice's tokens (count_tokens; Alice ends the night with 1). Visits: Alice->Grace, Grace->Alice, Heidi->Alice. Attacks: Alice (Katana). Grace was one of Bob's bounty targets and died to the Katana, so that bounty is lost (code handles it). Living after the night: Alice, Bob, Dave, Frank, Heidi. The game is not over.
+[Night check] Night 3: correct
+(to Heidi) Moderator (private): Your audit: Alice has 1 token in total.
+(to Grace) Moderator (private): Your Bloodhound check of Alice, Bob and Dave: together they have made 4 attacks this game, tonight's included. 0 scent tokens left.
+(to Grace) Moderator (private): You were attacked tonight (Katana) and died.
