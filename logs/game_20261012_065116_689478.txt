@@ -187,3 +187,20 @@ Trial votes on Frank: 5 Guilty, 2 Innocent (the votes are secret).
 Frank is executed by hanging (5 Guilty of 7 votes; 4 needed).
 Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank was a Vanilla Villager with no night information. Bob died to a Serial Killer, so a Serial Killer is alive. Don't hang anyone on one unverified claim. Check Kitsune and Sheriff claims against real attacks and visits."
 (to Alice) The Katana passed to Alice.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Carol
+  Carol (Sheriff): target Heidi; "Sheriff investigation on Heidi, the Kitsune claimant whose Strong SK swallow has no outside witness."
+  Dave (Serial Killer): target Carol; "Strong Attack on Carol, the Sheriff claimant. Her investigations are the main threat to me, and she has already survived one of my attacks."
+  Erin (Kitsune): no action
+  Heidi (Kitsune): target Erin; "Releasing my held Strong Serial Killer attack on Erin. Erin's Kitsune claim conflicts with my real charms, so she is not a real Kitsune. Her Katana swallow story is unverified, and Carol's Not Evil read doesn't clear a Katana holder."
+Katana: Alice holds it and attacks Carol.
+(to Carol) Moderator (private): You investigated Heidi tonight. Result: Not Evil.
+(to Dave) Moderator (private): You attacked Carol tonight. Your attack succeeded.
+(to Alice) Moderator (private): Your Katana attack on Carol tonight succeeded.
+[Moderator summary] Night 3: Nobody was role-blocked and no charms were laid. Alice, holding the Katana, made a Standard attack on Carol. Dave (Serial Killer) made a Strong attack on Carol. Carol had Defense None, so both attacks were fatal and she died with the cause 'Katana and Serial Killer'. Carol's Sheriff check on Heidi returned Not Evil. Heidi released her held Strong 'Serial Killer' attack on Erin, who had Defense None and died with the cause 'Serial Killer' (killed by Heidi). Erin did not act. Alive: Alice (Yakuza), Dave (Serial Killer), Grace (Village) and Heidi (Village). No faction has won yet.
+[Night check] Night 3: correct
+(to Heidi) Moderator (private): Your released attack on Erin killed them.
+(to Carol) Moderator (private): You were attacked tonight (Katana and Serial Killer) and died.
+(to Erin) Moderator (private): You were attacked tonight (Serial Killer) and died.
