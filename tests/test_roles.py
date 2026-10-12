@@ -1831,6 +1831,22 @@ def test_a_kitsune_charm_picks_one_of_several_attacks_and_charming_yourself_spen
     assert told(game, "Alice")[-1].endswith("Your fox charm on Bob swallowed no attack tonight.")
 
 
+def test_two_kitsune_charms_on_one_player_swallow_different_attacks_in_random_order(game_factory):
+    attacks = [{"by": "Erin", "attack": "Standard", "cause": "Katana"},
+               {"by": "Dave", "attack": "Basic", "cause": "Serial Killer"}]
+    first = set()
+    for seed in range(12):
+        game, players = game_factory(["Kitsune", "Kitsune", "Vanilla Villager", "Serial Killer", "Grunt"])
+        game.phase = "night"
+        game.rng.seed(seed)
+        for kitsune in ("Alice", "Bob"):
+            apply_ops(game, players, {"op": "kitsune_charm", "by": kitsune, "player": "Carol", "attacks": attacks})
+        charges = game.role_state["kitsune_charge"]
+        assert {charges["Alice"]["cause"], charges["Bob"]["cause"]} == {"Katana", "Serial Killer"}  # rules: Kitsune
+        first.add(charges["Alice"]["cause"])
+    assert first == {"Katana", "Serial Killer"}  # either charm may get either attack
+
+
 def test_a_kitsune_release_killing_under_another_cause_is_an_alert(game_factory):
     game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
     game.phase = "night"

@@ -32,9 +32,11 @@ class Kitsune(RoleLogic):
         "with every non-Divine Attack on the charmed player tonight, each as {by, attack (its level), cause (how its "
         "kill would be announced, e.g. 'Katana', 'Serial Killer')}, [] if none. Code picks the one the charm "
         "swallows and says which: treat it as stopped (its attacker and target are told as for any failed attack, "
-        "R3; its visit still happened), then resolve the other attacks normally. A Kitsune holding a swallowed "
-        f"attack can't charm; if it acted with a target (and wasn't role-blocked), use the {RELEASE} op: code says "
-        "the attack's level and cause, and you resolve it like any attack by the Kitsune on that target (a visit). "
+        "R3; its visit still happened), then resolve the other attacks normally. Several charms on one player: one "
+        f"{CHARM} op each, every one listing all the attacks; code has them act in random order, each swallowing a "
+        f"different attack. A Kitsune holding a swallowed attack can't charm; if it acted with a target (and wasn't "
+        f"role-blocked), use the {RELEASE} op: code says the attack's level and cause, and you resolve it like any "
+        "attack by the Kitsune on that target (a visit). "
         "If it kills, kill with exactly that cause, by the Kitsune, katana false; a survivor is told they were "
         "attacked by that cause's role (R3), never by a Kitsune. Code tells the Kitsune its results; don't tell() it "
         "about the charm or the release.")
@@ -90,7 +92,9 @@ class Kitsune(RoleLogic):
                     f"{charge['cause']} (R3).")
         if target is by and not swap_partner(game, by.name):
             spend_token(game, by.name, TOKEN)
-        swallowed = stop_one_attack(game, target.name, change["attacks"])  # rules: Kitsune (one at random)
+        # rules: Kitsune (one at random). Several charms on one player: each picks at random among the attacks the
+        # earlier ones left, the same as acting in random order
+        swallowed = stop_one_attack(game, target.name, change["attacks"])
         if swallowed:
             charge = {"attack": swallowed["attack"], "cause": swallowed["cause"].strip()}
             game.role_state.setdefault(CHARGE, {})[by.name] = charge
