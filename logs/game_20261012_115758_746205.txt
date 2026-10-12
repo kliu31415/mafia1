@@ -410,3 +410,16 @@ Trial votes on Grace: 3 Guilty, 2 Innocent (the votes are secret).
 Grace is executed by hanging (3 Guilty of 5 votes; 3 needed).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace, Talent Agent. Night 1 scan: Juror in play, Arsonist not in play. Night 2 count: 1 Fortune Teller in play (Bob). Night 3 count: 1 Enforcer in play (Dave). All three talent tokens are spent. Those counts match the deaths. Check claims against visits and death causes, not leans or private chats. Do not hang anyone on claims alone."
 (to Carol) The Katana passed to Carol.
+
+===== NIGHT 5 =====
+Night actions:
+  Carol (Fixer): target Heidi; chose to spend 1 token(s); "Fixer: spend 1 token on Heidi so her Day 6 Guilty/Innocent votes count as the opposite. Katana: holder Carol, attack Erin (Standard, no Defense; Erin is the Accountant claimant whose audits could expose Yakuza)."; Katana vote: Carol holds, attacks Erin
+  Erin (Accountant): target Carol; "Accountant audit on Carol. Her 2-token count is the only useful audit left: Alice and Heidi have no tokens, so auditing them would show nothing. If Carol spends a token tonight, the total will show it."
+  Heidi (Trapper): no action
+  Alice (Ex-Con): automatic: target Carol; "random visit"
+Katana: Carol holds it and attacks Erin.
+(to Carol) Moderator (private): You fixed Heidi tonight: her Guilty/Innocent trial votes during the coming Day count as the opposite. You have 1 fixer token left. Your Katana attack on Erin succeeded: Erin died.
+[Moderator summary] Night 5: Carol (Fixer, Katana holder) fixed Heidi (fixer token 2->1) and killed Erin with a Standard Katana attack (no defense). Erin's Accountant audit on Carol resolved through count_tokens. Alice's Ex-Con random visit went to Carol. Heidi took no action. Heidi's trap on Carol (armed since this night) was not set off because nobody attacked Carol. Nobody was role-blocked. Alive: Alice, Carol, Heidi.
+[Night check] Night 5: correct
+(to Erin) Moderator (private): Your audit: Carol has 1 token in total.
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
