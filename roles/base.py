@@ -349,6 +349,26 @@ def chosen_name(game: Game, target: str) -> str:
     return swap_partner(game, target) or target
 
 
+SWAP_MOVED = "swap_moved"  # game.role_state: [user, effect, chosen, landed] for next-Day effects a swap moved (R23)
+
+
+def note_swap_move(game: Game, by: Player, target: Player, effect: str) -> None:
+    """For an effect that lasts into the next Day (`effect` names it, e.g. "eavesdropping"): when a swap moved it onto
+    `target`, its user is told so at dawn (rules R23, tell_swap_moves), so the change doesn't look like a bug. A role
+    whose rules say nobody is told doesn't call this."""
+    moved = [m for m in game.role_state.get(SWAP_MOVED, []) if m[:2] != [by.name, effect]]  # re-recorded tonight
+    if (chosen := chosen_name(game, target.name)) != target.name:
+        moved.append([by.name, effect, chosen, target.name])
+    game.role_state[SWAP_MOVED] = moved
+
+
+def tell_swap_moves(game: Game) -> None:
+    """At dawn, tells each living user whose next-Day effect a swap moved where it went (rules R23)."""
+    for user, effect, chosen, landed in game.role_state.pop(SWAP_MOVED, []):
+        if game.player(user).alive:
+            game.emit(f"A swap moved your {effect} from {chosen} to {landed} last night (rules R23).", [user])
+
+
 def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:
     """check_op for a role op: None if `by` has `role`, was alive when the night began (acted_tonight) and,
     for an op that spends a `kind` token, has one."""

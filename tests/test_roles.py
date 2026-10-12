@@ -167,6 +167,32 @@ def test_an_eavesdropper_moved_by_a_swap_listens_to_the_other_player_and_is_told
     assert logic("Eavesdropper").hears_pm(game, game.player("Alice"), "Carol", "Dave")
 
 
+def test_a_puppeteer_moved_by_a_swap_puppets_the_other_player_and_is_told(game_factory):
+    # rules R23: like the Eavesdropper's listening, the puppeting follows the player it landed on, and its user is told
+    game, players = game_factory(["Puppeteer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Smuggler"])
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}
+    apply_ops(game, players, {"op": "puppet", "player": "Carol", "by": "Alice"})  # Alice chose Bob
+    assert game.puppets_next == {"Carol": "Alice"}
+    game.phase = "day"
+    game.day += 1
+    game.run_dawn_hooks()
+    assert "A swap moved your puppeting from Bob to Carol last night (rules R23)." in told(game, "Alice")
+    assert not any("swap moved" in e.text for e in game.events if e.visible_to != frozenset({"Alice"}))
+
+
+def test_a_fixer_moved_by_a_swap_is_not_told(game_factory):
+    # rules R23 and Fixer: nobody is told about a fix, so not about a swap moving it either
+    game, players = game_factory(["Fixer", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Smuggler"])
+    game.phase = "night"
+    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}
+    apply_ops(game, players, {"op": "fix", "player": "Carol", "by": "Alice"})
+    game.phase = "day"
+    game.day += 1
+    game.run_dawn_hooks()
+    assert game.trial_vote_reversed(game.player("Carol")) and not told(game, "Alice")
+
+
 def test_archivist_sees_one_role_per_other_player_three_quarters_real_once(game_factory):
     game, players = game_factory(["Archivist", "Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt",
                                   "Jester", "Sheriff", "Medic", "Pharmacist"])
@@ -1870,16 +1896,52 @@ def test_a_held_shot_is_dropped_if_its_shooter_dies_and_refunded_if_its_target_d
     assert "sniper_held" not in game.role_state
 
 
-def test_sniper_shots_due_together_fire_one_at_a_time(game_factory):
+def test_sniper_shots_due_together_fire_one_at_a_time_in_random_order(game_factory):
     from day import chat_turn
-    game, players = game_factory(["Sniper", "Sniper", "Vanilla Villager", "Grunt", "Grunt"],
-                                 ScriptedClient(sniper_decide({"Alice": ("Bob", 1), "Bob": ("Alice", 1)})))
+    survivors = set()
+    for seed in range(20):
+        game, players = game_factory(["Sniper", "Sniper", "Vanilla Villager", "Grunt", "Grunt"],
+                                     ScriptedClient(sniper_decide({"Alice": ("Bob", 1), "Bob": ("Alice", 1)})))
+        game.day, game.phase = 2, "day"
+        for name in ("Alice", "Bob"):
+            chat_turn(game, players, game.player(name), rnd=1, can_nominate=False)
+        set_delays(game, 0, 0)
+        game.rng.seed(seed)
+        sniper_turns(game, 1)
+        alive = [n for n in ("Alice", "Bob") if game.player(n).alive]
+        assert len(alive) == 1  # rules R25: the first shot kills the other Sniper, whose shot is dropped
+        survivors.add(alive[0])
+    assert survivors == {"Alice", "Bob"}  # not the order they were taken (Kevin, Oct 12 2026)
+
+
+def test_a_sniper_whose_target_died_first_gets_its_tokens_back_and_may_shoot_again(game_factory):
+    from day import chat_turn
+    game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"],
+                                 ScriptedClient(sniper_decide({"Alice": ("Dave", 2)})))
     game.day, game.phase = 2, "day"
-    for name in ("Alice", "Bob"):
-        chat_turn(game, players, game.player(name), rnd=1, can_nominate=False)
-    set_delays(game, 0, 0)
-    sniper_turns(game, 1)
-    assert game.player("Alice").alive and not game.player("Bob").alive  # rules R25: Alice's first, Bob's dropped
+    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
+    assert game.player("Alice").tokens["sniper"] == 1
+    set_delays(game, 1)
+    game.kill("Dave", "executed by hanging", guilty_voters=["Bob"])  # dies before the shot is due
+    sniper_turns(game, 2)
+    assert game.player("Alice").tokens["sniper"] == 3
+    assert any("Dave died before your shot was fired" in t and "You may take another shot today." in t
+               for t in told(game, "Alice"))
+    players.client.decide = sniper_decide({"Alice": ("Erin", 1)})  # type: ignore[attr-defined]
+    chat_turn(game, players, game.player("Alice"), rnd=2, can_nominate=False)  # the shot never happened
+    assert game.role_state["sniper_held"][0][:3] == ["Alice", "Erin", "Basic"]
+    assert game.player("Alice").tokens["sniper"] == 2
+
+
+def test_a_refund_as_the_day_ends_doesnt_offer_another_shot(game_factory):
+    from roles import logic
+    from roles.sniper import HELD
+    game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"])
+    game.day, game.phase = 2, "day"
+    game.role_state[HELD] = [["Alice", "Dave", "Basic", 3]]
+    game.kill("Dave", "executed by hanging", guilty_voters=["Alice"])
+    logic("Sniper").at_day_end(game)
+    assert any("Dave died before your shot was fired" in t and "another shot" not in t for t in told(game, "Alice"))
 
 
 def test_sniper_shots_due_together_stop_once_one_decides_the_game(game_factory):

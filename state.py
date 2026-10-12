@@ -11,7 +11,7 @@ from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
-from roles.base import REVENGE_CAUSE
+from roles.base import REVENGE_CAUSE, tell_swap_moves
 from traits import LOGIC as TRAIT_LOGIC, TRAITS, eligible as trait_eligible, parse_item as parse_trait, trait_logic
 import variants
 
@@ -263,6 +263,7 @@ class Game:
 
     def run_dawn_hooks(self) -> None:
         """Role effects at the start of the day (e.g. Ballot Stuffer votes taking effect)."""
+        tell_swap_moves(self)  # first, so it comes before what the moved effect does today
         for role_logic in LOGIC.values():
             role_logic.at_dawn(self)
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, register
+from roles.base import RecordedAction, RoleLogic, note_swap_move, register
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -19,6 +19,7 @@ class Puppeteer(RoleLogic):
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
+        note_swap_move(game, by, target, "puppeting")  # rules R23: told at dawn
         if target is not by:  # puppeting yourself changes nothing (the token is still spent)
             game.puppets_next[target.name] = by.name
 
