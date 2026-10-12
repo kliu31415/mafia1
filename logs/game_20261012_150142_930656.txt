@@ -432,3 +432,27 @@ Trial votes on Olivia: 4 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Olivia] Guilty - Frank, Grace, Heidi, Mallory; Innocent - Olivia
 Olivia is executed by hanging (4 Guilty of 5 votes; 3 needed).
 Olivia died (executed by hanging). Their role isn't revealed. Their last will: "Olivia - Fortune Teller (Good). No action needed; I get two numbers each night. N1: 3 visited, 4 visiting (fits Katana + Erin's charm on Alice, plus Dave's profile on Mallory). N2: 5 visited, 6 visiting (the Katana holder's own action or an unclaimed role fills the extra slot). N3: 4 visited, 5 visiting. N4: 3 visited, 3 visiting (Katana on Carol, Mallory's audit, plus one more visitor, probably a second Yakuza action; the ignite and Oracle/Juror checks are astral, so they don't count). Votes: D2 Yes/Guilty on Mallory (I was wrong). D3 Yes on the Niaj nomination, Yes/Guilty on Dave. D4 Yes/Guilty on Niaj. N4: an Arsonist killed Judy, so a Neutral killer is alive among Frank, Grace, Heidi and Mallory, along with the Yakuza. Leads: Grace (passive Scout with no checkable result; the Arsonist reads Not Evil and would want a no-visit claim) and Heidi (Alice's last guess was Heidi = Informant, and Juror results only repeat stated votes)."
+
+===== NIGHT 5 =====
+(to Grace, Heidi) Grace (Yakuza chat): Good day for us. Olivia was almost certainly the Arsonist: her N1 claim of "4 visiting" was impossible, because the real N1 visitors were me, Erin, Niaj, Dave and Carol, which is at least 5. Alice died to a curse, so Carol or Judy was Cursed. That leaves Frank (Veteran, 1 alert left) and Mallory (real Auditor). It's 2v2.
+Plan: holder=Grace, target=Mallory. We never visit Frank: if he alerts, I take a Strong hit and die. Carol's trap was on Alice, who is dead, so Mallory should be unprotected. After tonight it's Grace, Heidi and Frank. On D6 one of us nominates Frank, we both vote Yes and Guilty, 2 of 3 is a majority, and we win.
+Heidi: please spend a ballot token tonight as insurance. If something odd happens, like Frank turning out to be a hidden Neutral, a doubled Guilty locks the D6 trial. A mismatched total doesn't matter now.
+Final: holder=Grace, target=Mallory.
+(to Grace, Heidi) Heidi (Yakuza chat): Agreed: holder Grace, target Mallory. I'm spending a ballot token tonight. If the kill lands, it's 3 alive on D6. My doubled vote means 3 of 4 counted votes, so even Grace plus me alone is more than enough. If the kill fails (a hidden Medic, or the Arsonist ignites someone), it's 4 alive. A doubled vote still gives us 3 of 5 in the trial, but the nomination isn't doubled and needs 3 Yes, so we'd need one villager to vote Yes. In that case we push Frank and Mallory onto each other as the Arsonist. On D6 one of us nominates Frank right away, and we both vote Yes and Guilty. If the Arsonist was Frank and not Olivia, hanging him wins it outright. Never visit Frank. Final: holder Grace, target Mallory.
+(to Grace, Heidi) Grace (Yakuza chat): Confirmed: holder Grace, target Mallory. Thanks for spending the ballot token. D6 plan: I'll nominate Frank right away. Note: if Frank is the Arsonist and ignites tonight, one of us might die. In that case the survivor just pushes hardest on whoever is left. If Mallory survives (hidden protection), we push Frank and Mallory onto each other as the Arsonist and vote together on whichever one looks easier to win over. No PMs. Ready.
+(to Grace, Heidi) Heidi (Yakuza chat): Confirmed: holder Grace, target Mallory. I'm spending the ballot token. D6: you nominate Frank straight away, and we both vote Yes and Guilty. If Mallory survives, we push them onto each other as the Arsonist and both go with whichever of them is easier to win over. No PMs. Ready.
+Night actions:
+  Frank (Veteran): chose to spend 1 token(s)
+  Grace (Talent Agent): no role action; Katana vote: Grace holds, attacks Mallory
+  Heidi (Ballot Stuffer): chose to spend 1 token(s); Katana vote: Grace holds, attacks Mallory
+  Mallory (Auditor): target Heidi
+Katana: Grace holds it and attacks Mallory.
+(to Mallory) Moderator (private): Your audit of Heidi's votes during the Day, in order: Yes on the nomination of Olivia; Guilty in the trial of Olivia.
+(to Frank) Moderator (private): You went on alert tonight. Nobody visited you. 0 alert tokens left.
+(to Grace) Moderator (private): Your Katana attack on Mallory tonight succeeded: they died.
+(to Heidi) Moderator (private): You spent a ballot token: during the coming Day, your vote counts twice in every Guilty/Innocent trial vote. 1 ballot token left.
+[Moderator summary] Night 5: Frank went on alert (last token, now 0); nobody visited him. Grace (Katana holder) attacked Mallory with a Standard attack; Mallory had no defense or trap and died (Katana). Mallory's audit on Heidi resolved via the audit op. Heidi spent 1 ballot token (1 left), so her trial votes count double on Day 6. Visits: Grace->Mallory, Mallory->Heidi. Alive now: Frank (Village), Grace and Heidi (Yakuza). No faction has won yet.
+[Night check] Night 5: correct
+(to Mallory) Moderator (private): You were attacked tonight (Katana) and died.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Mallory. Heidi (Ballot Stuffer) chose to act, spending 1 token(s).
+(to Heidi) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Mallory. Grace (Talent Agent) chose no action.
