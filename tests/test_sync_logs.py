@@ -238,16 +238,18 @@ def test_tips_are_committed_to_main_alone_and_pushed_when_that_s_a_fast_forward(
 
     run(cloud.root, "pull", "-q", "origin", "main")
     (cloud.root / "more.py").write_text("y = 2\n")  # main moves on elsewhere
-    run(cloud.root, "add", "more.py")
+    (cloud.root / "tips" / "history" / "tips_2.md").write_text("another PC's old sheet\n")
+    run(cloud.root, "add", "more.py", "tips")
     run(cloud.root, "commit", "-m", "more")
     run(cloud.root, "push", "origin", "HEAD:main")
     run(pc.root, "commit", "-q", "-m", "work")  # and this PC has work it hasn't pushed
     (tips / "tips.md").write_text("newer sheet\n")
-    (tips / "history" / "tips_1.md").unlink()
     later = sync_logs.commit_tips(pc, tips)
     remote = pc.git("ls-remote", "origin", "main").decode().split()[0]
     assert later and remote != later  # an equal tips-only commit on the remote's main, without work.py
-    assert pc.git("ls-tree", "-r", "--name-only", remote).decode().split() == ["code.py", "more.py", "tips/tips.md"]
+    # that only adds and updates: the remote's tips_2.md, which this PC's tips lack, stays
+    assert pc.git("ls-tree", "-r", "--name-only", remote).decode().split() == [
+        "code.py", "more.py", "tips/history/tips_1.md", "tips/history/tips_2.md", "tips/tips.md"]
     assert pc.git("show", f"{remote}:tips/tips.md").decode() == "newer sheet\n"
     run(pc.root, "pull", "-q", "--rebase", "origin", "main")  # the local tips commit goes away cleanly
     assert pc.git("log", "--format=%s", "origin/main..HEAD").decode().split("\n")[0] == "work"
@@ -317,3 +319,31 @@ def test_get_copies_one_game_s_files_so_a_lost_cloud_game_can_resume_elsewhere(m
     written, kept = sync_logs.pull(pc, pc.root / "logs", "game_1")
     assert sorted(w.name for w in written) == ["game_1.ckpt", "game_1.jsonl", "game_1.txt",
                                                "game_1_feedback.md"] and kept == []
+
+
+def test_pull_on_the_pc_removes_finished_games_checkpoints_that_cloud_pushes_left(machines):
+    cloud, pc = machines["cloud"], machines["pc"]
+    # Left by sandboxes: game_1 finished (its checkpoint wasn't removed), game_2 can still be resumed
+    stale = {"logs/game_1.jsonl": b'{"kind": "setup"}\n{"kind": "result"}\n', "logs/game_1.ckpt": b"pickle 1",
+             "logs/game_2.jsonl": b'{"kind": "setup"}\n', "logs/game_2.ckpt": b"pickle 2"}
+    cloud.publish(lambda parent: stale, "earlier pushes")
+    (cloud.root / "logs").mkdir()
+    (cloud.root / "logs" / "game_5.jsonl").write_text("{}\n")
+    sync_logs.push(cloud, cloud.root / "logs")  # a sandbox without game_1's log leaves its checkpoint alone
+    assert "logs/game_1.ckpt" in cloud.files(cloud.fetch(), "logs")
+
+    logs = pc.root / "logs"
+    logs.mkdir()
+    (logs / "game_3.jsonl").write_text('{"kind": "result"}\n')  # finished here, its checkpoint left behind
+    (logs / "game_3.ckpt").write_text("stale")
+    (logs / "game_4.jsonl").write_text('{"kind": "setup"}\n')  # still running here
+    (logs / "game_4.ckpt").write_text("live")
+    written, kept = sync_logs.pull(pc, logs)  # game_1.ckpt isn't copied: its log has a result
+    assert sorted(w.name for w in written) == ["game_1.jsonl", "game_2.ckpt", "game_2.jsonl", "game_5.jsonl"]
+    assert kept == []
+    removed, deleted = sync_logs.prune_checkpoints(pc, logs)
+    assert removed == ["logs/game_1.ckpt"] and deleted == [logs / "game_3.ckpt"]
+    assert sorted(p.name for p in logs.glob("*.ckpt")) == ["game_2.ckpt", "game_4.ckpt"]
+    assert sorted(pc.files(pc.fetch(), "logs")) == [
+        "logs/game_1.jsonl", "logs/game_2.ckpt", "logs/game_2.jsonl", "logs/game_5.jsonl"]
+    assert sync_logs.prune_checkpoints(pc, logs) == ([], [])
