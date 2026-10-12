@@ -89,6 +89,12 @@ night actions already run in parallel.
   deception test. Cost: the claim ledger becomes per player (each claim entry records who saw it), plus split events
   for the moderator's public history, logs and reviews; about 200 lines, moderate bug risk. Caching is unaffected
   (the ledger is in the uncached part of the prompt). Simpler versions were dropped as a weaker Puppeteer.
+- **Slippery trait** (Kevin, Oct 12 2026: punted). Once a game, a player voted Guilty isn't hanged: the moderator
+  announces they're Slippery and the Day ends as usual. Any faction, so surviving clears nobody. It wastes a hang
+  (only 55% of Days end in one), so it's worth more to a Yakuza (power ~0.3) than a Villager (~0.1), but it's
+  mostly a one-day delay, since the town can re-hang them the next Day. Variant: the holder chooses whether to slip
+  after seeing the vote (one extra yes/no call), which gives them a decision. A slip isn't a hanging: no Jester or
+  Executioner win, no Martyr or Grudge.
 - **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
   naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
   defeats it, so it mostly taxes Yakuza coordination.
