@@ -160,7 +160,7 @@ ROLES: dict[str, RoleInfo] = {
     "Enforcer": RoleInfo(Alignment.GOOD, "Killing", False,
                          summary="Night: visit a player (a token: two) and attack one who made an Attack tonight; "
                          "Basic, or Strong for a token.",
-                         tokens={"enforcer": 3}, acts_at_night=True,
+                         tokens={"enforcer": 3}, acts_at_night=True, tested=True,
                          notes="moderator resolves it; briefing lists the token costs"),
     "Veteran": RoleInfo(Alignment.GOOD, "Killing", False,
                         summary="Can't be role-blocked. Token: go on alert, Standard Defense "
