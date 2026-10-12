@@ -275,3 +275,24 @@ Trial votes on Erin: 5 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Erin] Guilty - Alice, Frank, Grace, Ivan, Judy; Innocent - Bob, Erin
 Erin is executed by hanging (5 Guilty of 7 votes; 4 needed).
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin - Medic (Good). N1 Judy (Standard), N2 Dave (Standard), N3 Frank (Strong, 1 token). 1 token left. If I was hanged, I was Village, and the SK is still alive. SK candidates: Grace first. Grace nominated me and pushed the hardest. After her, Judy: Olivia's last lean was Judy, Judy said her N1 block "landed" (blockers aren't told that), and her N3 block is backed only by Alice. Alice could be the Yakuza covering for her. Bob (Enforcer) and Ivan (Oracle) look Village to me."
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Talent Agent): guessed role Serial Killer; 1 token(s); "Count: Serial Killer"; Katana vote: Alice holds, attacks Bob
+  Bob (Enforcer): target Grace; 1 token(s); "Strong single visit on Grace"
+  Frank (Sheriff): target Alice
+  Grace (Serial Killer): no action
+  Ivan (Oracle): target Grace; guessed role Serial Killer
+  Judy (Party Animal): target Grace
+Katana: Alice holds it and attacks Bob.
+(to Alice) Moderator (private): Your count: 1 player alive when the night began has the role Serial Killer.
+(to Bob) Moderator (private): You visited Grace tonight, paying for a Strong Attack (single target). You did not attack. 0 enforcer tokens left.
+(to Frank) Moderator (private): You investigated Alice tonight. Result: Not Evil.
+(to Ivan) Moderator (private): You guessed that Grace is the Serial Killer tonight. Result: RIGHT.
+(to Judy) Moderator (private): You role-blocked Grace tonight. Your block did not fail because of immunity: Grace is not immune to role-blocks.
+(to Grace) Moderator (private): You were role-blocked tonight.
+[Moderator summary] Night 4: Judy (PA) blocked Grace (SK), who had chosen not to act, so Grace was told she was blocked. Alice (holding the Katana) attacked Bob with the Standard Katana, and Bob died (Defense None). Bob's Strong single Enforcer visit on Grace did nothing because Grace made no attack, and his last token is spent (0 left). Alice spent her last talent token on Count: Serial Killer (code reports it). Frank checked Alice, who held the Katana, so the result was Not Evil. Ivan's Oracle guess Grace = Serial Killer was RIGHT. Visits: Alice->Bob, Bob->Grace, Frank->Alice, Judy->Grace. Left alive: Alice (Yakuza), Frank, Ivan, Judy (Village), Grace (SK). The game continues.
+(to Alice) Moderator (private): Your Katana attack on Bob tonight succeeded.
+[Moderator summary] Night 4: Judy (Party Animal) blocked Grace (Serial Killer). Grace had chosen not to act, but she was still told she was blocked. Alice held the Katana and hit Bob with a Standard attack. Bob had no Defense and died. Bob's Strong single Enforcer visit on Grace did nothing because Grace made no attack, and it spent his last token (0 left). Alice spent her last talent token on Count: Serial Killer, and code gives her the result. Frank checked Alice, who held the Katana, so his result was Not Evil. Ivan guessed Grace = Serial Killer and was RIGHT. Visits: Alice->Bob, Bob->Grace, Frank->Alice, Judy->Grace. Still alive: Alice (Yakuza), Frank, Ivan, Judy (Village) and Grace (Serial Killer). The game continues.
+[Night check] Night 4: correct
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
