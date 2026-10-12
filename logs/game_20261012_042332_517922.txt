@@ -140,3 +140,53 @@ Katana: Carol holds it and attacks Alice.
 [Night check] Night 2: correct
 (to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Heidi (Grunt) chose no action.
 (to Heidi) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Carol (Pharmacist) chose to act on Frank ("Pharmacist role-block on Frank, so his Tracker visit fails and cannot show my visit to Alice. Katana holder vote: Carol. Katana target vote: Alice.").
+
+===== DAY 3 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Dave.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Dave (public): Dave here. No nomination from me yet. Frank and Alice, post your Night 2 targets and exact results now. Bob, your Standard shot on Grace before any Night 2 data is still unexplained.
+Erin (public): Erin here. Nominating Bob: his Standard shot killed Grace before any Night 2 data existed, and he hasn't explained it. Vote Guilty unless he gives a real reason.
+Erin nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Erin, Frank, Heidi, Carol; No - Alice, Bob, Dave
+Nomination votes on Bob: 4 Yes (the votes are secret).
+Bob is put on trial (4 Yes).
+[Claim] Bob: Sniper (real). 3 tokens at start, N1 no action. D2: Standard shot at Grace (killed her, cancelling her pending Basic shot on me). 1 token left.
+Bob (public): Bob here. I'm the real Sniper, with 1 token left. I fired at Grace on Day 2 because her claim named me fake and her Basic shot on me was pending. A Basic attack beats my Defense of None, so if her shot had fired first, I'd have died. Killing her first cancelled it. That's the whole reason. Grace's will is only her word. Alice and Frank both said they'd post Night 2 results at the start of Day 3, and neither has. Post them now. Both checked me Not Evil or no visits on N1, which fits me being Village. Don't hang me on a lean before those results are out.
+Carol (public): Carol here. I voted Yes to put Bob on trial, and I'm voting Guilty. Bob's Standard shot killed Grace on Day 2, before any Night 2 result existed. Calling her will "only her word" doesn't explain why he fired first instead of waiting. Alice and Frank still haven't posted the Night 2 results they promised for the start of Day 3. Bob, if your claim is true, explain why you shot before you had any information.
+Dave (public): Dave here. I'm voting Innocent on Bob for now. Two investigators checked him on N1 with Not Evil and no visits, and nothing mechanical links him to a Yakuza kill. Alice and Frank promised Night 2 results at the start of Day 3 and posted nothing. Post them now, with night, target and exact result, before this trial closes.
+Erin (public): Erin here. Bob still hasn't explained why he fired a Standard shot at Grace before any Night 2 data existed. Her will is only her word, but his shot is a hard fact. Alice and Frank, you promised Night 2 results at Day 3 start, so post them now. I'm voting Guilty on Bob.
+[Claim] Frank: Tracker. N1: tracked Bob, no visits. N2: tracked Bob, role-blocked, no result. D3: Guilty on Bob.
+Frank (public): Frank here. Night 2 result: I was role-blocked, so my track on Bob gave no result. Someone alive can block, so one of the players I've been trusting may be Yakuza, and I can't tell who from here. Bob's facts: he fired a Standard shot at Grace on Day 2 before any Night 2 data existed, and his claim is contested by Grace's will. I'm voting Guilty on Bob for that unexplained shot. Alice, post your N2 result now.
+[Claim] Heidi: Vanilla Villager. No night action, no results. D3: Guilty on Bob.
+Heidi (public): Heidi here. I'm voting Guilty on Bob. He fired a Standard shot at Grace on Day 2 before any Night 2 data existed, and his "she'd have shot first" explanation doesn't justify it. Alice, your N2 result is still missing from Day 3, so post it now.
+[Claim] Alice: Sheriff. N1: checked Bob, Not Evil. N2: checked Erin, Evil. N2: Katana attacked me, survived. D3: Innocent on Bob.
+Alice (public): Alice (Sheriff) here, posting my Night 2 result as promised. I checked Erin and got EVIL, which is a true result. I was also attacked by the Katana that night and survived, so a Yakuza is alive and holds it. Erin is Yakuza. She nominated Bob, and Bob passed my Night 1 check as Not Evil. I'm voting Innocent on Bob. Erin, why push this hang?
+[Claim] Bob: Sniper (real). N1: no action. D2: Standard shot at Grace, killed her (cancelled her pending Basic shot on me). 1 token left. D3: on trial, voting Innocent.
+Bob (public): Bob here, the real Sniper. I shot Grace on Day 2 because her will and her claim named me fake, and her pending Basic shot could have killed me first. Killing her first cancelled it. Her shot was a direct threat, so I didn't need Night 2 data to act. Alice's N2 result of Erin as Evil is the first mechanical read this Day. Erin self-nominated on Day 2 and then pushed this hang on Day 3 without any new data. Frank's N2 block means a Yakuza with a block is alive. Erin, why are you pushing a hang on a Village Sniper when Alice has a result on you? I'm voting Innocent.
+Trial votes on Bob: 3 Guilty, 4 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Carol, Erin, Heidi; Innocent - Alice, Bob, Dave, Frank
+Bob is found Innocent (3 Guilty of 7 votes; 4 needed).
+[Claim] Frank: Tracker. N1: tracked Bob, no visits. N2: role-blocked, no result. D3: Innocent on Bob (earlier post saying Guilty was a slip).
+Frank (public): Frank here. Correction: I voted Innocent on Bob, not Guilty; my earlier post was wrong. Alice's N2 result (Erin Evil) is the only mechanical read we have, and Erin pushed the Bob hang with no new data. I'm nominating Erin. Erin, answer Alice's result directly.
+Frank nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Frank, Heidi, Alice, Bob, Carol, Dave, Erin; No - nobody
+Nomination votes on Erin: 7 Yes (the votes are secret).
+Erin is put on trial (7 Yes).
+Erin (public): Erin here. I'm not Yakuza, and I have no Katana or kill. Alice's Evil read on me is the only mechanical result we have, and I won't pretend it doesn't exist. If you believe Alice's result, vote Guilty; that's a reasonable call on the evidence. But Alice is a single unverified Sheriff claim, Frank's Night 2 result is a block, and Bob's Standard shot on Grace is still unexplained. Weigh the reads you have and vote on that, not on who pushed the last hang.
+[Claim] Frank: Tracker. N1: tracked Bob, no visits. N2: role-blocked, no result. D3: Innocent on Bob, Guilty on Erin.
+Frank (public): Frank here. I'm voting Guilty on Erin. Alice's N2 Evil read is the only mechanical result we have, and Erin's reply doesn't explain it. Alice, keep your claim consistent.
+Heidi (public): Heidi here. Alice's Sheriff read of Erin as Evil is the only mechanical result on the table, and Erin's reply doesn't refute it. Alice survived a Katana attack, so she's worth keeping in mind as a possible Village power role. I'm voting Guilty on Erin, and I want Alice's claim to stay consistent through the day.
+[Claim] Alice: Sheriff. N1: checked Bob, Not Evil. N2: checked Erin, Evil. N2: Katana attacked me, survived. D3: Innocent on Bob, Guilty on Erin.
+Alice (public): Alice (Sheriff) here. My Night 2 check on Erin came back EVIL, and that's a true result. It's the only mechanical read we have. Erin is not the Katana holder, since a holder would read Good that night, so a different Yakuza is alive and holds the Katana. I'm voting Guilty on Erin. My vote is Yes on her nomination, and my vote on her trial is Guilty.
+[Claim] Bob: Sniper (real). N1: no action. D2: Standard shot at Grace, killed her. 1 token left. D3: Innocent on Bob, Guilty on Erin.
+Bob (public): Bob here. I'm voting Guilty on Erin. Erin pushed the hang on me on Day 3 with no new data, and Alice's Night 2 Evil read on her is the only mechanical result on the table. Erin, answer Alice's result directly. Frank, your N2 block gives us no result, so please stop leaning on it.
+[Claim] Carol: Vanilla Villager. No night action or results. D3: Guilty on Erin.
+Carol (public): Carol here. I'm voting Guilty on Erin. Alice's Night 2 Evil read on Erin is the only mechanical result on the table, and Erin's reply doesn't address it. Erin, why did you push the Bob hang with no new data? My claim: Vanilla Villager, no night actions or results. Alice, keep your claim consistent.
+Dave (public): Dave here. I'm voting Guilty on Erin. Alice's N2 Evil read on Erin is the only mechanical result we have, and Alice's survival of a Katana attack fits a real Village power role. Erin pushed the Bob hang with no new data and still hasn't answered Alice's result directly. Erin, if you're Good, what explains the Evil read?
+Erin (public): Erin again. I have no Katana and no kill. Alice's Evil read is the only mechanical result on the table, and I won't pretend it doesn't exist. If you trust Alice's Sheriff claim, vote Guilty. If you don't, vote Innocent. I'm not going to beg, so vote on the evidence.
+Trial votes on Erin: 7 Guilty, 0 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Alice, Bob, Carol, Dave, Erin, Frank, Heidi; Innocent - nobody
+Erin is executed by hanging (7 Guilty of 7 votes; 4 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin's last will: I was a Village-leaning player with no night information. Bob's Standard shot killed Grace on Day 2 before any Night 2 data existed, so Bob needs a clear explanation. Alice's and Frank's Night 1 results on Bob agree, so check their Night 2 results first. Do not hang anyone on a lean alone, and check stated votes against the announced totals."
+Erin was the Jester: being hanged wins them the game.
