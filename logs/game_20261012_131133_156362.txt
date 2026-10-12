@@ -1,0 +1,14 @@
+Setup:
+  Alice    seat 1  Auditor           anthropic/claude-haiku-5.5 (via Claude Code)  trait: Faultline
+  Bob      seat 2  Medic             anthropic/claude-haiku-5.5 (via Claude Code)  trait: Curt
+  Carol    seat 3  Profiler          anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Sniper            anthropic/claude-haiku-5.5 (via Claude Code)  trait: Confidant, Kindred, Notorious
+  Erin     seat 5  Serial Killer     anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Bounty Hunter     anthropic/claude-haiku-5.5 (via Claude Code)  trait: Loud  {'targets': ['Heidi', 'Erin', 'Carol']}
+  Grace    seat 7  Wiretap           anthropic/claude-haiku-5.5 (via Claude Code)  trait: Confidant
+  Heidi    seat 8  Kitsune           anthropic/claude-haiku-5.5 (via Claude Code)
+  Ivan     seat 9  Clerk             anthropic/claude-haiku-5.5 (via Claude Code)  trait: Grudge
+  Katana starts with Ivan
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 9 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).

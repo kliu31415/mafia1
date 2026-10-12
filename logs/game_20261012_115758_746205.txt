@@ -533,3 +533,12 @@ Alice (public): Alice here, no nomination. Neither of us can hang the other: a h
 Carol (public): Carol here, no nomination. Two of us are left, so a trial is the only clean test. Alice, if you're Good, nominate yourself on Day 8. I'll vote Yes with you and Innocent at your trial, and you walk free. Refusing a test you can pass looks worse than taking it.
 (to Alice, Carol) Carol -> Alice (private): Alice: self-nominate on Day 8 and I'll vote Yes with you and Innocent at your trial. That's the cleanest way to clear yourself.
 Discussion time is over. The day ends.
+
+===== NIGHT 7 =====
+Night actions:
+  Carol (Fixer): target Alice; chose to spend 1 token(s); "Fixer token on Alice: her Guilty/Innocent trial votes on Day 8 count as the opposite. No Katana attack on Alice, since Heidi's armed trap would stop it and kill me. Katana stays with Carol, no target."; Katana vote: Carol holds, attacks None
+  Alice (Ex-Con): automatic: target Carol; "random visit"
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Carol) Moderator (private): You visited Alice tonight and fixed her: during Day 8, every Guilty/Innocent trial vote she casts counts as the opposite. 0 fixer tokens left.
+(to Alice) Moderator (private): Your automatic nightly visit took place tonight. You aren't told whom you visited.
+[Moderator summary] Night 7: Carol (Fixer, Katana holder) spent her last fixer token on Alice (visit Carol->Alice); the Fixer flips Alice's trial votes on Day 8. The Yakuza agreed not to attack, and the Katana stays with Carol. Alice's automatic Ex-Con visit landed on Carol (visit Alice->Carol). There were no attacks or role-blocks, so Heidi's trap on Alice didn't go off and is still armed. No deaths.
