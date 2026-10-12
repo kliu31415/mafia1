@@ -39,6 +39,7 @@ def text_line(r: dict) -> str | None:
     match k:
         case "setup":
             lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat'] + 1:<2} {p['role']:<17} {p['model']}{via_note(p)}"
+                                  + (f"  trait: {', '.join(p['traits'])}" if p.get("traits") else "")
                                   + (f"  {p['status']}" if p.get("status") else "") for p in r["players"]]
             return "\n".join(lines + [f"  Katana starts with {r.get('katana')}"])
         case "event":
@@ -607,7 +608,8 @@ def render_html(jsonl_path: Path) -> Path:
             alive_order = list(alive)
             believed = {p["name"]: {p["role"], (p.get("status") or {}).get("fake_role")} for p in r["players"]}
             roster = {n: {"alive": True, "death": "", "claim": "", "truth": ""} for n in alive}
-            rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}</td>"
+            rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}"
+                           f"{' (' + esc(', '.join(p['traits'])) + ')' if p.get('traits') else ''}</td>"
                            f"<td>{esc(p['model'] + via_note(p))}</td><td class='muted'>{name(str(p.get('status') or ''))}</td></tr>"
                            for p in r["players"])
             start_phase("Setup")

@@ -75,6 +75,11 @@ def setup_note(setup: dict | None, roles: list[str]) -> str:
         text = (f"This game has {n} players. Its roles were picked by hand, not drawn by a standard setup. Roughly: "
                 f"{max(1, yakuza - 1)} to {yakuza + 1} Yakuza, 0 to {neutral + 1} Neutrals, and the rest Village. "
                 "Any role in the rules may be in it, and roles may repeat.")
+    if setup and setup.get("kind") == "random":
+        text += (f" Separately, 0 to {MAX_TRAITS} Village players get a trait (R24), usually 1 or 2, drawn to help "
+                 "balance the sides.")
+    else:
+        text += " Village players may also have a trait (R24)."
     return f"\n\n---\n\nSetup (the role list itself is secret).\n{text}"
 
 
@@ -236,3 +241,34 @@ SETUPS = {
                      "are Village, with at least one Investigative role, at most one Outsider, up to a third Vanilla "
                      "Villagers, and every other Village role at most once."),
 }
+
+
+TRAIT_ODDS = {0: 15, 1: 35, 2: 35, 3: 15}  # Kevin, Oct 12 2026: 0-3 traits a game, mostly 1-2
+MAX_TRAITS = max(TRAIT_ODDS)
+
+
+def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
+    """Traits for a drawn setup (traits.py, rules R24): a count from TRAIT_ODDS, weighted towards the counts that
+    bring role_power.score closest to even (Kevin: traits help balance setups). Each trait is drawn from those
+    its players could get (enough eligible seats)."""
+    import role_power
+    from traits import TRAITS
+    base = role_power.score(roles)
+    picks = {}
+    for n in TRAIT_ODDS:
+        chosen: list[str] = []
+        for _ in range(n):
+            # One trait per player: a trait needs a seat of its alignments not already holding one.
+            options = [t for t, info in TRAITS.items()
+                       if sum(ROLES[r].alignment in info.alignments for r in roles) > len(chosen)]
+            if not options:
+                break
+            chosen.append(rng.choice(options))
+        picks[n] = chosen
+    # Each count's odds, scaled down the further it leaves the setup from even (in units of BAND), so traits lean
+    # towards what evens the sides without overriding the odds: with only pro-Village traits, a Village-leaning
+    # setup gets fewer.
+    weight = {n: TRAIT_ODDS[n] * math.exp(-((base + sum(TRAITS[t].power for t in c)) / BAND) ** 2)
+              for n, c in picks.items()}
+    return picks[rng.choices(list(weight), list(weight.values()))[0]]
+

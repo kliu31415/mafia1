@@ -14,6 +14,7 @@ Code layout:
     llm.py         OpenRouter client, model list, offline mock client
     claude_code.py Claude models through the Claude Code CLI (--claude-code: a Claude subscription's quota)
     roles/         role definitions, the default setup, and per-role hooks (roles/base.py)
+    traits.py      traits (rules R24, e.g. Martyr): extra abilities some players have on top of their role
     events.py      event categories for game.emit()
     state.py       game state, events with visibility, deaths, win checks
     variants.py    rule settings (--flips, --trial-votes, --nomination-votes): what deaths and votes reveal
@@ -85,10 +86,11 @@ from night_check import NightChecker
 from night import run_night
 from players import Players, role_briefing
 from roles import ROLES, Status, role_status_table
-from setups import POOLS, SETUPS, parse_setup, players_for, setup_note
+from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_note
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
+from traits import TRAITS
 import role_power
 import scripts
 import variants
@@ -157,6 +159,7 @@ class GameConfig:
     trial_votes: str = variants.DEFAULTS["trial_votes"]
     nomination_votes: str = variants.DEFAULTS["nomination_votes"]
     script: str = scripts.DEFAULT  # the roles the game can use (scripts.py)
+    traits: list[str] = field(default_factory=list)  # traits dealt to random eligible players (traits.py, R24)
 
     def __post_init__(self) -> None:
         self.player_tips = self.player_tips or []
@@ -190,7 +193,7 @@ class GameConfig:
                 "checkpoint": checkpoint,
                 "tips": str(self.tips) if self.tips else None, "tips_for": self.tips_for if self.tips else None,
                 "player_tips": [[w, str(f) if f else None] for w, f in self.player_tips],
-                "setup": self.setup or {"kind": "fixed"}, **self.rule_settings}
+                "setup": self.setup or {"kind": "fixed"}, "traits": self.traits, **self.rule_settings}
 
     @property
     def rule_settings(self) -> dict[str, str]:
@@ -314,7 +317,7 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
     meta = game_meta(rules, config.settings(client, checkpoint))
     game = setup_game(config.roles, config.specs, random.Random(config.seed), log,
                       meta={"game_id": log.path.stem, **meta}, rule_settings=config.rule_settings,
-                      via=lambda m: claude_code.route(client, m))
+                      via=lambda m: claude_code.route(client, m), traits=config.traits)
     if meta["git_commit"] is None:  # analysis across games groups them by code version
         log.error("setup_error", "couldn't read the git commit (is git installed and on PATH?), so this "
                   "game's code version isn't recorded")
@@ -526,6 +529,9 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--script", default=scripts.DEFAULT, choices=scripts.SCRIPTS, help="the roles this game can "
                     "use (scripts.py): players see only these roles' rules, and every role in the game is one of "
                     "them; 'all' is every role")
+    ap.add_argument("--traits", default=None, help="traits dealt to random eligible players (traits.py, rules "
+                    "R24): comma-separated trait names, or 'none'; by default a drawn setup draws 0-3 (setups.py) and "
+                    "a role list gets none")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
@@ -708,6 +714,20 @@ def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: in
     return roles, setup
 
 
+def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: list[str], setup: dict | None,
+                  seed: int) -> list[str]:
+    """The traits to deal (rules R24): --traits, or by default drawn for a drawn setup and none for a role list."""
+    if args.traits is None:
+        # Its own RNG, so a seed's traits don't change the rest of its setup (and vice versa).
+        return draw_traits(roles, random.Random(f"traits|{seed}")) if setup else []
+    if args.traits == "none":
+        return []
+    names = [t.strip() for t in args.traits.split(",")]
+    if unknown := [t for t in names if t not in TRAITS]:
+        ap.error(f"unknown traits: {unknown} (known: {', '.join(TRAITS)})")
+    return names
+
+
 def main() -> None:
     ap = build_parser()
     args = ap.parse_args()
@@ -724,6 +744,7 @@ def main() -> None:
         ap.error("--tips-for picks who gets --tips, so it needs --tips")
     seed = args.seed if args.seed is not None else random.randrange(10**6)
     roles, setup = choose_roles(ap, args, seed)
+    traits = choose_traits(ap, args, roles, setup, seed)
     try:
         args.claude_code = via_claude_code(args.claude_code, args.mock)
         plan_cap = parse_plan_cap(args.plan_cap)
@@ -775,7 +796,8 @@ def main() -> None:
             check_nights=args.check_nights, fix_nights=args.fix_nights, tips=args.tips, tips_for=args.tips_for,
             player_tips=player_tips,
             update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips,
-            trial_votes=args.trial_votes, nomination_votes=args.nomination_votes, script=args.script),
+            trial_votes=args.trial_votes, nomination_votes=args.nomination_votes, script=args.script,
+            traits=traits),
             checkpoint=args.checkpoint, after_save=after_save)
 
 

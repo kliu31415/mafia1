@@ -190,6 +190,15 @@ Token counts (Accountant) see the true total at the end of the night. The Rolepl
 even though they believe they have their fake role's tokens.
 Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.
 
+R24 (Traits)
+Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start;
+nobody else is told, and whether a game has any traits is secret. Investigations never see traits: they report
+roles and alignments only. A trait stays with you if your role changes. Each player has at most one trait, and each
+trait says which players can get it.
+- Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
+  names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
+  other way shows nothing.
+
 === PART 5: THE YAKUZA ===
 
 R8 (Yakuza and the Katana)

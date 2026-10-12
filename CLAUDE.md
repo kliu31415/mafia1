@@ -124,6 +124,11 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
      when the role's choices have a clear right answer.
 
+- Traits (`traits.py`, rules R24, e.g. Martyr): an extra ability on top of a player's role, at most one each, kept
+  if the role changes; a trait is a `TRAITS` entry (who can get it, the holder's line, its power) plus a
+  `TraitLogic` with the hooks it needs. Drawn setups deal 0-3 (`setups.draw_traits`, balancing with the powers);
+  `--traits` sets them. Add a scenario test like the Martyr's.
+
 ## Conventions
 
 - Hidden information: every `game.emit(...)` passes `visible_to` (None means everyone). A wrong list

@@ -1,5 +1,5 @@
 {
- "log_version": 47,
+ "log_version": 48,
  "log": {
   "attacks": ["attackers", "day"],
   "bounty_won": ["claimed", "day", "phase", "player"],
@@ -11,6 +11,7 @@
   "katana": ["day", "result", "revote_targets"],
   "left": ["day", "phase", "player"],
   "lessons": ["lessons", "model", "role", "tips_feedback", "who"],
+  "martyr": ["day", "guilty", "player"],
   "message_dropped": ["player", "to", "words"],
   "moderator_call": ["content", "cost", "day", "latency_s", "model", "phase", "reasoning", "tool_calls", "usage"],
   "moderator_flag": ["day", "issue", "phase"],
@@ -37,10 +38,10 @@
   "visits": ["day", "visits"],
   "vote": ["day", "nominator", "nominee", "outcome", "prosecuted", "reversed", "secret", "stage", "votes", "weights"]
  },
- "checkpoint_version": 5,
+ "checkpoint_version": 6,
  "checkpoint": {
   "Game": ["players", "rng", "log", "day", "phase", "events", "katana_holder", "phases_without_death", "winners", "pending_announcements", "pending_deaths", "personal_winners", "sole_winner", "pending_revenge", "role_state", "prosecutions", "rigged_day", "puppets_next", "puppets", "death_record", "vote_record", "votes", "pm_record", "night_actions", "night_visits", "claim_record", "rule_settings"],
-  "Player": ["name", "seat", "model", "role", "effort", "alive", "tokens", "status", "last_will", "notepad", "tips", "speaking_budget", "start_role", "death"],
+  "Player": ["name", "seat", "model", "role", "effort", "alive", "tokens", "status", "last_will", "notepad", "tips", "speaking_budget", "start_role", "traits", "death"],
   "Event": ["day", "phase", "text", "visible_to", "cat", "fields", "notice"]
  }
 }

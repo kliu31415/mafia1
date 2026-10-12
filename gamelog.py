@@ -87,7 +87,9 @@ from records import read_records, safe_print
 # 46: settings has fix_nights (--fix-nights: night checks run before dawn and high-severity findings go back to
 #     the moderator); "night_fix" records (night, issues, transcript): what the moderator did about them
 # 47: setup and result players have via: how the model's calls ran (api, claude_code: --claude-code, or mock)
-LOG_VERSION = 47
+# 48: setup players have traits (traits.py, rules R24); settings has traits (the traits dealt); "martyr" records
+#     (player, guilty, day) when a Martyr is hanged
+LOG_VERSION = 48
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

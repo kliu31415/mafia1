@@ -1334,3 +1334,49 @@ def test_random_setups_include_a_magpie_only_with_enough_token_roles():
         for draw in (setups.balanced_setup, setups.random_setup):
             roles = draw(13, random.Random(seed))
             assert "Magpie" not in roles or setups.fits(roles)
+
+
+def test_a_hanged_martyr_reveals_the_trait_and_the_guilty_voters(game_factory):
+    game, _ = game_factory(["Sheriff", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").traits = ["Martyr"]
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Dave"])
+    text = next(e.text for e in game.events if "was a Martyr" in e.text)
+    assert e_public(game, text) and "Bob and Dave" in text and "Sheriff" not in text
+
+
+def e_public(game, text):
+    return next(e for e in game.events if e.text == text).visible_to is None
+
+
+def test_a_martyr_killed_at_night_shows_nothing(game_factory):
+    game, _ = game_factory(["Sheriff", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").traits = ["Martyr"]
+    game.phase = "night"
+    game.kill("Alice", "Katana", by="Dave")
+    assert not any("Martyr" in e.text for e in game.events)
+
+
+def test_traits_go_to_eligible_players_and_only_their_holder_is_told(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from players import role_briefing
+    from state import setup_game
+    game = setup_game(["Sheriff", "Executioner", "Grunt", "Vanilla Villager"], [Model.HAIKU_5_5], random.Random(1),
+                      GameLog(tmp_path / "t.jsonl"), traits=["Martyr", "Martyr", "Martyr"])
+    holders = [p for p in game.players if p.traits]
+    assert sorted(p.role for p in holders) == ["Sheriff", "Vanilla Villager"]  # Village only, one each
+    assert all(p.traits == ["Martyr"] for p in holders)
+    for p in game.players:
+        assert ("Your trait: Martyr." in role_briefing(game, p)) == bool(p.traits)
+    assert "setup_error" in game.log.error_counts  # the third Martyr had no eligible player
+
+
+def test_drawn_traits_stay_within_the_odds_and_the_village_seats():
+    import random
+
+    import setups
+    roles = ["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt", "Jester"]
+    for seed in range(20):
+        traits = setups.draw_traits(roles, random.Random(seed))
+        assert len(traits) <= 3 and set(traits) <= {"Martyr"}

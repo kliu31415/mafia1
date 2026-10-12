@@ -11,6 +11,7 @@ from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
+from traits import eligible as trait_eligible, trait_logic
 import variants
 
 
@@ -39,6 +40,7 @@ class Player:
     tips: str = ""  # a tips file from past games, shown in the system prompt (tips.py; --tips)
     speaking_budget: float = 0.0
     start_role: str = ""  # the role at setup (an Executioner can become a Jester)
+    traits: list[str] = field(default_factory=list)  # traits.py (rules R24): at most one, kept if the role changes
     death: dict | None = None  # day, phase and cause, once dead
 
     def __post_init__(self) -> None:
@@ -219,6 +221,8 @@ class Game:
             self.reveal_death(name, cause)
         # After the reveal, so what a death sets off (an Executioner's win, ...) is announced after it.
         logic(p.role).on_death(self, p, guilty_voters)
+        for t in p.traits:
+            trait_logic(t).on_death(self, p, guilty_voters)
         for q in self.alive():
             logic(q.role).on_other_death(self, q, p, guilty_voters)
         if self.phase != "night":  # a holder who dies at night passes it on after the night's results
@@ -400,10 +404,11 @@ class Game:
 
 def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: random.Random, log: GameLog,
                meta: dict | None = None, rule_settings: dict[str, str] | None = None,
-               via: Callable[[Model], str] | None = None) -> Game:
+               via: Callable[[Model], str] | None = None, traits: Sequence[str] = ()) -> Game:
     """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py). rule_settings:
     the game's (variants.py, and its script), set before role setup hooks run, since some read them. via: how
-    each model's calls are run (claude_code.route), logged per player; "api" if not given."""
+    each model's calls are run (claude_code.route), logged per player; "api" if not given. traits: trait names
+    (traits.py) dealt to random eligible players, one each at most."""
     if len(roles) > len(PLAYER_NAMES):
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
@@ -426,8 +431,14 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         logic(p.role).setup(game, p)
+    for t in traits:
+        if candidates := [p for p in players if trait_eligible(p, t)]:
+            rng.choice(candidates).traits.append(t)
+        else:
+            log.error("setup_error", f"no player could get the trait {t} (each player has at most one), so it was "
+                      "left out")
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
-                                 "via": via(p.model) if via else "api", "role": p.role,
+                                 "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,
               log_version=LOG_VERSION, **(meta or {}))
     return game

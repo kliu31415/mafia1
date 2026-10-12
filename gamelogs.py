@@ -76,7 +76,8 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
     """Each player of the game in seat order: name, seat, model (full id), start_role, final_role (None
     while the game hasn't ended), faction (of the start role, by faction_of), won, alive, died (a "death"
     record names them: unlike alive, a player who left the game, e.g. an Executioner who won, didn't die)
-    tips (played with a tips sheet) and via (how the model's calls ran: api, claude_code or mock; logs before
+    tips (played with a tips sheet), traits (traits.py; [] before log version 48)
+    and via (how the model's calls ran: api, claude_code or mock; logs before
     version 47 are api, or mock in mock games). setup and result default to the log's own records."""
     setup = setup or setup_of(records) or {}
     result = result or result_of(records) or {}
@@ -93,6 +94,7 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
         return {"name": name, "seat": seat.get("seat", i), "model": model or seat.get("model") or "?",
                 "start_role": start, "final_role": final_role, "faction": faction_of(start), "won": won,
                 "alive": name not in deaths if alive is None else alive, "died": name in deaths, "tips": tips,
+                "traits": seat.get("traits") or [],  # log version 48 (traits.py)
                 "via": via or seat.get("via") or (  # the first --claude-code games (version 46) have only the setting
                     "claude_code" if settings.get("claude_code") and (model or seat.get("model") or "").startswith(
                         "anthropic/") else default_via)}
