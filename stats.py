@@ -86,7 +86,8 @@ def load_game(path: Path) -> dict | None:
     # A model played through Claude Code plays somewhat differently (claude_code.py), so it counts as its own model.
     players = [{"name": p["name"], "model": short(p["model"]) + (" (CC)" if p["via"] == "claude_code" else ""),
                 "role": p["start_role"], "faction": p["faction"],
-                "won": p["won"], "alive": p["alive"], "traits": p["traits"]} for p in seated]
+                "won": p["won"], "alive": p["alive"], "traits": p["traits"], "unreliable": p["unreliable"]}
+               for p in seated]
     winning = result.get("winning_faction")
     if "winning_faction" not in result:
         factions = {p["faction"] for p in players if p["won"]} & {"Village", "Yakuza"}
@@ -109,7 +110,8 @@ def load_game(path: Path) -> dict | None:
             "models": seat_models, "frontier_share": frontier_share, "mix": mix,
             "moderator": settings.get("moderator", ""), "winner": winning}
     game["decisions"] = [{"game": game_id, **d, "model": by_name[d["player"]]["model"]}
-                         for d in decisions(records, by_name, setup.get("log_version", 1)) if d["player"] in by_name]
+                         for d in decisions(records, by_name, setup.get("log_version", 1))
+                         if d["player"] in by_name and not by_name[d["player"]]["unreliable"]]  # calls kept failing
     return game
 
 
@@ -224,10 +226,11 @@ def report(games: list[dict], skipped: dict[str, int], decisions_by: str = "mode
 
     players = [p for g in games for p in g["players"]]
     models = sorted({p["model"] for p in players})
-    out.append("\nWin rate by model and faction (each player's starting faction)")
+    out.append("\nWin rate by model and faction (each player's starting faction; players whose calls kept failing "
+               "are left out)")
     rows = []
     for m in models:
-        mine = [p for p in players if p["model"] == m]
+        mine = [p for p in players if p["model"] == m and not p.get("unreliable")]
         rows.append([m] + [rate(sum(p["won"] for p in mine if p["faction"] == f), sum(p["faction"] == f for p in mine))
                            for f in ("Village", "Yakuza", "Neutral")] + [rate(sum(p["won"] for p in mine), len(mine))])
     out.append(table(["Model", "Village", "Yakuza", "Neutral", "All"], rows))

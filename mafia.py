@@ -85,7 +85,7 @@ from llm import (API_KEY_ENV_VAR, EFFORTS, LLMClient, MockClient, Model, ModelSp
 from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
-from players import Players, role_briefing
+from players import UNRELIABLE, Players, role_briefing
 from roles import ROLES, Status, retired_entry, role_status_table
 from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_note
 from events import PHASE
@@ -450,6 +450,7 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
                         "final_role": p.role, "faction": p.faction, "alive": p.alive,
                         "left": bool(p.status.get(Status.LEFT)), "won": p.name in (game.winners or []),
                         "tips": bool(p.tips),
+                        "unreliable": p.name in game.role_state.get(UNRELIABLE, []),
                         "death": p.death} for p in game.players],
               errors=dict(log.error_counts))
     if plan_stop and config.update_tips and config.lessons:

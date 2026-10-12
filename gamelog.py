@@ -114,7 +114,9 @@ from records import caller_of, read_records, redact, safe_print
 # 61: "confidant" records (player, to, day): a Confidant's hidden private message (rules R24)
 # 62: "trap_set" records (trapper, target or null for a removal, day): code keeps the traps, and several Trappers
 #     may trap one player; "trap" records come one per trap that acted
-LOG_VERSION = 62
+# 63: result players have unreliable (their answers fell back to the default 3 times in a row, players.count_fallback;
+#     an "unreliable_player" alert marks when); stats.py leaves them out of skill stats, tips.py out of lessons
+LOG_VERSION = 63
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

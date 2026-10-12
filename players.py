@@ -16,6 +16,9 @@ from traits import ACTION_TRAITS, briefing as trait_briefing, night_traits
 from texts import blank, describe_action, player_view
 
 
+UNRELIABLE_STREAK = 3  # this many fallen-back answers in a row flag a player as unreliable (count_fallback)
+STREAKS = "fallback_streaks"  # game.role_state: player -> fallen-back answers in a row (a valid answer resets it)
+UNRELIABLE = "unreliable"  # game.role_state: players flagged once their streak reached UNRELIABLE_STREAK
 NOTEPAD_WORDS = 300  # longer notepads are truncated; the cap grows with the player count (notepad_words)
 
 
@@ -399,15 +402,29 @@ class Players:
             out.pop("notepad", None)
             out.pop("reason", None)  # logged above; game code and the moderator never see it
             p.notepad = after
+            self.game.role_state.get(STREAKS, {}).pop(p.name, None)
             return out
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, **where, task=task, fallback=fallback)
+        self.count_fallback(p)
         # Tell the player, so they don't believe their own choice happened (Heidi thought she had saved a
         # token on purpose after a failed Night 1 answer, game_20261009_084630_739772).
         program_note(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
                      f"technical error, so the default was used instead: {json.dumps(fallback)}.)")
         return fallback
+
+    def count_fallback(self, p: Player) -> None:
+        """Flags a player whose calls keep failing (once, with an alert; the game goes on): stats.py leaves
+        unreliable players out of skill stats, and tips.py ignores their lessons."""
+        streaks = self.game.role_state.setdefault(STREAKS, {})
+        streaks[p.name] = streaks.get(p.name, 0) + 1
+        flagged = self.game.role_state.setdefault(UNRELIABLE, [])
+        if streaks[p.name] >= UNRELIABLE_STREAK and p.name not in flagged:
+            flagged.append(p.name)
+            self.game.log.error("unreliable_player", f"{p.name} ({p.model.short}): {UNRELIABLE_STREAK} answers in a "
+                                "row fell back to the default, so this player is marked unreliable",
+                                player=p.name, model=p.model.value)
 
     def ask_many(self, jobs: list[tuple[Player, str, dict, dict]], *, step: str, **kw: Any) -> list[dict]:
         """kw: ask's keyword arguments, the same for every job."""

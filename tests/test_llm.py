@@ -289,3 +289,45 @@ def test_every_model_has_a_complete_registry_entry():
     for m, info in MODELS.items():
         assert info.tier in ("frontier", "mid", "cheap") and 1 <= info.strength <= 5 and info.effort in EFFORTS, m
         assert m.value.split("/")[0] in PROVIDERS, m
+
+
+def test_a_player_whose_answers_keep_falling_back_is_flagged_once_and_left_out_of_tips_and_skill_stats(tmp_path):
+    import urllib.error
+    import stats
+    import tips
+    from tests.conftest import ScriptedClient
+
+    class FlakyClient(ScriptedClient):
+        down = True
+
+        def chat(self, model, messages, **kw):
+            if self.down and "You are Alice" in json.dumps(messages[:1]):
+                raise urllib.error.URLError("connection reset")
+            return super().chat(model, messages, **kw)
+    client = FlakyClient()
+    game, players = make_game(tmp_path, ["Vanilla Villager", "Grunt"], client)  # type: ignore[arg-type]
+    schema = {"type": "object", "properties": {}, "required": []}
+    ask = lambda: players.ask(game.player("Alice"), "Vote.", schema, {}, step="trial_vote")  # noqa: E731
+    ask(), ask()
+    client.down = False
+    ask()  # a valid answer resets the streak
+    client.down = True
+    ask(), ask()
+    assert "unreliable_player" not in game.log.error_counts
+    for _ in range(3):
+        ask()
+    assert game.log.error_counts["unreliable_player"] == 1  # one alert, however long the streak gets
+    # The result marks her, and tips and skill stats leave her out (her faction's win still counts).
+    seats = [("Alice", "Sheriff"), ("Bob", "Grunt")]
+    game.log.write("setup", log_version=63, players=[{"name": n, "seat": i, "model": "openai/gpt-6-luna", "role": r}
+                                                     for i, (n, r) in enumerate(seats)])
+    game.log.write("vote", stage="trial", day=2, nominee="Bob", nominator="Alice", votes={"Alice": False})
+    for who in ("Alice", "Bob"):
+        game.log.write("lessons", who=who, role="Grunt", model="openai/gpt-6-luna",
+                       lessons=[{"applies_to": "all", "topic": "t", "tip": "x"}])
+    game.log.write("result", winners=["Bob"], winning_faction="Yakuza", days=2, cost={},
+                   players=[{"name": n, "model": "openai/gpt-6-luna", "start_role": r, "final_role": r,
+                             "unreliable": n in game.role_state.get("unreliable", [])} for n, r in seats])
+    assert [r["who"] for r in tips.read_game(game.log.path)["records"]] == ["Bob"]  # type: ignore[index]
+    g = stats.load_game(game.log.path)
+    assert g and g["winning_faction"] == "Yakuza" and [d["player"] for d in g["decisions"]] == ["Bob"]  # not her vote

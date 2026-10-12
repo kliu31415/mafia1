@@ -135,8 +135,10 @@ def read_game(path: Path) -> dict | None:
     """The lessons, strategy review and outcome of one finished game log, or None if it has no lessons or
     hasn't finished (its post-game steps may still be running, and a game is only read once)."""
     records, _ = read_records(path)  # a half-written last line (a killed game) is skipped
-    lessons = [r for r in records if r["kind"] in ("lessons", "strategy_review")]
     result = gamelogs.result_of(records)
+    # players whose calls kept failing (players.count_fallback): their lessons and tips feedback are left out
+    flagged = {p["name"] for p in gamelogs.players(records, result=result) if p["unreliable"]}
+    lessons = [r for r in records if r["kind"] in ("lessons", "strategy_review") and r.get("who") not in flagged]
     if not lessons or result is None:
         return None
     fallbacks = gamelogs.fallback_counts(records)
