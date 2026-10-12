@@ -423,3 +423,61 @@ Katana: Carol holds it and attacks Erin.
 [Night check] Night 5: correct
 (to Erin) Moderator (private): Your audit: Carol has 1 token in total.
 (to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 6 =====
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "Erin, Accountant (Village). My audits: N1 Dave 3 tokens; N2 Bob 0 tokens; N3 Carol 2 tokens; N4 Grace 0 tokens; N5 result posted at dawn. Grace claimed Talent Agent, which the rules list as Yakuza, and her three uses fit her 0-token audit. Carol denies all visits and has PM'd Grace heavily; treat her as the prime suspect. Katana deaths: Bob (N2), Dave (N3), Frank (N4). Trust mechanical evidence over claims."
+Speaking order today goes around the circle in seat order, starting with Heidi.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Heidi: Trapper. N1: trapped Alice (not triggered). N2, N3: no action. N4: trapped Carol (armed, not triggered). N5: no action.
+Heidi (public): nominating Carol. Erin died to the Katana on Night 5, so the holder is Carol or Alice, and Alice says she's Ex-Con, so Carol.
+(to Alice, Heidi) Heidi -> Alice (private): Alice, please vote Yes on Carol with me.
+Heidi nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Heidi, Alice; No - Carol
+Nomination votes on Carol: 2 Yes (the votes are secret).
+Carol is put on trial (2 Yes).
+Carol (public): Carol here. I'm voting Innocent. Heidi's case is elimination: the Katana holder is Carol or Alice, and Alice says Ex-Con, so it must be me. That's not evidence. Alice's random visit can't be checked, and nobody has shown a visit that ties me to Erin's death. Heidi, your trap went on me on Night 4 and has never been tested. What did you do on Night 5 besides that trap? Alice, don't let a nomination by elimination decide this. Ask for a concrete mechanical check before anyone votes Guilty.
+[Claim] Heidi: Trapper. N1: trapped Alice (not triggered). N4: trapped Carol (armed, not triggered). N2, N3, N5: no action. D6: Guilty on Carol.
+Heidi (public): Carol and Grace PM'd constantly, both denied Night 2 visits, and Grace called it "Night 2 cover." Erin's audits never showed Carol as Village. I read Carol and Grace as a Yakuza pair. I'm voting Guilty on Carol. Alice, what do you see?
+[Claim] Alice: Ex-Con (Village Outsider). Random visit nightly, target unknown to me. D6: Guilty on Carol.
+Alice (public): Alice here. I'm voting Guilty on Carol. Grace's Talent Agent counts and 0-token audit fit a Yakuza role. The Night 5 Katana holder was Carol or Heidi, so one of them is Yakuza. Carol has 2 tokens per Erin's audit, has denied every visit, and still hasn't stated a Night 3 or Night 4 action. Carol, if you're Good, name your role and your tokens now.
+Carol (public): Carol here. Heidi's case is elimination: the Night 5 holder is "Carol or Alice," so it must be me. But Heidi is alive too, and her Night 5 "no action" is also just her word. Nobody has produced a visit that ties me to Erin's death. Alice, your Guilty vote rests on Erin's audit of me (2 tokens) and on Grace's PMs with me. Grace's PMs were about waiting for Night 3 results, which I stated publicly. Heidi's trap on Alice has never fired, and her trap on me has never been tested. I'm asking for Innocent unless someone shows a concrete mechanical contradiction.
+Trial votes on Carol: 1 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Alice; Innocent - Carol, Heidi
+Carol is found Innocent (1 Guilty of 3 votes; 2 needed).
+Alice (public): Alice here. The announced Carol total was 1 Guilty of 3. I voted Guilty, and my reminder says so. Heidi says Guilty and Carol says Innocent, so one of those stated votes didn't count as stated. A Fixer flips one player's trial votes, and Carol has 2 tokens per Erin's audit. Heidi, what does your reminder say? Carol, what do yours say?
+(to Alice, Heidi) Alice -> Heidi (private): Alice to Heidi: my reminder says Guilty on Carol. Please check yours and post it publicly. Let's not vote again until we know which vote was flipped.
+Carol (public): Carol here. My reminder says I voted Innocent in Carol's trial, and I haven't nominated anyone. The total was 1 Guilty of 3, so Heidi, check whether your Guilty vote is shown as counted. I'm not calling anyone Yakuza on that alone.
+Heidi (public): Nominating Carol again. Vote Yes.
+(to Alice, Heidi) Heidi -> Alice (private): Alice, Carol's flip hit one of our two Guilty votes. Please vote Yes on Carol and Guilty at trial, as you said.
+Heidi nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Heidi, Alice; No - Carol
+Nomination votes on Carol: 2 Yes (the votes are secret).
+Carol is put on trial (2 Yes).
+[Claim] Carol: Carol (no role claim). Votes: Innocent on Grace (D3, D5 Guilty-leaning per public record), Innocent on Carol (D6).
+Carol (public): Carol here. I'm voting Innocent, and here is why. Heidi's case is elimination: the Night 5 holder was "Carol or Alice," and Alice says Ex-Con, so it must be me. That isn't a visit. Erin's audit showing 2 tokens on me fits several roles and ties me to no kill. Heidi's trap on me has never been tested, and Alice's Guilty vote rests on that same elimination plus my PMs with Grace, which I've explained. Nobody has shown a concrete mechanical contradiction. Before anyone votes Guilty, ask for one.
+Heidi (public): Heidi here, Trapper, Good. I voted Guilty on Carol. Grace (Talent Agent, a role the rules list as Yakuza) was hanged on Day 5, so the Katana passed to a living Yakuza. Erin died to it on Night 5. I'm not Yakuza, so the holder was Carol or Alice. Alice claims Ex-Con, so Carol. Vote Guilty.
+Alice (public): Alice here. Day 6's first Guilty count was 1 of 3. Heidi and I both voted Guilty, and Heidi's Guilty was counted as Innocent. The only mechanism that does that is a Fixer on Heidi, and Carol has 2 tokens, which fits a Fixer. A Fixer's flip lasts the whole Day, so Heidi's vote is flipped again now. Heidi, if you're Good, vote Innocent this time: a flipped Innocent counts as Guilty. I'm voting Guilty on Carol.
+(to Alice, Heidi) Alice -> Heidi (private): Heidi, Alice here. Your Guilty was counted as Innocent in the first Carol trial, which fits Carol fixing you. Fixes last the whole Day, so today your vote is flipped again. Vote INNOCENT this time. That flips to Guilty. I'm voting Guilty too, so that's two Guilty.
+Carol (public): Carol here. I'm voting Innocent. The case against me is elimination (Heidi says the Night 5 holder was Carol or Alice, and Alice is Ex-Con, so it must be me) plus my PMs with Grace, which I've explained. Nobody has shown a visit that ties me to Erin's death. Alice's new theory is that Heidi's Guilty was flipped, and her advice is to switch Heidi to Innocent now. That's an unverified guess. Heidi, you announced Guilty. Vote the way you said, and don't let a theory move your vote. Alice, if you're sure a Fixer is at work, name the mechanism and explain why you want a switch instead of a plain vote.
+(to Carol, Heidi) Carol -> Heidi (private): Heidi: keep your Guilty as you announced it. Alice's switch advice is a gamble, not evidence.
+Trial votes on Carol: 1 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Alice; Innocent - Carol, Heidi
+Carol is found Innocent (1 Guilty of 3 votes; 2 needed).
+[Claim] Alice: Ex-Con (Good Outsider). Random visit nightly, target unknown. D6: Guilty on Carol. Both Carol trials show Heidi's Guilty counted as Innocent, consistent with a Fixer flip.
+(to Alice, Heidi) Alice -> Heidi (private): Heidi, Alice. Both trials flipped your Guilty (1 Guilty of 3 each time). Fixer flips last all Day. Vote INNOCENT now: it counts Guilty. Mine is Guilty.
+Alice nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Alice, Heidi; No - Carol
+Nomination votes on Carol: 2 Yes (the votes are secret).
+Carol is put on trial (2 Yes).
+Carol (public): Carol here. I'm voting Innocent. This is the third nomination against me on the same elimination argument: the Night 5 holder was "Carol or Alice," and Alice says Ex-Con, so it must be me. Nobody has shown a visit that puts me on Erin. Heidi has announced her Guilty vote, and I'm asking her to keep it as stated. Alice, the switch advice is a gamble, not evidence. Name one visit that ties me to a kill.
+(to Carol, Heidi) Carol -> Heidi (private): Heidi: keep your Guilty exactly as you announced it. Don't switch on Alice's theory.
+Heidi (public): Heidi here. I voted Guilty and I'm keeping it. Both Carol totals showed 1 Guilty of 3, so either my vote or Alice's was flipped, and only a Fixer does that. Carol has 2 tokens, which fits a Fixer. Carol, what did your tokens do on Night 5, and whom did you act on? Alice, why do you want me to switch to Innocent?
+Alice (public): Both Carol trials showed Heidi's Guilty counted as Innocent. Only a Fixer does that, and Carol has 2 tokens, so Carol is the likely Fixer and Yakuza. Fixes last all Day, so Heidi should vote Innocent to count as Guilty. I'm voting Guilty.
+(to Alice, Heidi) Alice -> Heidi (private): Heidi, vote Innocent this time. If Carol fixed you, that counts Guilty.
+[Claim] Carol: Carol (no role claim). Votes: Innocent on Grace (D3, D5), Innocent on Carol (D6).
+Carol (public): Carol here. I've answered every question put to me: no visit on Nights 1 to 4, and nothing ties me to Erin's death. The only case against me is elimination (the Night 5 holder was "Carol or Alice," and Alice says Ex-Con) plus my PMs with Grace, which I've explained publicly. Alice's Fixer theory is a guess, and her advice to Heidi to switch her vote now is the risky move. Heidi, you announced Guilty, so vote the way you said. Nobody should hang on a theory. I'm asking for Innocent.
+(to Carol, Heidi) Carol -> Heidi (private): Heidi: keep your Guilty exactly as you announced it. Switching on Alice's advice is a gamble with no evidence behind it.
+Trial votes on Carol: 1 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Alice; Innocent - Carol, Heidi
+Carol is found Innocent (1 Guilty of 3 votes; 2 needed).
+Three trials ended in Innocent verdicts. The day ends.
