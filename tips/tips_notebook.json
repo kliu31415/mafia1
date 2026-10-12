@@ -940,7 +940,7 @@
   {
    "id": "t7",
    "audience": "Vigilante",
-   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
+   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. Traits (R24) raise the cost of a wrong shot, and no investigation sees them: killing a Cursed villager also Divine-attacks a random Good player, and killing an Avenger kills you too. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
    "status": "active",
    "support": [
     {
@@ -1099,6 +1099,12 @@
      "change": "edited",
      "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off.",
      "note": "Revision, not a game: added the Ritualist cost to the advice to post a kill report and claim."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
+     "note": "Rules revision: Cardinal is no longer a role; the curse is now the Cursed trait (R24). Reworded the 'hidden Cardinal' sentence, and added the R24 fact that killing an Avenger kills the shooter. Rest unchanged."
     }
    ]
   },
@@ -8017,7 +8023,7 @@
   {
    "id": "t91",
    "audience": "Village",
-   "tip": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent, and so must any Cardinal, whose curse would kill a second Good player.",
+   "tip": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent, and so must anyone with the Cursed trait (R24), whose curse would kill a second Good player.",
    "status": "active",
    "support": [
     {
@@ -8163,6 +8169,12 @@
      "change": "edited",
      "old": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza. If a more clearly Yakuza player is available, hang them first. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent.",
      "note": "Added the tells this game showed (Yes on own nomination, misstated vote, refused tests), the 'named the risk then voted Guilty' failure, and the Cardinal chain: Olivia's revenge death killed Mallory too."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner as well as a Yakuza. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens) must vote Innocent, and so must any Cardinal, whose curse would kill a second Good player.",
+     "note": "Rules revision: Cardinal role removed; the curse is now the Cursed trait any Village player can hold. Reworded the last sentence only."
     }
    ]
   },
@@ -8473,7 +8485,7 @@
   {
    "id": "t96",
    "audience": "Village",
-   "tip": "If the last known Yakuza dies and the game doesn't end, a Neutral is still alive. Count the players, check the Vulture threshold (max(floor(N/4),2)) and look hard at the weakest or latest claim. Don't hang a claimed Cardinal near the endgame: their death Divine-attacks a random Good player and can hand a Vulture the win.",
+   "tip": "If the last known Yakuza dies and the game doesn't end, a Neutral is still alive. Count the players, check the Vulture threshold (max(floor(N/4),2)) and look hard at the weakest or latest claim. Don't hang a player who says they are Cursed (a trait, R24) near the endgame: their death Divine-attacks a random Good player at the end of the following night and can hand a Vulture the win. No investigation sees traits, so the claim can't be checked; look at who is pushing that hang and count the worst case before voting.",
    "status": "active",
    "support": [
     {
@@ -8497,13 +8509,19 @@
     {
      "game": "game_20261009_152339_529912",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "If the last known Yakuza dies and the game doesn't end, a Neutral is still alive. Count the players, check the Vulture threshold (max(floor(N/4),2)) and look hard at the weakest or latest claim. Don't hang a claimed Cardinal near the endgame: their death Divine-attacks a random Good player and can hand a Vulture the win.",
+     "note": "Rules revision: 'claimed Cardinal' became a player claiming the Cursed trait. Traits are invisible to investigations (R24), so the claim is now uncheckable, which the reworded tip says."
     }
    ]
   },
   {
    "id": "t97",
    "audience": "Vulture",
-   "tip": "Claim a plain, tokenless no-action role early (Vanilla works when no Oracle or exact-role checker is active, and it matches an audit of 0) and keep it word for word. Vote with the majority and never lead a push or nominate: both killing factions then leave you for last, and the count runs down to your threshold by itself. Never copy a role whose actions were already public or whose real holder may be among the unclaimed. If someone fake-claims your Unique role, counterclaim or open a private deal with them that Day. Avoid vouching for players, lone Guilty votes and aggressive endgame nominations, especially of a Cardinal. Count the threshold, max(floor(N/4),2) alive at the start of a Day, after every death. In the endgame, don't push a hang or vote that would let the town notice the count is about to hand you the win.",
+   "tip": "Claim a plain, tokenless no-action role early (Vanilla works when no Oracle or exact-role checker is active, and it matches an audit of 0) and keep it word for word. Vote with the majority and never lead a push or nominate: both killing factions then leave you for last, and the count runs down to your threshold by itself. Never copy a role whose actions were already public or whose real holder may be among the unclaimed. If someone fake-claims your Unique role, counterclaim or open a private deal with them that Day. Avoid vouching for players, lone Guilty votes and aggressive endgame nominations, especially of a player who has said they are Cursed (the hang plus the curse is an obvious count drop). Count the threshold, max(floor(N/4),2) alive at the start of a Day, after every death. In the endgame, don't push a hang or vote that would let the town notice the count is about to hand you the win.",
    "status": "active",
    "support": [
     {
@@ -8541,6 +8559,12 @@
      "change": "edited",
      "old": "Claim a plausible role early, one an Oracle or other exact-role check can't easily falsify (not a bare Vanilla), and keep it. Never copy a role whose actions were already public or whose real holder may be among the unclaimed (e.g. a Prosecutor): they counterclaim with earlier reads and correct night labels. If someone fake-claims your Unique role, counterclaim or open a private deal with them early, on the day they claim. Roles stay hidden on death, so nothing will expose them for you. Let others lead the pushes; avoid vouching for players early, lone Guilty votes and aggressive endgame nominations, especially of a Cardinal. Plan around the actual threshold of max(floor(N/4),2) alive at the start of a Day.",
      "note": "Moderator, Alice: Alice repeated 'no night action, voting only on a checkable contradiction' all game, was never nominated, and won at 3 alive. The earlier advice against a bare Vanilla claim is softened: a quiet Vanilla held consistently worked."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Claim a plain, tokenless no-action role early (Vanilla works when no Oracle or exact-role checker is active, and it matches an audit of 0) and keep it word for word. Vote with the majority and never lead a push or nominate: both killing factions then leave you for last, and the count runs down to your threshold by itself. Never copy a role whose actions were already public or whose real holder may be among the unclaimed. If someone fake-claims your Unique role, counterclaim or open a private deal with them that Day. Avoid vouching for players, lone Guilty votes and aggressive endgame nominations, especially of a Cardinal. Count the threshold, max(floor(N/4),2) alive at the start of a Day, after every death. In the endgame, don't push a hang or vote that would let the town notice the count is about to hand you the win.",
+     "note": "Rules revision: Cardinal is now the Cursed trait; reworded the one clause that named the Cardinal."
     }
    ]
   },
@@ -10408,8 +10432,8 @@
   },
   {
    "id": "t147",
-   "audience": "Cardinal",
-   "tip": "Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, say why, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. The claim names your exact role to a possible Ritualist, whose Divine guess no protection stops, so make it only when the alternative is a Village kill. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
+   "audience": "Village",
+   "tip": "(If you have the Cursed trait) Keep the trait hidden while safe. No investigation sees traits, so it comes out only if you say it. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim your role as normal, but write 'I am Cursed' in your will so the town reads the random Good death (cause 'a curse') correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, give the Jester risk as your reason, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, say you are Cursed at once. It can't be verified and it tells the Yakuza you are worth two kills, so say it only when the alternative is a Village kill.",
    "status": "active",
    "support": [
     {
@@ -10452,6 +10476,12 @@
      "change": "edited",
      "old": "(Cardinal) Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, say why, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
      "note": "Revision, not a game: 'claim Cardinal at once' now carries the Ritualist warning."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Stay hidden while safe. Your curse hits only Good players, so to the Yakuza you are a two-for-one kill. Claim Vanilla publicly if pressed, but put the true Cardinal claim in your will so the town reads the random Good death correctly. Never vote Guilty on a nominee who might be a Jester or an Executioner's target: if the revenge draw hits you, your curse kills a second Good player. Vote Innocent, say why, and let others carry the hang. If a Vigilante may shoot you or the Village is about to hang you, claim Cardinal at once. The claim names your exact role to a possible Ritualist, whose Divine guess no protection stops, so make it only when the alternative is a Village kill. Once an archive or survey exposes you anyway, ask openly for protection, because the Yakuza now want you dead.",
+     "note": "Rules revision: the Cardinal role no longer exists; its curse is the Cursed trait on top of a normal role, so the audience moves to Village. Dropped the 'claim Vanilla' cover, the archive/survey exposure line and the Ritualist line: traits aren't roles, aren't seen by any investigation and can't be guessed. The vote-Innocent and claim-to-avoid-a-Village-kill advice still holds."
     }
    ]
   },
@@ -11388,7 +11418,7 @@
   {
    "id": "t177",
    "audience": "Yakuza",
-   "tip": "A Cardinal's curse Divine-attacks a random living Good player, so killing a Cardinal costs the Village two players. Don't avoid a confirmed Cardinal as 'dangerous'. Read death-trigger roles to see which side they actually punish, and count the curse as a second kill when you choose a Katana target.",
+   "tip": "A Cursed player's curse (a trait, R24) Divine-attacks a random living Good player, so killing one costs the Village two players. Don't avoid a player who has revealed they are Cursed as 'dangerous'. Read each death-trigger trait to see which side it punishes: Cursed hits only Good players, while Avenger kills the attacker whose attack was fatal, i.e. your Katana holder. Count the curse as a second kill when you choose a Katana target.",
    "status": "active",
    "support": [
     {
@@ -11402,6 +11432,12 @@
     {
      "game": "game_20261010_021114_222540",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "A Cardinal's curse Divine-attacks a random living Good player, so killing a Cardinal costs the Village two players. Don't avoid a confirmed Cardinal as 'dangerous'. Read death-trigger roles to see which side they actually punish, and count the curse as a second kill when you choose a Katana target.",
+     "note": "Rules revision: Cardinal became the Cursed trait. 'Read death-trigger roles' now covers traits, so the reword names the two R24 death triggers and which side each hits."
     }
    ]
   },
@@ -12109,7 +12145,7 @@
   {
    "id": "t202",
    "audience": "Arsonist",
-   "tip": "Stay low-profile: give short, non-committal comments, vote with majorities, and don't attract checks. Douse players the town won't hang soon. A claimed Cardinal is an excellent douse: igniting them sets off a Divine curse on a random Good player, an extra kill that can clear the board.",
+   "tip": "Stay low-profile: give short, non-committal comments, vote with majorities, and don't attract checks. Douse players the town won't hang soon. A player who has said they are Cursed (a trait, R24) is an excellent douse: igniting them sets off a Divine curse on a random Good player, an extra kill that can clear the board. The opposite trait is Avenger: an Avenger your ignite kills deals you a Divine Attack, which beats your Standard Defense, so don't ignite with a claimed Avenger doused.",
    "status": "active",
    "support": [
     {
@@ -12133,6 +12169,12 @@
     {
      "game": "game_20261010_070232_101",
      "change": "added"
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Stay low-profile: give short, non-committal comments, vote with majorities, and don't attract checks. Douse players the town won't hang soon. A claimed Cardinal is an excellent douse: igniting them sets off a Divine curse on a random Good player, an extra kill that can clear the board.",
+     "note": "Rules revision: 'claimed Cardinal' became a player claiming the Cursed trait. Added the R24 Avenger caution, since the tip picks douses by death trigger and an ignite that kills an Avenger now kills the Arsonist."
     }
    ]
   },
@@ -12691,7 +12733,7 @@
   {
    "id": "t218",
    "audience": "Everyone",
-   "tip": "Know which actions are Astral: Oracle and Ritualist guesses, the Juror's and Scrutineer's checks, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. A Smuggler's swap is different: it moves every action aimed at a swapped living player, Astral ones included. An Oracle guess, a Juror pair, a Scrutineer pick, a map or a Ritualist guess aimed at one swapped player lands on the other and is reported under the chosen name. Only random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
+   "tip": "Know which actions are Astral: Oracle and Ritualist guesses, the Juror's and Scrutineer's checks, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. A Smuggler's swap is different: it moves every action aimed at a swapped living player, Astral ones included. An Oracle guess, a Juror pair, a Scrutineer pick, a map or a Ritualist guess aimed at one swapped player lands on the other and is reported under the chosen name. Only random-draw effects (a Jester's or Executioner's revenge, a Cursed player's curse) are not moved. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
    "status": "active",
    "support": [
     {
@@ -12717,6 +12759,12 @@
      "change": "edited",
      "old": "Know which actions are Astral: Oracle and Ritualist guesses, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
      "note": "Revision, not a game: Astral actions can't be seen, but a swap still moves them (R23)."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Know which actions are Astral: Oracle and Ritualist guesses, the Juror's and Scrutineer's checks, the Arsonist's ignite, the Cartographer's map, the Coroner's exam, and the Jester's and Executioner's revenge attacks. No Lookout, Tracker, Fortune Teller, Insomniac, trap, Veteran or Katana holder can see or react to them. 'My target would be exposed' is never a reason to withhold an Astral result. A Smuggler's swap is different: it moves every action aimed at a swapped living player, Astral ones included. An Oracle guess, a Juror pair, a Scrutineer pick, a map or a Ritualist guess aimed at one swapped player lands on the other and is reported under the chosen name. Only random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Yakuza: an Oracle isn't a visit-reader. Rank Trackers, Lookouts, Fortune Tellers, Cartographers, Scouts and Insomniacs as the visit threats, and the Oracle and Coroner as exact-role threats.",
+     "note": "Rules revision: 'a Cardinal's curse' reworded to the Cursed trait's curse (R23/R24). Nothing else changed."
     }
    ]
   },
@@ -13194,7 +13242,7 @@
   {
    "id": "t233",
    "audience": "Everyone",
-   "tip": "Count the full cost of a likely-Jester hang before voting. The revenge Divine-attacks a random Guilty voter the next night. If it hits a Cardinal, the curse kills another Good player. If an Executioner whose target was that player also wins on the hang, they leave and a second random Guilty voter dies. Add the Katana kill and any Ritualist kill that same night, and one Day can remove four or more Village players and hand the Yakuza half the table, after which no Village nomination can pass. Keep Guilty votes to a bare majority, with confirmed power roles and any Cardinal voting Innocent.",
+   "tip": "Count the full cost of a likely-Jester hang before voting. The revenge Divine-attacks a random Guilty voter the next night. If it hits a player with the Cursed trait, the curse kills another Good player the same night. If an Executioner whose target was that player also wins on the hang, they leave and a second random Guilty voter dies. Add the Katana kill and any Ritualist kill that same night, and one Day can remove four or more Village players and hand the Yakuza half the table, after which no Village nomination can pass. Keep Guilty votes to a bare majority, with confirmed power roles and anyone who is Cursed voting Innocent.",
    "status": "active",
    "support": [
     {
@@ -13214,6 +13262,12 @@
      "change": "edited",
      "old": "Count the full cost of a likely-Jester hang before voting. The revenge Divine-attacks a random Guilty voter the next night. If an Executioner whose target was that player also wins on the hang, they leave and a second random Guilty voter dies. Add the Katana kill that same night and one Day can remove four Village players and hand the Yakuza half the table, after which no Village nomination can pass. Keep Guilty votes to a bare majority, with confirmed power roles voting Innocent.",
      "note": "Moderator, Carol, Dave, Niaj: Bob's 8-Guilty hang led to four deaths on N3 (Katana on Erin, ritual on Carol, revenge on Olivia, curse on Mallory), taking 9 alive to 4 with 3 Yakuza."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Count the full cost of a likely-Jester hang before voting. The revenge Divine-attacks a random Guilty voter the next night. If it hits a Cardinal, the curse kills another Good player. If an Executioner whose target was that player also wins on the hang, they leave and a second random Guilty voter dies. Add the Katana kill and any Ritualist kill that same night, and one Day can remove four or more Village players and hand the Yakuza half the table, after which no Village nomination can pass. Keep Guilty votes to a bare majority, with confirmed power roles and any Cardinal voting Innocent.",
+     "note": "Rules revision: Cardinal role removed; the curse is now the Cursed trait. Reworded the two Cardinal mentions."
     }
    ]
   },
@@ -13521,7 +13575,7 @@
   {
    "id": "t245",
    "audience": "Village",
-   "tip": "Hunt Neutral killers on purpose; an unhunted Arsonist or Serial Killer often wins. Only killers that block wins matter here: a Bounty Hunter, Magpie, Jester or Executioner never blocks a Village win, and a Bounty Hunter who has spent its one token can't attack again. While the Katana still kills every night, never spend a Day's hang on a confessed or spent never-blocks-wins Neutral, and look hard at whoever rushes one to trial. Roles stay hidden on death, so the death announcements are your main evidence. Read every cause of death. An attack cause that isn't the Katana, a hanging, a Vigilante shot, a Veteran alert, a trap, a Bounty Hunter attack, a Jester or Executioner revenge or a Cardinal curse (e.g. a Serial Killer attack or an Arsonist ignite) proves that killer is alive. Two fatal causes on one victim mean two separate killers. A multi-death night, or more deaths than the Katana and known shooters explain, points at an ignite. Quiet nights don't clear an Arsonist, who kills no one until it ignites. From Day 2 keep a written Neutral-killer suspect list: unclaimed or Vanilla claimants nobody has watched, players who survived an attack with no credible protector, players whose visits leave unexplained gaps in counts or groups, and anyone who admits an action but won't name it. Point Lookouts, Trackers, Oracle guesses (Arsonist, Serial Killer) and audits (0 tokens fits both) at them. A Not Evil Sheriff read doesn't clear them. The game can't end while one lives, and at two alive you can't hang them, so spend a hang on the best SK or Arsonist suspect well before the endgame, but never ahead of a stronger Yakuza case.",
+   "tip": "Hunt Neutral killers on purpose; an unhunted Arsonist or Serial Killer often wins. Only killers that block wins matter here: a Bounty Hunter, Magpie, Jester or Executioner never blocks a Village win, and a Bounty Hunter who has spent its one token can't attack again. While the Katana still kills every night, never spend a Day's hang on a confessed or spent never-blocks-wins Neutral, and look hard at whoever rushes one to trial. Roles stay hidden on death, so the death announcements are your main evidence. Read every cause of death. An attack cause that isn't the Katana, a hanging, a Vigilante shot, a hidden gun (an Armed villager's one shot), a Veteran alert, a trap, a Bounty Hunter attack, a Jester or Executioner revenge, a curse (a Cursed player died) or Avenger (e.g. a Serial Killer attack or an Arsonist ignite) proves that killer is alive. A death by 'Avenger' means that player made a fatal attack on someone else who died that night, so check which cause killed the other victim. Two fatal causes on one victim mean two separate attackers. A multi-death night, or more deaths than the Katana, known shooters and trait effects (curse, Avenger) explain, points at an ignite. Quiet nights don't clear an Arsonist, who kills no one until it ignites. From Day 2 keep a written Neutral-killer suspect list: unclaimed or Vanilla claimants nobody has watched, players who survived an attack with no credible protector, players whose visits leave unexplained gaps in counts or groups, and anyone who admits an action but won't name it. Point Lookouts, Trackers, Oracle guesses (Arsonist, Serial Killer) and audits (0 tokens fits both) at them. A Not Evil Sheriff read doesn't clear them. The game can't end while one lives, and at two alive you can't hang them, so spend a hang on the best SK or Arsonist suspect well before the endgame, but never ahead of a stronger Yakuza case.",
    "status": "active",
    "support": [
     {
@@ -13572,6 +13626,12 @@
      "change": "edited",
      "old": "Hunt Neutral killers on purpose; an unhunted Arsonist or Serial Killer often wins. Roles stay hidden on death, so the death announcements are your main evidence. Read every cause of death. An attack cause that isn't the Katana, a hanging, a Vigilante shot, a Veteran alert, a trap, a Jester or Executioner revenge or a Cardinal curse (e.g. a Serial Killer attack or an Arsonist ignite) proves that killer is alive. Two fatal causes on one victim mean two separate killers. A multi-death night, or more deaths than the Katana and known shooters explain, points at an ignite. Quiet nights don't clear an Arsonist, who kills no one until it ignites. From Day 2 keep a written Neutral-killer suspect list: unclaimed or Vanilla claimants nobody has watched, players who survived an attack with no credible protector, players whose visits leave unexplained gaps in counts or groups, and anyone who admits an action but won't name it. Point Lookouts, Trackers, Oracle guesses (Arsonist, Serial Killer) and audits (0 tokens fits both) at them. A Not Evil Sheriff read doesn't clear them. The game can't end while one lives, and at two alive you can't hang them, so spend a hang on the best suspect well before the endgame.",
      "note": "The Village hanged the confessed, spent Bounty Hunter Erin 9-1 on D4, right after Grace nominated her, while the Katana kept killing nightly. The edit limits the hunt to Neutrals that block wins."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Hunt Neutral killers on purpose; an unhunted Arsonist or Serial Killer often wins. Only killers that block wins matter here: a Bounty Hunter, Magpie, Jester or Executioner never blocks a Village win, and a Bounty Hunter who has spent its one token can't attack again. While the Katana still kills every night, never spend a Day's hang on a confessed or spent never-blocks-wins Neutral, and look hard at whoever rushes one to trial. Roles stay hidden on death, so the death announcements are your main evidence. Read every cause of death. An attack cause that isn't the Katana, a hanging, a Vigilante shot, a Veteran alert, a trap, a Bounty Hunter attack, a Jester or Executioner revenge or a Cardinal curse (e.g. a Serial Killer attack or an Arsonist ignite) proves that killer is alive. Two fatal causes on one victim mean two separate killers. A multi-death night, or more deaths than the Katana and known shooters explain, points at an ignite. Quiet nights don't clear an Arsonist, who kills no one until it ignites. From Day 2 keep a written Neutral-killer suspect list: unclaimed or Vanilla claimants nobody has watched, players who survived an attack with no credible protector, players whose visits leave unexplained gaps in counts or groups, and anyone who admits an action but won't name it. Point Lookouts, Trackers, Oracle guesses (Arsonist, Serial Killer) and audits (0 tokens fits both) at them. A Not Evil Sheriff read doesn't clear them. The game can't end while one lives, and at two alive you can't hang them, so spend a hang on the best SK or Arsonist suspect well before the endgame, but never ahead of a stronger Yakuza case.",
+     "note": "Rules revision: the cause-of-death list named a 'Cardinal curse'. It now lists the R24 trait causes ('a curse', 'a hidden gun', 'Avenger'), none of which proves a Neutral killer, and says what an Avenger death shows. 'Two separate killers' became 'attackers' since an Armed villager can be one. Stays pinned."
     }
    ],
    "pinned": true
@@ -13729,7 +13789,7 @@
   {
    "id": "t248",
    "audience": "Yakuza",
-   "tip": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, visiting or Astral, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name, and so do Astral checks: an Oracle guess, a Juror pair, a Scrutineer pick or a map. Your own team's actions move too: a Ritualist guess or Diviner pick aimed at a swapped player lands on the other, and a guess that misses that way outs the Ritualist and spends the tokens, so tell the team who is swapped. Random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
+   "tip": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, visiting or Astral, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name, and so do Astral checks: an Oracle guess, a Juror pair, a Scrutineer pick or a map. Your own team's actions move too: a Ritualist guess or Diviner pick aimed at a swapped player lands on the other, and a guess that misses that way outs the Ritualist and spends the tokens, so tell the team who is swapped. Random-draw effects (a Jester's or Executioner's revenge, a Cursed player's curse) are not moved. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
    "status": "active",
    "support": [
     {
@@ -13765,6 +13825,12 @@
      "change": "edited",
      "old": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
      "note": "Revision, not a game: a swap moves Astral checks too (R23), including the team's own Ritualist guess, and does not move revenge or curse draws."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "(Team with a Smuggler) Don't veto the swap out of fear it will redirect your own attack. A swap moves exactly the actions aimed at the two swapped players, visiting or Astral, so plan it in night chat and know where the Katana goes. Use 1: beat the Medic. Aim the Katana at a decoy and swap the decoy with the player you really want dead, whom the Medic is likely protecting. The Katana lands on the real target, and the protection aimed at them moves to the decoy. Before submitting, work through both cases (the Medic guards the real target, the Medic guards the decoy). The kill only lands if the save isn't on the player the Katana ends up hitting. Use 2: dodge an investigation. If you expect to be checked tonight, swap yourself with a Villager. A Sheriff, Seer or audit aimed at you lands on them and reports their result under your name, and so do Astral checks: an Oracle guess, a Juror pair, a Scrutineer pick or a map. Your own team's actions move too: a Ritualist guess or Diviner pick aimed at a swapped player lands on the other, and a guess that misses that way outs the Ritualist and spends the tokens, so tell the team who is swapped. Random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Never swap anyone with the Katana's target unless you mean to move the kill, and never swap yourself with the target. The Smuggler visits both swapped players, and both are told they were swapped. Expect them to post the notices, and have a cover ready for the visits.",
+     "note": "Rules revision: 'a Cardinal's curse' reworded to the Cursed trait's curse (R23/R24). Nothing else changed; stays pinned."
     }
    ],
    "pinned": true
@@ -14587,7 +14653,7 @@
   {
    "id": "t280",
    "audience": "Village",
-   "tip": "A Smuggler swap redirects every action aimed at either swapped player, whether or not it visits: the Katana, a Medic's save, a Sheriff check, a Seer pair, and Astral checks such as an Oracle guess, a Juror pair, a Scrutineer pick or a Cartographer's map. The result still names the player the user chose. Random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
+   "tip": "A Smuggler swap redirects every action aimed at either swapped player, whether or not it visits: the Katana, a Medic's save, a Sheriff check, a Seer pair, and Astral checks such as an Oracle guess, a Juror pair, a Scrutineer pick or a Cartographer's map. The result still names the player the user chose. Random-draw effects (a Jester's or Executioner's revenge, a Cursed player's curse) are not moved. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
    "status": "active",
    "support": [
     {
@@ -14607,6 +14673,12 @@
      "change": "edited",
      "old": "A Smuggler swap redirects every action aimed at either swapped player: the Katana, a Medic's save, a Sheriff check, a Juror or Seer pair. The result still names the player the user chose. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
      "note": "Revision, not a game: makes explicit that a swap moves Astral checks too (R23) and doesn't move revenge or curse draws."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "A Smuggler swap redirects every action aimed at either swapped player, whether or not it visits: the Katana, a Medic's save, a Sheriff check, a Seer pair, and Astral checks such as an Oracle guess, a Juror pair, a Scrutineer pick or a Cartographer's map. The result still names the player the user chose. Random-draw effects (a Jester's or Executioner's revenge, a Cardinal's curse) are not moved. Before hanging an investigator whose result looks impossible, or calling a survival or death story a lie, ask whether anyone posted a swap notice that night. Then recompute the result with the two players traded. A swap explains an odd result the way a role-block explains a missing one. Both swapped players are told, and Smuggler is a Yakuza role, so a swap notice proves a living Yakuza Smuggler. Post it the next Day.",
+     "note": "Rules revision: 'a Cardinal's curse' reworded to the Cursed trait's curse (R23/R24). Nothing else changed."
     }
    ]
   },
@@ -14735,7 +14807,7 @@
   {
    "id": "t286",
    "audience": "Village",
-   "tip": "Count down to the vote lock. A nomination needs a majority of living voters, so once the Yakuza hold half the living players they can block every nomination by voting No. With 2 Yakuza that happens at 4 alive (3 Yes needed); with 3 Yakuza, at 6. The Katana takes one Villager a night, a Ritualist can add up to two more over the game, and a Jester's revenge or a Cardinal's curse adds others. Katana and Ritualist victims are never Yakuza, so unless a hang was confirmed Evil, assume every Yakuza is still alive. With 3 Yakuza in 13, two mis-hangs can bring the lock by Day 4, so the Day 2 hang needs a corroborated fit, not a claim duel, and the Day 3 hang must go to a kill-faction candidate. The Day before the lock is your last real hang. Put your best suspect on trial that Day, even on a 50/50 group result such as a census that leaves two names. Don't wait for a result that only arrives after the next night, because its holder is the likeliest kill. Post the count each morning: 'X alive, at most Y Yakuza, lock after Z more deaths.'",
+   "tip": "Count down to the vote lock. A nomination needs a majority of living voters, so once the Yakuza hold half the living players they can block every nomination by voting No. With 2 Yakuza that happens at 4 alive (3 Yes needed); with 3 Yakuza, at 6. The Katana takes one Villager a night, a Ritualist can add up to two more over the game, and a Jester's revenge or a Cursed player's curse adds others. Katana and Ritualist victims are never Yakuza, so unless a hang was confirmed Evil, assume every Yakuza is still alive. With 3 Yakuza in 13, two mis-hangs can bring the lock by Day 4, so the Day 2 hang needs a corroborated fit, not a claim duel, and the Day 3 hang must go to a kill-faction candidate. The Day before the lock is your last real hang. Put your best suspect on trial that Day, even on a 50/50 group result such as a census that leaves two names. Don't wait for a result that only arrives after the next night, because its holder is the likeliest kill. Post the count each morning: 'X alive, at most Y Yakuza, lock after Z more deaths.'",
    "status": "active",
    "support": [
     {
@@ -14760,6 +14832,12 @@
      "change": "edited",
      "old": "Count down to the vote lock. A nomination needs a majority of living voters, so once the Yakuza hold half the living players they can block every nomination by voting No. With 2 Yakuza that happens at 4 alive (3 Yes needed); with 3 Yakuza, at 6. The Katana takes one Villager a night, and a Ritualist can add a second. The Day before the lock is your last real hang. Put your best suspect on trial that Day, even on a 50/50 group result such as a census that leaves two names. Don't wait for a result that only arrives after the next night, because its holder is the likeliest kill. Post the count each morning: 'X alive, at most Y Yakuza, lock after Z more deaths.'",
      "note": "Nine Village reports plus Frank and the moderator: with a Katana and a Ritualist killing two a night, the Village had about two real hangs and spent them on a Lookout and a Jester."
+    },
+    {
+     "game": "revision 20261012_112545",
+     "change": "edited",
+     "old": "Count down to the vote lock. A nomination needs a majority of living voters, so once the Yakuza hold half the living players they can block every nomination by voting No. With 2 Yakuza that happens at 4 alive (3 Yes needed); with 3 Yakuza, at 6. The Katana takes one Villager a night, a Ritualist can add up to two more over the game, and a Jester's revenge or a Cardinal's curse adds others. Katana and Ritualist victims are never Yakuza, so unless a hang was confirmed Evil, assume every Yakuza is still alive. With 3 Yakuza in 13, two mis-hangs can bring the lock by Day 4, so the Day 2 hang needs a corroborated fit, not a claim duel, and the Day 3 hang must go to a kill-faction candidate. The Day before the lock is your last real hang. Put your best suspect on trial that Day, even on a 50/50 group result such as a census that leaves two names. Don't wait for a result that only arrives after the next night, because its holder is the likeliest kill. Post the count each morning: 'X alive, at most Y Yakuza, lock after Z more deaths.'",
+     "note": "Rules revision: 'a Cardinal's curse' reworded to the Cursed trait's curse (R24). Nothing else changed."
     }
    ]
   },
