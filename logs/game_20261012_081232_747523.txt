@@ -13,3 +13,30 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Village players may also have a trait (R24).
 
 ===== THERE IS NO DAY 1: THE GAME STARTS WITH NIGHT 1 (RULES R1), AND THE FIRST DAY IS DAY 2. NOBODY HAS SPOKEN YET, SO NIGHT 1 ACTIONS ARE CHOSEN WITHOUT ANY DAY DISCUSSION. =====
+
+===== NIGHT 1 =====
+(to Carol, Dave) Carol (Yakuza chat): Dave, my proposal for tonight: Dave keeps the Katana (no holder change), and we make no attack. Night 1 gives us no information on anyone, and an early Standard kill on a random player could hit a Village power role we'd rather see revealed later, or waste a kill we need when the Village starts voting. I won't block anyone either. If you think a specific target is worth hitting tonight, tell me why and I'll consider it, but I lean toward passing. Please confirm your vote with me before we lock it in.
+(to Carol, Dave) Dave (Yakuza chat): Carol, I'd rather not pass. Every Village player we remove before claims start shrinks their voting bloc, and a Night 1 kill costs us nothing we can't replace later. Keeping the Katana with me (no holder change). I propose we Katana Frank tonight. We have no information on anyone, so any target is a numbers play, and Frank is as good as any. If you object, name a specific reason and I'll reconsider. Either way, let's lock the vote in this round.
+(to Carol, Dave) Carol (Yakuza chat): Dave, I agree: Dave keeps the Katana, and we attack Frank tonight. I'll vote Dave as holder and Frank as target. I won't block anyone tonight. Let's lock it in and not split votes, since with two of us a single mismatch cancels the kill.
+(to Carol, Dave) Dave (Yakuza chat): Agreed. I vote Dave as holder (no change) and Frank as target. Carol, please cast the same two votes so the kill isn't cancelled. I have no other night action. Locking this in.
+Night actions:
+  Alice (Medic): target Erin; "Standard Defense on Erin, free of tokens."
+  Bob (Trapper): target Carol; "Place a trap on Carol. It is armed from Night 2 on and stops the first Basic, Standard or Strong attack on her."
+  Carol (Pharmacist): no role action; Katana vote: Dave holds, attacks Frank
+  Dave (Grunt): no role action; Katana vote: Dave holds, attacks Frank
+  Frank (Kitsune): target Bob
+  Grace (Serial Killer): target Alice; "Strong Attack on Alice, the only action available as Serial Killer. No information yet, so the choice is arbitrary."
+  Heidi (Sheriff): target Alice
+Katana: Dave holds it and attacks Frank.
+(to Alice) Moderator (private): You protected Erin tonight with Standard Defense. You have 2 medic tokens left.
+(to Grace) Moderator (private): Your attack on Alice tonight succeeded.
+(to Dave) Moderator (private): Your Katana attack on Frank tonight succeeded.
+(to Heidi) Moderator (private): You investigated Alice tonight. Result: Not Evil.
+[Moderator summary] Night 1: Alice (Medic) protected Erin (no attack on Erin). Bob trapped Carol (armed from N2). Frank (Kitsune) charmed Bob; no attacks on Bob, nothing swallowed. Dave (Katana) attacked Frank with a Standard attack: Frank (no defense) dies. Grace (SK) Strong attack on Alice: Alice dies. Heidi checked Alice: Not Evil. Carol took no action. Deaths: Alice (Serial Killer), Frank (Katana).
+[Moderator summary] Night 1: Alice (Medic) protected Erin; nobody attacked Erin. Bob placed his trap on Carol; it is armed from Night 2. Frank (Kitsune) charmed Bob; nobody attacked Bob, so the charm swallowed nothing. Dave held the Katana and made a Standard attack on Frank, who had no defense, so Frank dies. Grace (Serial Killer) made a Strong attack on Alice, who dies. Heidi checked Alice and got Not Evil. Carol took no action. Deaths: Alice (Serial Killer) and Frank (Katana). The held tell() to Bob was only his own action's result, which code delivers, so nothing was re-sent.
+[Night check] Night 1: correct
+(to Frank) Moderator (private): Your fox charm on Bob swallowed no attack tonight.
+(to Alice) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Frank. Dave (Grunt) chose no action.
+(to Dave) Moderator (private): Yakuza night summary: Dave holds the Katana and chose to attack Frank. Carol (Pharmacist) chose no action.
