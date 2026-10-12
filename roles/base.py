@@ -53,7 +53,8 @@ class RecordedAction:
 @dataclass(frozen=True)
 class DayAction:
     """What a role may do on its own Day speaking turns (not trial turns, not while puppeted; rules R25), offered by
-    RoleLogic.day_action, taken by RoleLogic.carry_out_day_action and carried out in RoleLogic.at_round_end."""
+    RoleLogic.day_action, taken by RoleLogic.carry_out_day_action and carried out in RoleLogic.after_day_turn or
+    RoleLogic.at_day_end."""
 
     fields: dict[str, dict]  # extra answer fields, named as in players.SHARED_FIELDS so the shared schema stays fixed
     text: str  # what the turn's task tells the player about them
@@ -145,11 +146,15 @@ class RoleLogic:
 
     def carry_out_day_action(self, game: Game, p: Player, answer: dict) -> None:
         """Takes the day_action fields of this player's turn answer (any may be null: nothing to do). Its effect
-        waits for at_round_end, so its timing doesn't show whose turn it was (rules R25)."""
+        waits for a later turn (after_day_turn), so its timing doesn't show whose turn it was (rules R25)."""
 
-    def at_round_end(self, game: Game) -> None:
-        """The end of each Day go-around, including the one a hanging or the trial limit cuts short: day actions
-        taken this round take effect (rules R25). Called once per role among the game's players, in name order."""
+    def after_day_turn(self, game: Game, p: Player) -> None:
+        """A Day speaking turn of `p` (with any trial it started) just ended: day actions due now take effect (rules
+        R25). Called once per role among the game's players, in name order; the game ends here if one faction is
+        left."""
+
+    def at_day_end(self, game: Game) -> None:
+        """The Day is ending (and the game isn't over): day actions still waiting take effect (rules R25)."""
 
     def reverses_trial_vote(self, game: Game, voter: Player) -> bool:
         """Whether this role's effect counts `voter`'s Guilty/Innocent vote today as the opposite (Fixer). Called once

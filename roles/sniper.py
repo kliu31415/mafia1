@@ -1,6 +1,6 @@
-"""Sniper: on its own Day turns, takes an anonymous shot at a player with 1-3 tokens (rules R25). Code fires it when
-the round ends: everyone hears the shot and its target, then the death or that the target survived; nobody learns
-who shot."""
+"""Sniper: on its own Day turns, takes an anonymous shot at a player with 1-3 tokens (rules R25). Code fires it after
+a random delay of 0 to n-1 more Day speaking turns (n players alive): everyone hears the shot and its target, then the
+death or that the target survived; nobody learns who shot."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 TOKEN = "sniper"
 SHOT_DAY = "sniper_shot_day"  # game.role_state: Sniper -> the last Day they took a shot (one shot a Day)
-HELD = "sniper_held"  # game.role_state: [shooter, target, attack] shots taken this round, fired at its end
+HELD = "sniper_held"  # game.role_state: [shooter, target, attack, turns left] shots waiting to be fired
 
 
 @register("Sniper")
@@ -29,10 +29,11 @@ class Sniper(RoleLogic):
             {"target": nullable(name_enum(others)), "tokens_to_spend": {"type": "integer"}},
             f"As the Sniper you may also take a shot at one player this turn (once a Day): set target, and "
             f"tokens_to_spend to 1, 2 or 3 for a Basic, Standard or Strong Attack ({tokens_left_text(p, TOKEN)}). "
-            "The shot isn't fired at once: it waits until this round of turns ends (rules R25), so others may speak "
-            "first, and you'll be told when it fires. Everyone then learns the target and whether they died, never "
-            "who shot. If you die before then, it isn't fired; if your target dies first, it isn't fired and the "
-            "tokens come back. Leave target null not to shoot.")
+            "The shot waits a random number of speaking turns, from none (it fires right after this turn) to one less "
+            "than the number of living players (rules R25), so others may speak first; you'll be told when it fires. "
+            "Everyone then learns the target and whether they died, never who shot. If you die before then, it isn't "
+            "fired; if your target dies first, it isn't fired and the tokens come back. Leave target null not to "
+            "shoot.")
 
     def carry_out_day_action(self, game: Game, p: Player, answer: dict) -> None:
         target, spend = answer.get("target"), answer.get("tokens_to_spend")
@@ -46,33 +47,52 @@ class Sniper(RoleLogic):
             return
         p.tokens[TOKEN] = tokens - spend
         game.role_state.setdefault(SHOT_DAY, {})[p.name] = game.day
-        game.role_state.setdefault(HELD, []).append([p.name, target, ATTACK_LEVELS[spend]])
-        game.tell([p.name], f"You took a {ATTACK_LEVELS[spend]} shot at {target}. It will be fired when this round "
-                  f"of turns ends, and you'll be told then. {tokens_left_text(p, TOKEN)}.")
+        # Rules R25: a random delay of 0 to n-1 more non-trial speaking turns (Kevin, Oct 12 2026), counted from the end
+        # of this one, so even an immediate shot isn't pinned on whoever just spoke.
+        delay = game.rng.randint(0, len(game.alive_names()) - 1)
+        game.role_state.setdefault(HELD, []).append([p.name, target, ATTACK_LEVELS[spend], delay])
+        game.log.write("day_shot_taken", player=p.name, target=target, attack=ATTACK_LEVELS[spend], delay=delay)
+        game.tell([p.name], f"You took a {ATTACK_LEVELS[spend]} shot at {target}. It will be fired after a random "
+                  f"number of speaking turns (possibly right after this one), and you'll be told then. "
+                  f"{tokens_left_text(p, TOKEN)}.")
 
-    def at_round_end(self, game: Game) -> None:
-        # All of a round's shots fire together (rules R25), so who fires is decided before any of them lands: two
-        # Snipers shooting each other both fire (game_20261012_022615_186854). A Sniper who died since (hanged, say)
-        # doesn't fire (Kevin, Oct 12 2026).
-        held = [s for s in game.role_state.pop(HELD, []) if game.player(s[0]).alive]
-        alive = set(game.alive_names())
-        for shooter, target, attack in held:
-            victim = game.player(target)
-            if target not in alive:  # died this round (hanged, say): not fired, tokens back (Kevin, Oct 12 2026)
-                me = game.player(shooter)
-                me.tokens[TOKEN] = me.tokens.get(TOKEN, 0) + ATTACK_LEVELS.index(attack)
-                game.tell([shooter], f"{target} died before your shot was fired, so it wasn't fired and its tokens "
-                          f"came back. {tokens_left_text(me, TOKEN)}.")
-                continue
-            record_attack(game, shooter)  # an Attack, for results that count them (the Bloodhound's)
-            game.log.write("day_shot", player=shooter, target=target, attack=attack, day=game.day)
-            text = f"A shot rings out: someone shot at {target}."
-            game.emit(text, cat=ANNOUNCEMENT, message=text)
-            killed = attack_kills(attack, victim.info.defense)
-            if killed:
-                game.kill(target, "shot by the Sniper", by=shooter)
-            else:
-                text = f"{target} survived the shot."
-                game.emit(text, cat=ANNOUNCEMENT, message=text)
-            outcome = "it killed them" if killed else "they survived"
-            game.tell([shooter], f"Your shot at {target} was just fired: {outcome}.")
+    def after_day_turn(self, game: Game, p: Player) -> None:
+        due: list[list] = []
+        waiting: list[list] = []
+        for shot in game.role_state.pop(HELD, []):
+            (due if shot[3] == 0 else waiting).append(shot)
+            shot[3] -= 1
+        if waiting:
+            game.role_state[HELD] = waiting
+        for shooter, target, attack, _ in due:  # one at a time: a shot can kill a Sniper whose shot is due next
+            fire(game, shooter, target, attack)
+
+    def at_day_end(self, game: Game) -> None:
+        # The Day ended (a hanging, say) before these were due: they fire now, before Night (Oct 12 2026).
+        for shooter, target, attack, _ in game.role_state.pop(HELD, []):
+            fire(game, shooter, target, attack)
+
+
+def fire(game: Game, shooter: str, target: str, attack: str) -> None:
+    """Fires a held shot: dropped if its shooter died since (rules R25), refunded if its target did."""
+    me, victim = game.player(shooter), game.player(target)
+    if not me.alive:
+        game.log.write("day_shot_dropped", player=shooter, target=target)
+        return
+    if not victim.alive:  # died since the shot was taken (hanged, say): not fired, tokens back (Kevin, Oct 12 2026)
+        me.tokens[TOKEN] = me.tokens.get(TOKEN, 0) + ATTACK_LEVELS.index(attack)
+        game.tell([shooter], f"{target} died before your shot was fired, so it wasn't fired and its tokens came "
+                  f"back. {tokens_left_text(me, TOKEN)}.")
+        return
+    record_attack(game, shooter)  # an Attack, for results that count them (the Bloodhound's)
+    game.log.write("day_shot", player=shooter, target=target, attack=attack, day=game.day)
+    text = f"A shot rings out: someone shot at {target}."
+    game.emit(text, cat=ANNOUNCEMENT, message=text)
+    killed = attack_kills(attack, victim.info.defense)
+    if killed:
+        game.kill(target, "shot by the Sniper", by=shooter)
+    else:
+        text = f"{target} survived the shot."
+        game.emit(text, cat=ANNOUNCEMENT, message=text)
+    outcome = "it killed them" if killed else "they survived"
+    game.tell([shooter], f"Your shot at {target} was just fired: {outcome}.")

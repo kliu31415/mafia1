@@ -97,7 +97,9 @@ from records import read_records, safe_print
 #     role became the Cursed trait (roles.RETIRED), and "cardinal" records became "curse" (victim, cursed)
 # 52: "day_shot" records (player, target, attack, day) when a Sniper's held shot fires (rules R25), and
 #     "day_action_refused" (player, target, tokens) for a day action with a bad token count
-LOG_VERSION = 52
+# 53: "day_shot_taken" records (player, target, attack, delay: speaking turns until it fires, rules R25) and
+#     "day_shot_dropped" records (player, target) when a held shot's shooter died first
+LOG_VERSION = 53
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

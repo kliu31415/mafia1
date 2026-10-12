@@ -108,6 +108,13 @@ def open_game(game: Game, players: Players) -> None:
 
 
 def run_day(game: Game, players: Players) -> None:
+    play_day(game, players)
+    if game.check_winner() is None:
+        for role in sorted({q.role for q in game.players}):  # rules R25: day actions still waiting
+            logic(role).at_day_end(game)
+
+
+def play_day(game: Game, players: Players) -> None:
     game.phase = "day"
     game.emit(f"Day {game.day} begins.", cat=PHASE)
     if game.day > 1 and not game.pending_deaths:  # players asked whether a quiet night was ever announced
@@ -170,15 +177,18 @@ def run_day(game: Game, players: Players) -> None:
             public, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY,
                                         extra=extra)
             active |= public or nominee is not None
+            over = False
             if nominee:
                 outcome = run_nomination(game, players, nominator=p, nominee=nominee, rnd=rnd)
-                if outcome == "executed":
-                    return True  # an execution ends the day
+                over = outcome == "executed"  # an execution ends the day
                 trials += outcome == "innocent"  # failed nominations don't count toward the limit
-                if trials >= MAX_TRIALS_PER_DAY:
+                if not over and trials >= MAX_TRIALS_PER_DAY:
                     game.emit("Three trials ended in Innocent verdicts. The day ends.")
-                    return True
-            return False
+                    over = True
+            if not over:  # rules R25: day actions due after this turn (an ending Day fires the rest in run_day)
+                for role in sorted({q.role for q in game.players}):
+                    logic(role).after_day_turn(game, p)
+            return over or game.check_winner() is not None
 
         over = False  # did a turn end the day?
         for p in order:
@@ -195,9 +205,7 @@ def run_day(game: Game, players: Players) -> None:
                                  "message this round.\n"):
                     over = True
                     break
-        for role in sorted({q.role for q in game.players}):  # rules R25: day actions held to the round's end
-            logic(role).at_round_end(game)
-        if over or game.check_winner() is not None:
+        if over:
             return
         if not active:
             game.emit("A full round passed with no public messages. The day ends.")

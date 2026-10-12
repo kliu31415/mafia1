@@ -1596,16 +1596,30 @@ def sniper_decide(shots: dict[str, tuple[str, int]], nominate: dict[str, str] | 
     return decide
 
 
-def test_a_sniper_shot_is_fired_when_the_round_ends_and_nobody_learns_who_shot(game_factory):
-    from day import chat_turn
+def sniper_turns(game, n: int) -> None:
+    """n Day speaking turns end (by Bob; who spoke doesn't matter to a held shot)."""
     from roles import logic
+    for _ in range(n):
+        logic("Sniper").after_day_turn(game, game.player("Bob"))
+
+
+def set_delays(game, *delays: int) -> None:
+    for shot, delay in zip(game.role_state["sniper_held"], delays):
+        shot[3] = delay
+
+
+def test_a_sniper_shot_is_fired_after_its_delay_and_nobody_learns_who_shot(game_factory):
+    from day import chat_turn
     game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"],
                                  ScriptedClient(sniper_decide({"Alice": ("Dave", 1)})))
     game.day, game.phase = 2, "day"
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
     assert game.player("Dave").alive and game.player("Alice").tokens["sniper"] == 1 + 1
-    assert not any("shot" in e.text for e in game.events if e.visible_to is None)  # held until the round ends
-    logic("Sniper").at_round_end(game)
+    assert 0 <= game.role_state["sniper_held"][0][3] <= 4  # rules R25: 0 to n-1 more turns, n = 5 alive
+    set_delays(game, 2)
+    sniper_turns(game, 2)  # Alice's own turn ends, then one more
+    assert game.player("Dave").alive and not any("shot" in e.text for e in game.events if e.visible_to is None)
+    sniper_turns(game, 1)
     assert not game.player("Dave").alive and game.player("Dave").death["cause"] == "shot by the Sniper"
     public = [e.text for e in game.events if e.visible_to is None]
     assert "A shot rings out: someone shot at Dave." in public and not any("Alice" in t for t in public)
@@ -1623,32 +1637,34 @@ def test_a_sniper_shot_is_fired_when_the_round_ends_and_nobody_learns_who_shot(g
 
 def test_a_sniper_shot_below_the_targets_defense_fails_publicly(game_factory):
     from day import chat_turn
-    from roles import logic
     game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Serial Killer", "Grunt"],
                                  ScriptedClient(sniper_decide({"Alice": ("Dave", 1)})))
     game.day, game.phase = 2, "day"
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
-    logic("Sniper").at_round_end(game)
+    set_delays(game, 0)  # right after the shooter's own turn
+    sniper_turns(game, 1)
     assert game.player("Dave").alive and game.player("Alice").tokens["sniper"] == 2
     assert "Dave survived the shot." in [e.text for e in game.events if e.visible_to is None]
 
 
-def test_a_sniper_shot_lands_after_the_whole_round_and_can_end_the_game(game_factory):
+def test_a_sniper_shot_lands_mid_day_and_can_end_the_game(game_factory):
     from day import run_day
-    game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Grunt"],
-                                 ScriptedClient(sniper_decide({"Alice": ("Dave", 2)}, talk=True)))
-    game.day = 2
-    game.rng.seed(0)
-    run_day(game, players)
-    texts = [e.text for e in game.events]
-    shot = texts.index("A shot rings out: someone shot at Dave.")
-    assert sum(t.startswith(("Alice (public)", "Bob (public)", "Carol (public)", "Dave (public)"))
-               for t in texts[:shot]) == 4  # every player spoke before it
-    assert not game.player("Dave").alive and game.check_winner() == ["Alice", "Bob", "Carol"]
-    assert not any(t.startswith(("Discussion time is over", "A full round passed")) for t in texts)
+    for delay in range(4):  # rules R25: 0 to n-1 more speaking turns, n = 4 alive
+        game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Grunt"],
+                                     ScriptedClient(sniper_decide({"Alice": ("Dave", 2)}, talk=True)))
+        game.day = 2
+        game.rng.seed(0)
+        game.rng.randint = lambda a, b, d=delay: d  # type: ignore[method-assign]
+        run_day(game, players)
+        texts = [e.text for e in game.events]
+        shot = texts.index("A shot rings out: someone shot at Dave.")
+        assert not game.player("Dave").alive and game.check_winner() == ["Alice", "Bob", "Carol"]
+        assert not any(t.startswith(("Discussion time is over", "A full round passed")) for t in texts)
+        alice = next(i for i, t in enumerate(texts) if t.startswith("Alice (public)"))
+        assert sum("(public)" in t for t in texts[alice + 1:shot]) == delay  # that many turns came between
 
 
-def test_held_shots_need_a_living_shooter_and_target_when_the_round_ends(game_factory):
+def test_a_held_shot_is_dropped_if_its_shooter_dies_and_refunded_if_its_target_does(game_factory):
     from day import chat_turn
     from roles import logic
     game, players = game_factory(["Sniper", "Sniper", "Sniper", "Grunt", "Grunt", "Vanilla Villager"],
@@ -1657,26 +1673,28 @@ def test_held_shots_need_a_living_shooter_and_target_when_the_round_ends(game_fa
     game.day, game.phase = 2, "day"
     for name in ("Alice", "Bob", "Carol"):
         chat_turn(game, players, game.player(name), rnd=1, can_nominate=False)
+    set_delays(game, 5, 5, 5)
     game.kill("Dave", "executed by hanging", guilty_voters=["Alice"])  # Bob's target is hanged
-    game.kill("Carol", "executed by hanging", guilty_voters=["Alice"])  # a hanged Sniper doesn't fire
-    logic("Sniper").at_round_end(game)
+    game.kill("Carol", "executed by hanging", guilty_voters=["Alice"])  # a dead Sniper's shot is dropped
+    logic("Sniper").at_day_end(game)  # the hanging ended the Day before they were due: they're fired now
     assert not game.player("Erin").alive and game.player("Frank").alive
     assert any("Dave died before your shot was fired" in t for t in told(game, "Bob"))
     assert game.player("Bob").tokens["sniper"] == 3  # not fired: tokens back
     assert [e.text for e in game.events if e.text.startswith("A shot rings out")] == [
         "A shot rings out: someone shot at Erin."]
+    assert "sniper_held" not in game.role_state
 
 
-def test_snipers_who_shoot_each_other_in_one_round_both_fire(game_factory):
+def test_sniper_shots_due_together_fire_one_at_a_time(game_factory):
     from day import chat_turn
-    from roles import logic
     game, players = game_factory(["Sniper", "Sniper", "Vanilla Villager", "Grunt", "Grunt"],
                                  ScriptedClient(sniper_decide({"Alice": ("Bob", 1), "Bob": ("Alice", 1)})))
     game.day, game.phase = 2, "day"
     for name in ("Alice", "Bob"):
         chat_turn(game, players, game.player(name), rnd=1, can_nominate=False)
-    logic("Sniper").at_round_end(game)
-    assert not game.player("Alice").alive and not game.player("Bob").alive  # rules R25: together
+    set_delays(game, 0, 0)
+    sniper_turns(game, 1)
+    assert game.player("Alice").alive and not game.player("Bob").alive  # rules R25: Alice's first, Bob's dropped
 
 
 def test_no_sniper_shot_on_a_trial_turn_while_puppeted_or_with_bad_tokens(game_factory):
@@ -1691,6 +1709,6 @@ def test_no_sniper_shot_on_a_trial_turn_while_puppeted_or_with_bad_tokens(game_f
     game.puppets = {}
     game.player("Alice").tokens["sniper"] = 2  # 3 tokens asked, 2 left: refused, nothing spent
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
-    logic("Sniper").at_round_end(game)
+    logic("Sniper").at_day_end(game)
     assert game.player("Dave").alive and game.player("Alice").tokens["sniper"] == 2
     assert any("tokens_to_spend must be 1 to 2" in e.text for e in game.events if e.visible_to == {"Alice"})

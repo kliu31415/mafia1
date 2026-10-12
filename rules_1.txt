@@ -98,11 +98,13 @@ night before) and during any of their own Day turns. When a player dies, their l
 
 R25 (Day actions)
 Some roles act during the Day. A day action is taken on one of your own speaking turns, along with your messages;
-not on a trial turn, and not while you are puppeted. It takes effect when that round of turns ends (also when a
-hanging or the trial limit ends the round early), so its timing doesn't show whose turn it was; if you died since
-taking it, it doesn't take effect. Day actions taken in the same round take effect together, like night actions
-(R10). A death it causes is announced at once (R12), and the game ends if that leaves one faction (R1). A day action
-isn't a visit, and night protections don't last into the Day.
+not on a trial turn, and not while you are puppeted. It takes effect after a random delay: anywhere from right
+after that turn to n-1 speaking turns later, n being the number of players alive when it was taken, every delay
+equally likely. Only Day speaking turns count, not trial turns; a turn that starts a trial ends with that trial. So
+its timing doesn't show whose turn it was. If the Day ends first, it takes effect as the Day ends. If you died since
+taking it, it doesn't take effect. Day actions due at the same time take effect one at a time. A death it causes is
+announced at once (R12), and the game ends if that leaves one faction (R1). A day action isn't a visit, and night
+protections don't last into the Day.
 
 === PART 3: THE NIGHT ===
 
@@ -440,7 +442,7 @@ Veteran
 Sniper
   Tokens: 3 sniper tokens.
   Day: on one of your own speaking turns (once a Day), may take a shot at one player: 1 token for a Basic Attack, 2
-  for Standard, 3 for Strong. It is fired when the round ends (R25): everyone is told that someone shot at that
+  for Standard, 3 for Strong. It is fired after a random delay (R25): everyone is told that someone shot at that
   player, then whether they died; nobody is told who shot. If the target died before then, the shot isn't fired
   and its tokens come back. A Defense from a night effect (e.g. the Medic's) has ended by Day.
 
