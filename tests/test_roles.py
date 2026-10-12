@@ -352,8 +352,9 @@ def test_katana_passes_when_its_holder_dies_by_day(game_factory):
     assert game.katana_holder == "Bob"
 
 
-def test_cardinal_curse_kills_a_good_player_at_the_end_of_the_night(game_factory):
-    game, _ = game_factory(["Cardinal", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+def test_a_cursed_players_curse_kills_a_good_player_at_the_end_of_the_night(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.player("Alice").traits = ["Cursed"]
     game.kill("Alice", "executed by hanging", guilty_voters=["Dave"])
     game.phase = "night"
     game.run_night_end_hooks()
@@ -362,8 +363,10 @@ def test_cardinal_curse_kills_a_good_player_at_the_end_of_the_night(game_factory
     assert victim.death["phase"] == "night"  # a night death, for the stall rule and wills (R13, R14)
 
 
-def test_a_cursed_cardinal_curses_in_turn_the_same_night(game_factory):
-    game, _ = game_factory(["Cardinal", "Cardinal", "Grunt", "Grunt"])
+def test_a_cursed_victim_curses_in_turn_the_same_night(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Sheriff", "Grunt", "Grunt"])
+    for name in ("Alice", "Bob"):
+        game.player(name).traits = ["Cursed"]
     game.phase = "night"
     game.kill("Alice", "Katana")
     game.run_night_end_hooks()  # Bob is the only Good player left; his curse then finds nobody
@@ -623,15 +626,16 @@ def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game
     assert "Alice (Smuggler): target Erin; second target Frank;" in replay  # the swap itself isn't moved
 
 
-def test_a_swap_doesnt_move_the_jesters_revenge_or_the_cardinals_curse(game_factory):
+def test_a_swap_doesnt_move_the_jesters_revenge_or_a_curse(game_factory):
     """Rules R23: effects that draw their own victim at random aren't actions aimed at a player."""
     from night import run_night
     choices = {"Dave": {"act": True, "target": "Bob", "second_target": "Erin"}}
 
     def decide(name, task, schema):
         return choices.get(name) if "Choose your night action" in task else None
-    game, players = game_factory(["Jester", "Vanilla Villager", "Cardinal", "Smuggler", "Grunt", "Grunt"],
+    game, players = game_factory(["Jester", "Vanilla Villager", "Vanilla Villager", "Smuggler", "Grunt", "Grunt"],
                                  ScriptedClient(decide))
+    game.player("Carol").traits = ["Cursed"]
     game.kill("Alice", "executed by hanging", guilty_voters=["Bob"])  # Bob: the only Guilty voter
     game.kill("Carol", "executed by hanging", guilty_voters=["Dave"])  # Bob: the only Good player left
     run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
@@ -1161,14 +1165,15 @@ def test_bloodhound_counts_recorded_attacks_of_three_players_over_the_game(game_
     assert attack_count(game, ["Dave"]) == 2 and attack_count(game, ["Bob", "Carol"]) == 1
 
 
-def test_bloodhound_counts_the_cardinals_curse_and_a_dead_trappers_trap(game_factory):
-    game, players = game_factory(["Bloodhound", "Cardinal", "Trapper", "Grunt", "Vanilla Villager"])
+def test_bloodhound_counts_a_curse_and_a_dead_trappers_trap(game_factory):
+    game, players = game_factory(["Bloodhound", "Vanilla Villager", "Trapper", "Grunt", "Vanilla Villager"])
+    game.player("Bob").traits = ["Cursed"]
     game.player("Carol").alive, game.player("Carol").death = False, None  # died on an earlier day; the trap lasts
     game.phase = "night"
     apply_ops(game, players, {"op": "attacks", "attackers": ["Carol", "Dave"]},
               {"op": "kill", "player": "Bob", "cause": "Katana", "by": "Dave", "katana": True},
               {"op": "track", "player": "Bob", "by": "Alice"})
-    game.run_night_end_hooks()  # the Cardinal killed tonight curses Alice or Erin, then the Bloodhound counts
+    game.run_night_end_hooks()  # Bob, Cursed and killed tonight, curses Alice or Erin, then the Bloodhound counts
     group = re.findall(r"Bob|Dave|Erin", told(game, "Alice")[-1].split(":", 2)[1])
     assert "Bob" in group and len(group) == 3  # Bob: the curse (a Divine Attack), Dave: the Katana
     from roles.bloodhound import attack_count
@@ -1514,3 +1519,63 @@ def test_two_avengers_who_kill_each_other_stop_there(game_factory):
     game.kill("Alice", "Vigilante", by="Bob")
     assert not game.player("Bob").alive and game.player("Carol").alive
     assert game.player("Bob").death["cause"] == "Avenger"
+
+
+def test_every_role_name_ever_used_is_a_role_or_retired(request):
+    """Kevin, Oct 12 2026: old logs must read right after a role is deleted. Deleting one means moving its ROLES
+    entry to roles.RETIRED; a new role adds its name to tests/role_names.json (--update-versions does it)."""
+    from pathlib import Path
+
+    from roles import RETIRED
+    path = Path(__file__).parent / "role_names.json"
+    known = set(json.loads(path.read_text(encoding="utf-8")))
+    if request.config.getoption("--update-versions"):
+        known |= set(ROLES)
+        path.write_text(json.dumps(sorted(known), indent=1) + "\n", encoding="utf-8")
+    assert not set(ROLES) - known, "new roles: run `uv run pytest --update-versions` to record their names"
+    assert not known - set(ROLES) - set(RETIRED), "a role was deleted without a roles.RETIRED entry"
+
+
+def test_old_logs_read_a_retired_role_as_it_was(tmp_path, monkeypatch):
+    """A Cardinal in a log from before log version 51 keeps its faction, icon and rules text, and reads as
+    "Cardinal (before v51)" once a new role reuses the name."""
+    import gamelogs
+    import log_viewer
+    import roles
+    from roles import RETIRED, RETIRED_BY_LABEL, log_role, role_info
+    assert log_role("Cardinal", 50) == "Cardinal" and gamelogs.faction_of("Cardinal") == "Village"
+    info = role_info("Cardinal")
+    assert info and info.category == "Outsider"
+    setup = {"kind": "setup", "log_version": 50, "players": [{"name": "Alice", "seat": 0, "role": "Cardinal"}]}
+    [p] = gamelogs.players([setup], setup, {})
+    assert p["start_role"] == "Cardinal" and p["faction"] == "Village"
+    token = log_viewer.CONTEXT.set(log_viewer.LogContext(version=50))
+    try:
+        span = log_viewer.name_span("Alice", "Cardinal")
+        assert "i-r-cardinal" in span and "role since retired" in span and "Divine Attack" in span
+    finally:
+        log_viewer.CONTEXT.reset(token)
+    assert ".i-r-cardinal" in log_viewer.icons_css()
+    # The name reused by a new role: old logs keep the old one apart.
+    monkeypatch.setitem(roles.ROLES, "Cardinal", roles.ROLES["Sheriff"])
+    assert log_role("Cardinal", 50) == "Cardinal (before v51)" and log_role("Cardinal", 51) == "Cardinal"
+    assert RETIRED["Cardinal"][0].info.alignment.value == "Good" and "Cardinal" in RETIRED_BY_LABEL
+
+
+def test_a_log_describes_its_own_roles_and_traits(game_factory):
+    import gamelogs
+    game, _ = game_factory(["Sheriff", "Grunt", "Jester"])
+    from state import roles_described, traits_described
+    described = roles_described(game)
+    assert described["Grunt"]["alignment"] == "Evil" and "none of its own" in described["Grunt"]["rules"]
+    assert gamelogs.faction_of("Grunt", {"Grunt": {"alignment": "Good"}}) == "Village"  # the log's own wins
+    assert traits_described()["Cursed"]["alignments"] == ["Good"]
+
+
+def test_a_checkpoint_with_a_retired_role_resumes_as_what_it_became(game_factory):
+    from checkpoint import resume_retired
+    game, _ = game_factory(["Sheriff", "Vanilla Villager", "Grunt"])
+    game.player("Bob").role = game.player("Bob").start_role = "Cardinal"  # saved before log version 51
+    assert resume_retired(game, 50) and game.player("Bob").role == "Vanilla Villager"
+    assert game.player("Bob").traits == ["Cursed"] and game.player("Bob").start_role == "Vanilla Villager"
+    assert not resume_retired(game, 51)

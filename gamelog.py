@@ -92,7 +92,10 @@ from records import read_records, safe_print
 # 49: night_actions may have trait_actions ([{trait, target}], e.g. Armed's shot), and a player asked only for one
 #     has no act; settings traits may bundle several for one player ("Martyr+Armed")
 # 50: "avenger" records (player, killed, day) when an Avenger's vengeance kills an attacker
-LOG_VERSION = 50
+# 51: setup has role_info (every script role and role in play: alignment, category, summary, rules paragraph) and
+#     trait_info (every trait: alignments, summary, hover), so a log reads the same after roles change; the Cardinal
+#     role became the Cursed trait (roles.RETIRED), and "cardinal" records became "curse" (victim, cursed)
+LOG_VERSION = 51
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

@@ -44,7 +44,8 @@ import game_index
 from gamelogs import faction_of, log_files, mix_of, result_of, setup_of, short
 from gamelogs import players as game_players
 from records import read_records
-from roles import ROLES, Alignment, logic
+from gamelog import LOG_VERSION
+from roles import Alignment, log_role, logic, role_info
 from setups import POWER_CATEGORIES
 
 ROOT = Path(__file__).resolve().parent
@@ -103,11 +104,11 @@ def load_game(path: Path) -> dict | None:
             "models": seat_models, "frontier_share": frontier_share, "mix": mix,
             "moderator": settings.get("moderator", ""), "winner": winning}
     game["decisions"] = [{"game": game_id, **d, "model": by_name[d["player"]]["model"]}
-                         for d in decisions(records, by_name) if d["player"] in by_name]
+                         for d in decisions(records, by_name, setup.get("log_version", 1)) if d["player"] in by_name]
     return game
 
 
-def decisions(records: list[dict], players: dict[str, dict]) -> list[dict]:
+def decisions(records: list[dict], players: dict[str, dict], log_version: int = LOG_VERSION) -> list[dict]:
     """Scored decisions (see the module docstring): player, role, faction, kind, day, target,
     target_role, good."""
     out = []
@@ -139,7 +140,8 @@ def decisions(records: list[dict], players: dict[str, dict]) -> list[dict]:
                         and players[voter]["faction"] == "Village"):
                     add(nominee, "deceived_voter", day, voter, not vote)
         elif r["kind"] == "night_actions":
-            day, actions, roles = r["day"], r["actions"], r.get("roles") or {}
+            day, actions = r["day"], r["actions"]
+            roles = {n: log_role(role, log_version) for n, role in (r.get("roles") or {}).items()}  # retired roles
             attacked = {katana.get(day)} | {a.get("target") for n, a in actions.items()
                                            if roles.get(n) in ATTACKERS and a.get("act")}
             for name, a in actions.items():
@@ -155,7 +157,7 @@ def decisions(records: list[dict], players: dict[str, dict]) -> list[dict]:
                     add(name, "vigilante_shot", day, target, want, role)
             target = katana.get(day)
             if target in players:
-                info = ROLES.get(players[target]["role"])
+                info = role_info(players[target]["role"])
                 power = bool(info and info.alignment is Alignment.GOOD and info.category in POWER_CATEGORIES)
                 votes = revotes.get(day) or {n: a.get("katana_vote_target") for n, a in actions.items()}
                 for name, vote in votes.items():

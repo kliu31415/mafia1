@@ -48,6 +48,18 @@ TRAITS: dict[str, TraitInfo] = {
                              "<circle cx='5' cy='5' r='4.4' fill='#0f766e' stroke='#fff' stroke-width='1'/>"
                              "<circle cx='5' cy='5' r='2.3' fill='none' stroke='#fff' stroke-width='0.9'/>"
                              "<path d='M5 1.6V8.4M1.6 5H8.4' stroke='#fff' stroke-width='0.9'/></svg>")),  # crosshairs
+    # Was the Cardinal role until log version 51 (roles.RETIRED); harmful to its holder's side.
+    "Cursed": TraitInfo(frozenset({Alignment.GOOD}),
+                        "If you die, a random living Good player is dealt a Divine Attack at the end of the night "
+                        "(rules R24).",
+                        "If they die, a random living Good player is dealt a Divine Attack at the end of the night.",
+                        power=-0.1,
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                              "<circle cx='5' cy='5' r='4.4' fill='#3f3f46' stroke='#fff' stroke-width='1'/>"
+                              "<circle cx='5' cy='4.4' r='2' fill='#e4e4e7'/>"
+                              "<rect x='3.9' y='5.6' width='2.2' height='1.6' fill='#e4e4e7'/>"
+                              "<circle cx='4.3' cy='4.3' r='0.5' fill='#3f3f46'/>"
+                              "<circle cx='5.7' cy='4.3' r='0.5' fill='#3f3f46'/></svg>")),  # a skull
     "Avenger": TraitInfo(frozenset({Alignment.GOOD}),
                          "If you are killed at night, every player whose attack killed you is dealt a Divine Attack "
                          "and dies too (rules R24).",
@@ -84,6 +96,11 @@ class TraitLogic:
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """After p's death is announced (or queued, at night). guilty_voters is set only for a hanging."""
 
+    night_end_order: int = 0  # like RoleLogic.night_end_order: at_night_end hooks of roles and traits run by it
+
+    def at_night_end(self, game: Game) -> None:
+        """End of each night, with the roles' at_night_end hooks. Called whether or not anyone has the trait."""
+
 
 class Martyr(TraitLogic):
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
@@ -104,13 +121,40 @@ class Avenger(TraitLogic):
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         if game.phase != "night" or not p.death:  # rules R24: only a night death; a hanging isn't an attack
             return
-        # A killer already dead isn't hit: that's also how code-made attacks (a Jester's revenge, a Cardinal's
+        # A killer already dead isn't hit: that's also how code-made attacks (a Jester's revenge, a Cursed player's
         # curse) are left out, since their user is gone by then.
         for name in p.death["killers"]:
             if game.player(name).alive:
                 record_attack(game, p.name)  # for the Bloodhound's counts
                 game.log.write("avenger", player=p.name, killed=name, day=game.day)
                 game.kill(name, "Avenger", by=p.name)
+
+
+# The old Cardinal role's key (roles.RETIRED), so a checkpoint saved with a curse pending carries it over.
+CURSES = "cardinal_curses"  # game.role_state: Cursed players who died, whose curse strikes at the end of the night
+
+
+class Cursed(TraitLogic):
+    # The moderator drew and killed a curse victim itself during the night in game_20261009_212707_751277,
+    # and code then dealt the real curse at dawn: two victims.
+    night_note = ("Cursed (a trait, R24): for a Cursed player who died today or dies tonight, code deals a Divine "
+                  "Attack on a random Good player after your resolution, at the end of the night. Don't draw or kill "
+                  "a victim yourself.")
+
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        game.role_state.setdefault(CURSES, []).append(p.name)
+
+    def at_night_end(self, game: Game) -> None:
+        # Kevin, Oct 10: the curse ends the night rather than starting the Day, so it plainly counts as a night
+        # death (stall rule R14, wills R13). A Cursed player the curse kills curses in turn, the same night.
+        while curses := game.role_state.pop(CURSES, []):
+            for cursed in curses:
+                good = [q.name for q in game.alive() if q.info.alignment is Alignment.GOOD]
+                if good:
+                    victim = game.rng.choice(good)
+                    game.log.write("curse", victim=victim, cursed=cursed)
+                    game.kill(victim, "a curse", by=cursed)  # by: for deaths-by-role analysis
+                    record_attack(game, cursed)  # a Divine Attack
 
 
 ARMED_USED = "armed_used"  # game.role_state: players who have fired their hidden gun (it's one shot a game)
@@ -150,7 +194,7 @@ class Armed(TraitLogic):
         game.role_state.setdefault(ARMED_USED, []).append(change["by"])
 
 
-LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger()}
+LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed()}
 assert set(LOGIC) == set(TRAITS)
 
 

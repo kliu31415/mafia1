@@ -322,7 +322,7 @@ QUIZ: list[tuple[str, str]] = [
      "No. An attack kills only if its level is strictly higher than the defense."),
     ("On Day 3 the last Yakuza is executed, leaving only Village players and a Jester alive. What happens next?",
      "The game ends immediately (it's checked after every death). The Village wins; the Jester, still alive, loses."),
-    ("A Cardinal dies at night. When does their effect happen, and to whom?",
+    ("A player with the Cursed trait dies at night. When does the curse happen, and to whom?",
      "At the end of that night, after its other actions, a random living Good player is dealt a Divine Attack."),
     ("The Yakuza holding the Katana at the end of the night is investigated by a Sheriff that night. Result?",
      "Not Evil."),

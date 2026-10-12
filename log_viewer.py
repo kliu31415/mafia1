@@ -11,6 +11,8 @@ Usage:
     uv run log_viewer.py logs/game_....jsonl     # writes logs/game_....html next to it
 """
 
+import contextvars
+import functools
 import html
 import itertools
 import json
@@ -18,6 +20,7 @@ import re
 import sys
 import urllib.parse
 from collections import Counter
+from dataclasses import dataclass, field
 from pathlib import Path
 from collections.abc import Iterable
 from typing import Any
@@ -25,7 +28,8 @@ from typing import Any
 from gamelogs import faction_of
 from traits import TRAITS
 from records import read_records
-from roles import ROLES
+from role_summaries import role_paragraphs
+from roles import RETIRED, RETIRED_BY_LABEL, ROLES, log_role, role_info
 from texts import blank, describe_action, player_view
 
 
@@ -399,20 +403,67 @@ def trait_slug(trait: str) -> str:
 
 
 def icon_slug(role: str) -> str:
-    """The icon file name for a role, e.g. "Ex-Con" -> "ex-con", "Vanilla Villager" -> "vanilla-villager"."""
+    """The icon file name for a role, e.g. "Ex-Con" -> "ex-con", "Vanilla Villager" -> "vanilla-villager"; a retired
+    role's log_role label gets its icon from roles/icons/retired/ ("r-" + its file name)."""
+    if role in RETIRED_BY_LABEL:
+        return "r-" + Path(RETIRED_BY_LABEL[role].icon).stem
     slug = re.sub(r"[^a-z0-9]+", "-", role.lower()).strip("-")
-    return slug if (ICONS / f"{slug}.svg").exists() else "generic"
+    return slug if role in ROLES and (ICONS / f"{slug}.svg").exists() else "generic"
+
+
+@dataclass
+class LogContext:
+    """What a log says about its own roles and traits (setup role_info and trait_info, log version 51 on), and its
+    version, for reading role names that have since been retired or reused (roles.log_role)."""
+    version: int = 10 ** 9  # no log: every role name means today's role
+    roles: dict[str, dict] = field(default_factory=dict)
+    traits: dict[str, dict] = field(default_factory=dict)
+
+
+# The log being rendered (render_html sets it), so name_span describes roles as that game had them.
+CONTEXT: contextvars.ContextVar[LogContext | None] = contextvars.ContextVar("log_context", default=None)
+
+
+def context() -> LogContext:
+    return CONTEXT.get() or LogContext()
+
+
+@functools.cache
+def current_paragraphs() -> dict[str, str]:
+    return role_paragraphs()
+
+
+def role_hover(role: str) -> tuple[str, str]:
+    """(faction, hover text) for a role as the log being rendered had it: its own description when it has one
+    (log version 51 on), else the role list (retired roles included), plus the role's rules paragraph when that
+    differs from today's (or the role is gone)."""
+    ctx = context()
+    label = log_role(role, ctx.version)
+    own = ctx.roles.get(role)
+    if own:
+        faction = faction_of(role, ctx.roles)
+        summary, rules = own.get("summary", ""), own.get("rules", "")
+    else:
+        info = role_info(label)
+        faction, summary = faction_of(label), info.summary if info else ""
+        rules = RETIRED_BY_LABEL[label].rules if label in RETIRED_BY_LABEL else ""
+    hover = f"{label} ({faction})" + (f": {summary}" if summary else "")
+    if rules and (label in RETIRED_BY_LABEL or rules != current_paragraphs().get(label)):
+        hover += f"\n\nRules in this game{' (role since retired)' if label in RETIRED_BY_LABEL else ''}:\n" + rules
+    return faction, hover
 
 
 def name_span(name: str, role: str, traits: list[str] | tuple[str, ...] = ()) -> str:
     """A player's (escaped) name colored by faction, with their role's icon (a corner mark for each trait,
     traits.py) and, on hover, the role's name, faction and one-line summary, then each trait's."""
-    info = ROLES.get(role)
-    hover = f"{role} ({faction_of(role)})" + (f": {info.summary}" if info and info.summary else "")
-    hover += "".join(f"\nTrait: {t}: {TRAITS[t].hover}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
+    faction, hover = role_hover(role)
+    own = context().traits
+    hover += "".join(f"\nTrait: {t}: {own[t]['hover']}" if t in own else
+                     f"\nTrait: {t}: {TRAITS[t].hover}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
     shown = [t for t in traits if t in TRAITS][:len(CORNERS)]
     marks = (f" tn{len(shown)}" if shown else "") + "".join(f" t{i}-{trait_slug(t)}" for i, t in enumerate(shown))
-    return (f"<span class='n {faction_of(role)} ic i-{icon_slug(role)}{marks}' title='{esc(hover)}'>"
+    label = log_role(role, context().version)
+    return (f"<span class='n {faction} ic i-{icon_slug(label)}{marks}' title='{esc(hover)}'>"
             f"{esc(name)}</span>")
 
 
@@ -421,8 +472,9 @@ def icons_css() -> str:
     stays one file. Icons come from the repo's roles/icons/, so every log shows the same icons until those
     files change."""
     rules = []
-    for path in sorted(ICONS.glob("*.svg")):
-        slug, svg = path.stem, " ".join(path.read_text(encoding="utf-8").split())
+    for path in [*sorted(ICONS.glob("*.svg")), *sorted((ICONS / "retired").glob("*.svg"))]:
+        slug = ("r-" if path.parent.name == "retired" else "") + path.stem
+        svg = " ".join(path.read_text(encoding="utf-8").split())
         rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
     # A trait's mark sits in a corner of the icon, over the role's icon: the first trait top right, then top left,
     # bottom right, bottom left. Each set of traits a player can have gets one rule (a CSS background can't be
@@ -518,6 +570,8 @@ def classify_legacy(r: dict) -> tuple[str, str, str]:
 
 def render_html(jsonl_path: Path) -> Path:
     records, unreadable = read_records(jsonl_path)
+    setup = next((r for r in records if r.get("kind") == "setup"), {})
+    CONTEXT.set(LogContext(setup.get("log_version", 1), setup.get("role_info") or {}, setup.get("trait_info") or {}))
     roles: dict[str, str] = {}
     traits: dict[str, list[str]] = {}
     models: dict[str, str] = {}
@@ -860,7 +914,7 @@ def votes_html(votes: list[dict], name: Namer, seats: list[str], title: str, sho
             "</table></div></details>")
 
 
-ROLE_NAMES = re.compile(r"\b(" + "|".join(re.escape(r) for r in sorted(ROLES, key=len, reverse=True))
+ROLE_NAMES = re.compile(r"\b(" + "|".join(re.escape(r) for r in sorted([*ROLES, *RETIRED], key=len, reverse=True))
                         + r"|Vanilla)\b", re.I)
 
 

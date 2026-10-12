@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "a0a7df5629d92309",
- "text_sha256": "170c9419aa5aac78",
+ "cut_sha256": "24a66a0e5c4c4077",
+ "text_sha256": "7ab59f4565181c13",
  "made_by": "a Claude Code session",
- "made": "2026-10-12T01:50:51",
+ "made": "2026-10-12T02:08:35",
  "cost": 0.0,
  "edits": [
   {
@@ -50,6 +50,11 @@
    "old": "(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as the Ex-Con's visit",
    "new": "(including the Katana's attack, Astral checks and automatic actions such as the Ex-Con's visit",
    "reason": "Juror isn't on the script"
+  },
+  {
+   "old": "A trait stays with you if your role changes. Traits are always true: a Roleplayer's\ntrait is real even though its role isn't. A player may have more than one trait, but never the same one twice.",
+   "new": "A trait stays with you if your role changes. A player may have\nmore than one trait, but never the same one twice.",
+   "reason": "The Roleplayer is not on the script."
   }
  ]
 }

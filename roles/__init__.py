@@ -178,9 +178,6 @@ ROLES: dict[str, RoleInfo] = {
                        "reads Evil to alignment checks.",
                        tested=True, notes="code draws the random visit each night (automatic action); "
                        "night note says it reads Evil to Sheriff and Seer"),
-    "Cardinal": RoleInfo(Alignment.GOOD, "Outsider", False,
-                         summary="If they die, a random living Good player is dealt a Divine Attack.",
-                         tested=True, notes="curse resolved by code at the end of the night"),
     # Yakuza
     "Grunt": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="No night action of its own; shares the Katana.",
@@ -283,6 +280,64 @@ ROLES: dict[str, RoleInfo] = {
                             defense="Basic",
                             tested=True, notes="target, win, leaving and turning into a Jester in code"),
 }
+
+
+
+@dataclass(frozen=True)
+class RetiredRole:
+    """A role taken out of the game (rules, setups, scripts), kept so logs written while it existed still read
+    right, even after its name is reused for a new role. Log readers rename it with log_role."""
+    info: RoleInfo  # as it was, for faction, stats and the HTML log's hover text
+    until: int  # the first LOG_VERSION without it: a log older than this means the old role by this name
+    icon: str  # its icon in roles/icons/retired/ (the file name), so a new role can take the name's icon file
+    now: tuple[str, tuple[str, ...]]  # what a checkpoint saved with it resumes as: (role, traits added)
+    rules: str = ""  # its rules_1.txt paragraph when retired, shown in old logs' hover text (git has the rest)
+
+
+# Kevin, Oct 12 2026: old logs and analysis must keep working when a role is deleted, and names may be reused.
+# Deleting a role means moving its ROLES entry here (tests/role_names.json lists every name ever used, so a test
+# fails if one disappears unrecorded). A name retired more than once gets a list in order of `until`.
+RETIRED: dict[str, list[RetiredRole]] = {
+    "Cardinal": [RetiredRole(RoleInfo(Alignment.GOOD, "Outsider", False,
+                                      summary="If they die, a random living Good player is dealt a Divine Attack.",
+                                      tested=True),
+                             until=51, icon="cardinal.svg", now=("Vanilla Villager", ("Cursed",)),  # trait
+                             rules="If you die, a random living Good player (if any) is dealt a Divine Attack at "
+                                   "the end of the night: the night you died, or the night after the Day you died. "
+                                   "It comes after all of that night's other actions and attacks, so the victim is "
+                                   "drawn from the Good players still alive then, and it counts as a death that "
+                                   "night.")],
+}
+
+
+def retired_entry(name: str, log_version: int) -> tuple[str, RetiredRole] | None:
+    """(label, entry) if `name` in a log of this version is a role since retired, else None. The label is the old
+    name while nothing reuses it and each entry is the name's only one, else e.g. "Cardinal (before v51)"."""
+    for entry in RETIRED.get(name, []):
+        if log_version < entry.until:
+            plain = name not in ROLES and len(RETIRED[name]) == 1
+            return (name if plain else f"{name} (before v{entry.until})"), entry
+    return None
+
+
+def log_role(name: str, log_version: int) -> str:
+    """A role name as a log of this version wrote it, renamed if it meant a role since retired (retired_entry)."""
+    found = retired_entry(name, log_version)
+    return found[0] if found else name
+
+
+RETIRED_BY_LABEL: dict[str, RetiredRole] = {}
+for _name, _entries in RETIRED.items():
+    for _entry in _entries:
+        _label = retired_entry(_name, _entry.until - 1)
+        assert _label, _name
+        RETIRED_BY_LABEL[_label[0]] = _entry
+
+
+def role_info(name: str) -> RoleInfo | None:
+    """The RoleInfo of a current role, or of a retired one by its log_role label; None if neither."""
+    return ROLES.get(name) or (RETIRED_BY_LABEL[name].info if name in RETIRED_BY_LABEL else None)
+
 
 DEFAULT_SETUP = [
     "Sheriff", "Medic", "Lookout", "Vigilante", "Vanilla Villager", "Vanilla Villager",

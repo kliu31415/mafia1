@@ -8,7 +8,7 @@ from collections.abc import Iterable
 from pathlib import Path
 
 from llm import Model, model_tier
-from roles import ROLES, Alignment
+from roles import Alignment, log_role, role_info
 
 NOT_GAMES = {"mock_lessons.jsonl"}  # matches mock_*.jsonl but holds mock games' lessons, not a game
 SHORT = {m.value: m.short for m in Model}
@@ -82,6 +82,8 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
     setup = setup or setup_of(records) or {}
     result = result or result_of(records) or {}
     seats = {p.get("name"): p for p in setup.get("players") or []}
+    version = setup.get("log_version", 1)
+    described = setup.get("role_info") or {}  # log version 51 on: the roles as this game had them
     deaths = {r.get("player") for r in records if r.get("kind") == "death"}
     tips_record = first(records, "tips") or {}
     settings = setup.get("settings") or {}
@@ -90,9 +92,11 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
     def player(i: int, name: str, model: str | None, start_role: str | None, final_role: str | None,
                won: bool, alive: bool | None, tips: bool, via: str | None = None) -> dict:
         seat = seats.get(name) or {}
-        start = start_role or seat.get("role") or final_role or "?"
+        start = log_role(start_role or seat.get("role") or final_role or "?", version)
+        final = log_role(final_role, version) if final_role else None
+        faction = faction_of(start, described)
         return {"name": name, "seat": seat.get("seat", i), "model": model or seat.get("model") or "?",
-                "start_role": start, "final_role": final_role, "faction": faction_of(start), "won": won,
+                "start_role": start, "final_role": final, "faction": faction, "won": won,
                 "alive": name not in deaths if alive is None else alive, "died": name in deaths, "tips": tips,
                 "traits": seat.get("traits") or [],  # log version 48 (traits.py)
                 "via": via or seat.get("via") or (  # the first --claude-code games (version 46) have only the setting
@@ -113,10 +117,13 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
 
 # --- roles and models --------------------------------------------------------------------------------
 
-def faction_of(role: str) -> str:
+def faction_of(role: str, described: dict[str, dict] | None = None) -> str:
     """Village, Yakuza or Neutral, by the role's alignment. A role this code doesn't know (renamed or
     removed since the log was written) counts as Neutral, so stats.py doesn't score decisions about it."""
-    alignment = ROLES[role].alignment if role in ROLES else None
+    if described and role in described:  # the log's own description (setup role_info, log version 51 on)
+        return {"Good": "Village", "Evil": "Yakuza"}.get(described[role]["alignment"], "Neutral")
+    info = role_info(role)  # a retired role by its log_role label too
+    alignment = info.alignment if info else None
     return {Alignment.GOOD: "Village", Alignment.EVIL: "Yakuza"}.get(alignment, "Neutral")  # type: ignore[arg-type]
 
 

@@ -138,7 +138,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         checker.submit(game.day, instructions, before, snapshot(transcript), snapshot(game.full_state()),
                        moderator=moderator.model)
     game.resolve_revenge(alive_at_start)
-    game.run_night_end_hooks()  # after revenge: a Cardinal it kills curses this same night
+    game.run_night_end_hooks()  # after revenge: a Cursed player it kills curses this same night
     tell_night_deaths(game, alive_at_start)
     tell_yakuza_summary(game, actions, katana, yakuza_at_start)
     # A forged will and a Mortician's clean only take effect if their target died tonight; the moderator may

@@ -110,7 +110,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      A test checks every role has one.
   8. Scripts (`scripts.py`, `--script`, Blood on the Clocktower style): a game's rules list only its script's roles,
      and every role in it comes from the script. `all` (the default, rules unchanged) has every role, so a new role
-     needs nothing there; add it to a hand-made script (`core`, 30 roles) only if it fits. Code that draws "any role"
+     needs nothing there; add it to a hand-made script (`core`, 29 roles) only if it fits. Code that draws "any role"
      (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`. Each hand-made script's rules are the
      cut plus small edits an Opus call made once (dropping mentions of off-script roles), cached in `rules_scripts/`.
      After any edit to `rules_1.txt`, `test_every_script_revision_is_current` fails until the stale ones are remade.
@@ -124,7 +124,12 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      some roles' night decisions (Sheriff, Medic, Vigilante, Katana target); add a scored decision there
      when the role's choices have a clear right answer.
 
-- Traits (`traits.py`, rules R24: Martyr, Armed, Avenger): an extra ability on top of a player's role; a player may hold
+- Deleting a role: move its `ROLES` entry to `roles.RETIRED` (with its rules paragraph, its icon moved to
+  `roles/icons/retired/`, the LOG_VERSION it's gone from, and what a checkpoint resumes it as); a test fails otherwise
+  (`tests/role_names.json` lists every name ever used). Log readers rename it by log version (`roles.log_role`), so
+  old logs read right even if the name is reused. Since log version 51 each log's setup also describes its own roles
+  and traits (`role_info`, `trait_info`), which `gamelogs` and the viewer prefer.
+- Traits (`traits.py`, rules R24: Martyr, Armed, Avenger, Cursed (the old Cardinal role)): an extra ability on top of a player's role; a player may hold
   several, never one twice, and keeps them if the role changes. A trait is a `TRAITS` entry (who can get it, the
   holder's line, its power, its corner mark in the HTML log) plus a `TraitLogic` with the hooks it needs; a night
   action (Armed's shot) is `can_act` + `action_task` + `ops`, asked for in the night answer's `trait_actions` list.

@@ -251,9 +251,11 @@ class Game:
                 self.emit(f"The Katana passed to {self.katana_holder}.", [y.name for y in remaining])
 
     def run_night_end_hooks(self) -> None:
-        """Role effects at the end of the night (e.g. the Cardinal's curse)."""
-        for role_logic in sorted(LOGIC.values(), key=lambda r: r.night_end_order):
-            role_logic.at_night_end(self)
+        """Role and trait effects at the end of the night (e.g. a Cursed player's curse, traits.py)."""
+        from traits import LOGIC as TRAIT_LOGIC
+        hooks: list = [*LOGIC.values(), *TRAIT_LOGIC.values()]
+        for hook in sorted(hooks, key=lambda h: h.night_end_order):  # stable: roles first at the same order
+            hook.at_night_end(self)
 
     def trial_vote_reversed(self, voter: Player) -> bool:
         """Whether a role effect counts this voter's Guilty/Innocent vote today as the opposite (Fixer)."""
@@ -441,9 +443,30 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,
-              log_version=LOG_VERSION, **(meta or {}))
+              log_version=LOG_VERSION, role_info=roles_described(game), trait_info=traits_described(),
+              **(meta or {}))
     return game
 
 
 def majority(yes: int, total: int) -> bool:
     return yes * 2 > total  # strictly more than half (rules R4, R8)
+
+
+def roles_described(game: Game) -> dict[str, dict]:
+    """Every role this game's rules list (its script's) and every role in it: alignment, category, summary and
+    rules paragraph, so the log reads the same after a role is changed, renamed or deleted (Kevin, Oct 12 2026;
+    gamelogs.role_info reads it)."""
+    import scripts
+    from role_summaries import role_paragraphs
+    paragraphs = role_paragraphs()
+    names = dict.fromkeys([*scripts.roles_of(game.rule_settings.get("script", scripts.DEFAULT)),
+                           *(p.role for p in game.players)])
+    return {r: {"alignment": ROLES[r].alignment.value, "category": ROLES[r].category, "summary": ROLES[r].summary,
+                "rules": paragraphs.get(r, "")} for r in names}
+
+
+def traits_described() -> dict[str, dict]:
+    """Every trait's alignments, summary and hover line, likewise (traits are secret, so all of them)."""
+    from traits import TRAITS
+    return {t: {"alignments": sorted(a.value for a in info.alignments), "summary": info.summary,
+                "hover": info.hover} for t, info in TRAITS.items()}

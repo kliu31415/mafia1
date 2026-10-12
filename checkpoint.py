@@ -10,6 +10,8 @@ import pickle
 from pathlib import Path
 from typing import Any
 
+from gamelog import LOG_VERSION
+from roles import retired_entry
 from state import Game
 
 # 2: Game has pm_record and night_actions; 3: claim_record; 4: night_visits; 5: votes; 6: Player traits
@@ -18,8 +20,8 @@ CHECKPOINT_VERSION = 6
 
 def save(path: Path, game: Game, **extra: Any) -> None:
     """extra: whatever else resuming needs (play_game's arguments, costs so far, ...)."""
-    data = pickle.dumps({"version": CHECKPOINT_VERSION, "game": game, "log_path": str(game.log.path),
-                         "log_offsets": game.log.offsets(), **extra})
+    data = pickle.dumps({"version": CHECKPOINT_VERSION, "log_version": LOG_VERSION, "game": game,
+                         "log_path": str(game.log.path), "log_offsets": game.log.offsets(), **extra})
     tmp = path.with_suffix(".ckpt.tmp")
     tmp.write_bytes(data)
     os.replace(tmp, path)  # atomic, so a crash while saving keeps the previous checkpoint
@@ -38,7 +40,24 @@ def load(path: Path, force: bool = False) -> dict[str, Any]:
         added = fill_missing_fields([data["game"], *data["game"].players])
         data["forced"] = mismatch + (f"; fields given their defaults: {', '.join(added)}" if added else "")
     data["log_path"] = path.with_suffix(".jsonl")  # the log next to it, wherever the checkpoint was copied
+    data["retired"] = resume_retired(data["game"], data.get("log_version", 0)) if "game" in data else []
     return data
+
+
+def resume_retired(game: Game, log_version: int) -> list[str]:
+    """Players whose role was retired since the checkpoint was saved (roles.RETIRED) get what it became, e.g. a
+    Cardinal a Vanilla Villager with the Cursed trait. Returns a note per player changed."""
+    notes = []
+    for p in game.players:
+        for attr in ("role", "start_role"):
+            if found := retired_entry(getattr(p, attr), log_version):
+                role, traits = found[1].now
+                notes.append(f"{p.name}: {attr} {getattr(p, attr)} -> {role}" + (f" + {', '.join(traits)}"
+                                                                                 if attr == "role" else ""))
+                setattr(p, attr, role)
+                if attr == "role":
+                    p.traits.extend(t for t in traits if t not in p.traits)
+    return notes
 
 
 def fill_missing_fields(objects: list[Any]) -> list[str]:

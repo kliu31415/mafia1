@@ -241,6 +241,8 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
             resume_log(game, log, resume, client, config.check_nights)
             if resume.get("forced"):  # a checkpoint from older code (--force-resume)
                 log.error("resume_forced", f"{resume['forced']}; resumed anyway with --force-resume")
+            if resume.get("retired"):  # roles retired since it was saved (checkpoint.resume_retired)
+                log.write("resume_retired", changes=resume["retired"])
             started = time.time() - resume["elapsed_s"]
         else:
             started = time.time()

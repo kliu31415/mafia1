@@ -16,7 +16,7 @@ TRACKS = "bloodhound_tracks"  # game.role_state: Bloodhound -> the player they t
 
 def attack_count(game: Game, names: list[str]) -> int:
     """Attacks made by these players over the game so far, tonight's included (the moderator's attacks op, and
-    attacks code made, such as the Cardinal's curse)."""
+    attacks code made, such as a Cursed player's curse)."""
     return sum(a in names for key in (ATTACKS, CODE_ATTACKS) for night in game.role_state.get(key, {}).values()
                for a in night)
 
@@ -24,7 +24,7 @@ def attack_count(game: Game, names: list[str]) -> int:
 @register("Bloodhound")
 class Bloodhound(RoleLogic):
     roleplayer_can_fake = False  # code draws the group and counts
-    night_end_order = 1  # after the Cardinal's curse, which counts as an attack tonight
+    night_end_order = 1  # after a Cursed player's curse, which counts as an attack tonight
     code_tells_user = True
     action = RecordedAction(
         "track", "tracks player (code puts them in tonight's group of three)",
@@ -33,7 +33,7 @@ class Bloodhound(RoleLogic):
         "Attack that happened tonight, fatal or not: the Katana holder for the Katana, a Vigilante's shot, the "
         "Serial Killer, a Veteran's alert for each visitor it hits, a Trapper's trap, an Arsonist's ignite, a "
         "Ritualist's attack (one entry per attack; repeats allowed; [] if there were none). Leave out role-blocked "
-        "attackers, Jester revenge and the Cardinal's curse (code handles those). Code counts them for the "
+        "attackers, Jester revenge and a Cursed player's curse (code handles those). Code counts them for the "
         "Bloodhound's result, which it also gives on nights with no token.")
 
     def check_op(self, game: Game, change: dict) -> str | None:
