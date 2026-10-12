@@ -159,3 +159,24 @@ Trial votes on Grace: 8 Guilty, 1 Innocent (the votes are secret).
 Grace is executed by hanging (8 Guilty of 9 votes; 5 needed).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace's last will: I have no role claim and no night results. Judge the evidence: Heidi's Kitsune claim is unverified and she has named no release target. Alice and Heidi PM'd on Day 2."
 (to Dave) Moderator (private): Grace died before your shot was fired, so it wasn't fired and its tokens came back. 3 sniper tokens left.
+
+===== NIGHT 2 =====
+Night actions:
+  Alice (Auditor): target Heidi; "Auditing Heidi to see every Day 2 vote she cast (nomination and trial). She is the central unverified claim."
+  Bob (Medic): target Carol; "Standard protection on Carol at no token cost. Carol claims Profiler, and an investigator is a likely Katana or Yakuza kill target."
+  Carol (Profiler): target Heidi; chose to spend 1 token(s); "Profiling Heidi with one profile token. Her Kitsune claim is the main unverified lead, and a profile can show whether Kitsune is among the roles offered for her."
+  Erin (Serial Killer): target Heidi; "Strong attack on Heidi. She holds an unreleased Strong attack that could be aimed at me, and she is the player who blocked my Night 1 attack."
+  Frank (Bounty Hunter): target Heidi; "Strong Attack on Heidi with my bounty token. Heidi is the least-checked claimant and has been PM'ing Alice, and she is holding an unreleased Strong attack."
+  Heidi (Kitsune): no action
+  Ivan (Clerk): no role action; Katana vote: Ivan holds, attacks Heidi
+Katana: Ivan holds it and attacks Heidi.
+(to Alice) Moderator (private): Your audit of Heidi's votes during the Day, in order: Yes on the nomination of Alice; Innocent in the trial of Alice; Yes on the nomination of Grace; Guilty in the trial of Grace.
+(to Carol) Moderator (private): You profiled Heidi: their role is Bounty Hunter, Kitsune or Mortician (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 1 profile token left.
+(to Frank) Moderator (private): Your bounty on Heidi is claimed.
+(to Bob) Moderator (private): You protected Carol tonight with Standard Defense. 2 medic tokens left.
+(to Erin) Moderator (private): You attacked Heidi tonight. Your attack killed them.
+(to Frank) Moderator (private): You spent your attack token to attack Heidi tonight. Your attack killed them. 0 attack tokens left.
+(to Ivan) Moderator (private): Your Katana attack on Heidi tonight killed them. You took no other action. 1 clerk token left.
+[Moderator summary] Night 2: Alice audited Heidi (audit op). Bob gave Carol Standard protection (no token). Carol profiled Heidi (profile op, 1 token). Erin (SK) attacked Heidi with a Strong Attack, Frank (BH) spent his token on a Strong Attack on Heidi, and Ivan used the Katana for a Standard Attack on Heidi. Heidi had Defense None and no protection, so all three attacks were fatal and she died (Katana, Serial Killer and Bounty Hunter). Her held swallowed attack is lost. Ivan did not rig. No role-blocks. Remaining: Alice, Bob, Carol, Dave (Village), Erin (SK), Frank (BH), Ivan (Yakuza). No win yet.
+[Night check] Night 2: correct
+(to Heidi) Moderator (private): You were attacked tonight (Katana, Serial Killer and Bounty Hunter) and died.
