@@ -197,8 +197,12 @@ class GameConfig:
 
     @property
     def rule_settings(self) -> dict[str, str]:
-        """The rule settings (variants.py) and the script, which game.rule_settings and the log's settings keep."""
-        return {**{name: getattr(self, name) for name in variants.SETTINGS}, "script": self.script}
+        """The rule settings (variants.py), the script and any roles the setup never draws (setup_off), which
+        game.rule_settings and the log's settings keep."""
+        random_setup = self.setup and self.setup.get("kind") == "random"
+        off = SETUPS[self.setup.get("name", "standard")].off if self.setup and random_setup else ()
+        return {**{name: getattr(self, name) for name in variants.SETTINGS}, "script": self.script,
+                **({"setup_off": ",".join(off)} if off else {})}
 
     @classmethod
     def from_checkpoint(cls, ckpt: dict) -> "GameConfig":

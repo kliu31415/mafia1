@@ -49,8 +49,10 @@ def roles_of(script: str) -> list[str]:
 
 
 def script_roles(game) -> list[str]:
-    """The roles of this game's script: what "every role in the rules" means for draws such as fakes and decoys."""
-    return roles_of(game.rule_settings.get("script", DEFAULT))
+    """The roles of this game's script, less any its setup never draws: what "every role in the rules" means for
+    draws such as fakes and decoys."""
+    off = game.rule_settings.get("setup_off", "").split(",")  # roles the setup never draws (setups.Setup.off)
+    return [r for r in roles_of(game.rule_settings.get("script", DEFAULT)) if r not in off]
 
 
 def off_script(script: str, roles: list[str]) -> list[str]:

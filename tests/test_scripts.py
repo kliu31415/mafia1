@@ -197,3 +197,13 @@ def test_edits_written_in_a_session_are_recorded_like_an_api_revision(tmp_path, 
     scripts.main()
     assert not scripts.stale(RULES, "core")
     assert json.loads((tmp_path / "core.json").read_text())["made_by"] == "a Claude Code session"
+
+
+def test_roles_the_setup_never_draws_are_named_to_players_and_left_out_of_fakes(game_factory):
+    from setups import setup_note
+    note = setup_note({"kind": "random", "name": "standard"}, ["Sheriff"] * 13)
+    assert "nobody has them: Vanilla Villager, Grunt" in note
+    game, _ = game_factory(["Sheriff", "Grunt"])
+    assert "Grunt" in scripts.script_roles(game)
+    game.rule_settings["setup_off"] = "Vanilla Villager,Grunt"
+    assert not {"Vanilla Villager", "Grunt"} & set(scripts.script_roles(game))

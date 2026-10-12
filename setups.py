@@ -41,6 +41,7 @@ class Setup:
     draw: Callable[..., list[str]]  # (players, rng, pool, script=..., **options) -> role names
     players: tuple[int, int]  # the player count range when --roles gives none (drawn from the seed)
     describe: str  # what players are told about it, after "This game's roles were drawn by the ... setup:"
+    off: tuple[str, ...] = ()  # roles it never draws; players are told, and fakes and decoys leave them out
 
 
 def parse_setup(text: str) -> tuple[str, int | None] | None:
@@ -69,6 +70,9 @@ def setup_note(setup: dict | None, roles: list[str]) -> str:
         name = setup.get("name", "standard")
         text = (f"This game has {n} players. Its roles were drawn at random by the {name} setup: "
                 f"{SETUPS[name].describe}")
+        if off := SETUPS[name].off:
+            text += (f" This setup never uses these roles, so nobody has them: {', '.join(off)}. Results that name "
+                     "a role (including fakes) never name them either.")
     else:
         count = {a: sum(ROLES[r].alignment is a for r in roles) for a in Alignment}
         yakuza, neutral = count[Alignment.EVIL], count[Alignment.NEUTRAL]
@@ -134,7 +138,7 @@ NEUTRAL_ODDS = {0: 15, 1: 35, 2: 35, 3: 15}
 MAX_OUTSIDERS = 2  # standard
 VILLAGE_NEEDS = {"Investigative": 2, "Killing": 1, "Protective": 1}  # standard: Kevin, Oct 12 2026
 POWER_CATEGORIES = ("Investigative", "Killing", "Protective", "Support")  # Village roles with a power
-MAX_VANILLA = 2  # standard: Kevin, Oct 10 2026: many Vanilla Villagers make a game less strategic
+STANDARD_OFF = ("Vanilla Villager", "Grunt")  # Kevin, Oct 12 2026: no ability of their own
 MIN_VILLAGE = 5  # standard: non-Outsider Village roles, VILLAGE_NEEDS among them
 BAND = 0.4  # standard: a setup counts as balanced when |role_power.score| <= BAND (Village win chance 40-60%)
 CANDIDATES = 60  # standard: Neutral and Village picks tried per setup
@@ -169,7 +173,7 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
     def score(roles: list[str]) -> float:
         return offset + sum(power[r] for r in roles)
 
-    allowed = allowed_roles(pool, script)
+    allowed = [r for r in allowed_roles(pool, script) if r not in STANDARD_OFF]
     uses = role_uses()
 
     def novelty(r: str) -> float:  # Kevin, Oct 10 2026: lean towards newer and less used roles
@@ -204,18 +208,16 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
         neutrals = draw(of(Alignment.NEUTRAL), n_neutrals)
         slots = n - len(evil) - len(neutrals)
         village = [r for category, k in VILLAGE_NEEDS.items() for r in draw(of(Alignment.GOOD, category), k)]
-        rest = [r for r in of(Alignment.GOOD, *POWER_CATEGORIES) if r != "Vanilla Villager"]
+        rest = of(Alignment.GOOD, *POWER_CATEGORIES)
         outsiders = draw(of(Alignment.GOOD, "Outsider"), MAX_OUTSIDERS)
         while len(village) < slots:
-            roll = rng.random()
-            vanilla = village.count("Vanilla Villager") < MAX_VANILLA
             more = draw(rest, 1, taken=tuple(village))
-            if len(village) >= MIN_VILLAGE and outsiders and roll < 0.2:
+            if len(village) >= MIN_VILLAGE and outsiders and rng.random() < 0.2:
                 village.append(outsiders.pop(0))
-            elif (roll < 0.35 and vanilla) or not more:
-                village.append("Vanilla Villager")
-            else:
+            elif more:
                 village += more
+            else:  # a script with too few Village roles
+                village.append("Vanilla Villager")
         return village + evil + neutrals
 
     tried: list[tuple[float, list[str]]] = []
@@ -234,9 +236,9 @@ SETUPS = {
                       "usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one "
                       "more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that "
                       "aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix "
-                      "of Village roles, up to 2 Vanilla Villagers and up to 2 Outsiders. Roles may repeat, except "
+                      "of Village roles and up to 2 Outsiders. Roles may repeat, except "
                       "unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. "
-                      "fewer Yakuza tend to get stronger roles."),
+                      "fewer Yakuza tend to get stronger roles.", STANDARD_OFF),
     "classic": Setup(random_setup, (11, 15),
                      "about 30% of the players are Yakuza (rounded, at least 1), each with a different Yakuza "
                      "role; 0 to 2 are Neutral (at most 1 below 9 players), each a different Neutral role; the rest "
