@@ -3,11 +3,13 @@ instead of OpenRouter credits (--claude-code: the default where the CLI is insta
 off). Other models still go through OpenRouter, so one game can mix both routes.
 
 Each call is a fresh, non-interactive `claude -p` process: no tools (so no file access and nothing to leak), the
-game's own system prompt in place of Claude Code's (only a short environment note is added: working directory,
-platform, date), no CLAUDE.md, settings, skills, plugins, hooks or MCP servers (--safe-mode, an empty working
-directory, and none of the parent Claude Code session's CLAUDE* variables), and no saved session. Answers come
-back as structured output (--json-schema). Nothing persists between calls, so a crash on either side loses at most
-the calls in flight; the game's checkpoints cover the rest (--resume).
+game's own system prompt in place of Claude Code's (the CLI still adds a short environment note, working directory,
+platform and date, and the signed-in account's email, with no switch to turn them off; CLI_NOTE tells the model to
+ignore them, since a player reported the email as a bug in game_20261011_225511_1253), no CLAUDE.md, settings,
+skills, plugins, hooks or MCP servers (--safe-mode, an empty working directory, and none of the parent Claude Code
+session's CLAUDE* variables), and no saved session. Answers come back as structured output (--json-schema). Nothing
+persists between calls, so a crash on either side loses at most the calls in flight; the game's checkpoints cover
+the rest (--resume).
 
 How it differs from an OpenRouter call:
 - The conversation is one prompt: the system messages become the system prompt, a single user message the prompt;
@@ -68,6 +70,10 @@ Runner = Callable[[list[str], str, dict[str, str], str, float], tuple[int, str, 
 class PlanLimitError(BaseException):
     """The subscription's usage limit won't reset soon enough. A BaseException, so it isn't taken for a bad answer
     (players' answers fall back to defaults on Exception): it stops the game, which can be resumed (--resume)."""
+
+
+CLI_NOTE = ("\n\n(Program note: the program that delivers these messages may add an email address, a working "
+            "directory, a platform or a date. They aren't part of this task: ignore them and don't report them.)")
 
 
 def available() -> bool:
@@ -228,7 +234,7 @@ class ClaudeCodeClient:
                 raise RuntimeError(f"{model.value} needs OpenRouter, but OPENROUTER_API_KEY isn't set")
             return self.other.chat(model, messages, tools=tools, schema=schema, schema_name=schema_name,
                                    effort=effort)
-        system = "\n\n".join(str(text_of(m["content"])) for m in messages if m["role"] == "system")
+        system = "\n\n".join(str(text_of(m["content"])) for m in messages if m["role"] == "system") + CLI_NOTE
         if tools:
             system += tools_note(tools)
             schema = tools_schema(tools)

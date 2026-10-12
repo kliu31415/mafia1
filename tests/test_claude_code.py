@@ -6,7 +6,7 @@ import time
 import pytest
 
 import claude_code
-from claude_code import ClaudeCodeClient, PlanLimitError
+from claude_code import CLI_NOTE, ClaudeCodeClient, PlanLimitError
 from llm import MockClient, Model, answer_json, cache_block
 
 
@@ -62,7 +62,7 @@ def test_a_player_call_runs_a_toolless_cli_with_the_games_prompt(monkeypatch):
     assert argv[argv.index("--tools") + 1] == ""  # no tools: no file access
     assert {"--safe-mode", "--no-session-persistence", "--strict-mcp-config"} <= set(argv)
     assert json.loads(argv[argv.index("--json-schema") + 1]) == SCHEMA
-    assert run["system"] == "RULES and your role" and run["prompt"] == "Vote now."
+    assert run["system"] == "RULES and your role" + CLI_NOTE and run["prompt"] == "Vote now."
     assert "CLAUDE_CODE_SESSION_ID" not in run["env"] and run["env"]["CLAUDE_SESSION_INGRESS_TOKEN_FILE"] == "/token"
     assert answer_json(reply, SCHEMA) == {"vote": "Bob"}
     assert reply.reasoning == "Bob is suspicious." and reply.cost == 0

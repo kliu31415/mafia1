@@ -80,17 +80,17 @@ when the turn ends; the accused's first defense message is free up to a set leng
 numbers for each game and tells every player at the start.
 
 R23 (Swaps)
-Some roles can swap two players for a night. Every action that night aimed at one of them (including the Katana's
-attack and automatic actions such as the Ex-Con's visit or the Seer's pair) lands on the other instead, as if its
-user had chosen that player. Only the swap itself is not moved (the swapping player's Katana vote is). Results name the player the action's
-user chose, so a swapped action's result doesn't show the swap: a Sheriff who checked A learns B's alignment as
-A's. A result that lists several players (e.g. a group around the target) is built around B, but A and B trade
-places in the list, each named where the other would be; the roles, alignments and counts in it are still the real
-players', so the rest of the group can still hint at the swap. A Lookout who watched A watches B instead, and a
-Tracker sees the player its target's action landed on. An effect that lasts into the next Day (e.g. listening in
-on private messages) follows B, and its user is told at dawn that a swap moved it to B. Effects that pick their own
-victim at random (e.g. the Jester's revenge or the Cardinal's curse) aren't actions aimed at a player, so a swap
-doesn't move them: they hit whoever they draw.
+Some roles can swap two players for a night. Every action that night aimed at one of them, whether or not it visits
+(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as the Ex-Con's visit
+or the Seer's pair) lands on the other instead, as if its user had chosen that player. Only the swap itself is not
+moved (the swapping player's Katana vote is). Results name the player the action's user chose, so a swapped action's
+result doesn't show the swap: a Sheriff who checked A learns B's alignment as A's. A result that lists several
+players (e.g. a group around the target) is built around B, but A and B trade places in the list, each named where
+the other would be; the roles, alignments and counts in it are still the real players', so the rest of the group can
+still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action
+landed on. An effect that lasts into the next Day (e.g. listening in on private messages) follows B, and its user is
+told at dawn that a swap moved it to B. Effects that pick their own victim at random (e.g. the Jester's revenge or
+the Cardinal's curse) aren't actions aimed at a player, so a swap doesn't move them: they hit whoever they draw.
 
 R13 (Last wills)
 Players may write and update a last will before Night 1, at the beginning of each Day (except those who died the
@@ -317,10 +317,10 @@ Juror
 Bloodhound
   Tokens: 2 scent tokens.
   Night: at the end of every night, code draws three random players other than you from those alive at the start of
-  the night, and you learn their names and how many Attacks (R3) they have made in total this game, tonight's
-  included, whether or not the Attacks killed anyone. Each player's Katana attacks, shots, alert or trap hits and
-  so on all count; a role-blocked attack never happened, so it doesn't. This needs no action and a role-block
-  doesn't stop it.
+  the night, and you learn their names and one combined count: how many Attacks (R3) the three have made in total
+  this game, tonight's included, whether or not the Attacks killed anyone. Each player's Katana attacks, shots,
+  alert or trap hits and so on all count; a role-blocked attack never happened, so it doesn't. This needs no action
+  and a role-block doesn't stop it.
   Night: may also spend a token to track one player other than yourself: they take one of the three places that
   night and code draws the other two. A role-block stops the tracking (R9) but not the result.
 
@@ -459,7 +459,7 @@ Ritualist
   Tokens: 2 ritual tokens.
   Night: may guess one player's exact role (Astral Visit), spending 1 token for a Standard Attack or 2 for a
   Divine Attack. If right, the Attack is dealt. If wrong, the moderator publicly announces at the start of the
-  next Day that you are a Ritualist.
+  next Day that you are a Ritualist. The tokens are spent either way.
 
 Puppeteer
   Tokens: 1 puppet token.

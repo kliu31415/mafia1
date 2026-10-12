@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "285e84905105ed43",
- "text_sha256": "83800aaa06b82c12",
+ "cut_sha256": "3f8bd797b43e81eb",
+ "text_sha256": "4a8ffbc05aee9eac",
  "made_by": "a Claude Code session",
- "made": "2026-10-12T00:42:16",
+ "made": "2026-10-12T00:59:22",
  "cost": 0.0,
  "edits": [
   {
@@ -45,6 +45,11 @@
    "old": "- Some roles can change how votes are counted. If an announced vote total doesn't match the number of voters,\n  a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial\n  that Day, so the number of changed totals doesn't show how many times a role was used.\n",
    "new": "",
    "reason": "No role on the script changes how votes are counted, so announced totals always match the voters (a player in game_20261011_011316_850196 expected otherwise)."
+  },
+  {
+   "old": "(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as the Ex-Con's visit",
+   "new": "(including the Katana's attack, Astral checks and automatic actions such as the Ex-Con's visit",
+   "reason": "Juror isn't on the script"
   }
  ]
 }
