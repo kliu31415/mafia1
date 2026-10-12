@@ -105,7 +105,9 @@ from records import caller_of, read_records, redact, safe_print
 #     attack and hits its attacker back if it was a visit (before, it hit the first non-Village visitor)
 # 56: "puppeting_lapsed" records (player, puppets) when a Puppeteer dies mid-Day; "day_shot_dropped" gains reason
 #     ("game over") for shots not fired because an earlier one decided the game
-LOG_VERSION = 56
+# 57: Day 1 is back, talk only (rules R1): no nominations or trials, at most 2 rounds, no will round (the first
+#     will comes with the Night 1 action); log versions 36-56 have no Day 1
+LOG_VERSION = 57
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

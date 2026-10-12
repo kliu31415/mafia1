@@ -8,7 +8,7 @@
 You are the omniscient moderator of this game. Code stores the state and runs the day phase; you resolve what code can't by calling tools. Be exact about the rules. Never reveal hidden information except as the rules allow. A private result contains only what the rules say its recipient learns, worded neutrally: never explain why a result came out as it did (e.g. never mention the Katana, framing or defenses to an investigator), and never name an attacker or reveal roles beyond what the rules allow. This game hides information (rules R4 and R12, and any game settings after the rules): in everything you write (announcements, private results, notes), never reveal a dead player's role or alignment or how any player voted, even after the game has moved on. A private result still says what the rules say its recipient learns (e.g. an investigator's result on a living player). If a rule is ambiguous, or you lack a tool or information you need, call flag_issue and then continue with your best interpretation.
 
 === user ===
-Resolve Night 1. There was no Day 1 (rules R1): this night comes first. Submitted night actions (JSON, keyed by player):
+Resolve Night 1. Submitted night actions (JSON, keyed by player):
 {
  "Alice": {
   "act": true,
@@ -60,33 +60,21 @@ Living players in seat order:
 - seat 1: Alice (Sheriff, Village)
 - seat 2: Bob (Vanilla Villager, Village)
 - seat 3: Carol (Medic, Village); tokens medic 2
+- seat 4: Dave (Vanilla Villager, Village)
 - seat 5: Erin (Grunt, Yakuza); holds the Katana
 - seat 6: Frank (Grunt, Yakuza)
-Dead: Dave (Vanilla Villager, Village), died day 1 day
 Pending day effects: none
 
 Current full state (call get_state to refresh after changes):
-{"day": 1, "phase": "night", "katana_holder": "Erin", "players": [{"name": "Alice", "seat": 0, "alive": true, "role": "Sheriff", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Bob", "seat": 1, "alive": true, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Carol", "seat": 2, "alive": true, "role": "Medic", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {"medic": 2}, "status": {}, "traits": [], "last_will": ""}, {"name": "Dave", "seat": 3, "alive": false, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Erin", "seat": 4, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Frank", "seat": 5, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "traits": [], "last_will": ""}]}
+{"day": 1, "phase": "night", "katana_holder": "Erin", "players": [{"name": "Alice", "seat": 0, "alive": true, "role": "Sheriff", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Bob", "seat": 1, "alive": true, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Carol", "seat": 2, "alive": true, "role": "Medic", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {"medic": 2}, "status": {}, "traits": [], "last_will": ""}, {"name": "Dave", "seat": 3, "alive": true, "role": "Vanilla Villager", "faction": "Village", "base_defense": "None", "sheriff_appears_evil": false, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Erin", "seat": 4, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "traits": [], "last_will": ""}, {"name": "Frank", "seat": 5, "alive": true, "role": "Grunt", "faction": "Yakuza", "base_defense": "None", "sheriff_appears_evil": true, "tokens": {}, "status": {}, "traits": [], "last_will": ""}]}
 
 Public history so far:
 [Day 1] Day 1 begins.
 [Day 1] Speaking order today goes around the circle in seat order, starting with Carol.
-[Day 1] 6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Day 1] Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
 [Day 1] [Claim] Alice: Sheriff
-[Day 1] Alice (public): Dave has been very quiet. I nominate him.
-[Day 1] Alice nominated Dave. Everyone now votes Yes/No simultaneously.
-[Day 1] Nomination votes on Dave: 6 Yes (the votes are secret).
-[Day 1] Dave is put on trial (6 Yes).
-[Day 1] Dave (public): Dave has a view on this trial.
-[Day 1] Erin (public): Erin has a view on this trial.
-[Day 1] Frank (public): Frank has a view on this trial.
-[Day 1] Alice (public): Alice has a view on this trial.
-[Day 1] Bob (public): Bob has a view on this trial.
-[Day 1] Carol (public): Carol has a view on this trial.
-[Day 1] Dave (public): Dave has a view on this trial.
-[Day 1] Trial votes on Dave: 6 Guilty, 0 Innocent (the votes are secret).
-[Day 1] Dave is executed by hanging (6 Guilty of 6 votes; 4 needed).
-[Day 1] Dave died (executed by hanging). Their role isn't revealed.
+[Day 1] Alice (public): Hi all. Dave, what do you think so far?
+[Day 1] A full round passed with no public messages. The day ends.
 [Night 1] Night 1 begins.
 [end of a cached prefix]
 

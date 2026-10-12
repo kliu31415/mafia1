@@ -50,8 +50,11 @@ def decide(name, task, schema):
     if "trial turn" in task:
         return {"public_message": f"{name} has a view on this trial."}
     if "It's your turn" in task and name == "Alice" and "Day 1, round 1" in task:
+        return {"public_message": "Hi all. Dave, what do you think so far?", "claim": "Sheriff",
+                "notepad": "Dave: quiet on D1"}
+    if "It's your turn" in task and name == "Bob" and "Day 2, round 1" in task:
         return {"public_message": "Dave has been very quiet. I nominate him.", "nominate": "Dave",
-                "claim": "Sheriff", "notepad": "Dave: quiet, nominated D1"}
+                "notepad": "Dave: quiet, nominated D2"}
     if "Yakuza chat" in task:
         return {"message": "Let's attack Alice.", "ready": True}
     if "Choose your night action" in task:
@@ -78,9 +81,9 @@ def requests(tmp_path_factory) -> list[dict]:
             CURRENT.step = None  # the moderator's calls on this thread aren't a player's
     players.ask = ask  # type: ignore[method-assign]
     moderator = Moderator(game, client, players, Model.HAIKU_5_5, "(rules)", flag_issues=True)
-    run_day(game, players)
+    run_day(game, players)  # Day 1 is talk only (rules R1)
     run_night(game, players, moderator)
-    run_day(game, players)  # everyone stays quiet, so it ends after one round
+    run_day(game, players)  # Bob nominates Dave, who is executed
     game.log.close()
     return client.requests
 
@@ -113,8 +116,8 @@ def snapshots(requests: list[dict]) -> dict[str, str]:
 
 def test_prompts_match_their_snapshots(requests, request):
     got = snapshots(requests)
-    assert {"day_turn_day1", "trial_turn_day1", "nomination_vote_day1", "trial_vote_day1", "yakuza_chat_day1",
-            "night_action_day1", "moderator_night1", "will_day1", "will_day2", "day_turn_day2"} <= set(got)
+    assert {"day_turn_day1", "trial_turn_day2", "nomination_vote_day2", "trial_vote_day2", "yakuza_chat_day1",
+            "night_action_day1", "moderator_night1", "will_day2", "day_turn_day2"} <= set(got)
     if request.config.getoption("--update-prompts"):
         PROMPTS.mkdir(exist_ok=True)
         for old in PROMPTS.glob("*.txt"):

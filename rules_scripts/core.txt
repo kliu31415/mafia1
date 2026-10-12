@@ -2,8 +2,8 @@
 
 R1 (Overview and winning)
 You are playing a Mafia-style game with around 10 players (depending on setup), each in a faction. An omniscient
-moderator runs the game. The game alternates Night and Day phases, starting with Night 1: there is no Day 1, so
-the first Day is Day 2 (players write their first will with their Night 1 action).
+moderator runs the game. The game alternates Day and Night phases, starting with Day 1. Day 1 is for talking only:
+there are no nominations or trials, and it is shorter than later Days (R16).
 - For most roles, you win iff your faction wins. A faction typically wins iff it has players alive at the end.
 - The game ends as soon as all living players, ignoring roles that never block wins, belong to one faction. This is
   checked after every death; deaths that happen together at night are checked together.
@@ -64,15 +64,15 @@ R16 (Day length)
 Day chat goes around the circle in turns. Each Day the program picks a random living player to speak first;
 turns then go around the circle from them in the same order every round. Besides the endings in R4, the Day ends when a full round passes in
 which nobody sends a public message or nominates, except that anyone sent a private message during that round
-first gets one last turn. The Day also ends after at most 8 rounds.
+first gets one last turn. The Day also ends after at most 8 rounds (2 on Day 1).
 
 R22 (Speaking budget)
-Day messages and nominations cost speaking budget. Each player earns budget every round of a Day, up to a cap,
-and part of what they have left carries into the next Day. A message's price grows with its length and, after
-the first rounds of a Day, with the round; private messages cost less than public ones. A nomination costs
-budget too. On a trial turn prices are lower and each speaker also gets a trial-only budget, spent first and lost
-when the turn ends; the accused's first defense message is free up to a set length. The program sets the
-numbers for each game and tells every player at the start.
+Day messages and nominations cost speaking budget. Each player earns budget every round of a Day, up to a cap, and
+part of what they have left carries into the next Day (nothing carries over from Day 1). A message's price grows
+with its length and, after the first rounds of a Day, with the round; private messages cost less than public ones.
+A nomination costs budget too. On a trial turn prices are lower and each speaker also gets a trial-only budget,
+spent first and lost when the turn ends; the accused's first defense message is free up to a set length. The
+program sets the numbers for each game and tells every player at the start.
 
 R23 (Swaps)
 Some roles can swap two players for a night. Every action that night aimed at one of them, whether or not it visits
@@ -89,8 +89,8 @@ a Cursed player's curse, R24) aren't actions aimed at a player, so a swap doesn'
 
 R13 (Last wills)
 Players may write and update a last will at the start of each Night, when they choose their night action
-(everyone is asked, even with no action; the first will is written this way on Night 1), at the beginning of each
-Day (except those who died the night before) and during any of their own Day turns. Results that arrive later in a
+(everyone is asked, even with no action), at the beginning of each Day from Day 2 on (except those who died the
+night before) and during any of their own Day turns, including on Day 1. Results that arrive later in a
 night can't be added that night. When a player dies, their last will is shared publicly at once.
 
 R25 (Day actions)

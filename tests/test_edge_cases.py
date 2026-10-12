@@ -579,6 +579,7 @@ def test_a_blank_start_of_day_will_keeps_the_will(game_factory):
         lambda name, task, schema: {"last_will": ""} if "last_will" in schema["properties"] and
         task.startswith("Write") else None))
     game.player("Alice").last_will = "I am the Sheriff."
+    game.day = 2  # Day 1 has no will round (rules R13)
     run_day(game, players)
     assert game.player("Alice").last_will == "I am the Sheriff."
 

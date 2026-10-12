@@ -998,17 +998,28 @@ def test_the_roleplayer_rule_lists_exactly_the_roles_it_can_be():
     assert listed == {r for r, i in ROLES.items() if i.category == "Investigative" and logic(r).roleplayer_can_fake}
 
 
-def test_a_game_starts_with_night_1_without_a_day_1(tmp_path, monkeypatch):
-    # rules R1 (Kevin, Oct 10): no Day 1. Kevin, Oct 12: the first will comes with the Night 1 action (R13).
+def test_day_1_is_talk_only(tmp_path, monkeypatch):
+    # rules R1 (Kevin, Oct 12): Day 1 is for talking only, with no nominations or trials, at most 2 rounds (R16)
+    # and no will round (the first will comes with the Night 1 action, R13); its leftover budget is lost (R22).
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = ["Vanilla Villager", "Vanilla Villager", "Sheriff", "Medic", "Grunt", "Pharmacist"]
     path = mafia.play_game(MockClient(3), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, roles, seed=3))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     day1 = [r for r in records if r["kind"] == "player_call" and r.get("day") == 1 and r.get("phase") == "day"]
-    steps = {r["step"] for r in records if r["kind"] == "player_call" and r.get("day") == 1}
-    assert not day1 and "night_action" in steps and "will" not in steps
+    assert day1 and all("nominate a player" not in r["task"] and "of at most 2." in r["task"] for r in day1)
+    assert {r["step"] for r in records if r["kind"] == "player_call" and r.get("day") == 1} >= {"night_action"}
+    assert not any(r["step"] == "will" for r in records if r["kind"] == "player_call" and r.get("day") == 1)
+    assert not any(r["kind"] == "vote" and r["day"] == 1 for r in records)
     texts = [r.get("text", "") for r in records if r["kind"] == "event"]
-    assert not any(t == "Day 1 begins." for t in texts) and any(t.startswith("There is no Day 1") for t in texts)
+    assert "Day 1 begins." in texts and any(t.startswith("Day 1 is for talking only") for t in texts)
+
+
+def test_day_1_budget_does_not_carry_over(game_factory):
+    from day import run_day
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Sheriff", "Grunt"])
+    run_day(game, players)  # ScriptedClient players stay silent, so they'd have budget left
+    assert all(p.speaking_budget == 0 for p in game.players)
+    assert not any(e.cat == "nomination" for e in game.events)
 
 
 def test_vigilante_learns_the_role_of_a_player_it_kills(game_factory):

@@ -39,6 +39,7 @@ def test_prosecuted_player_goes_straight_to_trial(game_factory):
 def test_day_ends_after_an_execution(game_factory):
     client = ScriptedClient(votes(guilty_for={"Bob"}, nominate={"Alice": "Bob", "Carol": "Dave"}))
     game, players = game_factory(TOWN4_GRUNT, client)
+    game.day = 2  # Day 1 is talk only (rules R1)
     run_day(game, players)
     assert not game.player("Bob").alive and game.player("Dave").alive
 
@@ -98,6 +99,7 @@ def always_nominate_never_convict(name, task, schema):
 
 def test_three_innocent_trials_end_the_day(game_factory):
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(always_nominate_never_convict))
+    game.day = 2  # Day 1 is talk only (rules R1)
     run_day(game, players)
     trials = [v for v in game.vote_record if "trial of" in v]
     assert len(trials) == MAX_TRIALS_PER_DAY and all(p.alive for p in game.players)
@@ -106,6 +108,7 @@ def test_three_innocent_trials_end_the_day(game_factory):
 
 def test_prosecutions_count_toward_the_trial_limit(game_factory):
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(always_nominate_never_convict))
+    game.day = 2  # Day 1 is talk only (rules R1)
     game.prosecutions.append("Erin")
     run_day(game, players)
     trials = [v for v in game.vote_record if "trial of" in v]
@@ -265,6 +268,7 @@ def test_a_new_claim_shows_in_everyones_history_and_a_name_prefix_is_dropped(gam
 
 def test_each_day_states_the_living_count_and_nomination_threshold(game_factory):
     game, players = game_factory(TOWN4_GRUNT)
+    game.day = 2  # Day 1 is talk only (rules R1)
     run_day(game, players)
     assert any(e.text.startswith("5 players are alive, so a nomination needs 3 Yes votes") for e in game.events)
 

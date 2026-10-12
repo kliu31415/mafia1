@@ -105,8 +105,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
     game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
     instructions = (
-        f"Resolve Night {game.day}." + (" There was no Day 1 (rules R1): this night comes first." if game.day == 1
-                                        else "") + " Submitted night actions (JSON, keyed by player):\n"
+        f"Resolve Night {game.day}. Submitted night actions (JSON, keyed by player):\n"
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n"
         + (f"Code has already moved the Katana from {katana['moved_from']}, who held it when the night began, to "
            f"{katana['holder']}; get_state shows the new holder.\n" if katana.get("moved_from") else "")

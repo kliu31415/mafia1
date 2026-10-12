@@ -26,6 +26,17 @@ MAX_MESSAGE_WORDS = 800
 FULL_PRICE_ROUNDS = 3  # rounds at 1x; each later round's multiplier is ROUND_COST_STEP higher
 ROUND_COST_STEP = 0.5  # linear, so late rounds stay affordable: round 8 is 3.5x
 MAX_DAY_ROUNDS = 8  # rules R16; the day also ends after a full go-around in which nobody sends a public message
+# Rules R1 (Kevin, Oct 12): Day 1 is for talking only, no nominations or trials, and is shorter (R16). A full Day 1
+# hanged someone in 2 of 50 live games (both Jesters, a free win); skipping it left Night 1 with nothing to go on.
+TALK_DAY_ROUNDS = 2
+
+
+def talk_only(game: Game) -> bool:
+    return game.day == 1
+
+
+def day_rounds(game: Game) -> int:
+    return TALK_DAY_ROUNDS if talk_only(game) else MAX_DAY_ROUNDS
 FREE_DEFENSE_WORDS = 150  # the accused's first message on trial is free up to this length
 # Each player's turn in a trial is priced at 1x whatever the round, and comes with a trial-only budget
 # that is spent before their regular budget. Unspent trial budget is lost when the turn ends.
@@ -61,7 +72,8 @@ def message_cost(words: int, rnd: int, private: bool, free_words: int = 0) -> fl
 def budget_parameters() -> str:
     """The speaking-budget numbers (rules R22), shown to every player at the start of the game."""
     return (f"Speaking budget numbers for this game (rules R22): you earn {BUDGET_PER_ROUND:g} per round, up to "
-            f"{BUDGET_MAX:g}; at the start of each Day {CARRY_SHARE:.0%} of what you have left carries over. A "
+            f"{BUDGET_MAX:g}; at the start of each Day {CARRY_SHARE:.0%} of what you have left carries over, "
+            "except that nothing carries over from Day 1. A "
             f"public message costs {MESSAGE_BASE_COST:g} + (words/60 + (words/200)^2) x the round multiplier; "
             f"a private one costs {PRIVATE_COST_FACTOR:g} of that. The multiplier is 1 for rounds 1-"
             f"{FULL_PRICE_ROUNDS} and rises by {ROUND_COST_STEP:g} each later round (round {MAX_DAY_ROUNDS}: "
@@ -99,15 +111,11 @@ def write_wills(game: Game, players: Players) -> None:
         p.last_will = cap_words(will, LAST_WILL_WORDS)
 
 
-def open_game(game: Game, players: Players) -> None:
-    """There is no Day 1 (rules R1, Kevin Oct 10: in 38 live games it hanged someone twice, both Jesters, and was
-    otherwise a round of "no blind hang"). Players write their first will with their Night 1 action (R13)."""
-    game.emit("There is no Day 1: the game starts with Night 1 (rules R1), and the first Day is Day 2. Nobody has "
-              "spoken yet, so Night 1 actions are chosen without any Day discussion.", cat=PHASE)
-
-
 def run_day(game: Game, players: Players) -> None:
     play_day(game, players)
+    if talk_only(game):  # rules R22: Day 1's budget is use-it-or-lose-it, so staying quiet saves nothing for Day 2
+        for p in game.players:
+            p.speaking_budget = 0.0
     if game.check_winner() is None:
         for role_logic in day_action_logics(game):  # rules R25: day actions still waiting
             role_logic.at_day_end(game)
@@ -145,7 +153,8 @@ def play_day(game: Game, players: Players) -> None:
         else:
             del game.puppets[puppet]
 
-    write_wills(game, players)
+    if not talk_only(game):  # the first will comes with the Night 1 action (R13)
+        write_wills(game, players)
     for p in game.alive():
         p.speaking_budget *= CARRY_SHARE
     trials = 0
@@ -173,8 +182,12 @@ def play_day(game: Game, players: Players) -> None:
     start = game.rng.choice(game.alive()).seat
     game.emit(f"Speaking order today goes around the circle in seat order, starting with "
               f"{game.players[start].name}.")
-    announce_votes_needed(game)
-    for rnd in range(1, MAX_DAY_ROUNDS + 1):
+    if talk_only(game):
+        game.emit(f"Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at "
+                  f"most {TALK_DAY_ROUNDS} rounds.")
+    else:
+        announce_votes_needed(game)
+    for rnd in range(1, day_rounds(game) + 1):
         for p in game.alive():
             if not (rnd == 1 and prosecuted):
                 p.speaking_budget = min(BUDGET_MAX, p.speaking_budget + BUDGET_PER_ROUND)
@@ -186,8 +199,8 @@ def play_day(game: Game, players: Players) -> None:
         def turn(p: Player, rnd: int, extra: str = "") -> bool:
             """One chat turn plus any nomination it makes. Returns whether the day is over."""
             nonlocal active, trials
-            public, nominee = chat_turn(game, players, p, rnd, can_nominate=trials < MAX_TRIALS_PER_DAY,
-                                        extra=extra)
+            public, nominee = chat_turn(game, players, p, rnd, extra=extra,
+                                        can_nominate=trials < MAX_TRIALS_PER_DAY and not talk_only(game))
             active |= public or nominee is not None
             over = False
             if nominee:
@@ -201,7 +214,7 @@ def play_day(game: Game, players: Players) -> None:
                 n_alive = len(game.alive())
                 for role_logic in day_action_logics(game):
                     role_logic.after_day_turn(game, p)
-                if len(game.alive()) != n_alive and game.check_winner() is None:
+                if len(game.alive()) != n_alive and game.check_winner() is None and not talk_only(game):
                     announce_votes_needed(game)  # a death mid-Day (a day action) changes the count
             return over or game.check_winner() is not None
 
@@ -252,10 +265,11 @@ def planned_messages(out: dict) -> list[tuple[str | None, str]]:
 def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: bool, nomination_fee: float,
               free_words: int, trial: bool) -> str:
     """What a speaking turn asks (chat_turn's arguments); writer is the Puppeteer when p is puppeted."""
-    return (f"It is Day {game.day}, round {rnd} of at most {MAX_DAY_ROUNDS}. It's your turn. Your speaking "
+    return (f"It is Day {game.day}, round {rnd} of at most {day_rounds(game)}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND:g} per round, carrying over "
             f"up to {BUDGET_MAX:g}; at the start of each day, {CARRY_SHARE:.0%} of what you have left "
-            "carries over. You may send one public message and any "
+            "carries over" + (" (nothing carries over from Day 1)" if talk_only(game) else "")
+            + ". You may send one public message and any "
             f"number of private messages (everyone sees who you messaged, but only the recipient sees "
             f"the contents), or nothing. The transcript already shows who sent each message, so there's "
             "no need to start a message with your own name. Messages are "
