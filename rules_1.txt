@@ -237,6 +237,9 @@ and a role-block stops it too.
   (R22). Your prices and trial-only budget are the usual ones.
 - Curt (any player): the length part of your message prices (R22) is doubled, so long messages cost you much more;
   each message's base fee, nominations and your trial-only budget are the usual ones.
+- Confidant (any player): once per game, on one of your own Day turns (not while puppeted), you may send one
+  private message hidden: nobody else is told it was sent, and the public ledger doesn't count it. Its recipient
+  sees that it was hidden. Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.
 
 === PART 5: THE YAKUZA ===
 

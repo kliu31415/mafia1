@@ -376,8 +376,15 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
     if action:
         task += action.text + "\n"
         fallback |= dict.fromkeys(action.fields)
+    # Rules R24: a hidden private message (Confidant) only on a player's own turn, not while puppeted.
+    hider = next((t for t in p.traits if trait_logic(t).can_hide_pm(game, p)), None) if writer is p else None
+    if hider:
+        task += ("You may also send one of this turn's private messages hidden (your trait, once per game): set "
+                 "hidden_pm to its recipient, or leave it null. Nobody else is told that message was sent, and it "
+                 "isn't counted in the public ledger.\n")
     if writer is p:
-        schema = day_turn_schema(game, p.name, can_nominate, action=action.fields if action else None)
+        schema = day_turn_schema(game, p.name, can_nominate, action=action.fields if action else None,
+                                 hidden_pm=bool(hider))
         out = players.ask(p, task, schema, fallback, step=step, rnd=rnd)
         out = drop_own_name(out, p.name, writer.model)
     else:
@@ -431,6 +438,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             game.emit(f"You couldn't afford to nominate {nominee}.", [p.name])
             nominee = None
     public = False
+    hide_to = out.get("hidden_pm") if hider else None
     for i, (to, text) in enumerate(planned_messages(out)):
         if to is not None and to not in game.alive_names():  # the schema only offers living players
             game.log.error("harness_error", f"{p.name}'s private message went to {to!r}, who isn't a living "
@@ -457,6 +465,12 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             # A puppeted player's private chat is read and written by their Puppeteer instead. Listeners
             # (Wiretap, Eavesdropper) read it under the puppet's name, unaware of the puppeting.
             readers = [writer.name, game.chat_controller(to)] + game.pm_listeners(p.name, to)
+            if hider and to == hide_to:  # the first message to them this turn; nobody else is told it was sent
+                hide_to = None
+                game.emit(f"{p.name} -> {to} (private, hidden: nobody else was told it was sent): {text}", readers,
+                          cat=PM, speaker=p.name, to=to, message=text)
+                trait_logic(hider).hid_pm(game, p, to)
+                continue
             game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text,
                       **puppeted)
             pair = f"{p.name} -> {to}"
@@ -465,6 +479,9 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             # Everyone else sees that the message happened, but not its contents.
             game.emit(f"{p.name} sent {to} a private message.",
                       [q.name for q in game.alive() if q.name not in (p.name, to, *readers)], kind="notice")
+    if hide_to:
+        game.emit(f"You sent {hide_to} no private message this turn, so nothing was hidden and your hidden message "
+                  "is still unused.", [p.name])
     if action:
         logic(p.role).carry_out_day_action(game, p, out)
     return public, nominee

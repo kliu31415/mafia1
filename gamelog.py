@@ -111,7 +111,8 @@ from records import caller_of, read_records, redact, safe_print
 # 59: "faultline" records (player, nominee, guilty, innocent, day): a Faultline trait's result (rules R24)
 # 60: "grudge" records (player, victim, day): whom a hanged Grudge holder's attack strikes (rules R24); setup
 #     "traits" items may name a faction ("Grudge@Yakuza")
-LOG_VERSION = 60
+# 61: "confidant" records (player, to, day): a Confidant's hidden private message (rules R24)
+LOG_VERSION = 61
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

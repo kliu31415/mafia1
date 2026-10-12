@@ -245,6 +245,24 @@
     "additionalProperties": false
    }
   },
+  "hidden_pm": {
+   "anyOf": [
+    {
+     "type": "string",
+     "enum": [
+      "Alice",
+      "Bob",
+      "Carol",
+      "Dave",
+      "Erin",
+      "Frank"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
   "notepad": {
    "type": "string"
   },
@@ -271,6 +289,7 @@
   "message",
   "ready",
   "trait_actions",
+  "hidden_pm",
   "notepad",
   "reason"
  ],

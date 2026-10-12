@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "9071d2b7c5431e40",
- "text_sha256": "abb72124f4abc47e",
+ "cut_sha256": "365a332900835fad",
+ "text_sha256": "01477af869f3678f",
  "made_by": "a Claude Code session",
- "made": "2026-10-12T12:54:57+00:00",
+ "made": "2026-10-12T12:58:42+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -60,6 +60,11 @@
    "old": "- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con. Checks that see\n  true alignment, such as the Census Taker's count, aren't fooled.",
    "new": "- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con.",
    "reason": "Census Taker is not on the script."
+  },
+  {
+   "old": "  sees that it was hidden. Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.\n",
+   "new": "  sees that it was hidden.\n",
+   "reason": "No role on the script hears other players' private messages (Wiretap, Eavesdropper)."
   }
  ]
 }

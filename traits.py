@@ -131,6 +131,18 @@ TRAITS: dict[str, TraitInfo] = {
                       mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                             "<circle cx='5' cy='5' r='4.4' fill='#475569' stroke='#fff' stroke-width='1'/>"
                             "<path d='M2.8 5H7.2' stroke='#fff' stroke-width='1.3'/></svg>")),  # a closed mouth
+    # Any faction (Kevin, Oct 12 2026): secret deals. Players who hear private messages (Wiretap, Eavesdropper)
+    # still hear it, marked hidden; only the public "A sent B a private message" line is dropped.
+    "Confidant": TraitInfo(frozenset(Alignment),
+                           "Once per game, on one of your own Day turns, you may send one private message hidden: "
+                           "nobody else is told it was sent (rules R24).",
+                           "One hidden private message a game: nobody else is told it was sent.",
+                           power=0.1,
+                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                 "<circle cx='5' cy='5' r='4.4' fill='#155e75' stroke='#fff' stroke-width='1'/>"
+                                 "<rect x='2.5' y='3.3' width='5' height='3.4' fill='none' stroke='#fff' "
+                                 "stroke-width='0.8'/><path d='M2.5 3.3L5 5.2L7.5 3.3' fill='none' stroke='#fff' "
+                                 "stroke-width='0.8'/></svg>")),  # a sealed envelope
 }
 
 
@@ -145,6 +157,13 @@ class TraitLogic:
     night_note: str = ""
     budget_factor = 1.0  # multiplies the speaking budget earned each round and its cap (rules R22; Loud)
     length_factor = 1.0  # multiplies the length part of message prices (rules R22; Curt)
+
+    def can_hide_pm(self, game: Game, p: Player) -> bool:
+        """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
+        return False
+
+    def hid_pm(self, game: Game, p: Player, to: str) -> None:
+        """p sent a hidden private message to `to` with this trait."""
     code_tells_user: bool = False
     action_task: str = ""  # how the night task asks for this trait's action
 
@@ -324,6 +343,18 @@ class Curt(TraitLogic):
     length_factor = CURT_FACTOR
 
 
+CONFIDANT_USED = "confidant_used"  # game.role_state: Confidants who have sent their one hidden private message
+
+
+class Confidant(TraitLogic):
+    def can_hide_pm(self, game: Game, p: Player) -> bool:
+        return p.name not in game.role_state.get(CONFIDANT_USED, [])
+
+    def hid_pm(self, game: Game, p: Player, to: str) -> None:
+        game.role_state.setdefault(CONFIDANT_USED, []).append(p.name)
+        game.log.write("confidant", player=p.name, to=to, day=game.day)
+
+
 GRUDGES = "grudges"  # game.role_state: [holder, Guilty voters] for each Grudge holder hanged since the last night
 GRUDGE_CAUSE = "a grudge"
 
@@ -357,7 +388,8 @@ class Notorious(TraitLogic):
 
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
                                 "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious(),
-                                "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt()}
+                                "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
+                                "Confidant": Confidant()}
 assert set(LOGIC) == set(TRAITS)
 
 

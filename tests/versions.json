@@ -1,11 +1,12 @@
 {
- "log_version": 60,
+ "log_version": 61,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
   "bounty_won": ["claimed", "day", "phase", "player"],
   "briefing": ["players", "rules", "setup_note"],
   "budget_warning": ["budget", "planned", "player"],
+  "confidant": ["day", "player", "to"],
   "curse": ["cursed", "victim"],
   "day_action_refused": ["player", "target", "tokens"],
   "day_shot": ["attack", "day", "player", "target"],

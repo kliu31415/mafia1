@@ -86,7 +86,7 @@ def name_enum(names: list[str]) -> dict:
 
 
 def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = True,
-                    action: dict[str, dict] | None = None) -> dict:
+                    action: dict[str, dict] | None = None, hidden_pm: bool = False) -> dict:
     """own_turn: false when a Puppeteer writes this turn. They can set the puppet's claim, since it's
     public chat in effect (and a claim that never changes on puppeted days would expose the puppeting),
     but not the puppet's will. action: a day action's fields (roles.base.DayAction), if this turn offers one."""
@@ -100,6 +100,8 @@ def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = Tr
         props["last_will"] = nullable(STR)  # so a claim made today can be in the will by tonight
     if can_nominate:
         props["nominate"] = nullable(name_enum(game.alive_names()))
+    if hidden_pm:  # the Confidant trait (rules R24): the recipient of this turn's hidden private message
+        props["hidden_pm"] = nullable(name_enum(others))
     return obj(**props, **(action or {}))
 
 
@@ -151,6 +153,7 @@ SHARED_FIELDS: dict[str, dict] = {
     "nominate": {}, "vote": BOOL, "answer": STR, "act": BOOL, "target": {}, "second_target": {},
     "guessed_role": {}, "tokens_to_spend": {"type": "integer"}, "details": STR, "katana_vote_holder": {},
     "katana_vote_target": {}, "message": STR, "ready": BOOL, "trait_actions": {"type": "array", "items": {}},
+    "hidden_pm": {},
 }  # {} marks fields whose enum of names shared_schema fills in
 
 

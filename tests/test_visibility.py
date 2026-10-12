@@ -116,3 +116,33 @@ def test_night_history_shows_the_target_chosen_not_the_one_a_swap_moved_it_to(ga
     line = next(x for x in alice.splitlines() if x.startswith("- Night 1: you submitted"))
     assert "target Bob" in line and "Carol" not in line
     assert "attacks Carol" in bob
+
+
+def test_a_confidants_hidden_message_reaches_only_its_recipient_and_listeners(game_factory):
+    # rules R24 (Kevin, Oct 12 2026): no "A sent B a private message" line and no ledger count; a Wiretap still
+    # hears it, marked hidden; one hidden message a game.
+    from day import chat_turn
+    from tests.conftest import ScriptedClient
+    from traits import CONFIDANT_USED
+
+    def decide(name, task, schema):
+        if name == "Alice" and "private_messages" in schema["properties"]:
+            return {"private_messages": [{"to": "Bob", "text": "I'm the Sheriff."},
+                                         {"to": "Carol", "text": "Hi."}],
+                    "hidden_pm": "Bob" if "hidden_pm" in schema["properties"] else None}
+        return None
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Wiretap", "Grunt"],
+                                 ScriptedClient(decide))
+    alice = game.player("Alice")
+    alice.traits = ["Confidant"]
+    alice.speaking_budget = 8.0
+    chat_turn(game, players, alice, rnd=1, can_nominate=False)
+    hidden = next(e for e in game.events if "I'm the Sheriff." in e.text)
+    assert "hidden" in hidden.text and hidden.visible_to == {"Alice", "Bob", "Dave"}  # Dave: the Wiretap
+    assert not any("sent Bob" in e.text for e in game.events)
+    assert any("Alice sent Carol a private message." == e.text for e in game.events)  # not hidden
+    assert game.pm_record[game.day] == {"Alice -> Carol": 1}
+    assert game.role_state[CONFIDANT_USED] == ["Alice"]
+    chat_turn(game, players, alice, rnd=2, can_nominate=False)  # used up: the field isn't offered again
+    assert any("Alice sent Bob a private message." == e.text for e in game.events)
+    assert game.pm_record[game.day] == {"Alice -> Carol": 2, "Alice -> Bob": 1}
