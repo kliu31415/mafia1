@@ -222,3 +222,43 @@ Carol (public): Carol here. No nomination from me. Dave was killed by a Serial K
 Heidi (public): Heidi here. No nomination from me. Nothing more to add today.
 Carol (public): Carol here. No nomination from me. With two of us alive, nothing can pass without both votes, so I'm not voting anyone out on claims.
 Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Heidi
+  Heidi (Serial Killer): target Carol; "Serial Killer Strong Attack on Carol."
+Katana: Carol holds it and attacks Heidi.
+(to Heidi) Moderator (private): You attacked Carol tonight, and your attack succeeded. You were also attacked tonight with the Katana, and you survived.
+(to Carol) Moderator (private): Your Katana attack on Heidi tonight failed.
+[Moderator summary] Night 4: Carol (Grunt, Katana holder) attacked Heidi with the Standard Katana. Heidi's Standard Defense stopped it. Heidi (Serial Killer) made a Strong Attack on Carol (Defense None), which killed her. No traps on living players, no role-blocks, no other actions. Heidi is the only living player, so the Serial Killer wins alone.
+[Night check] Night 4: correct
+(to Carol) Moderator (private): You were attacked tonight (Serial Killer) and died.
+
+===== DAY 5 =====
+Carol died (killed by Serial Killer). Their role isn't revealed. Their last will: "Carol's last will: I am a Vanilla Villager with no night action and no results to share. Judge any claim by what can be checked against visits and deaths, and don't hang anyone on pushes alone."
+The game is over. Winners: Heidi.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Heidi
+Cost by player (USD):
+  Alice (Trapper)           $0.0000   20 calls  claude-haiku-5.5
+  Bob (Trapper)             $0.0000   14 calls  claude-haiku-5.5
+  Carol (Grunt)             $0.0000   34 calls  claude-haiku-5.5
+  Dave (Grunt)              $0.0000   25 calls  claude-haiku-5.5
+  Erin (Sheriff)            $0.0000    4 calls  claude-haiku-5.5
+  Frank (Vanilla Villager)  $0.0000   17 calls  claude-haiku-5.5
+  Grace (Kitsune)           $0.0000   14 calls  claude-haiku-5.5
+  Heidi (Serial Killer)     $0.0000   30 calls  claude-haiku-5.5
+  Moderator                 $0.0000    9 calls  claude-opus-5.5
+  Night checks              $0.0000    4 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  173 calls
