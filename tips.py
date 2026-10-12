@@ -37,6 +37,7 @@ import math
 import os
 import random
 import re
+import threading
 import time
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
@@ -144,6 +145,7 @@ def read_game(path: Path) -> dict | None:
     return {"game": path.stem, "records": lessons, "result": result, "had_tips": tips["players"] if tips else [],
             "unreliable": sorted(p for p, n in fallbacks.items() if p and n >= FALLBACKS_TO_DISTRUST),
             "mock": setup.get("settings", {}).get("mock") if setup else False,
+            "t": (setup or {}).get("t") or 0,  # start time (Unix), for ordering
             "rule_settings": variants.full(setup.get("settings") if setup else None)}
 
 
@@ -434,14 +436,18 @@ def print_alert(kind: str, error: str, **data: Any) -> None:
 
 LOCK_WAIT_S = 3600  # how long a build waits for another process's build of the same sheet
 LOCK_STALE_S = 1800  # a lock older than this was left by a process that died, and is taken over
+# The holder touches its lock this often from a background thread, so a build stuck in one long call (CLI retries, a
+# wait for a subscription limit's reset) isn't taken for a dead one.
+LOCK_HEARTBEAT_S = 300
 
 
 @contextmanager
 def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[Callable[[], None]]:
     """Only one process at a time builds a given sheet (games running in parallel each update the tips
     when they finish): a lock file next to it, created atomically, works across processes and OSes. Yields
-    touch(), which the holder calls now and then to show it's still alive; a lock nobody touched for
-    LOCK_STALE_S was left by a build that died, and is taken over."""
+    touch(), which the holder calls now and then to show it's still alive (a heartbeat thread also calls it every
+    LOCK_HEARTBEAT_S while the lock is held); a lock nobody touched for LOCK_STALE_S was left by a build that died,
+    and is taken over."""
     lock = path.with_name(path.name + ".lock")
     lock.parent.mkdir(parents=True, exist_ok=True)
     deadline = time.time() + LOCK_WAIT_S
@@ -462,15 +468,26 @@ def locked(path: Path, on_error: Callable[..., None] = print_alert) -> Iterator[
                 raise TimeoutError(f"{lock} is still held by another build after {LOCK_WAIT_S}s") from None
             time.sleep(1)
 
+    lost = threading.Event()  # reported once, not on every heartbeat
+    done = threading.Event()  # released: a heartbeat racing the unlink isn't a takeover
+
     def touch() -> None:
         try:
             os.utime(lock)
         except OSError:  # rare: another build thought ours was stale; just flag it
-            on_error("tips_error", f"{lock} was taken over by another build while this one ran; their "
-                     "notebook writes may overwrite each other", lock=str(lock))
+            if not lost.is_set() and not done.is_set():
+                lost.set()
+                on_error("tips_error", f"{lock} was taken over by another build while this one ran; their "
+                         "notebook writes may overwrite each other", lock=str(lock))
+
+    def heartbeat() -> None:
+        while not done.wait(LOCK_HEARTBEAT_S):
+            touch()
+    threading.Thread(target=heartbeat, daemon=True, name="tips-lock-heartbeat").start()
     try:
         yield touch
     finally:
+        done.set()
         lock.unlink(missing_ok=True)
 
 
@@ -495,8 +512,9 @@ def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max
            include_mock: bool, fresh: bool, on_error: Callable[..., None], touch: Callable[[], None]) -> Path:
     nb_path = notebook_path(out)
     nb = new_notebook() if fresh or not nb_path.exists() else json.loads(nb_path.read_text(encoding="utf-8"))
-    games = [g for p in sorted(paths, key=lambda p: p.name) if p.stem not in nb["games"] and (g := read_game(p))
-             and (include_mock or not g["mock"])]
+    games = [g for p in paths if p.stem not in nb["games"] and (g := read_game(p)) and (include_mock or not g["mock"])]
+    # in start order: by the setup record's time, since names before Oct 12 2026 used the PC's local time, not UTC
+    games.sort(key=lambda g: (g["t"], g["game"]))
     if not games:
         raise NoNewGames("No new game logs with lessons found (games need --lessons, which is on by default)."
                          + (f" {nb_path} already has all {len(nb['games'])} games." if nb["games"] else ""))
@@ -603,10 +621,10 @@ def pin(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, ids: list
                               f"{'un' if unpin else ''}pinned {', '.join(ids)}")
 
 
-def tool_client(timeout: float | None = None) -> LLMClient:
-    """Builds' client: Claude models through the Claude Code CLI where it's installed (claude_code.default_client),
-    with room for a long answer (REVISE_MAX_TOKENS), and errors printed as ALERT lines."""
-    client = default_client(max_tokens=REVISE_MAX_TOKENS, timeout=timeout)
+def tool_client(timeout: float | None = None, caps: dict[str, float] | None = None) -> LLMClient:
+    """Builds' client: Claude models through the Claude Code CLI where it's installed (claude_code.default_client,
+    with its plan caps), with room for a long answer (REVISE_MAX_TOKENS), and errors printed as ALERT lines."""
+    client = default_client(max_tokens=REVISE_MAX_TOKENS, timeout=timeout, caps=caps)
     client.on_error = print_alert  # type: ignore[attr-defined]
     return client
 

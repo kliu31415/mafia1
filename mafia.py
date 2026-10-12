@@ -400,14 +400,25 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
     game.emit(f"The game is over. {game.winners_line()}")
     print(f"Winners: {game.winners}")
 
-    def step(label: str, run: Callable[[], object]) -> None:
-        """A step after the game; one that fails is logged as an error and the rest still run."""
+    plan_stop: list[str] = []  # the step a Claude subscription limit stopped, if one did
+
+    def step(label: str, run: Callable[[], object], llm: bool = True) -> None:
+        """A step after the game; one that fails is logged as an error and the rest still run. Once a subscription
+        limit stops one (PlanLimitError, which would otherwise end the game before its result record, with no
+        checkpoint left to resume), the later steps that call models are skipped."""
+        if llm and plan_stop:
+            print(f"{label}: skipped (Claude subscription limit)")
+            return
         print(f"{label}...")
         try:
             run()
         except Exception as e:
             log.error("feedback_error", f"{label} failed: {type(e).__name__}: {e}", step=label,
                       traceback=traceback.format_exc())
+        except claude_code.PlanLimitError as e:
+            plan_stop.append(label)
+            log.error("plan_limit", f"{label} stopped: {e}; the later post-game steps that call models are skipped "
+                      "(the result is still written)", step=label)
 
     mock = isinstance(client, MockClient)
     lessons_file = LOG_DIR / ("mock_lessons.jsonl" if mock else "lessons.jsonl")
@@ -419,7 +430,7 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
         step("Collecting the moderator's strategy review",
              lambda: run_strategy_review(game, client, mod.model, rules, text_log, lessons_file, effort=mod.effort))
     if checker:
-        step("Waiting for night checks", checker.finish)
+        step("Waiting for night checks", checker.finish, llm=False)  # already running: just waits
     if config.review:
         step("Reviewing the log", lambda: run_review(game, client, mod.model, rules, text_log, effort=mod.effort))
     faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
@@ -439,7 +450,9 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
                         "tips": bool(p.tips),
                         "death": p.death} for p in game.players],
               errors=dict(log.error_counts))
-    if (update_tips := config.update_tips) and config.lessons:
+    if plan_stop and config.update_tips and config.lessons:
+        print("Updating the tips: skipped (Claude subscription limit; `uv run tips.py build` adds this game later)")
+    elif (update_tips := config.update_tips) and config.lessons:
         # After the result record, which it reads; its errors and cost miss the result.
         before = sum(client.total_cost.values())
         # main's notebook first, if another PC added games to it (then this PC's other games go on top again)
@@ -447,9 +460,10 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
             if update_tips == DEFAULT_TIPS and not mock else []
         step("Updating the tips notebook and sheet", lambda: build_tips(
             [*again, log.path], update_tips, client, mod, 800, include_mock=mock, on_error=log.error))
-        log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
+        if not plan_stop:  # the build itself may have hit the limit
+            log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
         if update_tips == DEFAULT_TIPS and not mock:  # next to the tips, so their commit and publish carry it
-            step("Refitting the role powers", lambda: role_power.update(LOG_DIR))
+            step("Refitting the role powers", lambda: role_power.update(LOG_DIR), llm=False)
     return usage
 
 
@@ -796,13 +810,13 @@ def main() -> None:
         path = run_quiz(client, models + [moderator], moderator, rules, LOG_DIR)
         print(f"Quiz results: {path}  Cost: {client.total_cost}")
         return
-    check_plan(ap, client, [*models, moderator])
     if args.sync and update_tips == DEFAULT_TIPS:  # a PC game: cloud games' lessons go in the tips first
-        try:
-            sync_logs.catch_up(sync_logs.Repo(), LOG_DIR, DEFAULT_TIPS.parent, args.moderator)
-        except Exception as e:  # the game can still run with the tips it has
+        try:  # under the game's --plan-cap; the game's own plan check below then sees what the catch-up used
+            sync_logs.catch_up(sync_logs.Repo(), LOG_DIR, DEFAULT_TIPS.parent, args.moderator, plan_cap)
+        except (Exception, claude_code.PlanLimitError) as e:  # the game can still run with the tips it has
             print_alert("sync_error", f"getting cloud games' logs failed: {type(e).__name__}: {e}; "
                         "`uv run sync_logs.py pull` retries")
+    check_plan(ap, client, [*models, moderator])
     with synced(args.sync and not args.mock, update_tips) as after_save:
         play_game(client, GameConfig(
             models, moderator, roles, seed, debrief=args.debrief, flag_issues=args.mod_flags,

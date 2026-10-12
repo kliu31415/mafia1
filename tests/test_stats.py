@@ -209,3 +209,14 @@ def test_players_get_the_setup_note_and_their_tips(tmp_path, monkeypatch):
         encoding="utf-8")
     assert any("A tip only this test writes." in s for s in systems)
     assert not any(", ".join(roles) in s for s in systems)
+
+
+def test_games_are_dated_and_ordered_by_their_start_time_not_their_name(tmp_path):
+    """Names before Oct 12 2026 used the PC's local time (UTC+9), later ones UTC, so name order isn't start order."""
+    for name, t in (("game_20261012_080000_1", 1_791_759_600), ("game_20261012_010000_2", 1_791_766_800)):
+        recs = game_records()
+        recs[0].update(game_id=name, t=t)
+        write_log(tmp_path / f"{name}.jsonl", recs)
+    games, _ = stats.load_games([tmp_path])
+    assert [(g["game"], g["date"]) for g in games] == [("game_20261012_080000_1", "20261011"),
+                                                       ("game_20261012_010000_2", "20261012")]

@@ -238,6 +238,42 @@ def test_parallel_builds_of_one_sheet_take_turns(tmp_path, monkeypatch):
         pass
 
 
+def test_a_held_lock_stays_fresh_while_its_build_waits_on_one_long_call(tmp_path, monkeypatch):
+    import os
+    import time
+    monkeypatch.setattr(tips, "LOCK_HEARTBEAT_S", 0.05)
+    sheet = tmp_path / "tips.md"
+    lock = sheet.with_name("tips.md.lock")
+    with tips.locked(sheet):
+        os.utime(lock, (1, 1))  # as if the build had been in one call (retries, a plan wait) for a long time
+        for _ in range(100):
+            if lock.stat().st_mtime > 1:
+                break
+            time.sleep(0.02)
+        assert time.time() - lock.stat().st_mtime < 60  # the heartbeat touched it: no other build takes it over
+    assert not lock.exists()
+
+
+def test_builds_take_games_in_start_order_not_name_order(tmp_path, monkeypatch):
+    """Names before Oct 12 2026 used the PC's local time (UTC+9), later ones UTC, so a later game can sort first."""
+    import json
+    from llm import MockClient, Model, ModelSpec
+    for name, t in (("game_20261012_080000_1", 1_791_759_600), ("game_20261012_010000_2", 1_791_766_800)):
+        (tmp_path / f"{name}.jsonl").write_text("\n".join(json.dumps(r) for r in [
+            {"kind": "setup", "t": t, "settings": {}}, {"kind": "lessons", "player": "Bob", "lessons": "x"},
+            {"kind": "result", "winners": [], "models": {}}]) + "\n", encoding="utf-8")
+    order: list[str] = []
+
+    def update_notebook(client, spec, rules, nb, g):
+        order.append(g["game"])
+        return 0, 0, 0.0
+    monkeypatch.setattr(tips, "update_notebook", update_notebook)
+    monkeypatch.setattr(tips, "_rewrite_sheet", lambda out, *a: out)
+    tips.build(sorted(tmp_path.glob("game_*.jsonl")), tmp_path / "tips.md", MockClient(0), ModelSpec(Model.OPUS_5_5),
+               500)
+    assert order == ["game_20261012_080000_1", "game_20261012_010000_2"]
+
+
 def test_a_revision_rewords_and_retires_entries_without_counting_a_game(tmp_path):
     out = tmp_path / "tips.md"
     nb = tips.new_notebook()

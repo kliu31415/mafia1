@@ -188,7 +188,7 @@ def test_cloud_games_sync_and_leave_the_tips_notebook_alone(monkeypatch, tmp_pat
     monkeypatch.setattr(sync_logs, "after_game",
                         lambda log_dir, tips_dir, cloud: calls.append(("sync", tips_dir, cloud)))
     monkeypatch.setattr(sync_logs, "catch_up",
-                        lambda repo, log_dir, tips_dir, model: calls.append(("catch_up", tips_dir)))
+                        lambda repo, log_dir, tips_dir, model, plan_cap=None: calls.append(("catch_up", tips_dir)))
     for cloud, argv, expected in [
             ("true", [], [("play", None), ("sync", None, True)]),
             ("", [], [("catch_up", mafia.DEFAULT_TIPS.parent), ("play", mafia.DEFAULT_TIPS),
@@ -296,7 +296,7 @@ def test_a_pc_game_first_adds_new_cloud_games_to_the_tips(machines, monkeypatch)
     sync_logs.push(cloud, cloud.root / "logs")
     built: list = []
     monkeypatch.setattr(sync_logs, "update_tips",
-                        lambda games, tips_dir, model: built.append(([g.name for g in games], model)))
+                        lambda games, tips_dir, model, plan_cap=None: built.append(([g.name for g in games], model)))
     logs, tips = pc.root / "logs", pc.root / "tips"
     assert [w.name for w in sync_logs.catch_up(pc, logs, tips, "opus-5.5")] == ["game_1.jsonl"]
     assert built == [(["game_1.jsonl"], "opus-5.5")]
@@ -309,8 +309,11 @@ def test_get_copies_one_game_s_files_so_a_lost_cloud_game_can_resume_elsewhere(m
     cloud, pc = machines["cloud"], machines["pc"]
     logs = cloud.root / "logs"
     logs.mkdir()
-    for name in ("game_1.jsonl", "game_1.ckpt", "game_1.txt", "game_12.jsonl", "game_2.jsonl", "lessons.jsonl"):
+    # game_1_2: another game that started in the same second (new_log's name for it), not game_1's
+    for name in ("game_1.jsonl", "game_1.ckpt", "game_1.txt", "game_1_feedback.md", "game_12.jsonl", "game_1_2.jsonl",
+                 "game_1_2.txt", "game_2.jsonl", "lessons.jsonl"):
         (logs / name).write_text(name)
     sync_logs.push(cloud, logs)
     written, kept = sync_logs.pull(pc, pc.root / "logs", "game_1")
-    assert sorted(w.name for w in written) == ["game_1.ckpt", "game_1.jsonl", "game_1.txt"] and kept == []
+    assert sorted(w.name for w in written) == ["game_1.ckpt", "game_1.jsonl", "game_1.txt",
+                                               "game_1_feedback.md"] and kept == []

@@ -218,7 +218,8 @@ def pull(repo: Repo, log_dir: Path, game: str | None = None) -> tuple[list[Path]
     # Game logs first, so the files written from them know whether their log was continued.
     for path, blob_id in sorted(repo.files(head, "logs").items(), key=lambda x: not x[0].endswith(".jsonl")):
         name = path.split("/", 1)[1]
-        if "/" in name or game and not re.match(re.escape(game) + r"[._]", name):
+        # GAME's own files (GAME.jsonl, GAME_feedback.md, ...), not GAME_2's: a game that started in the same second
+        if "/" in name or game and not re.match(re.escape(game) + r"(\.|_[a-z])", name):
             continue
         local = log_dir / name
         theirs = repo.blob(blob_id)
@@ -475,11 +476,13 @@ def rebuild_index(log_dir: Path) -> None:
               "`uv run game_index.py build` retries", file=sys.stderr)
 
 
-def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None) -> list[Path]:
+def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None,
+             plan_cap: dict[str, float] | None = None) -> list[Path]:
     """Copies new logs from the branch (cloud games') into log_dir and, unless tips_model is None, adds their
     lessons to the tips notebook (main's first, if another PC added games to it). `pull` does this, and so
     does a PC game before it starts, so the notebook never falls behind cloud games. Returns the files
-    copied. Raises RuntimeError when git fails."""
+    copied. Raises RuntimeError when git fails. plan_cap: the Claude Code plan caps for the tips build (a game's
+    --plan-cap; None: the default)."""
     written, kept = pull(repo, log_dir)
     if written:
         print(f"Copied {len(written)} files into {log_dir}" + "".join(f"\n  {w.name}" for w in written))
@@ -488,15 +491,15 @@ def catch_up(repo: Repo, log_dir: Path, tips_dir: Path, tips_model: str | None) 
     if tips_model:  # even with no new logs: a build that failed earlier left some games out
         rebase_tips(repo, tips_dir, log_dir)  # the build below adds every game it lacks anyway
         # every game, not just the new ones: build skips games it has, and retries ones a failed build missed
-        update_tips(sorted(log_dir.glob("game_*.jsonl")), tips_dir, tips_model)
+        update_tips(sorted(log_dir.glob("game_*.jsonl")), tips_dir, tips_model, plan_cap)
     return written
 
 
-def update_tips(games: list[Path], tips_dir: Path, model: str) -> None:
+def update_tips(games: list[Path], tips_dir: Path, model: str, plan_cap: dict[str, float] | None = None) -> None:
     """Adds the pulled games' lessons to the tips notebook, as a game run here does when it ends."""
     import tips
     from llm import parse_model_spec
-    client = tips.tool_client()  # Claude models through the Claude Code CLI where it's installed
+    client = tips.tool_client(caps=plan_cap)  # Claude models through the Claude Code CLI where it's installed
     try:
         tips.build(games, tips_dir / "tips.md", client, parse_model_spec(model), 800)
     except tips.NoNewGames as e:

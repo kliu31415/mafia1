@@ -100,6 +100,31 @@ def test_serve_re_renders_a_page_older_than_its_log_or_the_viewer(tmp_path, monk
     game_index.fresh_log_page(tmp_path, "/../x.html")  # not a game page: nothing happens
 
 
+def test_serve_re_renders_with_the_viewer_code_as_it_is_now_not_as_it_was_imported(tmp_path, monkeypatch):
+    import json
+
+    import log_viewer
+    log = tmp_path / "game_3.jsonl"
+    log.write_text(json.dumps({"kind": "setup", "players": [], "katana": None}), encoding="utf-8")
+
+    def old_viewer(path):
+        raise AssertionError("serve's own copy of the viewer, imported when it started, ran")
+    monkeypatch.setattr(log_viewer, "render_html", old_viewer)
+    game_index.fresh_log_page(tmp_path, "/game_3.html")
+    assert "<html" in log.with_suffix(".html").read_text(encoding="utf-8")
+    assert not list(tmp_path.glob("*.tmp"))  # written through a temp file, which is gone
+
+
+def test_the_index_lists_games_by_start_time_across_the_switch_to_utc_names(tmp_path):
+    """Names before Oct 12 2026 used the PC's local time (UTC+9), later ones UTC, so name order isn't start order."""
+    import json
+    for name, t in (("game_20261012_080000_1", 1_791_759_600), ("game_20261012_010000_2", 1_791_766_800)):
+        (tmp_path / f"{name}.jsonl").write_text(json.dumps({"kind": "setup", "t": t, "game_id": name, "players": [],
+                                                            "katana": None}), encoding="utf-8")
+    assert [g["game"] for g in game_index.load_summaries(tmp_path)] == ["game_20261012_010000_2",
+                                                                       "game_20261012_080000_1"]
+
+
 def test_serve_sends_a_placeholder_while_a_page_rebuilds(tmp_path, monkeypatch):
     import threading
     log = tmp_path / "game_2.jsonl"
@@ -111,8 +136,7 @@ def test_serve_sends_a_placeholder_while_a_page_rebuilds(tmp_path, monkeypatch):
         started.set()
         release.wait(5)
         path.with_suffix(".html").write_text("built", encoding="utf-8")
-    import log_viewer
-    monkeypatch.setattr(log_viewer, "render_html", slow_render)
+    monkeypatch.setattr(game_index, "render_page", slow_render)
     assert game_index.rebuilding(tmp_path, "/game_2.html")  # starts the render in the background
     assert started.wait(5) and game_index.rebuilding(tmp_path, "/game_2.html")  # still building: placeholder again
     release.set()

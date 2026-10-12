@@ -16,6 +16,7 @@ import functools
 import html
 import itertools
 import json
+import os
 import re
 import sys
 import urllib.parse
@@ -895,7 +896,10 @@ def render_html(jsonl_path: Path) -> Path:
             f"{votes_html(votes, name, alive_order, 'Votes (whole game)', show_day=True)}"
             f"{body}{roster_html(snaps, alive_order, roles, models, traits)}<script>{JS}</script></body></html>")
     html_path = jsonl_path.with_suffix(".html")
-    html_path.write_text(page, encoding="utf-8", errors="replace")
+    # through a temp file, so `game_index.py serve` (or a browser) never sends a half-written page
+    tmp = html_path.with_name(f"{html_path.name}.{os.getpid()}.tmp")  # per process: a game and serve may both render
+    tmp.write_text(page, encoding="utf-8", errors="replace")
+    os.replace(tmp, html_path)
     return html_path
 
 

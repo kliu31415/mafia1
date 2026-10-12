@@ -398,11 +398,12 @@ def test_other_makers_models_are_never_held_by_the_claude_caps(monkeypatch):
     assert client.chat(Model.GPT_6_LUNA, player_messages(), schema=SCHEMA) == "from openrouter"
 
 
-def run_main(monkeypatch, argv):
+def run_main(monkeypatch, argv, catch_up=lambda *a, **k: []):
     import sys
 
     import mafia
     monkeypatch.setattr(sys, "argv", ["mafia.py", *argv])
+    monkeypatch.setattr(mafia.sync_logs, "catch_up", catch_up)  # a PC game's pre-game pull: no real repo here
     with pytest.raises(SystemExit):
         mafia.main()
 
@@ -439,6 +440,76 @@ def test_a_game_at_the_cap_does_not_start_and_leaves_no_log(tmp_path, monkeypatc
     run_main(monkeypatch, [*game, "--plan-cap", "eighty"])
     assert "--plan-cap takes two percents" in capsys.readouterr().err
     assert not (tmp_path / "logs").exists()
+
+
+def test_the_pre_game_catch_up_uses_the_game_s_plan_cap_and_its_plan_limit_doesnt_stop_the_start_check(
+        tmp_path, monkeypatch, capsys):
+    import mafia
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "logs")
+    monkeypatch.setattr(claude_code, "available", lambda: True)
+    monkeypatch.delenv("CLAUDE_CODE_REMOTE", raising=False)  # a PC game, which catches up first
+    monkeypatch.setattr(time, "sleep", lambda s: None)
+    order: list[tuple] = []
+    monkeypatch.setattr(mafia, "api_client",
+                        lambda effort, via, plan_cap=None: ClaudeCodeClient(None, runner=FakeCli(used(0.75, 0.05)),
+                                                                            caps=plan_cap))
+
+    def catch_up(repo, log_dir, tips_dir, model, plan_cap=None):
+        order.append(("catch_up", plan_cap))
+        raise PlanLimitError("the tips build hit the cap")  # a BaseException: used to escape and stop main
+    real_check = mafia.check_plan
+
+    def check_plan(*a):
+        order.append(("check_plan",))
+        real_check(*a)
+    monkeypatch.setattr(mafia, "check_plan", check_plan)
+    run_main(monkeypatch, ["--players", "haiku-5.5", "--moderator", "opus-5.5", "--plan-cap", "70,30"], catch_up)
+    assert order == [("catch_up", {"five_hour": 0.7, "seven_day": 0.3}), ("check_plan",)]
+    out = capsys.readouterr()
+    assert "ALERT sync_error" in out.out and "the tips build hit the cap" in out.out  # flagged, not raised
+    assert "5-hour window, which is 75% used" in out.err  # then the game's own check stops it
+
+
+def test_tools_outside_games_take_a_plan_cap(monkeypatch):
+    import tips
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setattr(claude_code, "available", lambda: True)
+    default, game_s = tips.tool_client(), tips.tool_client(caps={"five_hour": 1.0, "seven_day": 1.0})
+    assert isinstance(default, ClaudeCodeClient) and isinstance(game_s, ClaudeCodeClient)
+    assert default.caps == claude_code.PLAN_CAPS and game_s.caps == {"five_hour": 1.0, "seven_day": 1.0}
+
+
+def test_a_timed_out_call_kills_the_cli_a_launcher_started(tmp_path):
+    import os
+    import subprocess
+    import sys
+    pidfile = tmp_path / "pid"
+    # a launcher that doesn't exec the real CLI (like a wrapper script): the "CLI" is its child
+    launcher = ("import subprocess, sys; p = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(30)']);"
+                f"open({str(pidfile)!r}, 'w').write(str(p.pid)); p.wait()")
+    started = time.monotonic()
+    with pytest.raises(subprocess.TimeoutExpired):
+        claude_code.run_cli([sys.executable, "-c", launcher], "", dict(os.environ), str(tmp_path), 2)
+    assert time.monotonic() - started < 10
+    pid = int(pidfile.read_text())
+    for _ in range(50):  # killed: gone, or a zombie until its parent (also killed) is reaped
+        if sys.platform == "win32" or not os.path.exists(f"/proc/{pid}"):
+            break
+        if open(f"/proc/{pid}/stat").read().split(") ")[1][0] == "Z":
+            break
+        time.sleep(0.1)
+    else:
+        os.kill(pid, 9)
+        pytest.fail("the CLI the launcher started kept running after the timeout")
+
+
+def test_run_cli_returns_the_cli_s_output(tmp_path):
+    import os
+    import sys
+    code, out, err = claude_code.run_cli(
+        [sys.executable, "-c", "import sys; print(sys.stdin.read().upper()); sys.exit(3)"], "hi", dict(os.environ),
+        str(tmp_path), 30)
+    assert (code, out.strip()) == (3, "HI")
 
 
 def test_the_start_check_runs_only_for_claude_seats_through_the_cli(capsys):
@@ -483,6 +554,31 @@ def test_a_game_stopped_at_the_weekly_cap_can_be_resumed(tmp_path, monkeypatch):
     ckpt = load(ckpt_path)
     mafia.play_game(MockClient(seed), mafia.GameConfig.from_checkpoint(ckpt), resume=ckpt)
     assert json.loads(log.read_text(encoding="utf-8").splitlines()[-1])["kind"] == "result"
+
+
+def test_a_plan_limit_after_the_game_skips_the_later_post_game_calls_but_writes_the_result(tmp_path, monkeypatch):
+    """The checkpoint is gone once the game is decided, so a stop there would lose the game's result for good."""
+    import mafia
+    from roles import DEFAULT_SETUP
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+    ran = []
+
+    def debrief(*a, **k):
+        ran.append("debrief")
+        raise PlanLimitError("games have a cap of 70% of the Claude subscription's 7-day window")
+    monkeypatch.setattr(mafia, "run_debrief", debrief)
+    monkeypatch.setattr(mafia, "run_lessons", lambda *a, **k: ran.append("lessons"))
+    monkeypatch.setattr(mafia, "build_tips", lambda *a, **k: ran.append("tips"))
+    config = mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, 7, debrief=True,
+                              update_tips=tmp_path / "tips.md")
+    log = mafia.play_game(MockClient(7), config)
+    records = [json.loads(line) for line in log.read_text(encoding="utf-8").splitlines()]
+    assert ran == ["debrief"]  # lessons, review and the tips build were skipped
+    [stop] = [r for r in records if r["kind"] == "plan_limit"]
+    assert stop["alert"] and "7-day window" in stop["error"]
+    result = next(r for r in records if r["kind"] == "result")
+    assert result["errors"]["plan_limit"] == 1
+    assert not any(r["kind"] in ("crash", "tips_update") for r in records)
 
 
 def test_an_answer_cut_off_at_the_output_cap_comes_back_as_length_without_a_retry():

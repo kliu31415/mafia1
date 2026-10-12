@@ -38,6 +38,7 @@ import csv
 import math
 from collections import defaultdict
 from collections.abc import Iterable
+from datetime import datetime, timezone
 from pathlib import Path
 
 import game_index
@@ -93,7 +94,11 @@ def load_game(path: Path) -> dict | None:
     by_name = {p["name"]: p for p in players}
     seat_models = [p["model"] for p in seated]
     frontier_share, mix = mix_of(seat_models)
-    game = {"game": game_id, "file": path.name, "date": game_id.split("_")[1] if "_" in game_id else "",
+    # dated and ordered by the setup record's time (UTC), not the name: names before Oct 12 2026 used local time
+    t = setup.get("t") if isinstance(setup.get("t"), (int, float)) else None
+    date = (datetime.fromtimestamp(t, timezone.utc).strftime("%Y%m%d") if t is not None
+            else game_id.split("_")[1] if "_" in game_id else "")
+    game = {"game": game_id, "file": path.name, "date": date, "t": t,
             "log_version": setup.get("log_version", 1), "mock": bool(settings.get("mock")),
             "setup": (settings.get("setup") or {}).get("kind", "fixed"), "players": players,
             "n_players": len(players), "days": result.get("days"), "winning_faction": winning,
@@ -307,6 +312,7 @@ def load_games(paths: Iterable[Path], include_mock: bool = False, min_version: i
             skipped["filtered out"] += 1
         else:
             games.append(g)
+    games.sort(key=lambda g: (g["t"] or 0, g["game"]))  # start order (log_files gives name order)
     return games, skipped
 
 

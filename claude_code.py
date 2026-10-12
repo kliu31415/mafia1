@@ -37,9 +37,11 @@ How it differs from an OpenRouter call:
   high; Opus needs no change.
 """
 
+import atexit
 import json
 import os
 import shutil
+import signal
 import subprocess
 import tempfile
 import threading
@@ -110,9 +112,27 @@ def child_env() -> dict[str, str]:
 
 
 def run_cli(argv: list[str], stdin: str, env: dict[str, str], cwd: str, timeout: float) -> tuple[int, str, str]:
-    p = subprocess.run(argv, input=stdin, capture_output=True, text=True, encoding="utf-8", errors="replace",
-                       env=env, cwd=cwd, timeout=timeout)
-    return p.returncode, p.stdout, p.stderr
+    """Runs the CLI in its own process group, so a timeout kills the whole tree: `claude` may be a launcher that
+    starts the real CLI as a child instead of exec-ing it (as on Kevin's PC), and subprocess.run's timeout kills
+    only the direct child, which would leave the real CLI running (and using the subscription)."""
+    windows = os.name == "nt"
+    p = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                         encoding="utf-8", errors="replace", env=env, cwd=cwd, start_new_session=not windows,
+                         creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if windows else 0)  # type: ignore[attr-defined]
+    try:
+        out, err = p.communicate(stdin, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        if windows:
+            subprocess.run(["taskkill", "/T", "/F", "/PID", str(p.pid)], capture_output=True)
+        else:
+            try:
+                os.killpg(p.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+        p.kill()
+        p.communicate()
+        raise
+    return p.returncode, out, err
 
 
 def cut_off(result: dict) -> bool:
@@ -179,11 +199,12 @@ def unquote_empty(x: Any) -> Any:
 
 
 def default_client(effort: str | None = None, max_tokens: int = DEFAULT_MAX_TOKENS,
-                   timeout: float | None = None) -> LLMClient:
+                   timeout: float | None = None, caps: dict[str, float] | None = None) -> LLMClient:
     """The client for tools outside a game (tips builds, grading, script revisions): Claude models through the
     Claude Code CLI where it's installed, as games do (Kevin, Oct 11 2026: the subscription instead of paid API
     calls; the PLAN_CAPS apply), and other models, or every model without the CLI, through OpenRouter. timeout:
-    one call's deadline (None: each client's default)."""
+    one call's deadline (None: each client's default). caps: the CLI's plan caps (None: PLAN_CAPS), e.g. a game's
+    --plan-cap for the tips build before it starts."""
     def openrouter() -> OpenRouterClient:
         client = OpenRouterClient(load_api_key(), effort=effort, max_tokens=max_tokens)
         client.timeout = timeout or client.timeout
@@ -191,7 +212,7 @@ def default_client(effort: str | None = None, max_tokens: int = DEFAULT_MAX_TOKE
     if not available():
         return openrouter()
     return ClaudeCodeClient(openrouter() if os.environ.get(API_KEY_ENV_VAR, "").strip() else None, effort=effort,
-                            timeout=timeout or CALL_DEADLINE_S, max_tokens=max_tokens)
+                            timeout=timeout or CALL_DEADLINE_S, max_tokens=max_tokens, caps=caps)
 
 
 class ClaudeCodeClient:
@@ -214,6 +235,7 @@ class ClaudeCodeClient:
         self.total_cost: dict[str, float] = other.total_cost if other else {}
         self.cost_lock = threading.Lock()
         self.cwd = tempfile.mkdtemp(prefix="mafia-claude-")  # empty, so no CLAUDE.md or project settings
+        atexit.register(shutil.rmtree, self.cwd, ignore_errors=True)  # else every game leaves one in the temp dir
         self._on_error: Callable[..., None] | None = None
         self.plan_utilization: dict[str, float] = {}  # the latest utilization of each subscription window
 
@@ -317,8 +339,10 @@ class ClaudeCodeClient:
         """The window whose utilization has reached its cap (the one that resets last, if both have): its name,
         utilization and reset time. None while games may go on using the subscription."""
         now = time.time()
-        over = [(name, used, self.plan_resets.get(name)) for name, used in self.plan_utilization.items()
-                if used >= self.caps.get(name, 1.0) < 1 and (self.plan_resets.get(name) or now + 1) > now]
+        # copies: other threads' calls update these meanwhile (a dict changing size mid-iteration raises)
+        resets = dict(self.plan_resets)
+        over = [(name, used, resets.get(name)) for name, used in list(self.plan_utilization.items())
+                if used >= self.caps.get(name, 1.0) < 1 and (resets.get(name) or now + 1) > now]
         return max(over, key=lambda o: o[2] or float("inf")) if over else None
 
     def cap_text(self, over: tuple[str, float, float | None]) -> str:

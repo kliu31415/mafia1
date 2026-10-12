@@ -15,6 +15,8 @@ import argparse
 import html
 import json
 import os
+import subprocess
+import sys
 import threading
 import urllib.parse
 import webbrowser
@@ -105,7 +107,8 @@ def load_summaries(log_dir: Path = LOG_DIR, include_mock: bool = False) -> list[
             os.replace(tmp, cache_path)
         except OSError:
             pass  # only a cache: the next build reads the logs again
-    return sorted(out, key=lambda g: g["game"].split("_", 1)[-1], reverse=True)
+    # by start time (UTC, from the setup record's `t`), not by name: names before Oct 12 2026 used the PC's local time
+    return sorted(out, key=lambda g: (g["started"], g["game"].split("_", 1)[-1]), reverse=True)
 
 
 def links(log_dir: Path, path: Path) -> dict[str, str]:
@@ -204,6 +207,16 @@ FAILED: dict[Path, float] = {}  # log -> its mtime when its re-render failed (no
 STATE_LOCK = threading.Lock()
 
 
+def render_page(log: Path) -> None:
+    """Renders a game's HTML page in a new Python process, so it runs the viewer code as it is now: `serve` imported
+    its own copy when it started, and the page is re-rendered because that code may have changed since."""
+    p = subprocess.run([sys.executable, "-c", "import sys, pathlib, log_viewer; "
+                        "log_viewer.render_html(pathlib.Path(sys.argv[1]))", str(log.resolve())],
+                       cwd=Path(__file__).parent, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if p.returncode:
+        raise RuntimeError(f"the viewer exited with {p.returncode}: {p.stderr.strip()[-500:]}")
+
+
 def fresh_log_page(log_dir: Path, url_path: str) -> None:
     """Re-renders a game's HTML page if it's older than its log or the viewer code (about a second per 10 MB of log,
     once per change). A failed render leaves the old page and isn't retried until the log changes."""
@@ -211,8 +224,7 @@ def fresh_log_page(log_dir: Path, url_path: str) -> None:
         if not (log := stale_log(log_dir, url_path)):
             return
         try:
-            import log_viewer
-            log_viewer.render_html(log)
+            render_page(log)
         except Exception as e:  # serve keeps going; the old page (if any) is sent
             FAILED[log] = log.stat().st_mtime
             print(f"ALERT render_error: couldn't re-render {log.with_suffix('.html').name}: {type(e).__name__}: {e}")
