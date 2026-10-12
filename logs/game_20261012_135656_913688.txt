@@ -164,3 +164,25 @@ Trial votes on Niaj: 10 Guilty, 1 Innocent (the votes are secret).
 Niaj is executed by hanging (10 Guilty of 11 votes; 6 needed).
 Niaj died (executed by hanging). Their role isn't revealed. Their last will: "Niaj: Vanilla Villager. No night action, no results N1-N2. I was hanged on the assumption that Judy held the Katana on N1. Coroner: examine me to confirm Vanilla. If I'm Vanilla, the Katana moved, and Judy's N1 partner is still out there. Look at Carol, who rushed my nomination before any check, and press Grace to post her full "private result" (role, night, exactly what it showed). Watch PM patterns and vote totals."
 (to Dave) The Katana passed to Dave.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Auditor): target Carol
+  Bob (Auditor): target Carol
+  Dave (Smuggler): no role action; Katana vote: Dave holds, attacks Grace
+  Erin (Seer): target Heidi; second target Grace; chose to spend 1 token(s)
+  Frank (Roleplayer): target Erin; named role Seer
+  Grace (Bloodhound): target Olivia; chose to spend 1 token(s)
+  Heidi (Vigilante): no action
+  Mallory (Trapper): target Erin
+Katana: Dave holds it and attacks Grace.
+(to Alice) Moderator (private): Your audit of Carol's votes during the Day, in order: Yes on the nomination of Niaj; Guilty in the trial of Niaj.
+(to Bob) Moderator (private): Your audit of Carol's votes during the Day, in order: Yes on the nomination of Niaj; Guilty in the trial of Niaj.
+(to Dave) Moderator (private): Your Katana attack on Grace succeeded tonight.
+(to Erin) Moderator (private): You spent your seer token to compare Heidi and Grace tonight. Result: Heidi and Grace have DIFFERENT alignments. 0 seer tokens left.
+(to Frank) Moderator (private): You guessed that Erin's role is Seer tonight. Result: your guess was wrong.
+[Moderator summary] Night 3: Dave (Smuggler, Katana holder) made no swap. The Yakuza Katana attack (Standard) on Grace killed her because she had Defense None and no trap or protection. Alice and Bob each audited Carol (audit op). Grace spent her last scent token tracking Olivia (track op). The attacks op lists Dave. Erin spent her seer token to compare Heidi and Grace: DIFFERENT, because Heidi is Notorious and reads Evil while Grace is Good. Erin has 0 tokens. Mallory placed a new trap on Erin, armed from N4. Frank (Roleplayer, fake Oracle) guessed Erin = Seer and was given the fake result 'wrong' (random draw). Heidi and Olivia did not act, and Carol has no night action. Recorded 7 visits.
+[Moderator summary] Night 3: Dave (Smuggler, holds the Katana) made no swap. The Standard Katana attack on Grace killed her: she had Defense None and no trap or protection. Alice and Bob each audited Carol (audit op). Grace spent her last scent token tracking Olivia (track op). The attacks op lists Dave. Erin spent her seer token on Heidi and Grace and got DIFFERENT: Heidi is Notorious and reads Evil, Grace is Good. Erin now has 0 seer tokens. Mallory placed a new trap on Erin, armed from N4; code gives her the result, so the held tell needed no resend. Frank (Roleplayer, fake Oracle) guessed Erin = Seer and got the fake result 'wrong' from a random draw. Heidi and Olivia did not act. Carol has no night action. 7 visits recorded.
+[Night check] Night 3: correct
+(to Grace) Moderator (private): Your Bloodhound check of Frank, Heidi and Olivia: together they have made 0 attacks this game, tonight's included. 0 scent tokens left.
+(to Grace) Moderator (private): You were attacked tonight (Katana) and died.
