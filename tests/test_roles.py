@@ -622,6 +622,22 @@ def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game
     assert "Alice (Smuggler): target Erin; second target Frank;" in replay  # the swap itself isn't moved
 
 
+def test_a_swap_doesnt_move_the_jesters_revenge_or_the_cardinals_curse(game_factory):
+    """Rules R23: effects that draw their own victim at random aren't actions aimed at a player."""
+    from night import run_night
+    choices = {"Dave": {"act": True, "target": "Bob", "second_target": "Erin"}}
+
+    def decide(name, task, schema):
+        return choices.get(name) if "Choose your night action" in task else None
+    game, players = game_factory(["Jester", "Vanilla Villager", "Cardinal", "Smuggler", "Grunt", "Grunt"],
+                                 ScriptedClient(decide))
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob"])  # Bob: the only Guilty voter
+    game.kill("Carol", "executed by hanging", guilty_voters=["Dave"])  # Bob: the only Good player left
+    run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
+    assert any("You swapped Bob and Erin" in t for t in told(game, "Dave"))
+    assert not game.player("Bob").alive and game.player("Erin").alive
+
+
 def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
     game, _ = game_factory(["Smuggler", "Grunt", "Vanilla Villager", "Vanilla Villager"])
     from roles import logic

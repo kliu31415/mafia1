@@ -83,7 +83,9 @@ A's. A result that lists several players (e.g. a group around the target) is bui
 places in the list, each named where the other would be; the roles, alignments and counts in it are still the real
 players', so the rest of the group can still hint at the swap. A Lookout who watched A watches B instead, and a
 Tracker sees the player its target's action landed on. An effect that lasts into the next Day (e.g. listening in
-on private messages) follows B, and its user is told at dawn that a swap moved it to B.
+on private messages) follows B, and its user is told at dawn that a swap moved it to B. Effects that pick their own
+victim at random (e.g. the Jester's revenge or the Cardinal's curse) aren't actions aimed at a player, so a swap
+doesn't move them: they hit whoever they draw.
 
 R13 (Last wills)
 Players may write and update a last will before Night 1, at the beginning of each Day (except those who died the
