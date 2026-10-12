@@ -131,3 +131,32 @@ Bob (public): Bob here. No nomination from me. I'll judge Alice's and my Night 2
 (to Bob, Carol) Bob -> Carol (private): Bob: no nomination today. We talk in night chat.
 Carol (public): Carol here. No nomination from me. I'll wait for Alice's Night 2 sizes on Day 3 and Frank's audit before voting on anyone.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Carol) Bob (Yakuza chat): Bob: Alice's Cartographer claim is the real threat. Her Night 2 sizes will show who visited whom, and with two of us alive, one clean read on us ends it. Proposal: Carol keeps the Katana and hits Alice tonight with a Standard attack. I take no visit (no frame tonight), so the only visit to Alice is Carol's. Carol, confirm you vote Alice and keep the holder as you. If you disagree, say so now and I'll vote with you.
+(to Bob, Carol) Carol (Yakuza chat): Carol agrees. Alice is the real Cartographer threat, so I vote Alice as the Katana target with a Standard attack tonight. I keep the holder as is, and I won't use the Ritualist tonight. Bob, please confirm your vote on Alice as well. Ready.
+(to Bob, Carol) Bob (Yakuza chat): Bob: Agreed. Carol holds the Katana and attacks Alice with a Standard attack tonight. I'm voting Alice as the target and Carol as holder. I take no night action, so my only visit is none and Carol's visit to Alice is the only one. No Ritualist guess from Carol. Ready.
+(to Bob, Carol) Carol (Yakuza chat): Carol: Confirmed. I hold the Katana, vote Alice as the target with a Standard attack. No Ritualist guess from me tonight. Bob, your no-visit plan is fine, so Alice gets only my visit. Ready.
+Night actions:
+  Alice (Cartographer): no action
+  Bob (Fabricator): no role action; Katana vote: Carol holds, attacks Alice
+  Carol (Ritualist): no role action; Katana vote: Carol holds, attacks Alice
+  Dave (Archivist): 1 token(s); "Spend the archive token to consult the archive."
+  Erin (Profiler): target Alice; 1 token(s)
+  Frank (Auditor): target Bob
+  Grace (Medic): target Erin; "Protect Erin with Standard Defense (no token cost)."
+  Heidi (Arsonist): target Alice; "Douse Alice. Dousing is my visit; she is doused for a later ignite."
+Katana: Carol holds it and attacks Alice.
+(to Dave) Moderator (private): The archive shows 8 roles, one for each of the 8 other players who were alive when the night began (including any who died tonight): 4 of them are the real roles of 4 of those players, the other 4 are fakes, all in random order: Scrutineer, Ritualist, Auditor, Serial Killer, Cartographer, Sniper, Ex-Con, Informant.
+(to Erin) Moderator (private): You profiled Alice: their role is Bounty Hunter, Cartographer or Ritualist (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 1 profile token left.
+(to Frank) Moderator (private): Your audit: Bob cast no nomination or trial votes during the Day.
+(to Carol) Moderator (private): Your Katana attack on Alice succeeded. You have 2 ritual tokens left.
+(to Grace) Moderator (private): You protect Erin with Standard Defense tonight. You have 2 medic tokens left.
+(to Heidi) Moderator (private): You douse Alice tonight.
+[Moderator summary] Night 2: Carol (Katana holder) attacked Alice with the Standard Katana and killed her (Defense None, unprotected). Heidi doused Alice. Dave consulted the archive (token spent). Erin profiled Alice (token spent). Frank audited Bob. Grace protected Erin (Standard, no token); Erin wasn't attacked. Bob, Carol (own role) and Alice took no actions. Visits: Carol->Alice, Erin->Alice, Frank->Bob, Grace->Erin, Heidi->Alice.
+[Night check] Night 2: correct
+(to Alice) Moderator (private): Tonight's visit groups have sizes 5, 2, 1, 1.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): You were attacked tonight (Avenger) and died.
+(to Bob) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Alice. Carol (Ritualist) chose no action.
+(to Bob) The Katana passed to Bob.
