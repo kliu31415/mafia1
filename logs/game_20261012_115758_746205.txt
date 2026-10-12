@@ -258,3 +258,29 @@ Heidi (public): Heidi here, Trapper. My trap on Alice is armed and hasn't gone o
 Alice (public): Alice here, no nomination. Dave, you visited Bob on Night 2 and then rushed the Guilty vote on Grace before Night 3 results. Please explain that visit. No hang until Night 3 is posted.
 Carol (public): Carol here. Dave visited Bob on Night 2, then rushed a Guilty vote on Grace before any Night 3 results. Dave, explain why.
 Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+(to Carol, Grace) Carol (Yakuza chat): Carol: Proposal for tonight. Grace keeps the Katana (holder Grace). Target: Dave. He visited Bob on Night 2, nominated Grace within minutes of the Night 2 questions, and pushed Guilty before Night 3 results. That is the most active threat to us right now. Heidi's trap sits on Alice, so Alice is off the table. I'm holding my Fixer token tonight. Grace, confirm holder Grace and target Dave, or name your objection. Ready after your reply.
+(to Carol, Grace) Grace (Yakuza chat): Grace: Agreed. Katana stays with Grace (holder Grace), target Dave. He visited Bob on Night 2, pushed the Guilty vote before Night 3 results, and Alice stays off the table because of Heidi's trap. Carol, keep your Fixer token and no public surprises. Ready.
+(to Carol, Grace) Carol (Yakuza chat): Carol: Agreed. Grace holds the Katana, target Dave. Dave's N2 visit to Bob and his rushed Guilty vote on Grace are the clearest lead we have. I'm holding my Fixer token tonight and making no public moves. Ready.
+(to Carol, Grace) Grace (Yakuza chat): Grace: Agreed. Katana stays with me (holder Grace), target Dave. He's the most active accuser, and his N2 visit to Bob plus the rushed Guilty vote make him the clearest target. Carol, keep your Fixer token. Today, keep public messages short and don't add new claims. Ready.
+Night actions:
+  Carol (Fixer): no role action; Katana vote: Grace holds, attacks Dave
+  Dave (Enforcer): target Carol; "Basic visit on Carol, 0 tokens. If Carol makes an attack of her own choosing tonight (for example a Katana attack as holder), she is attacked."
+  Erin (Accountant): target Carol; "Night 3 Accountant audit on Carol: checking her token count. She denied any visit on Nights 1 and 2, yet she and Grace have exchanged many private messages, and Bob's Night 2 Katana visitor is still unidentified."
+  Frank (Juror): target Dave; second target Carol
+  Grace (Talent Agent): named role Enforcer; chose to spend 1 token(s); "Talent Agent Count: how many players have the Enforcer role in play. Non-visit, no target."; Katana vote: Grace holds, attacks Dave
+  Heidi (Trapper): no action
+  Alice (Ex-Con): automatic: target Frank; "random visit"
+Katana: Grace holds it and attacks Dave.
+(to Frank) Moderator (private): Your jury check: Dave and Carol voted the same way in 0 of 1 trial votes and 0 of 1 nomination votes.
+(to Grace) Moderator (private): Your count: 1 player alive when the night began has the role Enforcer.
+(to Dave) Moderator (private): You visited Carol tonight. You did not attack. You have 3 enforcer tokens left.
+[Moderator summary] Night 3: No role-blocks or swaps. Grace held the Katana and made a Standard attack on Dave (Defense None, no trap on him), so Dave died to the Katana. Dave's Enforcer visit to Carol (0 tokens, Basic) did not fire because Carol made no attack; he still has 3 enforcer tokens. Erin audited Carol's tokens (count_tokens; Carol has 2 fixer tokens). Frank used his Juror check on Dave and Carol (Astral). Grace spent her last talent token to count Enforcer. Alice's Ex-Con random visit landed on Frank. Heidi took no action, and her trap on Alice is still there and didn't go off. Visits: Dave->Carol, Erin->Carol, Grace->Dave, Alice->Frank.
+(to Grace) Moderator (private): Your Katana attack on Dave succeeded.
+[Moderator summary] Night 3 is resolved. There were no role-blocks or swaps. Grace held the Katana and made a Standard attack on Dave. Dave had Defense None and no trap, so he died to the Katana. Grace was told her attack succeeded. Dave's Enforcer visit to Carol (0 tokens, Basic) did not fire because Carol made no attack; he still has 3 enforcer tokens. Erin audited Carol's tokens (count_tokens; Carol has 2 fixer tokens). Frank used his Juror check on Dave and Carol (an Astral Visit, so not recorded as a visit). Grace spent her last talent token to count Enforcer. Alice's Ex-Con random visit landed on Frank. Heidi took no action; her trap on Alice is still in place and didn't go off. Visits: Dave->Carol, Erin->Carol, Grace->Dave, Alice->Frank.
+[Night check] Night 3: correct
+(to Erin) Moderator (private): Your audit: Carol has 2 tokens in total.
+(to Dave) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Dave. Grace (Talent Agent) chose to act, naming Enforcer, spending 1 token(s) ("Talent Agent Count: how many players have the Enforcer role in play. Non-visit, no target.").
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Dave. Carol (Fixer) chose no action.
