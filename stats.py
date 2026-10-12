@@ -143,7 +143,9 @@ def decisions(records: list[dict], players: dict[str, dict], log_version: int = 
             day, actions = r["day"], r["actions"]
             roles = {n: log_role(role, log_version) for n, role in (r.get("roles") or {}).items()}  # retired roles
             attacked = {katana.get(day)} | {a.get("target") for n, a in actions.items()
-                                           if roles.get(n) in ATTACKERS and a.get("act")}
+                                           if roles.get(n) in ATTACKERS and a.get("act")} \
+                | {t.get("target") for a in actions.values() for t in a.get("trait_actions") or []
+                   if t.get("trait") == "Armed"}  # a hidden gun's shot (traits.py)
             for name, a in actions.items():
                 role, target = roles.get(name), a.get("target")
                 if name not in players or not a.get("act") or target not in players or target == name:

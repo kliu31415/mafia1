@@ -79,7 +79,7 @@ def setup_note(setup: dict | None, roles: list[str]) -> str:
         text = (f"This game has {n} players. Its roles were picked by hand, not drawn by a standard setup. Roughly: "
                 f"{max(1, yakuza - 1)} to {yakuza + 1} Yakuza, 0 to {neutral + 1} Neutrals, and the rest Village. "
                 "Any role in the rules may be in it, and roles may repeat.")
-    if setup and setup.get("kind") == "random":
+    if setup and setup.get("kind") == "random" and not setup.get("traits_given"):  # not chosen with --traits
         text += (f" Separately, 0 to {MAX_TRAITS} traits (R24) are dealt to Village players, usually 1 or 2 (one "
                  "player may get several), drawn to help balance the sides.")
     else:

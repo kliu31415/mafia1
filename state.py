@@ -11,7 +11,8 @@ from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
-from traits import eligible as trait_eligible, trait_logic
+from roles.base import REVENGE_CAUSE
+from traits import LOGIC as TRAIT_LOGIC, TRAITS, eligible as trait_eligible, trait_logic
 import variants
 
 
@@ -252,7 +253,6 @@ class Game:
 
     def run_night_end_hooks(self) -> None:
         """Role and trait effects at the end of the night (e.g. a Cursed player's curse, traits.py)."""
-        from traits import LOGIC as TRAIT_LOGIC
         hooks: list = [*LOGIC.values(), *TRAIT_LOGIC.values()]
         for hook in sorted(hooks, key=lambda h: h.night_end_order):  # stable: roles first at the same order
             hook.at_night_end(self)
@@ -343,7 +343,7 @@ class Game:
             if targets:
                 victim = self.rng.choice(targets)
                 self.log.write("revenge", source=source, victim=victim)
-                self.kill(victim, f"{self.player(source).role}'s revenge", by=source)
+                self.kill(victim, self.player(source).role + REVENGE_CAUSE, by=source)
         self.pending_revenge.clear()
 
     def check_winner(self) -> list[str] | None:
@@ -373,7 +373,8 @@ class Game:
         def who(p: Player) -> str:
             extras = [f"tokens {', '.join(f'{k} {v}' for k, v in p.tokens.items())}" if p.tokens else "",
                       f"status {json.dumps(p.status)}" if p.status else "",
-                      "holds the Katana" if p.name == self.katana_holder else ""]
+                      "holds the Katana" if p.name == self.katana_holder else "",
+                      f"traits {', '.join(p.traits)}" if p.traits else ""]
             return f"{p.name} ({p.role}, {p.faction})" + "".join(f"; {x}" for x in extras if x)
         lines = [f"Day {self.day}, {self.phase}. Katana holder: {self.katana_holder or 'none'}.",
                  "Living players in seat order:"]
@@ -399,7 +400,7 @@ class Game:
             "players": [{
                 "name": p.name, "seat": p.seat, "alive": p.alive, "role": p.role, "faction": p.faction,
                 "base_defense": p.info.defense, "sheriff_appears_evil": p.info.sheriff_evil,
-                "tokens": p.tokens, "status": p.status, "last_will": p.last_will,
+                "tokens": p.tokens, "status": p.status, "traits": p.traits, "last_will": p.last_will,
             } for p in self.players],
         }
 
@@ -435,7 +436,8 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         logic(p.role).setup(game, p)
     for item in traits:  # "Martyr+Armed": one player gets both
         bundle = item.split("+")
-        if candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)]:
+        if len(set(bundle)) == len(bundle) and (
+                candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)]):
             rng.choice(candidates).traits.extend(bundle)
         else:
             log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once), "
@@ -467,6 +469,5 @@ def roles_described(game: Game) -> dict[str, dict]:
 
 def traits_described() -> dict[str, dict]:
     """Every trait's alignments, summary and hover line, likewise (traits are secret, so all of them)."""
-    from traits import TRAITS
     return {t: {"alignments": sorted(a.value for a in info.alignments), "summary": info.summary,
                 "hover": info.hover} for t, info in TRAITS.items()}

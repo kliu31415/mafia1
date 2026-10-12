@@ -69,14 +69,19 @@ def games(log_dir: Path) -> list[tuple[list[str], int, float]]:
     """(start roles, 1 if the Village won else 0, weight) for each finished live game in log_dir that has a
     winning faction (games stopped by the stall rule or the day limit are left out)."""
     import stats  # here: it imports the game index, which setups (which imports this) doesn't need
+    from roles import RETIRED_BY_LABEL
     out = []
     for path in sorted(log_dir.glob("game_*.jsonl")):
         g = stats.load_game(path)
-        if not g or g["mock"] or g["winning_faction"] is None or any(r not in PRIOR for r in g["roles"]):
+        if not g or g["mock"] or g["winning_faction"] is None:
+            continue
+        # A retired role counts as the role it became (e.g. the Cardinal as a Vanilla Villager; traits aren't fitted).
+        roles = [RETIRED_BY_LABEL[r].now[0] if r in RETIRED_BY_LABEL else r for r in g["roles"]]
+        if any(r not in PRIOR for r in roles):
             continue
         setup = json.loads(path.open(encoding="utf-8").readline())
         same = variants.full((setup.get("settings") or {})) == variants.DEFAULTS
-        out.append((g["roles"], int(g["winning_faction"] == "Village"), 1.0 if same else OTHER_SETTINGS_WEIGHT))
+        out.append((roles, int(g["winning_faction"] == "Village"), 1.0 if same else OTHER_SETTINGS_WEIGHT))
     return out
 
 

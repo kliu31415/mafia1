@@ -1915,3 +1915,50 @@ def test_a_trap_replaced_earlier_in_the_batch_doesnt_act_and_charm_and_trap_matc
     out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [  # the cause worded otherwise
         {"by": "Dave", "attack": "Standard", "cause": "Katana attack", "visit": True}]})
     assert "stays armed" in out["results"][0] and game.player("Bob").status[Status.TRAPPED_BY] == "Alice"
+
+
+def test_an_avenger_hits_a_killer_who_died_earlier_the_same_night_whatever_the_op_order(game_factory):
+    # rules R10 (simultaneous) and R12 (every fatal cause revealed): the Vigilante's kill of the Serial Killer
+    # applied first mustn't spare the Serial Killer the Avenger's attack
+    game, _ = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt", "Serial Killer"])
+    game.player("Alice").traits = ["Avenger"]
+    game.phase = "night"
+    game.kill("Frank", "Vigilante", by="Bob")
+    game.kill("Alice", "Serial Killer", by="Frank")
+    assert game.player("Frank").death["killers"] == ["Bob", "Alice"]
+    assert game.role_state["code_attacks"][game.day] == ["Alice"]
+
+
+def test_the_moderator_and_the_night_check_see_who_has_which_trait(game_factory):
+    game, _ = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt"])
+    game.player("Alice").traits = ["Avenger", "Armed"]
+    assert next(p for p in game.full_state()["players"] if p["name"] == "Alice")["traits"] == ["Avenger", "Armed"]
+    assert "Alice (Vanilla Villager, Village); traits Avenger, Armed" in game.state_summary()
+
+
+def test_a_trait_bundle_naming_one_trait_twice_is_refused(tmp_path, capsys):
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    log = GameLog(tmp_path / "test.jsonl")
+    game = setup_game(["Sheriff", "Vanilla Villager", "Grunt"], [Model.HAIKU_5_5], random.Random(1), log,
+                      traits=["Martyr+Martyr"])
+    assert all(not p.traits for p in game.players) and log.error_counts == {"setup_error": 1}
+    with pytest.raises(SystemExit):
+        mafia.choose_traits(mafia.build_parser(), mafia.build_parser().parse_args(["--traits", "Martyr+Martyr"]),
+                            [], None, 1)
+    assert "at most once" in capsys.readouterr().err
+
+
+def test_a_resumed_hand_picked_list_names_what_a_retired_role_became():
+    config = mafia.GameConfig.from_checkpoint({"log_version": 50, "config": {
+        "models": [Model.HAIKU_5_5], "moderator": Model.HAIKU_5_5, "roles": ["Cardinal", "Sheriff"]}})
+    assert config.roles == ["Vanilla Villager", "Sheriff"]
+
+
+def test_the_setup_note_doesnt_say_traits_were_drawn_when_they_were_chosen():
+    from setups import setup_note
+    drawn = {"kind": "random", "name": "standard", "players": 13}
+    assert "drawn to help balance" in setup_note(drawn, ["Sheriff"] * 13)
+    assert "drawn to help balance" not in setup_note({**drawn, "traits_given": True}, ["Sheriff"] * 13)

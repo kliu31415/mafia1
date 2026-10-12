@@ -86,7 +86,7 @@ from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
 from players import Players, role_briefing
-from roles import ROLES, Status, role_status_table
+from roles import ROLES, Status, retired_entry, role_status_table
 from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_note
 from events import PHASE
 from records import read_records
@@ -211,11 +211,16 @@ class GameConfig:
         would name this module, which is __main__ when mafia.py runs as a script); before GameConfig they were
         play_game's keyword arguments, "play_args"."""
         if "config" in ckpt:
-            return cls(**{**variants.LEGACY, **ckpt["config"]})  # checkpoints from before the rule settings
-        old = dict(ckpt["play_args"])
-        old["moderator"] = old.pop("moderator_model")
-        old["player_tips"] = old["player_tips"] or []
-        return cls(**{**variants.LEGACY, **old})
+            config = cls(**{**variants.LEGACY, **ckpt["config"]})  # checkpoints from before the rule settings
+        else:
+            old = dict(ckpt["play_args"])
+            old["moderator"] = old.pop("moderator_model")
+            old["player_tips"] = old["player_tips"] or []
+            config = cls(**{**variants.LEGACY, **old})
+        if config.roles:  # a hand-picked list naming a role retired since (checkpoint.resume_retired renames players)
+            config.roles = [found[1].now[0] if (found := retired_entry(r, ckpt.get("log_version", 0))) else r
+                            for r in config.roles]
+        return config
 
 
 def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
@@ -728,11 +733,15 @@ def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: 
     if args.traits is None:
         # Its own RNG, so a seed's traits don't change the rest of its setup (and vice versa).
         return draw_traits(roles, random.Random(f"traits|{seed}")) if setup else []
+    if setup:  # the setup note mustn't tell players the traits were drawn (setups.setup_note)
+        setup["traits_given"] = True
     if args.traits == "none":
         return []
     names = [t.strip() for t in args.traits.split(",")]
     if unknown := [t for item in names for t in item.split("+") if t not in TRAITS]:
         ap.error(f"unknown traits: {unknown} (known: {', '.join(TRAITS)})")
+    if repeated := [item for item in names if len(set(item.split("+"))) < len(item.split("+"))]:
+        ap.error(f"a player holds a trait at most once (rules R24): {repeated}")
     return names
 
 

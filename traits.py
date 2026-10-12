@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 
 from events import DEATH
 from roles import Alignment
-from roles.base import acted_tonight, join_names, record_attack, swap_partner
+from roles.base import REVENGE_CAUSE, acted_tonight, join_names, record_attack, swap_partner
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -112,22 +112,29 @@ class Martyr(TraitLogic):
         game.log.write("martyr", player=p.name, guilty=guilty_voters, day=game.day)
 
 
+AVENGER_CAUSE, CURSE_CAUSE = "Avenger", "a curse"  # the causes of attacks code makes (also REVENGE_CAUSE)
+
+
 class Avenger(TraitLogic):
     night_note = ("Avenger (a trait, R24): when you kill an Avenger at night, code deals a Divine Attack to every "
-                  "player in that kill's `by` who is still alive and kills them (cause 'Avenger'), so list in `by` "
-                  "every player whose attack would have killed them (R12). Don't resolve it yourself; you don't "
-                  "tell() those deaths either.")
+                  "player in that kill's `by` (alive when the night began) and kills them (cause 'Avenger'), so list "
+                  "in `by` every player whose attack would have killed them (R12). Don't resolve it yourself; you "
+                  "don't tell() those deaths either.")
 
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         if game.phase != "night" or not p.death:  # rules R24: only a night death; a hanging isn't an attack
             return
-        # A killer already dead isn't hit: that's also how code-made attacks (a Jester's revenge, a Cursed player's
-        # curse) are left out, since their user is gone by then.
-        for name in p.death["killers"]:
-            if game.player(name).alive:
+        # Code-made attacks (a Jester's revenge, a Cursed player's curse, another Avenger's) aren't the user's own
+        # attack, so they don't set it off. A killer who died earlier in tonight's resolution is still hit (rules
+        # R10: the night is simultaneous; R12: the cause joins their death), whatever order the moderator's ops came in.
+        cause = p.death["cause"]
+        if cause in (CURSE_CAUSE, AVENGER_CAUSE) or cause.endswith(REVENGE_CAUSE):
+            return
+        for name in dict.fromkeys(p.death["killers"]):
+            if acted_tonight(game, game.player(name)) and name != p.name:
                 record_attack(game, p.name)  # for the Bloodhound's counts
                 game.log.write("avenger", player=p.name, killed=name, day=game.day)
-                game.kill(name, "Avenger", by=p.name)
+                game.kill(name, AVENGER_CAUSE, by=p.name)
 
 
 # The old Cardinal role's key (roles.RETIRED), so a checkpoint saved with a curse pending carries it over.
@@ -153,7 +160,7 @@ class Cursed(TraitLogic):
                 if good:
                     victim = game.rng.choice(good)
                     game.log.write("curse", victim=victim, cursed=cursed)
-                    game.kill(victim, "a curse", by=cursed)  # by: for deaths-by-role analysis
+                    game.kill(victim, CURSE_CAUSE, by=cursed)  # by: for deaths-by-role analysis
                     record_attack(game, cursed)  # a Divine Attack
 
 
