@@ -406,3 +406,58 @@ Trial votes on Heidi: 5 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Heidi] Guilty - Alice, Bob, Grace, Ivan, Olivia; Innocent - Heidi, Judy
 Heidi is executed by hanging (5 Guilty of 7 votes; 4 needed).
 Heidi died (executed by hanging). Their role isn't revealed. Their last will: "Heidi (Village). I have no confirmed role information to share publicly. Judge every claim by whether it fits the announced deaths, votes and night results, not by how confidently it is pushed. Erin fits the Serial Killer profile given Frank's and Niaj's kills. Alice's trap has never reported anything, so treat it as unverified."
+
+===== NIGHT 5 =====
+Night actions:
+  Alice (Trapper): target Ivan; "Moving my trap from dead Heidi to Ivan. Ivan's profiles are the most direct threat to the Yakuza, so any non-Village visitor to Ivan this night and later nights gets a Strong Attack."
+  Bob (Juror): target Judy; second target Olivia; "Juror: checking Judy and Olivia for how often they voted the same way."
+  Ivan (Profiler): no action
+  Judy (Informant): no role action; Katana vote: Judy holds, attacks Ivan
+  Olivia (Vigilante): target Judy; 1 token(s); "Basic shot on Judy. Judy defended Heidi (a Yakuza-only Diviner claim) and had private messages with Heidi on Days 4 and 5, so she is my strongest Yakuza lead. Basic kills only Defense None."
+Katana: Judy holds it and attacks Ivan.
+(to Bob) Moderator (private): Your jury check: Judy and Olivia voted the same way in 0 of 3 trial votes and 3 of 4 nomination votes.
+(to Alice) Moderator (private): You moved your trap to Ivan tonight. It is armed from the next night on.
+(to Olivia) Moderator (private): You fired a Basic shot at Judy tonight. Your attack succeeded. 2 vigilante tokens left.
+(to Judy) Moderator (private): Your Katana attack on Ivan tonight succeeded.
+[Moderator summary] Night 5: Alice moved her trap from dead Heidi to Ivan (armed from Night 6; not triggered tonight). Bob's Juror check on Judy/Olivia resolved via the jury op. Judy (Katana holder) attacked Ivan with a Standard attack: Ivan (Defense None) died. Olivia fired a Basic Vigilante shot (1 token, 2 left) at Judy (Defense None): Judy died. Judy was the last living Yakuza, so only Village players remain (Alice, Bob, Grace, Olivia) and the Village should win.
+[Night check] Night 5: correct
+(to Olivia) Moderator (private): Your shot killed Judy. Their role was Informant.
+(to Ivan) Moderator (private): You were attacked tonight (Katana) and died.
+(to Judy) Moderator (private): You were attacked tonight (Vigilante) and died.
+
+===== DAY 6 =====
+Ivan died (killed by Katana). Their role isn't revealed. Their last will: "Ivan (Profiler, Martyr). Night 2: profiled Mallory, correct (Jester). Night 3: profiled Erin, Juror/SK/Wiretap. Night 4: profiled Judy, Cardinal/Cartographer/Informant. Check Judy's role claim against that profile, and check Bob's Juror claim against Erin's profile. Serial Killer and Yakuza are still alive. Do not hang on a profile or pair alone."
+Judy died (killed by Vigilante). Their role isn't revealed. Their last will: "Judy: no confirmed role and no night results. Frank's Night 1 Seer pair (Erin/Carol) was the only Seer read, and Carol's Coroner exam only confirmed that Frank was a real Seer, not what his pair showed. Ivan's profiles (Mallory on Night 2, Erin on Night 3) and Bob's Juror checks are the remaining claims to test. Ask Ivan and Bob for exact nights, targets and results, and check them against who visited whom and who died. A Serial Killer is still alive: it killed Frank and Niaj, so watch every death's cause. Alice's trap on Heidi has never reported a visit, so treat it as unverified until a non-Village visit is posted. Don't hang anyone on one claim alone."
+The game is over. Winners: Alice, Bob, Carol (dead), Frank (dead), Grace, Ivan (dead), Niaj (dead), Olivia, Mallory (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[Feedback from Grace] The ledger truncates some players' claims at 40 words, so Bob's full claim text was not visible, which made it harder to check his nomination votes.
+[Feedback from Frank] The ledger truncated Bob's claims at 40 words, so some of his vote history was unreadable in later days.
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Frank, Grace, Ivan, Niaj, Olivia, Mallory
+Cost by player (USD):
+  Alice (Trapper)       $0.0000   33 calls  claude-haiku-5.5
+  Bob (Juror)           $0.0000   33 calls  claude-haiku-5.5
+  Carol (Coroner)       $0.0000   26 calls  claude-haiku-5.5
+  Dave (Puppeteer)      $0.0000   26 calls  claude-haiku-5.5
+  Erin (Serial Killer)  $0.0000   26 calls  claude-haiku-5.5
+  Frank (Seer)          $0.0000   15 calls  claude-haiku-5.5
+  Grace (Cardinal)      $0.0000   27 calls  claude-haiku-5.5
+  Heidi (Diviner)       $0.0000   40 calls  claude-haiku-5.5
+  Ivan (Profiler)       $0.0000   35 calls  claude-haiku-5.5
+  Judy (Informant)      $0.0000   41 calls  claude-haiku-5.5
+  Mallory (Jester)      $0.0000   18 calls  claude-haiku-5.5
+  Niaj (Tracker)        $0.0000   21 calls  claude-haiku-5.5
+  Olivia (Vigilante)    $0.0000   34 calls  claude-haiku-5.5
+  Moderator             $0.0000    7 calls  claude-opus-5.5
+  Night checks          $0.0000    5 calls  claude-opus-5.5
+  Strategy review       $0.0000    1 calls  claude-opus-5.5
+  Log review            $0.0000    1 calls  claude-opus-5.5
+  Total                 $0.0000  389 calls
