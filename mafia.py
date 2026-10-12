@@ -534,8 +534,8 @@ def build_parser() -> argparse.ArgumentParser:
                     "use (scripts.py): players see only these roles' rules, and every role in the game is one of "
                     "them; 'all' is every role")
     ap.add_argument("--traits", default=None, help="traits dealt to random eligible players (traits.py, rules "
-                    "R24): comma-separated trait names, or 'none'; by default a drawn setup draws 0-3 (setups.py) and "
-                    "a role list gets none")
+                    "R24): comma-separated trait names (A+B: one player gets both), or 'none'; by default a drawn "
+                    "setup draws 0-3 (setups.py) and a role list gets none")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
@@ -727,7 +727,7 @@ def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: 
     if args.traits == "none":
         return []
     names = [t.strip() for t in args.traits.split(",")]
-    if unknown := [t for t in names if t not in TRAITS]:
+    if unknown := [t for item in names for t in item.split("+") if t not in TRAITS]:
         ap.error(f"unknown traits: {unknown} (known: {', '.join(TRAITS)})")
     return names
 

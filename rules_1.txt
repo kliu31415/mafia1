@@ -194,11 +194,15 @@ R24 (Traits)
 Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start;
 nobody else is told, and whether a game has any traits is secret. Investigations never see traits: they report
 roles and alignments only. A trait stays with you if your role changes. Traits are always true: a Roleplayer's
-trait is real even though its role isn't. Each player has at most one trait, and each trait says which players
-can get it.
+trait is real even though its role isn't. A player may have more than one trait, but never the same one twice.
+Each trait says which players can get it. A trait's night action is used in addition to your role's own, and a
+role-block stops it too.
 - Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
   names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
   other way shows nothing.
+- Armed (Village players only): once per game, at night, you may fire a hidden gun at another living player: a
+  Basic Attack. It is an action and a visit, and a role-blocked shot isn't used up. You learn only whether it
+  killed its target. A kill's cause is "a hidden gun".
 
 === PART 5: THE YAKUZA ===
 

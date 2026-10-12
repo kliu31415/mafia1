@@ -7,6 +7,7 @@ from roles import LOGIC, Alignment, Status, logic
 from roles.base import swaps_tonight
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
+from traits import night_traits, trait_logic
 from moderator import Moderator
 from night_check import NightChecker
 
@@ -25,17 +26,30 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                     "Discuss tonight's plan: who holds the Katana, who it attacks, and your other actions. "
                     + katana_majority_note(game))
 
-    actors = [p for p in game.alive() if logic(p.role).acts_at_night(p) or p.info.alignment is Alignment.EVIL]
+    actors = [p for p in game.alive() if logic(p.role).acts_at_night(p) or p.info.alignment is Alignment.EVIL
+              or night_traits(game, p)]
     jobs = []
     for p in actors:
-        task = (f"It is Night {game.day}. Choose your night action for your role, following the rules. "
-                "Set act=false to do nothing. Fill only the fields your role needs."
-                + (f" You have {tokens_left(p)}." if p.tokens else ""))
+        schema = night_action_schema(game, p)
+        if "act" in schema["properties"]:
+            task = (f"It is Night {game.day}. Choose your night action for your role, following the rules. "
+                    "Set act=false to do nothing. Fill only the fields your role needs."
+                    + (f" You have {tokens_left(p)}." if p.tokens else ""))
+        else:
+            task = f"It is Night {game.day}. Your role has no night action, but your trait has one."
         if p.info.alignment is Alignment.EVIL:
             task += (" Also vote on who should hold the Katana and who the Katana should attack (or null). "
                      + katana_majority_note(game))
-        jobs.append((p, task, night_action_schema(game, p), {"act": False}))
+        task += "".join(f" {trait_logic(t).action_task}" for t in night_traits(game, p))
+        default: dict = {"act": False} if "act" in schema["properties"] else {"trait_actions": []}
+        jobs.append((p, task, schema, default))
     actions = dict(zip([p.name for p in actors], players.ask_many(jobs, step="night_action")))
+    for a in actions.values():  # one use of each trait a night (rules R24): a repeat is dropped
+        if "trait_actions" in a:
+            first: dict[str, dict] = {}
+            for t in a["trait_actions"]:
+                first.setdefault(t["trait"], t)
+            a["trait_actions"] = list(first.values())
     for p in game.alive():
         if p.name not in actions and (auto := logic(p.role).automatic_action(game, p)) is not None:
             actions[p.name] = {**auto, "automatic": True}
@@ -210,9 +224,9 @@ def swap_text(game: Game, katana: dict) -> str:
         return ""
     pairs = "; ".join(f"{by} swapped {x} and {y}" for by, x, y in swaps)
     attack = f" The Katana attack lands on {katana['attack']}." if katana.get("attack") else ""
-    return (f"Swaps tonight (R23): {pairs}. Code has ALREADY applied them: every target, second_target and the Katana "
-            f"vote result above is the player the action lands on (the user's own pick is kept in chosen_*), so "
-            f"resolve them exactly as given and don't swap anything again.{attack}\n")
+    return (f"Swaps tonight (R23): {pairs}. Code has ALREADY applied them: every target, second_target, "
+            f"trait_actions target and the Katana vote result above is the player the action lands on (the user's "
+            f"own pick is kept in chosen_*), so resolve them exactly as given and don't swap anything again.{attack}\n")
 
 
 def snapshot(x):
@@ -221,8 +235,11 @@ def snapshot(x):
 
 
 def role_notes(game: Game) -> str:
-    """Reminders from roles/*.py for roles in this game (alive or dead, e.g. a dead Trapper's traps)."""
+    """Reminders from roles/*.py for roles in this game (alive or dead, e.g. a dead Trapper's traps), and from
+    traits.py for its traits."""
     notes = [logic(r).night_note for r in sorted({p.role for p in game.players}) if logic(r).night_note]
+    notes += [trait_logic(t).night_note for t in sorted({t for p in game.players for t in p.traits})
+              if trait_logic(t).night_note]  # traits are secret, but the moderator knows them
     if not notes:
         return ""
     return ("Also handle these roles' effects, using random_choice for anything random:\n"

@@ -12,6 +12,7 @@ from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
 from roles.base import acted_tonight
 from state import Game
+from traits import TraitLogic, trait_logic
 import variants
 
 
@@ -106,7 +107,7 @@ class Moderator:
         self.rules = rules
         self.flags: list[str] = []
         self.ops = dict(CORE_OPS)
-        self.op_roles: dict[str, RoleLogic] = {}  # role op -> the role that carries it out
+        self.op_roles: dict[str, RoleLogic | TraitLogic] = {}  # role or trait op -> what carries it out
         self.code_told: set[str] = set()  # players whose night result code delivers (RoleLogic.code_tells_user)
         self.tells_held: set[str] = set()  # ... whose tell() was held once this phase
         self.visits_reminded = False  # end_phase was refused once this night for a missing record_visits
@@ -121,6 +122,11 @@ class Moderator:
             for op, (required, optional, doc) in logic(role).ops.items():
                 self.ops[op] = (required, optional)
                 self.op_roles[op] = logic(role)
+                docs.append(doc)
+        for trait in sorted({t for p in game.players for t in p.traits}):  # e.g. Armed's shot (traits.py, R24)
+            for op, (required, optional, doc) in trait_logic(trait).ops.items():
+                self.ops[op] = (required, optional)
+                self.op_roles[op] = trait_logic(trait)
                 docs.append(doc)
         self.tools = ([MODERATOR_TOOLS[0], apply_changes_tool(docs)] + MODERATOR_TOOLS[1:]
                       + ([FLAG_TOOL] if flag_issues else []))

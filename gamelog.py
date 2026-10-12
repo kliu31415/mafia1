@@ -89,7 +89,9 @@ from records import read_records, safe_print
 # 47: setup and result players have via: how the model's calls ran (api, claude_code: --claude-code, or mock)
 # 48: setup players have traits (traits.py, rules R24); settings has traits (the traits dealt); "martyr" records
 #     (player, guilty, day) when a Martyr is hanged
-LOG_VERSION = 48
+# 49: night_actions may have trait_actions ([{trait, target}], e.g. Armed's shot), and a player asked only for one
+#     has no act; settings traits may bundle several for one player ("Martyr+Armed")
+LOG_VERSION = 49
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

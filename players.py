@@ -12,7 +12,7 @@ from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, de
 from roles import Alignment, ROLES, logic
 from roles.base import dead_before_tonight
 from state import Game, Player, phase_label
-from traits import briefing as trait_briefing
+from traits import ACTION_TRAITS, briefing as trait_briefing, night_traits
 from texts import blank, describe_action, player_view
 
 
@@ -125,7 +125,16 @@ def night_action_schema(game: Game, p: Player) -> dict:
         yakuza = [y.name for y in game.yakuza()]
         props["katana_vote_holder"] = name_enum(yakuza)
         props["katana_vote_target"] = nullable(name_enum(names))
+    if not logic(p.role).acts_at_night(p) and p.info.alignment is not Alignment.EVIL:
+        props = {}  # asked only for a trait's action
+    if traits := night_traits(game, p):
+        props["trait_actions"] = trait_actions_schema(traits, [n for n in game.alive_names() if n != p.name])
     return obj(**props)
+
+
+def trait_actions_schema(traits: list[str], names: list[str]) -> dict:
+    """Trait night actions (traits.py, rules R24), any number of them: one {trait, target} per trait used."""
+    return {"type": "array", "items": obj(trait=name_enum(traits), target=name_enum(names))}
 
 
 # Every in-game player call sends one answer schema (shared_schema) instead of its task's own, because the schema
@@ -139,7 +148,7 @@ SHARED_FIELDS: dict[str, dict] = {
     "public_message": STR, "private_messages": {"type": "array", "items": {}}, "claim": STR, "last_will": STR,
     "nominate": {}, "vote": BOOL, "answer": STR, "act": BOOL, "target": {}, "second_target": {},
     "guessed_role": {}, "tokens_to_spend": {"type": "integer"}, "details": STR, "katana_vote_holder": {},
-    "katana_vote_target": {}, "message": STR, "ready": BOOL,
+    "katana_vote_target": {}, "message": STR, "ready": BOOL, "trait_actions": {"type": "array", "items": {}},
 }  # {} marks fields whose enum of names shared_schema fills in
 
 
@@ -147,7 +156,9 @@ def shared_schema(game: Game) -> dict:
     """The answer schema of every in-game player call (see SHARED_FIELDS). Fixed for the whole game."""
     names = name_enum([p.name for p in game.players])
     fields = {**SHARED_FIELDS, "private_messages": {"type": "array", "items": obj(to=names, text=STR)},
-              "guessed_role": nullable(name_enum(list(ROLES)))}
+              "guessed_role": nullable(name_enum(list(ROLES))),
+              # every game has it, whether or not anyone has a trait (rules R24: that's secret)
+              "trait_actions": trait_actions_schema(ACTION_TRAITS, names["enum"])}
     return obj(**{k: v or nullable(names) for k, v in fields.items()})
 
 
@@ -243,7 +254,10 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
 def as_chosen(a: dict) -> dict:
     """A night action as its user chose it: a swap (rules R23) moves `target` and keeps the choice in
     `chosen_target`, and showing the moved one would reveal the swap."""
-    return {k: a.get(f"chosen_{k}", v) for k, v in a.items() if not k.startswith("chosen_")}
+    out = {k: a.get(f"chosen_{k}", v) for k, v in a.items() if not k.startswith("chosen_")}
+    if out.get("trait_actions"):
+        out["trait_actions"] = [as_chosen(t) for t in out["trait_actions"]]
+    return out
 
 
 def night_history(game: Game, p: Player) -> str:

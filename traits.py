@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 
 from events import DEATH
 from roles import Alignment
-from roles.base import join_names
+from roles.base import acted_tonight, join_names, swap_partner
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -39,11 +39,39 @@ TRAITS: dict[str, TraitInfo] = {
                               "<circle cx='5' cy='5' r='4.4' fill='#6d28d9' stroke='#fff' stroke-width='1'/>"
                               "<ellipse cx='5' cy='5' rx='2.4' ry='1.3' fill='none' stroke='#fde047' "
                               "stroke-width='1.1'/></svg>")),  # a halo
+    "Armed": TraitInfo(frozenset({Alignment.GOOD}),
+                       "Once per game, at night, you may fire a hidden gun at a living player: a Basic Attack, in "
+                       "addition to your role's own night action (rules R24).",
+                       "One hidden-gun shot a game: a Basic Attack at night, besides the role's action.",
+                       power=0.25,
+                       mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                             "<circle cx='5' cy='5' r='4.4' fill='#0f766e' stroke='#fff' stroke-width='1'/>"
+                             "<circle cx='5' cy='5' r='2.3' fill='none' stroke='#fff' stroke-width='0.9'/>"
+                             "<path d='M5 1.6V8.4M1.6 5H8.4' stroke='#fff' stroke-width='0.9'/></svg>")),  # crosshairs
 }
 
 
 class TraitLogic:
     """Defaults for every trait hook."""
+
+    # A night action (rules R24): holders who can use it tonight (can_act) are asked for it in the night answer's
+    # trait_actions, a list of {trait, target}, besides their role's action; the moderator records it with this
+    # trait's ops, which work like a role's (RoleLogic.ops, check_op, apply_op) and are offered when the trait is in
+    # the game, with night_note.
+    ops: dict[str, tuple[set[str], set[str], str]] = {}
+    night_note: str = ""
+    code_tells_user: bool = False
+    action_task: str = ""  # how the night task asks for this trait's action
+
+    def can_act(self, game: Game, p: Player) -> bool:
+        """Whether p, who has this trait, may use its night action tonight."""
+        return False
+
+    def check_op(self, game: Game, change: dict) -> str | None:
+        return None
+
+    def apply_op(self, game: Game, change: dict) -> None:
+        pass
 
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """After p's death is announced (or queued, at night). guilty_voters is set only for a hanging."""
@@ -59,7 +87,44 @@ class Martyr(TraitLogic):
         game.log.write("martyr", player=p.name, guilty=guilty_voters, day=game.day)
 
 
-LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr()}
+ARMED_USED = "armed_used"  # game.role_state: players who have fired their hidden gun (it's one shot a game)
+
+
+class Armed(TraitLogic):
+    ops = {"fire_gun": ({"player", "by"}, set(),
+                        "{op:'fire_gun', player, by}: the Armed player `by` fires their hidden gun at `player` "
+                        "(trait, R24); code marks their one shot used. Resolve the Basic Attack yourself")}
+    night_note = ("Armed (a trait, R24): a player whose trait_actions has trait 'Armed' fires their one hidden-gun "
+                  "shot at its target, in addition to their role's action. It is an action and a visit (R6; record "
+                  "it, and an alerting Veteran's attack hits the shooter): a role-block stops it along with their "
+                  "role's action, and then the shot isn't used. Unless they were role-blocked, use the fire_gun op "
+                  "(it marks the shot used, even if the attack fails) and resolve a Basic Attack on the target (R3): "
+                  "a kill's cause is 'a hidden gun' and its by is the shooter. Tell the shooter only whether their "
+                  "shot killed its target, never the target's role, and tell a surviving target they were attacked.")
+    action_task = ("You are Armed (your trait): you may fire your one hidden-gun shot tonight by adding "
+                   "{trait: 'Armed', target} to trait_actions, besides your role's own action; leave trait_actions "
+                   "empty to keep the shot.")
+
+    def can_act(self, game: Game, p: Player) -> bool:
+        return p.name not in game.role_state.get(ARMED_USED, [])
+
+    def check_op(self, game: Game, change: dict) -> str | None:
+        by, target = game.player(change["by"]), game.player(change["player"])
+        if "Armed" not in by.traits or not acted_tonight(game, by):
+            return f"{by.name} is not an Armed player who was alive when the night began"
+        if not self.can_act(game, by):
+            return f"{by.name} has already fired their hidden gun"
+        if not acted_tonight(game, target):
+            return f"{target.name} wasn't alive at the start of the night"
+        if target is by and not swap_partner(game, by.name):
+            return "an Armed player can't shoot themselves"
+        return None
+
+    def apply_op(self, game: Game, change: dict) -> None:
+        game.role_state.setdefault(ARMED_USED, []).append(change["by"])
+
+
+LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed()}
 assert set(LOGIC) == set(TRAITS)
 
 
@@ -67,11 +132,17 @@ def trait_logic(name: str) -> TraitLogic:
     return LOGIC[name]
 
 
+ACTION_TRAITS = [t for t, lg in LOGIC.items() if lg.ops]  # traits with a night action (players.trait_actions_schema)
+
+
 def eligible(p: Player, trait: str) -> bool:
-    # At most one trait each while Martyr is the only one. Kevin (Oct 12 2026): once a second trait exists, a player
-    # may have several (never the same one twice): change this, R24's "at most one trait", setups.draw_traits'
-    # seat check, and give each extra mark its own corner in log_viewer.icons_css.
-    return p.info.alignment in TRAITS[trait].alignments and not p.traits
+    # A player may have several traits, never the same one twice (Kevin, Oct 12 2026).
+    return p.info.alignment in TRAITS[trait].alignments and trait not in p.traits
+
+
+def night_traits(game: Game, p: Player) -> list[str]:
+    """p's traits whose night action p may use tonight."""
+    return [t for t in p.traits if trait_logic(t).can_act(game, p)]
 
 
 def briefing(p: Player) -> list[str]:

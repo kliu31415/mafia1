@@ -40,7 +40,7 @@ class Player:
     tips: str = ""  # a tips file from past games, shown in the system prompt (tips.py; --tips)
     speaking_budget: float = 0.0
     start_role: str = ""  # the role at setup (an Executioner can become a Jester)
-    traits: list[str] = field(default_factory=list)  # traits.py (rules R24): at most one, kept if the role changes
+    traits: list[str] = field(default_factory=list)  # traits.py (rules R24): kept if the role changes
     death: dict | None = None  # day, phase and cause, once dead
 
     def __post_init__(self) -> None:
@@ -408,7 +408,7 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
     """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py). rule_settings:
     the game's (variants.py, and its script), set before role setup hooks run, since some read them. via: how
     each model's calls are run (claude_code.route), logged per player; "api" if not given. traits: trait names
-    (traits.py) dealt to random eligible players, one each at most."""
+    (traits.py) dealt to random eligible players, or "A+B" for one player with both."""
     if len(roles) > len(PLAYER_NAMES):
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
@@ -431,12 +431,13 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         logic(p.role).setup(game, p)
-    for t in traits:
-        if candidates := [p for p in players if trait_eligible(p, t)]:
-            rng.choice(candidates).traits.append(t)
+    for item in traits:  # "Martyr+Armed": one player gets both
+        bundle = item.split("+")
+        if candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)]:
+            rng.choice(candidates).traits.extend(bundle)
         else:
-            log.error("setup_error", f"no player could get the trait {t} (each player has at most one), so it was "
-                      "left out")
+            log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once), "
+                      "so it was left out")
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,

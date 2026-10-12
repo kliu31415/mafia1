@@ -43,6 +43,10 @@ class Smuggler(RoleLogic):
                     if b.get(key) in swap:
                         b.setdefault(f"chosen_{key}", b[key])
                         b[key] = swap[b[key]]
+                for t in b.get("trait_actions") or []:  # a trait's action (R24) moves too, the Smuggler's own included
+                    if t["target"] in swap:
+                        t.setdefault("chosen_target", t["target"])
+                        t["target"] = swap[t["target"]]
             game.role_state.setdefault("swaps", {}).setdefault(game.day, []).append([name, x, y])
             game.tell([name], f"You swapped {x} and {y}. You have {left} swap token{'s' * (left != 1)} left.")
             for q in (x, y):

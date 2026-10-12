@@ -213,6 +213,36 @@
   "ready": {
    "type": "boolean"
   },
+  "trait_actions": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "trait": {
+      "type": "string",
+      "enum": [
+       "Armed"
+      ]
+     },
+     "target": {
+      "type": "string",
+      "enum": [
+       "Alice",
+       "Bob",
+       "Carol",
+       "Dave",
+       "Erin",
+       "Frank"
+      ]
+     }
+    },
+    "required": [
+     "trait",
+     "target"
+    ],
+    "additionalProperties": false
+   }
+  },
   "notepad": {
    "type": "string"
   },
@@ -238,6 +268,7 @@
   "katana_vote_target",
   "message",
   "ready",
+  "trait_actions",
   "notepad",
   "reason"
  ],

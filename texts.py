@@ -14,10 +14,13 @@ def moved(a: dict, key: str) -> str:
 def describe_action(a: dict) -> str:
     if a.get("automatic"):  # drawn by code, e.g. the Ex-Con's random visit (RoleLogic.automatic_action)
         return f"automatic: {describe_action({**a, 'automatic': False})}"
-    if not a.get("act") and not a.get("katana_vote_holder"):
+    shots = [f"{t['trait']} on {moved(t, 'target')}" for t in a.get("trait_actions") or []]  # rules R24
+    if not a.get("act") and not a.get("katana_vote_holder") and not shots:
         return "no action"
     parts = []
-    if a.get("act"):
+    if "act" not in a:
+        pass  # a role with no night action, asked only for a trait's
+    elif a.get("act"):
         for key in ("target", "second_target", "guessed_role"):
             if a.get(key):
                 parts.append(f"{key.replace('_', ' ')} {moved(a, key)}")
@@ -30,6 +33,7 @@ def describe_action(a: dict) -> str:
     if a.get("katana_vote_holder"):
         target = moved(a, "katana_vote_target") if a.get("katana_vote_target") else None
         parts.append(f"Katana vote: {a['katana_vote_holder']} holds, attacks {target}")
+    parts += [f"trait action: {s}" for s in shots]
     return "; ".join(parts)
 
 

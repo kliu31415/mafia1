@@ -10,6 +10,7 @@ from day import run_day
 from llm import MockClient, Model
 from moderator import Moderator
 from roles import ROLES, Status, logic
+from traits import ARMED_USED, TRAITS
 from tests.conftest import VILLAGE5, ScriptedClient, apply_ops, told, votes
 
 
@@ -739,7 +740,7 @@ def test_profiler_decoys_are_one_role_in_play_and_one_nobody_has(game_factory):
 
 def test_coroner_examines_only_players_dead_before_the_night(game_factory):
     from players import night_action_schema
-    game, players = game_factory(["Coroner", "Roleplayer", "Sheriff", "Grunt", "Executioner", "Vanilla Villager"])
+    game, players = game_factory(["Coroner", "Roleplayer", "Sheriff", "Grunt", "Executioner", "Lookout"])
     game.phase = "night"
     assert night_action_schema(game, game.player("Alice"))["properties"]["target"] == {"type": "null"}  # no dead yet
     for name in ("Bob", "Erin"):
@@ -1379,9 +1380,105 @@ def test_drawn_traits_stay_within_the_odds_and_the_village_seats():
     roles = ["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt", "Jester"]
     for seed in range(20):
         traits = setups.draw_traits(roles, random.Random(seed))
-        assert len(traits) <= 3 and set(traits) <= {"Martyr"}
+        assert len(traits) <= 3 and set(traits) <= set(TRAITS)
+        assert all(traits.count(t) <= 3 for t in traits)  # 3 Village seats: each holds a trait at most once
 
 
 def test_investigative_roles_and_only_they_have_a_subcategory():
     investigative = {r for r, i in ROLES.items() if i.category == "Investigative"}
     assert {r for r, i in ROLES.items() if i.subcategory} == investigative
+
+
+def armed_game(game_factory, roles, shots):
+    """Players fire their hidden gun (trait_actions) as `shots` says, and choose no role action."""
+    def decide(name, task, schema):
+        return {"trait_actions": shots[name]} if name in shots and "trait_actions" in schema["properties"] else None
+    return game_factory(roles, ScriptedClient(decide))
+
+
+def test_an_armed_martyr_shoots_once_at_night_and_is_revealed_when_hanged(game_factory):
+    """Kevin, Oct 12 2026: a player with both traits. The shot is asked for even though a Vanilla Villager has no
+    night action, a repeated entry is dropped, the fire_gun op marks it used, and later nights don't ask again."""
+    from night import run_night
+    roles = ["Vanilla Villager", "Vanilla Villager", "Sheriff", "Grunt", "Grunt"]
+    game, players = armed_game(game_factory, roles, {"Alice": [{"trait": "Armed", "target": "Dave"},
+                                                               {"trait": "Armed", "target": "Bob"}]})
+    game.player("Alice").traits = ["Martyr", "Armed"]
+    calls: list[tuple[str, dict]] = [("apply_changes", {"changes": [{"op": "fire_gun", "player": "Dave", "by": "Alice"},
+                                            {"op": "kill", "player": "Dave", "cause": "a hidden gun", "by": "Alice"}]}),
+             ("tell", {"to": ["Alice"], "text": "Your shot killed Dave."})]
+    mod = Moderator(game, ScriptedClient(moderator_calls=calls), players, Model.HAIKU_5_5, "(rules)")
+    assert "fire_gun" in mod.ops
+    run_night(game, players, mod)
+    assert game.night_actions[1]["Alice"] == {"trait_actions": [{"trait": "Armed", "target": "Dave"}]}
+    asked = [t for n, t in players.client.asked if n == "Alice"]
+    assert len(asked) == 1 and "You are Armed" in asked[0] and "Your role has no night action" in asked[0]
+    assert not any(n == "Bob" for n, _ in players.client.asked)  # no trait, no night action
+    prompt = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "moderator_prompt")
+    assert "Armed (a trait, R24)" in prompt["instructions"]
+    assert not game.player("Dave").alive and game.role_state[ARMED_USED] == ["Alice"]
+    from players import night_history
+    assert "trait action: Armed on Dave" in night_history(game, game.player("Alice"))
+    with pytest.raises(ValueError, match="already fired"):
+        apply_ops(game, players, {"op": "fire_gun", "player": "Erin", "by": "Alice"})
+    players.client.asked.clear()
+    run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
+    assert not any(n == "Alice" for n, _ in players.client.asked)  # the shot is spent
+    game.kill("Alice", "executed by hanging", guilty_voters=["Erin"])
+    assert any("Alice was a Martyr" in e.text and "Erin" in e.text for e in game.events)
+
+
+def test_fire_gun_needs_an_armed_player_alive_at_night_and_another_target(game_factory):
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"])
+    assert "fire_gun" not in Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)").ops
+    game.player("Alice").traits = ["Armed"]
+    game.phase = "night"
+    with pytest.raises(ValueError, match="not an Armed player"):
+        apply_ops(game, players, {"op": "fire_gun", "player": "Carol", "by": "Bob"})
+    with pytest.raises(ValueError, match="can't shoot themselves"):
+        apply_ops(game, players, {"op": "fire_gun", "player": "Alice", "by": "Alice"})
+    with pytest.raises(ValueError, match="already has a fire_gun op"):
+        apply_ops(game, players, {"op": "fire_gun", "player": "Carol", "by": "Alice"},
+                  {"op": "fire_gun", "player": "Bob", "by": "Alice"})
+    assert ARMED_USED not in game.role_state  # nothing applied: a blocked shot stays available
+
+
+def test_an_armed_role_with_a_night_action_is_asked_for_both(game_factory):
+    """A Roleplayer's trait is real (R24): its shot is asked for alongside its (fake) role's action."""
+    from players import night_action_schema
+    game, _ = game_factory(["Roleplayer", "Sheriff", "Vanilla Villager", "Grunt"])
+    logic("Roleplayer").setup(game, game.player("Alice"))
+    for name in ("Alice", "Bob"):
+        game.player(name).traits = ["Armed"]
+        props = night_action_schema(game, game.player(name))["properties"]
+        assert "act" in props and props["trait_actions"]["items"]["properties"]["target"]["enum"] == [
+            n for n in game.alive_names() if n != name]
+
+
+def test_a_swap_moves_a_trait_actions_target(game_factory):
+    game, _ = game_factory(["Smuggler", "Grunt", "Vanilla Villager", "Vanilla Villager", "Sheriff"])
+    actions: dict[str, dict] = {"Alice": {"act": True, "target": "Bob", "second_target": "Erin"},
+                                "Carol": {"trait_actions": [{"trait": "Armed", "target": "Bob"}]}}
+    logic("Smuggler").before_resolution(game, actions)
+    assert actions["Carol"]["trait_actions"] == [{"trait": "Armed", "target": "Erin", "chosen_target": "Bob"}]
+    from players import as_chosen
+    assert as_chosen(actions["Carol"]) == {"trait_actions": [{"trait": "Armed", "target": "Bob"}]}
+
+
+def test_one_player_can_get_several_traits_but_each_once(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    game = setup_game(["Sheriff", "Grunt", "Grunt"], [Model.HAIKU_5_5], random.Random(1),
+                      GameLog(tmp_path / "t.jsonl"), traits=["Martyr+Armed", "Armed"])
+    assert game.player(next(p.name for p in game.players if p.role == "Sheriff")).traits == ["Martyr", "Armed"]
+    assert "setup_error" in game.log.error_counts  # the second Armed had no one left to go to
+
+
+def test_each_set_of_trait_marks_has_its_own_icon_rule():
+    import log_viewer
+    span = log_viewer.name_span("Alice", "Sheriff", ["Martyr", "Armed"])
+    assert "tn2 t0-martyr t1-armed" in span and "Trait: Armed:" in span
+    css = log_viewer.icons_css()
+    assert ".n.ic.tn2.t0-martyr.t1-armed::before" in css and ".n.ic.tn1.t0-armed::before" in css

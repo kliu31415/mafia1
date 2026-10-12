@@ -12,6 +12,7 @@ Usage:
 """
 
 import html
+import itertools
 import json
 import re
 import sys
@@ -404,12 +405,13 @@ def icon_slug(role: str) -> str:
 
 
 def name_span(name: str, role: str, traits: list[str] | tuple[str, ...] = ()) -> str:
-    """A player's (escaped) name colored by faction, with their role's icon (its border marking any trait,
+    """A player's (escaped) name colored by faction, with their role's icon (a corner mark for each trait,
     traits.py) and, on hover, the role's name, faction and one-line summary, then each trait's."""
     info = ROLES.get(role)
     hover = f"{role} ({faction_of(role)})" + (f": {info.summary}" if info and info.summary else "")
     hover += "".join(f"\nTrait: {t}: {TRAITS[t].hover}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
-    marks = "".join(f" t-{trait_slug(t)}" for t in traits)
+    shown = [t for t in traits if t in TRAITS][:len(CORNERS)]
+    marks = (f" tn{len(shown)}" if shown else "") + "".join(f" t{i}-{trait_slug(t)}" for i, t in enumerate(shown))
     return (f"<span class='n {faction_of(role)} ic i-{icon_slug(role)}{marks}' title='{esc(hover)}'>"
             f"{esc(name)}</span>")
 
@@ -422,11 +424,20 @@ def icons_css() -> str:
     for path in sorted(ICONS.glob("*.svg")):
         slug, svg = path.stem, " ".join(path.read_text(encoding="utf-8").split())
         rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
-    for t, info in TRAITS.items():  # a trait's mark sits in the icon's top-right corner, over the role's icon
-        mark = urllib.parse.quote(" ".join(info.mark.split()))
-        rules.append(f".n.ic.t-{trait_slug(t)}::before {{ background:url(\"data:image/svg+xml,{mark}\") "
-                     "top right/45% no-repeat, var(--icon) center/80% no-repeat, var(--tint); }")
+    # A trait's mark sits in a corner of the icon, over the role's icon: the first trait top right, then top left,
+    # bottom right, bottom left. Each set of traits a player can have gets one rule (a CSS background can't be
+    # added to by a second class), keyed by its classes in name_span's order.
+    marks = {t: urllib.parse.quote(" ".join(info.mark.split())) for t, info in TRAITS.items()}
+    for n in range(1, len(CORNERS) + 1):
+        for combo in itertools.permutations(TRAITS, n):
+            layers = "".join(f"url(\"data:image/svg+xml,{marks[t]}\") {corner}/45% no-repeat, "
+                             for t, corner in zip(combo, CORNERS))
+            rules.append(f".n.ic.tn{n}{''.join(f'.t{i}-{trait_slug(t)}' for i, t in enumerate(combo))}::before "
+                         f"{{ background:{layers}var(--icon) center/80% no-repeat, var(--tint); }}")
     return "\n".join(rules)
+
+
+CORNERS = ("top right", "top left", "bottom right", "bottom left")
 
 
 class Namer:

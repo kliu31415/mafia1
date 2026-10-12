@@ -80,8 +80,8 @@ def setup_note(setup: dict | None, roles: list[str]) -> str:
                 f"{max(1, yakuza - 1)} to {yakuza + 1} Yakuza, 0 to {neutral + 1} Neutrals, and the rest Village. "
                 "Any role in the rules may be in it, and roles may repeat.")
     if setup and setup.get("kind") == "random":
-        text += (f" Separately, 0 to {MAX_TRAITS} Village players get a trait (R24), usually 1 or 2, drawn to help "
-                 "balance the sides.")
+        text += (f" Separately, 0 to {MAX_TRAITS} traits (R24) are dealt to Village players, usually 1 or 2 (one "
+                 "player may get several), drawn to help balance the sides.")
     else:
         text += " Village players may also have a trait (R24)."
     return f"\n\n---\n\nSetup (the role list itself is secret).\n{text}"
@@ -262,9 +262,9 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     for n in TRAIT_ODDS:
         chosen: list[str] = []
         for _ in range(n):
-            # One trait per player: a trait needs a seat of its alignments not already holding one.
+            # A player has each trait at most once: a trait needs a seat of its alignments not already holding it.
             options = [t for t, info in TRAITS.items()
-                       if sum(ROLES[r].alignment in info.alignments for r in roles) > len(chosen)]
+                       if sum(ROLES[r].alignment in info.alignments for r in roles) > chosen.count(t)]
             if not options:
                 break
             chosen.append(rng.choice(options))
