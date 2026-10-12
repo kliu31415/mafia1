@@ -5,8 +5,8 @@ role strength can be estimated across many mixes. Players never see the role lis
 (setup_note) describes how it was drawn: Kevin, Oct 10 2026, so they don't play blind, though without exact
 counts. A hand-picked list (--roles A,B,C) is described by rough faction counts instead.
 
-"standard" (the default, balanced by role_power.py) is balanced_setup; "classic" (also "random", the
-draw before Oct 10 2026) is described below:
+"standard" (the default, balanced by role_power.py) is balanced_setup, which may repeat any role that isn't
+unique; "classic" (also "random", the draw before Oct 10 2026, without repeats) is described below:
 
 The rules don't say how setups are built (only that Village outnumbers Yakuza, R2), so these
 proportions are a choice of this program, modelled on DEFAULT_SETUP (10 players: 6 Village incl. two
@@ -248,9 +248,10 @@ SETUPS = {
 }
 
 
-# Kevin, Oct 12 2026: about a quarter of the players get a trait, give or take 2 (13 players: usually 3, 1-5).
+# Kevin, Oct 12 2026: about a quarter of the players get a trait, give or take 3, so a 13-player game has none now
+# and then (usually 3, 0-6).
 TRAIT_SHARE = 0.25
-TRAIT_SPREAD = {-2: 1, -1: 3, 0: 4, 1: 3, 2: 1}  # odds of each count around TRAIT_SHARE of the players
+TRAIT_SPREAD = {-3: 1, -2: 2, -1: 4, 0: 5, 1: 4, 2: 2, 3: 1}  # odds of each count around TRAIT_SHARE of the players
 TRAIT_SAMPLES = 8  # random trait sets tried per count; balance picks among them all
 
 
