@@ -156,3 +156,43 @@ Olivia (public): Fair, Ivan. I stayed Guilty for the same reason as Niaj: Inform
 Bob (public): Fair outcome. Dave, profile me tonight; Auditor will be in my list. I'll audit tonight and post the exact result tomorrow. Mallory, do the same, and we'll compare.
 Dave (public): Fair result. Erin's protection makes Alice likely Good, so I withdraw my read on her. Mallory or Bob is fake. I'll post my next profile tomorrow.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Grace, Heidi, Niaj) Grace (Yakuza chat): N1 recap: my Scan says Trapper IS in play, Magpie is not. Erin claims she protected Alice, so she's probably a Medic. Niaj, what was your Dave result? Dave looks like the real Profiler. Heidi, careful: Ballot Stuffer is the in-play filler in his Mallory list, which means he's effectively already pointing at you. Bob's Auditor claim isn't ours, so if Bob's profile tonight shows no Auditor, town hangs Bob for us. I'd let that happen.
+Kill proposal: Erin. She's a claimed, outed protector and will probably guard Dave or Alice tonight, so attacking Dave is likely to bounce. With her gone, Dave and the investigators are open from N3. Alternative: Dave, if you think Erin will self-protect. I'll keep holding the Katana. Tonight I'll Count Veteran: Judy's archive showed Veteran x2, and I want to know how risky visits are. Niaj, a Diviner check on Erin's neighbours or on Bob would help. Vote holder=Grace, target=Erin unless you object.
+(to Grace, Heidi, Niaj) Heidi (Yakuza chat): Agree: holder Grace, target Erin. She's either a Medic or a Kitsune. Trapper traps only arm the night after they're set, so she isn't the Trapper. If she's a Kitsune, she's holding our swallowed Katana attack and can fire it at any of us, so she has to go now. Dave is my biggest threat: if he ever profiles me, Ballot Stuffer shows up next to my Juror claim. He's next on N3, once Erin is gone. Niaj, please Diviner-check Bob. If Bob is a Jester or Executioner, a Guilty vote on him triggers revenge on a Guilty voter, and we need to know that before D3. I'm holding my ballot tokens tonight, since Bob's trial tomorrow probably won't be close. Grace, your Veteran Count is a good idea. Post it N3.
+(to Grace, Heidi, Niaj) Niaj (Yakuza chat): N1 result: I divined Dave, and the group was Carol/Dave/Erin. Profiler was drawn, so Dave is the real Profiler. Agreed: holder Grace, target Erin. If she's a Kitsune holding our Katana swing, she has to go, and if she's a Medic, removing her opens up Dave and Alice from N3. Dave is next. He's the one result that can break Heidi's Juror cover, and he'd break mine too, since he'd see Diviner. Tonight I'll Diviner-check Bob as Heidi asked. The group should be Alice/Bob/Carol, and I'll post the role here on N3. If Bob turns out to be a Jester or Executioner, we stay off Guilty on him. If he's a fake Auditor and Village (weird) or a Neutral, we let town hang him. My cover stays Scrutineer (it's in my will). On D3 I'll keep my vote on Bob moderate and not lead. Ivan is already watching me and Olivia. If either of you gets heavy pressure on D3, say so on N3 and I'll put Strong Defense on you. Vote holder=Grace, target=Erin.
+(to Grace, Heidi, Niaj) Grace (Yakuza chat): Confirmed: holder Grace, target Erin. Niaj checks Bob, Heidi holds her tokens, and I Count Veteran. One risk to note: Trapper is in play, so if someone trapped Erin on N1, the trap is armed tonight and would hit me with a Strong Attack. If I die, the Katana passes to one of you at random. Niaj, if that happens, steer the D3 story toward whoever claims Trapper. On D3 I'll keep my promise to nominate Bob if his profile has no Auditor, and stay moderate otherwise. Ready.
+(to Grace, Heidi, Niaj) Heidi (Yakuza chat): Confirmed: holder Grace, target Erin. I'm holding my tokens tonight. I don't think the trap risk is large. Erin didn't claim until D2, so a Trapper would have had no reason to put a trap on her on N1. On D3 I'll back Grace's nomination of Bob only if his profile has no Auditor, and only after Niaj's Jester/Executioner check comes back clear. If we can't vote Guilty safely, I'll stay quiet on it. Ready.
+(to Grace, Heidi, Niaj) Niaj (Yakuza chat): Confirmed: holder Grace, target Erin. I'm checking Bob and will post the result on N3. I agree with Heidi that the trap risk is low, so I'm not spending my check on Grace for Strong Defense tonight. If Grace ever attacks someone who could plausibly be trapped, tell me and I'll Diviner her for cover. Ready.
+Night actions:
+  Alice (Oracle): target Bob; named role Ballot Stuffer
+  Bob (Auditor): target Erin
+  Carol (Trapper): no action
+  Dave (Profiler): target Bob; chose to spend 1 token(s)
+  Erin (Kitsune): target Bob
+  Frank (Veteran): no action
+  Grace (Talent Agent): named role Veteran; chose to spend 1 token(s); "Count: Veteran"; Katana vote: Grace holds, attacks Erin
+  Heidi (Ballot Stuffer): no role action; Katana vote: Grace holds, attacks Erin
+  Judy (Archivist): no action
+  Mallory (Auditor): target Dave
+  Niaj (Diviner): target Bob; Katana vote: Grace holds, attacks Erin
+  Olivia (Arsonist): target Ivan; "Douse Ivan"
+Katana: Grace holds it and attacks Erin.
+(to Bob) Moderator (private): Your audit of Erin's votes during the Day, in order: Yes on the nomination of Mallory; Innocent in the trial of Mallory.
+(to Mallory) Moderator (private): Your audit of Dave's votes during the Day, in order: Yes on the nomination of Mallory; Guilty in the trial of Mallory.
+(to Dave) Moderator (private): You profiled Bob: their role is Auditor, Ballot Stuffer or Mortician (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 1 profile token left.
+(to Niaj) Moderator (private): You divined Bob; the group was Alice, Bob and Carol. The role drawn is Auditor (60% chance it is Bob's, otherwise one of the others').
+(to Grace) Moderator (private): Your count: 1 player alive when the night began has the role Veteran.
+(to Alice) Moderator (private): Your guess that Bob is the Ballot Stuffer is wrong.
+(to Olivia) Moderator (private): You doused Ivan tonight.
+(to Grace) Moderator (private): Your Katana attack on Erin succeeded: Erin died tonight.
+[Moderator summary] Night 2 resolved. Erin (Kitsune) released her swallowed Standard Katana-cause attack on Bob (Defense None): Bob died, cause Katana, by Erin (katana false). The Yakuza Katana (holder Grace, Standard) attacked Erin (Defense None, no protection): Erin died, cause Katana, by Grace (katana true). Bob audited Erin, Mallory audited Dave, Dave profiled Bob (1 profile token left), Niaj divined Bob (non-Yakuza), Grace counted Veteran (1 talent token left); code delivered these results. Alice's Oracle guess Bob = Ballot Stuffer was wrong; told. Olivia doused Ivan (status set; code tells Ivan since he is Neutral). Carol's trap on Alice was not triggered; no attacks on Alice. Frank did not alert. Heidi did not stuff. No role-blocks. Visits recorded: Bob->Erin, Dave->Bob, Erin->Bob, Grace->Erin, Mallory->Dave, Niaj->Bob, Olivia->Ivan. No Cursed death, and Ivan's target Niaj is still alive. Game continues.
+[Night check] Night 2: correct
+(to Ivan) Moderator (private): An Arsonist doused you tonight. You stay doused until the Arsonist ignites.
+(to Erin) Moderator (private): Your released attack on Bob killed them.
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Erin. Heidi (Ballot Stuffer) chose no action; Niaj (Diviner) chose to act on Bob.
+(to Heidi) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Erin. Grace (Talent Agent) chose to act, naming Veteran, spending 1 token(s) ("Count: Veteran"); Niaj (Diviner) chose to act on Bob.
+(to Niaj) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Erin. Grace (Talent Agent) chose to act, naming Veteran, spending 1 token(s) ("Count: Veteran"); Heidi (Ballot Stuffer) chose no action.
