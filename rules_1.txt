@@ -10,7 +10,8 @@ there are no nominations or trials, and it is shorter than later Days (R16).
 - Some Neutral roles never block another faction's win (their role says so); their own wins don't depend on how
   the game ends. Every other Neutral blocks wins: while one is alive, the game goes on. So a game that hasn't ended
   doesn't show that a Yakuza is still alive.
-- A trait can add a condition to your own win (R24); it never changes when the game ends or which faction wins.
+- A trait can add a condition to your own win, or take your faction's win from your teammates (R24); it never
+  changes when the game ends or which faction wins.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
@@ -270,6 +271,10 @@ action is used in addition to your role's own, and a role-block stops it too.
   faction's win doesn't change; you just don't share it if you died.
 - Selfless (Village and Yakuza players only): you win only if your faction wins and you are dead at the end. Your
   faction's win doesn't change; you just don't share it if you're alive. Nobody holds both Selfless and Selfish.
+- Usurper (unique: at most one a game; Yakuza players only): you win only if the Yakuza win while you are the only
+  Yakuza alive, and then you take the win alone: the other Yakuza, alive or dead, don't win. If the Yakuza win with
+  another Yakuza alive, they win and you don't. Your teammates aren't told. Nobody holds Usurper with Selfish or
+  Selfless.
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
 

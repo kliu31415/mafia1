@@ -13,7 +13,7 @@ from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE, tell_swap_moves
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
-                    shares_win, win_blockers,
+                    shares_win, usurper, win_blockers,
                     trait_logic)
 import variants
 
@@ -358,9 +358,11 @@ class Game:
         blocking = {p.faction for p in alive if logic(p.role).blocks_win}
         if len(blocking) <= 1:
             faction = next(iter(blocking), None)
-            # A Selfish holder who died, or a Selfless one alive, doesn't share the win (rules R1, R24); the faction
-            # still won.
-            return ([p.name for p in self.players if faction and p.faction == faction and shares_win(p)]
+            # A Usurper who is the faction's last player alive takes its win alone; otherwise a trait can keep its
+            # holder out of the win (Selfish, Selfless, Usurper; rules R1, R24). The faction still won.
+            if faction and (u := usurper(self, faction)):
+                return [u.name] + self.personal_winners
+            return ([p.name for p in self.players if faction and p.faction == faction and shares_win(self, p)]
                     + self.personal_winners)
         return None
 
@@ -374,9 +376,11 @@ class Game:
         if "(dead)" in line:
             line += " Dead players still win with their side."
         winning = {self.player(n).faction for n in self.winners or [] if n not in self.personal_winners}
-        if left_out := [f"{p.name} ({', '.join(win_blockers(p))}, {'alive' if p.alive else 'dead'})"
-                        for p in self.players if p.faction in winning and win_blockers(p)]:
+        if left_out := [f"{p.name} ({', '.join(win_blockers(self, p))}, {'alive' if p.alive else 'dead'})"
+                        for p in self.players if p.faction in winning and win_blockers(self, p)]:
             line += f" A trait keeps them from sharing their side's win: {', '.join(left_out)}."
+        for u in filter(None, (usurper(self, f) for f in winning)):
+            line += f" {u.name} (Usurper) is the last {u.faction} player alive, so they take their side's win alone."
         return line
 
     def state_summary(self) -> str:
@@ -456,14 +460,15 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         bundle, alignment = parse_trait(item)
         if not bundle_error(bundle) and (
                 candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
-                               and alignment in (None, p.info.alignment) and not (one_trait_each and p.traits)]):
+                               and alignment in (None, p.info.alignment) and not (one_trait_each and p.traits)]) \
+                and not any(TRAITS[t].unique and any(t in q.traits for q in players) for t in bundle):
             (holder := rng.choice(candidates)).traits.extend(bundle)
             for t in bundle:
                 trait_logic(t).on_dealt(game, holder)
         else:
             log.error("setup_error", f"no player could get the trait {item}: none it fits (its factions and roles) "
-                      "was left (a player has each trait at most once, never two that exclude each other), so it was "
-                      "left out")
+                      "was left (a player has each trait at most once, never two that exclude each other, and a "
+                      "unique trait goes to one player a game), so it was left out")
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,

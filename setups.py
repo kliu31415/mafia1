@@ -333,7 +333,8 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
             seats = list(roles)
             for _, r in chosen:
                 seats.remove(r)
-            free = {t: [r for r in seats if fits(t, r)] for t in TRAITS}
+            free = {t: [r for r in seats if fits(t, r)] for t in TRAITS
+                    if not (TRAITS[t].unique and t in [c for c, _ in chosen])}  # a unique trait once (rules R24)
             options = [t for t, seats in free.items() if seats]
             if not options:
                 break

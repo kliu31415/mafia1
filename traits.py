@@ -34,6 +34,7 @@ class TraitInfo:
     power_for: dict[Alignment, float] | None = None  # power for some alignments, where it differs from `power`
     hidden: bool = False  # its holder isn't told (rules R24 says which); `summary` then only goes to the rules
     fits_role: Callable[[str], bool] | None = None  # which roles can get it, besides `alignments` (None: any)
+    unique: bool = False  # at most one player in a game holds it (rules R24 says which)
 
 
 # Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
@@ -262,6 +263,17 @@ TRAITS: dict[str, TraitInfo] = {
                                 "<circle cx='5' cy='5' r='4.4' fill='#0d9488' stroke='#fff' stroke-width='1'/>"
                                 "<path d='M5 7.4L2.6 5A1.3 1.3 0 0 1 5 3.6A1.3 1.3 0 0 1 7.4 5Z' fill='#fff'/>"
                                 "</svg>")),  # a heart
+    # Yakuza only, unique (Kevin, Oct 13 2026): in who wins, a one-person faction inside the Yakuza; for everything
+    # else (night chat, the Katana, checks, when the game ends) a Yakuza.
+    "Usurper": TraitInfo(frozenset({Alignment.EVIL}),
+                         "You win only if the Yakuza win while you are the only Yakuza alive, and then you take the "
+                         "win alone: the other Yakuza lose. Your teammates aren't told (rules R1, R24).",
+                         "Wins only as the last Yakuza alive, and then alone.",
+                         power=-0.3, unique=True,
+                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                               "<circle cx='5' cy='5' r='4.4' fill='#a16207' stroke='#fff' stroke-width='1'/>"
+                               "<path d='M2.6 6.6V3.6L3.9 4.9L5 3L6.1 4.9L7.4 3.6V6.6Z' fill='#fff'/>"
+                               "</svg>")),  # a crown
     # Any faction, hidden (Kevin, Oct 13 2026): Paranoid's mirror, so "was I attacked?" is unreliable both ways.
     "Oblivious": TraitInfo(frozenset(Alignment),
                            "You are never told about an attack you survive. You aren't told you have this trait "
@@ -275,7 +287,7 @@ TRAITS: dict[str, TraitInfo] = {
 }
 # Traits no player may hold together (rules R24).
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"}),
-             frozenset({"Selfish", "Selfless"})]
+             frozenset({"Selfish", "Selfless"}), frozenset({"Usurper", "Selfish"}), frozenset({"Usurper", "Selfless"})]
 
 
 class TraitLogic:
@@ -293,6 +305,7 @@ class TraitLogic:
     # The holder shares their faction's win only if alive (True: Selfish) or dead (False: Selfless) at the end (rules
     # R1, R24).
     win_needs_alive: bool | None = None
+    takes_win = False  # the holder wins only as the last of their faction alive, and then alone (rules R1, R24)
 
     def can_hide_pm(self, game: Game, p: Player) -> bool:
         """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
@@ -641,14 +654,25 @@ class Selfless(TraitLogic):
     win_needs_alive = False
 
 
-def win_blockers(p: Player) -> list[str]:
+class Usurper(TraitLogic):
+    takes_win = True
+
+
+def usurper(game: Game, faction: str) -> Player | None:
+    """The faction's only living player, if they hold a trait that takes the win (Usurper), or None."""
+    alive = [p for p in game.alive() if p.faction == faction]
+    return alive[0] if len(alive) == 1 and any(trait_logic(t).takes_win for t in alive[0].traits) else None
+
+
+def win_blockers(game: Game, p: Player) -> list[str]:
     """The traits that keep p from sharing their faction's win (rules R1, R24): Selfish if p died or left, Selfless if
-    p is alive."""
-    return [t for t in p.traits if trait_logic(t).win_needs_alive not in (None, p.alive)]
+    p is alive, Usurper unless p is the faction's only living player."""
+    return [t for t in p.traits if trait_logic(t).win_needs_alive not in (None, p.alive)
+            or trait_logic(t).takes_win and usurper(game, p.faction) is not p]
 
 
-def shares_win(p: Player) -> bool:
-    return not win_blockers(p)
+def shares_win(game: Game, p: Player) -> bool:
+    return not win_blockers(game, p)
 
 
 class Oblivious(TraitLogic):
@@ -717,7 +741,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
-                                "Selfless": Selfless(), "Oblivious": Oblivious()}
+                                "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious()}
 assert set(LOGIC) == set(TRAITS)
 
 

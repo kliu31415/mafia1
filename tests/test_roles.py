@@ -1403,6 +1403,36 @@ def test_a_selfless_player_shares_their_factions_win_only_if_dead(game_factory):
     assert bundle_error(["Selfish", "Selfless"]) and not bundle_error(["Selfless", "Martyr"])
 
 
+def test_a_usurper_takes_the_win_alone_only_as_the_last_yakuza_alive(game_factory):
+    # rules R1, R24 (Kevin, Oct 13 2026): the game still ends when it would
+    game, players = game_factory(["Sheriff", "Medic", "Grunt", "Grunt", "Grunt"])
+    game.player("Carol").traits = ["Usurper"]
+    game.kill("Erin", "Katana")
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Carol"])
+    game.kill("Bob", "Katana")
+    game.winners = game.check_winner()  # only Yakuza alive, but Dave too: the Usurper loses
+    assert game.winners == ["Dave", "Erin"]
+    assert "A trait keeps them from sharing their side's win: Carol (Usurper, alive)." in game.winners_line()
+    game.kill("Dave", "executed by hanging", guilty_voters=["Carol"])
+    game.winners = game.check_winner()  # the last Yakuza alive: the dead teammates lose too
+    assert game.winners == ["Carol"]
+    line = game.winners_line()
+    assert "Carol (Usurper) is the last Yakuza player alive, so they take their side's win alone." in line
+
+
+def test_a_unique_trait_goes_to_one_player_a_game(tmp_path):
+    import random
+
+    import setups
+    from gamelog import GameLog
+    from state import setup_game
+    game = setup_game(["Grunt", "Grunt", "Sheriff"], [Model.HAIKU_5_5], random.Random(1),
+                      GameLog(tmp_path / "t.jsonl"), traits=["Usurper", "Usurper"])
+    assert sum(p.traits == ["Usurper"] for p in game.players) == 1 and "setup_error" in game.log.error_counts
+    for seed in range(40):
+        assert setups.draw_traits(["Grunt"] * 4 + ["Sheriff"] * 9, random.Random(seed)).count("Usurper") <= 1
+
+
 def test_oblivious_is_hidden_and_the_moderator_is_told_each_night(game_factory):
     from night import role_notes
     from players import role_briefing
