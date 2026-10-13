@@ -180,3 +180,39 @@ Katana: no attack (no target); nobody holds it.
 [Moderator summary] Night 3: Bob alerted (alert 1->0); no visitors to Bob. Bob's Stolen Blade (Standard) on Frank failed vs Frank's Standard Defense. Frank (SK) Strong Attack killed Grace. Grace's Juror check on Bob/Frank resolved via jury op (Astral). No Katana action (no Yakuza alive). Visits: Bob->Frank, Frank->Grace. Remaining: Bob (Village), Frank (Neutral SK); game continues.
 [Night check] Night 3: correct
 (to Grace) Moderator (private): You were attacked tonight (Serial Killer) and died.
+
+===== DAY 4 =====
+Grace died (killed by Serial Killer). Their role isn't revealed. Their last will: "Grace (Good, Juror). Night 2 jury check: Erin and Frank voted the same way in 1 of 1 nomination votes. Night 3 jury check target: Bob and Frank. Trust only checkable results. Be skeptical of anyone who pushed nominations without data."
+Speaking order today goes around the circle in seat order, starting with Bob.
+2 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Bob: Veteran. Alerts N1-N3, no visitors. Stolen Blade N3 on Frank: no kill. D4: Frank is the SK by elimination.
+Bob (public): Bob here. Frank is the Serial Killer. Grace died to a Serial Killer on Night 3, and only Frank and I are alive, so the SK has to be Frank. My Stolen Blade was Standard and SK has Standard Defense, so it couldn't kill him. That fits his SK defense, not a Medic save. I have no alert tokens left, so I can't stop tonight's attack.
+Frank (public): A failed Standard hit is consistent with Standard Defense, but it isn’t an exact-role check; a one-use Narrow Escape could also stop it. I won’t treat elimination alone as proof.
+[Claim] Bob: Veteran. N1-N3: alert, no visitors. N3: Stolen Blade on Frank, no kill. D4: Frank is the SK by elimination. Vote Guilty on Frank.
+Bob (public): Bob here. Only Frank and I are alive, and Grace died to a Serial Killer on Night 3. I'm not the SK, so Frank is. I have no alert tokens left, so I can't stop tonight's attack. Frank, if you're the Medic, say what you protected last night.
+[Claim] Frank: Medic. N1/N2: protected Erin with Standard Defense; no stop notice. N3: protected myself with Standard Defense, spending 1 token; survived the Katana.
+Frank (public): My Medic claim stands. N3 I spent one token to protect myself with Standard Defense; that explains surviving the Katana. Bob’s elimination argument isn’t an exact-role check. I’m not nominating on this evidence.
+Bob (public): Frank, only you and I are alive, and Grace died to the Serial Killer on Night 3. I'm nominating you. If you're Village, vote Yes and let the trial decide.
+Bob nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Bob, Frank; No - nobody
+Nomination votes on Frank: 2 Yes (the votes are secret).
+Frank is put on trial (2 Yes).
+[Claim] Frank: Medic. N1/N2 protected Erin; N3 self-protected; no stop notice.
+Frank (public): This is a two-voter trial: one Guilty vote cannot execute; it takes both. I will vote Innocent. Your inference is circular: the death identifies an SK attack, not its attacker; “only Frank” follows only if your Veteran/Stolen Blade account is true. My N3 Standard Defense is consistent with surviving a Standard Katana, but it doesn’t certify me. You have no independent result naming me. Don’t turn a plausible elimination into proof—vote Innocent rather than hang someone on an unverifiable role claim.
+[Claim] Bob: Veteran. N1-N3: alert, no visitors. N3: Stolen Blade on Frank, no kill. D4: Frank must be the Serial Killer (Grace died to SK on N3; only Frank and I were alive besides her). Guilty on Frank.
+Bob (public): Bob here. At the start of Night 3, only Grace, Frank and I were alive. Grace died to a Serial Killer, and I am not the SK, so Frank is the Serial Killer. Frank, you're the only one who can vote Guilty on you to hang you, so I'm voting Guilty and urging you to face it.
+Frank (public): A failed Standard attack fits either Standard Defense or a protection; it does not identify my role. Bob’s conclusion also depends on his own unverified account. Most importantly, in a two-player trial one Guilty vote is not a majority: it takes both votes to execute me. I vote Innocent.
+Trial votes on Frank: 1 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Bob; Innocent - Frank
+Frank is found Innocent (1 Guilty of 2 votes; 2 needed).
+Bob (public): Bob here. Only Frank and I are alive. Grace died to a Serial Killer on Night 3, and only Frank and I could have been the SK, so Frank is the SK. I have no tokens and my Stolen Blade is used, so I can't stop a Night 4 attack. Frank, if you're Village, don't kill me; you gain nothing from it.
+(to Bob, Frank) Bob -> Frank (private): Frank: if you're the Medic you have no reason to kill me tonight. A Serial Killer wins only alone, so the choice is yours. Prove you're Village by not attacking.
+[Claim] Bob: Veteran. N1-N3: alert, no visitors. N3: Stolen Blade on Frank, no kill. Frank is the Serial Killer (Grace died to SK N3). Vote Guilty on Frank.
+Bob (public): Bob here. I have no tokens left and can't stop a Night 4 attack. Frank, Grace died to a Serial Killer on Night 3, and only you and I could have been that killer. I'm not the SK, so you are.
+Bob (public): Bob here. Frank, no trial can pass now, since you vote No on every nomination. Your night choice is the only thing left in this game. Don't attack me.
+(to Bob, Frank) Bob -> Frank (private): Frank: a Night 4 kill on me gains you nothing if you're Village, and a Medic who protects themself can stop an attack. Protect yourself, and don't attack me.
+Frank (public): I hear you. I won't nominate. I'll use my remaining Medic token to protect myself tonight; let's let the day close.
+Bob (public): Frank, the game hasn't ended, and I'm Village. So you are Yakuza or Neutral, and your Medic claim is false.
+Bob (public): Frank, you're the Serial Killer, and killing me tonight wins you the game. I can't stop it, so the choice is yours.
+(to Bob, Frank) Bob -> Frank (private): Frank: a stall loses for both of us, and a kill on me gains you nothing you can't already claim. Please don't attack.
+Discussion time is over. The day ends.
