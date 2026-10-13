@@ -92,9 +92,9 @@ def setup_note(setup: dict | None, roles: list[str], off: tuple[str, ...] | None
         text += (f" This setup never uses these roles, so nobody has them: {', '.join(off)}. Results that name "
                  "a role (including fakes) never name them either.")
     if setup and setup.get("kind") == "random" and not setup.get("traits_given"):  # not chosen with --traits
-        text += (f" Separately, about {TRAIT_SHARE:.0%} of the players (give or take {max(TRAIT_SPREAD)}) get a "
-                 "trait (R24), never more than one each, drawn to help balance the sides; some traits can go only "
-                 "to Village players.")
+        text += (f" Separately, traits (R24) are dealt: about one for every {round(1 / TRAIT_SHARE)} players (give or "
+                 f"take {max(TRAIT_SPREAD)}), at most {TRAITS_EACH} to a player, drawn to help balance the sides; "
+                 "some traits can go only to Village players.")
     else:
         text += " Players may also have a trait (R24)."
     return f"\n\n---\n\nSetup (the role list itself is secret).\n{text}"
@@ -296,9 +296,10 @@ def seeded_traits(roles: list[str], seed: int) -> list[str]:
     return draw_traits(roles, random.Random(f"traits|{seed}"))
 
 
-# Kevin, Oct 12 2026: about a quarter of the players get a trait, give or take 3, so a 13-player game has none now
-# and then (usually 3, 0-6).
-TRAIT_SHARE = 0.25
+# Kevin, Oct 13 2026: about one trait for every two players, give or take 3 (a 13-player game: usually 6 or 7,
+# 3-10), at most TRAITS_EACH to a player. Was a quarter, one a player (Oct 12).
+TRAIT_SHARE = 0.5
+TRAITS_EACH = 2
 TRAIT_SPREAD = {-3: 1, -2: 2, -1: 4, 0: 5, 1: 4, 2: 2, 3: 1}  # odds of each count around TRAIT_SHARE of the players
 TRAIT_SAMPLES = 8  # random trait sets tried per count; balance picks among them all
 
@@ -317,36 +318,37 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     """Traits for a drawn setup (traits.py, rules R24): a count from trait_odds, and for each count TRAIT_SAMPLES random
     trait sets; one set is picked by its count's odds, scaled down the further role_power.score (of the roles and
     the set's traits, with their fitted powers) leaves even (Kevin: traits help balance setups, semi-randomly). Each
-    trait is drawn from those its players could get (an eligible seat without a trait yet: a drawn setup gives a
-    player at most one). A trait that can go to more
-    than one faction is drawn with the faction of the seat it goes to ("Grudge@Yakuza"), so the balance knows
-    which side it helps."""
+    trait is drawn from those its players could get (a seat it fits with fewer than TRAITS_EACH traits, none it
+    excludes, and a unique trait once) and goes to a random one. Each player's traits come out as one item
+    ("Martyr+Kindred"), dealt to one player. An item with a trait that can go to more than one faction names the faction
+    of its seat ("Grudge@Yakuza"), so the balance knows which side it helps."""
     import role_power
-    from traits import FACTIONS, TRAITS, fits
+    from traits import FACTIONS, TRAITS, bundle_error, fits
     faction_name = {a: f for f, a in FACTIONS.items()}
 
-    def sample(n: int) -> list[tuple[str, Alignment]]:
-        chosen: list[tuple[str, str]] = []
+    def sample(n: int) -> list[list[str]]:
+        held: list[list[str]] = [[] for _ in roles]  # each seat's traits
         for _ in range(n):
-            # At most one trait a player (Kevin, Oct 12 2026): a trait needs a seat it fits (its alignments, and
-            # fits_role) with none yet.
-            seats = list(roles)
-            for _, r in chosen:
-                seats.remove(r)
-            free = {t: [r for r in seats if fits(t, r)] for t in TRAITS
-                    if not (TRAITS[t].unique and t in [c for c, _ in chosen])}  # a unique trait once (rules R24)
+            free = {t: [i for i, r in enumerate(roles) if len(held[i]) < TRAITS_EACH and fits(t, r)
+                        and not bundle_error(held[i] + [t])]
+                    for t in TRAITS if not (TRAITS[t].unique and any(t in h for h in held))}  # rules R24
             options = [t for t, seats in free.items() if seats]
             if not options:
                 break
             t = rng.choice(options)
-            chosen.append((t, rng.choice(free[t])))  # as if dealt to a random free seat
-        return [(t, ROLES[r].alignment) for t, r in chosen]
+            held[rng.choice(free[t])].append(t)  # as if dealt to a random seat it fits
+        return held
+
+    def powers(held: list[list[str]]) -> list[tuple[str, Alignment]]:
+        return [(t, ROLES[r].alignment) for h, r in zip(held, roles) for t in h]
 
     sets = [(odds / TRAIT_SAMPLES, sample(n)) for n, odds in trait_odds(len(roles)).items()
             for _ in range(TRAIT_SAMPLES)]
     # Each set's odds, scaled down the further it leaves the setup from even (in units of BAND), so traits lean
     # towards what evens the sides without overriding the odds.
-    weight = [odds * math.exp(-(role_power.score(roles, traits=c) / BAND) ** 2) for odds, c in sets]
+    weight = [odds * math.exp(-(role_power.score(roles, traits=powers(c)) / BAND) ** 2) for odds, c in sets]
     chosen = rng.choices([c for _, c in sets], weight)[0]
-    return [t if len(TRAITS[t].alignments) == 1 else f"{t}@{faction_name[a]}" for t, a in chosen]
+    return ["+".join(h) + (f"@{faction_name[ROLES[r].alignment]}" if any(len(TRAITS[t].alignments) > 1 for t in h)
+                           else "")
+            for h, r in zip(chosen, roles) if h]
 

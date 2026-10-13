@@ -10,7 +10,7 @@ from day import run_day
 from llm import MockClient, Model
 from moderator import Moderator
 from roles import ROLES, Alignment, Status, logic
-from traits import ARMED_USED, TRAITS, parse_item as parse_trait
+from traits import ARMED_USED, TRAITS, bundle_error, fits, parse_item as parse_trait
 from tests.conftest import TOWN4_GRUNT, VILLAGE5, ScriptedClient, apply_ops, told, votes
 
 
@@ -1810,17 +1810,19 @@ def test_drawn_traits_stay_within_the_odds_and_the_eligible_seats():
     roles = ["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt", "Jester"]
     for seed in range(20):
         traits = setups.draw_traits(roles, random.Random(seed))
-        assert len(traits) <= max(setups.trait_odds(len(roles)))
-        for item in traits:
-            bundle, alignment = parse_trait(item)
-            assert len(bundle) == 1 and bundle[0] in TRAITS
-            # A trait any faction can get names the faction it was drawn for, one with a seat in this setup.
-            assert (alignment is None) == (len(TRAITS[bundle[0]].alignments) == 1)
-            assert alignment is None or any(ROLES[r].alignment is alignment for r in roles)
-        # At most one trait a player: 3 Village seats, 2 Yakuza, 1 Neutral.
-        sides = [parse_trait(t)[1] or next(iter(TRAITS[parse_trait(t)[0][0]].alignments)) for t in traits]
+        bundles = [parse_trait(item) for item in traits]
+        assert sum(len(b) for b, _ in bundles) <= max(setups.trait_odds(len(roles)))
+        for bundle, alignment in bundles:
+            # One player's traits: up to TRAITS_EACH, a set one player can hold, all fitting one seat's role.
+            assert 1 <= len(bundle) <= setups.TRAITS_EACH and not bundle_error(bundle)
+            # A bundle with a trait any faction can get names the faction it was drawn for.
+            assert (alignment is None) == all(len(TRAITS[t].alignments) == 1 for t in bundle)
+            assert any(all(fits(t, r) for t in bundle) and alignment in (None, ROLES[r].alignment) for r in roles)
+        # One item a player: 3 Village seats, 2 Yakuza, 1 Neutral.
+        sides = [a or next(iter(TRAITS[b[0]].alignments)) for b, a in bundles]
         assert sides.count(Alignment.GOOD) <= 3 and sides.count(Alignment.EVIL) <= 2
         assert sides.count(Alignment.NEUTRAL) <= 1
+        assert sum(t == "Usurper" for b, _ in bundles for t in b) <= 1
 
 
 
@@ -1832,14 +1834,14 @@ def test_drawn_traits_go_one_to_a_player(tmp_path):
     roles = ["Sheriff", "Medic", "Grunt", "Jester"]
     for seed in range(10):
         game = setup_game(roles, [Model.HAIKU_5_5], random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"),
-                          traits=["Kindred", "Faultline"], one_trait_each=True)
+                          traits=["Kindred", "Faultline"], one_item_each=True)
         assert sorted(len(p.traits) for p in game.players if p.info.alignment is Alignment.GOOD) == [1, 1]
 
 
-def test_about_a_quarter_of_the_players_get_a_trait():
+def test_about_one_trait_for_every_two_players():
     import setups
-    assert setups.trait_odds(13) == {0: 1, 1: 2, 2: 4, 3: 5, 4: 4, 5: 2, 6: 1}  # Kevin, Oct 12 2026: 0 allowed
-    assert setups.trait_odds(4) == {0: 7, 1: 5, 2: 4, 3: 2, 4: 1}
+    assert setups.trait_odds(13) == {3: 1, 4: 2, 5: 4, 6: 5, 7: 4, 8: 2, 9: 1}  # Kevin, Oct 13 2026
+    assert setups.trait_odds(4) == {0: 3, 1: 4, 2: 5, 3: 4, 4: 2, 5: 1}
 
 
 def test_a_traits_power_counts_for_its_holders_side():

@@ -424,12 +424,12 @@ class Game:
 def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: random.Random, log: GameLog,
                meta: dict | None = None, rule_settings: dict[str, str] | None = None,
                via: Callable[[Model], str] | None = None, traits: Sequence[str] = (),
-               one_trait_each: bool = False) -> Game:
+               one_item_each: bool = False) -> Game:
     """meta: extra fields for the setup record, e.g. the code version and settings (see mafia.py). rule_settings:
     the game's (variants.py, and its script), set before role setup hooks run, since some read them. via: how
     each model's calls are run (claude_code.route), logged per player; "api" if not given. traits: trait names
-    (traits.py) dealt to random eligible players, or "A+B" for one player with both. one_trait_each: no player gets
-    two (drawn setups, Kevin, Oct 12 2026; setups.draw_traits leaves enough seats of each alignment)."""
+    (traits.py) dealt to random eligible players, or "A+B" for one player with both. one_item_each: each item goes
+    to a player with no trait yet (drawn setups: an item is all of one player's traits, setups.draw_traits)."""
     if len(roles) > len(PLAYER_NAMES):
         raise ValueError(f"{len(roles)} roles but only {len(PLAYER_NAMES)} player names")
     if len(models) > len(roles):
@@ -452,15 +452,17 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         logic(p.role).setup(game, p)
-    # Traits only some roles fit (Drowsy) first, so a trait any role fits doesn't take their only seat; the order
-    # is otherwise kept, so a seed deals the same traits as before.
-    restricted = {t for t, info in TRAITS.items() if info.fits_role}
-    for item in sorted(traits, key=lambda item: not set(parse_trait(item)[0]) & restricted):
+    def fitting(item: str) -> list[Player]:
+        bundle, alignment = parse_trait(item)
+        return [p for p in players if all(trait_eligible(p, t) for t in bundle)
+                and alignment in (None, p.info.alignment) and not (one_item_each and p.traits)]
+
+    # Items fewer players fit first (Drowsy+Martyr before Martyr), so one any player fits doesn't take their only
+    # seat; ties keep their order.
+    for item in sorted(traits, key=lambda item: len(fitting(item))):
         # "Martyr+Armed": one player gets both; "Grudge@Yakuza": a Yakuza player gets it
         bundle, alignment = parse_trait(item)
-        if not bundle_error(bundle) and (
-                candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
-                               and alignment in (None, p.info.alignment) and not (one_trait_each and p.traits)]) \
+        if not bundle_error(bundle) and (candidates := fitting(item)) \
                 and not any(TRAITS[t].unique and any(t in q.traits for q in players) for t in bundle):
             (holder := rng.choice(candidates)).traits.extend(bundle)
             for t in bundle:

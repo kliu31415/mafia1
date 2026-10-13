@@ -342,7 +342,7 @@ function renderSetups() {
     <div class="cols">
       <div class="card panel"><h3>Yakuza</h3>${oddsChart(st.yakuza_odds, k => k + " Yakuza")}</div>
       <div class="card panel"><h3>Neutrals</h3>${oddsChart(st.neutral_odds, k => k)}</div>
-      <div class="card panel"><h3>Traits dealt</h3>${oddsChart(st.trait_odds, k => k)}<div class="muted small">About ${pct(st.trait_share)} of the players, before balancing picks among the sets.</div></div>
+      <div class="card panel"><h3>Traits dealt</h3>${oddsChart(st.trait_odds, k => k)}<div class="muted small">Traits for about ${pct(st.trait_share)} of the players, at most ${st.traits_each} to a player, before balancing picks among the sets.</div></div>
       <div class="card panel"><h3>Village</h3><dl class="kv"><dt>At least</dt><dd>${st.min_village} non-Outsider roles, among them ${esc(needs)}</dd>
         <dt>Outsiders</dt><dd>up to ${st.max_outsiders}</dd><dt>Never drawn</dt><dd>${st.off.map(r => roleLink(r)).join(", ")}</dd></dl></div>
     </div>

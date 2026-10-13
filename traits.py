@@ -651,15 +651,16 @@ BONDS = "bonds"  # game.role_state: player -> the player they're bonded to (both
 
 class Bonded(TraitLogic):
     def on_dealt(self, game: Game, p: Player) -> None:
-        # A random partner the trait fits who isn't bonded yet, preferring one with no trait (drawn setups give a
-        # player at most one); the partner gets the trait too.
+        # A random partner the trait fits who isn't bonded yet, among those with the fewest traits; the partner gets
+        # the trait too.
         bonds = game.role_state.setdefault(BONDS, {})
         free = [q for q in game.players if q is not p and q.name not in bonds and eligible(q, "Bonded")]
         if not free:
             p.traits.remove("Bonded")
             game.log.error("setup_error", f"no player could be bonded to {p.name}, so the Bonded trait was left out")
             return
-        partner = game.rng.choice([q for q in free if not q.traits] or free)
+        fewest = min(len(q.traits) for q in free)  # drawn setups give a player at most setups.TRAITS_EACH
+        partner = game.rng.choice([q for q in free if len(q.traits) == fewest])
         partner.traits.append("Bonded")
         bonds[p.name], bonds[partner.name] = partner.name, p.name
         game.log.write("bond", players=[p.name, partner.name])
