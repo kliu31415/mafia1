@@ -35,6 +35,7 @@ class TraitInfo:
     hidden: bool = False  # its holder isn't told (rules R24 says which); `summary` then only goes to the rules
     fits_role: Callable[[str], bool] | None = None  # which roles can get it, besides `alignments` (None: any)
     unique: bool = False  # at most one player in a game holds it (rules R24 says which)
+    pairs: bool = False  # held by two players together (Bonded): drawn setups deal it to both (setups.draw_traits)
 
 
 # Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
@@ -272,7 +273,7 @@ TRAITS: dict[str, TraitInfo] = {
                         "You are bonded to the player named below, of any faction (you aren't told theirs), and they "
                         "to you. If either of you dies, the other dies of heartbreak at once (rules R24).",
                         "Bonded to one other player: if either dies, the other dies of heartbreak.",
-                        power=0.0,
+                        power=0.0, pairs=True,
                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                               "<circle cx='5' cy='5' r='4.4' fill='#be185d' stroke='#fff' stroke-width='1'/>"
                               "<path d='M2.4 5H7.6M3.6 3.6L2.4 5L3.6 6.4M6.4 3.6L7.6 5L6.4 6.4' fill='none' "
@@ -770,17 +771,24 @@ BONDS = "bonds"  # game.role_state: player -> the player they're bonded to (both
 
 class Bonded(TraitLogic):
     def on_dealt(self, game: Game, p: Player) -> None:
-        # A random partner the trait fits who isn't bonded yet, among those with the fewest traits; the partner gets
-        # the trait too.
+        # Runs once every trait is dealt (state.setup_game). Another holder who isn't bonded yet is the partner (a
+        # drawn setup deals Bonded to both partners, setups.draw_traits); else a random player the trait fits who isn't
+        # bonded yet, among those with the fewest traits, who gets the trait too.
         bonds = game.role_state.setdefault(BONDS, {})
-        free = [q for q in game.players if q is not p and q.name not in bonds and eligible(q, "Bonded")]
-        if not free:
+        if p.name in bonds:
+            return  # an earlier holder's partner
+        others = [q for q in game.players if q is not p and q.name not in bonds]
+        free = [q for q in others if eligible(q, "Bonded")]
+        if held := [q for q in others if "Bonded" in q.traits]:
+            partner = game.rng.choice(held)
+        elif free:
+            fewest = min(len(q.traits) for q in free)
+            partner = game.rng.choice([q for q in free if len(q.traits) == fewest])
+            partner.traits.append("Bonded")
+        else:
             p.traits.remove("Bonded")
             game.log.error("setup_error", f"no player could be bonded to {p.name}, so the Bonded trait was left out")
             return
-        fewest = min(len(q.traits) for q in free)  # drawn setups give a player at most setups.TRAITS_EACH
-        partner = game.rng.choice([q for q in free if len(q.traits) == fewest])
-        partner.traits.append("Bonded")
         bonds[p.name], bonds[partner.name] = partner.name, p.name
         game.log.write("bond", players=[p.name, partner.name])
 

@@ -465,18 +465,20 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
 
     # Items fewer players fit first (Drowsy+Martyr before Martyr), so one any player fits doesn't take their only
     # seat; ties keep their order.
+    dealt: list[tuple[Player, str]] = []
     for item in sorted(traits, key=lambda item: len(fitting(item))):
         # "Martyr+Armed": one player gets both; "Grudge@Yakuza": a Yakuza player gets it
         bundle, alignment = parse_trait(item)
         if not bundle_error(bundle) and (candidates := fitting(item)) \
                 and not any(TRAITS[t].unique and any(t in q.traits for q in players) for t in bundle):
             (holder := rng.choice(candidates)).traits.extend(bundle)
-            for t in bundle:
-                trait_logic(t).on_dealt(game, holder)
+            dealt += [(holder, t) for t in bundle]
         else:
             log.error("setup_error", f"no player could get the trait {item}: none it fits (its factions and roles) "
                       "was left (a player has each trait at most once, never two that exclude each other, and a "
                       "unique trait goes to one player a game), so it was left out")
+    for holder, t in dealt:  # once all are dealt, so Bonded can pair two holders
+        trait_logic(t).on_dealt(game, holder)
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,

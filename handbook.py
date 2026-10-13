@@ -186,8 +186,7 @@ def setup_entries() -> dict:
         "standard": {"yakuza_odds": setups.yakuza_odds(standard.players[0]), "neutral_odds": setups.NEUTRAL_ODDS,
                      "village_needs": setups.VILLAGE_NEEDS, "min_village": setups.MIN_VILLAGE,
                      "max_outsiders": setups.MAX_OUTSIDERS, "band": setups.BAND, "off": list(standard.off),
-                     "trait_share": setups.TRAIT_SHARE, "traits_each": setups.TRAITS_EACH,
-                     "trait_odds": setups.trait_odds(standard.players[0]),
+                     "trait_count_odds": setups.TRAIT_COUNT_ODDS,
                      "players": standard.players[0]},
         "note": setups.setup_note({"kind": "random", "name": "standard"}, ["?"] * standard.players[0]).strip(
             "\n-").strip(),

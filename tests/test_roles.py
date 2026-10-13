@@ -1864,7 +1864,7 @@ def test_drawn_traits_stay_within_the_odds_and_the_eligible_seats():
     for seed in range(20):
         traits = setups.draw_traits(roles, random.Random(seed))
         bundles = [parse_trait(item) for item in traits]
-        assert sum(len(b) for b, _ in bundles) <= max(setups.trait_odds(len(roles)))
+        assert sum(len(b) for b, _ in bundles) <= setups.TRAITS_EACH * len(roles)
         for bundle, alignment in bundles:
             # One player's traits: up to TRAITS_EACH, a set one player can hold, all fitting one seat's role.
             assert 1 <= len(bundle) <= setups.TRAITS_EACH and not bundle_error(bundle)
@@ -1891,10 +1891,21 @@ def test_drawn_traits_go_one_to_a_player(tmp_path):
         assert sorted(len(p.traits) for p in game.players if p.info.alignment is Alignment.GOOD) == [1, 1]
 
 
-def test_about_one_trait_for_every_two_players():
+def test_each_player_holds_0_1_or_2_traits_a_third_each():
+    # Kevin, Oct 13 2026: each player's count is drawn on its own, and balancing picks only which traits.
+    import random
+    from collections import Counter
+
     import setups
-    assert setups.trait_odds(13) == {3: 1, 4: 2, 5: 4, 6: 5, 7: 4, 8: 2, 9: 1}  # Kevin, Oct 13 2026
-    assert setups.trait_odds(4) == {0: 3, 1: 4, 2: 5, 3: 4, 4: 2, 5: 1}
+    roles = ["Sheriff", "Medic", "Vigilante", "Tracker", "Lookout", "Seer", "Veteran", "Clerk", "Jester", "Grunt",
+             "Grunt", "Puppeteer", "Serial Killer"]
+    held: Counter = Counter()
+    for seed in range(100):
+        bundles = [parse_trait(item)[0] for item in setups.draw_traits(roles, random.Random(seed))]
+        held.update(len(b) for b in bundles)
+        held[0] += len(roles) - len(bundles)
+        assert sum(b.count("Bonded") for b in bundles) % 2 == 0  # partners both count it
+    assert all(abs(held[k] / 1300 - 1 / 3) < 0.05 for k in (0, 1, 2)), held
 
 
 def test_a_traits_power_counts_for_its_holders_side():
@@ -2678,7 +2689,8 @@ def test_two_bonded_pairs_stay_apart(tmp_path):
     from state import setup_game
     for seed in range(10):
         game = setup_game(["Sheriff", "Medic", "Vigilante", "Tracker", "Grunt", "Grunt"], [Model.HAIKU_5_5],
-                          random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"), traits=["Bonded", "Bonded"])
+                          random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"), traits=["Bonded"] * 3)
+        # Two holders pair up; the third gets a new partner.
         bonds = game.role_state["bonds"]
         assert len(bonds) == 4 and all(bonds[bonds[n]] == n for n in bonds)
         assert sorted(p.name for p in game.players if p.traits == ["Bonded"]) == sorted(bonds)
