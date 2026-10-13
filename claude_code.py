@@ -121,10 +121,9 @@ def run_cli(argv: list[str], stdin: str, env: dict[str, str], cwd: str, timeout:
     starts the real CLI as a child instead of exec-ing it (as on Kevin's PC), and subprocess.run's timeout kills
     only the direct child, which would leave the real CLI running (and using the subscription)."""
     # sys.platform, not os.name: mypy follows it, so each system's checks see only the names that system has.
+    group: dict = {"start_new_session": True}
     if sys.platform == "win32":
-        group: dict = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
-    else:
-        group = {"start_new_session": True}
+        group = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
     p = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
                          encoding="utf-8", errors="replace", env=env, cwd=cwd, **group)
     try:
