@@ -2072,6 +2072,32 @@ def test_a_yakuza_can_be_armed_but_not_with_spare_blade_and_no_neutral_can(game_
     assert village_power("Armed", Alignment.EVIL) == -0.2 and village_power("Armed", Alignment.GOOD) == 0.25
 
 
+def test_a_stolen_blade_attack_is_a_village_one_shot_that_reads_as_the_katana(game_factory):
+    # rules R8, R24 (Kevin, Oct 13 2026): Village only, never with Armed; a Shaky Katana holder doesn't stop it
+    from night import role_notes
+    from players import night_action_schema
+    from traits import STOLEN_BLADE_USED
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"])
+    assert fits("Stolen Blade", "Sheriff") and not fits("Stolen Blade", "Grunt")
+    assert bundle_error(["Armed", "Stolen Blade"])
+    game.player("Alice").traits = ["Stolen Blade"]
+    game.player("Dave").traits = ["Shaky"]
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert "stolen_blade" in mod.ops
+    game.phase, game.katana_holder = "night", "Dave"
+    assert "Stolen Blade" in role_notes(game)
+    assert "trait_actions" in night_action_schema(game, game.player("Alice"))["properties"]
+    with pytest.raises(ValueError, match="not a Stolen Blade holder"):
+        apply_ops(game, players, {"op": "stolen_blade", "player": "Carol", "by": "Bob"})
+    apply_ops(game, players, {"op": "stolen_blade", "player": "Carol", "by": "Alice"},
+              {"op": "kill", "player": "Carol", "cause": "Katana", "by": "Alice"})
+    assert game.role_state[STOLEN_BLADE_USED] == ["Alice"] and not game.player("Carol").alive
+    assert game.player("Carol").death["cause"] == "Katana" and not game.player("Carol").death["katana"]
+    with pytest.raises(ValueError, match="already used"):
+        apply_ops(game, players, {"op": "stolen_blade", "player": "Dave", "by": "Alice"})
+    assert "trait_actions" not in night_action_schema(game, game.player("Alice"))["properties"]
+
+
 def test_an_armed_role_with_a_night_action_is_asked_for_both(game_factory):
     """A Roleplayer's trait is real (R24): its shot is asked for alongside its (fake) role's action."""
     from players import night_action_schema

@@ -28,7 +28,7 @@ def records(path):
 
 @pytest.mark.parametrize("phase", ["day", "night"])
 def test_a_resumed_game_matches_an_uninterrupted_one(tmp_path, monkeypatch, phase):
-    seed = 5  # any seed whose mock game has a death and lasts 2+ days (the mock reads the rules text)
+    seed = 6  # any seed whose mock game has a death and lasts 2+ days (the mock reads the rules text)
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path / "full")
     full = mafia.play_game(MockClient(seed), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, DEFAULT_SETUP, seed))
     assert not full.with_suffix(".ckpt").exists()  # deleted once the game finishes

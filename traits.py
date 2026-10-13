@@ -216,6 +216,17 @@ TRAITS: dict[str, TraitInfo] = {
                                    "<circle cx='5' cy='5' r='4.4' fill='#57534e' stroke='#fff' stroke-width='1'/>"
                                    "<path d='M2.8 7.6L7.2 2.4M2.8 2.4L7.2 7.6' stroke='#fff' "
                                    "stroke-width='1.1'/></svg>")),  # crossed blades
+    # Village only (Kevin, Oct 13 2026): Armed's one-use shot, but Standard and looking exactly like a Katana attack,
+    # so the town can't be sure every Katana kill was the Yakuza's. Never with Armed.
+    "Stolen Blade": TraitInfo(frozenset({Alignment.GOOD}),
+                              "Once per game, at night, you may attack another living player with a stolen Katana: a "
+                              "Standard Attack that looks exactly like the Yakuza's Katana attack (rules R8, R24).",
+                              "One Standard attack a game at night, which looks like a Katana attack.",
+                              power=0.3,
+                              mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                    "<circle cx='5' cy='5' r='4.4' fill='#15803d' stroke='#fff' stroke-width='1'/>"
+                                    "<path d='M3 7L7.2 2.8M2.4 5.6L4.4 7.6' stroke='#fff' "
+                                    "stroke-width='1.1'/></svg>")),  # one blade with its guard
     # Yakuza only, told, one use each, never together or with Shaky (Kevin, Oct 13 2026): a one-use choice rather than
     # every attack, so it's a decision (when to spend it) and a smaller balance swing.
     "Katana Expert": TraitInfo(frozenset({Alignment.EVIL}),
@@ -392,7 +403,8 @@ EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Obliviou
              frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"}),
              frozenset({"Katana Expert", "Katana Master"}), frozenset({"Katana Expert", "Shaky"}),
              frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"}),
-             frozenset({"Armed", "Spare Blade"})]
+             frozenset({"Armed", "Spare Blade"}),
+             frozenset({"Armed", "Stolen Blade"})]
 
 
 class TraitLogic:
@@ -723,6 +735,31 @@ class SpareBlade(OneShotAction):
                              "a Spare Blade holder can't attack themselves")
 
 
+STOLEN_BLADE_USED = "stolen_blade_used"  # game.role_state: Stolen Blade holders who have made their attack
+
+
+class StolenBlade(OneShotAction):
+    # Like Armed's shot (Kevin, Oct 13 2026), with the Katana's level and wording; it isn't the Yakuza's Katana, so
+    # the kill isn't katana=true (that marks the Yakuza's attack, for analysis).
+    ops = {"stolen_blade": ({"player", "by"}, set(),
+                            "{op:'stolen_blade', player, by}: the Stolen Blade holder `by` makes their one attack on "
+                            "`player` (trait, R24); code marks it used. Resolve the Standard Attack yourself")}
+    night_note = ("Stolen Blade (a trait, R24): a Village player whose trait_actions has trait 'Stolen Blade' makes "
+                  "one Standard Attack on its target, besides their role's action: an action and a visit by them "
+                  "(record it), and it counts as an attack everywhere one does. A role-block stops it, and then it "
+                  "isn't used. Unless they were role-blocked, use the stolen_blade op (it marks it used, even if the "
+                  "attack fails) and resolve the attack: a kill's cause is 'Katana' (katana=false, by the user); a "
+                  "survivor is told they were attacked with the Katana, exactly as for the Yakuza's. Tell the user "
+                  "only whether it killed. Never mention the trait to anyone else, and the Yakuza aren't told who "
+                  "made it.")
+    action_task = ("You have the Stolen Blade trait: you may make your one attack with the stolen Katana tonight by "
+                   "adding {trait: 'Stolen Blade', target} to trait_actions, besides your role's own action; leave "
+                   "trait_actions empty to keep it.")
+    trait, used_key = "Stolen Blade", STOLEN_BLADE_USED
+    holder, used, no_self = ("a Stolen Blade holder", "has already used their Stolen Blade",
+                             "a Stolen Blade holder can't attack themselves")
+
+
 KATANA_BOOST_USED = "katana_boost_used"  # game.role_state: Katana Experts and Masters who have used their attack
 
 
@@ -1048,7 +1085,7 @@ class Shaky(TraitLogic):
         by = change.get("by") or []
         users = [game.player(n) for n in ([by] if isinstance(by, str) else by)
                  if game.player(n).info.alignment is Alignment.EVIL]
-        if not users and game.katana_holder:
+        if not by and game.katana_holder:  # a Stolen Blade's Village user named in `by` isn't the Katana's holder
             users = [game.player(game.katana_holder)]
         if users and all("Shaky" in u.traits for u in users):
             return (f"{join_names([u.name for u in users])} has the hidden Shaky trait (R24): their Katana attacks are "
@@ -1073,7 +1110,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
                                 "Shaky": Shaky(), "Turncoat": Turncoat(),
-                                "Sleepwalker": Sleepwalker(), "Rival": Rival(),
+                                "Sleepwalker": Sleepwalker(), "Rival": Rival(), "Stolen Blade": StolenBlade(),
                                 "Narrow Escape": NarrowEscape(),
                                 "Katana Expert": KatanaBoost("Katana Expert", "Strong", "katana_expert"),
                                 "Katana Master": KatanaBoost("Katana Master", "Divine", "katana_master")}

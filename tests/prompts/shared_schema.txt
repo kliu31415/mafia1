@@ -224,6 +224,7 @@
       "enum": [
        "Armed",
        "Spare Blade",
+       "Stolen Blade",
        "Katana Expert",
        "Katana Master"
       ]
