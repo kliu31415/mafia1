@@ -1384,9 +1384,23 @@ def test_a_selfish_player_who_died_doesnt_share_their_factions_win(game_factory)
     game.winners = game.check_winner()
     assert game.winners == ["Bob", "Carol"]  # Bob is Selfish but alive
     line = game.winners_line()
-    assert "Selfish (a trait) and dead, so they don't share their side's win: Alice." in line
+    assert "A trait keeps them from sharing their side's win: Alice (Selfish, dead)." in line
     from traits import fits
     assert not fits("Selfish", "Serial Killer") and fits("Selfish", "Grunt")
+
+
+def test_a_selfless_player_shares_their_factions_win_only_if_dead(game_factory):
+    # rules R1, R24 (Kevin, Oct 13 2026): Selfish's mirror; the faction's win is unchanged
+    game, players = game_factory(["Sheriff", "Medic", "Vigilante", "Grunt"])
+    game.player("Alice").traits = ["Selfless"]
+    game.player("Bob").traits = ["Selfless"]
+    game.kill("Alice", "Katana")
+    game.kill("Dave", "executed by hanging", guilty_voters=["Bob", "Carol"])
+    game.winners = game.check_winner()
+    assert game.winners == ["Alice", "Carol"]  # Alice died; Bob is Selfless and alive
+    assert "A trait keeps them from sharing their side's win: Bob (Selfless, alive)." in game.winners_line()
+    from traits import bundle_error
+    assert bundle_error(["Selfish", "Selfless"]) and not bundle_error(["Selfless", "Martyr"])
 
 
 def test_oblivious_is_hidden_and_the_moderator_is_told_each_night(game_factory):

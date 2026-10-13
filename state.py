@@ -13,7 +13,7 @@ from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE, tell_swap_moves
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
-                    shares_win,
+                    shares_win, win_blockers,
                     trait_logic)
 import variants
 
@@ -358,7 +358,8 @@ class Game:
         blocking = {p.faction for p in alive if logic(p.role).blocks_win}
         if len(blocking) <= 1:
             faction = next(iter(blocking), None)
-            # A Selfish holder who died doesn't share the win (rules R1, R24); the faction still won.
+            # A Selfish holder who died, or a Selfless one alive, doesn't share the win (rules R1, R24); the faction
+            # still won.
             return ([p.name for p in self.players if faction and p.faction == faction and shares_win(p)]
                     + self.personal_winners)
         return None
@@ -373,8 +374,9 @@ class Game:
         if "(dead)" in line:
             line += " Dead players still win with their side."
         winning = {self.player(n).faction for n in self.winners or [] if n not in self.personal_winners}
-        if selfish := [p.name for p in self.players if p.faction in winning and not shares_win(p)]:
-            line += f" Selfish (a trait) and dead, so they don't share their side's win: {', '.join(selfish)}."
+        if left_out := [f"{p.name} ({', '.join(win_blockers(p))}, {'alive' if p.alive else 'dead'})"
+                        for p in self.players if p.faction in winning and win_blockers(p)]:
+            line += f" A trait keeps them from sharing their side's win: {', '.join(left_out)}."
         return line
 
     def state_summary(self) -> str:

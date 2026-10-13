@@ -252,6 +252,16 @@ TRAITS: dict[str, TraitInfo] = {
                                "<circle cx='5' cy='5' r='4.4' fill='#ca8a04' stroke='#fff' stroke-width='1'/>"
                                "<circle cx='5' cy='5' r='2.2' fill='none' stroke='#fff' stroke-width='1'/>"
                                "<circle cx='5' cy='5' r='0.7' fill='#fff'/></svg>")),  # a coin
+    # Selfish's mirror (Kevin, Oct 13 2026; his idea, named Selfless): same factions, never both on one player.
+    "Selfless": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
+                          "You win only if your faction wins and you are dead at the end; your faction's win doesn't "
+                          "change (rules R1, R24).",
+                          "Shares the faction's win only if dead at the end.",
+                          power=-0.15, power_for={Alignment.EVIL: 0.1},
+                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                "<circle cx='5' cy='5' r='4.4' fill='#0d9488' stroke='#fff' stroke-width='1'/>"
+                                "<path d='M5 7.4L2.6 5A1.3 1.3 0 0 1 5 3.6A1.3 1.3 0 0 1 7.4 5Z' fill='#fff'/>"
+                                "</svg>")),  # a heart
     # Any faction, hidden (Kevin, Oct 13 2026): Paranoid's mirror, so "was I attacked?" is unreliable both ways.
     "Oblivious": TraitInfo(frozenset(Alignment),
                            "You are never told about an attack you survive. You aren't told you have this trait "
@@ -264,7 +274,8 @@ TRAITS: dict[str, TraitInfo] = {
                                  "</svg>")),  # a closed eye
 }
 # Traits no player may hold together (rules R24).
-EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"})]
+EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"}),
+             frozenset({"Selfish", "Selfless"})]
 
 
 class TraitLogic:
@@ -279,7 +290,9 @@ class TraitLogic:
     budget_factor = 1.0  # multiplies the speaking budget earned each round and its cap (rules R22; Loud)
     length_factor = 1.0  # multiplies the length part of message prices (rules R22; Curt)
     fixed_trial_vote: bool | None = None  # how the holder's trial votes count, whatever they cast (True: Guilty)
-    wins_only_alive = False  # the holder shares their faction's win only if alive at the end (rules R1, R24; Selfish)
+    # The holder shares their faction's win only if alive (True: Selfish) or dead (False: Selfless) at the end (rules
+    # R1, R24).
+    win_needs_alive: bool | None = None
 
     def can_hide_pm(self, game: Game, p: Player) -> bool:
         """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
@@ -621,12 +634,21 @@ class Bonded(TraitLogic):
 
 
 class Selfish(TraitLogic):
-    wins_only_alive = True
+    win_needs_alive = True
+
+
+class Selfless(TraitLogic):
+    win_needs_alive = False
+
+
+def win_blockers(p: Player) -> list[str]:
+    """The traits that keep p from sharing their faction's win (rules R1, R24): Selfish if p died or left, Selfless if
+    p is alive."""
+    return [t for t in p.traits if trait_logic(t).win_needs_alive not in (None, p.alive)]
 
 
 def shares_win(p: Player) -> bool:
-    """Whether p shares their faction's win (rules R1): not a Selfish holder who died or left."""
-    return p.alive or not any(trait_logic(t).wins_only_alive for t in p.traits)
+    return not win_blockers(p)
 
 
 class Oblivious(TraitLogic):
@@ -695,7 +717,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
-                                "Oblivious": Oblivious()}
+                                "Selfless": Selfless(), "Oblivious": Oblivious()}
 assert set(LOGIC) == set(TRAITS)
 
 

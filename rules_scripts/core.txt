@@ -256,6 +256,8 @@ players can get it. A trait's night action is used in addition to your role's ow
   at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
 - Selfish (Village and Yakuza players only): you win only if your faction wins and you are alive at the end. Your
   faction's win doesn't change; you just don't share it if you died.
+- Selfless (Village and Yakuza players only): you win only if your faction wins and you are dead at the end. Your
+  faction's win doesn't change; you just don't share it if you're alive. Nobody holds both Selfless and Selfish.
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
 
