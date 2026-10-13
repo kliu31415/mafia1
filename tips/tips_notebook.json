@@ -75,9 +75,10 @@
   "game_20261012_121116_816264",
   "game_20261012_131133_156362",
   "game_20261012_135656_913688",
-  "game_20261012_150142_930656"
+  "game_20261012_150142_930656",
+  "game_20261013_045457_890072"
  ],
- "next_id": 351,
+ "next_id": 354,
  "entries": [
   {
    "id": "t1",
@@ -259,6 +260,11 @@
      "game": "game_20261012_135656_913688",
      "weight": 1.0,
      "note": "Alice (Auditor, 1.0): she held her N3 audit of Carol for a Day after Bob posted the identical result; posted on D5 it read as copied and was the main case for the shot that killed her. Her 'hurt' is non-application: the tip says to post at once when someone else claims your role or result."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Bob, Grace (0.16 each) filed 'helped': Bob's posted N2 watch (Erin visited only by Dave) was the table's one concrete fact on D3. Dave's promised result was never posted and counted for nothing."
     }
    ],
    "against": [
@@ -1177,6 +1183,11 @@
      "game": "game_20261012_135656_913688",
      "weight": 1.0,
      "note": "Niaj, Olivia, moderator: holder and target were agreed in night chat each night and no Katana vote was missed."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Carol, Frank (0.16 each) filed 'helped': holder and target were confirmed in night chat every night, and all four Katana attacks (Grace, Dave, Bob, Alice) killed."
     }
    ],
    "against": [],
@@ -1196,7 +1207,7 @@
   {
    "id": "t7",
    "audience": "Vigilante",
-   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. Traits (R24) raise the cost of a wrong shot, and no investigation sees them: killing a Cursed villager also Divine-attacks a random Good player, and killing an Avenger kills you too. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
+   "tip": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, while the Village still has numbers to spare: a first shot at 4 alive has to be right. Fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. An unverified claim is not a lead either: never shoot to 'test' a claimed Medic's announced protection or a block story. A role-block (or the hidden Drowsy trait) leaves a real Medic with no Defense, so the test kills a Villager, and a protector whose stated wards match the Katana's victims fits the deaths. When a Yakuza has just been hanged on a Yakuza-only claim, the lead is the player who defended them and cast the other Innocent vote, not whoever that player points you at by PM. Traits (R24) raise the cost of a wrong shot, and no investigation sees them: killing a Cursed villager also Divine-attacks a random Good player, and killing an Avenger kills you too. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
    "status": "active",
    "support": [
     {
@@ -1325,6 +1336,11 @@
      "game": "game_20261012_115758_746205",
      "weight": 0.16,
      "note": "Dave (Enforcer) filed 'wrong': 'set a trigger and shoot on a lead' doesn't fit an Enforcer, whose attack fires only if the target attacks. An audience misfit rather than a fault in the Vigilante advice; the moderator says he should have spent a token on a double visit (t323)."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator and Grace filed 'hurt', Alice 'wrong': Alice held every shot through N1-N3, then on N4 at 4 alive fired a Basic shot to 'test' claimed Medic Heidi's announced self-protection. Heidi was a real Medic blocked by Drowsy, so the shot killed her and the Katana took Alice with 2 tokens left. 'Lead, not proof' gave no line between a lead and an unverified claim; the real lead (Carol's defense and Innocent on Frank) went unused. Edited."
     }
    ],
    "history": [
@@ -1391,6 +1407,12 @@
      "change": "edited",
      "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. If you hit a hidden Cardinal, the curse Divine-attacks a random Good player. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
      "note": "Rules revision: Cardinal is no longer a role; the curse is now the Cursed trait (R24). Reworded the 'hidden Cardinal' sentence, and added the R24 fact that killing an Avenger kills the shooter. Rest unchanged."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "change": "edited",
+     "old": "Dying with unused tokens is the usual Vigilante failure: holding all your shots makes you a Vanilla Villager. Shoot on a lead, not on proof. Set a concrete trigger by Day 2-3 and fire a Basic shot (1 token) once it's met, and fire anyway by the time the Yakuza could be near parity. Good leads include a claim conflict, an Evil check against an unverifiable claim, a credible map or group result that leaves one unconfirmed member as the likely holder, or the stated votes and PM partners of a player shown Yakuza by a mechanical result (e.g. those who said they voted No on that player's nomination, argued to delay the hang, or whose stated votes the totals contradict). Roles are hidden on death and hard leads are scarce, so the strongest claimless voice is a fair target: someone who leads nominations on 'silence' or always echoes the consensus without results. A lone read/vote mismatch or one player's private request is not enough on its own; bring a PM'd request into public first. Traits (R24) raise the cost of a wrong shot, and no investigation sees them: killing a Cursed villager also Divine-attacks a random Good player, and killing an Avenger kills you too. A Basic shot that fails on a suspect no credible Medic protects is evidence of innate Defense (Arsonist or Serial Killer Standard, Jester or Executioner Basic), so post it the next Day. If you already suspect a Neutral killer and want the kill, only a Strong shot (3 tokens) beats Standard Defense. If your shot kills, you learn the victim's role. That is one of the few ways a dead player's role becomes known, so post the night, target and role the next Day. Claim only once your shots have paid off: the claim names your exact role to a possible Ritualist, whose guess no Medic stops, so expect to die that night and fire any shot you still have a lead for.",
+     "note": "Added: fire while the Village has numbers; an unverified protector claim or block story is not a lead and a 'test' shot kills a real blocked Medic; after a Yakuza-only-claim hang, the lead is the defender and Innocent voter. From Alice's N4 shot on Medic Heidi (moderator, Alice, Grace)."
     }
    ]
   },
@@ -2726,6 +2748,11 @@
      "game": "game_20261012_042332_517922",
      "weight": 0.4,
      "note": "Moderator: on N4 the Yakuza killed Tracker Frank and left Bob alive with a publicly claimed Sniper token. At 2 v 2 on D5 Bob shot Carol and Heidi was hanged 2-1. Killing Bob would have kept parity and very likely won."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4): at 4 alive last Yakuza Carol put the N4 Katana on Vigilante Alice, not on claimed Medic Heidi. Alice's own shot removed Heidi the same night and the game ended."
     }
    ],
    "against": [],
@@ -3300,6 +3327,11 @@
      "game": "game_20261011_122300_1114",
      "weight": 0.16,
      "note": "Grace: her blind N1 check hit Smuggler Carol, posted at the first dawn."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Dave (Sheriff, 0.16): he claimed Sheriff on D2 with nothing that decided a vote and was the N2 Katana kill; his N2 Evil read on Erin died with him. His own lesson: claim only when the claim wins a vote."
     }
    ],
    "against": [],
@@ -3765,6 +3797,11 @@
      "game": "game_20261012_150142_930656",
      "weight": 1.0,
      "note": "Erin's D2 protection claim and Carol's D4 soft protective claim each drew the Katana that night. Olivia and Carol filed 'helped'."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Dave, Erin, Frank, Heidi (0.16 each) filed 'helped': Dave (Sheriff) and Bob (Lookout) claimed on D2 and died N2 and N3. Bob's 'hurt' is non-application: he says he announced his watch targets himself."
     }
    ],
    "against": [
@@ -4212,6 +4249,11 @@
      "game": "game_20261012_135656_913688",
      "weight": 1.0,
      "note": "Alice, Erin, Grace (1.0 each) filed 'helped', loosely: the player Dave defended was Roleplayer Frank, not an exposed Yakuza, but the defender-and-lone-No pattern still found the last Yakuza. t345 carries the exact version."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator, as not applied: Frank was hanged 4-2 on a Yakuza-only claim after Carol argued for Innocent in public, so she was the one other Innocent vote. On D4 at 4 alive nobody named her and she won as the last Yakuza."
     }
    ],
    "against": [
@@ -5283,6 +5325,11 @@
      "game": "game_20261012_131133_156362",
      "weight": 0.4,
      "note": "Moderator (0.4) filed 'helped': on D3 Carol said her last profile would go on Erin and Alice said she would audit Erin. Erin (SK) killed Carol and the Katana killed Alice that night, so neither result was ever posted."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4) filed 'helped': Dave and Bob spent D2 repeating 'I'll post my N2 result at dawn' and were the Katana kills on N2 and N3; Dave's Evil read on Erin was never posted. Heidi announced her N4 self-protection, and Carol attacked Alice instead."
     }
    ],
    "against": [
@@ -5912,6 +5959,11 @@
      "game": "game_20261012_121116_816264",
      "weight": 0.72,
      "note": "Moderator (0.4), Frank, Erin (0.16 each): the Alice-Carol PM pair, both claiming no action, was the Yakuza team. The Village kept it as a lead and convicted only once an independent break arrived (the 1-token audit and the Juror vote check)."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Heidi, Erin, Carol (0.16 each): the Alice-Carol PMs followed by a shared push on Heidi were noticed, but nobody made each of them summarize the PMs in public before the vote. Carol was the last Yakuza steering Villager Alice, so the pair was mixed."
     }
    ],
    "against": [
@@ -7363,6 +7415,11 @@
      "game": "game_20261012_150142_930656",
      "weight": 1.0,
      "note": "Niaj Divined holder Grace on N3 for Strong Defense while a Veteran and a Trapper were known to be in play. Niaj and the moderator."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Carol, Frank (0.16 each) filed 'helped': Grunt Frank carried the Katana early. After his D3 hang it passed to Carol, whom no watcher had seen, and she killed Bob and Alice. Weak: the pass was automatic."
     }
    ],
    "against": [
@@ -9000,6 +9057,11 @@
      "game": "game_20261012_150142_930656",
      "weight": 1.0,
      "note": "Bob and Erin: speculative accusations in wills (Bob naming the Katana target and her protector as Yakuza) misled the town after death. Keep wills to facts and label leads as weak."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Dave, Heidi (0.16 each) filed 'helped': Heidi's will carried her N1-N3 targets and blocks to the table. Dave's N2 Evil read on Erin came on the night he died and never reached his will or the table."
     }
    ],
    "against": [
@@ -9695,6 +9757,11 @@
      "game": "game_20261012_042332_517922",
      "weight": 0.4,
      "note": "Moderator (0.4), Bob, Carol, Dave, Frank, Heidi (0.16 each): Erin self-nominated on D2, pushed Bob's hang with no data, read Evil on N2 and was hanged 7-0 on D3. The Jester won and the revenge drew Sheriff Alice, who had voted Guilty. Erin's 'wrong' says the tip was sound and wasn't followed."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Alice, Bob, Dave, Heidi (0.16 each) filed 'helped': Erin (Jester) self-nominated seven times. Alice and Bob voted Innocent in her D3 trial (3-3) and most voted No on the repeats, so she never won. Erin's 'hurt' is from the Jester herself: the tip worked as intended."
     }
    ],
    "against": [
@@ -9732,6 +9799,11 @@
      "game": "game_20261012_115758_746205",
      "weight": 0.16,
      "note": "Heidi filed 'wrong': 'ask whether the nominee wants the hang' gave nothing at two alive, where the stall clock decided the game. Untested rather than disproved: no Jester was in the game. Alice's 'helped' (refusing Carol's requests to self-nominate) is a stretch of the tip; t337 now carries that point."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Frank (Grunt, won) filed 'wrong': sparing Erin was predictable and gave the Village no progress, and her self-nominations ate rounds for four Days. Weak: the cost was the Day 4 no-hang, which t236 covers (sparing the Jester is no reason to skip the Day's hang), not the refusal to hang her."
     }
    ],
    "history": [
@@ -10003,7 +10075,7 @@
   {
    "id": "t94",
    "audience": "Medic",
-   "tip": "Never announce your protection target, in public or by private message (a Wiretap reads PMs). Don't claim Medic or name your ward before a trial or a survival question needs it: a named Medic is who a Pharmacist blocks on every kill night, and a block stops all your protection, self-protection included. If you are told you were role-blocked, a blocker has read your pattern: change wards, and post the notice once it bears on a death (if no Village blocker claims it, a Pharmacist is alive). Free Standard protection stops the Katana but not a Strong attack (Serial Killer, Arsonist ignite, a 3-token shot, a Veteran's alert, a trap). Hold your Strong tokens while only the Katana threatens, and spend them on a confirmed investigator as soon as a Strong attacker is credible (t8). While the Katana still kills, keep one token for a Standard self-protection: at 0 tokens you can't protect yourself. Don't protect the same claimed player in an obvious nightly pattern. A Pharmacist can block it, and a Smuggler can aim the Katana at a decoy and swap the decoy with your ward, which moves your save onto the decoy and the kill onto your ward. A Divine Ritualist guess beats any protection, so a lone claimed Medic should expect one.",
+   "tip": "Never announce your protection target, in public or by private message (a Wiretap reads PMs). That includes a self-protection: the Katana simply goes to someone else, and your own Vigilante may 'test' the announced Defense with a shot. Don't claim Medic or name your ward before a trial or a survival question needs it: a named Medic is who a Pharmacist blocks on every kill night, and a block stops all your protection, self-protection included. If you are told you were role-blocked, either a blocker has read your pattern or you have the hidden Drowsy trait (R24: blocked on about half the nights, with no blocker). Change wards, and post the notice once it bears on a death (if no Village blocker claims it, a Pharmacist is alive or you are Drowsy). After a second block, treat your protection as unreliable: say so plainly, give your full log of targets and blocks in one message, and never promise a save or a Defense for tonight. Free Standard protection stops the Katana but not a Strong attack (Serial Killer, Arsonist ignite, a 3-token shot, a Veteran's alert, a trap). Hold your Strong tokens while only the Katana threatens, and spend them on a confirmed investigator as soon as a Strong attacker is credible (t8). While the Katana still kills, keep one token for a Standard self-protection: at 0 tokens you can't protect yourself. Don't protect the same claimed player in an obvious nightly pattern. A Pharmacist can block it, and a Smuggler can aim the Katana at a decoy and swap the decoy with your ward, which moves your save onto the decoy and the kill onto your ward. A Divine Ritualist guess beats any protection, so a lone claimed Medic should expect one.",
    "status": "active",
    "support": [
     {
@@ -10080,6 +10152,11 @@
      "game": "game_20261012_121116_816264",
      "weight": 0.88,
      "note": "Moderator (0.4), Erin, Grace, Frank (0.16 each): Erin claimed Medic on D2 and confirmed she had guarded Grace. The Yakuza knew who was shielded and killed her that night, with both tokens unspent."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Heidi, Frank (0.16 each): Heidi claimed Medic and announced an N4 self-protection. Carol moved the Katana to Alice, and Alice shot Heidi to 'test' it. Drowsy had blocked Heidi, so she had no Defense and died."
     }
    ],
    "against": [],
@@ -10111,6 +10188,12 @@
      "change": "edited",
      "old": "Never announce your protection target, in public or by private message (a Wiretap reads PMs). Don't claim Medic or name your ward before a trial or a survival question needs it: a named Medic is who a Pharmacist blocks on every kill night, and a block stops all your protection, self-protection included. If you are told you were role-blocked, a blocker has read your pattern: change wards, and post the notice once it bears on a death (if no Village blocker claims it, a Pharmacist is alive). Free Standard protection stops the Katana, so spend Strong tokens only when a Strong attack is credible (Serial Killer, Vigilante, Veteran, trap), on a confirmed investigator likely to be hit. Keep one token for a Standard self-protection: at 0 tokens you can't protect yourself. Don't protect the same claimed player in an obvious nightly pattern. A Pharmacist can block it, and a Smuggler can aim the Katana at a decoy and swap the decoy with your ward, which moves your save onto the decoy and the kill onto your ward. A Divine Ritualist guess beats any protection, so a lone claimed Medic should expect one.",
      "note": "Adds Arsonist ignite to the Strong threats and turns 'only when' into 'as soon as': Grace never spent a token and her Standard guard on Ivan lost to the N5 ignite."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "change": "edited",
+     "old": "Never announce your protection target, in public or by private message (a Wiretap reads PMs). Don't claim Medic or name your ward before a trial or a survival question needs it: a named Medic is who a Pharmacist blocks on every kill night, and a block stops all your protection, self-protection included. If you are told you were role-blocked, a blocker has read your pattern: change wards, and post the notice once it bears on a death (if no Village blocker claims it, a Pharmacist is alive). Free Standard protection stops the Katana but not a Strong attack (Serial Killer, Arsonist ignite, a 3-token shot, a Veteran's alert, a trap). Hold your Strong tokens while only the Katana threatens, and spend them on a confirmed investigator as soon as a Strong attacker is credible (t8). While the Katana still kills, keep one token for a Standard self-protection: at 0 tokens you can't protect yourself. Don't protect the same claimed player in an obvious nightly pattern. A Pharmacist can block it, and a Smuggler can aim the Katana at a decoy and swap the decoy with your ward, which moves your save onto the decoy and the kill onto your ward. A Divine Ritualist guess beats any protection, so a lone claimed Medic should expect one.",
+     "note": "Added the self-protection announcement and the Drowsy reading of block notices. Heidi guarded the right wards on N2 and N3 but Drowsy blocked both, then announced an N4 self-protection that was blocked again; the Vigilante's test shot killed her (moderator, Heidi, Grace, Frank)."
     }
    ]
   },
@@ -10989,6 +11072,11 @@
      "game": "game_20261012_150142_930656",
      "weight": 1.0,
      "note": "Every player and the moderator: the Yakuza killed Kitsune Erin (holding their swallowed attack), Ivan (hunting Niaj), Trapper Carol and Auditor Mallory (who had just audited Heidi), and helped the town hang the Profiler. No result ever exposed them."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4) filed 'helped': the Katana took Tracker Grace on N1, then Sheriff Dave and Lookout Bob, the two players promising results, before either posted the result that mattered."
     }
    ],
    "against": [
@@ -12444,6 +12532,11 @@
      "game": "game_20261012_015059_883762",
      "weight": 0.56,
      "note": "Moderator (0.4), Dave (0.16): Dave self-nominated four times and PM'd for Guilty votes. Every Villager named the Jester pattern and refused, and he lost. Dave's own advice: build a reasoned case so the town hangs you on its own logic."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Erin (0.16): Erin self-nominated seven times and was called a Jester by mid-D2. Her one real chance came when Frank nominated her on D3 (3-3); after that she never got more than 2 Yes. Erin's own lesson: make one checkable accusation and let others build the case."
     }
    ],
    "against": [],
@@ -13704,6 +13797,11 @@
      "game": "game_20261012_131133_156362",
      "weight": 0.4,
      "note": "Moderator (0.4), Grace, Ivan, Bob, Carol, Heidi (0.16 each): Grace claimed her real Yakuza-only role (Wiretap) on D2 with no cover agreed, withdrew it under pressure and was hanged 8-1 that Day. Grace's 'hurt' is non-application: she says she ignored the tip."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Alice, Carol, Dave, Erin, Frank, Grace (0.16 each): Frank posted his real role as 'Grunt (Yakuza)' on D3 with no cover agreed. The retraction after the nomination did nothing and he was hanged 4-2, half the team."
     }
    ],
    "against": [
@@ -14773,6 +14871,11 @@
      "game": "game_20261012_023551_367402",
      "weight": 0.16,
      "note": "Bob: he died D3 with the forge token unused. No alignment checker was in the game, and the forge was never put on N2 Katana victim Alice's will."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Carol (Fabricator, 0.16): her N2 frame went on Bob while Sheriff Dave checked Erin, so it reached no alignment check. The forge token was never used."
     }
    ],
    "against": [],
@@ -14905,6 +15008,11 @@
      "game": "game_20261012_131133_156362",
      "weight": 0.4,
      "note": "Moderator: Heidi announced Guilty on Alice and cast Innocent with no public correction. The gap between the stated votes and the count set off a Day of Fixer theories and cost Heidi and Alice credibility."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Bob, Erin, Grace, Carol (0.16 each): Bob announced Guilty on Erin while his reminder said Innocent. The mismatch became the table's main argument for two Days and a lever against him."
     }
    ],
    "against": [],
@@ -15419,6 +15527,11 @@
      "game": "game_20261012_121116_816264",
      "weight": 0.32,
      "note": "Dave, Frank (0.16 each): Day 2 was mostly identical 'no nomination from me, post your names' posts that spent budget and added nothing. One specific check per turn was what was missing."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Frank (0.16): many turns were 'no nomination from me, still waiting' filler that spent budget and added nothing."
     }
    ],
    "against": [
@@ -15681,7 +15794,7 @@
   {
    "id": "t227",
    "audience": "Village",
-   "tip": "A player who publicly claims a role that exists only on the Yakuza side has given you the strongest lead you will get. The full list: Grunt, Pharmacist, Ritualist, Puppeteer, Fabricator, Clerk, Smuggler, Ballot Stuffer, Fixer, Diviner, Mortician, Wiretap, Informant, Talent Agent. This holds even if they label it '(Village)' and withdraw it as a typo once called out, and above all when an exact-role result (an archive, an Insomniac's visitor list, a profile, a survey) shows that role and nobody else claims it. Check each claimed role, and each role any result shows, against that list the moment it is posted, and always before you vote in that player's trial: tables have twice acquitted on 'wording isn't proof' while the claim itself named a Yakuza role. Treat such a claim as a confession, not a wording slip, and hang that claimant the same Day, ahead of any vaguer case: left alive, they kill that night. Accurate results don't clear it. Evil info roles like the Diviner and Talent Agent get true information (a Talent Agent's Counts will match the deaths), and a player confirming one of their hits authenticates that result, not the claimant. 'It was a slip, show me a mechanical result' must not shield them. Nominate and hang them while the Village still has the numbers, and if you said you lean Guilty, vote Guilty.",
+   "tip": "A player who publicly claims a role that exists only on the Yakuza side has given you the strongest lead you will get. The full list: Grunt, Pharmacist, Ritualist, Puppeteer, Fabricator, Clerk, Smuggler, Ballot Stuffer, Fixer, Diviner, Mortician, Wiretap, Informant, Talent Agent. This holds even if they label it '(Village)' and withdraw it as a typo once called out, and above all when an exact-role result (an archive, an Insomniac's visitor list, a profile, a survey) shows that role and nobody else claims it. Check each claimed role, and each role any result shows, against that list the moment it is posted, and always before you vote in that player's trial: tables have twice acquitted on 'wording isn't proof' while the claim itself named a Yakuza role. Treat such a claim as a confession, not a wording slip, and hang that claimant the same Day, ahead of any vaguer case: left alive, they kill that night. Accurate results don't clear it. Evil info roles like the Diviner and Talent Agent get true information (a Talent Agent's Counts will match the deaths), and a player confirming one of their hits authenticates that result, not the claimant. 'It was a slip, show me a mechanical result' must not shield them. Nominate and hang them while the Village still has the numbers, and if you said you lean Guilty, vote Guilty. Once they hang, name the next lead the following morning (t34): take that trial's Innocent total, subtract the nominee's own vote, and whoever argued for Innocent in public holds the rest. At 4-5 alive that player is the Day's hang; don't let it get lost behind a claim dispute between two Villagers.",
    "status": "active",
    "support": [
     {
@@ -15733,6 +15846,11 @@
      "game": "game_20261012_131133_156362",
      "weight": 0.4,
      "note": "Moderator (0.4), Alice, Bob, Carol (0.16 each) filed 'helped': Grace's ledger claim read 'Wiretap (Yakuza)'. The town hanged her 8-1 on D2 on the Yakuza-only claim, and the retraction didn't save her. Alice adds that the table still spent most of D2 debating the wording first."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Alice, Carol, Dave, Erin, Grace, Heidi (0.16 each) filed 'helped': Frank posted 'Grunt (Yakuza)' on D3, retracted it once nominated and was hanged 4-2 the same Day, the Village's only Yakuza kill."
     }
    ],
    "against": [],
@@ -15758,6 +15876,12 @@
      "change": "edited",
      "old": "A player who publicly claims a role that exists only on the Yakuza side (Grunt, Clerk, Diviner, Pharmacist, Puppeteer, Ritualist, Smuggler, etc.) has given you the strongest lead you will get. This holds even if they label it '(Village)' and withdraw it as a typo once called out, and above all when an exact-role result (an archive, an Insomniac's visitor list, a profile, a survey) shows that role and nobody else claims it. Learn which faction every role belongs to, and check each claimed role, and each role any result shows, against that list the moment it is posted. Treat such a claim as a confession, not a wording slip, and hang that claimant the same Day, ahead of any vaguer case: left alive, they kill that night. Accurate results don't clear it. Evil investigators like the Diviner get true information, and a player confirming one of their hits (e.g. a Vigilante confirming the drawn role) authenticates that result, not the claimant. 'It was a slip, show me a mechanical result' must not shield them. Nominate and hang them while the Village still has the numbers, and if you said you lean Guilty, vote Guilty.",
      "note": "Added the full Yakuza role list and the 'check before the trial vote' line: Grace's 'Talent Agent (Village)' claim sat unchecked from D3 to D5 because Talent Agent wasn't on the tip's sample list, and her accurate Counts were read as support."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "change": "edited",
+     "old": "A player who publicly claims a role that exists only on the Yakuza side has given you the strongest lead you will get. The full list: Grunt, Pharmacist, Ritualist, Puppeteer, Fabricator, Clerk, Smuggler, Ballot Stuffer, Fixer, Diviner, Mortician, Wiretap, Informant, Talent Agent. This holds even if they label it '(Village)' and withdraw it as a typo once called out, and above all when an exact-role result (an archive, an Insomniac's visitor list, a profile, a survey) shows that role and nobody else claims it. Check each claimed role, and each role any result shows, against that list the moment it is posted, and always before you vote in that player's trial: tables have twice acquitted on 'wording isn't proof' while the claim itself named a Yakuza role. Treat such a claim as a confession, not a wording slip, and hang that claimant the same Day, ahead of any vaguer case: left alive, they kill that night. Accurate results don't clear it. Evil info roles like the Diviner and Talent Agent get true information (a Talent Agent's Counts will match the deaths), and a player confirming one of their hits authenticates that result, not the claimant. 'It was a slip, show me a mechanical result' must not shield them. Nominate and hang them while the Village still has the numbers, and if you said you lean Guilty, vote Guilty.",
+     "note": "Moderator: Frank's trial went 4-2 and Carol had just argued for Innocent, so the one Innocent not cast by Frank was hers. On D4 at 4 alive nobody named her; Alice and Heidi suspected each other and Carol won. Added the follow-up step to the tip everyone quoted."
     }
    ]
   },
@@ -15999,6 +16123,11 @@
      "game": "game_20261012_015059_883762",
      "weight": 0.56,
      "note": "Moderator (0.4), Alice (0.16): Dave's self-nominations drew 4, then 2, 2, 2 Yes and his one trial failed 3-3. Refusing the repeats cost nothing, and the Village then hanged Ivan, the last Yakuza."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator, Heidi, Frank, as not applied: Erin's self-nominations and a failed trial on Heidi filled D4 at 4 alive, which ended with no hang while the lead on Carol (her defense of Frank and Innocent vote) went unnamed. The next night ended the game."
     }
    ],
    "against": [],
@@ -16531,6 +16660,11 @@
      "game": "game_20261012_135656_913688",
      "weight": 1.0,
      "note": "Alice, Mallory, moderator (1.0 each): matching the announced No count on Frank's nomination to who admitted it left Dave's lone No beside Frank's own, and his switch to Guilty at the trial was noted. It was a main reason for the N4 shot."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Alice, Frank (0.16 each) filed 'helped': tracking the 3-3 and 4-2 totals against stated votes exposed Bob's flip and kept Alice from hanging on a miscount."
     }
    ],
    "against": [
@@ -16573,7 +16707,7 @@
   {
    "id": "t247",
    "audience": "Everyone",
-   "tip": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, a Kitsune's swallowed attack, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first, and a target who can still stop your side winning. Never fire one on Day 1, which is talk only and gives nothing to aim on, or on Day 2 before any night result has been posted, and never at a bare claim clash. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Never fire one at a claimed Neutral that never blocks wins (Bounty Hunter, Jester, Executioner, Magpie), least of all a Bounty Hunter whose one attack is already spent: the shot removes no threat. Once you have a lead on a Yakuza or Neutral-killer suspect, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
+   "tip": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, a Kitsune's swallowed attack, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first, and a target who can still stop your side winning. Never fire one on Day 1, which is talk only and gives nothing to aim on, or on Day 2 before any night result has been posted, never at a bare claim clash, and never to 'test' an unverified claim such as a claimed Medic's announced self-protection: a role-block leaves a real Medic with no Defense, and the test kills a Villager. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Never fire one at a claimed Neutral that never blocks wins (Bounty Hunter, Jester, Executioner, Magpie), least of all a Bounty Hunter whose one attack is already spent: the shot removes no threat. Once you have a lead on a Yakuza or Neutral-killer suspect, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
    "status": "active",
    "support": [
     {
@@ -16692,6 +16826,11 @@
      "game": "game_20261012_131133_156362",
      "weight": 0.4,
      "note": "Moderator filed 'hurt': Dave took the 'spend early' half and shot spent Bounty Hunter Frank on his bare claim, then died with 2 tokens. The 'needs a lead' condition was there but said nothing about a harmless target. Alice's 'hurt' and Heidi's 'helped' (0.16 each) both say Heidi should have released her held attack, which is non-application. Carol's 'helped' is about profile tokens spent at first chance. Edited."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.16,
+     "note": "Alice filed 'hurt': with the 'tokens die with you' half in mind she shot Heidi on her announced self-protection plan, with no lead beyond the claim, and killed the real Medic. The 'needs a lead' clause didn't say that testing an unverified claim isn't one. Edited."
     }
    ],
    "history": [
@@ -16728,6 +16867,12 @@
      "change": "edited",
      "old": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first. Never fire one on Day 1, which is talk only and gives nothing to aim on, or on Day 2 before any night result has been posted, and never at a bare claim clash. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Once you have a lead, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
      "note": "Moderator: Dave's D3 Sniper shot went on a claimed, spent Bounty Hunter while the SK and the last Yakuza lived, and Heidi died holding a swallowed Strong attack. Added the 'can this target still hurt you' condition and the Kitsune's held attack to the list."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "change": "edited",
+     "old": "You can't use tokens once you're dead: spend one-shot tokens (Clerk rig, Puppeteer, Ritualist, Medic tokens, swaps, a Kitsune's swallowed attack, ...) the first Day or night they can change a vote or remove a threat, rather than waiting for a perfect moment. A claimed or suspected player can die any night. Kill tokens (Vigilante, Sniper and Armed shots) are the exception to 'first chance': they need a lead first, and a target who can still stop your side winning. Never fire one on Day 1, which is talk only and gives nothing to aim on, or on Day 2 before any night result has been posted, and never at a bare claim clash. A second claimant of your own non-Unique role is often real, and twice now one real Sniper has killed the other. Never fire one at a claimed Neutral that never blocks wins (Bounty Hunter, Jester, Executioner, Magpie), least of all a Bounty Hunter whose one attack is already spent: the shot removes no threat. Once you have a lead on a Yakuza or Neutral-killer suspect, don't hold the shot for proof. At parity (the Yakuza hold half the votes) no nomination can pass, so fire it that Day even on a coin flip between two suspects. A puppet or doubled ballot lapses if you die the night you spend it (R21), and a Sniper's Day shot doesn't fire if you die before its random delay runs out (R25), so spend those ahead of a likely death. Yakuza: before spending a Day-effect token on a player (fix, puppet), check in night chat that your team isn't killing that player tonight.",
+     "note": "Added 'never to test an unverified claim' to the kill-token exception. Alice's N4 Basic shot to test Heidi's self-protection killed a real, Drowsy-blocked Medic and ended the game."
     }
    ],
    "pinned": true
@@ -16831,6 +16976,11 @@
      "game": "game_20261012_121116_816264",
      "weight": 0.32,
      "note": "Grace, Heidi (0.16 each) filed 'helped': the 6-vote total from 5 voters on D4 was read as a Ballot Stuffer's extra vote, which kept the table from misreading the count."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4) filed 'helped': after the 3-3 on Erin against the stated Guilty votes, Heidi and Alice asked voters to check reminders, Bob admitted he had cast Innocent, and nobody hunted a Fixer. The second changed vote (Carol's Merciful trait) went unnoticed; see t352."
     }
    ],
    "against": [
@@ -18004,6 +18154,11 @@
      "game": "game_20261012_150142_930656",
      "weight": 1.0,
      "note": "Frank, Judy and the moderator: at 5 alive with 2 Yakuza, hanging the Neutral killer let the Katana bring the Yakuza to 2 of 3. Frank's mechanical break of Grace's Scout claim came on D6, after the lock."
+    },
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator, as not applied: at 4 alive on D4 (1 Yakuza, a Jester, 2 Villagers) the hang was the Village's last. The Day ended with no hang, and N4 (Katana on Alice, Alice's shot on Heidi) ended the game."
     }
    ],
    "against": [],
@@ -19567,6 +19722,66 @@
    "history": [
     {
      "game": "game_20261012_150142_930656",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t351",
+   "audience": "Village",
+   "tip": "Repeated role-block notices don't prove a living blocker. The hidden Drowsy trait (R24) blocks its holder on about half the nights with no blocker at all, and the holder is only told 'you were role-blocked'. So a Medic or investigator who reports blocks on two or three nights, with stated targets that match the players the Katana went after, fits an honest Drowsy player as well as a Pharmacist's victim or a liar. A block also explains why a Standard protection 'failed' against the Standard Katana. Don't hang or shoot on the block story, and don't take it as proof of a Pharmacist unless a second player reports a block too. Test the claim another way: a Lookout or Tracker on the claimant, a token audit, their vote record. If it is you: after the second block say you may be Drowsy, post your full log once, and never promise a protection or a result for tonight.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator's review, Heidi, Grace (0.16 each): Medic Heidi guarded Dave on N2 and Bob on N3, the right wards, and her hidden Drowsy trait blocked her both times. Her block story read as unverifiable, Carol turned Alice against her, and Alice's N4 'test' shot killed her while Drowsy blocked her self-protection. One low-strength game."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261013_045457_890072",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t352",
+   "audience": "Everyone",
+   "tip": "Two traits change how a trial vote counts (R24): a Merciful player's Guilty/Innocent votes always count Innocent and a Zealot's always count Guilty, whatever they cast, and the holder's private reminder shows both the vote cast and how it counted. So a total that doesn't fit the stated votes can come from a trait as well as a miscast, a lie or a Fixer. When you ask voters to re-check their reminders, ask each to say how the vote counted, not only what they cast. Village holders: say it the first time a total is questioned, so the table counts without you. Merciful means you can never add a Guilty; Zealot means you can never help acquit, and each of your trial votes puts you in a Jester's revenge pool. Yakuza holders: plan the vote math around it in night chat. A Merciful member can't bus a teammate by ballot, so a stated Guilty leaves the Guilty total one short, and a Zealot member can't save one.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator's review: Carol (Fabricator, Merciful) stated Guilty on Erin's D3 trial and it counted Innocent; with Bob's miscast the total came out 3-3 against four or more stated Guilty. The table asked for reminders, found Bob's and never asked Carol how hers counted. One game, thin."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261013_045457_890072",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t353",
+   "audience": "Yakuza",
+   "tip": "As the last Yakuza at 4-5 alive, don't spend the Day defending yourself: turn the remaining Villagers on each other. Pick the Villager whose claim nobody can check (a protector reporting blocks, a late claimant), raise the doubt with one other Villager, nominate, then back off and vote Innocent once the claim holds so your ballot doesn't mark you. The doubt outlives the trial: it goes into the other Villager's will and can draw a Vigilante's shot that night, while your Katana takes the shooter. The PMs are visible to everyone (t40) and the pair gets read as coordinating, so keep them few and be ready to summarize them in public. It only works while nobody is naming your own record (a defense of a hanged teammate, a lone Innocent), so start the push first thing that Day.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261013_045457_890072",
+     "weight": 0.4,
+     "note": "Moderator (0.4), Carol (won, 0.16): on D4 at 4 alive Carol PM'd Alice to agree on suspecting Medic Heidi, nominated Heidi, then voted Innocent once the Medic claim held. Alice's will and N4 shot both went at Heidi, Carol's Katana killed Alice, and the game ended. Erin and Heidi note the Alice-Carol PMs were read as a pair. One low-strength game."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261013_045457_890072",
      "change": "added"
     }
    ]
