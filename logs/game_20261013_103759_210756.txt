@@ -98,3 +98,51 @@ Trial votes on Dave: 4 Guilty, 3 Innocent (the votes are secret).
 [Secret trial votes on Dave] Guilty - Erin, Frank, Grace, Heidi; Innocent - Alice, Bob, Dave
 Dave is executed by hanging (4 Guilty of 7 votes; 4 needed).
 Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave: I have no role claim and no night results to pass on. Don't hang anyone on my account. Judge the living by posted results and vote behavior."
+
+===== NIGHT 2 =====
+Night actions:
+  Bob (Pharmacist): target Erin; "Role-block Erin."; Katana vote: Bob holds, attacks Frank
+  Erin (Medic): target Frank; "Standard Defense on Frank for free. Frank is a Tracker claimant and a likely Katana target, and Bob's account is tied to Dave's PMs, so I'm not guarding Bob."
+  Frank (Tracker): target Bob
+  Heidi (Vigilante): target Bob; chose to spend 3 token(s); "Strong attack"
+Katana: Bob holds it and attacks Frank.
+(to Bob) Moderator (private): You visited Erin tonight. The Katana attack on Frank succeeded: Frank was killed.
+(to Erin) Moderator (private): You were role-blocked tonight. 2 medic tokens left.
+(to Frank) Moderator (private): You tracked Bob tonight. Bob visited Erin and Frank.
+(to Heidi) Moderator (private): You shot Bob with a Strong Attack (3 tokens). Your shot killed Bob. 0 vigilante tokens left.
+[Moderator summary] Night 2: Bob (Pharmacist, immune to role-blocks) role-blocked Erin, so her Standard protection on Frank never happened. Bob held the Katana and attacked Frank at Standard level. No Katana Expert action was submitted, so the trait is not used up. Frank had Defense None and died (Katana). Heidi spent all 3 tokens on a Strong Vigilante shot at Bob (Defense None), and Bob died. Frank's track: Bob visited Erin and Frank. Visits recorded: Bob->Erin, Bob->Frank, Frank->Bob, Heidi->Bob. With Bob and Dave dead, no Yakuza are left. The living players are Alice (Jester, never blocks wins), Erin, Grace and Heidi, so the Village should win when code runs the win check.
+[Night check] Night 2: correct
+(to Heidi) Moderator (private): Your shot killed Bob. Their role was Pharmacist.
+(to Bob) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 3 =====
+Bob died (killed by Vigilante). Their role isn't revealed. Their last will: "Tracker. Night 1: tracked Carol; she visited nobody. No other results."
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank (Tracker). N1: tracked Dave; he visited no one. Dave died by hanging after admitting he privately coached Bob to keep his Tracker claim concise and consistent. I voted Guilty. Bob also claims Tracker and says he tracked Carol, who visited no one; this is unverified. Tonight I tracked Bob; result pending. Treat the PM coordination as suspicious, not conclusive, and compare any new result with the public facts."
+The game is over. Winners: Carol (dead), Erin, Frank (dead), Grace, Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[ERROR player_error] Erin (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'wanted_but_couldnt', root: must have required property 'bugs_or_oddities', root: must have required property 'suggestions', root: must)
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Erin, Frank, Grace, Heidi
+Cost by player (USD):
+  Alice (Jester)            $0.0000   12 calls  claude-haiku-5.5
+  Bob (Pharmacist)          $0.0248   14 calls  gpt-6-luna
+  Carol (Sheriff)           $0.0000    5 calls  claude-haiku-5.5
+  Dave (Grunt)              $0.0000   14 calls  claude-haiku-5.5
+  Erin (Medic)              $0.0000   13 calls  claude-haiku-5.5
+  Frank (Tracker)           $0.0212   11 calls  gpt-6-luna
+  Grace (Vanilla Villager)  $0.0201   12 calls  gpt-6-luna
+  Heidi (Vigilante)         $0.0201   12 calls  gpt-6-luna
+  Moderator                 $0.0000    3 calls  claude-opus-5.5
+  Night checks              $0.0000    2 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0862  100 calls
