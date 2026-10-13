@@ -216,3 +216,44 @@ Bob (public): Frank, the game hasn't ended, and I'm Village. So you are Yakuza o
 Bob (public): Frank, you're the Serial Killer, and killing me tonight wins you the game. I can't stop it, so the choice is yours.
 (to Bob, Frank) Bob -> Frank (private): Frank: a stall loses for both of us, and a kill on me gains you nothing you can't already claim. Please don't attack.
 Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Veteran): no action
+  Frank (Serial Killer): target Bob
+Katana: no attack (no target); nobody holds it.
+(to Frank) Moderator (private): You attacked Bob tonight. Your attack killed them.
+[Moderator summary] Night 4: Frank (Serial Killer) made a Strong Attack on Bob. Bob (Veteran) had 0 alert tokens and could not go on alert, so his Defense was None. There were no traps or protection on him, so he died. The Katana vote made no holder change and no attack. Recorded visit: Frank->Bob. Frank is the only living player, so the Serial Killer should win.
+[Night check] Night 4: correct
+(to Bob) Moderator (private): You were attacked tonight (Serial Killer) and died.
+
+===== DAY 5 =====
+Bob died (killed by Serial Killer). Their role isn't revealed. Their last will: "Bob, Veteran (Good). Alerts N1-N3, no visitors. Stolen Blade N3 on Frank, no kill. Frank is the only other living player, so if I die at night, Frank is the Serial Killer or Yakuza-aligned killer. Vote Guilty on Frank if a trial ever happens."
+The game is over. Winners: Frank.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Heidi] Nothing else to report beyond the fields above.
+[Feedback from Bob] Clarify the two-player trial majority rule in the prompt and show remaining budget each turn.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Frank
+Cost by player (USD):
+  Alice (Trapper)        $0.0138    5 calls  gpt-6-luna
+  Bob (Veteran)          $0.0000   34 calls  claude-haiku-5.5
+  Carol (Trapper)        $0.0000   17 calls  claude-haiku-5.5
+  Dave (Accountant)      $0.0133    5 calls  gpt-6-luna
+  Erin (Fixer)           $0.0473   22 calls  gpt-6-luna
+  Frank (Serial Killer)  $0.0643   34 calls  gpt-6-luna
+  Grace (Juror)          $0.0000   22 calls  claude-haiku-5.5
+  Heidi (Ritualist)      $0.0000    6 calls  claude-haiku-5.5
+  Moderator              $0.0000    6 calls  claude-opus-5.5
+  Night checks           $0.0000    4 calls  claude-opus-5.5
+  Strategy review        $0.0000    1 calls  claude-opus-5.5
+  Log review             $0.0000    1 calls  claude-opus-5.5
+  Total                  $0.1386  157 calls
