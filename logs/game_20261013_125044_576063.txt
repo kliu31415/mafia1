@@ -60,3 +60,67 @@ Katana: Heidi holds it and attacks Alice.
 (to Heidi) Moderator (private): You were attacked tonight (Serial Killer) and died.
 (to Erin) Moderator (private): Yakuza night summary: Heidi holds the Katana and chose to attack Alice. Heidi (Ritualist) chose no action.
 (to Erin) The Katana passed to Erin.
+
+===== DAY 2 =====
+Dave died (killed by a hidden gun). Their role isn't revealed. Their last will: "Accountant, Good. I audited Erin on Night 1; result pending. I have an unused Stolen Blade."
+Heidi died (killed by Serial Killer). Their role isn't revealed.
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "I am the Trapper (Good). I set my trap on Erin on Night 1; it is armed starting Night 2 and remains active even if I die."
+Speaking order today goes around the circle in seat order, starting with Erin.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Erin: Sheriff. N1 checked Bob — Not Evil.
+Erin (public): I’m Sheriff. N1 checked Bob: Not Evil. That doesn’t clear a Neutral, but it’s a data point. Dave’s will says his audit result was pending; everyone else, share any concrete results.
+Frank (public): Erin, what did Heidi's PM say? Dave's pending audit of you could be relevant; don't clear anyone yet.
+Grace (public): Two dead Village claimants, Dave (Accountant) and Alice (Trapper), both name Erin. Erin, your Sheriff claim is the only live one, so tell us your Night 2 target and result. Bob's Not Evil clears nobody by itself. I'm not nominating without a mechanical break.
+Bob (public): Bob here. Dave's will names Erin as audited and Alice's names Erin as trapped, so Erin's Sheriff claim is the only live one. Erin, what did you check on Night 2, and what was the result?
+[Claim] Carol: Trapper (Good). N1: trap on Heidi (died that night, no effect). Trap-went-off would mean an attacker visited my trapped player.
+Carol (public): Carol here. I'm the Trapper. My Night 1 trap went on Heidi, who died that night, so it did nothing. Erin, what was your Night 2 target and result? I'm not nominating anyone yet.
+Erin (public): There hasn't been a Night 2 yet, so I can't report an N2 target or result. My N1 check was Bob—Not Evil. Dave's will says his audit result was pending, so we don't have that result to assess. Alice and Carol both claim Trapper; either could be true, so let's not treat either claim as confirmed yet.
+Frank (public): Erin, did Heidi's PM contain anything substantive? On the Trapper claims, Alice's will specifies a live trap on you, while Carol says hers was on Heidi. Duplicate roles are possible, so let's not overstate either. Carol, can you clarify?
+Grace (public): Grace here. I'm not nominating yet. Carol, Erin: please each state your Night 2 target before anyone votes. Erin, what did Heidi's PM to you say? Heidi's death puts a Serial Killer alive, so checkable results matter more than who talks most.
+Bob (public): Bob here, still no nomination from me. Erin: Dave's audit of you is unresolved and Alice's trap is on you (armed from Night 2). Please say what Heidi's PM said and give your Night 2 target and result once it happens. Carol: state your Night 2 trap target too. I want checkable results before any vote.
+[Claim] Carol: Trapper (Good). N1: trap on Heidi (died that night, no effect). Trap-went-off would mean an attacker visited my trapped player. Alice's claimed Trapper role conflicts with mine; her will is unverified.
+Carol (public): Carol here. Alice's Trapper claim conflicts with mine. Roles can repeat, so a second Trapper is possible, but I'm treating Alice's will as unverified until a trap goes off or a visit confirms it. Erin: what did Heidi's PM say? Heidi is dead and her PM is the only Day 1 data. No nomination from me yet.
+Erin (public): Heidi's PM was just a generic note about coordinating later; no role information or results. I have no N2 result—there hasn't been a night yet. Dave's will gives his audit target but not the result. Carol's N1 trap on Heidi doesn't confirm her claim; neither Trapper claim is proved. Frank and Grace, any concrete results or claims?
+[Claim] Frank: Medic. N1 protected Bob with standard defense; no stop notice.
+Frank (public): I do have a concrete claim: Medic. N1 I protected Bob with standard defense; I got no stop notice. No N2 has happened yet, so nobody can give an N2 result. Dave’s will gives no audit result, so let’s not treat it as proof against Erin.
+Grace (public): Grace here. No nomination from me yet. I want a checkable break before any vote. Carol and Erin, if a trap goes off or a visit is reported tonight, post it so we can test the Trapper claims against it.
+Bob (public): Bob here. No nomination from me yet. Carol and Alice both claim Trapper, so the Night 2 trap results are the real test. If Alice's trap on Erin goes off tonight, post it. Erin, you say Dave's audit is pending, so give your Night 2 result once it's in. I won't vote without a checkable break.
+Carol (public): Carol here. No nomination from me. I'll place my Night 2 trap on someone and post whether it goes off. Erin, post your Night 2 target and result once it's in. Frank, post who you protected tonight. Dave's audit result is still unknown, so I won't vote on Erin without a checkable break.
+Erin (public): My claim remains Sheriff, N1 Bob Not Evil. Dave's pending audit has no result for us to assess, and Alice's will is unverified. Carol's N1 trap on Heidi doesn't establish either Trapper claim. No one has an N2 result yet; let's compare actual results tomorrow rather than force a vote on competing claims.
+Frank (public): My N1 protection on Bob gave no stop notice, so it adds no evidence. Dave’s Accountant audit was a token count, not an alignment check; “pending” gives us no result to judge Erin by. Let’s avoid a vote on competing claims alone and compare concrete results tomorrow.
+Grace (public): Grace here. No nomination from me. Erin, Carol, Frank: each of you posts tonight's target and any result once it's in. A Medic stop or Trapper trap going off is checkable, so I'll vote on that.
+Bob (public): Bob here. No nomination from me. Erin and Carol: post your Night 2 target and result once the night resolves. Frank: if your Medic protection gets a stop notice tonight, say so. I'll vote only on checkable breaks.
+[Feedback from Carol] nominate=null vs false: I used null for no nominee.
+[Claim] Carol: Trapper (Good). N1: trap on Heidi (died that night, no effect). N2: trap placed; will report whether it goes off.
+Carol (public): Carol here. No nomination from me. I'll post whether my Night 2 trap goes off once the night resolves. Erin, post your Night 2 check and result when it's in.
+Erin (public): We have no result from Dave’s audit, only his target; that is not evidence either way. Alice’s will claims a trap on me, but no one has reported it triggering. Bob and Grace, please share any claims or results.
+Frank (public): Erin’s Sheriff result is limited: Not Evil doesn’t exclude a Serial Killer, and Dave’s audit was a token count, not an alignment check. Bob and Grace are still unclaimed; please share any role or result so we can compare evidence before voting. Carol’s N1 trap claim isn’t confirmed by Heidi’s death.
+Grace (public): Grace here. No nomination from me. Alice's trap on Erin is armed from tonight. If an attack on Erin trips it, the attacker is hit, so Erin or Carol please report whether it went off. I'll weigh votes once they exist.
+[Claim] Bob: Veteran. N1: went on alert, no visitors. 2 alert tokens left.
+Bob (public): Bob here, Veteran. N1 I went on alert and nobody visited me; 2 alert tokens left. I'll alert on nights I expect a visit, so anyone who visits me gets hit. Carol and Alice's Trapper claims conflict, so I want a trap going off before any vote.
+[Claim] Carol: Trapper (Good). N1: trap on Heidi (dead, no effect). N2 trap: to be placed tonight; will report if it goes off.
+Carol (public): Carol here. Correction: Night 2 hasn't happened yet, so my earlier "N2 placed" line was premature. I'll name my Night 2 trap target when the night starts and post whether it goes off. Erin: Alice's will puts her trap on you, so any attack that hits you tonight would trip it. No nomination from me.
+Erin (public): No Night 2 results exist yet; Dave’s pending audit isn’t an alignment result, and neither Trapper claim is confirmed. Grace is still unclaimed—please state your role before we end.
+Frank (public): Grace has remained unclaimed despite repeated requests. Put her on trial to explain her silence; then judge the defense and evidence.
+Frank nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Frank, Erin; No - Grace, Bob, Carol
+Nomination votes on Grace: 2 Yes (the votes are secret).
+The nomination of Grace failed (2 Yes).
+[Claim] Grace: Juror (Good). Night 2: Juror check on two players' vote agreement. No trial votes yet; nomination vote on Grace: No.
+Grace (public): Grace here: I'm Juror (Good). Tonight I'll check vote agreement between two players and post the result. No nomination from me yet.
+Bob (public): Bob here. No nomination from me. Grace, post your Juror check when it resolves. Carol and Erin, post whether your trap or Sheriff results hold up tomorrow. I'm voting only on checkable breaks.
+Carol (public): Carol here. No nomination from me. I'll place my Night 2 trap and report if it goes off. Erin, Bob, Frank, Grace: post your night results once it resolves, and I'll vote only on a checkable break.
+Erin (public): There's a concrete inconsistency to resolve: Frank says he visited Bob to protect him N1, while Bob says he alerted and had no visitors. A Medic visit counts, and an alerting Veteran attacks visitors. At least one account is wrong. Clarify before we treat either claim as confirmed.
+[Claim] Frank: Medic. N1 protected Erin with standard defense; no stop notice.
+Frank (public): Correction: I misstated my N1 protection target; it was Erin, not Bob. No stop notice. Bob's claimed alert therefore doesn't contradict my actual visit.
+Grace (public): Grace here. No nomination from me. I'll vote only on a checkable break, such as a Medic stop, a trap going off, or a Juror check result, and I'll post mine once it resolves.
+Bob (public): Bob here. No nomination. I'll go on alert tonight, so any visitor gets hit by a Strong Attack. Erin and Grace, post your night results once they resolve.
+[Claim] Carol: Trapper (Good). N1: trap on Heidi (dead, no effect). N2: trap placed tonight, arms Night 3; will report if it goes off.
+Carol (public): Carol here, no nomination. My Night 2 trap is set tonight and arms on Night 3. I'll post honestly whether it goes off. If a trap on Erin ever goes off, that would support Alice's Trapper claim.
+Erin (public): Frank first said he protected Bob, then corrected to Erin after Bob said he had no visitors. Keep both statements in view; it's the clearest inconsistency so far. No nomination from me today.
+Frank (public): I corrected the misspeak: my N1 Medic target was Erin, not Bob. No stop notice; Alice's trap only arms on N2, so these facts do not conflict.
+Grace (public): Grace here. No nomination from me. Night 2 is next. I'll post my Juror result when it resolves, and I'll vote only on a checkable break, like a trap going off, a Medic stop, or a Juror result.
+Bob (public): Bob here. No nomination from me. I'm going on alert again tonight, so any visitor gets hit. Erin, Frank, Grace, Carol: post your night results once they resolve, and I'll vote only on a checkable break.
+[Claim] Carol: Trapper (Good). N1: trap on Heidi (dead, no effect). N2: trap to be placed at Night 2; will report if it goes off.
+Carol (public): Carol here, no nomination. My N2 trap isn't placed yet, since Night 2 hasn't happened. I'll post my target and whether it goes off.
+Discussion time is over. The day ends.
