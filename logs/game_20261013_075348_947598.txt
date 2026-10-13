@@ -124,3 +124,28 @@ Alice (public): No case supports a trial today; I voted No on Frank. Don't revea
 Bob (public): Bob, no nomination. Erin, Carol and Dave: bring your exact N2 results at the start of Day 3. I won't vote on claims without data.
 (to Bob, Grace) Bob -> Grace (private): Bob: no kill tonight. We judge Day 3 claims first, then plan in night chat. Stay quiet.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Grace) Bob (Yakuza chat): Bob: Proposal for tonight. Katana stays with Bob. Target: Carol. Erin and Carol both claim to have checked me on N1, and Carol's Tracker is the bigger threat, since it can see my Katana visits on any night I attack. Grace, no Pharmacist block tonight. Dave's Lookout claim is one result on you, so leave it for now. Reply with agreement or a different target, and I'll submit my vote to match.
+(to Bob, Grace) Grace (Yakuza chat): Grace here. Agreed: Katana stays with Bob, target Carol. I'll not block Carol (the attack already covers her); I'll use my Pharmacist block on Erin so her Sheriff check tonight fails. Bob, submit your Katana vote on Carol. Ready.
+(to Bob, Grace) Bob (Yakuza chat): Bob: Agreed. Katana stays with Bob, attack on Carol. Grace, block on Erin is fine. No further changes from me. Ready.
+(to Bob, Grace) Grace (Yakuza chat): Grace: Agreed. Katana stays with Bob, attack on Carol. I block Erin with the Pharmacist. No changes from me. Ready.
+Night actions:
+  Alice (Veteran): chose to spend 1 token(s); trait action: Sleepwalker on Carol
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Carol
+  Carol (Tracker): target Erin
+  Dave (Lookout): target Erin
+  Erin (Sheriff): target Grace
+  Grace (Pharmacist): target Erin; Katana vote: Bob holds, attacks Carol; trait action: Sleepwalker on Alice
+Katana: Bob holds it and attacks Carol.
+(to Alice) Moderator (private): You went on alert tonight. 1 player visited you: your attack killed them. 1 alert token left.
+(to Bob) Moderator (private): Your Katana attack on Carol succeeded.
+(to Carol) Moderator (private): You tracked Erin: they visited nobody tonight.
+(to Dave) Moderator (private): You watched Erin: Carol and Grace visited them tonight.
+(to Erin) Moderator (private): You were role-blocked tonight.
+(to Grace) Moderator (private): You visited Erin tonight.
+[Moderator summary] Night 2: Grace (Pharmacist) role-blocked Erin (Sheriff check on Grace stopped). Alice alerted (alert 2->1); Grace's Sleepwalker visit hit Alice, so the Veteran's Strong Attack killed Grace. Alice's Sleepwalker visit went to Carol. Bob (Katana holder) killed Carol with the Katana (Standard vs None). Carol tracked Erin: no visit (blocked). Dave watched Erin: Carol and Grace. Bob keeps the Katana and is the only Yakuza left. Alive: Alice, Bob, Dave, Erin, Frank, Heidi.
+[Night check] Night 2: correct
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Grace) Moderator (private): You were attacked tonight (Veteran) and died.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Carol. Grace (Pharmacist) chose to act on Erin.
