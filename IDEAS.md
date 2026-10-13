@@ -102,6 +102,14 @@ night actions already run in parallel.
   hedge leaks information. The night-check judge could re-answer each question and log disagreements, but two
   LLMs agreeing isn't proof. Accurate alternative: a menu of templates (role category, role in play, X visited Y,
   X's last trial vote, tokens left) that the moderator records and code answers, like the Auditor or Juror.
+- **Contrary trait, an "insane cop"** (Kevin, Oct 13 2026: dropped for its bug risk; the Roleplayer is already
+  similar). A hidden trait (not told to its holder) that flips an investigator's result after the R19 exceptions:
+  yes/no checks (Sheriff, Seer, Oracle) give the other answer, counts out of n give n minus the count, role results
+  give a wrong role fixed per target; visit, name and open-ended count results have no single wrong answer. Generic
+  form: each role labels its result kind and one flip function per kind does the rest. Risks: the moderator
+  double- or un-flipping Sheriff/Seer/Oracle results (frames, Katana), code-told roles that skip the flip helper,
+  and analysis scoring the shown result instead of the true one. Unlike the Roleplayer, the role and its visits
+  are real; a flipped Oracle confirming a fake claim could swing a game. Power about -0.3.
 - **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
   naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
   defeats it, so it mostly taxes Yakuza coordination.
