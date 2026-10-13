@@ -239,3 +239,27 @@ Trial votes on Bob: 9 Guilty, 1 Innocent (the votes are secret).
 Bob is executed by hanging (9 Guilty of 10 votes; 6 needed).
 Bob died (executed by hanging). They had been marked by a Chronicler, so their role is revealed: Talent Agent. Their last will: "Bob - Enforcer (Good). I started with 3 tokens. N1: visited Heidi, spent 1 token to make it Strong. She made no attack, so I dealt none. N2: held my visit, no lead worth spending on. 2 tokens left. Carol marked me N2, so my death reveals Enforcer. Olivia's N2 census (Bob, Ivan, Judy: Evil 1) then means JUDY is Yakuza. Judy pushed me from Day 2 and claimed only once I was on trial. Juror is Astral, so it's uncheckable and invisible to Niaj's counts. Ivan was killed right before his Bob+Carol pair (SAME) would have pointed at her. Hang Judy next."
 Judy was the Executioner, whose target was Bob. They win and leave the game. Their last will: "Judy, Juror (Astral Visit, no visits, so I never count in Niaj's visitor numbers). N1: no useful pair yet (no votes had happened). N2: compared Bob and Mallory. Result: same way in 1 of 1 trial votes and 1 of 1 nomination votes (only Frank's nomination and trial count; Mallory's own are excluded). That fits their stated Guilty on Frank, but Bob voted in lockstep with the player we hanged as non-Good. D2: Yes on Frank's nomination, Innocent on Frank; No on Mallory's nomination, Guilty on Mallory. Ivan died right after choosing his Seer pair on Bob + Carol, which suggests the Yakuza feared that check. Bob's late Enforcer claim on Heidi still needs testing (an Accountant should see exactly 2 tokens). If I die, look hard at Bob and at whoever pushed my hang without data."
+
+===== NIGHT 3 =====
+Night actions:
+  Carol (Chronicler): no action
+  Dave (Trapper): no action
+  Frank (Arsonist): target Heidi; "Douse Heidi"
+  Grace (Diviner): target Grace; "Diviner on myself for Strong Defense, in case the Katana hits Dave's trap and I take the backlash."; Katana vote: Grace holds, attacks Olivia
+  Heidi (Archivist): no action
+  Niaj (Fortune Teller): trait action: Armed on Heidi
+  Olivia (Census Taker): target Heidi
+Katana: Grace holds it and attacks Olivia.
+(to Olivia) Moderator (private): Your census of Carol, Grace and Heidi counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, Notorious) don't change it, and a Turncoat counts as Good. Neutral players are never counted, as either Good or Evil.
+(to Niaj) Moderator (private): Your hidden gun shot killed its target. Fortune Teller result for tonight: 3 players were visited; 4 players visited someone.
+(to Frank) Moderator (private): You doused Heidi tonight.
+[Moderator summary] Night 3: Frank (Arsonist) doused Heidi. Grace (Diviner, Yakuza, Katana holder) used her action on herself, so she had Strong Defense. The Katana's Standard attack on Olivia was stopped by Dave's armed trap (now used up). The trap hit Grace back with a Strong Attack, which failed against her Strong Defense, so Grace survived. Niaj's Armed shot (Basic) killed Heidi, cause 'a hidden gun'. Olivia took a census around Heidi (code resolved it). Carol, Dave and Heidi took no action. Fortune Teller: 3 visited, 4 visitors. Living: Alice, Carol, Dave, Frank, Grace, Niaj, Olivia.
+(to Grace) Moderator (private): Your Katana attack on Olivia failed. You were attacked by a Trapper tonight and survived.
+(to Olivia) Moderator (private): You were attacked with the Katana tonight and survived.
+[Moderator summary] Night 3: Frank (Arsonist) doused Heidi. Grace (Diviner, Yakuza, Katana holder) picked herself with her Diviner action, which gave her Strong Defense and no result. Dave's armed trap on Olivia stopped the Katana's Standard attack and is now used up. The trap hit Grace back with a Strong Attack, which failed against her Strong Defense, so Grace survived. Niaj's Armed shot (Basic) killed Heidi, cause 'a hidden gun'. Olivia took a census around Heidi (code resolved it). Carol, Dave and Heidi took no action. Fortune Teller: 3 visited, 4 visitors. Living: Alice, Carol, Dave, Frank, Grace, Niaj, Olivia.
+[Night check] Night 3: correct
+[Revenge] Judy's Divine Attack hits Olivia.
+(to Dave) Moderator (private): Your trap went off tonight and is used up.
+(to Carol) Moderator (private): You were attacked tonight (heartbreak) and died.
+(to Heidi) Moderator (private): You were attacked tonight (a hidden gun) and died.
+(to Olivia) Moderator (private): You were attacked tonight (Executioner's revenge) and died.
