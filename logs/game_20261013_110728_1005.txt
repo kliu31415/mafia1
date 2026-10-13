@@ -1,0 +1,19 @@
+Setup:
+  Alice    seat 1  Sniper            anthropic/claude-opus-5.5 (via Claude Code)  trait: Kindred
+  Bob      seat 2  Talent Agent      anthropic/claude-opus-5.5 (via Claude Code)  trait: Disguised
+  Carol    seat 3  Chronicler        anthropic/claude-opus-5.5 (via Claude Code)  trait: Bonded, Disguised
+  Dave     seat 4  Trapper           anthropic/claude-opus-5.5 (via Claude Code)
+  Erin     seat 5  Scout             anthropic/claude-opus-5.5 (via Claude Code)
+  Frank    seat 6  Arsonist          anthropic/claude-opus-5.5 (via Claude Code)
+  Grace    seat 7  Diviner           anthropic/claude-opus-5.5 (via Claude Code)
+  Heidi    seat 8  Archivist         anthropic/claude-opus-5.5 (via Claude Code)  trait: Loud
+  Ivan     seat 9  Seer              anthropic/claude-opus-5.5 (via Claude Code)  trait: Confidant
+  Judy     seat 10 Executioner       anthropic/claude-opus-5.5 (via Claude Code)  trait: Grudge  {'target': 'Bob'}
+  Mallory  seat 11 Ritualist         anthropic/claude-opus-5.5 (via Claude Code)  trait: Zealot, Sleepwalker
+  Niaj     seat 12 Fortune Teller    anthropic/claude-opus-5.5 (via Claude Code)  trait: Selfish, Armed
+  Olivia   seat 13 Census Taker      anthropic/claude-opus-5.5 (via Claude Code)  trait: Martyr, Bonded
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).
