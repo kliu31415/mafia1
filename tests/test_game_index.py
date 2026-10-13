@@ -12,7 +12,7 @@ from llm import Model, MockClient, TIERS, model_tier
 
 def test_every_model_has_a_tier():
     assert not [m for m in Model if m.value not in TIERS]  # every model's MODELS entry has a tier
-    assert set(TIERS.values()) <= {"frontier", "mid", "cheap"}
+    assert set(TIERS.values()) <= {"frontier", "mid", "cheap", "human"}  # human: a person (human.py)
     assert model_tier("someone/new-model") == "unknown"
 
 

@@ -3,17 +3,21 @@
 import json
 import re
 import time
-from typing import Any
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Any
 from concurrent.futures import ThreadPoolExecutor
 
 from events import RESULT
-from llm import (SHORT_REASON, LLMClient, LLMReply, answer_json, cache_block, default_effort, lower_effort,
+from llm import (SHORT_REASON, LLMClient, Model, LLMReply, answer_json, cache_block, default_effort, lower_effort,
                  rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
 from roles.base import dead_before_tonight
 from state import Game, Player, phase_label
 from traits import ACTION_TRAITS, briefing as trait_briefing, night_traits
 from texts import blank, describe_action, player_view
+
+if TYPE_CHECKING:
+    from human import HumanSeats
 
 
 UNRELIABLE_STREAK = 3  # this many fallen-back answers in a row flag a player as unreliable (count_fallback)
@@ -320,23 +324,27 @@ class Players:
     """Asks player LLMs for decisions. Retries once on unparsable output, then uses a fallback."""
 
     def __init__(self, game: Game, client: LLMClient, rules: str, feedback_field: bool = False,
-                 shared: bool = False):
+                 shared: bool = False, humans: "HumanSeats | None" = None):
         """shared: send shared_schema in place of each task's own (OpenRouter games, for prompt caching). Offline
-        clients answer the task's own schema, so mock games and tests stay simple."""
+        clients answer the task's own schema, so mock games and tests stay simple. humans: answers the questions of
+        human seats (Model.HUMAN) from their browser pages (human.py)."""
         self.game = game
         self.client = client
         self.rules = rules
         self.feedback_field = feedback_field
         self.shared = shared
+        self.humans = humans
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None,
-            context: str = "", shared_with: dict | None = None, notes: list[str] | None = None) -> dict:
+            context: str = "", shared_with: dict | None = None, notes: list[str] | None = None,
+            ui: dict | None = None) -> dict:
         """step: what kind of decision this is (one of STEPS), and rnd the chat round if there is one; logged
         with day, phase and latency on every call record, so analysis never has to parse the task's wording.
         context: see player_messages. shared_with: a schema to send instead of shared_schema when this question's
         fields aren't in it (the post-game questions share one, feedback.POST_GAME_SCHEMA), for the same caching.
         notes: if given, the program notes for this player (a cut notepad, a fallback) are added to it instead of
-        emitted, for ask_many to emit in job order."""
+        emitted, for ask_many to emit in job order. ui: extra facts a human seat's page shows with the question (a
+        day turn's prices, for its live cost counter); LLM players get them in the task's text instead."""
         assert step in STEPS, step
 
         def program_note(text: str) -> None:
@@ -347,6 +355,8 @@ class Players:
         where = {"step": step, "day": self.game.day, "phase": self.game.phase,
                  **({"round": rnd} if rnd is not None else {})}
         wanted = with_common_fields(schema, self.feedback_field)
+        if p.model is Model.HUMAN:
+            return self.ask_human(p, task, wanted, fallback, where, ui or {}, program_note)
         common = shared_with or (shared_schema(self.game) if set(schema["properties"]) <= set(SHARED_FIELDS) else None)
         shared = self.shared and common is not None
         sent = with_common_fields(common, self.feedback_field, STR) if shared and common else wanted
@@ -384,26 +394,12 @@ class Players:
                                            {"role": "user", "content": f"That answer couldn't be used ({error[:300]}). "
                                             "Answer again with JSON that follows the schema exactly."}]
                 continue
-            before = p.notepad
-            after = before
-            if isinstance(note := out.get("notepad"), str) and not blank(note):  # "" keeps it, like null
-                cap = notepad_words(self.game)
-                after = cap_words(note, cap)
-                if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
-                    program_note(f"(Program note: your notepad was over {cap} words, so it was cut "
-                                 f"to its first {cap}.)")
+            after = self.new_notepad(p, out, program_note)
             self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task,
                                 **({"effort": effort} if effort != p.effort else {}), output=out,
                                 reasoning=reply.reasoning, cost=reply.cost, usage=reply.usage, latency_s=latency,
-                                notepad_before=before, notepad_after=after)
-            if isinstance(fb := out.pop("feedback", None), str) and not blank(fb):
-                self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
-                                    player=p.name, role=p.role, feedback=fb)
-            out.pop("notepad", None)
-            out.pop("reason", None)  # logged above; game code and the moderator never see it
-            p.notepad = after
-            self.game.role_state.get(STREAKS, {}).pop(p.name, None)
-            return out
+                                notepad_before=p.notepad, notepad_after=after)
+            return self.accept(p, out, after, step)
         self.game.log.error("player_fallback", f"{p.name} ({p.model.short}) gave no valid answer, so the "
                             f"default was used ({json.dumps(fallback)[:100]}) for: {task[:100]}",
                             player=p.name, model=p.model.value, **where, task=task, fallback=fallback)
@@ -413,6 +409,44 @@ class Players:
         program_note(f"(Program note: your answer to \"{truncate_words(task, 12)}\" couldn't be used because of a "
                      f"technical error, so the default was used instead: {json.dumps(fallback)}.)")
         return fallback
+
+    def new_notepad(self, p: Player, out: dict, program_note: Callable[[str], None]) -> str:
+        """p's notepad after this answer: "" keeps it, like null, and a long one is cut to the cap."""
+        if not (isinstance(note := out.get("notepad"), str) and not blank(note)):
+            return p.notepad
+        cap = notepad_words(self.game)
+        after = cap_words(note, cap)
+        if after != note:  # players didn't notice the cut (Frank, game_20261009_084630_739772)
+            program_note(f"(Program note: your notepad was over {cap} words, so it was cut to its first {cap}.)")
+        return after
+
+    def accept(self, p: Player, out: dict, notepad: str, step: str) -> dict:
+        """A logged, valid answer: its feedback is logged, its notepad kept, and the rest returned to the game."""
+        if isinstance(fb := out.pop("feedback", None), str) and not blank(fb):
+            self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
+                                player=p.name, role=p.role, feedback=fb)
+        out.pop("notepad", None)
+        out.pop("reason", None)  # logged by the caller; game code and the moderator never see it
+        p.notepad = notepad
+        self.game.role_state.get(STREAKS, {}).pop(p.name, None)
+        return out
+
+    def ask_human(self, p: Player, task: str, schema: dict, fallback: dict, where: dict, ui: dict,
+                  program_note: Callable[[str], None]) -> dict:
+        """A human seat's question, answered on their page (human.py). It waits for them, up to --human-time-limit;
+        a skipped or timed-out question uses the fallback, as a failed LLM answer would, but isn't an error."""
+        assert self.humans is not None, f"{p.name} is a human seat, but this game has no human seats' server"
+        started = time.monotonic()
+        out, how = self.humans.ask(p, task, schema, fallback, where, ui)
+        after = self.new_notepad(p, out, program_note)
+        # human: "answered", "skipped" (the player chose the default) or "timeout" (--human-time-limit ran out)
+        self.game.log.write("player_call", player=p.name, model=p.model.value, **where, task=task, output=out,
+                            reasoning=None, cost=0.0, usage={}, latency_s=round(time.monotonic() - started, 2),
+                            notepad_before=p.notepad, notepad_after=after, human=how)
+        if how == "timeout":
+            program_note(f"(Program note: your time for \"{truncate_words(task, 12)}\" ran out, so the default was "
+                         f"used: {json.dumps(fallback)}.)")
+        return self.accept(p, dict(out), after, where["step"])
 
     def count_fallback(self, p: Player) -> None:
         """Flags a player whose calls keep failing (once, with an alert; the game goes on): stats.py leaves

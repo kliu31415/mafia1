@@ -39,6 +39,9 @@ class Model(str, Enum):
     GPT_6_LUNA = "openai/gpt-6-luna"
     DEEPSEEK_V4_1_FLASH = "deepseek/deepseek-v4.1-flash"
     GPT_6_LUNA_PRO = "openai/gpt-6-luna-pro"
+    # Not a model: a person playing a seat through the browser (human.py, --humans). Players.ask answers its
+    # questions from the page instead of an LLM, so nothing ever sends it to a provider.
+    HUMAN = "human"
 
     @property
     def info(self) -> "ModelInfo":
@@ -144,6 +147,9 @@ MODELS: dict[Model, ModelInfo] = {
     Model.DEEPSEEK_V4_1_FLASH: ModelInfo("deepseek-v4.1-flash", "cheap", 2, "medium"),  # AA 39
     # Not scored by AA; Luna's weights with more reasoning (tier and strength a guess: near Luna).
     Model.GPT_6_LUNA_PRO: ModelInfo("gpt-6-luna-pro", "cheap", 2),
+    # A person (human.py). Tier "human" keeps human seats out of the model-tier mixes; strength 3 (a guess) weights
+    # their post-game lessons in the tips like a mid model's.
+    Model.HUMAN: ModelInfo("human", "human", 3),
 }
 
 # Tiers of models without a MODELS entry, so games that seated them keep a tier: not on OpenRouter yet, or dropped.

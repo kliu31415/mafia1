@@ -121,7 +121,9 @@ from records import caller_of, read_records, redact, safe_print
 # 66: "paranoid" records (player, cause, day): a hidden Paranoid trait's fake attack (rules R24)
 # 67: "disguise" records (player, role) and "bond" records (players), written at setup, and "heartbreak" records
 #     (player, bonded, day): the Disguised and Bonded traits (rules R24)
-LOG_VERSION = 67
+# 68: human seats (human.py, --humans): model "human" and via "human"; their "player_call" records have "human"
+#     ("answered", "skipped" or "timeout"), and "player_feedback" has step "human_report" for the page's bug box
+LOG_VERSION = 68
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

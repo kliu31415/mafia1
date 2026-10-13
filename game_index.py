@@ -36,7 +36,7 @@ LOG_DIR = ROOT / "logs"
 INDEX = "index.html"
 CACHE = "index_cache.json"
 CACHE_VERSION = 3  # bump when summarize()'s fields change, so cached summaries are rebuilt
-TIER_ORDER = ["frontier", "mid", "cheap", "unknown"]
+TIER_ORDER = ["frontier", "mid", "cheap", "human", "unknown"]  # "human": a person's seat (human.py)
 
 
 def summarize(path: Path) -> dict | None:
@@ -131,7 +131,7 @@ def add_filter_args(ap: argparse.ArgumentParser) -> None:
                    help="only games that seat this model (short name or id; repeat to require several)")
     g.add_argument("--min-frontier", type=float, metavar="SHARE",
                    help="only games where at least this share of seats (0-1) are frontier models (TIERS in llm.py)")
-    g.add_argument("--mix", choices=[*TIER_ORDER[:3], "mixed"], help="only games with this mix of model tiers")
+    g.add_argument("--mix", choices=[*TIER_ORDER[:4], "mixed"], help="only games with this mix of model tiers")
     g.add_argument("--moderator", help="only games with this moderator model")
     g.add_argument("--role", action="append", default=[], help="only games with this role (repeatable)")
     g.add_argument("--winner", help="only games this faction won (Village, Yakuza, ...; 'none' for no winner)")
@@ -318,10 +318,10 @@ PAGE = r"""<!doctype html>
 <title>{{title}}</title>
 <style>
 :root { --bg:#fff; --fg:#1d1d1f; --muted:#6e6e73; --line:#e5e5ea; --row:#f7f7f9; --chip:#f0f0f3;
-  --frontier:#7a3fd1; --mid:#1f6fd1; --cheap:#6e6e73; --unknown:#b0b0b8;
+  --frontier:#7a3fd1; --mid:#1f6fd1; --cheap:#6e6e73; --human:#c06a14; --unknown:#b0b0b8;
   --Village:#2e8b3e; --Yakuza:#c43a3a; --Neutral:#b07a10; --err:#c43a3a; }
 @media (prefers-color-scheme: dark) { :root { --bg:#141416; --fg:#ececf0; --muted:#9a9aa2; --line:#2c2c30;
-  --row:#1b1b1e; --chip:#26262a; --frontier:#b48af0; --mid:#6aa8f0; --cheap:#9a9aa2; --unknown:#5a5a62;
+  --row:#1b1b1e; --chip:#26262a; --frontier:#b48af0; --mid:#6aa8f0; --cheap:#9a9aa2; --human:#f0a050; --unknown:#5a5a62;
   --Village:#5cc46c; --Yakuza:#f07070; --Neutral:#e0b040; --err:#f07070; } }
 body { background:var(--bg); color:var(--fg); font:14px/1.45 system-ui, sans-serif; margin:0; padding:16px; }
 h1 { font-size:18px; margin:0 0 4px; } .muted { color:var(--muted); }
@@ -341,7 +341,7 @@ tr:hover td { background:var(--row); } td.num { text-align:right; font-variant-n
   background:var(--chip); }
 .chip::before { content:""; display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--t);
   margin-right:5px; vertical-align:1px; }
-.t-frontier { --t:var(--frontier); } .t-mid { --t:var(--mid); } .t-cheap { --t:var(--cheap); } .t-unknown { --t:var(--unknown); }
+.t-frontier { --t:var(--frontier); } .t-mid { --t:var(--mid); } .t-cheap { --t:var(--cheap); } .t-human { --t:var(--human); } .t-unknown { --t:var(--unknown); }
 .bar { display:inline-block; width:46px; height:7px; background:var(--chip); border-radius:4px; vertical-align:middle;
   margin-right:6px; overflow:hidden; } .bar i { display:block; height:100%; background:var(--frontier); }
 .win-Village { color:var(--Village); font-weight:600; } .win-Yakuza { color:var(--Yakuza); font-weight:600; }
@@ -373,7 +373,7 @@ const DATA = /*DATA*/null;
 const M = DATA.meta, G = DATA.games, $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const sh = m => M.short[m] || m, tier = m => M.tiers[m] || "unknown";
-const ORDER = ["frontier", "mid", "cheap", "unknown"];
+const ORDER = ["frontier", "mid", "cheap", "human", "unknown"];
 const COLS = [
   ["Game", g => g.started, g => links(g)],
   ["Players", g => g.n_players, g => g.n_players, "num"],

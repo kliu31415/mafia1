@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mafia seat</title>
+<style>
+:root {
+  --bg:#f6f6f4; --panel:#fff; --text:#1d1d1f; --muted:#6e6e73; --line:#e3e3e0; --accent:#2f6fd6; --accent-text:#fff;
+  --pm:#7a3fd1; --yak:#c0392b; --vote:#b86e00; --death:#c0392b; --result:#1e8a4c; --claim:#2f6fd6; --phase:#1d1d1f;
+  --turn:#fff7e0; --turn-line:#e8b931; --error:#c0392b; --me:#eef3fd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#161618; --panel:#202023; --text:#e6e6e8; --muted:#9a9aa2; --line:#333338; --accent:#5b8ff0;
+    --pm:#b48af0; --yak:#f07a6a; --vote:#f0b050; --death:#f07a6a; --result:#5cd08a; --claim:#7aa8f5; --phase:#e6e6e8;
+    --turn:#2d2716; --turn-line:#a88520; --error:#f07a6a; --me:#1f2738;
+  }
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line);
+  padding:10px 16px; display:flex; flex-wrap:wrap; gap:6px 18px; align-items:baseline; }
+header b { font-size:17px; }
+.muted { color:var(--muted); }
+main { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,440px); gap:16px; padding:16px; max-width:1400px; margin:0 auto; }
+@media (max-width:860px) { main { grid-template-columns:1fr; } #side { order:-1; } }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+#feed { height:calc(100vh - 110px); overflow-y:auto; }
+@media (max-width:860px) { #feed { height:auto; max-height:70vh; } }
+.ev { padding:3px 0; white-space:pre-wrap; overflow-wrap:anywhere; }
+.ev .lbl { color:var(--muted); font-size:12px; margin-right:6px; }
+.c-chat .who { font-weight:600; }
+.c-pm { color:var(--pm); } .c-yak { color:var(--yak); } .c-nom, .c-vote { color:var(--vote); }
+.c-death { color:var(--death); font-weight:600; } .c-result { color:var(--result); } .c-claim { color:var(--claim); }
+.c-system { color:var(--muted); }
+.c-phase { font-weight:700; color:var(--phase); border-top:1px solid var(--line); margin-top:10px; padding-top:8px; }
+.c-phase:first-child { border-top:none; margin-top:0; padding-top:0; }
+.mine { background:var(--me); border-radius:4px; }
+#side { display:flex; flex-direction:column; gap:12px; }
+#turn.active { background:var(--turn); border-color:var(--turn-line); }
+#turn h2 { margin:0 0 6px; font-size:16px; }
+label { display:block; font-weight:600; margin:10px 0 3px; font-size:13px; }
+.hint { font-weight:400; color:var(--muted); font-size:12px; }
+textarea, input[type=text], input[type=number], select { width:100%; font:inherit; color:inherit; background:var(--bg);
+  border:1px solid var(--line); border-radius:6px; padding:6px 8px; }
+textarea { min-height:70px; resize:vertical; }
+button { font:inherit; border-radius:6px; border:1px solid var(--line); background:var(--bg); color:var(--text);
+  padding:7px 14px; cursor:pointer; }
+button.primary { background:var(--accent); color:var(--accent-text); border-color:var(--accent); }
+button:disabled { opacity:.5; cursor:default; }
+.row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+.pmrow { display:grid; grid-template-columns:120px 1fr 28px; gap:6px; margin-top:6px; }
+.pmrow button { padding:2px; }
+.cost { font-size:13px; margin-top:8px; }
+.over { color:var(--error); font-weight:600; }
+.errors { color:var(--error); font-size:13px; white-space:pre-wrap; }
+details.task { margin:6px 0; font-size:13px; color:var(--muted); }
+details.task div { white-space:pre-wrap; margin-top:4px; }
+.taskopen { white-space:pre-wrap; font-size:14px; margin:4px 0 6px; }
+.tabs { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
+.tabs button { padding:3px 9px; font-size:13px; }
+.tabs button.on { background:var(--accent); color:var(--accent-text); border-color:var(--accent); }
+.tab { white-space:pre-wrap; font-size:13px; max-height:45vh; overflow-y:auto; overflow-wrap:anywhere; }
+.roster span { display:inline-block; margin:0 8px 2px 0; }
+.dead { text-decoration:line-through; color:var(--muted); }
+.banner { font-weight:700; }
+.big { font-size:16px; padding:10px 18px; }
+</style>
+</head>
+<body>
+<header>
+  <b id="who">Connecting...</b>
+  <span id="role"></span>
+  <span id="phase" class="muted"></span>
+  <span id="budget" class="muted"></span>
+  <span id="roster" class="roster muted"></span>
+</header>
+<main>
+  <section class="panel" id="feed" aria-label="What you have seen"></section>
+  <aside id="side">
+    <section class="panel" id="turn"><span class="muted">Waiting for the game...</span></section>
+    <section class="panel">
+      <div class="tabs" id="tabs"></div>
+      <div id="tabbody"></div>
+    </section>
+  </aside>
+</main>
+<script>
+"use strict";
+const token = location.pathname.split("/").filter(Boolean)[1];
+const api = p => `/api/${token}/${p}`;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S = null, nEvents = 0, shownQ = null, tab = "Notepad", notepadDirty = false, feedbackText = "";
+
+// How each decision is introduced to a person (the task text LLMs get is still shown, for its details).
+const STEPS = {
+  will: ["Write your last will", "It's revealed to everyone if you die. Leave it unchanged to keep it.", true],
+  day_turn: ["Your turn to speak", "Send a public message, private messages, both, or nothing.", false],
+  trial_turn: ["Your turn at the trial", "Trial turns are priced at 1x, with a trial-only budget spent first.", false],
+  budget_revision: ["Over budget: revise your turn", "What you planned costs more than you have. Shorten it, or it's cut.", true],
+  puppet_nomination: ["You're puppeted today", "You can't chat, but you may nominate someone.", true],
+  nomination_vote: ["Vote on the nomination", "", true],
+  trial_vote: ["Trial vote", "", true],
+  yakuza_chat: ["Yakuza chat", "Only your teammates see this. Tick Ready when you have nothing more to discuss.", true],
+  night_action: ["Night action", "Fill in only the fields your role uses (see your role's rules).", true],
+  katana_revote: ["Katana revote", "", true],
+  ask_player: ["The moderator asks you", "", true],
+  debrief: ["After the game: debrief", "Out of character: what was confusing, missing or broken? 'none' is fine.", true],
+  lessons: ["After the game: lessons", "Tips you'd give a new player (optional).", true],
+};
+const LABELS = {
+  public_message: "Public message", private_messages: "Private messages", claim: "Claim",
+  last_will: "Last will", nominate: "Nominate for trial", vote: "Vote", answer: "Answer", act: "Use my night action",
+  target: "Target", second_target: "Second target", guessed_role: "Guessed role", tokens_to_spend: "Tokens to spend",
+  details: "Details", katana_vote_holder: "Katana holder vote", katana_vote_target: "Katana target vote",
+  message: "Message", ready: "Ready (nothing more to discuss)", trait_actions: "Trait actions",
+  hidden_pm: "Send hidden (Confidant): recipient", confusing_rules: "Confusing rules or instructions",
+  missing_information: "Information you needed but didn't have", wanted_but_couldnt: "What you wanted to do but couldn't",
+  bugs_or_oddities: "Bugs or oddities", suggestions: "Suggestions", lessons: "Lessons", tips_feedback: "Feedback on the tips",
+};
+const HINTS = {
+  claim: "Free, short. Shown in the ledger as your claimed role and results, e.g. 'Sheriff. N1: Bob not evil'. Leave empty to keep.",
+  last_will: "Free. Leave as is to keep it.", details: "Anything else your action needs, e.g. 'ignite'.",
+  tokens_to_spend: "For roles that spend several tokens at once; otherwise 0.",
+};
+const LONG = new Set(["public_message", "last_will", "message", "answer", "details", "confusing_rules",
+  "missing_information", "wanted_but_couldnt", "bugs_or_oddities", "suggestions"]);
+const ORDER = ["public_message", "private_messages", "hidden_pm", "claim", "nominate"];  // then the rest, then the will
+const rank = (k, i) => k === "last_will" ? 1000 : ORDER.includes(k) ? ORDER.indexOf(k) : 100 + i;
+// The task texts are written for LLMs answering JSON; these turn their field talk into what the form shows.
+const PLAIN = [
+  [/Set act=false to do nothing\./g, "Leave \u201cUse my night action\u201d unticked to do nothing."],
+  [/set act=true/g, "tick \u201cUse my night action\u201d"], [/tokens_to_spend=(\d+)/g, "Tokens to spend $1"],
+  [/an empty last_will keeps it/g, "leave it as is to keep it"],
+  [/Vote true \(Yes\) to put them on trial, false \(No\) otherwise\./g, "Vote Yes to put them on trial, or No."],
+  [/Vote true for Guilty \(execute\), false for Innocent\./g, "Vote Guilty (execute) or Innocent."],
+  [/Set ready=true if/g, "Tick Ready if"], [/ \(or null\)/g, " (or none)"], [/ or null\./g, " or nothing."],
+  [/leave it "" to keep it/g, "leave it empty to keep it"],
+];
+const plain = t => PLAIN.reduce((t, [re, to]) => t.replace(re, to), t);
+
+const words = t => (t.trim().match(/\S+/g) || []).length;
+const base = s => (s && s.anyOf) ? s.anyOf.find(x => x.type !== "null") : s;
+const isNullable = s => !!(s && s.anyOf && s.anyOf.some(x => x.type === "null"));
+
+function msgCost(w, priv, first, u) {
+  if (!w) return 0;
+  const lc = n => n / 60 + (n / 200) ** 2;
+  let c = u.base + lc(w) * u.multiplier * u.length_factor;
+  if (first && !priv && u.free_words) c = w <= u.free_words ? 0 : (lc(w) - lc(u.free_words)) * u.multiplier * u.length_factor;
+  return c * (priv ? u.private_factor : 1);
+}
+
+function widget(key, schema, value, prefix) {
+  const s = base(schema), id = prefix + key;
+  if (!s || s.type === "null") return "";
+  const label = `<label for="${id}">${esc(LABELS[key] || key.replace(/_/g, " "))}` +
+    (HINTS[key] ? ` <span class="hint">${esc(HINTS[key])}</span>` : "") + "</label>";
+  if (s.type === "boolean")
+    return `<label><input type="checkbox" id="${id}" data-key="${key}" ${value ? "checked" : ""}> ${esc(LABELS[key] || key)}</label>`;
+  if (s.enum) {
+    const opts = (isNullable(schema) ? [`<option value="">(none)</option>`] : [])
+      .concat(s.enum.map(v => `<option ${v === value ? "selected" : ""}>${esc(v)}</option>`));
+    return label + `<select id="${id}" data-key="${key}">${opts.join("")}</select>`;
+  }
+  if (s.type === "integer") return label + `<input type="number" id="${id}" data-key="${key}" value="${esc(value ?? 0)}">`;
+  if (s.type === "string")
+    return label + (LONG.has(key) || prefix
+      ? `<textarea id="${id}" data-key="${key}" rows="${key === "public_message" ? 4 : 3}">${esc(value || "")}</textarea>`
+      : `<input type="text" id="${id}" data-key="${key}" value="${esc(value || "")}">`) +
+      `<div class="hint" id="${id}_n"></div>`;
+  if (s.type === "array")
+    return label + `<div id="${id}" data-key="${key}" data-array="1"></div>` +
+      `<button type="button" onclick="addRow('${key}')">+ Add</button>`;
+  return "";
+}
+
+function addRow(key, value) {
+  const s = base(shownQ.schema[key]).items, box = document.querySelector(`[data-array][data-key="${key}"]`);
+  const div = document.createElement("div");
+  div.className = "pmrow";
+  if (key === "private_messages") {
+    div.innerHTML = `<select data-f="to">${s.properties.to.enum.filter(n => n !== S.name)
+      .map(n => `<option ${value && value.to === n ? "selected" : ""}>${esc(n)}</option>`).join("")}</select>` +
+      `<textarea data-f="text" rows="2" placeholder="Private message">${esc(value ? value.text : "")}</textarea>`;
+  } else {
+    div.style.gridTemplateColumns = "1fr 28px";
+    const inner = Object.entries(s.properties).map(([k, ps]) => {
+      const b = base(ps);
+      return `<div><span class="hint">${esc(k.replace(/_/g, " "))}</span>` + (b.enum
+        ? `<select data-f="${k}">${b.enum.map(v => `<option>${esc(v)}</option>`).join("")}</select>`
+        : `<input type="text" data-f="${k}">`) + "</div>";
+    }).join("");
+    div.innerHTML = `<div>${inner}</div>`;
+  }
+  div.innerHTML += `<button type="button" title="Remove" onclick="this.parentNode.remove();update()">x</button>`;
+  box.appendChild(div);
+  div.querySelectorAll("textarea,select,input").forEach(el => el.addEventListener("input", update));
+}
+
+function collect() {
+  const out = {};
+  for (const el of $("turn").querySelectorAll("[data-key]")) {
+    const key = el.dataset.key, s = base(shownQ.schema[key]);
+    if (el.dataset.array) {
+      out[key] = [...el.children].map(row => {
+        const o = {};
+        row.querySelectorAll("[data-f]").forEach(f => o[f.dataset.f] = f.value);
+        return o;
+      }).filter(o => !("text" in o) || o.text.trim());
+    } else if (s.type === "boolean") out[key] = el.checked;
+    else if (s.type === "integer") out[key] = parseInt(el.value || "0", 10);
+    else if (s.enum) out[key] = el.value === "" ? null : el.value;
+    else out[key] = el.value;
+  }
+  if ("last_will" in out && out.last_will === S.last_will) out.last_will = "";
+  return out;
+}
+
+function update() {
+  if (!shownQ) return;
+  for (const el of $("turn").querySelectorAll("textarea[data-key],input[type=text][data-key]")) {
+    const n = $(el.id + "_n");
+    if (n) n.textContent = el.value.trim() ? `${words(el.value)} words` : "";
+  }
+  const u = shownQ.ui;
+  if (!u || u.budget === undefined) return;
+  const out = collect();
+  let cost = 0;
+  if (out.public_message) cost += msgCost(Math.min(words(out.public_message), u.max_words), false, true, u);
+  for (const pm of out.private_messages || []) cost += msgCost(Math.min(words(pm.text), u.max_words), true, false, u);
+  if (out.nominate && u.nomination_fee) cost += u.nomination_fee;
+  $("cost").innerHTML = `This turn costs <b>${cost.toFixed(2)}</b> of your <b>${u.budget.toFixed(2)}</b>` +
+    ` (prices x${u.multiplier}${u.free_words ? `, first ${u.free_words} public words free` : ""}` +
+    `${u.nomination_fee ? `, nominating ${u.nomination_fee.toFixed(2)}` : ""})` +
+    (cost > u.budget + 1e-9 ? ` <span class="over">over budget: the end of your messages would be cut</span>` : "");
+}
+
+function showQuestion(q) {
+  shownQ = q;
+  const box = $("turn");
+  if (!q) {
+    box.className = "panel";
+    box.innerHTML = S && S.winners ? `<span class="banner">${esc(S.result)}</span>` :
+      `<span class="muted">${S && !S.alive ? "You're dead: you can still watch." : "Waiting for the other players..."}</span>`;
+    document.title = "Mafia seat";
+    return;
+  }
+  const [title, hint, openTask] = STEPS[q.step] || [q.step, "", true];
+  const keys = Object.keys(q.schema).map((k, i) => [k, rank(k, i)]).sort((a, b) => a[1] - b[1]).map(x => x[0]);
+  const voteOnly = keys.length === 1 && keys[0] === "vote";
+  let html = `<h2>${esc(title)}${q.round ? ` <span class="muted">(round ${q.round})</span>` : ""}</h2>` +
+    (hint ? `<div class="hint">${esc(hint)}</div>` : "") +
+    (openTask ? `<div class="taskopen">${esc(plain(q.task))}</div>`
+              : `<details class="task"><summary>Full instructions and prices</summary><div>${esc(plain(q.task))}</div></details>`);
+  if (voteOnly) {
+    const [yes, no] = q.step === "trial_vote" ? ["Guilty", "Innocent"] : ["Yes, put on trial", "No"];
+    html += `<div class="row"><button class="primary big" onclick="send({vote:true})">${yes}</button>` +
+      `<button class="big" onclick="send({vote:false})">${no}</button></div>`;
+  } else {
+    html += `<form onsubmit="event.preventDefault();send(collect())">` +
+      keys.map(k => widget(k, q.schema[k], k === "last_will" ? S.last_will : q.fallback[k], "")).join("") +
+      `<div class="cost" id="cost"></div><div class="row"><button class="primary" type="submit">Send</button>` +
+      `<button type="button" onclick="send(null, true)" title="Use the default answer">${
+        q.step === "day_turn" || q.step === "trial_turn" ? "Pass (say nothing)" : "Skip"}</button></div></form>`;
+  }
+  html += `<div class="errors" id="errors"></div>` +
+    (q.deadline ? `<div class="hint" id="deadline"></div>` : "");
+  box.className = "panel active";
+  box.innerHTML = html;
+  for (const k of keys) if (base(q.schema[k]).type === "array" && Array.isArray(q.fallback[k]))
+    q.fallback[k].forEach(v => addRow(k, v));
+  box.querySelectorAll("textarea,select,input").forEach(el => el.addEventListener("input", update));
+  update();
+  document.title = "(Your turn) Mafia seat";
+  const first = box.querySelector("textarea,input,select,button.primary");
+  if (first) first.focus({preventScroll: true});
+}
+
+async function send(answer, skip) {
+  if (!shownQ) return;
+  const body = {id: shownQ.id, answer: answer || {}, skip: !!skip};
+  if (!skip && notepadDirty) body.answer.notepad = $("notepad").value;
+  $("turn").querySelectorAll("button").forEach(b => b.disabled = true);
+  const r = await fetch(api("answer"), {method: "POST", body: JSON.stringify(body)});
+  const j = await r.json();
+  if (j.errors && j.errors.length) {
+    $("errors").textContent = "Couldn't send: " + j.errors.join("; ");
+    $("turn").querySelectorAll("button").forEach(b => b.disabled = false);
+    return;
+  }
+  if (!skip) notepadDirty = false;
+  shownQ = null;
+  $("turn").innerHTML = `<span class="muted">Sent. Waiting for the other players...</span>`;
+  $("turn").className = "panel";
+  document.title = "Mafia seat";
+  poll();
+}
+
+function renderEvents(events) {
+  const feed = $("feed"), atBottom = feed.scrollTop + feed.clientHeight >= feed.scrollHeight - 30;
+  for (const e of events) {
+    const div = document.createElement("div");
+    div.className = `ev c-${e.cat}` + ((e.speaker === S.name || e.to === S.name) && e.cat !== "phase" ? " mine" : "");
+    div.innerHTML = e.cat === "phase" ? esc(e.text) : `<span class="lbl">${esc(e.label)}</span>${esc(e.text)}`;
+    feed.appendChild(div);
+  }
+  if (atBottom || nEvents === 0) feed.scrollTop = feed.scrollHeight;
+}
+
+const TABS = {
+  "Notepad": () => `<div class="hint">Private notes, kept between turns (max ${S.notepad_words} words). Saved with your next answer.</div>` +
+    `<textarea id="notepad" rows="10" oninput="notepadDirty=true">${esc(S.notepad)}</textarea>`,
+  "Role": () => esc(S.briefing),
+  "Ledger": () => esc(S.ledger),
+  "Night results": () => esc(S.night_history || "Nothing yet."),
+  "Will": () => esc(S.last_will || "(no will yet)"),
+  "Rules": () => esc(S.rules),
+  "Tips": () => esc(S.tips || "No tips this game."),
+  "Report a bug": () => `<div class="hint">Anything confusing, broken or worth changing, at any time. It goes in the game's log for review; nobody in the game sees it.</div>` +
+    `<textarea id="fb" rows="5" oninput="feedbackText=this.value">${esc(feedbackText)}</textarea>` +
+    `<div class="row"><button class="primary" onclick="report()">Send report</button><span id="fbdone" class="muted"></span></div>`,
+};
+
+function renderTabs(force) {
+  $("tabs").innerHTML = Object.keys(TABS).filter(t => t !== "Tips" || S.tips)
+    .map(t => `<button class="${t === tab ? "on" : ""}" onclick="tab='${t}';renderTabs(true)">${t}</button>`).join("");
+  const body = $("tabbody"), active = document.activeElement;
+  if (!force && active && body.contains(active)) return;  // don't clobber typing
+  if (!force && tab === "Notepad" && notepadDirty) return;
+  body.innerHTML = `<div class="tab">${TABS[tab]()}</div>`;
+}
+
+async function report() {
+  const text = $("fb").value.trim();
+  if (!text) return;
+  await fetch(api("feedback"), {method: "POST", body: JSON.stringify({text})});
+  feedbackText = "";
+  $("fb").value = "";
+  $("fbdone").textContent = "Thanks, logged.";
+}
+
+let polling = false;
+async function poll() {
+  if (polling) return;  // two polls at once would both add the same new events
+  polling = true;
+  try {
+    await pollOnce();
+  } finally {
+    polling = false;
+  }
+}
+
+async function pollOnce() {
+  try {
+    const r = await fetch(api("state") + `?since=${nEvents}`);
+    if (!r.ok) throw new Error(await r.text());
+    S = await r.json();
+  } catch (e) {
+    $("phase").textContent = S && S.winners ? "The game is over." : "Connection lost: retrying...";
+    return;
+  }
+  $("who").textContent = S.name;
+  $("role").innerHTML = `${esc(S.role)}${S.alive ? "" : " <span class='over'>(dead)</span>"}`;
+  $("phase").textContent = `${S.phase === "night" ? "Night" : "Day"} ${S.day}`;
+  $("budget").textContent = `Speaking budget ${S.budget.toFixed(2)}`;
+  $("roster").innerHTML = S.players.map(p => `<span class="${p.alive ? "" : "dead"}">${esc(p.name)}${p.you ? " (you)" : ""}` +
+    (p.role ? ` <span class="hint">${esc(p.role)}, ${esc(p.model)}</span>` : "") + "</span>").join("");
+  renderEvents(S.events);
+  nEvents = S.n_events;
+  const q = S.question;
+  if ((q && q.id) !== (shownQ && shownQ.id) || (!q && !shownQ)) showQuestion(q);
+  if (q && q.deadline) $("deadline").textContent = `Time left: ${Math.max(0, Math.round(q.deadline - S.now))} s`;
+  renderTabs(false);
+}
+
+poll();
+setInterval(poll, 1500);
+</script>
+</body>
+</html>

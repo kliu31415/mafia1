@@ -38,7 +38,7 @@ def test_claude_goes_only_to_anthropic_and_a_refusal_is_logged_with_its_reason(t
     assert len(errors) == 2 and "content_filter via Azure: This request was blocked." in errors[0]["error"]
 
     for m in Model:  # every model is pinned to one provider
-        assert m.value.split("/")[0] in PROVIDERS
+        assert m is Model.HUMAN or m.value.split("/")[0] in PROVIDERS
     client.chat(Model.GPT_6_LUNA, [], tools=[{"type": "function"}])
     assert bodies[-1]["provider"] == {"order": ["OpenAI"], "allow_fallbacks": False}
 
@@ -287,6 +287,9 @@ def test_every_model_has_a_complete_registry_entry():
     assert set(MODELS) == set(Model)  # a new Model needs its MODELS entry
     assert len({info.short for info in MODELS.values()}) == len(MODELS)
     for m, info in MODELS.items():
+        if m is Model.HUMAN:  # a person's seat (human.py), never sent to a provider
+            assert info.tier == "human"
+            continue
         assert info.tier in ("frontier", "mid", "cheap") and 1 <= info.strength <= 5 and info.effort in EFFORTS, m
         assert m.value.split("/")[0] in PROVIDERS, m
 

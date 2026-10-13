@@ -63,6 +63,10 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   intended prompt change, run `uv run pytest --update-prompts` and read the diff of `tests/prompts/` before committing.
 - `uv run mafia.py --mock` plays a full offline game; the same `--seed` replays the same game. Its
   moderator only carries out the Katana attack, so moderator-handled roles are only exercised in live games.
+- `uv run mafia.py --humans 1` (works with `--mock` too) seats a person: the game prints a link to a local page where
+  they play a random seat (`human.py`, `human_page.html`), with no time limit unless `--human-time-limit`. The LLM
+  players aren't told. Every decision still goes through `Players.ask`, so new steps and roles need no page changes
+  beyond a label; the page's bug box logs `player_feedback` (step `human_report`). `tests/test_human.py` plays one.
 - `uv run stats.py` reads every finished live game in `logs/`: win rates by faction, model and role (with
   95% intervals), Village win rate with and without each role, and per-decision skill by model or role.
   Logs are on Kevin's PC; `--csv DIR` exports the tables.

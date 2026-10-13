@@ -95,8 +95,10 @@ def routes(model: Model) -> bool:
 
 def route(client: object, model: Model) -> str:
     """How a client runs a model's calls, recorded per player in the log (setup and result "via"): claude_code
-    (the CLI), mock, or api (OpenRouter, or a test's scripted client). Claude players play somewhat differently
-    through the CLI (see Effort above), so analysis keeps the two apart."""
+    (the CLI), mock, api (OpenRouter, or a test's scripted client), or human (a person, human.py). Claude players
+    play somewhat differently through the CLI (see Effort above), so analysis keeps the two apart."""
+    if model is Model.HUMAN:  # a person on a browser page (human.py)
+        return "human"
     if isinstance(client, ClaudeCodeClient) and routes(model):
         return "claude_code"
     return "mock" if isinstance(client, MockClient) else "api"

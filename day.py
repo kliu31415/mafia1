@@ -382,17 +382,22 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         task += ("You may also send one of this turn's private messages hidden (your trait, once per game): set "
                  "hidden_pm to its recipient, or leave it null. Nobody else is told that message was sent, and it "
                  "isn't counted in the public ledger.\n")
+    # A human seat's page prices messages as they're typed (human.py); LLMs read the same numbers in the task.
+    ui = {"budget": available(), "base": MESSAGE_BASE_COST, "multiplier": round_multiplier(price_rnd),
+          "private_factor": PRIVATE_COST_FACTOR, "length_factor": length_factor(p), "free_words": free_words,
+          "nomination_fee": nomination_fee if can_nominate else None, "max_words": MAX_MESSAGE_WORDS,
+          "will_words": LAST_WILL_WORDS, "claim_words": CLAIM_WORDS}
     if writer is p:
         schema = day_turn_schema(game, p.name, can_nominate, action=action.fields if action else None,
                                  hidden_pm=bool(hider))
-        out = players.ask(p, task, schema, fallback, step=step, rnd=rnd)
+        out = players.ask(p, task, schema, fallback, step=step, rnd=rnd, ui=ui)
         out = drop_own_name(out, p.name, writer.model)
     else:
         # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
         task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
                 f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
         schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
-        out = players.ask(writer, task, schema, fallback, step=step, rnd=rnd)
+        out = players.ask(writer, task, schema, fallback, step=step, rnd=rnd, ui={**ui, "nomination_fee": None})
         out = drop_own_name(out, p.name, writer.model)
         if can_nominate:
             nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
@@ -413,7 +418,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         game.log.write("budget_warning", player=p.name, planned=planned, budget=available())
         nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
-        out = players.ask(writer, task + warning, schema, out, step="budget_revision", rnd=rnd)
+        out = players.ask(writer, task + warning, schema, out, step="budget_revision", rnd=rnd, ui=ui)
         out = drop_own_name(out, p.name, writer.model)
         if writer is not p:
             out["nominate"] = nominee

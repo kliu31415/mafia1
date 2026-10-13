@@ -19,6 +19,7 @@ Code layout:
     state.py       game state, events with visibility, deaths, win checks
     variants.py    rule settings (--flips, --trial-votes, --nomination-votes): what deaths and votes reveal
     players.py     player prompts, output schemas, notepads
+    human.py       human seats (--humans): people play alongside the LLMs on a browser page (human_page.html)
     day.py         speaking budget, chat turns, nominations, votes
     night.py       Yakuza chat, night actions, Katana vote
     moderator.py   LLM moderator and its tools
@@ -48,6 +49,7 @@ Usage:
     uv run mafia.py --players haiku-5.5,gpt-6-luna --moderator haiku-5.5
     uv run mafia.py --players opus-5.5:high,haiku-5.5:low --moderator opus-5.5:medium
     uv run mafia.py --resume logs/<game>.ckpt                # continue a game that stopped
+    uv run mafia.py --humans 1                               # you play one seat, in your browser (link printed)
     uv run tips.py build                                     # tips file from past games' lessons
     uv run alerts.py                                         # games with errors nobody has reviewed yet
     uv run mafia.py --tips tips/tips.md --tips-for half      # half the seats play with those tips
@@ -81,6 +83,7 @@ from checkpoint import load as load_checkpoint, save as save_checkpoint
 from feedback import (Ask, moderator_debrief_ask, review_ask, run_debrief, run_lessons, run_quiz, run_review,
                       run_strategy_review, strategy_review_ask, write_report)
 from gamelog import GameLog, usage_by_caller
+from human import DEFAULT_PORT as HUMAN_PORT, HumanSeats
 from log_viewer import render_html, usage_lines
 from llm import (API_KEY_ENV_VAR, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient,
                  default_effort, load_api_key, parse_model_spec)
@@ -163,6 +166,10 @@ class GameConfig:
     nomination_votes: str = variants.DEFAULTS["nomination_votes"]
     script: str = scripts.DEFAULT  # the roles the game can use (scripts.py)
     traits: list[str] = field(default_factory=list)  # traits dealt to random eligible players (traits.py, R24)
+    # Human seats (human.py, --humans): seconds each question waits (0: as long as it takes), and their pages' server
+    human_time_limit: float = 0.0
+    human_host: str = "127.0.0.1"
+    human_port: int = HUMAN_PORT
 
     def __post_init__(self) -> None:
         self.player_tips = self.player_tips or []
@@ -240,6 +247,7 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
         log = new_log(prefix, config.seed)
     ckpt_path = log.path.with_suffix(".ckpt")
     game: Game | None = None
+    humans: HumanSeats | None = None
     stage = "while setting it up"  # for the crash record
     try:
         if resume:
@@ -260,8 +268,13 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
         game.rule_settings = dict(config.rule_settings)  # a resumed game's own (from_checkpoint)
         if isinstance(client, (OpenRouterClient, claude_code.ClaudeCodeClient)):
             client.on_error = log.error
+        if any(p.model is Model.HUMAN for p in game.players):
+            humans = HumanSeats(game, rules, config.human_time_limit)
+            links = humans.start(config.human_host, config.human_port)
+            print("Human seats: open your link in a browser (the game waits for your answers):\n  "
+                  + "\n  ".join(links))
         players = Players(game, client, rules, feedback_field=config.feedback_field,
-                          shared=isinstance(client, (OpenRouterClient, claude_code.ClaudeCodeClient)))
+                          shared=isinstance(client, (OpenRouterClient, claude_code.ClaudeCodeClient)), humans=humans)
         mod = config.mod
         moderator = Moderator(game, client, players, mod.model, rules, flag_issues=config.flag_issues,
                               effort=mod.effort, fallback=config.moderator_fallback)
@@ -312,8 +325,17 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
                   + (f"; continue it with: uv run mafia.py --resume {ckpt_path}" if ckpt_path.exists() else ""),
                   traceback=traceback.format_exc())
         write_views(log)  # the log stays open: night checks may still be running
+        if humans:
+            humans.stop()
         raise
     report = write_views(log, close=True)
+    if humans:
+        print("Waiting for the human seats' pages to show the result (Ctrl+C stops waiting)...")
+        try:
+            humans.linger()
+        except KeyboardInterrupt:
+            pass
+        humans.stop()
     print("\n".join(usage_lines(usage)))
     print(f"Errors: {log.error_counts} (listed at the top of the feedback report and the HTML view)"
           if log.error_counts else "Errors: none")
@@ -563,9 +585,20 @@ def write_views(log: GameLog, close: bool = False) -> Path | None:
     return report
 
 
+def seat_humans(models: list[ModelSpec], n_players: int, humans: int, seed: int) -> list[ModelSpec]:
+    """--humans: the models cycled over the seats (as setup_game does), with `humans` of them, drawn from the seed
+    with their own RNG, played by people instead (Model.HUMAN)."""
+    seats = [models[i % len(models)] for i in range(n_players)]
+    for i in random.Random(f"humans|{seed}").sample(range(n_players), humans):
+        seats[i] = ModelSpec(Model.HUMAN)
+    return seats
+
+
 def resolve_effort(spec: ModelSpec, effort: str | None, cli: bool = False) -> ModelSpec:
     """A spec's own effort, else --effort, else the model's default (MODELS in llm.py); cli: run through the Claude
-    Code CLI (--claude-code), whose defaults can differ (ModelInfo.cli_effort)."""
+    Code CLI (--claude-code), whose defaults can differ (ModelInfo.cli_effort). A human seat has no effort."""
+    if spec.model is Model.HUMAN:
+        return spec
     via_cli = cli and claude_code.routes(spec.model)
     return ModelSpec(spec.model, spec.effort or effort or default_effort(spec.model, via_cli))
 
@@ -594,6 +627,15 @@ def build_parser() -> argparse.ArgumentParser:
                     "and a role list gets none")
     ap.add_argument("--role-pool", default="all", choices=POOLS, help="for a drawn setup, draw from every "
                     "role or only roles seen working in a live game")
+    ap.add_argument("--humans", type=int, default=0, metavar="N", help="seat N people (human.py): each gets a link to "
+                    "a page in their browser where they play a random seat, in place of that seat's model. The LLM "
+                    "players aren't told")
+    ap.add_argument("--human-time-limit", type=float, default=0.0, metavar="SECONDS", help="how long each human "
+                    "decision may take before the default answer is used (default 0: no limit)")
+    ap.add_argument("--human-host", default="127.0.0.1", help="where the human seats' pages are served (default "
+                    "this machine only; 0.0.0.0 for other machines, behind HTTPS)")
+    ap.add_argument("--human-port", type=int, default=HUMAN_PORT, help="the human seats' pages' port (or the next "
+                    "free one)")
     ap.add_argument("--effort", default=None, choices=EFFORTS,
                     help="reasoning effort for models that don't set their own (default: each model's own, "
                     "MODELS in llm.py)")
@@ -826,6 +868,10 @@ def main() -> None:
                     else resolve_effort(parse_model_spec(args.moderator_fallback), args.effort, args.claude_code))
     except ValueError as e:
         ap.error(str(e))
+    if not 0 <= args.humans <= len(roles):
+        ap.error(f"--humans must be between 0 and the number of players ({len(roles)})")
+    if args.humans:
+        models = seat_humans(models, len(roles), args.humans, seed)
     update_tips = (None if args.no_update_tips else args.update_tips or (
         MOCK_TIPS if args.mock else None if sync_logs.in_cloud() else DEFAULT_TIPS))
     client = MockClient(seed) if args.mock else api_client(args.effort, args.claude_code, plan_cap)
@@ -868,7 +914,8 @@ def main() -> None:
             player_tips=player_tips,
             update_tips=update_tips, setup=setup, moderator_fallback=fallback, flips=args.flips,
             trial_votes=args.trial_votes, nomination_votes=args.nomination_votes, script=args.script,
-            traits=traits),
+            traits=traits, human_time_limit=args.human_time_limit, human_host=args.human_host,
+            human_port=args.human_port),
             checkpoint=args.checkpoint, after_save=after_save)
 
 
