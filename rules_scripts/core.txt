@@ -172,7 +172,8 @@ R3 (Attack and Defense)
 
 R17 (Protection feedback)
 Protectors (e.g. the Medic) are told whether their protection stopped an attack, but not whose attack it was, and a
-protected player is never told who protected them. A player who is attacked is still told as in R3.
+protected player is never told who protected them. A player who is attacked is still told as in R3. An attack of
+level None (R24) counts as stopped by any protection on its target.
 
 R12 (Death reveals)
 When someone dies, their cause of death (e.g. Katana, Vigilante, Execution by Hanging) and last will are revealed
@@ -266,6 +267,9 @@ players can get it. A trait's night action is used in addition to your role's ow
   Yakuza alive, and then you take the win alone: the other Yakuza, alive or dead, don't win. If the Yakuza win with
   another Yakuza alive, they win and you don't. Your teammates aren't told. Nobody holds Usurper with Selfish or
   Selfless.
+- Shaky (hidden; Yakuza players only): every Katana attack you make (the Katana's own while you hold it, or a Spare
+  Blade attack) is level None, so it never kills (R3); it is still an attack and a visit. You aren't told you have
+  this trait.
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
 

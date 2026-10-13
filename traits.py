@@ -287,6 +287,17 @@ TRAITS: dict[str, TraitInfo] = {
                                "<path d='M2.6 6.6V3.6L3.9 4.9L5 3L6.1 4.9L7.4 3.6V6.6Z' fill='#fff'/>"
                                "</svg>")),  # a crown
     # Any faction, hidden (Kevin, Oct 13 2026): Paranoid's mirror, so "was I attacked?" is unreliable both ways.
+    # Yakuza only, hidden (Kevin, Oct 13 2026): the attack is demoted to level None (R3), which never kills, rather
+    # than a special "does nothing" rule; the kill op refuses a Katana kill by a Shaky player (kill_error).
+    "Shaky": TraitInfo(frozenset({Alignment.EVIL}),
+                       "Every Katana attack you make (the Katana's own while you hold it, or a Spare Blade attack) is "
+                       "level None, so it never kills. You aren't told you have this trait (rules R3, R24).",
+                       "Hidden: their Katana attacks are level None and never kill.",
+                       power=-0.3, hidden=True,
+                       mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                             "<circle cx='5' cy='5' r='4.4' fill='#78350f' stroke='#fff' stroke-width='1'/>"
+                             "<path d='M2.4 6.2L3.7 3.8L5 6.2L6.3 3.8L7.6 6.2' fill='none' stroke='#fff' "
+                             "stroke-width='0.9'/></svg>")),  # a trembling line
     "Oblivious": TraitInfo(frozenset(Alignment),
                            "You are never told about an attack you survive. You aren't told you have this trait "
                            "(rules R24).",
@@ -362,6 +373,10 @@ class TraitLogic:
     def after_trial_vote(self, game: Game, nominee: str, cast: dict[str, bool], guilty: list[str]) -> None:
         """Right after a trial's votes are counted, before the verdict. cast: each voter's vote as cast (True is
         Guilty); guilty: the voters whose vote counted as Guilty (after a Fixer's reversal)."""
+
+    def kill_error(self, game: Game, change: dict) -> str | None:
+        """Why the moderator's kill op can't apply as given (it's refused, with this reason), or None."""
+        return None
 
     def after_hanging(self, game: Game, hanged: Player, cast: dict[str, bool]) -> None:
         """Right after a trial's verdict hanged `hanged` (a Clerk's rig too). cast: each voter's vote as cast."""
@@ -765,6 +780,49 @@ class Paranoid(TraitLogic):
         return "\n- ".join(lines)
 
 
+class Shaky(TraitLogic):
+    night_note = ("Shaky (a hidden trait, R24): every Katana attack a Shaky Yakuza makes (the Katana's own while they "
+                  "hold it, or their Spare Blade attack) is level None (R3), so it never kills. Resolve it as an "
+                  "attack that failed against Defense: it is still an action, an attack and a visit; the target is "
+                  "told they were attacked with the Katana as usual, and a protector on the target is told their "
+                  "protection stopped it (R17). The line below says who carries the Katana tonight. Never mention "
+                  "the trait.")
+
+    def tonight_note(self, game: Game) -> str:
+        shaky = [p.name for p in game.alive() if "Shaky" in p.traits]
+        if not shaky:
+            return ""
+        holder = game.katana_holder
+        line = (f"Tonight the Katana is carried by {holder}, who is Shaky: the Katana's own attack tonight is level "
+                "None and can't kill." if holder in shaky else
+                f"Tonight the Katana is carried by {holder}, who isn't Shaky: resolve its attack as usual."
+                if holder else "")
+        return " ".join(filter(None, [line, f"Shaky (hidden): {join_names(shaky)}; a Spare Blade attack by any of "
+                                            "them is level None too."]))
+
+    def kill_error(self, game: Game, change: dict) -> str | None:
+        # rules R3, R24: a level-None attack never kills. The Katana's attackers in the kill: the Yakuza named in
+        # `by`, else the Katana's holder.
+        if not (change.get("katana") or "katana" in str(change.get("cause", "")).lower()):  # the flag, or the cause
+            return None
+        by = change.get("by") or []
+        users = [game.player(n) for n in ([by] if isinstance(by, str) else by)
+                 if game.player(n).info.alignment is Alignment.EVIL]
+        if not users and game.katana_holder:
+            users = [game.player(game.katana_holder)]
+        if users and all("Shaky" in u.traits for u in users):
+            return (f"{join_names([u.name for u in users])} has the hidden Shaky trait (R24): their Katana attacks are "
+                    "level None and never kill (R3). Leave the target alive and tell them they were attacked, as for "
+                    "a failed attack; if another attack killed them, set katana=false and leave the Shaky player out "
+                    "of by")
+        return None
+
+
+def kill_error(game: Game, change: dict) -> str | None:
+    """Why a kill op can't apply as given (TraitLogic.kill_error), or None."""
+    return next((e for t in LOGIC.values() if (e := t.kill_error(game, change))), None)
+
+
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
                                 "Kindred": Kindred(), "Remorseful": Remorseful(), "Faultline": Faultline(),
                                 "Notorious": Notorious(),
@@ -773,7 +831,8 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
-                                "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious()}
+                                "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
+                                "Shaky": Shaky()}
 assert set(LOGIC) == set(TRAITS)
 
 

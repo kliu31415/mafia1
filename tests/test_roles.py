@@ -2662,3 +2662,34 @@ def test_a_remorse_death_can_end_the_game(game_factory):
     assert not game.player("Alice").alive and game.check_winner() == ["Carol"]
     from traits import bundle_error
     assert bundle_error(["Remorseful", "Zealot"])
+
+
+def test_a_shaky_yakuzas_katana_attacks_are_level_none_and_can_never_kill(game_factory):
+    # rules R3, R17, R24 (Kevin, Oct 13 2026): hidden; the kill op refuses a Katana kill by a Shaky player
+    import pytest
+
+    from night import role_notes
+    from players import role_briefing
+    from tests.conftest import apply_ops
+    game, players = game_factory(["Sheriff", "Medic", "Vigilante", "Grunt", "Grunt"])
+    game.player("Dave").traits = ["Shaky"]
+    assert "Shaky" not in role_briefing(game, game.player("Dave"))
+    game.phase, game.katana_holder = "night", "Dave"
+    assert "carried by Dave, who is Shaky" in role_notes(game)
+    with pytest.raises(ValueError, match="level None"):
+        apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana", "by": "Dave", "katana": True})
+    with pytest.raises(ValueError, match="level None"):  # no attacker named: the Katana's holder made it
+        apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana", "katana": True})
+    with pytest.raises(ValueError, match="level None"):  # the cause names the Katana but the flag was left out
+        apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana", "by": "Dave"})
+    with pytest.raises(ValueError, match="katana=false"):  # with another attacker, only the Katana is refused
+        apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana and Vigilante",
+                                  "by": ["Dave", "Carol"], "katana": True})
+    assert game.player("Alice").alive
+    apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Vigilante", "by": "Carol"})
+    # A teammate who isn't Shaky kills as usual, whoever else is in the kill.
+    game.katana_holder = "Erin"
+    assert "carried by Erin, who isn't Shaky" in role_notes(game)
+    apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Katana", "by": ["Dave", "Erin"],
+                              "katana": True})
+    assert not game.player("Alice").alive and not game.player("Bob").alive

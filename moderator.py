@@ -12,7 +12,7 @@ from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
 from roles.base import acted_tonight
 from state import Game
-from traits import TraitLogic, trait_logic
+from traits import TraitLogic, kill_error, trait_logic
 import variants
 
 
@@ -455,6 +455,8 @@ class Moderator:
                     raise bad(f"{c['player']} is already killed by an earlier change; make it one kill that names "
                               "every fatal cause (e.g. 'Katana and Serial Killer'), with by listing every killer "
                               "and katana=true if the Katana's attack was one of them")
+                if error := kill_error(self.game, c):  # e.g. a Shaky player's Katana attack (rules R24)
+                    raise bad(error)
                 killed.add(c["player"])
                 if not self.game.player(c["player"]).alive:
                     notes.append(f"change {i} (kill): {c['player']} is already dead, so it does nothing")
