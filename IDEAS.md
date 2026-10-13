@@ -95,6 +95,13 @@ night actions already run in parallel.
   mostly a one-day delay, since the town can re-hang them the next Day. Variant: the holder chooses whether to slip
   after seeing the vote (one extra yes/no call), which gives them a decision. A slip isn't a hanging: no Jester or
   Executioner win, no Martyr or Grudge.
+- **Free-form yes/no question to the moderator** (Kevin, Oct 13 2026: shelved). A role asks the moderator any
+  yes/no question at night. Accuracy is the problem: vague questions ("is Bob dangerous?", "did anyone visit
+  Carol?" with Astral checks, blocks or swaps) need rulings nobody can check, compound questions ("is Bob Yakuza
+  or is Dave the Medic?") are two investigations unless the moderator polices what counts as one, and a refusal or
+  hedge leaks information. The night-check judge could re-answer each question and log disagreements, but two
+  LLMs agreeing isn't proof. Accurate alternative: a menu of templates (role category, role in play, X visited Y,
+  X's last trial vote, tokens left) that the moderator records and code answers, like the Auditor or Juror.
 - **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
   naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
   defeats it, so it mostly taxes Yakuza coordination.
