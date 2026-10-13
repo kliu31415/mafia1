@@ -2611,3 +2611,21 @@ def test_a_kitsune_pays_for_charming_itself_when_it_chose_itself_wherever_a_swap
     game.role_state["swaps"][game.day] = [["Erin", "Alice", "Bob"]]
     apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Alice", "attacks": []})  # chose Bob
     assert game.player("Alice").tokens["kitsune"] == 0  # nothing more to spend, and none needed
+
+
+def test_two_bonded_pairs_stay_apart(tmp_path):
+    # rules R24 (Kevin, Oct 13 2026: several bonds a game are fine): each pair is its own, and a death breaks only one
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    for seed in range(10):
+        game = setup_game(["Sheriff", "Medic", "Vigilante", "Tracker", "Grunt", "Grunt"], [Model.HAIKU_5_5],
+                          random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"), traits=["Bonded", "Bonded"])
+        bonds = game.role_state["bonds"]
+        assert len(bonds) == 4 and all(bonds[bonds[n]] == n for n in bonds)
+        assert sorted(p.name for p in game.players if p.traits == ["Bonded"]) == sorted(bonds)
+        first = sorted(bonds)[0]
+        game.phase = "day"
+        game.kill(first, "executed by hanging", guilty_voters=[])
+        assert sorted(n for n in bonds if not game.player(n).alive) == sorted([first, bonds[first]])
