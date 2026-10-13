@@ -148,9 +148,8 @@ class Trapper(RoleLogic):
         return " ".join(lines) + f" Resolve every other attack on {target.name} normally."
 
     def at_night_end(self, game: Game) -> None:
-        for trapper in game.role_state.pop(WENT_OFF, []):
-            if game.player(trapper).alive:
-                game.tell([trapper], "Your trap went off tonight and is used up.")
+        for trapper in game.role_state.pop(WENT_OFF, []):  # a Trapper killed tonight is told too (Kevin, Oct 13 2026)
+            game.tell([trapper], "Your trap went off tonight and is used up.")
         standing = {by: on for by, on in traps(game).items() if game.player(on).alive}
         if standing != traps(game):  # a trap on a player who died is gone
             game.role_state[TRAPS] = standing

@@ -657,6 +657,17 @@ def test_a_trap_hits_back_any_visiting_attacker_but_not_an_astral_one_and_ignore
             {"by": "Dave", "attack": "Basic", "cause": "X"}]})
 
 
+def test_a_trapper_killed_the_night_their_trap_goes_off_is_still_told(game_factory):
+    # Kevin, Oct 13 2026: players who die at night still get that night's other results
+    game, players = trapped_night(game_factory, ["Trapper", "Vanilla Villager", "Vigilante", "Grunt",
+                                                 "Vanilla Villager"])
+    apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [
+        {"by": "Dave", "attack": "Standard", "cause": "Katana", "visit": True}]})
+    game.kill("Alice", "Vigilante", by="Carol")
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your trap went off tonight and is used up.")
+
+
 def test_a_fox_charm_and_a_trap_on_one_player_each_stop_an_attack(game_factory):
     # rules: Kitsune (acts before any other protection), Trapper (after it, before Defense)
     game, players = trapped_night(game_factory, ["Trapper", "Vanilla Villager", "Serial Killer", "Grunt",
