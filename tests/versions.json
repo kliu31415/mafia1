@@ -1,8 +1,9 @@
 {
- "log_version": 66,
+ "log_version": 67,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
+  "bond": ["players"],
   "bounty_won": ["claimed", "day", "phase", "player"],
   "briefing": ["players", "rules", "setup_note"],
   "budget_warning": ["budget", "planned", "player"],
@@ -14,9 +15,11 @@
   "day_shot_taken": ["attack", "delay", "player", "target"],
   "death": ["cause", "day", "katana", "killer", "killer_role", "killer_roles", "killers", "phase", "player", "role"],
   "debrief": ["answers", "cost", "model", "role", "usage", "who"],
+  "disguise": ["player", "role"],
   "drowsy": ["day", "player"],
   "faultline": ["day", "guilty", "innocent", "nominee", "player"],
   "grudge": ["day", "player", "victim"],
+  "heartbreak": ["bonded", "day", "player"],
   "katana": ["day", "result", "revote_targets"],
   "kindred": ["day", "named", "nominee", "player"],
   "kitsune_charm": ["attacks", "day", "player", "swallowed", "target"],

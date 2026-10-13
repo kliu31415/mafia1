@@ -205,7 +205,7 @@ def role_briefing(game: Game, p: Player) -> str:
                          f"{'' if y.alive else ', dead'})" for y in game.players if y.info.alignment is Alignment.EVIL)
         lines.append(f"Yakuza members: {team}. Katana holder: {game.katana_holder}.")
     lines += logic(p.role).briefing(game, p)
-    lines += trait_briefing(p)
+    lines += trait_briefing(game, p)
     return " ".join(lines)
 
 

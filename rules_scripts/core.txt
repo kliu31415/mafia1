@@ -192,7 +192,7 @@ except:
 - Ex-Con, and a player with the Notorious trait (R24): Evil.
 - Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
   every Neutral as Neutral.)
-Exact-role checks see the true role.
+Exact-role checks see the true role, except that they see a Disguised player's disguise (R24).
 Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.
 
 R24 (Traits)
@@ -248,6 +248,11 @@ players can get it. A trait's night action is used in addition to your role's ow
   or an attack, and nobody else learns of it.
 - Stocked (any player whose role starts with tokens): you start with one more of each kind of token your role
   starts with.
+- Disguised (any player): you are told a Village role (never your own), drawn at the start. Every exact-role check
+  (R18) sees you as that role instead of yours, alive or dead; alignment checks still see your true alignment.
+- Bonded (Village and Yakuza players only): you and one other random Village or Yakuza player are bonded, and each
+  of you is told the other's name (not their role or faction). If either of you dies, the other dies of heartbreak
+  at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
 
 === PART 5: THE YAKUZA ===
 

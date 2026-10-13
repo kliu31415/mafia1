@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, acted_tonight, register, spend_token, token_user_error
+from roles.base import RoleLogic, acted_tonight, register, seen_role, spend_token, token_user_error
 
 if TYPE_CHECKING:
     from state import Game
@@ -16,8 +16,8 @@ USED = "talent_agent_used"  # game.role_state: {day: [Talent Agents who spent a 
 
 
 def in_play(game: Game) -> list[str]:
-    """True roles of the players alive when the night began (rules, Talent Agent: an exact-role check, R19)."""
-    return [p.role for p in game.players if acted_tonight(game, p)]
+    """Roles of the players alive when the night began, as exact-role checks see them (rules, Talent Agent, R19)."""
+    return [seen_role(game, p) for p in game.players if acted_tonight(game, p)]
 
 
 def non_yakuza(roles) -> list[str]:

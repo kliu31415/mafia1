@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RecordedAction, RoleLogic, as_chosen, join_names, neighbor_group, register,
+from roles.base import (RecordedAction, RoleLogic, as_chosen, join_names, neighbor_group, register, seen_role,
                         tokens_left_text)
 
 if TYPE_CHECKING:
@@ -21,7 +21,7 @@ class Surveyor(RoleLogic):
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
         group = neighbor_group(game, by.name, target.name)
-        role = game.player(game.rng.choice(group)).role
+        role = seen_role(game, game.player(game.rng.choice(group)))
         shown = as_chosen(game, target.name, group)  # rules R23
         text = (f"You surveyed {join_names(shown)}. One of them, chosen at random, has the role {role}."
                 if len(group) > 1 else f"You surveyed {shown[0]}, the only player in the group: their role is "

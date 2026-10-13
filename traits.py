@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
 from roles import ROLES, Alignment
-from roles.base import REVENGE_CAUSE, acted_tonight, join_names, record_attack, swap_partner
+from roles.base import DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, record_attack, swap_partner
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -219,6 +219,28 @@ TRAITS: dict[str, TraitInfo] = {
                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                                "<circle cx='5' cy='5' r='4.4' fill='#a16207' stroke='#fff' stroke-width='1'/>"
                                "<path d='M5 2.6V7.4M2.6 5H7.4' stroke='#fff' stroke-width='1.3'/></svg>")),  # a plus
+    # Any faction, told (Kevin, Oct 13 2026): one trait for the Yakuza disguise and the Village lookalike; the power
+    # differs by faction. Always a Village disguise: anything else would be useless or self-incriminating.
+    "Disguised": TraitInfo(frozenset(Alignment),
+                           "Exact-role checks (R18) see you as the Village role named below instead of your own; "
+                           "alignment checks still see your true alignment (rules R19, R24).",
+                           "Exact-role checks see a Village role drawn at setup instead of theirs.",
+                           power=-0.1, power_for={Alignment.EVIL: 0.3},
+                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                 "<circle cx='5' cy='5' r='4.4' fill='#5b21b6' stroke='#fff' stroke-width='1'/>"
+                                 "<path d='M2.2 4.2Q5 3.2 7.8 4.2Q7.6 6.4 5.6 6.2L5 5.6L4.4 6.2Q2.4 6.4 2.2 4.2Z' "
+                                 "fill='#fff'/></svg>")),  # a mask
+    # Village and Yakuza (Kevin, Oct 13 2026: random pairs; Neutrals left out, since a Serial Killer bonded to anyone
+    # could never win). Dealt as one trait; on_dealt bonds a random partner, who gets it too.
+    "Bonded": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
+                        "You are bonded to the player named below, of any faction (you aren't told theirs), and they "
+                        "to you. If either of you dies, the other dies of heartbreak at once (rules R24).",
+                        "Bonded to one other player: if either dies, the other dies of heartbreak.",
+                        power=0.0,
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                              "<circle cx='5' cy='5' r='4.4' fill='#be185d' stroke='#fff' stroke-width='1'/>"
+                              "<path d='M2.4 5H7.6M3.6 3.6L2.4 5L3.6 6.4M6.4 3.6L7.6 5L6.4 6.4' fill='none' "
+                              "stroke='#fff' stroke-width='0.9'/></svg>")),  # a two-way link
 }
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"})]  # traits no player may hold together (rules R24)
 
@@ -258,6 +280,10 @@ class TraitLogic:
     def on_dealt(self, game: Game, p: Player) -> None:
         """p was just dealt this trait, at setup (after the roles' setup hooks)."""
 
+    def detail(self, game: Game, p: Player) -> str:
+        """What p's briefing adds after this trait's summary (e.g. a Disguised player's disguise)."""
+        return ""
+
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """After p's death is announced (or queued, at night). guilty_voters is set only for a hanging."""
 
@@ -288,6 +314,7 @@ class Martyr(TraitLogic):
 
 
 AVENGER_CAUSE, CURSE_CAUSE = "Avenger", "a curse"  # the causes of attacks code makes (also REVENGE_CAUSE)
+HEARTBREAK_CAUSE = "heartbreak"  # a Bonded player's death when their partner dies: no attack by anyone
 
 
 class Avenger(TraitLogic):
@@ -299,11 +326,12 @@ class Avenger(TraitLogic):
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         if game.phase != "night" or not p.death:  # rules R24: only a night death; a hanging isn't an attack
             return
-        # Code-made attacks (a Jester's revenge, a Cursed player's curse, another Avenger's) aren't the user's own
-        # attack, so they don't set it off. A killer who died earlier in tonight's resolution is still hit (rules
-        # R10: the night is simultaneous; R12: the cause joins their death), whatever order the moderator's ops came in.
+        # Code-made deaths (a Jester's revenge, a Cursed player's curse, another Avenger's, heartbreak) aren't the
+        # user's own attack, so they don't set it off. A killer who died earlier in tonight's resolution is still hit
+        # (rules R10: the night is simultaneous; R12: the cause joins their death), whatever order the moderator's ops
+        # came in.
         cause = p.death["cause"]
-        if cause in (CURSE_CAUSE, AVENGER_CAUSE) or cause.endswith(REVENGE_CAUSE):
+        if cause in (CURSE_CAUSE, AVENGER_CAUSE, HEARTBREAK_CAUSE) or cause.endswith(REVENGE_CAUSE):
             return
         for name in dict.fromkeys(p.death["killers"]):
             if acted_tonight(game, game.player(name)) and name != p.name:
@@ -515,6 +543,60 @@ class Stocked(TraitLogic):
             p.tokens[kind] += 1
 
 
+class Disguised(TraitLogic):
+    def on_dealt(self, game: Game, p: Player) -> None:
+        # A Village role on the game's script, never the holder's own nor the Roleplayer (whose checks show
+        # "Roleplayer"); the game's RNG, so a seed deals the same disguise. Code-told checks read it through
+        # roles.base.seen_role.
+        from scripts import script_roles
+        roles = [r for r in script_roles(game)
+                 if ROLES[r].alignment is Alignment.GOOD and r not in (p.role, "Roleplayer")]
+        if roles:
+            disguise = game.role_state.setdefault(DISGUISES, {})[p.name] = game.rng.choice(roles)
+            game.log.write("disguise", player=p.name, role=disguise)
+
+    def detail(self, game: Game, p: Player) -> str:
+        return f"Your disguise: {game.role_state.get(DISGUISES, {}).get(p.name, p.role)}."
+
+    def tonight_note(self, game: Game) -> str:
+        if not (disguises := game.role_state.get(DISGUISES)):
+            return ""
+        seen = "; ".join(f"{n} as {r}" for n, r in disguises.items())
+        return ("Disguised (a trait, R24): every exact-role check (R18: e.g. an Oracle's or Ritualist's guess, a "
+                f"Mortician's clean) sees these players as these Village roles, alive or dead: {seen}. Alignment "
+                "checks still see their true alignment. Never reveal a true role behind a disguise.")
+
+
+BONDS = "bonds"  # game.role_state: player -> the player they're bonded to (both ways)
+
+
+class Bonded(TraitLogic):
+    def on_dealt(self, game: Game, p: Player) -> None:
+        # A random partner the trait fits who isn't bonded yet, preferring one with no trait (drawn setups give a
+        # player at most one); the partner gets the trait too.
+        bonds = game.role_state.setdefault(BONDS, {})
+        free = [q for q in game.players if q is not p and q.name not in bonds and eligible(q, "Bonded")]
+        if not free:
+            p.traits.remove("Bonded")
+            game.log.error("setup_error", f"no player could be bonded to {p.name}, so the Bonded trait was left out")
+            return
+        partner = game.rng.choice([q for q in free if not q.traits] or free)
+        partner.traits.append("Bonded")
+        bonds[p.name], bonds[partner.name] = partner.name, p.name
+        game.log.write("bond", players=[p.name, partner.name])
+
+    def detail(self, game: Game, p: Player) -> str:
+        return f"You are bonded to {game.role_state.get(BONDS, {}).get(p.name)}."
+
+    def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
+        # rules R24: at once, so the partner's death is revealed with it (at dawn for a night death, R10: a partner
+        # who dies at night still acted). Not an attack by anyone: it sets off nothing that reacts to one.
+        partner = game.role_state.get(BONDS, {}).get(p.name)
+        if partner and game.player(partner).alive:
+            game.log.write("heartbreak", player=partner, bonded=p.name, day=game.day)
+            game.kill(partner, HEARTBREAK_CAUSE, by=p.name)
+
+
 class Drowsy(TraitLogic):
     def tonight_note(self, game: Game) -> str:
         # Code draws each living holder's night (rules R24) with the game's RNG, so a seed replays it; the moderator
@@ -555,7 +637,8 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
                                 "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
-                                "Paranoid": Paranoid(), "Stocked": Stocked()}
+                                "Paranoid": Paranoid(), "Stocked": Stocked(),
+                                "Disguised": Disguised(), "Bonded": Bonded()}
 assert set(LOGIC) == set(TRAITS)
 
 
@@ -644,5 +727,6 @@ def night_traits(game: Game, p: Player) -> list[str]:
     return [t for t in p.traits if trait_logic(t).can_act(game, p)]
 
 
-def briefing(p: Player) -> list[str]:
-    return [f"Your trait: {t}. {TRAITS[t].summary}" for t in p.traits if not TRAITS[t].hidden]
+def briefing(game: Game, p: Player) -> list[str]:
+    return [f"Your trait: {t}. {TRAITS[t].summary}" + (f" {d}" if (d := trait_logic(t).detail(game, p)) else "")
+            for t in p.traits if not TRAITS[t].hidden]

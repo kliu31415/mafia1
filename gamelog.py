@@ -119,7 +119,9 @@ from records import caller_of, read_records, redact, safe_print
 # 64: trial "vote" records have "fixed" ({voter: trait}): votes a Zealot or Merciful trait fixed (rules R24)
 # 65: "drowsy" records (player, day): a night a hidden Drowsy trait role-blocks its holder (rules R24)
 # 66: "paranoid" records (player, cause, day): a hidden Paranoid trait's fake attack (rules R24)
-LOG_VERSION = 66
+# 67: "disguise" records (player, role) and "bond" records (players), written at setup, and "heartbreak" records
+#     (player, bonded, day): the Disguised and Bonded traits (rules R24)
+LOG_VERSION = 67
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

@@ -1288,6 +1288,82 @@ def test_stocked_adds_one_token_of_each_kind_and_goes_only_to_token_roles(tmp_pa
         assert ROLES[holder.role].tokens and holder.tokens == {k: n + 1 for k, n in ROLES[holder.role].tokens.items()}
 
 
+def test_disguised_players_show_their_disguise_to_exact_role_checks(game_factory, tmp_path):
+    # rules R19, R24 (Kevin, Oct 13 2026): told, always a Village role, seen alive or dead
+    import random
+
+    from gamelog import GameLog
+    from night import role_notes
+    from players import role_briefing
+    from state import setup_game
+    from traits import Disguised
+    for seed in range(5):
+        game = setup_game(["Grunt", "Sheriff", "Medic"], [Model.HAIKU_5_5], random.Random(seed),
+                          GameLog(tmp_path / f"{seed}.jsonl"), traits=["Disguised@Yakuza"])
+        disguise = game.role_state["disguises"]["Alice" if game.player("Alice").role == "Grunt" else
+                                                next(p.name for p in game.players if p.role == "Grunt")]
+        assert ROLES[disguise].alignment is Alignment.GOOD and disguise not in ("Grunt", "Roleplayer")
+    game, players = game_factory(["Coroner", "Grunt", "Sheriff", "Vigilante"])
+    game.player("Bob").traits = ["Disguised"]
+    game.role_state["disguises"] = {"Bob": "Medic"}
+    assert "Your trait: Disguised." in role_briefing(game, game.player("Bob"))
+    assert "Your disguise: Medic." in role_briefing(game, game.player("Bob"))
+    assert Disguised().tonight_note(game).count("Bob as Medic") == 1 and "Bob as Medic" in role_notes(game)
+    game.player("Bob").alive = False  # died on an earlier day
+    game.phase = "night"
+    apply_ops(game, players, {"op": "examine", "player": "Bob", "by": "Alice"})
+    assert "You examined Bob: their role was Medic." in told(game, "Alice")[-1]
+
+
+def test_role_results_read_roles_through_seen_role():
+    """A result that names a player's role must use roles.base.seen_role (a Disguised player's disguise, rules R24).
+    Every other read of `.role` in roles/ is listed here: compare roles, look up a role's own entry, ..."""
+    import pathlib
+    allowed = re.compile(r"self\.role\b|\.role (?:==|!=) (?:self\.role|ROLE|role)\b|ROLES\[\w+\.role\]|"
+                         r"logic\(\w+\.role\)|me\.role = \"Jester\"|cls\.role = role|return game\.role_state\.get|"
+                         r"f\"\{p\.role\} \(\{p\.info|\(\{me\.role\}\) \{'won' if won")
+    bad = [f"{f.name}: {line.strip()}" for f in sorted(pathlib.Path("roles").glob("*.py"))
+           for line in f.read_text(encoding="utf-8").splitlines()
+           if re.search(r"\.role\b", line) and not allowed.search(line)]
+    assert not bad, f"use seen_role(game, p) for roles in results, or allow the line here: {bad}"
+
+
+def test_bonded_partners_die_together_and_know_only_each_others_name(game_factory, tmp_path):
+    # rules R24 (Kevin, Oct 13 2026): random Village/Yakuza pairs; heartbreak isn't an attack
+    import random
+
+    from gamelog import GameLog
+    from players import role_briefing
+    from state import setup_game
+    from traits import fits
+    assert not fits("Bonded", "Serial Killer") and fits("Bonded", "Grunt") and fits("Bonded", "Sheriff")
+    for seed in range(5):
+        game = setup_game(["Grunt", "Sheriff", "Medic", "Jester"], [Model.HAIKU_5_5], random.Random(seed),
+                          GameLog(tmp_path / f"{seed}.jsonl"), traits=["Bonded@Village"])
+        bonded = [p for p in game.players if p.traits == ["Bonded"]]
+        assert len(bonded) == 2 and not any(p.role == "Jester" for p in bonded)
+        a, b = bonded
+        assert game.role_state["bonds"] == {a.name: b.name, b.name: a.name}
+        assert f"You are bonded to {b.name}." in role_briefing(game, a) and b.role not in role_briefing(game, a)
+    game, players = game_factory(["Sheriff", "Grunt", "Medic", "Vigilante", "Lookout"])
+    for name in ("Alice", "Bob"):
+        game.player(name).traits = ["Bonded"]
+    game.player("Alice").traits.append("Avenger")
+    game.role_state["bonds"] = {"Alice": "Bob", "Bob": "Alice"}
+    game.phase = "night"
+    game.kill("Bob", "Vigilante", by="Dave")
+    assert not game.player("Alice").alive and game.player("Alice").death["cause"] == "heartbreak"
+    assert game.player("Dave").alive  # heartbreak isn't an attack: Alice's Avenger doesn't strike
+    assert ("Alice", "heartbreak") in game.pending_deaths
+    game, players = game_factory(["Sheriff", "Grunt", "Medic"])
+    for name in ("Alice", "Bob"):
+        game.player(name).traits = ["Bonded"]
+    game.role_state["bonds"] = {"Alice": "Bob", "Bob": "Alice"}
+    game.phase = "day"
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Carol"])
+    assert not game.player("Bob").alive and any("heartbreak" in e.text for e in game.events)
+
+
 def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
     game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
     game.phase = "night"

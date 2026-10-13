@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, acted_tonight, register, tokens_left_text
+from roles.base import RecordedAction, RoleLogic, acted_tonight, register, seen_role, tokens_left_text
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -39,7 +39,7 @@ class Insomniac(RoleLogic):
         visitors = {a for a, _ in visits}
         pool = [p for p in game.players if p.name in visitors and acted_tonight(game, p)]
         for name in awake:
-            heard = sorted(p.role for p in game.rng.sample(pool, min(HEARS, len(pool))))
+            heard = sorted(seen_role(game, p) for p in game.rng.sample(pool, min(HEARS, len(pool))))
             p = game.player(name)
             if not heard:
                 text = "You lay awake all night and heard no footsteps: nobody visited anyone tonight."

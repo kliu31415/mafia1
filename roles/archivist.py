@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, acted_tonight, register
+from roles.base import RecordedAction, RoleLogic, acted_tonight, register, seen_role
 
 SHARE = 0.5  # rules: floor(0.5 * N) of the N roles shown are real
 
@@ -21,7 +21,7 @@ def archive_roles(game: Game, by: Player) -> tuple[int, int, list[str]]:
     from roles import ROLES
     from scripts import script_roles
     others = [p for p in game.players if p is not by and acted_tonight(game, p)]
-    shown = [p.role for p in game.rng.sample(others, int(len(others) * SHARE))]
+    shown = [seen_role(game, p) for p in game.rng.sample(others, int(len(others) * SHARE))]
     real = len(shown)
     every_role = sorted(script_roles(game))
     while len(shown) < len(others):

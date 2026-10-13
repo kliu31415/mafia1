@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import Alignment, RecordedAction, RoleLogic, acted_tonight, as_chosen, register, tokens_left_text
+from roles.base import (Alignment, RecordedAction, RoleLogic, acted_tonight, as_chosen, register, seen_role,
+                        tokens_left_text)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -20,10 +21,10 @@ def profile_candidates(game: Game, profiler: str, target: str) -> list[str]:
     true."""
     from roles import ROLES
     from scripts import script_roles
-    true = game.player(target).role
+    true = seen_role(game, game.player(target))
     every = sorted(script_roles(game))
-    in_play = sorted({p.role for p in game.players if acted_tonight(game, p) and p.name != profiler})
-    unused = [r for r in every if r not in {p.role for p in game.players}]
+    in_play = sorted({seen_role(game, p) for p in game.players if acted_tonight(game, p) and p.name != profiler})
+    unused = [r for r in every if r not in {seen_role(game, p) for p in game.players}]
 
     def good(role: str) -> bool:
         return ROLES[role].alignment is Alignment.GOOD

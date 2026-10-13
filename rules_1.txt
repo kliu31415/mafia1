@@ -199,7 +199,8 @@ except:
   every Neutral as Neutral.)
 The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
 above apply to it.
-Exact-role checks see the true role. The Roleplayer is seen as "Roleplayer".
+Exact-role checks see the true role, except that they see a Disguised player's disguise (R24). The Roleplayer is
+seen as "Roleplayer".
 Token counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,
 even though they believe they have their fake role's tokens.
 Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.
@@ -259,6 +260,11 @@ action is used in addition to your role's own, and a role-block stops it too.
   or an attack, and nobody else learns of it.
 - Stocked (any player whose role starts with tokens): you start with one more of each kind of token your role
   starts with.
+- Disguised (any player): you are told a Village role (never your own), drawn at the start. Every exact-role check
+  (R18) sees you as that role instead of yours, alive or dead; alignment checks still see your true alignment.
+- Bonded (Village and Yakuza players only): you and one other random Village or Yakuza player are bonded, and each
+  of you is told the other's name (not their role or faction). If either of you dies, the other dies of heartbreak
+  at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
 
 === PART 5: THE YAKUZA ===
 

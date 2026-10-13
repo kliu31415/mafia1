@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, acted_tonight, register
+from roles.base import RoleLogic, acted_tonight, register, seen_role
 
 if TYPE_CHECKING:
     from state import Game
@@ -26,4 +26,4 @@ class Vigilante(RoleLogic):
                 died = dead.death or {}
                 if (died.get("day"), died.get("phase")) == (game.day, "night") and me.name in died.get("killers", []):
                     # rules, Vigilante: an exact-role result (R19), so a Roleplayer shows as Roleplayer
-                    game.tell([me.name], f"Your shot killed {dead.name}. Their role was {dead.role}.")
+                    game.tell([me.name], f"Your shot killed {dead.name}. Their role was {seen_role(game, dead)}.")

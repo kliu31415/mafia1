@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from events import ANNOUNCEMENT
-from roles.base import RoleLogic, Status, register
+from roles.base import RoleLogic, Status, register, seen_role
 
 REPORTED = "vulture_reported"  # role_state: dead players the Vulture has already had a report on
 TRUE_SHARE = 0.5  # rules (Vulture): the chance each report shows the true role
@@ -47,8 +47,9 @@ def report_deaths(game: Game, vultures: list[Player]) -> None:
     for v in vultures:
         lines = []
         for p in new:
-            fakes = sorted(r for r in script_roles(game) if r != p.role)
-            role = p.role if game.rng.random() < TRUE_SHARE else game.rng.choice(fakes)
+            seen = seen_role(game, p)
+            fakes = sorted(r for r in script_roles(game) if r != seen)
+            role = seen if game.rng.random() < TRUE_SHARE else game.rng.choice(fakes)
             lines.append(f"{p.name}: {role}")
         game.tell([v.name], "Your report on the dead (each role is the true one with 50% chance, otherwise a "
                             "different random role; you aren't told which): " + "; ".join(lines) + ".")

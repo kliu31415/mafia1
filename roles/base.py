@@ -226,6 +226,15 @@ LOGIC: dict[str, RoleLogic] = {}
 DEFAULT = RoleLogic()
 
 
+DISGUISES = "disguises"  # game.role_state: player -> the role exact-role checks see instead of theirs (traits.py)
+
+
+def seen_role(game: Game, p: Player) -> str:
+    """The role exact-role checks (rules R18, R19) see for p: their true role unless a trait disguises it. Code that
+    reports a player's role in a result uses this, never the role field itself (a test checks)."""
+    return game.role_state.get(DISGUISES, {}).get(p.name, p.role)
+
+
 def acted_tonight(game: Game, p: Player) -> bool:
     """Whether p was alive when the night began: still alive, or killed earlier in tonight's resolution. Night
     actions are simultaneous (rules R10), so ops for a player killed tonight still apply, whatever order the
