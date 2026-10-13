@@ -11,7 +11,7 @@ from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
-from roles.base import REVENGE_CAUSE, tell_swap_moves
+from roles.base import REVENGE_CAUSE, seen_role, tell_swap_moves
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
                     ignored_at_end, shares_win, usurper, win_blockers, win_side,
                     trait_logic)
@@ -283,7 +283,7 @@ class Game:
         p = self.player(name)
         # "cause:" so a cause that names a role ("Ritualist") can't be read as the dead player's role
         what = (f"role cleaned by a Mortician; cause: {cause}" if p.status.get(Status.CLEANED)
-                else f"{p.role} (revealed); cause: {cause}" if self.role_reveal_reason(p)
+                else f"{seen_role(self, p)} (revealed); cause: {cause}" if self.role_reveal_reason(p)
                 else f"{self.revealed_identity(p)}; cause: {cause}")
         when = p.death or {"day": self.day, "phase": self.phase}  # when they died, not when it's revealed
         self.death_record.append(f"{'Night' if when['phase'] == 'night' else 'Day'} {when['day']}: {name} ({what})")
@@ -328,7 +328,8 @@ class Game:
                 reveal += f" {reason}, but the Mortician's clean hides the role too, so it isn't revealed."
             return reveal
         if reason := self.role_reveal_reason(p):
-            reveal = f"{name} died ({cause}). {reason}, so their role is revealed: {p.role}."
+            # an exact-role check (rules R19): a Disguised player shows their disguise (R24)
+            reveal = f"{name} died ({cause}). {reason}, so their role is revealed: {seen_role(self, p)}."
         else:
             reveal = {"alignment": f"{name} died ({cause}). Their alignment was {self.revealed_identity(p)}.",
                       "none": f"{name} died ({cause}). Their role isn't revealed."}.get(

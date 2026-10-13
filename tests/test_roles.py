@@ -1562,6 +1562,24 @@ def test_chronicler_mark_reveals_the_role_on_any_later_death_even_after_the_chro
     assert reveal.endswith("They had been marked by a Chronicler, so their role is revealed: Grunt.")
     assert "Grunt (revealed)" in game.death_record[-1]
     assert "role isn't revealed" in [e.text for e in game.events if e.cat == "death"][0]  # unmarked Alice
+    # the mark is an exact-role check (rules R19): a Disguised player shows their disguise (R24)
+    game.role_state["disguises"] = {"Bob": "Medic"}
+    game.player("Bob").status[Status.MARKED] = "Alice"
+    game.kill("Bob", "Execution by Hanging")
+    assert [e.text for e in game.events if e.cat == "death"][-1].endswith("their role is revealed: Medic.")
+    assert "Medic (revealed)" in game.death_record[-1] and "Sheriff" not in game.death_record[-1]
+
+
+def test_a_heartbreak_death_at_night_is_not_called_an_attack(game_factory):
+    from night import tell_night_deaths
+    game, players = game_factory(["Sheriff", "Medic", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.player("Alice").traits = game.player("Bob").traits = ["Bonded"]
+    game.role_state["bonds"] = {"Alice": "Bob", "Bob": "Alice"}
+    game.kill("Alice", "Katana", by="Carol")
+    tell_night_deaths(game, {"Alice", "Bob", "Carol", "Dave"})
+    assert told(game, "Alice")[-1].endswith("You were attacked tonight (Katana) and died.")
+    assert told(game, "Bob")[-1].endswith("You died tonight (heartbreak).")  # rules R24: heartbreak isn't an attack
 
 
 def test_mortician_clean_beats_a_chronicler_mark_and_the_announcement_says_so(game_factory):

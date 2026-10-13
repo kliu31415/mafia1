@@ -9,7 +9,7 @@ from roles import LOGIC, Alignment, Status, logic
 from roles.base import swaps_tonight
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
-from traits import night_traits, trait_logic
+from traits import NOT_ATTACKS, night_traits, trait_logic
 from moderator import Moderator
 from night_check import NightChecker
 
@@ -199,7 +199,9 @@ def tell_night_deaths(game: Game, alive_at_start: set[str]) -> None:
     for p in game.players:
         if p.name in alive_at_start and not p.alive and p.death and p.death["phase"] == "night" \
                 and p.death["day"] == game.day:
-            game.tell([p.name], f"You were attacked tonight ({p.death['cause']}) and died.")
+            cause = p.death["cause"]  # heartbreak isn't an attack (rules R24)
+            game.tell([p.name], f"You died tonight ({cause})." if cause in NOT_ATTACKS
+                      else f"You were attacked tonight ({cause}) and died.")
 
 
 def describe_choice(a: dict) -> str:

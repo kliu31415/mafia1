@@ -485,6 +485,7 @@ class Martyr(TraitLogic):
 AVENGER_CAUSE, CURSE_CAUSE = "Avenger", "a curse"  # the causes of attacks code makes (also REVENGE_CAUSE)
 HEARTBREAK_CAUSE = "heartbreak"  # a Bonded player's death when their partner dies: no attack by anyone
 REMORSE_CAUSE = "remorse"  # a Remorseful player's death after a Guilty vote hanged a Villager: no attack by anyone
+NOT_ATTACKS = (HEARTBREAK_CAUSE, REMORSE_CAUSE)  # deaths no one attacked for (rules R24)
 
 
 class Avenger(TraitLogic):
