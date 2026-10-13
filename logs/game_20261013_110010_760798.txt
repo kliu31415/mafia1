@@ -61,3 +61,88 @@ Katana: Carol holds it and attacks Bob.
 (to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Bob. Erin (Puppeteer) chose to act on Alice, spending 1 token(s); Grace (Smuggler) chose no action.
 (to Erin) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Bob. Carol (Fixer) chose no action; Grace (Smuggler) chose no action.
 (to Grace) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Bob. Carol (Fixer) chose no action; Erin (Puppeteer) chose to act on Alice, spending 1 token(s).
+
+===== DAY 2 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "I am Bob, a Surveyor. Night 1: surveyed Dave; result pending."
+(to Alice) You are being puppeted today: you can't chat or see private messages, but you can still nominate and vote.
+Speaking order today goes around the circle in seat order, starting with Dave.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Dave (public): Dave here, still no claim. Bob's will says he was a Surveyor who surveyed me on Night 1. Unverified, so let's see who posts concrete results before we weigh anything.
+Erin (public): Bob's will says his Surveyor result was pending, so we shouldn't treat Dave as cleared or accused from that alone. Anyone with a concrete Night 1 result should share the target and exact wording; otherwise let's avoid unsupported cases.
+[Claim] Frank: Tracker. N1: tracked Dave, result: Dave visited Grace.
+Frank (public): Frank, Tracker. Night 1 I tracked Dave, and Dave visited Grace. That's the exact result. Dave, what was your Night 1 action and target? Grace, did you receive a visit or an attack?
+Grace (public): I received no attack notification. A Tracker result only says Dave visited me, not what he did; Dave should explain his action and target before anyone treats this as guilt.
+[Claim] Heidi: Profiler. N1: profiled Bob, result: Archivist, Puppeteer or Surveyor (one true; at least one Good and one not Good). 2 profile tokens left.
+Heidi (public): Heidi, Profiler. N1 I profiled Bob. Exact result: Archivist, Puppeteer or Surveyor (exactly one is true; at least one Good role and at least one not Good). Bob's Surveyor claim fits that. I have 2 profile tokens left. Dave, please answer Frank's question about your N1 action and target.
+[Claim] Alice: Lookout. N1: watched Grace; Dave visited her.
+(to Erin) Alice's public message was cut to 28 words to fit the budget.
+Alice (public): I can independently corroborate the visit: I watched Grace on N1 and saw Dave visit her. That establishes a visit, not guilt by itself; Dave should say plainly [truncated]
+Alice nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Alice, Carol, Erin, Frank, Grace, Heidi; No - Dave
+Nomination votes on Dave: 6 Yes (the votes are secret).
+Dave is put on trial (6 Yes).
+[Claim] Dave: Trapper. N1: trapped Grace (a visit; trap armed from N2). No attacks, no investigation results.
+Dave (public): I'm a Trapper, and I should have said so before. On Night 1 I placed a trap on Grace. That is the visit that Frank's Tracker result and Alice's Lookout result both saw. It was a trap, not an attack, and I took no other action that night. The trap is armed from Night 2 and is still on Grace. Bob was killed by a Katana, and I had nothing to do with it. My trap is the whole explanation for the visit. Please weigh that before voting.
+Erin (public): The visit is corroborated, but his role isn’t. Dave claimed Trapper only after being caught; that’s a convenient explanation, not independent proof.
+[Claim] Frank: Tracker. N1: tracked Dave, result: Dave visited Grace. Trial of Dave: vote pending.
+Frank (public): Frank here, Tracker. Dave's Trapper claim fits the visit, but it doesn't clear him. A trap placed on N1 is armed only from N2, so it couldn't have caught anyone that night, and Grace got no attack. Dave, your trap is a Night 1 visit with no result. Tell us: what did you do on N2 and N3, and whom did you trap then? Grace, did you ever have any contact with Dave beyond that visit? Bob was killed by Katana on N1, which means a Yakuza visited Bob. Who visited Bob is the question that matters most.
+Grace (public): Dave’s explanation fits the visit, but it is still only a claim made after both reports exposed him. A visit to Grace establishes neither a trap nor innocence. The late, self-serving reveal leaves enough doubt that I’ll vote Guilty.
+[Claim] Heidi: Profiler. N1: profiled Bob (Archivist, Puppeteer or Surveyor). 2 profile tokens left.
+Heidi (public): Dave's visit to Grace is confirmed by two independent sources, but that alone doesn't prove guilt. His Trapper claim fits it: a Night 1 trap is armed from Night 2, and Grace was never attacked. I'm leaning Innocent unless someone shows a contradiction.
+Alice (public): My nomination was based on the confirmed visit, not a role assumption. Dave's Trapper claim came only after he was exposed, and it can't be verified now. Two independent reports establish the visit; I don't think his convenient explanation is enough to clear him. I favor Guilty.
+Carol (public): Carol here, no role claim. Dave's visit to Grace is corroborated by two sources, and his trap story can't be checked. Dave, what did your trap do on N2 and N3? If you can't answer that concretely, I lean Guilty.
+[Claim] Dave: Trapper. N1: trapped Grace (a visit, no result). Trap armed from N2; no N2/N3 actions yet.
+Dave (public): Only Night 1 has happened so far. My trap on Grace is armed from Night 2, which hasn't come yet, so there is no N2 or N3 action to report. I placed no other trap and made no attacks or investigations. A trap is only confirmed when it fires. If Grace is attacked on a later night, the trap fires and the attacker is revealed as having attacked Grace. That is a real test, and it will show whether my claim holds. Bob was killed by Katana on N1, so the Yakuza visited Bob, not me. I came forward once the Tracker and Lookout reports made my visit public. Judge the trial on that. I'm voting Innocent.
+Trial votes on Dave: 2 Guilty, 5 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Erin, Grace; Innocent - Alice, Carol, Dave, Frank, Heidi
+Dave is found Innocent (2 Guilty of 7 votes; 4 needed).
+Carol (public): Carol here, no claim. Dave was found Innocent, and his trap story can't be checked until a Night 2 attack happens. Before anyone nominates, I'd like Frank, Alice and Heidi to say what they plan to investigate tonight, so we can compare results tomorrow instead of hanging on today's claims.
+Dave (public): Dave, Trapper. My trap is still on Grace and armed from Night 2. If anyone attacks Grace with a non-Divine attack, the trap fires, the attacker takes a Strong attack, and I'll report that the trap went off. I'm not nominating without a concrete lead. Frank, Alice, Heidi: please post your Night 2 targets when they resolve, and anything new from your results.
+Erin (public): The Tracker and Lookout independently establish Dave visited Grace, but his Trapper claim fits that. Don't publish tonight's targets; share resolved results tomorrow, and separate corroborated facts from guesses.
+[Claim] Frank: Tracker. N1: tracked Dave, visited Grace. D2: Yes on Dave's nomination, Innocent in his trial.
+Frank (public): Frank, Tracker. Dave was found Innocent, but his trap claim is still unverified until Grace is attacked. I'll track a player tonight and post the exact result tomorrow. Whoever visited Bob on N1 is the key question, so anyone with a concrete lead, please share it with the exact wording.
+[Claim] Grace: Sheriff. N1 checked Carol: Not Evil; this does not clear a Katana holder.
+Grace (public): One result from N1: I checked Carol as Sheriff and got Not Evil. That is weak: the Katana holder reads Not Evil, so it does not clear her. Dave's N1 visit is confirmed, but the trap explanation is possible; my Guilty stance was based on the late claim, not proof.
+Heidi (public): Heidi, Profiler. My Bob result stands as posted: Archivist, Puppeteer or Surveyor. Frank and Alice independently report the same Dave-to-Grace visit, and Dave's trap claim fits it. I won't nominate on that alone. Frank, Alice: please post your N2 targets and exact results when they resolve. Anyone who pushes a nomination without new data should explain why.
+Alice (public): The visit remains confirmed, but it doesn't establish what Dave did. His trap claim fits; I won't treat it as cleared or guilty until the trap gives a result. Let's not spend another trial on the same evidence.
+Carol (public): Carol, no claim. Frank and Alice independently confirm Dave's visit to Grace, but the trap is unverified. I won't nominate without new results. Let's see Night 2 outcomes before voting on anyone.
+Dave (public): Dave, Trapper. My trap stays on Grace and is armed now, so any Basic, Standard or Strong attack on Grace tonight reveals its attacker. Grace, you voted Guilty on me and checked Carol Not Evil. Who do you suspect for Bob's Katana, and why?
+Erin (public): The two reports establish Dave visited Grace, and his trap account fits; they don't identify Bob's attacker. No new contradiction has appeared, so I agree we shouldn't spend another trial on the same evidence. Share resolved results tomorrow.
+Frank (public): Frank, Tracker. I won't nominate without new data. Tonight I'll track a player and post the exact result tomorrow. Dave's trap can only be tested by a Night 2 attack on Grace, so let's watch for that. Whoever visited Bob on N1 is still the key question.
+Grace (public): I voted Guilty because Dave's Trapper claim came late, but his clarification is right: only Night 1 has happened, so there was no N2/N3 action to report. That was not a mechanical contradiction, and I agree we shouldn't reopen the same case. My Carol read remains limited and does not clear a Katana holder.
+[Claim] Heidi: Profiler. N1: profiled Bob, result: Archivist, Puppeteer or Surveyor (exactly one true; at least one Good and one not Good). 2 profile tokens left.
+Heidi (public): I won't nominate without new results. Bob's Surveyor claim fits my Night 1 profile, so it is consistent, not proof. Dave's visit to Grace is confirmed by two sources, and his trap can only be tested by a Night 2 attack on Grace. Tomorrow, please post resolved results with exact targets and wording.
+Alice (public): No new evidence from my end. My N1 result was Dave visiting Grace; it proves a visit, not his role or intent. Let's wait for actual N2 results.
+Carol (public): Carol, no claim. I won't nominate yet. Dave's visit to Grace is corroborated, but that doesn't show who attacked Bob. I want Night 2 results from Frank, Alice and Heidi before anyone is hanged.
+Dave (public): Dave, Trapper. My trap is still on Grace and armed. If Grace is attacked tonight, the trap goes off and I'll report it. I won't nominate without new results. Grace, what did your Sheriff check on Carol tell you, and did you see any attack on yourself?
+Erin (public): Dave's N1 visit is established, but a Trapper placing a trap is a plausible explanation and there is no N2 test yet. I won't treat either the visit or his claim as proof; let's assess actual results tomorrow.
+Frank (public): Frank, Tracker. No nomination from me without new results. Tomorrow I'll post my exact tracking result. Grace, what did your Sheriff check on Carol actually tell you, and did anyone attack you on N1?
+Grace (public): I already gave both facts: N1 Carol was Not Evil, which doesn't clear a Katana holder; I got no attack notification. Neither identifies Bob's attacker. I have no new evidence against Dave, so I won't reopen that trial.
+[Claim] Heidi: Profiler. N1: profiled Bob (Archivist, Puppeteer or Surveyor). 2 profile tokens left.
+Heidi (public): Heidi, Profiler. No nomination from me without new results. Tomorrow I'll post my Night 2 profile with exact target and wording. The key question is still who visited Bob on N1. Anyone with a concrete visit or result on that, please share it.
+Alice (public): No new result changes the picture: Dave’s visit to Grace is corroborated, but that alone doesn’t prove his role or intent. Let’s wait for actual Night 2 results rather than repeat the same case.
+Carol (public): Carol, no claim and no nomination. I'll wait for Night 2 results from Frank, Alice and Heidi before voting on anyone.
+Dave (public): Dave, Trapper. No nomination without new results. Night 2 results from Frank, Alice and Heidi, please post them with exact targets.
+Frank (public): Frank, Tracker. No nomination from me yet. Tonight I'll track one player and post the exact result tomorrow. Dave's trap fires only if Grace is attacked, so Night 2 matters. Still open: who visited Bob on N1. Anyone with a concrete visit on that, please post it.
+Grace (public): No new result changes the picture. Dave's corroborated visit fits his Trapper claim, so I don't support reopening that trial. My N1 Sheriff result on Carol was only Not Evil and does not clear her.
+Heidi (public): Heidi, Profiler. No nomination from me. Bob's Katana visitor is still the open question. I'll post my Night 2 profile result with exact wording tomorrow.
+Carol (public): Carol, no claim and no nomination. I still want concrete Night 2 results from Frank, Alice and Heidi before anyone is hanged.
+Dave (public): Dave, Trapper. My trap is still on Grace and armed. Any non-Divine attack on Grace will be stopped, and the attacker takes a Strong attack. I won't nominate without new results. Frank, Alice, Heidi: please post your Night 2 results with exact targets.
+Frank (public): Frank, Tracker. No nomination from me. I'll track one player tonight and post the exact result tomorrow. Night 2 results are what matter now.
+Grace (public): No new mechanical result has appeared, and the Night 2 trap test has not happened yet. Dave’s visit fits his stated trap placement; that doesn’t prove his role, but it isn’t fresh evidence for another trial. I won’t nominate.
+Heidi (public): Heidi, Profiler. No nomination from me. My Night 2 profile result will be posted tomorrow with exact target and wording. Bob's Katana visitor is still the open question.
+Alice (public): My Lookout result proves only that Dave visited Grace; his Trapper claim fits it. I won't push another trial without new evidence. Let's stop repeating Night 1 and compare actual Night 2 results tomorrow.
+Carol (public): Carol, no claim and no nomination. I'll wait for the Night 2 results from Frank, Alice and Heidi before voting on anyone.
+Dave (public): Dave, Trapper. No nomination yet. Grace, you voted Guilty on me and your Sheriff read on Carol was called weak by you. Let's see Night 2 results before anyone is hanged.
+Erin (public): No new evidence today, so I won't nominate. Let's compare actual Night 2 results tomorrow.
+Frank (public): Frank, Tracker. No nomination from me. I'll post my Night 2 tracking result with exact target and wording tomorrow. Still open: who visited Bob on N1.
+Heidi (public): Heidi, Profiler. No nomination from me. Night 2 results will be posted tomorrow with exact target and wording. Bob's Katana visitor is still the open question, so anyone with a concrete N1 visit on Bob, please post it.
+Alice (public): My Lookout result establishes that Dave visited Grace, not why. I accept the Innocent verdict and won't reopen that case without new evidence.
+Carol (public): Carol, no nomination. I'll wait for Night 2 results before voting on anyone.
+Dave (public): Dave, Trapper. My trap stays on Grace and is armed. No nomination from me without new results.
+Erin (public): No new evidence has emerged to justify another trial. Let's end the Day and assess the actual Night 2 results tomorrow.
+Frank (public): Frank, Tracker. No nomination from me. I'll post my Night 2 tracking result with exact wording tomorrow.
+Heidi (public): Heidi, Profiler. No nomination from me. Bob's Katana visitor is still unknown. I'll post my Night 2 result with exact wording tomorrow.
+Alice (public): No new evidence changes the N1 picture: Dave's visit is confirmed, but his role and intent aren't. I won't reopen that trial; let's assess the Night 2 results tomorrow.
+Carol (public): Carol, no claim and no nomination. I'm waiting for Night 2 results from Frank, Alice and Heidi before voting on anyone.
+Discussion time is over. The day ends.
