@@ -290,3 +290,54 @@ Trial votes on Alice: 3 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Alice] Guilty - Carol, Erin, Grace; Innocent - Alice, Heidi
 Alice is executed by hanging (3 Guilty of 5 votes; 3 needed).
 Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice, Village Vigilante. N1/N2: no action. N3: Basic shot at Carol; failed to kill; 2 tokens remain. Failure could mean protection or Defense and does not establish alignment. My D2 Lookout claim and result were fabricated while I was puppeted. I shot Carol because she had not given a role or action account; that was suspicion, not proof. Carol nominated me on D4 because my shot was unverifiable. Please assess the three Katana deaths and demand concrete evidence before another hang."
+
+===== NIGHT 4 =====
+(to Carol, Erin, Grace) Carol (Yakuza chat): Plan for tonight: Carol keeps the Katana and attacks Heidi. She is the only living non-Yakuza player, so killing her ends the game for us. Erin and Grace, please vote Carol as holder and Heidi as target. Grace, take no action. Reply to confirm.
+(to Carol, Erin, Grace) Erin (Yakuza chat): Agreed: Carol holds the Katana and attacks Heidi. I have no other action. I vote Carol as holder and Heidi as target. Ready.
+(to Carol, Erin, Grace) Grace (Yakuza chat): Agreed: Carol keeps the Katana and attacks Heidi. I have no other action. I vote Carol as holder and Heidi as target. Ready.
+(to Carol, Erin, Grace) Carol (Yakuza chat): Confirmed: Carol keeps the Katana (no holder change) and attacks Heidi. Erin and Grace, please vote Carol as holder and Heidi as target. I'm taking no other action. Heidi is the only living Village player, so this ends the game for us.
+(to Carol, Erin, Grace) Erin (Yakuza chat): Confirmed: Carol keeps the Katana and attacks Heidi. I have no other action. Ready.
+(to Carol, Erin, Grace) Grace (Yakuza chat): Confirmed: Carol keeps the Katana and attacks Heidi. I have no other action. Ready.
+Night actions:
+  Carol (Fixer): no role action; Katana vote: Carol holds, attacks Heidi
+  Erin (Puppeteer): no role action; Katana vote: Carol holds, attacks Heidi
+  Grace (Smuggler): no role action; Katana vote: Carol holds, attacks Heidi
+  Heidi (Profiler): no action
+Katana: Carol holds it and attacks Heidi.
+(to Carol) Moderator (private): Your Katana attack on Heidi tonight succeeded.
+[Moderator summary] Night 4: Yakuza kept the Katana with Carol and attacked Heidi (Standard). There were no role-blocks, protections, traps or other actions. Heidi (Defense None) died to the Katana. Carol was told the attack succeeded. Only Yakuza (Carol, Erin, Grace) remain alive, so the Yakuza should win.
+[Night check] Night 4: correct
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Heidi. Erin (Puppeteer) chose no action; Grace (Smuggler) chose no action.
+(to Erin) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Heidi. Carol (Fixer) chose no action; Grace (Smuggler) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Heidi. Carol (Fixer) chose no action; Erin (Puppeteer) chose no action.
+
+===== DAY 5 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi, Profiler (Village). Night results, exact wording: N1 Bob: "Archivist, Puppeteer or Surveyor (exactly one is true; at least one Good and at least one Not Good)." N2 Frank: "Fabricator, Fixer or Tracker (exactly one is true; at least one Good and at least one Not Good)." N3 Erin: "Bloodhound, Puppeteer or Trapper (exactly one is true; at least one Good and at least one Not Good)." Dave's Trapper trap on Grace never fired. Alice's Lookout claim was puppeted, so disregard it. Suspect the Carol/Erin/Grace bloc: Carol PMed Erin and Grace right before nominating Alice. Hang the strongest Yakuza lead, and do not trust unverified Sheriff reads."
+The game is over. Winners: Carol, Erin, Grace.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[ERROR player_error] Carol (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason tool_use, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'missing_information', root: must have required property 'wanted_but_couldnt', root: must have required property 'bugs_or_oddities', ro)
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Erin, Grace
+Cost by player (USD):
+  Alice (Vigilante)  $0.0596   33 calls  gpt-6-luna
+  Bob (Surveyor)     $0.0124    5 calls  gpt-6-luna
+  Carol (Fixer)      $0.0000   44 calls  claude-haiku-5.5
+  Dave (Trapper)     $0.0000   30 calls  claude-haiku-5.5
+  Erin (Puppeteer)   $0.0822   52 calls  gpt-6-luna
+  Frank (Tracker)    $0.0000   18 calls  claude-haiku-5.5
+  Grace (Smuggler)   $0.0667   43 calls  gpt-6-luna
+  Heidi (Profiler)   $0.0000   36 calls  claude-haiku-5.5
+  Moderator          $0.0000    6 calls  claude-opus-5.5
+  Night checks       $0.0000    4 calls  claude-opus-5.5
+  Strategy review    $0.0000    1 calls  claude-opus-5.5
+  Log review         $0.0000    1 calls  claude-opus-5.5
+  Total              $0.2209  273 calls
