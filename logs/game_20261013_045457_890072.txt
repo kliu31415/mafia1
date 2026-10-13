@@ -1,0 +1,13 @@
+Setup:
+  Alice    seat 1  Vigilante         anthropic/claude-haiku-5.5 (via Claude Code)  trait: Paranoid
+  Bob      seat 2  Lookout           anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Fabricator        anthropic/claude-haiku-5.5 (via Claude Code)  trait: Stocked, Merciful
+  Dave     seat 4  Sheriff           anthropic/claude-haiku-5.5 (via Claude Code)
+  Erin     seat 5  Jester            anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Grunt             anthropic/claude-haiku-5.5 (via Claude Code)  trait: Spare Blade
+  Grace    seat 7  Tracker           anthropic/claude-haiku-5.5 (via Claude Code)  trait: Zealot
+  Heidi    seat 8  Medic             anthropic/claude-haiku-5.5 (via Claude Code)  trait: Drowsy
+  Katana starts with Frank
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).
