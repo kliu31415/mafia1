@@ -54,3 +54,73 @@ Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
 [Night check] Night 1: correct
 (to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Grace (Pharmacist) chose no action.
 (to Grace) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Bob (Grunt) chose no action.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Dave.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Dave (public): No deaths gives us little to work with. Share any concrete result with the target and exact outcome, but don't turn yesterday's PM or repeated slogans into a case. I don't have a result that currently justifies a nomination.
+[Claim] Erin: Sheriff. N1 checked Bob: Not Evil.
+Erin (public): Sheriff here: N1 checked Bob, Not Evil. That isn't a full clear (Katana-holder/Neutral exceptions), but it's no basis to push him.
+Frank (public): Erin's Sheriff claim rests on one Not Evil result on Bob, and Bob has said nothing yet. I want Erin's full check history and Bob's answer before anyone votes on it.
+Grace (public): Grace here, no claim. Erin's Not Evil on Bob is consistent with Bob holding the Katana, since holders read Good that night, so it neither clears nor condemns him. I'd like Erin's next check before anyone votes, and I won't nominate on one result.
+Heidi (public): No nomination yet. Erin's Sheriff claim is one Not Evil on Bob, which tells us little. Erin, please post your next check target and result before Day 3 votes. Bob, please say whether you held the Katana last night, since that's the main thing that would explain the result.
+Alice (public): Bob, please answer whether you held the Katana N1. Erin's Not Evil result is compatible with that, but it doesn't clear him. I won't nominate on this alone; let's hear his answer and see what evidence develops.
+Bob (public): Bob, no claim. I have no check to share and I'm not nominating on one Not Evil result. Erin, post your next check target and result before anyone votes. Till then I'm waiting for more data.
+[Claim] Carol: Tracker. N1 tracked Bob: he did not visit anyone.
+Carol (public): Tracker. N1 I tracked Bob; he did not visit anyone. This does not clear him: he could have been role-blocked, and the Katana needn't have attacked. Bob, please answer whether you held it.
+Dave (public): Carol's report only says Bob made no visit; it doesn't establish whether he held the Katana. Bob, please answer directly whether you held it N1 rather than just saying you have no check.
+Erin (public): Bob still hasn't answered whether he held the Katana. Carol's claimed Tracker result that you made no visit doesn't settle it: you could have been blocked, swapped, or simply not attacked. Please answer directly; I don't see enough to nominate yet.
+[Feedback from Frank] The schema requires many fields even when unused, and nominate/target fields are typed as nullable strings, which made formatting awkward but worked once values were plain.
+Frank (public): Both Erin and Carol checked Bob on N1, and neither has a second result yet. Erin and Carol, why spend your first night on the same player? Post your next target and result before Day 3 votes, and I'll vote on what you show.
+Grace (public): Grace, no nomination. Erin's Not Evil and Carol's no-visit result on Bob both fit him holding the Katana without attacking. Neither clears him. I want the next checks before any vote.
+Heidi (public): Heidi, no nomination. Erin and Carol both checked Bob on N1, and neither has a second result yet. Erin and Carol, post tonight's target and result before any Day 3 vote.
+Alice (public): Bob, answer directly whether you held the Katana N1. Erin and Carol: why did you both choose him, and what will each check tonight? These results don't establish his faction or holder status.
+Bob (public): Bob, no nomination. Erin's Sheriff result and Carol's Tracker result on N1 are both consistent with what we know, so neither proves a lie. I want each of you to post tonight's target and the result before any vote. Till then I'm not voting on either claim.
+Carol (public): I chose Bob as a check because he was the only player singled out by the Day 1 PM discussion, not because I had evidence against him; the result is weak. Bob, simply saying whether you held the Katana would resolve one interpretation.
+Dave (public): We have no corroborated case yet. Bob’s continued non-answer is worth tracking, but nobody has established he held the Katana or lied. I’d avoid spending a trial on this without new evidence.
+Erin (public): Carol's Day 1 PM explanation makes her N1 choice plausible. Bob has now been asked repeatedly whether he held the Katana and still hasn't answered. That's suspicious but not proof; answer plainly. I won't nominate on this alone, and will check someone else tonight.
+Frank (public): Frank, no nomination yet. Erin and Carol both checked Bob on N1, and neither has a second result. Erin and Carol, post tonight's target and why you picked it. I'll vote on whichever claim shows more checkable data.
+Grace (public): Grace, no nomination. Erin and Carol both checked Bob on N1, and neither result settles anything. Post tonight's target and result, and I'll weigh the second check before voting.
+Heidi (public): Heidi, no nomination. Erin and Carol both checked Bob on N1, so each of your results only means something if we see what you do next. Erin and Carol, post tonight's target and result before any Day 3 vote. Bob, a direct yes or no on the Katana would help more than another non-answer.
+Alice (public): Bob's continued non-answer is a behavior concern, not proof. Erin's and Carol's N1 results are both inconclusive; their next checks need to be independent and concrete. I'll wait for actual evidence rather than nominate.
+Bob (public): Bob, no nomination today. Erin and Carol both checked me on N1, and each result is a single data point. Erin and Carol, please post tonight's target and exact result. I'll vote on whichever claim shows checkable data, and I won't vote on a Katana question alone.
+Carol (public): Nothing new changes the N1 read: my Tracker result is only that Bob didn't visit anyone, and Erin's is only Not Evil. Neither proves who held the Katana. Bob's non-answer is a behavior concern, not a case; I won't nominate without corroboration. I'll check someone else tonight and share the result tomorrow.
+[Claim] Dave: Lookout. N1 watched Grace; nobody visited her.
+Dave (public): I can add one concrete result: I am Lookout; N1 watched Grace and nobody visited her. This doesn't clear her or corroborate anything about Bob. I see no basis for a trial yet. Please don't reveal tonight's targets.
+Frank (public): Frank, no nomination. Erin and Carol cannot both be right about a single Bob check without someone lying, and neither has a second result. I'd rather the town test that than keep waiting. If my own votes or chat look off to you, vote me instead of letting this day die.
+Grace (public): Grace, no nomination. Erin's Not Evil and Carol's no-visit result on Bob both fit him holding the Katana on N1, so neither result settles anything. Tonight's checks matter more than a trial today. Frank, what data supports pushing a vote on yourself?
+Heidi (public): Heidi, no nomination. Erin's Not Evil and Carol's no-visit both on Bob are consistent with Bob holding the Katana, so they don't settle much. Erin and Carol, post tonight's exact target and result. Frank, asking us to vote you with no data is an odd push.
+Bob (public): Bob, no nomination. Erin's Not Evil and Carol's no-visit result are each a single check, and neither is a contradiction on its own. Frank, asking to be voted with no data is an odd push, so I'll be watching it. Erin and Carol, post tonight's target and exact result before any Day 3 vote.
+Carol (public): Frank, Erin's Sheriff result and my Tracker result are different checks, not competing reports of one result; both can be true. Calling this a contradiction is inaccurate. Your invitation to vote you also gives no case. Bob's evasiveness is only weak behavioral evidence; I won't nominate without something concrete.
+Dave (public): Erin's alignment check and Carol's visit check are independent, not a contradiction. Neither is evidence against Bob. Frank's self-vote invitation adds nothing; don't reveal tonight's targets—post results tomorrow. I won't nominate on this record.
+Erin (public): Correction: my Sheriff result and Carol's Tracker result are independent, not competing reports; both can be true. Frank's claim that we can't both be right was inaccurate, which is worth noting but not enough to nominate. Bob's continued non-answer is also only weak behavioral evidence. I see no case for a trial today.
+Frank (public): Frank, nominating myself. I have no night results and no claim, so the only evidence is my behavior. If you see a reason to hang me, vote Yes. If not, vote No and let's get Day 3 checks.
+Frank nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Frank; No - Grace, Heidi, Alice, Bob, Carol, Dave, Erin
+Nomination votes on Frank: 1 Yes (the votes are secret).
+The nomination of Frank failed (1 Yes).
+Grace (public): Grace, no nomination. Erin, Carol and Dave: post tonight's results before anyone votes. Current data doesn't support a trial.
+Heidi (public): Heidi, no nomination. Erin, Carol, Dave: post tonight's targets and exact results before any Day 3 vote. Bob, answer the Katana question directly.
+Alice (public): No new evidence has emerged. Frank’s self-nomination looks like bait, possibly a Jester play; don’t hang him on that. I see no basis for a trial today.
+Bob (public): Bob, no nomination. Erin and Carol, post tonight's target and exact result before Day 3 votes. Frank's self-nomination gave us nothing, so I won't vote on it.
+Dave (public): No new evidence changes this. I won't nominate on Bob's evasiveness or Frank's self-nomination; please bring concrete N2 results tomorrow, without announcing targets tonight.
+Frank (public): Frank, no nomination. I still have no night data, so I'm the easiest lead to test. Erin and Carol: post tonight's target and exact result before any Day 3 vote.
+Grace (public): Grace, no nomination. Erin and Carol, post tonight's target and exact result before any Day 3 vote. I'll vote on whichever claim gets a second checkable result.
+Heidi (public): Heidi, no nomination. Erin, Carol and Dave: post each night's exact target and result before Day 3 votes. Bob, answer the Katana question.
+Alice (public): No new facts have emerged since Frank’s failed self-nomination. Bob’s non-answer is concerning, but not proof; let’s assess concrete results tomorrow.
+Bob (public): Bob, no nomination. Erin and Carol, post tonight's target and exact result before any Day 3 vote.
+Erin (public): I can't give an N2 result during D2; I'll report the target and exact result tomorrow. I still see no corroborated case for a nomination, and won't nominate on Bob's evasiveness or Frank's bait.
+Frank (public): Frank, no nomination. Erin and Carol still owe tonight's targets and exact results. If nobody gives data before Day 3, I stand by voting me as the easy test.
+Grace (public): Grace, no nomination. Erin and Carol, post your targets and exact results before any Day 3 vote. I'm not voting on a Katana question alone.
+Heidi (public): Heidi, no nomination. Erin, Carol and Dave: post each night's exact target and result before any Day 3 vote. Bob, a direct yes or no on the Katana would help.
+Bob (public): Bob, no nomination. Erin, Carol and Dave: post tonight's exact target and result before any Day 3 vote. Frank's failed self-nomination gives us nothing to act on.
+Carol (public): Stop asking for tonight’s targets and results before they exist; announcing targets also risks the checks. Our N1 reports are compatible and don’t make a case. I won’t nominate on this record; I’ll report my next result tomorrow.
+Erin (public): No new evidence has emerged. Bob's continued non-answer is suspicious but not enough to nominate; Frank's self-nomination may be bait. I'll wait for N2 results, and won't disclose tonight's target.
+Frank (public): Frank, no nomination. I still have no night data, so I'm the easiest test. If you want a trial, nominate me on Day 3 and vote on what you see.
+Grace (public): Grace, no nomination. Erin and Carol, your N2 targets and results are due on Day 3. I won't vote on a single unverified check before then.
+Heidi (public): Heidi, no nomination. Erin, Carol and Dave: post your N2 targets and exact results at the start of Day 3, before any vote. Bob, a direct yes or no on the Katana would help.
+Alice (public): No case supports a trial today; I voted No on Frank. Don't reveal tonight's targets—bring exact results tomorrow.
+Bob (public): Bob, no nomination. Erin, Carol and Dave: bring your exact N2 results at the start of Day 3. I won't vote on claims without data.
+(to Bob, Grace) Bob -> Grace (private): Bob: no kill tonight. We judge Day 3 claims first, then plan in night chat. Stay quiet.
+Discussion time is over. The day ends.
