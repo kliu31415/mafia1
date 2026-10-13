@@ -141,3 +141,29 @@ Katana: Erin holds it and attacks Carol.
 [Moderator summary] Night 2: Bob went on alert (1 alert token left); nobody visited him. Carol placed her trap on Erin (it arms Night 3). Alice's armed trap on Erin was not triggered because nobody attacked Erin. Erin (Fixer) fixed Carol (1 fixer token left) and, holding the Katana, attacked Carol with a Standard Attack. Frank (Serial Killer) made a Strong Attack on Carol. Carol had no Defense, so both attacks were fatal: Carol died (Katana and Serial Killer). Grace used her Juror ability on Erin and Frank (astral). No role-blocks. Remaining players: Bob (Village), Erin (Yakuza), Frank (Neutral) and Grace (Village), so the game continues.
 [Night check] Night 2: correct
 (to Carol) Moderator (private): You were attacked tonight (Katana and Serial Killer) and died.
+
+===== DAY 3 =====
+Carol died (killed by Katana and Serial Killer). Their role isn't revealed. Their last will: "Carol, Trapper (Good). Night 1: trap on Heidi (dead, no effect). Night 2: trap on Erin, armed from Night 3. Any "trap went off" message from me means an attacker made an attack on the player I trapped. I have no other results. Alice's will says she trapped Erin; I cannot confirm that."
+Speaking order today goes around the circle in seat order, starting with Grace.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Grace: Juror (Good). N2 jury check: Erin and Frank voted the same way in 1 of 1 nomination votes (Erin and Frank both Yes on my nomination). No trial votes yet.
+Grace (public): Grace here. Checkable break: Erin claims her N1 Sheriff check went to Bob. Bob claims he was on alert N1 with no visitors. A visitor to an alerted Veteran gets a Strong Attack, so Erin visiting Bob and still being alive doesn't add up. One of them is lying. My jury check: Erin and Frank voted the same way on my nomination, so Erin voted Yes. Erin, explain the Bob check.
+(to Bob, Grace) Grace -> Bob (private): Grace to Bob: if you were on alert N1 with no visitors, Erin's Sheriff claim on you is false. Do you want to nominate Erin next round if she can't explain? I'll vote on the contradiction, not on vibes.
+Bob (public): I was on alert N1 and N2 and nobody visited me. Erin says her N1 Sheriff check went to me. That needs a visit to me, which would have hit her with a Strong Attack. She's alive, so her claim is false. I'm nominating Erin. Vote Yes.
+Bob nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Bob, Frank, Grace; No - Erin
+Nomination votes on Erin: 3 Yes (the votes are secret).
+Erin is put on trial (3 Yes).
+[Claim] Erin: Sheriff. N1 Bob: Not Evil. N2 Carol: Evil.
+Erin (public): Bob's contradiction is real, but it isn't proof by itself. My N1 check was Bob, Not Evil; that doesn't clear a Neutral killer. If Bob really alerted, I should have been hit. The rules allow a one-use hidden Narrow Escape, and I survived a failed Veteran attack—I should have mentioned it earlier. That doesn't verify Bob's Veteran claim, either. N2 I checked Carol: Evil. Frank changed his N1 Medic target from Bob to me after Bob challenged it, so scrutinize both claims. Please vote Innocent unless there's independent evidence.
+Frank (public): Erin’s explanation only appeared after the contradiction: an undisclosed Narrow Escape could explain surviving Bob’s claimed alert, but it doesn’t corroborate either claim. Her N2 “Carol: Evil” is now untestable, so I’m not treating it as clearance. I lean Guilty; judge the late escape claim cautiously.
+[Feedback from Grace] The trial vote has no clear field in this answer format; the vote boolean was left false because the prompt said other fields are unused. I'll need a clear vote field when the Guilty/Innocent ballot opens.
+[Claim] Grace: Juror (Good). N2 jury check: Erin and Frank voted the same way in 1 of 1 nomination votes.
+Grace (public): Grace here. Erin's Sheriff claim has three problems. (1) If she visited Bob on N1 while Bob was alerted, she should have been hit, and her Narrow Escape explanation only came after Bob challenged her. (2) Her N2 "Carol: Evil" conflicts with Carol dying to a Katana, a Yakuza weapon. (3) Her defense answers Frank, not the contradiction. I'm leaning Guilty.
+[Claim] Bob: Veteran. N1: alert, no visitors. N2: alert, no visitors. 1 alert token left. D3: Guilty on Erin.
+Bob (public): Bob, Veteran. I went on alert N1 and N2, and nobody visited me either night. Erin says her N1 Sheriff check was on me. That needs a visit to me, which would have hit her with a Strong Attack. Nobody visited me, so her Sheriff claim on Bob is false. Her Narrow Escape story doesn't fit either. I vote Guilty.
+Erin (public): Apply the same standard to Frank: he first said he protected Bob on N1, then changed the target to me after Bob said nobody visited him. If his first account was right, he visited an alerted Veteran; if it was wrong, his current account is an after-the-fact correction. Bob’s alert report is still only his own claim. My N1 result doesn’t clear Bob, and my N2 result on Carol isn’t proof of her role. Don’t turn competing unverified accounts into a conviction—vote Innocent and scrutinize Frank’s correction.
+Trial votes on Erin: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Bob, Frank, Grace; Innocent - Erin
+Erin is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Sheriff. N1: Bob, Not Evil. N2: Carol, Evil. If I die, examine Frank’s change from saying he protected Bob N1 to saying he protected me, and Bob’s uncorroborated alert report. Bob’s result does not clear a Neutral killer."
