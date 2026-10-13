@@ -32,3 +32,31 @@ Erin (public): Nothing substantive has changed for me. Tomorrow, I’ll reassess
 Grace (public): still no claim. On Day 2 I want nominators to give a reason beyond vibes before anyone votes.
 Heidi (public): Heidi here. Still no read on anyone. Day 2: I want specific visits and results, not vibes, before any nomination.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Erin, Heidi) Erin (Yakuza chat): I suggest Heidi keeps the Katana and attacks Alice; her comment about our PM suggests she may be an attentive analyst. I can use my hidden shot on Dave, who also seems analytical, for a separate chance at a kill. I’d save my Fixer tokens until we have a trial and can flip a vote that matters. Let me know if you prefer different targets.
+(to Erin, Heidi) Heidi (Yakuza chat): Agreed: I hold the Katana and attack Alice. I will keep my Ritualist token for later, since a wrong guess on Night 1 would expose me. Erin, your hidden shot on Dave is fine as a separate attack.
+Night actions:
+  Alice (Trapper): target Erin
+  Bob (Veteran): chose to spend 1 token(s)
+  Carol (Trapper): target Heidi; "Placing my trap on Heidi. It arms from Night 2. If a Yakuza Katana visits her later, the attacker gets a Strong Attack back. Heidi was the one who sent the only private message on Day 1, so she is a loose early lead, not a confirmed read."
+  Dave (Accountant): target Erin
+  Erin (Fixer): no role action; Katana vote: Heidi holds, attacks Alice; trait action: Armed on Dave
+  Frank (Serial Killer): target Heidi
+  Grace (Juror): no action
+  Heidi (Ritualist): no role action; Katana vote: Heidi holds, attacks Alice
+Katana: Heidi holds it and attacks Alice.
+(to Bob) Moderator (private): You went on alert tonight. Nobody visited you. 2 alert tokens left.
+(to Alice) Moderator (private): You placed your trap on Erin tonight. It is armed from the next night on.
+(to Erin) Moderator (private): You fired your hidden gun at Dave tonight. Your shot killed its target.
+(to Frank) Moderator (private): You attacked Heidi tonight. Your attack killed its target.
+(to Heidi) Moderator (private): Your Katana attack on Alice tonight killed its target.
+[Moderator summary] Night 1: no role-blocks. Alice trapped Erin, Carol trapped Heidi (both arm Night 2). Bob alerted (2 left), no visitors. Dave counted Erin's tokens. Erin's Armed shot (Basic) killed Dave. Frank (SK, Strong) killed Heidi. Heidi's Katana (Standard) killed Alice. Katana passes to Erin. Survivors: Bob, Carol, Erin, Frank, Grace.
+[Moderator summary] Night 1: no role-blocks. Alice trapped Erin and Carol trapped Heidi; both traps arm on Night 2. The held tell() to Carol was only her own trap result, so it was not resent. Bob went on alert (2 tokens left) and had no visitors. Dave counted Erin's tokens. Erin's hidden gun (Basic) killed Dave. Frank, the Serial Killer, killed Heidi with a Strong Attack. Heidi's Katana attack (Standard) killed Alice. The Katana passes to Erin. Still alive: Bob, Carol, Erin, Frank, Grace.
+[Night check] Night 1: correct
+(to Dave) Moderator (private): Your audit: Erin has 2 tokens in total.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+(to Dave) Moderator (private): You were attacked tonight (a hidden gun) and died.
+(to Heidi) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Erin) Moderator (private): Yakuza night summary: Heidi holds the Katana and chose to attack Alice. Heidi (Ritualist) chose no action.
+(to Erin) The Katana passed to Erin.
