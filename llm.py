@@ -609,9 +609,11 @@ class OpenRouterClient:
         time.sleep(wait)
 
 
-# Fixed mock answers for checks of the game itself: the night judge finds nothing, and the tips sheet is never empty.
+# Fixed mock answers for checks of the game itself: the night judge and log review find nothing, and the tips sheet
+# is never empty.
 MOCK_ANSWERS: dict[str, dict] = {
     "night_check": {"verdict": "correct", "issues": []},
+    "review": {"issues": []},
     "tips": {"sections": [{"heading": "Everyone", "tips": [{"tip": "Mock tip.", "games": 1}]}]},
 }
 
@@ -673,7 +675,8 @@ class MockClient:
             t = "null" if rng.random() < 0.3 or not non_null else rng.choice(non_null)
         match t:
             case "object":
-                return {k: self._sample(v, rng) for k, v in s.get("properties", {}).items()}
+                # a player's feedback field stays blank: random text there reads as a bug report
+                return {k: "" if k == "feedback" else self._sample(v, rng) for k, v in s.get("properties", {}).items()}
             case "array":
                 return [self._sample(s["items"], rng) for _ in range(rng.randint(0, 1))]
             case "string":
