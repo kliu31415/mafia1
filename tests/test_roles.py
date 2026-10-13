@@ -2058,6 +2058,20 @@ def test_fire_gun_needs_an_armed_player_alive_at_night_and_another_target(game_f
     assert ARMED_USED not in game.role_state  # nothing applied: a blocked shot stays available
 
 
+def test_a_yakuza_can_be_armed_but_not_with_spare_blade_and_no_neutral_can(game_factory):
+    # rules R24 (Kevin, Oct 13 2026): Armed is open to Village and Yakuza, never with Spare Blade
+    from traits import village_power
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt"])
+    assert fits("Armed", "Grunt") and fits("Armed", "Sheriff") and not fits("Armed", "Jester")
+    assert bundle_error(["Armed", "Spare Blade"])
+    game.player("Carol").traits = ["Armed"]
+    game.phase = "night"
+    apply_ops(game, players, {"op": "fire_gun", "player": "Alice", "by": "Carol"},
+              {"op": "kill", "player": "Alice", "cause": "a hidden gun", "by": "Carol"})
+    assert game.role_state[ARMED_USED] == ["Carol"] and not game.player("Alice").alive
+    assert village_power("Armed", Alignment.EVIL) == -0.2 and village_power("Armed", Alignment.GOOD) == 0.25
+
+
 def test_an_armed_role_with_a_night_action_is_asked_for_both(game_factory):
     """A Roleplayer's trait is real (R24): its shot is asked for alongside its (fake) role's action."""
     from players import night_action_schema
@@ -2086,9 +2100,9 @@ def test_one_player_can_get_several_traits_but_each_once(tmp_path):
     from gamelog import GameLog
     from state import setup_game
     game = setup_game(["Sheriff", "Grunt", "Grunt"], [Model.HAIKU_5_5], random.Random(1),
-                      GameLog(tmp_path / "t.jsonl"), traits=["Martyr+Armed", "Armed"])
+                      GameLog(tmp_path / "t.jsonl"), traits=["Martyr+Armed", "Martyr"])
     assert game.player(next(p.name for p in game.players if p.role == "Sheriff")).traits == ["Martyr", "Armed"]
-    assert "setup_error" in game.log.error_counts  # the second Armed had no one left to go to
+    assert "setup_error" in game.log.error_counts  # the second Martyr (Village only) had no one left to go to
 
 
 def test_each_set_of_trait_marks_has_its_own_icon_rule():

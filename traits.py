@@ -58,11 +58,13 @@ TRAITS: dict[str, TraitInfo] = {
                               "<circle cx='5' cy='5' r='4.4' fill='#6d28d9' stroke='#fff' stroke-width='1'/>"
                               "<ellipse cx='5' cy='5' rx='2.4' ry='1.3' fill='none' stroke='#fde047' "
                               "stroke-width='1.1'/></svg>")),  # a halo
-    "Armed": TraitInfo(frozenset({Alignment.GOOD}),
+    # Village and Yakuza (Kevin, Oct 13 2026): a Yakuza gun makes a non-Katana kill no proof of a Village shooter.
+    # Not Neutrals: each one's win would need its own ruling (does a Bounty Hunter's gun kill count?).
+    "Armed": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
                        "Once per game, at night, you may fire a hidden gun at a living player: a Basic Attack, in "
                        "addition to your role's own night action (rules R24).",
                        "One hidden-gun shot a game: a Basic Attack at night, besides the role's action.",
-                       power=0.25,
+                       power=0.25, power_for={Alignment.EVIL: 0.2},
                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                              "<circle cx='5' cy='5' r='4.4' fill='#0f766e' stroke='#fff' stroke-width='1'/>"
                              "<circle cx='5' cy='5' r='2.3' fill='none' stroke='#fff' stroke-width='0.9'/>"
@@ -389,7 +391,8 @@ EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Obliviou
              frozenset({"Remorseful", "Zealot"}), frozenset({"Turncoat", "Notorious"}),
              frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"}),
              frozenset({"Katana Expert", "Katana Master"}), frozenset({"Katana Expert", "Shaky"}),
-             frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"})]
+             frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"}),
+             frozenset({"Armed", "Spare Blade"})]
 
 
 class TraitLogic:

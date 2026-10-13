@@ -208,9 +208,9 @@ players can get it. A trait's night action is used in addition to your role's ow
 - Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
   names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
   other way shows nothing.
-- Armed (Village players only): once per game, at night, you may fire a hidden gun at another living player: a
-  Basic Attack. It is an action and a visit, and a role-blocked shot isn't used up. You learn only whether it
-  killed its target. A kill's cause is "a hidden gun".
+- Armed (Village and Yakuza players only): once per game, at night, you may fire a hidden gun at another living
+  player: a Basic Attack. It is an action and a visit, and a role-blocked shot isn't used up. You learn only
+  whether it killed its target. A kill's cause is "a hidden gun".
 - Cursed (Village players only): if you die, a random living Good player (if any) is dealt a Divine Attack at the
   end of the night: the night you died, or the night after the Day you died. It comes after all of that night's
   other actions and attacks, so the victim is drawn from the Good players still alive then, and it counts as a
@@ -249,7 +249,7 @@ players can get it. A trait's night action is used in addition to your role's ow
 - Spare Blade (Yakuza players only): once per game, at night, you may make one extra Katana attack on another
   living player, whoever holds the Katana and besides its own attack (which the Yakuza still choose as usual, R8).
   It is Standard, an action and a visit by you, and its target learns only that they were attacked with the Katana.
-  A role-block stops it, and then it isn't used up.
+  A role-block stops it, and then it isn't used up. Nobody holds Spare Blade with Armed.
 - Paranoid (hidden; Village players only): on each night, with probability 1/4, you are told you were attacked and
   survived, though nobody attacked you. You aren't told you have this trait. Nothing else happens: it isn't a visit
   or an attack, and nobody else learns of it.
