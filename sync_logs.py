@@ -465,6 +465,7 @@ def main() -> None:
                       + "".join(f"\n  {p}" for p in removed + [str(d) for d in deleted]))
             rebuild_index(log_dir)
             if not args.no_tips:
+                revise_stale_tips(repo, tips_dir, args.tips_model)
                 refit_powers(log_dir)
             if not args.no_tips and (tips_dir / "tips.md").exists():
                 commit_tips(repo, tips_dir)
@@ -493,6 +494,51 @@ def main() -> None:
     except RuntimeError as e:
         print(f"ALERT sync_error: {e}", file=sys.stderr)
         sys.exit(1)
+
+
+RULES_DIFF_CHARS = 40_000  # of the rules diff in an automatic revision's note
+RULES_COMMITS = 200  # how far back to look for the rules the notebook was last checked against
+
+
+def rules_change_note(repo: Repo, was: str | None) -> str:
+    """What an automatic tips revision is told: how rules_1.txt changed since the version whose hash is `was`
+    (found in the file's git history), or only that it changed when that version isn't found."""
+    import tips
+    ask = ("Revise the entries these changes affect. Don't add entries for new roles or traits: no game has shown "
+           "how they play yet.")
+    commits = repo.git("log", f"-{RULES_COMMITS}", "--format=%H", "--", "rules_1.txt", check=False).decode().split()
+    for commit in commits if was else []:
+        old = repo.git("show", f"{commit}:rules_1.txt", check=False).decode("utf-8", errors="replace")
+        if tips.rules_hash(old) == was:
+            diff = repo.git("diff", "--unified=1", commit, "--", "rules_1.txt").decode("utf-8", errors="replace")
+            cut = " (cut short)" if len(diff) > RULES_DIFF_CHARS else ""
+            return (f"The rules changed since this notebook was last checked against them. {ask} The diff of the "
+                    f"rules{cut}; lines starting with - were removed, + added:\n\n{diff[:RULES_DIFF_CHARS]}")
+    return f"The rules changed since this notebook was last checked against them. {ask}"
+
+
+def revise_stale_tips(repo: Repo, tips_dir: Path, model: str) -> bool:
+    """On the PC, revises a tips notebook last checked against other rules than rules_1.txt now (tips.RULES_STAMP:
+    one call over the whole notebook), so the sheet `pull` publishes holds under the current rules. Returns
+    whether it did; a failure is an ALERT, not raised, and leaves the tips as they were (still marked stale)."""
+    import tips
+    from llm import parse_model_spec
+    sheet = tips_dir / "tips.md"
+    nb_path = tips.notebook_path(sheet)
+    if in_cloud() or not nb_path.exists():
+        return False
+    was = json.loads(nb_path.read_text(encoding="utf-8")).get("rules")
+    if was == tips.rules_hash():
+        return False
+    print(f"The rules changed since the tips were last checked against them: revising the notebook (one {model} call)")
+    try:
+        tips.revise(sheet, tips.tool_client(timeout=tips.REVISE_DEADLINE_S), parse_model_spec(model), 800,
+                    rules_change_note(repo, was))
+    except (Exception, SystemExit) as e:
+        print(f"ALERT tips_error: revising the tips for the changed rules failed: {type(e).__name__}: {e}; "
+              "`uv run tips.py revise` retries", file=sys.stderr)
+        return False
+    return True
 
 
 def refit_powers(log_dir: Path) -> None:

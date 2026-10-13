@@ -102,7 +102,8 @@ from traits import TRAITS, bundle_error, parse_item as parse_trait, win_side
 import role_power
 import scripts
 import variants
-from tips import assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert
+from tips import (assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert, rules_hash,
+                  sheet_rules)
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -369,6 +370,13 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
             p.tips = texts[str(files[p.name])] if p.name in files else ""
         log.write("tips", players=list(files), files={n: str(f) for n, f in files.items()},
                   sha256={f: file_digest(t) for f, t in texts.items()}, texts=texts)
+        # A sheet checked against other rules than today's may give advice the rules no longer allow (tips.py,
+        # RULES_STAMP). Not for mock games: their tips are random text.
+        stale = sorted(f for f, t in texts.items() if (was := sheet_rules(t)) and was != rules_hash())
+        if stale and not isinstance(client, MockClient):
+            log.error("tips_stale", f"{', '.join(stale)} was last checked against an older version of the rules, so "
+                      "some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py "
+                      "revise`, then `sync_logs.py publish-tips`) revises it", files=stale)
     # The texts every prompt is built on, which the log otherwise keeps only as rules_sha256: the rules as played
     # (the script's rules, the rule settings' notes and the setup note) and each player's opening role briefing.
     told = setup_note(config.setup, config.roles).strip().removeprefix("---").strip()

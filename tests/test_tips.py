@@ -327,3 +327,36 @@ def test_a_tips_answer_cut_off_at_the_output_cap_is_asked_again_one_effort_lower
     reply = tips.ask(client, spec, [], tips.OPS_SCHEMA, "notebook_ops")  # type: ignore[arg-type]
     assert client.efforts == ["high", "medium"] and reply.content == '{"ops": []}' and reply.cost == 1.0
     assert client.alerts == [("effort_fallback", {"from_effort": "high", "to_effort": "medium"})]
+
+
+def test_tips_carry_the_rules_they_were_checked_against_and_a_game_flags_a_stale_sheet(tmp_path, monkeypatch):
+    out = tmp_path / "tips.md"
+    nb = tips.new_notebook()
+    tips.apply_ops(nb, [op("add", tip="Count the votes.", note="g1")], "g1")
+    tips.notebook_path(out).write_text(json.dumps(nb), encoding="utf-8")
+    now = tips.rules_hash()
+    assert tips.rules_hash("a\r\nb\n") == tips.rules_hash("a\nb\n") != now
+    # A sheet says nothing until a revision checks the notebook against the rules; builds keep that stamp.
+    tips.pin(out, TipsClient([]), ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t1"])
+    assert tips.sheet_rules(out.read_text(encoding="utf-8")) is None and tips.sheet_rules(TIPS) is None
+    tips.revise(out, TipsClient([[]]), ModelSpec(Model.OPUS_5_5), max_words=500)
+    assert json.loads(tips.notebook_path(out).read_text(encoding="utf-8"))["rules"] == now
+    fresh = out.read_text(encoding="utf-8")
+    assert tips.sheet_rules(fresh) == now and "checked against" not in tips.player_view(fresh)
+    # `stamp` marks an older sheet as holding under today's rules, without a call; only the preamble changes.
+    old = tips.stamped(fresh, "0" * 16)
+    assert tips.sheet_rules(old) == "0" * 16 and old.partition("\n## ")[2] == fresh.partition("\n## ")[2]
+    assert tips.sheet_rules(tips.stamped(TIPS, now)) == now
+    out.write_text(old, encoding="utf-8")
+    assert tips.stamp(out) == now and out.read_text(encoding="utf-8") == fresh
+
+    monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
+
+    def errors(sheet: str) -> dict:
+        out.write_text(sheet, encoding="utf-8")
+        path = mafia.play_game(ScriptedClient(), mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, TOWN4_GRUNT,
+                                                                 seed=1, tips=out))
+        records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        return next(r for r in records if r["kind"] == "result")["errors"]
+    assert errors(old) == {"tips_stale": 1}
+    assert errors(fresh) == {} and errors(TIPS) == {}  # checked against these rules, or a hand-made sheet

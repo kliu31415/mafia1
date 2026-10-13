@@ -231,7 +231,11 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   evidence, weights and reports against it, changed only through small ops) and the short sheet players get
   (`tips/tips.md`) is rewritten from it. Feedback from players who had tips and the moderator (`tips_feedback`)
   counts as evidence. games do this when they end, by default (`--no-update-tips` to skip; mock games use `logs/mock_tips/`); `--tips FILE --tips-for all|half|names|models` puts it in chosen players'
-  system prompts, and `--player-tips WHO=FILE|none,...` sets each player's or model's file. After a rules change, `uv run tips.py revise --note ...` (on the PC) rewords or retires the notebook entries that no longer hold, and `sync_logs.py publish-tips` publishes and commits the result. Players see
+  system prompts, and `--player-tips WHO=FILE|none,...` sets each player's or model's file. After a rules change, `uv run tips.py revise --note ...` (on the PC) rewords or retires the notebook entries that no longer hold, and `sync_logs.py publish-tips` publishes and commits the result. So tips don't silently fall behind the rules, the notebook
+  records the hash of the `rules_1.txt` it was last revised against and the sheet's preamble carries it (`tips.RULES_STAMP`):
+  a game given a sheet with another stamp logs a `tips_stale` alert, and `sync_logs.py pull` on the PC revises a notebook
+  that is behind by itself, with the rules diff as its note (`revise_stale_tips`; it adds no tips for new roles or traits).
+  `uv run tips.py stamp` marks the tips as holding under the current rules without a call (a change that doesn't touch play). Players see
   every section (all factions and roles). The models learn collectively: one file pools every model's lessons. The
   "tips" record and `tips` in the result's players say who had them, for comparing against fresh players.
   Lessons are weighted by their author's model strength and the game's average (`strength` in

@@ -347,3 +347,28 @@ def test_pull_on_the_pc_removes_finished_games_checkpoints_that_cloud_pushes_lef
     assert sorted(pc.files(pc.fetch(), "logs")) == [
         "logs/game_1.jsonl", "logs/game_2.ckpt", "logs/game_2.jsonl", "logs/game_5.jsonl"]
     assert sync_logs.prune_checkpoints(pc, logs) == ([], [])
+
+
+def test_pull_revises_tips_last_checked_against_older_rules(machines, monkeypatch):
+    import tips
+    pc = machines["pc"]
+    monkeypatch.setattr(tips, "ROOT", pc.root)
+    rules = pc.root / "rules_1.txt"
+    rules.write_text("R1 old line\nR2 the same\n", encoding="utf-8")
+    run(pc.root, "add", "rules_1.txt")
+    run(pc.root, "commit", "-m", "rules")
+    tips_dir = pc.root / "tips"
+    tips_dir.mkdir()
+    (tips_dir / "tips_notebook.json").write_text(json.dumps({**tips.new_notebook(), "rules": tips.rules_hash()}))
+    notes: list = []
+    monkeypatch.setattr(tips, "tool_client", lambda **kwargs: None)
+    monkeypatch.setattr(tips, "revise", lambda sheet, client, spec, max_words, note: notes.append(note))
+    assert not sync_logs.revise_stale_tips(pc, tips_dir, "opus-5.5") and not notes  # checked against these rules
+    rules.write_text("R1 new line\nR2 the same\n", encoding="utf-8")
+    monkeypatch.setenv("CLAUDE_CODE_REMOTE", "true")
+    assert not sync_logs.revise_stale_tips(pc, tips_dir, "opus-5.5") and not notes  # the notebook is the PC's
+    monkeypatch.delenv("CLAUDE_CODE_REMOTE")
+    assert sync_logs.revise_stale_tips(pc, tips_dir, "opus-5.5")
+    assert "-R1 old line" in notes[0] and "+R1 new line" in notes[0] and "Don't add entries for new roles" in notes[0]
+    # Rules the file's history doesn't have (or a notebook never checked): the revision is told only that they changed.
+    assert all("diff" not in sync_logs.rules_change_note(pc, was) for was in ("0" * 16, None))

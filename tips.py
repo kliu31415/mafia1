@@ -23,6 +23,7 @@ Usage:
     uv run tips.py build                                # add new logs/game_*.jsonl, rewrite tips/tips.md
     uv run tips.py build logs/game_2026100* --out tips/early.md --max-words 600
     uv run tips.py revise --note "..."                  # after a rules change: reword or retire what no longer holds
+    uv run tips.py stamp                                # the tips hold under the changed rules as they are (no call)
     uv run tips.py pin t12 t40                          # these entries always go on the sheet (--unpin)
     uv run tips.py show tips/tips.md                    # what players see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
@@ -125,6 +126,35 @@ def assign_tips(names: list[str], models: list[str], tips: Path | None, tips_for
 
 def file_digest(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+# Tips can fall behind the rules: cloud threads change rules_1.txt, but only `revise` on the PC re-checks the
+# notebook's entries against them (on Oct 13 2026 two games played with a sheet fifteen rules commits old). So the
+# notebook records the rules it was last checked against ("rules"), the sheet's preamble carries the same stamp,
+# a game given a sheet with another stamp logs a tips_stale alert, and `sync_logs.py pull` revises a notebook
+# that is behind.
+RULES_STAMP = re.compile(r"Entries last checked against rules ([0-9a-f]{16})\.")
+
+
+def rules_hash(text: str | None = None) -> str:
+    """Identifies a version of rules_1.txt (the current one by default), whatever its line endings."""
+    text = (ROOT / "rules_1.txt").read_text(encoding="utf-8") if text is None else text
+    return file_digest(text.replace("\r\n", "\n"))
+
+
+def sheet_rules(sheet: str) -> str | None:
+    """The rules a tips sheet was last checked against (its preamble's stamp); None for a sheet without one
+    (hand-made, or from before the stamp)."""
+    m = RULES_STAMP.search(sheet.partition("\n## ")[0])
+    return m.group(1) if m else None
+
+
+def stamped(sheet: str, rules: str) -> str:
+    """The sheet with its preamble's stamp set to `rules`."""
+    sentence = f"Entries last checked against rules {rules}."
+    head, sep, body = sheet.partition("\n## ")
+    head = RULES_STAMP.sub(sentence, head) if RULES_STAMP.search(head) else f"{head.rstrip()} {sentence}\n"
+    return head + sep + body
 
 
 # ---------------------------------------------------------------------------------------------
@@ -513,7 +543,10 @@ def build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_
 def _build(paths: list[Path], out: Path, client: LLMClient, spec: ModelSpec, max_words: int,
            include_mock: bool, fresh: bool, on_error: Callable[..., None], touch: Callable[[], None]) -> Path:
     nb_path = notebook_path(out)
-    nb = new_notebook() if fresh or not nb_path.exists() else json.loads(nb_path.read_text(encoding="utf-8"))
+    if fresh or not nb_path.exists():
+        nb = {**new_notebook(), "rules": rules_hash()}  # every entry will be written under the current rules
+    else:
+        nb = json.loads(nb_path.read_text(encoding="utf-8"))
     games = [g for p in paths if p.stem not in nb["games"] and (g := read_game(p)) and (include_mock or not g["mock"])]
     # in start order: by the setup record's time, since names before Oct 12 2026 used the PC's local time, not UTC
     games.sort(key=lambda g: (g["t"], g["game"]))
@@ -568,7 +601,8 @@ def _rewrite_sheet(out: Path, nb: dict, client: LLMClient, spec: ModelSpec, rule
     written = f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC"
     header = (f"# Tips from past games\n\nWritten {written} by {spec} with `uv run tips.py "
               f"build`, from the {active} active entries of {nb_path.name} ({len(nb['games'])} games). Players never "
-              "see this preamble; they see every section below. Earlier sheets are in history/.\n\n")
+              "see this preamble; they see every section below. Earlier sheets are in history/."
+              + (f" Entries last checked against rules {nb['rules']}." if nb.get("rules") else "") + "\n\n")
     write_atomic(nb_path.with_suffix(".md"), render_notebook(nb))
     write_atomic(out, header + body)
     print(f"Tips: {out} ({len(body.split())} words) from {nb_path.name} ({active} active entries, "
@@ -597,10 +631,26 @@ def revise(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, note: 
         if skipped:
             on_error("tips_error", f"the tips model gave {skipped} invalid notebook changes in a revision; they were "
                      "skipped", skipped=skipped)
+        nb["rules"] = rules_hash()
         write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
         counts = {k: sum(o["op"] == k for o in ops) for k in ("edit", "retire", "restore", "add")}
         return _rewrite_sheet(out, nb, client, spec, rules, max_words, on_error, cost,
                               "revised: " + ", ".join(f"{n} {k}" for k, n in counts.items() if n))
+
+
+def stamp(out: Path, on_error: Callable[..., None] = print_alert) -> str:
+    """Records that the notebook and sheet hold under the current rules without a revision (no model call): for a
+    rules change that doesn't touch play, or after checking by hand. Returns the stamp."""
+    with locked(out, on_error):
+        nb_path = notebook_path(out)
+        if not nb_path.exists():
+            raise SystemExit(f"No notebook at {nb_path} to stamp")
+        nb = json.loads(nb_path.read_text(encoding="utf-8"))
+        nb["rules"] = rules_hash()
+        write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
+        if out.exists():
+            write_atomic(out, stamped(out.read_text(encoding="utf-8"), nb["rules"]))
+        return nb["rules"]
 
 
 def pin(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, ids: list[str], unpin: bool = False,
@@ -657,9 +707,15 @@ def main() -> None:
     pn.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
     pn.add_argument("--model", default="opus-5.5", help="model[:effort] that rewrites the sheet")
     pn.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
+    st = sub.add_parser("stamp", help="record that the tips hold under the current rules without a revision (no model "
+                        "call), e.g. after a rules change that doesn't touch play")
+    st.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
     s = sub.add_parser("show", help="print what players see of a tips file")
     s.add_argument("file")
     args = ap.parse_args()
+    if args.cmd == "stamp":
+        print(f"{args.out} and its notebook are marked as checked against rules {stamp(Path(args.out))}")
+        return
     if args.cmd == "show":
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
         return
