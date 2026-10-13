@@ -217,3 +217,17 @@ Trial votes on Frank: 4 Guilty, 2 Innocent (the votes are secret).
 Frank is executed by hanging (4 Guilty of 6 votes; 4 needed).
 Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank: Village, no role claim, no night results. I retracted an earlier "Grunt (Yakuza)" post as a mistake. Judge the remaining claims by checked results, not by pushes. Test Bob's Lookout claim against any results that come out."
 (to Carol) The Katana passed to Carol.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Lookout): target Heidi
+  Carol (Fabricator): no role action; Katana vote: Carol holds, attacks Bob
+  Heidi (Medic): target Bob; "Standard Defense on Bob at no token cost. Bob is the only living claimed info role, and the Katana has already killed two claimed or possible info players, so he is the most likely target."
+Katana: Carol holds it and attacks Bob.
+(to Heidi) Moderator (private): You were role-blocked tonight. Your protection had no effect. Medic tokens left: 2.
+(to Bob) Moderator (private): You watched Heidi tonight. Nobody visited Heidi.
+(to Carol) Moderator (private): Your Katana attack on Bob succeeded: Bob died. Fabricator tokens left: 2.
+[Moderator summary] Night 3: Heidi's Drowsy trait role-blocked her (random draw), so her Standard Defense on Bob had no effect. Alice's Paranoid trait did not trigger. Carol held the Katana and attacked Bob (Standard against None), and Bob died (Katana). Bob watched Heidi and saw no visitors. Carol did not use her Fabricator action. Visits: Bob to Heidi, Carol to Bob. Left alive: Alice (Vigilante), Carol (Fabricator, Yakuza), Erin (Jester, never blocks wins), Heidi (Medic). The game continues.
+[Night check] Night 3: correct
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
