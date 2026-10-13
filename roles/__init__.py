@@ -232,10 +232,10 @@ ROLES: dict[str, RoleInfo] = {
                             "moderator, and tells the Smuggler and both swapped players; kept untested (Kevin, "
                             "Oct 10): only one live swap so far"),
     "Ballot Stuffer": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                               summary="Token: their vote counts twice in the next Day's trials.",
-                               tokens={"ballot": 2}, acts_at_night=True,
-                               notes="moderator records the use with the stuff_ballot op; code doubles the vote "
-                               "in the next day's trials"),
+                               summary="Token: at a trial vote, may make that vote count twice.",
+                               tokens={"ballot": 2},
+                               notes="chosen with the trial vote itself (Kevin, Oct 13); code spends the token and "
+                               "doubles that vote; no night action"),
     "Fixer": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="Token: one player's trial votes count as the opposite the next Day; nobody is told.",
                       tokens={"fixer": 2}, acts_at_night=True, tested=True,

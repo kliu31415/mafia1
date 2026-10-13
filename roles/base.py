@@ -166,8 +166,13 @@ class RoleLogic:
         """Whether this living player is privately told how everyone voted in each secret trial (Informant)."""
         return False
 
-    def trial_vote_weight(self, game: Game, p: Player) -> int:
-        """How many votes this player's Guilty/Innocent vote counts as today (Ballot Stuffer)."""
+    def trial_vote_option(self, game: Game, p: Player) -> DayAction | None:
+        """Extra answer fields this player's Guilty/Innocent vote question offers (Ballot Stuffer), or None."""
+        return None
+
+    def trial_vote_weight(self, game: Game, p: Player, answer: dict) -> int:
+        """How many votes this player's Guilty/Innocent vote counts as, given their vote answer (which may lack
+        trial_vote_option's fields if it fell back). May spend a token and tell the player (Ballot Stuffer)."""
         return 1
 
     def check_op(self, game: Game, change: dict) -> str | None:

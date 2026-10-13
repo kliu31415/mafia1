@@ -1,13 +1,11 @@
-"""Ballot Stuffer: spends a token at night so their vote counts twice in the next day's trials."""
+"""Ballot Stuffer: at each trial vote, may spend a token so that vote counts twice."""
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, register
-
-NEXT = "ballots_next"  # game.role_state: Ballot Stuffers who spent a token tonight
-TODAY = "ballots"  # game.role_state: Ballot Stuffers whose trial votes count twice today
+from events import VOTE
+from roles.base import DayAction, RoleLogic, register, spend_token, tokens_left_text
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -15,24 +13,21 @@ if TYPE_CHECKING:
 
 @register("Ballot Stuffer")
 class BallotStuffer(RoleLogic):
-    action = RecordedAction("stuff_ballot", "has their Guilty/Innocent votes count twice tomorrow",
-                            "code doubles their trial votes tomorrow", token="ballot", target="")
-
     def briefing(self, game: Game, p: Player) -> list[str]:
-        line = ("When you spend a token at night, your vote counts twice in every Guilty/Innocent trial vote the "
-                "next Day, but never in nomination (Yes/No) votes.")
-        if game.phase == "day" and p.name in game.role_state.get(TODAY, []):
-            line += " Today your trial votes count twice."
-        return [line]
+        return ["At each Guilty/Innocent trial vote you may spend a ballot token so that vote counts twice (never in "
+                "nomination (Yes/No) votes). You choose when you vote; role-blocks don't stop it."]
 
-    def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
-        return f"{by.name} already stuffed tomorrow's ballots" if by.name in game.role_state.get(NEXT, []) else None
+    def trial_vote_option(self, game: Game, p: Player) -> DayAction | None:
+        if not p.tokens.get("ballot"):
+            return None
+        return DayAction({"act": {"type": "boolean"}},
+                         f"You may stuff the ballot: act true spends a ballot token so this vote counts twice "
+                         f"({tokens_left_text(p, 'ballot')}); false keeps it one vote.")
 
-    def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
-        game.role_state.setdefault(NEXT, []).append(by.name)
-
-    def at_dawn(self, game: Game) -> None:
-        game.role_state[TODAY] = game.role_state.pop(NEXT, [])
-
-    def trial_vote_weight(self, game: Game, p: Player) -> int:
-        return 2 if p.name in game.role_state.get(TODAY, []) else 1
+    def trial_vote_weight(self, game: Game, p: Player, answer: dict) -> int:
+        if not (answer.get("act") and p.tokens.get("ballot")):
+            return 1
+        spend_token(game, p.name, "ballot")
+        game.emit(f"(Only you see this) You stuffed the ballot: your vote counts twice in this trial "
+                  f"({tokens_left_text(p, 'ballot')}).", [p.name], kind="notice", cat=VOTE)
+        return 2

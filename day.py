@@ -10,6 +10,7 @@ from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, d
                      obj, truncate_words, word_count)
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import RoleLogic, logic
+from roles.base import DayAction
 from state import Game, Player, majority
 from traits import LOGIC as TRAIT_LOGIC, fixed_trial_vote, trait_logic
 
@@ -579,7 +580,12 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
             "simultaneous: you can't see anyone else's vote, and "
             + ("the votes are secret: only the Guilty and Innocent totals are announced, never who voted which way."
                if secret else "all votes are revealed publicly once everyone has voted."))
-    outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters], step="trial_vote")
+    # A role may add a choice to its vote (Ballot Stuffer)
+    options: dict[str, DayAction] = {v.name: opt for v in voters if (opt := logic(v.role).trial_vote_option(game, v))}
+    outs = players.ask_many([(v, f"{task} {options[v.name].text}", obj(**VOTE_SCHEMA["properties"],
+                                                                         **options[v.name].fields), {"vote": False})
+                             if v.name in options else (v, task, VOTE_SCHEMA, {"vote": False}) for v in voters],
+                            step="trial_vote")
     # A trait may fix how a vote counts (Zealot, Merciful, rules R24): its holder knows, so their reminder says so;
     # it overrides a Fixer. A role may count a vote as the opposite of what was cast (Fixer): the voter's reminder
     # shows the vote they cast. The count, the log and anyone who sees votes (Informant, Auditor) see the vote as
@@ -592,7 +598,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     innocent = [v.name for v, c in zip(voters, counted) if not c]
     # A role may count a voter more than once (Ballot Stuffer); the verdict then needs a majority of all
     # votes counted, and the announced totals include the extra votes without saying whose they are.
-    weight = {v.name: logic(v.role).trial_vote_weight(game, v) for v in voters}
+    weight = {v.name: logic(v.role).trial_vote_weight(game, v, o) for v, o in zip(voters, outs)}
     guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
     if secret:  # rule setting: only the totals are public; each voter is told their own vote
         game.emit(f"Trial votes on {nominee}: {guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (the "

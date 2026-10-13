@@ -292,27 +292,37 @@ def test_the_rules_list_exactly_the_unique_roles():
     assert set(found[1].split(", ")) == {r for r, i in ROLES.items() if i.unique}
 
 
-def test_ballot_stuffer_doubles_trial_votes_the_next_day_only(game_factory):
+def test_ballot_stuffer_chooses_at_each_trial_vote_whether_to_double_it(game_factory):
     from day import run_trial
     guilty = {"Bob", "Erin", "Frank"}
+    stuff = {"Frank"}
+    tasks = []
 
     def decide(name, task, schema):
         if "Vote true for Guilty" in task:
-            return {"vote": name in guilty}
+            tasks.append((name, task, set(schema["properties"])))
+            return {"vote": name in guilty, **({"act": name in stuff} if "act" in schema["properties"] else {})}
         return None
     game, players = game_factory(["Vanilla Villager"] * 4 + ["Grunt", "Ballot Stuffer"], ScriptedClient(decide))
-    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    alice = game.player("Alice")
-    assert run_trial(game, players, alice, "Bob", 1) == "innocent"  # 3 of 6: no majority without stuffing
-    mod.dispatch("apply_changes", {"changes": [{"op": "stuff_ballot", "by": "Frank"}]})
-    assert game.player("Frank").tokens["ballot"] == 1
-    game.run_dawn_hooks()
+    frank, alice = game.player("Frank"), game.player("Alice")
     assert run_trial(game, players, alice, "Alice", 1) == "executed"  # Frank counts twice: 4 of 7
     assert any("(4 Guilty of 7 votes; 4 needed; there are more votes than the 6 voters" in e.text for e in game.events)
-    game.run_dawn_hooks()  # the next day, without a new token, Frank's Innocent is back to one vote
+    assert frank.tokens["ballot"] == 1 and any("You stuffed the ballot" in t for t in told(game, "Frank"))
+    assert {n for n, _, fields in tasks if "act" in fields} == {"Frank"}  # only the stuffer is offered it
+    assert "(2 ballot tokens left)" in next(t for n, t, _ in tasks if n == "Frank")
+    stuff.clear()  # Frank keeps the token: one vote each, 3 of 5 Guilty
     guilty.clear()
     guilty.update({"Bob", "Carol", "Erin"})
-    assert run_trial(game, players, game.player("Bob"), "Dave", 1) == "executed"  # 3 of 5, not 3 of 6
+    assert run_trial(game, players, game.player("Bob"), "Dave", 1) == "executed"
+    assert frank.tokens["ballot"] == 1
+    stuff.add("Frank")  # Frank's Innocent counts twice too: 2 Guilty of 5, out of tokens afterwards
+    guilty.discard("Carol")
+    assert run_trial(game, players, game.player("Bob"), "Carol", 1) == "innocent"
+    assert any("(2 Guilty of 5 votes" in e.text for e in game.events)
+    assert frank.tokens["ballot"] == 0
+    tasks.clear()
+    run_trial(game, players, game.player("Bob"), "Erin", 1)
+    assert not any("act" in fields for _, _, fields in tasks)  # no tokens left: a plain vote
 
 
 def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):

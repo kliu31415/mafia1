@@ -120,6 +120,9 @@ const LABELS = {
   missing_information: "Information you needed but didn't have", wanted_but_couldnt: "What you wanted to do but couldn't",
   bugs_or_oddities: "Bugs or oddities", suggestions: "Suggestions", lessons: "Lessons", tips_feedback: "Feedback on the tips",
 };
+const STEP_LABELS = {trial_vote: {vote: "Guilty (unticked: Innocent)", act: "Stuff the ballot (this vote counts twice)"}};  // a field's meaning per step
+let step = "";
+const labelOf = key => (STEP_LABELS[step] || {})[key] || LABELS[key];
 const HINTS = {
   claim: "Free, short. Shown in the ledger as your claimed role and results, e.g. 'Sheriff. N1: Bob not evil'. Leave empty to keep.",
   last_will: "Free. Leave as is to keep it.", details: "Anything else your action needs, e.g. 'ignite'.",
@@ -132,6 +135,8 @@ const rank = (k, i) => k === "last_will" ? 1000 : ORDER.includes(k) ? ORDER.inde
 // The task texts are written for LLMs answering JSON; these turn their field talk into what the form shows.
 const PLAIN = [
   [/Set act=false to do nothing\./g, "Leave \u201cUse my night action\u201d unticked to do nothing."],
+  [/act true spends a ballot token/g, "ticking \u201cStuff the ballot\u201d spends a ballot token"],
+  [/; false keeps it one vote\./g, "."],
   [/set act=true/g, "tick \u201cUse my night action\u201d"], [/tokens_to_spend=(\d+)/g, "Tokens to spend $1"],
   [/an empty last_will keeps it/g, "leave it as is to keep it"],
   [/Vote true \(Yes\) to put them on trial, false \(No\) otherwise\./g, "Vote Yes to put them on trial, or No."],
@@ -156,10 +161,10 @@ function msgCost(w, priv, first, u) {
 function widget(key, schema, value, prefix) {
   const s = base(schema), id = prefix + key;
   if (!s || s.type === "null") return "";
-  const label = `<label for="${id}">${esc(LABELS[key] || key.replace(/_/g, " "))}` +
+  const label = `<label for="${id}">${esc(labelOf(key) || key.replace(/_/g, " "))}` +
     (HINTS[key] ? ` <span class="hint">${esc(HINTS[key])}</span>` : "") + "</label>";
   if (s.type === "boolean")
-    return `<label><input type="checkbox" id="${id}" data-key="${key}" ${value ? "checked" : ""}> ${esc(LABELS[key] || key)}</label>`;
+    return `<label><input type="checkbox" id="${id}" data-key="${key}" ${value ? "checked" : ""}> ${esc(labelOf(key) || key)}</label>`;
   if (s.enum) {
     const opts = (isNullable(schema) ? [`<option value="">(none)</option>`] : [])
       .concat(s.enum.map(v => `<option ${v === value ? "selected" : ""}>${esc(v)}</option>`));
@@ -249,6 +254,7 @@ function showQuestion(q) {
     return;
   }
   const [title, hint, openTask] = STEPS[q.step] || [q.step, "", true];
+  step = q.step;
   const keys = Object.keys(q.schema).map((k, i) => [k, rank(k, i)]).sort((a, b) => a[1] - b[1]).map(x => x[0]);
   const voteOnly = keys.length === 1 && keys[0] === "vote";
   let html = `<h2>${esc(title)}${q.round ? ` <span class="muted">(round ${q.round})</span>` : ""}</h2>` +

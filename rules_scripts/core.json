@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "f1e989848111d1d7",
+ "cut_sha256": "8ad25e4077763fdf",
  "text_sha256": "f654ca3f60568e1e",
- "made_by": "Claude session",
- "made": "2026-10-13T05:42:37+00:00",
+ "made_by": "a Claude Code session",
+ "made": "2026-10-13T05:53:16+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -15,11 +15,6 @@
    "old": "(Oracle, Diviner, Ritualist, Mortician, Coroner,\n  Talent Agent, a Vigilante's kill)",
    "new": "(Oracle, Ritualist, Mortician, Coroner, a Vigilante's kill)",
    "reason": "Diviner and Talent Agent are not on the script."
-  },
-  {
-   "old": "messages, a Ballot Stuffer's doubled vote); those lapse.",
-   "new": "messages); those lapse.",
-   "reason": "Ballot Stuffer is not on the script; the Puppeteer example remains."
   },
   {
    "old": "   Party Animal, Pharmacist, Smuggler and Veteran can't be role-blocked.",
