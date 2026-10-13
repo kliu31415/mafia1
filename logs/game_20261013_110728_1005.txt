@@ -167,3 +167,33 @@ Trial votes on Mallory: 12 Guilty, 0 Innocent (the votes are secret).
 [Secret trial votes on Mallory] Guilty - Alice, Bob, Carol, Dave, Frank, Grace, Heidi, Ivan, Judy, Mallory, Niaj, Olivia; Innocent - nobody
 Mallory is executed by hanging (12 Guilty of 12 votes; 7 needed).
 Mallory died (executed by hanging). Their role isn't revealed. Their last will: "Mallory, Lookout (Good). Zealot trait: my trial votes always count Guilty. N1: watched Dave (he was quiet on Day 1, so I wanted to see if anyone was interested in him). Result: nobody visited Dave. If I was hanged on Ivan's pair, then Heidi is the non-Good one: census or Sheriff her. Frank's "Erin visited nobody" was never checkable, so track him."
+
+===== NIGHT 2 =====
+(to Bob, Grace) Bob (Yakuza chat): Mallory's gone, so it's just us two, and both of us must vote the same. Proposal: MOVE the Katana to Grace. Town plans to track me and have an Accountant check me tonight. I'll spend no talent token so the Accountant sees 2, which matches my Enforcer claim. Target: Ivan. His spare Seer token is the biggest threat. If he picks a pair like me and Heidi, it reads "different" and I'm done. A census around me only gives a fuzzy count. Dave's new trap isn't armed until N3, and Medic isn't in play (from my scan). Grace: if you do any Diviner action, also target Ivan so you show as only one visitor. Tomorrow you claim "tracked Ivan" and fit the result to his will: if his will says he used his token on two players, say he visited them, and if not, say he visited nobody. I'll probably visit nobody and say I held my Enforcer visit because nobody had a lead. Votes: holder Grace, target Ivan. Objections?
+(to Bob, Grace) Grace (Yakuza chat): Agreed. Holder Grace, target Ivan. I'll Diviner Ivan too, so I'm one visitor to one target (group Heidi/Ivan/Judy, a bonus read on Judy). No trap risk tonight, since Dave's new trap only arms on N3. Tomorrow I'll claim I tracked Ivan and fit the result to his will: his chosen pair if he spent the token, otherwise "visited nobody". If a Lookout reports me at Ivan, that fits my Tracker cover. Bob: spend no token so the Accountant sees 2, and visit nobody. If Frank tracks you he sees nothing, which fits "held my Enforcer visit". By day, keep your distance from me. If the Katana fails, assume a protector and pick someone else on N3. Locking my votes: holder Grace, target Ivan.
+(to Bob, Grace) Bob (Yakuza chat): Confirmed and locked: Katana goes to Grace, target is Ivan. I'll spend no token and visit nobody, so an Accountant sees 2 and a tracker sees me stay home. Tomorrow I'll say I held my Enforcer visit because there was no lead worth spending on. If Frank tracks you, he sees you at Ivan, which fits your Tracker cover. If Ivan survives, we assume a protector or Kitsune and switch targets on N3 (Olivia or Niaj), staying off whoever Dave traps. Good luck.
+(to Bob, Grace) Grace (Yakuza chat): Locked: holder Grace, target Ivan. I'm also Diviner on Ivan. Bob: no token, no visit. See you tomorrow night.
+Night actions:
+  Bob (Talent Agent): no role action; Katana vote: Grace holds, attacks Ivan
+  Carol (Chronicler): target Bob; chose to spend 1 token(s)
+  Dave (Trapper): target Olivia
+  Frank (Arsonist): target Niaj; "Douse Niaj"
+  Grace (Diviner): target Ivan; Katana vote: Grace holds, attacks Ivan
+  Heidi (Archivist): no action
+  Ivan (Seer): target Bob; second target Carol; chose to spend 1 token(s); "Spend seer token to compare Bob and Carol."
+  Niaj (Fortune Teller): no action
+  Olivia (Census Taker): target Bob
+Katana: Grace holds it and attacks Ivan.
+(to Carol) Moderator (private): You marked Bob: if they die, at any time, their role will be revealed to everyone (unless a Mortician cleans them). 0 chronicler tokens left.
+(to Grace) Moderator (private): You divined Ivan; the group was Heidi, Ivan and Judy. The role drawn is Archivist (60% chance it is Ivan's, otherwise one of the others').
+(to Olivia) Moderator (private): Your census of Bob, Ivan and Judy counted Evil players (drawn at random this time): 1 of the 3 is Evil. It counts true alignment, so frames and disguises (the Katana holder, Notorious) don't change it, and a Turncoat counts as Good. Neutral players are never counted, as either Good or Evil.
+(to Ivan) Moderator (private): Your chosen pair tonight: Bob and Carol have DIFFERENT alignments. 0 seer tokens left.
+(to Frank) Moderator (private): You doused Niaj tonight.
+(to Niaj) Moderator (private): Tonight: 5 players were visited; 6 players visited someone.
+(to Grace) Moderator (private): Your Katana attack on Ivan succeeded: they died.
+[Moderator summary] Night 2 resolved. Katana moved Bob->Grace; Grace (Katana holder) attacked Ivan with a Standard Katana attack: Ivan (Defense None, unprotected) died, cause Katana. Grace also divined Ivan (divine op). Carol marked Bob (mark op, last chronicler token). Dave moved his trap to Olivia (armed from N3). Frank doused Niaj (Good, not told). Ivan spent his seer token on the chosen pair Bob+Carol: DIFFERENT (Bob is Yakuza and doesn't hold the Katana at night's end; Carol is Good); he gets the result although he died. Olivia took a census around Bob (census op). Nobody was role-blocked; Bob and Heidi took no action. Visits: Carol->Bob, Dave->Olivia, Frank->Niaj, Grace->Ivan, Ivan->Bob, Ivan->Carol, Olivia->Bob. Fortune Teller Niaj: 5 visited, 6 visitors.
+[Moderator summary] Night 2 resolved. The Katana moved from Bob to Grace. Grace, now holding it, attacked Ivan with a Standard Katana attack. Ivan had no Defense or protection and died; cause Katana. Grace also divined Ivan (divine op). Carol marked Bob with her last chronicler token (mark op). Dave moved his trap to Olivia; it is armed from Night 3. The held tell() to Dave only described his own trap placement, so nothing needed resending. Frank doused Niaj; Niaj is Good, so he isn't told. Ivan spent his seer token on the chosen pair Bob and Carol: result DIFFERENT. He still gets this result although he died tonight. Olivia took a census around Bob (census op). Nobody was role-blocked. Bob and Heidi took no action. Visits: Carol->Bob, Dave->Olivia, Frank->Niaj, Grace->Ivan, Ivan->Bob, Ivan->Carol, Olivia->Bob. Fortune Teller Niaj was told 5 players visited and 6 visitors. Bonded pair Carol/Olivia and Judy's target Bob are all alive.
+[Night check] Night 2: correct
+(to Ivan) Moderator (private): You were attacked tonight (Katana) and died.
+(to Bob) Moderator (private): Yakuza night summary: Grace holds the Katana (moved from Bob) and chose to attack Ivan. Grace (Diviner) chose to act on Ivan.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana (moved from Bob) and chose to attack Ivan. Bob (Talent Agent) chose no action.
