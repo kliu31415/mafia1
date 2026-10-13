@@ -194,3 +194,30 @@ Trial votes on Dave: 9 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Dave] Guilty - Alice, Bob, Frank, Grace, Heidi, Ivan, Judy, Niaj, Olivia; Innocent - Dave
 Dave is executed by hanging (9 Guilty of 10 votes; 6 needed).
 Dave died (executed by hanging). They had been marked by a Chronicler, so their role is revealed: Smuggler. Their last will: "Dave - Medic. N1: protected Heidi (free Standard protection, no token spent), nothing stopped. N2: protected Erin (free Standard protection, no token spent), nothing stopped. That fits Erin's death: a Ritualist that guesses right with 2 tokens deals a Divine attack, and no protection stops that. 2 medic tokens left. D2: I voted No on the nomination because I wanted Carol's claim tested first. I voted Guilty in the trial once Bob's mark made the hang check itself."
+
+===== NIGHT 3 =====
+(to Grace, Olivia) Grace (Yakuza chat): Two of us left out of 9, so we need a kill every night. Olivia isn't Shaky, because Mallory died to your Katana. That means Bob had protection on N2 (Medic or Kitsune; not a trap, since nothing hit you back). Proposal: Olivia keeps the Katana. You're the one in Erin's trio, so if a Sheriff checks you tonight, holding it makes you read Not Evil. Target: Ivan. Whether he's a real Oracle or a lucky Roleplayer, he has hit Yakuza twice, he's leading every nomination, and the town now follows him. If he's real, his next guess is on you or me. Bob has 0 tokens and is probably protected again, so he's a waste. Fallback if you prefer: Heidi, who pushes hard and might be an investigator. Tomorrow: I'll keep my Seer cover and post an N2 random pair that doesn't involve either of us (thinking Frank & Judy = SAME), so I don't look like I'm covering you. My puppet token is held for a Day when someone has a result to bury. Please don't defend me publicly and I won't defend you. Vote: holder Olivia, target Ivan?
+(to Grace, Olivia) Olivia (Yakuza chat): Agreed: holder Olivia, target Ivan. Note that Ivan can't be a real Oracle. Dave chose no action on N1, so no swap moved his guess, and his Carol=Pharmacist "correct" was just false. That makes him a Roleplayer, or a liar. He's still the one steering every hang, though, and the town trusts him, so he's worth killing. If he dies, people will assume he was a real Oracle, which muddies things nicely. I'd rather keep Heidi alive: she shares Erin's trio with me, so she soaks up suspicion that would otherwise land on me. My weak spot is an Accountant on me, who would see 0 tokens against my claimed Cartographer with 2. If that comes out, I'll say a Magpie stole them. Seer pair Frank & Judy = SAME is fine. Don't defend me, and I won't defend you. Vote: holder Olivia, target Ivan.
+(to Grace, Olivia) Grace (Yakuza chat): Confirmed: holder Olivia, Katana on Ivan. Agreed, keep Heidi alive as the lightning rod. Tomorrow I'll post Frank & Judy = SAME as my N2 pair and an N3 pair that doesn't involve you. If an Accountant result on you comes out, go with the Magpie story, and I'll stay neutral rather than back it. Puppet token stays held unless someone posts a result on one of us. Then I'll puppet them the next Day to muddy or retract it. Ready.
+(to Grace, Olivia) Olivia (Yakuza chat): Confirmed: holder Olivia, Katana on Ivan. Tomorrow I'll stay on my Cartographer cover with sizes only, and I'll keep my messages short. If Ivan survives, we'll know the protector is on him. Then tomorrow night we go after whoever looks like the Medic or Kitsune. Ready.
+Night actions:
+  Alice (Veteran): chose to spend 1 token(s)
+  Bob (Chronicler): no action
+  Frank (Archivist): no action
+  Grace (Puppeteer): no role action; Katana vote: Olivia holds, attacks Ivan
+  Heidi (Medic): target Ivan
+  Ivan (Roleplayer): target Olivia; named role Ritualist
+  Judy (Vigilante): no action
+  Niaj (Oracle): target Olivia; named role Ritualist
+  Olivia (Ritualist): no role action; Katana vote: Olivia holds, attacks Ivan
+Katana: Olivia holds it and attacks Ivan.
+(to Alice) Moderator (private): You went on alert tonight. Nobody visited you. 2 alert tokens left.
+(to Heidi) Moderator (private): You protected Ivan tonight (Standard Defense, no token spent). Your protection stopped an attack. 2 medic tokens left.
+(to Niaj) Moderator (private): Your guess that Olivia is a Ritualist is CORRECT.
+(to Olivia) Moderator (private): Your Katana attack on Ivan failed.
+(to Ivan) Moderator (private): Your guess that Olivia is a Ritualist is CORRECT.
+(to Ivan) Moderator (private): You were attacked tonight with the Katana and survived.
+[Moderator summary] Night 3: Katana held by Olivia attacked Ivan (Standard), stopped by Heidi's free Standard protection on Ivan; Ivan survives. Alice went on alert (2 alert tokens left), no visitors. Niaj (Oracle) guessed Olivia = Ritualist: CORRECT (Astral). Ivan (Roleplayer, fake Oracle) got a random result: CORRECT on Olivia = Ritualist. No role-blocks, no deaths. Visits: Olivia->Ivan, Heidi->Ivan.
+[Night check] Night 3: correct
+(to Grace) Moderator (private): Yakuza night summary: Olivia holds the Katana and chose to attack Ivan. Olivia (Ritualist) chose no action.
+(to Olivia) Moderator (private): Yakuza night summary: Olivia holds the Katana and chose to attack Ivan. Grace (Puppeteer) chose no action.
