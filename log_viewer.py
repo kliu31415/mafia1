@@ -14,7 +14,6 @@ Usage:
 import contextvars
 import functools
 import html
-import itertools
 import json
 import os
 import re
@@ -23,7 +22,7 @@ import urllib.parse
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from typing import Any
 
 from gamelogs import faction_of
@@ -504,25 +503,24 @@ def name_span(name: str, role: str, traits: list[str] | tuple[str, ...] = ()) ->
             f"{esc(name)}</span>")
 
 
-def icons_css() -> str:
+def icons_css(trait_sets: Iterable[Sequence[str]] = ()) -> str:
     """CSS rules giving each role class its icon, inlined as data URIs (all of them, about 25 KB) so the page
     stays one file. Icons come from the repo's roles/icons/, so every log shows the same icons until those
-    files change."""
+    files change. trait_sets: the players' traits, for their marks."""
     rules = []
     for path in [*sorted(ICONS.glob("*.svg")), *sorted((ICONS / "retired").glob("*.svg"))]:
         slug = ("r-" if path.parent.name == "retired" else "") + path.stem
         svg = " ".join(path.read_text(encoding="utf-8").split())
         rules.append(f".i-{slug} {{ --icon:url(\"data:image/svg+xml,{urllib.parse.quote(svg)}\"); }}")
     # A trait's mark sits in a corner of the icon, over the role's icon: the first trait top right, then top left,
-    # bottom right, bottom left. Each set of traits a player can have gets one rule (a CSS background can't be
-    # added to by a second class), keyed by its classes in name_span's order.
-    marks = {t: urllib.parse.quote(" ".join(info.mark.split())) for t, info in TRAITS.items()}
-    for n in range(1, len(CORNERS) + 1):
-        for combo in itertools.permutations(TRAITS, n):
-            layers = "".join(f"url(\"data:image/svg+xml,{marks[t]}\") {corner}/45% no-repeat, "
-                             for t, corner in zip(combo, CORNERS))
-            rules.append(f".n.ic.tn{n}{''.join(f'.t{i}-{trait_slug(t)}' for i, t in enumerate(combo))}::before "
-                         f"{{ background:{layers}var(--icon) center/80% no-repeat, var(--tint); }}")
+    # bottom right, bottom left. Each set of traits a player has gets one rule (a CSS background can't be added to
+    # by a second class), keyed by its classes in name_span's order. Only the game's own sets: a rule for every
+    # possible set grew with the number of traits to the fourth power (250 MB pages at 22 traits, Oct 13 2026).
+    for combo in sorted({tuple(t for t in ts if t in TRAITS)[:len(CORNERS)] for ts in trait_sets} - {()}):
+        layers = "".join(f"url(\"data:image/svg+xml,{urllib.parse.quote(' '.join(TRAITS[t].mark.split()))}\") "
+                         f"{corner}/45% no-repeat, " for t, corner in zip(combo, CORNERS))
+        rules.append(f".n.ic.tn{len(combo)}{''.join(f'.t{i}-{trait_slug(t)}' for i, t in enumerate(combo))}::before "
+                     f"{{ background:{layers}var(--icon) center/80% no-repeat, var(--tint); }}")
     return "\n".join(rules)
 
 
@@ -882,7 +880,7 @@ def render_html(jsonl_path: Path) -> Path:
     focus_options = "".join(f"<option>{esc(n)}</option>" for n in alive_order)
     page = (f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' "
             f"content='width=device-width, initial-scale=1'><title>{esc(title)}</title>"
-            f"<style>{CSS}{icons_css()}</style>"
+            f"<style>{CSS}{icons_css(traits.values())}</style>"
             f"</head><body><h1>{esc(title)}</h1><div class='legend'>{legend}</div><div class='controls'>"
             f"<label><input type='checkbox' id='showcalls' checked> Model details</label>"
             f"<label><input type='checkbox' id='showhidden' checked> Hidden info</label>"
