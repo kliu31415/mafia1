@@ -207,3 +207,12 @@ def test_roles_the_setup_never_draws_are_named_to_players_and_left_out_of_fakes(
     assert "Grunt" in scripts.script_roles(game)
     game.rule_settings["setup_off"] = "Vanilla Villager,Grunt"
     assert not {"Vanilla Villager", "Grunt"} & set(scripts.script_roles(game))
+    # A hand-picked list leaves them out too, unless it names them.
+    hand = setup_note(None, ["Sheriff", "Medic", "Fixer"])
+    assert "Any other role in the rules" in hand and "nobody has them: Vanilla Villager, Grunt" in hand
+    named = setup_note(None, ["Sheriff", "Grunt", "Vanilla Villager"])
+    assert "Any role in the rules" in named and "nobody has them" not in named
+    assert "nobody has them: Vanilla Villager." in setup_note(None, ["Sheriff", "Grunt"])
+    config = mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, ["Sheriff", "Grunt"])
+    assert config.rule_settings["setup_off"] == "Vanilla Villager"
+    assert "nobody has them" not in setup_note(None, ["Sheriff"], ())  # an older log's own (grade.py)

@@ -89,7 +89,7 @@ from night_check import NightChecker
 from night import run_night
 from players import UNRELIABLE, Players, role_briefing
 from roles import ROLES, Status, retired_entry, role_status_table
-from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_note
+from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_note, setup_off
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
@@ -202,8 +202,7 @@ class GameConfig:
     def rule_settings(self) -> dict[str, str]:
         """The rule settings (variants.py), the script and any roles the setup never draws (setup_off), which
         game.rule_settings and the log's settings keep."""
-        random_setup = self.setup and self.setup.get("kind") == "random"
-        off = SETUPS[self.setup.get("name", "standard")].off if self.setup and random_setup else ()
+        off = setup_off(self.setup, self.roles)
         return {**{name: getattr(self, name) for name in variants.SETTINGS}, "script": self.script,
                 **({"setup_off": ",".join(off)} if off else {})}
 

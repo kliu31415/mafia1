@@ -107,7 +107,8 @@ def grade_game(client: LLMClient, spec, rules: str, path: Path, out_dir: Path) -
         rules = scripts.rules_for(rules, settings.get("script", scripts.DEFAULT))  # the roles this game could use
         rules += variants.rules_notes(variants.full(settings))  # the settings this game was played with
         if setup.get("log_version", 0) >= 40:  # players were told about the setup (setups.setup_note) since log 40
-            rules += setup_note(settings.get("setup"), settings["roles"])
+            off = tuple(r for r in settings.get("setup_off", "").split(",") if r)  # what this game left out
+            rules += setup_note(settings.get("setup"), settings["roles"], off)
     system = rules_system(rules, [cache_block(f"\n\n---\n\n{JUDGE_TASK}\n\nGame log:\n{log_text}")])
 
     def grade(p: dict) -> dict:

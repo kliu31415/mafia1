@@ -3,7 +3,8 @@
 A named setup (SETUPS, picked with --roles NAME or NAME:N) draws a different role mix each game from the seed, so
 role strength can be estimated across many mixes. Players never see the role list, but a note after the rules
 (setup_note) describes how it was drawn: Kevin, Oct 10 2026, so they don't play blind, though without exact
-counts. A hand-picked list (--roles A,B,C) is described by rough faction counts instead.
+counts. A hand-picked list (--roles A,B,C) is described by rough faction counts instead; like the standard setup
+it leaves out Vanilla Villager and Grunt (setup_off) unless the list names them.
 
 "standard" (the default, balanced by role_power.py) is balanced_setup, which may repeat any role that isn't
 unique; "classic" (also "random", the draw before Oct 10 2026, without repeats) is described below:
@@ -62,23 +63,34 @@ def players_for(name: str, n: int | None, seed: int) -> int:
     return n if n is not None else random.Random(f"players|{seed}").randint(lo, hi)
 
 
-def setup_note(setup: dict | None, roles: list[str]) -> str:
+def setup_off(setup: dict | None, roles: list[str]) -> tuple[str, ...]:
+    """The roles this game's setup never uses (settings.setup_off): a drawn setup's own (Setup.off), and for a
+    hand-picked list the standard setup's unless the list names them (Kevin, Oct 13 2026: Vanilla is too often a
+    boring cover claim)."""
+    if setup and setup.get("kind") == "random":
+        return SETUPS[setup.get("name", "standard")].off
+    return tuple(r for r in STANDARD_OFF if r not in roles)
+
+
+def setup_note(setup: dict | None, roles: list[str], off: tuple[str, ...] | None = None) -> str:
     """The text added after the rules (after any rule settings) telling players how this game's roles were
-    chosen. setup: the log's settings.setup ({"kind": "random", "name": ...} or None for a hand-picked list)."""
+    chosen. setup: the log's settings.setup ({"kind": "random", "name": ...} or None for a hand-picked list).
+    off: the roles it never uses, when they aren't setup_off's (an older log's own)."""
     n = len(roles)
+    off = setup_off(setup, roles) if off is None else off
     if setup and setup.get("kind") == "random":
         name = setup.get("name", "standard")
         text = (f"This game has {n} players. Its roles were drawn at random by the {name} setup: "
                 f"{SETUPS[name].describe}")
-        if off := SETUPS[name].off:
-            text += (f" This setup never uses these roles, so nobody has them: {', '.join(off)}. Results that name "
-                     "a role (including fakes) never name them either.")
     else:
         count = {a: sum(ROLES[r].alignment is a for r in roles) for a in Alignment}
         yakuza, neutral = count[Alignment.EVIL], count[Alignment.NEUTRAL]
         text = (f"This game has {n} players. Its roles were picked by hand, not drawn by a standard setup. Roughly: "
                 f"{max(1, yakuza - 1)} to {yakuza + 1} Yakuza, 0 to {neutral + 1} Neutrals, and the rest Village. "
-                "Any role in the rules may be in it, and roles may repeat.")
+                f"Any {'other ' if off else ''}role in the rules may be in it, and roles may repeat.")
+    if off:
+        text += (f" This setup never uses these roles, so nobody has them: {', '.join(off)}. Results that name "
+                 "a role (including fakes) never name them either.")
     if setup and setup.get("kind") == "random" and not setup.get("traits_given"):  # not chosen with --traits
         text += (f" Separately, about {TRAIT_SHARE:.0%} of the players (give or take {max(TRAIT_SPREAD)}) get a "
                  "trait (R24), never more than one each, drawn to help balance the sides; some traits can go only "
