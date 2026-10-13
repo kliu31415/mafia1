@@ -117,6 +117,14 @@ night actions already run in parallel.
   roles (Surveyor), self-targets, the Katana, lasting effects (trap, douse), stacking with a Smuggler swap. A
   low-risk cut: only roles whose actions code carries out (RecordedAction), where code swaps the target before
   carry_out, but then it never touches the big roles.
+- **Inspector: sees lasting effects on a player** (Kevin, Oct 13 2026: punted). Investigative, code-told: learns
+  the lasting effects on its target at the end of the night, by effect name (not role). About ten are in code state
+  already: doused, trapped, Chronicler-marked, puppeted/prosecuted/eavesdropped/vote-fixed tomorrow, Executioner
+  target, bounty, robbed by a Magpie (a Philanthropist's gift needs one line to record). Forged wills and frames
+  leave no code trace (the moderator overwrites the will via set_last_will, reverted for survivors at night end;
+  frames are moderator-only), so they'd need Fabricator ops first. Maintenance: one table in the role's file maps
+  each store (Status key, Game field, role_state key) to its wording or "not seen"; a test running mock games fails
+  on any unlisted key, so a new lasting effect costs one line. Open choices: every night or tokens, visit or not.
 - **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
   naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
   defeats it, so it mostly taxes Yakuza coordination.
