@@ -3995,7 +3995,7 @@
   {
    "id": "t34",
    "audience": "Village",
-   "tip": "Once a player is shown to be Yakuza by a mechanical result (an Oracle RIGHT on a Yakuza role, a Yakuza-only role claim, a corroborated lone visit to a Katana victim), your top suspects are those who argued to delay or stop their hang, defended them, or exchanged PMs with them. A player merely caught lying is not shown Yakuza: the liar may be a Jester, and chaining from a proven liar to their early defenders lands on villagers. Nor is a player whom a lone Sheriff reads Evil: Jesters, Executioners, Ex-Cons and framed players all read Evil, so run the Jester check (t91) before treating the read as a Yakuza result. Roles stay hidden on death, so a hang never confirms who was Yakuza: keep such links only as strong as the case against the dead player. Ballots are secret, so before each nomination and trial vote, ask every player to state their vote publicly. Then compare the stated votes with the announced totals: extra No or Innocent votes mean someone hid a defensive vote. Do the vote math first. An Innocent bloc that couldn't change a settled result proves little, and Yakuza will reuse it to steer suspicion onto townies. Pushing No or delay at the nomination, then Guilty once the hang is certain, is the more telling pattern. A stated Guilty vote on a likely Yakuza clears no one. A bloc is a lead, not a verdict: a hidden investigator voting on their own info fits the same pattern, so demand a claim and results before hanging. If the game goes on after you have hanged everyone you believed Yakuza, either a Yakuza or a Neutral killer is still alive (Jesters and Executioners never block the end). Vote links to the dead then mostly point at Neutrals who voted alongside them, and a Jester wants exactly that hang. Switch to who could have made the remaining kills (causes of death, douse or attack visits), and press for claims. If you hang a likely Jester anyway, keep the Guilty votes to a bare majority.",
+   "tip": "Once a player is shown to be Yakuza by a mechanical result (an Oracle RIGHT on a Yakuza role, a Yakuza-only role claim, a corroborated lone visit to a Katana victim), your top suspects are those who argued to delay or stop their hang, defended them, or exchanged PMs with them. A player merely caught lying is not shown Yakuza: the liar may be a Jester, and chaining from a proven liar to their early defenders lands on villagers. Nor is a player whom a lone Sheriff reads Evil: Jesters, Executioners, Ex-Cons and framed players all read Evil, so run the Jester check (t91) before treating the read as a Yakuza result. Roles stay hidden on death, so a hang never confirms who was Yakuza: keep such links only as strong as the case against the dead player. Ballots are secret, so before each nomination and trial vote, ask every player to state their vote publicly. Then compare the stated votes with the announced totals: extra No or Innocent votes mean someone hid a defensive vote. Do the vote math first. An Innocent bloc that couldn't change a settled result proves little, and Yakuza will reuse it to steer suspicion onto townies. Pushing No or delay at the nomination, then Guilty once the hang is certain, is the more telling pattern. A stated Guilty vote on a likely Yakuza clears no one. A bloc is a lead, not a verdict: a hidden investigator voting on their own info fits the same pattern, so demand a claim and results before hanging. If the game goes on after you have hanged everyone you believed Yakuza, that doesn't prove a Yakuza is left: either one you missed or a win-blocking Neutral (Serial Killer, Arsonist or Vulture) is still alive. Jesters, Executioners, Bounty Hunters and Magpies never block the end. Vote links to the dead then mostly point at Neutrals who voted alongside them, and a Jester wants exactly that hang. Switch to who could have made the remaining kills (causes of death, douse or attack visits), and press for claims; if the kills have stopped, the blocker may be a Vulture behind a quiet claim (t96). If you hang a likely Jester anyway, keep the Guilty votes to a bare majority.",
    "status": "active",
    "support": [
     {
@@ -4314,6 +4314,12 @@
      "change": "edited",
      "old": "Once a player is shown to be Yakuza by a mechanical result (an Oracle RIGHT on a Yakuza role, a Yakuza-only role claim, a corroborated lone visit to a Katana victim), your top suspects are those who argued to delay or stop their hang, defended them, or exchanged PMs with them. A player merely caught lying is not shown Yakuza: the liar may be a Jester, and chaining from a proven liar to their early defenders lands on villagers. Roles stay hidden on death, so a hang never confirms who was Yakuza: keep such links only as strong as the case against the dead player. Ballots are secret, so before each nomination and trial vote, ask every player to state their vote publicly. Then compare the stated votes with the announced totals: extra No or Innocent votes mean someone hid a defensive vote. Do the vote math first. An Innocent bloc that couldn't change a settled result proves little, and Yakuza will reuse it to steer suspicion onto townies. Pushing No or delay at the nomination, then Guilty once the hang is certain, is the more telling pattern. A stated Guilty vote on a likely Yakuza clears no one. A bloc is a lead, not a verdict: a hidden investigator voting on their own info fits the same pattern, so demand a claim and results before hanging. If the game goes on after you have hanged everyone you believed Yakuza, either a Yakuza or a Neutral killer is still alive (Jesters and Executioners never block the end). Vote links to the dead then mostly point at Neutrals who voted alongside them, and a Jester wants exactly that hang. Switch to who could have made the remaining kills (causes of death, douse or attack visits), and press for claims. If you hang a likely Jester anyway, keep the Guilty votes to a bare majority.",
      "note": "Frank, Grace: added that a lone Sheriff Evil read does not show a player Yakuza. Erin read Evil, had self-nominated on D2, and was the Jester."
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "Once a player is shown to be Yakuza by a mechanical result (an Oracle RIGHT on a Yakuza role, a Yakuza-only role claim, a corroborated lone visit to a Katana victim), your top suspects are those who argued to delay or stop their hang, defended them, or exchanged PMs with them. A player merely caught lying is not shown Yakuza: the liar may be a Jester, and chaining from a proven liar to their early defenders lands on villagers. Nor is a player whom a lone Sheriff reads Evil: Jesters, Executioners, Ex-Cons and framed players all read Evil, so run the Jester check (t91) before treating the read as a Yakuza result. Roles stay hidden on death, so a hang never confirms who was Yakuza: keep such links only as strong as the case against the dead player. Ballots are secret, so before each nomination and trial vote, ask every player to state their vote publicly. Then compare the stated votes with the announced totals: extra No or Innocent votes mean someone hid a defensive vote. Do the vote math first. An Innocent bloc that couldn't change a settled result proves little, and Yakuza will reuse it to steer suspicion onto townies. Pushing No or delay at the nomination, then Guilty once the hang is certain, is the more telling pattern. A stated Guilty vote on a likely Yakuza clears no one. A bloc is a lead, not a verdict: a hidden investigator voting on their own info fits the same pattern, so demand a claim and results before hanging. If the game goes on after you have hanged everyone you believed Yakuza, either a Yakuza or a Neutral killer is still alive (Jesters and Executioners never block the end). Vote links to the dead then mostly point at Neutrals who voted alongside them, and a Jester wants exactly that hang. Switch to who could have made the remaining kills (causes of death, douse or attack visits), and press for claims. If you hang a likely Jester anyway, keep the Guilty votes to a bare majority.",
+     "note": "R1 now says every Neutral that doesn't say it never blocks wins keeps the game going. The old line gave only 'a Yakuza or a Neutral killer' and listed only Jester and Executioner as non-blockers; it now names the Vulture as a blocker, adds Bounty Hunter and Magpie as non-blockers, and says a continuing game doesn't prove a Yakuza is alive."
     }
    ]
   },
@@ -10267,7 +10273,7 @@
   {
    "id": "t98",
    "audience": "Village",
-   "tip": "Judge a Roleplayer claim by its timing and consistency. A Roleplayer is told a fake investigative role and believes it: they claim that role from the start, never claim Vanilla, and never 'know' they are a Roleplayer. They can only suspect it, once their results clash with a confirmed claim or result (an exact-role check, a self-proving action, a verified log). A real one flags the clash early, before others claim the slot, and pushes against other Roleplayer claimants. A Vanilla claim that later becomes Roleplayer, an 'I know I'm the Roleplayer', or a claim made only once cornered or prosecuted is almost certainly a lie. When two players claim the same investigative role and their results conflict, or an 'Oracle' result contradicts a claim that mechanics back (a claimant the Katana attacked, a Seer whose pair a trait claim explains), consider an honest Roleplayer before calling either one a liar. A Roleplayer's fake results can read CORRECT as well as WRONG, most easily on Vanilla guesses and public claims, so nobody they 'cleared' is cleared. If an archive, profile or survey shows 'Roleplayer', the duplicate claim may need no Evil player at all. A Roleplayer is Village: discount the claimant with the odder, unverifiable result instead of spending the Day hanging them, keep the other claimant's results, and spend the hang on the unclaimed pool or on whoever the discounted results protected. Also be suspicious when 'blind' results land exactly on the night's kill victims or fit claims made that same day.",
+   "tip": "Judge a Roleplayer claim by its timing and consistency. A Roleplayer is told a fake investigative role and believes it: they claim that role from the start, never claim Vanilla, and never 'know' they are a Roleplayer. They can only suspect it, once their results clash with a confirmed claim or result (an exact-role check, a self-proving action, a verified log). A real one flags the clash early, before others claim the slot, and pushes against other Roleplayer claimants. A Vanilla claim that later becomes Roleplayer, an 'I know I'm the Roleplayer', or a claim made only once cornered or prosecuted is almost certainly a lie. When two players claim the same investigative role and their results conflict, or an 'Oracle' result contradicts a claim that mechanics back (a claimant the Katana attacked, a Seer whose pair a trait claim explains), consider an honest Roleplayer before calling either one a liar. A Roleplayer's results are drawn at random from what the role could be told that night, whatever really happened, so each is true only by chance: a CORRECT means as little as a WRONG, nobody they 'cleared' is cleared and nobody they accused is accused. One result that checks out doesn't prove a claimant real. A log that keeps matching independently verified facts night after night makes a Roleplayer less likely, and one that fails against a verified fact is what random draws look like. If an archive, profile or survey shows 'Roleplayer', the duplicate claim may need no Evil player at all. A Roleplayer is Village: discount the claimant with the odder, unverifiable result instead of spending the Day hanging them, keep the other claimant's results, and spend the hang on the unclaimed pool or on whoever the discounted results protected. Also be suspicious when 'blind' results land exactly on the night's kill victims or fit claims made that same day.",
    "status": "active",
    "support": [
     {
@@ -10315,13 +10321,19 @@
      "change": "edited",
      "old": "Judge a Roleplayer claim by its timing and consistency. A Roleplayer is told a fake investigative role and believes it: they claim that role from the start, never claim Vanilla, and never 'know' they are a Roleplayer. They can only suspect it, once their results clash with a confirmed claim or result (an exact-role check, a self-proving action, a verified log). A real one flags the clash early, before others claim the slot, and pushes against other Roleplayer claimants. A Vanilla claim that later becomes Roleplayer, an 'I know I'm the Roleplayer', or a claim made only once cornered or prosecuted is almost certainly a lie. When two players claim the same investigative role and their results conflict, consider an honest Roleplayer before calling either one a liar. If an archive, profile or survey shows 'Roleplayer', the duplicate claim may need no Evil player at all. Discount the claimant with the odder, unverifiable result instead of spending the Day hanging them, keep the other claimant's results, and spend the hang on the unclaimed pool. Also be suspicious when 'blind' results land exactly on the night's kill victims or fit claims made that same day.",
      "note": "Moderator, Alice, Bob, Carol, Dave, Erin, Grace, Heidi, Mallory (1.0 each): Frank (Roleplayer told Oracle) posted 'Erin = Seer WRONG' against a Seer the Katana had attacked. The Roleplayer reading was raised, yet he was hanged 8-1 on D4, a Village mis-hang. His 'Dave = Vanilla CORRECT' had cleared the Smuggler. Edit extends the tip from duplicate claims to exact-role clashes and fake CORRECTs."
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "Judge a Roleplayer claim by its timing and consistency. A Roleplayer is told a fake investigative role and believes it: they claim that role from the start, never claim Vanilla, and never 'know' they are a Roleplayer. They can only suspect it, once their results clash with a confirmed claim or result (an exact-role check, a self-proving action, a verified log). A real one flags the clash early, before others claim the slot, and pushes against other Roleplayer claimants. A Vanilla claim that later becomes Roleplayer, an 'I know I'm the Roleplayer', or a claim made only once cornered or prosecuted is almost certainly a lie. When two players claim the same investigative role and their results conflict, or an 'Oracle' result contradicts a claim that mechanics back (a claimant the Katana attacked, a Seer whose pair a trait claim explains), consider an honest Roleplayer before calling either one a liar. A Roleplayer's fake results can read CORRECT as well as WRONG, most easily on Vanilla guesses and public claims, so nobody they 'cleared' is cleared. If an archive, profile or survey shows 'Roleplayer', the duplicate claim may need no Evil player at all. A Roleplayer is Village: discount the claimant with the odder, unverifiable result instead of spending the Day hanging them, keep the other claimant's results, and spend the hang on the unclaimed pool or on whoever the discounted results protected. Also be suspicious when 'blind' results land exactly on the night's kill victims or fit claims made that same day.",
+     "note": "Roleplayer results are now random draws from the role's possible results, true only by chance. The old line said fake results read CORRECT 'most easily on Vanilla guesses and public claims', which assumed plausible, tailored fakes. Reworded: every result is chance, so neither a clear nor an accusation counts, and one matching result proves nothing."
     }
    ]
   },
   {
    "id": "t99",
    "audience": "Village",
-   "tip": "If you hold a role a Roleplayer can be told (Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle, Accountant) and your results contradict a confirmed claim or result (an exact-role check, a self-proving action, a verified log, a claimant whose Katana attack a trap death confirmed), suspect first that you are the Roleplayer. Say so publicly and at once, before anyone else claims: post the result with that caveat, and don't build an accusation or stake your life on it. Volunteering it reads strongly town and locks in a timeline that later fake Roleplayer claimants can't match. Test yourself when you can: an Oracle can guess a claim the town already trusts, and a WRONG there means your results are noise. 'CORRECT' Vanilla guesses that only their target confirms say nothing about whether your results are real.",
+   "tip": "If you hold a role a Roleplayer can be told (Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle, Accountant) and your results contradict a confirmed claim or result (an exact-role check, a self-proving action, a verified log, a claimant whose Katana attack a trap death confirmed), suspect first that you are the Roleplayer. Say so publicly and at once, before anyone else claims: post the result with that caveat, and don't build an accusation or stake your life on it. Volunteering it reads strongly town and locks in a timeline that later fake Roleplayer claimants can't match. Test yourself when you can: an Oracle can guess a claim the town already trusts, and a WRONG there means your results are random noise. A RIGHT there doesn't clear you: a Roleplayer's results are random draws and come out true by chance, so keep checking each new result against verified facts. 'CORRECT' Vanilla guesses that only their target confirms say nothing about whether your results are real.",
    "status": "active",
    "support": [
     {
@@ -10357,13 +10369,19 @@
      "change": "edited",
      "old": "If your investigation results contradict a confirmed claim or result (an exact-role check, a self-proving action, a verified log), say publicly and at once that you may be the Roleplayer, before anyone else claims. Volunteering it reads strongly town and locks in a timeline that later fake Roleplayer claimants can't match.",
      "note": "Frank (Roleplayer, 1.0) and the moderator: Frank pushed his fake 'Erin = Seer WRONG' as solid evidence against a Seer backed by a Katana attack, a trap death and a Notorious claim, and was hanged. His own lesson: caveat it and self-test on a trusted claim first. Edit adds the audience condition and the self-test."
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "If you hold a role a Roleplayer can be told (Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle, Accountant) and your results contradict a confirmed claim or result (an exact-role check, a self-proving action, a verified log, a claimant whose Katana attack a trap death confirmed), suspect first that you are the Roleplayer. Say so publicly and at once, before anyone else claims: post the result with that caveat, and don't build an accusation or stake your life on it. Volunteering it reads strongly town and locks in a timeline that later fake Roleplayer claimants can't match. Test yourself when you can: an Oracle can guess a claim the town already trusts, and a WRONG there means your results are noise. 'CORRECT' Vanilla guesses that only their target confirms say nothing about whether your results are real.",
+     "note": "Roleplayer results are now random, true only by chance. The self-test still catches a Roleplayer on a WRONG, but a RIGHT on a trusted claim no longer says anything, so the entry now says one passing test doesn't clear you."
     }
    ]
   },
   {
    "id": "t100",
    "audience": "Yakuza",
-   "tip": "If you will need a 'my results are fake' cover (Roleplayer), claim it early, before a real townie takes the slot, and post fake results chosen before the deaths could shape them. Never 'watch' or 'track' exactly the night's victims, and don't fit results around claims made that day. A Roleplayer claim made only when prosecuted, or after another cover, is never believed.",
+   "tip": "If you will need a Roleplayer cover ('my results aren't real'), set it up early, before a real townie takes the slot, and post fake results chosen before the deaths could shape them. A real Roleplayer's results are random draws that are right only by chance, so a fake log that neatly fits the night gives you away: never 'watch' or 'track' exactly the night's victims, and don't fit results around claims made that day. A Roleplayer claim made only when prosecuted, or after another cover, is never believed.",
    "status": "active",
    "support": [
     {
@@ -10377,6 +10395,12 @@
     {
      "game": "game_20261009_152354_124586",
      "change": "added"
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "If you will need a 'my results are fake' cover (Roleplayer), claim it early, before a real townie takes the slot, and post fake results chosen before the deaths could shape them. Never 'watch' or 'track' exactly the night's victims, and don't fit results around claims made that day. A Roleplayer claim made only when prosecuted, or after another cover, is never believed.",
+     "note": "The cover was described as 'my results are fake'. Roleplayer results are now random draws, true only by chance, so the entry now says a fake log should not fit the night's events neatly. The evidence (Niaj's fakes landing on both Katana victims, Erin's late claim) is unchanged."
     }
    ]
   },
@@ -13046,7 +13070,7 @@
   {
    "id": "t164",
    "audience": "Village",
-   "tip": "An exact-role hit (Oracle RIGHT) naming a killer role on an unverifiable claimant is the strongest lead you'll get: hang the named player at once. Roles stay hidden on death, so the check comes afterward. If attacks with that cause continue, or the game doesn't end when it should, the Oracle lied and hangs next. A last Yakuza can't even know who the hidden Neutral is. 'Test the claimant first' only buys the killer another night. Claimants should say this explicitly when posting.",
+   "tip": "An exact-role hit (Oracle RIGHT) naming a killer role on an unverifiable claimant is the strongest lead you'll get: hang the named player at once. Roles stay hidden on death, so the check comes afterward. If attacks with that cause continue, the Oracle lied and hangs next. A game that doesn't end after the hang is a weaker check: it shows only that some Yakuza or win-blocking Neutral (Serial Killer, Arsonist, Vulture) is still alive, so count who else could be the blocker before turning on the Oracle. A last Yakuza can't even know who the hidden Neutral is. 'Test the claimant first' only buys the killer another night. Claimants should say this explicitly when posting.",
    "status": "active",
    "support": [
     {
@@ -13066,6 +13090,12 @@
      "change": "edited",
      "old": "(Village) An exact-role hit (Oracle RIGHT) on an unverifiable claimant tests itself on the flip: a fake hit would hang its own claimant the next day. A last Yakuza can't even know who the hidden Neutral is. Hang the named player at once; 'test the claimant first' only buys the killer another night. Claimants should say this explicitly when posting.",
      "note": "A flip can no longer test the hit. Later causes of death and the end check do instead."
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "An exact-role hit (Oracle RIGHT) naming a killer role on an unverifiable claimant is the strongest lead you'll get: hang the named player at once. Roles stay hidden on death, so the check comes afterward. If attacks with that cause continue, or the game doesn't end when it should, the Oracle lied and hangs next. A last Yakuza can't even know who the hidden Neutral is. 'Test the claimant first' only buys the killer another night. Claimants should say this explicitly when posting.",
+     "note": "The entry treated 'the game doesn't end when it should' as proof the Oracle lied. Under R1 any win-blocking Neutral or an unseen Yakuza keeps the game going, so a continuing game no longer shows that on its own. Continued attacks with the same cause remain the check."
     }
    ]
   },
@@ -13236,7 +13266,7 @@
   {
    "id": "t168",
    "audience": "Village",
-   "tip": "Once several players you believe were Yakuza have been hanged, the last one usually hides behind a late, uncheckable Vanilla claim from a player who stayed unclaimed and echoed others while asking investigators to claim. Do slot math on the Yakuza roles already shown by public effects, exact-role checks and any list, and test those claims first with blocks, exact-role guesses and audits. A Not Evil read on them means nothing, since the lone Yakuza holds the Katana.",
+   "tip": "Once several players you believe were Yakuza have been hanged, a last one usually hides behind a late, uncheckable Vanilla claim from a player who stayed unclaimed and echoed others while asking investigators to claim. The game going on doesn't prove one is left: a win-blocking Neutral (Serial Killer, Arsonist, Vulture) keeps it going too and hides behind the same kind of claim (t96). Do slot math on the Yakuza roles already shown by public effects, exact-role checks and any list, and test those claims first with blocks, exact-role guesses and audits. A Not Evil read on them means nothing: a lone Yakuza holds the Katana, and a Serial Killer or Arsonist reads Not Evil anyway.",
    "status": "active",
    "support": [
     {
@@ -13256,6 +13286,12 @@
      "change": "edited",
      "old": "(Village) Once several Yakuza have flipped, the last one usually hides behind a late, uncheckable Vanilla claim from a player who stayed unclaimed and echoed others while asking investigators to claim. Do slot math on the flipped Yakuza roles, and test those claims first with blocks, exact-role guesses and audits. A Not Evil read on them means nothing, since the lone Yakuza holds the Katana.",
      "note": "There are no Yakuza flips to count now."
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "Once several players you believe were Yakuza have been hanged, the last one usually hides behind a late, uncheckable Vanilla claim from a player who stayed unclaimed and echoed others while asking investigators to claim. Do slot math on the Yakuza roles already shown by public effects, exact-role checks and any list, and test those claims first with blocks, exact-role guesses and audits. A Not Evil read on them means nothing, since the lone Yakuza holds the Katana.",
+     "note": "The entry assumed a last Yakuza must exist once the others were hanged. R1 says a continuing game doesn't show a Yakuza is alive, since any blocking Neutral keeps it going. The same test of the late Vanilla claimant still applies, so the entry is reworded, not retired."
     }
    ]
   },
@@ -13870,7 +13906,7 @@
   {
    "id": "t183",
    "audience": "Everyone",
-   "tip": "Before each endgame trial, work out each consequence separately. Who is left after the death? Does the R1 check end the game (Jesters and Executioners are ignored)? Is a Jester or Executioner win earned? A hang wins for them however the game ends. Can revenge still happen? It needs a following night and a living Guilty voter. Never accept an opponent's version of these rules.",
+   "tip": "Before each endgame trial, work out each consequence separately. Who is left after the death? Does the R1 check end the game? Roles that never block wins are ignored (Jester, Executioner, Bounty Hunter, Magpie); every other Neutral (Serial Killer, Arsonist, Vulture) keeps the game going, so a game that continues doesn't show a Yakuza is alive. Is a Jester or Executioner win earned? A hang wins for them however the game ends. Can revenge still happen? It needs a following night and a living Guilty voter. Never accept an opponent's version of these rules.",
    "status": "active",
    "support": [
     {
@@ -13919,6 +13955,12 @@
     {
      "game": "game_20261010_003734_551955",
      "change": "added"
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "Before each endgame trial, work out each consequence separately. Who is left after the death? Does the R1 check end the game (Jesters and Executioners are ignored)? Is a Jester or Executioner win earned? A hang wins for them however the game ends. Can revenge still happen? It needs a following night and a living Guilty voter. Never accept an opponent's version of these rules.",
+     "note": "The R1 check listed only Jesters and Executioners as ignored. Under R1 the ignored roles are all four that say 'never blocks wins', and every other Neutral, the Vulture included, keeps the game going."
     }
    ]
   },
@@ -17055,7 +17097,7 @@
   {
    "id": "t256",
    "audience": "Village",
-   "tip": "Test a late Jester or Executioner claim on trial with mechanics, not the revenge threat. (1) Win check: Jesters and Executioners never block a win. If the game didn't end when the last known Yakuza died, some non-Village, non-Jester player is still alive. If the claimant is the only plausible one left, the Neutral claim fails. (2) Night pattern: a no-kill night on which only the claimant was blocked fits them holding the Katana. (3) Foreknowledge: did they name a role before its owner claimed it? That points to a Yakuza info role (Diviner, Wiretap), not an Executioner. (4) True-alignment counts: a census 'not Good' fits Neutral or Yakuza, so it decides nothing alone but combines with the above. If these converge, hang with a bare Guilty majority and keep confirmed info roles on Innocent.",
+   "tip": "Test a late Jester or Executioner claim on trial with mechanics, not the revenge threat. (1) Win check: Jesters, Executioners, Bounty Hunters and Magpies never block a win; every other Neutral (Serial Killer, Arsonist, Vulture) does. If the game didn't end when the last known Yakuza died, a Yakuza or one of those blocking Neutrals is still alive. That alone doesn't show which, but if the claimant is the only plausible blocker left, the Jester or Executioner claim fails and the hang is right whichever blocker they are. (2) Night pattern: a no-kill night on which only the claimant was blocked fits them holding the Katana. (3) Foreknowledge: did they name a role before its owner claimed it? That points to a Yakuza info role (Diviner, Wiretap), not an Executioner. (4) True-alignment counts: a census 'not Good' fits Neutral or Yakuza, so it decides nothing alone but combines with the above. If these converge, hang with a bare Guilty majority and keep confirmed info roles on Innocent.",
    "status": "active",
    "support": [
     {
@@ -17069,13 +17111,19 @@
     {
      "game": "game_20261010_150921_904458",
      "change": "added"
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "Test a late Jester or Executioner claim on trial with mechanics, not the revenge threat. (1) Win check: Jesters and Executioners never block a win. If the game didn't end when the last known Yakuza died, some non-Village, non-Jester player is still alive. If the claimant is the only plausible one left, the Neutral claim fails. (2) Night pattern: a no-kill night on which only the claimant was blocked fits them holding the Katana. (3) Foreknowledge: did they name a role before its owner claimed it? That points to a Yakuza info role (Diviner, Wiretap), not an Executioner. (4) True-alignment counts: a census 'not Good' fits Neutral or Yakuza, so it decides nothing alone but combines with the above. If these converge, hang with a bare Guilty majority and keep confirmed info roles on Innocent.",
+     "note": "The win check said 'some non-Village, non-Jester player is still alive'. Under R1 a Bounty Hunter or Magpie doesn't block either, and the blocker may be a Serial Killer, Arsonist or Vulture and not a Yakuza. The check still breaks a Jester or Executioner claim; points 2 and 3 are what point at Yakuza specifically."
     }
    ]
   },
   {
    "id": "t257",
    "audience": "Yakuza",
-   "tip": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another non-Village player is plausibly alive. Run the win check yourself first: if your teammate's death would have ended the game with only Village and Neutral non-blockers left, the town will say someone non-Village is still alive and point at you. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
+   "tip": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another win-blocker (a Serial Killer, Arsonist or Vulture) is plausibly alive. Run the win check yourself first: Jesters, Executioners, Bounty Hunters and Magpies never block the end, so if your teammate's death would have ended the game with only Village and those roles left, the town will say a blocker is still alive and point at you. A continuing game doesn't itself prove a Yakuza is alive, so the argument bites only when you are the one plausible blocker. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
    "status": "active",
    "support": [
     {
@@ -17089,6 +17137,12 @@
     {
      "game": "game_20261010_150921_904458",
      "change": "added"
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another non-Village player is plausibly alive. Run the win check yourself first: if your teammate's death would have ended the game with only Village and Neutral non-blockers left, the town will say someone non-Village is still alive and point at you. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
+     "note": "'Another non-Village player' was too loose: under R1 only Yakuza and the blocking Neutrals (Serial Killer, Arsonist, Vulture) keep the game going, while a Bounty Hunter or Magpie doesn't. Reworded to the exact R1 check."
     }
    ]
   },
@@ -19474,7 +19528,7 @@
   {
    "id": "t349",
    "audience": "Village",
-   "tip": "Test every passive result claim (Scout groups, Fortune Teller counts, Cartographer sizes) against all the visits already public on the Day it is posted, not only when the claimant is cornered. Free known edges: audits, checks and protections named in claims and wills, Katana and released-attack deaths, trap and alert deaths. A Scout who names two players a known visit links (e.g. one audited the other) as being in different groups is lying. So is a Fortune Teller whose visitor count is below the number of confirmed visitors. Each is a mechanical break worth hanging on. Re-run the check each morning when new wills come out, and post the arithmetic in one message. A break found after the Yakuza hold half the votes is worthless, so do it while the Village still has its majority.",
+   "tip": "Test every passive result claim (Scout groups, Fortune Teller counts, Cartographer sizes) against all the visits already public on the Day it is posted, not only when the claimant is cornered. Free known edges: audits, checks and protections named in claims and wills, Katana and released-attack deaths, trap and alert deaths. A Scout who names two players a known visit links (e.g. one audited the other) as being in different groups is lying; no Roleplayer is told Scout or Cartographer. A Fortune Teller whose visitor count is below the number of confirmed visitors is not reporting real counts: a liar, or a Roleplayer, since Fortune Teller is a role a Roleplayer can be told and its counts are random. Throw those counts out either way. A proven lie is a mechanical break worth hanging on; for a broken Fortune Teller, weigh the Roleplayer reading (t98) and look for a second break (a changed story, hangs pushed on the count) before the vote. Re-run the check each morning when new wills come out, and post the arithmetic in one message. A break found after the Yakuza hold half the votes is worthless, so do it while the Village still has its majority.",
    "status": "active",
    "support": [
     {
@@ -19488,6 +19542,12 @@
     {
      "game": "game_20261012_150142_930656",
      "change": "added"
+    },
+    {
+     "game": "revision 20261013_002624",
+     "change": "edited",
+     "old": "Test every passive result claim (Scout groups, Fortune Teller counts, Cartographer sizes) against all the visits already public on the Day it is posted, not only when the claimant is cornered. Free known edges: audits, checks and protections named in claims and wills, Katana and released-attack deaths, trap and alert deaths. A Scout who names two players a known visit links (e.g. one audited the other) as being in different groups is lying. So is a Fortune Teller whose visitor count is below the number of confirmed visitors. Each is a mechanical break worth hanging on. Re-run the check each morning when new wills come out, and post the arithmetic in one message. A break found after the Yakuza hold half the votes is worthless, so do it while the Village still has its majority.",
+     "note": "The entry called any Fortune Teller with an impossible count a liar. Roleplayer results are now random draws, so a Village Roleplayer told Fortune Teller will post counts that break against known visits. The Scout and Cartographer breaks stay hard lies; the Fortune Teller break now carries the Roleplayer check. The evidence (Olivia's and Grace's broken results) is unchanged."
     }
    ]
   },
