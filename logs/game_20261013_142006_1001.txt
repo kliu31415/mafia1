@@ -257,3 +257,29 @@ Trial votes on Alice: 8 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Alice] Guilty - Carol, Frank, Heidi, Ivan, Judy, Mallory, Niaj, Olivia; Innocent - Alice
 Alice is executed by hanging (8 Guilty of 9 votes; 5 needed).
 Alice died (executed by hanging). Their role isn't revealed. Their last will: "Alice - Vulture (Neutral), Merciful trait (my trial votes always count Innocent). No night action, no visits, never attacked anyone. FT/Roleplayer was a cover. Death reports (each 50% true): Erin = Talent Agent (Yakuza; 2 tokens left fits Olivia's count), Grace = Vulture (false), Dave = Cartographer, Bob = Enforcer. Leads: the Judy/Niaj Auditor clash, whoever visited Dave on N2 while claiming to stay home, and whoever pushed hardest to spend D4's hang on a non-killer."
+
+===== NIGHT 4 =====
+(to Frank, Ivan) Frank (Yakuza chat): Plan for N4: Ivan keeps the Katana (holder=Ivan) and we hit Carol. Reasons: she leads the town, she nominated Alice, and her trap makes Mallory unsafe for us. A Trapper can't trap herself, so attacking Carol can't set off a trap. Olivia is the other option, and she's a real danger to me: if she audits me, she'll find 2 fixer tokens, which breaks my Juror claim. But Carol may have moved her trap to Olivia on N3 (she only said it "didn't go off"), and a trap would hit you with a Strong Attack. So Carol tonight, and Olivia next night if nothing points at you. Tomorrow's likely trial is Niaj vs Judy, and Judy being hanged would kill you. So I'll fix Niaj tonight: if he votes Guilty on Judy, it counts as Innocent. No swap needed, so keep your last token. Vote holder=Ivan, target=Carol?
+(to Frank, Ivan) Ivan (Yakuza chat): Agreed: holder=Ivan, target=Carol. She can't trap herself, so this is the one attack with no trap risk to me, and she's driving town votes. Fixing Niaj is fine. If Judy goes on trial tomorrow, I'll vote Innocent and argue for a delay ("audit test first"). Please vote Innocent too unless it's clearly lost. No swap from me: my Accountant count has to stay at 1 to match my Magpie story. Olivia is the real threat to your Juror claim. If she audits you before we get to her, you could say a Philanthropist handed you a token, but that only covers 1, not 2. So Olivia next night, as long as nothing suggests the trap moved onto her. One more thing: the Magpie visited me N3, so it was in Bob's group. Judy and Niaj both say they audited Bob, so either of them could be the Magpie. Not Heidi, per Mallory's result. Vote holder=Ivan, target=Carol. Ready.
+(to Frank, Ivan) Frank (Yakuza chat): Confirmed: holder=Ivan, target=Carol. No swap; keep your last token so your count stays at 1. I'm fixing Niaj tonight. If Judy goes on trial tomorrow, I'll vote Innocent with you and push "audit test first." One note: Judy has to be Village (Bonded only goes to Village or Yakuza, and she isn't us), so she's probably the real Auditor. That makes Niaj the likely fake, so he could be the Magpie. If tomorrow's heat goes to Niaj, I'll ride it, since hanging him costs us nothing. Olivia is next night unless something points at a trap on her. Ready.
+(to Frank, Ivan) Ivan (Yakuza chat): Confirmed: holder=Ivan, target=Carol. I'm not swapping, so I keep my last token. You fix Niaj. Agreed that Judy must be Village (Bonded), so Niaj is the likely fake and possibly the Magpie. Riding heat onto Niaj tomorrow is fine with me, and it keeps it off Judy. Olivia next night unless something points to a trap on her. Ready.
+Night actions:
+  Carol (Trapper): target Olivia
+  Frank (Fixer): target Niaj; chose to spend 1 token(s); Katana vote: Ivan holds, attacks Carol
+  Ivan (Smuggler): no role action; Katana vote: Ivan holds, attacks Carol
+  Judy (Auditor): target Niaj
+  Niaj (Auditor): target Judy
+  Olivia (Magpie): target Heidi
+Katana: Ivan holds it and attacks Carol.
+(to Judy) Moderator (private): Your audit of Niaj's votes during the Day, in order: Yes on the nomination of Alice; Guilty in the trial of Alice.
+(to Niaj) Moderator (private): Your audit of Judy's votes during the Day, in order: Yes on the nomination of Alice; Guilty in the trial of Alice.
+(to Ivan) Moderator (private): Your Katana attack on Carol tonight succeeded: Carol died.
+(to Frank) Moderator (private): You fixed Niaj tonight. During the following Day, each Guilty/Innocent trial vote they cast counts as the opposite. 1 fixer token left.
+[Moderator summary] Night 4: No role-blocks or swaps. Carol moved her trap from Mallory to Olivia (armed from N5; persists after her death). Frank fixed Niaj (1 fixer token left). Judy audited Niaj; Niaj audited Judy. Olivia (Magpie) stole from Heidi. Ivan held the Katana and attacked Carol (Standard vs None): Carol died (Katana). No Avenger or Bonded effects triggered. Living: Frank, Heidi, Ivan, Judy, Mallory, Niaj, Olivia; the game continues.
+[Night check] Night 4: correct
+(to Olivia) Moderator (private): You stole a token from Heidi (3 of 3).
+(to Heidi) Moderator (private): A Magpie stole one of your sniper tokens. You have 2 left.
+(to Mallory) Moderator (private): Tonight Frank, Mallory and Olivia were each in a different visit group.
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Frank) Moderator (private): Yakuza night summary: Ivan holds the Katana and chose to attack Carol. Ivan (Smuggler) chose no action.
+(to Ivan) Moderator (private): Yakuza night summary: Ivan holds the Katana and chose to attack Carol. Frank (Fixer) chose to act on Niaj, spending 1 token(s).
