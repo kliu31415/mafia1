@@ -17,3 +17,22 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Erin.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Erin (public): Morning all. Proposal: investigators hold results until they bear on a vote, then post night, target and exact result. Nobody should claim power roles today. Quiet players, please speak up tomorrow.
+Frank (public): Agree with Erin. No power claims today. Tomorrow let's watch who pushes hardest with no data and who stays quiet.
+Grace (public): Agreed with Erin and Frank. No claims today. Tomorrow I'll be watching for PM pairs who then push the same line, and for anyone who pushes a hang without any data.
+Heidi (public): Agree with all three: no claims today. Tomorrow I'll be checking votes against what people said they'd vote, and keeping a tally of nomination totals.
+Ivan (public): Agreed: no claims today. Tomorrow I'll weigh mechanical results over vibes, and watch PM traffic patterns.
+Judy (public): Agreed, no claims today. Tomorrow I'd like to hear from everyone who hasn't spoken yet: Alice, Bob, Carol, Dave especially.
+Mallory (public): Agreed, no claims today. Tomorrow I'll compare nomination totals with what people said they'd vote, and ask quiet players for a plain account of their night.
+Niaj (public): Agreed, no claims today. Tomorrow I'll be watching which claims fit the night's deaths and who goes quiet.
+Olivia (public): Agreed, no claims today. Tomorrow I'll be looking for claims that fit the night's deaths, and for anyone pushing a hang without data.
+Alice (public): Agreed, no claims today. Tomorrow I'll compare everyone's stated votes with the totals, and I'll ask for a plain account from anyone who claims a role.
+Bob (public): Agreed, no claims today. Tomorrow I'll speak up and give a plain account of myself if asked. I'll be watching whether claims fit the night's deaths and how votes line up with totals.
+Carol (public): Agreed, no claims today. I'll speak up tomorrow and give a plain account of myself if asked.
+Dave (public): Agreed, no claims today. I'll give a plain account tomorrow and I'll be watching for votes that don't match stated intentions.
+Erin (public): Good, we all agree. Tomorrow: plain accounts from everyone, and investigators share results once they bear on a vote.
+Discussion time is over. The day ends.
