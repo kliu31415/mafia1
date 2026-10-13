@@ -474,7 +474,7 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
             if hider and to == hide_to:  # the first message to them this turn; nobody else is told it was sent
                 hide_to = None
                 game.emit(f"{p.name} -> {to} (private, hidden: nobody else was told it was sent): {text}", readers,
-                          cat=PM, speaker=p.name, to=to, message=text)
+                          cat=PM, speaker=p.name, to=to, message=text, hidden=True)
                 trait_logic(hider).hid_pm(game, p, to)
                 continue
             game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text,

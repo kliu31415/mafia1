@@ -621,8 +621,10 @@ def classify(r: dict) -> tuple[str, str, str]:
     match cat:
         case "chat":
             return "chat", "", f"{r['speaker']}{puppeted(r)}: {r['message']}"
-        case "pm":
-            return "pm", "PM", f"{r['speaker']}{puppeted(r)} → {r['to']}: {r['message']}"
+        case "pm":  # a Confidant's hidden PM (rules R24): the hidden field since log version 71, the text before
+            hidden = r.get("hidden") or t.startswith(f"{r['speaker']} -> {r['to']} (private, hidden")
+            body = f"{r['speaker']}{puppeted(r)} → {r['to']}: {r['message']}"
+            return "pm", "Hidden PM" if hidden else "PM", body
         case "yak":
             return "yak", "Yakuza chat", f"{r['speaker']}: {r['message']}"
         case "result":

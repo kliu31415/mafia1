@@ -126,7 +126,9 @@ from records import caller_of, read_records, redact, safe_print
 # 69: "remorse" records (player, hanged, day): a Remorseful voter's death after a hanging (rules R24)
 # 70: the Ex-Con role became the Notorious and Sleepwalker traits (roles.RETIRED); night_actions trait_actions may
 #     have a Sleepwalker's random visit, {trait, target, automatic: true}, drawn by code (rules R24)
-LOG_VERSION = 70
+# 71: "pm" events have hidden: true for a Confidant's hidden private message (rules R24); before, only their text
+#     said "(private, hidden: ...)"
+LOG_VERSION = 71
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

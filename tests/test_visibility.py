@@ -139,6 +139,13 @@ def test_a_confidants_hidden_message_reaches_only_its_recipient_and_listeners(ga
     chat_turn(game, players, alice, rnd=1, can_nominate=False)
     hidden = next(e for e in game.events if "I'm the Sheriff." in e.text)
     assert "hidden" in hidden.text and hidden.visible_to == {"Alice", "Bob", "Dave"}  # Dave: the Wiretap
+    assert hidden.fields["hidden"] and not any(e.fields.get("hidden") for e in game.events if e is not hidden)
+    from log_viewer import classify
+    record = {"cat": hidden.cat, "text": hidden.text, "visible_to": sorted(hidden.visible_to), **hidden.fields}
+    assert classify(record)[1] == "Hidden PM"
+    record.pop("hidden")  # logs before version 71: read from the text
+    assert classify(record)[1] == "Hidden PM"
+    assert classify({**record, "text": "Alice -> Bob (private): Hi.", "message": "Hi."})[1] == "PM"
     assert not any("sent Bob" in e.text for e in game.events)
     assert any("Alice sent Carol a private message." == e.text for e in game.events)  # not hidden
     assert game.pm_record[game.day] == {"Alice -> Carol": 1}
