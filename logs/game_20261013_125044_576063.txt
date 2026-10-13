@@ -167,3 +167,16 @@ Trial votes on Erin: 3 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Erin] Guilty - Bob, Frank, Grace; Innocent - Erin
 Erin is executed by hanging (3 Guilty of 4 votes; 3 needed).
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Sheriff. N1: Bob, Not Evil. N2: Carol, Evil. If I die, examine Frank’s change from saying he protected Bob N1 to saying he protected me, and Bob’s uncorroborated alert report. Bob’s result does not clear a Neutral killer."
+
+===== NIGHT 3 =====
+Night actions:
+  Bob (Veteran): chose to spend 1 token(s); "Alert on Night 3 with my last-but-one token (1 left after). Any visitor gets a Strong Attack. Stolen Blade: Standard Attack on Frank. Frank's Medic claim has shifted (N1 target changed from Bob to Erin), and Frank pushed the Grace and Erin nominations. Grace's Juror claim has been consistent."; trait action: Stolen Blade on Frank
+  Frank (Serial Killer): target Grace
+  Grace (Juror): target Bob; second target Frank; "Juror check on Bob and Frank: how often their votes matched across all Day votes so far."
+Katana: no attack (no target); nobody holds it.
+(to Grace) Moderator (private): Your jury check: Bob and Frank voted the same way in 1 of 1 trial votes and 1 of 2 nomination votes.
+(to Bob) Moderator (private): You went on alert tonight. Nobody visited you. 0 alert tokens left. Your attack on Frank did not kill them.
+(to Frank) Moderator (private): You were attacked with the Katana tonight and survived. Your attack on Grace killed them.
+[Moderator summary] Night 3: Bob alerted (alert 1->0); no visitors to Bob. Bob's Stolen Blade (Standard) on Frank failed vs Frank's Standard Defense. Frank (SK) Strong Attack killed Grace. Grace's Juror check on Bob/Frank resolved via jury op (Astral). No Katana action (no Yakuza alive). Visits: Bob->Frank, Frank->Grace. Remaining: Bob (Village), Frank (Neutral SK); game continues.
+[Night check] Night 3: correct
+(to Grace) Moderator (private): You were attacked tonight (Serial Killer) and died.
