@@ -1,0 +1,18 @@
+Setup:
+  Alice    seat 1  Vulture           anthropic/claude-opus-5.5 (via Claude Code)  trait: Merciful
+  Bob      seat 2  Enforcer          anthropic/claude-opus-5.5 (via Claude Code)
+  Carol    seat 3  Trapper           anthropic/claude-opus-5.5 (via Claude Code)  trait: Confidant, Rival
+  Dave     seat 4  Cartographer      anthropic/claude-opus-5.5 (via Claude Code)  trait: Curt
+  Erin     seat 5  Talent Agent      anthropic/claude-opus-5.5 (via Claude Code)
+  Frank    seat 6  Fixer             anthropic/claude-opus-5.5 (via Claude Code)
+  Grace    seat 7  Sniper            anthropic/claude-opus-5.5 (via Claude Code)
+  Heidi    seat 8  Sniper            anthropic/claude-opus-5.5 (via Claude Code)  trait: Avenger, Disguised
+  Ivan     seat 9  Smuggler          anthropic/claude-opus-5.5 (via Claude Code)  trait: Disguised, Bonded
+  Judy     seat 10 Auditor           anthropic/claude-opus-5.5 (via Claude Code)  trait: Bonded, Curt
+  Mallory  seat 11 Scout             anthropic/claude-opus-5.5 (via Claude Code)
+  Niaj     seat 12 Auditor           anthropic/claude-opus-5.5 (via Claude Code)  trait: Rival
+  Olivia   seat 13 Magpie            anthropic/claude-opus-5.5 (via Claude Code)  trait: Disguised
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).
