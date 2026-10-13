@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "439bbc4993bfa255",
- "text_sha256": "58b638f7e6f2720e",
+ "cut_sha256": "04db63f1c17b5c87",
+ "text_sha256": "f07521b6ae971981",
  "made_by": "a Claude Code session",
- "made": "2026-10-13T07:51:39+00:00",
+ "made": "2026-10-13T10:36:10+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -70,6 +70,11 @@
    "old": "you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19); checks that see true\n  alignment, such as the Census Taker's count, see you as Good. You stay Village in every other way: you aren't in\n  the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't told about you. The game's\n  end ignores you, like a role that never blocks wins (R1): it ends when the other living players are all Village\n  or all Yakuza.",
    "new": "you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19). You stay Village in every\n  other way: you aren't in the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't\n  told about you. The game's end ignores you, like a role that never blocks wins (R1): it ends when the other\n  living players are all Village or all Yakuza.",
    "reason": "Census Taker is not on the script."
+  },
+  {
+   "old": "but the attack is Divine, which no Defense, protection,\n  trap or charm stops.",
+   "new": "but the attack is Divine, which no Defense, protection\n  or trap stops.",
+   "reason": "The Kitsune (fox charm) is not on the script."
   }
  ]
 }

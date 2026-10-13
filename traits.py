@@ -212,6 +212,29 @@ TRAITS: dict[str, TraitInfo] = {
                                    "<circle cx='5' cy='5' r='4.4' fill='#57534e' stroke='#fff' stroke-width='1'/>"
                                    "<path d='M2.8 7.6L7.2 2.4M2.8 2.4L7.2 7.6' stroke='#fff' "
                                    "stroke-width='1.1'/></svg>")),  # crossed blades
+    # Yakuza only, told, one use each, never together or with Shaky (Kevin, Oct 13 2026): a one-use choice rather than
+    # every attack, so it's a decision (when to spend it) and a smaller balance swing.
+    "Katana Expert": TraitInfo(frozenset({Alignment.EVIL}),
+                               "Once per game, on a night you hold the Katana, you may make its attack Strong instead "
+                               "of Standard (rules R3, R8, R24).",
+                               "One Strong Katana attack a game.",
+                               power=0.1,
+                               mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                     "<circle cx='5' cy='5' r='4.4' fill='#1e3a8a' stroke='#fff' stroke-width='1'/>"
+                                     "<path d='M2.6 7.4L7.4 2.6' stroke='#fff' stroke-width='1.2'/>"
+                                     "<circle cx='7.2' cy='7.2' r='0.9' fill='#fff'/>"
+                                     "</svg>")),  # a blade and one dot
+    "Katana Master": TraitInfo(frozenset({Alignment.EVIL}),
+                               "Once per game, on a night you hold the Katana, you may make its attack Divine instead "
+                               "of Standard, which nothing stops (rules R3, R8, R24).",
+                               "One Divine Katana attack a game.",
+                               power=0.25,
+                               mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                     "<circle cx='5' cy='5' r='4.4' fill='#7c2d12' stroke='#fff' stroke-width='1'/>"
+                                     "<path d='M2.6 7.4L7.4 2.6' stroke='#fff' stroke-width='1.2'/>"
+                                     "<circle cx='6.4' cy='7.6' r='0.8' fill='#fff'/>"
+                                     "<circle cx='8' cy='6' r='0.8' fill='#fff'/>"
+                                     "</svg>")),  # a blade and two dots
     # Village only, hidden (Kevin, Oct 13 2026): the moderator words the fake like a real defended attack, so the holder
     # can't tell. An extra Katana attack (Spare Blade) can exist, so a fake Katana attack is never provably false.
     "Paranoid": TraitInfo(frozenset({Alignment.GOOD}),
@@ -338,7 +361,9 @@ TRAITS: dict[str, TraitInfo] = {
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"}),
              frozenset({"Selfish", "Selfless"}), frozenset({"Usurper", "Selfish"}), frozenset({"Usurper", "Selfless"}),
              frozenset({"Remorseful", "Zealot"}), frozenset({"Turncoat", "Notorious"}),
-             frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"})]
+             frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"}),
+             frozenset({"Katana Expert", "Katana Master"}), frozenset({"Katana Expert", "Shaky"}),
+             frozenset({"Katana Master", "Shaky"})]
 
 
 class TraitLogic:
@@ -664,6 +689,52 @@ class SpareBlade(OneShotAction):
                              "a Spare Blade holder can't attack themselves")
 
 
+KATANA_BOOST_USED = "katana_boost_used"  # game.role_state: Katana Experts and Masters who have used their attack
+
+
+class KatanaBoost(TraitLogic):
+    """Katana Expert and Katana Master (rules R24): once a game, the holder may raise the Katana's own attack to
+    `level` on a night they hold it. Asked for in trait_actions with the target they mean it for; the moderator uses
+    the op only when it applies (code checks they hold the Katana tonight and haven't used it)."""
+
+    def __init__(self, trait: str, level: str, op: str):
+        self.trait, self.level, self.op = trait, level, op
+        self.ops = {op: ({"by"}, set(),
+                         f"{{op:'{op}', by}}: the {trait} `by`, who holds the Katana tonight, makes the Katana's own "
+                         f"attack {level} (trait, R24); code marks it used. Resolve the attack yourself")}
+        self.night_note = (
+            f"{trait} (a trait, R24): a Yakuza whose trait_actions has trait '{trait}' asks to make the Katana's own "
+            f"attack tonight {level} instead of Standard. It applies only if they hold the Katana at the end of the "
+            "night (R8; the line with the Katana vote result says who) and the Katana attacks the target they named, "
+            "and a role-block on them stops it along with the attack. Then use the "
+            f"{op} op (it marks it used, even if the attack fails) and resolve the Katana's attack at level {level} "
+            "(R3) against the target's Defense"
+            + (" (protection, traps and fox charms can't stop a Divine Attack)" if level == "Divine" else "")
+            + ". Otherwise don't use the op: it isn't used up, and the Katana attack is Standard as usual. Tell the "
+            "user only whether the attack killed, as for any Katana attack. Never mention the trait to anyone else.")
+        self.action_task = (
+            f"You have the {trait} trait: on a night you hold the Katana, you may make its attack {level} by adding "
+            f"{{trait: '{trait}', target}} to trait_actions, with target the player the Katana attacks; it works only "
+            "if you hold the Katana at the end of the night and it attacks that player, and is used up only then. "
+            "Leave trait_actions empty to keep it.")
+
+    def can_act(self, game: Game, p: Player) -> bool:
+        return p.name not in game.role_state.get(KATANA_BOOST_USED, [])
+
+    def check_op(self, game: Game, change: dict) -> str | None:
+        by = game.player(change["by"])
+        if self.trait not in by.traits or not acted_tonight(game, by):
+            return f"{by.name} is not a {self.trait} who was alive when the night began"
+        if not self.can_act(game, by):
+            return f"{by.name} has already used their {self.trait} attack"
+        if by.name != game.katana_holder:
+            return f"{by.name} doesn't hold the Katana tonight ({game.katana_holder or 'nobody'} does)"
+        return None
+
+    def apply_op(self, game: Game, change: dict) -> None:
+        game.role_state.setdefault(KATANA_BOOST_USED, []).append(change["by"])
+
+
 class Stocked(TraitLogic):
     def on_dealt(self, game: Game, p: Player) -> None:
         for kind in p.tokens:  # rules R24: one more of each kind the role starts with
@@ -895,7 +966,9 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
                                 "Shaky": Shaky(), "Turncoat": Turncoat(),
-                                "Sleepwalker": Sleepwalker()}
+                                "Sleepwalker": Sleepwalker(),
+                                "Katana Expert": KatanaBoost("Katana Expert", "Strong", "katana_expert"),
+                                "Katana Master": KatanaBoost("Katana Master", "Divine", "katana_master")}
 assert set(LOGIC) == set(TRAITS)
 
 

@@ -282,7 +282,13 @@ action is used in addition to your role's own, and a role-block stops it too.
   Selfless.
 - Shaky (hidden; Yakuza players only): every Katana attack you make (the Katana's own while you hold it, or a Spare
   Blade attack) is level None, so it never kills (R3); it is still an attack and a visit. You aren't told you have
-  this trait.
+  this trait. Nobody holds Shaky with Katana Expert or Katana Master.
+- Katana Expert (Yakuza players only): once per game, on a night you hold the Katana, you may make its own attack
+  Strong instead of Standard. Choose it with your night action and name the player the Katana attacks; it works
+  only if you hold the Katana at the end of that night and it attacks that player, and only then is it used up. A
+  role-block on you stops it along with the attack, and it isn't used up.
+- Katana Master (Yakuza players only): like Katana Expert, but the attack is Divine, which no Defense, protection,
+  trap or charm stops. Nobody holds both Katana Expert and Katana Master.
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
 - Sleepwalker (any player): every night you visit one random other living player, besides any action of your own;
@@ -304,7 +310,8 @@ R8 (Yakuza and the Katana)
   Without a majority on a target, no attack happens; without a majority on a holder, the Katana doesn't move.
   A majority may move the Katana without attacking. That is the Katana's one attack a night; a trait (R24) can
   add a second, so two players may be attacked with the Katana in one night.
-- The Katana attack is Standard and is dealt by whoever holds it at the end of the night. It is an action and a
+- The Katana attack is Standard (a trait can change its level, R24) and is dealt by whoever holds it at the end
+  of the night. It is an action and a
   visit by that player (the new holder, if it moved that night): role-blocking them stops it, and Trackers see
   them visit the target. Moving or passing the Katana isn't an action: a role-block doesn't stop it (a blocked
   new holder still gets the Katana, but their attack fails), and it isn't a visit.

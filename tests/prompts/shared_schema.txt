@@ -223,7 +223,9 @@
       "type": "string",
       "enum": [
        "Armed",
-       "Spare Blade"
+       "Spare Blade",
+       "Katana Expert",
+       "Katana Master"
       ]
      },
      "target": {

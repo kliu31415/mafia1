@@ -1264,6 +1264,34 @@ def test_spare_blade_is_one_extra_katana_attack_a_game(game_factory):
         apply_ops(game, players, {"op": "spare_blade", "player": "Erin", "by": "Alice"})
 
 
+def test_katana_expert_and_master_raise_one_katana_attack_a_game_while_holding_it(game_factory):
+    # rules R8, R24 (Kevin, Oct 13 2026): one use each, only on a night they hold the Katana; never together
+    from night import role_notes
+    from players import night_action_schema
+    from traits import KATANA_BOOST_USED
+    game, players = game_factory(["Grunt", "Grunt", "Sheriff", "Medic", "Vanilla Villager"])
+    game.player("Alice").traits = ["Katana Master"]
+    game.player("Bob").traits = ["Katana Expert"]
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert {"katana_master", "katana_expert"} <= set(mod.ops)
+    assert "at level Divine" in role_notes(game) and "at level Strong" in role_notes(game)
+    game.phase = "night"
+    assert "trait_actions" in night_action_schema(game, game.player("Alice"))["properties"]
+    game.katana_holder = "Bob"
+    with pytest.raises(ValueError, match="doesn't hold the Katana tonight"):
+        apply_ops(game, players, {"op": "katana_master", "by": "Alice"})
+    with pytest.raises(ValueError, match="not a Katana Master"):
+        apply_ops(game, players, {"op": "katana_master", "by": "Bob"})
+    game.katana_holder = "Alice"
+    apply_ops(game, players, {"op": "katana_master", "by": "Alice"},
+              {"op": "kill", "player": "Carol", "cause": "Katana", "by": "Alice", "katana": True})
+    assert game.role_state[KATANA_BOOST_USED] == ["Alice"] and not game.player("Carol").alive
+    with pytest.raises(ValueError, match="already used"):
+        apply_ops(game, players, {"op": "katana_master", "by": "Alice"})
+    assert "trait_actions" not in night_action_schema(game, game.player("Alice"))["properties"]
+    assert bundle_error(["Katana Expert", "Katana Master"]) and bundle_error(["Katana Master", "Shaky"])
+
+
 def test_paranoid_is_hidden_and_gets_a_fake_attack_on_about_a_quarter_of_nights(game_factory):
     from night import role_notes
     from players import role_briefing
