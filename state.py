@@ -281,9 +281,10 @@ class Game:
     def reveal_death(self, name: str, cause: str) -> None:
         self.emit(self.death_reveal(name, cause), cat=DEATH)
         p = self.player(name)
-        what = (f"role cleaned by a Mortician, {cause}" if p.status.get(Status.CLEANED)
-                else f"{p.role} (revealed), {cause}" if self.role_reveal_reason(p)
-                else f"{self.revealed_identity(p)}, {cause}")
+        # "cause:" so a cause that names a role ("Ritualist") can't be read as the dead player's role
+        what = (f"role cleaned by a Mortician; cause: {cause}" if p.status.get(Status.CLEANED)
+                else f"{p.role} (revealed); cause: {cause}" if self.role_reveal_reason(p)
+                else f"{self.revealed_identity(p)}; cause: {cause}")
         when = p.death or {"day": self.day, "phase": self.phase}  # when they died, not when it's revealed
         self.death_record.append(f"{'Night' if when['phase'] == 'night' else 'Day'} {when['day']}: {name} ({what})")
 

@@ -2529,6 +2529,7 @@ def test_a_kindred_player_learns_two_random_players_whose_votes_counted_like_the
     text = told(game, "Alice")[-1]
     named = [n for n in ("Bob", "Carol", "Dave") if n in text]
     assert len(named) == 2 and "Erin" not in text and "you voted Guilty" in text
+    assert not game.events[-1].notice  # a result, not a duplicate: the readable logs show it
     assert not any("Kindred" in t for n in ("Bob", "Carol", "Dave", "Erin", "Frank") for t in told(game, n))
     # a Fixer reversed Alice's vote (counted Innocent) and Erin's (counted Guilty): Alice still reads her vote as cast
     trait_logic("Kindred").after_trial_vote(game, "Dave", cast, guilty=["Bob", "Carol", "Dave", "Erin"])
@@ -2552,6 +2553,7 @@ def test_a_faultline_player_learns_one_random_voter_from_each_side(game_factory)
     text = told(game, "Alice")[-1]
     assert ("Bob's vote counted as Guilty" in text or "Dave's vote counted as Guilty" in text)
     assert "Carol's as Innocent" in text or "Erin's as Innocent" in text
+    assert not game.events[-1].notice  # a result, not a duplicate: the readable logs show it
     trait_logic("Faultline").after_trial_vote(game, "Erin", cast, guilty=["Bob", "Carol", "Dave", "Erin"])
     assert told(game, "Alice")[-1].endswith("in the trial of Erin, every other vote counted as Guilty.")
     assert not any("Faultline" in t for n in ("Bob", "Carol", "Dave", "Erin") for t in told(game, n))

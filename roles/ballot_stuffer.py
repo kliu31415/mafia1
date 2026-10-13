@@ -29,5 +29,5 @@ class BallotStuffer(RoleLogic):
             return 1
         spend_token(game, p.name, "ballot")
         game.emit(f"(Only you see this) You stuffed the ballot: your vote counts twice in this trial "
-                  f"({tokens_left_text(p, 'ballot')}).", [p.name], kind="notice", cat=VOTE)
+                  f"({tokens_left_text(p, 'ballot')}).", [p.name], cat=VOTE)
         return 2

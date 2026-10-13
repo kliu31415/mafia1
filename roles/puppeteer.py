@@ -15,7 +15,9 @@ class Puppeteer(RoleLogic):
     # Any player (Kevin, Oct 11 2026): a Yakuza or the Puppeteer itself is only ever puppeted by a Smuggler's swap
     # (R23), so refusing it would make the swap's moved action fail. Puppeting yourself changes nothing.
     action = RecordedAction("puppet", "puppets player tomorrow", "code swaps who chats tomorrow", token="puppet",
-                            target="any")
+                            target="any",
+                            note="Apply it even if the Puppeteer died tonight: code lets the puppeting lapse at dawn "
+                            "(R21), so don't change their tokens by hand.")
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target

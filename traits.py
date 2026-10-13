@@ -544,7 +544,7 @@ class Kindred(TraitLogic):
                     f"only {picked[0]}'s vote counted as {way}")
             game.log.write("kindred", day=game.day, player=name, nominee=nominee, named=picked)
             game.emit(f"(Only you see this) Kindred: in the trial of {nominee}, you voted {way}, and {text}"
-                      + (" too." if picked else "."), [name], kind="notice", cat=VOTE)
+                      + (" too." if picked else "."), [name], cat=VOTE)
 
 
 class Remorseful(TraitLogic):
@@ -575,8 +575,7 @@ class Faultline(TraitLogic):
                         "random from that side).")
             else:
                 text = f"every other vote counted as {'Guilty' if picked[True] else 'Innocent'}."
-            game.emit(f"(Only you see this) Faultline: in the trial of {nominee}, {text}", [name], kind="notice",
-                      cat=VOTE)
+            game.emit(f"(Only you see this) Faultline: in the trial of {nominee}, {text}", [name], cat=VOTE)
 
 
 LOUD_FACTOR, CURT_FACTOR = 1.5, 2.0  # rules R24 states both numbers (a test checks)
