@@ -293,23 +293,24 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     than one faction is drawn with the faction of the seat it goes to ("Grudge@Yakuza"), so the balance knows
     which side it helps."""
     import role_power
-    from traits import FACTIONS, TRAITS
+    from traits import FACTIONS, TRAITS, fits
     faction_name = {a: f for f, a in FACTIONS.items()}
 
     def sample(n: int) -> list[tuple[str, Alignment]]:
-        chosen: list[tuple[str, Alignment]] = []
+        chosen: list[tuple[str, str]] = []
         for _ in range(n):
-            # At most one trait a player (Kevin, Oct 12 2026): a trait needs a seat of its alignments with none yet.
-            seats = [ROLES[r].alignment for r in roles]
-            for _, a in chosen:
-                seats.remove(a)
-            free = {t: [a for a in seats if a in info.alignments] for t, info in TRAITS.items()}
+            # At most one trait a player (Kevin, Oct 12 2026): a trait needs a seat it fits (its alignments, and
+            # fits_role) with none yet.
+            seats = list(roles)
+            for _, r in chosen:
+                seats.remove(r)
+            free = {t: [r for r in seats if fits(t, r)] for t in TRAITS}
             options = [t for t, seats in free.items() if seats]
             if not options:
                 break
             t = rng.choice(options)
             chosen.append((t, rng.choice(free[t])))  # as if dealt to a random free seat
-        return chosen
+        return [(t, ROLES[r].alignment) for t, r in chosen]
 
     sets = [(odds / TRAIT_SAMPLES, sample(n)) for n, odds in trait_odds(len(roles)).items()
             for _ in range(TRAIT_SAMPLES)]

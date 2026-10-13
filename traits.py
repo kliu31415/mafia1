@@ -9,10 +9,10 @@ becoming a Jester)."""
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
-from roles import Alignment
+from roles import ROLES, Alignment
 from roles.base import REVENGE_CAUSE, acted_tonight, join_names, record_attack, swap_partner
 
 if TYPE_CHECKING:
@@ -32,7 +32,13 @@ class TraitInfo:
     # opaque (the icon shows through a little), in a color no faction uses, so it doesn't read as a faction tint.
     mark: str
     power_for: dict[Alignment, float] | None = None  # power for some alignments, where it differs from `power`
+    hidden: bool = False  # its holder isn't told (rules R24 says which); `summary` then only goes to the rules
+    fits_role: Callable[[str], bool] | None = None  # which roles can get it, besides `alignments` (None: any)
 
+
+# Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
+BLOCK_IMMUNE = frozenset({"Veteran", "Party Animal", "Pharmacist", "Smuggler"})
+DROWSY_ODDS = 0.5  # rules R24 states it (a test checks)
 
 TRAITS: dict[str, TraitInfo] = {
     "Martyr": TraitInfo(frozenset({Alignment.GOOD}),
@@ -165,6 +171,18 @@ TRAITS: dict[str, TraitInfo] = {
                                 "<circle cx='5' cy='5' r='4.4' fill='#4338ca' stroke='#fff' stroke-width='1'/>"
                                 "<path d='M5 7.4L2.7 5.1Q1.9 4 2.8 3.2Q3.9 2.5 5 3.7Q6.1 2.5 7.2 3.2Q8.1 4 7.3 5.1Z' "
                                 "fill='#fff'/></svg>")),  # a heart
+    # Any faction (Kevin, Oct 13 2026), a role with a night action that can be role-blocked. Hidden: the holder gets
+    # the usual "you were role-blocked" and may hunt a blocker who doesn't exist.
+    "Drowsy": TraitInfo(frozenset(Alignment),
+                        "On each night, with probability 1/2, you are role-blocked (R9) with no blocker. You aren't "
+                        "told you have this trait (rules R24).",
+                        "Hidden: role-blocked on a random half of nights, with no blocker.",
+                        power=-0.15, hidden=True,
+                        fits_role=lambda r: ROLES[r].acts_at_night and r not in BLOCK_IMMUNE,
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                              "<circle cx='5' cy='5' r='4.4' fill='#334155' stroke='#fff' stroke-width='1'/>"
+                              "<path d='M6.4 2.4A2.8 2.8 0 1 0 7.6 6.4A2.2 2.2 0 0 1 6.4 2.4Z' "
+                              "fill='#fde68a'/></svg>")),  # a crescent moon
 }
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"})]  # traits no player may hold together (rules R24)
 
@@ -418,10 +436,26 @@ class Merciful(TraitLogic):
     fixed_trial_vote = False
 
 
+class Drowsy(TraitLogic):
+    def tonight_note(self, game: Game) -> str:
+        # Code draws each living holder's night (rules R24) with the game's RNG, so a seed replays it; the moderator
+        # applies it like any role-block (R9).
+        lines = []
+        for p in game.alive():
+            if "Drowsy" in p.traits and game.rng.random() < DROWSY_ODDS:
+                game.log.write("drowsy", player=p.name, day=game.day)
+                lines.append(f"{p.name} has the hidden Drowsy trait (R24) and is role-blocked tonight; code drew it. "
+                             "Handle it exactly like a role-block (R9) with no blocker: their actions, automatic "
+                             "effects and trait actions have no effect and spend no tokens, they make no visit, and "
+                             "they are told they were role-blocked, as usual. Never mention the trait or say why.")
+        return "\n- ".join(lines)
+
+
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
                                 "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious(),
                                 "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
-                                "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful()}
+                                "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
+                                "Drowsy": Drowsy()}
 assert set(LOGIC) == set(TRAITS)
 
 
@@ -434,7 +468,13 @@ ACTION_TRAITS = [t for t, lg in LOGIC.items() if lg.ops]  # traits with a night 
 
 def eligible(p: Player, trait: str) -> bool:
     # A player may have several traits, never the same one twice (Kevin, Oct 12 2026), nor two that exclude each other.
-    return p.info.alignment in TRAITS[trait].alignments and not bundle_error([*p.traits, trait])
+    return fits(trait, p.role) and not bundle_error([*p.traits, trait])
+
+
+def fits(trait: str, role: str) -> bool:
+    """Whether a player of this role can get the trait (its alignments, and fits_role)."""
+    info = TRAITS[trait]
+    return ROLES[role].alignment in info.alignments and (info.fits_role is None or info.fits_role(role))
 
 
 def bundle_error(bundle: list[str]) -> str | None:
@@ -505,4 +545,4 @@ def night_traits(game: Game, p: Player) -> list[str]:
 
 
 def briefing(p: Player) -> list[str]:
-    return [f"Your trait: {t}. {TRAITS[t].summary}" for t in p.traits]
+    return [f"Your trait: {t}. {TRAITS[t].summary}" for t in p.traits if not TRAITS[t].hidden]

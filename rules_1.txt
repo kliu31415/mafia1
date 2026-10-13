@@ -205,12 +205,12 @@ even though they believe they have their fake role's tokens.
 Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.
 
 R24 (Traits)
-Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start;
-nobody else is told, not even your teammates, and whether a game has any traits is secret. Investigations never see
-traits: they report roles and alignments only. A trait stays with you if your role changes. Traits are always true:
-a Roleplayer's trait is real even though its role isn't. A player may have more than one trait, but never the same
-one twice. Each trait says which players can get it. A trait's night action is used in addition to your role's own,
-and a role-block stops it too.
+Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start
+(except a hidden trait, which says so); nobody else is told, not even your teammates, and whether a game has any
+traits is secret. Investigations never see traits: they report roles and alignments only. A trait stays with you if
+your role changes. Traits are always true: a Roleplayer's trait is real even though its role isn't. A player may
+have more than one trait, but never the same one twice. Each trait says which players can get it. A trait's night
+action is used in addition to your role's own, and a role-block stops it too.
 - Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
   names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
   other way shows nothing.
@@ -247,6 +247,9 @@ and a role-block stops it too.
   and how it counted, and everything that reports how you voted (e.g. the Auditor, a Martyr's announcement) uses the
   vote as counted. A Fixer's reversal doesn't change it. Nobody holds both Zealot and Merciful.
 - Merciful (any player): like Zealot, but your trial votes always count as Innocent.
+- Drowsy (hidden; any player whose role has a night action and can be role-blocked): on each night, with
+  probability 1/2, you are role-blocked (R9) with no blocker. You aren't told you have this trait; on those nights
+  you are told you were role-blocked, as with any role-block.
 
 === PART 5: THE YAKUZA ===
 

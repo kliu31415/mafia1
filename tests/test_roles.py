@@ -1195,6 +1195,40 @@ def test_zealot_and_merciful_never_go_to_one_player(tmp_path):
     assert not any(p.traits for p in game.players) and "setup_error" in game.log.error_counts
 
 
+def test_drowsy_is_hidden_and_blocks_its_holder_on_about_half_of_nights(game_factory):
+    # rules R24 (Kevin, Oct 13 2026): code draws the night, the moderator applies it as a role-block (R9)
+    from night import role_notes
+    from players import role_briefing
+    from traits import DROWSY_ODDS, trait_logic
+    game, players = game_factory(["Sheriff", "Medic", "Grunt", "Vanilla Villager"])
+    game.player("Alice").traits = ["Drowsy"]
+    assert "Drowsy" not in role_briefing(game, game.player("Alice"))
+    game.phase = "night"
+    blocked = 0
+    for night in range(1, 41):
+        game.day = night
+        note = role_notes(game)
+        if "Alice has the hidden Drowsy trait" in note:
+            blocked += 1
+            assert "role-blocked tonight" in note and "Never mention the trait" in note
+    assert 10 < blocked < 30 and DROWSY_ODDS == 0.5
+    records = [r for r in map(json.loads, open(game.log.path)) if r["kind"] == "drowsy"]
+    assert len(records) == blocked and records[0]["player"] == "Alice"
+    game.player("Alice").alive = False  # a dead holder draws nothing
+    assert trait_logic("Drowsy").tonight_note(game) == ""
+
+
+def test_drowsy_goes_only_to_roles_that_act_at_night_and_can_be_role_blocked():
+    from role_summaries import role_paragraphs
+    from traits import BLOCK_IMMUNE, fits
+    immune = {r for r, text in role_paragraphs().items()
+              if "Immune to role-blocks" in text or "can't be role-blocked" in text}
+    assert immune == BLOCK_IMMUNE
+    assert fits("Drowsy", "Sheriff") and fits("Drowsy", "Grunt") is ROLES["Grunt"].acts_at_night
+    assert not fits("Drowsy", "Veteran") and not fits("Drowsy", "Vanilla Villager")
+    assert "probability 1/2" in open("rules_1.txt", encoding="utf-8").read()
+
+
 def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
     game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
     game.phase = "night"

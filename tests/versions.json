@@ -1,5 +1,5 @@
 {
- "log_version": 64,
+ "log_version": 65,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -14,6 +14,7 @@
   "day_shot_taken": ["attack", "delay", "player", "target"],
   "death": ["cause", "day", "katana", "killer", "killer_role", "killer_roles", "killers", "phase", "player", "role"],
   "debrief": ["answers", "cost", "model", "role", "usage", "who"],
+  "drowsy": ["day", "player"],
   "faultline": ["day", "guilty", "innocent", "nominee", "player"],
   "grudge": ["day", "player", "victim"],
   "katana": ["day", "result", "revote_targets"],

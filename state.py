@@ -438,7 +438,11 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         game.katana_holder = rng.choice(yakuza).name
     for p in players:
         logic(p.role).setup(game, p)
-    for item in traits:  # "Martyr+Armed": one player gets both; "Grudge@Yakuza": a Yakuza player gets it
+    # Traits only some roles fit (Drowsy) first, so a trait any role fits doesn't take their only seat; the order
+    # is otherwise kept, so a seed deals the same traits as before.
+    restricted = {t for t, info in TRAITS.items() if info.fits_role}
+    for item in sorted(traits, key=lambda item: not set(parse_trait(item)[0]) & restricted):
+        # "Martyr+Armed": one player gets both; "Grudge@Yakuza": a Yakuza player gets it
         bundle, alignment = parse_trait(item)
         if not bundle_error(bundle) and (
                 candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
