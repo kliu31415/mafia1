@@ -231,3 +231,5 @@ Katana: Carol holds it and attacks Bob.
 [Moderator summary] Night 3: Heidi's Drowsy trait role-blocked her (random draw), so her Standard Defense on Bob had no effect. Alice's Paranoid trait did not trigger. Carol held the Katana and attacked Bob (Standard against None), and Bob died (Katana). Bob watched Heidi and saw no visitors. Carol did not use her Fabricator action. Visits: Bob to Heidi, Carol to Bob. Left alive: Alice (Vigilante), Carol (Fabricator, Yakuza), Erin (Jester, never blocks wins), Heidi (Medic). The game continues.
 [Night check] Night 3: correct
 (to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+[ERROR crash] the game stopped on day 4 day: OSError: [Errno 28] No space left on device; continue it with: uv run mafia.py --resume /home/user/mafia1/logs/game_20261013_045457_890072.ckpt
+[Resumed from the checkpoint at the start of day 4]
