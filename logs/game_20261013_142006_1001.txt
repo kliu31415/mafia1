@@ -88,3 +88,30 @@ Frank (public): Agreed. Erin attacking N1 is the lead. Mallory, post when it mat
 Mallory (public): My info is small. It only clears a couple of people of one specific thing, so it doesn't point at anyone for a hang. I'll post it when it does. Enforcer, stay hidden.
 Dave (public): Agreed. No vibe hang today. When N1 visit claims come out, I'll check them against what I have.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Frank, Ivan) Frank (Yakuza chat): Plan for N2: I keep the Katana (holder=Frank) and hit Dave. He said he'll "check N1 visit claims against what I have," which sounds like Tracker, Lookout or Cartographer: visit info that could catch whoever holds the Katana. Mallory is my second choice (her "small info clears a couple of people" sounds like a Census or Lookout). The bigger risk is the Enforcer: if they visit me tonight, I get shot. Nothing points at me yet, so I'll take that risk. Ivan, a swap isn't needed tonight unless you feel strongly. Save both swaps for when someone claims to protect an investigator, or for when one of us is under suspicion. I'm holding my fixer tokens, since there's no trial on us yet. For D3: we both play along on the Erin lead, and if anyone starts pushing toward one of us, tell me in night chat who the loud Guilty voters will be. Vote holder=Frank, target=Dave?
+(to Frank, Ivan) Ivan (Yakuza chat): Agreed: holder=Frank, target=Dave. His "check N1 visit claims against what I have" sounds like visit info that could expose the holder, so he's the right call. Mallory next if Dave survives (watch for a Medic save; if the attack fails, we hit someone else rather than retry). No swap from me tonight. I'll keep both swaps for a protected investigator, or to dodge a check or the Enforcer once one of us is suspected. On D3 I'll play along on the Erin lead and keep the Philanthropist cover. If anyone pushes toward you, I'll name the loud Guilty voters here so you can fix them. Reminder: never Judy. Ready.
+(to Frank, Ivan) Frank (Yakuza chat): Confirmed: holder=Frank, target=Dave. No swap, and no fix from me tonight. If Dave survives, we switch to a new target next night instead of trying him again. If anyone pushes toward either of us on D3, post the loud voters here and I'll fix them. Ready.
+(to Frank, Ivan) Ivan (Yakuza chat): Confirmed: holder=Frank, target=Dave. No swap from me tonight. Ready.
+Night actions:
+  Bob (Enforcer): target Heidi; second target Ivan; chose to spend 1 token(s)
+  Carol (Trapper): target Mallory
+  Dave (Cartographer): target Mallory; chose to spend 1 token(s)
+  Frank (Fixer): no role action; Katana vote: Frank holds, attacks Dave
+  Ivan (Smuggler): no role action; Katana vote: Frank holds, attacks Dave
+  Judy (Auditor): no action
+  Niaj (Auditor): no action
+  Olivia (Magpie): target Mallory
+Katana: Frank holds it and attacks Dave.
+(to Bob) Moderator (private): You visited Heidi and Ivan tonight. You didn't attack anyone. You have 2 enforcer tokens left.
+(to Frank) Moderator (private): Your Katana attack on Dave succeeded: Dave died tonight.
+[Moderator summary] Night 2: Frank (Katana holder) attacked Dave with the Katana (Standard); Dave had Defense None and no protection, so he died (cause Katana). Bob (Enforcer) visited Heidi and Ivan and spent 1 token (Basic); neither made an attack, so no attack; 2 tokens left. Carol moved her trap to Mallory (armed from N3). Dave mapped Mallory (token spent); her group is Mallory, Carol, Olivia. Olivia (Magpie) tried to steal from Mallory, who has no tokens, so nothing happened. No swaps, no role-blocks.
+[Moderator summary] Night 2: Frank held the Katana and attacked Dave (Standard). Dave had Defense None and no protection, so he died (cause Katana). Bob, the Enforcer, visited Heidi and Ivan and spent 1 token (Basic). Neither of them made an attack, so Bob didn't attack and has 2 tokens left. Carol moved her trap to Mallory; it is armed from Night 3. Dave mapped Mallory and spent a token; her group is Mallory, Carol and Olivia. Olivia, the Magpie, tried to steal from Mallory, who has no tokens, so nothing was taken. There were no swaps and no role-blocks. Carol's held tell() only repeated her own action's result, which code delivers, so it wasn't re-sent.
+[Night check] Night 2: correct
+(to Olivia) Moderator (private): Mallory had no tokens, so you stole nothing.
+(to Dave) Moderator (private): Tonight's visit groups have sizes 3, 3, 2, 1, 1, 1. You mapped Mallory: their group is Carol, Mallory and Olivia. 1 map token left.
+(to Mallory) Moderator (private): Tonight Carol, Ivan and Niaj were each in a different visit group.
+(to Dave) Moderator (private): You were attacked tonight (Katana) and died.
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Dave. Ivan (Smuggler) chose no action.
+(to Ivan) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Dave. Frank (Fixer) chose no action.
