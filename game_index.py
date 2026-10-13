@@ -270,6 +270,12 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
             super().__init__(*a, directory=str(log_dir), **kw)
 
         def do_GET(self) -> None:
+            if self.path.startswith("/handbook/"):
+                import handbook  # the handbook's setup builder draws setups here
+                answer = handbook.respond(self.path)
+                if answer is not None:
+                    self.send_page(answer, "application/json")
+                    return
             if self.path.split("?")[0] == f"/{HANDBOOK}":
                 import handbook  # built fresh on every load, so it shows the code as it is now
                 self.send_page(handbook.render().encode())
@@ -283,9 +289,9 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
             now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
             self.send_page(render(load_summaries(log_dir, include_mock), now, live=True).encode())
 
-        def send_page(self, page: bytes) -> None:
+        def send_page(self, page: bytes, kind: str = "text/html") -> None:
             self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Type", f"{kind}; charset=utf-8")
             self.send_header("Content-Length", str(len(page)))
             self.send_header("Cache-Control", "no-store")
             self.end_headers()

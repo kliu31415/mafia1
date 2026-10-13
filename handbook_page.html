@@ -110,6 +110,8 @@ td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap
 .dbar b { position:absolute; top:-1px; width:2px; height:16px; background:var(--fg); opacity:.55; margin-left:-1px; }
 .calc { padding:16px 18px; } .calc .picked { display:flex; flex-wrap:wrap; gap:5px; margin:8px 0; min-height:30px; }
 .calc .picked .chip { cursor:pointer; padding:2px 8px; font-size:12.5px; } .calc .picked .chip:hover { text-decoration:line-through; }
+.cmd { display:flex; gap:8px; align-items:center; margin:10px 0 4px; } .cmd code { flex:1; background:var(--chip); border-radius:6px;
+  padding:6px 10px; font-size:12.5px; overflow-x:auto; white-space:nowrap; }
 .big { font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; }
 .legend { font-size:12px; color:var(--muted); display:flex; gap:14px; flex-wrap:wrap; margin:4px 0 8px; }
 .legend i { display:inline-block; width:10px; height:10px; border-radius:2px; background:var(--fc); margin-right:4px; vertical-align:-1px; }
@@ -320,7 +322,22 @@ function traitItem(item) {
 function renderSetups() {
   const S = D.setups, st = S.standard;
   const needs = Object.entries(st.village_needs).map(([c, n]) => `${n} ${c}`).join(", ");
-  $("#setupsbox").innerHTML = `<h2>The standard setup</h2>
+  const B = D.setups.builder;
+  $("#setupsbox").innerHTML = `<h2>Build a setup</h2>
+    <div class="card calc" id="builder"><div class="filters" style="margin:0 0 10px">
+      <label>Setup <select id="bsetup">${B.setups.map(n => `<option>${esc(n)}</option>`).join("")}</select></label>
+      <label>Players <input type="number" id="bplayers" min="${B.min_players}" max="${B.max_players}" placeholder="usual" style="width:70px"></label>
+      <label>Yakuza <input type="number" id="byakuza" min="1" placeholder="any" style="width:60px"></label>
+      <label>Pool <select id="bpool">${B.pools.map(n => `<option>${esc(n)}</option>`).join("")}</select></label>
+      <label>Script <select id="bscript">${B.scripts.map(n => `<option>${esc(n)}</option>`).join("")}</select></label>
+      <label>Seed <input type="number" id="bseed" placeholder="random" style="width:90px"></label>
+      <button id="bdraw"><b>Draw</b></button><span class="small" id="bmsg"></span></div>
+      <div class="filters" style="margin:0">
+      <input list="rolelist" id="addrole" placeholder="Add a role…"><datalist id="rolelist">${D.roles.map(r => `<option value="${esc(r.name)}">`).join("")}</datalist>
+      <select id="addtrait"><option value="">Add a trait…</option>${D.traits.flatMap(t => t.factions.length > 1 ? t.factions.map(f => `${t.name}@${f}`) : [t.name]).map(t => `<option>${esc(t)}</option>`).join("")}</select>
+      <button id="clear">Clear</button><span class="muted small">Click a role or trait to remove it. Score = offset ${fmt(D.power.offset)} + role powers + trait powers (for the Village).</span></div>
+      <div id="calcout" style="margin-top:14px"></div></div>
+    <h2>The standard setup</h2>
     <p>The default draw: ${st.players} players, balanced by role power so the Village's estimated chance stays within ${pct(logistic(-st.band))}–${pct(logistic(st.band))}.</p>
     <div class="cols">
       <div class="card panel"><h3>Yakuza</h3>${oddsChart(st.yakuza_odds, k => k + " Yakuza")}</div>
@@ -331,9 +348,9 @@ function renderSetups() {
     </div>
     <h3>What players are told</h3><div class="box small">${linkify(S.note)}</div>
     <h2>Sample draws <button id="reroll" title="Rebuild the page for new draws" style="font-size:12px;margin-left:8px">New draws ↻</button></h2>
-    <p class="muted small">Drawn by setups.py when this page was built. Bars show the estimated Village win chance; the dashed box is the balance band.</p>
+    <p class="muted small">Standard setups drawn by setups.py when this page was built, each as a game with its seed deals it. Bars show the estimated Village win chance; the dashed box is the balance band.</p>
     <div class="cols">${S.samples.map((s, i) => `<div class="card sample"><div style="display:flex;justify-content:space-between;align-items:baseline">
-      <b>Setup ${i + 1}</b><span class="small">Village ${pct(s.village)} · <a href="#power" data-sample="${i}">score it</a></span></div>
+      <b>Seed ${s.seed}</b><span class="small">Village ${pct(s.village)} · <a href="#setups" data-sample="${i}">edit</a></span></div>
       ${meter(s.village)}<div class="roles">${s.roles.map(r => roleLink(r)).join("")}</div>
       <div class="small muted">Traits: ${s.traits.map(traitItem).join(", ") || "none"}</div></div>`).join("")}</div>
     <h2>Other setups</h2>${S.setups.filter(s => s.name !== "standard").map(s => `<div class="card panel" style="margin:8px 0"><b>${esc(s.name)}</b>
@@ -345,13 +362,56 @@ function renderSetups() {
     ${Object.entries(D.scripts).map(([s, roles]) => `<div class="card panel" style="margin:8px 0"><b>${esc(s)}</b> <span class="muted small">${roles.length} roles</span>
       <div style="margin-top:4px">${s === "all" ? "every role" : roles.map(r => roleLink(r)).join(" ")}</div></div>`).join("")}`;
   $("#reroll").onclick = () => location.reload();
-  $$("[data-sample]").forEach(a => a.onclick = () => { const s = S.samples[+a.dataset.sample];
-    CALC.roles = [...s.roles]; CALC.traits = [...s.traits]; renderCalc(); });
+  $$("[data-sample]").forEach(a => a.onclick = e => { e.preventDefault(); loadDraw(S.samples[+a.dataset.sample]); $("#builder").scrollIntoView({block: "center"}); });
+  $("#bdraw").onclick = drawSetup;
+  $("#bsetup").onchange = () => { $("#byakuza").disabled = $("#bsetup").value !== "standard"; };
+  $("#addrole").onchange = e => { if (ROLE[e.target.value]) { CALC.roles.push(e.target.value); sortRoles(); edited(); } e.target.value = ""; };
+  $("#addtrait").onchange = e => { if (e.target.value) { CALC.traits.push(e.target.value); edited(); } e.target.value = ""; };
+  $("#clear").onclick = () => { CALC.roles = []; CALC.traits = []; edited(); };
+  renderCalc();
+}
+
+// ---------- the setup builder: draw a setup (through game_index.py serve), edit it, score it, get the command ----------
+const CALC = {roles: [], traits: [], origin: null};  // origin: the draw it is, unedited (its seed reproduces it)
+const sortRoles = () => CALC.roles.sort((a, b) => D.roles.indexOf(ROLE[a]) - D.roles.indexOf(ROLE[b]));
+function loadDraw(d) { CALC.roles = [...d.roles]; CALC.traits = [...d.traits]; CALC.origin = d; renderCalc(); }
+function edited() { CALC.origin = null; renderCalc(); }
+async function drawSetup() {
+  const params = new URLSearchParams();
+  for (const [k, id] of [["setup", "bsetup"], ["players", "bplayers"], ["yakuza", "byakuza"], ["pool", "bpool"], ["script", "bscript"], ["seed", "bseed"]])
+    if ($("#" + id).value && !$("#" + id).disabled) params.set(k, $("#" + id).value);
+  $("#bmsg").textContent = "Drawing…";
+  try {
+    if (location.protocol === "file:") throw new Error("offline");
+    const r = await fetch("handbook/draw?" + params);
+    const d = await r.json();
+    if (d.error) { $("#bmsg").textContent = d.error; return; }
+    $("#bmsg").textContent = ""; loadDraw(d);
+  } catch (e) {
+    $("#bmsg").innerHTML = `Drawing needs the live page: run <code>uv run game_index.py serve</code> and open Handbook there. Meanwhile, edit a sample below.`;
+  }
+}
+const q = s => /[\s"]/.test(s) ? `"${s.replace(/"/g, '\\"')}"` : s;
+function command() {
+  const o = CALC.origin, args = ["uv run mafia.py"];
+  if (o) {
+    args.push("--roles", o.setup + (o.players ? ":" + o.players : ""), "--seed", o.seed);
+    if (o.yakuza) args.push("--yakuza", o.yakuza);
+    if (o.pool !== "all") args.push("--role-pool", o.pool);
+  } else {
+    args.push("--roles", q(CALC.roles.join(",")), "--traits", CALC.traits.length ? q(CALC.traits.join(",")) : "none");
+  }
+  const script = o ? o.script : $("#bscript")?.value;
+  if (script && script !== "all") args.push("--script", script);
+  return args.join(" ");
+}
+function traitProblem(item) {  // why no seat in the setup could take this trait item, if none could
+  const [names, f] = item.split("@"), ts = names.split("+");
+  return CALC.roles.some(r => (!f || ROLE[r].faction === f) && ts.every(t => ROLE[r].traits.includes(t))) ? "" : "no role in the setup can get it";
 }
 
 // ---------- Power ----------
 const PS = {sort: "power"};
-const CALC = {roles: [...(D.setups.samples[0]?.roles || [])], traits: [...(D.setups.samples[0]?.traits || [])]};
 function dbar(power, prior, faction, lo = -1.4, hi = 1.4) {
   const x = v => (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * 100, z = x(0), v = x(power);
   return `<div class="dbar ${faction}"><span class="mid"></span><i style="left:${Math.min(z, v)}%;width:${Math.abs(v - z)}%"></i><b style="left:${x(prior)}%" title="prior ${fmt(prior)}"></b></div>`;
@@ -369,9 +429,13 @@ function renderCalc() {
     <div class="muted small">${CALC.roles.length} players: ${FACTIONS.map(f => `<span class="fname ${f}">${count(f)} ${f}</span>`).join(" · ")}</div></div>
     <div style="margin:12px 0 4px">${meter(chance)}</div>
     <div class="picked">${CALC.roles.map((r, i) => `<span class="chip ${ROLE[r]?.faction}" data-ri="${i}" title="click to remove">${icon(r, "sm")}${esc(r)}</span>`).join("")}</div>
-    <div class="picked">${CALC.traits.map((t, i) => `<span class="chip" data-ti="${i}" title="click to remove">${mark(t.split("@")[0].split("+")[0])} ${esc(t)} (${fmt(traitVillage(t))})</span>`).join("") || `<span class="muted small">No traits</span>`}</div>`;
-  $$("#calcout [data-ri]").forEach(c => c.onclick = () => { CALC.roles.splice(+c.dataset.ri, 1); renderCalc(); });
-  $$("#calcout [data-ti]").forEach(c => c.onclick = () => { CALC.traits.splice(+c.dataset.ti, 1); renderCalc(); });
+    <div class="picked">${CALC.traits.map((t, i) => { const bad = traitProblem(t);
+      return `<span class="chip${bad ? " warn" : ""}" data-ti="${i}" title="${bad ? esc(bad) + "; " : ""}click to remove">${mark(t.split("@")[0].split("+")[0])} ${esc(t)} (${fmt(traitVillage(t))})${bad ? " ⚠" : ""}</span>`; }).join("") || `<span class="muted small">No traits</span>`}</div>
+    ${CALC.roles.length ? `<div class="cmd"><code id="cmd">${esc(command())}</code><button id="copy">Copy</button></div>
+    <div class="muted small">${CALC.origin ? `Seed ${CALC.origin.seed}: a game with this command deals exactly this setup.` : "Edited: a hand-picked list, so players are told the roles were picked by hand (rough faction counts), and the traits go to random eligible players."}</div>` : ""}`;
+  $("#copy")?.addEventListener("click", () => { navigator.clipboard?.writeText(command()); $("#copy").textContent = "Copied"; });
+  $$("#calcout [data-ri]").forEach(c => c.onclick = () => { CALC.roles.splice(+c.dataset.ri, 1); edited(); });
+  $$("#calcout [data-ti]").forEach(c => c.onclick = () => { CALC.traits.splice(+c.dataset.ti, 1); edited(); });
 }
 function renderPower() {
   const P = D.power;
@@ -379,13 +443,7 @@ function renderPower() {
     PS.sort === "name" ? a.name.localeCompare(b.name) : PS.sort === "games" ? b.power.games - a.power.games
     : PS.sort === "change" ? Math.abs(b.power.power - b.power.prior) - Math.abs(a.power.power - a.power.prior) : b.power.power - a.power.power);
   const traitRows = Object.entries(P.trait_rows).sort((a, b) => b[1].power - a[1].power);
-  const traitOpts = D.traits.flatMap(t => t.factions.length > 1 ? t.factions.map(f => `${t.name}@${f}`) : [t.name]);
-  $("#powerbox").innerHTML = `<h2>Score a setup</h2>
-    <div class="card calc"><div class="filters" style="margin:0">
-      <input list="rolelist" id="addrole" placeholder="Add a role…"><datalist id="rolelist">${D.roles.map(r => `<option value="${esc(r.name)}">`).join("")}</datalist>
-      <select id="addtrait"><option value="">Add a trait…</option>${traitOpts.map(t => `<option>${esc(t)}</option>`).join("")}</select>
-      <button id="clear">Clear</button><span class="muted small">Pick a sample in Setups to load it. Score = offset ${fmt(P.offset)} + role powers + trait powers (for the Village).</span></div>
-      <div id="calcout"></div></div>
+  $("#powerbox").innerHTML = `<p class="muted small">To score a setup, use <a href="#setups">Build a setup</a>.</p>
     <h2>Role power</h2>
     <p class="muted small">How much each role adds to the Village's chance to win, in logits (+0.4 is about +10 points near even). Refit ${esc(P.written || "never")} from ${P.games} finished live games, pulled towards hand-set priors (the tick); offset ${fmt(P.offset)} (prior ${fmt(P.offset_prior)}).
       ${Object.keys(P.off).length ? `<b>Looks off:</b> ${Object.keys(P.off).map(esc).join(", ")}` : ""}</p>
@@ -399,10 +457,6 @@ function renderPower() {
       ${traitRows.map(([k, p]) => `<tr><td class="nm">${traitLink(k.split("@")[0])}${k.includes("@") ? ` <span class="muted small">(${esc(k.split("@")[1])})</span>` : ""}</td>
         <td>${dbar(p.power, p.prior, "", -0.6, 0.6)}</td><td class="num">${fmt(p.power)}</td><td class="num muted">${fmt(p.prior)}</td><td class="num muted">${p.games}</td></tr>`).join("")}</table></div>`;
   $$("#psort button").forEach(b => { b.classList.toggle("on", b.dataset.s === PS.sort); b.onclick = () => { PS.sort = b.dataset.s; renderPower(); }; });
-  $("#addrole").onchange = e => { if (ROLE[e.target.value]) { CALC.roles.push(e.target.value); CALC.roles.sort((a, b) => D.roles.indexOf(ROLE[a]) - D.roles.indexOf(ROLE[b])); renderCalc(); } e.target.value = ""; };
-  $("#addtrait").onchange = e => { if (e.target.value) CALC.traits.push(e.target.value); e.target.value = ""; renderCalc(); };
-  $("#clear").onclick = () => { CALC.roles = []; CALC.traits = []; renderCalc(); };
-  renderCalc();
 }
 
 // ---------- search (filters roles and traits, finds rules) ----------
@@ -438,5 +492,6 @@ document.addEventListener("keydown", e => {
 $("#q").oninput = e => search(e.target.value.trim());
 $("#built").textContent = `built ${D.built}${D.commit ? " from " + D.commit : ""} · ${D.roles.length} roles · ${D.traits.length} traits`;
 renderRules(); renderRoleFilters(); renderRoles(); renderRetired(); renderTraits(); renderSetups(); renderPower();
+if (D.setups.samples.length) loadDraw(D.setups.samples[0]);
 window.addEventListener("hashchange", route); route();
 </script></body></html>

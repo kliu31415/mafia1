@@ -280,6 +280,22 @@ SETUPS = {
 }
 
 
+def seeded_setup(name: str, n: int | None, seed: int, pool: str = "all", script: str = "all",
+                 yakuza: int | None = None) -> tuple[list[str], dict]:
+    """A named setup's roles as a game with this seed draws them (mafia.py --roles NAME[:N] --seed SEED; the
+    handbook's setup builder), and its setup record. Its own RNG, so a seed's setup doesn't depend on the rest of the
+    game (and vice versa)."""
+    n = players_for(name, n, seed)
+    options = {"yakuza": yakuza} if yakuza is not None else {}
+    roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), pool, script=script, **options)
+    return roles, {"kind": "random", "name": name, "players": n, "pool": pool, **options}
+
+
+def seeded_traits(roles: list[str], seed: int) -> list[str]:
+    """The traits a drawn setup deals for this seed (draw_traits on its own RNG, like seeded_setup)."""
+    return draw_traits(roles, random.Random(f"traits|{seed}"))
+
+
 # Kevin, Oct 12 2026: about a quarter of the players get a trait, give or take 3, so a 13-player game has none now
 # and then (usually 3, 0-6).
 TRAIT_SHARE = 0.25

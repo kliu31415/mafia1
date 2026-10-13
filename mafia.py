@@ -94,7 +94,7 @@ from night_check import NightChecker
 from night import run_night
 from players import UNRELIABLE, Players, role_briefing
 from roles import ROLES, Status, retired_entry, role_status_table
-from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_note, setup_off
+from setups import POOLS, SETUPS, parse_setup, seeded_setup, seeded_traits, setup_note, setup_off
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
@@ -799,13 +799,9 @@ def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: in
     setup = None
     if named:
         name, n = named
-        n = players_for(name, n, seed)
-        # Its own RNG, so a seed's setup doesn't depend on the rest of the game (and vice versa).
-        options = {"yakuza": args.yakuza} if args.yakuza is not None else {}
-        if options and name != "standard":
+        if args.yakuza is not None and name != "standard":
             ap.error("--yakuza only works with the standard setup")
-        roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), args.role_pool, script=args.script, **options)
-        setup = {"kind": "random", "name": name, "players": n, "pool": args.role_pool, **options}
+        roles, setup = seeded_setup(name, n, seed, args.role_pool, args.script, args.yakuza)
     else:
         roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
@@ -822,8 +818,7 @@ def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: 
                   seed: int) -> list[str]:
     """The traits to deal (rules R24): --traits, or by default drawn for a drawn setup and none for a role list."""
     if args.traits is None:
-        # Its own RNG, so a seed's traits don't change the rest of its setup (and vice versa).
-        return draw_traits(roles, random.Random(f"traits|{seed}")) if setup else []
+        return seeded_traits(roles, seed) if setup else []
     if setup:  # the setup note mustn't tell players the traits were drawn (setups.setup_note)
         setup["traits_given"] = True
     if args.traits == "none":

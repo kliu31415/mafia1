@@ -36,3 +36,15 @@ def test_page_has_every_role_and_trait(tmp_path):
     payload = page.split("const D = ", 1)[1].split(";\nconst $ =", 1)[0]
     assert json.loads(payload)["roles"][0]["name"] == next(iter(ROLES))
     assert "/*DATA*/" not in page
+
+
+def test_builder_draws_what_a_game_with_that_seed_deals():
+    import mafia
+    args = mafia.build_parser().parse_args(["--roles", "standard", "--seed", "7"])
+    roles, setup = mafia.choose_roles(mafia.build_parser(), args, 7)
+    d = json.loads(handbook.respond("/handbook/draw?setup=standard&seed=7") or b"")
+    assert sorted(d["roles"]) == sorted(roles)
+    assert d["traits"] == mafia.choose_traits(mafia.build_parser(), args, roles, setup, 7)
+    assert "error" in json.loads(handbook.respond("/handbook/draw?setup=classic&yakuza=2") or b"")
+    assert "error" in json.loads(handbook.respond("/handbook/draw?players=99") or b"")
+    assert handbook.respond("/handbook.html") is None

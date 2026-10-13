@@ -17,6 +17,7 @@ import json
 import random
 import re
 import subprocess
+import urllib.parse
 import webbrowser
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,6 +29,7 @@ import variants
 from gamelogs import faction_of
 from log_viewer import ICONS, icon_slug, trait_slug
 from role_summaries import RULES, role_paragraphs
+from state import PLAYER_NAMES
 from roles import RETIRED, ROLES, Alignment, code_hooks, logic
 from traits import EXCLUSIVE, FACTIONS, TRAITS, fits, hand_powers, parse_item, power_key, village_power
 
@@ -126,21 +128,54 @@ def trait_entries(powers: dict) -> list[dict]:
     return out
 
 
-def samples(n: int = SAMPLES, players: int = 13) -> list[dict]:
-    """A few standard setups as setups.py draws them (roles, then traits), each with its score."""
-    out = []
-    rng = random.Random()
-    for _ in range(n):
-        roles = setups.balanced_setup(players, rng)
-        traits = setups.draw_traits(roles, rng)
-        dealt = []
-        for item in traits:
-            names, alignment = parse_item(item)
-            for t in names:
-                dealt.append((t, alignment or next(iter(TRAITS[t].alignments))))
-        out.append({"roles": sorted(roles, key=list(ROLES).index), "traits": traits,
-                    "village": round(role_power.village_chance(roles, traits=dealt), 3)})
-    return out
+def village_chance(roles: list[str], traits: list[str]) -> float:
+    """The Village's estimated chance with these roles and traits (items as --traits takes them, e.g. Grudge@Yakuza)."""
+    dealt = []
+    for item in traits:
+        names, alignment = parse_item(item)
+        dealt += [(t, alignment or next(iter(TRAITS[t].alignments))) for t in names]
+    return role_power.village_chance(roles, traits=dealt)
+
+
+def draw(name: str = "standard", players: int | None = None, seed: int | None = None, pool: str = "all",
+         script: str = "all", yakuza: int | None = None) -> dict:
+    """A setup's roles and traits as a game with this seed would deal them (setups.seeded_setup and seeded_traits,
+    as mafia.py does), so `uv run mafia.py --roles NAME --seed SEED` plays exactly this. No seed: a random one."""
+    seed = random.randrange(10 ** 6) if seed is None else seed
+    roles, _ = setups.seeded_setup(name, players, seed, pool, script, yakuza)
+    traits = setups.seeded_traits(roles, seed)
+    return {"setup": name, "seed": seed, "pool": pool, "script": script, "yakuza": yakuza, "players": players,
+            "roles": sorted(roles, key=list(ROLES).index), "traits": traits,
+            "village": round(village_chance(roles, traits), 3)}
+
+
+def samples(n: int = SAMPLES) -> list[dict]:
+    """A few standard setups, each reproducible from its seed."""
+    return [draw() for _ in range(n)]
+
+
+def respond(url: str) -> bytes | None:
+    """The answer to a request for /handbook/draw?setup=...&players=...&seed=...&pool=...&script=...&yakuza=... (the
+    setup builder's Draw button, through game_index.py serve): a draw() as JSON, or {"error": ...}; None for any other
+    path."""
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.path != "/handbook/draw":
+        return None
+    q = {k: v[-1] for k, v in urllib.parse.parse_qs(parsed.query).items() if v[-1].strip()}
+    try:
+        name, pool, script = q.get("setup", "standard"), q.get("pool", "all"), q.get("script", "all")
+        if name not in setups.SETUPS or pool not in setups.POOLS or script not in scripts.SCRIPTS:
+            raise ValueError("unknown setup, pool or script")
+        number = {k: int(q[k]) if k in q else None for k in ("players", "seed", "yakuza")}
+        if number["players"] is not None and not setups.MIN_PLAYERS <= number["players"] <= len(PLAYER_NAMES):
+            raise ValueError(f"players must be {setups.MIN_PLAYERS} to {len(PLAYER_NAMES)}")
+        yakuza, most = number["yakuza"], (number["players"] or setups.SETUPS[name].players[0]) - 1
+        if yakuza is not None and (name != "standard" or not 1 <= yakuza <= most):
+            raise ValueError("a Yakuza count works with the standard setup only, and must leave room for others")
+        answer: dict = draw(name, number["players"], number["seed"], pool, script, number["yakuza"])
+    except ValueError as e:
+        answer = {"error": str(e)}
+    return json.dumps(answer).encode()
 
 
 def setup_entries() -> dict:
@@ -156,6 +191,9 @@ def setup_entries() -> dict:
         "note": setups.setup_note({"kind": "random", "name": "standard"}, ["?"] * standard.players[0]).strip(
             "\n-").strip(),
         "samples": samples(),
+        "builder": {"setups": list(setups.SETUPS), "pools": list(setups.POOLS), "scripts": list(scripts.SCRIPTS),
+                    "min_players": setups.MIN_PLAYERS, "max_players": len(PLAYER_NAMES),
+                    "ranges": {n: list(st.players) for n, st in setups.SETUPS.items()}},
     }
 
 

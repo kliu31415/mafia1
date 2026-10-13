@@ -80,7 +80,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   frontier model comes out.
 - `uv run handbook.py` writes `logs/handbook.html`, linked from the game index (`game_index.py build` writes it too, `serve` rebuilds it per load): the
   rules, every role and trait, the setups with sample draws, rule settings, scripts and role power, with a setup
-  scorer. It's all read from the code when the page is built (`handbook.data()`; layout in `handbook_page.html`), so a
+  builder (Draw needs `serve`: it deals a setup as `mafia.py --seed` would, via `setups.seeded_setup`; edit it, see its
+  score and copy the command that plays it). It's all read from the code when the page is built (`handbook.data()`; layout in `handbook_page.html`), so a
   new role or trait needs nothing there.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
