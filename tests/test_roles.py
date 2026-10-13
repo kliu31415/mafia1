@@ -2853,6 +2853,24 @@ def test_narrow_escape_is_hidden_and_stops_one_lethal_night_unless_the_attack_is
         apply_ops(game, players, {"op": "kill", "player": "Carol", "divine": "yes"})
 
 
+def test_the_moderator_is_told_code_carries_out_heartbreak_and_cant_kill_for_it(game_factory):
+    # rules R24: a moderator applied heartbreak by hand in game_20261013_142006_1001, unsure whether code did
+    import pytest
+
+    from night import role_notes
+    from tests.conftest import apply_ops
+    game, players = game_factory(["Sheriff", "Medic", "Vigilante", "Grunt", "Grunt"])
+    game.player("Alice").traits = game.player("Dave").traits = ["Bonded"]
+    game.role_state["bonds"] = {"Alice": "Dave", "Dave": "Alice"}
+    game.phase = "night"
+    assert "Alice and Dave. When one of a pair dies, code kills the other at once" in role_notes(game)
+    with pytest.raises(ValueError, match="carried out by code"):
+        apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "heartbreak"})
+    apply_ops(game, players, {"op": "kill", "player": "Dave", "cause": "Vigilante", "by": "Carol"})
+    assert game.player("Alice").death["cause"] == "heartbreak"
+    assert "Bonded" not in role_notes(game)  # no living pair left
+
+
 def test_rivals_share_their_side_win_only_once_the_other_has_died(tmp_path):
     # rules R1, R24 (Kevin, Oct 13 2026: his "Haters"): pairs on one side; the holder's own life doesn't matter
     import random

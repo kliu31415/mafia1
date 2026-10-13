@@ -881,6 +881,21 @@ class Bonded(TraitLogic):
             game.log.write("heartbreak", player=partner, bonded=p.name, day=game.day)
             game.kill(partner, HEARTBREAK_CAUSE, by=p.name)
 
+    def tonight_note(self, game: Game) -> str:
+        bonds = game.role_state.get(BONDS, {})
+        if not (pairs := sorted({tuple(sorted((a, b))) for a, b in bonds.items() if game.player(a).alive})):
+            return ""
+        return ("Bonded (a trait, R24): " + "; ".join(f"{a} and {b}" for a, b in pairs) + ". When one of a pair dies, "
+                "code kills the other at once (cause heartbreak, not an attack). Never kill anyone for heartbreak "
+                "yourself.")
+
+    def kill_error(self, game: Game, change: dict) -> str | None:
+        # rules R24: code carries out heartbreak (on_death); a moderator's own kill for it could double it
+        if HEARTBREAK_CAUSE not in str(change.get("cause", "")).lower():
+            return None
+        return ("heartbreak (Bonded, R24) is carried out by code when a bonded player's partner dies: kill the "
+                "partner for their own cause, and code kills the other at once")
+
 
 RIVALS = "rivals"  # game.role_state: player -> their rival (both ways)
 
