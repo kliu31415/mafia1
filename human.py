@@ -228,9 +228,10 @@ class HumanSeats:
         shown = "localhost" if host in ("127.0.0.1", "0.0.0.0", "") else host
         return [f"{name}: http://{shown}:{self.server.server_port}/seat/{token}" for token, name in self.tokens.items()]
 
-    def linger(self, timeout: float = LINGER_S) -> None:
-        """After the game: keeps the pages up until every human's page has shown the result (or timeout)."""
-        end = time.monotonic() + timeout
+    def linger(self, timeout: float | None = None) -> None:
+        """After the game: keeps the pages up until every human's page has shown the result (or timeout, by default
+        LINGER_S)."""
+        end = time.monotonic() + (LINGER_S if timeout is None else timeout)
         while set(self.tokens.values()) - self.saw_end and time.monotonic() < end:
             time.sleep(0.5)
         time.sleep(LINGER_GRACE_S)

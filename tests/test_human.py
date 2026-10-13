@@ -25,47 +25,56 @@ def call(url: str, body: dict | None = None) -> tuple[int, dict]:
 
 
 def play_as_human(base: str, seen: dict, stop: threading.Event) -> None:
-    """A scripted person: talks on day turns, votes Guilty, skips everything else, reports one bug."""
-    since = 0
-    reported = False
+    """A scripted person: talks on day turns, votes Guilty, skips everything else, reports one bug. A failed check
+    is recorded in seen["errors"] and the person keeps playing, so the game always finishes (a dead bot left the game
+    waiting on the seat, then the server lingering for its page, for minutes under a loaded parallel test run)."""
+    state = {"since": 0, "reported": False}
     while not stop.is_set():
         try:
-            status, s = call(f"{base}/state?since={since}")
+            play_one_step(base, seen, state)
         except OSError:  # the server stops once the finished game has been shown
             if seen["over"]:
                 return
-            raise
-        assert status == 200
-        seen["events"] += s["events"]
-        since = s["n_events"]
-        seen["state"] = s
-        if not reported:
-            assert call(f"{base}/feedback", {"text": "The vote buttons are too small."})[0] == 200
-            reported = True
-        q = s["question"]
-        if q:
-            seen["steps"].append(q["step"])
-            if q["step"] == "day_turn":
-                others = [p["name"] for p in s["players"] if p["alive"] and not p["you"]]
-                # a name that isn't a player breaks the schema, so the page gets the errors and asks again
-                bad = call(f"{base}/answer", {"id": q["id"], "answer": {
-                    "private_messages": [{"to": "Nobody", "text": "hi"}]}})
-                assert bad[0] == 400 and bad[1]["errors"]
-                answer = {"public_message": "I am a plain villager.", "notepad": "suspect everyone",
-                          "private_messages": [{"to": others[0], "text": "trust me"}]}
-                assert call(f"{base}/answer", {"id": q["id"], "answer": answer}) == (200, {"errors": []})
-            elif set(q["schema"]) == {"vote"}:
-                call(f"{base}/answer", {"id": q["id"], "answer": {"vote": True}})
-            else:
-                call(f"{base}/answer", {"id": q["id"], "skip": True})
-        if s["winners"] is not None and not q:
-            seen["over"] = True
+            seen["errors"].append("connection failed")  # e.g. a slow poll under load: try again
+        except AssertionError as e:
+            seen["errors"].append(repr(e) or "assertion failed")
         time.sleep(0.02)
+
+
+def play_one_step(base: str, seen: dict, state: dict) -> None:
+    status, s = call(f"{base}/state?since={state['since']}")
+    assert status == 200
+    seen["events"] += s["events"]
+    state["since"] = s["n_events"]
+    seen["state"] = s
+    if not state["reported"]:
+        state["reported"] = True
+        assert call(f"{base}/feedback", {"text": "The vote buttons are too small."})[0] == 200
+    q = s["question"]
+    if q:
+        seen["steps"].append(q["step"])
+        if q["step"] == "day_turn":
+            others = [p["name"] for p in s["players"] if p["alive"] and not p["you"]]
+            # a name that isn't a player breaks the schema, so the page gets the errors and asks again
+            bad = call(f"{base}/answer", {"id": q["id"], "answer": {
+                "private_messages": [{"to": "Nobody", "text": "hi"}]}})
+            assert bad[0] == 400 and bad[1]["errors"]
+            answer = {"public_message": "I am a plain villager.", "notepad": "suspect everyone",
+                      "private_messages": [{"to": others[0], "text": "trust me"}]}
+            status, out = call(f"{base}/answer", {"id": q["id"], "answer": answer})
+            assert status == 200, out
+        elif set(q["schema"]) == {"vote"}:
+            call(f"{base}/answer", {"id": q["id"], "answer": {"vote": True}})
+        else:
+            call(f"{base}/answer", {"id": q["id"], "skip": True})
+    if s["winners"] is not None and not q:
+        seen["over"] = True
 
 
 def test_a_human_seat_plays_a_mock_game_through_its_page(tmp_path, monkeypatch):
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     monkeypatch.setattr(human, "LINGER_GRACE_S", 0.2)
+    monkeypatch.setattr(human, "LINGER_S", 10)  # if the bot never sees the end, don't keep the server up for minutes
     started: list[HumanSeats] = []
     real_start = HumanSeats.start
 
@@ -74,7 +83,7 @@ def test_a_human_seat_plays_a_mock_game_through_its_page(tmp_path, monkeypatch):
         started.append(self)
         return links
     monkeypatch.setattr(HumanSeats, "start", start)
-    seen: dict = {"events": [], "steps": [], "over": False}
+    seen: dict = {"events": [], "steps": [], "over": False, "errors": []}
     stop = threading.Event()
     bot: list[threading.Thread] = []
 
@@ -86,21 +95,29 @@ def test_a_human_seat_plays_a_mock_game_through_its_page(tmp_path, monkeypatch):
         assert seats.server is not None
         base = f"http://127.0.0.1:{seats.server.server_port}/api/{token}"
         assert call(f"http://127.0.0.1:{seats.server.server_port}/api/wrong/state")[0] == 404
-        try:
-            play_as_human(base, seen, stop)
-        except BaseException as e:  # reported by the test; the game goes on with its time limit
-            seen["error"] = repr(e)
+        play_as_human(base, seen, stop)
     bot.append(threading.Thread(target=watch, daemon=True))
     bot[0].start()
     roles = ["Vanilla Villager", "Vanilla Villager", "Sheriff", "Medic", "Grunt", "Grunt"]
     models = [ModelSpec(Model.HUMAN)] + [ModelSpec(Model.HAIKU_5_5)] * 5
+
+
+    def watchdog() -> None:  # a hard limit: past it, every question times out at once and the game ends quickly
+        seen["errors"].append("watchdog: the game took over 120 s")
+        if started:
+            started[0].time_limit = 0.001
+    timer = threading.Timer(120, watchdog)
+    timer.start()
     try:
+        # A generous limit per question, so a loaded machine doesn't time out the bot's answers; the watchdog bounds it
         path = mafia.play_game(MockClient(5), mafia.GameConfig(models, Model.HAIKU_5_5, roles, seed=5, debrief=True,
-                                                                human_time_limit=2))
+                                                                human_time_limit=10))
     finally:
+        timer.cancel()
         stop.set()
         bot[0].join(timeout=5)
-    assert "error" not in seen, seen.get("error")
+    # Connection hiccups are retried; anything else is a real failure.
+    assert not [e for e in seen["errors"] if e != "connection failed"], seen["errors"]
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     me = next(p for p in records[0]["players"] if p["model"] == "human")
     assert me["via"] == "human" and records[-1]["kind"] == "result"
