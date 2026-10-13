@@ -1,5 +1,5 @@
 {
- "written": "2026-10-13 12:54 UTC",
+ "written": "2026-10-13 13:02 UTC",
  "games": 89,
  "offset": 0.052,
  "roles": {
@@ -374,6 +374,11 @@
    "prior": 0.35,
    "power": 0.401,
    "games": 1
+  },
+  "Stolen Blade": {
+   "prior": 0.3,
+   "power": 0.3,
+   "games": 0
   },
   "Katana Expert": {
    "prior": 0.1,
