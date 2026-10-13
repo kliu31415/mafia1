@@ -126,15 +126,14 @@ def test_logs_never_hold_secrets_or_email(tmp_path, monkeypatch):
     from pathlib import Path
     key = "sk-or-v1-" + "0123456789abcdef" * 4
     monkeypatch.setenv("SOME_SERVICE_TOKEN", "tok_abcdefghijklmnopqrstuvwxyz")
-    monkeypatch.setattr(Path, "home", staticmethod(lambda: Path("/home/someuser")))
+    source = Path.home() / "mafia1" / "llm.py"  # conftest's fake_home; with this system's slashes, and forward ones
     records.secret_values.cache_clear()
-    records.home_dirs.cache_clear()
     try:
         path = tmp_path / "game.jsonl"
         log = GameLog(path)
         log.write("setup", players=[])
         log.error("api_retry", f"HTTP 401 for Bearer {key}: tok_abcdefghijklmnopqrstuvwxyz",
-                  traceback='File "/home/someuser/mafia1/llm.py", line 1')
+                  traceback=f'File "{source}", line 1, from {source.as_posix()}')
         log.write("chat", who="Alice", text="My owner is someone@example.com, ask them", cat="chat")
         log.close()
         old = tmp_path / "old.jsonl"  # a log written before redaction renders clean too
@@ -143,7 +142,6 @@ def test_logs_never_hold_secrets_or_email(tmp_path, monkeypatch):
                                                          log_viewer.render_html(old))]
     finally:
         records.secret_values.cache_clear()
-        records.home_dirs.cache_clear()
     for text in texts:
         assert key not in text and "tok_abc" not in text and "someone@" not in text and "someuser" not in text
-    assert "[redacted secret]" in texts[0] and "[redacted email]" in texts[0] and "~/mafia1/llm.py" in texts[0]
+    assert "[redacted secret]" in texts[0] and "[redacted email]" in texts[0] and "from ~/mafia1/llm.py" in texts[0]

@@ -30,9 +30,10 @@ def secret_values() -> tuple[str, ...]:
 
 @functools.cache
 def home_dirs() -> tuple[str, ...]:
-    """The home folder (it names the user), as written and as JSON writes it (Windows backslashes doubled)."""
+    """The home folder (it names the user), as written, as JSON writes it (Windows backslashes doubled) and with
+    forward slashes (as git and some tools print a Windows path)."""
     home = str(Path.home())
-    return (json.dumps(home)[1:-1], home) if len(home) > 5 else ()
+    return tuple(dict.fromkeys((json.dumps(home)[1:-1], home, Path.home().as_posix()))) if len(home) > 5 else ()
 
 
 def redact(text: str) -> str:

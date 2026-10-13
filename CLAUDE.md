@@ -9,7 +9,7 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 
 - Commit and push straight to `main` once `uv run pytest`, `uv run ruff check .` and `uv run mypy .`
   pass. No need to ask first or to open a branch, unless Kevin asks for one.
-- GitHub runs the same checks on every push to main (`.github/workflows/checks.yml`, skipped for tips-only
+- GitHub runs the same checks on every push to main, on Linux and Windows (`.github/workflows/checks.yml`, skipped for tips-only
   commits). After pushing, check your commit's run (GitHub tools: workflow runs for `checks.yml` on main) and fix a
   red one yourself, including breakage from another thread's push; Kevin doesn't watch CI emails.
 - Small changes: test with offline mock games only, no live games.
@@ -76,7 +76,8 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   frontier model comes out.
 - `tests/conftest.py` has `ScriptedClient` (players answer "do nothing" unless a `decide` function says
   otherwise; the moderator makes queued tool calls) and `game_factory` (seats Alice, Bob, ... with the
-  roles you give, in order).
+  roles you give, in order). Its `fake_home` gives every test the same made-up home folder, so no test depends on
+  who runs it or where (logs replace the home folder's path with `~`).
 
 ## Roles
 

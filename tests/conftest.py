@@ -4,15 +4,30 @@ import json
 import random
 import re
 from collections.abc import Callable, Collection
+from pathlib import Path
 
 import pytest
 
+import records
 from gamelog import GameLog
 from llm import LLMReply, Model, flat_messages
 from moderator import Moderator
 from players import Players
 from roles import ROLES, Alignment
 from state import Game, setup_game
+
+FAKE_HOME = Path("/home/someuser")
+
+
+@pytest.fixture(autouse=True)
+def fake_home(monkeypatch):
+    """Every test runs with the same made-up home folder, so none depends on who runs it or where: logs replace
+    the home folder's path with "~" (records.redact), and pytest's tmp_path is under the real one on Windows."""
+    monkeypatch.setattr(Path, "home", staticmethod(lambda: FAKE_HOME))
+    records.home_dirs.cache_clear()
+    yield
+    records.home_dirs.cache_clear()
+
 
 def pytest_addoption(parser):
     parser.addoption("--update-prompts", action="store_true",

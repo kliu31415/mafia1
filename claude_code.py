@@ -43,6 +43,7 @@ import os
 import shutil
 import signal
 import subprocess
+import sys
 import tempfile
 import threading
 import time
@@ -119,14 +120,17 @@ def run_cli(argv: list[str], stdin: str, env: dict[str, str], cwd: str, timeout:
     """Runs the CLI in its own process group, so a timeout kills the whole tree: `claude` may be a launcher that
     starts the real CLI as a child instead of exec-ing it (as on Kevin's PC), and subprocess.run's timeout kills
     only the direct child, which would leave the real CLI running (and using the subscription)."""
-    windows = os.name == "nt"
+    # sys.platform, not os.name: mypy follows it, so each system's checks see only the names that system has.
+    if sys.platform == "win32":
+        group: dict = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP}
+    else:
+        group = {"start_new_session": True}
     p = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-                         encoding="utf-8", errors="replace", env=env, cwd=cwd, start_new_session=not windows,
-                         creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if windows else 0)  # type: ignore[attr-defined]
+                         encoding="utf-8", errors="replace", env=env, cwd=cwd, **group)
     try:
         out, err = p.communicate(stdin, timeout=timeout)
     except subprocess.TimeoutExpired:
-        if windows:
+        if sys.platform == "win32":
             subprocess.run(["taskkill", "/T", "/F", "/PID", str(p.pid)], capture_output=True)
         else:
             try:
