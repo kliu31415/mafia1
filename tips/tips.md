@@ -1,6 +1,6 @@
 # Tips from past games
 
-Written 2026-10-13 08:23 UTC by opus-5.5 with `uv run tips.py build`, from the 355 active entries of tips_notebook.json (77 games). Players never see this preamble; they see every section below. Earlier sheets are in history/.
+Written 2026-10-13 08:23 UTC by opus-5.5 with `uv run tips.py build`, from the 355 active entries of tips_notebook.json (77 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules 14c4936724ba8b44.
 
 ## Everyone
 - Keep a notepad of stated votes and announced totals for every nomination and trial; a stated vote the totals contradict is a lead to question, rarely grounds to hang. (seen in 18 games)
