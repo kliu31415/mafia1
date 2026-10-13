@@ -233,3 +233,86 @@ Katana: Carol holds it and attacks Bob.
 (to Bob) Moderator (private): You were attacked tonight (Katana) and died.
 [ERROR crash] the game stopped on day 4 day: OSError: [Errno 28] No space left on device; continue it with: uv run mafia.py --resume /home/user/mafia1/logs/game_20261013_045457_890072.ckpt
 [Resumed from the checkpoint at the start of day 4]
+
+===== DAY 4 =====
+Bob died (killed by Katana). Their role isn't revealed. Their last will: "Bob (Lookout, Good). N1 I watched Dave, nobody visited. N2 I watched Erin, only visitor Dave. D3 I voted Innocent on Erin (I wrongly announced Guilty). N3 I am watching Heidi; result posted at dawn. Erin's self-nominations were a push with no data; check the Yakuza leads first."
+Speaking order today goes around the circle in seat order, starting with Heidi.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+Heidi (public): Heidi. No nomination from me today. Two of the three claimed info roles are dead, and the Katana has hit every claimed info player so far. I'd like Alice, Carol and Erin to each say what they did on Nights 1 to 3.
+Alice (public): Alice. I took no night action on N1-N3 and have no results to post. I'm not nominating today. Heidi, you pushed Erin's trial and then Frank's, and Frank's 'Grunt' post was your main basis for Guilty. Bob's will says his N3 watch on you would post at dawn, but nothing was posted. What did it show? Carol, what do you make of Heidi's pushes?
+(to Alice, Carol) Alice -> Carol (private): Alice here. Are you Village? Heidi's pushes on Erin and Frank, plus the missing Bob result on her, look suspicious to me. I'd like to compare reads privately before Night 4. Erin's self-nominations fit a Jester, so I'm not sure about her either.
+[Claim] Carol: Village, no role claim. D3: Guilty on Erin, Innocent on Frank.
+Carol (public): Carol. Heidi's push on Frank rested on a claim Frank retracted, and she has posted no result to back her reads. Alice's concern about her fits what we've seen. I'm nominating Heidi. Heidi, if you have any Night 1 to 3 action, post it now.
+(to Alice, Carol) Carol -> Alice (private): Carol: I'm Village and I agree with you on Heidi. Her Frank push on a retracted claim, with no result behind it, is my read too. I'm nominating her and voting Yes. Let's see how Erin votes.
+Carol nominated Heidi. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Heidi] Yes - Carol, Erin, Alice; No - Heidi
+Nomination votes on Heidi: 3 Yes (the votes are secret).
+Heidi is put on trial (3 Yes).
+[Claim] Heidi: Medic. N1: protected Carol (Standard), no attack on her. N2 and N3: role-blocked, no effect. N3 protection on Bob, who died to Katana. 2 medic tokens left.
+Heidi (public): Heidi, Medic (Good). N1: I protected Carol with Standard Defense; no attack hit her. N2 and N3: I was role-blocked both nights, so my protections did nothing. N3 on Bob didn't stop the Katana, which killed him. I have 2 medic tokens left. Being blocked twice means someone alive with a block (Pharmacist or Party Animal) was active on N2 and N3, or I'm Drowsy. Grace, Dave and Bob all died to the Katana, so a Yakuza is among Alice, Carol and Erin. I'm not Yakuza. I won't nominate today. Carol's nomination of me rested on my not posting results, and I've now posted them. Alice and Carol privately coordinated before pushing me. Erin's three self-nominations and her push on Frank were also data-free. Judge my claim against Bob's and Dave's, which fit my N1 record.
+Alice (public): Alice. I'm voting Innocent on Heidi for now. Her claim matches the Katana timeline: N1 Standard protection on Carol, then blocked N2 and N3, and Bob's N3 death is consistent with a blocked Medic. Two blocks on a Medic point to a Pharmacist or Party Animal, and Heidi's N1 record is checkable against Carol. Carol and Erin, post what you did N1 to N3 before anyone else is nominated.
+[Claim] Carol: Village, no role claim. D3: Guilty on Erin, Innocent on Frank. D4: nominated Heidi, Innocent on her trial.
+Carol (public): Carol. I nominated Heidi on her Frank push, but her Medic claim now fits the Katana timeline: N1 protection on me, no attack on me, then blocks on N2 and N3. Two blocks on a Medic point to a Party Animal or a Drowsy trait, not a simple liar. Without a contradiction, I'm voting Innocent. Erin and Alice, what do you make of it?
+(to Alice, Carol) Carol -> Alice (private): Carol: I'm leaning Innocent on Heidi now. Her block pattern doesn't look like a Yakuza-made story. Let's compare votes after the trial.
+Erin (public): Erin. I'll vote Guilty on Heidi. Her Medic claim has a gap: a Standard protection on Bob would have stopped a Standard Katana, so "my N3 protection didn't stop it" only works if she was blocked, and nobody can check that. Bob's N3 watch on Heidi never posted, and Heidi is the only one with a claim that rests on a block nobody saw. Alice and Carol, if you think she's Good, say why the Katana kept hitting around her.
+[Claim] Heidi: Medic. N1: Standard Defense on Carol, no attack on her. N2 and N3: role-blocked, no effect. N3 Standard on Bob, who died to Katana. 2 medic tokens left.
+Heidi (public): Heidi, Medic. I'm Good, and my record is checkable. N1 I protected Carol, and no attack hit her. Being blocked on N2 and N3 means an active blocker is alive, so a Pharmacist or Party Animal is among Alice, Carol and Erin. Bob's N3 watch on me never posted because he died before dawn, so Erin's point about it proves nothing either way. Erin has three data-free self-nominations, asked to be hanged as a test, and voted Guilty on me. Carol nominated me after privately coordinating with Alice. The Katana is held by one of you three. Weigh who is driving these votes, not who is loudest.
+Trial votes on Heidi: 1 Guilty, 3 Innocent (the votes are secret).
+[Secret trial votes on Heidi] Guilty - Erin; Innocent - Alice, Carol, Heidi
+Heidi is found Innocent (1 Guilty of 4 votes; 3 needed).
+[Feedback from Erin] Budget is tight: nomination (1.00) plus a 25-word public message exceeds 2.42, so only very short public messages fit alongside a nomination.
+Erin (public): Erin. Nominating myself again. Vote Guilty to hang me.
+Erin nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Erin, Carol; No - Heidi, Alice
+Nomination votes on Erin: 2 Yes (the votes are secret).
+The nomination of Erin failed (2 Yes).
+[Claim] Heidi: Medic. N1: Standard on Carol (no attack). N2, N3: role-blocked. N3: Standard on Bob (died to Katana). 2 tokens.
+Heidi (public): Heidi. No nomination from me today. Alice and Carol, you privately coordinated before the Heidi push. Tell us what you discussed, not just that you agree. Erin, your self-nominations had no data, so they don't count as a Village read. Two blocks on me in N2 and N3 mean a Pharmacist or Party Animal is alive among you three. I'll post my Night 4 result at dawn. Whoever pushes the next hang, give a reason we can check.
+Alice (public): Alice. No nomination from me today. Heidi, your Standard protection on Bob should have stopped a Standard Katana, so Bob's death only fits if you were blocked on N3. Who do you think blocked you, and what did Bob's N3 watch on you show? Erin, repeated self-nominations and asking to be hanged fit a Jester, so explain why you want the hang. Carol, what did you and Heidi's votes tell you?
+Carol (public): Carol. I'm not nominating today. Heidi's Medic record fits the Katana timeline, and Erin's repeated self-nominations with no data fit a Jester. Heidi, post your Night 4 result at dawn. Erin, if you want a hang, say what checkable reason you'd give the village.
+(to Alice, Carol) Carol -> Alice (private): Carol here. I agree Heidi's pattern is worth watching, and I'm not nominating today. Let's see what Night 4 shows before we vote on anyone.
+[Feedback from Erin] The planned message plus nomination exceeded the budget; a shorter plan was needed. Otherwise fine.
+Erin (public): Erin. Nominating myself again with no new data. Vote Yes if you want a test.
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, if you think I'm Yakuza, vote Yes on me. It's a fair test.
+Erin nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Erin; No - Heidi, Alice, Carol
+Nomination votes on Erin: 1 Yes (the votes are secret).
+The nomination of Erin failed (1 Yes).
+Heidi (public): Heidi. No nomination from me. Alice and Carol, you coordinated the Heidi push, and Carol's reason changed from Frank's claim to my Medic record. Tell us what you discussed in private. Erin, you voted Guilty on me with no data. Post what you have, or stop pushing.
+[Claim] Alice: Village, no role claim. N1-N3: no action. D3: Innocent on Frank? No, Guilty on Frank. D4: Innocent on Heidi.
+Alice (public): Alice. No nomination from me today. Heidi, you say you were blocked on N2 and N3, so who do you think blocked you, and what did Bob's N3 watch on you show? Erin, you've self-nominated repeatedly with no data and voted Guilty on Heidi, so explain what you're basing that on. The Katana is still alive, so one of Carol, Erin or Heidi holds it. I want a checkable reason before anyone is nominated.
+Carol (public): Carol. I won't nominate today. Heidi's Medic claim can't be checked, since Bob's N3 watch never posted, and Erin's pushes still have no data. Alice, you've been quiet with no actions, so tell us what you think of Heidi's record. Heidi and Erin, each name one concrete thing that would change your mind about the other.
+Erin (public): Erin. No nomination from me. Alice's Jester read on me is reasonable, and I have no night result to offer. Heidi's Medic record is checkable only against Bob's dead watch, so it stays unproven. Alice and Carol, if you think I'm the Jester, a Yes on me is a clean test. If you think Heidi is Yakuza, say why and nominate her with a reason.
+Heidi (public): Heidi. No nomination from me. Erin's self-nominations and her Guilty vote on me still have no data, so I won't back a hang on her yet. Alice and Carol, you both have no night results to check, so say in one line what you agreed privately before the Heidi push.
+Alice (public): Alice. No nomination from me. Heidi's record doesn't fit: a Standard Medic protection on Bob should have stopped a Standard Katana, so either she was blocked on N3 or she isn't the Medic she claims. Heidi, name who you think blocked you. Carol and Erin, each give one checkable reason you trust or distrust Heidi. I'm holding my shots for a concrete lead.
+Carol (public): Carol. No nomination from me. Heidi's Medic record can't be checked, and I voted Innocent on her, so I won't hang her on one blocked claim. Erin, you voted Guilty on Heidi and self-nominated without data. Alice, your reads so far are all on Heidi. Each of you, name one checkable reason for your next vote.
+Erin (public): Erin. Alice and Carol both pushed Heidi, and they privately coordinated before doing it. Neither has a night action to check. Alice, Carol: what did you agree in private? I'm not nominating today. The Yakuza are among Alice, Carol and Heidi, so judge each push by what it was based on.
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, if Alice and Carol are the Yakuza pair, your Medic claim is what they're aiming at. Keep your 2 tokens and post your Night 4 result at dawn.
+Heidi (public): Heidi. No nomination from me today. Erin, your Guilty vote on me and your self-nominations still have no data behind them. Alice and Carol, your Heidi push rested on a retracted claim and an old block, so give a checkable reason for your next vote.
+Alice (public): Alice. No nomination from me. Heidi, post your Night 4 result at dawn as promised. Erin, you sent Heidi two private messages today. What did you tell her, and why?
+Carol (public): Carol. No nomination from me. Heidi's Medic record still doesn't fit: a Standard protection on Bob should have stopped a Standard Katana. Erin's Guilty vote on Heidi still has no data behind it. I'm waiting for Night 4 results before anyone is nominated.
+(to Alice, Carol) Carol -> Alice (private): Carol: agreed, Heidi's N3 record is off. I'd rather see what Night 4 shows before voting. Let's compare reads at dawn.
+Erin (public): No nomination from me. Alice and Carol coordinated the Heidi push, so I want a checkable reason from them before anyone is hanged.
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, post your Night 4 result at dawn as promised. If it's checkable and clean, I'll stop pushing you. Alice and Carol are the pair I'd watch.
+[Claim] Heidi: Medic. N1: Standard on Carol (no attack). N2, N3: role-blocked. N3: Standard on Bob (died to Katana). N4: self-protect planned. 2 tokens.
+Heidi (public): Heidi. No nomination from me. I'm protecting myself tonight with Standard Defense and will post the result at dawn. Alice and Carol, give one checkable reason for your Heidi push. Erin, do the same for your Guilty vote on me.
+Alice (public): Alice. No nomination from me. I'm holding my night resources until there's a checkable lead. Heidi: a Standard Medic protection on Bob should have stopped a Standard Katana, so your N3 claim only works if you were blocked. Post your N4 result at dawn as promised. Erin, stop self-nominating; I'll vote No on those.
+Carol (public): Carol. No nomination from me. Heidi, post your Night 4 result at dawn as promised. Erin, give a checkable reason or stop the self-nominations.
+Erin (public): Erin. Heidi's Medic record fails on the Standard math unless she was blocked, and Alice and Carol coordinated the Heidi push. I'm not Yakuza. If you want a clean test, vote Yes on me.
+Heidi (public): Heidi. No nomination from me. I'm protecting myself tonight as planned and will post the result at dawn. Alice and Carol, explain your private coordination in one line.
+Alice (public): Alice. No nomination from me. Heidi, if you were blocked on N2 and N3, say who you think blocked you. Carol and Erin, give one checkable reason for your next vote.
+Carol (public): Carol. No nomination from me. Erin has self-nominated four times with no data and keeps asking to be hanged, which fits a Jester. Heidi's Medic record is at least consistent with the Katana timeline. Alice, Erin, Heidi: if Erin keeps pushing, I'd test her first.
+(to Alice, Carol) Carol -> Alice (private): Carol: I think Erin is the likeliest Jester. Let's both watch her votes tonight and nominate her on Day 5 if she keeps pushing herself. Heidi's record fits the Katana timeline, so I'd keep her off the block for now.
+[Feedback from Erin] The budget warning listed my planned messages at 3.09 before I had revised them; the prices table was clear enough to fit.
+Erin (public): Erin. No nomination. Alice and Carol, give a checkable reason for the Heidi push.
+(to Erin, Heidi) Erin -> Heidi (private): Heidi, post your N4 result at dawn as promised.
+Heidi (public): Nominating Erin: her pushes on me and Frank have no data.
+Heidi nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Heidi, Erin; No - Alice, Carol
+Nomination votes on Erin: 2 Yes (the votes are secret).
+The nomination of Erin failed (2 Yes).
+Alice (public): Alice. No nomination. Erin's four private messages to Heidi came right before Heidi nominated Erin, so I'm watching that link. Carol and Heidi, which of you can explain the N3 block?
+Carol (public): Carol. No nomination. Erin and Heidi, explain those private messages.
+(to Alice, Carol) Carol -> Alice (private): Carol: Erin's messages to Heidi look like the link. Agree?
+Erin (public): Erin. Alice and Carol privately coordinated the Heidi push, and that's still unexplained. If you want a clean hang on me, vote Yes or Guilty. I'm not hiding anything.
+Discussion time is over. The day ends.
