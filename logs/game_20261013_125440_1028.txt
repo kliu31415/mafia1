@@ -360,3 +360,73 @@ Katana: Bob holds it and attacks Alice.
 (to Bob) Moderator (private): You were attacked tonight (Enforcer) and died.
 (to Niaj) Moderator (private): Yakuza night summary: Bob holds the Katana (moved from Niaj) and chose to attack Alice. Bob (Wiretap) chose no action.
 (to Niaj) The Katana passed to Niaj.
+
+===== DAY 5 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice - Enforcer (Village). N1: visited Ivan (free Basic), no attack, so Ivan made no attack N1. N2: tried Erin + Bob, ROLE-BLOCKED. N3: visited Dave + Bob (1 token), NO attack, so Bob didn't hold the N3 Katana. D4: hanged Erin; the game went on, so Yakuza remain. N4: visiting Grace + Bob (Basic, 1 token). If I attacked tonight, one of them made an attack (likely the Katana holder). Grace's Astral Juror claim can't be checked, and she's my top suspect for Pharmacist. Bob could still be the Wiretap."
+Bob died (killed by Enforcer). Their role isn't revealed. Their last will: "Bob, Fortune Teller (passive, never visits). N1: 3 visited, 9 visitors. N2: 4 visited, 5 visitors (Carol->Dave, Niaj->Carol, Judy->Carol, Erin->Alice, plus the holder). N3: 4 visited (Dave, Bob, Erin, Judy), 5 visitors (Niaj, Ivan, Alice, Carol + one holder to Judy). The holder was Erin (block and attack on one visit) or Grace (a Juror is Astral, so her claim can't be checked). D3: Guilty on Heidi. D4: Guilty on Erin. If I die and Erin was hanged, Grace is the best remaining lead. Test every claim against my counts."
+Speaking order today goes around the circle in seat order, starting with Niaj.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Niaj: Tracker. N1: Ivan, no visits. N2: Carol -> Dave. N3: Dave, no visits. N4: Grace -> visited ME (breaks Astral Juror claim). D5: Yes/Guilty on Grace.
+Niaj (public): My N4 track: Grace VISITED ME. A Juror is Astral and never visits, so her claim is broken. Bob died to Alice's Enforcer, which means Bob made an attack: he was the Katana holder who killed Alice. The game is still going after Erin and Bob, so exactly one Yakuza is left. Carol's Pharmacist group was Dave/Erin/Grace. Alice named Grace as her top suspect, and Grace has now been caught making a visit she says she can't make. Ivan, your Scout draw should fit Grace being linked to me. I'll nominate Grace once Carol and Ivan have spoken. Yes and Guilty from me.
+[Claim] Carol: Surveyor. N1: Heidi/Ivan/Judy -> Kitsune. N2: Bob/Dave/Erin -> Wiretap. N3: Dave/Erin/Grace -> Pharmacist. D3: Guilty on Heidi. D4: Guilty on Erin. D5: Yes/Guilty on Grace.
+Carol (public): Grace is my hang too. She's in my Pharmacist group (Dave/Erin/Grace), and Niaj's N4 track breaks her claim to be an Astral Juror. Bob died to Alice's Enforcer, so Bob was Yakuza and made an attack, and the game didn't end, so one enemy is left. With 4 of us alive, this hang decides the game. Ivan, please post your N4 Scout result. Then nominate Grace. I vote Yes and Guilty.
+[Claim] Grace: Juror (Astral, never visits). N3: Bob+Dave same 1/1 trials, 1/1 noms. N4: Bob+Alice same 2/2, 2/2. Visited NO ONE N4: Niaj's track is false. D3: Guilty on Heidi. D4: Guilty on Erin.
+Grace (public): Niaj is lying: I visited no one on N4. I'm Astral. This is the second time his tracks clash with someone. Dave's will says he audited Bob on N3, and Niaj said Dave visited no one. Bob, who was Yakuza, then posted an N3 count of 5 visitors that left Dave out, which backed Niaj. If Dave was a real Auditor, everything fits. The Wiretap in Bob/Dave/Erin was Bob, the Pharmacist in Dave/Erin/Grace was Erin, and Niaj is the fake Tracker covering for them. Bob's will pushed me. That's the Yakuza steering us into a wrong hang at 4 alive. Ivan: does your N4 Scout put Grace and Niaj in different groups? Carol: a wrong hang here loses the game. Hang Niaj.
+[Claim] Ivan: Scout + Armed. N1: Frank/Grace/Ivan diff groups. N2: Carol/Frank/Heidi diff. N3: shot Dave (killed); Alice/Carol/Grace diff. N4: Bob/Carol/Ivan diff groups. D5: lean Niaj.
+Ivan (public): I'm not convinced. Grace only fell under suspicion through Carol's Pharmacist group. But a Pharmacist who visited Niaj would have BLOCKED him, and then he'd have no track result at all. Dave was right about Bob. His will says he audited Bob, Niaj claimed Dave visited no one, and Bob, proven Yakuza, posted fake counts that backed exactly that. Bob's will also pushed Grace. My N4 Scout result fits either story. Carol, I lean toward Niaj.
+Niaj (public): Ivan: Erin was the Pharmacist (proven blocker, in Carol's group, hanged). The last Yakuza isn't a blocker, so Grace's visit to me fits a Diviner or Mortician checking the Tracker. On Dave: wills are written before results arrive. Heidi's will showed a move she chose that a Drowsy block stopped, and Dave's "audited Bob" can be the same, so my track and Dave's will both fit. A Yakuza Tracker wouldn't have confirmed you on N1 and Carol's survey on N2. Your Scout draw could have broken my N4 claim, and I made it anyway. Grace only named a role on Day 4. Hang Grace.
+[Claim] Carol: Surveyor. N1: Heidi/Ivan/Judy -> Kitsune. N2: Bob/Dave/Erin -> Wiretap. N3: Dave/Erin/Grace -> Pharmacist. D3: Guilty on Heidi. D4: Guilty on Erin. D5: nominate Niaj, Yes/Guilty.
+Carol (public): I'm changing my vote to Niaj. Three reasons. 1) Niaj announced on Day 4 that he would track Grace. A Yakuza Grace would simply visit no one that night, which would clear her for free. Visiting Niaj on that exact night would be a pointless blunder. A Yakuza Niaj, on the other hand, needs exactly this frame at 4 alive. 2) This is Niaj's second clash with a will: his N3 "Dave visited no one" also contradicts Dave's audit of Bob. 3) Bob was Yakuza, and his fake N3 count backed Niaj over Dave, and his will pushed Grace. Yakuza don't steer us onto their own teammate. Nominating Niaj. Yes and Guilty.
+Carol nominated Niaj. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Niaj] Yes - Carol, Grace, Ivan; No - Niaj
+Nomination votes on Niaj: 3 Yes (the votes are secret).
+Niaj is put on trial (3 Yes).
+Niaj (public): Carol, your first point assumes Grace believed my track would count. It didn't need to. A Juror claim can't be checked, so visiting me only cost her my word against hers, and she's betting you'll take hers. Right now you are. She needed a read on the last claimed investigator, and she took it.
+
+Second, Bob's counts fit EVERY claim posted before his: Carol's, Ivan's, Alice's and Erin's. A fake FT copies the board, so his counts prove nothing about me. His will pushing Grace was just him playing his FT cover.
+
+Ivan, you read Dave as the Wiretap and shot him on N3, before my track was posted. My result agreed with your read on its own. My N1 and N2 tracks confirmed two true claims, yours and Carol's.
+
+If you hang me and I'm the real Tracker, Grace kills one of you tonight and wins 1v1. An Innocent vote doesn't end the day either: you can still nominate Grace. Vote Innocent.
+(to Ivan, Niaj) Niaj -> Ivan (private): Ivan, you shot Dave as the Wiretap on your own read, and my N3 track backed you up independently. If Grace is right, you killed a Villager and two honest tracks by me were luck. Innocent doesn't end the day: there are still 2 nominations left, so we can put Grace up next. A wrong hang here loses for good.
+(to Carol, Niaj) Niaj -> Carol (private): Carol, my N2 track backed your survey when nobody else could. Grace's Juror claim has never been checkable, and you named her as next in line yesterday. Innocent keeps the day open, so we can nominate Grace right after. Hanging the wrong one at 4 alive loses the game.
+Carol (public): Guilty, as I said. Niaj, look at when your tracks were posted. Your N1 "Ivan visited no one" came after Ivan had claimed passive Scout. Your N2 "Carol visited Dave" came after I had posted my survey of Dave. Every one of your "confirmations" repeats a claim that was already public. The only two times your tracks added new information were Dave (against his own will) and Grace (against her claim). Both times it pointed at a Village-claimer. Also, a Pharmacist visit would have blocked you, so you switched to "Diviner or Mortician". Bob was proven Yakuza, and his fake count backed you. Ivan, vote Guilty.
+Grace (public): Guilty from me. Ivan, your vote decides this. Niaj announced he'd track me on N4. A Yakuza me would just stay home and get cleared for free. Instead his "result" is the only evidence anywhere against me, and his N3 track clashed with Dave's will, which Bob backed with a fake count. Please post what Niaj PM'd you. Vote Guilty.
+[Claim] Ivan: Scout + Armed. N1: Frank/Grace/Ivan diff. N2: Carol/Frank/Heidi diff. N3: shot Dave (killed); Alice/Carol/Grace diff. N4: Bob/Carol/Ivan diff. D5: Yes/Guilty on Niaj.
+Ivan (public): Niaj's PM to me: I shot Dave on my own read, his N3 track "backed me," and Innocent leaves 2 nominations for Grace. Nothing new. Grace staying home on the night she knew she'd be tracked was the obvious play. Guilty.
+Niaj (public): Last word. Ivan, you shot Dave as the Wiretap on your own read. If Grace is right, Dave was a Villager, your shot was wrong, and Bob just got lucky. Carol's survey said the Wiretap was in Bob/Dave/Erin and the Pharmacist was in Dave/Erin/Grace. Dave sits in BOTH groups. If Dave was the Wiretap, the Pharmacist was Erin or Grace, and the last Yakuza is Grace. Bob's will pushed Grace because Bob was trying to save himself, not her. And "Grace would have stayed home": she claims an Astral role I can't track anyway, so she lost nothing by checking me. Hanging me means betting the game on the one claim that has never been checked once. Innocent still leaves two nominations open for Grace. Vote Innocent.
+Trial votes on Niaj: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Niaj] Guilty - Carol, Grace, Ivan; Innocent - Niaj
+Niaj is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Niaj died (executed by hanging). Their role isn't revealed. Their last will: "Niaj, Tracker. N1: Ivan, no visits. N2: Carol -> Dave. N3: Dave, no visits (Dave was in both of Carol's Yakuza groups; Ivan shot him as the Wiretap). N4: Grace VISITED ME, which breaks her Astral Juror claim. Bob was Yakuza (killed by Alice's Enforcer). If I'm hanged and the game goes on, Grace is the last Yakuza."
+The game is over. Winners: Alice (dead), Carol, Dave (dead), Grace, Ivan, Judy (dead), Mallory (dead), Olivia (dead), Frank (left). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Grace, Ivan, Judy, Mallory, Olivia, Frank
+Cost by player (USD):
+  Alice (Enforcer)       $0.0000   25 calls  claude-opus-5.5
+  Bob (Wiretap)          $0.0000   34 calls  claude-opus-5.5
+  Carol (Surveyor)       $0.0000   30 calls  claude-opus-5.5
+  Dave (Auditor)         $0.0000   19 calls  claude-opus-5.5
+  Erin (Pharmacist)      $0.0000   31 calls  claude-opus-5.5
+  Frank (Bounty Hunter)  $0.0000   18 calls  claude-opus-5.5
+  Grace (Juror)          $0.0000   30 calls  claude-opus-5.5
+  Heidi (Executioner)    $0.0000   19 calls  claude-opus-5.5
+  Ivan (Scout)           $0.0000   30 calls  claude-opus-5.5
+  Judy (Kitsune)         $0.0000   18 calls  claude-opus-5.5
+  Mallory (Enforcer)     $0.0000    5 calls  claude-opus-5.5
+  Niaj (Fabricator)      $0.0000   40 calls  claude-opus-5.5
+  Olivia (Roleplayer)    $0.0000    5 calls  claude-opus-5.5
+  Moderator              $0.0000    8 calls  claude-opus-5.5
+  Night checks           $0.0000    4 calls  claude-opus-5.5
+  Strategy review        $0.0000    1 calls  claude-opus-5.5
+  Log review             $0.0000    1 calls  claude-opus-5.5
+  Total                  $0.0000  318 calls
