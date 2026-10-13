@@ -12,3 +12,26 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Players may also have a trait (R24).
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Grace.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Grace (public): No need to claim power roles today. Share concise reads and plans; tomorrow, post concrete results promptly. Avoid blind pushes without evidence.
+Heidi (public): Agreed. No claims yet; tomorrow, post concrete results promptly. If you have a reason to suspect someone, state it rather than making a vague push.
+Alice (public): No claims from me yet. Bob has been quiet and said nothing concrete, so I'd like to hear his read before anyone votes.
+Bob (public): Fair point. Day 1 has no evidence, so I don't have a concrete read yet. I'll share anything useful tomorrow and judge pushes by specifics.
+Carol (public): Carol here. I have no reads yet and I'm not claiming anything today. Tomorrow I'll post any concrete info I have. Until then, I'd like everyone to name one specific player they find suspicious and why.
+Dave (public): Dave here, no claim. Agree nobody should be voted on Day 1 without evidence. Alice's push on Bob is early too. Bob said he'll post concrete info tomorrow, so let's hear it before judging him.
+Erin (public): Erin here, no claim yet. Agree no Day 1 votes without evidence. I'll post anything concrete tomorrow.
+Frank (public): I agree: no claims or blind votes today. Bob answered Alice's concern, so quietness alone isn't much; Dave's defense isn't evidence either. Let's judge concrete info tomorrow.
+Grace (public): No new evidence has emerged. Alice’s concern about Bob and Dave’s defense are both ordinary Day 1 discussion, not alignment evidence. Let’s evaluate tomorrow’s concrete results and vote behavior.
+Heidi (public): No one has offered evidence; tomorrow, judge claims and votes on specifics.
+Alice (public): My Bob push had no evidence behind it, and I opened it early. Judge me on that tomorrow.
+Bob (public): Alice's push was unsupported, but she owned it. Dave's defense isn't evidence either. No one has given me a concrete reason to vote yet.
+Carol (public): still no claim. I'll post concrete information first thing tomorrow, and I'll judge votes on evidence, not on who spoke most today.
+Dave (public): Dave here, no claim. I have no reads yet, so I won't vote on Day 1. Tomorrow I'll judge posted results and vote behavior, not who talks most.
+(to Bob, Dave) Dave -> Bob (private): Stay quiet and low-key today. Let's sync on tonight's Katana in night chat.
+[Feedback from Erin] The schema requires every field, including unused ones, so I had to fill them with null/empty values. That is fine, but it makes sending a plain message slightly awkward.
+Erin (public): Erin here, still no claim and no reads. Dave messaged Bob privately, which everyone can see, so I'll be watching what each of them posts tomorrow.
+Frank (public): Dave’s PM to Bob is worth explaining, though it isn’t evidence by itself. What was it about?
+Discussion time is over. The day ends.
