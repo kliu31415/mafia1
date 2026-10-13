@@ -640,6 +640,8 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
                   f"The verdict was Innocent ({tally}), but the vote was rigged by a Clerk, so {nominee} is "
                   "executed by hanging anyway.", cat=DEATH)
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
+        for t in TRAIT_LOGIC.values():  # rules R24, e.g. a Remorseful voter's death
+            t.after_hanging(game, game.player(nominee), {v.name: o["vote"] for v, o in zip(voters, outs)})
         return "executed"
     game.emit(f"{nominee} is found Innocent ({tally}).", cat=VOTE)
     return "innocent"

@@ -219,6 +219,9 @@ players can get it. A trait's night action is used in addition to your role's ow
 - Kindred (Village players only): after each trial vote you cast, you privately learn up to two random other
   players whose votes counted the same way as the vote you cast (if fewer did, you learn that). It needs no action,
   so a role-block doesn't stop it.
+- Remorseful (Village players only): if you vote Guilty in a trial and that player is hanged and was Village (their
+  true alignment), you die at once; the cause is "remorse". It goes by the vote you cast. It isn't an attack, so
+  nothing that reacts to attacks counts it. Nobody holds both Remorseful and Zealot.
 - Faultline (Village players only): after each trial vote you cast, you privately learn one random other player
   whose vote counted as Guilty and one whose vote counted as Innocent (if all the others voted one way, you learn
   that). It needs no action, so a role-block doesn't stop it.

@@ -1,5 +1,5 @@
 {
- "log_version": 68,
+ "log_version": 69,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -41,6 +41,7 @@
   "player_call": ["cost", "effort", "human", "latency_s", "model", "notepad_after", "notepad_before", "output", "player", "reasoning", "task", "usage"],
   "player_feedback": ["day", "feedback", "phase", "player", "role", "step"],
   "puppeting_lapsed": ["player", "puppets"],
+  "remorse": ["day", "hanged", "player"],
   "result": ["cost", "days", "duration_s", "end_reason", "errors", "models", "players", "roles", "usage", "winners", "winning_faction"],
   "resume": ["at", "cut_cost", "cut_records", "day", "unreadable_lines"],
   "resume_retired": ["changes"],

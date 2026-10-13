@@ -95,6 +95,18 @@ TRAITS: dict[str, TraitInfo] = {
                                "<circle cx='3.9' cy='5' r='1.7' fill='none' stroke='#fff' stroke-width='0.9'/>"
                                "<circle cx='6.1' cy='5' r='1.7' fill='none' stroke='#fff' "
                                "stroke-width='0.9'/></svg>")),  # two linked rings
+    # Village only (Kevin, Oct 13 2026): a Guilty vote risks the holder's life, and surviving one tells them the hanged
+    # player wasn't Village. Compared with the vote as cast, like Kindred, so a Fixer's hidden reversal can't kill
+    # (or spare) them; never with Zealot, whose votes always count as Guilty (EXCLUSIVE).
+    "Remorseful": TraitInfo(frozenset({Alignment.GOOD}),
+                            "If you vote Guilty in a trial and that player is hanged and was Village, you die at once "
+                            "of remorse (rules R24).",
+                            "Dies of remorse after voting Guilty on a hanged Villager.",
+                            power=-0.1,
+                            mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                  "<circle cx='5' cy='5' r='4.4' fill='#475569' stroke='#fff' stroke-width='1'/>"
+                                  "<path d='M5 2.4Q6.8 5 6.8 6A1.8 1.8 0 0 1 3.2 6Q3.2 5 5 2.4Z' fill='#fff'/>"
+                                  "</svg>")),  # a tear
     "Faultline": TraitInfo(frozenset({Alignment.GOOD}),
                            "After each trial vote you cast, you privately learn one random other player whose vote "
                            "counted as Guilty and one whose vote counted as Innocent (rules R24).",
@@ -287,7 +299,8 @@ TRAITS: dict[str, TraitInfo] = {
 }
 # Traits no player may hold together (rules R24).
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"}),
-             frozenset({"Selfish", "Selfless"}), frozenset({"Usurper", "Selfish"}), frozenset({"Usurper", "Selfless"})]
+             frozenset({"Selfish", "Selfless"}), frozenset({"Usurper", "Selfish"}), frozenset({"Usurper", "Selfless"}),
+             frozenset({"Remorseful", "Zealot"})]
 
 
 class TraitLogic:
@@ -350,6 +363,9 @@ class TraitLogic:
         """Right after a trial's votes are counted, before the verdict. cast: each voter's vote as cast (True is
         Guilty); guilty: the voters whose vote counted as Guilty (after a Fixer's reversal)."""
 
+    def after_hanging(self, game: Game, hanged: Player, cast: dict[str, bool]) -> None:
+        """Right after a trial's verdict hanged `hanged` (a Clerk's rig too). cast: each voter's vote as cast."""
+
 
 class Martyr(TraitLogic):
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
@@ -364,6 +380,7 @@ class Martyr(TraitLogic):
 
 AVENGER_CAUSE, CURSE_CAUSE = "Avenger", "a curse"  # the causes of attacks code makes (also REVENGE_CAUSE)
 HEARTBREAK_CAUSE = "heartbreak"  # a Bonded player's death when their partner dies: no attack by anyone
+REMORSE_CAUSE = "remorse"  # a Remorseful player's death after a Guilty vote hanged a Villager: no attack by anyone
 
 
 class Avenger(TraitLogic):
@@ -380,7 +397,7 @@ class Avenger(TraitLogic):
         # (rules R10: the night is simultaneous; R12: the cause joins their death), whatever order the moderator's ops
         # came in.
         cause = p.death["cause"]
-        if cause in (CURSE_CAUSE, AVENGER_CAUSE, HEARTBREAK_CAUSE) or cause.endswith(REVENGE_CAUSE):
+        if cause in (CURSE_CAUSE, AVENGER_CAUSE, HEARTBREAK_CAUSE, REMORSE_CAUSE) or cause.endswith(REVENGE_CAUSE):
             return
         for name in dict.fromkeys(p.death["killers"]):
             if acted_tonight(game, game.player(name)) and name != p.name:
@@ -479,6 +496,19 @@ class Kindred(TraitLogic):
             game.log.write("kindred", day=game.day, player=name, nominee=nominee, named=picked)
             game.emit(f"(Only you see this) Kindred: in the trial of {nominee}, you voted {way}, and {text}"
                       + (" too." if picked else "."), [name], kind="notice", cat=VOTE)
+
+
+class Remorseful(TraitLogic):
+    def after_hanging(self, game: Game, hanged: Player, cast: dict[str, bool]) -> None:
+        # rules R24: true alignments (an Ex-Con is Village; a Neutral never counts). At once, like heartbreak; not an
+        # attack by anyone, so nothing that reacts to attacks counts it.
+        if hanged.info.alignment is not Alignment.GOOD:
+            return
+        for name, vote in cast.items():
+            p = game.player(name)
+            if vote and p.alive and "Remorseful" in p.traits and p.info.alignment is Alignment.GOOD:
+                game.log.write("remorse", player=name, hanged=hanged.name, day=game.day)
+                game.kill(name, REMORSE_CAUSE, by=hanged.name)
 
 
 class Faultline(TraitLogic):
@@ -735,7 +765,8 @@ class Paranoid(TraitLogic):
 
 
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
-                                "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious(),
+                                "Kindred": Kindred(), "Remorseful": Remorseful(), "Faultline": Faultline(),
+                                "Notorious": Notorious(),
                                 "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
                                 "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),

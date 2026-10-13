@@ -2629,3 +2629,34 @@ def test_two_bonded_pairs_stay_apart(tmp_path):
         game.phase = "day"
         game.kill(first, "executed by hanging", guilty_voters=[])
         assert sorted(n for n in bonds if not game.player(n).alive) == sorted([first, bonds[first]])
+
+
+def test_a_remorseful_villager_dies_after_voting_guilty_on_a_hanged_villager(game_factory):
+    # rules R24 (Kevin, Oct 13 2026): at once, by the vote as cast, true alignments; not an attack
+    from day import run_trial
+    from tests.conftest import ScriptedClient
+
+    def decide(name, task, schema):  # Guilty, except Dave in Bob's trial
+        return {"vote": not (name == "Dave" and "Bob" in task)} if "vote" in schema["properties"] else None
+    game, players = game_factory(["Sheriff", "Ex-Con", "Medic", "Vigilante", "Grunt"], ScriptedClient(decide))
+    for name in ("Alice", "Carol", "Dave", "Erin"):
+        game.player(name).traits = ["Remorseful"]
+    assert run_trial(game, players, game.player("Alice"), "Bob", rnd=1) == "executed"  # an Ex-Con is Village
+    assert [p.name for p in game.players if not p.alive] == ["Alice", "Bob", "Carol"]
+    assert game.player("Alice").death["cause"] == "remorse" and game.player("Dave").alive  # Dave voted Innocent
+    assert game.player("Erin").alive  # Village only: a Yakuza given it anyway never dies of it
+    assert any("remorse" in e.text for e in game.events)
+    # Hanging a Yakuza: a Guilty Remorseful voter lives (and so learns the hanged player wasn't Village).
+    assert run_trial(game, players, game.player("Dave"), "Erin", rnd=1) == "executed"
+    assert game.player("Dave").alive
+
+
+def test_a_remorse_death_can_end_the_game(game_factory):
+    from day import run_trial
+    from tests.conftest import ScriptedClient, votes
+    game, players = game_factory(["Sheriff", "Medic", "Grunt"], ScriptedClient(votes(guilty_for={"Bob"})))
+    game.player("Alice").traits = ["Remorseful"]
+    assert run_trial(game, players, game.player("Carol"), "Bob", rnd=1) == "executed"
+    assert not game.player("Alice").alive and game.check_winner() == ["Carol"]
+    from traits import bundle_error
+    assert bundle_error(["Remorseful", "Zealot"])
