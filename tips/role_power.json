@@ -1,5 +1,5 @@
 {
- "written": "2026-10-13 12:45 UTC",
+ "written": "2026-10-13 12:54 UTC",
  "games": 89,
  "offset": 0.052,
  "roles": {
@@ -284,6 +284,11 @@
    "prior": 0.25,
    "power": 0.34,
    "games": 3
+  },
+  "Armed@Yakuza": {
+   "prior": 0.2,
+   "power": 0.2,
+   "games": 0
   },
   "Cursed": {
    "prior": -0.1,

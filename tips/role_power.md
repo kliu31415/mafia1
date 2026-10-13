@@ -1,6 +1,6 @@
 # Role power
 
-Refit 2026-10-13 12:45 UTC by `role_power.py` from 89 finished live games (Village won 53). Power is how much a role adds to the Village's win chance, in logits (+0.4 is about +10 points near even). Offset +0.05 (prior -0.30). Change the priors in role_power.py; this file is rewritten after every game.
+Refit 2026-10-13 12:54 UTC by `role_power.py` from 89 finished live games (Village won 53). Power is how much a role adds to the Village's win chance, in logits (+0.4 is about +10 points near even). Offset +0.05 (prior -0.30). Change the priors in role_power.py; this file is rewritten after every game.
 
 | Role | Side | Prior | Power | Games |
 |---|---|---|---|---|
@@ -71,6 +71,7 @@ A trait's power is how much it helps its holder's side (the Village for a Villag
 | Martyr | Village | +0.15 | +0.26 | 4 |
 | Katana Master | Yakuza | +0.25 | +0.22 | 1 |
 | Stocked | Village, Yakuza, Neutral | +0.15 | +0.20 | 1 |
+| Armed | Yakuza | +0.20 | +0.20 | 0 |
 | Kindred | Village | +0.15 | +0.18 | 3 |
 | Narrow Escape | Yakuza | +0.10 | +0.14 | 1 |
 | Grudge | Village, Neutral | +0.10 | +0.13 | 1 |
