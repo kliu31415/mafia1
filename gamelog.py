@@ -124,7 +124,9 @@ from records import caller_of, read_records, redact, safe_print
 # 68: human seats (human.py, --humans): model "human" and via "human"; their "player_call" records have "human"
 #     ("answered", "skipped" or "timeout"), and "player_feedback" has step "human_report" for the page's bug box
 # 69: "remorse" records (player, hanged, day): a Remorseful voter's death after a hanging (rules R24)
-LOG_VERSION = 69
+# 70: the Ex-Con role became the Notorious and Sleepwalker traits (roles.RETIRED); night_actions trait_actions may
+#     have a Sleepwalker's random visit, {trait, target, automatic: true}, drawn by code (rules R24)
+LOG_VERSION = 70
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

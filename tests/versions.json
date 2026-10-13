@@ -1,5 +1,5 @@
 {
- "log_version": 69,
+ "log_version": 70,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],

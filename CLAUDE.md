@@ -118,12 +118,12 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   6. `tests/test_roles.py`: a scenario test for anything code carries out. Every role also gets a mock-game
      smoke test automatically (`test_every_role_survives_a_mock_game`). `apply_ops` and `told` in
      `tests/conftest.py` apply moderator ops and read a player's private results.
-  7. `roles/icons/<role-name>.svg` (e.g. `ex-con.svg`): the icon next to the role's players in the HTML log, a
+  7. `roles/icons/<role-name>.svg` (e.g. `party-animal.svg`): the icon next to the role's players in the HTML log, a
      24x24 color drawing, distinct from the other roles at a glance (the viewer puts it on a badge tinted by faction).
      A test checks every role has one.
   8. Scripts (`scripts.py`, `--script`, Blood on the Clocktower style): a game's rules list only its script's roles,
      and every role in it comes from the script. `all` (the default, rules unchanged) has every role, so a new role
-     needs nothing there; add it to a hand-made script (`core`, 29 roles) only if it fits. Code that draws "any role"
+     needs nothing there; add it to a hand-made script (`core`, 28 roles) only if it fits. Code that draws "any role"
      (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`. Each hand-made script's rules are the
      cut plus small edits an Opus call made once (dropping mentions of off-script roles), cached in `rules_scripts/`.
      After any edit to `rules_1.txt`, `test_every_script_revision_is_current` fails until the stale ones are remade.

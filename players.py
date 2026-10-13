@@ -275,13 +275,19 @@ def as_chosen(a: dict) -> dict:
 def night_history(game: Game, p: Player) -> str:
     """p's submitted action each night and the moderator's private results to p, in one place (players
     lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
-    # An automatic action (e.g. the Ex-Con's random visit) is listed every night without its target, which its
-    # user isn't told; players missed it when only the moderator mentioned it, on some nights.
-    lines = [f"- Night {night}: you submitted {describe_action(as_chosen(actions[p.name]))}"
-             if not actions[p.name].get("automatic") else
-             f"- Night {night}: your automatic action ({actions[p.name].get('details') or 'no details'}) was due; "
-             "you aren't told its target, and a role-block would have stopped it"
-             for night, actions in game.night_actions.items() if p.name in actions]
+    # A Sleepwalker's random visit (rules R24) is listed every night without its target, which its user isn't told;
+    # players missed it when only the moderator mentioned it, on some nights (it was the Ex-Con's then, and a game
+    # resumed from before v70 may still have such a whole automatic action).
+    def line(night: int, a: dict) -> str:
+        if a.get("automatic"):
+            return (f"- Night {night}: your automatic action ({a.get('details') or 'no details'}) was due; you aren't "
+                    "told its target, and a role-block would have stopped it")
+        auto = [t["trait"] for t in a.get("trait_actions") or [] if t.get("automatic")]
+        own = {**a, "trait_actions": [t for t in a.get("trait_actions") or [] if not t.get("automatic")]}
+        return (f"- Night {night}: you submitted {describe_action(as_chosen(own))}"
+                + "".join(f"; your {t} visit to a random player was due (you aren't told whom, and a role-block "
+                          "would have stopped it)" for t in auto))
+    lines = [line(night, actions[p.name]) for night, actions in game.night_actions.items() if p.name in actions]
     lines += [f"- {phase_label(e.day, e.phase)}, result: {e.fields.get('message', e.text)}" for e in game.events
               if e.cat == RESULT and e.visible_to is not None and p.name in e.visible_to]
     return "\n".join(lines)

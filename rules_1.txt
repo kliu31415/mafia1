@@ -85,8 +85,8 @@ program sets the numbers for each game and tells every player at the start.
 
 R23 (Swaps)
 Some roles can swap two players for a night. Every action that night aimed at one of them, whether or not it visits
-(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as the Ex-Con's visit
-or the Seer's pair) lands on the other instead, as if its user had chosen that player. Only the swap itself is not
+(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as a Sleepwalker's
+visit or the Seer's pair) lands on the other instead, as if its user had chosen that player. Only the swap itself is not
 moved (the swapping player's Katana vote is). Results name the player the action's user chose, so a swapped action's
 result doesn't show the swap: a Sheriff who checked A learns B's alignment as A's. A result that lists several
 players (e.g. a group around the target) is built around B, but A and B trade places in the list, each named where
@@ -122,8 +122,8 @@ effect. By default, effects are announced publicly at the start of the next Day;
 
 R7 (Optional actions)
 Every ability is optional ("may") unless its role says "must": any player may choose not to act at Night, not to
-use a Day ability, and not to spend a token. Effects a role has automatically, with no choice (e.g. the
-Ex-Con's nightly visit), aren't optional, but a role-block still stops them (R9).
+use a Day ability, and not to spend a token. Effects a role or trait has automatically, with no choice (e.g. a
+Sleepwalker's nightly visit, R24), aren't optional, but a role-block still stops them (R9).
 
 R6 (Visits)
 - When A performs an action on B, A visits B, unless the action is an Astral Visit.
@@ -141,7 +141,7 @@ they were role-blocked. Any player can be role-blocked unless their role says ot
 has no night action, or who chose not to act, has no other effect, but they are still told. A role-blocker learns
 only whether the block failed because its target can't be role-blocked.
 A result a role gets with no action at all (its text says "This needs no action") isn't an action, so a role-block
-doesn't stop it; automatic actions, such as the Ex-Con's visit or the Seer's random pair, are stopped (R7).
+doesn't stop it; automatic actions, such as a Sleepwalker's visit or the Seer's random pair, are stopped (R7).
 
 R10 (Simultaneous night resolution)
 All night actions happen at the same time. Think of it as two steps: first everyone attempts their actions,
@@ -155,9 +155,9 @@ its user dies that night, unless it needs its user to act during that Day (e.g. 
 messages); those lapse. Any token spent on it is gone either way (R18).
 
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
-1. Remove actions of role-blocked players (R9), automatic ones included (the Ex-Con's visit, the Seer's pair).
+1. Remove actions of role-blocked players (R9), automatic ones included (a Sleepwalker's visit, the Seer's pair).
    Party Animal, Pharmacist, Smuggler and Veteran can't be role-blocked. Swaps (R23) apply before anything else.
-2. Work out who visits whom (R6), including the Katana holder's visit (R8) and the Ex-Con's random visit.
+2. Work out who visits whom (R6), including the Katana holder's visit (R8) and a Sleepwalker's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
    A trap stops one attack before Defense and may hit its attacker back (Trapper).
 4. Results for investigators, using the visits and appearances (R19).
@@ -198,7 +198,7 @@ Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil
 except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
-- Ex-Con, and a player with the Notorious or Turncoat trait (R24): Evil.
+- A player with the Notorious or Turncoat trait (R24): Evil.
 - Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
   every Neutral as Neutral.)
 The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
@@ -238,7 +238,7 @@ action is used in addition to your role's own, and a role-block stops it too.
 - Faultline (Village players only): after each trial vote you cast, you privately learn one random other player
   whose vote counted as Guilty and one whose vote counted as Innocent (if all the others voted one way, you learn
   that). It needs no action, so a role-block doesn't stop it.
-- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con. Checks that see
+- Notorious (Village players only): alignment checks see you as Evil (R19). Checks that see
   true alignment, such as the Census Taker's count, aren't fooled.
 - Grudge (any player): if you are hanged, the next night one random player whose vote counted as Guilty in your
   trial, among those alive when that night begins, is dealt a Standard Attack (an Astral Visit). Defense and
@@ -285,6 +285,9 @@ action is used in addition to your role's own, and a role-block stops it too.
   this trait.
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
+- Sleepwalker (any player): every night you visit one random other living player, besides any action of your own;
+  code draws it, and you aren't told whom. It does nothing but visit: anything that sees or reacts to visits (R6),
+  such as a Tracker, a Lookout or a Veteran's alert, counts it. It isn't optional, but a role-block stops it (R7).
 - Turncoat (unique: at most one a game; Village players only): you win only if the Yakuza win (alive or dead), and
   you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19); checks that see true
   alignment, such as the Census Taker's count, see you as Good. You stay Village in every other way: you aren't in
@@ -385,9 +388,8 @@ Census Taker
   (players who die that night can be drawn; if fewer than two others are left, the group is smaller). It also
   draws at random whether to count Good or Evil players. You are told who was in the group, which alignment was
   counted, and how many of the group are of it. It counts true alignment and is not an alignment check (R19):
-  the Katana holder, framed players, the Ex-Con and Notorious players count as what they really are, a Turncoat
-  (R24) counts as Good, though they win with the Yakuza, and Outsiders (e.g. the Roleplayer and the Ex-Con) count
-  as Good. Neutral players are never counted, as either Good or Evil.
+  the Katana holder, framed players and Notorious players count as what they really are, a Turncoat (R24) counts
+  as Good, though they win with the Yakuza, and Outsiders (e.g. the Roleplayer) count as Good. Neutral players are never counted, as either Good or Evil.
 
 Coroner
   Tokens: 3 coroner tokens.
@@ -574,11 +576,6 @@ Roleplayer
   from the results your role could get that night, whatever really happened, so it is true only by chance.
   Exact-role checks see you as Roleplayer (R19). Your night actions only happen in your imagination: they aren't
   visits, have no effect, and no other role sees them.
-
-Ex-Con
-  Appears: Evil to alignment checks (R19).
-  Night: every night you visit a random player other than yourself, and you aren't told whom. A role-block stops
-  the visit (R7).
 
 --- Yakuza (Evil) ---
 All Yakuza share the Katana and night chat (R8).

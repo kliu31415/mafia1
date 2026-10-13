@@ -119,7 +119,7 @@ TRAITS: dict[str, TraitInfo] = {
     # Harmful to its holder's side, like Cursed: alignment checks can't clear them (Kevin, Oct 12 2026).
     "Notorious": TraitInfo(frozenset({Alignment.GOOD}),
                            "Alignment checks see you as Evil, though you are Village (rules R19, R24).",
-                           "Reads Evil to alignment checks, like the Ex-Con.",
+                           "Reads Evil to alignment checks.",
                            power=-0.1,
                            mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                                  "<circle cx='5' cy='5' r='4.4' fill='#111827' stroke='#fff' stroke-width='1'/>"
@@ -312,6 +312,18 @@ TRAITS: dict[str, TraitInfo] = {
                                 "<circle cx='5' cy='5' r='4.4' fill='#7f1d1d' stroke='#fff' stroke-width='1'/>"
                                 "<path d='M3 3.6H6.6L5.6 2.6M7 6.4H3.4L4.4 7.4' fill='none' stroke='#fff' "
                                 "stroke-width='0.9'/></svg>")),  # arrows turning back
+    # Any faction, told (Kevin, Oct 13 2026): the Ex-Con's random visit as a trait (with Notorious, the old Ex-Con).
+    # Muddies Trackers and Lookouts, which helps the Yakuza a little and costs a Villager a little.
+    "Sleepwalker": TraitInfo(frozenset(Alignment),
+                             "Each night you visit one random other living player, besides any action of your own. "
+                             "You aren't told whom; it does nothing but visit, and a role-block stops it (rules R6, "
+                             "R24).",
+                             "Visits a random player each night without knowing whom.",
+                             power=-0.05, power_for={Alignment.EVIL: 0.05},
+                             mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                   "<circle cx='5' cy='5' r='4.4' fill='#4338ca' stroke='#fff' stroke-width='1'/>"
+                                   "<path d='M2.8 3.2H5L2.8 6.4H5M5.6 2.6H7.2L5.6 4.8H7.2' fill='none' stroke='#fff' "
+                                   "stroke-width='0.8'/></svg>")),  # z z
     "Oblivious": TraitInfo(frozenset(Alignment),
                            "You are never told about an attack you survive. You aren't told you have this trait "
                            "(rules R24).",
@@ -347,6 +359,11 @@ class TraitLogic:
     takes_win = False  # the holder wins only as the last of their faction alive, and then alone (rules R1, R24)
     # The faction the holder wins with instead of their own (Turncoat); the game's end ignores them (rules R1, R24).
     wins_with: str | None = None
+
+    def random_visit(self, game: Game, p: Player) -> str | None:
+        """A target code draws for the living holder's automatic visit tonight (Sleepwalker; rules R24), or None.
+        night.py adds it to their trait_actions, marked automatic; the holder isn't told whom."""
+        return None
 
     def can_hide_pm(self, game: Game, p: Player) -> bool:
         """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
@@ -532,8 +549,8 @@ class Kindred(TraitLogic):
 
 class Remorseful(TraitLogic):
     def after_hanging(self, game: Game, hanged: Player, cast: dict[str, bool]) -> None:
-        # rules R24: true alignments (an Ex-Con is Village; a Neutral never counts). At once, like heartbreak; not an
-        # attack by anyone, so nothing that reacts to attacks counts it.
+        # rules R24: true alignments (a Notorious player is Village; a Neutral never counts). At once, like heartbreak;
+        # not an attack by anyone, so nothing that reacts to attacks counts it.
         if hanged.info.alignment is not Alignment.GOOD:
             return
         for name, vote in cast.items():
@@ -612,7 +629,7 @@ class Grudge(TraitLogic):
 
 class Notorious(TraitLogic):
     night_note = ("Notorious (a trait; see each player's traits): every alignment check reads a Notorious player as "
-                  "Evil (Sheriff: Evil; Seer: Evil), like the Ex-Con (R19). The Census Taker's count still sees "
+                  "Evil (Sheriff: Evil; Seer: Evil), like a framed player (R19). The Census Taker's count still sees "
                   "their true alignment. Don't tell anyone a player is Notorious.")
 
 
@@ -721,10 +738,22 @@ class Usurper(TraitLogic):
     takes_win = True
 
 
+class Sleepwalker(TraitLogic):
+    night_note = ("Sleepwalker (a trait, R24): code draws each Sleepwalker's random visit; it is in their "
+                  "trait_actions as {trait: 'Sleepwalker', target, automatic: true}. It is a visit (R6): record it "
+                  "with record_visits, and anything that sees or reacts to visits (Tracker, Lookout, Veteran, traps) "
+                  "counts it. It does nothing else. A role-block stops it (no visit). Never tell the Sleepwalker whom "
+                  "they visited.")
+
+    def random_visit(self, game: Game, p: Player) -> str | None:
+        others = [q.name for q in game.alive() if q is not p]
+        return game.rng.choice(others) if others else None
+
+
 class Turncoat(TraitLogic):
     wins_with = "Yakuza"
     night_note = ("Turncoat (a trait; see each player's traits): every alignment check reads a Turncoat as Evil "
-                  "(Sheriff: Evil; Seer: Evil), like the Ex-Con (R19). The Census Taker's count still sees their true "
+                  "(Sheriff: Evil; Seer: Evil), like Notorious (R19). The Census Taker's count still sees their true "
                   "alignment (Good). Don't tell anyone a player is a Turncoat.")
 
 
@@ -866,7 +895,8 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
-                                "Shaky": Shaky(), "Turncoat": Turncoat()}
+                                "Shaky": Shaky(), "Turncoat": Turncoat(),
+                                "Sleepwalker": Sleepwalker()}
 assert set(LOGIC) == set(TRAITS)
 
 

@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "2872d5367cf523bf",
- "text_sha256": "b31fa273b3019e52",
+ "cut_sha256": "439bbc4993bfa255",
+ "text_sha256": "58b638f7e6f2720e",
  "made_by": "a Claude Code session",
- "made": "2026-10-13T07:41:43+00:00",
+ "made": "2026-10-13T07:51:39+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -42,8 +42,8 @@
    "reason": "No role on the script changes how votes are counted, so announced totals always match the voters (a player in game_20261011_011316_850196 expected otherwise)."
   },
   {
-   "old": "(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as the Ex-Con's visit",
-   "new": "(including the Katana's attack, Astral checks and automatic actions such as the Ex-Con's visit",
+   "old": "(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as a Sleepwalker's",
+   "new": "(including the Katana's attack, Astral checks and automatic actions such as a Sleepwalker's",
    "reason": "Juror isn't on the script"
   },
   {
@@ -52,8 +52,8 @@
    "reason": "The Roleplayer is not on the script."
   },
   {
-   "old": "- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con. Checks that see\n  true alignment, such as the Census Taker's count, aren't fooled.",
-   "new": "- Notorious (Village players only): alignment checks see you as Evil (R19), like the Ex-Con.",
+   "old": "- Notorious (Village players only): alignment checks see you as Evil (R19). Checks that see\n  true alignment, such as the Census Taker's count, aren't fooled.",
+   "new": "- Notorious (Village players only): alignment checks see you as Evil (R19).",
    "reason": "Census Taker is not on the script."
   },
   {

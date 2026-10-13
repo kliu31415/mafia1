@@ -114,12 +114,6 @@ class RoleLogic:
         """Whether the player is asked for a night action (Yakuza always are, for the Katana vote)."""
         return p.info.acts_at_night
 
-    def automatic_action(self, game: Game, p: Player) -> dict | None:
-        """A night action code draws for a living player each night without asking them (e.g. the Ex-Con's random
-        visit), in night_action_schema's shape. It goes in the night's actions for the moderator, the logs and the
-        reveal, marked "automatic"; the player's own night history leaves it out."""
-        return None
-
     def briefing(self, game: Game, p: Player) -> list[str]:
         """Extra sentences for the player's role briefing (shown in every prompt)."""
         return []

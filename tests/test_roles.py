@@ -435,13 +435,6 @@ def test_moderator_night_notes_cover_roles_in_the_game(game_factory):
     assert "Trapper" in notes and "Seer" in notes and "Arsonist" not in notes
 
 
-def test_moderator_is_told_ex_con_reads_evil_to_seers_too(game_factory):
-    """rules Ex-Con: Evil to every alignment check, not just the Sheriff."""
-    from night import role_notes
-    game, _ = game_factory(["Ex-Con", "Seer", "Vanilla Villager", "Grunt"])
-    notes = role_notes(game)
-    assert "Ex-Con" in notes and "Seer" in notes.split("Ex-Con", 1)[1]
-
 def test_role_ops_are_offered_only_for_roles_in_the_game(game_factory):
     game, players = game_factory(["Clerk", "Vanilla Villager", "Vanilla Villager"])
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
@@ -592,16 +585,21 @@ def test_ask_player_answer_is_kept_in_the_players_history_and_hides_their_notepa
     assert "You answered: ignite" in game.history_for("Alice") and "ignite" not in game.history_for("Bob")
 
 
-def test_ex_con_visit_is_drawn_by_code_and_hidden_from_the_ex_con(game_factory):
-    """rules Ex-Con: a random visit each night, and the Ex-Con isn't told whom."""
-    from night import run_night
+def test_a_sleepwalker_visit_is_drawn_by_code_and_hidden_from_the_sleepwalker(game_factory):
+    """rules R24 (Kevin, Oct 13 2026): a random visit each night besides any action of their own; not told whom."""
+    from night import role_notes, run_night
     from players import night_history
-    game, players = game_factory(["Ex-Con", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game, players = game_factory(["Vanilla Villager", "Sheriff", "Vanilla Villager", "Grunt"])
+    for name in ("Alice", "Bob"):
+        game.player(name).traits = ["Sleepwalker"]
+    assert "Never tell the Sleepwalker whom" in role_notes(game)
     run_night(game, players, Moderator(game, players.client, players, Model.HAIKU_5_5, "(rules)"))
-    action = game.night_actions[1]["Alice"]
-    assert action["automatic"] and action["target"] in ("Bob", "Carol", "Dave")
-    history = night_history(game, game.player("Alice"))
-    assert action["target"] not in history and "Night 1: your automatic action (random visit) was due" in history
+    for name in ("Alice", "Bob"):  # Alice has no night action of her own; Bob's Sheriff check is still asked
+        [walk] = game.night_actions[1][name]["trait_actions"]
+        assert walk["trait"] == "Sleepwalker" and walk["automatic"] and walk["target"] not in (name, None)
+        history = night_history(game, game.player(name))
+        assert walk["target"] not in history and "your Sleepwalker visit to a random player was due" in history
+    assert "act" in game.night_actions[1]["Bob"]
 
 
 def test_trapper_is_told_whether_their_trap_still_stands(game_factory):
@@ -794,13 +792,15 @@ def test_group_results_on_a_swapped_target_trade_the_pair_s_names(game_factory):
 
 def test_census_counts_true_alignment_and_never_neutrals(game_factory):
     from roles.census_taker import census_group
-    game, players = game_factory(["Census Taker", "Grunt", "Ex-Con", "Jester", "Vanilla Villager", "Pharmacist"])
+    game, players = game_factory(["Census Taker", "Grunt", "Vanilla Villager", "Jester", "Vanilla Villager",
+                                  "Pharmacist"])
+    game.player("Carol").traits = ["Notorious"]
     game.phase = "night"
     assert game.katana_holder == "Bob"
     for _ in range(20):
         group = census_group(game, "Alice", "Dave")
         assert len(group) == 3 and "Dave" in group and "Alice" not in group
-    for _ in range(10):  # Bob holds the Katana (still Evil here), Carol is an Ex-Con (still Good), Dave is Neutral
+    for _ in range(10):  # Bob holds the Katana (still Evil here), Carol is Notorious (still Good), Dave is Neutral
         apply_ops(game, players, {"op": "census", "by": "Alice", "player": "Dave"})
         text = told(game, "Alice")[-1]
         m = re.search(r"census of (.+) counted (Good|Evil) players .*: (\d) of the", text)
@@ -1090,13 +1090,14 @@ def test_a_vigilante_killed_earlier_in_the_resolution_still_learns_its_victims_r
 
 def test_only_doused_players_who_arent_good_are_told(game_factory):
     from roles.base import logic
-    game, players = game_factory(["Arsonist", "Grunt", "Ex-Con", "Jester", "Vanilla Villager"])
+    game, players = game_factory(["Arsonist", "Grunt", "Vanilla Villager", "Jester", "Vanilla Villager"])
+    game.player("Carol").traits = ["Notorious"]
     game.phase = "night"
     apply_ops(game, players, *({"op": "set_status", "player": n, "key": "doused", "value": True}
                                for n in ("Bob", "Carol", "Dave")))
     logic("Arsonist").at_night_end(game)
     told_doused = {n for n in ("Bob", "Carol", "Dave") if any("doused you" in t for t in told(game, n))}
-    assert told_doused == {"Bob", "Dave"}  # the Ex-Con reads Evil but is Good: not told
+    assert told_doused == {"Bob", "Dave"}  # Notorious Carol reads Evil but is Good: not told
     logic("Arsonist").at_night_end(game)  # a douse that's still there isn't news the next night
     assert sum("doused you" in t for t in told(game, "Bob")) == 1
     apply_ops(game, players, {"op": "set_status", "player": "Bob", "key": "doused", "value": None})  # ignited
@@ -2664,10 +2665,11 @@ def test_a_remorseful_villager_dies_after_voting_guilty_on_a_hanged_villager(gam
 
     def decide(name, task, schema):  # Guilty, except Dave in Bob's trial
         return {"vote": not (name == "Dave" and "Bob" in task)} if "vote" in schema["properties"] else None
-    game, players = game_factory(["Sheriff", "Ex-Con", "Medic", "Vigilante", "Grunt"], ScriptedClient(decide))
+    game, players = game_factory(["Sheriff", "Vanilla Villager", "Medic", "Vigilante", "Grunt"], ScriptedClient(decide))
+    game.player("Bob").traits = ["Notorious"]
     for name in ("Alice", "Carol", "Dave", "Erin"):
         game.player(name).traits = ["Remorseful"]
-    assert run_trial(game, players, game.player("Alice"), "Bob", rnd=1) == "executed"  # an Ex-Con is Village
+    assert run_trial(game, players, game.player("Alice"), "Bob", rnd=1) == "executed"  # Notorious Bob is Village
     assert [p.name for p in game.players if not p.alive] == ["Alice", "Bob", "Carol"]
     assert game.player("Alice").death["cause"] == "remorse" and game.player("Dave").alive  # Dave voted Innocent
     assert game.player("Erin").alive  # Village only: a Yakuza given it anyway never dies of it

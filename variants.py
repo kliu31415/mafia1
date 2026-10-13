@@ -24,7 +24,7 @@ LEGACY = {"flips": "role", "trial_votes": "public", "nomination_votes": "public"
 
 _NOTES = {
     ("flips", "alignment"): "R12: when someone dies, their alignment (Good, Evil or Neutral) is revealed too, but not "
-                            "their role. It is their true alignment: frames and disguises (e.g. the Ex-Con's, or the "
+                            "their role. It is their true alignment: frames and disguises (e.g. Notorious, or the "
                             "Katana holder's) don't change it. A Mortician's clean hides the alignment as well as the "
                             "will.",
     ("flips", "role"): "R12: when someone dies, their role is revealed too (which also shows their alignment). A "

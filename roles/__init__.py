@@ -193,11 +193,6 @@ ROLES: dict[str, RoleInfo] = {
                            acts_at_night=True, tested=True,
                            notes="code assigns the fake role (with its tokens and night prompts); "
                            "moderator draws its results at random"),
-    "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True,
-                       summary="Visits a random player each night without knowing whom; "
-                       "reads Evil to alignment checks.",
-                       tested=True, notes="code draws the random visit each night (automatic action); "
-                       "night note says it reads Evil to Sheriff and Seer"),
     # Yakuza
     "Grunt": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="No night action of its own; shares the Katana.",
@@ -327,6 +322,14 @@ RETIRED: dict[str, list[RetiredRole]] = {
                                    "It comes after all of that night's other actions and attacks, so the victim is "
                                    "drawn from the Good players still alive then, and it counts as a death that "
                                    "night.")],
+    # Kevin, Oct 13 2026: its two parts are traits now, Notorious (reads Evil) and Sleepwalker (the random visit).
+    "Ex-Con": [RetiredRole(RoleInfo(Alignment.GOOD, "Outsider", True,
+                                    summary="Visits a random player each night without knowing whom; "
+                                    "reads Evil to alignment checks.", tested=True),
+                           until=70, icon="ex-con.svg", now=("Vanilla Villager", ("Notorious", "Sleepwalker")),
+                           rules="Appears: Evil to alignment checks (R19). Night: every night you visit a random "
+                                 "player other than yourself, and you aren't told whom. A role-block stops the visit "
+                                 "(R7).")],
 }
 
 

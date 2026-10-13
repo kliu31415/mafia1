@@ -12,7 +12,7 @@ def moved(a: dict, key: str) -> str:
 
 
 def describe_action(a: dict) -> str:
-    if a.get("automatic"):  # drawn by code, e.g. the Ex-Con's random visit (RoleLogic.automatic_action)
+    if a.get("automatic"):  # drawn by code: the Ex-Con's random visit, in logs before v70 (roles.RETIRED)
         return f"automatic: {describe_action({**a, 'automatic': False})}"
     shots = [f"{t['trait']} on {moved(t, 'target')}" for t in a.get("trait_actions") or []]  # rules R24
     if not a.get("act") and not a.get("katana_vote_holder") and not shots:

@@ -91,18 +91,20 @@ def test_winners_line_marks_dead_winners(game_factory):
 
 
 def test_alignment_only_flips_hide_the_role(game_factory, tmp_path, monkeypatch):
-    game, _ = game_factory(["Vanilla Villager", "Ex-Con", "Grunt", "Jester"])
+    game, _ = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Jester"])
+    game.player("Bob").traits = ["Notorious"]
     game.rule_settings["flips"] = "alignment"
     game.player("Alice").last_will = "I was quiet."
     for name in ("Alice", "Bob", "Carol", "Dave"):
         game.kill(name, "executed by hanging")
     reveals = [e.text for e in game.events if e.visible_to is None]
     assert any("Alice" in r and "alignment was Good" in r and "I was quiet." in r for r in reveals)
-    # the true alignment, not what checks see: the Ex-Con reads Evil to them but flips Good
+    # the true alignment, not what checks see: Notorious Bob reads Evil to them but flips Good
     assert any("Bob" in r and "alignment was Good" in r for r in reveals)
     assert any("Carol" in r and "alignment was Evil" in r for r in reveals)
     assert any("Dave" in r and "alignment was Neutral" in r for r in reveals)
-    assert not any(role in r for r in reveals + game.death_record for role in ("Vanilla", "Ex-Con", "Grunt", "Jester"))
+    assert not any(role in r for r in reveals + game.death_record
+                   for role in ("Vanilla", "Notorious", "Grunt", "Jester"))
     # the setting reaches every prompt through the rules text
     monkeypatch.setattr(mafia, "LOG_DIR", tmp_path)
     roles = ["Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"]

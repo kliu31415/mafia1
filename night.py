@@ -67,9 +67,11 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             for t in a["trait_actions"]:
                 first.setdefault(t["trait"], t)
             a["trait_actions"] = list(first.values())
-    for p in game.alive():
-        if p.name not in actions and (auto := logic(p.role).automatic_action(game, p)) is not None:
-            actions[p.name] = {**auto, "automatic": True}
+    for p in game.alive():  # rules R24: a Sleepwalker's random visit, drawn by code; its user isn't told whom
+        for t in p.traits:
+            if (target := trait_logic(t).random_visit(game, p)) is not None:
+                actions.setdefault(p.name, {}).setdefault("trait_actions", []).append(
+                    {"trait": t, "target": target, "automatic": True})
     game.log.write("night_actions", day=game.day, actions=actions,
                    roles={name: game.player(name).role for name in actions})
 
@@ -139,7 +141,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "Before end_phase, call record_visits once with every visit that happened tonight (R6, R20 steps 1-2), "
         "as [visitor, target] pairs, a self-visit as [X, X] (an empty list if there were none). Easy to miss: the "
         "Katana holder visits the Katana target (R8) besides any visit from their own role's action; automatic "
-        "visits (the Ex-Con's); a Seer's chosen pair is a visit to both players. Leave out the actions of "
+        "visits (a Sleepwalker's); a Seer's chosen pair is a visit to both players. Leave out the actions of "
         "role-blocked players, Astral Visits and actions that target no player. The submitted actions above "
         "already show any swap (R23), so record each visit to the player it landed on.\n\n"
         + role_notes(game)
