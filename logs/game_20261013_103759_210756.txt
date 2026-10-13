@@ -1,0 +1,14 @@
+Setup:
+  Alice    seat 1  Jester            anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Pharmacist        openai/gpt-6-luna  trait: Katana Expert
+  Carol    seat 3  Sheriff           anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Grunt             anthropic/claude-haiku-5.5 (via Claude Code)  trait: Katana Master
+  Erin     seat 5  Medic             anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Tracker           openai/gpt-6-luna
+  Grace    seat 7  Vanilla Villager  openai/gpt-6-luna
+  Heidi    seat 8  Vigilante         openai/gpt-6-luna
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Players may also have a trait (R24).
