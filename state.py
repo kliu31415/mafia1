@@ -447,10 +447,13 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         if not bundle_error(bundle) and (
                 candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
                                and alignment in (None, p.info.alignment) and not (one_trait_each and p.traits)]):
-            rng.choice(candidates).traits.extend(bundle)
+            (holder := rng.choice(candidates)).traits.extend(bundle)
+            for t in bundle:
+                trait_logic(t).on_dealt(game, holder)
         else:
-            log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once, and "
-                      "never two that exclude each other), so it was left out")
+            log.error("setup_error", f"no player could get the trait {item}: none it fits (its factions and roles) "
+                      "was left (a player has each trait at most once, never two that exclude each other), so it was "
+                      "left out")
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,

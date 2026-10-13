@@ -118,7 +118,8 @@ from records import caller_of, read_records, redact, safe_print
 #     an "unreliable_player" alert marks when); stats.py leaves them out of skill stats, tips.py out of lessons
 # 64: trial "vote" records have "fixed" ({voter: trait}): votes a Zealot or Merciful trait fixed (rules R24)
 # 65: "drowsy" records (player, day): a night a hidden Drowsy trait role-blocks its holder (rules R24)
-LOG_VERSION = 65
+# 66: "paranoid" records (player, cause, day): a hidden Paranoid trait's fake attack (rules R24)
+LOG_VERSION = 66
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

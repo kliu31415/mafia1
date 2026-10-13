@@ -39,6 +39,11 @@ class TraitInfo:
 # Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
 BLOCK_IMMUNE = frozenset({"Veteran", "Party Animal", "Pharmacist", "Smuggler"})
 DROWSY_ODDS = 0.5  # rules R24 states it (a test checks)
+PARANOID_ODDS = 0.25  # rules R24 states it (a test checks)
+PARANOID_KATANA = 2 / 3  # how often a Paranoid's fake attack is the Katana's, when not one of PARANOID_ATTACKERS
+# Roles a fake attack can name besides the Katana: ones that attack a chosen player at night and may appear more than
+# once, so a second attack by one is never provably false (Kevin, Oct 13 2026). Only those in the game's script.
+PARANOID_ATTACKERS = ("Vigilante", "Serial Killer")
 
 TRAITS: dict[str, TraitInfo] = {
     "Martyr": TraitInfo(frozenset({Alignment.GOOD}),
@@ -183,6 +188,37 @@ TRAITS: dict[str, TraitInfo] = {
                               "<circle cx='5' cy='5' r='4.4' fill='#334155' stroke='#fff' stroke-width='1'/>"
                               "<path d='M6.4 2.4A2.8 2.8 0 1 0 7.6 6.4A2.2 2.2 0 0 1 6.4 2.4Z' "
                               "fill='#fde68a'/></svg>")),  # a crescent moon
+    # Yakuza only (Kevin, Oct 13 2026): a disposable Katana, so a night can have two Katana attacks, which also keeps
+    # Paranoid's fake Katana attacks plausible.
+    "Spare Blade": TraitInfo(frozenset({Alignment.EVIL}),
+                             "Once per game, at night, you may make one extra Katana attack on another living player, "
+                             "whoever holds the Katana and besides its own attack (rules R8, R24).",
+                             "One extra Katana attack a game, at night.",
+                             power=0.35,
+                             mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                   "<circle cx='5' cy='5' r='4.4' fill='#57534e' stroke='#fff' stroke-width='1'/>"
+                                   "<path d='M2.8 7.6L7.2 2.4M2.8 2.4L7.2 7.6' stroke='#fff' "
+                                   "stroke-width='1.1'/></svg>")),  # crossed blades
+    # Village only, hidden (Kevin, Oct 13 2026): the moderator words the fake like a real defended attack, so the holder
+    # can't tell. An extra Katana attack (Spare Blade) can exist, so a fake Katana attack is never provably false.
+    "Paranoid": TraitInfo(frozenset({Alignment.GOOD}),
+                          "On each night, with probability 1/4, you are told you were attacked and survived, though "
+                          "nobody attacked you. You aren't told you have this trait (rules R24).",
+                          "Hidden: told of a fake attack they survived on a random quarter of nights.",
+                          power=-0.1, hidden=True,
+                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                "<circle cx='5' cy='5' r='4.4' fill='#0f172a' stroke='#fff' stroke-width='1'/>"
+                                "<path d='M5 2.4V5.8' stroke='#fde047' stroke-width='1.3'/>"
+                                "<circle cx='5' cy='7.3' r='0.75' fill='#fde047'/></svg>")),  # an exclamation mark
+    # Any faction, only roles that start with tokens (Kevin, Oct 13 2026): never a Roleplayer (its role has none).
+    "Stocked": TraitInfo(frozenset(Alignment),
+                         "You start with one more of each kind of token your role starts with (rules R24).",
+                         "Starts with one extra token of each kind its role has.",
+                         power=0.15,
+                         fits_role=lambda r: bool(ROLES[r].tokens),
+                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                               "<circle cx='5' cy='5' r='4.4' fill='#a16207' stroke='#fff' stroke-width='1'/>"
+                               "<path d='M5 2.6V7.4M2.6 5H7.4' stroke='#fff' stroke-width='1.3'/></svg>")),  # a plus
 }
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"})]  # traits no player may hold together (rules R24)
 
@@ -218,6 +254,9 @@ class TraitLogic:
 
     def apply_op(self, game: Game, change: dict) -> str | None:
         return None
+
+    def on_dealt(self, game: Game, p: Player) -> None:
+        """p was just dealt this trait, at setup (after the roles' setup hooks)."""
 
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """After p's death is announced (or queued, at night). guilty_voters is set only for a hanging."""
@@ -303,7 +342,32 @@ class Cursed(TraitLogic):
 ARMED_USED = "armed_used"  # game.role_state: players who have fired their hidden gun (it's one shot a game)
 
 
-class Armed(TraitLogic):
+class OneShotAction(TraitLogic):
+    """A once-a-game night action on another living player, asked for in trait_actions and recorded with this trait's
+    op (Armed, Spare Blade): code checks its user and target and marks it used; the moderator resolves its effect."""
+    trait, used_key = "", ""  # the trait's name; the game.role_state key listing players who have used it
+    holder, used, no_self = "", "", ""  # wording for check_op's errors
+
+    def can_act(self, game: Game, p: Player) -> bool:
+        return p.name not in game.role_state.get(self.used_key, [])
+
+    def check_op(self, game: Game, change: dict) -> str | None:
+        by, target = game.player(change["by"]), game.player(change["player"])
+        if self.trait not in by.traits or not acted_tonight(game, by):
+            return f"{by.name} is not {self.holder} who was alive when the night began"
+        if not self.can_act(game, by):
+            return f"{by.name} {self.used}"
+        if not acted_tonight(game, target):
+            return f"{target.name} wasn't alive at the start of the night"
+        if target is by and not swap_partner(game, by.name):
+            return self.no_self
+        return None
+
+    def apply_op(self, game: Game, change: dict) -> None:
+        game.role_state.setdefault(self.used_key, []).append(change["by"])
+
+
+class Armed(OneShotAction):
     ops = {"fire_gun": ({"player", "by"}, set(),
                         "{op:'fire_gun', player, by}: the Armed player `by` fires their hidden gun at `player` "
                         "(trait, R24); code marks their one shot used. Resolve the Basic Attack yourself")}
@@ -317,24 +381,9 @@ class Armed(TraitLogic):
     action_task = ("You are Armed (your trait): you may fire your one hidden-gun shot tonight by adding "
                    "{trait: 'Armed', target} to trait_actions, besides your role's own action; leave trait_actions "
                    "empty to keep the shot.")
-
-    def can_act(self, game: Game, p: Player) -> bool:
-        return p.name not in game.role_state.get(ARMED_USED, [])
-
-    def check_op(self, game: Game, change: dict) -> str | None:
-        by, target = game.player(change["by"]), game.player(change["player"])
-        if "Armed" not in by.traits or not acted_tonight(game, by):
-            return f"{by.name} is not an Armed player who was alive when the night began"
-        if not self.can_act(game, by):
-            return f"{by.name} has already fired their hidden gun"
-        if not acted_tonight(game, target):
-            return f"{target.name} wasn't alive at the start of the night"
-        if target is by and not swap_partner(game, by.name):
-            return "an Armed player can't shoot themselves"
-        return None
-
-    def apply_op(self, game: Game, change: dict) -> None:
-        game.role_state.setdefault(ARMED_USED, []).append(change["by"])
+    trait, used_key = "Armed", ARMED_USED
+    holder, used, no_self = ("an Armed player", "has already fired their hidden gun",
+                             "an Armed player can't shoot themselves")
 
 
 class Kindred(TraitLogic):
@@ -436,6 +485,36 @@ class Merciful(TraitLogic):
     fixed_trial_vote = False
 
 
+SPARE_BLADE_USED = "spare_blade_used"  # game.role_state: Spare Blade holders who have used their extra Katana attack
+
+
+class SpareBlade(OneShotAction):
+    # Like Armed's shot (Kevin, Oct 13 2026: the simpler of the two designs), with the Katana's attack and cause.
+    ops = {"spare_blade": ({"player", "by"}, set(),
+                           "{op:'spare_blade', player, by}: the Spare Blade holder `by` makes their one extra Katana "
+                           "attack on `player` (trait, R24); code marks it used. Resolve the Standard Attack yourself")}
+    night_note = ("Spare Blade (a trait, R24): a Yakuza whose trait_actions has trait 'Spare Blade' makes one extra "
+                  "Katana attack on its target, besides the Katana's own attack and whoever holds the Katana: "
+                  "Standard (R8), an action and a visit by them (record it), and it counts as an attack everywhere "
+                  "one does. A role-block stops it, and then it isn't used. Unless they were role-blocked, use the "
+                  "spare_blade op (it marks it used, even if the attack fails) and resolve the attack: a kill's cause "
+                  "is 'Katana', katana=true, by the user; a survivor is told they were attacked with the Katana, as "
+                  "for the Katana's own attack. Tell the user only whether it killed. Never mention the trait to "
+                  "anyone else.")
+    action_task = ("You have the Spare Blade trait: you may make your one extra Katana attack tonight by adding "
+                   "{trait: 'Spare Blade', target} to trait_actions, besides the Katana's own attack; leave "
+                   "trait_actions empty to keep it.")
+    trait, used_key = "Spare Blade", SPARE_BLADE_USED
+    holder, used, no_self = ("a Spare Blade holder", "has already used their Spare Blade",
+                             "a Spare Blade holder can't attack themselves")
+
+
+class Stocked(TraitLogic):
+    def on_dealt(self, game: Game, p: Player) -> None:
+        for kind in p.tokens:  # rules R24: one more of each kind the role starts with
+            p.tokens[kind] += 1
+
+
 class Drowsy(TraitLogic):
     def tonight_note(self, game: Game) -> str:
         # Code draws each living holder's night (rules R24) with the game's RNG, so a seed replays it; the moderator
@@ -451,11 +530,32 @@ class Drowsy(TraitLogic):
         return "\n- ".join(lines)
 
 
+class Paranoid(TraitLogic):
+    def tonight_note(self, game: Game) -> str:
+        # Code draws the night and the cause with the game's RNG (a seed replays them); the moderator writes the
+        # message, so it reads like its real ones (Kevin, Oct 13 2026: indistinguishable from a real attack).
+        from scripts import script_roles
+        lines = []
+        for p in game.alive():
+            if "Paranoid" not in p.traits or game.rng.random() >= PARANOID_ODDS:
+                continue
+            roles = [r for r in PARANOID_ATTACKERS if r in script_roles(game) and not ROLES[r].unique]
+            cause = "the Katana" if not roles or game.rng.random() < PARANOID_KATANA else game.rng.choice(roles)
+            game.log.write("paranoid", player=p.name, cause=cause, day=game.day)
+            lines.append(f"{p.name} has the hidden Paranoid trait (R24); code drew a fake attack for tonight: unless "
+                         f"{p.name} is really attacked tonight, tell them they were attacked by {cause} and "
+                         "survived, worded exactly as you would tell a real defended attack (R3). It isn't an attack: "
+                         "no visit, no kill, no protector or Bloodhound counts it, nobody else is told. Never mention "
+                         "the trait or that it was fake.")
+        return "\n- ".join(lines)
+
+
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
                                 "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious(),
                                 "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
                                 "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
-                                "Drowsy": Drowsy()}
+                                "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
+                                "Paranoid": Paranoid(), "Stocked": Stocked()}
 assert set(LOGIC) == set(TRAITS)
 
 

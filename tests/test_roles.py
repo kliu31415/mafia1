@@ -1229,6 +1229,65 @@ def test_drowsy_goes_only_to_roles_that_act_at_night_and_can_be_role_blocked():
     assert "probability 1/2" in open("rules_1.txt", encoding="utf-8").read()
 
 
+def test_spare_blade_is_one_extra_katana_attack_a_game(game_factory):
+    # rules R24 (Kevin, Oct 13 2026): any night, whoever holds the Katana; a kill reads as the Katana's
+    from night import role_notes
+    from traits import SPARE_BLADE_USED
+    game, players = game_factory(["Grunt", "Grunt", "Sheriff", "Medic", "Vanilla Villager"])
+    game.player("Alice").traits = ["Spare Blade"]
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert "spare_blade" in mod.ops and "Spare Blade (a trait, R24)" in role_notes(game)
+    game.phase = "night"
+    game.katana_holder = "Bob"
+    with pytest.raises(ValueError, match="not a Spare Blade holder"):
+        apply_ops(game, players, {"op": "spare_blade", "player": "Carol", "by": "Bob"})
+    with pytest.raises(ValueError, match="can't attack themselves"):
+        apply_ops(game, players, {"op": "spare_blade", "player": "Alice", "by": "Alice"})
+    assert SPARE_BLADE_USED not in game.role_state
+    apply_ops(game, players, {"op": "spare_blade", "player": "Carol", "by": "Alice"},
+              {"op": "kill", "player": "Carol", "cause": "Katana", "by": "Alice", "katana": True},
+              {"op": "kill", "player": "Dave", "cause": "Katana", "by": "Bob", "katana": True})
+    assert game.role_state[SPARE_BLADE_USED] == ["Alice"]
+    assert not game.player("Carol").alive and not game.player("Dave").alive  # two Katana kills in one night
+    with pytest.raises(ValueError, match="already used"):
+        apply_ops(game, players, {"op": "spare_blade", "player": "Erin", "by": "Alice"})
+
+
+def test_paranoid_is_hidden_and_gets_a_fake_attack_on_about_a_quarter_of_nights(game_factory):
+    from night import role_notes
+    from players import role_briefing
+    from traits import PARANOID_ODDS
+    game, players = game_factory(["Sheriff", "Medic", "Grunt", "Vigilante"])
+    game.player("Alice").traits = ["Paranoid"]
+    assert "Paranoid" not in role_briefing(game, game.player("Alice"))
+    game.phase = "night"
+    noted = 0
+    for night in range(1, 81):
+        game.day = night
+        if "Alice has the hidden Paranoid trait" in role_notes(game):
+            noted += 1
+    records = [r for r in map(json.loads, open(game.log.path)) if r["kind"] == "paranoid"]
+    assert 8 < noted < 35 and len(records) == noted and PARANOID_ODDS == 0.25
+    causes = {r["cause"] for r in records}
+    assert "the Katana" in causes and causes <= {"the Katana", "Vigilante", "Serial Killer"}
+    assert "probability 1/4" in open("rules_1.txt", encoding="utf-8").read()
+
+
+def test_stocked_adds_one_token_of_each_kind_and_goes_only_to_token_roles(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    from traits import fits
+    assert fits("Stocked", "Vigilante") and not fits("Stocked", "Sheriff") and not fits("Stocked", "Roleplayer")
+    roles = ["Vigilante", "Sheriff", "Grunt", "Serial Killer"]
+    for seed in range(6):
+        game = setup_game(roles, [Model.HAIKU_5_5], random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"),
+                          traits=["Stocked"])
+        holder = next(p for p in game.players if p.traits)
+        assert ROLES[holder.role].tokens and holder.tokens == {k: n + 1 for k, n in ROLES[holder.role].tokens.items()}
+
+
 def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
     game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
     game.phase = "night"

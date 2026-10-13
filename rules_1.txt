@@ -250,6 +250,15 @@ action is used in addition to your role's own, and a role-block stops it too.
 - Drowsy (hidden; any player whose role has a night action and can be role-blocked): on each night, with
   probability 1/2, you are role-blocked (R9) with no blocker. You aren't told you have this trait; on those nights
   you are told you were role-blocked, as with any role-block.
+- Spare Blade (Yakuza players only): once per game, at night, you may make one extra Katana attack on another
+  living player, whoever holds the Katana and besides its own attack (which the Yakuza still choose as usual, R8).
+  It is Standard, an action and a visit by you, and its target learns only that they were attacked with the Katana.
+  A role-block stops it, and then it isn't used up.
+- Paranoid (hidden; Village players only): on each night, with probability 1/4, you are told you were attacked and
+  survived, though nobody attacked you. You aren't told you have this trait. Nothing else happens: it isn't a visit
+  or an attack, and nobody else learns of it.
+- Stocked (any player whose role starts with tokens): you start with one more of each kind of token your role
+  starts with.
 
 === PART 5: THE YAKUZA ===
 
@@ -258,7 +267,8 @@ R8 (Yakuza and the Katana)
 - Each night the Yakuza vote, at the same time, on who holds the Katana that night (and the next Day) and whom it
   attacks, if anyone. Both choices need a majority of living Yakuza; with two Yakuza alive, both must agree.
   Without a majority on a target, no attack happens; without a majority on a holder, the Katana doesn't move.
-  A majority may move the Katana without attacking.
+  A majority may move the Katana without attacking. That is the Katana's one attack a night; a trait (R24) can
+  add a second, so two players may be attacked with the Katana in one night.
 - The Katana attack is Standard and is dealt by whoever holds it at the end of the night. It is an action and a
   visit by that player (the new holder, if it moved that night): role-blocking them stops it, and Trackers see
   them visit the target. Moving or passing the Katana isn't an action: a role-block doesn't stop it (a blocked

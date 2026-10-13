@@ -1,5 +1,5 @@
 {
- "log_version": 65,
+ "log_version": 66,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -34,6 +34,7 @@
   "night_effects_undone": ["day", "player", "undone"],
   "night_fix": ["issues", "night", "transcript"],
   "nomination_dropped": ["budget", "nominee", "player"],
+  "paranoid": ["cause", "day", "player"],
   "player_call": ["cost", "effort", "latency_s", "model", "notepad_after", "notepad_before", "output", "player", "reasoning", "task", "usage"],
   "player_feedback": ["day", "feedback", "phase", "player", "role", "step"],
   "puppeting_lapsed": ["player", "puppets"],
