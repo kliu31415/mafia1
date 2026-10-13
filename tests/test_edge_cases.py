@@ -386,7 +386,7 @@ def test_cli_rejects_settings_that_cant_work(monkeypatch, capsys):
 # --- Reading logs: viewer, alerts, tips, stats --------------------------------------------------------
 
 def test_the_viewer_shows_unparsable_tool_arguments_and_old_tips_and_skips_torn_lines(tmp_path):
-    from log_viewer import render_html
+    from log_viewer import render_html, unpacked
     path = tmp_path / "game_1.jsonl"
     lines = [json.dumps(r) for r in [
         {"kind": "setup", "players": [{"name": "Bob", "seat": 0, "role": "Grunt", "model": "m"}], "katana": "Bob"},
@@ -396,7 +396,7 @@ def test_the_viewer_shows_unparsable_tool_arguments_and_old_tips_and_skips_torn_
         {"kind": "moderator_tool", "name": "end_phase", "args": '{"summary": "Night 1 resol', "result": {}},
     ]] + ['{"kind": "even']
     path.write_text("\n".join(lines), encoding="utf-8")
-    page = render_html(path).read_text(encoding="utf-8")
+    page = unpacked(render_html(path).read_text(encoding="utf-8"))
     assert "unparsable arguments" in page and "Claim early." in page and "1 unreadable log line" in page
 
 

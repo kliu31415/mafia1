@@ -31,7 +31,7 @@ def test_logs_describe_the_game_and_its_votes(tmp_path, monkeypatch):
 
 def test_player_calls_log_the_notepad_before_and_after(game_factory):
     import json
-    from log_viewer import render_html
+    from log_viewer import render_html, unpacked
     writes = iter(["first note", None])
     game, players = game_factory(["Vanilla Villager", "Grunt"],
                                  ScriptedClient(lambda name, task, schema: {"notepad": next(writes)}))
@@ -44,14 +44,14 @@ def test_player_calls_log_the_notepad_before_and_after(game_factory):
     assert [(r["notepad_before"], r["notepad_after"]) for r in calls] == [("", "first note"),
                                                                          ("first note", "first note")]
     assert alice.notepad == "first note"
-    page = render_html(game.log.path).read_text(encoding="utf-8")
+    page = unpacked(render_html(game.log.path).read_text(encoding="utf-8"))
     assert "Notepad before" in page and "(unchanged)" in page
 
 
 def test_result_breaks_cost_down_by_player(tmp_path, monkeypatch):
     import dataclasses
     import json
-    from log_viewer import render_html
+    from log_viewer import render_html, unpacked
 
     class PricedClient(ScriptedClient):
         def chat(self, model, messages, **kw):
@@ -72,12 +72,12 @@ def test_result_breaks_cost_down_by_player(tmp_path, monkeypatch):
         assert usage[p["name"]]["prompt_tokens"] == 100 * calls and usage[p["name"]]["cached_tokens"] == 40 * calls
     assert usage["Moderator"]["models"] == [Model.SONNET_5_5.value] and usage["Moderator"]["calls"] > 0
     assert round(sum(u["cost"] for u in usage.values()), 6) == round(sum(r.get("cost", 0) for r in records[:-1]), 6)
-    page = render_html(path).read_text(encoding="utf-8")
+    page = unpacked(render_html(path).read_text(encoding="utf-8"))
     assert "Cost by player" in page and "Reasoning tokens" in page
 
 
 def test_every_role_has_an_icon_in_the_html_log(game_factory):
-    from log_viewer import ICONS, icon_slug, render_html
+    from log_viewer import ICONS, icon_slug, render_html, unpacked
     from roles import ROLES
     assert all(icon_slug(role) != "generic" for role in ROLES), "draw an icon in roles/icons/ for each new role"
     assert icon_slug("Some Removed Role") == "generic" and (ICONS / "generic.svg").exists()
@@ -85,7 +85,7 @@ def test_every_role_has_an_icon_in_the_html_log(game_factory):
         "give each new role a one-line summary for the icon's hover text"
     game, _ = game_factory(["Medic", "Grunt"], ScriptedClient())
     game.log.close()
-    page = render_html(game.log.path).read_text(encoding="utf-8")
+    page = unpacked(render_html(game.log.path).read_text(encoding="utf-8"))
     assert "class='n Village ic i-medic' title='Medic (Village): Night: protect" in page
     assert ".i-medic { --icon:url(" in page
 
@@ -138,8 +138,8 @@ def test_logs_never_hold_secrets_or_email(tmp_path, monkeypatch):
         log.close()
         old = tmp_path / "old.jsonl"  # a log written before redaction renders clean too
         old.write_text(json.dumps({"t": 0, "kind": "api_retry", "alert": True, "error": key}) + "\n")
-        texts = [p.read_text(encoding="utf-8") for p in (path, path.with_suffix(".txt"), path.with_suffix(".html"),
-                                                         log_viewer.render_html(old))]
+        texts = [log_viewer.unpacked(p.read_text(encoding="utf-8"))  # unpacked: a secret must not hide in the blob
+                 for p in (path, path.with_suffix(".txt"), path.with_suffix(".html"), log_viewer.render_html(old))]
     finally:
         records.secret_values.cache_clear()
     for text in texts:

@@ -5,6 +5,7 @@ import random
 
 import pytest
 
+import log_viewer
 import mafia
 import tips
 from tests.conftest import TOWN4_GRUNT, ScriptedClient
@@ -93,7 +94,7 @@ def test_a_game_logs_who_had_tips_and_how_they_went(tmp_path, monkeypatch):
     assert sorted(record["players"]) == had and sorted(p["name"] for p in result["players"] if p["tips"]) == had
     assert record["files"] == {"Alice": str(other), **{n: str(tips_file) for n in luna}}
     assert record["texts"] == {str(tips_file): TIPS, str(other): other.read_text(encoding="utf-8")}
-    html = path.with_suffix(".html").read_text(encoding="utf-8")
+    html = log_viewer.unpacked(path.with_suffix(".html").read_text(encoding="utf-8"))
     assert html.count("Tips for <") == len(had) and "Older advice" in html and "Claim Medic" in html
     # Only players with tips (and the moderator's review) are asked how the tips went.
     lessons = {r["who"]: r for r in records if r["kind"] == "lessons"}

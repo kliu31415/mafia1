@@ -11,8 +11,10 @@ Usage:
     uv run log_viewer.py logs/game_....jsonl     # writes logs/game_....html next to it
 """
 
+import base64
 import contextvars
 import functools
+import gzip
 import html
 import json
 import os
@@ -252,8 +254,29 @@ const toggle = (id, cls) => {
 toggle('showcalls', 'no-calls');
 toggle('showhidden', 'no-hidden');
 toggle('showicons', 'no-icons');
-document.getElementById('expand').addEventListener('click', () => keepPlace(() =>
-  document.querySelectorAll('details.call').forEach(d => d.open = true)));
+// Model details and reasons are packed (Packer): gzipped together into one base64 blob, unpacked the first time
+// one is opened and put in place as each is opened.
+const zData = document.getElementById('z-data');
+let zParts = null, zLoading = null;
+const unpack = () => zLoading ??= (async () => {
+  const bin = atob(zData.textContent), bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);  // Uint8Array.from(..., map) is 15x slower
+  const text = await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+  zParts = JSON.parse(text);
+})();
+const fill = d => {
+  if (d.dataset.z === undefined || !zParts) return;
+  d.querySelector(':scope > summary').insertAdjacentHTML('afterend', zParts[+d.dataset.z]);
+  delete d.dataset.z;
+};
+document.addEventListener('toggle', e => {  // toggle doesn't bubble, but a capturing listener sees it
+  const d = e.target;
+  if (d.open && d.dataset && d.dataset.z !== undefined) unpack().then(() => fill(d));
+}, true);
+document.getElementById('expand').addEventListener('click', async () => {
+  if (zData) await unpack();
+  keepPlace(() => document.querySelectorAll('details.call').forEach(d => { fill(d); d.open = true; }));
+});
 document.getElementById('collapse').addEventListener('click', () => keepPlace(() =>
   document.querySelectorAll('details.call').forEach(d => d.open = false)));
 // Player filter: show only the lines and calls that involve the chosen player (their data-p).
@@ -337,6 +360,39 @@ CATEGORY_LABELS = {"chat": "Chat", "pm": "PM", "yak": "Yakuza chat", "nom": "Nom
 
 def esc(x: Any) -> str:
     return html.escape(str(x))
+
+
+class Packer:
+    """The bulky parts of a page (model details, reasons and thinking), packed: each packed element keeps its summary
+    and a data-z index, and its contents go into one gzipped, base64 blob that the page's script unpacks the first
+    time one is opened. Packing them together lets gzip use what calls repeat (the same prompts call after call):
+    pages shrink to about a third. Browsers decompress gzip natively (DecompressionStream)."""
+
+    def __init__(self) -> None:
+        self.parts: list[str] = []
+
+    def details(self, cls: str, summary: str, body: str, attrs: str = "") -> str:
+        """<details class=cls> with this summary, its body packed. summary: the whole <summary> element's HTML."""
+        if not body:
+            return f"<details class='{cls}'{attrs}>{summary}</details>"
+        self.parts.append(body)
+        return f"<details class='{cls}'{attrs} data-z='{len(self.parts) - 1}'>{summary}</details>"
+
+    def blob(self) -> str:
+        if not self.parts:
+            return ""
+        data = gzip.compress(json.dumps(self.parts, ensure_ascii=False).encode(), mtime=0)  # mtime 0: same page each time
+        return f"<script type='application/octet-stream' id='z-data'>{base64.b64encode(data).decode()}</script>"
+
+
+def unpacked(page: str) -> str:
+    """The page with every packed part back in place, as the page's script puts it when opened (tests, debugging)."""
+    m = re.search(r"<script type='application/octet-stream' id='z-data'>([^<]*)</script>", page)
+    if not m:
+        return page
+    parts = json.loads(gzip.decompress(base64.b64decode(m[1])))
+    page = page[:m.start()] + page[m.end():]
+    return re.sub(r" data-z='(\d+)'>(<summary.*?</summary>)", lambda z: f">{z[2]}{parts[int(z[1])]}", page, flags=re.S)
 
 
 def pre(label: str, value: Any, hint: str = "") -> str:
@@ -626,6 +682,11 @@ def render_html(jsonl_path: Path) -> Path:
     roster: dict[str, dict] = {}  # player -> alive, death, claim as of this point in the log
     believed: dict[str, set[str | None]] = {}  # player -> their role, and the role a Roleplayer thinks they have
     snaps: list[dict] = []  # copies of roster, each marked in the page where it starts to hold (the roster panel)
+    packer = Packer()
+
+    def call(summary: str, body: str, attrs: str = "") -> str:
+        """A model details box: one line until opened, its body packed."""
+        return packer.details("call", f"<summary>{summary}</summary>", body, attrs)
 
     def night(n: int) -> dict:
         return nights.setdefault(n, {"actions": {}, "results": {}, "deaths": [], "katana": None, "check": None,
@@ -662,7 +723,7 @@ def render_html(jsonl_path: Path) -> Path:
             if part.startswith(("<details class='call'", "<details class='votes'", "\0night")):
                 px += 26
             else:
-                part = re.sub(r"<details class='why'>.*?</details>(</details>)?", "", part)  # collapsed
+                part = re.sub(r"<details class='why'.*?</details>", "", part)  # collapsed, its contents packed
                 text = re.sub(r"<[^>]+>", "", part.replace("<tr", "\n<tr").replace("<div", "\n<div"))
                 px += 23 * sum(1 + len(ln) // 110 for ln in text.strip("\n").split("\n"))
         out[phase_start] = out[phase_start].replace("<details ", f"<details style='contain-intrinsic-size:"
@@ -689,18 +750,19 @@ def render_html(jsonl_path: Path) -> Path:
     def why(r: dict) -> str:
         """The reason (and thinking) behind a player's message, claim or nomination, from the call that wrote
         it: the writer's latest call. Shown once per call, next to the first thing it said."""
-        call = last_call.get(r.get("puppeteer") or r.get("speaker") or "")
-        if not call or id(call) in explained:
+        src = last_call.get(r.get("puppeteer") or r.get("speaker") or "")
+        if not src or id(src) in explained:
             return ""
-        explained.add(id(call))
-        o = call.get("output") or {}
+        explained.add(id(src))
+        o = src.get("output") or {}
         reason = o.get("reason") or o.get("thoughts")  # "thoughts" in LOG_VERSION 22 and earlier
-        if not reason and not call.get("reasoning"):
+        if not reason and not src.get("reasoning"):
             return ""
-        return ("<details class='why'><summary title='Why: the private reason and thinking behind this turn'>"
-                "why</summary>" + (f"<div>{name(reason)}</div>" if reason else "")
-                + (f"<details class='thinking'><summary>Model's thinking</summary><pre>{esc(call['reasoning'])}</pre>"
-                   "</details>" if call.get("reasoning") else "") + "</details>")
+        return packer.details(
+            "why", "<summary title='Why: the private reason and thinking behind this turn'>why</summary>",
+            (f"<div>{name(reason)}</div>" if reason else "")
+            + (f"<details class='thinking'><summary>Model's thinking</summary><pre>{esc(src['reasoning'])}</pre>"
+               "</details>" if src.get("reasoning") else ""))
 
     for r in records:
         k = r["kind"]
@@ -710,9 +772,8 @@ def render_html(jsonl_path: Path) -> Path:
             details = {f: v for f, v in r.items() if f not in ("t", "kind", "alert", "error", "traceback")}
             out.append(f"<div class='ev error' id='{anchor}'{involves([r['player']] if r.get('player') else [])}>"
                        f"<span class='badge'>Error: {esc(k)}</span>"
-                       f"{name(r['error'])}" + (f"<details class='call'><summary>Details</summary>"
-                                                f"{pre('Fields', details)}{pre('Traceback', r.get('traceback'))}"
-                                                "</details>" if details or r.get("traceback") else "") + "</div>")
+                       f"{name(r['error'])}" + (call("Details", pre("Fields", details) + pre("Traceback", r.get("traceback")))
+                                                if details or r.get("traceback") else "") + "</div>")
         elif k == "setup":
             roles = {p["name"]: p["role"] for p in r["players"]}
             models = {p["name"]: short_model(p["model"]) for p in r["players"]}
@@ -731,10 +792,10 @@ def render_html(jsonl_path: Path) -> Path:
                        f"{rows}</table><div class='muted'>Katana starts with {name(str(r.get('katana')))}</div>")
         elif k == "briefing":
             out.append(f"<div class='muted'>{esc(r['setup_note'])}</div>"
-                       "<details class='call'><summary>What every player was told at the start</summary>"
-                       + pre("Rules as played (rules, rule settings and setup note)", r["rules"])
-                       + "".join(pre(f"Role briefing: {who} ({roles.get(who, '?')})", text)
-                                 for who, text in r["players"].items()) + "</details>")
+                       + call("What every player was told at the start",
+                              pre("Rules as played (rules, rule settings and setup note)", r["rules"])
+                              + "".join(pre(f"Role briefing: {who} ({roles.get(who, '?')})", text)
+                                        for who, text in r["players"].items())))
         elif k == "tips":
             files = tips_files(r)
             out.append(f"<div class='muted'>Tips from past games given to: {esc(', '.join(r['players']) or 'nobody')}"
@@ -742,8 +803,8 @@ def render_html(jsonl_path: Path) -> Path:
             for who, file in files.items():
                 shown = (player_view(r["texts"][file]) if "texts" in r else r["shown"].get(who, "") if "shown" in r
                          else player_view(r.get("text", "")))  # LOG_VERSION 11 had one text
-                out.append(f"<details class='call'><summary>Tips for {name(who)} ({esc(roles.get(who, '?'))}, "
-                           f"{esc(models.get(who, '?'))}): {esc(file)}</summary><pre>{esc(shown)}</pre></details>")
+                out.append(call(f"Tips for {name(who)} ({esc(roles.get(who, '?'))}, {esc(models.get(who, '?'))}): "
+                                f"{esc(file)}", f"<pre>{esc(shown)}</pre>"))
         elif k == "event":
             if is_phase_start(r):
                 start_phase(r["text"].removesuffix(" begins."))
@@ -792,30 +853,27 @@ def render_html(jsonl_path: Path) -> Path:
             first_line = r["task"].split("\n")[0]
             summary = (f"{name(r['player'])} ({esc(roles.get(r['player'], '?'))}, "
                        f"{esc(r['model'].split('/')[-1])}) · {esc(first_line[:90])} · ${r.get('cost', 0):.4f}")
-            out.append(f"<details class='call'{involves([r['player']])}><summary>{summary}</summary>"
-                       + pre("Reasoning (model's thinking)", r.get("reasoning"), REASONING_HINT)
-                       + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason, REASON_HINT)
-                       + pre("Output", o) + notepad
-                       + pre("Task prompt", r["task"]) + pre("Usage", r.get("usage")) + "</details>")
+            out.append(call(summary, pre("Reasoning (model's thinking)", r.get("reasoning"), REASONING_HINT)
+                            + pre("Thoughts (private field)", thoughts) + pre("Reason (private field)", reason, REASON_HINT)
+                            + pre("Output", o) + notepad
+                            + pre("Task prompt", r["task"]) + pre("Usage", r.get("usage")), involves([r["player"]])))
         elif k == "moderator_prompt":
-            out.append("<details class='call'><summary>Moderator's instructions for this phase</summary>"
-                       + pre("Instructions", r["instructions"]) + pre("State summary", r["state_summary"])
-                       + pre("Full state", r["full_state"]) + "</details>")
+            out.append(call("Moderator's instructions for this phase",
+                            pre("Instructions", r["instructions"]) + pre("State summary", r["state_summary"])
+                            + pre("Full state", r["full_state"])))
         elif k == "moderator_call":
             calls = ", ".join(c["function"]["name"] for c in r.get("tool_calls") or []) or "no tool call"
-            out.append(f"<details class='call'><summary>Moderator ({esc(r['model'].split('/')[-1])}) → "
-                       f"{esc(calls)} · ${r.get('cost', 0):.4f}</summary>"
-                       + pre("Reasoning", r.get("reasoning"), REASONING_HINT) + pre("Content", r.get("content"))
-                       + pre("Tool calls", [{"name": c["function"]["name"],
-                                             "args": tool_args(c["function"].get("arguments"))}
-                                            for c in r.get("tool_calls") or []])
-                       + pre("Usage", r.get("usage")) + "</details>")
+            out.append(call(f"Moderator ({esc(r['model'].split('/')[-1])}) → {esc(calls)} · ${r.get('cost', 0):.4f}",
+                            pre("Reasoning", r.get("reasoning"), REASONING_HINT) + pre("Content", r.get("content"))
+                            + pre("Tool calls", [{"name": c["function"]["name"],
+                                                  "args": tool_args(c["function"].get("arguments"))}
+                                                 for c in r.get("tool_calls") or []])
+                            + pre("Usage", r.get("usage"))))
         elif k == "moderator_tool":
             if r["name"] == "end_phase":
                 line("hidden", "Moderator summary", str(tool_args(r["args"]).get("summary", "")))
             else:
-                out.append(f"<details class='call'><summary>Tool {esc(r['name'])} result</summary>"
-                           + pre("Args", r.get("args")) + pre("Result", r.get("result")) + "</details>")
+                out.append(call(f"Tool {esc(r['name'])} result", pre("Args", r.get("args")) + pre("Result", r.get("result"))))
         elif k == "night_actions":
             rows = "".join(f"<div>{name(n)} ({esc(r['roles'].get(n))}): {name(describe_action(a))}</div>"
                            for n, a in r["actions"].items())
@@ -842,21 +900,20 @@ def render_html(jsonl_path: Path) -> Path:
             line("system", "Resumed", f"The game continued from the checkpoint at the start of {r.get('at', 'day')} "
                  f"{r['day']}; {r.get('cut_records', 0)} log records after it were dropped.")
         elif k == "debrief" and r["who"] == "moderator":  # players' debriefs are their player_call records
-            out.append(f"<details class='call'><summary>Moderator ({esc(short_model(r['model']))}) debrief · "
-                       f"${r.get('cost', 0):.4f}</summary>{pre('Answers', r['answers'])}</details>")
+            out.append(call(f"Moderator ({esc(short_model(r['model']))}) debrief · ${r.get('cost', 0):.4f}",
+                            pre("Answers", r["answers"])))
         elif k == "strategy_review":
             line("hidden", "Strategy review", r["summary"])
-            out.append(f"<details class='call'><summary>Moderator ({esc(short_model(r['model']))}) lessons · "
-                       f"${r.get('cost', 0):.4f}</summary>{pre('Lessons', r.get('lessons'))}</details>")
+            out.append(call(f"Moderator ({esc(short_model(r['model']))}) lessons · ${r.get('cost', 0):.4f}",
+                            pre("Lessons", r.get("lessons"))))
         elif k == "review":
             for i in r["issues"]:
                 line("hidden", f"Review: {i.get('severity', '?')}, {i.get('kind', '?')}", i.get("description", ""))
             if not r["issues"]:
                 line("hidden", "Review", "No issues found.")
         elif k in ("budget_warning", "message_dropped", "nomination_dropped", "player_error", "moderator_error"):
-            out.append(f"<details class='call'{involves([r['player']] if r.get('player') else [])}><summary>"
-                       f"{esc(k.replace('_', ' '))}: "
-                       f"{esc(r.get('player', ''))}</summary>{pre('Details', r)}</details>")
+            out.append(call(f"{esc(k.replace('_', ' '))}: {esc(r.get('player', ''))}", pre("Details", r),
+                            involves([r["player"]] if r.get("player") else [])))
         elif k == "section":  # post-game steps (feedback.POST_GAME_SECTIONS)
             start_phase(r["title"])
         elif k == "result":
@@ -892,7 +949,8 @@ def render_html(jsonl_path: Path) -> Path:
             f"<nav id='jump'>{jump_html(phases)}</nav></div>"
             f"{errors_html(errors, unreadable)}"
             f"{votes_html(votes, name, alive_order, 'Votes (whole game)', show_day=True)}"
-            f"{body}{roster_html(snaps, alive_order, roles, models, traits)}<script>{JS}</script></body></html>")
+            f"{body}{roster_html(snaps, alive_order, roles, models, traits)}{packer.blob()}<script>{JS}</script>"
+            "</body></html>")
     html_path = jsonl_path.with_suffix(".html")
     # through a temp file, so `game_index.py serve` (or a browser) never sends a half-written page
     tmp = html_path.with_name(f"{html_path.name}.{os.getpid()}.tmp")  # per process: a game and serve may both render

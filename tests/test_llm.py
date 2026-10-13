@@ -123,12 +123,12 @@ def test_program_notes_from_a_parallel_round_are_emitted_in_job_order(tmp_path):
 
 
 def test_errors_show_in_the_html_and_text_views(tmp_path):
-    from log_viewer import render_html
+    from log_viewer import render_html, unpacked
     game, _ = make_game(tmp_path, ["Vanilla Villager", "Grunt"])
     game.log.error("player_error", "Alice (haiku-5.5), attempt 1: empty answer (blocked)", player="Alice")
     game.log.error("crash", "the game stopped: boom", traceback="Traceback ...")
     game.log.close()
-    page = render_html(game.log.path).read_text(encoding="utf-8")
+    page = unpacked(render_html(game.log.path).read_text(encoding="utf-8"))
     assert "2 errors: 1 player_error, 1 crash" in page and "href='#error-1'" in page and "id='error-1'" in page
     assert "Traceback ..." in page
     text = game.log.path.with_suffix(".txt").read_text(encoding="utf-8")

@@ -24,7 +24,7 @@ def test_legacy_logs_still_render(tmp_path):
     ]
     path = tmp_path / "old.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
-    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
     assert "class='ev chat'" in html and "Day 1" in html
 
 
@@ -47,7 +47,7 @@ def test_alive_list_at_each_day(tmp_path):
     ]
     path = tmp_path / "g.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
-    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
     alive = [line.split("</span>", 1)[1] for line in re.split(r"<div class='ev system'[^>]*><span class='badge'>",
                                                              html)[1:]]
     counts = [c.split(")")[0] for c in html.split("Alive (")[1:]]
@@ -75,7 +75,7 @@ def test_votes_table_player_filter_and_reasons(tmp_path):
     ]
     path = tmp_path / "g.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
-    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
     # the puppeted message carries the Puppeteer's reason, and involves both of them
     assert "Frame " in html.split("(puppeted by")[1].split("<div class='ev")[0]
     assert "data-p='Bob Carol Dave'" in html  # names in the message
@@ -107,7 +107,7 @@ def test_night_card_and_roster(tmp_path):
     ]
     path = tmp_path / "g.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
-    html = log_viewer.render_html(path).read_text(encoding="utf-8")
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
     card = html.split("<details class='votes card'>")[1].split("</details>")[0]
     assert "Night 1 summary: 1 acted" in card and "night check: correct" in card and "Katana" in card
     assert "Bob is Evil." not in card and "is Evil." in card and "\0" not in html
@@ -163,3 +163,29 @@ def test_claude_code_calls_priced_at_api_rates_behind_a_checkbox():
     assert "<span class='cost paid'>$0.0000</span><span class='cost api'>$0.7500</span>" in html
     assert "<span class='cost paid'>$0.1000</span><span class='cost api'>$1.8500</span>" in html  # the total
     assert "apicost" not in log_viewer.usage_html(usage)  # no Claude Code calls: no checkbox
+
+
+def test_model_details_are_packed_into_one_gzip_blob_and_unpack_unchanged(tmp_path):
+    prompt = "Rules as played. " * 400  # what every call repeats
+    records = [
+        {"kind": "setup", "players": [{"name": "Bob", "seat": 0, "role": "Grunt", "model": "m"}], "katana": "Bob"},
+        {"kind": "event", "text": "Day 1 begins.", "visible_to": "all", "cat": "phase"},
+        *({"kind": "player_call", "player": "Bob", "model": "m", "task": f"Turn {i}\n{prompt}",
+           "output": {"reason": f"reason {i}", "message": "hi"}, "reasoning": f"thinking {i}"} for i in range(30)),
+        {"kind": "event", "text": "Bob (public): hello", "visible_to": "all", "cat": "chat", "speaker": "Bob",
+         "message": "hello"},
+    ]
+    path = tmp_path / "g.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+    page = log_viewer.render_html(path).read_text(encoding="utf-8")
+    html = log_viewer.unpacked(page)
+    # Packed: each box keeps its one-line summary; its contents (and the reason behind the message) are only in the
+    # blob, and the repeated prompt costs about one copy.
+    assert page.count("data-z=") == 31 and "Turn 7 · $" in page and "thinking 29" not in page
+    blob = re.search(r"id='z-data'>([^<]*)<", page)
+    assert blob and "Rules as played." not in page and len(blob[1]) < len(prompt)
+    # Unpacked, each box holds its contents again, after its summary.
+    assert "data-z='" not in html and "id='z-data'" not in html and html.count(prompt.strip()) == 30
+    assert re.search(r"<details class='call' data-p='Bob'><summary>.*?Turn 7 · \$0\.0000</summary>"
+                     r"<div class='muted'[^>]*>Reasoning \(model", html)
+    assert re.search(r"<details class='why'><summary[^>]*>why</summary><div>reason 29</div>", html)
