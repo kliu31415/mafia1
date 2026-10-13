@@ -66,7 +66,7 @@ MODERATOR_TOOLS = [
 # Ops are checked before any is applied, so a malformed batch changes nothing and the moderator
 # gets a clear error.
 CORE_OPS: dict[str, tuple[set[str], set[str]]] = {
-    "kill": ({"player"}, {"cause", "by", "katana"}),
+    "kill": ({"player"}, {"cause", "by", "katana", "divine"}),  # divine: a trait's note asks for it (Narrow Escape)
     "set_tokens": ({"player", "token", "value"}, set()),
     "set_status": ({"player", "key"}, {"value"}),
     "set_katana": ({"player"}, set()),
@@ -449,6 +449,8 @@ class Moderator:
             if op == "kill":
                 if "katana" in c and not isinstance(c["katana"], bool):
                     raise bad("katana must be true or false")
+                if "divine" in c and not isinstance(c["divine"], bool):
+                    raise bad("divine must be true or false")
                 if "cause" in c and not isinstance(c["cause"], str):
                     raise bad("cause must be text")
                 if c["player"] in killed:  # the second kill would be dropped, with its cause and katana flag

@@ -642,7 +642,10 @@ class MockClient:
             target = json.loads(katana[1]).get("attack") if katana and not done else None
             holder = json.loads(katana[1])["holder"] if katana else None
             shaky = f"carried by {holder}, who is Shaky" in json.dumps(messages)  # its attack can't kill (R24)
-            if target and not shaky:
+            unused = re.search(r"Narrow Escape \(hidden, R24\) still unused: ([^.]*)\.", json.dumps(messages))
+            if target and not shaky and unused and re.search(rf"\b{re.escape(target)}\b", unused[1]):
+                name, args = "apply_changes", {"changes": [{"op": "narrow_escape", "player": target}]}  # R24
+            elif target and not shaky:
                 name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana",
                                                            "by": holder, "katana": True}]}
             calls = [(name, args)]

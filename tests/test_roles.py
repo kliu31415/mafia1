@@ -2763,6 +2763,38 @@ def test_a_shaky_yakuzas_katana_attacks_are_level_none_and_can_never_kill(game_f
     assert not game.player("Alice").alive and not game.player("Bob").alive
 
 
+def test_narrow_escape_is_hidden_and_stops_one_lethal_night_unless_the_attack_is_divine(game_factory):
+    # rules R24 (Kevin, Oct 13 2026): hidden, any faction; used up only on a night the holder would have died
+    import pytest
+
+    from night import role_notes
+    from players import role_briefing
+    from tests.conftest import apply_ops
+    from traits import ESCAPES_USED
+    game, players = game_factory(["Sheriff", "Medic", "Vigilante", "Grunt", "Grunt"])
+    game.player("Alice").traits = ["Narrow Escape"]
+    game.player("Bob").traits = ["Narrow Escape"]
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert "narrow_escape" in mod.ops
+    assert "Narrow Escape" not in role_briefing(game, game.player("Alice"))
+    game.phase = "night"
+    assert "still unused: Alice and Bob" in role_notes(game)
+    with pytest.raises(ValueError, match="Narrow Escape"):
+        apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana", "by": "Dave", "katana": True})
+    apply_ops(game, players, {"op": "narrow_escape", "player": "Alice"})
+    assert game.role_state[ESCAPES_USED] == ["Alice"] and game.player("Alice").alive
+    assert "still unused: Bob." in role_notes(game)
+    with pytest.raises(ValueError, match="no unused Narrow Escape"):
+        apply_ops(game, players, {"op": "narrow_escape", "player": "Alice"})
+    with pytest.raises(ValueError, match="no unused Narrow Escape"):  # Carol doesn't hold it
+        apply_ops(game, players, {"op": "narrow_escape", "player": "Carol"})
+    apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Vigilante", "by": "Carol"})  # used up
+    apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Jester's revenge", "divine": True})
+    assert not game.player("Alice").alive and not game.player("Bob").alive
+    with pytest.raises(ValueError, match="divine must be"):
+        apply_ops(game, players, {"op": "kill", "player": "Carol", "divine": "yes"})
+
+
 def test_rivals_share_their_side_win_only_once_the_other_has_died(tmp_path):
     # rules R1, R24 (Kevin, Oct 13 2026: his "Haters"): pairs on one side; the holder's own life doesn't matter
     import random

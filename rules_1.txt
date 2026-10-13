@@ -293,6 +293,11 @@ action is used in addition to your role's own, and a role-block stops it too.
   role-block on you stops it along with the attack, and it isn't used up.
 - Katana Master (Yakuza players only): like Katana Expert, but the attack is Divine, which no Defense, protection,
   trap or charm stops. Nobody holds both Katana Expert and Katana Master.
+- Narrow Escape (hidden; any player): once per game, on the first night an attack that isn't Divine would kill you
+  (after Defense, protection, traps and charms), you survive: every non-Divine attack on you that night fails
+  instead. It works like Strong Defense on every night until then, so a night when nothing would have killed you
+  (e.g. a Medic stopped the attack) doesn't use it up. Divine Attacks and deaths by Day aren't stopped. You aren't
+  told you have this trait; you are told about the failed attacks as for any others (R3).
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
 - Sleepwalker (any player): every night you visit one random other living player, besides any action of your own;

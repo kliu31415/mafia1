@@ -360,6 +360,19 @@ TRAITS: dict[str, TraitInfo] = {
                                    "<circle cx='5' cy='5' r='4.4' fill='#4338ca' stroke='#fff' stroke-width='1'/>"
                                    "<path d='M2.8 3.2H5L2.8 6.4H5M5.6 2.6H7.2L5.6 4.8H7.2' fill='none' stroke='#fff' "
                                    "stroke-width='0.8'/></svg>")),  # z z
+    # Any faction, hidden (Kevin, Oct 13 2026): like Strong Defense every night until the first night it saves them;
+    # all of that night's non-Divine attacks fail, and it acts after Defense and protection, so a Medic save keeps it.
+    "Narrow Escape": TraitInfo(frozenset(Alignment),
+                               "Once per game, on the first night a non-Divine attack would kill you, every non-Divine "
+                               "attack on you that night fails instead. You aren't told you have this trait (rules "
+                               "R3, R24).",
+                               "Hidden: survives the first night a non-Divine attack would kill them.",
+                               power=0.15, power_for={Alignment.EVIL: 0.1}, hidden=True,
+                               mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                     "<circle cx='5' cy='5' r='4.4' fill='#0f766e' stroke='#fff' stroke-width='1'/>"
+                                     "<path d='M2.4 6.8Q5 1.6 7.6 6.8' fill='none' stroke='#fff' "
+                                     "stroke-width='1'/><circle cx='5' cy='6.6' r='0.8' fill='#fff'/>"
+                                     "</svg>")),  # a dodge over a dot
     "Oblivious": TraitInfo(frozenset(Alignment),
                            "You are never told about an attack you survive. You aren't told you have this trait "
                            "(rules R24).",
@@ -902,6 +915,48 @@ def shares_win(game: Game, p: Player) -> bool:
     return not win_blockers(game, p)
 
 
+ESCAPES_USED = "escapes_used"  # game.role_state: Narrow Escape holders it has saved
+
+
+class NarrowEscape(TraitLogic):
+    ops = {"narrow_escape": ({"player"}, set(),
+                             "{op:'narrow_escape', player}: the hidden Narrow Escape trait saves `player` tonight "
+                             "(R24); code marks it used. Leave them alive")}
+    night_note = (
+        "Narrow Escape (a hidden trait, R24): resolve every attack as usual (Defense, protection, traps, charms). If "
+        "after that a holder named below would die tonight from any attack that isn't Divine, they don't die: every "
+        "non-Divine attack on them tonight fails instead, and you use the narrow_escape op, which uses it up. Tell "
+        "them and each attacker as for any failed attack; a protector whose protection didn't stop an attack learns "
+        "nothing from the escape. A Divine attack still kills them: give that kill divine=true (code refuses a night "
+        "kill of a holder otherwise). A night with no lethal attack doesn't use it. Never mention the trait.")
+
+    def tonight_note(self, game: Game) -> str:
+        if names := self.unused(game):
+            return f"Narrow Escape (hidden, R24) still unused: {join_names(names)}."
+        return ""
+
+    def unused(self, game: Game) -> list[str]:
+        used = game.role_state.get(ESCAPES_USED, [])
+        return [p.name for p in game.alive() if "Narrow Escape" in p.traits and p.name not in used]
+
+    def check_op(self, game: Game, change: dict) -> str | None:
+        if change["player"] not in self.unused(game):
+            return f"{change['player']} has no unused Narrow Escape"
+        return None
+
+    def apply_op(self, game: Game, change: dict) -> None:
+        game.role_state.setdefault(ESCAPES_USED, []).append(change["player"])
+
+    def kill_error(self, game: Game, change: dict) -> str | None:
+        # rules R24: at night, only a Divine attack kills a holder whose escape is unused (code can't see attack
+        # levels, so the moderator says so)
+        if game.phase != "night" or change["player"] not in self.unused(game) or change.get("divine"):
+            return None
+        return (f"{change['player']} has the hidden Narrow Escape trait (R24), still unused: unless every fatal attack "
+                "is Divine, they survive; use {op:'narrow_escape', player} instead of the kill. If a Divine attack "
+                "killed them, repeat the kill with divine=true")
+
+
 class Oblivious(TraitLogic):
     def tonight_note(self, game: Game) -> str:
         if not (names := [p.name for p in game.alive() if "Oblivious" in p.traits]):
@@ -1015,6 +1070,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
                                 "Shaky": Shaky(), "Turncoat": Turncoat(),
                                 "Sleepwalker": Sleepwalker(), "Rival": Rival(),
+                                "Narrow Escape": NarrowEscape(),
                                 "Katana Expert": KatanaBoost("Katana Expert", "Strong", "katana_expert"),
                                 "Katana Master": KatanaBoost("Katana Master", "Divine", "katana_master")}
 assert set(LOGIC) == set(TRAITS)
@@ -1024,7 +1080,8 @@ def trait_logic(name: str) -> TraitLogic:
     return LOGIC[name]
 
 
-ACTION_TRAITS = [t for t, lg in LOGIC.items() if lg.ops]  # traits with a night action (players.trait_actions_schema)
+# traits with a night action the player chooses (players.trait_actions_schema); ops alone may be the moderator's
+ACTION_TRAITS = [t for t, lg in LOGIC.items() if type(lg).can_act is not TraitLogic.can_act]
 
 
 def eligible(p: Player, trait: str) -> bool:
