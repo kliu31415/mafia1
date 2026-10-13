@@ -1364,6 +1364,21 @@ def test_bonded_partners_die_together_and_know_only_each_others_name(game_factor
     assert not game.player("Bob").alive and any("heartbreak" in e.text for e in game.events)
 
 
+def test_a_selfish_player_who_died_doesnt_share_their_factions_win(game_factory):
+    # rules R1, R24 (Kevin, Oct 13 2026): the faction's win is unchanged
+    game, players = game_factory(["Sheriff", "Medic", "Vigilante", "Grunt"])
+    game.player("Alice").traits = ["Selfish"]
+    game.player("Bob").traits = ["Selfish"]
+    game.kill("Alice", "Katana")
+    game.kill("Dave", "executed by hanging", guilty_voters=["Bob", "Carol"])
+    game.winners = game.check_winner()
+    assert game.winners == ["Bob", "Carol"]  # Bob is Selfish but alive
+    line = game.winners_line()
+    assert "Selfish (a trait) and dead, so they don't share their side's win: Alice." in line
+    from traits import fits
+    assert not fits("Selfish", "Serial Killer") and fits("Selfish", "Grunt")
+
+
 def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
     game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
     game.phase = "night"
@@ -1917,8 +1932,9 @@ def test_each_set_of_trait_marks_has_its_own_icon_rule():
     import log_viewer
     span = log_viewer.name_span("Alice", "Sheriff", ["Martyr", "Armed"])
     assert "tn2 t0-martyr t1-armed" in span and "Trait: Armed:" in span
-    css = log_viewer.icons_css()
+    css = log_viewer.icons_css([["Martyr", "Armed"], ["Armed"], []])
     assert ".n.ic.tn2.t0-martyr.t1-armed::before" in css and ".n.ic.tn1.t0-armed::before" in css
+    assert css.count("::before") == 2  # only the game's own sets: every possible set made 250 MB pages
 
 
 def test_an_avenger_killed_at_night_takes_every_fatal_attacker_with_them(game_factory):

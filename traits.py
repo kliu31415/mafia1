@@ -241,6 +241,17 @@ TRAITS: dict[str, TraitInfo] = {
                               "<circle cx='5' cy='5' r='4.4' fill='#be185d' stroke='#fff' stroke-width='1'/>"
                               "<path d='M2.4 5H7.6M3.6 3.6L2.4 5L3.6 6.4M6.4 3.6L7.6 5L6.4 6.4' fill='none' "
                               "stroke='#fff' stroke-width='0.9'/></svg>")),  # a two-way link
+    # Village and Yakuza (Kevin, Oct 13 2026): Neutrals' wins already need survival or contradict it (the Jester).
+    # Only the holder's own win changes, not the faction's.
+    "Selfish": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
+                         "You win only if your faction wins and you are alive at the end; your faction's win doesn't "
+                         "change (rules R1, R24).",
+                         "Shares the faction's win only if alive at the end.",
+                         power=-0.1,
+                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                               "<circle cx='5' cy='5' r='4.4' fill='#ca8a04' stroke='#fff' stroke-width='1'/>"
+                               "<circle cx='5' cy='5' r='2.2' fill='none' stroke='#fff' stroke-width='1'/>"
+                               "<circle cx='5' cy='5' r='0.7' fill='#fff'/></svg>")),  # a coin
 }
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"})]  # traits no player may hold together (rules R24)
 
@@ -257,6 +268,7 @@ class TraitLogic:
     budget_factor = 1.0  # multiplies the speaking budget earned each round and its cap (rules R22; Loud)
     length_factor = 1.0  # multiplies the length part of message prices (rules R22; Curt)
     fixed_trial_vote: bool | None = None  # how the holder's trial votes count, whatever they cast (True: Guilty)
+    wins_only_alive = False  # the holder shares their faction's win only if alive at the end (rules R1, R24; Selfish)
 
     def can_hide_pm(self, game: Game, p: Player) -> bool:
         """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
@@ -597,6 +609,15 @@ class Bonded(TraitLogic):
             game.kill(partner, HEARTBREAK_CAUSE, by=p.name)
 
 
+class Selfish(TraitLogic):
+    wins_only_alive = True
+
+
+def shares_win(p: Player) -> bool:
+    """Whether p shares their faction's win (rules R1): not a Selfish holder who died or left."""
+    return p.alive or not any(trait_logic(t).wins_only_alive for t in p.traits)
+
+
 class Drowsy(TraitLogic):
     def tonight_note(self, game: Game) -> str:
         # Code draws each living holder's night (rules R24) with the game's RNG, so a seed replays it; the moderator
@@ -638,7 +659,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
-                                "Disguised": Disguised(), "Bonded": Bonded()}
+                                "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish()}
 assert set(LOGIC) == set(TRAITS)
 
 

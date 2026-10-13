@@ -10,6 +10,7 @@ there are no nominations or trials, and it is shorter than later Days (R16).
 - Some Neutral roles never block another faction's win (their role says so); their own wins don't depend on how
   the game ends. Every other Neutral blocks wins: while one is alive, the game goes on. So a game that hasn't ended
   doesn't show that a Yakuza is still alive.
+- A trait can add a condition to your own win (R24); it never changes when the game ends or which faction wins.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
@@ -253,6 +254,8 @@ players can get it. A trait's night action is used in addition to your role's ow
 - Bonded (Village and Yakuza players only): you and one other random Village or Yakuza player are bonded, and each
   of you is told the other's name (not their role or faction). If either of you dies, the other dies of heartbreak
   at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
+- Selfish (Village and Yakuza players only): you win only if your faction wins and you are alive at the end. Your
+  faction's win doesn't change; you just don't share it if you died.
 
 === PART 5: THE YAKUZA ===
 
