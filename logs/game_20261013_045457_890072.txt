@@ -132,3 +132,27 @@ Heidi (public): Heidi. No nomination from me. Dave and Bob, post your Night 2 ta
 Alice (public): Alice. Still no nomination from me. Dave and Bob, post your Night 2 targets and results at the start of Day 3. I'll weigh whichever claim gets contradicted.
 Bob (public): Bob. No nomination from me. My Night 2 watch target and visitors will be posted at dawn Day 3 as promised.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Carol, Frank) Carol (Yakuza chat): Carol: Proposal for tonight. Frank keeps the Katana and both of us vote Dave. Dave's Sheriff claim is the strongest threat to us, since a live Sheriff can check us next. I'll spend my Fabricator token on Bob, framing him as Evil for tonight only. If Dave checks Bob, he'll post "Bob reads Evil" and muddy the two claims. Frank, confirm you're voting Dave so the votes match. Reply with your holder and target before we lock in.
+(to Carol, Frank) Frank (Yakuza chat): Frank: Confirmed. Holder is Frank (Katana stays with me). Target is Dave, the claimed Sheriff whose N1 check on Bob is the main threat to us. I'm voting Dave. I won't use Spare Blade tonight. Carol, your Bob frame is fine by me, and I'll keep my own Katana vote matching yours.
+(to Carol, Frank) Carol (Yakuza chat): Carol: Confirmed. Holder is Frank, target is Dave. I'm voting Dave with you. I'll spend my fab token on Bob tonight, visit only, no forge, so a Dave check on Bob reads Evil. Frank, no Spare Blade needed. I'm ready.
+(to Carol, Frank) Frank (Yakuza chat): Frank: Confirmed. Holder is Frank (Katana stays with me). Target is Dave. I'm voting Dave. No Spare Blade tonight. Carol, your Bob frame is fine, visit only. Ready from me.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Lookout): target Erin
+  Carol (Fabricator): target Bob; "Fabricator visit on Bob (framing only, no forge, no token spent). Katana holder Frank, target Dave."; Katana vote: Frank holds, attacks Dave
+  Dave (Sheriff): target Erin
+  Frank (Grunt): no role action; Katana vote: Frank holds, attacks Dave
+  Heidi (Medic): target Dave; "Standard Defense on Dave at no token cost. Dave and Bob are the two investigative claims, and Dave's N2 check is the most active one, so he is the likelier Katana target."
+Katana: Frank holds it and attacks Dave.
+(to Bob) Moderator (private): You watched Erin tonight. Visitors to Erin: Dave.
+(to Dave) Moderator (private): You investigated Erin tonight. Result: Evil.
+(to Carol) Moderator (private): You visited Bob tonight and framed them. You did not forge a will. 2 fabricator tokens left.
+(to Frank) Moderator (private): Your Katana attack on Dave succeeded.
+(to Heidi) Moderator (private): You were role-blocked tonight. Your action had no effect and no tokens were spent. 2 medic tokens left.
+[Moderator summary] Night 2 resolved. Heidi was role-blocked by her Drowsy trait, so her Standard Defense on Dave had no effect and she spent no tokens. Frank held the Katana and made a Standard attack on Dave, who had no Defense. Dave died, cause Katana. Frank did not use Spare Blade (his trait_actions list was empty). Carol framed Bob without forging a will or spending a token; she has 2 fabricator tokens left. Nobody checked Bob tonight, so the frame had no effect. Dave's Sheriff check on Erin read Evil, because a Jester reads Evil to a Sheriff. Bob watched Erin and saw one visitor, Dave. Alice's Paranoid trait rolled no trigger, and she didn't act. Visits recorded: Bob->Erin, Carol->Bob, Dave->Erin, Frank->Dave. Win check: Alice, Bob and Heidi (Village), Carol and Frank (Yakuza) and Erin (Jester, who never blocks wins) are alive, so the game continues.
+[Night check] Night 2: correct
+(to Dave) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Dave. Frank (Grunt) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Frank holds the Katana and chose to attack Dave. Carol (Fabricator) chose to act on Bob ("Fabricator visit on Bob (framing only, no forge, no token spent). Katana holder Frank, target Dave.").
