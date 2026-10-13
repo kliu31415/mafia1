@@ -189,10 +189,10 @@ ROLES: dict[str, RoleInfo] = {
                              summary="Night: role-block one player. Immune to role-blocks.",
                              acts_at_night=True, tested=True),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False,
-                           summary="Thinks they are a random Investigative role; gets usually false results.",
+                           summary="Thinks they are a random Investigative role; gets random results.",
                            acts_at_night=True, tested=True,
                            notes="code assigns the fake role (with its tokens and night prompts); "
-                           "moderator invents its results"),
+                           "moderator draws its results at random"),
     "Ex-Con": RoleInfo(Alignment.GOOD, "Outsider", True,
                        summary="Visits a random player each night without knowing whom; "
                        "reads Evil to alignment checks.",

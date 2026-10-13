@@ -8,7 +8,8 @@ there are no nominations or trials, and it is shorter than later Days (R16).
 - The game ends as soon as all living players, ignoring roles that never block wins, belong to one faction. This is
   checked after every death; deaths that happen together at night are checked together.
 - Some Neutral roles never block another faction's win (their role says so); their own wins don't depend on how
-  the game ends.
+  the game ends. Every other Neutral blocks wins: while one is alive, the game goes on. So a game that hasn't ended
+  doesn't show that a Yakuza is still alive.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
