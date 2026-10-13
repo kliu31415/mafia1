@@ -32,3 +32,25 @@ Alice (public): The pattern is nearly unanimous, so don't mistake repeated sloga
 Bob (public): Bob, still no claim. I agree nobody should be nominated before real results come in. Day 2, I'll look at who pushes votes without data.
 Carol (public): Agreed that the PM alone means little. Tomorrow, let's compare exact targets and results, and keep alignment checks distinct from role checks.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Grace) Bob (Yakuza chat): Bob here. Proposal for tonight: no kill. We have no information on anyone yet, so a Night 1 kill would be a blind pick that could hit a Village power role or waste a token-free option. Katana stays with me (Bob). Grace, if you hold a Pharmacist block, don't use it on anyone tonight. Let's see Day 2 claims first. If you prefer a kill, name the target and I'll vote with you.
+(to Bob, Grace) Grace (Yakuza chat): Grace here. Agreed: no kill tonight, Katana stays with Bob. I won't use my Pharmacist block on anyone tonight. With no information, a blind block or kill only exposes us. Let's use Day 2 results to pick a target.
+(to Bob, Grace) Bob (Yakuza chat): Agreed: no kill tonight, Katana stays with Bob. Grace, no block either. We reassess on Day 2 with whatever public results come out. Ready.
+(to Bob, Grace) Grace (Yakuza chat): Grace here. Agreed: no kill tonight, Katana stays with Bob, and I won't use my Pharmacist block. Ready.
+Night actions:
+  Alice (Veteran): chose to spend 1 token(s); trait action: Sleepwalker on Bob
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks None
+  Carol (Tracker): target Bob
+  Dave (Lookout): target Grace
+  Erin (Sheriff): target Bob
+  Grace (Pharmacist): no role action; Katana vote: Bob holds, attacks None; trait action: Sleepwalker on Heidi
+Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
+(to Alice) Moderator (private): You went on alert tonight. Nobody visited you. 2 alert tokens left.
+(to Carol) Moderator (private): You tracked Bob tonight: Bob did not visit anyone.
+(to Dave) Moderator (private): You watched Grace tonight: nobody visited Grace.
+(to Erin) Moderator (private): You investigated Bob tonight: Bob is Not Evil.
+[Moderator summary] Night 1: Alice (Veteran) went on alert (2 alert left); nobody visited her. Alice sleepwalked to Bob; Grace sleepwalked to Heidi. Yakuza kept Katana with Bob, no attack. Carol tracked Bob: no visits. Dave watched Grace: no visitors. Erin checked Bob: Not Evil (Katana holder). No deaths, no role-blocks.
+[Night check] Night 1: correct
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Grace (Pharmacist) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Bob (Grunt) chose no action.
