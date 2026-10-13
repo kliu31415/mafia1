@@ -1379,6 +1379,31 @@ def test_a_selfish_player_who_died_doesnt_share_their_factions_win(game_factory)
     assert not fits("Selfish", "Serial Killer") and fits("Selfish", "Grunt")
 
 
+def test_oblivious_is_hidden_and_the_moderator_is_told_each_night(game_factory):
+    from night import role_notes
+    from players import role_briefing
+    from traits import bundle_error
+    game, players = game_factory(["Sheriff", "Medic", "Grunt"])
+    game.player("Alice").traits = ["Oblivious"]
+    assert "Oblivious" not in role_briefing(game, game.player("Alice"))
+    game.phase = "night"
+    assert "never tell Alice about an attack they survive" in role_notes(game)
+    assert bundle_error(["Paranoid", "Oblivious"])
+
+
+def test_drowsy_and_paranoid_holders_not_drawn_tonight_are_named_too(game_factory):
+    # game_20261013_045457_890072: the moderator rolled for a Drowsy holder itself on a night code hadn't drawn
+    from night import role_notes
+    game, players = game_factory(["Sheriff", "Medic", "Grunt", "Vigilante"])
+    game.player("Alice").traits = ["Drowsy"]
+    game.player("Bob").traits = ["Paranoid"]
+    game.phase = "night"
+    notes = [role_notes(game) for game.day in range(1, 21)]
+    assert all("Never roll or decide it yourself" in n for n in notes)
+    assert all(("Alice has the hidden Drowsy trait" in n) != ("Alice (Drowsy) is not role-blocked" in n) for n in notes)
+    assert all(("Bob has the hidden Paranoid trait" in n) != ("No fake attack tonight for Bob" in n) for n in notes)
+
+
 def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
     game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
     game.phase = "night"
@@ -1739,7 +1764,7 @@ def test_drawn_traits_stay_within_the_odds_and_the_eligible_seats():
             assert (alignment is None) == (len(TRAITS[bundle[0]].alignments) == 1)
             assert alignment is None or any(ROLES[r].alignment is alignment for r in roles)
         # At most one trait a player: 3 Village seats, 2 Yakuza, 1 Neutral.
-        sides = [parse_trait(t)[1] or Alignment.GOOD for t in traits]
+        sides = [parse_trait(t)[1] or next(iter(TRAITS[parse_trait(t)[0][0]].alignments)) for t in traits]
         assert sides.count(Alignment.GOOD) <= 3 and sides.count(Alignment.EVIL) <= 2
         assert sides.count(Alignment.NEUTRAL) <= 1
 

@@ -252,8 +252,19 @@ TRAITS: dict[str, TraitInfo] = {
                                "<circle cx='5' cy='5' r='4.4' fill='#ca8a04' stroke='#fff' stroke-width='1'/>"
                                "<circle cx='5' cy='5' r='2.2' fill='none' stroke='#fff' stroke-width='1'/>"
                                "<circle cx='5' cy='5' r='0.7' fill='#fff'/></svg>")),  # a coin
+    # Any faction, hidden (Kevin, Oct 13 2026): Paranoid's mirror, so "was I attacked?" is unreliable both ways.
+    "Oblivious": TraitInfo(frozenset(Alignment),
+                           "You are never told about an attack you survive. You aren't told you have this trait "
+                           "(rules R24).",
+                           "Hidden: never told about attacks they survive.",
+                           power=-0.1, power_for={Alignment.EVIL: -0.05}, hidden=True,
+                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                 "<circle cx='5' cy='5' r='4.4' fill='#374151' stroke='#fff' stroke-width='1'/>"
+                                 "<path d='M2.4 4.6Q5 6.6 7.6 4.6' fill='none' stroke='#fff' stroke-width='1'/>"
+                                 "</svg>")),  # a closed eye
 }
-EXCLUSIVE = [frozenset({"Zealot", "Merciful"})]  # traits no player may hold together (rules R24)
+# Traits no player may hold together (rules R24).
+EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"})]
 
 
 class TraitLogic:
@@ -618,7 +629,19 @@ def shares_win(p: Player) -> bool:
     return p.alive or not any(trait_logic(t).wins_only_alive for t in p.traits)
 
 
+class Oblivious(TraitLogic):
+    def tonight_note(self, game: Game) -> str:
+        if not (names := [p.name for p in game.alive() if "Oblivious" in p.traits]):
+            return ""
+        return (f"Oblivious (a hidden trait, R24): never tell {join_names(names)} about an attack they survive "
+                "tonight (code tells a death as usual). Everything else about the attack is unchanged: protectors "
+                "still learn they stopped it, the attacker still learns it failed. Never mention the trait.")
+
+
 class Drowsy(TraitLogic):
+    night_note = ("Drowsy (a trait, R24): code draws each night whether a Drowsy player is role-blocked; the line "
+                  "below says what it drew tonight. Never roll or decide it yourself.")
+
     def tonight_note(self, game: Game) -> str:
         # Code draws each living holder's night (rules R24) with the game's RNG, so a seed replays it; the moderator
         # applies it like any role-block (R9).
@@ -630,26 +653,38 @@ class Drowsy(TraitLogic):
                              "Handle it exactly like a role-block (R9) with no blocker: their actions, automatic "
                              "effects and trait actions have no effect and spend no tokens, they make no visit, and "
                              "they are told they were role-blocked, as usual. Never mention the trait or say why.")
+            elif "Drowsy" in p.traits:
+                lines.append(f"{p.name} (Drowsy) is not role-blocked by the trait tonight; code drew it.")
         return "\n- ".join(lines)
 
 
 class Paranoid(TraitLogic):
+    # In game_20261013_045457_890072 the moderator, seeing the trait in the state, rolled for a Drowsy holder itself
+    # on a night code hadn't drawn (and killed a player through it): say who isn't affected tonight too.
+    night_note = ("Paranoid (a trait, R24): code draws each night whether a Paranoid player gets a fake attack; the "
+                  "line below says what it drew tonight. Never roll or decide it yourself.")
+
     def tonight_note(self, game: Game) -> str:
         # Code draws the night and the cause with the game's RNG (a seed replays them); the moderator writes the
         # message, so it reads like its real ones (Kevin, Oct 13 2026: indistinguishable from a real attack).
         from scripts import script_roles
-        lines = []
+        lines, drawn = [], []
         for p in game.alive():
             if "Paranoid" not in p.traits or game.rng.random() >= PARANOID_ODDS:
                 continue
             roles = [r for r in PARANOID_ATTACKERS if r in script_roles(game) and not ROLES[r].unique]
             cause = "the Katana" if not roles or game.rng.random() < PARANOID_KATANA else game.rng.choice(roles)
             game.log.write("paranoid", player=p.name, cause=cause, day=game.day)
+            drawn.append(p.name)
             lines.append(f"{p.name} has the hidden Paranoid trait (R24); code drew a fake attack for tonight: unless "
                          f"{p.name} is really attacked tonight, tell them they were attacked by {cause} and "
                          "survived, worded exactly as you would tell a real defended attack (R3). It isn't an attack: "
                          "no visit, no kill, no protector or Bloodhound counts it, nobody else is told. Never mention "
                          "the trait or that it was fake.")
+        spared = [p.name for p in game.alive() if "Paranoid" in p.traits and p.name not in drawn]
+        if spared:
+            lines.append(f"No fake attack tonight for {join_names(spared)} (Paranoid; code drew it): tell them of "
+                         "attacks only as usual.")
         return "\n- ".join(lines)
 
 
@@ -659,7 +694,8 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
-                                "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish()}
+                                "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
+                                "Oblivious": Oblivious()}
 assert set(LOGIC) == set(TRAITS)
 
 

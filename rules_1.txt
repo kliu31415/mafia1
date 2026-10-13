@@ -268,6 +268,8 @@ action is used in addition to your role's own, and a role-block stops it too.
   at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
 - Selfish (Village and Yakuza players only): you win only if your faction wins and you are alive at the end. Your
   faction's win doesn't change; you just don't share it if you died.
+- Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
+  trait. Nobody holds both Oblivious and Paranoid.
 
 === PART 5: THE YAKUZA ===
 
