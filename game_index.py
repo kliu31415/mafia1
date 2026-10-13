@@ -5,7 +5,8 @@ llm.py), the moderator, roles, winner, player count, date, errors and tips.
     uv run game_index.py build            # writes logs/index.html (games and pulls also rebuild it)
     uv run game_index.py serve            # http://localhost:8765, rescans logs/ on every page load
 
-The index links the handbook (handbook.py), which `serve` builds fresh at /handbook.html.
+The index links the handbook (handbook.py: rules, roles, traits, setups, power), which `build` writes next to it
+and `serve` builds fresh at /handbook.html.
 
 Each game's summary is cached in logs/index_cache.json by file size and modification time, so a rebuild
 reads only new or changed logs. Both files are machine-local: sync_logs.py never sends them.
@@ -178,6 +179,8 @@ def build(log_dir: Path = LOG_DIR, include_mock: bool = False) -> Path:
     tmp = out.with_name(INDEX + ".tmp")
     tmp.write_text(render(games, datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")), encoding="utf-8")
     os.replace(tmp, out)
+    import handbook  # the index links it, so a static index has it next to it
+    handbook.build(log_dir / HANDBOOK)
     return out
 
 

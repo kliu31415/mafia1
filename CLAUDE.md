@@ -78,7 +78,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   (`--mix frontier`, `--min-frontier 0.7`, `--model`, `--winner`, ...; `--list` lists the games). Model tiers
   are each model's `tier` in `MODELS` (`llm.py`), relative to today's frontier: re-check them when a new
   frontier model comes out.
-- `uv run handbook.py` writes `logs/handbook.html` (and `game_index.py serve` serves it fresh at `/handbook.html`): the
+- `uv run handbook.py` writes `logs/handbook.html`, linked from the game index (`game_index.py build` writes it too, `serve` rebuilds it per load): the
   rules, every role and trait, the setups with sample draws, rule settings, scripts and role power, with a setup
   scorer. It's all read from the code when the page is built (`handbook.data()`; layout in `handbook_page.html`), so a
   new role or trait needs nothing there.

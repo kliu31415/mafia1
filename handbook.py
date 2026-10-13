@@ -5,7 +5,7 @@ code hooks, icon), every trait (traits.TRAITS), the setups (setups.py, with a fe
 with a calculator that scores a setup the way the standard setup balances them.
 
     uv run handbook.py                    # writes logs/handbook.html and opens it
-    uv run game_index.py serve            # also serves it, rebuilt on every load, at /handbook.html
+    uv run game_index.py build|serve      # the game index links it: build writes it too, serve rebuilds it per load
 
 Everything is read from those sources when the page is built (data()), so it never needs updating by hand; the page
 itself (handbook_page.html) only lays the data out. A new role or trait shows up with no change here, and a new
@@ -203,7 +203,9 @@ def render(d: dict | None = None) -> str:
 
 def build(out: Path = OUT) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(render(), encoding="utf-8")
+    tmp = out.with_name(out.name + ".tmp")  # so a browser never gets a half-written page
+    tmp.write_text(render(), encoding="utf-8")
+    tmp.replace(out)
     return out
 
 
