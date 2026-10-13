@@ -333,3 +333,30 @@ Trial votes on Erin: 6 Guilty, 1 Innocent (the votes are secret).
 Erin is executed by hanging (6 Guilty of 7 votes; 4 needed).
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin, Party Animal (Village). N1: role-blocked Mallory (Ivan's N1 groups prove she was blocked). N2: role-blocked Alice, and she confirmed it. N3: no block. Bob's N3 count leaves one unclaimed visitor to Judy, and Alice cleared Bob, so the holder who killed Judy is Grace (or Judy was Drowsy-blocked). Grace's Juror claim is Astral and can't be checked. Niaj, track Grace: a Juror never visits, so any visit breaks her claim. Hang Grace."
 (to Bob, Niaj) The Katana passed to Niaj.
+
+===== NIGHT 4 =====
+(to Bob, Niaj) Bob (Yakuza chat): Bob, N4 proposal. It's 2v4: Alice (Enforcer, 2 tokens), Carol (no survey tokens left), Grace (Juror), Ivan (gun used, Heidi's trap probably still on him, so don't attack him). Kill ALICE. She's the only one left who can hurt our holder at night, and with her gone Day 5 is 2 of us + Carol, Grace, Ivan. We need 3 Yes to hang Grace, and Carol and Ivan already said Grace is next. Then it's 2v2, no nomination can pass, and we win on N5.
+Holder: move the Katana to ME. Alice "cleared" me on N3, so she's unlikely to visit me. She's more likely to visit Grace, and maybe you as her second visit to test your track. If you hold and she visits you, her Enforcer hit kills you.
+Niaj: visit Grace (frame her, which is free and catches a Sheriff if one exists). Tomorrow claim "tracked Grace, she visited Alice" = Grace is the holder. I'll post FT numbers that fit. Keep the forge token.
+Votes: holder Bob, target Alice.
+(to Bob, Niaj) Niaj (Yakuza chat): Agreed: Bob holds and attacks Alice. I visit Grace and frame her (no forge). One change to the claim. "Grace visited Alice" is risky: our real groups will be {Bob, Alice, plus whoever Alice visits}, {Niaj, Grace}, Carol alone and Ivan alone. If Ivan's Scout draw names Grace and Alice in different groups, my track breaks and I hang. My visit links Grace to me no matter what, so the Scout-safe claim is "tracked Grace, she visited ME". That still breaks her Astral Juror claim, since any visit does, and town can read it as a Yakuza action on the Tracker. If Alice's will shows she visited Grace (which would link everyone together), I can switch to "Grace visited Alice" tomorrow. I'll wait for Ivan's post if I speak after him. Bob, please keep your FT numbers flexible: visitors Bob, Niaj, Grace and Alice; visited Alice, Grace, Niaj, plus Alice's targets. Votes: holder Bob, target Alice.
+(to Bob, Niaj) Bob (Yakuza chat): Agreed, Niaj, your claim is safer. "Tracked Grace, she visited ME" works with any Scout draw, breaks her Astral Juror claim, and reads as a Yakuza action on the Tracker. Switch to "Grace visited Alice" only if Alice's will shows she visited Grace too. Tomorrow I'll post FT numbers after I've read Alice's will and Ivan's draw. Base case: visitors Bob, Niaj, Grace(claimed), Alice; visited Alice, Niaj, Grace, plus Alice's targets. Since I'm passive, I'll count our fake Grace->Niaj visit as real so my numbers back your track. Day 5: we both nominate and vote on Grace, and we need one more Yes from Carol or Ivan. Don't PM each other. Final votes: holder Bob, target Alice. Ready.
+(to Bob, Niaj) Niaj (Yakuza chat): Confirmed and final: holder Bob, Katana on Alice. I visit Grace and frame her, no forge. I thought about forging Alice's will instead, but that visit would link me to Alice and not Grace, and a Scout draw could then break my "tracked Grace" claim. So I'm keeping it simple. Tomorrow I'll claim "tracked Grace, she visited ME". I'll switch to "Grace visited Alice" only if Alice's will or Ivan's draw puts them together. Bob, post your FT numbers after I claim. Day 5: we both vote Yes and Guilty on Grace, no PMs. Votes: holder Bob, target Alice. Ready.
+Night actions:
+  Alice (Enforcer): target Grace; second target Bob; chose to spend 1 token(s)
+  Bob (Wiretap): no role action; Katana vote: Bob holds, attacks Alice
+  Carol (Surveyor): no action
+  Grace (Juror): target Bob; second target Alice
+  Niaj (Fabricator): target Grace; "Frame Grace only; do not forge the will (keep the token)."; Katana vote: Bob holds, attacks Alice
+Katana: Bob holds it and attacks Alice.
+(to Grace) Moderator (private): Your jury check: Bob and Alice voted the same way in 2 of 2 trial votes and 2 of 2 nomination votes.
+(to Alice) Moderator (private): You visited Grace and Bob tonight with a Basic Attack (1 token spent). You attacked one of them, and your attack killed them. 1 enforcer token left.
+(to Bob) Moderator (private): Your Katana attack on Alice killed them.
+(to Niaj) Moderator (private): You framed Grace tonight. You didn't forge a will. 1 fabricator token left.
+[Moderator summary] Night 4: Katana moved Niaj->Bob; Bob's Standard Katana attack killed Alice (Defense None). Alice (Enforcer) visited Grace+Bob with a Basic Attack (1 token, 1 left); Bob had made the Katana attack, so the Enforcer hit Bob and killed him. Grace (Juror) compared Bob+Alice (Astral, jury op). Niaj framed Grace, no forge. No blocks. Remaining: Carol, Grace, Ivan (Village), Niaj (Yakuza); the Katana passes to Niaj.
+[Night check] Night 4: correct
+(to Ivan) Moderator (private): Tonight Bob, Carol and Ivan were each in a different visit group.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+(to Bob) Moderator (private): You were attacked tonight (Enforcer) and died.
+(to Niaj) Moderator (private): Yakuza night summary: Bob holds the Katana (moved from Niaj) and chose to attack Alice. Bob (Wiretap) chose no action.
+(to Niaj) The Katana passed to Niaj.
