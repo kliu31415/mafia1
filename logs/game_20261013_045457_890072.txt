@@ -316,3 +316,49 @@ Carol (public): Carol. No nomination. Erin and Heidi, explain those private mess
 (to Alice, Carol) Carol -> Alice (private): Carol: Erin's messages to Heidi look like the link. Agree?
 Erin (public): Erin. Alice and Carol privately coordinated the Heidi push, and that's still unexplained. If you want a clean hang on me, vote Yes or Guilty. I'm not hiding anything.
 Discussion time is over. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Vigilante): target Heidi; "Vigilante Basic shot (1 token) on Heidi. Heidi claims she will self-protect with Standard tonight. If she is a real Medic with that protection, the Basic shot fails. If she is lying or unprotected, it kills her."
+  Carol (Fabricator): no role action; Katana vote: Carol holds, attacks Alice
+  Heidi (Medic): target Heidi; chose to spend 1 token(s); "Standard Defense on myself for 1 token. A Katana attack is Standard, so this blocks it."
+Katana: Carol holds it and attacks Alice.
+(to Heidi) Moderator (private): You were role-blocked tonight. Your action had no effect, and no medic token was spent (2 medic tokens left).
+(to Alice) Moderator (private): You shot Heidi with a Basic Attack tonight. Your attack succeeded: Heidi died. 2 vigilante tokens left.
+(to Carol) Moderator (private): Your Katana attack on Alice succeeded: Alice died. You took no Fabricator action tonight (2 fabricator tokens left).
+[Moderator summary] Night 4: Heidi role-blocked (Drowsy), so no self-protection and no token spent. Alice's 1-token Basic Vigilante shot killed Heidi (Defense None); Alice now has 2 vigilante tokens. Carol (Katana holder) made a Standard Katana attack on Alice, which killed her. Alice's Paranoid fake was not used because she was really attacked. Visits: Alice->Heidi, Carol->Alice. Carol (Yakuza) and Erin (Jester, never blocks wins) are left alive, so the Yakuza should win.
+[Night check] Night 4: correct
+(to Alice) Moderator (private): Your shot killed Heidi. Their role was Medic.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+(to Heidi) Moderator (private): You were attacked tonight (Vigilante) and died.
+
+===== DAY 5 =====
+Heidi died (killed by Vigilante). Their role isn't revealed. Their last will: "Heidi, Medic (Good). N1: Standard Defense on Carol; no attack on her. N2 and N3: role-blocked, so no protection. N3 Standard on Bob did not stop the Katana. Two medic tokens left. A Yakuza holds the Katana and is among Alice, Carol and Erin. Vote on checked results, not pushes."
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice (Village, Vigilante). I have 3 shot tokens (tonight I may shoot Heidi with a Basic). No night results. The Katana has killed Grace, Dave and Bob, so the holder is alive among Carol, Erin and Heidi. Heidi's Medic claim only fits Bob's death if she was blocked on N3. Erin's repeated self-nominations look like a Jester push. Don't hang anyone on self-nominations or unverified claims. Vote on checked results."
+The game is over. Winners: Carol, Frank (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Alice] Nothing else to report beyond the answers above.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Frank
+Cost by player (USD):
+  Alice (Vigilante)   $0.0000   45 calls  claude-haiku-5.5
+  Bob (Lookout)       $0.0000   28 calls  claude-haiku-5.5
+  Carol (Fabricator)  $0.0000   47 calls  claude-haiku-5.5
+  Dave (Sheriff)      $0.0000   17 calls  claude-haiku-5.5
+  Erin (Jester)       $0.0000   44 calls  claude-haiku-5.5
+  Frank (Grunt)       $0.0000   32 calls  claude-haiku-5.5
+  Grace (Tracker)     $0.0000    5 calls  claude-haiku-5.5
+  Heidi (Medic)       $0.0000   45 calls  claude-haiku-5.5
+  Moderator           $0.0000    8 calls  claude-opus-5.5
+  Night checks        $0.0000    4 calls  claude-opus-5.5
+  Strategy review     $0.0000    1 calls  claude-opus-5.5
+  Log review          $0.0000    1 calls  claude-opus-5.5
+  Total               $0.0000  277 calls
