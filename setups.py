@@ -171,6 +171,19 @@ def role_uses(log_dir: Path = LOG_DIR) -> Counter:
     return uses
 
 
+def usual_yakuza(n: int) -> int:
+    return max(1, round(n * 3 / 13))
+
+
+def yakuza_odds(n: int) -> dict[int, int]:
+    """The standard setup's odds of each Yakuza count for n players (YAKUZA_ODDS around usual_yakuza)."""
+    odds: dict[int, int] = {}
+    for shift, w in YAKUZA_ODDS.items():
+        k = max(1, usual_yakuza(n) + shift)
+        odds[k] = odds.get(k, 0) + w
+    return odds
+
+
 def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None,
                    script: str = "all") -> list[str]:
     """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4 (about 3/13
@@ -208,9 +221,9 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
             picked += rng.choices(options, [weight(r) * novelty(r) for r in options])
         return picked
 
-    usual = max(1, round(n * 3 / 13))
-    shift = rng.choices(list(YAKUZA_ODDS), list(YAKUZA_ODDS.values()))[0]
-    n_yakuza = yakuza if yakuza is not None else max(1, usual + shift)
+    usual = usual_yakuza(n)
+    odds = yakuza_odds(n)
+    n_yakuza = yakuza if yakuza is not None else rng.choices(list(odds), list(odds.values()))[0]
     lean = 0 if n_yakuza == usual else 3 if n_yakuza < usual else -3  # fewer Yakuza: stronger roles
     # The Village must outnumber the Yakuza (rules R2) and get its MIN_VILLAGE seats.
     room = n - n_yakuza - max(MIN_VILLAGE, n_yakuza + 1)

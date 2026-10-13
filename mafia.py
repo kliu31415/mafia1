@@ -37,6 +37,7 @@ Code layout:
     grade.py       an LLM judge grades each player's play in finished games, blind to models (grades/)
     night_check.py a judge model checks each night's moderator resolution (--check-nights; --fix-nights corrects)
     game_index.py  logs/index.html: every game in one filterable table (by model tier, winner, ...); or `serve`
+    handbook.py    logs/handbook.html: browse the rules, roles, traits, setups and role power (handbook_page.html)
     alerts.py      lists games whose errors nobody has reviewed yet (Claude Code runs it at session start)
     sync_logs.py   moves logs from cloud games to the PC (and the tips sheet back) through the `logs` branch
     role_summaries.py checks each role's one-line hover summary against its paragraph in rules_1.txt
@@ -58,6 +59,7 @@ Usage:
     uv run stats.py                                          # win rates and decision skill across logs/
     uv run game_index.py build                               # logs/index.html: browse and filter every game
     uv run game_index.py serve                               # the same, always current, at localhost:8765
+    uv run handbook.py                                       # browse the rules, roles, traits and role power
     uv run sync_logs.py pull                                 # cloud games' logs into logs/ (see sync_logs.py)
 """
 

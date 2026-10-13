@@ -5,6 +5,8 @@ llm.py), the moderator, roles, winner, player count, date, errors and tips.
     uv run game_index.py build            # writes logs/index.html (games and pulls also rebuild it)
     uv run game_index.py serve            # http://localhost:8765, rescans logs/ on every page load
 
+The index links the handbook (handbook.py), which `serve` builds fresh at /handbook.html.
+
 Each game's summary is cached in logs/index_cache.json by file size and modification time, so a rebuild
 reads only new or changed logs. Both files are machine-local: sync_logs.py never sends them.
 stats.py takes the same filters (filter_args, matches) so its tables can be restricted to the games
@@ -35,6 +37,7 @@ ROOT = Path(__file__).resolve().parent
 LOG_DIR = ROOT / "logs"
 INDEX = "index.html"
 CACHE = "index_cache.json"
+HANDBOOK = "handbook.html"  # handbook.py's page (rules, roles, traits, setups, power), linked from the index
 CACHE_VERSION = 3  # bump when summarize()'s fields change, so cached summaries are rebuilt
 TIER_ORDER = ["frontier", "mid", "cheap", "human", "unknown"]  # "human": a person's seat (human.py)
 
@@ -264,6 +267,10 @@ def serve(log_dir: Path, port: int, include_mock: bool, open_browser: bool) -> N
             super().__init__(*a, directory=str(log_dir), **kw)
 
         def do_GET(self) -> None:
+            if self.path.split("?")[0] == f"/{HANDBOOK}":
+                import handbook  # built fresh on every load, so it shows the code as it is now
+                self.send_page(handbook.render().encode())
+                return
             if self.path.split("?")[0] not in ("/", f"/{INDEX}"):
                 if rebuilding(log_dir, self.path.split("?")[0]):
                     self.send_page(REBUILDING_PAGE.encode())
@@ -350,7 +357,8 @@ td.roles summary { cursor:pointer; color:var(--muted); } td.roles div { white-sp
 td.models { white-space:normal; min-width:240px; }
 a { color:var(--mid); } body > details { margin-top:14px; } .legend span { margin-right:12px; }
 </style></head><body>
-<h1>Games</h1>
+<h1>Games <a href="handbook.html" style="font-size:13px;font-weight:400;margin-left:8px"
+  title="The rules, roles, traits, setups and role power (handbook.py)">Handbook</a></h1>
 <div class="muted" id="sub"></div>
 <div class="filters">
   <label><input type="search" id="q" placeholder="Search game, role, model, player"></label>
