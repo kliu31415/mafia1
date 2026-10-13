@@ -326,15 +326,19 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
         def free(i: int, t: str) -> bool:
             return len(held[i]) < counts[i] and fits(t, roles[i]) and not bundle_error(held[i] + [t])
 
+        def partners(i: int, t: str) -> list[int]:  # seats a pair trait's partner may take (Rival: same side)
+            return [j for j in order if j != i and free(j, t)
+                    and (not TRAITS[t].same_faction or ROLES[roles[j]].alignment is ROLES[roles[i]].alignment)]
+
         for i in order:
             while len(held[i]) < counts[i]:
                 options = [t for t in TRAITS if free(i, t) and not (TRAITS[t].unique and any(t in h for h in held))
-                           and not (TRAITS[t].pairs and not any(free(j, t) for j in order if j != i))]  # rules R24
+                           and not (TRAITS[t].pairs and not partners(i, t))]  # rules R24
                 if not options:
                     break  # nothing else fits this seat: it holds fewer (rare)
                 held[i].append(t := rng.choice(options))
                 if TRAITS[t].pairs:
-                    held[rng.choice([j for j in order if j != i and free(j, t)])].append(t)
+                    held[rng.choice(partners(i, t))].append(t)
         return held
 
     def powers(held: list[list[str]]) -> list[tuple[str, Alignment]]:

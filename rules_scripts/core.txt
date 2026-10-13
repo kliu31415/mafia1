@@ -260,6 +260,10 @@ players can get it. A trait's night action is used in addition to your role's ow
 - Bonded (Village and Yakuza players only): you and one other random Village or Yakuza player are bonded, and each
   of you is told the other's name (not their role or faction). If either of you dies, the other dies of heartbreak
   at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
+- Rival (Village and Yakuza players only): you and one other random player of your own faction are rivals, and
+  each of you is told the other's name (not their role). Each of you wins only if your faction wins and the other
+  has died by the end; whether you are alive doesn't matter. Your faction's win doesn't change. Nobody holds Rival
+  with Bonded or Turncoat.
 - Selfish (Village and Yakuza players only): you win only if your faction wins and you are alive at the end. Your
   faction's win doesn't change; you just don't share it if you died.
 - Selfless (Village and Yakuza players only): you win only if your faction wins and you are dead at the end. Your

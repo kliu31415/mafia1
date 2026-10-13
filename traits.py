@@ -36,6 +36,7 @@ class TraitInfo:
     fits_role: Callable[[str], bool] | None = None  # which roles can get it, besides `alignments` (None: any)
     unique: bool = False  # at most one player in a game holds it (rules R24 says which)
     pairs: bool = False  # held by two players together (Bonded): drawn setups deal it to both (setups.draw_traits)
+    same_faction: bool = False  # a pair trait whose partners share a faction (Rival)
 
 
 # Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
@@ -278,6 +279,17 @@ TRAITS: dict[str, TraitInfo] = {
                               "<circle cx='5' cy='5' r='4.4' fill='#be185d' stroke='#fff' stroke-width='1'/>"
                               "<path d='M2.4 5H7.6M3.6 3.6L2.4 5L3.6 6.4M6.4 3.6L7.6 5L6.4 6.4' fill='none' "
                               "stroke='#fff' stroke-width='0.9'/></svg>")),  # a two-way link
+    # Village and Yakuza pairs on one side (Kevin, Oct 13 2026; his "Haters"): across sides it would change nothing,
+    # since a side's win already needs the other side dead. Several pairs a game are fine, as with Bonded.
+    "Rival": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
+                       "You and the player named below, of your own faction, are rivals: each of you wins only if your "
+                       "faction wins and the other is dead at the end, whether or not you are alive (rules R1, R24).",
+                       "Rivals with a player of their own faction: wins only if that rival is dead at the end.",
+                       power=-0.15, pairs=True, same_faction=True,
+                       mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                             "<circle cx='5' cy='5' r='4.4' fill='#b45309' stroke='#fff' stroke-width='1'/>"
+                             "<path d='M2.6 2.6L4.6 4.6M7.4 2.6L5.4 4.6M2.6 7.4L4.6 5.4M7.4 7.4L5.4 5.4' fill='none' "
+                             "stroke='#fff' stroke-width='0.9'/></svg>")),  # arrows pointing at each other
     # Village and Yakuza (Kevin, Oct 13 2026): Neutrals' wins already need survival or contradict it (the Jester).
     # Only the holder's own win changes, not the faction's.
     "Selfish": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
@@ -364,7 +376,7 @@ EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Obliviou
              frozenset({"Remorseful", "Zealot"}), frozenset({"Turncoat", "Notorious"}),
              frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"}),
              frozenset({"Katana Expert", "Katana Master"}), frozenset({"Katana Expert", "Shaky"}),
-             frozenset({"Katana Master", "Shaky"})]
+             frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"})]
 
 
 class TraitLogic:
@@ -385,6 +397,10 @@ class TraitLogic:
     takes_win = False  # the holder wins only as the last of their faction alive, and then alone (rules R1, R24)
     # The faction the holder wins with instead of their own (Turncoat); the game's end ignores them (rules R1, R24).
     wins_with: str | None = None
+
+    def denies_win(self, game: Game, p: Player) -> bool:
+        """Whether this trait keeps p from sharing their faction's win as the game ends (Rival; rules R1, R24)."""
+        return False
 
     def random_visit(self, game: Game, p: Player) -> str | None:
         """A target code draws for the living holder's automatic visit tonight (Sleepwalker; rules R24), or None.
@@ -769,28 +785,36 @@ class Disguised(TraitLogic):
 BONDS = "bonds"  # game.role_state: player -> the player they're bonded to (both ways)
 
 
+def pair_up(game: Game, p: Player, trait: str, key: str, same_faction: bool = False) -> str | None:
+    """Pairs p for a pair trait (Bonded, Rival; TraitInfo.pairs), once every trait is dealt (state.setup_game):
+    another holder who isn't paired yet is the partner (a drawn setup deals it to both partners, setups.draw_traits),
+    else a random player it fits who isn't paired yet, among those with the fewest traits, who gets it too; of p's
+    faction if same_faction. game.role_state[key] maps each to the other. Returns the new partner, or None if p was
+    already paired (as an earlier holder's partner) or nobody fits (the trait is taken off p, a setup_error)."""
+    pairs = game.role_state.setdefault(key, {})
+    if p.name in pairs:
+        return None
+    others = [q for q in game.players if q is not p and q.name not in pairs
+              and (not same_faction or q.faction == p.faction)]
+    free = [q for q in others if eligible(q, trait)]
+    if held := [q for q in others if trait in q.traits]:
+        partner = game.rng.choice(held)
+    elif free:
+        fewest = min(len(q.traits) for q in free)  # drawn setups give a player at most setups.TRAITS_EACH
+        partner = game.rng.choice([q for q in free if len(q.traits) == fewest])
+        partner.traits.append(trait)
+    else:
+        p.traits.remove(trait)
+        game.log.error("setup_error", f"no player could be paired with {p.name}, so the {trait} trait was left out")
+        return None
+    pairs[p.name], pairs[partner.name] = partner.name, p.name
+    return partner.name
+
+
 class Bonded(TraitLogic):
     def on_dealt(self, game: Game, p: Player) -> None:
-        # Runs once every trait is dealt (state.setup_game). Another holder who isn't bonded yet is the partner (a
-        # drawn setup deals Bonded to both partners, setups.draw_traits); else a random player the trait fits who isn't
-        # bonded yet, among those with the fewest traits, who gets the trait too.
-        bonds = game.role_state.setdefault(BONDS, {})
-        if p.name in bonds:
-            return  # an earlier holder's partner
-        others = [q for q in game.players if q is not p and q.name not in bonds]
-        free = [q for q in others if eligible(q, "Bonded")]
-        if held := [q for q in others if "Bonded" in q.traits]:
-            partner = game.rng.choice(held)
-        elif free:
-            fewest = min(len(q.traits) for q in free)
-            partner = game.rng.choice([q for q in free if len(q.traits) == fewest])
-            partner.traits.append("Bonded")
-        else:
-            p.traits.remove("Bonded")
-            game.log.error("setup_error", f"no player could be bonded to {p.name}, so the Bonded trait was left out")
-            return
-        bonds[p.name], bonds[partner.name] = partner.name, p.name
-        game.log.write("bond", players=[p.name, partner.name])
+        if partner := pair_up(game, p, "Bonded", BONDS):
+            game.log.write("bond", players=[p.name, partner])
 
     def detail(self, game: Game, p: Player) -> str:
         return f"You are bonded to {game.role_state.get(BONDS, {}).get(p.name)}."
@@ -802,6 +826,22 @@ class Bonded(TraitLogic):
         if partner and game.player(partner).alive:
             game.log.write("heartbreak", player=partner, bonded=p.name, day=game.day)
             game.kill(partner, HEARTBREAK_CAUSE, by=p.name)
+
+
+RIVALS = "rivals"  # game.role_state: player -> their rival (both ways)
+
+
+class Rival(TraitLogic):
+    def on_dealt(self, game: Game, p: Player) -> None:
+        if partner := pair_up(game, p, "Rival", RIVALS, same_faction=True):
+            game.log.write("rivals", players=[p.name, partner])
+
+    def detail(self, game: Game, p: Player) -> str:
+        return f"Your rival is {game.role_state.get(RIVALS, {}).get(p.name)}."
+
+    def denies_win(self, game: Game, p: Player) -> bool:
+        rival = game.role_state.get(RIVALS, {}).get(p.name)  # rules R24: dead at the end; leaving isn't dying
+        return bool(rival) and not game.player(rival).death
 
 
 class Selfish(TraitLogic):
@@ -853,9 +893,9 @@ def ignored_at_end(p: Player) -> bool:
 
 def win_blockers(game: Game, p: Player) -> list[str]:
     """The traits that keep p from sharing their faction's win (rules R1, R24): Selfish if p died or left, Selfless if
-    p is alive, Usurper unless p is the faction's only living player."""
+    p is alive, Usurper unless p is the faction's only living player, Rival while their rival hasn't died."""
     return [t for t in p.traits if trait_logic(t).win_needs_alive not in (None, p.alive)
-            or trait_logic(t).takes_win and usurper(game, p.faction) is not p]
+            or trait_logic(t).takes_win and usurper(game, p.faction) is not p or trait_logic(t).denies_win(game, p)]
 
 
 def shares_win(game: Game, p: Player) -> bool:
@@ -974,7 +1014,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
                                 "Shaky": Shaky(), "Turncoat": Turncoat(),
-                                "Sleepwalker": Sleepwalker(),
+                                "Sleepwalker": Sleepwalker(), "Rival": Rival(),
                                 "Katana Expert": KatanaBoost("Katana Expert", "Strong", "katana_expert"),
                                 "Katana Master": KatanaBoost("Katana Master", "Divine", "katana_master")}
 assert set(LOGIC) == set(TRAITS)

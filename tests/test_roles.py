@@ -2761,3 +2761,34 @@ def test_a_shaky_yakuzas_katana_attacks_are_level_none_and_can_never_kill(game_f
     apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Katana", "by": ["Dave", "Erin"],
                               "katana": True})
     assert not game.player("Alice").alive and not game.player("Bob").alive
+
+
+def test_rivals_share_their_side_win_only_once_the_other_has_died(tmp_path):
+    # rules R1, R24 (Kevin, Oct 13 2026: his "Haters"): pairs on one side; the holder's own life doesn't matter
+    import random
+
+    from gamelog import GameLog
+    from players import role_briefing
+    from state import setup_game
+    for seed in range(10):
+        game = setup_game(["Sheriff", "Medic", "Vigilante", "Tracker", "Grunt", "Grunt"], [Model.HAIKU_5_5],
+                          random.Random(seed), GameLog(tmp_path / f"{seed}.jsonl"),
+                          traits=["Rival@Yakuza", "Rival@Village"])
+        rivals = game.role_state["rivals"]
+        assert len(rivals) == 4 and all(rivals[rivals[n]] == n for n in rivals)
+        assert all(game.player(n).faction == game.player(rivals[n]).faction for n in rivals)
+        yakuza = [q.name for q in game.players if q.faction == "Yakuza"]
+        assert set(yakuza) <= set(rivals)  # the only two Yakuza are each other's rivals
+    village = sorted(n for n in rivals if game.player(n).faction == "Village")
+    a, b = village[0], rivals[village[0]]
+    assert f"Your rival is {b}." in role_briefing(game, game.player(a))
+    game.phase = "day"
+    for n in yakuza:
+        game.kill(n, "executed by hanging", guilty_voters=[])
+    game.winners = winners = game.check_winner() or []  # the Village won with both rivals alive: neither shares it
+    assert a not in winners and b not in winners and len(winners) == 2
+    assert "A trait keeps them from sharing their side's win" in game.winners_line()
+    game.kill(a, "executed by hanging", guilty_voters=[])
+    game.winners = winners = game.check_winner() or []  # a has died, so b now shares it; a doesn't, b is alive
+    assert b in winners and a not in winners
+    assert bundle_error(["Rival", "Bonded"]) and bundle_error(["Rival", "Turncoat"])

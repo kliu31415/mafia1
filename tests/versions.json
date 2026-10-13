@@ -1,5 +1,5 @@
 {
- "log_version": 71,
+ "log_version": 72,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -47,6 +47,7 @@
   "resume_retired": ["changes"],
   "revenge": ["source", "victim"],
   "review": ["cost", "issues", "model", "usage"],
+  "rivals": ["players"],
   "section": ["title"],
   "setup": ["katana", "log_version", "players", "role_info", "trait_info"],
   "steal": ["day", "player", "target", "token"],
