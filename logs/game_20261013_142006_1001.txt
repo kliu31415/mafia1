@@ -345,3 +345,58 @@ Niaj died (executed by hanging). Their role isn't revealed. Their last will: "Ni
 A shot rings out: someone shot at Frank.
 Frank died (shot by the Sniper). Their role isn't revealed. Their last will: "Frank - Juror (Village), no tokens, Astral (never visits). N1/N2: no votes cast yet, so no action. N3: compared Alice and Bob: 0 of 1 nomination votes (Judy's nom: Alice Yes, Bob No), 0 trial votes. That fit their stated votes. D4: voted Yes and Guilty on Alice. N4: compared Judy and Niaj: 1 of 1 nomination and 1 of 1 trial (the Alice votes). That fits both. Mallory's Scout result clears me as holder on N3 and N4. Leads: Niaj nominated Judy on D3 with no mechanical reason, and his holder logic leaves himself out, even though he fits N2-N4 as well as Judy does. Niaj is my pick for the fake Auditor."
 (to Heidi) Moderator (private): Your shot at Frank was just fired: it killed them.
+
+===== NIGHT 5 =====
+Night actions:
+  Ivan (Smuggler): no role action; Katana vote: Ivan holds, attacks Heidi
+  Judy (Auditor): target Heidi
+Katana: Ivan holds it and attacks Heidi.
+(to Judy) Moderator (private): Your audit of Heidi's votes during the Day, in order: Yes on the nomination of Niaj; Innocent in the trial of Niaj.
+[Moderator flag] R24 Bonded + Avenger: Heidi (Avenger) is killed by Ivan's Katana tonight, so code deals Ivan the Avenger Divine Attack. Ivan is Bonded with Judy (Judy's will says so; state has no bond-partner status). The tools don't say whether code carries out heartbreak, so I applied Judy's heartbreak death myself (cause 'heartbreak', no attacker). If code also handles Bonded heartbreak, please make sure Judy isn't killed twice.
+(to Ivan) Moderator (private): Your Katana attack on Heidi killed them tonight.
+[Moderator summary] Night 5: Ivan (holder) used the Katana on Heidi (Standard vs None), and it killed her. Heidi was an Avenger, so code deals Ivan a Divine Attack (cause Avenger, by=Ivan). Judy is Bonded to Ivan and dies of heartbreak (applied manually and flagged). Judy audited Heidi (audit op). Visits: Ivan->Heidi, Judy->Heidi. Mallory (Scout) is the only one left alive, so the Village should win.
+[Night check] Night 5: correct
+(to Mallory) Moderator (private): The players were in only 2 visit groups tonight; one from each: Judy and Mallory.
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+(to Ivan) Moderator (private): You were attacked tonight (Avenger) and died.
+(to Judy) Moderator (private): You died tonight (heartbreak).
+
+===== DAY 6 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi. Village: Sniper (day shooter). Started with 3 tokens. Olivia the Magpie stole 1 on N4. D5: shot Frank (Basic, 1 token). 1 token left. Trait: Avenger. If I'm killed at night, whoever killed me dies too with cause "Avenger", so an "Avenger" death on the night I die names the Katana holder. Hang the survivors accordingly. I'm Disguised, so an exact-role check on me may read Lookout. Ignore it.
+Olivia was the Magpie, so her Accountant results were made up.
+D5 Niaj trial: 4 Guilty, 2 Innocent. Stated Guilty: Frank, Ivan, Judy. Stated Innocent: me, Mallory, Niaj. My reminder says I voted Innocent. So one of Mallory or Niaj had a vote that counted Guilty: either Mallory lied, or a Fixer or Zealot changed someone's vote. Ask Mallory about her reminder.
+Ivan and Judy both pushed the Niaj hang and defended Frank. Judy nominated him. If Niaj was the real Auditor, Judy is a fake Auditor and Yakuza.
+At 4 alive, don't let a 2-Yakuza vote lock happen. Hang whoever the evidence breaks first: Judy (Auditor clash), or Mallory if her vote doesn't fit the total."
+Ivan died (killed by Avenger). Their role isn't revealed. Their last will: "Ivan - Philanthropist (Village), started with 2 philanthropy tokens. N1-N5: spent none and made no visits, because no trusted token role had claimed and Bob asked me not to fund him before an audit. N3: a Magpie (Olivia) stole one token, so I have 1 left. D4: Yes/Guilty on Alice. D5: Yes on Niaj's nomination, Guilty in his trial. Leads: Heidi sniped Frank on a wording point while defending Niaj, and Niaj PM'd Heidi during his trial. Mallory voted Innocent alongside them, so look at Mallory if Heidi is gone."
+Judy died (killed by heartbreak). Their role isn't revealed. Their last will: "Judy. Auditor (Village). Bonded to Ivan: if one of us dies of heartbreak, the bond caused it. I don't know Ivan's faction. N1/N2: no audit, because there were no votes. N3: audited Bob = "No on the nomination of Judy". N4: audited Niaj = "Yes on the nomination of Alice; Guilty in the trial of Alice". D3: No on my own nomination. D4: Yes/Guilty on Alice. D5: nominated Niaj, Yes, Guilty. Niaj's Auditor claim was fake. D5 trial total was 4 Guilty against 3 stated Guilty (me, Ivan, Frank), so one of Heidi, Mallory or Niaj counted Guilty while saying Innocent. N5: auditing Heidi's D5 votes. If she shows Guilty on Niaj, she lied (or was fixed). Heidi defended Niaj and Sniper-shot Frank, who Mallory's reads had cleared, so she's my top suspect. Olivia was the Magpie, so her Accountant results were fake."
+The game is over. Winners: Bob (dead), Carol (dead), Dave (dead), Grace (dead), Heidi (dead), Judy (dead), Mallory, Niaj (dead), Olivia (left). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol, Dave, Grace, Heidi, Judy, Mallory, Niaj, Olivia
+Cost by player (USD):
+  Alice (Vulture)      $0.0000   26 calls  claude-opus-5.5
+  Bob (Enforcer)       $0.0000   20 calls  claude-opus-5.5
+  Carol (Trapper)      $0.0000   26 calls  claude-opus-5.5
+  Dave (Cartographer)  $0.0000   10 calls  claude-opus-5.5
+  Erin (Talent Agent)  $0.0000    7 calls  claude-opus-5.5
+  Frank (Fixer)        $0.0000   39 calls  claude-opus-5.5
+  Grace (Sniper)       $0.0000    5 calls  claude-opus-5.5
+  Heidi (Sniper)       $0.0000   33 calls  claude-opus-5.5
+  Ivan (Smuggler)      $0.0000   41 calls  claude-opus-5.5
+  Judy (Auditor)       $0.0000   32 calls  claude-opus-5.5
+  Mallory (Scout)      $0.0000   32 calls  claude-opus-5.5
+  Niaj (Auditor)       $0.0000   31 calls  claude-opus-5.5
+  Olivia (Magpie)      $0.0000   26 calls  claude-opus-5.5
+  Moderator            $0.0000    8 calls  claude-opus-5.5
+  Night checks         $0.0000    5 calls  claude-opus-5.5
+  Strategy review      $0.0000    1 calls  claude-opus-5.5
+  Log review           $0.0000    1 calls  claude-opus-5.5
+  Total                $0.0000  343 calls
