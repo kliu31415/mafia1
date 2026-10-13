@@ -149,3 +149,59 @@ Katana: Bob holds it and attacks Carol.
 (to Carol) Moderator (private): You were attacked tonight (Katana) and died.
 (to Grace) Moderator (private): You were attacked tonight (Veteran) and died.
 (to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Carol. Grace (Pharmacist) chose to act on Erin.
+
+===== DAY 3 =====
+Carol died (killed by Katana). Their role isn't revealed. Their last will: "Carol — Tracker. Night 1: tracked Bob; Bob did not visit anyone. Night 2: tracking Erin; result pending."
+Grace died (killed by Veteran). Their role isn't revealed. Their last will: "I have no role results to share. Judge players by their checkable claims and by the mechanics behind each death. Vote with the evidence, not with the loudest voice."
+Speaking order today goes around the circle in seat order, starting with Heidi.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Heidi: Vanilla Villager. No night action, no results.
+Heidi (public): Heidi, no nomination yet. Dave, what was your N2 Lookout target and who visited them? Erin, post your N2 Sheriff target and result, since Carol was tracking you N2. Grace died to a Veteran alert, so Grace visited the Veteran on N2. Whoever is the Veteran, say so and what you saw. Bob, you PM'd Grace on both days. What was it about?
+[Claim] Alice: Veteran. N1 alerted: nobody visited me. N2 alerted: one visitor, killed by my attack; that was Grace.
+Alice (public): I’m the Veteran responsible for Grace’s death. I alerted N2; exactly one player visited me, and my attack killed that visitor. Given the announced cause, that was Grace. This proves she visited me, not her role or alignment. Dave, please give your N2 lookout result; Erin, your N2 check. Bob, please explain the two PMs to Grace.
+Bob (public): Bob, no nomination. Alice, a Veteran learns only how many visited and whether the attack hit, never who. So "that was Grace" is a deduction from the cause, not something you observed. Erin, did your N2 Sheriff check return a result or a block? Dave, what did your N2 Lookout watch show? I won't vote on Alice's claim alone.
+Dave (public): My N2 Lookout result: Carol and Grace visited Erin. This corroborates Carol’s claimed tracking visit. Grace also visited Erin in addition to whoever visited Alice; multiple visits are possible. Alice’s Veteran account fits the death and visitor count, but doesn’t verify her role. Erin, give your N2 Sheriff target and result; Bob, explain the two PMs to Grace. I see no trial-ready case yet.
+Erin (public): N2 I was role-blocked, so I have no Sheriff result. Dave’s watch confirms Carol visited me, consistent with her Tracker claim; Grace also visited me and Alice, which can happen through multiple visits. Bob’s continued refusal to say whether he held the Katana N1 is still the clearest unresolved concern. I nominate Bob; answer directly at trial.
+Erin nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Erin, Frank, Heidi, Alice, Dave; No - Bob
+Nomination votes on Bob: 5 Yes (the votes are secret).
+Bob is put on trial (5 Yes).
+Bob (public): Bob, on trial. My only public data is N1: Erin's Sheriff result (Not Evil) and Carol's Tracker result (no visits). Both are consistent with me making no visit on N1, and neither shows an attack. Erin's nomination rested on my silence, not on a result. I have said from Day 1 that I won't vote on claims without data, and that hasn't changed. The claim that doesn't fit the visits is Alice's Veteran account. Dave's Lookout shows Grace visiting Erin, and nothing public shows Grace visiting Alice. Alice says Grace was the one visitor her alert killed. That needs a second visit from Grace, or a swap, or a Sleepwalker. Alice, explain how Grace visited you. Erin and Heidi, don't hang me on a Veteran claim that the public visits don't support.
+(to Bob, Frank) Bob -> Frank (private): Frank: the visit records don't fit Alice's Veteran claim (Grace visiting Erin is public, Grace visiting Alice isn't). Please vote on that question, not on my silence.
+Dave (public): My N2 watch establishes that Grace visited Erin alongside Carol; it does not say Grace visited only Erin. A second visit to Alice is possible, so this is not a contradiction to Alice's account. Bob's N1 results were compatible with holding the Katana without attacking, and he still has not answered whether he held it. I currently favor Guilty.
+Erin (public): Dave's watch doesn't contradict Alice: it shows Grace visited Erin, not only Erin, and a Veteran counts a visitor once even if they visit multiple targets. Bob's N1 Not Evil fits the Katana-holder exception; Carol's no-visit result doesn't establish there was a Katana attack. His repeated refusal to answer whether he held it remains suspicious. I lean Guilty.
+Frank (public): Frank, on trial-day discussion. Bob's point about the visits is fair: Alice's "that was Grace" needs a second Grace visit, and nothing public shows one. But Bob still hasn't said whether he held the Katana. I'm not sure either account holds up, so I'd rather the town vote on the visit logic than on who talks more. I'll vote Guilty only if Alice can show how Grace reached her.
+Heidi (public): Heidi, on Bob's trial. Two questions decide my vote. Bob, did you hold the Katana on N1 or N2? A yes or no is enough. You also PM'd Grace on Days 1 and 2 and haven't explained what those messages said. Alice, Grace's N2 visit to you has to be explained. Dave's watch shows Grace visiting Erin, so how did Grace also reach you? A second Grace visit from a role like Sleepwalker would fit, but say so. Erin, your N2 block tells us something. Who do you think blocked you?
+Alice (public): Bob is right that I did not learn the visitor’s name: I learned one person visited me and my attack killed them. Grace’s announced Veteran death identifies her as that fatal visitor. Dave’s result says Grace visited Erin, not only Erin; a second visit is possible. Bob’s N1 checks fit a Katana holder, but he still hasn’t answered whether he held it. Erin’s block doesn’t identify its source. I’ll vote Guilty.
+Bob (public): Bob, final word. On N1 I made no visit, which matches Carol's Tracker result. Alice, your Veteran death needs Grace to have visited you on N2. Grace's only public action was Erin's block, and Dave's watch shows Carol and Grace on Erin, nobody on you. So either there's a second Grace visit (a random-visit role that you haven't mentioned) or the claim doesn't fit the mechanics. Frank and Heidi, that's the question for your vote. Erin's Not Evil on N1 fits the holder exception, and Erin's N2 block result is missing. Don't hang me on silence or on a visit that the public record doesn't show. I vote Innocent.
+(to Bob, Heidi) Bob -> Heidi (private): Heidi: Alice's visit logic is the thing to vote on. Ask her which role gave Grace a second visit to her. If she can't name one, a Veteran claim that doesn't fit the record shouldn't carry a Guilty vote.
+Trial votes on Bob: 5 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Bob] Guilty - Alice, Dave, Erin, Frank, Heidi; Innocent - Bob
+Bob is executed by hanging (5 Guilty of 6 votes; 4 needed).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob: no role claim and no night results. Judge the living by checkable mechanics: visits, exact results and cause-of-death reads. Don't hang anyone on a bare claim or a bare lean."
+The game is over. Winners: Alice, Carol (dead), Dave, Erin, Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Heidi
+Cost by player (USD):
+  Alice (Veteran)           $0.0329   21 calls  gpt-6-luna
+  Bob (Grunt)               $0.0000   26 calls  claude-haiku-5.5
+  Carol (Tracker)           $0.0265   16 calls  gpt-6-luna
+  Dave (Lookout)            $0.0328   21 calls  gpt-6-luna
+  Erin (Sheriff)            $0.0306   20 calls  gpt-6-luna
+  Frank (Jester)            $0.0000   19 calls  claude-haiku-5.5
+  Grace (Pharmacist)        $0.0000   20 calls  claude-haiku-5.5
+  Heidi (Vanilla Villager)  $0.0000   21 calls  claude-haiku-5.5
+  Moderator                 $0.0000    3 calls  claude-opus-5.5
+  Night checks              $0.0000    2 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.1228  171 calls
