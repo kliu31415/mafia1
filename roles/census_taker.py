@@ -33,6 +33,6 @@ class CensusTaker(RoleLogic):
         shown = as_chosen(game, target.name, group)  # rules R23
         text = (f"Your census of {join_names(shown)} counted {kind.value} players (drawn at random this time): {n} of "
                 f"the {len(group)} {'is' if n == 1 else 'are'} {kind.value}. It counts true alignment, so frames and "
-                "disguises (the Katana holder, the Ex-Con) don't change it. Neutral players are never counted, as "
-                "either Good or Evil.")
+                "disguises (the Katana holder, the Ex-Con, Notorious) don't change it, and a Turncoat counts as Good. "
+                "Neutral players are never counted, as either Good or Evil.")
         game.tell([by.name], text)

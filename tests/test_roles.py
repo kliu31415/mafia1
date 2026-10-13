@@ -1420,6 +1420,30 @@ def test_a_usurper_takes_the_win_alone_only_as_the_last_yakuza_alive(game_factor
     assert "Carol (Usurper) is the last Yakuza player alive, so they take their side's win alone." in line
 
 
+def test_a_turncoat_wins_only_with_the_yakuza_and_the_game_end_ignores_them(game_factory):
+    # rules R1, R19, R24 (Kevin, Oct 13 2026): Village in code; reads Evil; the Census Taker still counts them Good
+    from night import role_notes
+    game, players = game_factory(["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt"])
+    game.player("Bob").traits = ["Turncoat"]
+    assert "reads a Turncoat as Evil" in role_notes(game)
+    game.kill("Alice", "Katana")
+    game.kill("Carol", "Katana")
+    game.winners = game.check_winner()  # only Grunts and the Turncoat alive: the Yakuza win, and so does Bob
+    assert game.winners == ["Bob", "Dave", "Erin"]
+    assert "Bob (Turncoat) wins only with the Yakuza, so they win too." in game.winners_line()
+
+    game, players = game_factory(["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt"])
+    game.player("Bob").traits = ["Turncoat"]
+    game.kill("Dave", "executed by hanging", guilty_voters=["Alice", "Bob"])
+    assert game.check_winner() is None
+    game.kill("Erin", "executed by hanging", guilty_voters=["Alice", "Bob"])
+    game.winners = game.check_winner()  # the Yakuza are gone: the Village wins without the Turncoat
+    assert game.winners == ["Alice", "Carol"]
+    assert "Bob (Turncoat) wins only with the Yakuza." in game.winners_line()
+    from traits import bundle_error
+    assert bundle_error(["Turncoat", "Notorious"]) and bundle_error(["Turncoat", "Selfish"])
+
+
 def test_a_unique_trait_goes_to_one_player_a_game(tmp_path):
     import random
 

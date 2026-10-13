@@ -298,6 +298,20 @@ TRAITS: dict[str, TraitInfo] = {
                              "<circle cx='5' cy='5' r='4.4' fill='#78350f' stroke='#fff' stroke-width='1'/>"
                              "<path d='M2.4 6.2L3.7 3.8L5 6.2L6.3 3.8L7.6 6.2' fill='none' stroke='#fff' "
                              "stroke-width='0.9'/></svg>")),  # a trembling line
+    # Village only, unique (Kevin, Oct 13 2026): plays as a Yakuza ally from every player's view, but stays Village in
+    # code, so no Yakuza chat, Katana or faction code ever sees them. The Census Taker still counts them as Good.
+    "Turncoat": TraitInfo(frozenset({Alignment.GOOD}),
+                          "You win only if the Yakuza win, and alignment checks see you as Evil, though your role is "
+                          "Village. You don't know who the Yakuza are, and they aren't told about you. The game's end "
+                          "ignores you: it ends when the other living players are all Village or all Yakuza (rules R1, "
+                          "R19, R24).",
+                          "Wins only with the Yakuza; reads Evil to alignment checks; ignored when the game's end "
+                          "is checked.",
+                          power=-0.4, unique=True,
+                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                "<circle cx='5' cy='5' r='4.4' fill='#7f1d1d' stroke='#fff' stroke-width='1'/>"
+                                "<path d='M3 3.6H6.6L5.6 2.6M7 6.4H3.4L4.4 7.4' fill='none' stroke='#fff' "
+                                "stroke-width='0.9'/></svg>")),  # arrows turning back
     "Oblivious": TraitInfo(frozenset(Alignment),
                            "You are never told about an attack you survive. You aren't told you have this trait "
                            "(rules R24).",
@@ -311,7 +325,8 @@ TRAITS: dict[str, TraitInfo] = {
 # Traits no player may hold together (rules R24).
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"}),
              frozenset({"Selfish", "Selfless"}), frozenset({"Usurper", "Selfish"}), frozenset({"Usurper", "Selfless"}),
-             frozenset({"Remorseful", "Zealot"})]
+             frozenset({"Remorseful", "Zealot"}), frozenset({"Turncoat", "Notorious"}),
+             frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"})]
 
 
 class TraitLogic:
@@ -330,6 +345,8 @@ class TraitLogic:
     # R1, R24).
     win_needs_alive: bool | None = None
     takes_win = False  # the holder wins only as the last of their faction alive, and then alone (rules R1, R24)
+    # The faction the holder wins with instead of their own (Turncoat); the game's end ignores them (rules R1, R24).
+    wins_with: str | None = None
 
     def can_hide_pm(self, game: Game, p: Player) -> bool:
         """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
@@ -704,10 +721,27 @@ class Usurper(TraitLogic):
     takes_win = True
 
 
+class Turncoat(TraitLogic):
+    wins_with = "Yakuza"
+    night_note = ("Turncoat (a trait; see each player's traits): every alignment check reads a Turncoat as Evil "
+                  "(Sheriff: Evil; Seer: Evil), like the Ex-Con (R19). The Census Taker's count still sees their true "
+                  "alignment (Good). Don't tell anyone a player is a Turncoat.")
+
+
 def usurper(game: Game, faction: str) -> Player | None:
     """The faction's only living player, if they hold a trait that takes the win (Usurper), or None."""
     alive = [p for p in game.alive() if p.faction == faction]
     return alive[0] if len(alive) == 1 and any(trait_logic(t).takes_win for t in alive[0].traits) else None
+
+
+def win_side(p: Player) -> str:
+    """The faction p wins with (rules R1, R24): their own, unless a trait (Turncoat) names another."""
+    return next((w for t in p.traits if (w := trait_logic(t).wins_with)), p.faction)
+
+
+def ignored_at_end(p: Player) -> bool:
+    """Whether the game's end ignores p, like a role that never blocks wins (Turncoat; rules R1, R24)."""
+    return win_side(p) != p.faction
 
 
 def win_blockers(game: Game, p: Player) -> list[str]:
@@ -832,7 +866,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
-                                "Shaky": Shaky()}
+                                "Shaky": Shaky(), "Turncoat": Turncoat()}
 assert set(LOGIC) == set(TRAITS)
 
 

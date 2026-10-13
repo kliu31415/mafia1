@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "3b88bbce0a23088d",
- "text_sha256": "3ad4a54434d81fbb",
+ "cut_sha256": "2872d5367cf523bf",
+ "text_sha256": "b31fa273b3019e52",
  "made_by": "a Claude Code session",
- "made": "2026-10-13T07:21:13+00:00",
+ "made": "2026-10-13T07:41:43+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -22,7 +22,7 @@
    "reason": "Smuggler is not on the script."
   },
   {
-   "old": "The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions\nabove apply to it.\nExact-role checks see the true role, except that they see a Disguised player's disguise (R24). The Roleplayer is\nseen as \"Roleplayer\".\nToken counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,\neven though they believe they have their fake role's tokens.\nVisit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.",
+   "old": "The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions\nabove apply to it (a Turncoat counts as Good).\nExact-role checks see the true role, except that they see a Disguised player's disguise (R24). The Roleplayer is\nseen as \"Roleplayer\".\nToken counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,\neven though they believe they have their fake role's tokens.\nVisit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.",
    "new": "Exact-role checks see the true role, except that they see a Disguised player's disguise (R24).\nVisit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.",
    "reason": "Census Taker, Roleplayer, Accountant, Cartographer and Scout are not on the script."
   },
@@ -65,6 +65,11 @@
    "old": "  vote as counted. A Fixer's reversal doesn't change it. Nobody holds both Zealot and Merciful.",
    "new": "  vote as counted. Nobody holds both Zealot and Merciful.",
    "reason": "The Fixer isn't on this script."
+  },
+  {
+   "old": "you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19); checks that see true\n  alignment, such as the Census Taker's count, see you as Good. You stay Village in every other way: you aren't in\n  the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't told about you. The game's\n  end ignores you, like a role that never blocks wins (R1): it ends when the other living players are all Village\n  or all Yakuza.",
+   "new": "you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19). You stay Village in every\n  other way: you aren't in the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't\n  told about you. The game's end ignores you, like a role that never blocks wins (R1): it ends when the other\n  living players are all Village or all Yakuza.",
+   "reason": "Census Taker is not on the script."
   }
  ]
 }

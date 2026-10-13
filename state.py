@@ -13,7 +13,7 @@ from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE, tell_swap_moves
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
-                    shares_win, usurper, win_blockers,
+                    ignored_at_end, shares_win, usurper, win_blockers, win_side,
                     trait_logic)
 import variants
 
@@ -355,14 +355,15 @@ class Game:
         if self.sole_winner:  # Jester / Executioner wins already earned still count (R1)
             return [self.sole_winner] + self.personal_winners
         alive = self.alive()
-        blocking = {p.faction for p in alive if logic(p.role).blocks_win}
+        blocking = {p.faction for p in alive if logic(p.role).blocks_win and not ignored_at_end(p)}
         if len(blocking) <= 1:
             faction = next(iter(blocking), None)
             # A Usurper who is the faction's last player alive takes its win alone; otherwise a trait can keep its
-            # holder out of the win (Selfish, Selfless, Usurper; rules R1, R24). The faction still won.
+            # holder out of the win (Selfish, Selfless, Usurper; rules R1, R24), or make them win with another
+            # faction (Turncoat). The faction still won.
             if faction and (u := usurper(self, faction)):
                 return [u.name] + self.personal_winners
-            return ([p.name for p in self.players if faction and p.faction == faction and shares_win(self, p)]
+            return ([p.name for p in self.players if faction and win_side(p) == faction and shares_win(self, p)]
                     + self.personal_winners)
         return None
 
@@ -375,12 +376,16 @@ class Game:
         line = f"Winners: {', '.join(map(mark, self.winners or [])) or 'nobody'}."
         if "(dead)" in line:
             line += " Dead players still win with their side."
-        winning = {self.player(n).faction for n in self.winners or [] if n not in self.personal_winners}
+        winning = {win_side(self.player(n)) for n in self.winners or [] if n not in self.personal_winners}
         if left_out := [f"{p.name} ({', '.join(win_blockers(self, p))}, {'alive' if p.alive else 'dead'})"
-                        for p in self.players if p.faction in winning and win_blockers(self, p)]:
+                        for p in self.players if win_side(p) in winning and win_blockers(self, p)]:
             line += f" A trait keeps them from sharing their side's win: {', '.join(left_out)}."
         for u in filter(None, (usurper(self, f) for f in winning)):
             line += f" {u.name} (Usurper) is the last {u.faction} player alive, so they take their side's win alone."
+        for p in self.players:
+            if ignored_at_end(p):
+                line += (f" {p.name} (Turncoat) wins only with the {win_side(p)}"
+                         f"{', so they win too' if p.name in (self.winners or []) else ''}.")
         return line
 
     def state_summary(self) -> str:

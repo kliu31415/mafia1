@@ -98,7 +98,7 @@ from setups import POOLS, SETUPS, parse_setup, seeded_setup, seeded_traits, setu
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
-from traits import TRAITS, bundle_error, parse_item as parse_trait
+from traits import TRAITS, bundle_error, parse_item as parse_trait, win_side
 import role_power
 import scripts
 import variants
@@ -491,7 +491,7 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
         # (e.g. Ctrl-C), don't wait for calls nobody will read.
         pool.shutdown(wait=False, cancel_futures=True)
     faction_winners = [w for w in game.winners or [] if w not in game.personal_winners]
-    winning_faction = game.player(faction_winners[0]).faction if faction_winners else None
+    winning_faction = win_side(game.player(faction_winners[0])) if faction_winners else None  # a Turncoat's side
     if end_reason == "win" and winning_faction is None:
         end_reason = "no_faction_left"  # e.g. the last players died together, or only Jesters remain
     usage = usage_by_caller(log.path, [{"name": p.name, "model": p.model.value, "role": p.start_role}

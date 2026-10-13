@@ -10,8 +10,9 @@ there are no nominations or trials, and it is shorter than later Days (R16).
 - Some Neutral roles never block another faction's win (their role says so); their own wins don't depend on how
   the game ends. Every other Neutral blocks wins: while one is alive, the game goes on. So a game that hasn't ended
   doesn't show that a Yakuza is still alive.
-- A trait can add a condition to your own win, or take your faction's win from your teammates (R24); it never
-  changes when the game ends or which faction wins.
+- A trait can add a condition to your own win, take your faction's win from your teammates, or make you win with
+  another faction (R24); only that last kind (Turncoat) changes when the game ends, and no trait changes which
+  faction wins.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
@@ -192,7 +193,7 @@ Alignment checks (Sheriff: Evil / Not Evil; Seer: compares Good / Neutral / Evil
 except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
-- Ex-Con, and a player with the Notorious trait (R24): Evil.
+- Ex-Con, and a player with the Notorious or Turncoat trait (R24): Evil.
 - Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
   every Neutral as Neutral.)
 Exact-role checks see the true role, except that they see a Disguised player's disguise (R24).
@@ -272,6 +273,11 @@ players can get it. A trait's night action is used in addition to your role's ow
   this trait.
 - Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
   trait. Nobody holds both Oblivious and Paranoid.
+- Turncoat (unique: at most one a game; Village players only): you win only if the Yakuza win (alive or dead), and
+  you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19). You stay Village in every
+  other way: you aren't in the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't
+  told about you. The game's end ignores you, like a role that never blocks wins (R1): it ends when the other
+  living players are all Village or all Yakuza. Nobody holds Turncoat with Notorious, Selfish or Selfless.
 
 === PART 5: THE YAKUZA ===
 
