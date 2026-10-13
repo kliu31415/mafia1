@@ -609,6 +609,13 @@ class OpenRouterClient:
         time.sleep(wait)
 
 
+# Fixed mock answers for checks of the game itself: the night judge finds nothing, and the tips sheet is never empty.
+MOCK_ANSWERS: dict[str, dict] = {
+    "night_check": {"verdict": "correct", "issues": []},
+    "tips": {"sections": [{"heading": "Everyone", "tips": [{"tip": "Mock tip.", "games": 1}]}]},
+}
+
+
 class MockClient:
     """Offline stand-in: random schema-valid answers for players; the moderator only carries out the
     Katana attack. Each answer is seeded by the seed and the prompt, not by call order, so a seed
@@ -630,18 +637,23 @@ class MockClient:
             args: dict[str, Any]
             name, args = ("end_phase", {"summary": "mock"}) if done else ("get_state", {})
             katana = re.search(r"Katana vote result: (\{.*?\})\n", messages[-1].get("content") or "")
-            if not done and katana and (target := json.loads(katana[1]).get("attack")):
+            target = json.loads(katana[1]).get("attack") if katana and not done else None
+            holder = json.loads(katana[1])["holder"] if katana else None
+            shaky = f"carried by {holder}, who is Shaky" in json.dumps(messages)  # its attack can't kill (R24)
+            if target and not shaky:
                 name, args = "apply_changes", {"changes": [{"op": "kill", "player": target, "cause": "Katana",
-                                                           "by": json.loads(katana[1])["holder"], "katana": True}]}
+                                                           "by": holder, "katana": True}]}
             calls = [(name, args)]
             if not done and katana:  # the night's visits: the mock moderator only knows the Katana's
-                visits = [[json.loads(katana[1])["holder"], target]] if name == "apply_changes" else []
+                visits = [[holder, target]] if target else []
                 calls.append(("record_visits", {"visits": visits}))
                 if "op:'attacks'" in json.dumps(tools):  # a Bloodhound's game records the night's attacks too
-                    attackers = [json.loads(katana[1])["holder"]] if name == "apply_changes" else []
+                    attackers = [holder] if target else []
                     calls.append(("apply_changes", {"changes": [{"op": "attacks", "attackers": attackers}]}))
             tool_calls = [{"id": f"call_{rng.randrange(10**9)}", "type": "function",
                            "function": {"name": n, "arguments": json.dumps(a)}} for n, a in calls]
+        elif schema_name in MOCK_ANSWERS:  # random text here would only raise alerts about the mock itself
+            content = json.dumps(MOCK_ANSWERS[schema_name])
         elif schema:
             content = json.dumps(self._sample(schema, rng))
         else:
