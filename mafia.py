@@ -93,7 +93,7 @@ from setups import POOLS, SETUPS, draw_traits, parse_setup, players_for, setup_n
 from events import PHASE
 from records import read_records
 from state import PLAYER_NAMES, Game, setup_game
-from traits import TRAITS, parse_item as parse_trait
+from traits import TRAITS, bundle_error, parse_item as parse_trait
 import role_power
 import scripts
 import variants
@@ -792,8 +792,8 @@ def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: 
             ap.error(str(e))
         if unknown := [t for t in bundle if t not in TRAITS]:
             ap.error(f"unknown traits: {unknown} (known: {', '.join(TRAITS)})")
-        if len(set(bundle)) < len(bundle):
-            ap.error(f"a player holds a trait at most once (rules R24): {item}")
+        if error := bundle_error(bundle):
+            ap.error(f"{error} (rules R24): {item}")
         if alignment and (wrong := [t for t in bundle if alignment not in TRAITS[t].alignments]):
             ap.error(f"{item}: {', '.join(wrong)} can't go to that faction")
     return names

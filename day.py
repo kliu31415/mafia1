@@ -11,7 +11,7 @@ from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, d
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import RoleLogic, logic
 from state import Game, Player, majority
-from traits import LOGIC as TRAIT_LOGIC, trait_logic
+from traits import LOGIC as TRAIT_LOGIC, fixed_trial_vote, trait_logic
 
 
 # Speaking budget. A message costs MESSAGE_BASE_COST + round_multiplier * length_cost(words), times
@@ -539,15 +539,17 @@ TRIAL_VOTE_NOTE = ("This turn is only for discussion: after everyone has spoken,
 
 def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str], no: list[str], outcome: str,
              prosecuted: bool = False, weights: dict[str, int] | None = None,
-             reversed_voters: list[str] | None = None) -> None:
+             reversed_voters: list[str] | None = None, fixed: dict[str, str] | None = None) -> None:
     """A structured vote record for analysis. stage is "nomination" (yes = Yes votes, including the
-    nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once."""
+    nominator's automatic one) or "trial" (yes = Guilty votes). weights: trial voters counted more than once.
+    fixed: trial voters whose vote a trait fixed (rules R24), with the trait."""
     game.votes.setdefault(game.day, []).append(
         {"stage": stage, "nominee": nominee, "votes": {**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}})
     game.log.write("vote", day=game.day, stage=stage, nominator=nominator, nominee=nominee,
                    votes={**dict.fromkeys(yes, True), **dict.fromkeys(no, False)}, outcome=outcome,
                    prosecuted=prosecuted, secret=game.rule_settings[f"{stage}_votes"] == "secret",
-                   **({"weights": weights, "reversed": reversed_voters or []} if stage == "trial" else {}))
+                   **({"weights": weights, "reversed": reversed_voters or [], "fixed": fixed or {}}
+                      if stage == "trial" else {}))
 
 
 def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int,
@@ -573,10 +575,14 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
             + ("the votes are secret: only the Guilty and Innocent totals are announced, never who voted which way."
                if secret else "all votes are revealed publicly once everyone has voted."))
     outs = players.ask_many([(v, task, VOTE_SCHEMA, {"vote": False}) for v in voters], step="trial_vote")
-    # A role may count a vote as the opposite of what was cast (Fixer): the voter's reminder shows the vote they
-    # cast; the count, the log and anyone who sees votes (Informant, Auditor) see the vote as counted.
-    reversed_voters = [v.name for v in voters if game.trial_vote_reversed(v)]
-    counted = [o["vote"] != (v.name in reversed_voters) for v, o in zip(voters, outs)]
+    # A trait may fix how a vote counts (Zealot, Merciful, rules R24): its holder knows, so their reminder says so;
+    # it overrides a Fixer. A role may count a vote as the opposite of what was cast (Fixer): the voter's reminder
+    # shows the vote they cast. The count, the log and anyone who sees votes (Informant, Auditor) see the vote as
+    # counted.
+    fixed = {v.name: f for v in voters if (f := fixed_trial_vote(v))}
+    reversed_voters = [v.name for v in voters if v.name not in fixed and game.trial_vote_reversed(v)]
+    counted = [fixed[v.name][1] if v.name in fixed else o["vote"] != (v.name in reversed_voters)
+               for v, o in zip(voters, outs)]
     guilty = [v.name for v, c in zip(voters, counted) if c]
     innocent = [v.name for v, c in zip(voters, counted) if not c]
     # A role may count a voter more than once (Ballot Stuffer); the verdict then needs a majority of all
@@ -586,9 +592,11 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     if secret:  # rule setting: only the totals are public; each voter is told their own vote
         game.emit(f"Trial votes on {nominee}: {guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (the "
                   "votes are secret).", cat=VOTE)
-        for v, o in zip(voters, outs):
+        for v, o, c in zip(voters, outs, counted):
+            trait = (f" Your {fixed[v.name][0]} trait counted it as {'Guilty' if c else 'Innocent'}."
+                     if v.name in fixed else "")
             game.emit(f"(Only you see this) You voted {'Guilty' if o['vote'] else 'Innocent'} in the trial of "
-                      f"{nominee}.", [v.name], kind="notice", cat=VOTE)
+                      f"{nominee}.{trait}", [v.name], kind="notice", cat=VOTE)
         informants = [p.name for p in game.alive() if logic(p.role).sees_trial_votes(game, p)]
         if informants:
             game.emit(f"(Only you see this) How everyone voted in the trial of {nominee}: Guilty - "
@@ -607,7 +615,8 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     rigged = not voted_guilty and game.rigged_day == game.day
     verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
     log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted,
-             weights={n: w for n, w in weight.items() if w != 1}, reversed_voters=reversed_voters)
+             weights={n: w for n, w in weight.items() if w != 1}, reversed_voters=reversed_voters,
+             fixed={n: t for n, (t, _) in fixed.items()})
     game.vote_record.append(
         f"Day {game.day}: trial of {nominee}; "
         + (f"{guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (secret vote)" if secret else

@@ -144,7 +144,29 @@ TRAITS: dict[str, TraitInfo] = {
                                  "<rect x='2.5' y='3.3' width='5' height='3.4' fill='none' stroke='#fff' "
                                  "stroke-width='0.8'/><path d='M2.5 3.3L5 5.2L7.5 3.3' fill='none' stroke='#fff' "
                                  "stroke-width='0.8'/></svg>")),  # a sealed envelope
+    # Any faction, never both on one player (Kevin, Oct 13 2026; EXCLUSIVE). The holder still votes, so nothing about
+    # who was asked shows, and knows the vote won't count: "it wasn't my vote" is a claim anyone can make.
+    "Zealot": TraitInfo(frozenset(Alignment),
+                        "Every Guilty/Innocent trial vote you cast counts as Guilty, whatever you vote, including in "
+                        "your own trial; your nomination votes are unchanged (rules R24).",
+                        "Trial votes always count as Guilty, whatever they vote.",
+                        power=-0.1, power_for={Alignment.EVIL: -0.15},
+                        mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                              "<circle cx='5' cy='5' r='4.4' fill='#86198f' stroke='#fff' stroke-width='1'/>"
+                              "<rect x='2.6' y='2.6' width='3.6' height='1.8' fill='#fff' "
+                              "transform='rotate(-45 4.4 3.5)'/>"
+                              "<path d='M4.6 4.4L7.4 7.2' stroke='#fff' stroke-width='1'/></svg>")),  # a gavel
+    "Merciful": TraitInfo(frozenset(Alignment),
+                          "Every Guilty/Innocent trial vote you cast counts as Innocent, whatever you vote; your "
+                          "nomination votes are unchanged (rules R24).",
+                          "Trial votes always count as Innocent, whatever they vote.",
+                          power=-0.1, power_for={Alignment.EVIL: -0.15},
+                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                "<circle cx='5' cy='5' r='4.4' fill='#4338ca' stroke='#fff' stroke-width='1'/>"
+                                "<path d='M5 7.4L2.7 5.1Q1.9 4 2.8 3.2Q3.9 2.5 5 3.7Q6.1 2.5 7.2 3.2Q8.1 4 7.3 5.1Z' "
+                                "fill='#fff'/></svg>")),  # a heart
 }
+EXCLUSIVE = [frozenset({"Zealot", "Merciful"})]  # traits no player may hold together (rules R24)
 
 
 class TraitLogic:
@@ -158,6 +180,7 @@ class TraitLogic:
     night_note: str = ""
     budget_factor = 1.0  # multiplies the speaking budget earned each round and its cap (rules R22; Loud)
     length_factor = 1.0  # multiplies the length part of message prices (rules R22; Curt)
+    fixed_trial_vote: bool | None = None  # how the holder's trial votes count, whatever they cast (True: Guilty)
 
     def can_hide_pm(self, game: Game, p: Player) -> bool:
         """Whether p may send a hidden private message this turn (Confidant): day.chat_turn offers hidden_pm."""
@@ -387,10 +410,18 @@ class Notorious(TraitLogic):
                   "their true alignment. Don't tell anyone a player is Notorious.")
 
 
+class Zealot(TraitLogic):
+    fixed_trial_vote = True
+
+
+class Merciful(TraitLogic):
+    fixed_trial_vote = False
+
+
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
                                 "Kindred": Kindred(), "Faultline": Faultline(), "Notorious": Notorious(),
                                 "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
-                                "Confidant": Confidant()}
+                                "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful()}
 assert set(LOGIC) == set(TRAITS)
 
 
@@ -402,8 +433,25 @@ ACTION_TRAITS = [t for t, lg in LOGIC.items() if lg.ops]  # traits with a night 
 
 
 def eligible(p: Player, trait: str) -> bool:
-    # A player may have several traits, never the same one twice (Kevin, Oct 12 2026).
-    return p.info.alignment in TRAITS[trait].alignments and trait not in p.traits
+    # A player may have several traits, never the same one twice (Kevin, Oct 12 2026), nor two that exclude each other.
+    return p.info.alignment in TRAITS[trait].alignments and not bundle_error([*p.traits, trait])
+
+
+def bundle_error(bundle: list[str]) -> str | None:
+    """Why one player can't hold all these traits together (rules R24), or None."""
+    if len(set(bundle)) < len(bundle):
+        return "a player holds a trait at most once"
+    if clash := next((e for e in EXCLUSIVE if e <= set(bundle)), None):
+        return f"no player holds both {' and '.join(sorted(clash))}"
+    return None
+
+
+def fixed_trial_vote(p: Player) -> tuple[str, bool] | None:
+    """The trait that fixes how p's trial votes count (Zealot, Merciful) and how they count, or None."""
+    for t in p.traits:
+        if (vote := trait_logic(t).fixed_trial_vote) is not None:
+            return t, vote
+    return None
 
 
 FACTIONS = {"Village": Alignment.GOOD, "Yakuza": Alignment.EVIL, "Neutral": Alignment.NEUTRAL}

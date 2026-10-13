@@ -110,6 +110,13 @@ night actions already run in parallel.
   double- or un-flipping Sheriff/Seer/Oracle results (frames, Katana), code-told roles that skip the flip helper,
   and analysis scoring the shown result instead of the true one. Unlike the Roleplayer, the role and its visits
   are real; a flipped Oracle confirming a fake claim could swing a game. Power about -0.3.
+- **Clumsy trait: actions land on a neighbor** (Kevin, Oct 13 2026: skipped for its bug risk). A hidden trait whose
+  holder's targeted night actions hit a living neighbor of the chosen target, with results naming the chosen player
+  (like a swap, R23). Most targeted actions are moderator-resolved (Sheriff, Medic, kills, blocks), so the moderator
+  would apply a redirect every night; open rulings: which neighbor, two-target actions (Seer pair), neighbor-group
+  roles (Surveyor), self-targets, the Katana, lasting effects (trap, douse), stacking with a Smuggler swap. A
+  low-risk cut: only roles whose actions code carries out (RecordedAction), where code swaps the target before
+  carry_out, but then it never touches the big roles.
 - **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
   naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
   defeats it, so it mostly taxes Yakuza coordination.

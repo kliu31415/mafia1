@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "799bdb382e4bf51f",
- "text_sha256": "7ae50649404e737d",
- "made_by": "a Claude Code session",
- "made": "2026-10-13T00:17:48+00:00",
+ "cut_sha256": "faa7164eccbd0949",
+ "text_sha256": "07b45ba76fba73c9",
+ "made_by": "Claude session",
+ "made": "2026-10-13T04:29:41+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -65,6 +65,11 @@
    "old": "  sees that it was hidden. Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.\n",
    "new": "  sees that it was hidden.\n",
    "reason": "No role on the script hears other players' private messages (Wiretap, Eavesdropper)."
+  },
+  {
+   "old": "  vote as counted. A Fixer's reversal doesn't change it. Nobody holds both Zealot and Merciful.",
+   "new": "  vote as counted. Nobody holds both Zealot and Merciful.",
+   "reason": "The Fixer isn't on this script."
   }
  ]
 }

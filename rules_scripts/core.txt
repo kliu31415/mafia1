@@ -231,6 +231,11 @@ used in addition to your role's own, and a role-block stops it too.
 - Confidant (any player): once per game, on one of your own Day turns (not while puppeted), you may send one
   private message hidden: nobody else is told it was sent, and the public ledger doesn't count it. Its recipient
   sees that it was hidden.
+- Zealot (any player): every Guilty/Innocent trial vote you cast counts as Guilty, whatever you vote, including in
+  your own trial. Your nomination (Yes/No) votes are unchanged. Your private reminder shows both the vote you cast
+  and how it counted, and everything that reports how you voted (e.g. the Auditor, a Martyr's announcement) uses the
+  vote as counted. Nobody holds both Zealot and Merciful.
+- Merciful (any player): like Zealot, but your trial votes always count as Innocent.
 
 === PART 5: THE YAKUZA ===
 

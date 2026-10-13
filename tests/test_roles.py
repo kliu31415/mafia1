@@ -1155,6 +1155,46 @@ def test_fixer_reverses_a_players_trial_votes_the_next_day_and_nobody_is_told(ga
     assert game.votes[game.day][-1]["votes"]["Carol"] is False  # the Auditor reads the counted vote too
 
 
+def test_zealot_and_merciful_fix_how_trial_votes_count_and_beat_a_fixer(game_factory):
+    # rules R24 (Kevin, Oct 13 2026): the holder knows, so the reminder shows the vote cast and how it counted
+    from day import run_trial
+    game, players = game_factory(["Fixer", "Informant", "Vanilla Villager", "Vanilla Villager", "Grunt"],
+                                 ScriptedClient(votes(guilty_for={"Erin"})))
+    game.player("Carol").traits = ["Merciful"]
+    game.player("Erin").traits = ["Zealot"]
+    game.phase = "night"
+    apply_ops(game, players, {"op": "fix", "player": "Carol", "by": "Alice"})
+    game.announce_dawn()
+    game.run_dawn_hooks()
+    game.phase = "day"
+    run_trial(game, players, game.player("Dave"), "Erin", rnd=1)
+    counted = game.votes[game.day][-1]["votes"]
+    assert counted["Carol"] is False  # Merciful: Innocent, and the Fixer's reversal doesn't apply
+    assert counted["Erin"] is True  # Zealot: Guilty, even in their own trial
+    assert "Innocent - Carol" in next(t for t in told(game, "Bob") if "How everyone voted" in t)
+    assert any(t.endswith("You voted Guilty in the trial of Erin. Your Merciful trait counted it as Innocent.")
+               for t in told(game, "Carol"))
+    assert any(t.endswith("You voted Guilty in the trial of Erin.") for t in told(game, "Dave"))
+    record = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "vote" and r["stage"] == "trial")
+    assert record["fixed"] == {"Carol": "Merciful", "Erin": "Zealot"} and record["reversed"] == []
+
+
+def test_zealot_and_merciful_never_go_to_one_player(tmp_path):
+    import random
+
+    from gamelog import GameLog
+    from state import setup_game
+    from traits import bundle_error
+    assert bundle_error(["Zealot", "Merciful"]) and not bundle_error(["Zealot", "Kindred"])
+    for seed in range(10):
+        game = setup_game(["Sheriff", "Grunt"], [Model.HAIKU_5_5], random.Random(seed),
+                          GameLog(tmp_path / f"{seed}.jsonl"), traits=["Zealot", "Merciful"])
+        assert sorted(len(p.traits) for p in game.players) == [1, 1]
+    game = setup_game(["Sheriff", "Grunt"], [Model.HAIKU_5_5], random.Random(0), GameLog(tmp_path / "b.jsonl"),
+                      traits=["Zealot+Merciful"])
+    assert not any(p.traits for p in game.players) and "setup_error" in game.log.error_counts
+
+
 def test_insomniac_hears_up_to_three_random_visitors_roles_in_alphabetical_order(game_factory):
     game, players = game_factory(["Insomniac", "Medic", "Sheriff", "Grunt", "Tracker", "Lookout"])
     game.phase = "night"

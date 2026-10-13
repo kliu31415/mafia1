@@ -12,7 +12,8 @@ from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE, tell_swap_moves
-from traits import LOGIC as TRAIT_LOGIC, TRAITS, eligible as trait_eligible, parse_item as parse_trait, trait_logic
+from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
+                    trait_logic)
 import variants
 
 
@@ -439,13 +440,13 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         logic(p.role).setup(game, p)
     for item in traits:  # "Martyr+Armed": one player gets both; "Grudge@Yakuza": a Yakuza player gets it
         bundle, alignment = parse_trait(item)
-        if len(set(bundle)) == len(bundle) and (
+        if not bundle_error(bundle) and (
                 candidates := [p for p in players if all(trait_eligible(p, t) for t in bundle)
                                and alignment in (None, p.info.alignment) and not (one_trait_each and p.traits)]):
             rng.choice(candidates).traits.extend(bundle)
         else:
-            log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once), "
-                      "so it was left out")
+            log.error("setup_error", f"no player could get the trait {item} (a player has each trait at most once, and "
+                      "never two that exclude each other), so it was left out")
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
                                  "status": p.status} for p in players], katana=game.katana_holder,

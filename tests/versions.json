@@ -1,5 +1,5 @@
 {
- "log_version": 63,
+ "log_version": 64,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -51,7 +51,7 @@
   "trap": ["attacks", "day", "stopped", "target", "trapper"],
   "trap_set": ["day", "target", "trapper"],
   "visits": ["day", "visits"],
-  "vote": ["day", "nominator", "nominee", "outcome", "prosecuted", "reversed", "secret", "stage", "votes", "weights"]
+  "vote": ["day", "fixed", "nominator", "nominee", "outcome", "prosecuted", "reversed", "secret", "stage", "votes", "weights"]
  },
  "checkpoint_version": 6,
  "checkpoint": {

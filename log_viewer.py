@@ -909,13 +909,14 @@ def involves(names: Iterable[str]) -> str:
 
 
 def vote_split(v: dict, name: Namer, seats: list[str]) -> str:
-    """One vote record as "Guilty (n): names · Innocent (n): names" in seat order, marking doubled and reversed
-    votes."""
+    """One vote record as "Guilty (n): names · Innocent (n): names" in seat order, marking doubled, reversed and
+    fixed votes."""
     yes, no = ("Guilty", "Innocent") if v["stage"] == "trial" else ("Yes", "No")
-    weights, flipped = v.get("weights") or {}, set(v.get("reversed") or [])
+    weights, flipped, fixed = v.get("weights") or {}, set(v.get("reversed") or []), v.get("fixed") or {}
 
     def who(n: str) -> str:
-        notes = ([f"×{weights[n]}"] if weights.get(n, 1) != 1 else []) + (["reversed by a Fixer"] if n in flipped else [])
+        notes = ([f"×{weights[n]}"] if weights.get(n, 1) != 1 else []) + (["reversed by a Fixer"] if n in flipped else []) \
+            + ([f"fixed by {fixed[n]}"] if n in fixed else [])
         return name(n) + (f" <span class='muted'>({', '.join(notes)})</span>" if notes else "")
     groups = [(label, [n for n in sorted(v["votes"], key=lambda n: seats.index(n) if n in seats else len(seats))
                                        if v["votes"][n] is side]) for label, side in ((yes, True), (no, False))]
