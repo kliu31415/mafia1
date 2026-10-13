@@ -12,3 +12,23 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 8 players. Its roles were drawn at random by the standard setup: usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. fewer Yakuza tend to get stronger roles. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Bob.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Bob (public): Bob here. Early day, so I'm reading everyone's first takes before I commit to anything.
+Carol (public): Carol here. Still reading. Not claiming anything yet, and I'm watching who pushes early nominations without any data.
+Dave (public): No reliable reads yet. I'd like everyone to share initial reads and a concrete Night 1 plan before we invent cases.
+Erin (public): No strong reads yet. Tomorrow, I’ll focus on specific, checkable results and how people reason from them rather than just following consensus.
+Frank (public): Agreed. Tomorrow, let's weigh specific results independently and not treat a lack of a Day 1 read as alignment.
+Grace (public): Grace here. No read yet, and I'm not claiming anything today. I'll be watching who nominates early and whose votes line up with whom once trials start.
+Heidi (public): Heidi here. Still reading everyone. No claim yet. I agree with Carol that early nominations without data are worth watching.
+(to Erin, Heidi) Heidi -> Erin (private): Let's coordinate the Katana plan in night chat, not during the day.
+Alice (public): Since there’s one visible PM, Erin and Heidi can share whether it was substantive when useful. Otherwise, let’s judge tomorrow by specific results, not silence today.
+Bob (public): still no read. I'll judge on results, not on who talks most.
+Carol (public): still no claim. Day 2, I want specific visits and results from everyone, and I'll be watching who pushes nominations without data.
+Dave (public): The Heidi–Erin PM is worth asking about if it becomes relevant, but by itself it isn't evidence. Tomorrow, share checkable results without outing tonight's targets.
+Erin (public): Nothing substantive has changed for me. Tomorrow, I’ll reassess based on actual claims, results, and how people vote.
+Grace (public): still no claim. On Day 2 I want nominators to give a reason beyond vibes before anyone votes.
+Heidi (public): Heidi here. Still no read on anyone. Day 2: I want specific visits and results, not vibes, before any nomination.
+Discussion time is over. The day ends.
