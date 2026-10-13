@@ -124,3 +124,20 @@ Bob (public): Bob here. No nomination from me. I'm going on alert again tonight,
 [Claim] Carol: Trapper (Good). N1: trap on Heidi (dead, no effect). N2: trap to be placed at Night 2; will report if it goes off.
 Carol (public): Carol here, no nomination. My N2 trap isn't placed yet, since Night 2 hasn't happened. I'll post my target and whether it goes off.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+Night actions:
+  Bob (Veteran): chose to spend 1 token(s)
+  Carol (Trapper): target Erin; "Placing my trap on Erin. It arms from Night 3. If an attacker makes a Basic, Standard or Strong attack on Erin on a later night, the trap stops it and the attacker takes a Strong Attack back."
+  Erin (Fixer): target Carol; chose to spend 1 token(s); "Fix Carol's trial votes tomorrow."; Katana vote: Erin holds, attacks Carol
+  Frank (Serial Killer): target Carol
+  Grace (Juror): target Erin; second target Frank; "Juror check on Erin and Frank: how often their votes matched, Day 2 nomination vote so far."
+Katana: Erin holds it and attacks Carol.
+(to Grace) Moderator (private): Your jury check: Erin and Frank voted the same way in 1 of 1 nomination votes.
+(to Bob) Moderator (private): You went on alert tonight. Nobody visited you. 1 alert token left.
+(to Erin) Moderator (private): You fixed Carol tonight. 1 fixer token left. Your Katana attack on Carol succeeded: Carol was killed.
+(to Frank) Moderator (private): Your attack on Carol tonight succeeded: Carol was killed.
+(to Carol) Moderator (private): You placed your trap on Erin tonight.
+[Moderator summary] Night 2: Bob went on alert (1 alert token left); nobody visited him. Carol placed her trap on Erin (it arms Night 3). Alice's armed trap on Erin was not triggered because nobody attacked Erin. Erin (Fixer) fixed Carol (1 fixer token left) and, holding the Katana, attacked Carol with a Standard Attack. Frank (Serial Killer) made a Strong Attack on Carol. Carol had no Defense, so both attacks were fatal: Carol died (Katana and Serial Killer). Grace used her Juror ability on Erin and Frank (astral). No role-blocks. Remaining players: Bob (Village), Erin (Yakuza), Frank (Neutral) and Grace (Village), so the game continues.
+[Night check] Night 2: correct
+(to Carol) Moderator (private): You were attacked tonight (Katana and Serial Killer) and died.
