@@ -248,3 +248,60 @@ Trial votes on Olivia: 8 Guilty, 1 Innocent (the votes are secret).
 Olivia is executed by hanging (8 Guilty of 9 votes; 5 needed).
 Olivia died (executed by hanging). Their role isn't revealed. Their last will: "Olivia - Cartographer (2 map tokens, both unused). N1-N3: sizes only, no map spent. Nobody marked me, so this hang reveals nothing. Ivan has called "CORRECT" three times. The first two were proven wrong (Carol was Mortician, Dave was Smuggler), and he only came up with the swap excuse after Dave flipped. Nobody ever said they were swapped. His third call, Ritualist, was a role everyone already knew was in play after Erin died. Treat Ivan as a Roleplayer or a liar. Heidi was in Erin's 1-attack trio and pushed every hang without a result of her own. Protector, stay hidden."
 (to Grace) The Katana passed to Grace.
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Veteran): chose to spend 1 token(s)
+  Bob (Chronicler): no action
+  Frank (Archivist): no action
+  Grace (Puppeteer): target Ivan; chose to spend 1 token(s); "Puppet Ivan for Day 5."; Katana vote: Grace holds, attacks Alice
+  Heidi (Medic): target Ivan
+  Ivan (Roleplayer): target Grace; named role Pharmacist
+  Judy (Vigilante): no action
+  Niaj (Oracle): target Frank; named role Archivist
+Katana: Grace holds it and attacks Alice.
+[Moderator flag] R21 / Puppeteer: Grace spent her puppet token on Ivan for Day 5 but died tonight (Veteran's alert). A puppeting needs its user to act during the Day, so it lapses. I set her puppet token to 0 by hand and did not apply the puppet op, so code won't hand Ivan's chat to a dead player. Grace was the last living Yakuza, so the Village should win at dawn anyway.
+(to Alice) Moderator (private): You went on alert tonight. You were attacked with the Katana and survived. 1 player visited you: your attack killed them. 1 alert token left.
+(to Grace) Moderator (private): Your Katana attack on Alice failed. You spent your puppet token on Ivan. 0 puppet tokens left.
+(to Heidi) Moderator (private): You protected Ivan tonight. Your protection did not stop an attack. 2 medic tokens left.
+(to Niaj) Moderator (private): You guessed that Frank is an Archivist: CORRECT.
+(to Ivan) Moderator (private): You guessed that Grace is a Pharmacist: CORRECT.
+[Moderator summary] Night 4: Alice (Veteran) went on alert (1 alert token left). Grace (Puppeteer, Katana holder) used the Katana on Alice; it was a Standard attack against her Standard Defense, so it failed. Grace visited Alice, so Alice's Strong Attack killed her. Grace also spent her puppet token on Ivan; the puppeting lapses because she died (R21), so no puppet op was applied. Heidi protected Ivan, who wasn't attacked. Niaj (Oracle) guessed Frank = Archivist: CORRECT. Ivan (Roleplayer, fake Oracle) got a random result: Grace = Pharmacist CORRECT. Visits: Grace->Alice, Grace->Ivan, Heidi->Ivan. Attacks: Grace, Alice. Grace was the last living Yakuza, so the Village should win at dawn.
+[Night check] Night 4: correct
+(to Grace) Moderator (private): You were attacked tonight (Veteran) and died.
+
+===== DAY 5 =====
+Grace died (killed by Veteran). Their role isn't revealed. Their last will: "Grace: Seer (1 token, unspent). N1 random pair: Bob & Niaj = SAME alignment. N2 random pair: Frank & Judy = SAME alignment. N3 random pair: Alice & Niaj = SAME alignment. N4 random pair: Bob & Frank = SAME alignment. I'll keep posting random-pair results here as they come in."
+The game is over. Winners: Alice, Bob, Erin (dead), Frank, Heidi, Ivan, Judy, Mallory (dead), Niaj. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Niaj] Night result message formats were inconsistent between nights (see bugs_or_oddities).
+[Feedback from Dave] In the ledger, the death cause comes right after 'role hidden' and can be read as the role (e.g. 'role hidden, Ritualist').
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Erin, Frank, Heidi, Ivan, Judy, Mallory, Niaj
+Cost by player (USD):
+  Alice (Veteran)       $0.0000   22 calls  claude-opus-5.5
+  Bob (Chronicler)      $0.0000   22 calls  claude-opus-5.5
+  Carol (Mortician)     $0.0000   13 calls  claude-opus-5.5
+  Dave (Smuggler)       $0.0000   21 calls  claude-opus-5.5
+  Erin (Bloodhound)     $0.0000   11 calls  claude-opus-5.5
+  Frank (Archivist)     $0.0000   22 calls  claude-opus-5.5
+  Grace (Puppeteer)     $0.0000   28 calls  claude-opus-5.5
+  Heidi (Medic)         $0.0000   23 calls  claude-opus-5.5
+  Ivan (Roleplayer)     $0.0000   22 calls  claude-opus-5.5
+  Judy (Vigilante)      $0.0000   22 calls  claude-opus-5.5
+  Mallory (Roleplayer)  $0.0000    5 calls  claude-opus-5.5
+  Niaj (Oracle)         $0.0000   22 calls  claude-opus-5.5
+  Olivia (Ritualist)    $0.0000   28 calls  claude-opus-5.5
+  Moderator             $0.0000   10 calls  claude-opus-5.5
+  Night checks          $0.0000    4 calls  claude-opus-5.5
+  Strategy review       $0.0000    1 calls  claude-opus-5.5
+  Log review            $0.0000    1 calls  claude-opus-5.5
+  Total                 $0.0000  277 calls
