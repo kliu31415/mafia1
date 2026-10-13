@@ -17,3 +17,22 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Players may also have a trait (R24).
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Ivan.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Ivan (public): Morning all. With up to 4 Yakuza and possible Neutrals, let's not hint at roles today. Investigators: hold your results until they matter for a vote. Watch who PMs whom.
+Judy (public): Agreed with Ivan. Keep claims quiet for now. Tomorrow I'll be looking at who pushes hard without any data, and at who PMs whom.
+Mallory (public): Agree. No claims today. I'll keep a ledger of stated votes vs totals from Day 2 on. Mismatches are a lead.
+Niaj (public): Agreed. Quiet day. Tomorrow, vote totals and PM patterns are what I'll be watching.
+Olivia (public): Agreed, quiet day. One thing to add: a Katana victim's visitors are our best lead. If you have visit info, keep it ready for Day 2.
+Alice (public): Agreed. Quiet day. Tomorrow: votes, PMs, and Katana victims.
+Bob (public): Agreed, quiet day. One addition: from Day 2, let's ask PM senders to summarize their PMs publicly when asked. Refusing is a lead.
+Carol (public): Agreed, quiet day. One more thing: on Day 2, anyone who claims should give night, target and result together, so we can cross-check. Vague claims are a lead.
+Dave (public): Agreed. Quiet day. From Day 2 on, stated votes matter: say how you'll vote and stick to it.
+Erin (public): Agreed, quiet day. Tomorrow I'll compare people's stated votes with the totals and look at who goes quiet once results start coming in.
+Frank (public): Agreed, quiet day. I'll track nominations and votes from Day 2 and hold my thoughts until there's real data.
+Grace (public): Agreed, quiet day. From Day 2, please vote the way you said you would. Voting blocs that keep moving together will tell us something.
+Heidi (public): Agreed, quiet day. Tomorrow I'll weigh actual results and votes over tone. See you all on Day 2.
+Mallory (public): Nothing to add for today. One thing for tomorrow: if someone is attacked tonight and lives, please say so. A failed attack tells us something about protectors and Defense.
+Discussion time is over. The day ends.
