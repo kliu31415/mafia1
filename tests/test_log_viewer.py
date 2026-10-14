@@ -25,7 +25,7 @@ def test_legacy_logs_still_render(tmp_path):
     path = tmp_path / "old.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
     html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
-    assert "class='ev chat'" in html and "Day 1" in html
+    assert "class='ev chat said'" in html and "Day 1" in html
 
 
 def test_alive_list_at_each_day(tmp_path):
@@ -224,3 +224,19 @@ def test_traits_dealt_with_something_show_it(tmp_path):
     path.write_text("\n".join(json.dumps(r) for r in old), encoding="utf-8")
     html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
     assert "(Disguised as Medic, Bonded to Carol)</td>" in html
+
+
+def test_speaker_is_set_apart_from_the_message(tmp_path):
+    players = [{"name": n, "seat": i, "role": "Vanilla Villager", "model": "m"} for i, n in enumerate(["Bob", "Carol"])]
+    records = [
+        {"kind": "setup", "players": players, "katana": None},
+        {"kind": "event", "text": "Bob (public): Carol is lying.", "visible_to": "all", "cat": "chat",
+         "speaker": "Bob", "message": "Carol is lying."},
+        {"kind": "result", "winners": ["Bob"], "cost": {}},
+    ]
+    path = tmp_path / "said.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records), encoding="utf-8")
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
+    line = re.search(r"<div class='ev chat said'.*?</div>", html, re.S)
+    who, msg = r"<span class='who'><span [^>]*>Bob</span></span>", r"<span class='msg'><span [^>]*>Carol</span> is"
+    assert line and re.search(who + msg, line[0])

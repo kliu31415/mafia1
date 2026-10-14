@@ -166,6 +166,12 @@ details.phase.night > summary { color:var(--c-hidden); }
 .vote { --c:var(--c-vote); } .death { --c:var(--c-death); } .claim { --c:var(--c-claim); } .result { --c:var(--c-result); }
 .hidden { --c:var(--c-hidden); } .system { --c:var(--c-system); } .error { --c:var(--c-error); }
 .ev.error { color:var(--c-error); }
+/* someone saying something: the speaker as a tinted label, the message beside it (wrapped lines stay right of it) */
+.ev.said { display:flex; align-items:baseline; gap:8px; }
+.ev.said .badge { flex:none; margin-right:0; }
+.ev.said .who { flex:none; min-width:6.5em; padding:1px 7px; border-radius:5px; white-space:nowrap;
+                background:color-mix(in srgb, var(--c) 16%, transparent); }
+.ev.said .msg { flex:1; min-width:0; }
 .errors { border:2px solid var(--c-error); border-radius:6px; padding:6px 12px; margin:8px 0; }
 .errors summary { cursor:pointer; font-weight:650; color:var(--c-error); }
 .errors ul { margin:4px 0; padding-left:20px; } .no-errors { margin:8px 0; }
@@ -609,6 +615,9 @@ class Namer:
         return set(self.pattern.findall(text)) if self.pattern else set()
 
 
+SAID = ("chat", "pm", "yak", "claim")  # categories whose text is "speaker: message" (classify)
+
+
 def is_phase_start(r: dict) -> bool:
     if "cat" in r:
         return r["cat"] == "phase"
@@ -755,7 +764,14 @@ def render_html(jsonl_path: Path) -> Path:
              extra: str = "") -> None:
         """One event line. who: players it involves besides those named in text (the player filter's data-p)."""
         b = f"<span class='badge'>{name(badge)}</span>" if badge else ""  # e.g. "Result → Alice": names get icons
-        out.append(f"<div class='ev {category}'{involves(name.names_in(text) | set(who))}>{b}"
+        cls = category
+        if body_html is None and category in SAID and ": " in text:
+            # The speaker ("Bob", "Bob → Carol", "Bob (puppeted by Dan)") as a label, the message in its own block,
+            # so a name opening the message doesn't read as its speaker
+            speaker, message = text.split(": ", 1)
+            body_html = f"<span class='who'>{name(speaker)}</span><span class='msg'>{name(message)}{extra}</span>"
+            cls, extra = f"{category} said", ""
+        out.append(f"<div class='ev {cls}'{involves(name.names_in(text) | set(who))}>{b}"
                    f"{name(text) if body_html is None else body_html}{extra}</div>")
 
     def why(r: dict) -> str:
