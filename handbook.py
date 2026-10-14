@@ -31,8 +31,8 @@ from log_viewer import ICONS, icon_slug, trait_slug
 from role_summaries import RULES, role_paragraphs
 from state import PLAYER_NAMES
 from roles import RETIRED, ROLES, Alignment, code_hooks, logic
-from traits import (ACTION_TRAITS, EXCLUSIVE, FACTIONS, LOGIC, TRAITS, TraitLogic, fits, hand_powers, parse_item, power_key,
-                    village_power)
+from traits import (ACTION_TRAITS, EXCLUSIVE, FACTIONS, LOGIC, TRAITS, TraitLogic, fits, hand_powers, parse_item,
+                    power_key, village_power)
 
 ROOT = Path(__file__).resolve().parent
 PAGE = ROOT / "handbook_page.html"
