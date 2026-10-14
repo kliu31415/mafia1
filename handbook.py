@@ -102,7 +102,8 @@ def traits_part(parts: list[dict]) -> list[dict]:
     for factions, group in itertools.groupby(listed, key=lambda b: trait_factions(b["name"])):
         title = (factions[0] + " only" if len(factions) == 1
                  else "Any faction" if len(factions) == len(order) else " or ".join(factions))
-        blocks += [{"kind": "trait_group", "title": title, "faction": factions[0] if len(factions) == 1 else ""}, *group]
+        tint = factions[0] if len(factions) == 1 else ""
+        blocks += [{"kind": "trait_group", "title": title, "faction": tint}, *group]
     blocks += [b for b in traits if b["kind"] != "trait"]
     return parts + [{"title": f"Part {len(parts) + 1}: Traits", "blocks": blocks}]
 
