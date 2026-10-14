@@ -27,7 +27,7 @@ from pathlib import Path
 from collections.abc import Iterable, Sequence
 from typing import Any
 
-from gamelogs import faction_of
+from gamelogs import faction_of, trait_details
 from traits import TRAITS
 from records import caller_of, read_records
 from role_summaries import role_paragraphs
@@ -53,7 +53,8 @@ def text_line(r: dict) -> str | None:
     match k:
         case "setup":
             lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat'] + 1:<2} {p['role']:<17} {p['model']}{via_note(p)}"
-                                  + (f"  trait: {', '.join(p['traits'])}" if p.get("traits") else "")
+                                  + (f"  trait: {traits_text(p['traits'], p.get('trait_details'))}"
+                                     if p.get("traits") else "")
                                   + (f"  {p['status']}" if p.get("status") else "") for p in r["players"]]
             return "\n".join(lines + [f"  Katana starts with {r.get('katana')}"])
         case "event":
@@ -510,6 +511,7 @@ class LogContext:
     version: int = 10 ** 9  # no log: every role name means today's role
     roles: dict[str, dict] = field(default_factory=dict)
     traits: dict[str, dict] = field(default_factory=dict)
+    details: dict[str, dict[str, str]] = field(default_factory=dict)  # gamelogs.trait_details
 
 
 # The log being rendered (render_html sets it), so name_span describes roles as that game had them.
@@ -545,13 +547,19 @@ def role_hover(role: str) -> tuple[str, str]:
     return faction, hover
 
 
+def traits_text(traits: Iterable[str], details: dict[str, str] | None = None) -> str:
+    """A player's traits, each followed by what it was dealt with (gamelogs.trait_details): "Disguised as Sheriff"."""
+    return ", ".join(f"{t} {details[t]}" if details and details.get(t) else t for t in traits)
+
+
 def name_span(name: str, role: str, traits: list[str] | tuple[str, ...] = ()) -> str:
     """A player's (escaped) name colored by faction, with their role's icon (a corner mark for each trait,
     traits.py) and, on hover, the role's name, faction and one-line summary, then each trait's."""
     faction, hover = role_hover(role)
-    own = context().traits
-    hover += "".join(f"\nTrait: {t}: {own[t]['hover']}" if t in own else
-                     f"\nTrait: {t}: {TRAITS[t].hover}" if t in TRAITS else f"\nTrait: {t}" for t in traits)
+    own, details = context().traits, context().details.get(name, {})
+    hover += "".join(f"\nTrait: {traits_text([t], details)}"
+                     + (f": {own[t]['hover']}" if t in own else f": {TRAITS[t].hover}" if t in TRAITS else "")
+                     for t in traits)
     shown = [t for t in traits if t in TRAITS][:len(CORNERS)]
     marks = (f" tn{len(shown)}" if shown else "") + "".join(f" t{i}-{trait_slug(t)}" for i, t in enumerate(shown))
     label = log_role(role, context().version)
@@ -664,7 +672,8 @@ def classify_legacy(r: dict) -> tuple[str, str, str]:
 def render_html(jsonl_path: Path) -> Path:
     records, unreadable = read_records(jsonl_path)
     setup = next((r for r in records if r.get("kind") == "setup"), {})
-    CONTEXT.set(LogContext(setup.get("log_version", 1), setup.get("role_info") or {}, setup.get("trait_info") or {}))
+    CONTEXT.set(LogContext(setup.get("log_version", 1), setup.get("role_info") or {}, setup.get("trait_info") or {},
+                           trait_details(records)))
     roles: dict[str, str] = {}
     traits: dict[str, list[str]] = {}
     models: dict[str, str] = {}
@@ -786,7 +795,7 @@ def render_html(jsonl_path: Path) -> Path:
             believed = {p["name"]: {p["role"], (p.get("status") or {}).get("fake_role")} for p in r["players"]}
             roster = {n: {"alive": True, "death": "", "claim": "", "truth": ""} for n in alive}
             rows = "".join(f"<tr><td>{name(p['name'])}</td><td>{p['seat'] + 1}</td><td>{esc(p['role'])}"
-                           f"{' (' + esc(', '.join(p['traits'])) + ')' if p.get('traits') else ''}</td>"
+                           f"{' (' + esc(traits_text(p['traits'], context().details.get(p['name']))) + ')' if p.get('traits') else ''}</td>"
                            f"<td>{esc(p['model'] + via_note(p))}</td><td class='muted'>{name(status_text(p.get('status')))}</td></tr>"
                            for p in r["players"])
             start_phase("Setup")

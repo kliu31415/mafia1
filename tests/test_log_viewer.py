@@ -189,3 +189,38 @@ def test_model_details_are_packed_into_one_gzip_blob_and_unpack_unchanged(tmp_pa
     assert re.search(r"<details class='call' data-p='Bob'><summary>.*?Turn 7 · \$0\.0000</summary>"
                      r"<div class='muted'[^>]*>Reasoning \(model", html)
     assert re.search(r"<details class='why'><summary[^>]*>why</summary><div>reason 29</div>", html)
+
+
+def test_traits_dealt_with_something_show_it(tmp_path):
+    # Kevin, Oct 14 2026: logs show a Disguised player's disguise, and who a Bonded or Rival player is paired with
+    import random
+
+    import gamelogs
+    from gamelog import GameLog
+    from llm import Model
+    from state import setup_game
+    from traits import held_text
+    path = tmp_path / "new.jsonl"
+    game = setup_game(["Grunt", "Sheriff", "Medic", "Vigilante"], [Model.HAIKU_5_5], random.Random(1), GameLog(path),
+                      traits=["Disguised@Yakuza", "Rival@Village"])
+    grunt = next(p for p in game.players if p.role == "Grunt")
+    disguise = game.role_state["disguises"][grunt.name]
+    rival, other = (p.name for p in game.players if "Rival" in p.traits)
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    details = gamelogs.trait_details(records)
+    assert details[grunt.name] == {"Disguised": f"as {disguise}"} and details[rival] == {"Rival": f"of {other}"}
+    assert held_text(game, grunt) == f"Disguised as {disguise}"
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
+    assert f"(Disguised as {disguise})</td>" in html and f"Trait: Rival of {other}: " in html
+    # log version 72 and earlier: only the traits' own setup records say it
+    old: list[dict] = [
+        {"kind": "disguise", "player": "Bob", "role": "Medic"}, {"kind": "bond", "players": ["Bob", "Carol"]},
+        {"kind": "setup", "log_version": 72, "players": [
+            {"name": n, "seat": i, "role": "Grunt", "model": "m", "traits": t}
+            for i, (n, t) in enumerate([("Bob", ["Disguised", "Bonded"]), ("Carol", ["Bonded"])])]}]
+    assert gamelogs.trait_details(old) == {"Bob": {"Disguised": "as Medic", "Bonded": "to Carol"},
+                                           "Carol": {"Bonded": "to Bob"}}
+    path = tmp_path / "old.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in old), encoding="utf-8")
+    html = log_viewer.unpacked(log_viewer.render_html(path).read_text(encoding="utf-8"))
+    assert "(Disguised as Medic, Bonded to Carol)</td>" in html

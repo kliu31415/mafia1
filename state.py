@@ -14,7 +14,7 @@ from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE, seen_role, tell_swap_moves
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
                     ignored_at_end, shares_win, usurper, win_blockers, win_side,
-                    trait_logic)
+                    log_details as trait_log_details, trait_logic)
 import variants
 
 
@@ -487,6 +487,7 @@ def setup_game(roles: list[str], models: Sequence[Model | ModelSpec], rng: rando
         trait_logic(t).on_dealt(game, holder)
     log.write("setup", players=[{"name": p.name, "seat": p.seat, "model": p.model.value, "effort": p.effort,
                                  "via": via(p.model) if via else "api", "role": p.role, "traits": p.traits,
+                                 **({"trait_details": d} if (d := trait_log_details(game, p)) else {}),
                                  "status": p.status} for p in players], katana=game.katana_holder,
               log_version=LOG_VERSION, role_info=roles_described(game), trait_info=traits_described(),
               **(meta or {}))

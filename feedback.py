@@ -16,6 +16,7 @@ from records import read_records, redact
 from state import Game
 from texts import player_view
 from tips import print_alert
+from traits import held_text
 
 DEBRIEF_QUESTIONS = {
     "confusing_rules": "Which rules, or parts of your instructions, were confusing or ambiguous?",
@@ -62,7 +63,7 @@ def full_log(game: Game) -> str:
 def revealed_roles(game: Game) -> str:
     """Every player's role, and traits (R24), for the post-game reveal (Frank in game_20261012_150142_930656
     missed the traits)."""
-    return ", ".join(f"{p.name}: {p.role}" + (f" (trait: {', '.join(p.traits)})" if p.traits else "")
+    return ", ".join(f"{p.name}: {p.role}" + (f" (trait: {held_text(game, p)})" if p.traits else "")
                      for p in game.players)
 
 

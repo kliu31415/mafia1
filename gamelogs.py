@@ -52,6 +52,24 @@ def setup_of(records: list[dict]) -> dict | None:
     return first(records, "setup")
 
 
+def trait_details(records: list[dict]) -> dict[str, dict[str, str]]:
+    """Player -> {trait: what logs show after its name} (traits.TraitLogic.log_detail): the setup record's
+    trait_details (log version 73 on), else the Disguised, Bonded and Rival traits' own setup records (67, 72)."""
+    setup = setup_of(records) or {}
+    if setup.get("log_version", 1) >= 73:
+        return {p["name"]: p["trait_details"] for p in setup.get("players") or [] if p.get("trait_details")}
+    details: dict[str, dict[str, str]] = {}
+    for r in records:
+        match r.get("kind"), r.get("players"):
+            case "disguise", _:
+                details.setdefault(r["player"], {})["Disguised"] = f"as {r['role']}"
+            case ("bond" | "rivals") as kind, [a, b]:
+                trait, word = ("Bonded", "to") if kind == "bond" else ("Rival", "of")
+                details.setdefault(a, {})[trait] = f"{word} {b}"
+                details.setdefault(b, {})[trait] = f"{word} {a}"
+    return details
+
+
 def result_of(records: list[dict]) -> dict | None:
     """The "result" record; None means the game stopped or crashed before it ended."""
     return last(records, "result")
@@ -76,7 +94,8 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
     """Each player of the game in seat order: name, seat, model (full id), start_role, final_role (None
     while the game hasn't ended), faction (of the start role, by faction_of), won, alive, died (a "death"
     record names them: unlike alive, a player who left the game, e.g. an Executioner who won, didn't die)
-    tips (played with a tips sheet), traits (traits.py; [] before log version 48), unreliable (their calls kept
+    tips (played with a tips sheet), traits (traits.py; [] before log version 48), trait_details (trait_details:
+    {trait: text} for traits dealt with something of their own, e.g. a disguise), unreliable (their calls kept
     failing, players.count_fallback; False before log version 63)
     and via (how the model's calls ran: api, claude_code or mock; logs before
     version 47 are api, or mock in mock games). setup and result default to the log's own records."""
@@ -87,6 +106,7 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
     described = setup.get("role_info") or {}  # log version 51 on: the roles as this game had them
     deaths = {r.get("player") for r in records if r.get("kind") == "death"}
     tips_record = first(records, "tips") or {}
+    details = trait_details(records)
     settings = setup.get("settings") or {}
     default_via = "mock" if settings.get("mock") else "api"
 
@@ -100,6 +120,7 @@ def players(records: list[dict], setup: dict | None = None, result: dict | None 
                 "start_role": start, "final_role": final, "faction": faction, "won": won,
                 "alive": name not in deaths if alive is None else alive, "died": name in deaths, "tips": tips,
                 "traits": seat.get("traits") or [],  # log version 48 (traits.py)
+                "trait_details": details.get(name, {}),
                 "unreliable": unreliable,
                 "via": via or seat.get("via") or (  # the first --claude-code games (version 46) have only the setting
                     "claude_code" if settings.get("claude_code") and (model or seat.get("model") or "").startswith(

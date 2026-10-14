@@ -461,6 +461,11 @@ class TraitLogic:
         """What p's briefing adds after this trait's summary (e.g. a Disguised player's disguise)."""
         return ""
 
+    def log_detail(self, game: Game, p: Player) -> str:
+        """What logs show after this trait's name for p, for a trait dealt with something of its own (a Disguised
+        player's disguise: "as Sheriff"). Written in the setup record's trait_details (log version 73)."""
+        return ""
+
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """After p's death is announced (or queued, at night). guilty_voters is set only for a hanging."""
 
@@ -827,6 +832,9 @@ class Disguised(TraitLogic):
     def detail(self, game: Game, p: Player) -> str:
         return f"Your disguise: {game.role_state.get(DISGUISES, {}).get(p.name, p.role)}."
 
+    def log_detail(self, game: Game, p: Player) -> str:
+        return f"as {d}" if (d := game.role_state.get(DISGUISES, {}).get(p.name)) else ""
+
     def tonight_note(self, game: Game) -> str:
         if not (disguises := game.role_state.get(DISGUISES)):
             return ""
@@ -873,6 +881,9 @@ class Bonded(TraitLogic):
     def detail(self, game: Game, p: Player) -> str:
         return f"You are bonded to {game.role_state.get(BONDS, {}).get(p.name)}."
 
+    def log_detail(self, game: Game, p: Player) -> str:
+        return f"to {b}" if (b := game.role_state.get(BONDS, {}).get(p.name)) else ""
+
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         # rules R24: at once, so the partner's death is revealed with it (at dawn for a night death, R10: a partner
         # who dies at night still acted). Not an attack by anyone: it sets off nothing that reacts to one.
@@ -907,6 +918,9 @@ class Rival(TraitLogic):
 
     def detail(self, game: Game, p: Player) -> str:
         return f"Your rival is {game.role_state.get(RIVALS, {}).get(p.name)}."
+
+    def log_detail(self, game: Game, p: Player) -> str:
+        return f"of {r}" if (r := game.role_state.get(RIVALS, {}).get(p.name)) else ""
 
     def denies_win(self, game: Game, p: Player) -> bool:
         rival = game.role_state.get(RIVALS, {}).get(p.name)  # rules R24: dead at the end; leaving isn't dying
@@ -1221,3 +1235,14 @@ def night_traits(game: Game, p: Player) -> list[str]:
 def briefing(game: Game, p: Player) -> list[str]:
     return [f"Your trait: {t}. {TRAITS[t].summary}" + (f" {d}" if (d := trait_logic(t).detail(game, p)) else "")
             for t in p.traits if not TRAITS[t].hidden]
+
+
+def log_details(game: Game, p: Player) -> dict[str, str]:
+    """Trait -> what logs show after its name for p (TraitLogic.log_detail), for p's traits that have one."""
+    return {t: d for t in p.traits if (d := trait_logic(t).log_detail(game, p))}
+
+
+def held_text(game: Game, p: Player) -> str:
+    """p's traits, each followed by its log_detail ("Disguised as Sheriff, Martyr"), for post-game reveals."""
+    details = log_details(game, p)
+    return ", ".join(f"{t} {details[t]}" if t in details else t for t in p.traits)

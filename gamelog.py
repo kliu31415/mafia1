@@ -129,7 +129,10 @@ from records import caller_of, read_records, redact, safe_print
 # 71: "pm" events have hidden: true for a Confidant's hidden private message (rules R24); before, only their text
 #     said "(private, hidden: ...)"
 # 72: "rivals" records (players): a Rival pair dealt at setup (rules R24)
-LOG_VERSION = 72
+# 73: setup players may have trait_details ({trait: text}, traits.TraitLogic.log_detail): what a trait was dealt with,
+#     e.g. {"Disguised": "as Sheriff"}, {"Bonded": "to Bob"}; older logs have it only in the "disguise", "bond" and
+#     "rivals" records (gamelogs.trait_details reads both)
+LOG_VERSION = 73
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 
