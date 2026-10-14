@@ -55,7 +55,7 @@ def text_line(r: dict) -> str | None:
             lines = ["Setup:"] + [f"  {p['name']:<8} seat {p['seat'] + 1:<2} {p['role']:<17} {p['model']}{via_note(p)}"
                                   + (f"  trait: {traits_text(p['traits'], p.get('trait_details'))}"
                                      if p.get("traits") else "")
-                                  + (f"  {p['status']}" if p.get("status") else "") for p in r["players"]]
+                                  + (f"  ({status_text(p['status'])})" if p.get("status") else "") for p in r["players"]]
             return "\n".join(lines + [f"  Katana starts with {r.get('katana')}"])
         case "event":
             text = r["text"]

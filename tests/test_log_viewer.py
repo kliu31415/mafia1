@@ -240,3 +240,10 @@ def test_speaker_is_set_apart_from_the_message(tmp_path):
     line = re.search(r"<div class='ev chat said'.*?</div>", html, re.S)
     who, msg = r"<span class='who'><span [^>]*>Bob</span></span>", r"<span class='msg'><span [^>]*>Carol</span> is"
     assert line and re.search(who + msg, line[0])
+
+
+def test_the_setup_line_shows_a_starting_status_as_text_not_a_dict():
+    from log_viewer import text_line
+    line = text_line({"kind": "setup", "katana": None, "players": [
+        {"name": "Erin", "seat": 2, "role": "Roleplayer", "model": "m", "status": {"fake_role": "Sheriff"}}]})
+    assert line and "(fake_role: Sheriff)" in line and "{" not in line
