@@ -329,7 +329,7 @@ class Players:
         self.shared = shared
         self.humans = humans
         # each player's reason for their last valid answer, which the game shows back only in the private notice of
-        # a secret vote (day.py): Judy forgot why she voted Innocent and called it a misclick (game_20261014_112108_1000)
+        # a secret vote (day.py): Judy forgot why she voted Innocent and said misclick (game_20261014_112108_1000)
         self.reasons: dict[str, str] = {}
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None,
