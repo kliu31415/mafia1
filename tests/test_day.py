@@ -313,6 +313,23 @@ def test_secret_votes_announce_only_totals_and_remind_each_voter(game_factory):
     assert not any("Carol" in r for r in game.vote_record) and "3 Yes" in game.vote_record[0]
 
 
+def test_a_secret_vote_reminder_repeats_the_voters_own_reason(game_factory):
+    # Judy forgot why she voted Innocent and told the town it was a misclick (game_20261014_112108_1000)
+    def decide(name, task, schema):
+        if "vote" not in schema["properties"]:
+            return None
+        return {"vote": name != "Erin", "reason": f"{name} thinks so." if name != "Dave" else ""}
+    game, players = game_factory(VILLAGE5, ScriptedClient(decide))
+    run_nomination(game, players, game.player("Alice"), "Bob", rnd=1)
+    mine = {(next(iter(e.visible_to)), e.text) for e in game.events if e.notice and e.cat == "vote"}
+    assert ("Carol", '(Only you see this) You voted Yes on the nomination of Bob. Your reason: "Carol thinks so."') \
+        in mine, mine
+    assert ("Erin", '(Only you see this) You voted Innocent in the trial of Bob. Your reason: "Erin thinks so."') \
+        in mine, mine
+    assert ("Dave", "(Only you see this) You voted Guilty in the trial of Bob.") in mine  # no reason given
+    assert not any("thinks so" in e.text for e in game.events if e.visible_to is None or len(e.visible_to) > 1)
+
+
 def test_public_votes_name_every_voter(game_factory):
     game, players = game_factory(VILLAGE5, ScriptedClient(votes(guilty_for={"Bob"})))
     game.rule_settings.update(trial_votes="public", nomination_votes="public")

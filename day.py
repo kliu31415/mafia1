@@ -487,8 +487,8 @@ def run_nomination(game: Game, players: Players, nominator: Player, nominee: str
     if secret:  # rule setting: only the nominator and the Yes count are public; each voter is told their own vote
         game.emit(f"Nomination votes on {nominee}: {len(yes_voters)} Yes (the votes are secret).", cat=VOTE)
         for v, o in zip(others, outs):
-            game.emit(f"(Only you see this) You voted {'Yes' if o['vote'] else 'No'} on the nomination of {nominee}.",
-                      [v.name], kind="notice", cat=VOTE)
+            game.emit(f"(Only you see this) You voted {'Yes' if o['vote'] else 'No'} on the nomination of {nominee}."
+                      f"{players.reason(v)}", [v.name], kind="notice", cat=VOTE)
         game.vote_record.append(f"Day {game.day}: {nominator.name} nominated {nominee}; {len(yes_voters)} Yes "
                                 f"(secret vote); {outcome}")
     else:
@@ -570,7 +570,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
             trait = (f" Your {fixed[v.name][0]} trait counted it as {'Guilty' if c else 'Innocent'}."
                      if v.name in fixed else "")
             game.emit(f"(Only you see this) You voted {'Guilty' if o['vote'] else 'Innocent'} in the trial of "
-                      f"{nominee}.{trait}", [v.name], kind="notice", cat=VOTE)
+                      f"{nominee}.{players.reason(v)}{trait}", [v.name], kind="notice", cat=VOTE)
         informants = [p.name for p in game.alive() if logic(p.role).sees_trial_votes(game, p)]
         if informants:
             game.emit(f"(Only you see this) How everyone voted in the trial of {nominee}: Guilty - "

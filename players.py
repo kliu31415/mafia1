@@ -328,6 +328,9 @@ class Players:
         self.feedback_field = feedback_field
         self.shared = shared
         self.humans = humans
+        # each player's reason for their last valid answer, which the game shows back only in the private notice of
+        # a secret vote (day.py): Judy forgot why she voted Innocent and called it a misclick (game_20261014_112108_1000)
+        self.reasons: dict[str, str] = {}
 
     def ask(self, p: Player, task: str, schema: dict, fallback: dict, *, step: str, rnd: int | None = None,
             context: str = "", shared_with: dict | None = None, notes: list[str] | None = None,
@@ -340,6 +343,7 @@ class Players:
         emitted, for ask_many to emit in job order. ui: extra facts a human seat's page shows with the question (a
         day turn's prices, for its live cost counter); LLM players get them in the task's text instead."""
         assert step in STEPS, step
+        self.reasons.pop(p.name, None)  # a fallback answer has no reason
 
         def program_note(text: str) -> None:
             if notes is None:
@@ -420,7 +424,9 @@ class Players:
             self.game.log.write("player_feedback", day=self.game.day, phase=self.game.phase, step=step,
                                 player=p.name, role=p.role, feedback=fb)
         out.pop("notepad", None)
-        out.pop("reason", None)  # logged by the caller; game code and the moderator never see it
+        # logged by the caller; game code and the moderator never see it, only the player's own vote notice (reason)
+        if isinstance(reason := out.pop("reason", None), str) and not blank(reason):
+            self.reasons[p.name] = reason.strip()
         p.notepad = notepad
         self.game.role_state.get(STREAKS, {}).pop(p.name, None)
         return out
@@ -465,3 +471,7 @@ class Players:
             for text in texts:
                 self.game.emit(text, [p.name])
         return outs
+
+    def reason(self, p: Player) -> str:
+        """Your reason: "..." for p's last valid answer, to add to a notice only p sees; "" if it gave none."""
+        return f' Your reason: "{r}"' if (r := self.reasons.get(p.name)) else ""
