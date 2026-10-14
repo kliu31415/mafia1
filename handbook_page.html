@@ -42,6 +42,8 @@ h3 { font-size:15px; margin:18px 0 6px; } .muted { color:var(--muted); } .small 
 .fname { color:var(--fc); font-weight:650; }
 .mark { display:inline-block; width:22px; height:22px; background:var(--mark) center/contain no-repeat; vertical-align:middle; flex:none; }
 .mark.lg { width:44px; height:44px; }
+/* a trait's mark on a badge like a role icon's, tinted by the one faction that can hold it (else gray) */
+.ic.tb { background:var(--mark) center/74% no-repeat, var(--tint, var(--chip)); border-color:var(--edge, var(--line)); }
 a.rl, a.tl { color:inherit; border-bottom:1px dotted var(--muted); } a.rl:hover, a.tl:hover { text-decoration:none; border-color:var(--accent); color:var(--accent); }
 /* rules */
 .rules { display:grid; grid-template-columns:250px minmax(0,1fr); gap:28px; }
@@ -125,7 +127,7 @@ td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap
 <section data-tab="rules"><div class="rules"><div class="toc" id="toc"></div><div id="rulestext"></div></div></section>
 <section data-tab="roles"><div class="filters" id="rolefilters"></div><div class="grid" id="rolegrid"></div>
   <h2>Retired roles</h2><div id="retired"></div></section>
-<section data-tab="traits"><p class="muted" id="traitintro"></p><div class="grid" id="traitgrid"></div></section>
+<section data-tab="traits"><p class="muted" id="traitintro"></p><div class="filters" id="traitfilters"></div><div class="grid" id="traitgrid"></div></section>
 <section data-tab="setups"><div id="setupsbox"></div></section>
 <section data-tab="power"><div id="powerbox"></div></section>
 </main>
@@ -147,6 +149,8 @@ document.head.insertAdjacentHTML("beforeend", "<style>" +
   D.traits.map(t => `.m-${t.slug}{--mark:${svgUrl(t.mark)}}`).join("") + "</style>");
 const icon = (name, cls = "") => { const r = ROLE[name]; return r ? `<span class="ic ${cls} ${r.faction} i-${r.icon}"></span>` : ""; };
 const mark = (name, cls = "") => TRAIT[name] ? `<span class="mark ${cls} m-${TRAIT[name].slug}"></span>` : "";
+const traitSide = t => t.factions.length === 1 ? t.factions[0] : "";  // the faction that tints its badge, if only one
+const badge = (name, cls = "") => TRAIT[name] ? `<span class="ic tb ${cls} ${traitSide(TRAIT[name])} m-${TRAIT[name].slug}"></span>` : "";
 const roleLink = (name, withIcon = true) => ROLE[name]
   ? `<a class="rl" href="#role/${encodeURIComponent(name)}">${withIcon ? icon(name, "sm") : ""}${esc(name)}</a>` : esc(name);
 const traitLink = (name, withMark = true) => TRAIT[name]
@@ -212,11 +216,11 @@ function renderRules() {
 
 // ---------- Roles ----------
 const RF = {faction: "", q: "", category: "", status: "", script: ""};
-function powerBar(p, faction) {
+function powerBar(p, faction, label = "power") {
   if (!p) return "";
   const lo = -1.4, hi = 1.0, x = v => (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * 100, z = x(0), v = x(p.power);
   return `<div class="pw ${faction}" title="Power ${fmt(p.power)} (prior ${fmt(p.prior)}, fit from ${p.games} games): logits added to the Village's chance">
-    <span>power</span><div class="track"><span class="zero" style="left:${z}%"></span><i style="left:${Math.min(z, v)}%;width:${Math.abs(v - z)}%"></i></div>
+    <span>${esc(label)}</span><div class="track"><span class="zero" style="left:${z}%"></span><i style="left:${Math.min(z, v)}%;width:${Math.abs(v - z)}%"></i></div>
     <span>${fmt(p.power)}</span></div>`;
 }
 function roleChips(r) {
@@ -283,26 +287,66 @@ function roleDrawer(name) {
 }
 
 // ---------- Traits ----------
+const TF = {faction: "", hidden: "", effect: ""};
+const traitGroup = t => t.factions.length === 1 ? t.factions[0] + " only"
+  : t.factions.length === FACTIONS.length ? "Any faction" : t.factions.join(" or ");
+const GROUPS = () => [...new Set(D.traits.map(traitGroup))].sort((a, b) => b.endsWith("only") - a.endsWith("only")
+  || (a === "Any faction") - (b === "Any faction") || FACTIONS.findIndex(f => a.startsWith(f)) - FACTIONS.findIndex(f => b.startsWith(f)));
+const SIGN = {Village: 1, Yakuza: -1, Neutral: 0};
+// helps or hurts its holder's side, by the power the setups use (the first faction's, where they differ)
+const helps = t => Object.values(t.powers)[0].power >= 0;
+function traitChips(t) {
+  const sameFaction = D.roles.filter(r => t.factions.includes(r.faction)).length;
+  return [t.night ? `<span class="chip">night action</span>` : "",
+    t.hidden ? `<span class="chip" title="its holder isn't told they have it">hidden from holder</span>` : "",
+    t.pairs ? `<span class="chip">held by a pair</span>` : "", t.unique ? `<span class="chip">unique</span>` : "",
+    t.roles.length < sameFaction ? `<span class="chip" title="${esc(t.roles.join(", "))}">${t.roles.length} of ${sameFaction} roles</span>` : "",
+    t.excludes.length ? `<span class="chip warn">never with ${t.excludes.map(esc).join(", ")}</span>` : ""].join("");
+}
+function traitPowers(t) {  // as a role card's bar: what it adds to the Village's score, per faction that counts
+  return t.factions.filter(f => SIGN[f]).map(f => powerBar({power: t.village[f], prior: SIGN[f] * t.powers[f].prior,
+    games: t.powers[f].games}, f, t.factions.length > 1 ? f : "power")).join("");
+}
+function renderTraitFilters() {
+  $("#traitfilters").innerHTML = `<div class="seg" id="tff">${["", ...FACTIONS].map(f => `<button data-f="${f}">${f || "All"}</button>`).join("")}</div>
+    <select id="tfh"><option value="">Told or hidden</option><option value="told">Told to its holder</option><option value="hidden">Hidden from its holder</option></select>
+    <select id="tfe"><option value="">Helps or hurts</option><option value="helps">Helps its holder's side</option><option value="hurts">Hurts its holder's side</option></select>
+    <span class="muted small" id="tcount"></span>`;
+  $$("#tff button").forEach(b => b.onclick = () => { TF.faction = b.dataset.f; renderTraits(); });
+  $("#tfh").onchange = e => { TF.hidden = e.target.value; renderTraits(); };
+  $("#tfe").onchange = e => { TF.effect = e.target.value; renderTraits(); };
+}
 function renderTraits() {
-  $("#traitintro").innerHTML = `${D.traits.length} traits. A trait is an extra ability on top of a role (${linkify("R24")}); the mark is the corner badge the HTML logs draw on its holder's icon.`;
-  const q = RF.q.toLowerCase();
-  const shown = D.traits.filter(t => !q || [t.name, t.summary, t.hover, ...t.factions].join(" ").toLowerCase().includes(q));
-  $("#traitgrid").innerHTML = shown.map(t => `<div class="rc card" data-trait="${esc(t.name)}"><div class="top">${mark(t.name, "lg")}
-    <div><div class="nm">${esc(t.name)}</div><div class="sub">${t.factions.map(f => `<span class="fname ${f}">${f}</span>`).join(" · ")}${t.hidden ? " · hidden" : ""}</div></div></div>
-    <div class="sum">${linkify(t.hover)}</div>
-    <div class="pw">${Object.entries(t.village).map(([f, v]) => `<span class="${f}" title="adds ${fmt(v)} to the Village's score held by a ${f} player">${f}: <b class="fname">${fmt(v)}</b></span>`).join(" ")}</div></div>`).join("")
-    || `<div class="empty">No trait matches.</div>`;
+  $("#traitintro").innerHTML = `A trait is an extra ability on top of a role (${linkify("R24")}); its mark is the corner badge the HTML logs draw on its holder's icon. Power bars show what it adds to the Village's score, by the holder's faction (a Neutral holder adds 0).`;
+  $$("#tff button").forEach(b => b.classList.toggle("on", b.dataset.f === TF.faction));
+  const q = RF.q.toLowerCase(), order = GROUPS();
+  const shown = D.traits.filter(t => (!TF.faction || t.factions.includes(TF.faction)) && (!TF.hidden || (TF.hidden === "hidden") === t.hidden)
+    && (!TF.effect || (TF.effect === "helps") === helps(t))
+    && (!q || [t.name, t.summary, t.hover, ...t.factions].join(" ").toLowerCase().includes(q)))
+    .sort((a, b) => order.indexOf(traitGroup(a)) - order.indexOf(traitGroup(b)));
+  let html = "", group = "";
+  for (const t of shown) {
+    const g = traitGroup(t);
+    if (g !== group) { html += `<div class="group-h">${esc(g)}</div>`; group = g; }
+    html += `<div class="rc card ${traitSide(t)}" data-trait="${esc(t.name)}"><div class="top">${badge(t.name)}
+      <div><div class="nm">${esc(t.name)}</div><div class="sub">${t.factions.map(f => `<span class="fname ${f}">${f}</span>`).join(" · ")}</div></div></div>
+      <div class="sum">${linkify(t.hover)}</div><div>${traitChips(t)}</div>${traitPowers(t)}</div>`;
+  }
+  $("#traitgrid").innerHTML = html || `<div class="empty">No trait matches.</div>`;
+  $("#tcount").textContent = `${shown.length} of ${D.traits.length} traits`;
   $$("#traitgrid .rc").forEach(c => c.onclick = () => location.hash = "trait/" + encodeURIComponent(c.dataset.trait));
 }
 function traitDrawer(name) {
   const t = TRAIT[name]; if (!t) return "";
-  return `<div class="dh">${mark(name, "lg")}<div><h2>${esc(name)}</h2><div class="muted">Trait · ${t.factions.map(f => `<span class="fname ${f}">${f}</span>`).join(", ")}${t.hidden ? " · hidden from its holder" : ""}</div></div></div>
-    <div class="box">${linkify(t.summary)}</div>
-    <dl class="kv"><dt>In the HTML log</dt><dd>${esc(t.hover)}</dd>
-    ${Object.entries(t.powers).map(([f, p]) => `<dt>Power (${f})</dt><dd>${fmt(p.power)} for the holder's side <span class="muted">(prior ${fmt(p.prior)}, ${p.games} game${p.games === 1 ? "" : "s"})</span></dd>`).join("")}
+  return `<div class="dh">${badge(name, "lg")}<div><h2>${esc(name)}</h2><div class="muted">Trait · ${t.factions.map(f => `<span class="fname ${f}">${f}</span>`).join(", ")}${t.hidden ? " · hidden from its holder" : ""}</div></div></div>
+    <div>${traitChips(t)}</div>
+    <div class="box">${linkify(t.hover)}</div>
+    <h3>${t.hidden ? "Rules" : "What its holder is told"}</h3>${prose([t.summary])}
+    <p class="small"><a href="#rules/R24">Traits in the rules (R24) →</a></p>
+    <dl class="kv">${Object.entries(t.powers).map(([f, p]) => `<dt>Power (${f})</dt><dd>${fmt(p.power)} for the holder's side <span class="muted">(prior ${fmt(p.prior)}, ${p.games} game${p.games === 1 ? "" : "s"})</span></dd>`).join("")}
     ${t.excludes.length ? `<dt>Never with</dt><dd>${t.excludes.map(x => traitLink(x)).join(", ")}</dd>` : ""}
     <dt>Roles that can get it</dt><dd>${t.roles.length === D.roles.length ? "every role" : t.roles.map(r => roleLink(r)).join(", ")}</dd></dl>
-    <p class="small"><a href="#rules/R24">Traits in the rules (R24) →</a></p>`;
+    <h3>In the code</h3><dl class="kv"><dt>Hooks</dt><dd>${t.hooks.map(h => `<span class="chip">${esc(h)}</span>`).join("") || "none"}</dd></dl>`;
 }
 
 // ---------- Setups ----------
@@ -491,7 +535,7 @@ document.addEventListener("keydown", e => {
 });
 $("#q").oninput = e => search(e.target.value.trim());
 $("#built").textContent = `built ${D.built}${D.commit ? " from " + D.commit : ""} · ${D.roles.length} roles · ${D.traits.length} traits`;
-renderRules(); renderRoleFilters(); renderRoles(); renderRetired(); renderTraits(); renderSetups(); renderPower();
+renderRules(); renderRoleFilters(); renderRoles(); renderRetired(); renderTraitFilters(); renderTraits(); renderSetups(); renderPower();
 if (D.setups.samples.length) loadDraw(D.setups.samples[0]);
 window.addEventListener("hashchange", route); route();
 </script></body></html>

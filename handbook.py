@@ -31,7 +31,8 @@ from log_viewer import ICONS, icon_slug, trait_slug
 from role_summaries import RULES, role_paragraphs
 from state import PLAYER_NAMES
 from roles import RETIRED, ROLES, Alignment, code_hooks, logic
-from traits import EXCLUSIVE, FACTIONS, TRAITS, fits, hand_powers, parse_item, power_key, village_power
+from traits import (ACTION_TRAITS, EXCLUSIVE, FACTIONS, LOGIC, TRAITS, TraitLogic, fits, hand_powers, parse_item, power_key,
+                    village_power)
 
 ROOT = Path(__file__).resolve().parent
 PAGE = ROOT / "handbook_page.html"
@@ -110,13 +111,21 @@ def role_entries(powers: dict) -> list[dict]:
     return out
 
 
+def trait_hooks(name: str) -> list[str]:
+    """The TraitLogic hooks a trait implements, plus its ops (as roles.code_hooks lists a role's)."""
+    lg = LOGIC[name]
+    return [h for h, attr in vars(TraitLogic).items() if callable(attr) and not h.startswith("_")
+            and h != "apply_op" and getattr(type(lg), h) is not attr] + [f"op {op}" for op in lg.ops]
+
+
 def trait_entries(powers: dict) -> list[dict]:
     out = []
     for name, info in TRAITS.items():
         factions = [FACTION_OF[a] for a in Alignment if a in info.alignments]
         out.append({
             "name": name, "slug": trait_slug(name), "summary": info.summary, "hover": info.hover,
-            "factions": factions, "hidden": info.hidden, "mark": " ".join(info.mark.split()),
+            "factions": factions, "hidden": info.hidden, "unique": info.unique, "pairs": info.pairs,
+            "night": name in ACTION_TRAITS, "hooks": trait_hooks(name), "mark": " ".join(info.mark.split()),
             "roles": [r for r in ROLES if fits(name, r)],
             "excludes": sorted({o for e in EXCLUSIVE if name in e for o in e} - {name}),
             # what it adds to the Village's score held by each faction it can go to (the calculator adds these)
