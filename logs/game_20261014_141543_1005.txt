@@ -384,3 +384,79 @@ Katana: no attack (no target); nobody holds it.
 (to Alice) Moderator (private): Your shot killed Niaj. Their role was Scout.
 (to Niaj) Moderator (private): You were attacked tonight (Vigilante) and died.
 (to Olivia) Moderator (private): You were attacked tonight (Serial Killer) and died.
+
+===== DAY 5 =====
+Niaj died (killed by Vigilante). Their role isn't revealed. Their last will: "Niaj: Village Scout. Sleepwalker: each night I visit one random player I don't choose. Faultline: after each trial vote I learn one Guilty voter and one Innocent voter.
+N1: survived a Katana attack, with no Defense of my own. Scout: Heidi, Judy, Olivia in different groups.
+D2: Carol counterclaimed Scout and called me the SK. Faultline: Heidi Guilty, Erin Innocent. Judy PM'd Carol.
+N2 Scout: Alice, Carol, Judy. N3 Scout: Alice, Niaj, Olivia.
+D3: Faultline: Judy was the lone Innocent on Heidi.
+D4: Carol's Scout claim was false because I'm the real Scout. Faultline: Ivan Guilty, Carol Innocent (Carol was the lone Innocent).
+N4: no action (Scout is passive). My result arrives after this will locks.
+If I die tonight, I was town and the SK is still alive. FRANK is my top SK suspect. He is the ONLY source for my "visits" to Bob and Grace. He could kill near me and then claim he tracked me onto the body. Don't trust his tracks. If the SK kills me, Frank's "Niaj is SK" case is proven false, so hang Frank. Next suspect: Erin (she nominated me on D2). The SK has Standard Defense, so Alice's Basic shot can't kill it. Use the hang."
+Olivia died (killed by Serial Killer). Their role isn't revealed. Their last will: "Olivia - Insomniac (Village). Each token kept me awake for one night and showed me the roles of 3 random players who visited someone (no names). 0 tokens left.
+N1: more than 3 visitors. Drawn: Chronicler, Fabricator, Sheriff. So a Yakuza Fabricator exists.
+N2: more than 3 visitors. Drawn: Diviner, Scout, Serial Killer. So a Yakuza Diviner exists. A Scout only visits if it's also a Sleepwalker, which backs Niaj's claim over Carol's.
+N3, N4: no tokens, no action.
+D3: Guilty on Heidi. D4: Yes/Guilty on Carol.
+SK hunt: Grace's watch puts Ivan at Heidi's on N2, not Bob's. Carol's scouts put Alice (N2) and Erin (N3) outside the SK victim's group. That leaves Dave, Frank and Niaj as the main SK candidates. Frank is the only source for Niaj's visits to SK victims. If Niaj is the real Scout, look hard at Frank. Ivan's role is revealed if he dies: check it."
+Speaking order today goes around the circle in seat order, starting with Ivan.
+5 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Ivan: Sheriff. N1: Niaj Not Evil. N2: Heidi EVIL. N3: Carol EVIL. N4: Frank Not Evil (SK reads Not Evil). D5: nominating Frank.
+Ivan (public): N4: Frank reads Not Evil, which the SK also does. Niaj died to Alice's Basic shot, so he had no Defense and wasn't the SK. Frank's tracks were fake. Hang Frank.
+Ivan nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Ivan, Alice, Dave, Erin; No - Frank
+Nomination votes on Frank: 4 Yes (the votes are secret).
+Frank is put on trial (4 Yes).
+[Claim] Frank: Tracker. N1: Judy -> no visit. N2: Niaj -> Bob. N3: Niaj -> Grace. N4: Niaj -> Dave. I was wrong on Niaj, but the tracks were real. D5: SK lead is Dave.
+Frank (public): I was wrong about Niaj and I'll own that. Alice's Basic shot killed him, so he had no Defense and wasn't the SK. My tracks were real, though. Bob was tracking him on N2, so they were linked anyway, and his N3 landing was bad luck. Last night I tracked him onto Dave. Ask yourselves why an SK would invent tracks that put Niaj on its own victims, a story that falls apart the moment Niaj dies to anything else. 
+
+Ivan's Not Evil on me fits Dave exactly as well. Olivia's will listed Dave, Frank and Niaj. Dave's whole claim is three nights of "nothing stopped" that nobody can check, and he never protected a single SK victim. With 5 alive, a wrong hang plus tonight's kills loses the game for the town. Vote Innocent and put Dave up. His Cursed claim is the thing that protects him, and the SK would want exactly that.
+(to Dave, Frank) Frank -> Dave (private): You know what I am: the Katana bounced off me twice. Hang me and you're alone against Alice, Erin and Ivan. Vote Innocent and I take a town player tonight. We both get further that way.
+Ivan (public): Guilty on Frank. A Basic shot killed Niaj, so he had no Defense and wasn't the SK. Frank still "tracked" him onto both SK bodies, which is about a 1-in-80 fluke. Faking tracks onto your own victims is the SK's cover. Now he's pointing at Dave because the cover broke. Frank reads Not Evil, as the SK does. Hang him.
+Alice (public): Guilty on Frank. My Basic shot killed Niaj and the moderator told me he was a Scout, so he had no Defense and wasn't the SK. Frank's two tracks that put him on SK bodies were made up, and pinning an innocent Scout is exactly how an SK hides. Pointing at Dave now is his fallback. With 5 alive, this is the hang.
+[Claim] Dave: Medic (Cursed, Avenger). N1: Judy; N2/N3 Strong on Ivan; N4 Standard on Ivan; none stopped. D5: Frank PM'd me admitting the Katana bounced off him twice and offered a deal. Guilty on Frank.
+Dave (public): Guilty on Frank. He just PM'd me, word for word: "You know what I am: the Katana bounced off me twice. Hang me and you're alone against Alice, Erin and Ivan. Vote Innocent and I take a town player tonight. We both get further that way." That's a Standard-Defense survivor admitting he's the SK and trying to buy my vote. I'm Medic, not Yakuza. Hang him.
+[Claim] Erin: Chronicler. N1: marked Mallory (revealed Party Animal). N2: marked Ivan. 0 tokens. D3: Guilty on Heidi. D4: Guilty on Carol. D5: Yes/Guilty on Frank.
+Erin (public): Guilty on Frank. Niaj died to a Basic shot, so he wasn't the SK, and Frank's two tracks putting him on SK bodies were made up. That's an SK framing the Scout. Dave's PM report fits too. Hang him.
+[Claim] Frank: Tracker. N1: Judy -> no visit. N2: Niaj -> Bob. N3: Niaj -> Grace. N4: Niaj -> Dave. Dave's PM quote is fabricated. D5: SK lead is Dave.
+Frank (public): Dave's quote is invented. What I actually sent him was: "Ivan's Not Evil fits you as well as me. If you're really Medic, vote Innocent and we'll compare tonight." That's it. He's the only other person who saw it, so he can write whatever he likes, and a Yakuza Medic-claimant would love to hand you the SK on a fake confession. Think it through: why would a real SK confess in writing to the one player he's accusing in public? That isn't a deal, it's suicide. Dave's claim has three nights of "nothing stopped" that nobody can check, no protection on any SK victim, and a Cursed claim that keeps him off the gallows. With 5 alive, a wrong hang here loses the town the game. Vote Innocent, and put Dave up next.
+Trial votes on Frank: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - Alice, Dave, Erin, Ivan; Innocent - Frank
+Frank is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank - Tracker (Village). N1: tracked Judy -> visited no one (she was the Jester). N2: Niaj -> Bob. N3: Niaj -> Grace. N4: Niaj -> Dave. Niaj wasn't the SK; his landings were coincidence (Bob was tracking him N2). My tracks were real.
+D5: Dave's "word for word" quote of my PM was fabricated. I actually wrote: "Ivan's Not Evil fits you as well as me. If you're really Medic, vote Innocent and we'll compare tonight." If the SK kills again tonight, it's DAVE: his Medic logs can't be checked, he never protected an SK victim, and his Cursed claim protects him from a hang."
+The game is over. Winners: Alice, Carol (dead), Dave, Erin, Heidi (dead), Ivan, Niaj (dead), Olivia (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Erin] The Chronicler's "true role" wording conflicts with how Disguised works.
+[Feedback from Carol] The Scout was very hard to play as a counterclaimed, framed player, because none of its results can be checked or used as a defense.
+[Feedback from Judy] Not knowing my own Sleepwalker target made it impossible to answer a tracker's claim about me, and a player whose role is pure deception needs that.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Carol, Dave, Erin, Heidi, Ivan, Niaj, Olivia
+Cost by player (USD):
+  Alice (Vigilante)         $0.0000   33 calls  claude-opus-5.5
+  Bob (Diviner)             $0.0000   20 calls  claude-opus-5.5
+  Carol (Scout)             $0.0000   29 calls  claude-opus-5.5
+  Dave (Medic)              $0.0000   33 calls  claude-opus-5.5
+  Erin (Chronicler)         $0.0000   33 calls  claude-opus-5.5
+  Frank (Serial Killer)     $0.0000   34 calls  claude-opus-5.5
+  Grace (Fabricator)        $0.0000   27 calls  claude-opus-5.5
+  Heidi (Roleplayer)        $0.0000   22 calls  claude-opus-5.5
+  Ivan (Sheriff)            $0.0000   32 calls  claude-opus-5.5
+  Judy (Jester)             $0.0000   23 calls  claude-opus-5.5
+  Mallory (Ballot Stuffer)  $0.0000    7 calls  claude-opus-5.5
+  Niaj (Scout)              $0.0000   30 calls  claude-opus-5.5
+  Olivia (Insomniac)        $0.0000   29 calls  claude-opus-5.5
+  Moderator                 $0.0000    8 calls  claude-opus-5.5
+  Night checks              $0.0000    4 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  366 calls
