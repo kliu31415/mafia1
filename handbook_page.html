@@ -206,6 +206,10 @@ function renderRules() {
         rolesToc += `<a href="#rules/role-${encodeURIComponent(b.name)}" title="${esc(b.name)}">${icon(b.name, "sm")}</a>`;
         body += `<div class="rrole card" id="r-role-${encodeURIComponent(b.name)}">${icon(b.name)}<div style="flex:1">
           <div><a class="nm rl" href="#role/${encodeURIComponent(b.name)}">${esc(b.name)}</a></div>${prose(b.lines)}</div></div>`;
+      } else if (b.kind === "trait") {
+        rolesToc += `<a href="#rules/trait-${encodeURIComponent(b.name)}" title="${esc(b.name)}">${badge(b.name, "sm")}</a>`;
+        body += `<div class="rrole card" id="r-trait-${encodeURIComponent(b.name)}">${badge(b.name)}<div style="flex:1">
+          <div><a class="nm tl" href="#trait/${encodeURIComponent(b.name)}">${esc(b.name)}</a> <span class="muted small">${esc(b.note)}</span></div>${prose(b.lines)}</div></div>`;
       } else body += `<div class="muted">${prose(b.lines)}</div>`;
     }
     if (rolesToc) toc += `<div class="roles-toc">${rolesToc}</div>`;
@@ -342,7 +346,7 @@ function traitDrawer(name) {
     <div>${traitChips(t)}</div>
     <div class="box">${linkify(t.hover)}</div>
     <h3>${t.hidden ? "Rules" : "What its holder is told"}</h3>${prose([t.summary])}
-    <p class="small"><a href="#rules/R24">Traits in the rules (R24) →</a></p>
+    <p class="small"><a href="#rules/trait-${encodeURIComponent(name)}">Show in the rules →</a></p>
     <dl class="kv">${Object.entries(t.powers).map(([f, p]) => `<dt>Power (${f})</dt><dd>${fmt(p.power)} for the holder's side <span class="muted">(prior ${fmt(p.prior)}, ${p.games} game${p.games === 1 ? "" : "s"})</span></dd>`).join("")}
     ${t.excludes.length ? `<dt>Never with</dt><dd>${t.excludes.map(x => traitLink(x)).join(", ")}</dd>` : ""}
     <dt>Roles that can get it</dt><dd>${t.roles.length === D.roles.length ? "every role" : t.roles.map(r => roleLink(r)).join(", ")}</dd></dl>
@@ -522,7 +526,8 @@ function route() {
   drawer("");
   show(["rules", "roles", "traits", "setups", "power"].includes(head) ? head : "rules");
   if (head === "rules" && arg) {
-    const target = document.getElementById("r-" + (arg.startsWith("role-") ? "role-" + encodeURIComponent(arg.slice(5)) : arg));
+    const kind = ["role-", "trait-"].find(k => arg.startsWith(k));
+    const target = document.getElementById("r-" + (kind ? kind + encodeURIComponent(arg.slice(kind.length)) : arg));
     if (target) { target.style.display = ""; target.scrollIntoView({block: "start"}); target.classList.remove("flash"); void target.offsetWidth; target.classList.add("flash"); }
     $$("#toc a").forEach(a => a.classList.toggle("cur", a.dataset.r === arg));
   } else window.scrollTo(0, 0);

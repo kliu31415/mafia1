@@ -16,6 +16,8 @@ def test_rules_parse_into_every_rule_and_role():
     labels = [b["label"] for b in blocks if b["kind"] == "rule"]
     assert sorted(labels) == sorted(re.findall(r"^(R\d+) \(", text, flags=re.M))
     assert sorted(b["name"] for b in blocks if b["kind"] == "role") == sorted(ROLES)
+    assert sorted(b["name"] for b in parts[-1]["blocks"] if b["kind"] == "trait") == sorted(TRAITS)  # a part of its own
+    assert parts[-1]["title"].endswith("Traits") and parts[-1]["blocks"][0]["label"] == "R24"
     assert {b["title"] for b in blocks if b["kind"] == "faction"} == {"Village (Good)", "Yakuza (Evil)", "Neutral"}
     # no line of the rules is lost: every non-blank line is in some block (headings in their own fields)
     kept = " ".join(" ".join([b.get("label", ""), b.get("title", ""), b.get("name", ""), *b.get("lines", [])])

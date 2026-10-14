@@ -67,7 +67,32 @@ def rules_parts(text: str) -> list[dict]:
             else:
                 blocks.append({"kind": "text", "lines": lines})
         parts.append({"title": title.title(), "blocks": blocks})
-    return parts
+    return traits_part(parts)
+
+
+def traits_part(parts: list[dict]) -> list[dict]:
+    """R24 (Traits) moved out of its part into a part of its own after the others, its list split into one block per
+    trait (its name, who can get it, then its text), as the roles part shows roles. The rules file is unchanged."""
+    for part in parts:
+        rule = next((b for b in part["blocks"] if b["kind"] == "rule" and b["label"] == "R24"), None)
+        if rule:
+            break
+    else:
+        return parts
+    intro: list[str] = []
+    traits: list[dict] = []
+    for line in rule["lines"]:
+        m = re.match(r"^- (.+?) \((.+?)\): (.*)$", line)
+        if m and m[1] in TRAITS:
+            traits.append({"kind": "trait", "name": m[1], "note": m[2], "lines": [m[3][:1].upper() + m[3][1:]]})
+        elif traits and line.startswith("  "):
+            traits[-1]["lines"].append(line[2:])
+        elif traits:  # text after the list, or a bullet that names no trait
+            traits.append({"kind": "text", "lines": [line]})
+        else:
+            intro.append(line)
+    part["blocks"].remove(rule)
+    return parts + [{"title": f"Part {len(parts) + 1}: Traits", "blocks": [rule | {"lines": intro}, *traits]}]
 
 
 def icon(path: Path) -> str:
