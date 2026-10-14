@@ -743,7 +743,7 @@ Magpie
   Night: may steal a token from another player (a visit). It happens at the end of the night, after that night's
   token use, so a token used tonight can't be stolen. The stolen token is gone (you can't use it). You are told
   whether you stole one, not its kind; they are told which kind they lost. If they have no tokens, nothing
-  happens and they aren't told.
+  happens and they aren't told. A steal from a player who dies that night still takes the token and counts (R10).
   Win: iff you steal tokens from 3 different players (a second steal from the same player takes nothing). If you
   are alive then, the moderator reveals you at once and you leave the game (as for the Executioner). If you died
   that night, you still win and nothing is revealed.
