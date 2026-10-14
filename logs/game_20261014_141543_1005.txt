@@ -175,3 +175,42 @@ Niaj (public): My Faultline result from my trial: Heidi's vote counted Guilty, E
 Alice (public): The 2 Guilty matches stated votes: Carol plus Heidi's forced Zealot vote, so no Guilty is hidden. Carol, please post what Judy PM'd you. Trackers: one track on Heidi tonight would go a long way toward settling the Sheriff clash.
 Carol (public): Judy's PM, word for word: "Your Niaj read is right. Keep pushing it tomorrow, I'll back you." I didn't reply. Support from someone who has dropped two claims doesn't help my case. I'll post my N2 Scout groups tomorrow so you can check them against Niaj's.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Grace) Bob (Yakuza chat): Plan for N2: I keep the Katana and we kill Frank. Why: (1) Frank and I both promised to track Niaj tonight. If Frank lives, his real result can contradict whatever I make up. If he's dead, my track stands alone. (2) He's a real Tracker who could catch either of us later. (3) Town publicly asked the Medic (probably Dave, from my divine) to Strong-protect Ivan, so Frank is likely unprotected.
+
+Grace: visit Frank and use your forge token (framing a dead man costs nothing). Forged will: "Frank, Tracker. N1: tracked Judy -> visited no one. N2: tracked Niaj -> he visited Dave." I'll post the same result tomorrow (Niaj -> Dave), so it reads as two Trackers agreeing, and the Sleepwalker test passes. That pins nothing on anyone and builds trust in me. If you'd rather pick a different X than Dave, say so now and I'll match it.
+
+My Diviner: Judy (group Ivan/Judy/Niaj), to try to learn what Judy really is. Both vote holder=Bob, target=Frank.
+(to Bob, Grace) Grace (Yakuza chat): Agreed: holder=Bob, target=Frank. I'll vote both. One catch with the forge: wills can't hold results that arrive later that night (R13). A Frank will showing an N2 track result would prove it's forged, which shows a Fabricator acted and points at the Katana. So no forge. Frank's real will will just say "N2: tracking Niaj", which does us no harm. Instead I'll frame Heidi. KEY INFO: Heidi claimed "Mallory Not Evil", but Mallory was really Ballot Stuffer (Evil), and a Sheriff sees true alignment. So Heidi lied, and she visited Mallory N1. She's almost surely the SK. If Ivan or anyone checks her tonight, an Evil read gets town to hang the SK for us. Bob: decide your Niaj track result in the morning. If Frank is dead, consider "Niaj -> Frank". Two Trackers on him and the Katana victim could get Niaj (the Katana survivor) hanged. If Frank survived (Medic), pick something bland or say you were blocked. Also, Judy says she's shooting Ivan, so don't waste the Katana there.
+(to Bob, Grace) Bob (Yakuza chat): Good catch on the forge timing. No forge, agreed. Framing Heidi is a great call: her "Mallory Not Evil" is a lie, so she's likely the SK, and an Evil read on her gets town to hang their own killer. Final: holder=Bob, target=Frank, both voting. My Diviner goes on Judy. In the morning: if Frank is dead, I'll lean toward "Niaj -> Frank" so the Katana survivor wears the Katana kill, unless something in the deaths or claims makes that risky. If Frank lives, I'll go bland ("Niaj -> X" where X is alive and unharmed). Grace, if Ivan reads Heidi Evil tomorrow, back the hang but don't lead it. I'll lead only if it's clean. Ready.
+(to Bob, Grace) Grace (Yakuza chat): Final from me: holder=Bob, target=Frank, voting both. I frame Heidi, no forge. My Lookout cover for N2 will be "watched Heidi", which matches my real visit if anyone tracks me. In the morning I'll report visitors to Heidi that fit whatever comes out (e.g. Ivan if he says he checked her). Bob, same as before: if Frank dies, "Niaj -> Frank" works, but only if no live Lookout or Tracker can contradict it. Go bland if anything looks risky. No day PMs. Ready.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Diviner): target Judy; Katana vote: Bob holds, attacks Frank
+  Dave (Medic): target Ivan; chose to spend 1 token(s)
+  Erin (Chronicler): target Ivan; chose to spend 1 token(s)
+  Frank (Serial Killer): target Bob
+  Grace (Fabricator): target Heidi; "Frame Heidi only. Do not forge a will."; Katana vote: Bob holds, attacks Frank
+  Heidi (Roleplayer): target Ivan
+  Ivan (Sheriff): target Heidi
+  Olivia (Insomniac): chose to spend 1 token(s); "Stay awake (spend last insomniac token)."
+  Judy (Jester): trait action: Sleepwalker on Niaj
+  Niaj (Scout): trait action: Sleepwalker on Heidi
+Katana: Bob holds it and attacks Frank.
+(to Erin) Moderator (private): You marked Ivan: if they die, at any time, their role will be revealed to everyone (unless a Mortician cleans them). 0 chronicler tokens left.
+(to Bob) Moderator (private): You divined Judy; the group was Ivan, Judy and Niaj. The role drawn is Sheriff (60% chance it is Judy's, otherwise one of the others').
+(to Ivan) Moderator (private): You investigated Heidi tonight. Result: Evil.
+(to Dave) Moderator (private): You protected Ivan tonight with Strong Defense. Your protection did not stop an attack. 1 medic token left.
+(to Frank) Moderator (private): You were attacked with the Katana tonight and survived. Your attack on Bob succeeded: they died.
+(to Bob) Moderator (private): Your Katana attack on Frank failed: they survived.
+(to Grace) Moderator (private): You framed Heidi tonight. You did not forge a will. 1 fabricator token left.
+(to Heidi) Moderator (private): You investigated Ivan tonight. Result: Evil.
+[Moderator summary] Night 2: Frank (SK) killed Bob (Strong vs None). Bob (Shaky, Katana holder) attacked Frank: level None, failed (Frank also has Standard Defense). Bob divined Judy (divine op). Dave gave Ivan Strong protection (1 token left), no attack on Ivan. Erin marked Ivan (last token). Grace framed Heidi, no forgery. Ivan checked Heidi: Evil (framed). Heidi (Roleplayer, fake Sheriff) got random result Evil on Ivan. Olivia stayed awake (last token). Sleepwalkers: Judy->Niaj, Niaj->Heidi. Katana passes to Grace via code.
+[Night check] Night 2: correct
+(to Olivia) Moderator (private): You lay awake all night. More than 3 players visited someone tonight; you heard 3 of them, drawn at random. Their roles: Diviner, Scout, Serial Killer. 0 insomniac tokens left.
+(to Carol) Moderator (private): Tonight Alice, Bob and Carol were each in a different visit group.
+(to Niaj) Moderator (private): Tonight Alice, Carol and Judy were each in a different visit group.
+(to Bob) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Grace) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Frank. Bob (Diviner) chose to act on Judy.
+(to Grace) The Katana passed to Grace.
