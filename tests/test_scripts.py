@@ -9,13 +9,14 @@ import scripts
 from llm import MockClient, Model
 from roles import ROLES, Status, logic
 from setups import SETUPS, setup_note
+from traits import TRAITS
 
 RULES = mafia.RULES_PATH.read_text(encoding="utf-8")
 
 
 def role_paragraphs(text: str) -> set[str]:
     """Role names with a paragraph in this rules text's roles part (as role_summaries reads them)."""
-    lines = text.split("PART 6: ROLES", 1)[1].splitlines()
+    lines = text.split("PART 6: ROLES", 1)[1].split("\n=== ", 1)[0].splitlines()
     return {line.strip() for i, line in enumerate(lines[:-1])
             if line.strip() in ROLES and not line.startswith(" ") and lines[i + 1].startswith("  ")}
 
@@ -105,9 +106,14 @@ def test_the_roles_part_is_still_shaped_the_way_scripts_cut_it():
     """scripts.rules_for cuts rules_1.txt's roles part into blank-line-separated blocks: each role's paragraph is its
     name (exactly as in ROLES) and then only indented lines, with no blank line inside it; everything else is a
     heading or the part's intro. If an edit breaks that shape (a blank line inside a role, a renamed role, a new part
-    after the roles), a cut script would keep stray text or lose a heading, so this fails first."""
-    part = RULES.split("PART 6: ROLES", 1)[1]
-    assert "\nPART " not in part and "=== PART" not in part  # the roles part is the last one
+    after the roles but the traits part), a cut script would keep stray text or lose a heading, so this fails first."""
+    part, traits = RULES.split("PART 6: ROLES", 1)[1].split("\n=== PART 7: TRAITS ===\n", 1)
+    assert "=== PART" not in part and "=== PART" not in traits  # the traits part is the last one
+    for block in traits.strip("\n").split("\n\n")[1:]:  # after R24, only headings and trait paragraphs
+        first, *rest = block.split("\n")
+        assert first in TRAITS and rest and all(line.startswith("  ") for line in rest) or (
+            not rest and first.startswith("--- ")), f"not a trait's paragraph or a heading: {first!r}"
+    assert scripts.cut(RULES, "core").endswith(traits)  # a cut keeps every trait
     for block in part.strip("\n= ").split("\n\n"):
         first, *rest = block.split("\n")
         if first in ROLES:

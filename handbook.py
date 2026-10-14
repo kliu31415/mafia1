@@ -13,7 +13,6 @@ field shows up once data() passes it on.
 """
 
 import argparse
-import itertools
 import json
 import random
 import re
@@ -45,12 +44,13 @@ RULE_HEAD = re.compile(r"^(R\d+) \((.+?)\)(.*)$")  # "R4 (Day phase, chat, nomin
 
 def rules_parts(text: str) -> list[dict]:
     """rules_1.txt as parts ("=== PART 1: THE GAME ===") of blocks (split on blank lines): a rule ("R4 (Title)"), a
-    faction heading ("--- Village (Good) ---") or category heading in the roles part, a role's paragraph (its name,
-    then indented lines), or plain text. Each block keeps its lines as written; the page joins wrapped lines."""
+    faction heading ("--- Village (Good) ---") or category heading in the roles part, a role's or a trait's paragraph
+    (its name, then indented lines), a heading of who can get the traits under it, or plain text. Each block keeps
+    its lines as written; the page joins wrapped lines."""
     parts: list[dict] = []
     pieces = re.split(r"^=== (.+?) ===$", text, flags=re.M)[1:]
     for title, chunk in zip(pieces[::2], pieces[1::2]):
-        roles_part = "ROLES" in title
+        roles_part, traits_part = "ROLES" in title, "TRAITS" in title
         blocks = []
         for raw in re.split(r"\n\s*\n", chunk.strip("\n")):
             lines = raw.rstrip().split("\n")
@@ -58,59 +58,22 @@ def rules_parts(text: str) -> list[dict]:
             if m := RULE_HEAD.match(first):
                 rest = m[3].strip(": ")  # R20's heading line goes on with text
                 blocks.append({"kind": "rule", "label": m[1], "title": m[2], "lines": [rest] * bool(rest) + lines[1:]})
+            elif (m := re.match(r"^--- (.+) ---$", first)) and traits_part:  # "--- Village players only ---"
+                one = [f for f in FACTIONS if m[1] == f + " players only"]
+                blocks.append({"kind": "trait_group", "title": m[1], "faction": one[0] if one else ""})
             elif m := re.match(r"^--- (.+) ---$", first):
                 blocks.append({"kind": "faction", "title": m[1], "lines": lines[1:]})
             elif first.strip() in ROLES and len(lines) > 1 and lines[1].startswith("  "):
                 blocks.append({"kind": "role", "name": first.strip(), "lines": lines[1:]})
+            elif first.strip() in TRAITS and len(lines) > 1 and lines[1].startswith("  "):
+                blocks.append({"kind": "trait", "name": first.strip(), "lines": lines[1:]})
             elif roles_part and len(lines) == 1 and not first.startswith(" "):
                 name, _, note = first.partition(" (")
                 blocks.append({"kind": "category", "title": name, "note": note.rstrip(")")})
             else:
                 blocks.append({"kind": "text", "lines": lines})
         parts.append({"title": title.title(), "blocks": blocks})
-    return traits_part(parts)
-
-
-def traits_part(parts: list[dict]) -> list[dict]:
-    """R24 (Traits) moved out of its part into a part of its own after the others, its list split into one block per
-    trait (its name, who can get it, then its text), as the roles part shows roles. The rules file is unchanged."""
-    for part in parts:
-        rule = next((b for b in part["blocks"] if b["kind"] == "rule" and b["label"] == "R24"), None)
-        if rule:
-            break
-    else:
-        return parts
-    intro: list[str] = []
-    traits: list[dict] = []
-    for line in rule["lines"]:
-        m = re.match(r"^- (.+?) \((.+?)\): (.*)$", line)
-        if m and m[1] in TRAITS:
-            traits.append({"kind": "trait", "name": m[1], "note": m[2], "lines": [m[3][:1].upper() + m[3][1:]]})
-        elif traits and line.startswith("  "):
-            traits[-1]["lines"].append(line[2:])
-        elif traits:  # text after the list, or a bullet that names no trait
-            traits.append({"kind": "text", "lines": [line]})
-        else:
-            intro.append(line)
-    part["blocks"].remove(rule)
-    # grouped by who can get them, as the roles part groups roles by faction: one-faction groups first, then the
-    # wider ones (the Traits tab uses the same order); R24's order within each group
-    blocks = [rule | {"lines": intro}]
-    order = list(FACTIONS)
-    listed = sorted((b for b in traits if b["kind"] == "trait"),
-                    key=lambda b: (len(f := trait_factions(b["name"])) > 1, len(f), [order.index(x) for x in f]))
-    for factions, group in itertools.groupby(listed, key=lambda b: trait_factions(b["name"])):
-        title = (factions[0] + " only" if len(factions) == 1
-                 else "Any faction" if len(factions) == len(order) else " or ".join(factions))
-        tint = factions[0] if len(factions) == 1 else ""
-        blocks += [{"kind": "trait_group", "title": title, "faction": tint}, *group]
-    blocks += [b for b in traits if b["kind"] != "trait"]
-    return parts + [{"title": f"Part {len(parts) + 1}: Traits", "blocks": blocks}]
-
-
-def trait_factions(name: str) -> tuple[str, ...]:
-    return tuple(FACTION_OF[a] for a in Alignment if a in TRAITS[name].alignments)
-
+    return parts
 
 
 def icon(path: Path) -> str:

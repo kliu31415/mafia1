@@ -96,9 +96,10 @@ def _filter_roles_part(part: str, keep: set[str]) -> str:
 
 def cut(rules: str, script: str) -> str:
     """rules_1.txt with only the script's roles in the roles part (the mechanical cut, before any revision)."""
-    end = rules.index("\n", rules.index("PART 6: ROLES"))  # the roles part starts after its heading's line
-    head, part = rules[:end], rules[end:]
-    return head + _filter_roles_part(part, set(roles_of(script)))
+    start = rules.index("\n", rules.index("PART 6: ROLES"))  # the roles part starts after its heading's line
+    end = rules.find("\n\n=== ", start)  # and ends where the next part (traits) begins
+    end = len(rules) if end < 0 else end
+    return rules[:start] + _filter_roles_part(rules[start:end], set(roles_of(script))) + rules[end:]
 
 
 def note(script: str) -> str:
@@ -196,7 +197,7 @@ def apply_edits(text: str, edits: list[dict]) -> str:
 
 def role_names(text: str) -> list[str]:
     """The roles with a paragraph in this rules text (their name on its own line, then indented lines)."""
-    lines = text.split("PART 6: ROLES", 1)[1].splitlines()
+    lines = text.split("PART 6: ROLES", 1)[1].split("\n=== ", 1)[0].splitlines()
     return [line for i, line in enumerate(lines[:-1]) if line in ROLES and lines[i + 1].startswith("  ")]
 
 

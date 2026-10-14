@@ -193,113 +193,6 @@ Exact-role checks see the true role, except that they see a Disguised player's d
 seen as "Roleplayer".
 Visit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.
 
-R24 (Traits)
-Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start
-(except a hidden trait, which says so); nobody else is told, not even your teammates, and whether a game has any
-traits is secret. Investigations never see traits: they report roles and alignments only. A trait stays with you if
-your role changes. Traits are always true: a Roleplayer's trait is real even though its role isn't. A player may
-have more than one trait, but never the same one twice. Each trait says which players can get it. A trait's night
-action is used in addition to your role's own, and a role-block stops it too.
-- Martyr (Village players only): if you are hanged, the announcement of your death also says you were a Martyr and
-  names every player whose vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any
-  other way shows nothing.
-- Armed (Village and Yakuza players only): once per game, at night, you may fire a hidden gun at another living
-  player: a Basic Attack. It is an action and a visit, and a role-blocked shot isn't used up. You learn only
-  whether it killed its target. A kill's cause is "a hidden gun".
-- Cursed (Village players only): if you die, a random living Good player (if any) is dealt a Divine Attack at the
-  end of the night: the night you died, or the night after the Day you died. It comes after all of that night's
-  other actions and attacks, so the victim is drawn from the Good players still alive then, and it counts as a
-  death that night. Its cause is "a curse". It needs no action, so a role-block doesn't stop it.
-- Avenger (Village players only): if you are killed at night, every player whose attack would have killed you is
-  dealt a Divine Attack and dies too, with the cause "Avenger". Attacks that weren't fatal on their own, and deaths
-  by Day, set nothing off. It needs no action, so a role-block doesn't stop it.
-- Kindred (Village players only): after each trial vote you cast, you privately learn up to two random other
-  players whose votes counted the same way as the vote you cast (if fewer did, you learn that). It needs no action,
-  so a role-block doesn't stop it.
-- Remorseful (Village players only): if you vote Guilty in a trial and that player is hanged and was Village (their
-  true alignment), you die at once; the cause is "remorse". It goes by the vote you cast. It isn't an attack, so
-  nothing that reacts to attacks counts it. Nobody holds both Remorseful and Zealot.
-- Faultline (Village players only): after each trial vote you cast, you privately learn one random other player
-  whose vote counted as Guilty and one whose vote counted as Innocent (if all the others voted one way, you learn
-  that). It needs no action, so a role-block doesn't stop it.
-- Notorious (Village players only): alignment checks see you as Evil (R19). Checks that see
-  true alignment, such as the Census Taker's count, aren't fooled.
-- Grudge (any player): if you are hanged, the next night one random player whose vote counted as Guilty in your
-  trial, among those alive when that night begins, is dealt a Standard Attack (an Astral Visit). Defense and
-  protection apply as usual. A kill's cause is "a grudge". It needs no action, so a role-block doesn't stop it.
-- Loud (any player): you earn 1.5 times the usual speaking budget each round, and your cap is 1.5 times the usual
-  (R22). Your prices and trial-only budget are the usual ones.
-- Curt (any player): the length part of your message prices (R22) is doubled, so long messages cost you much more;
-  each message's base fee, nominations and your trial-only budget are the usual ones.
-- Confidant (any player): once per game, on one of your own Day turns, you may send one private message hidden:
-  nobody else is told it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.
-  Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.
-- Zealot (any player): every Guilty/Innocent trial vote you cast counts as Guilty, whatever you vote, including in
-  your own trial. Your nomination (Yes/No) votes are unchanged. Your private reminder shows both the vote you cast
-  and how it counted, and everything that reports how you voted (e.g. the Auditor, a Martyr's announcement) uses the
-  vote as counted. A Fixer's reversal doesn't change it. Nobody holds both Zealot and Merciful.
-- Merciful (any player): like Zealot, but your trial votes always count as Innocent.
-- Drowsy (hidden; any player whose role has a night action and can be role-blocked): on each night, with
-  probability 1/2, you are role-blocked (R9) with no blocker. You aren't told you have this trait; on those nights
-  you are told you were role-blocked, as with any role-block.
-- Spare Blade (Yakuza players only): once per game, at night, you may make one extra Katana attack on another
-  living player, whoever holds the Katana and besides its own attack (which the Yakuza still choose as usual, R8).
-  It is Standard, an action and a visit by you, and its target learns only that they were attacked with the Katana.
-  A role-block stops it, and then it isn't used up. Nobody holds Spare Blade with Armed.
-- Stolen Blade (Village players only): once per game, at night, you may attack another living player with a
-  stolen Katana: a Standard Attack, besides your role's own action. It is an action and a visit by you, and it
-  looks exactly like the Yakuza's Katana attack: a kill's cause is "Katana", and a surviving target learns only that
-  they were attacked with the Katana. You learn only whether it killed. A role-block stops it, and then it isn't
-  used up. Nobody holds Stolen Blade with Armed.
-- Paranoid (hidden; Village players only): on each night, with probability 1/4, you are told you were attacked and
-  survived, though nobody attacked you. The made-up attack is the Katana's 2/3 of the time, and otherwise a
-  Vigilante's or a Serial Killer's (always the Katana's when neither role can be in the game); it is worded like a
-  real one. You aren't told you have this trait. Nothing else happens: it isn't a visit or an attack, and nobody else
-  learns of it.
-- Stocked (any player whose role starts with tokens): you start with one more of each kind of token your role
-  starts with.
-- Disguised (any player): you are told a Village role (never your own), drawn at the start. Every exact-role check
-  (R18) sees you as that role instead of yours, alive or dead; alignment checks still see your true alignment.
-- Bonded (Village and Yakuza players only): you and one other random Village or Yakuza player are bonded, and each
-  of you is told the other's name (not their role or faction). If either of you dies, the other dies of heartbreak
-  at once (its cause is "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
-- Rival (Village and Yakuza players only): you and one other random player of your own faction are rivals, and
-  each of you is told the other's name (not their role). Each of you wins only if your faction wins and the other
-  has died by the end; whether you are alive doesn't matter. Your faction's win doesn't change. Nobody holds Rival
-  with Bonded or Turncoat.
-- Selfish (Village and Yakuza players only): you win only if your faction wins and you are alive at the end. Your
-  faction's win doesn't change; you just don't share it if you died.
-- Selfless (Village and Yakuza players only): you win only if your faction wins and you are dead at the end. Your
-  faction's win doesn't change; you just don't share it if you're alive. Nobody holds both Selfless and Selfish.
-- Usurper (unique: at most one a game; Yakuza players only): you win only if the Yakuza win while you are the only
-  Yakuza alive, and then you take the win alone: the other Yakuza, alive or dead, don't win. If the Yakuza win with
-  another Yakuza alive, they win and you don't. Your teammates aren't told. Nobody holds Usurper with Selfish or
-  Selfless.
-- Shaky (hidden; Yakuza players only): every Katana attack you make (the Katana's own while you hold it, or a Spare
-  Blade attack) is level None, so it never kills (R3); it is still an attack and a visit. You aren't told you have
-  this trait. Nobody holds Shaky with Katana Expert or Katana Master.
-- Katana Expert (Yakuza players only): once per game, on a night you hold the Katana, you may make its own attack
-  Strong instead of Standard. Choose it with your night action and name the player the Katana attacks; it works
-  only if you hold the Katana at the end of that night and it attacks that player, and only then is it used up. A
-  role-block on you stops it along with the attack, and it isn't used up.
-- Katana Master (Yakuza players only): like Katana Expert, but the attack is Divine, which no Defense, protection,
-  trap or charm stops. Nobody holds both Katana Expert and Katana Master.
-- Narrow Escape (hidden; any player): once per game, on the first night an attack that isn't Divine would kill you
-  (after Defense, protection, traps and charms), you survive: every non-Divine attack on you that night fails
-  instead. It works like Strong Defense on every night until then, so a night when nothing would have killed you
-  (e.g. a Medic stopped the attack) doesn't use it up. Divine Attacks and deaths by Day aren't stopped. You aren't
-  told you have this trait; you are told about the failed attacks as for any others (R3).
-- Oblivious (hidden; any player): you are never told about an attack you survive. You aren't told you have this
-  trait. Nobody holds both Oblivious and Paranoid.
-- Sleepwalker (any player): every night you visit one random other living player, besides any action of your own;
-  code draws it, and you aren't told whom. It does nothing but visit: anything that sees or reacts to visits (R6),
-  such as a Tracker, a Lookout or a Veteran's alert, counts it. It isn't optional, but a role-block stops it (R7).
-- Turncoat (unique: at most one a game; Village players only): you win only if the Yakuza win (alive or dead), and
-  you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19); checks that see true
-  alignment, such as the Census Taker's count, see you as Good. You stay Village in every other way: you aren't in
-  the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't told about you. The game's
-  end ignores you, like a role that never blocks wins (R1): it ends when the other living players are all Village
-  or all Yakuza. Nobody holds Turncoat with Notorious, Selfish or Selfless.
 
 === PART 5: THE YAKUZA ===
 
@@ -686,3 +579,232 @@ Vulture
   Day or the night after it; not players who left the game): with 50% chance it is their true
   role (exact-role check, R19), otherwise it is a different role drawn at random
   from all the roles in these rules. You aren't told which. This isn't an action, so a role-block doesn't stop it.
+
+=== PART 7: TRAITS ===
+
+R24 (Traits)
+Some players also have a trait: an extra ability on top of their role. You are told your own trait at the start
+(except a hidden trait, which says so); nobody else is told, not even your teammates, and whether a game has any
+traits is secret. Investigations never see traits: they report roles and alignments only. A trait stays with you if
+your role changes. Traits are always true: a Roleplayer's trait is real even though its role isn't. A player may
+have more than one trait, but never the same one twice. Each trait below says who can get it (Who), whether it is
+hidden from its holder (Hidden), whether at most one player in a game has it (Unique), what it does (Effect) and
+which traits nobody holds together with it (Never with). A trait's night action is used in addition to your role's
+own, and a role-block stops it too.
+
+--- Village players only ---
+
+Martyr
+  Who: Village players only.
+  Effect: If you are hanged, the announcement of your death also says you were a Martyr and names every player whose
+  vote counted as Guilty in your trial. Your role stays hidden. A Martyr who dies any other way shows nothing.
+
+Cursed
+  Who: Village players only.
+  Effect: If you die, a random living Good player (if any) is dealt a Divine Attack at the end of the night: the
+  night you died, or the night after the Day you died. It comes after all of that night's other actions and attacks,
+  so the victim is drawn from the Good players still alive then, and it counts as a death that night. Its cause is
+  "a curse". It needs no action, so a role-block doesn't stop it.
+
+Avenger
+  Who: Village players only.
+  Effect: If you are killed at night, every player whose attack would have killed you is dealt a Divine Attack and
+  dies too, with the cause "Avenger". Attacks that weren't fatal on their own, and deaths by Day, set nothing off.
+  It needs no action, so a role-block doesn't stop it.
+
+Kindred
+  Who: Village players only.
+  Effect: After each trial vote you cast, you privately learn up to two random other players whose votes counted the
+  same way as the vote you cast (if fewer did, you learn that). It needs no action, so a role-block doesn't stop it.
+
+Remorseful
+  Who: Village players only.
+  Effect: If you vote Guilty in a trial and that player is hanged and was Village (their true alignment), you die at
+  once; the cause is "remorse". It goes by the vote you cast. It isn't an attack, so nothing that reacts to attacks
+  counts it.
+  Never with: Zealot.
+
+Faultline
+  Who: Village players only.
+  Effect: After each trial vote you cast, you privately learn one random other player whose vote counted as Guilty
+  and one whose vote counted as Innocent (if all the others voted one way, you learn that). It needs no action, so a
+  role-block doesn't stop it.
+
+Notorious
+  Who: Village players only.
+  Effect: Alignment checks see you as Evil (R19). Checks that see true alignment, such as the Census Taker's count,
+  aren't fooled.
+  Never with: Turncoat.
+
+Stolen Blade
+  Who: Village players only.
+  Effect: Once per game, at night, you may attack another living player with a stolen Katana: a Standard Attack,
+  besides your role's own action. It is an action and a visit by you, and it looks exactly like the Yakuza's Katana
+  attack: a kill's cause is "Katana", and a surviving target learns only that they were attacked with the Katana.
+  You learn only whether it killed. A role-block stops it, and then it isn't used up.
+  Never with: Armed.
+
+Paranoid
+  Who: Village players only.
+  Hidden: you aren't told you have this trait.
+  Effect: On each night, with probability 1/4, you are told you were attacked and survived, though nobody attacked
+  you. The made-up attack is the Katana's 2/3 of the time, and otherwise a Vigilante's or a Serial Killer's (always
+  the Katana's when neither role can be in the game); it is worded like a real one. Nothing else happens: it isn't a
+  visit or an attack, and nobody else learns of it.
+  Never with: Oblivious.
+
+Turncoat
+  Who: Village players only.
+  Unique: at most one player in a game has it.
+  Effect: You win only if the Yakuza win (alive or dead), and you lose otherwise, even if the Village wins.
+  Alignment checks see you as Evil (R19); checks that see true alignment, such as the Census Taker's count, see you
+  as Good. You stay Village in every other way: you aren't in the Yakuza's chat or Katana votes, you don't know who
+  the Yakuza are, and they aren't told about you. The game's end ignores you, like a role that never blocks wins
+  (R1): it ends when the other living players are all Village or all Yakuza.
+  Never with: Notorious, Rival, Selfish or Selfless.
+
+--- Yakuza players only ---
+
+Spare Blade
+  Who: Yakuza players only.
+  Effect: Once per game, at night, you may make one extra Katana attack on another living player, whoever holds the
+  Katana and besides its own attack (which the Yakuza still choose as usual, R8). It is Standard, an action and a
+  visit by you, and its target learns only that they were attacked with the Katana. A role-block stops it, and then
+  it isn't used up.
+  Never with: Armed.
+
+Usurper
+  Who: Yakuza players only.
+  Unique: at most one player in a game has it.
+  Effect: You win only if the Yakuza win while you are the only Yakuza alive, and then you take the win alone: the
+  other Yakuza, alive or dead, don't win. If the Yakuza win with another Yakuza alive, they win and you don't. Your
+  teammates aren't told.
+  Never with: Selfish or Selfless.
+
+Shaky
+  Who: Yakuza players only.
+  Hidden: you aren't told you have this trait.
+  Effect: Every Katana attack you make (the Katana's own while you hold it, or a Spare Blade attack) is level None,
+  so it never kills (R3); it is still an attack and a visit.
+  Never with: Katana Expert or Katana Master.
+
+Katana Expert
+  Who: Yakuza players only.
+  Effect: Once per game, on a night you hold the Katana, you may make its own attack Strong instead of Standard.
+  Choose it with your night action and name the player the Katana attacks; it works only if you hold the Katana at
+  the end of that night and it attacks that player, and only then is it used up. A role-block on you stops it along
+  with the attack, and it isn't used up.
+  Never with: Katana Master or Shaky.
+
+Katana Master
+  Who: Yakuza players only.
+  Effect: Like Katana Expert, but the attack is Divine, which no Defense, protection, trap or charm stops.
+  Never with: Katana Expert or Shaky.
+
+--- Village and Yakuza players only ---
+
+Armed
+  Who: Village and Yakuza players only.
+  Effect: Once per game, at night, you may fire a hidden gun at another living player: a Basic Attack. It is an
+  action and a visit, and a role-blocked shot isn't used up. You learn only whether it killed its target. A kill's
+  cause is "a hidden gun".
+  Never with: Spare Blade or Stolen Blade.
+
+Bonded
+  Who: Village and Yakuza players only.
+  Effect: You and one other random Village or Yakuza player are bonded, and each of you is told the other's name
+  (not their role or faction). If either of you dies, the other dies of heartbreak at once (its cause is
+  "heartbreak"). Heartbreak isn't an attack, so nothing that reacts to attacks counts it.
+  Never with: Rival.
+
+Rival
+  Who: Village and Yakuza players only.
+  Effect: You and one other random player of your own faction are rivals, and each of you is told the other's name
+  (not their role). Each of you wins only if your faction wins and the other has died by the end; whether you are
+  alive doesn't matter. Your faction's win doesn't change.
+  Never with: Bonded or Turncoat.
+
+Selfish
+  Who: Village and Yakuza players only.
+  Effect: You win only if your faction wins and you are alive at the end. Your faction's win doesn't change; you
+  just don't share it if you died.
+  Never with: Selfless, Turncoat or Usurper.
+
+Selfless
+  Who: Village and Yakuza players only.
+  Effect: You win only if your faction wins and you are dead at the end. Your faction's win doesn't change; you just
+  don't share it if you're alive.
+  Never with: Selfish, Turncoat or Usurper.
+
+--- Any player ---
+
+Grudge
+  Who: Any player.
+  Effect: If you are hanged, the next night one random player whose vote counted as Guilty in your trial, among
+  those alive when that night begins, is dealt a Standard Attack (an Astral Visit). Defense and protection apply as
+  usual. A kill's cause is "a grudge". It needs no action, so a role-block doesn't stop it.
+
+Loud
+  Who: Any player.
+  Effect: You earn 1.5 times the usual speaking budget each round, and your cap is 1.5 times the usual (R22). Your
+  prices and trial-only budget are the usual ones.
+
+Curt
+  Who: Any player.
+  Effect: The length part of your message prices (R22) is doubled, so long messages cost you much more; each
+  message's base fee, nominations and your trial-only budget are the usual ones.
+
+Confidant
+  Who: Any player.
+  Effect: Once per game, on one of your own Day turns, you may send one private message hidden: nobody else is told
+  it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden. Players who hear
+  private messages (e.g. the Wiretap) still hear it, also marked hidden.
+
+Zealot
+  Who: Any player.
+  Effect: Every Guilty/Innocent trial vote you cast counts as Guilty, whatever you vote, including in your own
+  trial. Your nomination (Yes/No) votes are unchanged. Your private reminder shows both the vote you cast and how it
+  counted, and everything that reports how you voted (e.g. the Auditor, a Martyr's announcement) uses the vote as
+  counted. A Fixer's reversal doesn't change it.
+  Never with: Merciful or Remorseful.
+
+Merciful
+  Who: Any player.
+  Effect: Like Zealot, but your trial votes always count as Innocent.
+  Never with: Zealot.
+
+Drowsy
+  Who: Any player whose role has a night action and can be role-blocked.
+  Hidden: you aren't told you have this trait.
+  Effect: On each night, with probability 1/2, you are role-blocked (R9) with no blocker. On those nights you are
+  told you were role-blocked, as with any role-block.
+
+Stocked
+  Who: Any player whose role starts with tokens.
+  Effect: You start with one more of each kind of token your role starts with.
+
+Disguised
+  Who: Any player.
+  Effect: You are told a Village role (never your own), drawn at the start. Every exact-role check (R18) sees you as
+  that role instead of yours, alive or dead; alignment checks still see your true alignment.
+
+Narrow Escape
+  Who: Any player.
+  Hidden: you aren't told you have this trait.
+  Effect: Once per game, on the first night an attack that isn't Divine would kill you (after Defense, protection,
+  traps and charms), you survive: every non-Divine attack on you that night fails instead. It works like Strong
+  Defense on every night until then, so a night when nothing would have killed you (e.g. a Medic stopped the attack)
+  doesn't use it up. Divine Attacks and deaths by Day aren't stopped. You are told about the failed attacks as for
+  any others (R3).
+
+Oblivious
+  Who: Any player.
+  Hidden: you aren't told you have this trait.
+  Effect: You are never told about an attack you survive.
+  Never with: Paranoid.
+
+Sleepwalker
+  Who: Any player.
+  Effect: Every night you visit one random other living player, besides any action of your own; code draws it, and
+  you aren't told whom. It does nothing but visit: anything that sees or reacts to visits (R6), such as a Tracker, a
+  Lookout or a Veteran's alert, counts it. It isn't optional, but a role-block stops it (R7).

@@ -16,7 +16,7 @@ FINGERPRINTS = Path(__file__).parent / "roles" / "summary_fingerprints.json"
 
 def role_paragraphs() -> dict[str, str]:
     """Each role's paragraph in the rules' roles part: its name on a line of its own, then indented lines."""
-    lines = RULES.read_text(encoding="utf-8").split("PART 6: ROLES", 1)[1].splitlines()
+    lines = RULES.read_text(encoding="utf-8").split("PART 6: ROLES", 1)[1].split("\n=== ", 1)[0].splitlines()
     paragraphs: dict[str, str] = {}
     for i, line in enumerate(lines):
         body = []

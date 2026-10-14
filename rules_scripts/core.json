@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "386a4444c8fb1ee4",
- "text_sha256": "9e9fcbe3d22eeefe",
+ "cut_sha256": "ab60fe77ee131825",
+ "text_sha256": "700b3a50b0bc3608",
  "made_by": "a Claude Code session",
- "made": "2026-10-14T14:03:01+00:00",
+ "made": "2026-10-14T15:00:34+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -37,38 +37,38 @@
    "reason": "No role on the script changes how votes are counted, so announced totals always match the voters (a player in game_20261011_011316_850196 expected otherwise)."
   },
   {
-   "old": "your role changes. Traits are always true: a Roleplayer's trait is real even though its role isn't. A player may\nhave more than one trait, but never the same one twice. Each trait says which players can get it. A trait's night\naction is used in addition to your role's own, and a role-block stops it too.",
-   "new": "your role changes. A player may have more than one trait, but never the same one twice. Each trait says which\nplayers can get it. A trait's night action is used in addition to your role's own, and a role-block stops it too.",
+   "old": "your role changes. Traits are always true: a Roleplayer's trait is real even though its role isn't. A player may\nhave more than one trait",
+   "new": "your role changes. A player may have more than one trait",
    "reason": "The Roleplayer is not on the script."
   },
   {
-   "old": "- Notorious (Village players only): alignment checks see you as Evil (R19). Checks that see\n  true alignment, such as the Census Taker's count, aren't fooled.",
-   "new": "- Notorious (Village players only): alignment checks see you as Evil (R19).",
+   "old": "  Effect: Alignment checks see you as Evil (R19). Checks that see true alignment, such as the Census Taker's count,\n  aren't fooled.\n",
+   "new": "  Effect: Alignment checks see you as Evil (R19).\n",
    "reason": "Census Taker is not on the script."
   },
   {
-   "old": "  nobody else is told it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.\n  Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.\n",
-   "new": "  nobody else is told it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.\n",
+   "old": "Its recipient sees that it was hidden. Players who hear\n  private messages (e.g. the Wiretap) still hear it, also marked hidden.\n",
+   "new": "Its recipient sees that it was hidden.\n",
    "reason": "No role on the script hears other players' private messages (Wiretap, Eavesdropper)."
   },
   {
-   "old": "  vote as counted. A Fixer's reversal doesn't change it. Nobody holds both Zealot and Merciful.",
-   "new": "  vote as counted. Nobody holds both Zealot and Merciful.",
+   "old": "uses the vote as\n  counted. A Fixer's reversal doesn't change it.\n",
+   "new": "uses the vote as\n  counted.\n",
    "reason": "The Fixer isn't on this script."
   },
   {
-   "old": "you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19); checks that see true\n  alignment, such as the Census Taker's count, see you as Good. You stay Village in every other way: you aren't in\n  the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't told about you. The game's\n  end ignores you, like a role that never blocks wins (R1): it ends when the other living players are all Village\n  or all Yakuza.",
-   "new": "you lose otherwise, even if the Village wins. Alignment checks see you as Evil (R19). You stay Village in every\n  other way: you aren't in the Yakuza's chat or Katana votes, you don't know who the Yakuza are, and they aren't\n  told about you. The game's end ignores you, like a role that never blocks wins (R1): it ends when the other\n  living players are all Village or all Yakuza.",
+   "old": "  Alignment checks see you as Evil (R19); checks that see true alignment, such as the Census Taker's count, see you\n  as Good. You stay Village",
+   "new": "  Alignment checks see you as Evil (R19). You stay Village",
    "reason": "Census Taker is not on the script."
   },
   {
-   "old": "but the attack is Divine, which no Defense, protection,\n  trap or charm stops.",
-   "new": "but the attack is Divine, which no Defense, protection\n  or trap stops.",
+   "old": "which no Defense, protection, trap or charm stops.",
+   "new": "which no Defense, protection or trap stops.",
    "reason": "The Kitsune (fox charm) is not on the script."
   },
   {
-   "old": "(after Defense, protection, traps and charms), you survive",
-   "new": "(after Defense, protection and traps), you survive",
+   "old": "(after Defense, protection,\n  traps and charms), you survive",
+   "new": "(after Defense, protection\n  and traps), you survive",
    "reason": "The Kitsune (fox charm) is not on the script."
   }
  ]

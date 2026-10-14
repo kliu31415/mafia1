@@ -214,7 +214,7 @@ function renderRules() {
       } else if (b.kind === "trait") {
         rolesToc += `<a href="#rules/trait-${encodeURIComponent(b.name)}" title="${esc(b.name)}">${badge(b.name, "sm")}</a>`;
         body += `<div class="rrole card" id="r-trait-${encodeURIComponent(b.name)}">${badge(b.name)}<div style="flex:1">
-          <div><a class="nm tl" href="#trait/${encodeURIComponent(b.name)}">${esc(b.name)}</a> <span class="muted small">${esc(b.note)}</span></div>${prose(b.lines)}</div></div>`;
+          <div><a class="nm tl" href="#trait/${encodeURIComponent(b.name)}">${esc(b.name)}</a></div>${prose(b.lines)}</div></div>`;
       } else body += `<div class="muted">${prose(b.lines)}</div>`;
     }
     if (rolesToc) toc += `<div class="roles-toc">${rolesToc}</div>`;
