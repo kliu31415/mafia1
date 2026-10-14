@@ -11,7 +11,7 @@ from gamelog import LOG_VERSION, GameLog
 from llm import Model, ModelSpec
 from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
-from roles.base import REVENGE_CAUSE, seen_role, tell_swap_moves
+from roles.base import REVENGE_CAUSE, seen_role
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
                     ignored_at_end, shares_win, usurper, win_blockers, win_side,
                     log_details as trait_log_details, trait_logic)
@@ -108,9 +108,6 @@ class Game:
     pending_revenge: list[tuple[str, list[str]]] = field(default_factory=list)  # (source, Guilty voters)
     role_state: dict[str, Any] = field(default_factory=dict)  # per-game state of role hooks (roles/*.py)
     prosecutions: list[str] = field(default_factory=list)  # players put on trial when the next day starts
-    rigged_day: int | None = None  # day whose trials a Clerk has rigged
-    puppets_next: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, for the next day
-    puppets: dict[str, str] = field(default_factory=dict)  # puppet -> Puppeteer, today
     death_record: list[str] = field(default_factory=list)  # public summary of each death, for the ledger
     vote_record: list[str] = field(default_factory=list)  # public summary of each nomination and trial
     # day -> each nomination and trial vote in order: {"stage", "nominee", "votes": {voter: Yes/Guilty}}; secret or not
@@ -127,15 +124,9 @@ class Game:
         # Pickled for checkpoints (checkpoint.py) without the log's open files; resuming reattaches a log.
         return {k: v for k, v in self.__dict__.items() if k != "log"}
 
-    def chat_controller(self, name: str) -> str:
-        """Who reads and writes `name`'s chat today (the Puppeteer, if `name` is puppeted)."""
-        return self.puppets.get(name, name)
-
     def pm_listeners(self, speaker: str, to: str) -> list[str]:
-        """Living players who also read this private message's contents (Wiretap, Eavesdropper). A
-        puppeted listener can't see private messages today, like any puppet."""
-        return [p.name for p in self.alive()
-                if p.name not in self.puppets and logic(p.role).hears_pm(self, p, speaker, to)]
+        """Living players who also read this private message's contents (Wiretap, Eavesdropper)."""
+        return [p.name for p in self.alive() if logic(p.role).hears_pm(self, p, speaker, to)]
 
     # --- lookups --------------------------------------------------------------------------
 
@@ -185,9 +176,7 @@ class Game:
     def history_split(self, name: str) -> tuple[list[str], list[str]]:
         """What `name` has seen, as lines from earlier phases and lines from the current one. Earlier
         phases don't change, so prompts can cache them (llm.cache_block)."""
-        lines = [(e.day, e.phase, f"[{phase_label(e.day, e.phase)}] {e.text}" + (
-            " [written by your Puppeteer, not you]" if e.fields.get("puppeteer") and e.fields.get("speaker") == name
-            else "")) for e in self.events if e.visible(name)]
+        lines = [(e.day, e.phase, f"[{phase_label(e.day, e.phase)}] {e.text}") for e in self.events if e.visible(name)]
         start = len(lines)
         while start and lines[start - 1][:2] == (self.day, self.phase):
             start -= 1
@@ -265,7 +254,6 @@ class Game:
 
     def run_dawn_hooks(self) -> None:
         """Role effects at the start of the day (e.g. Ballot Stuffer votes taking effect)."""
-        tell_swap_moves(self)  # first, so it comes before what the moved effect does today
         for role_logic in LOGIC.values():
             role_logic.at_dawn(self)
 
@@ -411,11 +399,7 @@ class Game:
         if dead:
             lines.append("Dead: " + "; ".join(
                 f"{who(p)}, died day {p.death['day']} {p.death['phase']}" if p.death else who(p) for p in dead))
-        effects = ([f"Clerk's rig on day {self.rigged_day}"]
-                   if self.rigged_day and self.rigged_day >= self.day else []) \
-            + [f"{n} is prosecuted next day" for n in self.prosecutions] \
-            + [f"{a} puppets {b} next day" for b, a in self.puppets_next.items()] \
-            + [f"{a} puppets {b} today" for b, a in self.puppets.items()]
+        effects = [f"{n} is prosecuted next day" for n in self.prosecutions]
         lines.append("Pending day effects: " + ("; ".join(effects) or "none"))
         return "\n".join(lines)
 

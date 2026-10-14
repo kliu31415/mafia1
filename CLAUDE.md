@@ -102,7 +102,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      deaths, dawn, ...). Every module in roles/ is imported (and so registered) automatically. Core
      code calls hooks and shouldn't name roles; if a role needs a hook that doesn't exist, add one to
      `RoleLogic`. Per-game role state goes in `game.role_state`, not new `Game` fields.
-  3. Day mechanics roles trigger (`Game.prosecutions`, `rigged_day`, `puppets`) are generic and live in
+  3. Day mechanics roles trigger (`Game.prosecutions`) are generic and live in
      `state.py` and `day.py`; `night_action_schema` in `players.py` is one shape for every role.
   4. `night_note` on the role's class: a reminder the moderator gets each night for effects with no
      submitted action or that need a special op. Only roles in the game are included.
@@ -123,7 +123,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
      A test checks every role has one.
   8. Scripts (`scripts.py`, `--script`, Blood on the Clocktower style): a game's rules list only its script's roles,
      and every role in it comes from the script. `all` (the default, rules unchanged) has every role, so a new role
-     needs nothing there; add it to a hand-made script (`core`, 28 roles) only if it fits. Code that draws "any role"
+     needs nothing there; add it to a hand-made script (`core`, 26 roles) only if it fits. Code that draws "any role"
      (fakes, decoys) must draw from `scripts.script_roles(game)`, not `ROLES`. Each hand-made script's rules are the
      cut plus small edits an Opus call made once (dropping mentions of off-script roles), cached in `rules_scripts/`.
      After any edit to `rules_1.txt`, `test_every_script_revision_is_current` fails until the stale ones are remade.

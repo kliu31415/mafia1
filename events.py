@@ -1,8 +1,9 @@
 """Event categories. Every Game.emit() names one, and the log viewer colors and labels events by it
 (never by parsing their text), so event wording can change freely."""
 
-CHAT = "chat"  # public chat; fields: speaker, message, and puppeteer if a Puppeteer wrote it
-PM = "pm"  # private message; fields: speaker, to, message, puppeteer if a Puppeteer wrote it, hidden if hidden (R24)
+CHAT = "chat"  # public chat; fields: speaker, message (and puppeteer if a Puppeteer wrote it, before log version 74)
+PM = "pm"  # private message; fields: speaker, to, message, hidden if hidden (R24), and puppeteer if a Puppeteer wrote
+# it (before log version 74)
 YAKUZA_CHAT = "yak"  # fields: speaker, message
 NOMINATION = "nom"
 VOTE = "vote"  # vote results, trials, verdicts

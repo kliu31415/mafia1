@@ -4,7 +4,8 @@ see it."""
 
 
 def moved(a: dict, key: str) -> str:
-    """The action's target in `key`, with where a swap (rules R23) moved it: "Olivia (swapped to Erin)". Players
+    """The action's target in `key`, with where a Smuggler's swap (logs before v74) moved it: "Olivia (swapped to
+    Erin)". Players
     read the after-game replay as their choices otherwise and reported the moved ones as wrong (Night 3 of
     game_20261011_225511_1253)."""
     chosen = a.get(f"chosen_{key}")

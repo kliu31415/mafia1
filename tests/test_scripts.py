@@ -36,7 +36,7 @@ def test_the_all_script_keeps_the_rules_text_unchanged():
 def test_a_script_keeps_only_its_roles_and_the_general_rules():
     text = scripts.rules_for(RULES, "core")
     assert role_paragraphs(text) == set(scripts.CORE)
-    for label in ("R1 (", "R8 (", "R19 (", "R23 ("):  # general rules all stay
+    for label in ("R1 (", "R8 (", "R19 (", "R24 ("):  # general rules all stay
         assert label in text
     assert "Script: this game uses the core script" in text and f"only its {len(scripts.CORE)} roles" in text
     assert len(text) < len(RULES) * 0.8

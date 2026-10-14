@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (CODE_ATTACKS, RecordedAction, RoleLogic, acted_tonight, as_chosen, join_names, register,
+from roles.base import (CODE_ATTACKS, RecordedAction, RoleLogic, acted_tonight, join_names, register,
                         tokens_left_text)
 
 if TYPE_CHECKING:
@@ -72,9 +72,8 @@ class Bloodhound(RoleLogic):
             others = [q.name for q in game.players if acted_tonight(game, q) and q.name not in (p.name, target)]
             drawn = game.rng.sample(others, min(3 - (target is not None), len(others)))
             group = [q.name for q in game.players if q.name in {*drawn, *([target] if target else [])}]
-            shown = as_chosen(game, target, group) if target else group  # rules R23
             n = attack_count(game, group)
-            text = (f"Your Bloodhound check of {join_names(shown)}: together they have made {n} "
+            text = (f"Your Bloodhound check of {join_names(group)}: together they have made {n} "
                     f"attack{'' if n == 1 else 's'} this game, tonight's included.")
             if target:
                 text += f" {tokens_left_text(p, 'scent')}."

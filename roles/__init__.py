@@ -65,10 +65,6 @@ ROLES: dict[str, RoleInfo] = {
                           tokens={"archive": 1}, acts_at_night=True, tested=True,
                           notes="moderator records the use with the archive op; code draws the real half "
                           "and the fakes (any role, never a second unique one), and tells it at once"),
-    "Surveyor": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
-                         summary="Token: survey a player; learns one random role among them and their two neighbors.",
-                         tokens={"survey": 3}, acts_at_night=True, tested=True,
-                         notes="moderator records the use with the survey op; code picks the group and draws the role"),
     "Census Taker": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Alignment check",
                              summary="Night: count the Good or the Evil players (drawn at random) among a chosen "
                              "player and two random others.",
@@ -96,23 +92,12 @@ ROLES: dict[str, RoleInfo] = {
                         acts_at_night=True, tested=True,
                         notes="moderator records the use with the audit op (a visit); code reads the Day's votes "
                         "and tells them"),
-    "Juror": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
-                      summary="Night: name two players, learn how often they voted the same way all game.",
-                      acts_at_night=True, tested=True,
-                      notes="moderator records the use with the jury op (Astral); code counts the shared votes "
-                      "and tells them"),
     "Bloodhound": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
                            summary="Every night: learns the total attacks three random players have made this game. "
                            "Token: choose one of the three.",
                            tokens={"scent": 2}, acts_at_night=True, tested=True,
                            notes="moderator lists each night's attackers with the attacks op and records a token use "
                            "with the track op; code draws the group, counts and tells them"),
-    "Scrutineer": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
-                           summary="Night: learn how many of a player and two random others voted Guilty in each of "
-                           "the Day's trials.",
-                           acts_at_night=True, tested=True,
-                           notes="moderator records the use with the scrutinize op (Astral); code draws the group, "
-                           "counts the Guilty votes and tells them"),
     "Cartographer": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Visit info",
                              summary="Every night: learns the sizes of the night's visit groups (visits linking "
                              "players either way). Token: learns the names in one player's group.",
@@ -129,12 +114,6 @@ ROLES: dict[str, RoleInfo] = {
                           tokens={"insomniac": 2}, acts_at_night=True, tested=True,
                           notes="moderator records the use with the stay_awake op; code draws the visitors from "
                           "record_visits and tells them at the end of the night"),
-    "Accountant": RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
-                           summary="Night: audit one player, learn their total token count.",
-                           acts_at_night=True,
-                           tested=True, notes="moderator records the audit with the count_tokens op; code tells the "
-                           "true total at the end of the night, after token changes (Magpie steals); Roleplayers "
-                           "show 0"),
     "Medic": RoleInfo(Alignment.GOOD, "Protective", False,
                       summary="Night: protect a player (Standard Defense; 1 token for Strong, 1 token to protect "
                       "yourself).",
@@ -180,11 +159,6 @@ ROLES: dict[str, RoleInfo] = {
                            summary="Token: prosecute a player, who goes straight to trial the next Day.",
                            tokens={"prosecutor": 2}, acts_at_night=True,
                            tested=True, notes="moderator records the prosecution; code runs the trial next day"),
-    "Philanthropist": RoleInfo(Alignment.GOOD, "Support", False,
-                               summary="Token: hand a player one token of their own role's kind.",
-                               tokens={"philanthropy": 2}, acts_at_night=True,
-                               tested=True, notes="moderator records the gift with the give_token op; "
-                               "code adds the token and tells the recipient"),
     "Party Animal": RoleInfo(Alignment.GOOD, "Support", False,
                              summary="Night: role-block one player. Immune to role-blocks.",
                              acts_at_night=True, tested=True),
@@ -206,26 +180,10 @@ ROLES: dict[str, RoleInfo] = {
                           tokens={"ritual": 2}, acts_at_night=True, tested=True,
                           notes="moderator resolves the guess; its night note says to announce a wrong guess with a "
                           "public tell at night, read out at dawn"),
-    "Puppeteer": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                          summary="Token: puppet a player and chat in their place for the next Day.",
-                          tokens={"puppet": 1}, acts_at_night=True,
-                          tested=True, notes="moderator records the puppet (any player; self does nothing); "
-                          "code swaps who chats next day"),
     "Fabricator": RoleInfo(Alignment.EVIL, "Yakuza", True,
                            summary="Night: frame a player as Evil to alignment checks; a token also forges their will.",
                            tokens={"fabricator": 1}, acts_at_night=True,
                            tested=True, notes="forged wills via set_last_will"),
-    "Clerk": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                      summary="Token: rig the next Day so anyone successfully nominated is executed.",
-                      tokens={"clerk": 1}, acts_at_night=True,
-                      tested=True, notes="moderator records the rig; code executes regardless of the vote"),
-    "Smuggler": RoleInfo(Alignment.EVIL, "Yakuza", True,
-                            summary="Token: swap two players for the night, so every action aimed at one lands on "
-                            "the other. Immune to role-blocks.",
-                            tokens={"swap": 2}, acts_at_night=True, unique=True,
-                            notes="code applies the swap to the submitted actions before the Katana tally and the "
-                            "moderator, and tells the Smuggler and both swapped players; kept untested (Kevin, "
-                            "Oct 10): only one live swap so far"),
     "Ballot Stuffer": RoleInfo(Alignment.EVIL, "Yakuza", True,
                                summary="Token: at a trial vote, may make that vote count twice.",
                                tokens={"ballot": 2},
@@ -330,6 +288,96 @@ RETIRED: dict[str, list[RetiredRole]] = {
                            rules="Appears: Evil to alignment checks (R19). Night: every night you visit a random "
                                  "player other than yourself, and you aren't told whom. A role-block stops the visit "
                                  "(R7).")],
+    # Kevin, Oct 14 2026: retired as rarely used or uninteresting (notes/design-review-2026-10-14.md).
+    "Surveyor": [RetiredRole(RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Role info",
+                         summary="Token: survey a player; learns one random role among them and their two neighbors.",
+                         tokens={"survey": 3}, acts_at_night=True, tested=True,
+                         notes="moderator records the use with the survey op; code picks the group and draws the role"),
+        until=74, icon="surveyor.svg", now=("Vanilla Villager", ()),
+        rules=('Tokens: 3 survey tokens. Night: may spend a token to survey one player other than yourself. The '
+              'group is that player plus their nearest neighbor on each side in the circle (R11) among the players '
+              'alive at the start of the night, skipping yourself and never counting anyone twice (so with only one '
+              'or two other players alive, the group is smaller). You are told who was in the group and the exact '
+              'role of one of them chosen at random, but not whose it is. Players who die that night can still be '
+              'chosen. This is an exact-role check (R19).'))],
+    "Juror": [RetiredRole(RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
+                      summary="Night: name two players, learn how often they voted the same way all game.",
+                      acts_at_night=True, tested=True,
+                      notes="moderator records the use with the jury op (Astral); code counts the shared votes "
+                      "and tells them"),
+        until=74, icon="juror.svg", now=("Vanilla Villager", ()),
+        rules=('Night: may name two different players other than yourself (dead players allowed; Astral Visit). You '
+              'learn how many times they voted the same way, over every Day so far, counted separately for trial '
+              'votes (Guilty/Innocent) and nomination votes (Yes/No), e.g. "the same way in 3 of 4 trial votes and '
+              '5 of 9 nomination votes". Only votes both of them cast count, and not votes on the nomination or '
+              'trial of either of them. A doubled vote (Ballot Stuffer) counts once. You learn only the totals, not '
+              'which votes they agreed on.'))],
+    "Scrutineer": [RetiredRole(RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
+                           summary="Night: learn how many of a player and two random others voted Guilty in each of "
+                           "the Day's trials.",
+                           acts_at_night=True, tested=True,
+                           notes="moderator records the use with the scrutinize op (Astral); code draws the group, "
+                           "counts the Guilty votes and tells them"),
+        until=74, icon="scrutineer.svg", now=("Vanilla Villager", ()),
+        rules=("Night: may scrutinize one player other than yourself who voted in the Day's trials (Astral Visit). "
+              'Code adds two random other players who voted in those trials (never you), and you learn the three '
+              'names and, for each trial of the Day just before this Night, how many of the three voted Guilty, '
+              'e.g. "2 in the trial of Erin; 0 in the trial of Frank". You don\'t learn which of them voted which '
+              'way. A doubled vote (Ballot Stuffer) counts once. If there was no trial that Day, you learn that.'))],
+    "Accountant": [RetiredRole(RoleInfo(Alignment.GOOD, "Investigative", False, subcategory="Vote and talk info",
+                           summary="Night: audit one player, learn their total token count.",
+                           acts_at_night=True,
+                           tested=True, notes="moderator records the audit with the count_tokens op; code tells the "
+                           "true total at the end of the night, after token changes (Magpie steals); Roleplayers "
+                           "show 0"),
+        until=74, icon="accountant.svg", now=("Vanilla Villager", ()),
+        rules=('Night: may audit one player. Learn how many tokens they have in total at the end of the night, after '
+              'any they spent that night and any a Magpie stole (token count, R19). You learn only the total, not '
+              'what kind of tokens they are. If their role changed at the end of this night, the role just before '
+              'the change counts.'))],
+    "Philanthropist": [RetiredRole(RoleInfo(Alignment.GOOD, "Support", False,
+                               summary="Token: hand a player one token of their own role's kind.",
+                               tokens={"philanthropy": 2}, acts_at_night=True,
+                               tested=True, notes="moderator records the gift with the give_token op; "
+                               "code adds the token and tells the recipient"),
+        until=74, icon="philanthropist.svg", now=("Vanilla Villager", ()),
+        rules=('Tokens: 2 philanthropy tokens. Night: may spend a token to hand another player one token of their '
+              "own role's kind (e.g. a medic token to a Medic; one kind chosen at random if their role has "
+              'several). They are told a Philanthropist handed them a token. If their role has no tokens, they are '
+              "told they threw it away because they have no use for it, so it doesn't count toward their tokens "
+              '(e.g. for the Accountant). You are not told which happened.'))],
+    "Puppeteer": [RetiredRole(RoleInfo(Alignment.EVIL, "Yakuza", True,
+                          summary="Token: puppet a player and chat in their place for the next Day.",
+                          tokens={"puppet": 1}, acts_at_night=True,
+                          tested=True, notes="moderator records the puppet (any player; self does nothing); "
+                          "code swaps who chats next day"),
+        until=74, icon="puppeteer.svg", now=("Grunt", ()),
+        rules=('Tokens: 1 puppet token. Night: may spend a token to puppet any player for the following Day '
+              '(puppeting yourself changes nothing). That Day, they are told they are being puppeted, and they '
+              "can't chat or see private messages; nobody else is told. You chat publicly and privately in their "
+              'place (including seeing their private messages) and can set their claim, which appears in the ledger '
+              'as theirs; that is all you can do for them. They still nominate, vote and so on as normal. It lasts '
+              'one Day.'))],
+    "Clerk": [RetiredRole(RoleInfo(Alignment.EVIL, "Yakuza", True,
+                      summary="Token: rig the next Day so anyone successfully nominated is executed.",
+                      tokens={"clerk": 1}, acts_at_night=True,
+                      tested=True, notes="moderator records the rig; code executes regardless of the vote"),
+        until=74, icon="clerk.svg", now=("Grunt", ()),
+        rules=("Tokens: 1 clerk token. Night: may spend a token to rig the next Day's votes. On a rigged Day, anyone "
+              'successfully nominated is executed. The Guilty/Innocent vote still happens; if a majority votes '
+              'Guilty, the rig is not announced, otherwise it is announced publicly.'))],
+    "Smuggler": [RetiredRole(RoleInfo(Alignment.EVIL, "Yakuza", True,
+                            summary="Token: swap two players for the night, so every action aimed at one lands on "
+                            "the other. Immune to role-blocks.",
+                            tokens={"swap": 2}, acts_at_night=True, unique=True,
+                            notes="code applies the swap to the submitted actions before the Katana tally and the "
+                            "moderator, and tells the Smuggler and both swapped players; kept untested (Kevin, "
+                            "Oct 10): only one live swap so far"),
+        until=74, icon="smuggler.svg", now=("Grunt", ()),
+        rules=('Immune to role-blocks. Tokens: 2 swap tokens. Night: may spend a token to swap two different living '
+              'players (yourself included) for the night. You visit both of them. Both swapped players are '
+              'told they were swapped, but not with whom. (Swaps: every action that night aimed at one of them lands '
+              'on the other, and its result names the player its user chose.)'))],
 }
 
 

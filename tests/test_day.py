@@ -20,14 +20,6 @@ def test_guilty_majority_executes(game_factory):
     assert not game.player("Bob").alive
 
 
-def test_clerk_rig_executes_despite_innocent_verdict(game_factory):
-    game, players = game_factory(VILLAGE5[:4] + ["Clerk"])
-    assert run_trial(game, players, game.player("Alice"), "Bob", rnd=1) == "innocent"
-    game.rigged_day = game.day
-    assert run_trial(game, players, game.player("Alice"), "Carol", rnd=1) == "executed"
-    assert not game.player("Carol").alive
-
-
 def test_prosecuted_player_goes_straight_to_trial(game_factory):
     game, players = game_factory(TOWN4_GRUNT, ScriptedClient(votes(guilty_for={"Erin"})))
     game.prosecutions.append("Erin")
@@ -113,30 +105,6 @@ def test_prosecutions_count_toward_the_trial_limit(game_factory):
     run_day(game, players)
     trials = [v for v in game.vote_record if "trial of" in v]
     assert len(trials) == MAX_TRIALS_PER_DAY and "trial of Erin" in trials[0]
-
-
-def test_puppeteer_reads_and_writes_the_puppets_private_messages(game_factory):
-    sent = set()
-
-    def decide(name, task, schema):
-        if "private_messages" not in schema["properties"]:
-            return None
-        key = ("Erin-as-Bob" if "You are puppeting Bob" in task else name)
-        if key in sent or key not in ("Alice", "Erin-as-Bob"):
-            return None
-        sent.add(key)
-        return {"private_messages": [{"to": "Bob" if key == "Alice" else "Carol", "text": f"from {key}"}],
-                "claim": f"claim by {key}"}
-    game, players = game_factory(TOWN4_GRUNT[:3] + ["Grunt", "Puppeteer"], ScriptedClient(decide))
-    game.puppets_next = {"Bob": "Erin"}
-    run_day(game, players)
-    pms = {e.fields["message"]: e.visible_to for e in game.events if e.cat == "pm"}
-    assert pms["from Alice"] == {"Alice", "Erin"}  # sent to Bob, read by his Puppeteer
-    assert pms["from Erin-as-Bob"] == {"Erin", "Carol"}  # Bob's message, written by Erin
-    # Bob's claim, set by Erin, is marked as hers in Bob's own history, like the messages she writes as him
-    claim = next(e for e in game.events if e.cat == "claim" and e.fields["speaker"] == "Bob")
-    assert claim.fields["puppeteer"] == "Erin" and "[Claim] Bob: claim by Erin-as-Bob [written by your Puppeteer" \
-        in game.history_for("Bob")
 
 
 def test_turns_go_around_the_circle_in_the_same_order_every_round(game_factory):

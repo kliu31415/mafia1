@@ -6,8 +6,8 @@ import re
 from typing import Any
 
 from llm import Model
-from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, day_turn_schema, name_enum, nullable,
-                     obj, truncate_words, word_count)
+from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, day_turn_schema, obj, truncate_words,
+                     word_count)
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import RoleLogic, logic
 from roles.base import DayAction
@@ -165,14 +165,6 @@ def play_day(game: Game, players: Players) -> None:
     game.run_dawn_hooks()
     if game.check_winner() is not None:
         return
-    game.puppets, game.puppets_next = game.puppets_next, {}
-    for puppet, puppeteer in list(game.puppets.items()):
-        # A Puppeteer who died overnight can't act any more, so the puppeting lapses (rules R21).
-        if game.player(puppet).alive and game.player(puppeteer).alive:
-            game.emit("You are being puppeted today: you can't chat or see private messages, but you can "
-                      "still nominate and vote.", [puppet])
-        else:
-            del game.puppets[puppet]
 
     if not talk_only(game):  # the first will comes with the Night 1 action (R13)
         write_wills(game, players)
@@ -283,9 +275,9 @@ def planned_messages(out: dict) -> list[tuple[str | None, str]]:
     return msgs
 
 
-def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: bool, nomination_fee: float,
-              free_words: int, trial: bool) -> str:
-    """What a speaking turn asks (chat_turn's arguments); writer is the Puppeteer when p is puppeted."""
+def turn_task(game: Game, p: Player, rnd: int, can_nominate: bool, nomination_fee: float, free_words: int,
+              trial: bool) -> str:
+    """What a speaking turn asks (chat_turn's arguments)."""
     return (f"It is Day {game.day}, round {rnd} of at most {day_rounds(game)}. It's your turn. Your speaking "
             f"budget is {p.speaking_budget:.2f}; you earn {BUDGET_PER_ROUND * budget_factor(p):g} per round, "
             f"carrying over up to {BUDGET_MAX * budget_factor(p):g}; at the start of each day, {CARRY_SHARE:.0%} of "
@@ -303,8 +295,8 @@ def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: boo
             + (f"Your public message this turn is free up to {free_words} words; beyond that you "
                "pay only for the extra length.\n" if free_words else "")
             + (f"You may also replace your last will (free, max {LAST_WILL_WORDS} words; leave it \"\" to keep it), "
-               "e.g. to match a claim you make today. It's shown to everyone if you die.\n" if writer is p else "")
-            + (f"You may also set {'your' if writer is p else p.name + chr(39) + 's'} claim (free, max "
+               "e.g. to match a claim you make today. It's shown to everyone if you die.\n")
+            + (f"You may also set your claim (free, max "
                f"{CLAIM_WORDS} words; leave it \"\" to keep it): a concise note of what you want everyone to know "
                "about you: your claimed role, your night visits and results, and your votes in key trials, e.g. "
                "'Sheriff. N1: checked Bob, Not Evil. N2: checked Dave, Evil. D3: Guilty on Dave'. A new or "
@@ -316,11 +308,11 @@ def turn_task(game: Game, p: Player, writer: Player, rnd: int, can_nominate: boo
                if can_nominate else ""))
 
 
-def record_claim(game: Game, p: Player, claim: str, puppeted: dict[str, Any]) -> None:
+def record_claim(game: Game, p: Player, claim: str) -> None:
     """A new or changed claim goes in the public ledger (Game.claim_record) and the chat history."""
     if word_count(claim) > CLAIM_WORDS:  # said, so the writer can shorten it (game_20261011_225511_1253)
         game.emit(f"(Program note: your claim was over {CLAIM_WORDS} words, so the ledger shows only its first "
-                  f"{CLAIM_WORDS}, ending in [truncated].)", [puppeted.get("puppeteer", p.name)])
+                  f"{CLAIM_WORDS}, ending in [truncated].)", [p.name])
     claim = cap_words(claim.strip(), CLAIM_WORDS)
     # The ledger already names the player: "Bob: Bob: Lookout" (game_20261011_055615_1112) drops the repeat.
     while m := re.match(rf"{re.escape(p.name)}\s*[:,]\s*(?=\w)", claim):
@@ -329,7 +321,7 @@ def record_claim(game: Game, p: Player, claim: str, puppeted: dict[str, Any]) ->
     if claims and same_claim(claims[-1][1], claim):  # e.g. only a final period differs
         claim = claims[-1][1]
     if not claims or claims[-1][1] != claim:  # shown in the chat history, so it's attributable like a message
-        game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim, **puppeted)
+        game.emit(f"[Claim] {p.name}: {claim}", cat=CLAIM, speaker=p.name, claim=claim)
     if claims and claims[-1][0] == game.day:
         claims[-1] = (game.day, claim)  # one entry per day: a same-day change replaces it
     elif not claims or claims[-1][1] != claim:
@@ -368,17 +360,16 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         return fee + sum(cost_of(i, to, min(word_count(t), MAX_MESSAGE_WORDS))
                          for i, (to, t) in enumerate(planned_messages(out)))
 
-    writer = game.player(game.chat_controller(p.name))
     step = "trial_turn" if trial else "day_turn"
-    task = turn_task(game, p, writer, rnd, can_nominate, nomination_fee, free_words, trial) + extra
+    task = turn_task(game, p, rnd, can_nominate, nomination_fee, free_words, trial) + extra
     fallback: dict[str, Any] = {"public_message": None, "private_messages": [], "nominate": None}
-    # Rules R25: a day action only on a player's own speaking turn, not a trial turn or while puppeted.
-    action = logic(p.role).day_action(game, p) if writer is p and not trial else None
+    # Rules R25: a day action only on a player's own speaking turn, not a trial turn.
+    action = logic(p.role).day_action(game, p) if not trial else None
     if action:
         task += action.text + "\n"
         fallback |= dict.fromkeys(action.fields)
-    # Rules R24: a hidden private message (Confidant) only on a player's own turn, not while puppeted.
-    hider = next((t for t in p.traits if trait_logic(t).can_hide_pm(game, p)), None) if writer is p else None
+    # Rules R24: a hidden private message (Confidant) only on a player's own turn.
+    hider = next((t for t in p.traits if trait_logic(t).can_hide_pm(game, p)), None)
     if hider:
         task += ("You may also send one of this turn's private messages hidden (your trait, once per game): set "
                  "hidden_pm to its recipient, or leave it null. Nobody else is told that message was sent, and it "
@@ -388,53 +379,30 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
           "private_factor": PRIVATE_COST_FACTOR, "length_factor": length_factor(p), "free_words": free_words,
           "nomination_fee": nomination_fee if can_nominate else None, "max_words": MAX_MESSAGE_WORDS,
           "will_words": LAST_WILL_WORDS, "claim_words": CLAIM_WORDS}
-    if writer is p:
-        schema = day_turn_schema(game, p.name, can_nominate, action=action.fields if action else None,
-                                 hidden_pm=bool(hider))
-        out = players.ask(p, task, schema, fallback, step=step, rnd=rnd, ui=ui)
-        out = drop_own_name(out, p.name, writer.model)
-    else:
-        # Puppeted: the Puppeteer writes p's messages (on p's budget); p still decides any nomination.
-        task = (f"You are puppeting {p.name} today. This is {p.name}'s turn: the messages you write are "
-                f"sent as {p.name}, and the budget below is {p.name}'s.\n" + task)
-        schema = day_turn_schema(game, p.name, can_nominate=False, own_turn=False)
-        out = players.ask(writer, task, schema, fallback, step=step, rnd=rnd, ui={**ui, "nomination_fee": None})
-        out = drop_own_name(out, p.name, writer.model)
-        if can_nominate:
-            nominate_task = (f"It is Day {game.day}, round {rnd}, and your turn. You are puppeted, so you "
-                             "can't chat, but you may nominate a player for trial (or null). Nominating costs "
-                             f"{nomination_fee:.2f} from your budget ({p.speaking_budget:.2f}).")
-            nominate_schema = obj(nominate=nullable(name_enum(game.alive_names())))
-            out["nominate"] = players.ask(p, nominate_task, nominate_schema, {"nominate": None},
-                                         step="puppet_nomination", rnd=rnd)["nominate"]
-    # A puppet's own nomination is private: the Puppeteer revising the messages neither sees nor pays for it.
-    planned = total_cost(out if writer is p else {**out, "nominate": None})
+    schema = day_turn_schema(game, p.name, can_nominate, action=action.fields if action else None,
+                             hidden_pm=bool(hider))
+    out = players.ask(p, task, schema, fallback, step=step, rnd=rnd, ui=ui)
+    out = drop_own_name(out, p.name, p.model)
+    planned = total_cost(out)
     if planned > available() + 1e-9:
-        nominating = (f" plus a nomination of {out['nominate']}" if writer is p and can_nominate
-                      and out.get("nominate") else "")
+        nominating = f" plus a nomination of {out['nominate']}" if can_nominate and out.get("nominate") else ""
         warning = (f"\n\nWARNING: your planned messages {json.dumps(planned_messages(out))}{nominating} "
                    f"cost {planned:.2f}, but your budget is {available():.2f}. Revise them to fit. "
                    "If you still can't afford a nomination it won't happen, and messages over budget will "
                    "be truncated, starting with your last message.")
         game.log.write("budget_warning", player=p.name, planned=planned, budget=available())
-        nominee = out.get("nominate")
         # If the revision fails, the first answer stands (and is cut to fit) rather than losing the turn.
-        out = players.ask(writer, task + warning, schema, out, step="budget_revision", rnd=rnd, ui=ui)
-        out = drop_own_name(out, p.name, writer.model)
-        if writer is not p:
-            out["nominate"] = nominee
+        out = players.ask(p, task + warning, schema, out, step="budget_revision", rnd=rnd, ui=ui)
+        out = drop_own_name(out, p.name, p.model)
 
-    if writer is p and isinstance(will := out.get("last_will"), str) and not blank(will):
+    if isinstance(will := out.get("last_will"), str) and not blank(will):
         p.last_will = cap_words(will, LAST_WILL_WORDS)
         if p.last_will != will:  # Sol's wills were cut 40 times unnoticed (game_20261009_152409_117630)
             game.emit(f"(Program note: your last will was over {LAST_WILL_WORDS} words, so it was cut to its "
                       f"first {LAST_WILL_WORDS}.)", [p.name])
-    # The puppet sees these marked as their Puppeteer's in their own history (Game.history_split), as do log views.
-    puppeted: dict[str, Any] = {} if writer is p else {"puppeteer": writer.name}
     # A claim with no letters or digits (Sol wrote "/" for "no change") or a written-out null keeps the old one.
-    # (A Puppeteer may set the puppet's.)
     if isinstance(claim := out.get("claim"), str) and any(ch.isalnum() for ch in claim) and not blank(claim):
-        record_claim(game, p, claim, puppeted)
+        record_claim(game, p, claim)
     nominee = out.get("nominate") if can_nominate else None
     if nominee:
         if nomination_fee <= p.speaking_budget + 1e-9:
@@ -453,32 +421,28 @@ def chat_turn(game: Game, players: Players, p: Player, rnd: int, can_nominate: b
         words = min(word_count(text), MAX_MESSAGE_WORDS)
         while words > 0 and cost_of(i, to, words) > available() + 1e-9:
             words -= 1
-        where = ("Your " if writer is p else f"{p.name}'s ") + ("public message" if to is None
-                                                               else f"private message to {to}")
+        where = "Your " + ("public message" if to is None else f"private message to {to}")
         if words == 0 or (words < word_count(text) and words < MIN_TRUNCATED_WORDS):
             game.log.write("message_dropped", player=p.name, to=to, words=word_count(text))
-            game.emit(f"{where} was not sent: over budget.", [writer.name])
+            game.emit(f"{where} was not sent: over budget.", [p.name])
             continue
         if words < word_count(text):
             if words < min(word_count(text), MAX_MESSAGE_WORDS):
-                game.emit(f"{where} was cut to {words} words to fit the budget.", [writer.name])
+                game.emit(f"{where} was cut to {words} words to fit the budget.", [p.name])
             text = truncate_words(text, words)
         spend(cost_of(i, to, words))
         if to is None:
             public = True
-            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text, **puppeted)
+            game.emit(f"{p.name} (public): {text}", cat=CHAT, speaker=p.name, message=text)
         else:
-            # A puppeted player's private chat is read and written by their Puppeteer instead. Listeners
-            # (Wiretap, Eavesdropper) read it under the puppet's name, unaware of the puppeting.
-            readers = [writer.name, game.chat_controller(to)] + game.pm_listeners(p.name, to)
+            readers = [p.name, to] + game.pm_listeners(p.name, to)
             if hider and to == hide_to:  # the first message to them this turn; nobody else is told it was sent
                 hide_to = None
                 game.emit(f"{p.name} -> {to} (private, hidden: nobody else was told it was sent): {text}", readers,
                           cat=PM, speaker=p.name, to=to, message=text, hidden=True)
                 trait_logic(hider).hid_pm(game, p, to)
                 continue
-            game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text,
-                      **puppeted)
+            game.emit(f"{p.name} -> {to} (private): {text}", readers, cat=PM, speaker=p.name, to=to, message=text)
             pair = f"{p.name} -> {to}"
             counts = game.pm_record.setdefault(game.day, {})
             counts[pair] = counts.get(pair, 0) + 1
@@ -561,8 +525,7 @@ def log_vote(game: Game, stage: str, nominator: str, nominee: str, yes: list[str
 def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd: int,
               prosecuted: bool = False) -> str:
     """Defense, discussion, then a simultaneous Guilty/Innocent vote. Returns "innocent" or "executed".
-    If a Clerk rigged today's vote, the accused is executed regardless; the rigging is announced
-    only if the vote alone wouldn't have executed them. A prosecuted player's nominator is random."""
+    A prosecuted player's nominator is random."""
     accused = game.player(nominee)
     chat_turn(game, players, accused, rnd, can_nominate=False, free_words=FREE_DEFENSE_WORDS, trial=True,
               extra="You are on trial. Defend yourself; you speak first. " + TRIAL_VOTE_NOTE)
@@ -623,8 +586,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
         tally += (f"; there are more votes than the {len(voters)} voters because a role manipulated the count on "
                   "purpose (rules R4), not because of an error")
     voted_guilty = majority(guilty_votes, total_votes)
-    rigged = not voted_guilty and game.rigged_day == game.day
-    verdict = "executed" if voted_guilty else "executed (Clerk-rigged)" if rigged else "Innocent"
+    verdict = "executed" if voted_guilty else "Innocent"
     log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted,
              weights={n: w for n, w in weight.items() if w != 1}, reversed_voters=reversed_voters,
              fixed={n: t for n, (t, _) in fixed.items()})
@@ -633,12 +595,8 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
         + (f"{guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (secret vote)" if secret else
            f"Guilty - {', '.join(guilty) or 'nobody'}; Innocent - {', '.join(innocent) or 'nobody'}")
         + f"; {verdict}")
-    if voted_guilty or game.rigged_day == game.day:
-        # One line for a rigged hanging: "executed (3 Guilty of 7; 4 needed)" read as a contradiction
-        # (game_20261009_121338_61703).
-        game.emit(f"{nominee} is executed by hanging ({tally})." if voted_guilty else
-                  f"The verdict was Innocent ({tally}), but the vote was rigged by a Clerk, so {nominee} is "
-                  "executed by hanging anyway.", cat=DEATH)
+    if voted_guilty:
+        game.emit(f"{nominee} is executed by hanging ({tally}).", cat=DEATH)
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)
         for t in TRAIT_LOGIC.values():  # rules R24, e.g. a Remorseful voter's death
             t.after_hanging(game, game.player(nominee), {v.name: o["vote"] for v, o in zip(voters, outs)})

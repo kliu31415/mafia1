@@ -132,7 +132,10 @@ from records import caller_of, read_records, redact, safe_print
 # 73: setup players may have trait_details ({trait: text}, traits.TraitLogic.log_detail): what a trait was dealt with,
 #     e.g. {"Disguised": "as Sheriff"}, {"Bonded": "to Bob"}; older logs have it only in the "disguise", "bond" and
 #     "rivals" records (gamelogs.trait_details reads both)
-LOG_VERSION = 73
+# 74: the Juror, Scrutineer, Accountant, Surveyor, Philanthropist, Puppeteer, Clerk and Smuggler are retired
+#     (roles.RETIRED), and with them swaps (night_actions' chosen_* fields), puppeting (chat and pm events' puppeteer
+#     field, "puppeting_lapsed" records, the "puppet_nomination" step) and rigged trials ("executed (Clerk-rigged)")
+LOG_VERSION = 74
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

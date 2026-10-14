@@ -92,19 +92,16 @@ def name_enum(names: list[str]) -> dict:
     return {"type": "string", "enum": names}
 
 
-def day_turn_schema(game: Game, me: str, can_nominate: bool, own_turn: bool = True,
-                    action: dict[str, dict] | None = None, hidden_pm: bool = False) -> dict:
-    """own_turn: false when a Puppeteer writes this turn. They can set the puppet's claim, since it's
-    public chat in effect (and a claim that never changes on puppeted days would expose the puppeting),
-    but not the puppet's will. action: a day action's fields (roles.base.DayAction), if this turn offers one."""
+def day_turn_schema(game: Game, me: str, can_nominate: bool, action: dict[str, dict] | None = None,
+                    hidden_pm: bool = False) -> dict:
+    """action: a day action's fields (roles.base.DayAction), if this turn offers one."""
     others = [n for n in game.alive_names() if n != me]
     props = {
         "public_message": nullable(STR),
         "private_messages": {"type": "array", "items": obj(to=name_enum(others), text=STR)},
         "claim": nullable(STR),  # recorded in the public ledger's claims list (Game.claim_record)
+        "last_will": nullable(STR),  # so a claim made today can be in the will by tonight
     }
-    if own_turn:
-        props["last_will"] = nullable(STR)  # so a claim made today can be in the will by tonight
     if can_nominate:
         props["nominate"] = nullable(name_enum(game.alive_names()))
     if hidden_pm:  # the Confidant trait (rules R24): the recipient of this turn's hidden private message
@@ -119,7 +116,7 @@ ANSWER_SCHEMA = obj(answer=STR)
 
 def night_action_schema(game: Game, p: Player) -> dict:
     """One generic shape for every role; the moderator interprets it using the rules."""
-    names = [q.name for q in game.players] if logic(p.role).targets_anyone else game.alive_names()
+    names = game.alive_names()
     action = logic(p.role).action
     dead = dead_before_tonight(game) if action and action.target == "dead" else None  # e.g. the Coroner's
     props = {
@@ -263,15 +260,6 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
     return [system, {"role": "user", "content": user}]
 
 
-def as_chosen(a: dict) -> dict:
-    """A night action as its user chose it: a swap (rules R23) moves `target` and keeps the choice in
-    `chosen_target`, and showing the moved one would reveal the swap."""
-    out = {k: a.get(f"chosen_{k}", v) for k, v in a.items() if not k.startswith("chosen_")}
-    if out.get("trait_actions"):
-        out["trait_actions"] = [as_chosen(t) for t in out["trait_actions"]]
-    return out
-
-
 def night_history(game: Game, p: Player) -> str:
     """p's submitted action each night and the moderator's private results to p, in one place (players
     lost track of them in long transcripts, and couldn't tell when nothing had been submitted)."""
@@ -284,7 +272,7 @@ def night_history(game: Game, p: Player) -> str:
                     "told its target, and a role-block would have stopped it")
         auto = [t["trait"] for t in a.get("trait_actions") or [] if t.get("automatic")]
         own = {**a, "trait_actions": [t for t in a.get("trait_actions") or [] if not t.get("automatic")]}
-        return (f"- Night {night}: you submitted {describe_action(as_chosen(own))}"
+        return (f"- Night {night}: you submitted {describe_action(own)}"
                 + "".join(f"; your {t} visit to a random player was due (you aren't told whom, and a role-block "
                           "would have stopped it)" for t in auto))
     lines = [line(night, actions[p.name]) for night, actions in game.night_actions.items() if p.name in actions]
@@ -322,7 +310,7 @@ def with_common_fields(schema: dict, feedback_field: bool, text: dict | None = N
 
 
 # The kinds of player decisions, logged as "step" on player_call, player_error and player_fallback records.
-STEPS = ("will", "day_turn", "trial_turn", "budget_revision", "puppet_nomination", "nomination_vote", "trial_vote",
+STEPS = ("will", "day_turn", "trial_turn", "budget_revision", "nomination_vote", "trial_vote",
          "yakuza_chat", "night_action", "katana_revote", "ask_player", "debrief", "lessons")
 
 

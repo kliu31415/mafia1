@@ -384,8 +384,6 @@ QUIZ: list[tuple[str, str]] = [
      "The Medic (a Strong Attack). The Oracle's guess is an Astral Visit, not a visit, so the Oracle isn't attacked."),
     ("When a player dies at night, what is revealed publicly?",
      "Their cause of death and last will, not their role or alignment."),
-    ("A Smuggler swaps A and B for the night, and a Sheriff investigates A. What does the Sheriff learn?",
-     "B's alignment, reported as A's (the result doesn't show the swap)."),
     ("The Yakuza holding the Katana is role-blocked on a night the Yakuza chose to attack. Does the attack happen?",
      "No. The Katana attack is the holder's action, so the block stops it."),
     ("Two Yakuza are alive and vote for different Katana targets. What happens?",

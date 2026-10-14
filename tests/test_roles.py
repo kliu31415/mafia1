@@ -83,43 +83,19 @@ def test_an_executioner_whose_target_leaves_becomes_a_jester(game_factory):
     assert any("Carol is lying." in e.text for e in game.events)  # the leaving Executioner's will
 
 
-def test_puppeteer_writes_the_puppets_messages(game_factory):
-    def decide(name, task, schema):
-        if name == "Erin" and "You are puppeting Bob" in task:
-            assert "last_will" not in schema["properties"]  # the puppet's will stays the puppet's
-            return {"public_message": "I am definitely Bob.", "claim": "Sheriff. N1: Carol Evil"}
-        return None
-    client = ScriptedClient(decide)
-    game, players = game_factory(VILLAGE5[:4] + ["Puppeteer"], client)
-    game.puppets_next = {"Bob": "Erin"}
-    run_day(game, players)
-    chat = {(e.fields["speaker"], e.fields["message"]) for e in game.events if e.cat == "chat"}
-    assert chat == {("Bob", "I am definitely Bob.")}
-    assert not any(name == "Bob" and "public_message" in task for name, task in client.asked)
-    # The claim is public chat in effect, so the Puppeteer sets it too; it shows as Bob's.
-    assert game.claim_record == {"Bob": [(1, "Sheriff. N1: Carol Evil")]}
-    # Only the puppet (who is told about the puppeting) sees the message marked as the Puppeteer's.
-    mark = "[written by your Puppeteer, not you]"
-    assert any(mark in line for line in game.history_split("Bob")[1])
-    assert not any(mark in line for name in ("Alice", "Erin") for line in game.history_split(name)[1])
-
-
 def test_wiretap_reads_every_pm_but_a_dead_one_stops(game_factory):
     def decide(name, task, schema):
-        if name == "Bob" and "public_message" in task:  # Bob is puppeted, so Erin writes as Bob
-            return None
-        if name == "Erin" and "You are puppeting Bob" in task:
-            return {"private_messages": [{"to": "Alice", "text": "Puppet secret."}]}
+        if name == "Bob" and "private_messages" in schema["properties"]:
+            return {"private_messages": [{"to": "Alice", "text": "Bob secret."}]}
         if name == "Carol" and "private_messages" in schema["properties"]:
             return {"private_messages": [{"to": "Alice", "text": "Carol secret."}]}
         return None
-    game, players = game_factory(VILLAGE5[:3] + ["Wiretap", "Puppeteer", "Grunt"], ScriptedClient(decide))
-    game.puppets_next = {"Bob": "Erin"}
+    game, players = game_factory(VILLAGE5[:3] + ["Wiretap", "Grunt", "Grunt"], ScriptedClient(decide))
     run_day(game, players)
     pms = [e for e in game.events if e.cat == "pm"]
-    assert {e.fields["message"] for e in pms} == {"Puppet secret.", "Carol secret."}
+    assert {e.fields["message"] for e in pms} == {"Bob secret.", "Carol secret."}
     assert all(e.visible("Dave") and not e.visible("Frank") for e in pms)  # Frank is a Yakuza, not a Wiretap
-    assert "Bob -> Alice (private): Puppet secret." in game.history_for("Dave")  # shown as the puppet's
+    assert "Bob -> Alice (private): Bob secret." in game.history_for("Dave")
     assert "Carol sent Alice a private message." not in game.history_for("Dave")  # no duplicate notice
 
     game.player("Dave").alive = False
@@ -153,47 +129,6 @@ def test_eavesdropper_reads_its_targets_pms_for_one_day(game_factory):
     assert {e.fields["message"] for e in game.events if e.cat == "pm" and e.visible("Alice")} == heard
 
 
-def test_an_eavesdropper_moved_by_a_swap_listens_to_the_other_player_and_is_told(game_factory):
-    # rules R23 (Kevin, Oct 11 2026): the listening follows the player it landed on, and the user is told why
-    game, players = game_factory(["Eavesdropper", "Vanilla Villager", "Vanilla Villager", "Grunt", "Smuggler"])
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}
-    apply_ops(game, players, {"op": "eavesdrop", "player": "Carol", "by": "Alice"})  # Alice chose Bob
-    game.phase = "day"
-    game.day += 1
-    game.run_dawn_hooks()
-    assert any("A swap moved your eavesdropping from Bob to Carol" in t for t in told(game, "Alice"))
-    assert "You are eavesdropping on Carol today" in told(game, "Alice")[-1]
-    assert logic("Eavesdropper").hears_pm(game, game.player("Alice"), "Carol", "Dave")
-
-
-def test_a_puppeteer_moved_by_a_swap_puppets_the_other_player_and_is_told(game_factory):
-    # rules R23: like the Eavesdropper's listening, the puppeting follows the player it landed on, and its user is told
-    game, players = game_factory(["Puppeteer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Smuggler"])
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}
-    apply_ops(game, players, {"op": "puppet", "player": "Carol", "by": "Alice"})  # Alice chose Bob
-    assert game.puppets_next == {"Carol": "Alice"}
-    game.phase = "day"
-    game.day += 1
-    game.run_dawn_hooks()
-    notice = "A swap moved your puppeting from Bob to Carol last night (rules R23)."
-    assert any(t.endswith(notice) for t in told(game, "Alice"))
-    assert not any("swap moved" in e.text for e in game.events if e.visible_to != frozenset({"Alice"}))
-
-
-def test_a_fixer_moved_by_a_swap_is_not_told(game_factory):
-    # rules R23 and Fixer: nobody is told about a fix, so not about a swap moving it either
-    game, players = game_factory(["Fixer", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Smuggler"])
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}
-    apply_ops(game, players, {"op": "fix", "player": "Carol", "by": "Alice"})
-    game.phase = "day"
-    game.day += 1
-    game.run_dawn_hooks()
-    assert game.trial_vote_reversed(game.player("Carol")) and not told(game, "Alice")
-
-
 def test_archivist_sees_one_role_per_other_player_three_quarters_real_once(game_factory):
     game, players = game_factory(["Archivist", "Roleplayer", "Vanilla Villager", "Vanilla Villager", "Grunt",
                                   "Jester", "Sheriff", "Medic", "Pharmacist"])
@@ -221,9 +156,9 @@ def test_archivist_fakes_are_any_role_but_never_a_second_unique_one(game_factory
     import random
     from collections import Counter
     from roles.archivist import archive_roles
-    game, _ = game_factory(["Archivist", "Vulture", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester",
+    game, _ = game_factory(["Archivist", "Serial Killer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester",
                             "Sheriff", "Medic", "Pharmacist"])
-    pool = Counter(["Vulture", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester", "Sheriff", "Medic",
+    pool = Counter(["Serial Killer", "Vanilla Villager", "Vanilla Villager", "Grunt", "Jester", "Sheriff", "Medic",
                     "Pharmacist"])
     game.phase = "night"
     unique = {r for r, info in ROLES.items() if info.unique}
@@ -249,7 +184,7 @@ def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
     for seed in range(40):
         game.rng = random.Random(seed)
         logic("Roleplayer").setup(game, game.player("Alice"))
-        assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist", "Surveyor")
+        assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist")
 
 
 def test_vulture_wins_alone_at_dawn_once_few_enough_are_left(game_factory):
@@ -325,26 +260,6 @@ def test_ballot_stuffer_chooses_at_each_trial_vote_whether_to_double_it(game_fac
     assert not any("act" in fields for _, _, fields in tasks)  # no tokens left: a plain vote
 
 
-def test_surveyor_group_skips_itself_and_shrinks_in_small_games(game_factory):
-    from roles.base import neighbor_group
-    game, players = game_factory(["Surveyor", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
-    game.phase = "night"
-    assert neighbor_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]  # skips Alice, wraps around
-    game.kill("Carol", "Katana")  # died tonight: still in the group (alive at the start of the night)
-    assert neighbor_group(game, "Alice", "Bob") == ["Frank", "Bob", "Carol"]
-    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    mod.dispatch("apply_changes", {"changes": [{"op": "survey", "player": "Bob", "by": "Alice"}]})
-    result = next(e for e in game.events if e.cat == "result")
-    assert result.visible_to == {"Alice"} and "You surveyed Frank, Bob and Carol." in result.text
-    assert any(role in result.text for role in ("Jester", "Vanilla Villager", "Medic"))
-    assert game.player("Alice").tokens["survey"] == 2
-    for name in ["Carol", "Dave", "Erin"]:
-        game.player(name).alive, game.player(name).death = False, None  # died on earlier days
-    assert neighbor_group(game, "Alice", "Bob") == ["Frank", "Bob"]  # two others alive
-    game.player("Frank").alive, game.player("Frank").death = False, None
-    assert neighbor_group(game, "Alice", "Bob") == ["Bob"]
-
-
 def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_factory):
     game, players = game_factory(["Diviner", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
     game.phase = "night"
@@ -362,24 +277,6 @@ def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_fact
         game.player(name).alive, game.player(name).death = False, None  # died on earlier days
     mod.dispatch("apply_changes", {"changes": [{"op": "divine", "player": "Bob", "by": "Alice"}]})
     assert "the group was Frank and Bob" in [e for e in game.events if e.cat == "result"][-1].text
-
-
-def test_philanthropist_hands_a_token_of_the_recipients_kind(game_factory):
-    game, players = game_factory(["Philanthropist", "Medic", "Vanilla Villager", "Grunt"])
-    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    game.phase = "night"
-    mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Bob", "by": "Alice"}]})
-    with pytest.raises(ValueError, match="already has a give_token op in this batch"):  # one action a night
-        mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Carol", "by": "Alice"}] * 2})
-    game.day += 1
-    mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Carol", "by": "Alice"}]})
-    assert game.player("Bob").tokens == {"medic": 3} and game.player("Carol").tokens == {}
-    assert game.player("Alice").tokens["philanthropy"] == 0
-    results = [e for e in game.events if e.cat == "result"]
-    assert [sorted(e.visible_to) for e in results] == [["Bob"], ["Carol"]]  # the Philanthropist learns nothing
-    assert "threw it away" in results[1].text
-    with pytest.raises(ValueError, match="no philanthropy token"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "give_token", "player": "Bob", "by": "Alice"}]})
 
 
 def test_katana_passes_when_its_holder_dies_by_day(game_factory):
@@ -436,16 +333,17 @@ def test_moderator_night_notes_cover_roles_in_the_game(game_factory):
 
 
 def test_role_ops_are_offered_only_for_roles_in_the_game(game_factory):
-    game, players = game_factory(["Clerk", "Vanilla Villager", "Vanilla Villager"])
+    game, players = game_factory(["Prosecutor", "Vanilla Villager", "Vanilla Villager"])
+    game.player("Alice").tokens["prosecutor"] = 1
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
-    assert game.rigged_day == game.day + 1 and game.player("Alice").tokens["clerk"] == 0
-    with pytest.raises(ValueError, match="no clerk token"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
+    mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "by": "Alice", "player": "Bob"}]})
+    assert game.prosecutions == ["Bob"] and game.player("Alice").tokens["prosecutor"] == 0
+    with pytest.raises(ValueError, match="no prosecutor token"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "by": "Alice", "player": "Bob"}]})
     with pytest.raises(ValueError, match="op must be one of"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "player": "Bob"}]})
+        mod.dispatch("apply_changes", {"changes": [{"op": "census", "by": "Bob", "player": "Carol"}]})
     description = next(t for t in mod.tools if t["function"]["name"] == "apply_changes")["function"]["description"]
-    assert "rig_vote" in description and "prosecute" not in description
+    assert "prosecute" in description and "census" not in description
 
 
 def test_every_role_file_is_registered():
@@ -459,8 +357,8 @@ def test_every_role_file_is_registered():
 
 
 def test_op_names_are_unique_across_roles():
-    """The moderator routes an op by its name alone, so two roles with one name (the Auditor's and Accountant's
-    'audit') send one role's ops to the other's checks."""
+    """The moderator routes an op by its name alone, so two roles with one name (the Auditor's and the retired
+    Accountant's 'audit') send one role's ops to the other's checks."""
     from moderator import CORE_OPS
     from roles.base import LOGIC
     owners: dict[str, list[str]] = {}
@@ -468,16 +366,6 @@ def test_op_names_are_unique_across_roles():
         for op in r.ops:
             owners.setdefault(op, []).append(role)
     assert not {op: roles for op, roles in owners.items() if len(roles) > 1 or op in CORE_OPS}
-
-
-def test_puppeting_lapses_if_the_puppeteer_died(game_factory):
-    client = ScriptedClient()
-    game, players = game_factory(VILLAGE5[:3] + ["Grunt", "Puppeteer"], client)
-    game.puppets_next = {"Bob": "Erin"}
-    game.player("Erin").alive = False  # died overnight
-    run_day(game, players)
-    assert not any(name == "Erin" for name, _ in client.asked)
-    assert not any("being puppeted" in e.text for e in game.events)
 
 
 # --- Every role ---------------------------------------------------------------------------------
@@ -694,100 +582,18 @@ def test_a_fox_charm_and_a_trap_on_one_player_each_stop_an_attack(game_factory):
 
 
 def test_a_token_op_counts_its_user_as_alive_all_night_whatever_the_op_order(game_factory):
-    # rules R10 (simultaneous) and R21: a Clerk killed earlier in tonight's resolution still rigs tomorrow
-    game, players = game_factory(["Clerk", "Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"])
+    # rules R10 (simultaneous) and R21: a Prosecutor killed earlier in tonight's resolution still prosecutes tomorrow
+    game, players = game_factory(["Prosecutor", "Grunt", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"])
+    game.player("Alice").tokens["prosecutor"] = 1
     mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
     game.phase = "night"
     mod.dispatch("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "cause": "Vigilante"}]})
-    mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
-    assert game.rigged_day == game.day + 1 and game.player("Alice").tokens["clerk"] == 0
-    game.day += 1  # a Clerk who died on an earlier night can't
-    game.player("Alice").tokens["clerk"] = 1
+    mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "by": "Alice", "player": "Carol"}]})
+    assert game.prosecutions == ["Carol"] and game.player("Alice").tokens["prosecutor"] == 0
+    game.day += 1  # a Prosecutor who died on an earlier night can't
+    game.player("Alice").tokens["prosecutor"] = 1
     with pytest.raises(ValueError, match="alive when the night began"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "rig_vote", "by": "Alice"}]})
-
-
-def test_smuggler_swap_redirects_every_other_action_before_the_katana_tally(game_factory):
-    from night import run_night
-    choices = {"Alice": {"act": True, "target": "Erin", "second_target": "Frank", "katana_vote_holder": "Alice",
-                         "katana_vote_target": "Erin"},
-               "Bob": {"act": False, "katana_vote_holder": "Alice", "katana_vote_target": "Erin"},
-               "Carol": {"act": True, "target": "Erin"}, "Dave": {"act": True, "target": "Frank"}}
-
-    def decide(name, task, schema):
-        return choices.get(name) if "Choose your night action" in task else None
-    roles = ["Smuggler", "Grunt", "Sheriff", "Medic", "Vanilla Villager", "Vanilla Villager"]
-    game, players = game_factory(roles, ScriptedClient(decide))
-    run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
-    acts = game.night_actions[1]
-    assert acts["Alice"]["target"] == "Erin" and acts["Alice"]["second_target"] == "Frank"  # its own action stays
-    assert acts["Carol"]["target"] == "Frank" and acts["Carol"]["chosen_target"] == "Erin"
-    assert acts["Dave"]["target"] == "Erin" and acts["Dave"]["chosen_target"] == "Frank"
-    assert acts["Bob"]["katana_vote_target"] == "Frank"
-    katana = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "katana")
-    assert katana["result"]["attack"] == "Frank"
-    prompt = next(r for r in map(json.loads, open(game.log.path)) if r["kind"] == "moderator_prompt")
-    assert ("Alice swapped Erin and Frank. Code has ALREADY applied them" in prompt["instructions"]
-            and "The Katana attack lands on Frank." in prompt["instructions"])
-    assert game.player("Alice").tokens["swap"] == 1
-    assert any("You swapped Erin and Frank. You have 1 swap token left." in t for t in told(game, "Alice"))
-    assert len([t for t in told(game, "Erin") + told(game, "Frank") if "swapped with another player" in t]) == 2
-    assert not any("swapped with another player" in t for t in told(game, "Carol"))
-    from feedback import night_replay  # the after-game replay shows each choice and where the swap moved it
-    replay = night_replay(game)
-    assert "- Carol (Sheriff): target Erin (swapped to Frank)" in replay
-    assert "Bob (Grunt): no role action; Katana vote: Alice holds, attacks Erin (swapped to Frank)" in replay
-    assert "Alice (Smuggler): target Erin; second target Frank;" in replay  # the swap itself isn't moved
-
-
-def test_a_swap_doesnt_move_the_jesters_revenge_or_a_curse(game_factory):
-    """Rules R23: effects that draw their own victim at random aren't actions aimed at a player."""
-    from night import run_night
-    choices = {"Dave": {"act": True, "target": "Bob", "second_target": "Erin"}}
-
-    def decide(name, task, schema):
-        return choices.get(name) if "Choose your night action" in task else None
-    game, players = game_factory(["Jester", "Vanilla Villager", "Vanilla Villager", "Smuggler", "Grunt", "Grunt"],
-                                 ScriptedClient(decide))
-    game.player("Carol").traits = ["Cursed"]
-    game.kill("Alice", "executed by hanging", guilty_voters=["Bob"])  # Bob: the only Guilty voter
-    game.kill("Carol", "executed by hanging", guilty_voters=["Dave"])  # Bob: the only Good player left
-    run_night(game, players, Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)"))
-    assert any("You swapped Bob and Erin" in t for t in told(game, "Dave"))
-    assert not game.player("Bob").alive and game.player("Erin").alive
-
-
-def test_smuggler_without_tokens_or_two_players_does_nothing(game_factory):
-    game, _ = game_factory(["Smuggler", "Grunt", "Vanilla Villager", "Vanilla Villager"])
-    from roles import logic
-    actions = {"Alice": {"act": True, "target": "Carol", "second_target": "Carol"},
-               "Bob": {"act": False, "katana_vote_target": "Carol"}}
-    logic("Smuggler").before_resolution(game, actions)
-    assert actions["Bob"]["katana_vote_target"] == "Carol" and game.player("Alice").tokens["swap"] == 2
-
-
-def test_a_swap_can_land_an_others_only_action_on_its_user_and_the_result_names_the_choice(game_factory):
-    # game_20261010_053523_23052 night 3: Bob swapped Alice and Carol, so Alice's profile of Carol landed on Alice
-    game, players = game_factory(["Profiler", "Smuggler", "Vanilla Villager", "Grunt"])
-    game.phase = "night"
-    with pytest.raises(ValueError, match="can't target themselves"):
-        apply_ops(game, players, {"op": "profile", "by": "Alice", "player": "Alice"})
-    game.role_state["swaps"] = {game.day: [["Bob", "Alice", "Carol"]]}
-    apply_ops(game, players, {"op": "profile", "by": "Alice", "player": "Alice"})  # rules R23
-    result = told(game, "Alice")[-1]
-    assert "You profiled Carol: their role is " in result and "Profiler" in result
-
-
-def test_group_results_on_a_swapped_target_trade_the_pair_s_names(game_factory):
-    roles = ["Census Taker", "Smuggler", "Vanilla Villager", "Grunt", "Surveyor", "Diviner", "Vanilla Villager"]
-    game, players = game_factory(roles)
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Bob", "Carol", "Grace"]]}  # actions aimed at Carol land on Grace
-    apply_ops(game, players, {"op": "census", "by": "Alice", "player": "Grace"},
-              {"op": "survey", "by": "Erin", "player": "Grace"}, {"op": "divine", "by": "Frank", "player": "Grace"})
-    assert "Your census of " in told(game, "Alice")[-1] and "Carol" in told(game, "Alice")[-1]
-    assert told(game, "Erin")[-1].startswith("Moderator (private): You surveyed Alice, Carol and Frank.")  # rules R23
-    assert "You divined Carol; the group was Alice, Carol and Erin." in told(game, "Frank")[-1]
+        mod.dispatch("apply_changes", {"changes": [{"op": "prosecute", "by": "Alice", "player": "Carol"}]})
 
 
 def test_census_counts_true_alignment_and_never_neutrals(game_factory):
@@ -919,37 +725,6 @@ def test_recorded_actions_check_their_user_target_and_token(game_factory, role):
     apply_ops(game, players, op)
     assert game.player("Alice").tokens.get(action.token, 0) == (left - 1 if action.token else 0)
     assert action.op in logic(role).night_note
-
-
-@pytest.mark.parametrize("role", [r for r in ROLES if getattr(logic(r).action, "target", "") in ("other", "any")])
-def test_a_swapped_recorded_action_tells_its_user_the_player_they_chose(game_factory, role):
-    """Rules R23: the moderator records the action on the player it landed on (Carol); the private result must name
-    the player its user chose (Bob), in every role, so a new role can't leak the swap by naming its target."""
-    game, players = game_factory([role, "Vanilla Villager", "Vanilla Villager", "Grunt", "Medic", "Smuggler"])
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Frank", "Bob", "Carol"]]}
-    before = len(told(game, "Alice"))
-    action = logic(role).action
-    assert action
-    apply_ops(game, players, {"op": action.op, "by": "Alice", "player": "Carol"})
-    game.run_night_end_hooks()  # results told at the end of the night (Accountant, Magpie) too
-    for text in told(game, "Alice")[before:]:  # roles that never tell a result have nothing here
-        assert "Bob" in text  # e.g. "You marked Bob"; group results list both, with the names traded
-
-
-def test_chronicler_mark_moved_by_a_swap_looks_to_its_user_like_a_mark_on_the_player_they_chose(game_factory):
-    game, players = game_factory(["Chronicler", "Sheriff", "Grunt", "Vanilla Villager", "Medic", "Smuggler"])
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Frank", "Bob", "Carol"]]}
-    apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})  # Alice chose Bob (rules R23)
-    assert game.player("Carol").status[Status.MARKED] == "Alice" and Status.MARKED not in game.player("Bob").status
-    assert "You marked Bob" in told(game, "Alice")[-1]
-    assert logic("Chronicler").briefing(game, game.player("Alice")) == ["Your marks on living players: Bob."]
-    game.role_state["swaps"] = {}
-    with pytest.raises(ValueError, match="Alice already marked Bob"):
-        apply_ops(game, players, {"op": "mark", "player": "Bob", "by": "Alice"})
-    apply_ops(game, players, {"op": "mark", "player": "Carol", "by": "Alice"})  # not refused: that would show the swap
-    assert "You marked Carol" in told(game, "Alice")[-1]
 
 
 def test_record_visits_checks_names_and_is_needed_before_a_night_ends(game_factory):
@@ -1595,47 +1370,6 @@ def test_mortician_clean_beats_a_chronicler_mark_and_the_announcement_says_so(ga
                            "it isn't revealed.")
 
 
-def test_juror_counts_shared_votes_over_the_game_skipping_votes_on_either(game_factory):
-    game, players = game_factory(["Juror", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
-    game.votes = {
-        2: [{"stage": "nomination", "nominee": "Erin", "votes": {"Bob": True, "Carol": True, "Dave": False}},
-            {"stage": "trial", "nominee": "Erin", "votes": {"Bob": True, "Carol": False, "Dave": True}}],
-        3: [{"stage": "nomination", "nominee": "Bob", "votes": {"Bob": True, "Carol": False}},  # on Bob: skipped
-            {"stage": "trial", "nominee": "Dave", "votes": {"Bob": False, "Carol": False}},
-            {"stage": "trial", "nominee": "Alice", "votes": {"Bob": True}}],  # Carol didn't vote: skipped
-    }
-    game.phase = "night"
-    apply_ops(game, players, {"op": "jury", "player": "Bob", "second": "Carol", "by": "Alice"})
-    assert told(game, "Alice")[-1].endswith("Bob and Carol voted the same way in 1 of 2 trial votes and 1 of 1 "
-                                            "nomination votes.")
-    game.player("Erin").alive = False  # dead players can be compared
-    apply_ops(game, players, {"op": "jury", "player": "Erin", "second": "Dave", "by": "Alice"})
-    assert told(game, "Alice")[-1].endswith("Erin and Dave have no shared votes yet.")
-    for bad in ({"player": "Bob", "second": "Bob"}, {"player": "Alice", "second": "Bob"},
-                {"player": "Bob", "second": "Zed"}):
-        with pytest.raises(ValueError):
-            apply_ops(game, players, {"op": "jury", "by": "Alice", **bad})
-    from players import night_action_schema
-    assert "Erin" in json.dumps(night_action_schema(game, game.player("Alice"))["properties"]["second_target"])
-
-
-def test_scrutineer_counts_guilty_votes_of_a_group_of_three_per_trial(game_factory):
-    game, players = game_factory(["Scrutineer", "Medic", "Sheriff", "Grunt", "Vanilla Villager"])
-    every = {"Alice": False, "Bob": True, "Carol": True, "Dave": True, "Erin": False}
-    game.votes = {game.day: [{"stage": "nomination", "nominee": "Erin", "votes": {**every}},
-                             {"stage": "trial", "nominee": "Erin", "votes": {**every}},
-                             {"stage": "trial", "nominee": "Dave", "votes": dict.fromkeys(every, False)}]}
-    game.phase = "night"
-    apply_ops(game, players, {"op": "scrutinize", "player": "Bob", "by": "Alice"})
-    text = told(game, "Alice")[-1]
-    group = re.findall(r"Bob|Carol|Dave|Erin", text.split(":", 2)[1])
-    assert "Bob" in group and "Alice" not in text.split(":", 2)[1] and len(set(group)) == 3
-    assert f"{sum(every[n] for n in set(group))} in the trial of Erin; 0 in the trial of Dave." in text
-    game.day += 1  # no trials that Day
-    apply_ops(game, players, {"op": "scrutinize", "player": "Bob", "by": "Alice"})
-    assert told(game, "Alice")[-1].endswith("there were no trials during the Day.")
-
-
 def test_bloodhound_counts_recorded_attacks_of_three_players_over_the_game(game_factory):
     from roles.bloodhound import attack_count
     game, players = game_factory(["Bloodhound", "Vigilante", "Sheriff", "Grunt", "Vanilla Villager"])
@@ -1777,28 +1511,24 @@ def test_talent_agent_counts_only_roles_on_the_script(game_factory):
 
 
 def test_magpie_steals_after_token_use_and_wins_after_three_players(game_factory):
-    game, players = game_factory(["Magpie", "Vigilante", "Medic", "Roleplayer", "Prosecutor", "Accountant", "Grunt"])
+    game, players = game_factory(["Magpie", "Vigilante", "Medic", "Roleplayer", "Prosecutor", "Sheriff", "Grunt"])
     game.phase = "night"
     apply_ops(game, players, {"op": "steal", "player": "Bob", "by": "Alice"},
-              {"op": "count_tokens", "player": "Bob", "by": "Frank"},
               {"op": "set_tokens", "player": "Bob", "token": "vigilante", "value": 2})  # Bob shot tonight
     game.run_night_end_hooks()
     assert game.player("Bob").tokens["vigilante"] == 1
     assert told(game, "Alice")[-1].endswith("You stole a token from Bob (1 of 3).")
     assert told(game, "Bob")[-1].endswith("A Magpie stole one of your vigilante tokens. You have 1 left.")
-    assert told(game, "Frank")[-1].endswith("Your audit: Bob has 1 token in total.")  # after the steal
     game.day += 1
     apply_ops(game, players, {"op": "steal", "player": "Bob", "by": "Alice"})
     game.run_night_end_hooks()
     assert game.player("Bob").tokens["vigilante"] == 1 and "already stole from Bob" in told(game, "Alice")[-1]
     game.day += 1
     rp_tokens = dict(game.player("Dave").tokens)
-    apply_ops(game, players, {"op": "steal", "player": "Dave", "by": "Alice"},
-              {"op": "count_tokens", "player": "Dave", "by": "Frank"})
+    apply_ops(game, players, {"op": "steal", "player": "Dave", "by": "Alice"})
     game.run_night_end_hooks()
     assert game.player("Dave").tokens == rp_tokens and "had no tokens" in told(game, "Alice")[-1]
     assert not any("Magpie" in t for t in told(game, "Dave"))
-    assert told(game, "Frank")[-1].endswith("Your audit: Dave has 0 tokens in total.")  # a Roleplayer shows 0
     for night, victim in ((4, "Carol"), (5, "Erin")):
         game.day = night
         apply_ops(game, players, {"op": "steal", "player": victim, "by": "Alice"})
@@ -1896,7 +1626,6 @@ def test_drawn_traits_stay_within_the_odds_and_the_eligible_seats():
         assert sum(t == "Usurper" for b, _ in bundles for t in b) <= 1
 
 
-
 def test_drawn_traits_go_one_to_a_player(tmp_path):
     import random
 
@@ -1915,8 +1644,8 @@ def test_each_player_holds_0_1_or_2_traits_a_third_each():
     from collections import Counter
 
     import setups
-    roles = ["Sheriff", "Medic", "Vigilante", "Tracker", "Lookout", "Seer", "Veteran", "Clerk", "Jester", "Grunt",
-             "Grunt", "Puppeteer", "Serial Killer"]
+    roles = ["Sheriff", "Medic", "Vigilante", "Tracker", "Lookout", "Seer", "Veteran", "Fabricator", "Jester", "Grunt",
+             "Grunt", "Pharmacist", "Serial Killer"]
     held: Counter = Counter()
     for seed in range(100):
         bundles = [parse_trait(item)[0] for item in setups.draw_traits(roles, random.Random(seed))]
@@ -1991,12 +1720,12 @@ def test_loud_and_curt_change_the_holders_budget_and_prices_as_the_rules_say(gam
         earn(alice)
         earn(bob)
     assert alice.speaking_budget == BUDGET_MAX * LOUD_FACTOR and bob.speaking_budget == BUDGET_MAX
-    task = turn_task(game, alice, alice, 1, True, 1.0, 0, False)
+    task = turn_task(game, alice, 1, True, 1.0, 0, False)
     assert (f"you earn {BUDGET_PER_ROUND * LOUD_FACTOR:g} per round, carrying over up to "
             f"{BUDGET_MAX * LOUD_FACTOR:g}") in task
     base = message_cost(1, 1, False, length_factor=0)
     assert message_cost(100, 4, False, length_factor=2) - base == 2 * (message_cost(100, 4, False) - base)
-    assert price_table(1, length_factor=2) in turn_task(game, bob, bob, 1, True, 1.0, 0, False)
+    assert price_table(1, length_factor=2) in turn_task(game, bob, 1, True, 1.0, 0, False)
 
 
 def test_investigative_roles_and_only_they_have_a_subcategory():
@@ -2110,16 +1839,6 @@ def test_an_armed_role_with_a_night_action_is_asked_for_both(game_factory):
             n for n in game.alive_names() if n != name]
 
 
-def test_a_swap_moves_a_trait_actions_target(game_factory):
-    game, _ = game_factory(["Smuggler", "Grunt", "Vanilla Villager", "Vanilla Villager", "Sheriff"])
-    actions: dict[str, dict] = {"Alice": {"act": True, "target": "Bob", "second_target": "Erin"},
-                                "Carol": {"trait_actions": [{"trait": "Armed", "target": "Bob"}]}}
-    logic("Smuggler").before_resolution(game, actions)
-    assert actions["Carol"]["trait_actions"] == [{"trait": "Armed", "target": "Erin", "chosen_target": "Bob"}]
-    from players import as_chosen
-    assert as_chosen(actions["Carol"]) == {"trait_actions": [{"trait": "Armed", "target": "Bob"}]}
-
-
 def test_one_player_can_get_several_traits_but_each_once(tmp_path):
     import random
 
@@ -2230,7 +1949,6 @@ def test_a_checkpoint_with_a_retired_role_resumes_as_what_it_became(game_factory
     assert resume_retired(game, 50) and game.player("Bob").role == "Vanilla Villager"
     assert game.player("Bob").traits == ["Cursed"] and game.player("Bob").start_role == "Vanilla Villager"
     assert not resume_retired(game, 51)
-
 
 
 def sniper_decide(shots: dict[str, tuple[str, int]], nominate: dict[str, str] | None = None, talk: bool = False):
@@ -2408,31 +2126,13 @@ def test_a_mid_day_death_restates_the_living_count_and_nomination_threshold(game
     assert "5 players are alive, so a nomination needs 3 Yes votes (rules R4)." in texts[shot:]
 
 
-def test_a_puppeteer_killed_mid_day_stops_writing_for_its_puppet(game_factory):
-    from day import chat_turn
-    from roles.sniper import fire
-    game, players = game_factory(["Puppeteer", "Sniper", "Vanilla Villager", "Grunt", "Vanilla Villager"],
-                                 ScriptedClient(sniper_decide({}, talk=True)))
-    game.day, game.phase = 2, "day"
-    game.puppets = {"Carol": "Alice"}
-    fire(game, "Bob", "Alice", "Basic")  # rules R25: Bob's day shot kills the Puppeteer
-    assert not game.player("Alice").alive and game.puppets == {}
-    players.client.asked.clear()  # type: ignore[attr-defined]
-    chat_turn(game, players, game.player("Carol"), rnd=2, can_nominate=False)
-    assert {n for n, _ in players.client.asked} == {"Carol"}  # type: ignore[attr-defined]
-    assert not any(e.fields.get("puppeteer") for e in game.events if e.cat == "chat")
-
-
-def test_no_sniper_shot_on_a_trial_turn_while_puppeted_or_with_bad_tokens(game_factory):
+def test_no_sniper_shot_on_a_trial_turn_or_with_bad_tokens(game_factory):
     from day import chat_turn
     from roles import logic
     game, players = game_factory(["Sniper", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"],
                                  ScriptedClient(sniper_decide({"Alice": ("Dave", 3)})))
     game.day, game.phase = 2, "day"
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False, trial=True)
-    game.puppets = {"Alice": "Erin"}
-    chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
-    game.puppets = {}
     game.player("Alice").tokens["sniper"] = 2  # 3 tokens asked, 2 left: refused, nothing spent
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
     logic("Sniper").at_day_end(game)
@@ -2519,9 +2219,8 @@ def test_an_enforcer_is_told_its_token_costs_and_the_moderator_how_to_resolve_it
     assert "never say which of them it attacked" in role_notes(game)
 
 
-def test_a_kitsune_acts_once_a_night_and_its_results_name_the_player_it_chose(game_factory):
-    # rules: Kitsune (a charm or, while holding an attack, a release: one action a night); R23 (results name the
-    # chosen player, not the one a swap moved the action onto)
+def test_a_kitsune_acts_once_a_night(game_factory):
+    # rules: Kitsune (a charm or, while holding an attack, a release: one action a night)
     game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Vanilla Villager"])
     game.phase = "night"
     apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob",
@@ -2530,10 +2229,9 @@ def test_a_kitsune_acts_once_a_night_and_its_results_name_the_player_it_chose(ga
         apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Dave"})
     game.run_night_end_hooks()
     game.day += 1
-    game.role_state["swaps"] = {game.day: [["Dave", "Bob", "Erin"]]}  # the Smuggler swapped Bob and Erin
-    apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Erin"})
+    apply_ops(game, players, {"op": "kitsune_release", "by": "Alice", "player": "Bob"})
     with pytest.raises(ValueError, match="kitsune_release is already recorded tonight"):
-        apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Erin", "attacks": []})
+        apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob", "attacks": []})
     game.run_night_end_hooks()
     assert told(game, "Alice")[-1].endswith("Your released attack on Bob didn't kill them.")
 
@@ -2688,9 +2386,8 @@ def test_several_traps_on_one_player_each_stop_a_different_attack(game_factory):
     assert told(game, "Bob")[-1].endswith("went off tonight and is used up.")
 
 
-def test_placing_removing_and_a_swapped_trap(game_factory):
-    # rules: Trapper (not yourself, not the player your trap is on; no target removes it) and R23 (the user is told
-    # at dawn that a swap moved a lasting effect)
+def test_placing_and_removing_a_trap(game_factory):
+    # rules: Trapper (not yourself, not the player your trap is on; no target removes it)
     game, players = game_factory(["Trapper", "Vanilla Villager", "Vanilla Villager", "Serial Killer", "Grunt"])
     game.phase = "night"
     with pytest.raises(ValueError, match="can't trap themselves"):
@@ -2706,12 +2403,8 @@ def test_placing_removing_and_a_swapped_trap(game_factory):
     assert not game.role_state["traps"] and "trapped_by" not in game.player("Bob").status
     game.run_night_end_hooks()
     game.day += 1
-    game.role_state["swaps"] = {game.day: [["Erin", "Bob", "Carol"]]}  # chose Bob, landed on Carol
     apply_ops(game, players, {"op": "set_trap", "by": "Alice", "player": "Carol"})
     game.run_night_end_hooks()
-    game.run_dawn_hooks()
-    assert any(e.text.endswith("A swap moved your trap from Bob to Carol last night (rules R23).")
-               and list(e.visible_to or []) == ["Alice"] for e in game.events)
     assert game.role_state["armed_traps"] == {"Alice": "Carol"}
 
 
@@ -2723,20 +2416,6 @@ def test_a_trap_from_an_older_checkpoint_kept_as_status_still_works(game_factory
     out = apply_ops(game, players, {"op": "spring_trap", "player": "Bob", "attacks": [
         {"by": "Carol", "attack": "Basic", "cause": "Serial Killer", "visit": True}]})
     assert "Alice's trap on Bob stopped Carol's Basic Attack" in out["results"][0]
-
-
-def test_a_kitsune_pays_for_charming_itself_when_it_chose_itself_wherever_a_swap_moved_the_charm(game_factory):
-    # Kevin, Oct 12 2026: the token cost follows what the Kitsune chose (R23: "as if its user had chosen")
-    game, players = game_factory(["Kitsune", "Vanilla Villager", "Serial Killer", "Grunt", "Smuggler"])
-    game.phase = "night"
-    game.role_state["swaps"] = {game.day: [["Erin", "Alice", "Bob"]]}
-    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Bob", "attacks": []})  # chose itself
-    assert game.player("Alice").tokens["kitsune"] == 0
-    game.run_night_end_hooks()
-    game.day += 1
-    game.role_state["swaps"][game.day] = [["Erin", "Alice", "Bob"]]
-    apply_ops(game, players, {"op": "kitsune_charm", "by": "Alice", "player": "Alice", "attacks": []})  # chose Bob
-    assert game.player("Alice").tokens["kitsune"] == 0  # nothing more to spend, and none needed
 
 
 def test_two_bonded_pairs_stay_apart(tmp_path):

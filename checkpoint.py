@@ -15,7 +15,7 @@ from roles import retired_entry
 from state import Game
 
 # 2: Game has pm_record and night_actions; 3: claim_record; 4: night_visits; 5: votes; 6: Player traits
-CHECKPOINT_VERSION = 6
+CHECKPOINT_VERSION = 7
 
 
 def save(path: Path, game: Game, **extra: Any) -> None:

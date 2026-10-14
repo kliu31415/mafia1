@@ -261,21 +261,6 @@ def test_malformed_tool_arguments_are_errors(game_factory, name, args):
         mod.dispatch(name, args)
 
 
-def test_a_puppet_op_needs_a_living_puppeteer_and_may_puppet_anyone(game_factory):
-    # Kevin, Oct 11 2026: any player, so a Smuggler's swap can't make a puppet op fail
-    game, players = game_factory(["Puppeteer", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Wiretap"])
-    game.phase = "night"
-    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
-    with pytest.raises(ValueError, match="not a Puppeteer"):
-        mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Carol", "by": "Bob"}]})
-    mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Erin", "by": "Alice"}]})  # a Yakuza
-    assert game.puppets_next == {"Erin": "Alice"}
-    game.puppets_next.clear()
-    game.player("Alice").tokens["puppet"] = 1
-    mod.dispatch("apply_changes", {"changes": [{"op": "puppet", "player": "Alice", "by": "Alice"}]})  # themselves
-    assert game.puppets_next == {} and game.player("Alice").tokens["puppet"] == 0  # nothing changes but the token
-
-
 # --- Game rules ------------------------------------------------------------------------------------
 
 def test_two_prosecutions_of_one_player_are_one_trial(game_factory):
@@ -636,24 +621,6 @@ def test_a_hanging_is_announced_before_the_executioner_s_win(game_factory):
     texts = [e.text for e in game.events]
     death = next(i for i, t in enumerate(texts) if t.startswith("Bob died"))
     assert all(i > death for i, t in enumerate(texts) if "Alice" in t)
-
-
-def test_the_puppeteer_never_sees_the_puppet_s_nomination(game_factory):
-    from day import chat_turn
-
-    def decide(name, task, schema):
-        if name == "Bob" and "nominate" in schema["properties"]:
-            return {"nominate": "Carol"}
-        if name == "Erin" and "puppeting Bob" in task:
-            return {"public_message": "word " * 300}  # over budget: the Puppeteer is asked to revise
-        return None
-    client = ScriptedClient(decide)
-    game, players = game_factory(VILLAGE5[:4] + ["Puppeteer"], client)
-    game.puppets = {"Bob": "Erin"}
-    game.player("Bob").speaking_budget = 3.0
-    chat_turn(game, players, game.player("Bob"), rnd=1, can_nominate=True)
-    assert any(name == "Erin" and "WARNING" in task for name, task in client.asked)
-    assert not any(name == "Erin" and "Carol" in task.split("WARNING")[-1] for name, task in client.asked)
 
 
 def test_a_cleaned_death_still_shows_its_cause(game_factory):

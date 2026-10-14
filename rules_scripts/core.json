@@ -1,15 +1,15 @@
 {
  "script": "core",
- "cut_sha256": "227305cf309217c5",
- "text_sha256": "e149d0c821d1e50d",
- "made_by": "a Claude Code session",
- "made": "2026-10-13T12:47:21+00:00",
+ "cut_sha256": "9968891e4c9ac086",
+ "text_sha256": "e7b7a9a3ddec1cb3",
+ "made_by": "Claude session (hand edits)",
+ "made": "2026-10-14T06:43:27+00:00",
  "cost": 0.0,
  "edits": [
   {
-   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Smuggler, Vulture.",
+   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Vulture.",
    "new": "The list of roles in the game is not public. A role may appear more than once in a game.",
-   "reason": "Both unique roles (Smuggler, Vulture) are not on the script."
+   "reason": "The only unique role (Vulture) is not on the script."
   },
   {
    "old": "(Oracle, Diviner, Ritualist, Mortician, Coroner,\n  Talent Agent, a Vigilante's kill)",
@@ -17,14 +17,9 @@
    "reason": "Diviner and Talent Agent are not on the script."
   },
   {
-   "old": "   Party Animal, Pharmacist, Smuggler and Veteran can't be role-blocked.",
-   "new": "   Party Animal, Pharmacist and Veteran can't be role-blocked.",
-   "reason": "Smuggler is not on the script."
-  },
-  {
-   "old": "The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions\nabove apply to it (a Turncoat counts as Good).\nExact-role checks see the true role, except that they see a Disguised player's disguise (R24). The Roleplayer is\nseen as \"Roleplayer\".\nToken counts (Accountant) see the true total at the end of the night. The Roleplayer is seen as having 0 tokens,\neven though they believe they have their fake role's tokens.\nVisit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.",
+   "old": "The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions\nabove apply to it (a Turncoat counts as Good).\nExact-role checks see the true role, except that they see a Disguised player's disguise (R24). The Roleplayer is\nseen as \"Roleplayer\".\nVisit-based results (Tracker, Lookout, Fortune Teller, Cartographer, Scout) are never changed by any of these.",
    "new": "Exact-role checks see the true role, except that they see a Disguised player's disguise (R24).\nVisit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.",
-   "reason": "Census Taker, Roleplayer, Accountant, Cartographer and Scout are not on the script."
+   "reason": "Census Taker, Roleplayer, Cartographer and Scout are not on the script."
   },
   {
    "old": "  that. A doubled vote (Ballot Stuffer) shows as a single Guilty or Innocent.",
@@ -42,11 +37,6 @@
    "reason": "No role on the script changes how votes are counted, so announced totals always match the voters (a player in game_20261011_011316_850196 expected otherwise)."
   },
   {
-   "old": "(including the Katana's attack, Astral checks such as the Juror's and automatic actions such as a Sleepwalker's",
-   "new": "(including the Katana's attack, Astral checks and automatic actions such as a Sleepwalker's",
-   "reason": "Juror isn't on the script"
-  },
-  {
    "old": "your role changes. Traits are always true: a Roleplayer's trait is real even though its role isn't. A player may\nhave more than one trait, but never the same one twice. Each trait says which players can get it. A trait's night\naction is used in addition to your role's own, and a role-block stops it too.",
    "new": "your role changes. A player may have more than one trait, but never the same one twice. Each trait says which\nplayers can get it. A trait's night action is used in addition to your role's own, and a role-block stops it too.",
    "reason": "The Roleplayer is not on the script."
@@ -57,8 +47,8 @@
    "reason": "Census Taker is not on the script."
   },
   {
-   "old": "  sees that it was hidden. Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.\n",
-   "new": "  sees that it was hidden.\n",
+   "old": "  nobody else is told it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.\n  Players who hear private messages (e.g. the Wiretap) still hear it, also marked hidden.\n",
+   "new": "  nobody else is told it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.\n",
    "reason": "No role on the script hears other players' private messages (Wiretap, Eavesdropper)."
   },
   {

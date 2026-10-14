@@ -78,20 +78,6 @@ A nomination costs budget too. On a trial turn prices are lower and each speaker
 spent first and lost when the turn ends; the accused's first defense message is free up to a set length. The
 program sets the numbers for each game and tells every player at the start.
 
-R23 (Swaps)
-Some roles can swap two players for a night. Every action that night aimed at one of them, whether or not it visits
-(including the Katana's attack, Astral checks and automatic actions such as a Sleepwalker's
-visit or the Seer's pair) lands on the other instead, as if its user had chosen that player. Only the swap itself is not
-moved (the swapping player's Katana vote is). Results name the player the action's user chose, so a swapped action's
-result doesn't show the swap: a Sheriff who checked A learns B's alignment as A's. A result that lists several
-players (e.g. a group around the target) is built around B, but A and B trade places in the list, each named where
-the other would be; the roles, alignments and counts in it are still the real players', so the rest of the group can
-still hint at the swap. A Lookout who watched A watches B instead, and a Tracker sees the player its target's action
-landed on. An effect that lasts into the next Day (e.g. listening in on private messages) follows B, and its user is
-told at dawn that a swap moved it to B, unless its role says nobody is told. Effects that pick their own victim at
-random (e.g. the Jester's revenge or a Cursed player's curse, R24) aren't actions aimed at a player, so a swap doesn't
-move them: they hit whoever they draw.
-
 R13 (Last wills)
 Players may write and update a last will at the start of each Night, when they choose their night action
 (everyone is asked, even with no action), at the beginning of each Day from Day 2 on (except those who died the
@@ -100,13 +86,13 @@ night can't be added that night. When a player dies, their last will is shared p
 
 R25 (Day actions)
 Some roles act during the Day. A day action is taken on one of your own speaking turns, along with your messages;
-not on a trial turn, and not while you are puppeted. It takes effect after a random delay: anywhere from right
-after that turn to n-1 speaking turns later, n being the number of players alive when it was taken, every delay
-equally likely. Only Day speaking turns count, not trial turns; a turn that starts a trial ends with that trial. So
-its timing doesn't show whose turn it was. If the Day ends first, it takes effect as the Day ends. If you died since
-taking it, it doesn't take effect. Day actions due at the same time take effect one at a time, in random order. A
-death it causes is announced at once (R12), and the game ends if that leaves one faction (R1). A day action isn't a
-visit, and night protections don't last into the Day.
+not on a trial turn. It takes effect after a random delay: anywhere from right after that turn to n-1 speaking turns
+later, n being the number of players alive when it was taken, every delay equally likely. Only Day speaking turns
+count, not trial turns; a turn that starts a trial ends with that trial. So its timing doesn't show whose turn it
+was. If the Day ends first, it takes effect as the Day ends. If you died since taking it, it doesn't take effect.
+Day actions due at the same time take effect one at a time, in random order. A death it causes is announced at once
+(R12), and the game ends if that leaves one faction (R1). A day action isn't a visit, and night protections don't
+last into the Day.
 
 === PART 3: THE NIGHT ===
 
@@ -125,7 +111,7 @@ R6 (Visits)
 - A role that targets a player may target itself unless its text says otherwise (e.g. "other than yourself").
 - A player whose role can target others but who targets themself shows as visiting themself.
 - A player whose action can only affect themself does not show as visiting anyone.
-- An action that targets no player (e.g. the Clerk's rig) is not a visit.
+- An action that targets no player (e.g. a Veteran's alert) is not a visit.
 - A player who visits the same target with several actions in one night is one visitor to that target: anything
   that lists, counts or reacts to visitors (a watch, a Veteran's alert) treats them once.
 
@@ -145,13 +131,13 @@ Seer's random pair) draw from and report on everyone alive when the night began,
 night.
 
 R21 (Effects that outlast their user)
-An effect set up at night for the following Day (e.g. a Clerk's rig, a Prosecutor's prosecution) still happens if
-its user dies that night, unless it needs its user to act during that Day (e.g. a Puppeteer writing the puppet's
-messages); those lapse. Any token spent on it is gone either way (R18).
+An effect set up at night for the following Day (e.g. a Prosecutor's prosecution) still happens if its user dies
+that night, unless it needs its user to act during that Day; those lapse. Any token spent on it is gone either way
+(R18).
 
 R20 (Night resolution checklist): a summary of the rules above, in the order the moderator applies them.
 1. Remove actions of role-blocked players (R9), automatic ones included (a Sleepwalker's visit, the Seer's pair).
-   Party Animal, Pharmacist and Veteran can't be role-blocked. Swaps (R23) apply before anything else.
+   Party Animal, Pharmacist and Veteran can't be role-blocked.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and a Sleepwalker's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
    A trap stops one attack before Defense and may hit its attacker back (Trapper).
@@ -235,9 +221,8 @@ players can get it. A trait's night action is used in addition to your role's ow
   (R22). Your prices and trial-only budget are the usual ones.
 - Curt (any player): the length part of your message prices (R22) is doubled, so long messages cost you much more;
   each message's base fee, nominations and your trial-only budget are the usual ones.
-- Confidant (any player): once per game, on one of your own Day turns (not while puppeted), you may send one
-  private message hidden: nobody else is told it was sent, and the public ledger doesn't count it. Its recipient
-  sees that it was hidden.
+- Confidant (any player): once per game, on one of your own Day turns, you may send one private message hidden:
+  nobody else is told it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.
 - Zealot (any player): every Guilty/Innocent trial vote you cast counts as Guilty, whatever you vote, including in
   your own trial. Your nomination (Yes/No) votes are unchanged. Your private reminder shows both the vote you cast
   and how it counted, and everything that reports how you voted (e.g. the Auditor, a Martyr's announcement) uses the
@@ -429,8 +414,8 @@ Prosecutor
   Tokens: 2 prosecutor tokens.
   Night: may spend a token to prosecute someone. At the start of the next Day, before anyone speaks, the moderator
   announces that someone is being prosecuted; this counts as a successful nomination and they go to trial. It
-  counts toward the Day's three-nomination limit, an execution ends the Day as usual, and it can combine with a
-  Clerk's rig. If the trial needs a "nominator", the moderator picks a random player.
+  counts toward the Day's three-nomination limit, and an execution ends the Day as usual. If the trial needs a
+  "nominator", the moderator picks a random player.
 
 Party Animal
   Immune to role-blocks.
@@ -452,26 +437,12 @@ Ritualist
   Divine Attack. If right, the Attack is dealt. If wrong, the moderator publicly announces at the start of the
   next Day that you are a Ritualist. The tokens are spent either way.
 
-Puppeteer
-  Tokens: 1 puppet token.
-  Night: may spend a token to puppet any player for the following Day (puppeting yourself changes nothing). That
-  Day, they are told they are being puppeted, and they can't chat or see private messages; nobody else is told. You
-  chat publicly and privately in their place (including seeing their private messages) and can set their claim,
-  which appears in the ledger as theirs; that is all you can do for them. They still nominate, vote and so on as
-  normal. It lasts one Day.
-
 Fabricator
   Tokens: 1 fabricator token.
   Night: may visit one non-Yakuza player to frame them (no token needed): that night they appear Evil to
   alignment checks (R19); other results are unchanged. On the same visit, you may spend a token to forge that
   player's last will (not anyone else's): if they die of any cause that night, your forged will replaces theirs.
   Framing and forging together are one visit.
-
-Clerk
-  Tokens: 1 clerk token.
-  Night: may spend a token to rig the next Day's votes. On a rigged Day, anyone successfully nominated is executed.
-  The Guilty/Innocent vote still happens; if a majority votes Guilty, the rig is not announced, otherwise it is
-  announced publicly.
 
 Mortician
   Tokens: 3 mortician tokens.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, note_swap_move, register
+from roles.base import RecordedAction, RoleLogic, register
 
 NEXT = "eavesdrops_next"  # game.role_state: Eavesdropper -> target, recorded tonight for the next day
 TODAY = "eavesdrops"  # game.role_state: Eavesdropper -> target, today
@@ -24,7 +24,6 @@ class Eavesdropper(RoleLogic):
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
         game.role_state.setdefault(NEXT, {})[by.name] = target.name
-        note_swap_move(game, by, target, "eavesdropping")  # rules R23: told at dawn
 
     def at_dawn(self, game: Game) -> None:
         game.role_state[TODAY] = game.role_state.pop(NEXT, {})

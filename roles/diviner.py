@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RecordedAction, RoleLogic, as_chosen, join_names, neighbor_group, register,
+from roles.base import (RecordedAction, RoleLogic, join_names, neighbor_group, register,
                         seen_role)
 
 TARGET_CHANCE = 0.6  # the rest is split evenly among the target's neighbors in the group
@@ -28,12 +28,12 @@ class Diviner(RoleLogic):
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
-        group = neighbor_group(game, by.name, target.name)  # rules: Diviner, the same group as the Surveyor's
+        group = neighbor_group(game, by.name, target.name)  # rules: Diviner
         others = [n for n in group if n != target.name]
         weights = [TARGET_CHANCE if n == target.name else (1 - TARGET_CHANCE) / len(others) for n in group]
         role = seen_role(game, game.player(game.rng.choices(group, weights)[0]))
-        chosen, = as_chosen(game, target.name, [target.name])  # rules R23
-        text = (f"You divined {chosen}; the group was {join_names(as_chosen(game, target.name, group))}. The role "
-                f"drawn is {role} ({TARGET_CHANCE:.0%} chance it is {chosen}'s, otherwise one of the others')."
-                if others else f"You divined {chosen}, the only player in the group: their role is {role}.")
+        name = target.name
+        text = (f"You divined {name}; the group was {join_names(group)}. The role "
+                f"drawn is {role} ({TARGET_CHANCE:.0%} chance it is {name}'s, otherwise one of the others')."
+                if others else f"You divined {name}, the only player in the group: their role is {role}.")
         game.tell([by.name], text)

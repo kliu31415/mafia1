@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RecordedAction, RoleLogic, acted_tonight, as_chosen, join_names, register,
+from roles.base import (RecordedAction, RoleLogic, acted_tonight, join_names, register,
                         tokens_left_text, visit_groups)
 
 if TYPE_CHECKING:
@@ -43,8 +43,7 @@ class Cartographer(RoleLogic):
             text = f"Tonight's visit groups have sizes {sizes}."
             if (target := maps.get(p.name)) is not None:
                 group = next(g for g in groups if target in g)
-                chosen, = as_chosen(game, target, [target])  # rules R23
-                text += (f" You mapped {chosen}: their group is {join_names(as_chosen(game, target, group))}."
-                         if len(group) > 1 else f" You mapped {chosen}: their group is just themselves.")
+                text += (f" You mapped {target}: their group is {join_names(group)}."
+                         if len(group) > 1 else f" You mapped {target}: their group is just themselves.")
                 text += f" {tokens_left_text(p, 'map')}."
             game.tell([p.name], text)

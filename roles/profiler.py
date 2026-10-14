@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (Alignment, RecordedAction, RoleLogic, acted_tonight, as_chosen, register, seen_role,
+from roles.base import (Alignment, RecordedAction, RoleLogic, acted_tonight, register, seen_role,
                         tokens_left_text)
 
 if TYPE_CHECKING:
@@ -56,7 +56,6 @@ class Profiler(RoleLogic):
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
         a, b, c = profile_candidates(game, by.name, target.name)
-        chosen, = as_chosen(game, target.name, [target.name])  # a swapped result doesn't show the swap (R23)
-        game.tell([by.name], f"You profiled {chosen}: their role is {a}, {b} or {c} (exactly one is true, and "
+        game.tell([by.name], f"You profiled {target.name}: their role is {a}, {b} or {c} (exactly one is true, and "
                              "at least one of the three is a Good role and at least one is not Good). "
                              f"{tokens_left_text(by, 'profile')}.")

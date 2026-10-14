@@ -2,11 +2,10 @@
 
 import json
 
-from players import (BOOL, Players, STR, as_chosen, blank, cap_words, name_enum, night_action_schema, nullable, obj,
+from players import (BOOL, Players, STR, blank, cap_words, name_enum, night_action_schema, nullable, obj,
                      tokens_left)
 from day import LAST_WILL_WORDS
-from roles import LOGIC, Alignment, Status, logic
-from roles.base import swaps_tonight
+from roles import Alignment, Status, logic
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from traits import NOT_ATTACKS, night_traits, trait_logic
@@ -75,7 +74,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
     game.log.write("night_actions", day=game.day, actions=actions,
                    roles={name: game.player(name).role for name in actions})
 
-    holder_before = game.katana_holder  # restored before the tally is redone below
+    holder_before = game.katana_holder  # restored before the final tally below
     katana = tally_katana(game, actions)
     revote: dict[str, str | None] = {}  # Yakuza -> target, if there was a revote
     yakuza = game.yakuza()
@@ -100,9 +99,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                                    katana_vote_target=out["katana_vote_target"])
             revote[y.name] = out["katana_vote_target"]
         katana = tally_katana(game, actions)
-    for role_logic in LOGIC.values():  # e.g. a Smuggler's swap redirects the other actions (rules R23)
-        role_logic.before_resolution(game, actions)
-    game.katana_holder = holder_before
+    game.katana_holder = holder_before  # once, whether or not there was a revote
     katana = tally_katana(game, actions)
     game.night_actions[game.day] = actions  # shown back to each player (players.night_history)
     game.log.write("katana", day=game.day, result=katana, revote_targets=revote or None)
@@ -111,7 +108,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         f"{json.dumps(actions, indent=1)}\n\nKatana vote result: {json.dumps(katana)}\n"
         + (f"Code has already moved the Katana from {katana['moved_from']}, who held it when the night began, to "
            f"{katana['holder']}; get_state shows the new holder.\n" if katana.get("moved_from") else "")
-        + swap_text(game, katana) + "\n"
+        + "\n"
         "Resolve all actions simultaneously per the rules, following the R20 checklist (R10; visits R6, "
         "role-blocks R9, attack vs defense R3, investigation results R19, e.g. the Katana holder and Fabricator "
         "frames). Use apply_changes for deaths and token/status changes, tell() for each private result, "
@@ -142,8 +139,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         "as [visitor, target] pairs, a self-visit as [X, X] (an empty list if there were none). Easy to miss: the "
         "Katana holder visits the Katana target (R8) besides any visit from their own role's action; automatic "
         "visits (a Sleepwalker's); a Seer's chosen pair is a visit to both players. Leave out the actions of "
-        "role-blocked players, Astral Visits and actions that target no player. The submitted actions above "
-        "already show any swap (R23), so record each visit to the player it landed on.\n\n"
+        "role-blocked players, Astral Visits and actions that target no player.\n\n"
         + role_notes(game)
     )
     before = snapshot(game.full_state())
@@ -177,9 +173,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
 
 
 def correct_night(game: Game, moderator: Moderator, issues: list[dict]) -> None:
-    """--fix-nights: the night check's high-severity findings go back to the moderator before dawn. A Smuggler swap
-    applied twice let a player who should have died live and hang someone (game_20261011_074934_1113, Night 3),
-    though the check had caught it. The moderator judges each finding itself, since the judge can be wrong too."""
+    """--fix-nights: the night check's high-severity findings go back to the moderator before dawn. A swap applied
+    twice let a player who should have died live and hang someone (game_20261011_074934_1113, Night 3), though the
+    check had caught it. The moderator judges each finding itself, since the judge can be wrong too."""
     found = "\n".join(f"- [{i['rule']}, {i['kind']}] {i['description']}" for i in issues)
     instructions = (
         f"A reviewer checked your resolution of Night {game.day} and reports these possible mistakes:\n{found}\n\n"
@@ -205,7 +201,7 @@ def tell_night_deaths(game: Game, alive_at_start: set[str]) -> None:
 
 
 def describe_choice(a: dict) -> str:
-    """A teammate's chosen night action for the Yakuza summary (R8), as chosen (a swap stays hidden, R23)."""
+    """A teammate's chosen night action for the Yakuza summary (R8)."""
     if not a.get("act"):
         return "no action"
     text = "to act"
@@ -225,7 +221,7 @@ def tell_yakuza_summary(game: Game, actions: dict[str, dict], katana: dict, yaku
     living = [y.name for y in game.yakuza()]
     if len(yakuza_at_start) < 2 or not living:
         return
-    chosen = {n: as_chosen(actions.get(n, {})) for n in yakuza_at_start}
+    chosen = {n: actions.get(n, {}) for n in yakuza_at_start}
     votes = [chosen[n].get("katana_vote_target") for n in yakuza_at_start]
     target = katana.get("attack") and next((t for t in set(votes) if t and majority(votes.count(t), len(votes))),
                                            katana["attack"])
@@ -236,19 +232,6 @@ def tell_yakuza_summary(game: Game, actions: dict[str, dict], katana: dict, yaku
         others = [f"{n} ({game.player(n).role}) chose {describe_choice(chosen[n])}" for n in yakuza_at_start
                   if n != name]
         game.tell([name], f"Yakuza night summary: {line} " + "; ".join(others) + ".")
-
-
-def swap_text(game: Game, katana: dict) -> str:
-    """Tonight's swaps for the moderator (rules R23). The JSON above already has them applied, yet a moderator swapped
-    the Katana attack back onto the player it was aimed at (game_20261011_074934_1113, Night 3), so this says so."""
-    swaps = swaps_tonight(game)
-    if not swaps:
-        return ""
-    pairs = "; ".join(f"{by} swapped {x} and {y}" for by, x, y in swaps)
-    attack = f" The Katana attack lands on {katana['attack']}." if katana.get("attack") else ""
-    return (f"Swaps tonight (R23): {pairs}. Code has ALREADY applied them: every target, second_target, "
-            f"trait_actions target and the Katana vote result above is the player the action lands on (the user's "
-            f"own pick is kept in chosen_*), so resolve them exactly as given and don't swap anything again.{attack}\n")
 
 
 def snapshot(x):

@@ -22,17 +22,17 @@ from roles import ROLES, Alignment
 DEFAULT = "all"
 
 # Hand-picked (Oct 11 2026; the Cardinal became the Cursed trait Oct 12, the Ex-Con the Notorious and Sleepwalker
-# traits Oct 13): 28 mostly live-tested roles whose interactions matter: frames against alignment checks, the
-# Mortician against the Coroner, the Veteran and Trapper against visitors seen by the Tracker, Lookout, Insomniac
-# and Fortune Teller, blocks on both sides, the Informant and the Auditor reading votes, the Clerk and the Prosecutor
-# forcing trials, and Neutrals that bait or threaten everyone. Setups still balance each game's draw by role power
-# (setups.py).
+# traits Oct 13, the Puppeteer and Clerk were retired Oct 14): 26 mostly live-tested roles whose interactions matter:
+# frames against alignment checks, the Mortician against the Coroner, the Veteran and Trapper against visitors seen by
+# the Tracker, Lookout, Insomniac and Fortune Teller, blocks on both sides, the Informant and the Auditor reading
+# votes, the Prosecutor forcing trials, and Neutrals that bait or threaten everyone. Setups still balance each game's
+# draw by role power (setups.py).
 CORE = [
     "Vanilla Villager",
     "Sheriff", "Tracker", "Lookout", "Seer", "Fortune Teller", "Oracle", "Coroner", "Auditor", "Insomniac",
     "Medic", "Trapper", "Vigilante", "Veteran",
     "Prosecutor", "Party Animal",
-    "Grunt", "Pharmacist", "Fabricator", "Mortician", "Puppeteer", "Clerk", "Informant", "Ritualist",
+    "Grunt", "Pharmacist", "Fabricator", "Mortician", "Informant", "Ritualist",
     "Jester", "Executioner", "Serial Killer", "Arsonist",
 ]
 

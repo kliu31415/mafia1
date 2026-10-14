@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RoleLogic, Status, acted_tonight, attacks_error, chosen_name, note_swap_move, register,
+from roles.base import (RoleLogic, Status, acted_tonight, attacks_error, register,
                         stop_one_attack, token_user_error)
 
 if TYPE_CHECKING:
@@ -89,11 +89,10 @@ class Trapper(RoleLogic):
             target = game.player(change["player"])
             if not acted_tonight(game, target):
                 return f"{target.name} wasn't alive at the start of the night"
-            chosen = chosen_name(game, target.name)
-            if chosen == change["by"]:
+            if target.name == change["by"]:
                 return "a Trapper can't trap themselves"
-            if traps(game).get(change["by"]) == chosen:
-                return (f"{change['by']}'s trap is already on {chosen}: trapping them again isn't allowed and the "
+            if traps(game).get(change["by"]) == target.name:
+                return (f"{change['by']}'s trap is already on {target.name}: trapping them again isn't allowed and the "
                         "trap stays (record nothing)")
             return None
         target = game.player(change["player"])
@@ -117,7 +116,6 @@ class Trapper(RoleLogic):
                 show_traps(game)
                 return f"{by}'s trap is removed."
             traps(game)[by] = name
-            note_swap_move(game, game.player(by), game.player(name), "trap")  # rules R23: told at dawn
             game.log.write("trap_set", trapper=by, target=name, day=game.day)
             show_traps(game)
             return f"{by}'s trap is now on {name} (armed from tomorrow night); any old trap of theirs is gone."

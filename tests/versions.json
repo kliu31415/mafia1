@@ -1,5 +1,5 @@
 {
- "log_version": 73,
+ "log_version": 74,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["day", "killed", "player"],
@@ -40,7 +40,6 @@
   "paranoid": ["cause", "day", "player"],
   "player_call": ["cost", "effort", "human", "latency_s", "model", "notepad_after", "notepad_before", "output", "player", "reasoning", "task", "usage"],
   "player_feedback": ["day", "feedback", "phase", "player", "role", "step"],
-  "puppeting_lapsed": ["player", "puppets"],
   "remorse": ["day", "hanged", "player"],
   "result": ["cost", "days", "duration_s", "end_reason", "errors", "models", "players", "roles", "usage", "winners", "winning_faction"],
   "resume": ["at", "cut_cost", "cut_records", "day", "unreadable_lines"],
@@ -60,9 +59,9 @@
   "visits": ["day", "visits"],
   "vote": ["day", "fixed", "nominator", "nominee", "outcome", "prosecuted", "reversed", "secret", "stage", "votes", "weights"]
  },
- "checkpoint_version": 6,
+ "checkpoint_version": 7,
  "checkpoint": {
-  "Game": ["players", "rng", "log", "day", "phase", "events", "katana_holder", "phases_without_death", "winners", "pending_announcements", "pending_deaths", "personal_winners", "sole_winner", "pending_revenge", "role_state", "prosecutions", "rigged_day", "puppets_next", "puppets", "death_record", "vote_record", "votes", "pm_record", "night_actions", "night_visits", "claim_record", "rule_settings"],
+  "Game": ["players", "rng", "log", "day", "phase", "events", "katana_holder", "phases_without_death", "winners", "pending_announcements", "pending_deaths", "personal_winners", "sole_winner", "pending_revenge", "role_state", "prosecutions", "death_record", "vote_record", "votes", "pm_record", "night_actions", "night_visits", "claim_record", "rule_settings"],
   "Player": ["name", "seat", "model", "role", "effort", "alive", "tokens", "status", "last_will", "notepad", "tips", "speaking_budget", "start_role", "traits", "death"],
   "Event": ["day", "phase", "text", "visible_to", "cat", "fields", "notice"]
  }

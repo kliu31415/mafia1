@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
 from roles import ROLES, Alignment
-from roles.base import DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, record_attack, swap_partner
+from roles.base import DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, record_attack
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -40,7 +40,7 @@ class TraitInfo:
 
 
 # Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
-BLOCK_IMMUNE = frozenset({"Veteran", "Party Animal", "Pharmacist", "Smuggler"})
+BLOCK_IMMUNE = frozenset({"Veteran", "Party Animal", "Pharmacist"})
 DROWSY_ODDS = 0.5  # rules R24 states it (a test checks)
 PARANOID_ODDS = 0.25  # rules R24 states it (a test checks)
 PARANOID_KATANA = 2 / 3  # how often a Paranoid's fake attack is the Katana's, when not one of PARANOID_ATTACKERS
@@ -578,7 +578,7 @@ class OneShotAction(TraitLogic):
             return f"{by.name} {self.used}"
         if not acted_tonight(game, target):
             return f"{target.name} wasn't alive at the start of the night"
-        if target is by and not swap_partner(game, by.name):
+        if target is by:
             return self.no_self
         return None
 
@@ -687,8 +687,8 @@ class Grudge(TraitLogic):
             game.role_state.setdefault(GRUDGES, []).append([p.name, list(dict.fromkeys(guilty_voters))])
 
     def tonight_note(self, game: Game) -> str:
-        # Code draws the victim, like a Jester's revenge, from the Guilty voters alive as the night begins (R10); a
-        # swap doesn't move it (R23). The moderator resolves the attack, since Defense and protection apply.
+        # Code draws the victim, like a Jester's revenge, from the Guilty voters alive as the night begins (R10).
+        # The moderator resolves the attack, since Defense and protection apply.
         lines = []
         for holder, voters in game.role_state.pop(GRUDGES, []):
             if targets := [v for v in voters if game.player(v).alive]:

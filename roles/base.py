@@ -53,7 +53,7 @@ class RecordedAction:
 
 @dataclass(frozen=True)
 class DayAction:
-    """What a role may do on its own Day speaking turns (not trial turns, not while puppeted; rules R25), offered by
+    """What a role may do on its own Day speaking turns (not trial turns; rules R25), offered by
     RoleLogic.day_action, taken by RoleLogic.carry_out_day_action and carried out in RoleLogic.after_day_turn or
     RoleLogic.at_day_end."""
 
@@ -77,9 +77,6 @@ class RoleLogic:
     # A night action recorded with an op and carried out by code (see RecordedAction); the role implements
     # carry_out, and target_error for any check beyond the standard ones.
     action: RecordedAction | None = None
-    # The night action's target and second_target may name any player, dead ones included (Juror); otherwise they
-    # are living players (or, for a RecordedAction with target "dead", players who died before the night).
-    targets_anyone: bool = False
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
     # False for roles whose results code delivers (live PMs, random samples), which the moderator can't fake
     # for a Roleplayer who believes they have the role.
@@ -91,8 +88,7 @@ class RoleLogic:
     # moderator tell() to them on a night they acted is held once with a note (the moderator resends it
     # if it's about something else, e.g. an attack). Night checks caught redundant and leaking tells.
     code_tells_user: bool = False
-    # Order of at_night_end among roles, lowest first: effects that change tokens (Magpie) before results that read
-    # them (Accountant).
+    # Order of at_night_end among roles, lowest first (e.g. the Magpie's steal first, so later hooks see it).
     night_end_order: int = 0
     # Extra apply_changes ops for the moderator, offered only when someone in the game has the role:
     # op -> (required fields, optional fields, description shown in the tool). apply_op carries them out.
@@ -131,7 +127,7 @@ class RoleLogic:
         """Another player just died; called for every living player of this role."""
 
     def hears_pm(self, game: Game, me: Player, speaker: str, to: str) -> bool:
-        """Whether this living, unpuppeted player also reads the contents of a Day private message from
+        """Whether this living player also reads the contents of a Day private message from
         `speaker` to `to` (Wiretap, Eavesdropper)."""
         return False
 
@@ -184,7 +180,7 @@ class RoleLogic:
                 return f"{target.name} hadn't died before the night began"
         elif target and not acted_tonight(game, target):
             return f"{target.name} wasn't alive at the start of the night"
-        if target is by and self.action.target == "other" and not swap_partner(game, by.name):
+        if target is by and self.action.target == "other":
             return f"{'an' if self.role[0] in 'AEIOU' else 'a'} {self.role} can't target themselves"
         return self.target_error(game, by, target)
 
@@ -200,17 +196,13 @@ class RoleLogic:
         return None
 
     def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
-        """A RecordedAction's role-specific check (e.g. a Puppeteer can't puppet a Yakuza): why it can't be
+        """A RecordedAction's role-specific check (e.g. a Chronicler can't mark a player twice): why it can't be
         carried out, or None."""
         return None
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         """A RecordedAction's effect, once checked and its token spent. Tell a private result with game.tell."""
         raise NotImplementedError(self.role)
-
-    def before_resolution(self, game: Game, actions: dict[str, dict]) -> None:
-        """After the night's actions are in (and any Katana revote), before the Katana tally and the moderator's
-        resolution: may change `actions` in place (Smuggler swaps). Called once per registered role."""
 
     def at_night_end(self, game: Game) -> None:
         """End of each night, after the moderator's resolution and any revenge, before the dawn reveal and the
@@ -323,58 +315,6 @@ def dead_before_tonight(game: Game) -> list[str]:
     (RecordedAction.target) may be."""
     return [p.name for p in game.players
             if not p.alive and not p.status.get(Status.LEFT) and not acted_tonight(game, p)]
-
-
-def swaps_tonight(game: Game) -> list[tuple[str, str, str]]:
-    """Tonight's swaps (rules R23) as (swapper, x, y), in the order they were made."""
-    return [(by, x, y) for by, x, y in game.role_state.get("swaps", {}).get(game.day, [])]
-
-
-def swap_partner(game: Game, name: str) -> str | None:
-    """Who `name` was swapped with tonight (rules R23), or None. An action that landed on a swapped player was aimed
-    at their partner, so its result names the partner; and an action may land on its own user that way, even one
-    whose role can't target themselves."""
-    for _, x, y in swaps_tonight(game):
-        if name in (x, y):
-            return y if name == x else x
-    return None
-
-
-def as_chosen(game: Game, target: str, names: list[str]) -> list[str]:
-    """Names in a result about `target`, as its user chose them: when a swap moved the action onto `target`, the
-    swapped pair trade names (each where the other would be) and the list goes back to seat order, so the result
-    doesn't show the swap (rules R23). Roles and alignments drawn from the group stay the real players'."""
-    partner = swap_partner(game, target)
-    if partner is None:
-        return names
-    shown = {target: partner, partner: target}
-    return [p.name for p in game.players if p.name in {shown.get(n, n) for n in names}]
-
-
-def chosen_name(game: Game, target: str) -> str:
-    """The player a result about `target` names: whoever its user chose, i.e. `target`'s swap partner when a swap
-    moved the action (rules R23). A private result that names its target uses this, never the target's own name."""
-    return swap_partner(game, target) or target
-
-
-SWAP_MOVED = "swap_moved"  # game.role_state: [user, effect, chosen, landed] for next-Day effects a swap moved (R23)
-
-
-def note_swap_move(game: Game, by: Player, target: Player, effect: str) -> None:
-    """For an effect that lasts into the next Day (`effect` names it, e.g. "eavesdropping"): when a swap moved it onto
-    `target`, its user is told so at dawn (rules R23, tell_swap_moves), so the change doesn't look like a bug. A role
-    whose rules say nobody is told doesn't call this."""
-    moved = [m for m in game.role_state.get(SWAP_MOVED, []) if m[:2] != [by.name, effect]]  # re-recorded tonight
-    if (chosen := chosen_name(game, target.name)) != target.name:
-        moved.append([by.name, effect, chosen, target.name])
-    game.role_state[SWAP_MOVED] = moved
-
-
-def tell_swap_moves(game: Game) -> None:
-    """At dawn, tells each living user whose next-Day effect a swap moved where it went (rules R23)."""
-    for user, effect, chosen, landed in game.role_state.pop(SWAP_MOVED, []):
-        if game.player(user).alive:
-            game.tell([user], f"A swap moved your {effect} from {chosen} to {landed} last night (rules R23).")
 
 
 def token_user_error(game: Game, by_name: str, role: str, kind: str | None = None) -> str | None:

@@ -4,15 +4,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RecordedAction, RoleLogic, as_chosen, register
+from roles.base import RecordedAction, RoleLogic, register
 
 if TYPE_CHECKING:
     from state import Game, Player
 
 
-def audit_text(game: Game, chosen: str, audited: str) -> str:
+def audit_text(game: Game, audited: str) -> str:
     """Rules (Auditor): every Yes/No and Guilty/Innocent vote `audited` cast during the Day before this night, in
-    order, named as `chosen` (a swapped target's result doesn't show the swap, R23)."""
+    order."""
     lines = []
     for v in game.votes.get(game.day, []):
         if audited not in v["votes"]:
@@ -23,8 +23,8 @@ def audit_text(game: Game, chosen: str, audited: str) -> str:
         else:
             lines.append(f"{'Guilty' if yes else 'Innocent'} in the trial of {v['nominee']}")
     if not lines:
-        return f"Your audit: {chosen} cast no nomination or trial votes during the Day."
-    return f"Your audit of {chosen}'s votes during the Day, in order: " + "; ".join(lines) + "."
+        return f"Your audit: {audited} cast no nomination or trial votes during the Day."
+    return f"Your audit of {audited}'s votes during the Day, in order: " + "; ".join(lines) + "."
 
 
 @register("Auditor")
@@ -35,4 +35,4 @@ class Auditor(RoleLogic):
 
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         assert target
-        game.tell([by.name], audit_text(game, as_chosen(game, target.name, [target.name])[0], target.name))
+        game.tell([by.name], audit_text(game, target.name))
