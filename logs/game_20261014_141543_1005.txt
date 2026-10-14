@@ -279,3 +279,28 @@ N2: checked Ivan -> EVIL.
 Ivan counterclaimed my role and read me Evil. Either he's Yakuza, or the Fabricator framed me and he's a Notorious villager. Erin marked Ivan on N2, so HANGING IVAN REVEALS HIS ROLE and settles this for free. Do it Day 4.
 Ivan's own N1 claim puts him at Niaj's house, and Niaj was the N1 Katana victim.
 Dave's Medic claim (Strong on Ivan, nothing stopped) arrived just in time to back Ivan against Judy, so suspect Dave as Ivan's partner. Alice pushed the "matched Party Animal" wording case on me. Look at her and at Carol."
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Vigilante): target Judy; chose to spend 2 token(s); "Standard shot (2 tokens) on Judy."
+  Dave (Medic): target Ivan; chose to spend 1 token(s)
+  Erin (Chronicler): no action
+  Frank (Serial Killer): target Grace
+  Grace (Fabricator): target Carol; "Frame Carol only. Do not forge a will."; Katana vote: Grace holds, attacks Frank
+  Ivan (Sheriff): target Carol
+  Olivia (Insomniac): no action
+  Judy (Jester): trait action: Sleepwalker on Dave
+  Niaj (Scout): trait action: Sleepwalker on Erin
+Katana: Grace holds it and attacks Frank.
+(to Alice) Moderator (private): Your Standard shot on Judy killed them. You have 1 vigilante token left. You were attacked with the Katana tonight and survived.
+(to Dave) Moderator (private): You gave Ivan Strong protection tonight. Your protection did not stop any attack. You have 0 medic tokens left.
+(to Frank) Moderator (private): Your attack on Grace succeeded: they died. You were attacked with the Katana tonight and survived.
+(to Grace) Moderator (private): You framed Carol tonight. You did not forge a will; you have 1 fabricator token left. The Katana attack on Frank failed: it did not kill.
+(to Ivan) Moderator (private): You investigated Carol tonight. Result: Evil.
+[Moderator summary] Night 3: Alice (Vigilante) shot Judy (Jester, Basic Def) with a Standard shot (2 tokens): Judy died, cause Vigilante, so there's no Jester revenge or Grudge, because those need a hanging. Frank (SK) killed Grace (Fabricator, last Yakuza), who held the Katana. Grace's Standard Katana attack on Frank failed against his Standard Defense. Grace framed Carol, so Ivan's Sheriff check on Carol read Evil. Dave spent his last token on Strong protection for Ivan; it stopped nothing. Sleepwalkers: Judy visited Dave, Niaj visited Erin. Alice's Paranoid trait drew a fake Katana attack, delivered as a real one. No role-blocks. Yakuza are now eliminated. Frank (SK) remains with the Village, so the game continues.
+[Night check] Night 3: correct
+(to Carol) Moderator (private): Tonight Erin, Ivan and Olivia were each in a different visit group.
+(to Niaj) Moderator (private): Tonight Alice, Niaj and Olivia were each in a different visit group.
+(to Alice) Moderator (private): Your shot killed Judy. Their role was Jester.
+(to Grace) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Judy) Moderator (private): You were attacked tonight (Vigilante) and died.
