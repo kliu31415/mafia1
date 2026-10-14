@@ -13,6 +13,7 @@ field shows up once data() passes it on.
 """
 
 import argparse
+import itertools
 import json
 import random
 import re
@@ -92,7 +93,23 @@ def traits_part(parts: list[dict]) -> list[dict]:
         else:
             intro.append(line)
     part["blocks"].remove(rule)
-    return parts + [{"title": f"Part {len(parts) + 1}: Traits", "blocks": [rule | {"lines": intro}, *traits]}]
+    # grouped by who can get them, as the roles part groups roles by faction: one-faction groups first, then the
+    # wider ones (the Traits tab uses the same order); R24's order within each group
+    blocks = [rule | {"lines": intro}]
+    order = list(FACTIONS)
+    listed = sorted((b for b in traits if b["kind"] == "trait"),
+                    key=lambda b: (len(f := trait_factions(b["name"])) > 1, len(f), [order.index(x) for x in f]))
+    for factions, group in itertools.groupby(listed, key=lambda b: trait_factions(b["name"])):
+        title = (factions[0] + " only" if len(factions) == 1
+                 else "Any faction" if len(factions) == len(order) else " or ".join(factions))
+        blocks += [{"kind": "trait_group", "title": title, "faction": factions[0] if len(factions) == 1 else ""}, *group]
+    blocks += [b for b in traits if b["kind"] != "trait"]
+    return parts + [{"title": f"Part {len(parts) + 1}: Traits", "blocks": blocks}]
+
+
+def trait_factions(name: str) -> tuple[str, ...]:
+    return tuple(FACTION_OF[a] for a in Alignment if a in TRAITS[name].alignments)
+
 
 
 def icon(path: Path) -> str:

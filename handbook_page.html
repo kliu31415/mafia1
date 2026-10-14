@@ -206,6 +206,11 @@ function renderRules() {
         rolesToc += `<a href="#rules/role-${encodeURIComponent(b.name)}" title="${esc(b.name)}">${icon(b.name, "sm")}</a>`;
         body += `<div class="rrole card" id="r-role-${encodeURIComponent(b.name)}">${icon(b.name)}<div style="flex:1">
           <div><a class="nm rl" href="#role/${encodeURIComponent(b.name)}">${esc(b.name)}</a></div>${prose(b.lines)}</div></div>`;
+      } else if (b.kind === "trait_group") {
+        const id = "tg-" + b.title.replace(/\W+/g, "-");
+        if (rolesToc) toc += `<div class="roles-toc">${rolesToc}</div>`; rolesToc = "";
+        toc += `<a href="#rules/${id}" class="${b.faction}"><span class="fname">${esc(b.title)}</span></a>`;
+        body += `<h3 class="faction-h ${b.faction}" id="r-${id}"><span class="fname">${esc(b.title)}</span></h3>`;
       } else if (b.kind === "trait") {
         rolesToc += `<a href="#rules/trait-${encodeURIComponent(b.name)}" title="${esc(b.name)}">${badge(b.name, "sm")}</a>`;
         body += `<div class="rrole card" id="r-trait-${encodeURIComponent(b.name)}">${badge(b.name)}<div style="flex:1">
