@@ -587,6 +587,19 @@ def test_yakuza_who_agree_not_to_attack_get_no_revote(game_factory):
     assert not any("(Yakuza chat):" in e.text for e in game.events)  # a blank message isn't posted
 
 
+def test_a_yakuza_chat_message_cut_to_the_cap_tells_its_sender(game_factory):
+    from night import YAKUZA_MESSAGE_WORDS, yakuza_chat
+
+    def decide(name, task, schema):
+        if "message" in schema["properties"]:
+            return {"message": "plan " * (YAKUZA_MESSAGE_WORDS + 5) if name == "Carol" else "short", "ready": True}
+        return None
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"], ScriptedClient(decide))
+    yakuza_chat(game, players, 1, "Plan.")
+    notes = [e for e in game.events if "Program note: your Yakuza chat message" in e.text]
+    assert [e.visible_to for e in notes] == [{"Carol"}]  # only the sender, and not Dave, whose message fit
+
+
 # --- Sweep 3 -----------------------------------------------------------------------------------------
 
 def test_a_finished_game_cant_be_resumed_from_a_stale_checkpoint(tmp_path, monkeypatch, capsys):

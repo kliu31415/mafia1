@@ -267,7 +267,10 @@ def yakuza_chat(game: Game, players: Players, rounds: int, topic: str) -> None:
                 "ready=true if you have nothing more to discuss; chat ends when everyone is ready.",
                 schema, {"message": None, "ready": True}, step="yakuza_chat", rnd=rnd)
             if (msg := out.get("message") or "").strip():
-                msg = cap_words(msg, YAKUZA_MESSAGE_WORDS)
+                if (cut := cap_words(msg, YAKUZA_MESSAGE_WORDS)) != msg:  # Erin found hers cut with no word
+                    msg = cut  # of it (game_20261014_112108_1000), unlike every other cut text
+                    game.emit(f"(Program note: your Yakuza chat message was over {YAKUZA_MESSAGE_WORDS} words, so "
+                              f"only its first {YAKUZA_MESSAGE_WORDS} were sent.)", [y.name])
                 game.emit(f"{y.name} (Yakuza chat): {msg}", names, cat=YAKUZA_CHAT, speaker=y.name, message=msg)
             ready.append(out.get("ready", True))
         if all(ready):
