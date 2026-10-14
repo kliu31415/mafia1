@@ -17,3 +17,22 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Traits (R24) were picked by hand too: roughly 15 to 17 in all, each dealt to a player it fits, and a player may hold more than one.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Mallory.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Mallory (public): Morning all. Day 1 has no votes, so let's not give away roles too early. Investigators, hold your results until they can swing a vote. Watch who starts PM chains today.
+Niaj (public): Agreed, Mallory. Keep roles quiet for now. One ask: if you have visit-based info later (who visited whom, group sizes), cross-check it publicly before we hang anyone on it.
+Olivia (public): Agree with both. Quiet roles on Day 1. I'll be watching who PMs whom and how people vote once trials start.
+Alice (public): Agreed, keep roles hidden. Once votes start, I'll be tracking stated votes against the totals and watching for PM pairs that push the same line. Killers should be careful: unexplained deaths will get scrutiny.
+Bob (public): Agreed. One more thing: when trials start, explain your vote in one line. Silent Guilty votes that don't match someone's stated reads are what I'll be watching.
+Carol (public): Agreed on keeping roles quiet. A light ask for Day 2: everyone be ready to say in one plain sentence what you did at night when it matters. Vague night stories are where I'll look first.
+Dave (public): Agreed on all of that. Quiet roles today. Tomorrow I'll compare night stories against the deaths and the vote totals.
+Erin (public): Agreed with all of it. Roles quiet today. Tomorrow I'll be comparing stated votes against the totals, and watching anyone who pushes a hang with no data.
+Frank (public): Agreed. Quiet today. Tomorrow I'll be weighing who pushes hard without data, and checking stated votes against totals.
+Grace (public): Agreed. Quiet today. Tomorrow I'll be watching vote totals and who defends whom once a case forms.
+Heidi (public): Agreed, keep roles quiet today. Once trials start, I'll be watching for a case that has a real mechanical break behind it, not just vibes, and noting who pushes a hang without one.
+Ivan (public): Agreed. Quiet roles today. Tomorrow I'll focus on whoever's night story doesn't fit the deaths, and on PM pairs pushing the same line.
+Judy (public): Agreed, quiet today. I'll say what I did at night when asked, and I'll be watching who visits whom once trackers speak.
+Mallory (public): Good, everyone's on the same page. See you tomorrow. Remember: one-line night accounts when asked, and votes matching stated reads.
+Discussion time is over. The day ends.
