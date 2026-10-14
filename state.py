@@ -296,7 +296,7 @@ class Game:
         pms = "\n".join(f"- Day {day}: " + ", ".join(f"{pair} ({n})" for pair, n in counts.items())
                         for day, counts in self.pm_record.items()) or "- none yet"
         claims = "\n".join(
-            f"- {name}{'' if self.player(name).alive else ' (dead)'}: Day {history[-1][0]}: {history[-1][1]}"
+            f"- {name}{self.gone_mark(self.player(name))}: Day {history[-1][0]}: {history[-1][1]}"
             + (f" (earlier: {'; '.join(f'Day {d}: {c}' for d, c in history[:-1])})" if len(history) > 1 else "")
             for name, history in self.claim_record.items()) or "- none yet"
         return (f"Alive, in seat order: {alive}\nDeaths and departures:\n{deaths}\n"
@@ -309,6 +309,11 @@ class Game:
         """What a death shows of the player (rules R12): their role, with --flips alignment only their true
         alignment (Good, Evil or Neutral; never a frame or disguise), with --flips none nothing."""
         return {"alignment": p.info.alignment.value, "none": "role hidden"}.get(self.rule_settings["flips"], p.role)
+
+    @staticmethod
+    def gone_mark(p: Player) -> str:
+        """" (dead)" or " (left)" (a winner who leaves the game isn't dead) after a name, "" while p is alive."""
+        return "" if p.alive else " (left)" if p.status.get(Status.LEFT) else " (dead)"
 
     def role_reveal_reason(self, p: Player) -> str | None:
         """Why p's death announcement also shows their role (RoleLogic.reveals_on_death, e.g. a Chronicler's

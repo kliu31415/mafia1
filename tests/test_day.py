@@ -372,3 +372,14 @@ def test_a_claim_that_repeats_the_players_name_drops_it(game_factory):
     game.player("Alice").speaking_budget = 8.0
     chat_turn(game, players, game.player("Alice"), rnd=1, can_nominate=False)
     assert game.claim_record["Alice"][-1][1] == "Sheriff."
+
+
+def test_the_claims_ledger_marks_a_winner_who_left_as_left_not_dead(game_factory):
+    # a Magpie or Executioner who wins leaves the game (game_20261013_142006_1001 showed the Magpie as "(dead)")
+    from roles import Status
+    game, players = game_factory(TOWN4_GRUNT)
+    game.claim_record = {"Alice": [(2, "Sheriff")], "Bob": [(2, "Medic")]}
+    game.player("Alice").alive = game.player("Bob").alive = False
+    game.player("Alice").status[Status.LEFT] = True
+    ledger = game.public_ledger()
+    assert "- Alice (left): Day 2: Sheriff" in ledger and "- Bob (dead): Day 2: Medic" in ledger
