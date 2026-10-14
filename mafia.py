@@ -242,7 +242,7 @@ def play_game(client: LLMClient, config: GameConfig, *, checkpoint: bool = True,
     after_save: called after each checkpoint is saved (synced: in the cloud, pushes it to the logs branch)."""
     full_rules = RULES_PATH.read_text(encoding="utf-8")
     rules = (scripts.rules_for(full_rules, config.script) + variants.rules_notes(config.rule_settings)
-             + setup_note(config.setup, config.roles))
+             + setup_note(config.setup, config.roles, traits=config.traits))
     if resume:
         log = GameLog(resume["log_path"], resume_at=resume["log_offsets"])
     else:
@@ -379,7 +379,7 @@ def start_game(client: LLMClient, config: GameConfig, rules: str, log: GameLog, 
                       "revise`, then `sync_logs.py publish-tips`) revises it", files=stale)
     # The texts every prompt is built on, which the log otherwise keeps only as rules_sha256: the rules as played
     # (the script's rules, the rule settings' notes and the setup note) and each player's opening role briefing.
-    told = setup_note(config.setup, config.roles).strip().removeprefix("---").strip()
+    told = setup_note(config.setup, config.roles, traits=config.traits).strip().removeprefix("---").strip()
     log.write("briefing", rules=rules, setup_note=told,
               players={p.name: role_briefing(game, p) for p in game.players})
     return game

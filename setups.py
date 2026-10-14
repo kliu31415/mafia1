@@ -72,10 +72,25 @@ def setup_off(setup: dict | None, roles: list[str]) -> tuple[str, ...]:
     return tuple(r for r in STANDARD_OFF if r not in roles)
 
 
-def setup_note(setup: dict | None, roles: list[str], off: tuple[str, ...] | None = None) -> str:
+def hand_traits_note(traits: list[str]) -> str:
+    """How many traits (R24) hand-picked trait items (--traits) deal, roughly, like a hand-picked role list's Yakuza
+    count. A pair trait (Bonded) is held by two players, and a second holder named in the list is the first's partner
+    (traits.pair_up)."""
+    from traits import TRAITS, parse_item as parse_trait
+    if not traits:
+        return " Nobody has a trait (R24) in this game."
+    names = [t for item in traits for t in parse_trait(item)[0]]
+    total = sum(2 * -(-names.count(t) // 2) if t in TRAITS and TRAITS[t].pairs else names.count(t) for t in set(names))
+    return (f" Traits (R24) were picked by hand too: roughly {max(1, total - 1)} to {total + 1} in all, each dealt to "
+            "a player it fits, and a player may hold more than one.")
+
+
+def setup_note(setup: dict | None, roles: list[str], off: tuple[str, ...] | None = None,
+               traits: list[str] | None = None) -> str:
     """The text added after the rules (after any rule settings) telling players how this game's roles were
     chosen. setup: the log's settings.setup ({"kind": "random", "name": ...} or None for a hand-picked list).
-    off: the roles it never uses, when they aren't setup_off's (an older log's own)."""
+    off: the roles it never uses, when they aren't setup_off's (an older log's own). traits: the settings' traits
+    (--traits items), told roughly when picked by hand; None for an older log (only "may have a trait")."""
     n = len(roles)
     off = setup_off(setup, roles) if off is None else off
     if setup and setup.get("kind") == "random":
@@ -95,6 +110,8 @@ def setup_note(setup: dict | None, roles: list[str], off: tuple[str, ...] | None
         text += (" Separately, traits (R24) are dealt: each player, independently of everyone else, has 0, 1 or 2 "
                  "traits, a 1/3 chance each (rarely fewer, when no other trait fits them). Which traits are dealt is "
                  "drawn to help balance the sides; some traits can go only to Village players.")
+    elif traits is not None:
+        text += hand_traits_note(traits)
     else:
         text += " Players may also have a trait (R24)."
     return f"\n\n---\n\nSetup (the role list itself is secret).\n{text}"

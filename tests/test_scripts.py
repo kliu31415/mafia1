@@ -97,7 +97,7 @@ def test_a_mock_game_on_a_script_plays_by_its_rules(tmp_path, monkeypatch):
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     setup = records[0]
     assert setup["settings"]["script"] == "core" and records[-1]["kind"] == "result"
-    played = scripts.rules_for(RULES, "core") + setup_note(None, roles)  # the cut rules, with the default settings
+    played = scripts.rules_for(RULES, "core") + setup_note(None, roles, traits=[])  # the cut rules, default settings
     assert setup["rules_sha256"] == mafia.game_meta(played, {})["rules_sha256"]
 
 
@@ -183,7 +183,7 @@ def test_a_game_on_a_stale_script_plays_by_the_cut_and_says_so(tmp_path, monkeyp
                                                            script="core"))
     records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
     assert records[0]["kind"] == "setup" and any(r["kind"] == "script_stale" and r["alert"] for r in records)
-    played = scripts.cut(RULES, "core") + scripts.note("core") + setup_note(None, roles)
+    played = scripts.cut(RULES, "core") + scripts.note("core") + setup_note(None, roles, traits=[])
     assert records[0]["rules_sha256"] == mafia.game_meta(played, {})["rules_sha256"]
 
 
@@ -216,3 +216,14 @@ def test_roles_the_setup_never_draws_are_named_to_players_and_left_out_of_fakes(
     config = mafia.GameConfig([Model.HAIKU_5_5], Model.HAIKU_5_5, ["Sheriff", "Grunt"])
     assert config.rule_settings["setup_off"] == "Vanilla Villager"
     assert "nobody has them" not in setup_note(None, ["Sheriff"], ())  # an older log's own (grade.py)
+
+
+def test_hand_picked_traits_are_told_roughly():
+    # Kevin, Oct 14 2026: the setup note said only "Players may also have a trait" for hand-picked traits
+    roles = ["Sheriff", "Medic", "Fixer"]
+    assert "Nobody has a trait (R24)" in setup_note(None, roles, traits=[])
+    assert "roughly 2 to 4 in all" in setup_note(None, roles, traits=["Martyr+Armed", "Grudge@Yakuza"])
+    assert "roughly 1 to 3 in all" in setup_note(None, roles, traits=["Bonded"])  # a pair: two holders
+    drawn = {"kind": "random", "name": "standard", "traits_given": True}
+    assert "roughly 2 to 4 in all" in setup_note(drawn, ["Sheriff"] * 13, traits=["Bonded", "Bonded", "Loud"])
+    assert "may also have a trait" in setup_note(None, roles)  # an older log, whose traits it wasn't told
