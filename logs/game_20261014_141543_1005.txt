@@ -363,3 +363,24 @@ N2: Alice, Bob, Carol different groups. Bob died to the SK N2, so Alice wasn't t
 N3: Erin, Ivan, Olivia different groups. Grace watched me N3 and died to the SK, and Ivan checked me, so the SK was in the group with Grace, me and Ivan. Erin and Olivia were outside it.
 D4: Ivan read me EVIL. That's false. Either the Fabricator framed me or Ivan is Yakuza, and in that case Heidi's Evil read on him was true. Ivan is Chronicler-marked, so hanging him reveals his role.
 SK: Niaj. Frank tracked him onto both SK victims (Bob N2, Grace N3), he survived an attack with no protector (SK has Standard Defense), and he read Not Evil (SK reads Not Evil). Hang Niaj next, then test Ivan."
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Vigilante): target Niaj; chose to spend 1 token(s); "Basic shot (last token) on Niaj as an SK test."
+  Dave (Medic): target Ivan; "Standard protection on Ivan (free)."
+  Erin (Chronicler): no action
+  Frank (Serial Killer): target Olivia
+  Ivan (Sheriff): target Frank
+  Olivia (Insomniac): no action
+  Niaj (Scout): trait action: Sleepwalker on Alice
+Katana: no attack (no target); nobody holds it.
+(to Alice) Moderator (private): You fired a Basic shot at Niaj tonight. Your shot killed them. 0 vigilante tokens left.
+(to Frank) Moderator (private): You attacked Olivia tonight. Your attack succeeded: they died.
+(to Ivan) Moderator (private): You investigated Frank tonight. Result: Not Evil.
+(to Dave) Moderator (private): You gave Ivan Standard protection tonight. Your protection did not stop any attack. 0 medic tokens left.
+[Moderator summary] Night 4: No Katana holder (all Yakuza dead), no Katana attack. Alice (Vigilante) Basic shot on Niaj (Defense None, unprotected) -> Niaj dies (Vigilante), Alice 0 tokens. Frank (SK) Strong Attack on Olivia (unprotected) -> Olivia dies (Serial Killer). Dave Standard-protected Ivan (free), stopped nothing. Ivan checked Frank -> Not Evil (SK reads Not Evil). Niaj sleepwalked to Alice (no effect). Erin and Olivia took no action. Alice's Paranoid: no fake attack. Alive after night: Alice, Dave, Erin, Frank, Ivan; SK still alive so the game goes on.
+[Night check] Night 4: correct
+(to Niaj) Moderator (private): Tonight Erin, Ivan and Niaj were each in a different visit group.
+(to Alice) Moderator (private): Your shot killed Niaj. Their role was Scout.
+(to Niaj) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Olivia) Moderator (private): You were attacked tonight (Serial Killer) and died.
