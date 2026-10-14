@@ -466,3 +466,70 @@ Katana: Ivan holds it and attacks Alice.
 [Night check] Night 5: correct
 (to Niaj) Moderator (private): The players were in only 2 visit groups tonight; one from each: Judy and Niaj.
 (to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 6 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "Alice - Seer (Village). Token spent N3.
+N1 random: Grace & Bob SAME. N2 random: Judy & Carol DIFFERENT (Judy is Notorious).
+N3 CHOSEN pair (a visit to both): Bob & IVAN DIFFERENT. Bob was Good (his curse killed Frank), so IVAN IS NOT GOOD.
+N4 random: Erin & Ivan DIFFERENT. This fits Erin holding the Katana N4, since the holder reads Good.
+Judy saw me at Bob's on N3. A Roleplayer's actions aren't visits, so I'm a real Seer, and Ivan's claim that his Oracle guess "Alice = Seer" came back WRONG is a LIE. Ivan is Yakuza.
+D5: Erin hanged 3G/2I. Stated votes: Alice, Judy and Niaj Guilty; Erin and Ivan Innocent. Exact match. The game didn't end, so at least one non-Village player is still alive: Ivan.
+If I die tonight, the Katana came from Ivan (or a hidden teammate). Judy and Niaj: hang IVAN tomorrow. Both of you click Guilty."
+Speaking order today goes around the circle in seat order, starting with Niaj.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+[Claim] Niaj: Scout. N5: 2 groups, Judy and me apart; I visited nobody, so Alice/Ivan/Judy were one group and Ivan killed Alice. D6: nominated Ivan, Guilty.
+Niaj (public): N5 Scout: only 2 groups, with Judy and me in different ones. I visited nobody, so Alice, Ivan and Judy were one group. Alice's killer was Ivan. Nominating Ivan. Judy, click Guilty.
+Niaj nominated Ivan. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Ivan] Yes - Niaj, Judy; No - Ivan
+Nomination votes on Ivan: 2 Yes (the votes are secret).
+Ivan is put on trial (2 Yes).
+[Claim] Ivan: Oracle (Notorious: reads Evil, explains Alice's pairs). N4: Alice=Seer wrong (Disguised?). N5: Niaj=Scout WRONG. D6: Innocent on myself.
+Ivan (public): Judy, it's your vote alone, so here's everything. I'm Notorious, like you. That's why Alice's pairs read me DIFFERENT twice. I hid it because a second Notorious claim right after yours looked copied, and that was a mistake. Alice may have been a real Seer with a Disguise, which would explain my wrong Oracle guess on her. Now look at Niaj's N5 result. If you watched ME, then you and I form one group and Alice and Niaj form the other: two groups, with you and Niaj apart. That's exactly his result, with Niaj as the killer. "I visited nobody" is only his word, just like his Stolen Blade and every Scout result before it. My N5 Oracle says he's not a Scout. You're Remorseful. If I'm Village, your Guilty kills you and Niaj wins on the spot. Frank's trap is on you tonight, so you're safe whichever way you vote. Vote Innocent.
+(to Ivan, Judy) Ivan -> Judy (private): Who did you watch N5? If it was me, Niaj's two-group result fits him killing Alice exactly. If I'm Village, a Guilty kills you through Remorseful and hands Niaj the game. Frank's trap covers you tonight. Innocent costs you nothing.
+[Claim] Judy: Lookout (Notorious, Remorseful). N3: Bob<-Alice,Erin. N4: Alice<-nobody. N5: Alice<-IVAN only (she died to Katana). D6: Guilty on Ivan.
+Judy (public): Guilty. N5 I watched ALICE, not you, Ivan. Her ONLY visitor was IVAN, and she died to the Katana. That makes {Alice, Ivan, me} one group and Niaj alone, which is exactly Niaj's two-group result. Ivan's story only works if I'd watched him, and I didn't. Ivan was the holder.
+Niaj (public): Guilty. Judy watched Alice and saw Ivan as her only visitor, and that matches my two-group result exactly. Ivan's Notorious claim only came out at 3 alive. Judy, click Guilty.
+[Claim] Ivan: Oracle (Notorious, Sleepwalker). N5: Niaj=Scout WRONG; my random sleepwalk hit Alice. Judy as holder fits Niaj's 2 groups. D6: Innocent on myself.
+Ivan (public): Niaj, your vote decides this now, so test the one model nobody has checked. I'm a Sleepwalker as well: every night I visit one random player and I'm not told who. On N5 that random visit landed on Alice. Now suppose JUDY held the Katana and killed Alice. Then Judy's attack and my sleepwalk put Alice, Judy and me in one group, with you alone. That's exactly your two-group result. Judy's "only Ivan visited her" is the one line that keeps her own visit out of it, and nobody can check it. Judy has also steered every hang since Day 3, and her "misclick" Innocent on Carol is the vote we never explained. If you hang me and I'm Village, the game ends with Judy winning. If you hold, Frank's trap is on Judy tonight, so if she attacks you, the trap hits her back. Vote Innocent.
+(to Ivan, Niaj) Ivan -> Niaj (private): If Judy held the Katana N5 and my random sleepwalk hit Alice, your 2-group result fits exactly, and her sighting is the only thing against me. If I'm Village, hanging me loses you the game. Innocent costs one night.
+Trial votes on Ivan: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Ivan] Guilty - Judy, Niaj; Innocent - Ivan
+Ivan is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan - Oracle (Astral guesses). Traits: Notorious (reads Evil, which is why Alice's pairs read me DIFFERENT) and Sleepwalker (random nightly visit).
+N1: Heidi=Medic WRONG. N2: Dave=Sheriff RIGHT. N3: Judy=Lookout RIGHT. N4: Alice=Seer WRONG. N5: Niaj=Scout WRONG.
+N5: if Judy held the Katana and killed Alice while my sleepwalk landed on Alice, that's {Alice, Judy, Ivan} plus Niaj alone, which is Niaj's exact result. Judy's "only Ivan visited" can't be checked.
+If I'm hanged and the game goes on, Judy is the Yakuza."
+The game is over. Winners: Alice (dead), Bob (dead), Dave (dead), Frank (dead), Grace (dead), Heidi (dead), Judy, Niaj. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Bob] The Paranoid fake-attack message naming the Katana was the most misleading part of the game. The rules allow it, but it's worth documenting.
+[Feedback from Heidi] The Paranoid fake-attack message naming the Katana was the most misleading thing in the game. Please clarify what that message is supposed to say.
+[Feedback from Erin] My N3 night chat message was truncated without any warning.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Frank, Grace, Heidi, Judy, Niaj
+Cost by player (USD):
+  Alice (Seer)            $0.0000   39 calls  claude-opus-5.5
+  Bob (Sniper)            $0.0000   22 calls  claude-opus-5.5
+  Carol (Ballot Stuffer)  $0.0000   22 calls  claude-opus-5.5
+  Dave (Sheriff)          $0.0000   11 calls  claude-opus-5.5
+  Erin (Fixer)            $0.0000   47 calls  claude-opus-5.5
+  Frank (Trapper)         $0.0000   22 calls  claude-opus-5.5
+  Grace (Auditor)         $0.0000    5 calls  claude-opus-5.5
+  Heidi (Insomniac)       $0.0000   34 calls  claude-opus-5.5
+  Ivan (Diviner)          $0.0000   54 calls  claude-opus-5.5
+  Judy (Lookout)          $0.0000   42 calls  claude-opus-5.5
+  Mallory (Mortician)     $0.0000   26 calls  claude-opus-5.5
+  Niaj (Scout)            $0.0000   43 calls  claude-opus-5.5
+  Olivia (Executioner)    $0.0000   12 calls  claude-opus-5.5
+  Moderator               $0.0000   13 calls  claude-opus-5.5
+  Night checks            $0.0000    5 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.0000  399 calls
