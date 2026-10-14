@@ -241,8 +241,10 @@ players can get it. A trait's night action is used in addition to your role's ow
   they were attacked with the Katana. You learn only whether it killed. A role-block stops it, and then it isn't
   used up. Nobody holds Stolen Blade with Armed.
 - Paranoid (hidden; Village players only): on each night, with probability 1/4, you are told you were attacked and
-  survived, though nobody attacked you. You aren't told you have this trait. Nothing else happens: it isn't a visit
-  or an attack, and nobody else learns of it.
+  survived, though nobody attacked you. The made-up attack is the Katana's 2/3 of the time, and otherwise a
+  Vigilante's or a Serial Killer's (always the Katana's when neither role can be in the game); it is worded like a
+  real one. You aren't told you have this trait. Nothing else happens: it isn't a visit or an attack, and nobody else
+  learns of it.
 - Stocked (any player whose role starts with tokens): you start with one more of each kind of token your role
   starts with.
 - Disguised (any player): you are told a Village role (never your own), drawn at the start. Every exact-role check

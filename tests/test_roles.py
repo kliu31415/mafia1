@@ -1070,7 +1070,7 @@ def test_katana_expert_and_master_raise_one_katana_attack_a_game_while_holding_i
 def test_paranoid_is_hidden_and_gets_a_fake_attack_on_about_a_quarter_of_nights(game_factory):
     from night import role_notes
     from players import role_briefing
-    from traits import PARANOID_ODDS
+    from traits import PARANOID_ATTACKERS, PARANOID_KATANA, PARANOID_ODDS
     game, players = game_factory(["Sheriff", "Medic", "Grunt", "Vigilante"])
     game.player("Alice").traits = ["Paranoid"]
     assert "Paranoid" not in role_briefing(game, game.player("Alice"))
@@ -1084,7 +1084,10 @@ def test_paranoid_is_hidden_and_gets_a_fake_attack_on_about_a_quarter_of_nights(
     assert 8 < noted < 35 and len(records) == noted and PARANOID_ODDS == 0.25
     causes = {r["cause"] for r in records}
     assert "the Katana" in causes and causes <= {"the Katana", "Vigilante", "Serial Killer"}
-    assert "probability 1/4" in open("rules_1.txt", encoding="utf-8").read()
+    rules = " ".join(open("rules_1.txt", encoding="utf-8").read().split())
+    assert "probability 1/4" in rules  # and which attacks it makes up (Kevin, Oct 14 2026: say so in the rules)
+    assert PARANOID_KATANA == 2 / 3 and PARANOID_ATTACKERS == ("Vigilante", "Serial Killer")
+    assert "the Katana's 2/3 of the time, and otherwise a Vigilante's or a Serial Killer's" in rules
 
 
 def test_stocked_adds_one_token_of_each_kind_and_goes_only_to_token_roles(tmp_path):
