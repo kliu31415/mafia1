@@ -166,3 +166,53 @@ Frank died (killed by Vigilante). Their role isn't revealed. Their last will: "F
 Speaking order today goes around the circle in seat order, starting with Carol.
 5 players are alive, so a nomination needs 3 Yes votes (rules R4).
 Carol (public): Carol here. If Heidi's Lookout claim and Alice's count of five visitors are both right, the N1 Katana holder who visited Heidi is Grace, Bob or Dave. Bob and Dave are dead, so Grace is the only living candidate. Grace, Heidi's watch says you visited me on N1 as Sheriff. What else did you visit on N1 and N2?
+[ERROR player_error] Erin (haiku-5.5), attempt 1: empty answer (finish_reason length via Anthropic: no refusal text)
+[ERROR effort_fallback] Erin (haiku-5.5): answer cut off at max_tokens at high effort, retrying at medium
+[Claim] Erin: Vigilante. N2: shot Frank (Basic), killed; Frank was Grunt. 2 vigilante tokens left.
+Erin (public): Erin here, claiming Vigilante. N2 I shot Frank with a Basic shot. It killed him and he was a Grunt, so Frank was Yakuza. Bob then died to the Katana, so the holder is alive among Alice, Carol, Grace and Heidi. Grace, what did your N2 Sheriff check show? Carol, what did your N2 protection do? Heidi, who visited you on N2?
+[Claim] Grace: Sheriff. N1: checked Carol, Not Evil. N2: checked Frank, Evil. D2: Guilty on Dave.
+Grace (public): Grace, Sheriff. N1 I checked Carol: Not Evil. N2 I checked Frank: Evil, which matches Erin's Grunt claim and her Vigilante kill. A Katana holder reads Good to me, so my Not Evil on Carol doesn't clear her. Alice's count of 5 visitors, with Bob and Dave ruled out, leaves Carol as the only possible N1 holder. Carol, explain that against your Medic claim. Alice, please confirm your visitor list.
+[Claim] Heidi: Lookout. N1: watched Carol; Grace visited. N2: watched Bob; Alice visited. Bob was killed by Katana.
+Heidi (public): N2 I watched Bob; Alice visited him, and Bob was killed by Katana. Alice's claimed Fortune Teller result is passive and cannot explain a visit. This is a concrete contradiction; I nominate Alice to explain it.
+Heidi nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Heidi, Alice, Carol, Erin, Grace; No - nobody
+Nomination votes on Alice: 5 Yes (the votes are secret).
+Alice is put on trial (5 Yes).
+[Claim] Alice: Sheriff. N1: checked Carol, Not Evil. N2: checked Bob, Not Evil. D2: Guilty on Dave.
+Alice (public): Heidi’s result proves I visited Bob, not that I was the Katana attacker. I’m correcting my claim: I’m a Sheriff; N1 I checked Carol, Not Evil, and N2 I checked Bob, Not Evil. I visited Bob to check him; I did not kill him. My Fortune Teller claim was a false cover, and I understand that damages my credibility. But Grace’s “Frank, Evil” result was only announced after Erin named Frank as Grunt, so it does not independently establish who killed Bob. Don’t treat a visit alone as proof of an attack; weigh the claims and the timing before voting.
+Carol (public): Carol here. I'm voting Guilty on Alice. Her Fortune Teller claim was a cover by her own admission, and she switched to Sheriff only after being nominated. Heidi's Lookout puts Alice visiting Bob on Night 2, the night Bob died to the Katana, and no role Alice has claimed explains that visit. Grace's Sheriff check on Frank (Evil) matches Erin's Vigilante kill, which revealed Frank as a Grunt, so Grace's claim is corroborated. Alice, two Sheriffs can't both be real. Why did you hide your Night 2 visit to Bob until now?
+Erin (public): Erin here. I vote Guilty on Alice. Heidi's Lookout puts Alice visiting Bob on N2, the night Bob died to the Katana. Alice's Fortune Teller claim was a cover, and her Sheriff claim came only after nomination. Grace's Evil on Frank matches my confirmed Grunt kill.
+[Claim] Grace: Sheriff. N1: checked Carol, Not Evil. N2: checked Frank, Evil. D2: Guilty on Dave. D3: voting on Alice.
+Grace (public): Grace, Sheriff. N1 I checked Carol: Not Evil. N2 I checked Frank: Evil, a Grunt, which matches Erin's kill. Heidi's N1 watch on Carol matches my own visit, so her Lookout claim is credible. Her N2 watch shows Alice as the only visitor to Bob, who died to the Katana. A Katana kill needs a holder visit, so Alice is the likely holder. Alice, who else visited Bob?
+Heidi (public): If my Lookout result is true, Alice was the only visitor to Bob, who died by Katana. The Katana holder must visit their target, so Alice’s claimed Sheriff visit doesn’t clear her; her admitted false Fortune Teller cover makes this more concerning. I’m voting Guilty.
+Alice (public): I understand why Alice visiting Bob on the night he died looks damning, but Heidi’s report establishes a visit, not who made the Katana attack. I checked Bob as Sheriff; my Not Evil result does not clear him or identify the attacker. Grace’s Frank result is consistent with Erin’s claim, but Frank’s role and death don’t independently verify when Grace learned it. Two Sheriff claims aren’t mechanically impossible. I know my Fortune Teller cover damaged my credibility; judge the specific evidence, not just the claim change. If you hang me, you end the game on one uncorroborated inference about the visit. I ask for Innocent and a chance to resolve the competing claims.
+Trial votes on Alice: 4 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Carol, Erin, Grace, Heidi; Innocent - Alice
+Alice is executed by hanging (4 Guilty of 5 votes; 3 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Sheriff. N1: checked Carol, Not Evil. N2: checked Bob, Not Evil. D2: Guilty on Dave. I previously claimed Fortune Teller as a false cover."
+The game is over. Winners: Bob (dead), Carol, Erin, Grace, Heidi. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Carol, Erin, Grace, Heidi
+Cost by player (USD):
+  Alice (Grunt)     $0.0393   22 calls  gpt-6-luna
+  Bob (Tracker)     $0.0346   14 calls  claude-haiku-5.5
+  Carol (Medic)     $0.0548   20 calls  claude-haiku-5.5
+  Dave (Vulture)    $0.0327   15 calls  claude-haiku-5.5
+  Erin (Vigilante)  $0.0510   21 calls  claude-haiku-5.5
+  Frank (Grunt)     $0.0314   18 calls  claude-haiku-5.5
+  Grace (Sheriff)   $0.0468   20 calls  claude-haiku-5.5
+  Heidi (Lookout)   $0.0349   18 calls  gpt-6-luna
+  Moderator         $0.5858    5 calls  claude-opus-5.5
+  Night checks      $0.2571    2 calls  claude-opus-5.5
+  Strategy review   $0.2576    1 calls  claude-opus-5.5
+  Log review        $0.2227    1 calls  claude-opus-5.5
+  Total             $1.6486  157 calls
