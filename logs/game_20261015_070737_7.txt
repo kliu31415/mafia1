@@ -318,3 +318,30 @@ Trial votes on Dave: 8 Guilty, 3 Innocent (the votes are secret).
 [Secret trial votes on Dave] Guilty - Alice, Carol, Frank, Grace, Heidi, Ivan, Judy, Mallory; Innocent - Bob, Dave, Erin
 Dave is executed by hanging (8 Guilty of 11 votes; 6 needed).
 Dave died (executed by hanging). Their role isn't revealed. Their last will: "I have no night information to share. Judge the evidence from the posted results, not from my word."
+
+===== NIGHT 3 =====
+(to Bob, Erin) Bob (Yakuza chat): Bob: Dave is gone, so Alice is still our main threat. Her Sheriff claim is now backed by Carol's watch showing her visit to Mallory. I propose we keep the Katana with me and attack Alice again tonight. Erin, please vote holder Bob and target Alice. Judy may protect her again, so if it fails we treat Judy as the protector and reassess on Night 4. Publicly, I stay on my no-visit Night 2 story and say nothing new in Day chat. Reply if you see a better target.
+(to Bob, Erin) Erin (Yakuza chat): Erin: Judy's Standard protection stopped our N2 attack on Alice, so attacking Alice again wastes the Katana if Judy repeats. Judy is the only protector we have tested. I propose the Katana holder stays Bob and the target is Judy tonight. Removing the Medic leaves Alice open to a later attack. Bob, confirm holder and target in reply.
+(to Bob, Erin) Bob (Yakuza chat): Bob: Agreed with Erin. Holder Bob, target Judy tonight. Judy's Standard protection went on Alice, not herself, so an attack on Judy isn't covered by it unless she self-protects. Removing the only tested protector keeps Alice open for Night 4. Erin, confirm holder Bob and target Judy in reply. I'm ready.
+(to Bob, Erin) Erin (Yakuza chat): Erin: Confirmed. Holder Bob, target Judy tonight. Judy is the only tested protector and her Standard protection went on Alice, not herself. I vote Bob holds and target Judy. Ready.
+Night actions:
+  Alice (Sheriff): target Bob
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Judy
+  Carol (Lookout): target Bob
+  Erin (Grunt): no role action; Katana vote: Bob holds, attacks Judy
+  Frank (Tracker): target Heidi
+  Heidi (Vulture): target Alice
+  Judy (Medic): target Alice
+  Mallory (Vigilante): no action
+Katana: Bob holds it and attacks Judy.
+(to Alice) Moderator (private): You investigated Bob tonight. Result: Not Evil.
+(to Carol) Moderator (private): You watched Bob tonight. Visitors to Bob: Alice.
+(to Frank) Moderator (private): You tracked Heidi tonight. Heidi visited Alice.
+(to Judy) Moderator (private): You protected Alice tonight (Standard Defense). Your protection did not stop an attack. 2 medic tokens left.
+(to Bob) Moderator (private): Your Katana attack on Judy tonight succeeded.
+[Moderator summary] Night 3: Bob (Katana holder) attacked Judy with the Katana (Standard) and killed her (no Defense). Judy protected Alice with Standard Defense; nothing attacked Alice, so it stopped nothing (no tokens spent, 2 left). Alice checked Bob and got Not Evil, because the Katana holder reads Good. Carol watched Bob and saw Alice visit. Frank tracked Heidi, who visited Alice. Heidi (Vulture) scavenged Alice, who survived, so no power-up. Erin and Mallory took no action. Nobody was role-blocked. Living after the night: Alice, Bob, Carol, Erin, Frank, Grace, Heidi, Ivan, Mallory. The game goes on.
+[Night check] Night 3: correct
+(to Heidi) Moderator (private): You visited Alice, who didn't die tonight, so you gained nothing.
+(to Judy) Moderator (private): You were attacked tonight (Katana) and died.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Judy. Erin (Grunt) chose no action.
+(to Erin) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Judy. Bob (Grunt) chose no action.
