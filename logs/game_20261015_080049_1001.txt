@@ -404,3 +404,17 @@ Heidi (public): One more piece settles it. Bob's census makes Frank Evil, becaus
 Niaj (public): Frank's math skips one case. A fixed player's reminder shows the vote they cast, so I can't know whether I was fixed today. If Mallory fixed me, my Guilty on her counted Innocent, which makes 1. My Guilty on Frank also counted Innocent, and then Frank or Mallory cast a safe Guilty on Frank, which makes 1 again. Olivia stays honest. Heidi, Olivia: vote No on each other.
 Olivia (public): Niaj's case is the correct one: a fix on him explains both 1-Guilty totals, and I stay honest. We're vote-locked, so no more nominations today. Heidi, Niaj: vote No on anything. Night abilities go on Frank and Mallory.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Frank (Fabricator): no role action; Katana vote: Frank holds, attacks Olivia
+  Mallory (Medic): target Frank; chose to spend 1 token(s); "Strong Defense on Frank"
+  Niaj (Profiler): no action
+  Olivia (Arsonist): "ignite"
+Katana: Frank holds it and attacks Olivia.
+(to Frank) Moderator (private): Your Katana attack on Olivia failed. You were attacked by an Arsonist tonight and survived.
+(to Mallory) Moderator (private): You protected Frank tonight with Strong Defense (1 token spent). Your protection stopped an attack. 0 medic tokens left.
+(to Olivia) Moderator (private): You ignited tonight. Your attack on Frank failed. Your attack on Niaj succeeded. You were attacked with the Katana tonight and survived.
+[Moderator summary] Night 5: Frank (Katana holder) attacked Olivia with a Standard Katana attack; it failed against her Standard Defense. Mallory gave Frank Strong Defense (spent her last medic token). Olivia ignited (Astral), sending a Strong Attack at each doused player: Frank survived thanks to Mallory's Strong protection, and Niaj (Defense None) died to the Arsonist. All douses cleared. Niaj chose no action. Visits: Frank->Olivia, Mallory->Frank.
+[Night check] Night 5: correct
+(to Niaj) Moderator (private): You were attacked tonight (Arsonist) and died.
