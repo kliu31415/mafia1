@@ -33,3 +33,25 @@ Carol (public): Carol again. Agreed: plain N1 accounts tomorrow, checked against
 Dave (public): No firm reads yet. Grace's concern is worth tracking, but let's apply the same standard to everyone: compare tomorrow's N1 accounts with concrete results and visit evidence.
 Erin (public): Erin again, still no claim. Tomorrow I'll give a plain N1 account and result. Until then, no votes, and I'll be checking each account against visits.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Carol) Bob (Yakuza chat): Bob here. I'm a Grunt with no night action, so I have nothing to add tonight. Carol, you keep the Katana (my holder vote is you). I suggest no Katana attack on Night 1: we know no roles yet, and an early death tells the town little except that someone is hunting. Let's hold, see who makes which claims on Day 2, then pick a target with real information. If you want a kill tonight anyway, tell me the name and why, and I'll vote with you.
+(to Bob, Carol) Carol (Yakuza chat): Carol agrees with Bob: no Katana attack on Night 1. I keep the Katana. We hold, see Day 2 claims, then pick a target with real information. Ready.
+(to Bob, Carol) Bob (Yakuza chat): Bob: Agreed. No Katana attack tonight. Carol keeps the Katana. We hold until Day 2 claims come in, then pick a target with real information. Ready.
+(to Bob, Carol) Carol (Yakuza chat): Carol: Agreed. No Katana attack tonight. Carol keeps the Katana. Holding until Day 2 claims come in. Ready.
+[Feedback from Frank] }
+Night actions:
+  Alice (Sheriff): target Frank
+  Bob (Grunt): no role action; Katana vote: Carol holds, attacks None
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks None
+  Erin (Lookout): target Frank
+  Frank (Medic): target Grace
+  Heidi (Vigilante): no action
+Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
+(to Alice) Moderator (private): You investigated Frank tonight. Result: Not Evil.
+(to Erin) Moderator (private): You watched Frank tonight. Frank was visited by: Alice.
+(to Frank) Moderator (private): You protected Grace tonight (Standard Defense). Your protection did not stop any attack. 2 medic tokens left.
+[Moderator summary] Night 1: Alice (Sheriff) checked Frank -> Not Evil. Erin (Lookout) watched Frank -> visited by Alice. Frank (Medic) protected Grace with Standard Defense, no tokens spent, no attack stopped. Yakuza kept the Katana with Carol and did not attack. Heidi, Bob, Carol took no actions. No attacks, no deaths, no role-blocks.
+[Night check] Night 1: correct
+(to Bob) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Ballot Stuffer) chose no action.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Bob (Grunt) chose no action.
