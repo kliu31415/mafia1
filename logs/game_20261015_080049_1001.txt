@@ -334,3 +334,20 @@ Trial votes on Frank: 2 Guilty, 4 Innocent (the votes are secret).
 [Secret trial votes on Frank] Guilty - Judy, Niaj; Innocent - Frank, Heidi, Mallory, Olivia
 Frank is found Innocent (2 Guilty of 6 votes; 4 needed).
 Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Frank (Fabricator): no role action; Katana vote: Frank holds, attacks Judy
+  Judy (Lookout): target Olivia
+  Mallory (Medic): target Frank; chose to spend 1 token(s); "Strong Defense on Frank"
+  Niaj (Profiler): no action
+  Olivia (Arsonist): target Frank; "douse"
+Katana: Frank holds it and attacks Judy.
+(to Frank) Moderator (private): Your Katana attack on Judy succeeded.
+(to Mallory) Moderator (private): You protected Frank tonight (Strong Defense). Your protection did not stop any attack. 1 medic token left.
+(to Olivia) Moderator (private): You doused Frank tonight.
+(to Judy) Moderator (private): You watched Olivia tonight. Nobody visited her.
+[Moderator summary] Night 4: Frank kept the Katana and attacked Judy (Standard), killing her (Judy had Defense None and no protection). Mallory spent 1 token to give Frank Strong Defense (no attack on him, so it stopped nothing; 1 medic token left). Olivia doused Frank, now doused. Judy watched Olivia: no visitors. Niaj and Heidi took no action. No role-blocks. Visits: Frank->Judy, Mallory->Frank, Olivia->Frank. Alive: Frank (Yakuza), Heidi, Mallory (Turncoat), Niaj, Olivia (Arsonist). Game continues.
+[Night check] Night 4: errors. [medium, R6 / Lookout, wrong visit list] Judy (Lookout) watched Olivia and wasn't role-blocked. A Lookout's watch is a visit, so [Judy, Olivia] should be in record_visits. The moderator recorded only Frank->Judy, Mallory->Frank and Olivia->Frank.
+(to Frank) Moderator (private): An Arsonist doused you tonight. You stay doused until the Arsonist ignites.
+(to Judy) Moderator (private): You were attacked tonight (Katana) and died.
