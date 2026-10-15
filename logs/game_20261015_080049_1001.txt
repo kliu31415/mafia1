@@ -142,3 +142,39 @@ Trial votes on Ivan: 8 Guilty, 4 Innocent (the votes are secret).
 [Secret trial votes on Ivan] Guilty - Alice, Bob, Dave, Frank, Grace, Judy, Mallory, Niaj; Innocent - Erin, Heidi, Ivan, Olivia
 Ivan is executed by hanging (8 Guilty of 12 votes; 7 needed).
 Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan - Census Taker (Lookout was a cover to dodge the Katana). N1: census around Alice -> Alice/Bob/Niaj, Evil 1 of 3. I DID visit Alice, so Olivia's track 'visited no one' is false. She's one of Judy's four visitors to me, and the only one whose result can't be true: either a Roleplayer or a Neutral killer hiding a visit behind a Tracker claim. Exact-role check Olivia and Bob."
+
+===== NIGHT 2 =====
+(to Erin, Frank) Erin (Yakuza chat): Frank, Bob's census is what hangs you tomorrow, and later it's the only thing that can catch me (Profiler and Insomniac see my Medic disguise). Plan: I keep the Katana and attack Bob. You frame Bob AND spend your forge token on his will. I WON'T clean him, so your forged will is what gets shown. Suggested forged will, in Bob's style: "Bob - Census Taker. N1: census around Ivan -> Carol/Frank/Ivan, Evil 2/3. N2: census around Frank -> group Frank/Heidi/Judy, counted Good: 3 of 3. So Frank is Good, and my N1 Evil 2 must be Ivan + Carol. Carol's 'Katana' death could be a Village Stolen Blade. Check Carol-adjacent claims, don't hang Frank." That backs up your Stolen Blade argument and clears you. Risk: Mallory (claimed Medic) may protect Bob, and then the forge is wasted, but it's still our best shot. Tomorrow: you call it vindication, and I'll say mildly that it's consistent. Votes: holder Erin, target Bob. Agree?
+(to Erin, Frank) Frank (Yakuza chat): Mostly agree: holder Erin, target Bob, I frame and forge Bob, you don't clean. One important fix: the forged will can't include an N2 census result. Results come in at the end of the night, after wills are written (R13), so a will showing "N2: Good 3 of 3" would be an obvious forgery and would point straight at a second Fabricator, which is me. Here's a forge that stays in Bob's style and only raises doubt: "Bob - Census Taker. N1: census around Ivan -> Carol/Frank/Ivan, counted Evil 2 of 3. N2: census around Frank to re-check. Note: Carol was cleaned, so her role is unknown. If Carol was the second Evil, Frank is clean. Don't hang Frank on my N1 alone; get an exact-role check or my re-check first." Also: if Bob dies, his N2 result dies with him, which is good. My visit risk: if I'm tracked tonight I'll say I tracked Bob to check his census, which fits my Tracker cover. Don't pass me the Katana, because Dave may visit me. If Mallory protects Bob, we lose the forge, but it's still worth it. Final: holder Erin, target Bob.
+(to Erin, Frank) Erin (Yakuza chat): Agreed, and good catch on the N2 result. Use your forge text as written. Final: holder Erin, Katana on Bob, you frame and forge Bob, I don't clean. Tomorrow: if Bob dies with your will, call it fair doubt rather than vindication, and keep offering to be checked. I'll back it mildly as consistent with what Bob said about Carol being cleaned. If Bob survives (Mallory protecting him), we go quiet and look at Niaj or Judy next. Voting now.
+(to Erin, Frank) Frank (Yakuza chat): Confirmed. Holder Erin, Katana on Bob, no clean. I'll frame Bob and forge his will with the doubt-only text, which has no N2 result. Tomorrow I'll call the will fair doubt, keep offering to be checked, and quietly push Ivan's point that Olivia's 'visited no one' track was false. Voting now.
+Night actions:
+  Alice (Hitman): target Grace
+  Bob (Census Taker): target Mallory
+  Dave (Enforcer): target Frank; second target Erin; chose to spend 1 token(s)
+  Erin (Mortician): no role action; Katana vote: Erin holds, attacks Bob
+  Frank (Fabricator): target Bob; chose to spend 1 token(s); "Frame Bob AND spend the token to forge his last will. Forged will text: "Bob - Census Taker. N1: census around Ivan -> Carol/Frank/Ivan, counted Evil 2 of 3. N2: census around Frank to re-check. Note: Carol was cleaned, so her role is unknown. If Carol was the second Evil, Frank is clean. Don't hang Frank on my N1 alone; get an exact-role check or my re-check first.""; Katana vote: Erin holds, attacks Bob
+  Grace (Insomniac): chose to spend 1 token(s); "Stay awake (spend my last insomniac token)."
+  Judy (Lookout): target Bob
+  Mallory (Medic): target Frank
+  Niaj (Profiler): target Frank; chose to spend 1 token(s)
+  Olivia (Arsonist): target Judy; "douse"
+Katana: Erin holds it and attacks Bob.
+(to Bob) Moderator (private): Your census of Frank, Heidi and Mallory counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, Notorious) don't change it, and a Turncoat counts as Good. Neutral players are never counted, as either Good or Evil.
+(to Niaj) Moderator (private): You profiled Frank: their role is Arsonist, Eavesdropper or Fabricator (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 1 profile token left.
+(to Erin) Moderator (private): Your Katana attack on Bob succeeded tonight.
+(to Alice) Moderator (private): Your attack on Grace succeeded tonight.
+(to Dave) Moderator (private): You visited Frank and Erin tonight. You attacked one of them, and your attack killed. 3 enforcer tokens left.
+(to Judy) Moderator (private): You watched Bob tonight. Bob was visited by: Erin, Frank.
+(to Mallory) Moderator (private): You protected Frank tonight (Standard). Your protection did not stop any attack. 2 medic tokens left.
+(to Frank) Moderator (private): You framed Bob tonight and forged his last will. 0 fabricator tokens left.
+(to Olivia) Moderator (private): You doused Judy tonight.
+[Moderator summary] Night 2: No role-blocks. Alice (Hitman) Basic-attacked Grace, who died (Hitman). Erin held the Katana and hit Bob with a Standard attack, killing him (Katana). Frank framed Bob and forged his will, so the forged will replaces Bob's. Dave (Enforcer, 2 targets, Basic, 1 token) visited Frank and Erin. Erin had made the Katana attack, so Dave attacked her and she died (Enforcer). The Katana passes to Frank. Mallory protected Frank, but nothing attacked him. Judy watched Bob and saw Erin and Frank visit. Olivia doused Judy. Bob's census around Mallory, Grace's stay-awake and Niaj's profile on Frank were handled by code. Game continues.
+[Night check] Night 2: correct
+(to Grace) Moderator (private): You lay awake all night. More than 3 players visited someone tonight; you heard 3 of them, drawn at random. Their roles: Hitman, Lookout, Medic. 0 insomniac tokens left.
+(to Alice) Moderator (private): Your attack killed Grace, who was Good (1 of 2).
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Erin) Moderator (private): You were attacked tonight (Enforcer) and died.
+(to Grace) Moderator (private): You were attacked tonight (Hitman) and died.
+(to Frank) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Bob. Erin (Mortician) chose no action.
+(to Frank) The Katana passed to Frank.
