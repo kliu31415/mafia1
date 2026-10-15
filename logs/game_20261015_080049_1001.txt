@@ -17,3 +17,24 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Traits (R24) were picked by hand too: roughly 14 to 16 in all, each dealt to a player it fits, and a player may hold more than one.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Ivan.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Ivan (public): Morning all. Investigators, hold results until they matter. Watch PM patterns.
+Judy (public): Morning. Agreed with Ivan: keep results private until they matter. I'll be tracking who PMs whom and how votes line up against the totals.
+Mallory (public): Morning. Agreed: no early claims. Watch for vote totals that don't match stated votes.
+Niaj (public): Morning. Agreed. I'll keep track of the votes too. Day 2 nominations should be based on mechanics, not on vibes.
+Olivia (public): Morning. Agreed, no early claims. On Day 2, nominations should be based on hard results or a broken claim, not on someone being quiet.
+Alice (public): Morning. Agreed on all counts. Let's keep Day 2 grounded in results and vote totals.
+Bob (public): Morning. Agreed. Keep a notepad of stated votes against the totals, and watch who PMs whom.
+Carol (public): Morning. Agreed. One more thing: on Day 2, ask everyone where they went on Night 1 and compare the answers against any visit results.
+Dave (public): Morning. Agreed. One addition: when someone dies, read the cause of death carefully. A Katana death, a Strong attack and a 'hidden gun' each point to different killers.
+Erin (public): Morning. Agreed on all of that. I'll add one thing: a protector who saves someone should say so once it matters.
+Frank (public): Morning. Agreed. On Day 2, ask everyone where they went on Night 1 and check the answers against each other before anyone nominates.
+Grace (public): Morning. Agreed. Compare everyone's Night 1 answers against visit results on Day 2.
+Heidi (public): Morning. Agreed. One addition: compare announced totals against stated votes, and ask about any gap before anyone acts on it.
+Ivan (public): One more: anyone claiming a visit result should give night, target and result in one line, so we can cross-check quickly.
+Bob (public): One practical note for Day 2: if someone survives an attack, they should say which cause they were told. A failed Katana tells us something different from a failed Strong attack.
+Heidi (public): Agreed with Bob on survivors. If you're attacked and live, report the cause you were told. Protectors, say when you've saved someone.
+Discussion time is over. The day ends.
