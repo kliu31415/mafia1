@@ -55,3 +55,40 @@ Katana: no attack (the Yakuza agreed not to attack); Carol holds it.
 [Night check] Night 1: correct
 (to Bob) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Carol (Ballot Stuffer) chose no action.
 (to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana, with no Katana attack. Bob (Grunt) chose no action.
+
+===== DAY 2 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Frank.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Frank (public): N1 I protected Grace; my protection stopped no attack. The quiet night gives us no verified alignment or role information.
+Grace (public): Frank's unverifiable claim to have protected me is convenient after my challenge yesterday. I have no attack report, so it gives us no corroboration. Don't treat a claimed Medic result as verified; let's hear everyone's plain N1 account.
+Heidi (public): My N1 was no action, so I have no result. Frank, why did you choose Grace to protect? Grace, did you have an N1 action or result, or only no attack report? Everyone else, please give a plain account. A protection stopping no attack proves no alignment.
+[Claim] Alice: Sheriff. N1: checked Frank, Not Evil.
+Alice (public): Alice, Sheriff. My N1 check was Frank: Not Evil. That doesn't fully clear Frank, since a Katana holder or a Neutral Serial Killer, Arsonist or Decoy also reads Not Evil. Frank, your Medic claim is unverified. Did Grace receive any attack? Let's keep watching who defends whom.
+Bob (public): Bob here, Grunt with no night action and no claim. Alice's Not Evil on Frank clears little, as Alice says. Frank's Medic claim can't be checked yet. Let's hear the rest of the N1 accounts before any votes.
+Carol (public): Carol here, no claim yet. Alice's Sheriff check on Frank and Frank's Medic claim both need a visit or count to test them. Let's hear the rest of the N1 accounts before any votes.
+Dave (public): N1 I had no night action or result. Frank's protection stopping no attack and Alice's Not Evil check don't clear Frank; let's hear Erin's plain account before deciding.
+[Claim] Erin: Lookout. N1: watched Frank, visited only by Alice.
+Erin (public): Erin here, Lookout. N1 I watched Frank: only Alice visited him. That fits Alice's Sheriff check and nobody else went to Frank. It doesn't test Frank's claimed visit to Grace, and I can't tell whether Alice is telling the truth.
+[Claim] Frank: Medic. N1: protected Grace with Standard Defense; no attack was stopped.
+Frank (public): Bob claimed Grunt, which is Yakuza-only in this setup. That's the clearest concrete faction evidence we have. I nominate Bob; explain whether that was a real claim.
+Frank nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Frank, Heidi, Alice, Dave, Erin; No - Grace, Bob, Carol
+Nomination votes on Bob: 5 Yes (the votes are secret).
+Bob is put on trial (5 Yes).
+Bob (public): Bob again. "Grunt" was a slip in my wording, and I should not have used that word. I have no night action, I have no role claim, and I'm not Yakuza-claiming anything. Frank's nomination rests on one word I misspoke, and the Medic claim it's paired with can't be checked. Erin's Lookout result on Frank, only Alice visiting, fits Alice's Sheriff check and doesn't show Frank's protection of Grace. Before anyone votes Guilty, ask which of the Sheriff, Lookout or Medic claims has a visit that the others can confirm. Vote on that evidence, not on a one-word slip.
+[Claim] Carol: Villager. No role claim. N1: no night action.
+Carol (public): Carol here. Frank's nomination of Bob rests on one misspoken word, and that's thin ground for a hanging. Frank, what did you expect Bob's word to show? Before anyone votes Guilty, I want a visit or count that two separate players can confirm, not just the Sheriff, Lookout and Medic claims repeating each other. I'll vote on that.
+Dave (public): Bob acknowledged saying “Grunt,” a Yakuza-only role in this setup, then retracted it. A slip is possible, but it remains direct faction evidence; the unverified Medic and Sheriff claims don't erase it. I favor Guilty. Frank’s protection claim is a separate, unconfirmed issue.
+[Claim] Erin: Lookout. N1: watched Frank, visited only by Alice. Guilty on Bob (Day 2 trial).
+Erin (public): Erin, Lookout. I'm voting Guilty on Bob. His own opener read "Bob here, Grunt with no night action," which names a Yakuza-only role as his own. The later retraction doesn't remove the first-person statement. My Lookout result on Frank only shows Alice visited him, so I'm not using it to judge Frank.
+Frank (public): Bob's own first-person opener was “Grunt,” a Yakuza-only role. A wording slip is possible, but retracting it doesn't erase our strongest direct faction evidence. The unverified claims are a separate issue; I will vote Guilty.
+Grace (public): This looks staged: Bob's slip is the only concrete evidence, and Frank seized on it while making an unverified Medic claim. Alice and Erin only corroborate Alice's visit to Frank; that proves neither his role nor his alignment. I wouldn't hang Bob on this alone.
+Heidi (public): Bob’s first-person “Grunt” claim is direct evidence: Grunt is Yakuza-only in this setup. A typo is possible, but the retraction doesn’t explain what role he meant. I’m weighing the original statement, not the unverified claims about Frank.
+Alice (public): Alice, Sheriff. My N1 result stands: Frank, Not Evil. Frank, why did you protect Grace, and did your protection stop anything? Bob, the "Grunt" slip is the only faction evidence, and a Yakuza wouldn't volunteer it. I'm not convinced yet, so I need a clear explanation before a Guilty vote.
+Bob (public): Bob here. "Grunt" was a slip in my opener. I have no role claim and no night action, and N1 I did nothing. Nobody should be hanged on one misspoken word. Frank's Medic claim is unverified: he says he protected Grace, but no attack was reported, so nothing confirms it. Alice's Sheriff check and Erin's Lookout result only confirm the same single visit to Frank. Before you vote Guilty, ask for a visit or count that a second player can verify. If none exists, I'd vote Innocent.
+(to Carol) (Only you see this) You stuffed the ballot: your vote counts twice in this trial (1 ballot token left).
+Trial votes on Bob: 5 Guilty, 4 Innocent (the votes are secret; 9 votes from 8 voters: a role changed the count on purpose (rules R4), not an error).
+[Secret trial votes on Bob] Guilty - Alice, Dave, Erin, Frank, Heidi; Innocent - Bob, Carol, Grace
+Bob is executed by hanging (5 Guilty of 9 votes; 5 needed; 9 votes from 8 voters: a role changed the count on purpose (rules R4), not an error).
+Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob: I have no night action and no special information. Judge the claims by their checkable visits and results, and vote on evidence, not on how loudly someone pushes."
