@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, acted_tonight, register, seen_role
+from roles.base import AVENGED, RoleLogic, acted_tonight, register, seen_role
 
 if TYPE_CHECKING:
     from state import Game
@@ -24,6 +24,13 @@ class Vigilante(RoleLogic):
                 continue
             for dead in game.players:
                 died = dead.death or {}
-                if (died.get("day"), died.get("phase")) == (game.day, "night") and me.name in died.get("killers", []):
+                if (died.get("day"), died.get("phase")) == (game.day, "night") and me.name in died.get("killers", []) \
+                        and not avenged_only(game, me.name, dead.name, died.get("cause", "")):
                     # rules, Vigilante: an exact-role result (R19), so a Roleplayer shows as Roleplayer
                     game.tell([me.name], f"Your shot killed {dead.name}. Their role was {seen_role(game, dead)}.")
+
+
+def avenged_only(game: Game, me: str, dead: str, cause: str) -> bool:
+    """Whether my only fatal attack on dead was my Avenger trait's (game_20261015_013329_73509: a Vigilante with
+    Avenger was told their shot killed the Katana holder their trait killed), which isn't a shot."""
+    return dead in game.role_state.get(AVENGED, {}).get(me, []) and "Vigilante" not in cause

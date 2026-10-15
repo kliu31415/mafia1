@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
 from roles import ROLES, Alignment
-from roles.base import DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, notify_moderator, record_attack
+from roles.base import AVENGED, DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, notify_moderator, record_attack
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -527,6 +527,7 @@ class Avenger(TraitLogic):
         for name in dict.fromkeys(p.death["killers"]):
             if game.player(name).alive and name != p.name:
                 record_attack(game, p.name)  # for the Bloodhound's counts
+                game.role_state.setdefault(AVENGED, {}).setdefault(p.name, []).append(name)
                 game.log.write("avenger", player=p.name, attacked=name, day=game.day)
                 notify_moderator(game, f"{p.name} had the Avenger trait (R24): {name}, whose attack killed them, is "
                                  f"dealt a Basic Attack by {p.name} tonight (an Astral Visit, not a visit). Resolve it "
@@ -534,6 +535,9 @@ class Avenger(TraitLogic):
                                  f"if it kills, cause '{AVENGER_CAUSE}', by {p.name} (if another attack also kills "
                                  f"{name}, one kill naming both causes); if not, tell {name} they were attacked by an "
                                  f"Avenger.")
+
+    def at_night_end(self, game: Game) -> None:
+        game.role_state.pop(AVENGED, None)  # after the roles' hooks (a Vigilante's kill result reads it)
 
 
 # The old Cardinal role's key (roles.RETIRED), so a checkpoint saved with a curse pending carries it over.

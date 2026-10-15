@@ -2628,3 +2628,17 @@ def test_rivals_share_their_side_win_only_once_the_other_has_died(tmp_path):
     game.winners = winners = game.check_winner() or []  # a has died, so b now shares it; a doesn't, b is alive
     assert b in winners and a not in winners
     assert bundle_error(["Rival", "Bonded"]) and bundle_error(["Rival", "Turncoat"])
+
+
+def test_a_vigilante_avenger_is_told_only_about_its_own_shot(game_factory):
+    # game_20261015_013329_73509: Erin (Vigilante, Avenger) was told "Your shot killed Carol" for her trait's kill
+    game, players = game_factory(["Vigilante", "Grunt", "Sheriff", "Serial Killer", "Vanilla Villager"])
+    game.player("Alice").traits = ["Avenger"]
+    game.phase = "night"
+    apply_ops(game, players, {"op": "kill", "player": "Dave", "cause": "Vigilante", "by": "Alice"},
+              {"op": "kill", "player": "Alice", "cause": "Katana", "by": "Bob", "katana": True})
+    apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Avenger", "by": "Alice"})
+    game.run_night_end_hooks()
+    results = [t for t in told(game, "Alice") if "Your shot killed" in t]
+    assert len(results) == 1 and results[0].endswith("Your shot killed Dave. Their role was Serial Killer.")
+    assert "avenged" not in game.role_state
