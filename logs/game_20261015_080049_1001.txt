@@ -78,3 +78,67 @@ Katana: Erin holds it and attacks Carol.
 (to Erin) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Carol. Frank (Fabricator) chose to act on Olivia ("Frame Olivia only; do not forge her will (keep the token)."); Ivan (Fabricator) chose to act on Alice ("Frame Alice only; do not forge the will (keep the token).").
 (to Frank) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Carol. Erin (Mortician) chose to act on Carol, spending 1 token(s); Ivan (Fabricator) chose to act on Alice ("Frame Alice only; do not forge the will (keep the token).").
 (to Ivan) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Carol. Erin (Mortician) chose to act on Carol, spending 1 token(s); Frank (Fabricator) chose to act on Olivia ("Frame Olivia only; do not forge her will (keep the token).").
+
+===== DAY 2 =====
+Carol died (killed by Katana). Their last will was cleaned by a Mortician.
+Speaking order today goes around the circle in seat order, starting with Heidi.
+12 players are alive, so a nomination needs 7 Yes votes (rules R4).
+Heidi (public): Carol died to a Katana and was cleaned, so the Yakuza have a Mortician. As agreed: everyone, give your Night 1 visit in one line. Investigators with a result on a Night 1 visitor, post it now.
+[Claim] Ivan: Lookout. N1: watched Alice (result held for now).
+Ivan (public): Lookout. N1 watched Alice. Holding the result until it matters, as agreed on Day 1.
+Judy (public): I have a visit result from N1 that covers several players. I'll post it once everyone has given their N1 visit in one line, so nobody can tailor their answer to it. Please answer plainly: who did you visit on N1, if anyone?
+[Claim] Mallory: Medic. N1: protected Niaj (Standard), no attack stopped.
+Mallory (public): Plain answer: N1 I visited Niaj. I'm a Medic and gave Niaj Standard protection; it did not stop any attack. Judy, post your result once the others have answered.
+[Claim] Niaj: Profiler. N1: profiled Ivan -> Census Taker / Diviner / Fabricator (one is true). His Lookout claim contradicts this.
+Niaj (public): Profiler. N1 I profiled Ivan: Census Taker, Diviner or Fabricator, and exactly one of those is true. Lookout isn't on the list, so Ivan's claim is false, and two of the three are Yakuza roles. I'll vote Yes on Ivan.
+[Claim] Olivia: Tracker. N1: tracked Ivan (result held until Judy posts).
+Olivia (public): Plain answer: Tracker. N1 I tracked Ivan. I'm holding the result until Judy posts hers, since it bears directly on the Ivan/Niaj clash.
+[Claim] Alice: N1: visited no one.
+Alice (public): Plain answer: N1 I visited no one. Ivan, you watched me, so your result should be "no visitors" unless someone came by. Post it now: it can be checked against Judy's.
+[Claim] Bob: Census Taker. N1: census around Ivan, group Carol/Frank/Ivan, counted Evil: 2 of 3. Carol died to Katana, so Ivan and Frank are Yakuza.
+Bob (public): Census Taker. N1: census around Ivan; the program added Carol and Frank, and it counted Evil: 2 of the 3 are Evil (true alignment, so frames and the Katana holder can't fool it). Carol was killed by the Katana, so she's almost certainly not Yakuza. That leaves Ivan AND Frank as Yakuza. It fits Niaj's profile (Diviner/Fabricator). Hang Ivan today, Frank next.
+[Claim] Dave: Enforcer. N1: visited Ivan, no attack dealt (Ivan made no attack N1).
+Dave (public): Plain answer: Enforcer. N1 I visited Ivan, and no attack was dealt, so Ivan didn't make the Katana hit on Carol himself. That doesn't clear him, because another Yakuza could hold the Katana. Bob's census and Niaj's profile both point at Ivan. Judy and Olivia, please post your results, then let's vote on Ivan.
+[Claim] Erin: Medic. N1: protected Carol (Standard, no token); she died to Katana anyway, protection stopped nothing -> Katana was Strong+.
+Erin (public): Plain answer: Medic. N1 I protected Carol (Standard, no token), because her Day 1 push for visit cross-checks read like an investigator. She still died to the Katana, and I was told my protection stopped nothing. So the Katana hit harder than Standard: expect a Katana Expert or Master. Yes on Ivan.
+[Claim] Frank: Tracker. N1: tracked Olivia -> she visited Ivan.
+Frank (public): Tracker. N1 I tracked Olivia: she visited Ivan, which matches her claim. Bob, a census is solid mechanics, but your read on me depends entirely on Carol being Good. A Village Stolen Blade attack shows up exactly like a Katana kill, so dying to "Katana" doesn't prove she was town. I'm not Yakuza. Niaj's profile is the clean break on Ivan, so I'm voting Yes on Ivan today.
+[Claim] Grace: Insomniac. N1: stayed awake -> >3 visitors; heard roles Census Taker, Enforcer, Fabricator. Supports Niaj's profile on Ivan.
+Grace (public): Insomniac. N1 I stayed awake: more than 3 players visited, and the 3 roles I heard were Census Taker, Enforcer, Fabricator. So a Fabricator is real and visited N1. That backs Niaj's profile of Ivan (Census Taker / Diviner / Fabricator): Bob is the Census Taker, so Ivan is most likely the Fabricator. Bob and Dave fit my result too. Yes on Ivan.
+[Claim] Heidi: N1: visited no one.
+Heidi (public): Plain answer: N1 I visited no one. Niaj's profile breaks Ivan's Lookout claim, and Bob's census and Grace's Fabricator both fit it. Ivan, post your Alice result now. Judy and Olivia, everyone has answered, so post yours. I'll vote Yes on Ivan.
+[Claim] Ivan: Census Taker (Lookout was a cover). N1: census around Alice -> group Alice/Bob/Niaj, counted Evil: 1 of 3.
+Ivan (public): I lied about Lookout to keep a Census Taker hidden. Real claim: Census Taker. N1, census around Alice: group Alice/Bob/Niaj, counted Evil: 1 of 3. Olivia will confirm I visited Alice. Niaj's list includes Census Taker. One of my two accusers is lying.
+[Claim] Judy: Lookout. N1: watched Ivan -> visitors Bob, Dave, Niaj, Olivia (all four match their claims).
+Judy (public): I'm the Lookout. N1 I watched Ivan. Visitors to Ivan: Bob, Dave, Niaj, Olivia. All four said they visited Ivan, so all four check out. Ivan's first claim, "Lookout watching Alice", was made up, and he only switched to Census Taker after Niaj's profile came out. Census Taker is on Niaj's list, but so is Fabricator, and Grace heard a Fabricator. Olivia, please post where Ivan went. I'm voting Yes on Ivan.
+Mallory (public): Ivan's switch from Lookout to Census Taker only after Niaj's profile came out is a real break, and Grace heard a Fabricator. Yes on Ivan. Frank's case rests only on the census, so let's get Olivia's track result and have investigators check Frank tonight before we move on him.
+Niaj (public): Nominating Ivan. His first claim was a made-up Lookout result, and he only switched to Census Taker after my profile came out. Bob's census visit to Ivan is confirmed by Judy, and Grace heard a Fabricator. Olivia, post your track result during the trial.
+Niaj nominated Ivan. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Ivan] Yes - Niaj, Olivia, Alice, Bob, Dave, Erin, Frank, Grace, Heidi, Judy, Mallory; No - Ivan
+Nomination votes on Ivan: 11 Yes (the votes are secret).
+Ivan is put on trial (11 Yes).
+[Claim] Ivan: Census Taker. N1: census around Alice -> Alice/Bob/Niaj, Evil 1 of 3. Bob is a fake Census Taker, likely the Fabricator Grace heard (Judy saw him visit me).
+Ivan (public): I lied about Lookout because claimed investigators get the Katana, and I'm sorry for that. But look at what the evidence actually shows. Grace heard Census Taker, Enforcer and Fabricator. Dave is the Enforcer. I'm the Census Taker: I visited Alice, and Olivia's track will show it. That leaves the Fabricator as someone else who visited N1. Judy saw Bob visit me. Bob is the Fabricator. He visited me to frame me, then claimed Census Taker with a made-up 2/3 to bury the real one. My census on Alice/Bob/Niaj came back Evil 1 of 3, and Bob is in that group. Niaj's profile lists Census Taker, which is my real role. Hang me and you lose your only true census while a Yakuza walks free. Olivia, post your track now. Tonight, check Bob: an exact-role check on him settles this.
+Judy (public): Olivia, please post your track on Ivan now, before the vote. Two Census Takers can exist, since roles repeat. But Ivan made up a whole Lookout result and only changed his story after he was caught, while Bob's visit fits his claim. I'm leaning Guilty unless Olivia's track breaks Bob's story.
+Mallory (public): Olivia, please post your track now. If Ivan visited Alice, his census has a real visit behind it, and then Bob and Ivan are a straight Census Taker clash. I'll decide Guilty or Innocent on that.
+Niaj (public): Ivan made up a whole Lookout result and only switched once my list came out. Census Taker being on it means nothing, since every list has one Good role. Bob's census visit is confirmed by Judy. I'm voting Guilty. Olivia, post your track.
+[Claim] Olivia: Tracker. N1: tracked Ivan -> he visited no one (breaks his census-on-Alice claim). D2: Guilty on Ivan.
+Olivia (public): My Night 1 track: Ivan visited no one. That breaks his Census Taker claim, because a census around Alice would have been a visit to Alice. He's now given us two made-up results. Guilty.
+Alice (public): Olivia's track settles it: Ivan's census needed a visit to Alice, and he visited no one. That's two made-up results. Guilty on Ivan. Tomorrow we look at Frank through Bob's census.
+Bob (public): Guilty. Olivia's track and Judy's watch together show Ivan made up both results. Ivan's 'Bob is the Fabricator' doesn't hold: Grace heard a Census Taker visit, and Ivan visited no one. Frank's Olivia->Ivan track just repeats Olivia's own public claim. Investigators, check Frank tonight.
+[Claim] Dave: Enforcer. N1: visited Ivan, no attack dealt. D2: Yes on Ivan's nomination, Guilty on Ivan.
+Dave (public): Guilty. Ivan has now given two results, and Olivia's track breaks both of them, since a census around Alice would have been a visit. My own Enforcer visit fits too: Ivan made no attack, so he's a non-killing Yakuza, like a Fabricator. Tonight, investigators should look at Frank, and Frank's Olivia track should be checked.
+[Claim] Erin: Medic. N1: protected Carol (Standard, no token); she died to Katana anyway, protection stopped nothing -> Katana was Strong+. D2: Yes and Guilty on Ivan.
+Erin (public): Guilty. Olivia's track and Judy's watch together break both of Ivan's results. Expect Ivan to vote Innocent on himself, so one Innocent tells us nothing.
+[Claim] Frank: Tracker. N1: tracked Olivia -> she visited Ivan. D2: Yes and Guilty on Ivan.
+Frank (public): Guilty on Ivan. Olivia's track breaks both of his stories. On Bob's census: I respect the mechanics, so check me tonight and I'll stand by the result. But remember that Carol was cleaned and her role is unknown, and a Village Stolen Blade kill reads exactly like a Katana death. I'll keep tracking and post my result.
+[Claim] Grace: Insomniac. N1: stayed awake -> >3 visitors; heard Census Taker, Enforcer, Fabricator. D2: Yes and Guilty on Ivan.
+Grace (public): Guilty. Olivia's track shows Ivan visited no one, which breaks both of his claimed results. After this, tonight's checks should go to Frank, and to Bob's census.
+[Claim] Heidi: N1: visited no one. Merciful trait (my trial votes always count Innocent). D2: Yes on Ivan's nomination, voted Guilty on Ivan (counts as Innocent).
+Heidi (public): Guilty. Olivia's track and Judy's watch together break both of Ivan's results. Note for the count: I have the Merciful trait, so my trial votes always count as Innocent. Expect one extra Innocent from me, on top of Ivan's own.
+[Claim] Ivan: Census Taker. N1: census around Alice -> Alice/Bob/Niaj, Evil 1 of 3. Olivia's 'visited no one' is false: I visited Alice. Check Olivia (possible Roleplayer or Neutral) and Bob.
+Ivan (public): Last word. I did visit Alice on N1, so Olivia's "visited no one" is false. Think about why. Judy saw four visitors at my house: Bob, Dave, Niaj, Olivia. Olivia is one of them, and her result is the only one that can't be true. Either she's a Roleplayer getting random results, or she's a Neutral killer who came to my house for her own reasons and is using a fake Tracker claim to cover the visit. Frank "confirming" she visited me only confirms the visit. It doesn't confirm she's a Tracker. If I hang, at least keep this in mind: an exact-role check or a track on Olivia tonight, and one on Bob. If either of them turns out not to be what they claim, you'll know who misled you today. I'm voting Innocent.
+Trial votes on Ivan: 8 Guilty, 4 Innocent (the votes are secret).
+[Secret trial votes on Ivan] Guilty - Alice, Bob, Dave, Frank, Grace, Judy, Mallory, Niaj; Innocent - Erin, Heidi, Ivan, Olivia
+Ivan is executed by hanging (8 Guilty of 12 votes; 7 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan - Census Taker (Lookout was a cover to dodge the Katana). N1: census around Alice -> Alice/Bob/Niaj, Evil 1 of 3. I DID visit Alice, so Olivia's track 'visited no one' is false. She's one of Judy's four visitors to me, and the only one whose result can't be true: either a Roleplayer or a Neutral killer hiding a visit behind a Tracker claim. Exact-role check Olivia and Bob."
