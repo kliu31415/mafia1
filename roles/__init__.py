@@ -259,7 +259,7 @@ ROLES: dict[str, RoleInfo] = {
     "Hitman": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
                        summary="Night: Basic Attack on one player; wins and leaves once its attacks kill 2 Good "
                        "players, loses and leaves if one kills a non-Good player. Reads Evil to the Sheriff.",
-                       acts_at_night=True, unique=True,
+                       acts_at_night=True, unique=True, tested=True,
                        notes="moderator resolves the attack (by=Hitman); code counts kills from death killers, "
                        "tells it, handles win, loss and leaving"),
     "Magpie": RoleInfo(Alignment.NEUTRAL, "Neutral", False,

@@ -596,7 +596,8 @@ Bounty Hunter
 Hitman
   Appears: Evil to the Sheriff. Never blocks wins (R1).
   Night: may deal a Basic Attack to one player.
-  Only players your own Attack kills count; other deaths you cause (a trait's effect, a hanging) don't. Good means
+  Only players your own Attack kills count (it counts even if another fatal Attack hit them too, R12); other deaths
+  you cause (a trait's effect, a hanging) don't. Good means
   true alignment: a Village player, whatever alignment checks see (a Turncoat counts as Good, and so does a framed
   Villager; a Yakuza holding the Katana doesn't). At the end of each night your Attack kills someone, you are told
   whether they were Good. Night deaths are simultaneous (R10): a player you kill on the night you die still counts.
