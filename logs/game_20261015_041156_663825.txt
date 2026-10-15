@@ -12,3 +12,24 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager. Results that name a role (including fakes) never name them either. Nobody has a trait (R24) in this game.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Frank (public): Let's use today to get acquainted; tomorrow, share concrete claims and results when they can help us make an informed vote.
+Grace (public): Frank, waiting until tomorrow gives the Yakuza a free night to coordinate stories. I'd rather hear early reads and what people plan to claim.
+Heidi (public): I favor early, specific claims or results when they create accountability, but don't force power roles to expose themselves. Let's note who can give a concise night-action account tomorrow.
+Alice (public): Agreed with Frank. I'll share concrete results once they can inform a real vote.
+Bob (public): Bob here. No claim yet. I agree with Frank: tomorrow, share concrete results, and let's check each claim against the visits and counts it implies.
+Carol (public): Carol here, no claim yet. I agree with Frank and Heidi: share concrete results tomorrow and check each claim against the visits and counts it implies. Day 1 reads are mostly noise, so let's not rush votes.
+Dave (public): Let's share concrete N1 actions and results tomorrow; don't force power claims now. Keep wills current, and distinguish visit evidence from role or alignment results.
+Erin (public): Erin here, no claim yet. Agree: share concrete N1 actions tomorrow and check each account against visits. Watch for vague accounts.
+Frank (public): Tomorrow, give a plain account of your N1 action and result, but don't disclose tonight's intended target. Treat visit reports as evidence about where someone went, not what they did; keep wills current and compare accounts.
+Grace (public): Frank's repeated push to wait for tomorrow's accounts feels like controlling the timing, not just caution. Put him first to explain N1; don't let the same script pass unchecked.
+Heidi (public): Frank's timing point is fair, but Grace's concern is fair too. Tomorrow, give your actual N1 action and result plainly; don't disclose intended targets or lean on unverifiable speculation.
+Alice (public): Alice here, no claim yet. I'll give my N1 action and result tomorrow, as others suggested. Please keep your accounts plain and checkable.
+Bob (public): Bob again. Agreed on plain, checkable N1 accounts tomorrow. I'll be watching for vague accounts and for anyone pushing early votes before results exist.
+Carol (public): Carol again. Agreed: plain N1 accounts tomorrow, checked against visits. No votes until we have results.
+Dave (public): No firm reads yet. Grace's concern is worth tracking, but let's apply the same standard to everyone: compare tomorrow's N1 accounts with concrete results and visit evidence.
+Erin (public): Erin again, still no claim. Tomorrow I'll give a plain N1 account and result. Until then, no votes, and I'll be checking each account against visits.
+Discussion time is over. The day ends.
