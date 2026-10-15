@@ -404,3 +404,50 @@ Erin (public): Erin here. No nomination from me. I'll judge on the Night 5 resul
 [ERROR effort_fallback] Frank (haiku-5.5): answer cut off at max_tokens at high effort, retrying at medium
 Frank (public): Frank here. No new result from me. I'll judge on any exact Night 5 result and won't pre-announce my night plans.
 Discussion time is over. The day ends.
+
+===== NIGHT 5 =====
+Night actions:
+  Bob (Fabricator): target Erin; "Fabricator visit on Erin to frame her as Evil for alignment checks, no forgery. Katana holder stays with Bob and attacks Frank."; Katana vote: Bob holds, attacks Frank
+  Erin (Hitman): target Frank; "Hitman Basic Attack on Frank"
+  Frank (Vigilante): target Bob; chose to spend 1 token(s); "Basic shot at Bob, one vigilante token."
+Katana: Bob holds it and attacks Frank.
+(to Bob) Moderator (private): You visited Erin tonight and framed her. Your Katana attack on Frank succeeded.
+(to Frank) Moderator (private): You shot Bob tonight with a Basic Attack (1 vigilante token spent). Your attack succeeded. You have 2 vigilante tokens left.
+(to Erin) Moderator (private): You attacked Frank tonight. Your attack succeeded.
+[Moderator summary] Night 5: No role-blocks. Bob (Fabricator, Katana holder) framed Erin and hit Frank with the Standard Katana attack. Erin (Hitman) made a Basic Attack on Frank. Frank (Vigilante) shot Bob with a Basic Attack, spending 1 token (2 left). Frank had no Defense, so both attacks on him were fatal: he died, killed by Katana and Hitman. That is Erin's second kill of a Good player, after Grace on N4, so she meets the Hitman win condition (code handles it). Bob had no Defense and died to the Vigilante shot. No Yakuza are left alive to take the Katana. Remaining: Erin (Hitman, never blocks wins) and Heidi (Village), so the Village should win. Visits: Bob->Erin, Bob->Frank, Erin->Frank, Frank->Bob.
+[Night check] Night 5: correct
+(to Frank) Moderator (private): Your shot killed Bob. Their role was Fabricator.
+(to Erin) Moderator (private): Your attack killed Frank, who was Good (2 of 2).
+(to Bob) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Frank) Moderator (private): You were attacked tonight (Katana and Hitman) and died.
+
+===== DAY 6 =====
+Frank died (killed by Katana and Hitman). Their role isn't revealed. Their last will: "Frank, Vigilante (Good). No night action on N1 to N4 and no visits; my 3 vigilante tokens are unspent. Alice was executed on Day 4. Grace's N3 Evil read on Alice is her claim alone. Trust mechanical results over claims. A Katana holder is still alive. I will shoot only a Yakuza lead with a concrete break."
+Bob died (killed by Vigilante). Their role isn't revealed. Their last will: "Bob, Vanilla Villager. I took no night action and made no visits on any night. My Day votes are on the public record: Guilty on Frank, Dave and Erin; Yes on Alice's nomination and Innocent at her trial. I have no hidden information. Judge every claim on its mechanics, not on my word."
+Moderator: Erin was the Hitman. They win and leave the game. Their last will: "Erin, Vanilla Villager. I took no night action on N1-N3 and visited nobody. I have no verified results. Alice and Bob voted Guilty together on Frank, Dave and me, and Alice was executed. Grace's Sheriff checks (Dave and Bob Not Evil, Alice Evil) and Dave's Tracker visit reports fit each other, so judge them by exact results. Frank and Heidi: vote on mechanics, not on who asks the most questions."
+The game is over. Winners: Carol (dead), Dave (dead), Frank (dead), Grace (dead), Heidi, Erin (left). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Dave, Frank, Grace, Heidi, Erin
+Cost by player (USD):
+  Alice (Grunt)             $0.0713   39 calls  gpt-6-luna
+  Bob (Fabricator)          $0.1404   56 calls  claude-haiku-5.5
+  Carol (Medic)             $0.0269   15 calls  gpt-6-luna
+  Dave (Tracker)            $0.0586   33 calls  gpt-6-luna
+  Erin (Hitman)             $0.1678   54 calls  claude-haiku-5.5
+  Frank (Vigilante)         $0.1685   54 calls  claude-haiku-5.5
+  Grace (Sheriff)           $0.1039   38 calls  claude-haiku-5.5
+  Heidi (Vanilla Villager)  $0.1020   47 calls  gpt-6-luna
+  Moderator                 $1.4977   12 calls  claude-opus-5.5
+  Night checks              $0.6653    5 calls  claude-opus-5.5
+  Strategy review           $0.3551    1 calls  claude-opus-5.5
+  Log review                $0.3007    1 calls  claude-opus-5.5
+  Total                     $3.6582  355 calls
