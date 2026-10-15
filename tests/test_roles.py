@@ -2743,3 +2743,29 @@ def test_a_reflected_attack_is_never_reflected_again(game_factory):
         game.run_night_end_hooks()
         assert "Your mirror on Carol stopped 1 attack " in told(game, "Alice")[-1]
         assert "Your mirror on Dave stopped 1 attack " in told(game, "Bob")[-1]
+
+
+def test_an_ashamed_villager_dies_after_voting_innocent_on_a_hanged_non_villager(game_factory):
+    # rules R24 (Kevin, Oct 15 2026): Remorseful's mirror; Neutrals count, true alignments, by the vote as cast
+    from day import run_trial
+    from tests.conftest import ScriptedClient
+
+    def decide(name, task, schema):  # Guilty, except these Innocent voters
+        innocent = ("Alice", "Bob", "Dave") if "Carol" in task else ("Alice", "Dave")
+        return {"vote": name not in innocent} if "vote" in schema["properties"] else None
+    game, players = game_factory(["Sheriff", "Medic", "Vigilante", "Grunt", "Jester", "Vigilante", "Grunt"],
+                                 ScriptedClient(decide))
+    for name in ("Alice", "Bob", "Dave"):
+        game.player(name).traits = ["Ashamed"]
+    game.player("Carol").traits = ["Notorious"]
+    # Hanging a Village player (Notorious reads Evil, but its true alignment is Village): nobody dies of shame.
+    assert run_trial(game, players, game.player("Frank"), "Carol", rnd=1) == "executed"
+    assert all(game.player(n).alive for n in ("Alice", "Bob", "Dave"))
+    # Hanging a Neutral (a Jester) counts: Alice voted Innocent and dies; Bob voted Guilty and lives; Dave is a
+    # Yakuza given it anyway (Village only), so never dies of it.
+    assert run_trial(game, players, game.player("Frank"), "Erin", rnd=1) == "executed"
+    assert not game.player("Alice").alive and game.player("Alice").death["cause"] == "shame"
+    assert game.player("Bob").alive and game.player("Dave").alive
+    assert any("shame" in e.text for e in game.events)
+    from traits import bundle_error
+    assert bundle_error(["Ashamed", "Merciful"]) and bundle_error(["Ashamed", "Turncoat"])

@@ -111,6 +111,18 @@ TRAITS: dict[str, TraitInfo] = {
                                   "<circle cx='5' cy='5' r='4.4' fill='#475569' stroke='#fff' stroke-width='1'/>"
                                   "<path d='M5 2.4Q6.8 5 6.8 6A1.8 1.8 0 0 1 3.2 6Q3.2 5 5 2.4Z' fill='#fff'/>"
                                   "</svg>")),  # a tear
+    # Remorseful's mirror (Kevin, Oct 15 2026): Village only; the hanged player counts if they weren't Village (true
+    # alignment), so Neutrals count too, and a shame death tells everyone the hanged player wasn't Village. The vote
+    # as cast, like Remorseful; never with Merciful (votes always count as Innocent) or Turncoat (wins with the Yakuza).
+    "Ashamed": TraitInfo(frozenset({Alignment.GOOD}),
+                         "If you vote Innocent in a trial and that player is hanged and wasn't Village, you die at "
+                         "once of shame (rules R24).",
+                         "Dies of shame after voting Innocent on a hanged non-Villager.",
+                         power=-0.05,
+                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                               "<circle cx='5' cy='5' r='4.4' fill='#854d0e' stroke='#fff' stroke-width='1'/>"
+                               "<path d='M2.6 4Q3.5 4.9 4.4 4M5.6 4Q6.5 4.9 7.4 4M3.6 7.2Q5 6.2 6.4 7.2' "
+                               "fill='none' stroke='#fff' stroke-width='0.9'/></svg>")),  # a downcast face
     "Faultline": TraitInfo(frozenset({Alignment.GOOD}),
                            "After each trial vote you cast, you privately learn one random other player whose vote "
                            "counted as Guilty and one whose vote counted as Innocent (rules R24).",
@@ -399,7 +411,8 @@ TRAITS: dict[str, TraitInfo] = {
 # Traits no player may hold together (rules R24).
 EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Oblivious"}),
              frozenset({"Selfish", "Selfless"}), frozenset({"Usurper", "Selfish"}), frozenset({"Usurper", "Selfless"}),
-             frozenset({"Remorseful", "Zealot"}), frozenset({"Turncoat", "Notorious"}),
+             frozenset({"Remorseful", "Zealot"}), frozenset({"Ashamed", "Merciful"}),
+             frozenset({"Ashamed", "Turncoat"}), frozenset({"Turncoat", "Notorious"}),
              frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"}),
              frozenset({"Katana Expert", "Katana Master"}), frozenset({"Katana Expert", "Shaky"}),
              frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"}),
@@ -505,7 +518,8 @@ class Martyr(TraitLogic):
 AVENGER_CAUSE, CURSE_CAUSE = "Avenger", "a curse"  # the causes of attacks code makes (also REVENGE_CAUSE)
 HEARTBREAK_CAUSE = "heartbreak"  # a Bonded player's death when their partner dies: no attack by anyone
 REMORSE_CAUSE = "remorse"  # a Remorseful player's death after a Guilty vote hanged a Villager: no attack by anyone
-NOT_ATTACKS = (HEARTBREAK_CAUSE, REMORSE_CAUSE)  # deaths no one attacked for (rules R24)
+SHAME_CAUSE = "shame"  # an Ashamed player's death after an Innocent vote on a hanged non-Villager: no attack by anyone
+NOT_ATTACKS = (HEARTBREAK_CAUSE, REMORSE_CAUSE, SHAME_CAUSE)  # deaths no one attacked for (rules R24)
 
 
 class Avenger(TraitLogic):
@@ -520,7 +534,7 @@ class Avenger(TraitLogic):
         # Code-made deaths (a Jester's revenge, a Cursed player's curse, another Avenger's, heartbreak) aren't the
         # user's own attack, so they don't set it off.
         cause = p.death["cause"]
-        if cause in (CURSE_CAUSE, AVENGER_CAUSE, HEARTBREAK_CAUSE, REMORSE_CAUSE) or cause.endswith(REVENGE_CAUSE):
+        if cause in (CURSE_CAUSE, AVENGER_CAUSE, *NOT_ATTACKS) or cause.endswith(REVENGE_CAUSE):
             return
         # Kevin, Oct 15 2026: a Basic Attack (was Divine), so the moderator resolves it against Defense and protection.
         # A killer the moderator already killed tonight is left alone: the attack changes nothing for them.
@@ -643,6 +657,18 @@ class Remorseful(TraitLogic):
             if vote and p.alive and "Remorseful" in p.traits and p.info.alignment is Alignment.GOOD:
                 game.log.write("remorse", player=name, hanged=hanged.name, day=game.day)
                 game.kill(name, REMORSE_CAUSE, by=hanged.name)
+
+
+class Ashamed(TraitLogic):
+    def after_hanging(self, game: Game, hanged: Player, cast: dict[str, bool]) -> None:
+        # rules R24: Remorseful's mirror. True alignments: a Neutral or Yakuza counts, a Notorious player doesn't.
+        if hanged.info.alignment is Alignment.GOOD:
+            return
+        for name, vote in cast.items():
+            p = game.player(name)
+            if not vote and p.alive and "Ashamed" in p.traits and p.info.alignment is Alignment.GOOD:
+                game.log.write("shame", player=name, hanged=hanged.name, day=game.day)
+                game.kill(name, SHAME_CAUSE, by=hanged.name)
 
 
 class Faultline(TraitLogic):
@@ -1139,8 +1165,8 @@ def kill_error(game: Game, change: dict) -> str | None:
 
 
 LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger": Avenger(), "Cursed": Cursed(),
-                                "Kindred": Kindred(), "Remorseful": Remorseful(), "Faultline": Faultline(),
-                                "Notorious": Notorious(),
+                                "Kindred": Kindred(), "Remorseful": Remorseful(), "Ashamed": Ashamed(),
+                                "Faultline": Faultline(), "Notorious": Notorious(),
                                 "Grudge": Grudge(), "Loud": Loud(), "Curt": Curt(),
                                 "Confidant": Confidant(), "Zealot": Zealot(), "Merciful": Merciful(),
                                 "Drowsy": Drowsy(), "Spare Blade": SpareBlade(),

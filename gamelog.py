@@ -140,7 +140,8 @@ from records import caller_of, read_records, redact, safe_print
 #     day) records for the Decoy
 # 76: "mayor_revealed" (player, day) records for the Mayor; trial "vote" records unchanged
 # 77: "mirror" records (player, target, attacks, stopped, day) for the Mirror Maker
-LOG_VERSION = 77
+# 78: "shame" records (player, hanged, day): an Ashamed voter's death after a hanging (rules R24)
+LOG_VERSION = 78
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

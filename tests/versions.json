@@ -1,5 +1,5 @@
 {
- "log_version": 77,
+ "log_version": 78,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["attacked", "day", "player"],
@@ -53,6 +53,7 @@
   "rivals": ["players"],
   "section": ["title"],
   "setup": ["katana", "log_version", "players", "role_info", "trait_info"],
+  "shame": ["day", "hanged", "player"],
   "steal": ["day", "player", "target", "token"],
   "strategy_review": ["cost", "lessons", "model", "summary", "tips_feedback", "usage"],
   "tell_held": ["day", "players"],

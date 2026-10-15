@@ -653,6 +653,13 @@ Remorseful
   counts it.
   Never with: Zealot.
 
+Ashamed
+  Who: Village players only.
+  Effect: If you vote Innocent in a trial and that player is hanged and wasn't Village (their true alignment: Yakuza
+  or Neutral), you die at once; the cause is "shame". It goes by the vote you cast. It isn't an attack, so nothing
+  that reacts to attacks counts it.
+  Never with: Merciful or Turncoat.
+
 Faultline
   Who: Village players only.
   Effect: After each trial vote you cast, you privately learn one random other player whose vote counted as Guilty
@@ -690,7 +697,7 @@ Turncoat
   as Good. You stay Village in every other way: you aren't in the Yakuza's chat or Katana votes, you don't know who
   the Yakuza are, and they aren't told about you. The game's end ignores you, like a role that never blocks wins
   (R1): it ends when the other living players are all Village or all Yakuza.
-  Never with: Notorious, Rival, Selfish or Selfless.
+  Never with: Ashamed, Notorious, Rival, Selfish or Selfless.
 
 --- Yakuza players only ---
 
@@ -800,7 +807,7 @@ Zealot
 Merciful
   Who: Any player.
   Effect: Like Zealot, but your trial votes always count as Innocent.
-  Never with: Zealot.
+  Never with: Ashamed or Zealot.
 
 Drowsy
   Who: Any player whose role has a night action and can be role-blocked.
