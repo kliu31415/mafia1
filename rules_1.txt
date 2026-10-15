@@ -293,8 +293,8 @@ Chronicler
   Tokens: 2 chronicler tokens.
   Night: may spend a token to mark one player other than yourself. This is a visit. The marked player isn't told.
   The mark lasts for the rest of the game, even after you die. If a marked player dies, at any time and of any
-  cause, the announcement of their death also reveals their true role to everyone (an exact-role check, R19), and
-  says they had been marked by a Chronicler (not by whom). A Mortician's clean beats the mark: a marked player who
+  cause, the announcement of their death also reveals their role to everyone as an exact-role check sees it (R19:
+  a Disguised player shows their disguise), and says they had been marked by a Chronicler (not by whom). A Mortician's clean beats the mark: a marked player who
   is cleaned has their role and will hidden, and the announcement says they had been marked but the clean hid their
   role. You can't mark a player you already marked. Marking a player another Chronicler already marked spends your
   token but adds nothing.
