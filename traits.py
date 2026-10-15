@@ -287,7 +287,7 @@ TRAITS: dict[str, TraitInfo] = {
                          "You start with one more of each kind of token your role starts with (rules R24).",
                          "Starts with one extra token of each kind its role has.",
                          power=0.15,
-                         fits_role=lambda r: bool(ROLES[r].tokens),
+                         fits_role=lambda r: bool(ROLES[r].tokens) and not ROLES[r].token_cap,
                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                                "<circle cx='5' cy='5' r='4.4' fill='#a16207' stroke='#fff' stroke-width='1'/>"
                                "<path d='M5 2.6V7.4M2.6 5H7.4' stroke='#fff' stroke-width='1.3'/></svg>")),  # a plus

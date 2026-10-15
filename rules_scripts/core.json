@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "5d0da4aa1d8381c1",
+ "cut_sha256": "3ea80383c624c5c1",
  "text_sha256": "2b5f0c62c61dd30d",
  "made_by": "a Claude Code session",
- "made": "2026-10-15T10:34:21+00:00",
+ "made": "2026-10-15T11:13:23+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -80,6 +80,11 @@
    "old": "   A trap stops one attack before Defense and may hit its attacker back (Trapper); a mirror stops them all and\n   reflects those that were visits back at their attackers (Mirror Maker).",
    "new": "   A trap stops one attack before Defense and may hit its attacker back (Trapper).",
    "reason": "The Mirror Maker is not on the script."
+  },
+  {
+   "old": "  Who: Any player whose role starts with tokens and can ever have more than it starts with.\n",
+   "new": "  Who: Any player whose role starts with tokens.\n",
+   "reason": "No role on the script has a token cap (the Oathsworn isn't on it)."
   }
  ]
 }

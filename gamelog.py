@@ -143,7 +143,9 @@ from records import caller_of, read_records, redact, safe_print
 # 78: "shame" records (player, hanged, day): an Ashamed voter's death after a hanging (rules R24)
 # 79: "rampage" records (player, target (None at home), visitors, day) for the Werewolf
 # 80: "saint_hanged" records (player, day): a hanged Saint, which ends the game with a Yakuza win
-LOG_VERSION = 80
+# 81: Oathsworn role: "oathsworn_mark" (player, target, day), "oathsworn_fires"/"oathsworn_lapses" (player, target,
+#     day) as the next Night begins, "oath_fulfilled" (player, target, visitors, day)
+LOG_VERSION = 81
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

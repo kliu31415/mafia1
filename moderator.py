@@ -469,6 +469,9 @@ class Moderator:
                         or not re.fullmatch(r"-?\d+", str(c["value"]).strip()):
                     raise bad("value must be an integer")
                 p = self.game.player(c["player"])
+                if p.info.token_cap and int(str(c["value"]).strip()) > p.info.tokens.get(c["token"], 0):
+                    raise bad(f"{p.name}'s {c['token']} tokens can never go above {p.info.tokens.get(c['token'], 0)} "
+                              f"(rules: {p.role})")
                 if c["token"] not in p.tokens and c["token"] not in p.info.tokens:
                     notes.append(f"change {i} (set_tokens): {c['player']} ({p.role}) has no {c['token']!r} tokens"
                                  + (f" (they have {sorted(p.tokens)})" if p.tokens else ""))

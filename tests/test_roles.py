@@ -2940,3 +2940,62 @@ def test_a_werewolf_never_hits_itself_but_hits_another_werewolf_visiting_its_tar
                                                        {"op": "rampage", "by": "Bob", "player": "Carol"}]})["results"]
     assert "to: Carol (a visit); Bob (visitors; not visits)" in texts[0] and "Alice (" not in texts[0]
     assert "to: Carol (a visit); Alice (visitors; not visits)" in texts[1] and "Bob (" not in texts[1]
+
+
+def test_an_oathsworn_mark_fires_the_next_night_only_if_the_oathsworn_is_dead(game_factory):
+    # rules: Oathsworn (Kevin, Oct 15 2026): marked player and every other visitor get a Divine Attack; any death counts
+    game, players = game_factory(["Oathsworn", "Vanilla Villager", "Medic", "Grunt", "Lookout", "Sheriff"])
+    oath = logic("Oathsworn")
+    game.phase, game.day = "night", 1
+    apply_ops(game, players, {"op": "swear", "by": "Alice", "player": "Bob"})
+    assert game.player("Alice").tokens["oath"] == 0
+    with pytest.raises(ValueError, match="no oath token"):
+        apply_ops(game, players, {"op": "swear", "by": "Alice", "player": "Carol"})
+    game.player("Alice").alive = False  # e.g. hanged on Day 2
+    game.day = 2
+    note = oath.tonight_note(game)
+    assert "Alice, an Oathsworn, is dead, so the mark it made last night on Bob fires tonight" in note
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    op = {"op": "fulfil_oath", "by": "Alice"}
+    with pytest.raises(ValueError, match="record_visits"):
+        mod.dispatch("apply_changes", {"changes": [op]})
+    mod.dispatch("record_visits", {"visits": [["Carol", "Bob"], ["Dave", "Bob"], ["Erin", "Dave"], ["Carol", "Bob"]]})
+    text = mod.dispatch("apply_changes", {"changes": [op]})["results"][0]
+    # the target, each other visitor once (a Yakuza teammate too), never a visitor's own visitor
+    assert "Divine Attack, cause 'a blood oath', by Alice, on Bob and on Carol and Dave" in text and "Erin" not in text
+    with pytest.raises(ValueError, match="already recorded tonight"):
+        mod.dispatch("apply_changes", {"changes": [op]})
+    oath.at_night_end(game)
+    assert not game.log.error_counts
+    game.day = 3  # settled: nothing fires again
+    assert oath.tonight_note(game) == ""
+    with pytest.raises(ValueError, match="no Oathsworn mark firing tonight"):
+        mod.dispatch("apply_changes", {"changes": [op]})
+
+
+def test_an_oathsworn_mark_lapses_if_the_oathsworn_lives_and_a_missed_one_is_an_error(game_factory):
+    # rules: Oathsworn (alive when the next Night begins: the mark lapses)
+    game, players = game_factory(["Oathsworn", "Vanilla Villager", "Medic", "Grunt", "Oathsworn"])
+    oath = logic("Oathsworn")
+    game.phase, game.day = "night", 1
+    apply_ops(game, players, {"op": "swear", "by": "Alice", "player": "Bob"},
+              {"op": "swear", "by": "Erin", "player": "Carol"})
+    game.player("Erin").alive = False
+    game.day = 2
+    note = oath.tonight_note(game)
+    assert "Erin, an Oathsworn, is dead" in note and "Alice" not in note
+    with pytest.raises(ValueError, match="Alice has no Oathsworn mark"):
+        apply_ops(game, players, {"op": "fulfil_oath", "by": "Alice"})
+    oath.at_night_end(game)  # the moderator never used the op for Erin
+    assert game.log.error_counts == {"oathsworn_missed": 1}
+
+
+def test_an_oathsworn_never_has_more_than_one_token(game_factory):
+    # rules: Oathsworn ("never more"), Stocked (only roles whose tokens can go above their start)
+    assert not fits("Stocked", "Oathsworn") and fits("Stocked", "Ritualist")
+    game, players = game_factory(["Oathsworn", "Vanilla Villager", "Medic", "Grunt"])
+    game.phase, game.day = "night", 1
+    with pytest.raises(ValueError, match="can never go above 1"):
+        apply_ops(game, players, {"op": "set_tokens", "player": "Alice", "token": "oath", "value": 2})
+    apply_ops(game, players, {"op": "set_tokens", "player": "Alice", "token": "oath", "value": 0})
+    assert game.player("Alice").tokens["oath"] == 0

@@ -25,6 +25,9 @@ class RoleInfo:
     tested: bool = False  # seen working in at least one live (API) game; update when it first is
     notes: str = ""  # implementation notes for --list-roles
     subcategory: str = ""  # Investigative roles only: what they learn (Alignment check, Role info, ...); in code only
+    # Its tokens never go above the starting count (rules: Oathsworn): Stocked never goes to it, and set_tokens
+    # can't raise them
+    token_cap: bool = False
 
 
 ROLES: dict[str, RoleInfo] = {
@@ -231,6 +234,12 @@ ROLES: dict[str, RoleInfo] = {
                              "many living players have a named role.",
                              tokens={"talent": 3}, acts_at_night=True, tested=True,
                              notes="moderator records the scout_talent op; code reads true roles and tells the result"),
+    "Oathsworn": RoleInfo(Alignment.EVIL, "Yakuza", True,
+                          summary="One token, never more: mark a player; if the Oathsworn is dead by the next Night, "
+                          "a Divine Attack hits them and everyone who visits them.",
+                          tokens={"oath": 1}, token_cap=True, acts_at_night=True,
+                          notes="mark recorded with the swear op; code says the next Night whether it fires; after "
+                          "record_visits the moderator's fulfil_oath op lists the Divine Attacks, which it resolves"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                         summary="Wins alone if alive when few enough players remain at dawn. Each night may visit a "

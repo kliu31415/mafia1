@@ -539,6 +539,15 @@ Talent Agent
     isn't.
   - Count: name any role in these rules and learn how many players have it in play.
 
+Oathsworn
+  Tokens: 1 oath token, never more: nothing can give you another.
+  Night: may spend the token to mark one player (a visit). Nothing happens that night. If you are dead when the next
+  Night begins (you died that night or during the following Day, by any cause), then on that Night the marked
+  player, and every other player who visits them, is dealt a Divine Attack, whatever their faction (Yakuza
+  included). These are Astral Visits and need no action from you, so nothing stops them (R21). Astral Visits to the
+  marked player aren't visits, so their makers aren't attacked. If you are alive when the next Night begins, or the
+  marked player has died, the mark lapses. A kill's cause is "a blood oath". The marked player isn't told.
+
 --- Neutral ---
 Each Neutral player is their own faction (R2).
 
@@ -849,7 +858,7 @@ Drowsy
   told you were role-blocked, as with any role-block.
 
 Stocked
-  Who: Any player whose role starts with tokens.
+  Who: Any player whose role starts with tokens and can ever have more than it starts with.
   Effect: You start with one more of each kind of token your role starts with.
 
 Disguised
