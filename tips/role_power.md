@@ -1,6 +1,6 @@
 # Role power
 
-Refit 2026-10-14 15:36 UTC by `role_power.py` from 94 finished live games (Village won 57). Power is how much a role adds to the Village's win chance, in logits (+0.4 is about +10 points near even). Offset +0.07 (prior -0.30). Change the priors in role_power.py; this file is rewritten after every game.
+Refit 2026-10-15 00:31 UTC by `role_power.py` from 94 finished live games (Village won 57). Power is how much a role adds to the Village's win chance, in logits (+0.4 is about +10 points near even). Offset +0.07 (prior -0.30). Change the priors in role_power.py; this file is rewritten after every game.
 
 | Role | Side | Prior | Power | Games |
 |---|---|---|---|---|
