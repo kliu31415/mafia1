@@ -40,7 +40,8 @@ class Mayor(RoleLogic):
             return
         game.role_state.setdefault(REVEALED, []).append(p.name)
         game.log.write("mayor_revealed", player=p.name, day=game.day)
-        text = f"{p.name} reveals that they are the Mayor, and the moderator confirms it."
+        text = (f"{p.name} reveals that they are the Mayor, and the moderator confirms it. From now on each of their "
+                "trial votes counts twice.")
         game.emit(text, cat=ANNOUNCEMENT, message=text)
         game.tell([p.name], "You revealed yourself as the Mayor: from now on each of your trial votes counts twice.")
 

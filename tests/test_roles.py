@@ -286,7 +286,8 @@ def test_a_revealed_mayor_is_announced_and_its_trial_votes_count_twice(game_fact
     reveal.add("Alice")
     chat_turn(game, players, alice, rnd=2, can_nominate=False)
     public = [e.text for e in game.events if e.visible_to is None]
-    assert "Alice reveals that they are the Mayor, and the moderator confirms it." in public
+    assert ("Alice reveals that they are the Mayor, and the moderator confirms it. From now on each of their "
+            "trial votes counts twice.") in public
     guilty.add("Carol")  # 3 of 5 voters, but Alice counts twice: 4 Guilty of 6 votes
     assert run_trial(game, players, game.player("Bob"), "Erin", 1) == "executed"
     assert any("Trial votes on Erin: 4 Guilty, 2 Innocent (the votes are secret; 6 votes from 5 voters: a role "
