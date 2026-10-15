@@ -1,8 +1,8 @@
 {
- "log_version": 74,
+ "log_version": 75,
  "log": {
   "attacks": ["attackers", "day"],
-  "avenger": ["day", "killed", "player"],
+  "avenger": ["attacked", "day", "player"],
   "bond": ["players"],
   "bounty_won": ["claimed", "day", "phase", "player"],
   "briefing": ["players", "rules", "setup_note"],
@@ -15,6 +15,8 @@
   "day_shot_taken": ["attack", "delay", "player", "target"],
   "death": ["cause", "day", "katana", "killer", "killer_role", "killer_roles", "killers", "phase", "player", "role"],
   "debrief": ["answers", "cost", "model", "role", "usage", "who"],
+  "decoy": ["day", "killers", "named", "player"],
+  "decoy_won": ["day", "player"],
   "disguise": ["player", "role"],
   "drowsy": ["day", "player"],
   "faultline": ["day", "guilty", "innocent", "nominee", "player"],

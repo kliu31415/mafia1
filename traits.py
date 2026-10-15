@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
 from roles import ROLES, Alignment
-from roles.base import DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, record_attack
+from roles.base import DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, notify_moderator, record_attack
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -82,10 +82,10 @@ TRAITS: dict[str, TraitInfo] = {
                               "<circle cx='4.3' cy='4.3' r='0.5' fill='#3f3f46'/>"
                               "<circle cx='5.7' cy='4.3' r='0.5' fill='#3f3f46'/></svg>")),  # a skull
     "Avenger": TraitInfo(frozenset({Alignment.GOOD}),
-                         "If you are killed at night, every player whose attack killed you is dealt a Divine Attack "
-                         "and dies too (rules R24).",
-                         "If killed at night, every player whose attack killed them dies too (a Divine Attack).",
-                         power=0.4,
+                         "If you are killed at night, every player whose attack killed you is dealt a Basic Attack "
+                         "(rules R24).",
+                         "If killed at night, every player whose attack killed them is dealt a Basic Attack.",
+                         power=0.3,
                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                                "<circle cx='5' cy='5' r='4.4' fill='#1e3a8a' stroke='#fff' stroke-width='1'/>"
                                "<path d='M5.8 1.8L3.2 5.4H5L4.2 8.2L6.8 4.6H5Z' fill='#fde047'/></svg>")),  # a bolt
@@ -509,26 +509,31 @@ NOT_ATTACKS = (HEARTBREAK_CAUSE, REMORSE_CAUSE)  # deaths no one attacked for (r
 
 
 class Avenger(TraitLogic):
-    night_note = ("Avenger (a trait, R24): when you kill an Avenger at night, code deals a Divine Attack to every "
-                  "player in that kill's `by` (alive when the night began) and kills them (cause 'Avenger'), so list "
-                  "in `by` every player whose attack would have killed them (R12). Don't resolve it yourself; you "
-                  "don't tell() those deaths either.")
+    night_note = ("Avenger (a trait, R24): when you kill an Avenger at night, list in `by` every player whose attack "
+                  "would have killed them (R12): your apply_changes result then names each one who is dealt a Basic "
+                  "Attack (an Astral Visit), which you resolve like any attack tonight (Defense and protection apply, "
+                  "R3).")
 
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         if game.phase != "night" or not p.death:  # rules R24: only a night death; a hanging isn't an attack
             return
         # Code-made deaths (a Jester's revenge, a Cursed player's curse, another Avenger's, heartbreak) aren't the
-        # user's own attack, so they don't set it off. A killer who died earlier in tonight's resolution is still hit
-        # (rules R10: the night is simultaneous; R12: the cause joins their death), whatever order the moderator's ops
-        # came in.
+        # user's own attack, so they don't set it off.
         cause = p.death["cause"]
         if cause in (CURSE_CAUSE, AVENGER_CAUSE, HEARTBREAK_CAUSE, REMORSE_CAUSE) or cause.endswith(REVENGE_CAUSE):
             return
+        # Kevin, Oct 15 2026: a Basic Attack (was Divine), so the moderator resolves it against Defense and protection.
+        # A killer the moderator already killed tonight is left alone: the attack changes nothing for them.
         for name in dict.fromkeys(p.death["killers"]):
-            if acted_tonight(game, game.player(name)) and name != p.name:
+            if game.player(name).alive and name != p.name:
                 record_attack(game, p.name)  # for the Bloodhound's counts
-                game.log.write("avenger", player=p.name, killed=name, day=game.day)
-                game.kill(name, AVENGER_CAUSE, by=p.name)
+                game.log.write("avenger", player=p.name, attacked=name, day=game.day)
+                notify_moderator(game, f"{p.name} had the Avenger trait (R24): {name}, whose attack killed them, is "
+                                 f"dealt a Basic Attack by {p.name} tonight (an Astral Visit, not a visit). Resolve it "
+                                 f"against {name}'s Defense and any protection, like the night's other attacks (R3): "
+                                 f"if it kills, cause '{AVENGER_CAUSE}', by {p.name} (if another attack also kills "
+                                 f"{name}, one kill naming both causes); if not, tell {name} they were attacked by an "
+                                 f"Avenger.")
 
 
 # The old Cardinal role's key (roles.RETIRED), so a checkpoint saved with a curse pending carries it over.

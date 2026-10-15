@@ -185,7 +185,7 @@ except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - A player with the Notorious or Turncoat trait (R24): Evil.
-- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
+- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer, Arsonist and Decoy read Not Evil. (Seers see
   every Neutral as Neutral.)
 The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
 above apply to it (a Turncoat counts as Good).
@@ -580,6 +580,14 @@ Vulture
   role (exact-role check, R19), otherwise it is a different role drawn at random
   from all the roles in these rules. You aren't told which. This isn't an action, so a role-block doesn't stop it.
 
+Decoy
+  Never blocks wins (R1).
+  Win: iff you die at night. You lose if you die by Day or the game ends with you alive.
+  If an attack killed you at night, the next Day's announcements say you were the Decoy and name 3 players: every
+  player whose attack would have killed you on its own (3 of them at random if there were more), then random other
+  players alive at the start of that Day to make 3 (fewer if not enough are left). The names are in random order,
+  and the announcement doesn't say how many of them attacked you. Your cause of death and last will show as usual.
+
 === PART 7: TRAITS ===
 
 R24 (Traits)
@@ -608,9 +616,10 @@ Cursed
 
 Avenger
   Who: Village players only.
-  Effect: If you are killed at night, every player whose attack would have killed you is dealt a Divine Attack and
-  dies too, with the cause "Avenger". Attacks that weren't fatal on their own, and deaths by Day, set nothing off.
-  It needs no action, so a role-block doesn't stop it.
+  Effect: If you are killed at night, every player whose attack would have killed you is dealt a Basic Attack (an
+  Astral Visit) that same night. Defense and protection apply as usual (R3); a kill's cause is "Avenger". Attacks
+  that weren't fatal on their own, and deaths by Day, set nothing off. It needs no action, so a role-block doesn't
+  stop it.
 
 Kindred
   Who: Village players only.

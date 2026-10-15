@@ -10,7 +10,7 @@ from llm import LLMClient, LLMReply, Model, ModelSpec, cache_block, clean_json, 
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
-from roles.base import acted_tonight
+from roles.base import MOD_NOTICES, acted_tonight
 from state import Game
 from traits import TraitLogic, kill_error, trait_logic
 import variants
@@ -295,7 +295,9 @@ class Moderator:
                     g.log.error("moderator_warning", f"day {g.day} {g.phase}: {note}", changes=args["changes"])
                 for i, c in enumerate(changes):
                     try:
-                        if warning := self.apply_change(c):
+                        warning = self.apply_change(c)
+                        self.op_results += g.role_state.pop(MOD_NOTICES, [])
+                        if warning:
                             notes.append(warning)
                             g.log.error("moderator_warning", f"day {g.day} {g.phase}: {warning}",
                                         changes=args["changes"])

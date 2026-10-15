@@ -287,6 +287,15 @@ def record_attack(game: Game, attacker: str) -> None:
     game.role_state.setdefault(CODE_ATTACKS, {}).setdefault(game.day, []).append(attacker)
 
 
+MOD_NOTICES = "moderator_notices"  # game.role_state: what code tells the moderator in its current apply_changes result
+
+
+def notify_moderator(game: Game, text: str) -> None:
+    """Something code set off during the moderator's apply_changes (e.g. an Avenger's attacks, traits.py) that the
+    moderator must now resolve: it comes back in that call's results."""
+    game.role_state.setdefault(MOD_NOTICES, []).append(text)
+
+
 LEFT_AT = "left_at"  # game.role_state: player -> [day, phase] they left the game
 
 

@@ -244,6 +244,10 @@ ROLES: dict[str, RoleInfo] = {
                        defense="Basic", acts_at_night=True, tested=True,
                        notes="moderator records the steal; code takes the token at the end of the night, tells both, "
                        "handles the win; random setups need a third of roles with tokens"),
+    "Decoy": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+                      summary="Wins if it dies at night; then the next Day names 3 players, at least one of them its "
+                      "killer. Reads Not Evil to the Sheriff.",
+                      notes="win, role reveal and the 3 names in code, from the kill's `by`"),
     "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
                        summary="Wins if hanged; then a Guilty voter dies. Reads Evil to the Sheriff.",
                        defense="Basic",

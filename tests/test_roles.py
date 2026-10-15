@@ -1862,15 +1862,19 @@ def test_each_set_of_trait_marks_has_its_own_icon_rule():
     assert css.count("::before") == 2  # only the game's own sets: every possible set made 250 MB pages
 
 
-def test_an_avenger_killed_at_night_takes_every_fatal_attacker_with_them(game_factory):
-    game, _ = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt", "Serial Killer"])
+def test_an_avenger_killed_at_night_has_the_moderator_attack_every_fatal_attacker(game_factory):
+    # Kevin, Oct 15 2026: a Basic Attack, which the moderator resolves against Defense and protection (rules R24)
+    game, players = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt", "Serial Killer"])
     game.player("Alice").traits = ["Avenger"]
     game.phase = "night"
-    game.kill("Alice", "Katana and Serial Killer", by=["Dave", "Frank"], katana=True)
-    assert [(n, c) for n, c in game.pending_deaths] == [("Alice", "Katana and Serial Killer"), ("Dave", "Avenger"),
-                                                        ("Frank", "Avenger")]
-    assert game.player("Dave").death["killer"] == "Alice"
+    out = apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana and Serial Killer",
+                                    "by": ["Dave", "Frank"], "katana": True})
+    assert [n for n, _ in game.pending_deaths] == ["Alice"]  # nobody else dies by code
+    assert len(out["results"]) == 2 and "Dave, whose attack killed them, is dealt a Basic Attack" in out["results"][0]
+    assert "Frank" in out["results"][1] and "Avenger" not in game.role_state.get("moderator_notices", [])
     assert game.role_state["code_attacks"][game.day] == ["Alice", "Alice"]  # counted for the Bloodhound
+    out = apply_ops(game, players, {"op": "kill", "player": "Dave", "cause": "Avenger", "by": "Alice"})
+    assert "results" not in out and game.player("Dave").death["killer"] == "Alice"
 
 
 def test_an_avenger_hanged_or_killed_by_a_dead_player_sets_nothing_off(game_factory):
@@ -1885,13 +1889,14 @@ def test_an_avenger_hanged_or_killed_by_a_dead_player_sets_nothing_off(game_fact
 
 
 def test_two_avengers_who_kill_each_other_stop_there(game_factory):
-    game, _ = game_factory(["Vigilante", "Vigilante", "Sheriff", "Grunt"])
+    game, players = game_factory(["Vigilante", "Vigilante", "Sheriff", "Grunt"])
     for name in ("Alice", "Bob"):
         game.player(name).traits = ["Avenger"]
     game.phase = "night"
-    game.kill("Alice", "Vigilante", by="Bob")
-    assert not game.player("Bob").alive and game.player("Carol").alive
-    assert game.player("Bob").death["cause"] == "Avenger"
+    out = apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Vigilante", "by": "Bob"})
+    assert len(out["results"]) == 1
+    out = apply_ops(game, players, {"op": "kill", "player": "Bob", "cause": "Avenger", "by": "Alice"})
+    assert "results" not in out and game.player("Carol").alive  # an Avenger's kill sets off no other Avenger
 
 
 def test_every_role_name_ever_used_is_a_role_or_retired(request):
@@ -2269,16 +2274,57 @@ def test_a_trap_replaced_earlier_in_the_batch_doesnt_act_and_charm_and_trap_matc
     assert "stays armed" in out["results"][0] and game.player("Bob").status[Status.TRAPPED_BY] == ["Alice"]
 
 
-def test_an_avenger_hits_a_killer_who_died_earlier_the_same_night_whatever_the_op_order(game_factory):
-    # rules R10 (simultaneous) and R12 (every fatal cause revealed): the Vigilante's kill of the Serial Killer
-    # applied first mustn't spare the Serial Killer the Avenger's attack
-    game, _ = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt", "Serial Killer"])
+def test_an_avenger_leaves_alone_a_killer_who_already_died_tonight(game_factory):
+    # A Basic Attack on a dead player changes nothing, so the moderator isn't asked to resolve it.
+    game, players = game_factory(["Vanilla Villager", "Vigilante", "Sheriff", "Grunt", "Grunt", "Serial Killer"])
     game.player("Alice").traits = ["Avenger"]
     game.phase = "night"
-    game.kill("Frank", "Vigilante", by="Bob")
-    game.kill("Alice", "Serial Killer", by="Frank")
-    assert game.player("Frank").death["killers"] == ["Bob", "Alice"]
-    assert game.role_state["code_attacks"][game.day] == ["Alice"]
+    out = apply_ops(game, players, {"op": "kill", "player": "Frank", "cause": "Vigilante", "by": "Bob"},
+                    {"op": "kill", "player": "Alice", "cause": "Serial Killer", "by": "Frank"})
+    assert "results" not in out and game.player("Frank").death["killers"] == ["Bob"]
+
+
+def test_a_decoy_killed_at_night_wins_and_the_next_day_names_three_players(game_factory):
+    # rules (Decoy): its killer(s) plus random living players, 3 names in random order
+    game, players = game_factory(["Decoy", "Vigilante", "Sheriff", "Grunt", "Grunt", "Medic", "Lookout"])
+    game.phase = "night"
+    apply_ops(game, players, {"op": "kill", "player": "Alice", "cause": "Katana", "by": "Dave", "katana": True})
+    assert "Alice" in game.personal_winners
+    game.run_night_end_hooks()
+    game.announce_dawn()
+    texts = [e.text for e in game.events if e.visible_to is None]
+    assert any(t.startswith("Alice died") and "role is revealed: Decoy" in t for t in texts), texts
+    line = next(t for t in texts if "was the Decoy, who wins by dying at night" in t)
+    assert "At least one of" in line and "Dave" in line and "Alice" not in line.split("At least one of")[1]
+    assert sum(n in line for n in ("Bob", "Carol", "Dave", "Erin", "Frank", "Grace")) == 3
+    assert any("Alice was the Decoy" in d for d in game.death_record)
+
+
+def test_a_decoy_with_more_killers_than_names_or_too_few_players_left(game_factory):
+    game, players = game_factory(["Decoy", "Vigilante", "Sheriff", "Grunt", "Serial Killer"])
+    game.phase = "night"
+    game.kill("Alice", "Katana, Vigilante, Sheriff's gun and Serial Killer", by=["Bob", "Carol", "Dave", "Erin"])
+    game.run_night_end_hooks()
+    line = game.pending_announcements[-1]
+    assert sum(n in line for n in ("Bob", "Carol", "Dave", "Erin")) == 3  # 3 of the 4 killers, nobody else
+    game, players = game_factory(["Decoy", "Vigilante", "Grunt"])
+    game.phase = "night"
+    game.kill("Alice", "Vigilante", by="Bob")
+    game.kill("Carol", "Vigilante", by="Bob")
+    game.run_night_end_hooks()
+    assert game.pending_announcements[-1].endswith("Bob killed them.")  # nobody else alive to name
+
+
+def test_a_decoy_loses_by_day_and_names_nobody_without_an_attack(game_factory):
+    game, _ = game_factory(["Decoy", "Vigilante", "Sheriff", "Grunt"])
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Carol"])
+    assert "Alice" not in game.personal_winners
+    game, _ = game_factory(["Decoy", "Vigilante", "Sheriff", "Grunt"])
+    game.phase = "night"
+    game.kill("Alice", "heartbreak")
+    game.run_night_end_hooks()
+    assert "Alice" in game.personal_winners and not game.pending_announcements
+    assert game.role_reveal_reason(game.player("Alice")) is None  # nothing names it, so its role stays hidden
 
 
 def test_the_moderator_and_the_night_check_see_who_has_which_trait(game_factory):

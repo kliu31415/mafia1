@@ -417,9 +417,10 @@ Cursed
 
 Avenger
   Who: Village players only.
-  Effect: If you are killed at night, every player whose attack would have killed you is dealt a Divine Attack and
-  dies too, with the cause "Avenger". Attacks that weren't fatal on their own, and deaths by Day, set nothing off.
-  It needs no action, so a role-block doesn't stop it.
+  Effect: If you are killed at night, every player whose attack would have killed you is dealt a Basic Attack (an
+  Astral Visit) that same night. Defense and protection apply as usual (R3); a kill's cause is "Avenger". Attacks
+  that weren't fatal on their own, and deaths by Day, set nothing off. It needs no action, so a role-block doesn't
+  stop it.
 
 Kindred
   Who: Village players only.
