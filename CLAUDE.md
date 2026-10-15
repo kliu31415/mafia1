@@ -8,7 +8,8 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
 ## Working preferences
 
 - Commit and push straight to `main` once `uv run pytest`, `uv run ruff check .` and `uv run mypy .`
-  pass. No need to ask first or to open a branch, unless Kevin asks for one.
+  pass. No need to ask first or to open a branch, unless Kevin asks for one. When Kevin asks you to commit
+  or push, commit to the current branch (main included) and push it; don't create a new branch unless he asks.
 - GitHub runs the same checks on every push to main, on Linux and Windows (`.github/workflows/checks.yml`, skipped for tips-only
   commits). After pushing, check your commit's run (GitHub tools: workflow runs for `checks.yml` on main) and fix a
   red one yourself, including breakage from another thread's push; Kevin doesn't watch CI emails.
