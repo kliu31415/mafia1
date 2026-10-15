@@ -92,3 +92,21 @@ Trial votes on Bob: 5 Guilty, 4 Innocent (the votes are secret; 9 votes from 8 v
 [Secret trial votes on Bob] Guilty - Alice, Dave, Erin, Frank, Heidi; Innocent - Bob, Carol, Grace
 Bob is executed by hanging (5 Guilty of 9 votes; 5 needed; 9 votes from 8 voters: a role changed the count on purpose (rules R4), not an error).
 Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob: I have no night action and no special information. Judge the claims by their checkable visits and results, and vote on evidence, not on how loudly someone pushes."
+
+===== NIGHT 2 =====
+Night actions:
+  Alice (Sheriff): target Grace; "Sheriff check on Grace. Grace argued hard against Bob's hanging and against Frank's Medic claim, so an alignment read there is useful."
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks Alice
+  Erin (Lookout): target Grace
+  Frank (Medic): target Alice
+  Heidi (Vigilante): target Frank; chose to spend 1 token(s)
+Katana: Carol holds it and attacks Alice.
+(to Alice) Moderator (private): You investigated Grace tonight: Evil. You were attacked with the Katana tonight and survived.
+(to Erin) Moderator (private): You watched Grace tonight. Visitors: Alice.
+(to Frank) Moderator (private): You protected Alice tonight with Standard Defense. Your protection stopped an attack. 2 medic tokens left.
+(to Heidi) Moderator (private): You shot Frank tonight with a Basic Attack. Your attack succeeded. 2 vigilante tokens left.
+(to Carol) Moderator (private): Your Katana attack on Alice tonight failed.
+[Moderator summary] Night 2: No role-blocks. Alice (Sheriff) checked Grace (Jester) -> Evil. Carol (Katana holder) attacked Alice with Standard Katana; Frank's Standard protection on Alice stopped it (Alice told she survived a Katana attack; Frank told protection stopped an attack; Carol told it failed). Heidi (Vigilante) shot Frank with a Basic Attack (1 token, 2 left) -> Frank died (Vigilante). Erin (Lookout) watched Grace: visited by Alice. Katana stays with Carol. Game continues (Carol Yakuza vs Village; Grace Jester doesn't block).
+[Night check] Night 2: correct
+(to Heidi) Moderator (private): Your shot killed Frank. Their role was Medic.
+(to Frank) Moderator (private): You were attacked tonight (Vigilante) and died.
