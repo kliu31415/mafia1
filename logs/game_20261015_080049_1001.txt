@@ -38,3 +38,43 @@ Ivan (public): One more: anyone claiming a visit result should give night, targe
 Bob (public): One practical note for Day 2: if someone survives an attack, they should say which cause they were told. A failed Katana tells us something different from a failed Strong attack.
 Heidi (public): Agreed with Bob on survivors. If you're attacked and live, report the cause you were told. Protectors, say when you've saved someone.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Erin, Frank, Ivan) Erin (Yakuza chat): Plan proposal: I keep the Katana (I'm disguised as Medic to exact-role checks, so that's my cover: Medic, 2 tokens). Katana target: Carol. She's pushing hardest for N1 visit cross-checks, which smells like an investigator. I'll also try to clean Carol with Mortician so any will/results she has stay hidden. Frank and Ivan: frame two different non-Yakuza players to plant false Evil reads for any Sheriff/Seer. Suggest Frank frames Olivia, Ivan frames Alice. Keep your forge tokens for later, when we can forge a will that accuses someone. Covers: pick plain visit roles that fit one visit a night, e.g. Frank = Tracker, Ivan = Lookout. Don't PM each other by day. Also heads-up: my trait makes all my trial votes count as Innocent no matter what, so expect one 'extra' Innocent in totals. Vote holder=Erin, target=Carol.
+(to Erin, Frank, Ivan) Frank (Yakuza chat): Agreed on all of it. Holder Erin, target Carol, clean Carol. I'll frame Olivia and keep my forge token. My cover is Tracker: tonight I "tracked" Olivia, which matches my real visit. I'll make up a quiet result like "Olivia visited no one" or name someone harmless, and keep it vague unless I need it. Ivan, Lookout on Alice works well with that. If a Sheriff or Seer reports Olivia or Alice as Evil tomorrow, let's not pile on too hard. We can back the "result" mildly and let town run with it.
+(to Erin, Frank, Ivan) Ivan (Yakuza chat): Agreed. Holder Erin, target Carol, clean Carol. I'll frame Alice and keep my forge token. My cover will be Lookout (watching Alice tonight), so Frank and I don't both claim Tracker. I'll report a quiet result unless one of us needs backing. Voting holder=Erin, target=Carol.
+(to Erin, Frank, Ivan) Erin (Yakuza chat): Locked in: holder Erin, target Carol, I clean Carol. Frank frames Olivia (Tracker cover), Ivan frames Alice (Lookout cover). My Medic story for tomorrow: I protected Dave (Standard, no token, no attack stopped). Don't make up visits to Carol or claim to have seen me visit her. If a framed read comes out, give it mild support, and keep Day 2 votes in line with the town.
+(to Erin, Frank, Ivan) Frank (Yakuza chat): Confirmed: holder Erin, target Carol, Erin cleans. I'm framing Olivia (Tracker cover). Tomorrow I'll say I tracked Olivia and she "visited no one". I won't use that result against anyone unless we need it. I'll vote in line with the town.
+(to Erin, Frank, Ivan) Ivan (Yakuza chat): Confirmed: holder Erin, target Carol, Erin cleans. I frame Alice, keep my forge token. Lookout cover: "watched Alice, no visitors" unless we need something else. No day PMs between us.
+Night actions:
+  Alice (Hitman): no action
+  Bob (Census Taker): target Ivan
+  Carol (Oracle): target Ivan; named role Sheriff
+  Dave (Enforcer): target Ivan
+  Erin (Mortician): target Carol; chose to spend 1 token(s); Katana vote: Erin holds, attacks Carol
+  Frank (Fabricator): target Olivia; "Frame Olivia only; do not forge her will (keep the token)."; Katana vote: Erin holds, attacks Carol
+  Grace (Insomniac): chose to spend 1 token(s); "Stay awake (spend 1 insomniac token)."
+  Ivan (Fabricator): target Alice; "Frame Alice only; do not forge the will (keep the token)."; Katana vote: Erin holds, attacks Carol
+  Judy (Lookout): target Ivan
+  Mallory (Medic): target Niaj
+  Niaj (Profiler): target Ivan; chose to spend 1 token(s)
+  Olivia (Arsonist): target Ivan; "douse"
+Katana: Erin holds it and attacks Carol.
+(to Bob) Moderator (private): Your census of Carol, Frank and Ivan counted Evil players (drawn at random this time): 2 of the 3 are Evil. It counts true alignment, so frames and disguises (the Katana holder, Notorious) don't change it, and a Turncoat counts as Good. Neutral players are never counted, as either Good or Evil.
+(to Niaj) Moderator (private): You profiled Ivan: their role is Census Taker, Diviner or Fabricator (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 2 profile tokens left.
+(to Erin) Moderator (private): Your Katana attack on Carol succeeded: they died. You cleaned Carol: their role was Oracle, and their last will read: "Carol: Oracle (Good). N1: guessed Ivan = Sheriff (result pending). Results will be listed here night by night." 2 mortician tokens left.
+(to Carol) Moderator (private): Your guess was wrong: Ivan is not a Sheriff.
+(to Dave) Moderator (private): You visited Ivan tonight. You didn't attack anyone. 4 enforcer tokens left.
+(to Frank) Moderator (private): You framed Olivia tonight. 1 fabricator token left.
+(to Ivan) Moderator (private): You framed Alice tonight. 1 fabricator token left.
+(to Judy) Moderator (private): You watched Ivan tonight. Visitors to Ivan: Bob, Dave, Niaj, Olivia.
+(to Mallory) Moderator (private): You protected Niaj tonight (Standard Defense). Your protection did not stop any attack. 2 medic tokens left.
+(to Olivia) Moderator (private): You doused Ivan tonight.
+[Moderator summary] Night 1: Erin (Katana holder) attacked Carol with the Katana (Standard), and Carol died. Erin also cleaned Carol (2 mortician tokens left). Frank framed Olivia, and Ivan framed Alice; neither forged a will. Olivia doused Ivan. Bob took a census around Ivan, Niaj profiled Ivan, and Grace stayed awake. Dave's Enforcer visit to Ivan dealt no attack because Ivan made none. Carol's Oracle guess (Ivan = Sheriff) was wrong. Judy's Lookout on Ivan saw Bob, Dave, Niaj and Olivia. Mallory protected Niaj and stopped nothing. Nobody was role-blocked. Dave got no fake attack (Paranoid). Alice's Narrow Escape was not triggered.
+[Night check] Night 1: correct
+(to Ivan) Moderator (private): An Arsonist doused you tonight. You stay doused until the Arsonist ignites.
+(to Grace) Moderator (private): You lay awake all night. More than 3 players visited someone tonight; you heard 3 of them, drawn at random. Their roles: Census Taker, Enforcer, Fabricator. 1 insomniac token left.
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Erin) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Carol. Frank (Fabricator) chose to act on Olivia ("Frame Olivia only; do not forge her will (keep the token)."); Ivan (Fabricator) chose to act on Alice ("Frame Alice only; do not forge the will (keep the token).").
+(to Frank) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Carol. Erin (Mortician) chose to act on Carol, spending 1 token(s); Ivan (Fabricator) chose to act on Alice ("Frame Alice only; do not forge the will (keep the token).").
+(to Ivan) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Carol. Erin (Mortician) chose to act on Carol, spending 1 token(s); Frank (Fabricator) chose to act on Olivia ("Frame Olivia only; do not forge her will (keep the token).").
