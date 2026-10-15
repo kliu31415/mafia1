@@ -463,3 +463,61 @@ Katana: Frank holds it and attacks Heidi.
 [Moderator summary] Night 6: Frank kept the Katana and attacked Heidi (Standard) with no protection or Defense on her, so Heidi died (Katana, by Frank). Mallory protected Frank (Standard, free); nothing to stop. Olivia (Arsonist) doused Mallory, who is Good, so she isn't told. No role-blocks, no Paranoid players alive. Win check: Frank (Yakuza), Olivia (Arsonist, blocks wins) and Mallory (Turncoat, ignored for game end) are alive, so the game continues.
 [Night check] Night 6: correct
 (to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 7 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi: Mayor (Good). Mayor is unique, so anyone else who claims it is lying. My Merciful trait counts every trial vote I cast as Innocent. I have no night action.
+PROOF FRANK LIED: Alice's profile was Arsonist/Eavesdropper/Hitman, and she was the Hitman. Of the other two, one is in play and one isn't. An Arsonist killed Niaj, so Arsonist is in play and Eavesdropper is NOT. Frank's Eavesdropper claim is therefore false. By his own list (Arsonist/Eavesdropper/Fabricator), he's a Fabricator (Yakuza) or the Arsonist.
+D6 read: Frank is Yakuza (Bob's census, his false claims, Olivia's track of him to the Katana victim). Olivia is the most likely Arsonist, since she survived the Katana on N5. Mallory always protected Frank and PMed him every day, so I'm suspicious of her too."
+Speaking order today goes around the circle in seat order, starting with Olivia.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Olivia (public): Mallory, think about this if you're really town. Heidi was killed with the Katana last night, so a Yakuza is alive, and Heidi's proof shows Frank's Eavesdropper claim is false, which makes him the Fabricator. If you hang me today, it's you alone against the Katana holder, and he kills you tonight. The Yakuza win. With me alive you have a second vote and a second target for the Katana. Vote No on any nomination of me. Frank can't reach 2 votes without you.
+Frank (public): Olivia's Standard Defense stopped the Katana on N5, and her impossible N1 track has never been explained. She's the Arsonist. Nominating Olivia. Mallory: Yes, then Guilty.
+(to Frank, Mallory) Frank -> Mallory (private): Nominating Olivia now, as we agreed. Yes, then Guilty: 2 of 3 hangs her and we win.
+Frank nominated Olivia. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Olivia] Yes - Frank, Mallory; No - Olivia
+Nomination votes on Olivia: 2 Yes (the votes are secret).
+Olivia is put on trial (2 Yes).
+Olivia (public): Mallory, here's the math. Heidi proved it from Niaj's lists. Alice was the Hitman, and an Arsonist is in play, so Eavesdropper is NOT in play. Frank's own list is Arsonist/Eavesdropper/Fabricator, so Frank is the Arsonist or the Yakuza Fabricator. Either way, Frank is not town. Now look at your vote. If Frank is the Fabricator, then hanging me leaves you alone with the Katana holder and you die tonight. Yakuza win. If Frank is the Arsonist, then I'm a Village Tracker, and your Remorseful Guilty kills you on the spot. Either way, Guilty loses you the game. Also: you promised Standard protection on Heidi, and she still died to a Standard Katana. Think about who benefits. Vote Innocent, and tomorrow we deal with Frank together. Innocent.
+Frank (public): Guilty. Olivia survived a Katana hit on N5 because she has Standard Defense, and her N1 track was impossible. She's the Arsonist. Mallory, Guilty ends this.
+(to Frank, Mallory) Frank -> Mallory (private): Guilty now. 2 of 3 hangs her and the Yakuza win, so you win too. Her Remorseful threat can't touch a Turncoat. Ignore it.
+Mallory (public): Guilty. Olivia survived a Standard Katana on N5, and her N1 "Ivan visited no one" was never possible. My protection stopped the ignite on Frank the night Niaj burned. She's the Arsonist.
+(to Frank, Mallory) Mallory -> Frank (private): Voting Guilty. Good game.
+Olivia (public): Mallory, one fact settles this: Heidi died to the Katana last night, so a Yakuza holding it is alive right now. I can't hold it. Even by your own story I'm a Neutral, and Neutrals aren't Yakuza. So the Katana is Frank's or yours. If you're really town, Frank is the Yakuza, and hanging me leaves you alone with him tonight. He kills you and the Yakuza win. Your vote doesn't change if you think I'm the Arsonist, because hanging me still loses you the game tonight. If I'm the Tracker, Innocent wins it for you. The only way Guilty helps you is if you're his teammate. Innocent is the only vote that leaves a town Mallory any chance. Vote Innocent, and tomorrow the two of us hang Frank 2-1.
+Trial votes on Olivia: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Olivia] Guilty - Frank, Mallory; Innocent - Olivia
+Olivia is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Olivia died (executed by hanging). Their role isn't revealed. Their last will: "Olivia - Tracker. N1: tracked Ivan -> he visited no one, so his census-on-Alice claim was false. N2: tracked Judy -> she visited Bob, which matches her watch. N3: tracked Niaj -> he visited Alice, which matches his profile. N4: tracked Frank -> he visited Judy, who was killed by the Katana that night. N5: tracked Frank -> he visited ME, and I was attacked with the Katana and survived. So Frank held the Katana. N6: tracked Mallory -> she visited FRANK, not Heidi. She promised publicly to protect Heidi, and Heidi died to the Katana that same night. Mallory guarded the Katana holder all game, most likely as the Yakuza Diviner on Niaj's Ivan list (it gives a teammate Strong Defense). Frank + Mallory are the Yakuza pair."
+The game is over. Winners: Erin (dead), Frank, Mallory, Alice (left). Dead players still win with their side. A trait keeps them from sharing their side's win: Ivan (Selfish, dead). Mallory (Turncoat) wins only with the Yakuza, so they win too.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Heidi] The Mayor + Merciful pairing left my role with nothing it could do. Repeated Merciful traits made vote-total deduction (which the tips strongly push) misleading.
+[Feedback from Dave] I couldn't record night results in my will on the night I died, and a two-target Enforcer isn't told which target was hit. Both cost the town key information.
+[Feedback from Bob] My will in the ledger shows the forged text without saying it was forged.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Erin, Frank, Mallory, Alice
+Cost by player (USD):
+  Alice (Hitman)      $0.0000   20 calls  claude-opus-5.5
+  Bob (Census Taker)  $0.0000   11 calls  claude-opus-5.5
+  Carol (Oracle)      $0.0000    5 calls  claude-opus-5.5
+  Dave (Enforcer)     $0.0000   20 calls  claude-opus-5.5
+  Erin (Mortician)    $0.0000   15 calls  claude-opus-5.5
+  Frank (Fabricator)  $0.0000   63 calls  claude-opus-5.5
+  Grace (Insomniac)   $0.0000   11 calls  claude-opus-5.5
+  Heidi (Mayor)       $0.0000   49 calls  claude-opus-5.5
+  Ivan (Fabricator)   $0.0000   14 calls  claude-opus-5.5
+  Judy (Lookout)      $0.0000   34 calls  claude-opus-5.5
+  Mallory (Medic)     $0.0000   58 calls  claude-opus-5.5
+  Niaj (Profiler)     $0.0000   41 calls  claude-opus-5.5
+  Olivia (Arsonist)   $0.0000   56 calls  claude-opus-5.5
+  Moderator           $0.0000    7 calls  claude-opus-5.5
+  Night checks        $0.0000    6 calls  claude-opus-5.5
+  Strategy review     $0.0000    1 calls  claude-opus-5.5
+  Log review          $0.0000    1 calls  claude-opus-5.5
+  Total               $0.0000  412 calls
