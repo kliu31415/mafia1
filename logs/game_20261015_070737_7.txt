@@ -176,3 +176,33 @@ Judy (public): Judy again. Mallory, yes or no: did your Vigilante act on Night 2
 Mallory (public): Mallory here. I'm holding my vote until Alice's Night 2 result posts at Day 3, as I said.
 Alice (public): Alice here. My Night 2 check posts at the start of Day 3 as promised. Mallory, name your Night 2 target or your silence stays my lead.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Bob, Dave, Erin) Bob (Yakuza chat): Bob: Proposal for tonight. Alice is our biggest risk. Her Night 1 Evil read on Dave matches what we know, so she is probably the real Sheriff, and she already forced a nomination. I propose the Katana attacks Alice tonight, with Bob keeping the Katana. Please vote holder Bob and target Alice. If either of you sees a better target, or a reason to hold, say so now. Dave, stay quiet publicly and don't defend Alice's read.
+(to Bob, Dave, Erin) Dave (Yakuza chat): Dave: Agreed. Bob holds the Katana, and I vote target Alice tonight. Alice's Sheriff read is the only real threat we know of, and she already forced a nomination. Judy is a Medic who may protect someone, so if the attack fails, we should consider Judy as a protector next. Erin, please vote Bob holds and target Alice so we have two votes. I have no other night action and will stay quiet publicly.
+(to Bob, Dave, Erin) Erin (Yakuza chat): Erin: Agreed. Bob holds the Katana and I vote target Alice. Dave's Evil read on Dave is true, so Alice is likely the real Sheriff. Judy claims Medic and may protect Alice with Standard, so if the attack fails, expect a protector and we reassess on Day 3. I have no other night action.
+(to Bob, Dave, Erin) Bob (Yakuza chat): Bob: Agreed, final plan. Bob holds the Katana and the target is Alice. Her Sheriff read on Dave is true, so she is our biggest risk. Judy claims Medic and may protect Alice with Standard, so if the attack fails, we treat Judy as a protector on Day 3. Dave and Erin, please submit the same votes.
+(to Bob, Dave, Erin) Dave (Yakuza chat): Dave: Agreed. Bob holds the Katana and the target is Alice. Her Night 1 Sheriff read on me is what makes her the main threat. Note the Katana is Standard, so a Standard protection on Alice would stop it. If the attack fails, we treat Judy as the protector. Ready.
+(to Bob, Dave, Erin) Erin (Yakuza chat): Erin: Agreed. Bob holds the Katana and the target is Alice. Her Sheriff read on Dave is the threat. Judy's Standard Medic protection is the risk, so if the attack fails we treat Judy as the protector on Day 3. I have no other night action. Ready.
+Night actions:
+  Alice (Sheriff): target Mallory
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks Alice
+  Carol (Lookout): target Mallory
+  Dave (Grunt): no role action; Katana vote: Bob holds, attacks Alice
+  Erin (Grunt): no role action; Katana vote: Bob holds, attacks Alice
+  Frank (Tracker): target Mallory
+  Heidi (Vulture): target Alice
+  Judy (Medic): target Alice; "Standard protection on Alice at no token cost."
+  Mallory (Vigilante): no action
+Katana: Bob holds it and attacks Alice.
+(to Alice) Moderator (private): You investigated Mallory tonight: Not Evil. You were also attacked tonight with the Katana, and you survived.
+(to Carol) Moderator (private): You watched Mallory tonight. Mallory was visited by: Alice, Frank.
+(to Frank) Moderator (private): You tracked Mallory tonight. Mallory did not visit anyone.
+(to Judy) Moderator (private): You protected Alice tonight with Standard Defense. Your protection stopped an attack. You have 2 medic tokens left.
+(to Bob) Moderator (private): Your Katana attack on Alice tonight failed.
+[Moderator summary] Night 2: No role-blocks. Bob held the Katana and made a Standard attack on Alice; Judy's Standard protection (no token) stopped it, so Alice survived. Alice (Sheriff) checked Mallory: Not Evil. Carol (Lookout) watched Mallory and saw Alice and Frank visit. Frank (Tracker) tracked Mallory, who visited no one. Heidi (Vulture) scavenged Alice, who didn't die, so code tells her nothing happened. No deaths and no tokens spent. Visits: Alice→Mallory, Bob→Alice, Carol→Mallory, Frank→Mallory, Heidi→Alice, Judy→Alice.
+[Night check] Night 2: correct
+(to Heidi) Moderator (private): You visited Alice, who didn't die tonight, so you gained nothing.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Alice. Dave (Grunt) chose no action; Erin (Grunt) chose no action.
+(to Dave) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Alice. Bob (Grunt) chose no action; Erin (Grunt) chose no action.
+(to Erin) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Alice. Bob (Grunt) chose no action; Dave (Grunt) chose no action.
