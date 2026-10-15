@@ -42,3 +42,29 @@ Grace (public): Grace again. Still Vanilla with nothing new. I'll judge nominati
 Heidi (public): Heidi here, still nothing new. I'll judge nominations once Night 1 results are posted and vote on what they show.
 Ivan (public): Ivan again, nothing new. Still Vanilla with no night info. I'll vote on whatever Night 1 results show.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Dave, Erin) Bob (Yakuza chat): Proposal: no Katana attack tonight, since we have no information yet and a blind kill on Night 1 mostly tips off the Village. Bob keeps the Katana (holder vote: Bob). Target vote: none. Revisit on Night 2 once the Village has shown its claims. Please vote the same way so we don't split.
+(to Bob, Dave, Erin) Dave (Yakuza chat): Dave agrees with Bob: no Katana attack tonight, Bob keeps the Katana, no target. We revisit on Night 2 once the Village has shown its claims. Erin, please vote the same way.
+(to Bob, Dave, Erin) Erin (Yakuza chat): Erin agrees with Bob and Dave: no Katana attack tonight, Bob keeps the Katana, no target. We revisit on Night 2. As a Grunt I have no night action, so I'll vote with you both.
+Night actions:
+  Alice (Sheriff): target Dave
+  Bob (Grunt): no role action; Katana vote: Bob holds, attacks None
+  Carol (Lookout): target Frank
+  Dave (Grunt): no role action; Katana vote: Bob holds, attacks None
+  Erin (Grunt): no role action; Katana vote: Bob holds, attacks None
+  Frank (Tracker): target Judy
+  Heidi (Vulture): target Alice
+  Judy (Medic): target Carol; "Standard protection on Carol at no token cost."
+  Mallory (Vigilante): no action
+Katana: no attack (the Yakuza agreed not to attack); Bob holds it.
+(to Alice) Moderator (private): You investigated Dave tonight. Result: Evil.
+(to Carol) Moderator (private): You watched Frank tonight. Nobody else visited them.
+(to Frank) Moderator (private): You tracked Judy tonight. They visited Carol.
+(to Judy) Moderator (private): You protected Carol tonight with Standard Defense. Your protection did not stop an attack. 2 medic tokens left.
+[Moderator summary] Night 1: Yakuza kept the Katana with Bob and made no attack. Alice (Sheriff) checked Dave: Evil. Carol (Lookout) watched Frank: no other visitors. Frank (Tracker) tracked Judy: visited Carol. Judy (Medic) gave Carol Standard protection, no token spent, no attack stopped. Heidi (Vulture) scavenged Alice, who survived; code reports the result. Mallory, Grace and Ivan took no action. No deaths. Visits: Alice->Dave, Carol->Frank, Frank->Judy, Heidi->Alice, Judy->Carol.
+[Night check] Night 1: correct
+(to Heidi) Moderator (private): You visited Alice, who didn't die tonight, so you gained nothing.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Dave (Grunt) chose no action; Erin (Grunt) chose no action.
+(to Dave) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Bob (Grunt) chose no action; Erin (Grunt) chose no action.
+(to Erin) Moderator (private): Yakuza night summary: Bob holds the Katana, with no Katana attack. Bob (Grunt) chose no action; Dave (Grunt) chose no action.
