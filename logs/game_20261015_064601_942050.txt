@@ -33,3 +33,29 @@ Heidi (public): Frank, “no-action role” is vague—do you mean no selectable
 Alice (public): Heidi's right that repeating the same refrain isn't much of a read. I'm still waiting for checkable evidence; Frank, please clarify what you mean by “no-action role” tomorrow.
 Bob (public): Bob here. I'll give my Night 1 action in one sentence once the night resolves, as agreed. Frank, does 'none' mean you chose not to act, or that your role has no night action?
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Alice, Frank) Alice (Yakuza chat): Keep the Katana with me; I’ll vote to hold it and attack Heidi tonight. She’s the most engaged in pressing for independent reads, so removing her may limit the town’s coordination. I have no separate action as Grunt.
+(to Alice, Frank) Frank (Yakuza chat): Frank agrees: Alice keeps the Katana and attacks Heidi tonight. I have no night action to add.
+(to Alice, Frank) Alice (Yakuza chat): Agreed. Keep the Katana with me and attack Heidi; I have no separate action as Grunt. I’m ready.
+(to Alice, Frank) Frank (Yakuza chat): Agreed. Alice keeps the Katana, and we both vote to attack Heidi tonight. I have nothing else to add.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Heidi
+  Bob (Tracker): target Frank
+  Carol (Medic): target Heidi
+  Dave (Vulture): target Frank
+  Erin (Vigilante): no action
+  Frank (Grunt): no role action; Katana vote: Alice holds, attacks Heidi
+  Grace (Sheriff): target Carol
+  Heidi (Lookout): target Carol
+Katana: Alice holds it and attacks Heidi.
+(to Alice) Moderator (private): Your Katana attack on Heidi failed tonight: she survived.
+(to Bob) Moderator (private): You tracked Frank tonight. Frank visited no one.
+(to Carol) Moderator (private): You protected Heidi tonight (Standard Defense). Your protection stopped an attack. 2 medic tokens left.
+(to Grace) Moderator (private): You investigated Carol tonight. Result: Not Evil.
+(to Heidi) Moderator (private): You watched Carol tonight. Visitors to Carol: Grace. Also, you were attacked with the Katana tonight and survived.
+[Moderator summary] Night 1: Alice (Katana holder) attacked Heidi (Standard); Carol protected Heidi (Standard, no token spent), so the attack failed. Bob tracked Frank and saw no visits. Grace checked Carol: Not Evil. Heidi watched Carol and saw Grace visit. Dave (Vulture) visited Frank, who survived. Erin and Frank did nothing. No deaths. The Katana stays with Alice.
+[Night check] Night 1: correct
+(to Dave) Moderator (private): You visited Frank, who didn't die tonight, so you gained nothing.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Heidi. Frank (Grunt) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Heidi. Alice (Grunt) chose no action.
