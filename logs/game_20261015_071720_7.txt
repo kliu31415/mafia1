@@ -34,3 +34,24 @@ Dave (public): Keep night targets private. Tomorrow, give the exact result and s
 Erin (public): Erin here. No reads yet. I'll judge Grace's exact Day 2 result when it's posted.
 Frank (public): Frank here. I'll hold my read until Grace's Day 2 result is posted with target and exact wording, then compare it with the other claims.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Alice, Bob) Alice (Yakuza chat): Keep the Katana with you, Bob, and attack Grace tonight. Killing the claimed Sheriff limits the chance of a useful result reaching Day 2. I have no action as Grunt. Consider framing a non-Yakuza player you think she may have investigated; the target is uncertain, so use your judgment.
+(to Alice, Bob) Bob (Yakuza chat): Agreed on Grace. The Katana stays with me and attacks Grace tonight. I'll use my framing visit on Heidi, who pushed Grace hardest on Day 1. Let's keep our cover simple and avoid PMs during the Day.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Bob holds, attacks Grace
+  Bob (Fabricator): target Heidi; "Fabricator visit on Heidi to frame them as Evil for alignment checks. Katana vote: Bob holds it and attacks Grace."; Katana vote: Bob holds, attacks Grace
+  Carol (Medic): target Grace
+  Dave (Tracker): target Grace
+  Erin (Hitman): no action
+  Frank (Vigilante): no action
+  Grace (Sheriff): target Dave; "Sheriff investigation of Dave."
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): You were attacked with the Katana tonight and survived. Your investigation result: Dave is Not Evil.
+(to Dave) Moderator (private): You tracked Grace tonight. Grace visited Dave.
+(to Carol) Moderator (private): You protected Grace with Standard Defense tonight. Your protection stopped an attack. 2 medic tokens left.
+(to Bob) Moderator (private): You framed Heidi tonight (no forgery; 1 fabricator token left). The Katana attack on Grace failed.
+[Moderator summary] Night 1: Bob (Fabricator, Katana holder) framed Heidi (no forgery) and attacked Grace with the Standard Katana. Carol (Medic) protected Grace with Standard Defense (no token spent), so the Katana attack failed (Standard does not beat Standard). Grace (Sheriff) checked Dave: Not Evil. Dave (Tracker) tracked Grace: she visited Dave. Alice, Erin and Frank did not act. No deaths, no tokens spent.
+[Night check] Night 1: correct
+(to Alice) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Grace. Bob (Fabricator) chose to act on Heidi ("Fabricator visit on Heidi to frame them as Evil for alignment checks. Katana vote: Bob holds it and attacks Grace.").
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Grace. Alice (Grunt) chose no action.
