@@ -314,3 +314,18 @@ Trial votes on Alice: 4 Guilty, 2 Innocent (the votes are secret).
 [Secret trial votes on Alice] Guilty - Erin, Frank, Grace, Heidi; Innocent - Alice, Bob
 Alice is executed by hanging (4 Guilty of 6 votes; 4 needed).
 Alice died (executed by hanging). Their role isn't revealed. Their last will: "Vanilla Villager. N1–N3: no personal action or visit."
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Fabricator): target Frank; "Fabricator visit on Frank to frame them as Evil for alignment checks (no token, no forgery). Katana holder stays with Bob and attacks Grace."; Katana vote: Bob holds, attacks Grace
+  Erin (Hitman): target Grace
+  Frank (Vigilante): no action
+  Grace (Sheriff): target Frank; "Sheriff investigation of Frank."
+Katana: Bob holds it and attacks Grace.
+(to Grace) Moderator (private): Your Sheriff investigation result tonight: Frank is Evil.
+(to Bob) Moderator (private): You framed Frank tonight. You have 0 fabricator tokens left. Your Katana attack on Grace succeeded.
+(to Erin) Moderator (private): Your attack on Grace succeeded.
+[Moderator summary] Night 4: Bob (Fabricator) framed Frank. Bob also held the Katana and attacked Grace with it (Standard). Erin (Hitman) attacked Grace (Basic). Grace had no Defense, so both attacks would have killed her. She died; the cause is 'Katana and Hitman', by Bob and Erin. Grace's Sheriff check on Frank came back Evil because of the frame. No role-blocks. Living players: Bob (Yakuza), Erin (Hitman, never blocks wins), Frank and Heidi (Village), so the game goes on.
+[Night check] Night 4: correct
+(to Erin) Moderator (private): Your attack killed Grace, who was Good (1 of 2).
+(to Grace) Moderator (private): You were attacked tonight (Katana and Hitman) and died.
