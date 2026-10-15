@@ -2679,3 +2679,67 @@ def test_a_vigilante_avenger_is_told_only_about_its_own_shot(game_factory):
     results = [t for t in told(game, "Alice") if "Your shot killed" in t]
     assert len(results) == 1 and results[0].endswith("Your shot killed Dave. Their role was Serial Killer.")
     assert "avenged" not in game.role_state
+
+
+def test_a_mirror_stops_every_non_divine_attack_and_reflects_the_visits(game_factory):
+    # rules: Mirror Maker
+    game, players = game_factory(["Mirror Maker", "Vanilla Villager", "Serial Killer", "Grunt", "Veteran"])
+    game.phase = "night"
+    out = apply_ops(game, players, {"op": "mirror", "by": "Alice", "player": "Bob", "attacks": [
+        {"by": "Dave", "attack": "Standard", "cause": "Katana", "visit": True},
+        {"by": "Carol", "attack": "Strong", "cause": "Arsonist", "visit": False},
+        {"by": "Erin", "attack": "Divine", "cause": "X", "visit": False}]})
+    text = out["results"][0]
+    assert "Dave is dealt a Standard Attack" in text and "cause 'Katana'" in text and "by 'Alice'" in text
+    assert "Carol's Strong Attack ('Arsonist') wasn't a visit, so it isn't reflected" in text  # Astral: stopped only
+    assert "Erin" not in text  # Divine Attacks ignore the mirror
+    assert game.player("Alice").tokens["mirror"] == 1
+    # a trap or charm on Bob later finds nothing left to stop
+    from roles.base import stop_one_attack
+    assert stop_one_attack(game, "Bob", [{"by": "Dave", "attack": "Standard", "cause": "Katana"}]) is None
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your mirror on Bob stopped 2 attacks tonight. You have 1 mirror token "
+                                            "left.")
+    assert not game.log.error_counts
+
+
+def test_a_mirror_comes_after_a_fox_charm_and_checks_its_user(game_factory):
+    game, players = game_factory(["Mirror Maker", "Vanilla Villager", "Serial Killer", "Grunt", "Kitsune"])
+    game.phase = "night"
+    attacks = [{"by": "Dave", "attack": "Standard", "cause": "Katana", "visit": True},
+               {"by": "Carol", "attack": "Strong", "cause": "Serial Killer", "visit": True}]
+    apply_ops(game, players, {"op": "kitsune_charm", "by": "Erin", "player": "Bob", "attacks": attacks})
+    swallowed = game.role_state["kitsune_charge"]["Erin"]["cause"]
+    out = apply_ops(game, players, {"op": "mirror", "by": "Alice", "player": "Bob", "attacks": attacks})
+    assert f"('{swallowed}')" not in out["results"][0]  # the charm acts first; the mirror takes the rest
+    game.run_night_end_hooks()
+    assert "Your mirror on Bob stopped 1 attack tonight." in told(game, "Alice")[-1]
+    game.day += 1
+    with pytest.raises(ValueError, match="can't place a mirror on themselves"):
+        apply_ops(game, players, {"op": "mirror", "by": "Alice", "player": "Alice", "attacks": []})
+    apply_ops(game, players, {"op": "mirror", "by": "Alice", "player": "Bob", "attacks": []})
+    game.player("Alice").tokens["mirror"] = 1
+    with pytest.raises(ValueError, match="already recorded tonight"):
+        apply_ops(game, players, {"op": "mirror", "by": "Alice", "player": "Carol", "attacks": []})
+    game.player("Alice").tokens["mirror"] = 0
+    game.run_night_end_hooks()
+    game.day += 1
+    with pytest.raises(ValueError, match="no mirror token left"):
+        apply_ops(game, players, {"op": "mirror", "by": "Alice", "player": "Bob", "attacks": []})
+
+
+def test_a_reflected_attack_is_never_reflected_again(game_factory):
+    # rules: Mirror Maker (a mirror on the attacker just stops it), whichever mirror the moderator records first
+    for order in ((0, 1), (1, 0)):
+        game, players = game_factory(["Mirror Maker", "Mirror Maker", "Vanilla Villager", "Serial Killer", "Grunt"])
+        game.phase = "night"
+        ops: list[dict] = [{"op": "mirror", "by": "Alice", "player": "Carol", "attacks": [
+                   {"by": "Dave", "attack": "Strong", "cause": "Serial Killer", "visit": True}]},
+               {"op": "mirror", "by": "Bob", "player": "Dave", "attacks": []}]
+        results = [apply_ops(game, players, ops[i])["results"][0] for i in order]
+        assert "isn't reflected" not in " ".join(results)
+        assert any("stops this reflected attack" in r or "also stops what Alice's mirror reflected" in r
+                   for r in results)
+        game.run_night_end_hooks()
+        assert "Your mirror on Carol stopped 1 attack " in told(game, "Alice")[-1]
+        assert "Your mirror on Dave stopped 1 attack " in told(game, "Bob")[-1]

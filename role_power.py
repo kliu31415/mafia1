@@ -47,8 +47,8 @@ PRIOR: dict[str, float] = {
     "Fortune Teller": 0.35, "Oracle": 0.45, "Eavesdropper": 0.4, "Archivist": 0.4,
     "Census Taker": 0.45, "Profiler": 0.45, "Coroner": 0.35, "Chronicler": 0.4, "Auditor": 0.4,
     "Bloodhound": 0.4, "Cartographer": 0.35, "Scout": 0.3, "Insomniac": 0.35,
-    "Medic": 0.55, "Trapper": 0.7, "Kitsune": 0.6, "Vigilante": 0.45, "Enforcer": 0.45, "Veteran": 0.5, "Sniper": 0.45,
-    "Prosecutor": 0.4, "Party Animal": 0.45, "Mayor": 0.4,
+    "Medic": 0.55, "Trapper": 0.7, "Kitsune": 0.6, "Mirror Maker": 0.65, "Vigilante": 0.45, "Enforcer": 0.45,
+    "Veteran": 0.5, "Sniper": 0.45, "Prosecutor": 0.4, "Party Animal": 0.45, "Mayor": 0.4,
     "Roleplayer": 0.0,
     # Yakuza
     "Grunt": -0.85, "Pharmacist": -1.1, "Ritualist": -1.0, "Fabricator": -1.0, "Ballot Stuffer": -1.2, "Fixer": -0.95,

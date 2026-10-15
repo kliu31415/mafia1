@@ -139,7 +139,8 @@ from records import caller_of, read_records, redact, safe_print
 #     and the moderator resolves it, so it may fail; "decoy_won" (player, day) and "decoy" (player, named, killers,
 #     day) records for the Decoy
 # 76: "mayor_revealed" (player, day) records for the Mayor; trial "vote" records unchanged
-LOG_VERSION = 76
+# 77: "mirror" records (player, target, attacks, stopped, day) for the Mirror Maker
+LOG_VERSION = 77
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

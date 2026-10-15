@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "cb3a4028794fdf62",
+ "cut_sha256": "d0f493a23ae11e6b",
  "text_sha256": "c8b74693d620f4be",
- "made_by": "a Claude Code session",
- "made": "2026-10-15T04:09:43+00:00",
+ "made_by": "Claude Code session",
+ "made": "2026-10-15T04:20:35+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -75,6 +75,11 @@
    "old": "Serial Killer, Arsonist and Decoy read Not Evil.",
    "new": "Serial Killer and Arsonist read Not Evil.",
    "reason": "The Decoy is not on the script."
+  },
+  {
+   "old": "   A trap stops one attack before Defense and may hit its attacker back (Trapper); a mirror stops them all and\n   reflects those that were visits back at their attackers (Mirror Maker).",
+   "new": "   A trap stops one attack before Defense and may hit its attacker back (Trapper).",
+   "reason": "The Mirror Maker is not on the script."
   }
  ]
 }

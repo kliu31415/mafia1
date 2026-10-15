@@ -134,6 +134,12 @@ ROLES: dict[str, RoleInfo] = {
                         tokens={"kitsune": 1}, acts_at_night=True, tested=True,
                         notes="moderator records the charm's attacks and the release with ops; code picks the "
                         "swallowed attack, keeps the charge and tells the Kitsune"),
+    "Mirror Maker": RoleInfo(Alignment.GOOD, "Protective", False,
+                             summary="Night: a token places a mirror that stops every attack on a player and sends "
+                             "each visiting attack back at its attacker.",
+                             tokens={"mirror": 2}, acts_at_night=True,
+                             notes="moderator lists the attacks on the mirrored player (mirror op); code picks the "
+                             "stopped ones, says which are reflected at whom and tells the Mirror Maker its count"),
     "Vigilante": RoleInfo(Alignment.GOOD, "Killing", False,
                           summary="Night: shoot a player, 1-3 tokens for a Basic, Standard or Strong Attack; "
                           "learns the role of a player it kills.",

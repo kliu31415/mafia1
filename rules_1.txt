@@ -145,7 +145,8 @@ R20 (Night resolution checklist): a summary of the rules above, in the order the
    Party Animal, Pharmacist and Veteran can't be role-blocked.
 2. Work out who visits whom (R6), including the Katana holder's visit (R8) and a Sleepwalker's random visit.
 3. Attacks: each kills iff its level beats the target's Defense (R3). Defenses don't stack; the highest counts.
-   A trap stops one attack before Defense and may hit its attacker back (Trapper).
+   A trap stops one attack before Defense and may hit its attacker back (Trapper); a mirror stops them all and
+   reflects those that were visits back at their attackers (Mirror Maker).
 4. Results for investigators, using the visits and appearances (R19).
 5. Notifications: attackers learn whether they succeeded, attacked players learn the attacking role (R3, with the
    Katana exception in R8), protectors learn whether they stopped an attack (R17), role-blocked players are told
@@ -385,6 +386,19 @@ Kitsune
   attack reads as a Katana death), and a survivor is told it came from that cause's role. You keep the attack until
   you release it, and it's lost if you die. You learn whether your charm swallowed an attack, and whether your
   release killed.
+
+Mirror Maker
+  Tokens: 2 mirror tokens.
+  Night: may spend a token to place a mirror on one player other than yourself. Tonight the mirror stops every Basic,
+  Standard and Strong Attack on that player, including attacks that other actions set off (Divine Attacks ignore it;
+  its attackers and target are told as for any failed attack, R3). It acts after any protection that acts before all
+  others and before traps and Defense. Each stopped attack that was a visit is reflected: its attacker is dealt an
+  Attack of the same level (an Astral Visit) whose kill is announced with the stopped attack's cause (a reflected
+  Katana attack reads as a Katana death), and a survivor is told it came from that cause's role. An Astral attack is
+  stopped without being reflected. A reflected attack is never reflected again (a mirror on its attacker just stops
+  it); Defense, protection, traps and charms on its attacker apply as usual. Several mirrors on one player stop the
+  attacks together. You learn how many attacks your mirror stopped, and nothing else (not whose, nor whether a
+  reflection killed).
 
 Killing
 
