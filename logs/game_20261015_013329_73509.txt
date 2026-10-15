@@ -102,3 +102,58 @@ Trial votes on Grace: 6 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Grace] Guilty - Bob, Carol, Erin, Frank, Grace, Heidi; Innocent - Dave
 Grace is executed by hanging (6 Guilty of 7 votes; 4 needed).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "I have no night action and no special information. Judge every claim by its mechanics: check the stated visits, results and vote counts against each other before believing anyone. Don't hang anyone on pressure alone. My Bob line on Day 2 was a guess, not a result."
+
+===== NIGHT 2 =====
+Night actions:
+  Bob (Serial Killer): target Dave
+  Carol (Pharmacist): target Frank; Katana vote: Carol holds, attacks Erin
+  Erin (Vigilante): target Bob; chose to spend 3 token(s); "Strong Vigilante attack."
+  Frank (Medic): target Heidi; chose to spend 1 token(s)
+  Heidi (Sheriff): target Erin
+Katana: Carol holds it and attacks Erin.
+(to Frank) Moderator (private): You were role-blocked tonight. Your action had no effect and no tokens were spent. 2 medic tokens left.
+(to Carol) Moderator (private): You visited Frank tonight. Your Katana attack on Erin succeeded: they died.
+(to Heidi) Moderator (private): You investigated Erin tonight. Result: Not Evil.
+(to Erin) Moderator (private): You used a Strong shot (3 tokens) on Bob tonight. Your shot killed its target. 0 vigilante tokens left.
+(to Bob) Moderator (private): You attacked Dave tonight. Your attack succeeded: they died.
+[Moderator summary] Night 2: Carol (Pharmacist) blocked Frank, so Frank's Strong protection on Heidi did nothing and spent no tokens. Bob (SK) used a Strong attack on Dave (Decoy, Defense None), who died, so the Decoy wins. Carol's Standard Katana attack killed Erin (Vigilante, Defense None). Erin's Strong shot (3 tokens) beat Bob's Standard Defense and killed him. Erin's Avenger trait dealt Carol a Basic Attack; Carol had no Defense or protection and died (cause Avenger). Heidi's check on Erin came back Not Evil. Only Frank and Heidi are left, both Village, so the Village wins.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): Your shot killed Bob. Their role was Serial Killer.
+(to Erin) Moderator (private): Your shot killed Carol. Their role was Pharmacist.
+(to Bob) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Carol) Moderator (private): You were attacked tonight (Avenger) and died.
+(to Dave) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 3 =====
+Dave died (killed by Serial Killer). They were the Decoy, so their role is revealed: Decoy. Their last will: "Dave's last words: I have no night action and no results to share. Judge claims against visits, counts and exact-role checks, not speeches. Grace's Bob line was never sourced. Don't hang anyone on a single clean read or on wording alone."
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "Erin: Vigilante (Good) with Avenger. Night 1: no action. Day 2: I nominated Grace because she named Bob as an attack victim before he disclosed his private notice, without giving a plausible source. Night 2: I used a Strong Vigilante shot on Bob, who survived a Katana attack despite no protection on him being claimed. If I am killed at night, every player whose attack would have killed me is dealt a Basic Attack."
+Bob died (killed by Vigilante). Their role isn't revealed. Their last will: "Coroner. N1: no one had died when the night began, so I had no eligible examination."
+Carol died (killed by Avenger). Their role isn't revealed. Their last will: "Party Animal. N1 I visited Alice and role-blocked her. Her death by Serial Killer does not tell us what action, if any, she tried. N2 I role-blocked Frank; result pending."
+Moderator: Dave was the Decoy, who wins by dying at night. At least one of Frank, Heidi and Bob killed them.
+The game is over. Winners: Alice (dead), Erin (dead), Frank, Heidi, Dave (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Erin, Frank, Heidi, Dave
+Cost by player (USD):
+  Alice (Lookout)      $0.0000    5 calls  claude-haiku-5.5
+  Bob (Serial Killer)  $0.0262   13 calls  gpt-6-luna
+  Carol (Pharmacist)   $0.0237   15 calls  gpt-6-luna
+  Dave (Decoy)         $0.0000   13 calls  claude-haiku-5.5
+  Erin (Vigilante)     $0.0248   13 calls  gpt-6-luna
+  Frank (Medic)        $0.0218   13 calls  gpt-6-luna
+  Grace (Grunt)        $0.0000   15 calls  claude-haiku-5.5
+  Heidi (Sheriff)      $0.0000   13 calls  claude-haiku-5.5
+  Moderator            $0.0000    5 calls  claude-opus-5.5
+  Night checks         $0.0000    2 calls  claude-opus-5.5
+  Strategy review      $0.0000    1 calls  claude-opus-5.5
+  Log review           $0.0000    1 calls  claude-opus-5.5
+  Total                $0.0964  109 calls
