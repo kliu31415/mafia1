@@ -555,7 +555,7 @@ def test_a_roleplayer_looks_exactly_like_their_fake_role(game_factory):
     rp.status[Status.FAKE_ROLE], rp.tokens = "Seer", dict(seer.tokens)  # setup picks at random; pin it
     assert role_briefing(game, rp).replace("Alice (seat 1 of", "Bob (seat 2 of") == role_briefing(game, seer)
     rp.status[Status.FAKE_ROLE] = "Fortune Teller"  # gets results at dawn; never asked for a night action
-    assert not logic("Roleplayer").acts_at_night(rp)
+    assert not logic("Roleplayer").acts_at_night(game, rp)
 
 
 def test_a_blank_start_of_day_will_keeps_the_will(game_factory):

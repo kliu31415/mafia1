@@ -2770,3 +2770,48 @@ def test_an_ashamed_villager_dies_after_voting_innocent_on_a_hanged_non_villager
     assert any("shame" in e.text for e in game.events)
     from traits import bundle_error
     assert bundle_error(["Ashamed", "Merciful"]) and bundle_error(["Ashamed", "Turncoat"])
+
+
+def test_a_werewolf_rampage_attacks_its_target_and_every_visitor(game_factory):
+    # rules: Werewolf
+    game, players = game_factory(["Werewolf", "Vanilla Villager", "Medic", "Grunt", "Lookout", "Sheriff"])
+    game.phase, game.day = "night", 2
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    op = {"op": "rampage", "by": "Alice", "player": "Bob"}
+    with pytest.raises(ValueError, match="record_visits"):
+        mod.dispatch("apply_changes", {"changes": [op]})
+    mod.dispatch("record_visits", {"visits": [["Carol", "Bob"], ["Dave", "Bob"], ["Erin", "Dave"], ["Bob", "Bob"]]})
+    with pytest.raises(ValueError, match="no visit by Alice to Bob"):
+        mod.dispatch("apply_changes", {"changes": [op]})
+    mod.dispatch("record_visits", {"visits": [["Alice", "Bob"], ["Carol", "Bob"], ["Dave", "Bob"], ["Carol", "Bob"],
+                                              ["Erin", "Dave"], ["Bob", "Bob"]]})
+    text = mod.dispatch("apply_changes", {"changes": [op]})["results"][0]
+    # the target once (its self-visit adds nothing), each other visitor once (R6), not the Werewolf, not Dave's visitor
+    assert "to: Bob (a visit); Carol and Dave (visitors; not visits)" in text and "Erin" not in text
+    assert "how many players it attacked (3)" in text
+    with pytest.raises(ValueError, match="already recorded tonight"):
+        mod.dispatch("apply_changes", {"changes": [op]})
+
+
+def test_a_werewolf_rampages_at_home_only_on_even_nights(game_factory):
+    # rules: Werewolf (only on even-numbered Nights; at home it isn't a visit and hits its own visitors)
+    game, players = game_factory(["Werewolf", "Vanilla Villager", "Medic", "Grunt"])
+    alice = game.player("Alice")
+    game.phase, game.day = "night", 1
+    assert not logic("Werewolf").acts_at_night(game, alice)
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("record_visits", {"visits": [["Carol", "Alice"]]})
+    with pytest.raises(ValueError, match="isn't an even-numbered Night"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Alice"}]})
+    game.day = 2
+    assert logic("Werewolf").acts_at_night(game, alice)
+    mod.dispatch("record_visits", {"visits": [["Carol", "Alice"], ["Dave", "Bob"]]})
+    text = mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Alice"}]})["results"][0]
+    assert "rampage at home deals a Strong Attack" in text and "to: Carol (visitors; not visits)" in text
+    assert "Bob" not in text and "Dave" not in text
+    game.day = 4
+    mod.dispatch("record_visits", {"visits": []})
+    text = mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Alice", "player": "Alice"}]})
+    assert "nobody visited, so it attacks no one" in text["results"][0]
+    with pytest.raises(ValueError, match="not a Werewolf"):
+        mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Bob"}]})

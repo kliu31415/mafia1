@@ -186,8 +186,8 @@ except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - A player with the Notorious or Turncoat trait (R24): Evil.
-- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer, Arsonist and Decoy read Not Evil. (Seers see
-  every Neutral as Neutral.)
+- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.
+  (Seers see every Neutral as Neutral.)
 The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
 above apply to it (a Turncoat counts as Good).
 Exact-role checks see the true role, except that they see a Disguised player's disguise (R24). The Roleplayer is
@@ -547,6 +547,19 @@ Arsonist
   Night: may douse one player, or ignite (Astral Visit), dealing a Strong Attack to every doused player. A doused
   player who isn't Good (Yakuza or Neutral) is told at the end of the night that an Arsonist doused them; Good
   players are never told. Igniting uses up every douse: players who survive it are no longer doused.
+
+Werewolf
+  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Win: only alone (not even with another Werewolf).
+  Night: only on even-numbered Nights (Night 2, 4, ...: the full moon); on other Nights you have no action. May
+  rampage, either:
+  - at another player's house (a visit to them): deal a Strong Attack to them and to every other player who visits
+    them tonight; or
+  - at home (not a visit, R6; it targets no player): deal a Strong Attack to every player who visits you tonight.
+  Every visitor is attacked, whatever their faction (a role-blocker visiting your target too), and these attacks on
+  visitors aren't visits. Astral Visits aren't visits, so their makers aren't attacked. A rampage at a player's house
+  is an Attack of your own choosing, attacks on visitors included; one at home isn't. You learn how many players you
+  attacked and how many of those attacks killed, but nothing more about who the visitors were.
 
 Jester
   Defense: Basic. Appears: Evil to the Sheriff.

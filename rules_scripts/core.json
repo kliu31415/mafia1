@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "8aedaaead80ebfa8",
- "text_sha256": "3a9a036d880cc8a0",
+ "cut_sha256": "78335b75e5933510",
+ "text_sha256": "cbaa3f868cede677",
  "made_by": "a Claude Code session",
- "made": "2026-10-15T04:29:36+00:00",
+ "made": "2026-10-15T06:39:49+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -72,9 +72,9 @@
    "reason": "The Kitsune (fox charm) is not on the script."
   },
   {
-   "old": "Serial Killer, Arsonist and Decoy read Not Evil.",
+   "old": "Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.",
    "new": "Serial Killer and Arsonist read Not Evil.",
-   "reason": "The Decoy is not on the script."
+   "reason": "The Werewolf and the Decoy are not on the script."
   },
   {
    "old": "   A trap stops one attack before Defense and may hit its attacker back (Trapper); a mirror stops them all and\n   reflects those that were visits back at their attackers (Mirror Maker).",

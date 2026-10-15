@@ -1,5 +1,5 @@
 {
- "log_version": 78,
+ "log_version": 79,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["attacked", "day", "player"],
@@ -44,6 +44,7 @@
   "paranoid": ["cause", "day", "player"],
   "player_call": ["cost", "effort", "human", "latency_s", "model", "notepad_after", "notepad_before", "output", "player", "reasoning", "task", "usage"],
   "player_feedback": ["day", "feedback", "phase", "player", "role", "step"],
+  "rampage": ["day", "player", "target", "visitors"],
   "remorse": ["day", "hanged", "player"],
   "result": ["cost", "days", "duration_s", "end_reason", "errors", "models", "players", "roles", "usage", "winners", "winning_faction"],
   "resume": ["at", "cut_cost", "cut_records", "day", "unreadable_lines"],

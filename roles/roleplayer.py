@@ -35,6 +35,6 @@ class Roleplayer(RoleLogic):
         from roles import ROLES
         return f"{p.status[Status.FAKE_ROLE]} ({ROLES[p.status[Status.FAKE_ROLE]].alignment.value})"
 
-    def acts_at_night(self, p: Player) -> bool:
+    def acts_at_night(self, game: Game, p: Player) -> bool:
         from roles import ROLES
         return ROLES[p.status[Status.FAKE_ROLE]].acts_at_night

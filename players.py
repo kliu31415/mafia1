@@ -132,7 +132,7 @@ def night_action_schema(game: Game, p: Player) -> dict:
         yakuza = [y.name for y in game.yakuza()]
         props["katana_vote_holder"] = name_enum(yakuza)
         props["katana_vote_target"] = nullable(name_enum(names))
-    if not logic(p.role).acts_at_night(p) and p.info.alignment is not Alignment.EVIL:
+    if not logic(p.role).acts_at_night(game, p) and p.info.alignment is not Alignment.EVIL:
         props = {}  # asked only for a trait's action
     if traits := night_traits(game, p):
         props["trait_actions"] = trait_actions_schema(traits, [n for n in game.alive_names() if n != p.name])

@@ -28,7 +28,7 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
                     + katana_majority_note(game))
 
     # Everyone is asked, if only for their will (rules R13: a will can be updated with the night's choice).
-    actors = [p for p in game.alive() if logic(p.role).acts_at_night(p) or p.info.alignment is Alignment.EVIL
+    actors = [p for p in game.alive() if logic(p.role).acts_at_night(game, p) or p.info.alignment is Alignment.EVIL
               or night_traits(game, p)]
     asked = game.alive()
     jobs = []

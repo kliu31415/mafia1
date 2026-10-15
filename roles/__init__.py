@@ -243,6 +243,12 @@ ROLES: dict[str, RoleInfo] = {
                          "with a Strong Attack. Wins alone.",
                          defense="Standard", acts_at_night=True,
                          tested=True, notes="douses tracked as player status; code tells doused non-Good players"),
+    "Werewolf": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+                         summary="Even nights only: rampage at a player's house (a Strong Attack on them and every "
+                         "visitor) or at home (on every visitor). Wins alone. Standard Defense.",
+                         defense="Standard", acts_at_night=True,
+                         notes="asked for an action only on even nights; moderator resolves the attacks, after the "
+                         "rampage op lists them from record_visits"),
     "Bounty Hunter": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                               summary="Has 3 random targets and one Strong Attack; wins and leaves once 2 targets die "
                               "by its attack or by a hanging it voted Guilty in.",

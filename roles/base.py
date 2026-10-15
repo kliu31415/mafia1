@@ -106,7 +106,7 @@ class RoleLogic:
         """The role the player is told they have."""
         return f"{p.role} ({p.info.alignment.value})"
 
-    def acts_at_night(self, p: Player) -> bool:
+    def acts_at_night(self, game: Game, p: Player) -> bool:
         """Whether the player is asked for a night action (Yakuza always are, for the Katana vote)."""
         return p.info.acts_at_night
 

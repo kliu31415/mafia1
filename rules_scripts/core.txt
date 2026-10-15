@@ -180,8 +180,8 @@ except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - A player with the Notorious or Turncoat trait (R24): Evil.
-- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil. (Seers see
-  every Neutral as Neutral.)
+- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil.
+  (Seers see every Neutral as Neutral.)
 Exact-role checks see the true role, except that they see a Disguised player's disguise (R24).
 Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.
 
