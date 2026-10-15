@@ -240,3 +240,4 @@
 {"t": 1792048040.1695998, "kind": "event", "day": 2, "phase": "day", "text": "Dave is executed by hanging (7 Guilty of 8 votes; 5 needed).", "visible_to": "all", "cat": "death"}
 {"t": 1792048040.169637, "kind": "death", "player": "Dave", "role": "Vulture", "cause": "executed by hanging", "day": 2, "phase": "day", "killer": null, "killer_role": null, "killers": [], "killer_roles": [], "katana": false}
 {"t": 1792048040.170049, "kind": "event", "day": 2, "phase": "day", "text": "Dave died (executed by hanging). Their role isn't revealed. Their last will: \"I am Dave, the Vulture (Neutral). On Day 2 I falsely claimed Enforcer, then admitted I am the Vulture. My Night 1 visit to Frank gained nothing. I attacked no one and hold no Katana. I hold no verified information.\"", "visible_to": "all", "cat": "death"}
+{"t": 1792048042.835489, "kind": "event", "day": 2, "phase": "night", "text": "Night 2 begins.", "visible_to": "all", "cat": "phase"}
