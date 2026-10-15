@@ -1,0 +1,14 @@
+Setup:
+  Alice    seat 1  Sheriff           anthropic/claude-haiku-5.5 (via Claude Code)
+  Bob      seat 2  Grunt             anthropic/claude-haiku-5.5 (via Claude Code)
+  Carol    seat 3  Ballot Stuffer    anthropic/claude-haiku-5.5 (via Claude Code)
+  Dave     seat 4  Mayor             openai/gpt-6-luna
+  Erin     seat 5  Lookout           anthropic/claude-haiku-5.5 (via Claude Code)
+  Frank    seat 6  Medic             openai/gpt-6-luna
+  Grace    seat 7  Jester            openai/gpt-6-luna
+  Heidi    seat 8  Vigilante         openai/gpt-6-luna
+  Katana starts with Carol
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager. Results that name a role (including fakes) never name them either. Nobody has a trait (R24) in this game.
