@@ -110,6 +110,13 @@ night actions already run in parallel.
   hedge leaks information. The night-check judge could re-answer each question and log disagreements, but two
   LLMs agreeing isn't proof. Accurate alternative: a menu of templates (role category, role in play, X visited Y,
   X's last trial vote, tokens left) that the moderator records and code answers, like the Auditor or Juror.
+- **Illusionist: a Yakuza role that confuses an investigator** (Kevin, Oct 15 2026: shelved, too few roles it can
+  fool). Visits one player at night: an Investigative target's results that night are random, as for the
+  Roleplayer; any other target is told someone tried to confuse them and failed. Only the 6 roles whose results the
+  moderator can fake (`roleplayer_can_fake`: Sheriff, Tracker, Lookout, Seer, Fortune Teller, Oracle) can be fooled;
+  the other 14 Investigative roles are told by code, and some have no sensible fake result (Eavesdropper's PMs,
+  Auditor's votes). Reviving it would need a `fake_result` hook on code-told roles. Write-up: project file
+  notes/confuser-role-2026-10-15.md.
 - **Contrary trait, an "insane cop"** (Kevin, Oct 13 2026: dropped for its bug risk; the Roleplayer is already
   similar). A hidden trait (not told to its holder) that flips an investigator's result after the R19 exceptions:
   yes/no checks (Sheriff, Seer, Oracle) give the other answer, counts out of n give n minus the count, role results
