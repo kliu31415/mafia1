@@ -286,3 +286,31 @@ Katana: Bob holds it and attacks Dave.
 (to Dave) Moderator (private): You were attacked tonight (Katana) and died.
 (to Alice) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Dave. Bob (Fabricator) chose to act on Dave, spending 1 token(s) ("Frame Dave as Evil (Fabricator visit) and forge his last will with: Tracker. N1 and N2 tracked Grace. No other night actions.").
 (to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Dave. Alice (Grunt) chose no action.
+
+===== DAY 4 =====
+Dave died (killed by Katana). Their role isn't revealed. Their last will: "Tracker. N1 and N2 tracked Grace."
+Speaking order today goes around the circle in seat order, starting with Alice.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Alice (public): Dave’s death doesn’t identify who attacked him, and his will only repeats the first two Tracker results. Frank, explain why all three Vigilante shots are still unused and what would trigger one. Grace, please give your N3 result too; we need evidence beyond claims that merely fit together.
+Bob (public): Bob here. Frank and Grace exchanged private messages on Day 3, and everyone can see that they did. Frank, Grace: what did each of you send? Grace, post your N3 target and exact result. Frank, if your three Vigilante shots are unused, what exact trigger would you fire them on?
+Erin (public): Erin here. Grace, your Night 3 target and exact result are still unposted; please post them with the wording. Alice and Bob both voted Guilty on Frank, Dave and me, and both denied N2 visits without a checkable account. I'm not nominating yet; I want Grace's N3 result before any vote.
+Frank (public): Frank here, Vigilante, with no night action on N1-N3. Carol's N1 protection stopped an attack on Grace, and the only N1 visitors to Grace claimed so far are Dave and Carol. Alice, Bob, Heidi and Erin: did any of you visit Grace on N1? Answer yes or no, and say what you did. Alice and Bob, explain your matching Guilty votes.
+[Claim] Grace: Sheriff. N1: checked Dave, Not Evil; Katana attack, survived. N2: checked Bob, Not Evil. N3: checked Alice, Evil.
+Grace (public): Grace here, Sheriff. My Night 3 check was Alice: Evil. Alice, what did you do on N2 and N3, and why did you vote Guilty on Frank, Dave and Erin?
+Heidi nominated Alice. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Alice] Yes - Heidi, Bob, Erin, Frank, Grace; No - Alice
+Nomination votes on Alice: 5 Yes (the votes are secret).
+Alice is put on trial (5 Yes).
+[Claim] Alice: Vanilla Villager. N1–N3: no personal action or visit.
+Alice (public): I’m claiming Vanilla Villager; I took no personal action or visit on N1–N3. Grace’s Sheriff result is an unverified claim, not a mechanical contradiction; it doesn’t establish that her role or result is genuine. I accept that voting Guilty alongside Bob on all three trials looks bad. I judged those claims unsubstantiated, but the pattern is fair to scrutinize—not proof of my faction. Don’t hang me on one unverified result and a suspicious voting pattern. Vote Innocent, then keep checking everyone’s accounts independently.
+Bob (public): Bob here. Grace's only evidence against Alice is one N3 Sheriff result, and nothing mechanical contradicts Alice's no-visit claim. Frank and Grace exchanged private messages on Day 3, and neither has said what they were; that pair should be answered before anyone trusts either account. I can't save Alice with my vote alone, but a single unverified check isn't enough to hang a player with no night action to test. I'm voting Innocent on Alice.
+Erin (public): Erin here. Grace's N3 Sheriff check says Alice is Evil, and Alice voted Guilty on every trial, including mine, with no mechanical basis. Alice, why did you vote Guilty on me? I'm voting Guilty on Alice.
+[Claim] Frank: Vigilante (Good). N1-N3: no night action, no visits. 3 vigilante tokens unspent. D4: Guilty on Alice.
+Frank (public): Frank here. I'm voting Guilty on Alice. Grace's N1 and N2 claims fit Carol's Medic will and Dave's Tracker reports, so her N3 Evil read on Alice carries real weight. Alice claims Vanilla with no visits, yet she voted Guilty alongside Bob on Frank, Dave and Erin with no break shown. Alice, why did you nominate Dave on Day 3, and did you visit anyone on N1?
+Grace (public): Grace again. My Night 3 Sheriff check on Alice read Evil, a real alignment result. Alice, answer plainly: what did you do on N2 and N3, and why did you vote Guilty on Frank, Dave and Erin alongside Bob? I'm voting Guilty.
+Heidi (public): Grace’s N3 Evil result is actionable, though framing remains possible. The reported pattern of Alice voting Guilty on all three D3 trials adds concern; I currently favor Guilty.
+Alice (public): Grace’s result is a claim, not a verified check; an Evil read can also come from a Fabricator frame. No result independently places me at a visit, and my Vanilla claim contradicts no known mechanic. I won’t pretend my Day 3 votes look good: I judged three unverified claims harshly, and that pattern is fair to question. But it is not proof of my faction. Don’t turn suspicion into certainty—vote Innocent, then keep checking Grace’s results and everyone’s accounts independently.
+Trial votes on Alice: 4 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Alice] Guilty - Erin, Frank, Grace, Heidi; Innocent - Alice, Bob
+Alice is executed by hanging (4 Guilty of 6 votes; 4 needed).
+Alice died (executed by hanging). Their role isn't revealed. Their last will: "Vanilla Villager. N1–N3: no personal action or visit."
