@@ -15,3 +15,15 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 11 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Nobody has a trait (R24) in this game.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Judy.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Judy (public): Judy here. Quiet start. Please share any info you're comfortable with, and let's watch who pushes early nominations.
+Mallory (public): Mallory here. Nothing to share yet. I'm watching who pushes early nominations and who has real info to offer.
+Alice (public): Alice here. Nothing to share yet. I'm watching who pushes early nominations and who explains their reasoning.
+Bob (public): Bob here. Nothing to share yet. Day 1 is short, so I'd rather hear everyone's read before anyone pushes a nomination.
+Carol (public): Carol here. Nothing to share yet. I'd rather hear everyone's read before any nomination, and I'll post any night result that bears on a vote.
+Dave (public): Dave here. Nothing to share yet. I agree with Bob and Carol: let's hear everyone's read before any nomination. I'm watching who pushes early and who explains their reasoning.
+Erin (public): Erin here. Nothing to share yet. Agree with hearing everyone's read before any nomination. I'm watching who pushes early and who explains their reasoning.
+Frank (public): Frank here. Nothing to share yet. Agree with hearing everyone's read first. I'll post any night result that bears on a vote.

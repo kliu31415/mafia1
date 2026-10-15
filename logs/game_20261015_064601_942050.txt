@@ -136,3 +136,26 @@ Dave is executed by hanging (7 Guilty of 8 votes; 5 needed).
 Dave died (executed by hanging). Their role isn't revealed. Their last will: "I am Dave, the Vulture (Neutral). On Day 2 I falsely claimed Enforcer, then admitted I am the Vulture. My Night 1 visit to Frank gained nothing. I attacked no one and hold no Katana. I hold no verified information."
 
 ===== NIGHT 2 =====
+(to Alice, Frank) Alice (Yakuza chat): Keep the Katana with me and attack Bob tonight. I have no separate action as Grunt. Bob’s Tracker claim could expose the Katana visit, and Carol may protect Heidi again, so Bob is a good target. Please vote for the same holder and target.
+(to Alice, Frank) Frank (Yakuza chat): Agreed: Alice keeps the Katana and we both vote to attack Bob tonight. I have no night action to add. Bob's Tracker report on me (no visits) fits my public claim, so removing Bob is the cleaner choice. I'm ready.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Alice holds, attacks Bob
+  Bob (Tracker): target Grace
+  Carol (Medic): target Grace; "Standard Defense protection on Grace, at no token cost."
+  Erin (Vigilante): target Frank; chose to spend 1 token(s)
+  Frank (Grunt): no role action; Katana vote: Alice holds, attacks Bob
+  Grace (Sheriff): target Frank
+  Heidi (Lookout): target Bob
+Katana: Alice holds it and attacks Bob.
+(to Alice) Moderator (private): Your Katana attack on Bob succeeded tonight.
+(to Bob) Moderator (private): You tracked Grace tonight. Grace visited Frank.
+(to Carol) Moderator (private): You protected Grace tonight with Standard Defense. Your protection did not stop any attack. You have 2 medic tokens left.
+(to Erin) Moderator (private): You shot Frank tonight with a Basic Attack (1 token). Your attack succeeded. You have 2 vigilante tokens left.
+(to Grace) Moderator (private): You investigated Frank tonight. Result: Evil.
+(to Heidi) Moderator (private): You watched Bob tonight. Alice visited Bob.
+[Moderator summary] Night 2: Alice kept the Katana and used it on Bob (Standard against no Defense), so Bob died. Erin shot Frank with a Basic Attack (1 token, 2 left), so Frank died (Vigilante). Carol protected Grace with Standard Defense, but nobody attacked Grace. Bob tracked Grace and saw her visit Frank. Grace checked Frank and got Evil. Heidi watched Bob and saw Alice visit him. Visits: Alice→Bob, Bob→Grace, Carol→Grace, Erin→Frank, Grace→Frank, Heidi→Bob. Still alive: Alice (Yakuza, holds the Katana), Carol, Erin, Grace, Heidi. The game goes on.
+[Night check] Night 2: correct
+(to Erin) Moderator (private): Your shot killed Frank. Their role was Grunt.
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Frank) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Alice) Moderator (private): Yakuza night summary: Alice holds the Katana and chose to attack Bob. Frank (Grunt) chose no action.
