@@ -2909,7 +2909,8 @@ def test_a_werewolf_rampages_at_home_only_on_even_nights(game_factory):
         mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Alice"}]})
     game.day = 2
     assert logic("Werewolf").acts_at_night(game, alice)
-    mod.dispatch("record_visits", {"visits": [["Carol", "Alice"], ["Dave", "Bob"]]})
+    # a self-visit recorded by mistake still never puts the Werewolf among its own victims
+    mod.dispatch("record_visits", {"visits": [["Carol", "Alice"], ["Dave", "Bob"], ["Alice", "Alice"]]})
     text = mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Alice"}]})["results"][0]
     assert "rampage at home deals a Strong Attack" in text and "to: Carol (visitors; not visits)" in text
     assert "Bob" not in text and "Dave" not in text
@@ -2927,3 +2928,15 @@ def test_a_fixed_vote_trait_never_goes_to_a_role_that_weights_its_own_vote():
     for trait in ("Zealot", "Merciful"):
         assert not traits.fits(trait, "Mayor") and not traits.fits(trait, "Ballot Stuffer")
         assert traits.fits(trait, "Sheriff")
+
+
+def test_a_werewolf_never_hits_itself_but_hits_another_werewolf_visiting_its_target(game_factory):
+    # rules: Werewolf ("every other player who visits them"): its own visit to its target doesn't make it a victim
+    game, players = game_factory(["Werewolf", "Werewolf", "Vanilla Villager", "Grunt"])
+    game.phase, game.day = "night", 2
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    mod.dispatch("record_visits", {"visits": [["Alice", "Carol"], ["Bob", "Carol"], ["Alice", "Carol"]]})
+    texts = mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Alice", "player": "Carol"},
+                                                       {"op": "rampage", "by": "Bob", "player": "Carol"}]})["results"]
+    assert "to: Carol (a visit); Bob (visitors; not visits)" in texts[0] and "Alice (" not in texts[0]
+    assert "to: Carol (a visit); Alice (visitors; not visits)" in texts[1] and "Bob (" not in texts[1]
