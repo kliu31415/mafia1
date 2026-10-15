@@ -266,3 +266,23 @@ Trial votes on Erin: 2 Guilty, 5 Innocent (the votes are secret).
 [Secret trial votes on Erin] Guilty - Alice, Bob; Innocent - Dave, Erin, Frank, Grace, Heidi
 Erin is found Innocent (2 Guilty of 7 votes; 4 needed).
 Three trials ended in Innocent verdicts. The day ends.
+
+===== NIGHT 3 =====
+(to Alice, Bob) Alice (Yakuza chat): Keep the Katana with you, Bob, and attack Dave. He is the claimed Tracker and could identify the holder by tracking you. If you can, use your Fabricator action on Dave and forge his will if he dies; a vague or harmless will would deny them his claimed results. I have no action.
+(to Alice, Bob) Bob (Yakuza chat): Agreed: I keep the Katana and attack Dave tonight. He is the claimed Tracker who could track my visits, and his reports match Grace's visits. I'll frame Dave with my Fabricator visit and spend my last token to forge a harmless will. No PMs by Day; Grace and Dave's accounts stay in play as public claims.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Bob holds, attacks Dave
+  Bob (Fabricator): target Dave; chose to spend 1 token(s); "Frame Dave as Evil (Fabricator visit) and forge his last will with: Tracker. N1 and N2 tracked Grace. No other night actions."; Katana vote: Bob holds, attacks Dave
+  Dave (Tracker): target Alice
+  Erin (Hitman): no action
+  Frank (Vigilante): no action
+  Grace (Sheriff): target Alice
+Katana: Bob holds it and attacks Dave.
+(to Bob) Moderator (private): You framed Dave tonight and forged his last will. 0 fabricator tokens left. Your Katana attack on Dave succeeded.
+(to Grace) Moderator (private): You investigated Alice tonight. Result: Evil.
+(to Dave) Moderator (private): You tracked Alice tonight. Alice visited nobody.
+[Moderator summary] Night 3: Bob (Fabricator, Katana holder) framed Dave and forged his will (fabricator token 1->0); Katana (Standard) attack by Bob killed Dave (Defense None). Dave's will replaced by forgery "Tracker. N1 and N2 tracked Grace." Dave tracked Alice: visited nobody. Grace checked Alice: Evil (Grunt, not holder). Erin, Frank, Heidi, Alice took no action. Visits: Bob->Dave, Dave->Alice, Grace->Alice. Game continues (Yakuza 2, Village 3, Hitman doesn't block).
+[Night check] Night 3: correct
+(to Dave) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Dave. Bob (Fabricator) chose to act on Dave, spending 1 token(s) ("Frame Dave as Evil (Fabricator visit) and forge his last will with: Tracker. N1 and N2 tracked Grace. No other night actions.").
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Dave. Alice (Grunt) chose no action.
