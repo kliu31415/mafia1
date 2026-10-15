@@ -95,6 +95,14 @@ night actions already run in parallel.
   mostly a one-day delay, since the town can re-hang them the next Day. Variant: the holder chooses whether to slip
   after seeing the vote (one extra yes/no call), which gives them a decision. A slip isn't a hanging: no Jester or
   Executioner win, no Martyr or Grudge.
+- **Astral trait: every visit the holder makes is Astral** (Kevin, Oct 15 2026: punted). Actions still work, but
+  nothing that reads or reacts to visits sees them (Tracker, Lookout, Fortune Teller, Cartographer, Scout,
+  Insomniac, Veteran hits, trap hit-back, mirror reflection); attack-keyed roles (Enforcer, Bloodhound, Decoy,
+  Avenger, Kitsune) are unchanged. Too strong for a told Yakuza if it covers the Katana: the team hands them the
+  Katana and every kill is untrackable and punish-proof. Proposal: Village and Yakuza, roles whose action visits,
+  told, the Katana's own attack stays a visit, never with Sleepwalker; power about +0.05 Village / +0.2 Yakuza.
+  Low bug risk: visits are already the moderator's `record_visits` and the trap/mirror `visit` flag, which code
+  could check against the holder. Full write-up: project file notes/astral-trait-2026-10-15.md.
 - **Free-form yes/no question to the moderator** (Kevin, Oct 13 2026: shelved). A role asks the moderator any
   yes/no question at night. Accuracy is the problem: vague questions ("is Bob dangerous?", "did anyone visit
   Carol?" with Astral checks, blocks or swaps) need rulings nobody can check, compound questions ("is Bob Yakuza
