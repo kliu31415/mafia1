@@ -575,7 +575,7 @@ Confidant
   it was sent, and the public ledger doesn't count it. Its recipient sees that it was hidden.
 
 Zealot
-  Who: Any player.
+  Who: Any player whose role doesn't change how much their own trial vote counts.
   Effect: Every Guilty/Innocent trial vote you cast counts as Guilty, whatever you vote, including in your own
   trial. Your nomination (Yes/No) votes are unchanged. Your private reminder shows both the vote you cast and how it
   counted, and everything that reports how you voted (e.g. the Auditor, a Martyr's announcement) uses the vote as
@@ -583,7 +583,7 @@ Zealot
   Never with: Merciful or Remorseful.
 
 Merciful
-  Who: Any player.
+  Who: Any player whose role doesn't change how much their own trial vote counts.
   Effect: Like Zealot, but your trial votes always count as Innocent.
   Never with: Ashamed or Zealot.
 

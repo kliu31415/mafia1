@@ -2919,3 +2919,11 @@ def test_a_werewolf_rampages_at_home_only_on_even_nights(game_factory):
     assert "nobody visited, so it attacks no one" in text["results"][0]
     with pytest.raises(ValueError, match="not a Werewolf"):
         mod.dispatch("apply_changes", {"changes": [{"op": "rampage", "by": "Bob"}]})
+
+
+def test_a_fixed_vote_trait_never_goes_to_a_role_that_weights_its_own_vote():
+    # Heidi, a Merciful Mayor, had a doubled vote that always counted Innocent (game_20261015_080049_1001)
+    import traits
+    for trait in ("Zealot", "Merciful"):
+        assert not traits.fits(trait, "Mayor") and not traits.fits(trait, "Ballot Stuffer")
+        assert traits.fits(trait, "Sheriff")

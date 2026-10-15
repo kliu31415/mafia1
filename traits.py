@@ -13,7 +13,8 @@ from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
 from roles import ROLES, Alignment
-from roles.base import AVENGED, DISGUISES, REVENGE_CAUSE, acted_tonight, join_names, notify_moderator, record_attack
+from roles.base import (AVENGED, DISGUISES, REVENGE_CAUSE, RoleLogic, acted_tonight, join_names, logic,
+                        notify_moderator, record_attack)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -37,6 +38,12 @@ class TraitInfo:
     unique: bool = False  # at most one player in a game holds it (rules R24 says which)
     pairs: bool = False  # held by two players together (Bonded): drawn setups deal it to both (setups.draw_traits)
     same_faction: bool = False  # a pair trait whose partners share a faction (Rival)
+
+
+def own_vote_weight(role: str) -> bool:
+    """Whether a role's own power changes how much its trial votes count (Mayor, Ballot Stuffer): a fixed-vote trait
+    would leave that power nothing to choose (Heidi, a Merciful Mayor, game_20261015_080049_1001; Kevin, Oct 15)."""
+    return type(logic(role)).trial_vote_weight is not RoleLogic.trial_vote_weight
 
 
 # Roles whose rules paragraph says they can't be role-blocked (a test checks), so a role-block trait never fits them.
@@ -191,6 +198,7 @@ TRAITS: dict[str, TraitInfo] = {
                         "your own trial; your nomination votes are unchanged (rules R24).",
                         "Trial votes always count as Guilty, whatever they vote.",
                         power=-0.1, power_for={Alignment.EVIL: -0.15},
+                        fits_role=lambda r: not own_vote_weight(r),
                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                               "<circle cx='5' cy='5' r='4.4' fill='#86198f' stroke='#fff' stroke-width='1'/>"
                               "<rect x='2.6' y='2.6' width='3.6' height='1.8' fill='#fff' "
@@ -201,6 +209,7 @@ TRAITS: dict[str, TraitInfo] = {
                           "nomination votes are unchanged (rules R24).",
                           "Trial votes always count as Innocent, whatever they vote.",
                           power=-0.1, power_for={Alignment.EVIL: -0.15},
+                          fits_role=lambda r: not own_vote_weight(r),
                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
                                 "<circle cx='5' cy='5' r='4.4' fill='#4338ca' stroke='#fff' stroke-width='1'/>"
                                 "<path d='M5 7.4L2.7 5.1Q1.9 4 2.8 3.2Q3.9 2.5 5 3.7Q6.1 2.5 7.2 3.2Q8.1 4 7.3 5.1Z' "
