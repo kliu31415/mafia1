@@ -12,3 +12,25 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Nobody has a trait (R24) in this game.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Grace.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Grace (public): Grace here. I have no reads yet, and I won't guess on Day 1. Tonight I'll use my investigation and I'll post the exact result on Day 2 if it's useful. Keep your wills current, and tell me if anyone's first-night story doesn't add up.
+Heidi (public): Grace, name your claimed role now; post any result on Day 2 with the target and exact wording.
+Alice (public): Grace, what role are you claiming? A useful result on Day 2 should include the target and exact wording.
+Bob (public): Bob here. No reads yet, and I won't guess on Day 1. Grace, post your Night 1 target and exact result on Day 2 as you said. Heidi and Alice are right to ask.
+Carol (public): Let's avoid announcing intended night targets. Share exact results tomorrow with the target and wording, and keep your wills updated.
+Dave (public): No useful reads yet. Please avoid announcing intended night targets; share exact results tomorrow if they matter.
+Erin (public): Erin here. No reads yet, and I won't guess on Day 1. Agree with the others: share exact results tomorrow with the target and wording.
+Frank (public): Frank here. No reads yet, and I won't announce any night plans. Grace, your Day 2 result with target and exact wording is what matters. Keep wills current.
+[Claim] Grace: Sheriff (Good). N1 investigation this night; result to be posted publicly on Day 2.
+Grace (public): Grace here. My Night 1 Sheriff result goes out on Day 2 with target and exact wording. Keep wills current and watch for anyone who claims to know more than they should.
+Heidi (public): Grace has claimed Sheriff. That is only a claim for now; please post the exact result and target on Day 2, and remember that Not Evil does not clear someone.
+Alice (public): Agreed: no need to announce targets tonight. Grace, please share the exact result and target tomorrow if it helps us make a decision.
+Bob (public): Bob here. Still no reads. Grace's Day 2 result with target and exact wording is what matters, so I'll judge after it's posted. Keep wills current.
+Carol (public): Grace's claim is on record; let's wait for the exact result tomorrow. Please don't announce night targets or protection plans, and keep your wills accurate.
+Dave (public): Keep night targets private. Tomorrow, give the exact result and separate what you directly observed from what is still only an unverified claim.
+Erin (public): Erin here. No reads yet. I'll judge Grace's exact Day 2 result when it's posted.
+Frank (public): Frank here. I'll hold my read until Grace's Day 2 result is posted with target and exact wording, then compare it with the other claims.
+Discussion time is over. The day ends.
