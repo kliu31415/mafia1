@@ -138,7 +138,8 @@ from records import caller_of, read_records, redact, safe_print
 # 75: "avenger" records name the attacked player as `attacked` (was `killed`): the Avenger's attack is Basic now
 #     and the moderator resolves it, so it may fail; "decoy_won" (player, day) and "decoy" (player, named, killers,
 #     day) records for the Decoy
-LOG_VERSION = 75
+# 76: "mayor_revealed" (player, day) records for the Mayor; trial "vote" records unchanged
+LOG_VERSION = 76
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

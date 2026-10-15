@@ -1,15 +1,15 @@
 {
  "script": "core",
- "cut_sha256": "8c34373251714c43",
+ "cut_sha256": "cb3a4028794fdf62",
  "text_sha256": "c8b74693d620f4be",
  "made_by": "a Claude Code session",
- "made": "2026-10-15T01:30:00+00:00",
+ "made": "2026-10-15T04:09:43+00:00",
  "cost": 0.0,
  "edits": [
   {
-   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Vulture.",
+   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Mayor, Vulture.",
    "new": "The list of roles in the game is not public. A role may appear more than once in a game.",
-   "reason": "The only unique role (Vulture) is not on the script."
+   "reason": "The unique roles (Mayor, Vulture) are not on the script."
   },
   {
    "old": "(Oracle, Diviner, Ritualist, Mortician, Coroner,\n  Talent Agent, a Vigilante's kill)",

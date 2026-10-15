@@ -119,7 +119,8 @@ const LABELS = {
   missing_information: "Information you needed but didn't have", wanted_but_couldnt: "What you wanted to do but couldn't",
   bugs_or_oddities: "Bugs or oddities", suggestions: "Suggestions", lessons: "Lessons", tips_feedback: "Feedback on the tips",
 };
-const STEP_LABELS = {trial_vote: {vote: "Guilty (unticked: Innocent)", act: "Stuff the ballot (this vote counts twice)"}};  // a field's meaning per step
+const STEP_LABELS = {trial_vote: {vote: "Guilty (unticked: Innocent)", act: "Stuff the ballot (this vote counts twice)"},
+                     day_turn: {act: "Reveal myself (Mayor)"}};  // a field's meaning per step
 let step = "";
 const labelOf = key => (STEP_LABELS[step] || {})[key] || LABELS[key];
 const HINTS = {

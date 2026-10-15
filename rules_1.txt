@@ -19,7 +19,7 @@ R2 (Factions)
 - Yakuza (Evil): fewer players, stronger roles; they know each other and share a night chat.
 - Neutral: each Neutral player is their own one-person faction, even if two players have the same Neutral role.
 The list of roles in the game is not public. A role may appear more than once in a game, except these unique
-roles, which appear at most once: Vulture.
+roles, which appear at most once: Mayor, Vulture.
 
 R15 (Alignments)
 Every player has one of three alignments: Good (Village), Evil (Yakuza) or Neutral. Some roles and effects change
@@ -431,6 +431,12 @@ Prosecutor
 Party Animal
   Immune to role-blocks.
   Night: may visit one player, role-blocking them.
+
+Mayor
+  Day: once per game, on one of your own speaking turns, you may reveal yourself. This day action takes effect right
+  after that turn, not after R25's random delay: the moderator announces publicly that you are the Mayor, and this
+  is true. It confirms your role only. From then on each of your Guilty/Innocent trial votes counts twice; your
+  nomination (Yes/No) votes stay one vote each.
 
 Outsiders (Village roles: Good, and win with the Village, but the role helps the Village less or can hurt it)
 

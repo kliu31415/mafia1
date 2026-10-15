@@ -1,5 +1,5 @@
 {
- "log_version": 75,
+ "log_version": 76,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["attacked", "day", "player"],
@@ -29,6 +29,7 @@
   "left": ["day", "phase", "player"],
   "lessons": ["lessons", "model", "role", "tips_feedback", "who"],
   "martyr": ["day", "guilty", "player"],
+  "mayor_revealed": ["day", "player"],
   "message_dropped": ["player", "to", "words"],
   "moderator_call": ["content", "cost", "day", "latency_s", "model", "phase", "reasoning", "tool_calls", "usage"],
   "moderator_flag": ["day", "issue", "phase"],

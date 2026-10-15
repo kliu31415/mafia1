@@ -241,7 +241,10 @@ def test_ballot_stuffer_chooses_at_each_trial_vote_whether_to_double_it(game_fac
     game, players = game_factory(["Vanilla Villager"] * 4 + ["Grunt", "Ballot Stuffer"], ScriptedClient(decide))
     frank, alice = game.player("Frank"), game.player("Alice")
     assert run_trial(game, players, alice, "Alice", 1) == "executed"  # Frank counts twice: 4 of 7
-    assert any("(4 Guilty of 7 votes; 4 needed; there are more votes than the 6 voters" in e.text for e in game.events)
+    assert any("(4 Guilty of 7 votes; 4 needed; 7 votes from 6 voters: a role changed the count on purpose" in e.text
+               for e in game.events)
+    assert any("Innocent (the votes are secret; 7 votes from 6 voters: a role changed the count on purpose (rules R4), "
+               "not an error)" in e.text for e in game.events)
     assert frank.tokens["ballot"] == 1 and any("You stuffed the ballot" in t for t in told(game, "Frank"))
     assert {n for n, _, fields in tasks if "act" in fields} == {"Frank"}  # only the stuffer is offered it
     assert "(2 ballot tokens left)" in next(t for n, t, _ in tasks if n == "Frank")
@@ -258,6 +261,40 @@ def test_ballot_stuffer_chooses_at_each_trial_vote_whether_to_double_it(game_fac
     tasks.clear()
     run_trial(game, players, game.player("Bob"), "Erin", 1)
     assert not any("act" in fields for _, _, fields in tasks)  # no tokens left: a plain vote
+
+
+def test_a_revealed_mayor_is_announced_and_its_trial_votes_count_twice(game_factory):
+    from day import chat_turn, run_trial
+    reveal, guilty, offered = {"Alice"}, {"Alice", "Bob"}, []
+
+    def decide(name, task, schema):
+        props = schema["properties"]
+        if "Vote true for Guilty" in task:
+            return {"vote": name in guilty}
+        if "act" in props:
+            offered.append(name)
+            return {"act": name in reveal}
+        return None
+    game, players = game_factory(["Mayor", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt"],
+                                 ScriptedClient(decide))
+    game.day, game.phase = 2, "day"
+    alice = game.player("Alice")
+    assert run_trial(game, players, game.player("Bob"), "Erin", 1) == "innocent"  # not revealed yet: 2 of 5
+    reveal.clear()
+    chat_turn(game, players, alice, rnd=1, can_nominate=False)  # offered, but stays hidden
+    assert offered == ["Alice"] and not any("Mayor" in e.text for e in game.events if e.visible_to is None)
+    reveal.add("Alice")
+    chat_turn(game, players, alice, rnd=2, can_nominate=False)
+    public = [e.text for e in game.events if e.visible_to is None]
+    assert "Alice reveals that they are the Mayor, and the moderator confirms it." in public
+    guilty.add("Carol")  # 3 of 5 voters, but Alice counts twice: 4 Guilty of 6 votes
+    assert run_trial(game, players, game.player("Bob"), "Erin", 1) == "executed"
+    assert any("Trial votes on Erin: 4 Guilty, 2 Innocent (the votes are secret; 6 votes from 5 voters: a role "
+               "changed the count on purpose (rules R4), not an error)." in e.text for e in game.events)
+    assert ("(6 votes from 5 voters: a role changed the count on purpose (rules R4), not an error)"
+            in game.vote_record[-1])
+    chat_turn(game, players, alice, rnd=3, can_nominate=False)
+    assert offered == ["Alice", "Alice"]  # once per game: not offered again
 
 
 def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_factory):

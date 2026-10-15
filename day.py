@@ -563,9 +563,13 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     # votes counted, and the announced totals include the extra votes without saying whose they are.
     weight = {v.name: logic(v.role).trial_vote_weight(game, v, o) for v, o in zip(voters, outs)}
     guilty_votes, total_votes = sum(weight[n] for n in guilty), sum(weight.values())
+    # Rules R4: every public line with the totals says that a mismatch is on purpose (Ballot Stuffer, Mayor), so
+    # players and the moderator don't take it for a counting error (Kevin, Oct 15 2026).
+    extra = (f"{total_votes} votes from {len(voters)} voters: a role changed the count on purpose (rules R4), not an "
+             "error" if total_votes != len(voters) else "")
     if secret:  # rule setting: only the totals are public; each voter is told their own vote
         game.emit(f"Trial votes on {nominee}: {guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (the "
-                  "votes are secret).", cat=VOTE)
+                  f"votes are secret{'; ' + extra if extra else ''}).", cat=VOTE)
         for v, o, c in zip(voters, outs, counted):
             trait = (f" Your {fixed[v.name][0]} trait counted it as {'Guilty' if c else 'Innocent'}."
                      if v.name in fixed else "")
@@ -582,9 +586,8 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
     for t in TRAIT_LOGIC.values():  # rules R24, e.g. the Kindred's result
         t.after_trial_vote(game, nominee, {v.name: o["vote"] for v, o in zip(voters, outs)}, guilty)
     tally = f"{guilty_votes} Guilty of {total_votes} votes; {total_votes // 2 + 1} needed"  # rules R4: a majority
-    if total_votes != len(voters):
-        tally += (f"; there are more votes than the {len(voters)} voters because a role manipulated the count on "
-                  "purpose (rules R4), not because of an error")
+    if extra:
+        tally += f"; {extra}"
     voted_guilty = majority(guilty_votes, total_votes)
     verdict = "executed" if voted_guilty else "Innocent"
     log_vote(game, "trial", nominator.name, nominee, guilty, innocent, verdict, prosecuted=prosecuted,
@@ -594,7 +597,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
         f"Day {game.day}: trial of {nominee}; "
         + (f"{guilty_votes} Guilty, {total_votes - guilty_votes} Innocent (secret vote)" if secret else
            f"Guilty - {', '.join(guilty) or 'nobody'}; Innocent - {', '.join(innocent) or 'nobody'}")
-        + f"; {verdict}")
+        + (f" ({extra})" if extra else "") + f"; {verdict}")
     if voted_guilty:
         game.emit(f"{nominee} is executed by hanging ({tally}).", cat=DEATH)
         game.kill(nominee, "executed by hanging", guilty_voters=guilty)

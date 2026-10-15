@@ -162,6 +162,11 @@ ROLES: dict[str, RoleInfo] = {
     "Party Animal": RoleInfo(Alignment.GOOD, "Support", False,
                              summary="Night: role-block one player. Immune to role-blocks.",
                              acts_at_night=True, tested=True),
+    "Mayor": RoleInfo(Alignment.GOOD, "Support", False,
+                      summary="Day, once: reveal as the Mayor (confirmed); then trial votes count twice.",
+                      unique=True,
+                      notes="day action (act) on its own speaking turn, announced at once, not after R25's delay; code "
+                      "doubles its trial votes after the reveal (Kevin, Oct 15)"),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False,
                            summary="Thinks they are a random Investigative role; gets random results.",
                            acts_at_night=True, tested=True,
