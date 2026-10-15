@@ -131,3 +131,25 @@ Grace (public): Frank is right: a third N1 visitor hit me. Bob, Alice or Heidi i
 Heidi (public): Important correction: Dave's Tracker action targeted Grace, so Dave himself visited Grace; Carol also visited her to protect. Either could be among the visitors, and Dave could hold the Katana while using Tracker. Thus the hit doesn't imply Bob, Alice, or me lied. No verified case for a hang.
 Alice (public): The confirmed facts are that Grace was attacked, Carol stopped an attack, and Dave visited Grace. That still doesn't identify the attacker, so let's avoid treating the unexplained visit as proof against anyone.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Bob) Alice (Yakuza chat): Keep the Katana with Bob and attack Carol. She’s the claimed Medic and may protect Grace again, so she could be vulnerable. Bob could use his Fabricator visit on Carol too, framing and forging her will if she dies. I have no other action.
+(to Alice, Bob) Bob (Yakuza chat): Agreed: I keep the Katana and attack Carol tonight. My Fabricator visit frames Carol as Evil; I'll hold my forgery token for now. Alice, no PMs by Day, and keep your Grunt cover.
+Night actions:
+  Alice (Grunt): no role action; Katana vote: Bob holds, attacks Carol
+  Bob (Fabricator): target Carol; "Fabricator visit on Carol to frame her as Evil for alignment checks, no forgery. Katana: Bob holds and attacks Carol."; Katana vote: Bob holds, attacks Carol
+  Carol (Medic): target Grace; chose to spend 1 token(s)
+  Dave (Tracker): target Grace
+  Erin (Hitman): no action
+  Frank (Vigilante): no action
+  Grace (Sheriff): target Bob; "Sheriff investigation of Bob."
+Katana: Bob holds it and attacks Carol.
+(to Bob) Moderator (private): You framed Carol tonight (no forgery). 1 fabricator token left. Your Katana attack on Carol succeeded.
+(to Carol) Moderator (private): You protected Grace with Strong Defense tonight. Your protection did not stop an attack. 1 medic token left.
+(to Dave) Moderator (private): You tracked Grace tonight. Grace visited Bob.
+(to Grace) Moderator (private): You investigated Bob tonight. Result: Not Evil.
+[Moderator summary] Night 2: Bob (Fabricator) framed Carol and, as Katana holder, attacked Carol with a Standard Katana attack. Carol had no Defense (her protection went to Grace), so she died (cause Katana). Carol spent 1 medic token to give Grace Strong Defense (1 left); nobody attacked Grace, so it stopped nothing. Dave tracked Grace and saw her visit Bob. Grace's Sheriff check on Bob came back Not Evil because Bob held the Katana at the end of the night. The frame on Carol didn't matter since nobody checked her. Visits: Bob→Carol, Carol→Grace, Dave→Grace, Grace→Bob. The Katana stays with Bob. Nobody was role-blocked. Win check: Yakuza Alice and Bob, Village Dave, Frank, Grace and Heidi, plus Erin (Hitman, never blocks wins) are alive, so the game goes on.
+[Night check] Night 2: correct
+(to Carol) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Carol. Bob (Fabricator) chose to act on Carol ("Fabricator visit on Carol to frame her as Evil for alignment checks, no forgery. Katana: Bob holds and attacks Carol.").
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Carol. Alice (Grunt) chose no action.
