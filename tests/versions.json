@@ -1,5 +1,5 @@
 {
- "log_version": 79,
+ "log_version": 80,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["attacked", "day", "player"],
@@ -52,6 +52,7 @@
   "revenge": ["source", "victim"],
   "review": ["cost", "issues", "model", "usage"],
   "rivals": ["players"],
+  "saint_hanged": ["day", "player"],
   "section": ["title"],
   "setup": ["katana", "log_version", "players", "role_info", "trait_info"],
   "shame": ["day", "hanged", "player"],

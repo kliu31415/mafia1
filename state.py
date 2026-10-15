@@ -351,8 +351,10 @@ class Game:
             return [self.sole_winner] + self.personal_winners
         alive = self.alive()
         blocking = {p.faction for p in alive if logic(p.role).blocks_win and not ignored_at_end(p)}
-        if len(blocking) <= 1:
-            faction = next(iter(blocking), None)
+        # A role can end the game with a faction's win, alive or dead (a hanged Saint: the Yakuza).
+        decided = next((f for role_logic in LOGIC.values() if (f := role_logic.decides_game(self))), None)
+        if decided or len(blocking) <= 1:
+            faction = decided or next(iter(blocking), None)
             # A Usurper who is the faction's last player alive takes its win alone; otherwise a trait can keep its
             # holder out of the win (Selfish, Selfless, Usurper; rules R1, R24), or make them win with another
             # faction (Turncoat). The faction still won.

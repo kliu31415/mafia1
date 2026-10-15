@@ -53,6 +53,25 @@ def test_executioner_wins_and_leaves_when_target_is_hanged(game_factory):
     assert game.death_count() == 1  # leaving isn't a death
 
 
+def test_a_hanged_saint_ends_the_game_with_a_yakuza_win(game_factory):
+    # Rules (Saint): the Yakuza win, dead ones too; a Neutral who must win alone loses; an Executioner whose target
+    # was the Saint still wins (R1).
+    game, _ = game_factory(["Saint", "Vanilla Villager", "Grunt", "Grunt", "Serial Killer", "Executioner"])
+    game.player("Frank").status[Status.TARGET] = "Alice"
+    game.kill("Dave", "Katana")
+    assert game.check_winner() is None
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Carol"])
+    assert sorted(game.check_winner() or []) == ["Carol", "Dave", "Frank"]
+    assert any("Alice was the Saint" in e.text for e in game.events)
+
+
+def test_a_saint_who_dies_any_other_way_changes_nothing(game_factory):
+    game, _ = game_factory(["Saint", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.phase = "night"
+    game.kill("Alice", "Katana")
+    assert game.check_winner() is None
+
+
 def test_executioner_becomes_jester_when_target_dies_otherwise(game_factory):
     game, _ = game_factory(["Executioner", "Vanilla Villager", "Vanilla Villager", "Grunt"])
     game.player("Alice").status[Status.TARGET] = "Bob"

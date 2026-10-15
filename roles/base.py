@@ -117,6 +117,11 @@ class RoleLogic:
     def on_death(self, game: Game, p: Player, guilty_voters: list[str] | None) -> None:
         """This player just died. guilty_voters is set only for an execution by hanging."""
 
+    def decides_game(self, game: Game) -> str | None:
+        """A faction this role's effect has made win at once (a hanged Saint: the Yakuza), or None. Called once per
+        registered role by the win check (rules R1), before the usual faction count."""
+        return None
+
     def reveals_on_death(self, game: Game, dead: Player) -> str | None:
         """Why this death's announcement also shows the dead player's role (e.g. "They had been marked by a
         Chronicler"), or None. Called once per registered role. A Mortician's clean still hides the role, and

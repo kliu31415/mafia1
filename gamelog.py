@@ -142,7 +142,8 @@ from records import caller_of, read_records, redact, safe_print
 # 77: "mirror" records (player, target, attacks, stopped, day) for the Mirror Maker
 # 78: "shame" records (player, hanged, day): an Ashamed voter's death after a hanging (rules R24)
 # 79: "rampage" records (player, target (None at home), visitors, day) for the Werewolf
-LOG_VERSION = 79
+# 80: "saint_hanged" records (player, day): a hanged Saint, which ends the game with a Yakuza win
+LOG_VERSION = 80
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

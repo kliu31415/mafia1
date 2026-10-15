@@ -178,6 +178,9 @@ ROLES: dict[str, RoleInfo] = {
                            acts_at_night=True, tested=True,
                            notes="code assigns the fake role (with its tokens and night prompts); "
                            "moderator draws its results at random"),
+    "Saint": RoleInfo(Alignment.GOOD, "Outsider", False,
+                      summary="No night action. If hanged, the Village loses at once and the Yakuza win.",
+                      unique=True, notes="code ends the game when it's hanged (RoleLogic.decides_game)"),
     # Yakuza
     "Grunt": RoleInfo(Alignment.EVIL, "Yakuza", True,
                       summary="No night action of its own; shares the Katana.",
