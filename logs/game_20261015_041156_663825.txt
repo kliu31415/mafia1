@@ -110,3 +110,39 @@ Katana: Carol holds it and attacks Alice.
 [Night check] Night 2: correct
 (to Heidi) Moderator (private): Your shot killed Frank. Their role was Medic.
 (to Frank) Moderator (private): You were attacked tonight (Vigilante) and died.
+
+===== DAY 3 =====
+Frank died (killed by Vigilante). Their role isn't revealed. Their last will: "Frank: Medic. N1 I protected Grace with Standard Defense; no attack was stopped. I have 2 tokens remaining. On N2 I protected Alice."
+Speaking order today goes around the circle in seat order, starting with Carol.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Carol (public): Carol here. Frank's will says he protected Alice on N2, so Alice surviving a night attack fits a Medic. That fits Frank's claim but doesn't prove it, and Alice's Sheriff result is still one unconfirmed check. Before any nomination, I want a second independent account of each claimed result.
+[Claim] Dave: Mayor. No night action or result N1/N2. Guilty on Bob (D2). Revealed Day 3.
+Dave (public): N2 I had no night action or result. I’m revealing as Mayor now; this is true, and my trial votes will count twice from here. The D2 tally’s ninth counted vote means a Ballot Stuffer altered it, but doesn’t identify who. Everyone, please give plain N2 actions and results.
+Dave reveals that they are the Mayor, and the moderator confirms it.
+(to Dave) Moderator (private): You revealed yourself as the Mayor: from now on each of your trial votes counts twice.
+[Claim] Erin: Lookout. N1: watched Frank, only Alice visited. N2: watched Grace, only Alice visited.
+Erin (public): Erin, Lookout. My results are unchanged: N1 Frank was visited only by Alice; N2 Grace was visited only by Alice. Alice visited both of my targets, which fits her Sheriff claim but doesn't confirm it. Frank died on N2 to a Vigilante, so whoever visited Frank that night is the key lead. Anyone who knows who visited Frank on N2, please say so. I'm not nominating yet.
+Grace (public): I opposed hanging Bob and voted Innocent despite the Grunt slip. That was a bad call and makes me worth scrutinizing. I have no N1 or N2 result to add.
+[Claim] Heidi: Vigilante. N1: no action. N2: Basic shot at Frank; killed, exact-role result Medic. D2: Guilty on Bob.
+Heidi (public): I was the Vigilante: N2 I spent one token on a Basic shot at Frank. It killed, and I learned his exact role was Medic. That was a bad, unjustified shot; his unverified claim did not establish that he was Yakuza. I have two tokens left and won't shoot without stronger evidence. The D2 extra counted vote proves deliberate vote manipulation, not who caused it. Erin says Alice alone visited Grace on N2; Alice, please give your exact N2 action and result. I won't nominate yet.
+[Claim] Alice: Sheriff. N1: checked Frank, Not Evil. N2: checked Grace, Evil. Attacked by Katana N2, survived. D3: nominating Grace.
+Alice (public): Alice, Sheriff. N1 I checked Frank: Not Evil. N2 I checked Grace: Evil. I was hit by a Katana on N2 and survived, which fits Frank's claimed Standard protection on me. Erin's Lookout confirms only I visited Grace that night. Grace also argued hard against Bob's hanging and against Frank's claim. I'm nominating Grace. Vote on the Evil read, and say so if you have a checkable reason to doubt it.
+Alice nominated Grace. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Grace] Yes - Alice, Carol, Dave, Erin, Grace, Heidi; No - nobody
+Nomination votes on Grace: 6 Yes (the votes are secret).
+Grace is put on trial (6 Yes).
+[Claim] Grace: No role claim. N1/N2: no action or result. D2: Innocent on Bob.
+Grace (public): I have no useful result or convincing role claim to counter Alice. I had no N1 or N2 action, and my Innocent vote on Bob was a serious mistake. I don't have a good explanation for trusting his retraction after the first-person Grunt claim. Alice's Evil check is unverified, but I can't offer evidence against it. I won't invent a role now. Judge me on that.
+Heidi (public): Alice's result isn't proof alone, but Erin independently places Alice as Grace's sole N2 visitor, consistent with a Sheriff check. Grace offers no counterevidence, and her Innocent vote on Bob's first-person Grunt claim is serious. I will vote Guilty.
+[Claim] Alice: Sheriff. N1: checked Frank, Not Evil. N2: checked Grace, Evil. Attacked by Katana N2, survived. D3: nominated Grace.
+Alice (public): Alice, Sheriff. My N2 check on Grace read Evil, and I was hit by a Katana that night and survived. Frank's will says he protected me on N2, which fits that survival, so his Medic claim has some support. Grace voted Innocent on Bob's first-person Grunt statement. I'm voting Guilty on Grace.
+Carol (public): Carol here. I'm leaning Guilty on Grace. Her Innocent vote backed Bob's first-person "Grunt" statement, and she has no result to counter Alice's Evil read. Erin's Lookout result independently confirms that Alice was Grace's only N2 visitor, which fits Alice's Sheriff claim. Grace, what is your strongest reason to doubt Alice?
+Dave (public): Grace’s Innocent vote on Bob’s explicit Grunt claim is a concrete concern. Alice’s Evil result is unverified, but Erin independently places Alice as Grace’s sole N2 visitor, consistent with a Sheriff check. Frank’s will says he protected Alice, which fits her Katana survival. I’ll vote Guilty; as Mayor, my vote counts twice.
+[Claim] Erin: Lookout. N1: watched Frank, only Alice visited. N2: watched Grace, only Alice visited. D2: Guilty on Bob. D3: Guilty on Grace.
+Erin (public): Erin, Lookout. I'm voting Guilty on Grace. Alice's N2 Sheriff check read Grace Evil, and my Lookout saw only Alice visit Grace that night, so Alice's account of her night matches what I saw. Frank's Medic claim is supported by Heidi's kill, which confirmed his role as Medic, and his N2 protection of Alice fits her surviving a Katana. Grace's Innocent vote on Bob's first-person Grunt statement and her defense of Bob are the main reasons I'm voting Guilty. Grace, if you have a result that contradicts Alice, state it now.
+Grace (public): I don't have a stronger answer than what I've already given. Alice's check is consistent with her visiting me, and Erin confirms that visit, though not what Alice did or what result she received. I voted Innocent on Bob because I thought a slip wasn't enough; that was a bad call, and I can't explain it away. I have no N1 or N2 result to offer. I won't invent a role or result now.
+Trial votes on Grace: 7 Guilty, 0 Innocent (the votes are secret; 7 votes from 6 voters: a role changed the count on purpose (rules R4), not an error).
+[Secret trial votes on Grace] Guilty - Alice, Carol, Dave, Erin, Grace, Heidi; Innocent - nobody
+Grace is executed by hanging (7 Guilty of 7 votes; 4 needed; 7 votes from 6 voters: a role changed the count on purpose (rules R4), not an error).
+Grace died (executed by hanging). Their role isn't revealed. Their last will: "I had no N1 action or result. On Day 2 I argued against hanging Bob and voted Innocent despite his first-person “Grunt” statement. In retrospect, that may have protected a Yakuza; don’t treat my vote as proof of anyone else’s guilt. Frank’s death by Vigilante does not verify his Medic claim."
+Grace was the Jester: being hanged wins them the game.
