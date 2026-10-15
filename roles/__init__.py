@@ -230,11 +230,12 @@ ROLES: dict[str, RoleInfo] = {
                              notes="moderator records the scout_talent op; code reads true roles and tells the result"),
     # Neutral
     "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                        summary="Wins alone if alive when few enough players remain at dawn. Learns a role for each "
-                        "death, true only half the time.",
-                        unique=True, tested=True,
-                        notes="code checks the living count at each dawn and ends the game when it wins; code tells "
-                        "the death reports at dawn"),
+                        summary="Wins alone if alive when few enough players remain at dawn. Each night may visit a "
+                        "player: if they die that night, learns their role and powers up.",
+                        acts_at_night=True, unique=True,
+                        notes="moderator records the visit (scavenge); code checks at night end whether the target "
+                        "died, tells the role and applies the power-up (threshold or Defense, told to the moderator "
+                        "each night), and checks the living count at each dawn"),
     "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                               summary="Night: Strong Attack on one player. Wins alone. Standard Defense.",
                               defense="Standard", acts_at_night=True, tested=True),

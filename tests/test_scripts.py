@@ -64,8 +64,6 @@ def test_setups_draw_only_script_roles():
 def test_draws_of_any_role_stay_on_the_script(game_factory):
     from roles.archivist import archive_roles
     from roles.profiler import profile_candidates
-    from roles.vulture import report_deaths
-    from tests.conftest import told
     core = set(scripts.CORE)
     game, _ = game_factory(["Archivist", "Profiler", "Vulture", "Roleplayer", "Sheriff", "Grunt", "Jester",
                             "Vanilla Villager"])
@@ -80,14 +78,6 @@ def test_draws_of_any_role_stay_on_the_script(game_factory):
                                                                                    "Archivist"}
         logic("Roleplayer").setup(game, game.player("Dave"))
         assert game.player("Dave").status[Status.FAKE_ROLE] in core
-    fakes: set[str] = set()
-    game.player("Grace").death = {"day": game.day, "phase": "night", "cause": "Katana"}  # the Jester
-    for seed in range(60):
-        game.rng = random.Random(seed)
-        game.role_state.clear()
-        report_deaths(game, [game.player("Carol")])
-        fakes.add(told(game, "Carol")[-1].rsplit("Grace: ", 1)[1].rstrip("."))
-    assert fakes <= core and len(fakes) > 3
 
 
 def test_a_mock_game_on_a_script_plays_by_its_rules(tmp_path, monkeypatch):

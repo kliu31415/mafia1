@@ -7,7 +7,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from events import ANNOUNCEMENT
-from roles.base import ATTACK_LEVELS, DayAction, RoleLogic, attack_kills, record_attack, register, tokens_left_text
+from roles.base import (ATTACK_LEVELS, DayAction, RoleLogic, attack_kills, logic, record_attack, register,
+                        tokens_left_text)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -100,7 +101,7 @@ def fire(game: Game, shooter: str, target: str, attack: str, day_over: bool = Fa
     game.log.write("day_shot", player=shooter, target=target, attack=attack, day=game.day)
     text = f"A shot rings out: someone shot at {target}."
     game.emit(text, cat=ANNOUNCEMENT, message=text)
-    killed = attack_kills(attack, victim.info.defense)
+    killed = attack_kills(attack, logic(victim.role).defense(game, victim))
     if killed:
         game.kill(target, "shot by the Sniper", by=shooter)
     else:

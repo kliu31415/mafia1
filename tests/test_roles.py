@@ -188,7 +188,7 @@ def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
 
 
 def test_vulture_wins_alone_at_dawn_once_few_enough_are_left(game_factory):
-    roles = ["Vulture", "Jester"] + ["Vanilla Villager"] * 7 + ["Grunt"]  # 10 players: threshold max(2, 2) = 2
+    roles = ["Vulture", "Jester"] + ["Vanilla Villager"] * 7 + ["Grunt"]  # 10 players: threshold 2 at the start
     game, players = game_factory(roles, ScriptedClient())
     game.personal_winners.append("Bob")  # e.g. a Jester who already won
     for name in ["Carol", "Dave", "Erin", "Frank", "Grace", "Heidi", "Ivan"]:
@@ -920,23 +920,48 @@ def test_only_doused_players_who_arent_good_are_told(game_factory):
     assert sum("doused you" in t for t in told(game, "Bob")) == 2
 
 
-def test_vulture_hears_a_half_true_role_for_each_new_death(game_factory):
-    from roles.vulture import report_deaths
-    game, _ = game_factory(["Vulture", "Roleplayer", "Grunt", "Executioner", "Vanilla Villager", "Vanilla Villager"])
-    vulture = [game.player("Alice")]
+def test_vulture_scavenging_a_night_death_learns_the_role_and_powers_up_in_turn(game_factory):
+    from roles.vulture import cap, power, threshold
+    game, players = game_factory(["Vulture", "Roleplayer", "Grunt", "Vanilla Villager", "Vanilla Villager",
+                                  "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager"])
+    assert cap(game) == 3 and threshold(game, "Alice") == 2  # 9 players: floor(9/3) = 3
+    game.phase, game.day = "night", 1
+    apply_ops(game, players, {"op": "scavenge", "by": "Alice", "player": "Bob"})
     game.kill("Bob", "Katana")
-    game.player("Dave").alive = False
-    game.player("Dave").status[Status.LEFT] = True  # left the game, didn't die: no report
-    game.rng.random = lambda: 0.0  # type: ignore[method-assign]  # the true role
-    report_deaths(game, vulture)
-    assert told(game, "Alice")[-1].endswith("Bob: Roleplayer.")  # exact-role check (R19)
-    report_deaths(game, vulture)  # nothing new: no second report
-    assert len(told(game, "Alice")) == 1
-    game.kill("Carol", "executed by hanging")
-    game.rng.random = lambda: 0.9  # type: ignore[method-assign]  # a fake: any other role
-    report_deaths(game, vulture)
-    fake = told(game, "Alice")[-1].rsplit("Carol: ", 1)[1].rstrip(".")
-    assert fake in ROLES and fake != "Grunt" and "Bob" not in told(game, "Alice")[-1]
+    game.run_night_end_hooks()
+    assert "their role was Roleplayer" in told(game, "Alice")[-1]  # exact-role check (R19)
+    assert threshold(game, "Alice") == 3 and power(game, "Alice")["defense"] == "None"
+    game.day = 2
+    apply_ops(game, players, {"op": "scavenge", "by": "Alice", "player": "Carol"})  # Carol survives
+    game.run_night_end_hooks()
+    assert "didn't die" in told(game, "Alice")[-1] and threshold(game, "Alice") == 3
+    for day, victim in [(3, "Dave"), (4, "Erin"), (5, "Frank")]:
+        game.day = day
+        apply_ops(game, players, {"op": "scavenge", "by": "Alice", "player": victim})
+        game.kill(victim, "Katana")
+        game.run_night_end_hooks()
+    # Second hit: Standard Defense; the second +1 is over the cap, so the third hit gives Strong; then nothing.
+    assert threshold(game, "Alice") == 3 and power(game, "Alice")["defense"] == "Strong"
+    assert "nothing changes" in told(game, "Alice")[-1]
+    assert logic("Vulture").defense(game, game.player("Alice")) == "Strong"
+    assert "Alice (Vulture) has Strong Defense" in logic("Vulture").tonight_note(game)
+
+
+def test_vulture_gains_nothing_from_a_death_before_tonight_or_a_day_death(game_factory):
+    from roles.vulture import threshold
+    game, players = game_factory(["Vulture", "Vanilla Villager", "Vanilla Villager", "Vanilla Villager", "Grunt"])
+    game.phase, game.day = "day", 1
+    game.kill("Bob", "executed by hanging")
+    game.phase = "night"
+    with pytest.raises(ValueError):
+        apply_ops(game, players, {"op": "scavenge", "by": "Alice", "player": "Bob"})  # dead before the night
+    with pytest.raises(ValueError):
+        apply_ops(game, players, {"op": "scavenge", "by": "Alice", "player": "Alice"})  # not itself
+    apply_ops(game, players, {"op": "scavenge", "by": "Alice", "player": "Carol"})
+    game.kill("Alice", "Katana")  # a dead Vulture powers up no more
+    game.kill("Carol", "Katana")
+    game.run_night_end_hooks()
+    assert threshold(game, "Alice") == 2 and not told(game, "Alice")
 
 
 def test_auditor_learns_every_vote_its_target_cast_that_day(game_factory):

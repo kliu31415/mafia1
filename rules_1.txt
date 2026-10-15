@@ -604,14 +604,15 @@ Magpie
   that night, you still win and nothing is revealed.
 
 Vulture
-  Win: alone, if you are alive at the start of a Day (after the night's deaths) and max(floor(N/4), 2) or fewer
-  players are alive, counting yourself, where N is the number of players at the start of the game. The game then
-  ends at once and everyone else loses (wins already earned by roles that never block wins still count, R1).
-  Night: none.
-  Day: at the start of each Day, you learn a role for each player who died since the previous Day began (during that
-  Day or the night after it; not players who left the game): with 50% chance it is their true
-  role (exact-role check, R19), otherwise it is a different role drawn at random
-  from all the roles in these rules. You aren't told which. This isn't an action, so a role-block doesn't stop it.
+  Win: alone, if you are alive at the start of a Day (after the night's deaths) and your threshold or fewer players
+  are alive, counting yourself. The game then ends at once and everyone else loses (wins already earned by roles
+  that never block wins still count, R1). Your threshold starts at 2.
+  Night: may visit another player. If they die that night (by any cause, end-of-night effects included), you are
+  told at the end of the night that they died and their role (exact-role check, R19; nothing more if a Mortician
+  cleaned them), and you get the first of these power-ups you don't have yet: +1 to your threshold, Standard
+  Defense, +1 to your threshold, Strong Defense, then +1 to your threshold for each later one. Your threshold
+  never goes above max(floor(N/3), 2), where N is the number of players at the start of the game; a power-up that
+  would raise it further is skipped. If they don't die, nothing happens and you are told so.
 
 Decoy
   Never blocks wins (R1).

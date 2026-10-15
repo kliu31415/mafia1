@@ -243,6 +243,7 @@ def role_notes(game: Game) -> str:
     """Reminders from roles/*.py for roles in this game (alive or dead, e.g. a dead Trapper's traps), and from
     traits.py for its traits."""
     notes = [logic(r).night_note for r in sorted({p.role for p in game.players}) if logic(r).night_note]
+    notes += [note for r in sorted({p.role for p in game.players}) if (note := logic(r).tonight_note(game))]
     notes += [trait_logic(t).night_note for t in sorted({t for p in game.players for t in p.traits})
               if trait_logic(t).night_note]  # traits are secret, but the moderator knows them
     notes += [note for t in sorted({t for p in game.players for t in p.traits})

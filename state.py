@@ -411,7 +411,7 @@ class Game:
             "katana_holder": self.katana_holder,
             "players": [{
                 "name": p.name, "seat": p.seat, "alive": p.alive, "role": p.role, "faction": p.faction,
-                "base_defense": p.info.defense, "sheriff_appears_evil": p.info.sheriff_evil,
+                "base_defense": logic(p.role).defense(self, p), "sheriff_appears_evil": p.info.sheriff_evil,
                 "tokens": p.tokens, "status": p.status, "traits": p.traits, "last_will": p.last_will,
             } for p in self.players],
         }

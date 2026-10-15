@@ -204,6 +204,16 @@ class RoleLogic:
         """A RecordedAction's effect, once checked and its token spent. Tell a private result with game.tell."""
         raise NotImplementedError(self.role)
 
+    def defense(self, game: Game, p: Player) -> str:
+        """This player's Defense outside any night effect (rules R3): their role's, unless the role earns more during
+        the game (the Vulture's power-ups). Code that resolves an attack itself (a Sniper's shot) uses it."""
+        return p.info.defense
+
+    def tonight_note(self, game: Game) -> str:
+        """A note for the moderator about this night only (night.role_notes), e.g. a Defense a player has earned.
+        Called once a night, as the night's resolution begins, when anyone in the game has (or had) the role."""
+        return ""
+
     def at_night_end(self, game: Game) -> None:
         """End of each night, after the moderator's resolution and any revenge, before the dawn reveal and the
         win check. Called once per registered role, whether or not anyone has it."""
