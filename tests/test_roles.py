@@ -945,6 +945,7 @@ def test_vulture_scavenging_a_night_death_learns_the_role_and_powers_up_in_turn(
     assert "nothing changes" in told(game, "Alice")[-1]
     assert logic("Vulture").defense(game, game.player("Alice")) == "Strong"
     assert "Alice (Vulture) has Strong Defense" in logic("Vulture").tonight_note(game)
+    assert "given you Strong Defense" in " ".join(logic("Vulture").briefing(game, game.player("Alice")))
 
 
 def test_vulture_gains_nothing_from_a_death_before_tonight_or_a_day_death(game_factory):

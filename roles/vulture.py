@@ -59,7 +59,9 @@ class Vulture(RoleLogic):
 
     def briefing(self, game: Game, p: Player) -> list[str]:
         return [f"You win if you are alive at the start of a Day with {threshold(game, p.name)} or fewer players "
-                f"alive (counting yourself). Your threshold can rise to at most {cap(game)}."]
+                f"alive (counting yourself). Your threshold can rise to at most {cap(game)}."
+                + (f" Your power-ups have given you {d} Defense." if (d := power(game, p.name)["defense"]) != "None"
+                   else "")]
 
     def defense(self, game: Game, p: Player) -> str:
         earned = power(game, p.name)["defense"]
