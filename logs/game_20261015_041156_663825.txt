@@ -146,3 +146,53 @@ Trial votes on Grace: 7 Guilty, 0 Innocent (the votes are secret; 7 votes from 6
 Grace is executed by hanging (7 Guilty of 7 votes; 4 needed; 7 votes from 6 voters: a role changed the count on purpose (rules R4), not an error).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "I had no N1 action or result. On Day 2 I argued against hanging Bob and voted Innocent despite his first-person “Grunt” statement. In retrospect, that may have protected a Yakuza; don’t treat my vote as proof of anyone else’s guilt. Frank’s death by Vigilante does not verify his Medic claim."
 Grace was the Jester: being hanged wins them the game.
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Sheriff): target Carol; "Sheriff check. Carol is the only living player who has made no role claim and has a Yakuza-consistent profile. Grace's Evil read is confirmed by her Jester win, so my Sheriff reads look reliable."
+  Carol (Ballot Stuffer): no role action; Katana vote: Carol holds, attacks Erin
+  Erin (Lookout): target Alice; "Watching Alice to see who visits her tonight. She is the only Sheriff claimant, was reportedly Katana-attacked on N2, and her Evil read on Grace fits Grace's Jester win, so she looks like a real source worth protecting from an unseen attacker."
+  Heidi (Vigilante): target Carol; chose to spend 1 token(s)
+Katana: Carol holds it and attacks Erin.
+(to Alice) Moderator (private): You investigated Carol tonight. Result: Not Evil.
+(to Erin) Moderator (private): You watched Alice tonight. Nobody visited Alice tonight.
+(to Heidi) Moderator (private): You spent 1 vigilante token on a Basic Attack against Carol tonight. Your attack succeeded: Carol died. You have 1 vigilante token left.
+(to Carol) Moderator (private): Your Katana attack on Erin tonight succeeded.
+[Moderator summary] Night 3: Alice (Sheriff) checked Carol, who held the Katana at the end of the night, so the result was Not Evil (R19). Carol (Katana holder) made a Standard Katana attack on Erin (Defense None), and Erin died. Erin (Lookout) watched Alice and saw no visitors (her own visit doesn't count). Heidi (Vigilante) spent 1 token on a Basic shot at Carol (Defense None), and Carol died; Heidi has 1 token left. Visits: Alice->Carol, Carol->Erin, Erin->Alice, Heidi->Carol. Jester revenge for Grace is left to code. With Carol dead, no Yakuza are alive.
+[Night check] Night 3: correct
+[Revenge] Grace's Divine Attack hits Dave.
+(to Heidi) Moderator (private): Your shot killed Carol. Their role was Ballot Stuffer.
+(to Carol) Moderator (private): You were attacked tonight (Vigilante) and died.
+(to Dave) Moderator (private): You were attacked tonight (Jester's revenge) and died.
+(to Erin) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 4 =====
+Erin died (killed by Katana). Their role isn't revealed. Their last will: "Erin, Lookout (Good). N1 I watched Frank: his only visitor was Alice. N2 I watched Grace: her only visitor was Alice. N3 I watched Alice. Alice's Sheriff claim fits Grace's Jester win (Jester reads Evil), so treat her as a likely real Sheriff. Check every visitor to Alice, Heidi and any Katana or shot victim. Heidi's Vigilante claim and Dave's Mayor claim are unverified; weigh them against visits and results."
+Carol died (killed by Vigilante). Their role isn't revealed. Their last will: "Carol: I have no role result to share. Judge every claim against the visits and counts it implies. Don't hang anyone on a single misspoken word, an echoed lean, or a lone unverified visit report. Ask for a visit or count that a second player can confirm."
+Dave died (killed by Jester's revenge). Their role isn't revealed. Their last will: "D3 update: Grace was revealed as the Jester after being hanged, so her D2 Innocent vote and defense of Bob may have been Jester play; they are not reliable evidence about Bob’s faction. Bob’s first-person “Grunt” claim remains suspicious, but his role is unconfirmed. The D2 tally of 9 votes from 8 voters requires vote manipulation; I was not yet Mayor, and the manipulator is unknown. The D3 tally of 7 Guilty from 6 voters is explained by my revealed Mayor vote counting twice, not evidence of further manipulation. Alice claims Sheriff and says Grace read Evil; Erin corroborates that Alice visited Grace, not her role or result. Frank’s will claimed he protected Alice, and Heidi says her Vigilante shot confirmed Frank was Medic. I am the confirmed Mayor; weigh my doubled trial vote accordingly."
+The game is over. Winners: Alice, Dave (dead), Erin (dead), Frank (dead), Heidi, Grace (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Dave, Erin, Frank, Heidi, Grace
+Cost by player (USD):
+  Alice (Sheriff)         $0.0000   16 calls  claude-haiku-5.5
+  Bob (Grunt)             $0.0000   13 calls  claude-haiku-5.5
+  Carol (Ballot Stuffer)  $0.0000   19 calls  claude-haiku-5.5
+  Dave (Mayor)            $0.0313   17 calls  gpt-6-luna
+  Erin (Lookout)          $0.0000   17 calls  claude-haiku-5.5
+  Frank (Medic)           $0.0202   11 calls  gpt-6-luna
+  Grace (Jester)          $0.0289   17 calls  gpt-6-luna
+  Heidi (Vigilante)       $0.0337   17 calls  gpt-6-luna
+  Moderator               $0.0000    4 calls  claude-opus-5.5
+  Night checks            $0.0000    3 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.1140  136 calls
