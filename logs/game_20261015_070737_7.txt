@@ -389,3 +389,23 @@ Trial votes on Bob: 7 Guilty, 2 Innocent (the votes are secret).
 Bob is executed by hanging (7 Guilty of 9 votes; 5 needed).
 Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob's last will: I was a Grunt. I have no night information to pass on. Judge every claim by its mechanics, and don't hang anyone on echoes or wording alone. Heidi's visits to Alice on two nights, with a Vulture rule that changed, still need a clear answer, and Mallory's Vigilante claim has no shot behind it."
 (to Erin) The Katana passed to Erin.
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Sheriff): target Heidi; "Sheriff investigation of Heidi"
+  Carol (Lookout): target Heidi
+  Erin (Grunt): no role action; Katana vote: Erin holds, attacks Alice
+  Frank (Tracker): target Mallory
+  Heidi (Vulture): target Carol
+  Mallory (Vigilante): target Heidi; chose to spend 1 token(s); "Basic Attack (1 token) on Heidi, Night 4. Heidi has claimed Vulture; a Vigilante kill reveals the true role."
+Katana: Erin holds it and attacks Alice.
+(to Alice) Moderator (private): You investigated Heidi tonight. Result: Not Evil.
+(to Carol) Moderator (private): You watched Heidi tonight. Heidi was visited by: Alice, Mallory.
+(to Frank) Moderator (private): You tracked Mallory tonight. Mallory visited: Heidi.
+(to Mallory) Moderator (private): You shot Heidi tonight with a Basic Attack (1 token). Your attack succeeded: Heidi died. 2 vigilante tokens left.
+(to Erin) Moderator (private): Your Katana attack on Alice tonight succeeded: Alice died.
+[Moderator summary] Night 4: No role-blocks. Erin (Katana holder) dealt a Standard Katana attack to Alice (Defense None); Alice died. Mallory spent 1 token on a Basic shot at Heidi (Defense None, no Vulture power-ups); Heidi died, and code reports her role to Mallory (2 tokens left). Heidi's Vulture visit went to Carol, who survived, so the scavenge got nothing. Alice's Sheriff check: Heidi is Not Evil (a Neutral Vulture reads its true alignment). Carol's watch on Heidi: visited by Alice and Mallory. Frank's track on Mallory: visited Heidi. Visits recorded. Alive: Carol, Erin, Frank, Grace, Ivan, Mallory. The game continues.
+[Night check] Night 4: correct
+(to Mallory) Moderator (private): Your shot killed Heidi. Their role was Vulture.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+(to Heidi) Moderator (private): You were attacked tonight (Vigilante) and died.
