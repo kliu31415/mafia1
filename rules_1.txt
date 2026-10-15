@@ -19,7 +19,7 @@ R2 (Factions)
 - Yakuza (Evil): fewer players, stronger roles; they know each other and share a night chat.
 - Neutral: each Neutral player is their own one-person faction, even if two players have the same Neutral role.
 The list of roles in the game is not public. A role may appear more than once in a game, except these unique
-roles, which appear at most once: Mayor, Vulture.
+roles, which appear at most once: Mayor, Vulture, Hitman.
 
 R15 (Alignments)
 Every player has one of three alignments: Good (Village), Evil (Yakuza) or Neutral. Some roles and effects change
@@ -186,7 +186,7 @@ except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - A player with the Notorious or Turncoat trait (R24): Evil.
-- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.
+- Sheriff on Neutrals: Jester, Executioner and Hitman read Evil; Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.
   (Seers see every Neutral as Neutral.)
 The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
 above apply to it (a Turncoat counts as Good).
@@ -592,6 +592,18 @@ Bounty Hunter
   (leaving works as for the Executioner). If you have died, you still win and nothing is revealed.
   Lose: once you can no longer claim 2 bounties; if you are alive, the moderator reveals you at once and you leave
   the game.
+
+Hitman
+  Appears: Evil to the Sheriff. Never blocks wins (R1).
+  Night: may deal a Basic Attack to one player.
+  Only players your own Attack kills count; other deaths you cause (a trait's effect, a hanging) don't. Good means
+  true alignment: a Village player, whatever alignment checks see (a Turncoat counts as Good, and so does a framed
+  Villager; a Yakuza holding the Katana doesn't). At the end of each night your Attack kills someone, you are told
+  whether they were Good. Night deaths are simultaneous (R10): a player you kill on the night you die still counts.
+  Win: iff your Attacks kill 2 Good players. If you are alive then, the moderator reveals you at once and you leave
+  the game (leaving works as for the Executioner). If you have died, you still win and nothing is revealed.
+  Lose: as soon as your Attack kills a player who isn't Good; if you are alive, the moderator reveals you at once
+  and you leave the game.
 
 Magpie
   Defense: Basic. Never blocks wins (R1). Random setups include a Magpie only if at least a third of the roles have tokens.

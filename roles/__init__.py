@@ -256,6 +256,12 @@ ROLES: dict[str, RoleInfo] = {
                               tokens={"attack": 1}, acts_at_night=True, tested=True,
                               notes="targets, bounty credit (from death killers and Guilty voters), win, loss and "
                               "leaving in code; moderator resolves the attack"),
+    "Hitman": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
+                       summary="Night: Basic Attack on one player; wins and leaves once its attacks kill 2 Good "
+                       "players, loses and leaves if one kills a non-Good player. Reads Evil to the Sheriff.",
+                       acts_at_night=True, unique=True,
+                       notes="moderator resolves the attack (by=Hitman); code counts kills from death killers, "
+                       "tells it, handles win, loss and leaving"),
     "Magpie": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
                        summary="Night: steal a token from a player; wins and leaves once it has stolen from 3 "
                        "different players. Basic Defense.",

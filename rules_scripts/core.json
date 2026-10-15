@@ -1,15 +1,15 @@
 {
  "script": "core",
- "cut_sha256": "78335b75e5933510",
+ "cut_sha256": "64d2ea1f021dfe15",
  "text_sha256": "cbaa3f868cede677",
  "made_by": "a Claude Code session",
- "made": "2026-10-15T06:39:49+00:00",
+ "made": "2026-10-15T07:16:04+00:00",
  "cost": 0.0,
  "edits": [
   {
-   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Mayor, Vulture.",
+   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Mayor, Vulture, Hitman.",
    "new": "The list of roles in the game is not public. A role may appear more than once in a game.",
-   "reason": "The unique roles (Mayor, Vulture) are not on the script."
+   "reason": "The unique roles (Mayor, Vulture, Hitman) are not on the script."
   },
   {
    "old": "(Oracle, Diviner, Ritualist, Mortician, Coroner,\n  Talent Agent, a Vigilante's kill)",
@@ -72,9 +72,9 @@
    "reason": "The Kitsune (fox charm) is not on the script."
   },
   {
-   "old": "Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.",
-   "new": "Serial Killer and Arsonist read Not Evil.",
-   "reason": "The Werewolf and the Decoy are not on the script."
+   "old": "Jester, Executioner and Hitman read Evil; Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.",
+   "new": "Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil.",
+   "reason": "The Hitman, the Werewolf and the Decoy are not on the script."
   },
   {
    "old": "   A trap stops one attack before Defense and may hit its attacker back (Trapper); a mirror stops them all and\n   reflects those that were visits back at their attackers (Mirror Maker).",

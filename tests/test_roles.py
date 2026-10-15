@@ -1545,6 +1545,65 @@ def test_bounty_hunter_never_blocks_a_win(game_factory):
     assert game.check_winner() is not None
 
 
+def test_hitman_wins_and_leaves_after_killing_two_good_players(game_factory):
+    game, _ = game_factory(["Hitman", "Vanilla Villager", "Sheriff", "Grunt", "Vanilla Villager"])
+    game.player("Carol").traits.append("Turncoat")  # reads Evil, but true alignment Good: counts
+    game.phase = "night"
+    game.kill("Bob", "Hitman", by="Alice")
+    game.run_night_end_hooks()
+    assert told(game, "Alice")[-1].endswith("Your attack killed Bob, who was Good (1 of 2).")
+    assert game.player("Alice").alive and "Alice" not in game.personal_winners
+    game.day += 1
+    game.kill("Erin", "Katana", by="Dave")  # someone else's kill doesn't count
+    game.run_night_end_hooks()
+    assert len(told(game, "Alice")) == 1
+    game.day += 1
+    game.kill("Carol", "Hitman", by="Alice")
+    game.run_night_end_hooks()
+    alice = game.player("Alice")
+    assert "Alice" in game.personal_winners and not alice.alive and alice.status[Status.LEFT]
+    assert any("Alice was the Hitman. They win" in a for a in game.pending_announcements)
+
+
+def test_hitman_loses_and_leaves_after_killing_a_non_good_player(game_factory):
+    game, _ = game_factory(["Hitman", "Vanilla Villager", "Vanilla Villager", "Grunt", "Vanilla Villager"])
+    game.phase = "night"
+    game.kill("Dave", "Hitman", by="Alice")
+    game.run_night_end_hooks()
+    alice = game.player("Alice")
+    assert told(game, "Alice")[-1].endswith("Your attack killed Dave, who wasn't Good: you lose.")
+    assert not alice.alive and alice.status[Status.LEFT] and "Alice" not in game.personal_winners
+    assert any("Alice was the Hitman. They lose" in a for a in game.pending_announcements)
+
+
+def test_hitman_dying_the_night_it_kills_its_second_good_player_still_wins(game_factory):
+    from roles.hitman import kills
+    game, _ = game_factory(["Hitman", "Vanilla Villager", "Vanilla Villager", "Grunt", "Vanilla Villager"])
+    kills(game, "Alice")["good"] = ["Erin"]
+    game.phase = "night"
+    game.kill("Alice", "Katana", by="Dave")
+    game.kill("Bob", "Hitman", by="Alice")
+    game.run_night_end_hooks()
+    alice = game.player("Alice")
+    assert "Alice" in game.personal_winners and not alice.status.get(Status.LEFT)
+    assert not any("was the Hitman" in a for a in game.pending_announcements)  # a dead winner isn't revealed
+
+
+def test_hitman_kills_after_its_death_dont_count(game_factory):
+    game, _ = game_factory(["Hitman", "Vanilla Villager", "Vanilla Villager", "Grunt", "Vanilla Villager"])
+    game.kill("Alice", "executed by hanging", guilty_voters=["Bob", "Carol", "Dave"])
+    game.phase = "night"
+    game.kill("Dave", "a grudge", by="Alice")  # a Grudge's revenge the night after its hanging
+    game.run_night_end_hooks()
+    assert not told(game, "Alice")
+
+
+def test_hitman_never_blocks_a_win(game_factory):
+    game, _ = game_factory(["Hitman", "Vanilla Villager", "Grunt"])
+    game.kill("Carol", "executed by hanging", guilty_voters=["Bob"])
+    assert game.check_winner() is not None
+
+
 def test_talent_agent_scans_and_counts_living_true_roles(game_factory):
     game, players = game_factory(["Talent Agent", "Sheriff", "Sheriff", "Roleplayer", "Vanilla Villager"])
     game.phase = "night"
