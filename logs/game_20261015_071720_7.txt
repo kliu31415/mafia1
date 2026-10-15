@@ -1,0 +1,14 @@
+Setup:
+  Alice    seat 1  Grunt             openai/gpt-6-luna
+  Bob      seat 2  Fabricator        anthropic/claude-haiku-5.5
+  Carol    seat 3  Medic             openai/gpt-6-luna
+  Dave     seat 4  Tracker           openai/gpt-6-luna
+  Erin     seat 5  Hitman            anthropic/claude-haiku-5.5
+  Frank    seat 6  Vigilante         anthropic/claude-haiku-5.5
+  Grace    seat 7  Sheriff           anthropic/claude-haiku-5.5
+  Heidi    seat 8  Vanilla Villager  openai/gpt-6-luna
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md)
+[ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
+[Setup note to players] Setup (the role list itself is secret).
+This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 2 Neutrals, and the rest Village. Any role in the rules may be in it, and roles may repeat. Nobody has a trait (R24) in this game.
