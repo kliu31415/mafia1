@@ -29,3 +29,28 @@ Grace (public): Grace here. Nothing new from me yet. I'll post my night action a
 Heidi (public): Heidi here. No night results to share yet. Tomorrow I'll post my check's target and exact result.
 Alice (public): Alice here. Nothing new to add. I'll share concrete results tomorrow, as agreed.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Carol, Grace) Carol (Yakuza chat): I suggest keeping the Katana with me and attacking Bob tonight. I’ll role-block Alice. We have no specific leads yet, so this is a reasonable early target; let me know if you want to coordinate on someone else.
+(to Carol, Grace) Grace (Yakuza chat): Agreed, Carol. I'll back you as holder (keep the Katana) and Bob as the target tonight. Alice's block is fine with me. I have no night action, so I'll stay a plain Village-looking role with no visits to contradict. Before Day 2, let's agree on one cover for you that fits your Pharmacist block, and keep it word for word.
+(to Carol, Grace) Carol (Yakuza chat): Confirmed: keep the Katana with me and attack Bob. I’ll role-block Alice. Grace, please submit those votes too; ready.
+(to Carol, Grace) Grace (Yakuza chat): Agreed. Carol keeps the Katana and it attacks Bob tonight. Carol blocks Alice. I have no night action, so I'm submitting Carol as holder and Bob as target. Day 2 cover: I'll decide it with Carol before Day 2 and keep it fixed. No PMs to Carol by day.
+Night actions:
+  Alice (Lookout): target Carol; "Lookout: watching Carol tonight to see who visited her."
+  Bob (Serial Killer): target Alice
+  Carol (Pharmacist): target Alice; Katana vote: Carol holds, attacks Bob
+  Erin (Vigilante): no action
+  Frank (Medic): target Carol
+  Grace (Grunt): no role action; Katana vote: Carol holds, attacks Bob
+  Heidi (Sheriff): target Carol
+Katana: Carol holds it and attacks Bob.
+(to Bob) Moderator (private): Your attack on Alice succeeded. You were also attacked tonight with the Katana and survived, and you were attacked by an Avenger and survived.
+(to Carol) Moderator (private): You visited Alice tonight. The Katana attack on Bob failed.
+(to Alice) Moderator (private): You were role-blocked tonight.
+(to Frank) Moderator (private): You protected Carol tonight. Your protection did not stop any attack. 2 medic tokens left.
+(to Heidi) Moderator (private): You investigated Carol tonight. Result: Not Evil.
+[Moderator summary] Night 1: Carol (Pharmacist, Katana holder) role-blocked Alice, so Alice's Lookout watch did nothing. Bob (SK) made a Strong attack on Alice, who had no Defense and died. Alice's Avenger trait then dealt Bob a Basic Attack, which failed against his Standard Defense. The Katana's Standard attack on Bob also failed against his Standard Defense. Frank's Standard protection on Carol stopped nothing and spent no tokens. Heidi checked Carol and got Not Evil because Carol held the Katana. Erin and Grace did not act. Visits: Bob->Alice, Carol->Alice, Carol->Bob, Frank->Carol, Heidi->Carol.
+[Night check] Night 1: correct
+(to Alice) Moderator (private): You were attacked tonight (Serial Killer) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Bob. Grace (Grunt) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Bob. Carol (Pharmacist) chose to act on Alice.
