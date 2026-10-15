@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Callable
 
 from events import DEATH, VOTE
 from roles import ROLES, Alignment
-from roles.base import (AVENGED, DISGUISES, REVENGE_CAUSE, RoleLogic, acted_tonight, join_names, logic,
+from roles.base import (AVENGED, DISGUISES, HANGING_CAUSE, REVENGE_CAUSE, RoleLogic, acted_tonight, join_names, logic,
                         notify_moderator, record_attack)
 
 if TYPE_CHECKING:
@@ -382,6 +382,21 @@ TRAITS: dict[str, TraitInfo] = {
                                 "<circle cx='5' cy='5' r='4.4' fill='#7f1d1d' stroke='#fff' stroke-width='1'/>"
                                 "<path d='M3 3.6H6.6L5.6 2.6M7 6.4H3.4L4.4 7.4' fill='none' stroke='#fff' "
                                 "stroke-width='0.9'/></svg>")),  # arrows turning back
+    # Village only, unique, told (Kevin, Oct 15 2026; he chose a hanging over any death): a wrong hanging costs the
+    # Village a player who now wants the Yakuza to win, and whose will is written knowing it. Alive, they're Village
+    # in every way, so the game's end is unchanged. Never on a role whose hanging decides the game (Saint).
+    "Spiteful": TraitInfo(frozenset({Alignment.GOOD}),
+                          "If you are hanged, from then on you win only if the Yakuza win (alive or dead), and you "
+                          "lose otherwise, even if the Village wins. Until then you win with the Village as usual, "
+                          "and any other death changes nothing. Nobody is told you switched (rules R1, R24).",
+                          "If hanged, wins only with the Yakuza.",
+                          power=-0.15, unique=True,
+                          fits_role=lambda r: type(logic(r)).decides_game is RoleLogic.decides_game,
+                          mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                "<circle cx='5' cy='5' r='4.4' fill='#9f1239' stroke='#fff' stroke-width='1'/>"
+                                "<path d='M5 1.6V4' stroke='#fff' stroke-width='0.9'/>"
+                                "<circle cx='5' cy='5.6' r='1.6' fill='none' stroke='#fff' stroke-width='0.9'/>"
+                                "</svg>")),  # a noose
     # Any faction, told (Kevin, Oct 13 2026): the Ex-Con's random visit as a trait (with Notorious, the old Ex-Con).
     # Muddies Trackers and Lookouts, which helps the Yakuza a little and costs a Villager a little.
     "Sleepwalker": TraitInfo(frozenset(Alignment),
@@ -425,7 +440,8 @@ EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Obliviou
              frozenset({"Turncoat", "Selfish"}), frozenset({"Turncoat", "Selfless"}),
              frozenset({"Katana Expert", "Katana Master"}), frozenset({"Katana Expert", "Shaky"}),
              frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"}),
-             frozenset({"Armed", "Spare Blade"}),
+             frozenset({"Spiteful", "Turncoat"}), frozenset({"Spiteful", "Selfish"}),
+             frozenset({"Spiteful", "Selfless"}), frozenset({"Spiteful", "Rival"}), frozenset({"Armed", "Spare Blade"}),
              frozenset({"Armed", "Stolen Blade"})]
 
 
@@ -445,8 +461,13 @@ class TraitLogic:
     # R1, R24).
     win_needs_alive: bool | None = None
     takes_win = False  # the holder wins only as the last of their faction alive, and then alone (rules R1, R24)
-    # The faction the holder wins with instead of their own (Turncoat); the game's end ignores them (rules R1, R24).
+    # The faction the holder wins with instead of their own (Turncoat); the game's end ignores them while it applies
+    # to a living holder (rules R1, R24). side() may make it depend on the holder's state (Spiteful).
     wins_with: str | None = None
+
+    def side(self, p: Player) -> str | None:
+        """The faction p wins with instead of their own because of this trait, now, or None."""
+        return self.wins_with
 
     def denies_win(self, game: Game, p: Player) -> bool:
         """Whether this trait keeps p from sharing their faction's win as the game ends (Rival; rules R1, R24)."""
@@ -995,6 +1016,11 @@ class Sleepwalker(TraitLogic):
         return game.rng.choice(others) if others else None
 
 
+class Spiteful(TraitLogic):
+    def side(self, p: Player) -> str | None:
+        return "Yakuza" if p.death and p.death["cause"] == HANGING_CAUSE else None  # rules R24: only a hanging
+
+
 class Turncoat(TraitLogic):
     wins_with = "Yakuza"
     night_note = ("Turncoat (a trait; see each player's traits): every alignment check reads a Turncoat as Evil "
@@ -1009,8 +1035,14 @@ def usurper(game: Game, faction: str) -> Player | None:
 
 
 def win_side(p: Player) -> str:
-    """The faction p wins with (rules R1, R24): their own, unless a trait (Turncoat) names another."""
-    return next((w for t in p.traits if (w := trait_logic(t).wins_with)), p.faction)
+    """The faction p wins with (rules R1, R24): their own, unless a trait names another (Turncoat; Spiteful once
+    hanged)."""
+    return next((w for t in p.traits if (w := trait_logic(t).side(p))), p.faction)
+
+
+def side_trait(p: Player) -> str | None:
+    """The trait that makes p win with another faction now (Turncoat, a hanged Spiteful), or None."""
+    return next((t for t in p.traits if trait_logic(t).side(p)), None)
 
 
 def ignored_at_end(p: Player) -> bool:
@@ -1182,7 +1214,7 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Paranoid": Paranoid(), "Stocked": Stocked(),
                                 "Disguised": Disguised(), "Bonded": Bonded(), "Selfish": Selfish(),
                                 "Selfless": Selfless(), "Usurper": Usurper(), "Oblivious": Oblivious(),
-                                "Shaky": Shaky(), "Turncoat": Turncoat(),
+                                "Shaky": Shaky(), "Turncoat": Turncoat(), "Spiteful": Spiteful(),
                                 "Sleepwalker": Sleepwalker(), "Rival": Rival(), "Stolen Blade": StolenBlade(),
                                 "Narrow Escape": NarrowEscape(),
                                 "Katana Expert": KatanaBoost("Katana Expert", "Strong", "katana_expert"),

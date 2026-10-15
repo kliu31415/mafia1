@@ -1334,6 +1334,40 @@ def test_a_turncoat_wins_only_with_the_yakuza_and_the_game_end_ignores_them(game
     assert bundle_error(["Turncoat", "Notorious"]) and bundle_error(["Turncoat", "Selfish"])
 
 
+def test_a_spiteful_villager_wins_with_the_yakuza_only_once_hanged(game_factory):
+    # rules R1, R24 (Kevin, Oct 15 2026): only a hanging switches them; alive they're Village, so the end is unchanged
+    from traits import bundle_error, fits
+    game, players = game_factory(["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt"])
+    game.player("Bob").traits = ["Spiteful"]
+    game.kill("Bob", "Katana")  # a night death changes nothing
+    game.kill("Dave", "executed by hanging", guilty_voters=["Alice", "Carol"])
+    game.kill("Erin", "executed by hanging", guilty_voters=["Alice", "Carol"])
+    game.winners = game.check_winner()
+    assert game.winners == ["Alice", "Bob", "Carol"]
+    assert "Spiteful" not in game.winners_line()
+
+    game, players = game_factory(["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt"])
+    game.player("Bob").traits = ["Spiteful"]
+    game.kill("Bob", "executed by hanging", guilty_voters=["Alice", "Dave", "Erin"])
+    assert game.check_winner() is None
+    game.kill("Dave", "executed by hanging", guilty_voters=["Alice", "Carol"])
+    game.kill("Erin", "executed by hanging", guilty_voters=["Alice", "Carol"])
+    game.winners = game.check_winner()  # the Village wins without the hanged Spiteful
+    assert game.winners == ["Alice", "Carol"]
+    assert "Bob (Spiteful) wins only with the Yakuza." in game.winners_line()
+
+    game, players = game_factory(["Sheriff", "Medic", "Vanilla Villager", "Grunt", "Grunt"])
+    game.player("Bob").traits = ["Spiteful"]
+    game.kill("Bob", "executed by hanging", guilty_voters=["Alice", "Dave", "Erin"])
+    game.kill("Alice", "Katana")
+    game.kill("Carol", "Katana")
+    game.winners = game.check_winner()  # the Yakuza win, and so does the hanged Spiteful
+    assert game.winners == ["Bob", "Dave", "Erin"]
+    assert "Bob (Spiteful) wins only with the Yakuza, so they win too." in game.winners_line()
+    assert not fits("Spiteful", "Saint") and fits("Spiteful", "Sheriff") and not fits("Spiteful", "Grunt")
+    assert bundle_error(["Spiteful", "Turncoat"]) and bundle_error(["Spiteful", "Selfless"])
+
+
 def test_a_unique_trait_goes_to_one_player_a_game(tmp_path):
     import random
 

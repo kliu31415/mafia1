@@ -292,6 +292,7 @@ def stop_one_attack(game: Game, target: str, attacks: list[dict]) -> dict | None
     return stopped
 
 
+HANGING_CAUSE = "executed by hanging"  # a hanged player's death cause (day.py)
 REVENGE_CAUSE = "'s revenge"  # a revenge kill's cause after its source's role, e.g. "Jester's revenge"
 CODE_ATTACKS = "code_attacks"  # game.role_state: night -> attackers of attacks code made that night (record_attack)
 

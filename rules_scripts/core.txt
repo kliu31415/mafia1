@@ -11,8 +11,7 @@ there are no nominations or trials, and it is shorter than later Days (R16).
   the game ends. Every other Neutral blocks wins: while one is alive, the game goes on. So a game that hasn't ended
   doesn't show that a Yakuza is still alive.
 - A trait can add a condition to your own win, take your faction's win from your teammates, or make you win with
-  another faction (R24); only that last kind (Turncoat) changes when the game ends, and no trait changes which
-  faction wins.
+  another faction (R24); only Turncoat changes when the game ends, and no trait changes which faction wins.
 
 R2 (Factions)
 - Village (Good): the largest faction, but with weaker roles and less information.
@@ -476,7 +475,15 @@ Turncoat
   Alignment checks see you as Evil (R19). You stay Village in every other way: you aren't in the Yakuza's chat or Katana votes, you don't know who
   the Yakuza are, and they aren't told about you. The game's end ignores you, like a role that never blocks wins
   (R1): it ends when the other living players are all Village or all Yakuza.
-  Never with: Ashamed, Notorious, Rival, Selfish or Selfless.
+  Never with: Ashamed, Notorious, Rival, Selfish, Selfless or Spiteful.
+
+Spiteful
+  Who: Village players only.
+  Unique: at most one player in a game has it.
+  Effect: If you are hanged, from then on you win only if the Yakuza win (alive or dead), and you lose otherwise,
+  even if the Village wins. Until then you win with the Village as usual, and dying any other way changes nothing.
+  Nobody is told you switched, and your will is revealed as usual.
+  Never with: Rival, Selfish, Selfless or Turncoat.
 
 --- Yakuza players only ---
 
@@ -537,19 +544,19 @@ Rival
   Effect: You and one other random player of your own faction are rivals, and each of you is told the other's name
   (not their role). Each of you wins only if your faction wins and the other has died by the end; whether you are
   alive doesn't matter. Your faction's win doesn't change.
-  Never with: Bonded or Turncoat.
+  Never with: Bonded, Spiteful or Turncoat.
 
 Selfish
   Who: Village and Yakuza players only.
   Effect: You win only if your faction wins and you are alive at the end. Your faction's win doesn't change; you
   just don't share it if you died.
-  Never with: Selfless, Turncoat or Usurper.
+  Never with: Selfless, Spiteful, Turncoat or Usurper.
 
 Selfless
   Who: Village and Yakuza players only.
   Effect: You win only if your faction wins and you are dead at the end. Your faction's win doesn't change; you just
   don't share it if you're alive.
-  Never with: Selfish, Turncoat or Usurper.
+  Never with: Selfish, Spiteful, Turncoat or Usurper.
 
 --- Any player ---
 

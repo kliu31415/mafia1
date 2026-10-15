@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "3ea80383c624c5c1",
- "text_sha256": "2b5f0c62c61dd30d",
+ "cut_sha256": "7b6ad1bdf23c2328",
+ "text_sha256": "b9b3de4a8361e0d4",
  "made_by": "a Claude Code session",
- "made": "2026-10-15T11:13:23+00:00",
+ "made": "2026-10-15T11:19:10+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -85,6 +85,11 @@
    "old": "  Who: Any player whose role starts with tokens and can ever have more than it starts with.\n",
    "new": "  Who: Any player whose role starts with tokens.\n",
    "reason": "No role on the script has a token cap (the Oathsworn isn't on it)."
+  },
+  {
+   "old": "  Who: Village players only, except a Saint.\n",
+   "new": "  Who: Village players only.\n",
+   "reason": "Saint is not on the script."
   }
  ]
 }

@@ -13,7 +13,7 @@ from events import ANNOUNCEMENT, DEATH, RESULT, SYSTEM
 from roles import LOGIC, Alignment, ROLES, RoleInfo, Status, logic
 from roles.base import REVENGE_CAUSE, seen_role
 from traits import (LOGIC as TRAIT_LOGIC, TRAITS, bundle_error, eligible as trait_eligible, parse_item as parse_trait,
-                    ignored_at_end, shares_win, usurper, win_blockers, win_side,
+                    ignored_at_end, shares_win, side_trait, usurper, win_blockers, win_side,
                     log_details as trait_log_details, trait_logic)
 import variants
 
@@ -380,8 +380,8 @@ class Game:
         for u in filter(None, (usurper(self, f) for f in winning)):
             line += f" {u.name} (Usurper) is the last {u.faction} player alive, so they take their side's win alone."
         for p in self.players:
-            if ignored_at_end(p):
-                line += (f" {p.name} (Turncoat) wins only with the {win_side(p)}"
+            if trait := side_trait(p):
+                line += (f" {p.name} ({trait}) wins only with the {win_side(p)}"
                          f"{', so they win too' if p.name in (self.winners or []) else ''}.")
         return line
 

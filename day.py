@@ -10,7 +10,7 @@ from players import (LAST_WILL_SCHEMA, blank, VOTE_SCHEMA, Players, cap_words, d
                      word_count)
 from events import CHAT, CLAIM, DEATH, NOMINATION, PHASE, PM, VOTE
 from roles import RoleLogic, logic
-from roles.base import DayAction
+from roles.base import HANGING_CAUSE, DayAction
 from state import Game, Player, majority
 from traits import LOGIC as TRAIT_LOGIC, fixed_trial_vote, trait_logic
 
@@ -600,7 +600,7 @@ def run_trial(game: Game, players: Players, nominator: Player, nominee: str, rnd
         + (f" ({extra})" if extra else "") + f"; {verdict}")
     if voted_guilty:
         game.emit(f"{nominee} is executed by hanging ({tally}).", cat=DEATH)
-        game.kill(nominee, "executed by hanging", guilty_voters=guilty)
+        game.kill(nominee, HANGING_CAUSE, guilty_voters=guilty)
         for t in TRAIT_LOGIC.values():  # rules R24, e.g. a Remorseful voter's death
             t.after_hanging(game, game.player(nominee), {v.name: o["vote"] for v, o in zip(voters, outs)})
         return "executed"
