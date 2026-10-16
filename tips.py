@@ -413,8 +413,15 @@ def render_notebook(nb: dict) -> str:
     return "\n".join(out)
 
 
+# The sheet opens with the few tips that most often decided games (Kevin, Oct 16 2026): the most important tip had been
+# on the sheet all week and was still ignored in most games, so length alone doesn't get a tip read.
+TOP = "Most often decisive"
+TOP_TIPS = 5
+SHEET_WORDS = 1200  # the sheet's word cap (Kevin, Oct 16 2026; it was 800, and the rewrite kept landing at 950-1,300)
+SHEET_HEADINGS = [TOP, *HEADINGS]
+
 DISTILL_SCHEMA = obj(sections={"type": "array", "items": obj(
-    heading={"type": "string", "enum": HEADINGS},
+    heading={"type": "string", "enum": SHEET_HEADINGS},
     tips={"type": "array", "items": obj(tip={"type": "string"},
                                          games={"type": "integer"})})})  # games: how many games support it
 
@@ -444,6 +451,9 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          "useful.\n"
          "- Every tip must hold under the current game settings (at the end of the rules): leave out or reword "
          "advice that relies on what they hide, such as reading a dead player's role or who voted which way.\n"
+         f"- Start with a section '{TOP}': the {TOP_TIPS} tips, from any audience, that most often decided games "
+         "(most games and weight behind them, and what players most often got wrong at the moment it mattered). "
+         "Don't repeat them in the other sections.\n"
          f"- At most {max_words} words in total; drop the weakest unpinned tips first."},
     ]
     reply = ask(client, spec, messages, DISTILL_SCHEMA, "tips")
@@ -457,7 +467,7 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
                    "about to play: merge tips that overlap or repeat one idea, cut wording that doesn't change what a "
                    "player does, and drop the weakest tips (fewest games behind them) first. Keep each kept tip's "
                    "point, its tendency wording and its number of games, and keep the same sections where they still "
-                   "have tips. Go over the cap only if what's left is all clearly critical."
+                   f"have tips, the '{TOP}' section first. Go over the cap only if what's left is all clearly critical."
                    + ("\nThese pinned tips must stay, merged or on their own:\n" + "\n".join(f"- {t}" for t in pinned)
                       if pinned else "")}]
         second = ask(client, spec, compact, DISTILL_SCHEMA, "tips_compact")
@@ -478,7 +488,7 @@ def word_count_of(text: str) -> int:
 
 def sheet_body(reply: LLMReply) -> str:
     """The sheet's Markdown body from a DISTILL_SCHEMA answer: sections in HEADINGS order, empty ones left out."""
-    order = {h: i for i, h in enumerate(HEADINGS)}
+    order = {h: i for i, h in enumerate(SHEET_HEADINGS)}
     out = []
     for s in sorted(answer_json(reply, DISTILL_SCHEMA)["sections"], key=lambda s: order.get(s["heading"], len(order))):
         tips = [t for t in s["tips"] if t["tip"].strip()]
@@ -720,7 +730,7 @@ def main() -> None:
     b.add_argument("--out", help="the players' sheet; the notebook is <name>_notebook.json (and .md) beside it "
                    "(default tips/tips.md, or logs/mock_tips/tips.md with --mock, as mafia.py uses)")
     b.add_argument("--model", default="opus-5.5", help="model[:effort] that distills the tips")
-    b.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
+    b.add_argument("--max-words", type=int, default=SHEET_WORDS, help="length cap for the whole tips file")
     b.add_argument("--exclude", default="", help="comma-separated game ids (log file stems) to leave out")
     b.add_argument("--fresh", action="store_true", help="start a new notebook from all the games, instead of "
                    "adding the games it doesn't have yet")
@@ -729,7 +739,7 @@ def main() -> None:
                        "no longer hold, then rewrite the sheet (one call over the whole notebook, no games)")
     r.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
     r.add_argument("--model", default="opus-5.5", help="model[:effort] that revises the tips")
-    r.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
+    r.add_argument("--max-words", type=int, default=SHEET_WORDS, help="length cap for the whole tips file")
     r.add_argument("--note", default="", help="extra instructions for this revision, e.g. a tip to add")
     pn = sub.add_parser("pin", help="pin notebook entries (by id, e.g. t12) so the sheet always carries them, then "
                         "rewrite the sheet; revise pins the entries it adds")
@@ -737,7 +747,7 @@ def main() -> None:
     pn.add_argument("--unpin", action="store_true")
     pn.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
     pn.add_argument("--model", default="opus-5.5", help="model[:effort] that rewrites the sheet")
-    pn.add_argument("--max-words", type=int, default=800, help="length cap for the whole tips file")
+    pn.add_argument("--max-words", type=int, default=SHEET_WORDS, help="length cap for the whole tips file")
     st = sub.add_parser("stamp", help="record that the tips hold under the current rules without a revision (no model "
                         "call), e.g. after a rules change that doesn't touch play")
     st.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")

@@ -532,7 +532,7 @@ def revise_stale_tips(repo: Repo, tips_dir: Path, model: str) -> bool:
         return False
     print(f"The rules changed since the tips were last checked against them: revising the notebook (one {model} call)")
     try:
-        tips.revise(sheet, tips.tool_client(timeout=tips.REVISE_DEADLINE_S), parse_model_spec(model), 800,
+        tips.revise(sheet, tips.tool_client(timeout=tips.REVISE_DEADLINE_S), parse_model_spec(model), tips.SHEET_WORDS,
                     rules_change_note(repo, was))
     except (Exception, SystemExit) as e:
         print(f"ALERT tips_error: revising the tips for the changed rules failed: {type(e).__name__}: {e}; "
@@ -586,7 +586,7 @@ def update_tips(games: list[Path], tips_dir: Path, model: str, plan_cap: dict[st
     from llm import parse_model_spec
     client = tips.tool_client(caps=plan_cap)  # Claude models through the Claude Code CLI where it's installed
     try:
-        tips.build(games, tips_dir / "tips.md", client, parse_model_spec(model), 800)
+        tips.build(games, tips_dir / "tips.md", client, parse_model_spec(model), tips.SHEET_WORDS)
     except tips.NoNewGames as e:
         print(e)
 

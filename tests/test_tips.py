@@ -385,3 +385,23 @@ def test_a_sheet_well_over_the_word_cap_is_compacted_once(tmp_path):
     client = Long([])
     tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=100, ids=["t1"])  # under the cap: one call only
     assert [name for name, _ in client.prompts] == ["tips"]
+
+
+def test_the_sheet_opens_with_the_most_often_decisive_tips(tmp_path):
+    """Kevin, Oct 16 2026: a few top tips first, whatever the sheet's length (default cap tips.SHEET_WORDS)."""
+    out = tmp_path / "tips.md"
+    nb = tips.new_notebook()
+    tips.apply_ops(nb, [op("add", tip="Count the votes.", note="g1")], "g1")
+    tips.notebook_path(out).write_text(json.dumps(nb), encoding="utf-8")
+
+    class Top(TipsClient):
+        def chat(self, model, messages, *, tools=None, schema=None, schema_name="response", effort=None):
+            self.prompts.append((schema_name, messages[-1]["content"]))
+            content = json.dumps({"sections": [
+                {"heading": "Everyone", "tips": [{"tip": "Count the votes.", "games": 2}]},
+                {"heading": tips.TOP, "tips": [{"tip": "A duplicate claim isn't a break.", "games": 9}]}]})
+            return LLMReply(content, None, [], {"role": "assistant", "content": content}, model.value, 0.0, {})
+    client = Top([])
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=tips.SHEET_WORDS, ids=["t1"])
+    assert f"Start with a section '{tips.TOP}'" in client.prompts[0][1] and tips.SHEET_WORDS == 1200
+    assert tips.player_view(out.read_text(encoding="utf-8")).startswith(f"## {tips.TOP}\n- A duplicate claim")

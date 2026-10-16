@@ -102,8 +102,8 @@ from traits import TRAITS, bundle_error, parse_item as parse_trait, win_side
 import role_power
 import scripts
 import variants
-from tips import (assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert, rules_hash,
-                  sheet_rules)
+from tips import (SHEET_WORDS, assign_tips, build as build_tips, file_digest, parse_player_tips, print_alert,
+                  rules_hash, sheet_rules)
 
 ROOT = Path(__file__).resolve().parent
 RULES_PATH = ROOT / "rules_1.txt"
@@ -525,7 +525,7 @@ def after_game(game: Game, client: LLMClient, config: GameConfig, players: Playe
         again = sync_logs.rebase_tips(sync_logs.Repo(), update_tips.parent, LOG_DIR, on_error=log.error) \
             if update_tips == DEFAULT_TIPS and not mock else []
         step("Updating the tips notebook and sheet", lambda: build_tips(
-            [*again, log.path], update_tips, client, mod, 800, include_mock=mock, on_error=log.error))
+            [*again, log.path], update_tips, client, mod, SHEET_WORDS, include_mock=mock, on_error=log.error))
         if not plan_stop:  # the build itself may have hit the limit
             log.write("tips_update", model=mod.model.value, cost=round(sum(client.total_cost.values()) - before, 6))
         if update_tips == DEFAULT_TIPS and not mock:  # next to the tips, so their commit and publish carry it
