@@ -83,6 +83,16 @@ night actions already run in parallel.
 
 ## Turned down for now
 
+- **Decision-time tip reminders** (Kevin, Oct 16 2026: punted; "potentially good", but he wants the tips sheet kept
+  separate from the game code, and a reminder placed at the decision could sway a model's choice too much).
+  Players with tips would see the one relevant tip again inside the question it bears on: before a trial or
+  nomination vote ("name one corroborated mechanical break; a duplicate claim of a repeatable role isn't one"), a
+  night kill ("shoot on a mechanical lead, not a claim clash"), or a Yakuza's vote on a doomed teammate. Why: all
+  week players quoted the right tip after the game but didn't apply it at the moment of decision; the duplicate-claim
+  mis-hang recurred in five of seven all-Opus games (Oct 13-16) while the tip was on the sheet. The text would come
+  from the player's own sheet ("Reminder for X" lines), so players without tips stay untouched; about 20-40 words a
+  decision. The sheet-only step taken instead: `tips.py pin --top` leads the sheet with that tip.
+
 - **Ventriloquist** (Yakuza, proposed Oct 11, 2026; Kevin: shelved for its bug risk). Forges a player's public
   message and claim that turn for a random half of the other players (2 tokens), or one of their private messages
   (1 token); the victim sees their own text and isn't told. Players then remember the same turn differently, a pure
