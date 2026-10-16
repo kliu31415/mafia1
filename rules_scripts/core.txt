@@ -179,7 +179,8 @@ except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - A player with the Notorious or Turncoat trait (R24): Evil.
-- Sheriff on Neutrals: Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil.
+- Sheriff on Neutrals: Chaos roles read Evil, Killing roles Not Evil (each Neutral role is under one of these
+  headings in Part 6).
   (Seers see every Neutral as Neutral.)
 Exact-role checks see the true role, except that they see a Disguised player's disguise (R24).
 Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any of these.
@@ -357,20 +358,24 @@ Informant
 --- Neutral ---
 Each Neutral player is their own faction (R2).
 
+Killing (Neutral roles that kill; Not Evil to the Sheriff, R19)
+
 Serial Killer
-  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Defense: Standard.
   Win: only alone (not even with another Serial Killer).
   Night: may deal a Strong Attack to one player.
 
 Arsonist
-  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Defense: Standard.
   Win: only alone (not even with another Arsonist).
   Night: may douse one player, or ignite (Astral Visit), dealing a Strong Attack to every doused player. A doused
   player who isn't Good (Yakuza or Neutral) is told at the end of the night that an Arsonist doused them; Good
   players are never told. Igniting uses up every douse: players who survive it are no longer doused.
 
+Chaos (Neutral roles that win by other means; Evil to the Sheriff, R19)
+
 Jester
-  Defense: Basic. Appears: Evil to the Sheriff.
+  Defense: Basic.
   Never blocks wins (R1).
   Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
   alive.
@@ -378,7 +383,7 @@ Jester
   night began is dealt a Divine Attack (Astral Visit). If nobody voted Guilty, nothing happens.
 
 Executioner
-  Defense: Basic. Appears: Evil to the Sheriff.
+  Defense: Basic.
   Never blocks wins (R1).
   At the start you get a random target: any player except yourself.
   Win: iff your target is hanged during a Day while you are alive (other daytime deaths don't count). You lose if

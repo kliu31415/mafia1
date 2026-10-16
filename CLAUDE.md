@@ -96,7 +96,7 @@ don't mark a game's `git_dirty`. logs/ stays untracked (large; it lives on the `
   instead of auditing the code. Set `tested=True` when a role is first seen working in a live game, and
   update `notes` when its handling changes.
 - Adding or changing a role can touch all of these; check each one:
-  1. `roles/__init__.py`: `ROLES` entry (alignment, category (its rules heading) and, for Investigative roles, subcategory, Sheriff result, `summary` (one line shown when
+  1. `roles/__init__.py`: `ROLES` entry (alignment, category (its rules heading) and, for Investigative roles, subcategory (for Neutrals: Killing or Chaos, their rules heading, which sets the Sheriff result, R19), Sheriff result, `summary` (one line shown when
      hovering the role's icon in the HTML log; a test fails when the role's rules paragraph changes, until
      `uv run role_summaries.py ROLE` records that the summary was checked), defense, tokens, `acts_at_night`, `tested`, `notes`).
   2. `roles/<role>.py`: effects that code carries out, as hooks from `roles/base.py` (setup, briefing,

@@ -1,9 +1,9 @@
 {
  "script": "core",
- "cut_sha256": "e8d42a4cbf7c6f17",
- "text_sha256": "38e26034e6e4d4e2",
+ "cut_sha256": "e3e8f30b32501041",
+ "text_sha256": "d9b38be344cbf4b1",
  "made_by": "a Claude Code session",
- "made": "2026-10-16T02:32:47+00:00",
+ "made": "2026-10-16T02:40:54+00:00",
  "cost": 0.0,
  "edits": [
   {
@@ -70,11 +70,6 @@
    "old": "(after Defense, protection,\n  traps and charms), you survive",
    "new": "(after Defense, protection\n  and traps), you survive",
    "reason": "The Kitsune (fox charm) is not on the script."
-  },
-  {
-   "old": "Jester, Executioner and Hitman read Evil; Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.",
-   "new": "Jester and Executioner read Evil; Serial Killer and Arsonist read Not Evil.",
-   "reason": "The Hitman, the Werewolf and the Decoy are not on the script."
   },
   {
    "old": "   A trap stops one attack before Defense and may hit its attacker back (Trapper); a mirror stops them all and\n   reflects those that were visits back at their attackers (Mirror Maker).",

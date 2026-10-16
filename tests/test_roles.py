@@ -1940,9 +1940,21 @@ def test_loud_and_curt_change_the_holders_budget_and_prices_as_the_rules_say(gam
     assert price_table(1, length_factor=2) in turn_task(game, bob, 1, True, 1.0, 0, False)
 
 
-def test_investigative_roles_and_only_they_have_a_subcategory():
-    investigative = {r for r, i in ROLES.items() if i.category == "Investigative"}
-    assert {r for r, i in ROLES.items() if i.subcategory} == investigative
+def test_investigative_and_neutral_roles_and_only_they_have_a_subcategory():
+    grouped = {r for r, i in ROLES.items() if i.category == "Investigative" or i.alignment is Alignment.NEUTRAL}
+    assert {r for r, i in ROLES.items() if i.subcategory} == grouped
+
+
+def test_neutral_chaos_reads_evil_to_the_sheriff_and_killing_does_not():
+    """Rules R19: each Neutral is under the Killing or the Chaos heading of Part 6, which sets its Sheriff result."""
+    rules = mafia.RULES_PATH.read_text(encoding="utf-8")
+    part = rules[rules.index("--- Neutral ---"):rules.index("=== PART 7")]
+    for name, info in ROLES.items():
+        if info.alignment is Alignment.NEUTRAL:
+            assert info.subcategory in ("Killing", "Chaos"), name
+            assert info.sheriff_evil == (info.subcategory == "Chaos"), name
+            above = part[:part.index(f"\n\n{name}\n")].split("\n\n")
+            assert [b for b in above if b.startswith(("Killing", "Chaos"))][-1].startswith(info.subcategory), name
 
 
 def armed_game(game_factory, roles, shots):

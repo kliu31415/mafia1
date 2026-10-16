@@ -24,7 +24,9 @@ class RoleInfo:
     unique: bool = False  # at most one player in a game may have this role
     tested: bool = False  # seen working in at least one live (API) game; update when it first is
     notes: str = ""  # implementation notes for --list-roles
-    subcategory: str = ""  # Investigative roles only: what they learn (Alignment check, Role info, ...); in code only
+    # Investigative roles: what they learn (Alignment check, Role info, ...), in code only. Neutral roles: Killing or
+    # Chaos, their heading in the rules; Chaos reads Evil to the Sheriff, Killing Not Evil (rules R19)
+    subcategory: str = ""
     # Its tokens never go above the starting count (rules: Oathsworn): Stocked never goes to it, and set_tokens
     # can't raise them
     token_cap: bool = False
@@ -240,55 +242,56 @@ ROLES: dict[str, RoleInfo] = {
                           tokens={"oath": 1}, token_cap=True, acts_at_night=True,
                           notes="mark recorded with the swear op; code says the next Night whether it fires; after "
                           "record_visits the moderator's fulfil_oath op lists the Divine Attacks, which it resolves"),
-    # Neutral
-    "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+    # Neutral Killing
+    "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False, subcategory="Killing",
+                              summary="Night: Strong Attack on one player. Wins alone. Standard Defense.",
+                              defense="Standard", acts_at_night=True, tested=True),
+    "Arsonist": RoleInfo(Alignment.NEUTRAL, "Neutral", False, subcategory="Killing",
+                         summary="Night: douse a player (only non-Good ones are told), or ignite all doused players "
+                         "with a Strong Attack. Wins alone.",
+                         defense="Standard", acts_at_night=True,
+                         tested=True, notes="douses tracked as player status; code tells doused non-Good players"),
+    "Werewolf": RoleInfo(Alignment.NEUTRAL, "Neutral", False, subcategory="Killing",
+                         summary="Even nights only: rampage at a player's house (a Strong Attack on them and every "
+                         "visitor) or at home (on every visitor). Wins alone. Standard Defense.",
+                         defense="Standard", acts_at_night=True,
+                         notes="asked for an action only on even nights; moderator resolves the attacks, after the "
+                         "rampage op lists them from record_visits"),
+    "Bounty Hunter": RoleInfo(Alignment.NEUTRAL, "Neutral", False, subcategory="Killing",
+                              summary="Has 3 random targets and one Strong Attack; wins and leaves once 2 targets die "
+                              "by its attack or by a hanging it voted Guilty in.",
+                              tokens={"attack": 1}, acts_at_night=True, tested=True,
+                              notes="targets, bounty credit (from death killers and Guilty voters), win, loss and "
+                              "leaving in code; moderator resolves the attack"),
+    "Hitman": RoleInfo(Alignment.NEUTRAL, "Neutral", False, subcategory="Killing",
+                       summary="Night: Basic Attack on one player; wins and leaves once its attacks kill 2 Good "
+                       "players, loses and leaves if one kills a non-Good player.",
+                       acts_at_night=True, unique=True, tested=True,
+                       notes="moderator resolves the attack (by=Hitman); code counts kills from death killers, "
+                       "tells it, handles win, loss and leaving"),
+    # Neutral Chaos
+    "Vulture": RoleInfo(Alignment.NEUTRAL, "Neutral", True, subcategory="Chaos",
                         summary="Wins alone if alive when few enough players remain at dawn. Each night may visit a "
                         "player: if they die that night, learns their role and powers up.",
                         acts_at_night=True, unique=True,
                         notes="moderator records the visit (scavenge); code checks at night end whether the target "
                         "died, tells the role and applies the power-up (threshold or Defense, told to the moderator "
                         "each night), and checks the living count at each dawn"),
-    "Serial Killer": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                              summary="Night: Strong Attack on one player. Wins alone. Standard Defense.",
-                              defense="Standard", acts_at_night=True, tested=True),
-    "Arsonist": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                         summary="Night: douse a player (only non-Good ones are told), or ignite all doused players "
-                         "with a Strong Attack. Wins alone.",
-                         defense="Standard", acts_at_night=True,
-                         tested=True, notes="douses tracked as player status; code tells doused non-Good players"),
-    "Werewolf": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                         summary="Even nights only: rampage at a player's house (a Strong Attack on them and every "
-                         "visitor) or at home (on every visitor). Wins alone. Standard Defense.",
-                         defense="Standard", acts_at_night=True,
-                         notes="asked for an action only on even nights; moderator resolves the attacks, after the "
-                         "rampage op lists them from record_visits"),
-    "Bounty Hunter": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
-                              summary="Has 3 random targets and one Strong Attack; wins and leaves once 2 targets die "
-                              "by its attack or by a hanging it voted Guilty in.",
-                              tokens={"attack": 1}, acts_at_night=True, tested=True,
-                              notes="targets, bounty credit (from death killers and Guilty voters), win, loss and "
-                              "leaving in code; moderator resolves the attack"),
-    "Hitman": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
-                       summary="Night: Basic Attack on one player; wins and leaves once its attacks kill 2 Good "
-                       "players, loses and leaves if one kills a non-Good player. Reads Evil to the Sheriff.",
-                       acts_at_night=True, unique=True, tested=True,
-                       notes="moderator resolves the attack (by=Hitman); code counts kills from death killers, "
-                       "tells it, handles win, loss and leaving"),
-    "Magpie": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+    "Magpie": RoleInfo(Alignment.NEUTRAL, "Neutral", True, subcategory="Chaos",
                        summary="Night: steal a token from a player; wins and leaves once it has stolen from 3 "
                        "different players. Basic Defense.",
                        defense="Basic", acts_at_night=True, tested=True,
                        notes="moderator records the steal; code takes the token at the end of the night, tells both, "
                        "handles the win; random setups need a third of roles with tokens"),
-    "Decoy": RoleInfo(Alignment.NEUTRAL, "Neutral", False,
+    "Decoy": RoleInfo(Alignment.NEUTRAL, "Neutral", True, subcategory="Chaos",
                       summary="Wins if it dies at night; then the next Day names 3 players, at least one of them its "
-                      "killer. Reads Not Evil to the Sheriff.",
+                      "killer.",
                       tested=True, notes="win, role reveal and the 3 names in code, from the kill's `by`"),
-    "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
-                       summary="Wins if hanged; then a Guilty voter dies. Reads Evil to the Sheriff.",
+    "Jester": RoleInfo(Alignment.NEUTRAL, "Neutral", True, subcategory="Chaos",
+                       summary="Wins if hanged; then a Guilty voter dies.",
                        defense="Basic",
                        tested=True, notes="hanging win and revenge in code"),
-    "Executioner": RoleInfo(Alignment.NEUTRAL, "Neutral", True,
+    "Executioner": RoleInfo(Alignment.NEUTRAL, "Neutral", True, subcategory="Chaos",
                             summary="Wins if their target is hanged; becomes a Jester if the target dies otherwise.",
                             defense="Basic",
                             tested=True, notes="target, win, leaving and turning into a Jester in code"),

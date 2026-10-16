@@ -262,7 +262,7 @@ function renderRoles() {
     && (!q || hay(r).includes(q)));
   let html = "", group = "";
   for (const r of shown) {
-    const g = r.faction + (r.category && r.category !== r.faction ? " · " + r.category : "");
+    const g = r.faction + (r.section && r.section !== r.faction ? " · " + r.section : "");
     if (g !== group) { html += `<div class="group-h">${esc(g)}</div>`; group = g; }
     html += `<div class="rc card ${r.faction}" data-role="${esc(r.name)}"><div class="top">${icon(r.name)}
       <div><div class="nm">${esc(r.name)}</div><div class="sub">${esc(r.subcategory || r.category)}</div></div></div>

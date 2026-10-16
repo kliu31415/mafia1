@@ -185,7 +185,8 @@ except:
 - Yakuza holding the Katana at the end of the night: Good (Sheriff: Not Evil), even if they died that night.
 - Player framed by the Fabricator that night: Evil.
 - A player with the Notorious or Turncoat trait (R24): Evil.
-- Sheriff on Neutrals: Jester, Executioner and Hitman read Evil; Serial Killer, Arsonist, Werewolf and Decoy read Not Evil.
+- Sheriff on Neutrals: Chaos roles read Evil, Killing roles Not Evil (each Neutral role is under one of these
+  headings in Part 6).
   (Seers see every Neutral as Neutral.)
 The Census Taker's count is not an alignment check: it always sees true alignment, so none of the exceptions
 above apply to it (a Turncoat counts as Good).
@@ -550,20 +551,22 @@ Oathsworn
 --- Neutral ---
 Each Neutral player is their own faction (R2).
 
+Killing (Neutral roles that kill; Not Evil to the Sheriff, R19)
+
 Serial Killer
-  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Defense: Standard.
   Win: only alone (not even with another Serial Killer).
   Night: may deal a Strong Attack to one player.
 
 Arsonist
-  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Defense: Standard.
   Win: only alone (not even with another Arsonist).
   Night: may douse one player, or ignite (Astral Visit), dealing a Strong Attack to every doused player. A doused
   player who isn't Good (Yakuza or Neutral) is told at the end of the night that an Arsonist doused them; Good
   players are never told. Igniting uses up every douse: players who survive it are no longer doused.
 
 Werewolf
-  Defense: Standard. Appears: Not Evil to the Sheriff.
+  Defense: Standard.
   Win: only alone (not even with another Werewolf).
   Night: only on even-numbered Nights (Night 2, 4, ...: the full moon); on other Nights you have no action. May
   rampage, either:
@@ -574,26 +577,6 @@ Werewolf
   visitors aren't visits. Astral Visits aren't visits, so their makers aren't attacked. A rampage at a player's house
   is an Attack of your own choosing, attacks on visitors included; one at home isn't. You learn how many players you
   attacked and how many of those attacks killed, but nothing more about who the visitors were.
-
-Jester
-  Defense: Basic. Appears: Evil to the Sheriff.
-  Never blocks wins (R1).
-  Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
-  alive.
-  Revenge: if you are hanged, the following night a random Guilty voter from your trial who was alive when that
-  night began is dealt a Divine Attack (Astral Visit). If nobody voted Guilty, nothing happens.
-
-Executioner
-  Defense: Basic. Appears: Evil to the Sheriff.
-  Never blocks wins (R1).
-  At the start you get a random target: any player except yourself.
-  Win: iff your target is hanged during a Day while you are alive (other daytime deaths don't count). You lose if
-  the game ends with your target alive.
-  On winning: the moderator reveals you at once and you leave the game. Leaving works exactly like dying (you
-  leave the circle for good) except it doesn't count as a death. The following night, a random Guilty voter from
-  the trial who was alive when that night began (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
-  Guilty, nothing happens.
-  If your target dies any other way, or leaves the game, you become a Jester.
 
 Bounty Hunter
   Tokens: 1 attack token. Never blocks wins (R1).
@@ -608,7 +591,7 @@ Bounty Hunter
   the game.
 
 Hitman
-  Appears: Evil to the Sheriff. Never blocks wins (R1).
+  Never blocks wins (R1).
   Night: may deal a Basic Attack to one player.
   Only players your own Attack kills count (it counts even if another fatal Attack hit them too, R12); other deaths
   you cause (a trait's effect, a hanging) don't. Good means
@@ -619,6 +602,28 @@ Hitman
   the game (leaving works as for the Executioner). If you have died, you still win and nothing is revealed.
   Lose: as soon as your Attack kills a player who isn't Good; if you are alive, the moderator reveals you at once
   and you leave the game.
+
+Chaos (Neutral roles that win by other means; Evil to the Sheriff, R19)
+
+Jester
+  Defense: Basic.
+  Never blocks wins (R1).
+  Win: iff you are hanged during a Day (other daytime deaths don't count). You lose if the game ends with you
+  alive.
+  Revenge: if you are hanged, the following night a random Guilty voter from your trial who was alive when that
+  night began is dealt a Divine Attack (Astral Visit). If nobody voted Guilty, nothing happens.
+
+Executioner
+  Defense: Basic.
+  Never blocks wins (R1).
+  At the start you get a random target: any player except yourself.
+  Win: iff your target is hanged during a Day while you are alive (other daytime deaths don't count). You lose if
+  the game ends with your target alive.
+  On winning: the moderator reveals you at once and you leave the game. Leaving works exactly like dying (you
+  leave the circle for good) except it doesn't count as a death. The following night, a random Guilty voter from
+  the trial who was alive when that night began (not you, since you left) is dealt a Divine Attack (Astral Visit). If nobody voted
+  Guilty, nothing happens.
+  If your target dies any other way, or leaves the game, you become a Jester.
 
 Magpie
   Defense: Basic. Never blocks wins (R1). Random setups include a Magpie only if at least a third of the roles have tokens.

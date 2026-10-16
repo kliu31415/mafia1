@@ -113,6 +113,8 @@ def role_entries(powers: dict) -> list[dict]:
             "off": [s for s, setup in setups.SETUPS.items() if name in setup.off],
             "power": powers["roles"].get(name),
             "traits": [t for t in TRAITS if fits(t, name)],
+            # its group on the Roles tab: the category, or for Neutrals (whose category is the faction) Killing or Chaos
+            "section": info.subcategory if info.category == faction_of(name) else info.category,
         })
     return out
 
