@@ -199,3 +199,22 @@ N1: visited Ivan with a free Basic. Result: no attack.
 N2: visited Mallory AND Ivan (1 token). Result: "attacked one of them, and your attack killed." Ivan died of Enforcer, so he made an attack N2 (the Katana on Bob).
 D3: voted No on my nomination and Innocent at trial.
 Carol claimed the exact same N2 pair only after Ivan's Enforcer death was public. If I was hanged, I was Village, so look at Carol first. Her N1 visit to Heidi fits a Pharmacist or Fabricator as well as an Enforcer. Track her and audit her votes. Mallory's Saint claim is also unverified. 2 tokens left unused."
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Trapper): no action
+  Carol (Enforcer): target Dave; second target Olivia; chose to spend 2 token(s)
+  Dave (Arsonist): target Mallory; "douse"
+  Heidi (Auditor): target Carol
+  Judy (Tracker): target Mallory
+  Niaj (Lookout): target Judy
+  Olivia (Roleplayer): target Carol
+Katana: no attack (no target); nobody holds it.
+(to Heidi) Moderator (private): Your audit of Carol's votes during the Day, in order: Yes on the nomination of Frank; Guilty in the trial of Frank.
+(to Carol) Moderator (private): You visited Dave and Olivia tonight. You did not attack anyone. 0 enforcer tokens left.
+(to Dave) Moderator (private): You doused Mallory tonight.
+(to Judy) Moderator (private): You tracked Mallory tonight. Mallory visited nobody.
+(to Niaj) Moderator (private): You watched Judy tonight. Nobody else visited Judy.
+(to Olivia) Moderator (private): You tracked Carol tonight. Carol visited Olivia (you).
+[Moderator summary] Night 3: No Katana (no Yakuza alive). Carol (Enforcer) spent 2 tokens for a Strong double visit on Dave and Olivia. Neither attacked (Dave only doused), so there was no Enforcer attack and Carol has 0 tokens. Dave (Arsonist) doused Mallory, a Good player, so she isn't told. Heidi audited Carol (audit op). Judy tracked Mallory: she visited nobody. Niaj watched Judy: no other visitors. Olivia (Roleplayer, fake Tracker) got a random result: 'Carol visited Olivia'. Alice didn't act, and her trap stays on Heidi without going off. No attacks and no deaths. No Cursed player died.
+[Night check] Night 3: correct
