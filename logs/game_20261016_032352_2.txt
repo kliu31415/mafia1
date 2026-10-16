@@ -176,3 +176,23 @@ Trial votes on Frank: 6 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Frank] Guilty - Alice, Bob, Carol, Dave, Erin, Grace; Innocent - Frank
 Frank is executed by hanging (6 Guilty of 7 votes; 4 needed).
 Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank, Oracle (claimed). My Night 1 guess was Dave as Cartographer, and it was wrong. Dave's Night 1 map on Heidi left out Carol's Medic visit and the Katana visit on Heidi, so I think Dave's map is false. Judge each claim by checkable results."
+
+===== NIGHT 3 =====
+[Feedback from Carol] Schema rejected an extra field I added (target_second); only the listed fields should be used.
+Night actions:
+  Alice (Vigilante): target Dave; chose to spend 2 token(s); "Standard Vigilante shot on Dave (2 tokens). Dave's Night 2 map says Bob visited nobody, which contradicts Bob's Sheriff check on Frank and Carol's Medic protection on Bob. His Night 1 map also omits Carol's visit on Heidi. Standard beats Basic and no protection except Medic Standard; a Strong Medic protection would still stop it."
+  Bob (Sheriff): target Grace; "Sheriff investigation on Grace. Grace claims Grunt, a role with no night action, and pushed the Heidi nomination on a thin report. She also voted Guilty on Frank, whom my own check read Evil. Carol, Erin and Alice are other options, but Grace is the least supported so far."
+  Carol (Medic): target Bob; "Standard Medic protection on Bob, no token spent."
+  Dave (Roleplayer): no action
+  Erin (Roleplayer): no action
+  Grace (Grunt): target Dave; "Grace (Katana holder) visits Dave with the Katana. Holder stays Grace."; Katana vote: Grace holds, attacks Dave
+Katana: Grace holds it and attacks Dave.
+(to Alice) Moderator (private): You shot Dave tonight with a Standard Attack. Your attack succeeded: Dave died. 1 vigilante token left.
+(to Bob) Moderator (private): You investigated Grace tonight. Result: Not Evil.
+(to Carol) Moderator (private): You protected Bob tonight with Standard Defense. Your protection didn't stop any attack. 2 medic tokens left.
+(to Grace) Moderator (private): Your Katana attack on Dave succeeded: Dave died.
+[Moderator summary] Night 3: Grace (Katana holder) hit Dave with a Standard Katana attack, and Alice shot Dave with a Standard Vigilante shot (2 tokens, 1 left). Both attacks were fatal, so Dave died of Katana and Vigilante. Bob checked Grace and got Not Evil because she held the Katana. Carol protected Bob at Standard, no attack on him, 2 tokens left. Dave and Erin took no action. Visits: Alice->Dave, Bob->Grace, Carol->Bob, Grace->Dave. Alive: Alice, Bob, Carol, Erin (Village) and Grace (Yakuza), so the game continues.
+[Night check] Night 3: correct
+(to Dave) Moderator (private): Tonight's visit groups have sizes 2, 1, 1, 1, 1.
+(to Alice) Moderator (private): Your shot killed Dave. Their role was Roleplayer.
+(to Dave) Moderator (private): You were attacked tonight (Katana and Vigilante) and died.
