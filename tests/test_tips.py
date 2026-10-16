@@ -360,3 +360,28 @@ def test_tips_carry_the_rules_they_were_checked_against_and_a_game_flags_a_stale
         return next(r for r in records if r["kind"] == "result")["errors"]
     assert errors(old) == {"tips_stale": 1}
     assert errors(fresh) == {} and errors(TIPS) == {}  # checked against these rules, or a hand-made sheet
+
+
+def test_a_sheet_well_over_the_word_cap_is_compacted_once(tmp_path):
+    """Kevin, Oct 16 2026: the rewrite often overshoots the cap (1,302 words for 800), so one more pass shortens it."""
+    out = tmp_path / "tips.md"
+    nb = tips.new_notebook()
+    tips.apply_ops(nb, [op("add", tip="Count the votes.", note="g1")], "g1")
+    nb["entries"][0]["pinned"] = True
+    tips.notebook_path(out).write_text(json.dumps(nb), encoding="utf-8")
+
+    class Long(TipsClient):
+        def chat(self, model, messages, *, tools=None, schema=None, schema_name="response", effort=None):
+            self.prompts.append((schema_name, messages[-1]["content"]))
+            tip = "word " * (60 if schema_name == "tips" else 8)
+            content = json.dumps({"sections": [{"heading": "Everyone", "tips": [{"tip": tip, "games": 3}]}]})
+            return LLMReply(content, None, [], {"role": "assistant", "content": content}, model.value, 0.0, {})
+    client = Long([])
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=30, ids=["t1"])
+    (first, _), (second, compact) = client.prompts
+    assert (first, second) == ("tips", "tips_compact")
+    assert "over the cap of 30" in compact and "Count the votes." in compact  # the pinned tip must stay
+    assert out.read_text(encoding="utf-8").count("word") == 8
+    client = Long([])
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=100, ids=["t1"])  # under the cap: one call only
+    assert [name for name, _ in client.prompts] == ["tips"]

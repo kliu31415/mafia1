@@ -447,6 +447,37 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          f"- At most {max_words} words in total; drop the weakest unpinned tips first."},
     ]
     reply = ask(client, spec, messages, DISTILL_SCHEMA, "tips")
+    body, cost = sheet_body(reply), reply.cost
+    if word_count_of(body) > max_words * COMPACT_OVER:
+        # The model often overshoots the cap (Oct 16 2026: 1,302 words for 800), and players get the whole sheet in
+        # every prompt: one more pass compacts it (Kevin: unless it's full of critical information, which is rare).
+        pinned = [e["tip"] for e in nb["entries"] if e["status"] == "active" and e.get("pinned")]
+        compact = [messages[0], {"role": "user", "content": f"This tips sheet is {word_count_of(body)} words, over the "
+                   f"cap of {max_words}:\n\n{body}\n---\n\nRewrite it to at most {max_words} words for a player "
+                   "about to play: merge tips that overlap or repeat one idea, cut wording that doesn't change what a "
+                   "player does, and drop the weakest tips (fewest games behind them) first. Keep each kept tip's "
+                   "point, its tendency wording and its number of games, and keep the same sections where they still "
+                   "have tips. Go over the cap only if what's left is all clearly critical."
+                   + ("\nThese pinned tips must stay, merged or on their own:\n" + "\n".join(f"- {t}" for t in pinned)
+                      if pinned else "")}]
+        second = ask(client, spec, compact, DISTILL_SCHEMA, "tips_compact")
+        cost += second.cost
+        shorter = sheet_body(second)
+        if shorter.strip() and word_count_of(shorter) < word_count_of(body):
+            print(f"  compacted the sheet from {word_count_of(body)} to {word_count_of(shorter)} words")
+            body = shorter
+    return body, cost
+
+
+COMPACT_OVER = 1.1  # a sheet over the word cap by more than this share gets one compaction pass (write_sheet)
+
+
+def word_count_of(text: str) -> int:
+    return len(text.split())
+
+
+def sheet_body(reply: LLMReply) -> str:
+    """The sheet's Markdown body from a DISTILL_SCHEMA answer: sections in HEADINGS order, empty ones left out."""
     order = {h: i for i, h in enumerate(HEADINGS)}
     out = []
     for s in sorted(answer_json(reply, DISTILL_SCHEMA)["sections"], key=lambda s: order.get(s["heading"], len(order))):
@@ -454,7 +485,7 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
         if tips:
             out.append(f"## {s['heading']}\n" + "\n".join(
                 f"- {t['tip'].strip()}" + (f" (seen in {t['games']} games)" if t["games"] >= 2 else "") for t in tips))
-    return "\n\n".join(out) + "\n", reply.cost
+    return "\n\n".join(out) + "\n"
 
 
 class NoNewGames(Exception):
