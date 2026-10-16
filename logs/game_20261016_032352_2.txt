@@ -12,3 +12,19 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 8 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 1 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager. Results that name a role (including fakes) never name them either. Nobody has a trait (R24) in this game.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Frank.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Frank (public): Frank here. No reads yet. Day 1 is short, so I'd rather hear everyone's first impressions before anyone claims anything.
+Grace (public): Grace here. Agree with Frank, no reads from me yet. Power roles, please say your night plans early so we can check claims against each other.
+Heidi (public): Heidi here. No reads yet, and I'll hold my role until it matters.
+Alice (public): Alice here. No reads yet. Agree with holding claims until they matter.
+Bob (public): Bob here. No reads yet, agreed on holding claims until they matter. I'll keep my night plans to myself for now.
+Carol (public): Carol here. No reads yet, and I agree we hold claims until they matter. Let's watch who pushes for early nominations on thin evidence.
+Dave (public): Dave here. No reads yet, agreed on holding claims. I'd like to see who pushes for early nominations later, but there's nothing to go on today.
+Erin (public): Erin here. No reads yet, agreed on holding claims until they matter.
+[Feedback from Frank] The schema requires every field, even unused ones, which is awkward; a note that unused fields can be omitted would help.
+Frank (public): Frank again. Nothing new from me. Agreed on holding claims. Let's see who pushes for early nominations on Day 2.
+Grace (public): Grace again. Nothing new to add. I'll stick with holding claims and read the first Day 2 nominations closely.
+Heidi (public): Heidi again. Nothing new. I'll say plainly that I have a night role that cares about visits, and I'll share results once they matter.
