@@ -156,3 +156,37 @@ Trial votes on Bob: 10 Guilty, 3 Innocent (the votes are secret).
 Bob is executed by hanging (10 Guilty of 13 votes; 7 needed).
 Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob, Lookout. N1: I watched Judy, and her only visitor was Dave. Carol's map (Bob, Dave, Judy) fits me watching and Dave making the Katana visit. Judy claimed Standard Defense, which explains the failed hit with no charm needed. Dave says he holds a "swallowed Katana attack", which gives him cover for any Katana kill. Check Dave's visits against every Katana death, and test Judy as a likely Neutral killer."
 (to Grace, Mallory) The Katana passed to Mallory.
+
+===== NIGHT 2 =====
+(to Grace, Mallory) Grace (Yakuza chat): Proposal: Mallory keeps the Katana (your Tracker cover explains any visit). Target: Carol. Her map is what caught Bob, and it would catch the Katana visit again. I'll ritual Niaj = Fortune Teller (1 token, Standard). It's an Astral Visit, so his counts and her map can't catch it. His N1 numbers matched the real visits exactly, so I'm confident in that guess. That takes out both visit-info roles in one night. Dave keeps his swallowed attack, so tomorrow we push the idea that he released it, since that's exactly what Bob's will warned about. If you want, frame Judy for any Sheriff check, which helps a Judy hang tomorrow. Your frame visit is fine with Carol and Niaj dead. Tomorrow: 'Tracked Carol again' only if it helps; otherwise, no result. Vote: holder Mallory, target Carol.
+(to Grace, Mallory) Mallory (Yakuza chat): Agreed: holder Mallory, target Carol. I'll vote both. Ritual on Niaj = FT is fine; his N1 numbers matched exactly, so a Roleplayer is very unlikely. I won't frame Judy. Night 2 is a Werewolf night, and her "Standard Defense" claim could be true, so visiting her risks a rampage. Instead I'll use my Katana visit on Carol to forge her will (one visit, so no extra visitor shows up). Forged will: her real N1 map, plus "N2: mapping Dave. Bob's will was right that his swallowed attack is unaccounted for. If I die by Katana tonight, look at Dave first." That turns her death against Dave, who is town's strongest confirmed player, and it backs up Bob's will. Tomorrow I'll say I tracked someone quiet with no visits (Olivia or Alice) instead of Carol, so I'm not placed at the body. Grace, back the Dave push lightly. Let Judy's escalating claim take the other half of the heat.
+(to Grace, Mallory) Grace (Yakuza chat): Agreed: holder Mallory, target Carol, forge her will as you described. Good call skipping Judy on a Werewolf night. I'll vote both and ritual Niaj = Fortune Teller (1 token, Standard). Tomorrow I'll go along with the Dave suspicion lightly (Carol's 'will' plus Bob's warning) and keep some pressure on Judy's escalating claim. I won't lead either push. If Niaj somehow survives, he probably had protection, so we don't retry him. Ready.
+(to Grace, Mallory) Mallory (Yakuza chat): Confirmed: holder Mallory, target Carol, and I'll forge her will pointing at Dave. Grace rituals Niaj = Fortune Teller. Tomorrow I'll say I tracked Olivia and she didn't visit anyone. If Carol survives (Medic or trap), I'll say nothing about her and we'll look at it again tomorrow night. Ready.
+Night actions:
+  Alice (Vigilante): target Judy; chose to spend 3 token(s)
+  Carol (Cartographer): target Dave; chose to spend 1 token(s)
+  Dave (Kitsune): target Judy
+  Erin (Profiler): target Dave; chose to spend 1 token(s)
+  Frank (Werewolf): target Carol
+  Grace (Ritualist): target Niaj; named role Fortune Teller; chose to spend 1 token(s); Katana vote: Mallory holds, attacks Carol
+  Ivan (Veteran): no action
+  Mallory (Fabricator): target Carol; chose to spend 1 token(s); "Frame Carol and spend the token to forge her last will. Forged will: "Carol - Cartographer. N1: mapped Judy. Her group = Bob, Dave, Judy (sizes 3, 2, 1x8). N2: mapping Dave. Bob's will was right that Dave's 'swallowed' Katana attack is unaccounted for, and he can release it on anyone as a Katana kill. If I die by Katana tonight, look at Dave first.""; Katana vote: Mallory holds, attacks Carol
+  Olivia (Bloodhound): target Dave; chose to spend 1 token(s)
+Katana: Mallory holds it and attacks Carol.
+(to Erin) Moderator (private): You profiled Dave: their role is Jester, Kitsune or Trapper (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 2 profile tokens left.
+(to Alice) Moderator (private): You shot Judy with a Strong Attack tonight. Your attack succeeded. 0 vigilante tokens left.
+(to Frank) Moderator (private): You rampaged at Carol's house tonight. Your rampage attacked 2 players and killed 2.
+(to Mallory) Moderator (private): Your Katana attack on Carol succeeded tonight. You framed Carol and forged her last will. 0 fabricator tokens left.
+(to Grace) Moderator (private): You were role-blocked tonight. 2 ritual tokens left.
+(to Niaj) Moderator (private): Tonight: 3 players were visited; 6 players visited someone.
+[Moderator summary] Night 2: Grace Drowsy-blocked (no Ritualist guess, no announcement). Frank (Werewolf) rampaged at Carol: Strong on Carol and on visitor Mallory. Mallory (Katana holder) Katana-attacked Carol and framed/forged Carol's will. Alice Strong Vigilante shot on Judy; Dave released swallowed Standard Katana attack on Judy. Deaths: Carol (Katana and Werewolf, forged will), Mallory (Werewolf), Judy (Katana and Vigilante). Erin profiled Dave, Olivia tracked Dave, Carol mapped Dave. FT: 3 visited, 6 visitors. Katana passes to Grace (only living Yakuza). Bob's oath never sworn.
+[Night check] Night 2: correct
+(to Carol) Moderator (private): Tonight's visit groups have sizes 5, 3, 1, 1, 1, 1. You mapped Dave: their group is Alice, Dave, Erin, Judy and Olivia. 1 map token left.
+(to Dave) Moderator (private): Your released attack on Judy killed them.
+(to Alice) Moderator (private): Your shot killed Judy. Their role was Jester.
+(to Olivia) Moderator (private): Your Bloodhound check of Alice, Dave and Erin: together they have made 2 attacks this game, tonight's included. 1 scent token left.
+(to Carol) Moderator (private): You were attacked tonight (Katana and Werewolf) and died.
+(to Judy) Moderator (private): You were attacked tonight (Katana and Vigilante) and died.
+(to Mallory) Moderator (private): You were attacked tonight (Werewolf) and died.
+(to Grace) Moderator (private): Yakuza night summary: Mallory holds the Katana and chose to attack Carol. Mallory (Fabricator) chose to act on Carol, spending 1 token(s) ("Frame Carol and spend the token to forge her last will. Forged will: "Carol - Cartographer. N1: mapped Judy. Her group = Bob, Dave, Judy (sizes 3, 2, 1x8). N2: mapping Dave. Bob's will was right that Dave's 'swallowed' Katana attack is unaccounted for, and he can release it on anyone as a Katana kill. If I die by Katana tonight, look at Dave first."").
+(to Grace) The Katana passed to Grace.
