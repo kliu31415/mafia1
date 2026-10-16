@@ -237,3 +237,25 @@ The game is over. Winners: Alice, Bob, Carol, Dave (dead), Erin, Heidi (dead). D
 ===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
 
 ===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+[Feedback from Dave] Players are not told whether they might be a Roleplayer, so a Cartographer or Insomniac who reports an exact result may be quietly wrong. A short note on this in the setup would help.
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Dave, Erin, Heidi
+Cost by player (USD):
+  Alice (Vigilante)   $0.0000   24 calls  claude-haiku-5.5
+  Bob (Sheriff)       $0.0000   23 calls  claude-haiku-5.5
+  Carol (Medic)       $0.0000   23 calls  claude-haiku-5.5
+  Dave (Roleplayer)   $0.0000   17 calls  claude-haiku-5.5
+  Erin (Roleplayer)   $0.0000   24 calls  claude-haiku-5.5
+  Frank (Grunt)       $0.0000   23 calls  claude-haiku-5.5
+  Grace (Grunt)       $0.0000   30 calls  claude-haiku-5.5
+  Heidi (Roleplayer)  $0.0000   12 calls  claude-haiku-5.5
+  Moderator           $0.0000    5 calls  claude-opus-5.5
+  Night checks        $0.0000    3 calls  claude-opus-5.5
+  Strategy review     $0.0000    1 calls  claude-opus-5.5
+  Log review          $0.0000    1 calls  claude-opus-5.5
+  Total               $0.0000  186 calls
