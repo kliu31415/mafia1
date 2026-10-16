@@ -42,7 +42,7 @@ class Cartographer(RoleLogic):
             return
         real = groups
         for p in users:
-            groups = fake_groups(game) if is_fake(p) else real  # random for a Roleplayer (rules: Roleplayer)
+            groups = fake_groups(game, p) if is_fake(p) else real  # random for a Roleplayer (rules: Roleplayer)
             sizes = ", ".join(str(len(g)) for g in groups)
             text = f"Tonight's visit groups have sizes {sizes}."
             if (target := maps.get(p.name)) is not None:

@@ -474,17 +474,18 @@ def visit_groups(game: Game, visits: list[list[str]] | None = None) -> list[list
     return sorted(groups.values(), key=lambda g: (-len(g), nodes.index(g[0])))
 
 
-def fake_groups(game: Game) -> list[list[str]]:
+def fake_groups(game: Game, by: Player) -> list[list[str]]:
     """visit_groups for a random night's visits (fake_visits)."""
-    return visit_groups(game, fake_visits(game)) or []
+    return visit_groups(game, fake_visits(game, by)) or []
 
 
-def fake_visits(game: Game) -> list[list[str]]:
+def fake_visits(game: Game, by: Player) -> list[list[str]]:
     """A random night's visits, for a Roleplayer's random result from visits (rules: Roleplayer): each player alive
-    when the night began visits a random other one, with probability 1/2."""
+    when the night began visits a random other one, with probability 1/2 (about what real nights have), except the
+    Roleplayer `by`, whose believed role (Scout, Cartographer, Insomniac) never visits."""
     nodes = [p.name for p in game.players if acted_tonight(game, p)]
     return [[a, game.rng.choice([b for b in nodes if b != a])] for a in nodes
-            if len(nodes) > 1 and game.rng.random() < 0.5]
+            if a != by.name and len(nodes) > 1 and game.rng.random() < 0.5]
 
 
 def recorded_action_parts(role: str, cls: type[RoleLogic]) -> None:

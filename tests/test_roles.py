@@ -291,6 +291,23 @@ def test_the_moderator_handles_a_code_faked_role_like_a_real_one(game_factory, r
     assert set(logic(role).ops) <= set(mod.ops)
 
 
+def test_insomniac_fakes_name_only_roles_that_can_visit():
+    """A Roleplayer who believes they're an Insomniac never hears a role that can't visit (rules R6), such as the
+    Oracle's Astral Visit: Village and Neutral roles whose Night text has no visit are in NEVER_VISITS."""
+    from role_summaries import role_paragraphs
+    from roles.insomniac import NEVER_VISITS, can_visit
+    # their main action visits; another one is Astral or not a visit (or its effects are, the Mirror Maker's)
+    mixed = {"Arsonist", "Mirror Maker", "Seer", "Trapper", "Werewolf"}
+    for role, text in role_paragraphs().items():
+        info = ROLES.get(role)
+        if info is None or info.alignment is Alignment.EVIL or not info.acts_at_night or role in mixed:
+            continue
+        night = " ".join(text.split()).split("Night:", 1)[-1]
+        if re.search(r"Astral Visit|(?:not|isn't) a visit|to stay awake|consult the archive", night):
+            assert role in NEVER_VISITS, role
+    assert not can_visit("Oracle") and can_visit("Sheriff") and can_visit("Grunt") and not can_visit("Jester")
+
+
 def test_a_roleplayers_random_role_never_contradicts_a_public_one(game_factory):
     import random
     from roles.base import HANGING_CAUSE, public_role, random_role

@@ -26,7 +26,7 @@ class Scout(RoleLogic):
                            "result", day=game.day, players=[p.name for p in users])
             return
         for p in users:
-            mine = fake_groups(game) if is_fake(p) else groups  # random for a Roleplayer (rules: Roleplayer)
+            mine = fake_groups(game, p) if is_fake(p) else groups  # random for a Roleplayer (rules: Roleplayer)
             group_of = {n: tuple(g) for g in mine for n in g}
             # A random player, then their group is set aside, so a group comes up in proportion to its size.
             pool = list(group_of)  # the Scout too (Kevin: simpler)
