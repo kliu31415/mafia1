@@ -1,47 +1,33 @@
 # Tips from past games
 
-Written 2026-10-16 10:18 UTC by opus-5.5 with `uv run tips.py build`, from the 405 active entries of tips_notebook.json (98 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules 8f2138dae76eb0b8.
+Written 2026-10-16 10:37 UTC by opus-5.5 with `uv run tips.py build`, from the 405 active entries of tips_notebook.json (98 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules 8f2138dae76eb0b8.
 
 ## Everyone
-- A visit shows where someone went, not what they did or which side they are on. A lone-visitor watch, track or map from one unverified claimant is only that claimant's word. Roleplayers are Village players whose results are random, so check results against facts nobody can fake before you hang anyone on them. (seen in 52 games)
-- Only the Mayor, Vulture, Hitman and Saint are unique, so two claimants of any other role can both be real. Test both with targets, exact wording or a watch, rather than hanging the later claimant for coming second. (seen in 50 games)
-- Before each night, write tonight's target in your will and what each possible result would mean. Post your results publicly while you're alive, because a result from the night you die never reaches your will. (seen in 55 games)
-- Ballots are secret, so keep a notepad of every Yes count, every trial total and each player's stated vote. A stated vote that doesn't fit a small total is usually a miscast: ask about it once, and don't hang on it alone. (seen in 22 games)
-- When a total doesn't fit the stated votes, list every possible cause before blaming a Fixer: a miscast, a plain lie (Neutrals and Turncoats lie), a Merciful or Zealot trait, a fix, or a Ballot Stuffer (shown when the total is higher than the number of voters). Ask voters what they cast and how it counted. Yes/No counts can't be altered, so they are the cleanest check. (seen in 11 games)
-- Spend one-shot tokens the first time they can swing a vote or remove a threat, because they die with you. Kill tokens are the exception: fire them on a break in the target's own claim, votes or visits. Don't fire on a claim clash, to 'test' a claimed Medic, or at a Neutral that never blocks wins. At parity, fire even on a coin flip. (seen in 34 games)
-- Surviving an attack proves little on its own. It can come from a hidden protector, a Neutral killer's Defense, Narrow Escape (works once), a Shaky holder (whose Katana never kills), a Paranoid fake notice or a Stolen Blade. Attacks failing on several targets point to one Shaky holder. A player who admits surviving under a no-Defense claim, with no protector claiming the save, fits a Serial Killer. (seen in 28 games)
-- Answer 'what did you do last night?' in one plain sentence the first time you're asked. Dodging it over several Days becomes the case against you. (seen in 29 games)
+- Keep a notepad of every nomination and trial: each stated vote, the totals and your own vote. A stated vote that doesn't fit the totals is usually a miscast. Ask that player once to re-check their reminder and how it counted (Merciful and Zealot change counts), and never hang on the mismatch alone. Suspect a Fixer only once one is shown. Then an extra Guilty on a Village claimant's hang means the Yakuza wanted it. (seen in 22 games)
+- Spend one-shot tokens on the first Day or night they can change a vote or remove a threat, because they die with you. Kill tokens need a lead: a break in the target's own claim, votes or visits. A claim clash, Day 1 or 'testing' an unverified claim is not a lead. (seen in 34 games)
+- A visit shows where someone went, not what they did. 'X was the only visitor' is near-proof only when a second source backs it. One unverified claimant's report is just their word, more so if it was held back or names their own accuser. (seen in 52 games)
+- Only the Mayor, Vulture, Hitman and Saint are unique, so two claimants of any other role may both be real. Test both that night with a watch or an exact-role check instead of hanging on the clash. (seen in 50 games)
+- Answer a direct question about your night in one plain sentence the first time. Repeated evasion becomes a case against you on its own. (seen in 29 games)
+- A Katana survivor with no protector named may have Narrow Escape, a Shaky holder's level-None Katana or innate Defense. A Katana notice may also be a Villager's Stolen Blade or a Paranoid fake. Check the visit data before you read a survivor as a Serial Killer. (seen in 2 games)
+- A Turncoat is a Villager who wins with the Yakuza. They read Evil to checks, count as Good in a census and don't know who the Yakuza are. You can usually spot one protecting the main suspect and voting Innocent for them every time. Count them as a Yakuza vote in the lock math. (seen in 2 games)
 
 ## Village
-- Before voting Guilty, name a corroborated mechanical break: a Yakuza-only claim, a first-person slip, a knowledge leak, or a confirmed lone visitor to a victim. Run the Jester check first. Near the vote lock, hang the best case you have rather than waiting for more. (seen in 78 games)
-- Post a result as soon as it bears on a vote, with the night, the target and the exact wording. A result held back looks retrofitted. Never announce tonight's target or token use, even by PM, because a hidden Wiretap may be reading every PM. (seen in 52 games)
-- If you have no result yet, don't hint at a power role or lead Day 1: the organizer is the usual Night 1 kill. Don't fake a Vanilla Villager claim either; that role isn't in the game unless the setup names it. (seen in 42 games)
-- Once a player is shown Yakuza by a mechanical result, look next at who defended them, pushed No or delay, or PM'd them. A lone Evil Sheriff read is not that kind of proof: Jesters, Executioners, Notorious or Turncoat Villagers and framed players all read Evil. (seen in 54 games)
-- Jester signs: self-nominating, pushing hangs with no evidence, asking for the rope. It usually pays to leave them alive. If you do hang one, keep the Guilty votes to a bare majority and have confirmed roles vote Innocent, because the Jester's revenge kills a random Guilty voter. (seen in 28 games)
-- Hunt Neutral killers. Read every cause of death and keep a list of suspects: quiet claimants nobody has watched and survivors nobody can explain. A Not Evil read doesn't clear them. But while two Yakuza may be alive at 5-6 players, spend the hang on your best Yakuza lead. (seen in 21 games)
-- Each morning, post the lock count in effective votes: Yakuza plus votes that always count Innocent (a Merciful player, a likely Turncoat). The Day before the lock is your last real hang, so refuse 'just one more night of tests'. (seen in 21 games)
-- A Turncoat is a Village player who wins only if the Yakuza win. They read Evil to a Sheriff but count as Good in a census. Watch for a Village claimant who keeps protecting the main suspect and voting to save them, and count that player as a Yakuza vote. (seen in 2 games)
-- A 'remorse' death proves the hanged player was Village, so re-examine whoever built that case. If you are Remorseful, vote Guilty only on corroborated cases and say so before the vote.
+- Before you vote Guilty, name a concrete, corroborated break: a Yakuza-only role claim, a first-person slip, or a claim that a corroborated visit contradicts. Discount an impossible result from a single claimant, since it may be Roleplayer noise. But if one more night kill would give the Yakuza the vote lock, hang your best case today. (seen in 78 games)
+- Investigators: once a result bears on a vote, post the night, target and exact result in your first speech, because held-back results look retrofitted. Never announce tonight's target, in public or by PM (a Wiretap may read PMs). (seen in 52 games)
+- Read every cause of death: a non-Katana attack cause (Serial Killer, Werewolf, ignite) proves that killer is alive. Keep a Neutral-killer suspect list: unclaimed players, unexplained survivors, gaps in the visit counts. Count to the vote lock in effective votes (the accused's own vote and any Merciful or likely Turncoat go to the Yakuza) and post the count each morning. Near the lock, hang your best Yakuza lead. (seen in 21 games)
+- On Days 1 and 2, don't hint at a power role: half-hints and loud organizing draw the Katana. If you're pressed past one calm non-answer, make your claim once and plainly. (seen in 42 games)
+- Write tonight's planned action into your will, along with what each possible result would mean. Post important results in public while you're alive. (seen in 55 games)
+- If you have the Remorseful trait, a Guilty vote that hangs a Villager kills you too. Vote Guilty only on a corroborated case. Otherwise vote Innocent and say why in public. A 'remorse' death proves the hanged player was Village, so look again at who pushed that hang.
 
 ## Yakuza
-- Don't send Day PMs to teammates; do all planning in night chat. Everyone sees that a PM was sent, and visible PM pairs become the town's lasting lead. (seen in 72 games)
-- Don't defend a doomed teammate unless your votes can really save them. Vote Guilty and state the vote you actually cast: the town compares totals with stated votes, and a hidden Innocent shows up. (seen in 66 games)
-- Every member should submit the agreed Katana holder and target every night. With two Yakuza, one missing vote cancels the kill. (seen in 43 games)
-- Agree covers on Night 1: a real Village role that fits your tokens and your real visits, checked against every posted visit result. Avoid Vanilla, Grunt and any Yakuza-only role, and don't switch claims once one breaks. (seen in 34 games)
-- Kill whoever's next result would narrow your team down: Census Takers, visit counters, exact-role checkers. After a failed Katana attack, remove the protector before retrying. (seen in 41 games)
-- Never speak from night-chat knowledge (say 'died to a Katana', never 'my Katana'). Don't deny a visit that a result could expose; admit it at once with your agreed cover. (seen in 20 games)
-
-## Sheriff
-- The Katana holder reads Not Evil on the night they hold it, and a lone last Yakuza always does. Still, rank players you haven't checked above your Not Evil reads. (seen in 29 games)
+- Don't defend a doomed teammate. Vote Yes and Guilty and say so, unless your team's votes can actually save them. The totals expose hidden Innocents, and the town remembers who defended. (seen in 66 games)
+- Don't PM teammates during the Day; do your planning in night chat. Everyone sees that a PM was sent, and an Eavesdropper may read it. (seen in 72 games)
+- Every night, confirm the holder and target in chat and make sure every member votes. With two Yakuza alive, one missing vote cancels the kill. (seen in 43 games)
+- In Night 1 chat, agree on a real Village cover for each member that fits their tokens and actual visits. Never use Vanilla Villager or a Yakuza-only role. Check each cover against every posted visit result, and don't switch claims once one breaks. (seen in 34 games)
+- Kill the players whose next result narrows down your team: the Census Taker, the counting and group roles, and the exact-role checkers. After a failed attack, go after the likely protector instead of retrying the same target. (seen in 39 games)
 
 ## Coroner
-- On the first night you can, examine a body that settles a live question, such as one side of a duplicate claim or a hanged suspect. Post the night, target and exact role. A cleaned body gives nothing, and Disguised players show their disguise. (seen in 4 games)
+- On the first night a body exists that would settle a live question (one side of a duplicate claim, a hanged suspect), examine it. Post the night, target and role in one message. Don't spend a token on a body shown as 'cleaned by mortician'. (seen in 4 games)
 
 ## Medic
-- Guard the likeliest Katana targets, usually claimed investigators, and never visit a Veteran. Free Standard protection stops the usual Katana but not a Strong attack (Serial Killer, ignite). Don't announce your wards, and spend your tokens before you die. (seen in 42 games)
-
-## Vigilante
-- Fire a Basic shot on a real lead while the Village still has numbers to spare; holding all your tokens wastes them. A Basic shot that fails hints at Defense or Narrow Escape: shoot again later with 2 tokens. (seen in 29 games)
-
-## Arsonist
-- Ignite once 3 or more living players are doused, or with 2 once anyone questions you. Each extra night of dousing gives the town a chance to hang you and adds visits to their counts. (seen in 17 games)
+- Protect the likeliest Katana targets, such as vocal analysts and claimed investigators. Free Standard protection doesn't stop Strong attacks, so spend your Strong tokens once a Neutral killer shows up. Don't visit a likely Veteran, and protect yourself the night after you claim. (seen in 42 games)
