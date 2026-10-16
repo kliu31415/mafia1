@@ -179,3 +179,10 @@ night actions already run in parallel.
   game_20261009_121338_61703, whose last day was a foregone 3-vs-2 hang). Would cut hollow final days.
   Turned down (Kevin, 2026-10-09): factions can still occasionally win from a minority, e.g. with a
   Medic save, a Vigilante shot or a Clerk rig, so "unbreakable" is hard to define in general.
+
+- **Decision-time tip reminders** (proposed Oct 16, 2026; Kevin: punt for now). Players quote the right tip after the
+  game but don't apply it at the decision (the duplicate-claim tip was ignored in five of seven all-Opus games), so the
+  sheet would carry short "Reminder for X" lines that code repeats in that decision's prompt (trial votes, night
+  kills, a Yakuza voting on a teammate), only for players given tips. Kevin's concerns: the tips should stay one sheet
+  separate from the game code, and a tip at the decision point could sway a model's choice too much. What was built
+  instead: a "Most often decisive" section at the top of the sheet, with `tips.py pin --top`.
