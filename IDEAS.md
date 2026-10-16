@@ -95,6 +95,16 @@ night actions already run in parallel.
   mostly a one-day delay, since the town can re-hang them the next Day. Variant: the holder chooses whether to slip
   after seeing the vote (one extra yes/no call), which gives them a decision. A slip isn't a hanging: no Jester or
   Executioner win, no Martyr or Grudge.
+- **Pardoner: a Yakuza role that saves a teammate from a hanging** (Kevin, Oct 16 2026: shelved as too boring).
+  2 tokens; at night picks a player, and if that player is voted Guilty the next Day, they aren't hanged, the
+  pardon is announced and the Day ends as usual. Since only a Yakuza pardons, a pardon outs its target, so the
+  choice is nearly automatic (the teammate under fire) and the target is usually hanged the next Day: its real
+  effect is a wasted Village hang (power about -1.15, near the Ballot Stuffer). Too strong at the final 3 with
+  self-pardon (1 Yakuza vs 2 Village: a pardon means a night kill, then a 1-vs-1 no trial can pass). More
+  interesting versions: pair it with a Village pardoner (the Judge in notes/role-ideas.md) under the same
+  announcement so a pardon proves nothing, or don't announce it (Guilty, nobody hanged, Day ends). Like the
+  Slippery trait, a pardon isn't a hanging (no Jester, Executioner, Bounty Hunter, Saint or Martyr effect).
+  Write-up: project file notes/pardon-yakuza-role-2026-10-16.md.
 - **Astral trait: every visit the holder makes is Astral** (Kevin, Oct 15 2026: punted). Actions still work, but
   nothing that reads or reacts to visits sees them (Tracker, Lookout, Fortune Teller, Cartographer, Scout,
   Insomniac, Veteran hits, trap hit-back, mirror reflection); attack-keyed roles (Enforcer, Bloodhound, Decoy,
