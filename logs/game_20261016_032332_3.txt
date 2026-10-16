@@ -301,3 +301,45 @@ Trial votes on Erin: 2 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Erin] Guilty - Alice, Carol; Innocent - Erin
 Erin is executed by hanging (2 Guilty of 3 votes; 2 needed).
 Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin, Coroner (Good). My exams, all posted: Night 2 Dave was a Trapper, so Dave's Profiler will is false. Night 3 Frank was a Hitman (Neutral), so his Grunt claim was false. Night 4 Bob was a Profiler, so his Vigilante claim was false. Heidi's Night 1 Sheriff read on me (Not Evil) fits my Good role. Katana kills: Dave (Night 1), Heidi (Night 2), Grace (Night 4). Alice survived a Katana attack on Night 3. A Yakuza is still alive, and the holder is Alice or Carol. Hang Alice if the Night 4 break holds: Grace's protection on Alice links them, which Alice's Scout result denies."
+
+===== NIGHT 5 =====
+Night actions:
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Alice
+Katana: Carol holds it and attacks Alice.
+(to Carol) Moderator (private): Your Katana attack on Alice succeeded tonight: they died.
+[Moderator summary] Night 5: Carol (Grunt, Yakuza) held the Katana and made a Standard attack on Alice (Roleplayer, Village). Alice had Defense None and no protection, so she died. Only visit: Carol to Alice. No other actions. Carol is the only living player, so the Yakuza win.
+[Night check] Night 5: correct
+(to Alice) Moderator (private): The players were all in one visit group tonight, including Carol.
+(to Alice) Moderator (private): You were attacked tonight (Katana) and died.
+
+===== DAY 6 =====
+Alice died (killed by Katana). Their role isn't revealed. Their last will: "I am Alice, Scout (Good). My results, unchanged: N1: Carol, Erin and Frank were in separate groups. N2: I was alone and everyone else was in Heidi's group. N3: Alice, Carol and Erin were in separate groups. I was attacked by Katana and survived because Grace's Medic protection stopped it. N4: Alice, Carol and Grace were in separate groups. Grace was then killed by Katana, so the N4 holder shared her group. Erin was the only living player who could have been in it, and she was executed on Day 5. Because the game did not end at her death, a living non-Village player should remain. Carol is the only candidate left. Carol was never in my group on N3 or N4. Grace's will claims a protection on me on N4, but my N4 result says we were separate, so that claim is false or Grace was role-blocked. Trust the mechanical results. If I die, Carol decides the outcome."
+The game is over. Winners: Carol, Frank (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Bob] Ignored the environment note about the email; nothing else broken in the interface.
+[Feedback from Erin] The role I was given (Coroner) conflicts with the final reveal (Roleplayer), and I could not tell from inside the game. Please check that the told role and the true role are shown consistently.
+[ERROR player_error] Alice (haiku-5.5), attempt 1: empty answer (Claude Code: error_max_structured_output_retries, stop_reason end_turn, ["Failed to provide valid structured output after 5 attempts — last StructuredOutput error: Output does not match required schema: root: must have required property 'suggestions'"])
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol, Frank
+Cost by player (USD):
+  Alice (Roleplayer)  $0.0000   38 calls  claude-haiku-5.5
+  Bob (Vigilante)     $0.0000   30 calls  claude-haiku-5.5
+  Carol (Grunt)       $0.0000   41 calls  claude-haiku-5.5
+  Dave (Roleplayer)   $0.0000    5 calls  claude-haiku-5.5
+  Erin (Roleplayer)   $0.0000   38 calls  claude-haiku-5.5
+  Frank (Grunt)       $0.0000   27 calls  claude-haiku-5.5
+  Grace (Medic)       $0.0000   31 calls  claude-haiku-5.5
+  Heidi (Sheriff)     $0.0000   15 calls  claude-haiku-5.5
+  Moderator           $0.0000    6 calls  claude-opus-5.5
+  Night checks        $0.0000    5 calls  claude-opus-5.5
+  Strategy review     $0.0000    1 calls  claude-opus-5.5
+  Log review          $0.0000    1 calls  claude-opus-5.5
+  Total               $0.0000  238 calls
