@@ -8226,7 +8226,9 @@
      "old": "Get the mechanics right before calling something a contradiction. Night actions are optional unless a role says 'must'. Two players can claim the same role unless the rules make it unique, or unless a role list plus confirmed roles (self-proving effects, exact-role checks) accounts for every player. Once every unshown slot is filled that way, a role listed once exists exactly once, and a second claimant is a provable liar. Roles stay hidden on death, so a dead player's slot stays open unless their role was confirmed. But 'roles can repeat' only means a claim isn't disproved. It is not evidence for either claimant, and both can be fake: a tokenless visiting role such as Tracker is the cheapest cover for a Yakuza and for a Neutral killer alike. 'Test both' means running a test that Day or night, not accepting both and moving on: ask each to target a player whose visits are known, line their claimed visits up against the visit counts, and aim a watch, an exact-role check or a mark at one of them. A duplicate where neither role is on a credible list and neither claimant has produced a checkable result is a suspect pool of two (t373). A claim of the exact role a dead victim had claimed, made by a player seen visiting that victim the night they died, is still close to a confession: weigh it with the other evidence and don't acquit on the bare possibility. Count living players and elapsed nights as of the right moment: on Day 2 only Night 1 has passed, so 'name the night of your result' is not a contradiction, and demanding it repeatedly only creates false certainty. A false 'contradiction' costs the accuser credibility, and a real one dismissed as 'roles aren't unique' frees a Yakuza.",
      "note": "Game 1008: two real Enforcers picked the same unclaimed pair, and the later claimant was hanged as a copier. His different N1 target (Ivan) was the detail he could not have copied. Added the Saint to the Unique list, since the sheet line missed it."
     }
-   ]
+   ],
+   "pinned": true,
+   "top": true
   },
   {
    "id": "t48",
