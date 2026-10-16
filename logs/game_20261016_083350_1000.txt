@@ -17,3 +17,21 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 3 to 5 Yakuza, 0 to 2 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Traits (R24) were picked by hand too: roughly 6 to 8 in all, each dealt to a player it fits, and a player may hold more than one.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Ivan.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Ivan (public): Morning all. No info yet, so I'll just suggest that anyone with a night result posts it plainly tomorrow, with the night, the target and the exact wording. I'll be watching vote totals closely.
+Judy (public): Agreed with Ivan. Nothing to go on yet. I'll be tracking stated votes against the totals from Day 2 on, and I'm wary of anyone who pushes hard without a mechanical reason.
+Mallory (public): Morning. Nothing to report yet. Agree on posting results plainly. I'd also add: compare PM patterns with how people vote once trials start.
+Niaj (public): Morning. Nothing to report. Agreed: post results plainly with night, target and wording. I'll keep a tally of stated votes against totals.
+Olivia (public): Morning. Nothing to report. Agreed on posting results plainly; I'll track votes vs totals too.
+Alice (public): Morning. Nothing to report yet. Agreed on posting results plainly. One more thing: when totals don't match stated votes, ask about vote traits before jumping to a Fixer.
+Bob (public): Morning. Nothing to report. Agreed on plain results. I'll watch for claims that break under results or votes.
+Carol (public): Morning. Nothing to report. Agreed on plain results; I'll keep my own tally of claims and votes too.
+Dave (public): Morning. Nothing to report yet. Agreed on plain results. Once the deaths start, I'll be reading the causes of death closely: a non-Katana cause means a Neutral killer is alive.
+Erin (public): Morning. Nothing to report. Agreed on plain results. I'll also keep an eye on who stays vague once claims start.
+Frank (public): Morning. Nothing to report yet. Agreed on plain results. Protective roles should keep quiet about their targets. Quiet claimants who stay vague after Day 2 are worth a look.
+Grace (public): Morning. Nothing to report. Agreed on plain results. I'll watch who visits whom once results come in.
+Heidi (public): Morning. Nothing to report. Agreed on plain results. Since everyone has said the same thing, I'll be judging people on what they actually post from Day 2 on.
+A full round passed with no public messages. The day ends.
