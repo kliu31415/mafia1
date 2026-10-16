@@ -274,3 +274,30 @@ Katana: Carol holds it and attacks Grace.
 
 ===== DAY 5 =====
 Grace died (killed by Katana). Their role isn't revealed. Their last will: "I am Grace, the Medic. I had 2 medic tokens left at my death. My protections were all Standard: Heidi on Night 1 (no attack stopped), Erin on Night 2 (no attack stopped), and Alice on Night 3 (an attack on Alice was stopped). Night 4: Standard protection on Alice. By Alice's Night 3 Scout groups (Alice, Grace, and one holder), the Night 3 Katana holder was Bob, who was executed on Day 4. Trust exact mechanical results over vague claims, and hang only on verified breaks."
+Speaking order today goes around the circle in seat order, starting with Alice.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Alice (public): Alice here. Nominating Erin. My N4 Scout groups put Alice, Carol and Grace in separate groups. Grace was then killed by Katana, so the holder had to share her group. Carol and I are outside it, so Erin is the only candidate left, and she holds the Katana. Vote Guilty.
+Alice nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Alice; No - Carol, Erin
+Nomination votes on Erin: 1 Yes (the votes are secret).
+The nomination of Erin failed (1 Yes).
+Carol (public): Carol here. No nomination from me. Alice's nomination of Erin got one Yes, and I'll vote Guilty only on a concrete break, not on pressure.
+Erin (public): Erin here. Alice's Night 4 Scout groups put her and Grace in separate groups, but Grace's will says she protected Alice that night, which links them. Alice's Night 3 groups also leave the Katana holder as Bob, Frank or Grace, and my exams rule out Bob and Frank. Alice's Scout claim doesn't hold. I'll post my Night 5 exam at the start of Day 6, and I'm not nominating yet.
+Alice (public): I'm renominating Erin. Night 4: Grace died to Katana, so the holder visited Grace and shares her group. My Scout groups put Carol and Grace separate, so Erin is the only living candidate. Grace's will claims she protected me, but my result says we were separate, so that claim is false. Erin holds the Katana, so she's Yakuza. Vote Guilty.
+(to Alice, Carol) Alice -> Carol (private): Carol: Erin is the only living player who can share Grace's group, so she's the holder. Vote Yes with me on the nomination and Guilty at trial.
+Alice nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Alice, Carol; No - Erin
+Nomination votes on Erin: 2 Yes (the votes are secret).
+Erin is put on trial (2 Yes).
+[Claim] Erin: Coroner (Good). N2: examined Dave, Trapper. N3: Frank, Hitman. N4: Bob, Profiler. 0 tokens left.
+Erin (public): Erin here, plainly. I'm Good, the Coroner, with 0 tokens left. My exams are posted: Dave was a Trapper, Frank a Hitman, Bob a Profiler. Alice's Scout claim breaks on Night 4. Grace died to Katana, so the killer visited Grace. The living Yakuza who could have done that are Alice or Carol, and either way the killer is in Grace's group. Alice says Grace was separate from her and Carol. That can't be true. Grace's public will also says she protected Alice that night, which is a visit linking them. So Alice's Night 4 result is false. Carol, if you did not visit Grace on Night 4, then the killer was Alice. Vote Innocent on me, and think hard about Alice.
+[Claim] Alice: Scout (Good). N1: Carol, Erin, Frank separate. N2: me alone. N3: Alice, Carol, Erin separate; Katana attack stopped by Grace. N4: Alice, Carol, Grace separate.
+Alice (public): Alice again. Erin's rebuttal misreads Grace's will. A will is written when the night choice is made, before results. If Grace was role-blocked, her visit to me never happened, and my Scout result is correct. Grace's killer shares her group, and Erin is the only living player who can fill it. Vote Guilty.
+[Claim] Carol: Village, no night role. No night visits or results. D3: Guilty on Frank. D4: Guilty on Bob. D5: Yes on Erin's nomination; Guilty on Erin.
+Carol (public): Carol here. I'll vote Guilty on Erin. Her Night 3 exam called Frank a Hitman after we hanged him as a Grunt, and her Dave exam contradicts Dave's own will. Her Night 4 argument also rests on Grace's will, which nobody can check. Erin, if your exams are real, explain why Frank's exact role changed after his hanging. Alice, your Night 4 Scout groups conflict with Grace's will, so please answer that too. Hanging Erin is the only concrete break we have.
+[Claim] Erin: Coroner (Good). N1: no action. N2: examined Dave (dead): Trapper. N3: examined Frank (dead): Hitman. N4: examined Bob (dead): Profiler. 0 tokens left.
+Erin (public): Erin here. I'm Good, the Coroner, and my exams are posted. Please vote Innocent on me. If I'm hanged, only Alice and Carol are left, and the Katana holder is one of them, so the Village loses the next night. Alice's Night 4 Scout result says Grace was separate from her, but Grace's public will says she protected Alice that night, and a protection is a visit that links them. Alice also names me as the holder, though I visited no living player and my exams are public. Alice's claim breaks on Night 4. Carol, if you did not visit Grace on Night 4, say so plainly. Hang Alice if you find the break.
+Trial votes on Erin: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Alice, Carol; Innocent - Erin
+Erin is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "Erin, Coroner (Good). My exams, all posted: Night 2 Dave was a Trapper, so Dave's Profiler will is false. Night 3 Frank was a Hitman (Neutral), so his Grunt claim was false. Night 4 Bob was a Profiler, so his Vigilante claim was false. Heidi's Night 1 Sheriff read on me (Not Evil) fits my Good role. Katana kills: Dave (Night 1), Heidi (Night 2), Grace (Night 4). Alice survived a Katana attack on Night 3. A Yakuza is still alive, and the holder is Alice or Carol. Hang Alice if the Night 4 break holds: Grace's protection on Alice links them, which Alice's Scout result denies."
