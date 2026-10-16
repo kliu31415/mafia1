@@ -271,6 +271,19 @@ TRAITS: dict[str, TraitInfo] = {
                                      "<circle cx='6.4' cy='7.6' r='0.8' fill='#fff'/>"
                                      "<circle cx='8' cy='6' r='0.8' fill='#fff'/>"
                                      "</svg>")),  # a blade and two dots
+    # Yakuza only, told, one use (Kevin, Oct 16 2026: once a game, Standard, at the target's house only; an every-night
+    # version would make protecting or checking the Katana's likely target a death sentence). The Werewolf's rampage on
+    # the Katana's own attack: the Yakuza know their own visits, so it rarely hits a teammate.
+    "Berserker": TraitInfo(frozenset({Alignment.EVIL}),
+                           "Once per game, on a night you hold the Katana, you may make its attack rampage: it also "
+                           "makes a Standard Katana attack on every other player who visits its target that night "
+                           "(rules R8, R24).",
+                           "One Katana rampage a game: its attack also hits everyone visiting its target.",
+                           power=0.45,
+                           mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
+                                 "<circle cx='5' cy='5' r='4.4' fill='#991b1b' stroke='#fff' stroke-width='1'/>"
+                                 "<path d='M2.6 7.4L7.4 2.6M5 1.6V3M8.4 5H7M5 8.4V7M1.6 5H3' stroke='#fff' "
+                                 "stroke-width='1.1'/></svg>")),  # a blade and four spikes
     # Village only, hidden (Kevin, Oct 13 2026): the moderator words the fake like a real defended attack, so the holder
     # can't tell. An extra Katana attack (Spare Blade) can exist, so a fake Katana attack is never provably false.
     "Paranoid": TraitInfo(frozenset({Alignment.GOOD}),
@@ -442,7 +455,9 @@ EXCLUSIVE = [frozenset({"Zealot", "Merciful"}), frozenset({"Paranoid", "Obliviou
              frozenset({"Katana Master", "Shaky"}), frozenset({"Rival", "Bonded"}), frozenset({"Rival", "Turncoat"}),
              frozenset({"Spiteful", "Turncoat"}), frozenset({"Spiteful", "Selfish"}),
              frozenset({"Spiteful", "Selfless"}), frozenset({"Spiteful", "Rival"}), frozenset({"Armed", "Spare Blade"}),
-             frozenset({"Armed", "Stolen Blade"})]
+             frozenset({"Armed", "Stolen Blade"}),
+             frozenset({"Berserker", "Katana Expert"}), frozenset({"Berserker", "Katana Master"}),
+             frozenset({"Berserker", "Spare Blade"}), frozenset({"Berserker", "Shaky"})]
 
 
 class TraitLogic:
@@ -876,6 +891,74 @@ class KatanaBoost(TraitLogic):
         game.role_state.setdefault(KATANA_BOOST_USED, []).append(change["by"])
 
 
+BERSERKER_USED = "berserker_used"  # game.role_state: Berserkers who have made their rampage
+
+
+class Berserker(TraitLogic):
+    """Berserker (rules R24): once a game, on a night the holder holds the Katana, its own attack rampages like the
+    Werewolf's at a player's house: besides the Katana's Standard attack on its target, a Standard Katana attack on
+    every other player who visited the target (not visits; Astral Visits aren't visits, so they aren't hit). The
+    moderator calls record_visits first, then the op; code lists the visitors, like the Werewolf's rampage."""
+
+    ops = {"berserker": ({"by", "player"}, set(),
+                         "{op:'berserker', by, player}: the Berserker `by`, who holds the Katana tonight, rampages "
+                         "with its attack on `player` (trait, R24); needs record_visits first; code marks it used and "
+                         "lists the extra attacks")}
+    night_note = (
+        "Berserker (a trait, R24): a Yakuza whose trait_actions has trait 'Berserker' asks to make the Katana's own "
+        "attack tonight rampage. It applies only if they hold the Katana at the end of the night (R8; the line with "
+        "the Katana vote result says who), the Katana attacks the target they named, and they weren't role-blocked "
+        "(a block stops it along with the attack, and it isn't used up). Then call record_visits first and use the "
+        "berserker op (it marks it used, even if nothing dies): code lists the extra Standard Katana attacks, on every "
+        "other player who visited the target tonight, of any faction (not visits; Astral Visits aren't visits, so "
+        "they aren't hit). Resolve each, and the Katana's own attack, like any Katana attack: Standard, cause "
+        "'Katana', katana=true, by the holder; a survivor is told only that they were attacked with the Katana. Each "
+        "counts as an Attack of the holder's own choosing (Enforcer). Tell the holder how many players the rampage "
+        "attacked and how many of those attacks killed, never who the visitors were. Otherwise don't use the op. "
+        "Never mention the trait to anyone else.")
+    action_task = (
+        "You have the Berserker trait: on a night you hold the Katana, you may make its attack rampage, also attacking "
+        "every other player who visits its target tonight (teammates included), by adding {trait: 'Berserker', "
+        "target} to trait_actions, with target the player the Katana attacks; it works only if you hold the Katana at "
+        "the end of the night and it attacks that player, and is used up only then. Leave trait_actions empty to "
+        "keep it.")
+
+    def can_act(self, game: Game, p: Player) -> bool:
+        return p.name not in game.role_state.get(BERSERKER_USED, [])
+
+    def check_op(self, game: Game, change: dict) -> str | None:
+        by, target = game.player(change["by"]), change["player"]
+        if "Berserker" not in by.traits or not acted_tonight(game, by):
+            return f"{by.name} is not a Berserker who was alive when the night began"
+        if not self.can_act(game, by):
+            return f"{by.name} has already used their Berserker rampage"
+        if by.name != game.katana_holder:
+            return f"{by.name} doesn't hold the Katana tonight ({game.katana_holder or 'nobody'} does)"
+        if target == by.name or not acted_tonight(game, game.player(target)):
+            return f"{target} isn't another player who was alive at the start of the night"
+        visits = game.night_visits.get(game.day)
+        if visits is None:
+            return "call record_visits with tonight's visits first: the rampage's victims come from them"
+        if [by.name, target] not in visits:
+            return (f"record_visits has no visit by {by.name} to {target}: the Katana attack is a visit, so call "
+                    "record_visits again with it first")
+        return None
+
+    def apply_op(self, game: Game, change: dict) -> str:
+        by, target = change["by"], change["player"]
+        game.role_state.setdefault(BERSERKER_USED, []).append(by)
+        visits = game.night_visits[game.day]
+        visitors = list(dict.fromkeys(v for v, t in visits if t == target and v not in (by, target)))
+        game.log.write("berserker", player=by, target=target, visitors=visitors, day=game.day)
+        if not visitors:
+            return (f"{by}'s rampage on {target}: nobody else visited {target}, so only the Katana's own attack on "
+                    f"{target} is made. Tell {by} it attacked 1 player and whether that killed.")
+        return (f"{by}'s rampage on {target}: besides the Katana's own attack on {target}, a Standard Katana attack, "
+                f"cause 'Katana', katana=true, by {by}, on each of {join_names(visitors)} (visitors; not visits). "
+                f"Resolve each like any Katana attack, then tell {by} how many players the rampage attacked "
+                f"({len(visitors) + 1}) and how many of those attacks killed, never who the visitors were.")
+
+
 class Stocked(TraitLogic):
     def on_dealt(self, game: Game, p: Player) -> None:
         for kind in p.tokens:  # rules R24: one more of each kind the role starts with
@@ -1218,7 +1301,8 @@ LOGIC: dict[str, TraitLogic] = {"Martyr": Martyr(), "Armed": Armed(), "Avenger":
                                 "Sleepwalker": Sleepwalker(), "Rival": Rival(), "Stolen Blade": StolenBlade(),
                                 "Narrow Escape": NarrowEscape(),
                                 "Katana Expert": KatanaBoost("Katana Expert", "Strong", "katana_expert"),
-                                "Katana Master": KatanaBoost("Katana Master", "Divine", "katana_master")}
+                                "Katana Master": KatanaBoost("Katana Master", "Divine", "katana_master"),
+                                "Berserker": Berserker()}
 assert set(LOGIC) == set(TRAITS)
 
 

@@ -1,8 +1,9 @@
 {
- "log_version": 81,
+ "log_version": 82,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["attacked", "day", "player"],
+  "berserker": ["day", "player", "target", "visitors"],
   "bond": ["players"],
   "bounty_won": ["claimed", "day", "phase", "player"],
   "briefing": ["players", "rules", "setup_note"],

@@ -225,7 +225,8 @@
        "Spare Blade",
        "Stolen Blade",
        "Katana Expert",
-       "Katana Master"
+       "Katana Master",
+       "Berserker"
       ]
      },
      "target": {

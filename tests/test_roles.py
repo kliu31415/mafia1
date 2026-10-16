@@ -1150,6 +1150,39 @@ def test_katana_expert_and_master_raise_one_katana_attack_a_game_while_holding_i
     assert bundle_error(["Katana Expert", "Katana Master"]) and bundle_error(["Katana Master", "Shaky"])
 
 
+def test_berserker_rampages_one_katana_attack_onto_every_visitor_of_its_target(game_factory):
+    # rules R8, R24 (Kevin, Oct 16 2026): once a game, Standard, only on a night they hold the Katana
+    from night import role_notes
+    from players import night_action_schema
+    from traits import BERSERKER_USED
+    game, players = game_factory(["Grunt", "Grunt", "Sheriff", "Medic", "Lookout", "Vanilla Villager"])
+    game.player("Alice").traits = ["Berserker"]
+    mod = Moderator(game, ScriptedClient(), players, Model.HAIKU_5_5, "(rules)")
+    assert "berserker" in mod.ops and "Berserker (a trait, R24)" in role_notes(game)
+    game.phase = "night"
+    assert "trait_actions" in night_action_schema(game, game.player("Alice"))["properties"]
+    game.katana_holder = "Bob"
+    with pytest.raises(ValueError, match="doesn't hold the Katana tonight"):
+        apply_ops(game, players, {"op": "berserker", "by": "Alice", "player": "Carol"})
+    game.katana_holder = "Alice"
+    with pytest.raises(ValueError, match="record_visits"):
+        apply_ops(game, players, {"op": "berserker", "by": "Alice", "player": "Carol"})
+    mod.dispatch("record_visits", {"visits": [["Dave", "Carol"], ["Erin", "Carol"], ["Bob", "Carol"],
+                                              ["Frank", "Dave"]]})
+    with pytest.raises(ValueError, match="no visit by Alice to Carol"):
+        apply_ops(game, players, {"op": "berserker", "by": "Alice", "player": "Carol"})
+    mod.dispatch("record_visits", {"visits": [["Alice", "Carol"], ["Dave", "Carol"], ["Erin", "Carol"],
+                                              ["Bob", "Carol"], ["Dave", "Carol"], ["Frank", "Dave"]]})
+    note = mod.dispatch("apply_changes", {"changes": [{"op": "berserker", "by": "Alice", "player": "Carol"}]})
+    assert "Dave, Erin and Bob" in str(note) and "Frank" not in str(note)  # a teammate visitor is hit too
+    assert game.role_state[BERSERKER_USED] == ["Alice"]
+    with pytest.raises(ValueError, match="already used"):
+        apply_ops(game, players, {"op": "berserker", "by": "Alice", "player": "Carol"})
+    assert "trait_actions" not in night_action_schema(game, game.player("Alice"))["properties"]
+    for other in ("Katana Expert", "Katana Master", "Spare Blade", "Shaky"):
+        assert bundle_error(["Berserker", other])
+
+
 def test_paranoid_is_hidden_and_gets_a_fake_attack_on_about_a_quarter_of_nights(game_factory):
     from night import role_notes
     from players import role_briefing
