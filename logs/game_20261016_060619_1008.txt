@@ -269,3 +269,82 @@ Katana: no attack (no target); nobody holds it.
 (to Olivia) Moderator (private): You tracked Dave tonight. Dave visited Niaj.
 [Moderator summary] Night 4: Nobody held the Katana and the Yakuza made no attack (all Yakuza are dead). Carol (Enforcer, 0 tokens) made a free Basic visit to Mallory. Mallory made no attack, so Carol did not attack. Dave (Arsonist) doused Carol; she is Good, so she isn't told. Doused now: Carol, Judy, Mallory, Niaj. Judy tracked Carol and saw her visit Mallory. Niaj watched Judy and saw nobody else visit her. Olivia (Roleplayer, fake Tracker) targeted Dave and got a random result: 'Dave visited Niaj'. Alice and Heidi did not act. Nobody was attacked and nobody died. Alice's trap on Heidi was not triggered. Recorded visits: Carol->Mallory, Dave->Carol, Judy->Carol, Niaj->Judy.
 [Night check] Night 4: correct
+
+===== DAY 5 =====
+Nobody died last night.
+Speaking order today goes around the circle in seat order, starting with Mallory.
+8 players are alive, so a nomination needs 5 Yes votes (rules R4).
+Mallory (public): Second quiet night in a row, and on a full moon. The last death was Frank on D3, so under the stall rule everyone loses at the start of D7 unless someone dies by N6. We should hang someone today. Everyone, please post your N4 target and exact result in one line. Judy, did you track Dave? Niaj, whom did you watch, and who visited them? Alice, did your trap go off? Carol, whom did you visit?
+[Claim] Niaj: Lookout. N1: Heidi -> Alice, Bob, Carol, Erin, Grace, Judy. N2: Bob -> only Ivan (Katana holder). N3: Judy -> nobody else. N4: Judy -> nobody else. D3: Yes/Guilty on Frank.
+Niaj (public): N4: I watched Judy again. Result: "Nobody else visited Judy." Two quiet nights, the second on a full moon, fit a passive blocker (a Vulture or an Arsonist dousing) better than a Werewolf or a Yakuza with the Katana. Mallory's stall count is right: we need a death by N6. Everyone, please post your N4 target and exact result now. If nothing breaks by round 2, I'll nominate the least-checked claim, Olivia. Her "Roleplayer, my results are random" claim explains away any visit she makes, which is the ideal cover for a Neutral.
+[Claim] Olivia: Told I'm Tracker, probably Roleplayer. N3: 'tracked' Carol -> visited me. N4: 'tracked' Dave -> visited Niaj. Trait: Cursed (hanging me kills a random Good player too). D3: Yes/Guilty on Frank.
+Olivia (public): N4: I "tracked" Dave and got "Dave visited Niaj." I'm posting it before Dave speaks so it works as a clean test. Niaj, about nominating me: I'm Cursed, and it has been in my will for days. If I'm hanged, a random living Good player also dies of the curse that night. A rope on me costs the Village two players for a claim that is untestable, not broken. Here's a better check. If Dave says his N4 target was Niaj, my results have matched three times (Carol N3, Dave N4), and I may be a real Tracker after all. If he names anyone else, my results are noise, as I said, and the least-confirmed active claim is Dave, whose tracks have only repeated what was already public. Dave, please post your N4 target and exact result.
+[Claim] Alice: Trapper. N1: trapped Heidi. N2-N4: kept trap on Heidi, it never went off. D3: Yes on nomination of Frank, Guilty on Frank.
+Alice (public): N4: my trap stayed on Heidi and did NOT go off again. Mallory's stall count is right, so we hang someone today or tomorrow at the latest. Dave, Judy, Carol, Heidi: post your N4 target and exact result now. Dave, Olivia's random result says you visited Niaj, so your answer matters. Note: Mallory (Saint) and Olivia (Cursed) both now carry claims that make a rope look costly. That's convenient, but it isn't a break. I'll nominate in round 2 on whatever breaks.
+[Claim] Carol: Enforcer. N1: Heidi, no attack. N2: Ivan + Mallory (1 token), killed Ivan. N3: Strong double Dave + Olivia, no attack. N4: Mallory, no attack. 0 tokens. D3: Yes/Guilty on Frank.
+Carol (public): N4: free Basic visit on Mallory. Result: "You did not attack anyone." So Mallory made no attack N4. On Olivia: the Cursed claim showed up only once a nomination was named, and nobody can check it, just like her Roleplayer claim. That isn't a break, but it is a pattern. Dave, Judy, Heidi: post your N4 target and exact result. If Dave didn't target Niaj and nothing else breaks, I'd back Niaj's nomination of Olivia over letting the stall clock run.
+[Claim] Dave: Tracker. N1: Judy -> visited Heidi. N2: Niaj -> visited Bob. N3: Mallory -> visited nobody. N4: Carol -> visited Mallory. D3: Yes/Guilty on Frank.
+Dave (public): N4: I tracked Carol. Result: she visited Mallory. That matches Carol's own claim, so Olivia's "Dave visited Niaj" is noise, and she says herself her results are random. On the stall clock: Mallory is right that we need a death by N6, and we shouldn't burn D6 hoping for a break. Olivia's Cursed trait appeared only after Niaj named her. That's the same pattern as her Roleplayer claim, which explains away everything. Unless Judy or Heidi posts a real break this round, I'll vote Yes on Niaj's nomination of Olivia.
+[Claim] Heidi: Auditor (Merciful: trial votes count Innocent). N1/N2/N4: no audit (no votes). N3: audited Carol -> Yes + Guilty on Frank. D3: nominated Frank, Yes, Guilty (counted Innocent).
+Heidi (public): N4: no audit, since there were no votes on D4. Here's my read. Frank most likely copied Carol's pair. If Carol had been the liar, she would have had to guess Frank's real second target, Mallory, by luck. So Frank was probably Yakuza #3. Two quiet nights fit an empty Katana, so what's keeping the game going is probably a passive Neutral (a Vulture, or an Arsonist dousing). Remember that a Roleplayer never visits anyone. Judy, please post your N4 track. If nothing breaks, I lean toward Dave over Olivia. His results have never risked anything, and an Arsonist or Vulture who fakes tracks could explain his visits. Also, if Olivia's Cursed claim is true, hanging her costs us two Good players.
+[Claim] Judy: Tracker. N1: Heidi -> nobody. N2: Ivan -> Bob (Ivan = Katana holder). N3: Mallory -> nobody. N4: Carol -> Mallory. D3: Yes/Guilty on Frank.
+Judy (public): N4: I tracked Carol. Result: "Carol visited Mallory." That matches Carol's claim and Dave's track. So Carol's N4 checks out, and Mallory made no attack N4. Nothing broke. Dave vs Olivia: both claims are untested and neither is broken. Olivia's Cursed claim only came out once she was named. Dave's results have never come out before the fact they confirm was public. We have until N6 for the stall, so a careful D6 rope still works. I'd still vote Yes today if most of us settle on one name with a reason. Heidi, which of them would you nominate?
+Mallory (public): I back Dave over Olivia. Dave has never given us a single result that wasn't already public or couldn't be checked. Niaj's list came first on N1, then Niaj's own claim on N2. My N3 'visited nobody' can't be disproved, and on N4 he tracked Carol after Carol had posted her target. A fake Tracker would do exactly that. Olivia also has a Cursed claim: if it's true, hanging her costs us two Good players, while a wrong rope on Dave costs one. Either rope resets the stall clock. Heidi, Judy: if you agree, I'll nominate Dave next round.
+Niaj (public): Nothing broke this round, so I'm changing my target from Olivia to Dave. Here's why. Heidi's right that a Roleplayer never visits, and Olivia's claim came with a real flaw: her N1 result contradicted my list, which a liar would have avoided. If her Cursed claim is true, hanging her costs us two Good players. Every one of Dave's results was posted only after the fact it "confirmed" was already public, and Bob's will flagged him too. Nominating Dave. Dave, you can defend yourself at trial.
+Niaj nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Niaj, Olivia, Alice, Carol, Heidi, Judy, Mallory; No - Dave
+Nomination votes on Dave: 7 Yes (the votes are secret).
+Dave is put on trial (7 Yes).
+Dave (public): I'm a real Tracker. Every result I've posted is something you can check. My N3 track of Mallory matched Judy's own track of Mallory, and my N4 track of Carol matched Judy's again. Of course my results back up public claims: that's why I picked those targets. Tracking an unclaimed player gets you "visited nobody", which tells you nothing. Carol's Strong double hit me on N3 and found no attack. Nobody has ever named me as a visitor anywhere I didn't say I went. Niaj watched Judy on N3 and N4, and nobody but a lone Tracker could have gone unseen. There is no break here. You said it yourselves: "duplicate isn't a break", "untested isn't broken". We have until N6, so tonight is free. Judy, track me. Niaj, watch whoever I name tomorrow. If anything breaks, hang me on D6. Today's rope on me is a vibe rope. Vote Innocent.
+(to Dave, Olivia) Dave -> Olivia (private): If they hang me today and I flip Village, you're tomorrow's rope with nothing new against you. Vote Innocent and let tonight's tracks settle it.
+(to Alice, Dave) Dave -> Alice (private): There's no break on me, only 'his results confirm public claims', and that's what checking claims looks like. We have until N6. Vote Innocent, have Judy track me tonight, and hang me D6 if anything breaks.
+Heidi (public): Olivia and Alice: what exactly did Dave's PMs say? Dave, nobody can check your tracks, because each one came after the fact it confirmed was already public. I'm voting Guilty, but my vote counts as Innocent, so 5 of the other 7 have to vote Guilty to hang him.
+[Claim] Judy: Tracker. N1: Heidi -> nobody. N2: Ivan -> Bob (Ivan = Katana holder). N3: Mallory -> nobody. N4: Carol -> Mallory. D3: Yes/Guilty on Frank. D5: Yes on Dave's nomination, Guilty on Dave.
+Judy (public): I'm voting Guilty. Dave says his tracks are checks on claims, but every result he posted came after the thing it confirmed was already public, so none of them risked anything. With the stall clock running, a rope today on the least-tested active claim is right. Olivia and Alice, please post what Dave's PMs said. If Dave is Village, tomorrow we look at whoever pushed hardest and at Mallory.
+[Claim] Mallory: Saint (unique). No night action, no visits. Tracked N3 by Dave+Judy: nobody. D3: Yes/Guilty on Frank. D5: Yes on Dave nom, Guilty on Dave.
+Mallory (public): I'm voting Guilty. None of Dave's results ever came before the fact they confirmed. Olivia, Alice: post Dave's PMs word for word before the vote.
+[Claim] Niaj: Lookout. N1: Heidi -> Alice, Bob, Carol, Erin, Grace, Judy. N2: Bob -> only Ivan. N3/N4: Judy -> nobody else. D3: Yes/Guilty on Frank. D5: nominated Dave, Guilty on Dave.
+Niaj (public): I'm voting Guilty. Dave, none of your tracks ever risked anything: each one came after the fact it confirmed was already public. Olivia and Alice, please post Dave's PMs word for word before the vote. If Dave turns out Village, we look at Olivia and Alice next.
+[Claim] Olivia: Told I'm Tracker, probably Roleplayer. N3: 'tracked' Carol -> visited me. N4: 'tracked' Dave -> visited Niaj. Trait: Cursed. D3: Yes/Guilty on Frank. D5: Yes on Dave nom, Guilty on Dave.
+Olivia (public): Dave's PM to me, word for word: "If they hang me today and I flip Village, you're tomorrow's rope with nothing new against you. Vote Innocent and let tonight's tracks settle it." That's pressure, not evidence. He gave no new fact, only a threat about tomorrow. I'm voting Guilty. Every one of his results was posted after the fact it confirmed was already public, and the stall clock means we can't wait for a perfect break. Alice, please post his PM to you so we can compare the two.
+[Claim] Alice: Trapper. N1: trapped Heidi. N2-N4: kept trap on Heidi, it never went off. D3: Yes/Guilty on Frank. D5: Yes on Dave nom, Guilty on Dave.
+Alice (public): Dave's PM to me, word for word: "There's no break on me, only 'his results confirm public claims', and that's what checking claims looks like. We have until N6. Vote Innocent, have Judy track me tonight, and hang me D6 if anything breaks." It's softer than the PM Olivia posted: no threat, just a request to wait. I'm still voting Guilty. The stall clock is real, and Dave is the least-tested active claim.
+[Claim] Carol: Enforcer. N1: Heidi, no attack. N2: Ivan + Mallory (1 token), killed Ivan. N3: Strong double Dave + Olivia, no attack. N4: Mallory, no attack. 0 tokens. D3: Yes/Guilty on Frank. D5: Yes/Guilty on Dave.
+Carol (public): I'm voting Guilty. Dave's tracks never risked anything, and the stall clock means we can't wait. Both of his PMs asked for Innocent and a delay. If Dave turns out Village, tomorrow I look at Mallory's Saint claim and at whoever pushed this rope without a reason of their own.
+Dave (public): Last words. Look at what you're hanging me for: "his results confirmed public claims." That's what a Tracker who checks claims gets. On N4 I tracked Carol and got Carol -> Mallory. Judy got exactly the same result on her own. Two real tracks agreeing doesn't break anything. Carol's Strong double hit me on N3 and found no attack. No Lookout has ever seen me anywhere I didn't claim. Olivia's "result" is random by her own account. Heidi pushed Dave over Olivia, and right after Olivia announced a Cursed trait, Niaj switched his nomination from her to me. Ask who gains from a rope landing on a working investigator. The stall clock runs to N6, so tonight costs you nothing: Judy tracks me, Niaj watches who I name, and if anything breaks, hang me D6. If you hang me today and I'm Village, the rest of the town has to explain it tomorrow. Vote Innocent.
+Trial votes on Dave: 7 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Alice, Carol, Dave, Judy, Mallory, Niaj, Olivia; Innocent - Heidi
+Dave is executed by hanging (7 Guilty of 8 votes; 5 needed).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Dave - Tracker. N1: tracked Judy -> she visited Heidi. N2: tracked Niaj -> he visited Bob (matches his Lookout watch). N3: tracked Mallory -> visited nobody (fits a Saint). N4: tracked Carol -> she visited Mallory (matches Carol's claim). Olivia's "Dave visited Niaj" result was false: I tracked Carol. If I die, look hard at Olivia (unverifiable Roleplayer + Cursed claims) and Heidi."
+The game is over. Winners: Alice, Bob (dead), Carol, Frank (dead), Heidi, Judy, Mallory, Niaj, Olivia. Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Ivan] The Oathsworn trigger timing ("dies the same night it marks" counts) should be made explicit in the role text.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Carol, Frank, Heidi, Judy, Mallory, Niaj, Olivia
+Cost by player (USD):
+  Alice (Trapper)         $0.0000   30 calls  claude-opus-5.5
+  Bob (Mirror Maker)      $0.0000   11 calls  claude-opus-5.5
+  Carol (Enforcer)        $0.0000   30 calls  claude-opus-5.5
+  Dave (Arsonist)         $0.0000   31 calls  claude-opus-5.5
+  Erin (Bounty Hunter)    $0.0000    5 calls  claude-opus-5.5
+  Frank (Enforcer)        $0.0000   18 calls  claude-opus-5.5
+  Grace (Ballot Stuffer)  $0.0000    7 calls  claude-opus-5.5
+  Heidi (Auditor)         $0.0000   29 calls  claude-opus-5.5
+  Ivan (Oathsworn)        $0.0000   13 calls  claude-opus-5.5
+  Judy (Tracker)          $0.0000   30 calls  claude-opus-5.5
+  Mallory (Saint)         $0.0000   31 calls  claude-opus-5.5
+  Niaj (Lookout)          $0.0000   30 calls  claude-opus-5.5
+  Olivia (Roleplayer)     $0.0000   30 calls  claude-opus-5.5
+  Moderator               $0.0000   10 calls  claude-opus-5.5
+  Night checks            $0.0000    4 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.0000  311 calls
