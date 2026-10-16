@@ -95,9 +95,10 @@
   "game_20261015_080049_1001",
   "game_20261016_032332_3",
   "game_20261016_032352_2",
-  "game_20261016_060619_1008"
+  "game_20261016_060619_1008",
+  "game_20261016_071747_1005"
  ],
- "next_id": 417,
+ "next_id": 426,
  "entries": [
   {
    "id": "t1",
@@ -319,6 +320,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 0.8,
      "note": "Frank: a result that explains a public death has to go up on your first turn. Niaj's full N1 visitor list anchored every later deduction (Mallory)."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Carol claimed with the full map on D2 before Bob's counterclaim, which made his look reactive. Niaj's prompt N1/N2 counts, Frank and Ivan also filed 'helped'."
     }
    ],
    "against": [
@@ -1498,6 +1504,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.4,
      "note": "Moderator, Bob, Dave, Heidi, Alice: Alice's N3 Standard shot on Dave came from a clash between claims, not a break in his own claim, and it killed a Village Roleplayer. Posting the role the kill revealed did void his maps."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Alice and the moderator filed 'helped'. She fired on N2 at a break in Judy's own claim and the kill settled the Bob/Dave dispute."
     }
    ],
    "against": [
@@ -1555,6 +1566,11 @@
      "game": "game_20261015_041156_663825",
      "weight": 0.16,
      "note": "Bob filed 'hurt': the 'set a trigger by Day 2-3 and fire' urgency again preceded a shot on an untested claim (Heidi on Medic Frank, N2). Partly a misapplication, since the entry forbids testing an unverified claim. This is the second report that the urgency line outweighs that caveat."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Judy (Jester, 1.0) filed 'hurt': Alice spent all 3 tokens on a Jester who blocks no win and had none left for the Werewolf. Weak: Judy had claimed a Neutral killer's Defense, and the revealed role confirmed the Village's case."
     }
    ],
    "history": [
@@ -3098,6 +3114,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.16,
      "note": "Grace 'helped': she voted Guilty on Heidi and on teammate Frank and never defended him, which kept her hidden until her own test nominations drew attention."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Bob, Carol, Heidi, Mallory and the moderator. Mallory defended Bob and stated Innocent, the 3 Innocents were matched to Bob, Judy and Mallory, and she was later named the N2 holder. Grace voted Guilty and stayed clean on D2."
     }
    ],
    "against": [
@@ -5650,6 +5671,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Moderator, Heidi: the Frank mis-hang ignored the break requirement. Judy even said 'a duplicate isn't a mechanical break' and then voted Guilty. The D5 hang of Arsonist Dave under the stall clock followed the 'hang the best case' clause and won."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: every Village player and the moderator filed 'helped'. All three hangs (Bob on map + charm, Grace on an impossible block, Frank on scent subtraction) rested on mechanics and hit non-Village players."
     }
    ],
    "against": [
@@ -6285,6 +6311,11 @@
      "game": "game_20261014_141543_1005",
      "weight": 1.0,
      "note": "Ivan (1.0) filed 'helped' on 'avoid announcing tonight's target': his publicly stated check wishes told Grace whom to frame."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Dave, Erin, Heidi and Olivia: Dave never announced his release target, and Olivia hid her last token and N3 target, which caught the Werewolf."
     }
    ],
    "against": [
@@ -6744,6 +6775,11 @@
      "game": "game_20261016_032332_3",
      "weight": 0.16,
      "note": "Frank: no Day PMs passed between the teammates, so no Yakuza pair was ever visible."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Grace and Mallory: no teammate PMs, so no Yakuza link came from the PM ledger."
     }
    ],
    "against": [
@@ -7355,6 +7391,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.4,
      "note": "Moderator (0.4), Carol (0.16): Heidi (N1) and Bob (N2) survived Katana attacks and Carol confirmed both saves. Both were Village, yet the town hanged Heidi on her impossible list. A Medic-confirmed survival is a strong town read."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Judy and the moderator: Judy's Standard Defense claim on a Katana survival was read as a Neutral killer or a lie, which didn't save Bob and led to Alice's shot."
     }
    ],
    "against": [
@@ -9302,6 +9343,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 0.5,
      "note": "Grace filed 'hurt' on 'agree covers that fit tokens and real visits'. This is a misapplication: she took a no-visit cover as holder, against the entry."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Bob, Grace and Erin (1.0 each) filed 'hurt': Bob's agreed Lookout cover fit the map but lost to a real Kitsune and a group of 3. Partly a misapplication: no check was made against what a real protector at the same target would say. See t421."
     }
    ],
    "history": [
@@ -9758,6 +9804,11 @@
      "game": "game_20261013_110728_1005",
      "weight": 1.0,
      "note": "Alice, Carol, Dave, Erin, Heidi, Ivan, Niaj and the moderator: the N1 count (7 visitors, 4 visited) was first read as naming Frank alone. Frank and Dave showed that a holder acting twice and a Sleepwalker left three fits, and he was acquitted 3-9; the real break was Bob's fake visit. Niaj adds that a count matching the claims shows only that the lies balance, not that each claim is true."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: FT counts placed against every claimed visit (Bloodhound token, charm, profile) settled almost every vote. N1 2/3 fixed Judy's visitors, N2 3/6 broke Mallory's will and Grace's block, and N3 2/2 exposed the fake notices. Everyone and the moderator filed it."
     }
    ],
    "against": [],
@@ -10812,6 +10863,11 @@
      "game": "game_20261012_095749_18810",
      "weight": 1.0,
      "note": "Olivia (1.0) filed 'hurt': her current will was replaced by a Fabricator forgery the night she died, so only her public statements survived. A real limit the tip doesn't mention; t52 now carries the forgery check and the 'say leans in public' line."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005, moderator (1.0): Mallory applied 'write tonight's plan and its readings in your will' to a fake cover and pre-wrote a made-up result, which Olivia's real visit disproved after her death. An audience misfit (the tip is for honest roles); t422 carries the Yakuza side."
     }
    ],
    "history": [
@@ -11602,6 +11658,11 @@
      "game": "game_20261015_041156_663825",
      "weight": 1.0,
      "note": "Not applied: Grace read Evil, claimed nothing, voted Yes on her own nomination and said 'judge me on that'. She was hanged 7-0, won as Jester, and her revenge killed the revealed Mayor. Moderator, Alice, Erin, Dave, Bob filed 'helped' or non-application 'hurt'."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Dave, Erin and Judy filed 'helped'. The town refused to hang Judy despite her escalating claims, and she died at night with no win or revenge."
     }
    ],
    "against": [
@@ -11644,6 +11705,11 @@
      "game": "game_20261013_045457_890072",
      "weight": 0.16,
      "note": "Frank (Grunt, won) filed 'wrong': sparing Erin was predictable and gave the Village no progress, and her self-nominations ate rounds for four Days. Weak: the cost was the Day 4 no-hang, which t236 covers (sparing the Jester is no reason to skip the Day's hang), not the refusal to hang her."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Grace (1.0) filed 'wrong': a Vigilante's night kill on the likely Jester beat leaving her alive, since it fires no revenge and the revealed role confirmed Dave. A refinement rather than a contradiction; t425 carries it."
     }
    ],
    "history": [
@@ -12198,6 +12264,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Alice, Bob, Judy, Mallory, Niaj, Heidi: both Yakuza were dead after N2, yet the game went on through quiet nights. The town read a passive win-blocker (Arsonist) behind an untested claim and hanged Dave D5."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Dave and Heidi: saying before a hang 'if the game doesn't end, someone is still hiding' kept the hunt on the Werewolf after the Yakuza leads were gone."
     }
    ],
    "against": [],
@@ -13237,6 +13308,11 @@
      "game": "game_20261016_032332_3",
      "weight": 0.48,
      "note": "Carol, Frank, Dave: the Katana took Sheriff Heidi, Medic Grace and the Scout claimant in turn. The Village was left with no reliable source."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Bob, Carol, Grace and Mallory: killing Cartographer Carol and guessing on FT Niaj were the right targets. Carol died a night too late, and Drowsy saved Niaj, whose counts then broke two Yakuza."
     }
    ],
    "against": [
@@ -13949,6 +14025,11 @@
      "game": "game_20261010_053523_23052",
      "weight": 0.16,
      "note": "Alice and Bob: repeating 'unverified' changed no votes. Name the exact conditional link and ask the accused to disprove it, or offer a concrete alternative explanation."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Heidi and Erin (1.0 each): Heidi's speculative 'Mallory blocked Erin as Pharmacist' replaced a clean Drowsy fit that the N1 counts already allowed. Erin warns that a story changed to one the counts rule out gets turned against you."
     }
    ],
    "against": [],
@@ -16494,6 +16575,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.4,
      "note": "Moderator (0.4): Grace's public Grunt claim was the case that hanged her. Frank's Oracle cover with a publicly checkable wrong guess drew the Evil read and broke within a Day (Frank, Grace, Erin)."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Erin and Niaj: Grace's unverifiable Oracle cover plus an invented anomaly, and Mallory's cover, were broken by counting roles, not trackers. Covers must be checked against FT counts and Cartographer groups too."
     }
    ],
    "against": [
@@ -16778,6 +16864,11 @@
      "game": "game_20261015_080049_1001",
      "weight": 1.0,
      "note": "Alice (Hitman, won, 1.0): her Astral Oracle cover was never broken by any visit result; only a profile reached it, too late."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Frank (Werewolf, 1.0) filed 'helped' as not applied: his Prosecutor cover with 2 unused tokens drew 'prosecute to clear yourself' and became the case against him."
     }
    ],
    "against": [
@@ -18339,6 +18430,11 @@
      "game": "game_20261013_142006_1001",
      "weight": 1.0,
      "note": "Dave (Cartographer, 1.0): his N1 sizes in the will (a group of 5) drove D3, but he took no map on N1, announced on D2 that he could check visit claims, and died N2 with a token unused and his N2 map of Mallory unposted."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Carol (1.0) mapped Judy, the likeliest target after a Day 1 push. The group of 3 plus the charm claim named holder Bob. She died N2 with her N2 map unposted."
     }
    ],
    "against": [],
@@ -18887,6 +18983,11 @@
      "game": "game_20261015_070737_7",
      "weight": 0.4,
      "note": "The Yakuza skipped N1, and Sheriff Alice used the night to catch Dave Evil. The moderator called it lost tempo."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Bob (1.0): the N1 Katana on loud Day 1 player Judy was swallowed by a charm, and the map put the holder in a group of 3. Hit a quiet player."
     }
    ],
    "against": [
@@ -19614,6 +19715,11 @@
      "game": "game_20261015_080049_1001",
      "weight": 1.0,
      "note": "Carol, Dave, Erin, Grace, Ivan and Judy (1.0 each): Niaj's profile broke Ivan's Lookout cover on Day 2 and later Frank's Tracker cover; the decoy split broke the Eavesdropper fallback."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Erin (Profiler, 1.0): Alice's kill showed Judy held one of the listed roles, so Judy's true role was among the other two. Pair a profile with public exact-role results before posting."
     }
    ],
    "against": [],
@@ -19940,6 +20046,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Alice, Bob, Carol, Frank, Heidi, Judy, Mallory: the Neutral-killer suspect list caught Arsonist Dave behind a Tracker claim once the Yakuza were gone."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Alice, Bob, Frank, Heidi, Olivia and the moderator: the N2 Werewolf cause started a deliberate hunt among no-visit claimants, and Frank was hanged before the full moon."
     }
    ],
    "against": [
@@ -20422,6 +20533,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.16,
      "note": "Dave (0.16) filed 'hurt': the Vigilante read the kill-token line as allowing a shot on a contested map. This is a misapplication: a clash between claims is not a break in the target's own claim. Alice herself filed it as a weak break."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Carol, Frank, Niaj and Olivia (1.0 each) filed 'hurt' on 'spend one-shot tokens early'. Olivia held her last Bloodhound token behind a 0-tokens bluff, and the later, targeted use caught the Werewolf. See new t417. The entry already exempts reactive tokens, but it has no hidden-token exception."
     }
    ],
    "history": [
@@ -20763,6 +20879,11 @@
      "game": "game_20261012_135656_913688",
      "weight": 1.0,
      "note": "Erin, Ivan, Grace: the Judy/Niaj DIFFERENT pair became a case only once an anchor arrived (Judy's trap death fixing her as holder, plus Grace's counts). Niaj was hanged 10-1."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005 (weak link): no Seer, skip."
     }
    ],
    "against": [],
@@ -21173,6 +21294,11 @@
      "game": "game_20261014_112108_1000",
      "weight": 1.0,
      "note": "Insomniac roles, the Trapper's visit and Judy's watch on Dave left Carol as the one unexplained visitor on D3."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: the moderator, Heidi, Grace and Ivan say one combined nightly visit ledger exposed fake results, ruled out blockers and showed which attack notices were Paranoid."
     }
    ],
    "against": [],
@@ -21632,6 +21758,11 @@
      "game": "game_20261013_082417_386136",
      "weight": 1.0,
      "note": "Erin (Bloodhound, 1.0): she spent her scent on vote lead Dave and now says a token should split an earlier trio (if A+B+C showed 1, scenting B says whose attack it was), and that the revealed Yakuza in a trio needn't be the attacker. Her public claim got her killed by the Ritualist, as the entry warns."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Olivia, Alice and Carol (1.0 each): subtracting the claimed shots and releases from cumulative trio totals gave Frank exactly 2 attacks, a rampage, and he was hanged."
     }
    ],
    "against": [],
@@ -23373,6 +23504,11 @@
      "game": "game_20261013_125440_1028",
      "weight": 1.0,
      "note": "Judy (Kitsune) and the moderator: her N2 charm on Surveyor Carol swallowed the Katana and saved the game's key investigator. She then announced the held attack, couldn't charm herself, and on N3 Pharmacist Erin blocked and killed her in one visit; the release (aimed at real Auditor Dave on a claim-vs-claim read) never fired."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Dave (1.0) charmed Judy on N1, swallowed the Katana, released it on N2 on a suspect whose own claim had broken, and posted the release so it accounted for the extra Katana attack in the counts."
     }
    ],
    "against": [],
@@ -23992,6 +24128,11 @@
      "game": "game_20261012_135656_913688",
      "weight": 1.0,
      "note": "Grace, moderator: reading the scent totals as a cumulative table, with Judy's proven N2 attack subtracted, gave the town a correct pool rather than a false second killer."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: the town read Olivia's counts as a cumulative table and subtracted Dave's release and Erin's 0, which pinned the Werewolf."
     }
    ],
    "against": [],
@@ -24259,6 +24400,11 @@
      "game": "game_20261015_064601_942050",
      "weight": 0.72,
      "note": "Moderator (0.4), Carol, Grace (0.16 each): Alice's fake 'FT' count of 5 visitors was below the six claimed visitors. Frank pointed it out, yet most of the town used it to narrow the holder onto Villagers Grace, Carol and Bob. Carol and Grace: ask for exact targets, not counts."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Carol, Niaj and Olivia checked dead players' wills against the FT/Cartographer/Bloodhound visits. Mallory's 'tracked Olivia, no visits' and Carol's forged will broke at once."
     }
    ],
    "against": [],
@@ -24307,6 +24453,11 @@
      "game": "game_20261013_142006_1001",
      "weight": 1.0,
      "note": "Alice (Vulture, lost), Olivia and the moderator: Alice's invented Fortune Teller counts fit every public claim but missed Bob's unseen paid second visit on N2. She retreated to Roleplayer, then Vulture, and was hanged 8-1."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Mallory (1.0): a fake visit claim adds a visited player under posted counts. Name a really visited target (your own Katana victim), not a quiet bystander."
     }
    ],
    "against": [],
@@ -24384,6 +24535,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 0.8,
      "note": "Heidi wrongly treated Frank's true Merciful claim as convenient. Mallory: one Guilty more than the declared traits predict usually means a hidden Zealot, often the nominee. Dave: as a Zealot nominee his own vote counted Guilty, so he needed to lobby early and in public."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Bob and Mallory (1.0 each): Mallory was Merciful, her forced Innocent plus a public lean towards Bob marked her. With a forced vote, say little on a doomed teammate's trial."
     }
    ],
    "against": [],
@@ -25227,6 +25383,11 @@
      "game": "game_20261013_125440_1028",
      "weight": 1.0,
      "note": "Bob, Erin, Niaj, Frank, Grace, moderator (1.0 each): Niaj's 'Dave visited no one' clashed with Dave's will (audited Bob); Bob's N3 count of 5 visitors left that audit out to back Niaj. Once Bob died to the Enforcer the town read the link in reverse and hanged Niaj at 4 alive. Niaj had also announced his N4 track of Grace before 'catching' her. One game."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Mallory, Grace and Niaj: Mallory's fake track and forged will contradicted the posted FT counts and other players' token visits, which exposed her as the N2 holder."
     }
    ],
    "against": [],
@@ -25449,7 +25610,7 @@
   {
    "id": "t392",
    "audience": "Everyone",
-   "tip": "The hidden Paranoid trait (Village only) tells its holder on about a quarter of nights that they were attacked and survived, when nobody attacked them. The made-up attack is the Katana's about two times in three and otherwise a Vigilante's or a Serial Killer's (always the Katana's when neither role can be in the game), worded exactly like a real notice. So a lone attack notice may be nothing at all when no protector reports a save, no trap fired, no visitor was seen and no other attack happened that night. Holder: report it as 'told the Katana (or a Serial Killer, or a Vigilante) attacked me; cause unconfirmed', never as proof of a second blade, a hidden Serial Killer, a protector or a hostile Vigilante. Town: don't build a Spare Blade, Stolen Blade or Serial Killer theory on one such notice, and don't treat the survivor as suspect over it. A real attack is backed by a seen visitor, a protector's save notice, a fired trap or a cause of death of the same kind.",
+   "tip": "The hidden Paranoid trait (Village only) tells its holder on about a quarter of nights that they were attacked and survived, when nobody attacked them. The made-up attack is the Katana's about two times in three and otherwise a Vigilante's or a Serial Killer's (always the Katana's when neither role can be in the game), worded exactly like a real notice. Several players can hold it in one game, so two such notices on one night are quite possible: 'two fakes at once is unlikely' is no argument. Test every notice against the visit data. A real Katana or Serial Killer attack is a visit, so once every claimed visit is placed it must fit the Fortune Teller's visited/visitor counts and the Cartographer's groups. A Veteran on alert who was told nobody visited and also got an attack notice holds a fake one. Holder: report it as 'told the Katana attacked me; cause unconfirmed' (with your alert result if you have one), never as proof of a second blade, a hidden Serial Killer, a protector or a hostile Vigilante. Town: don't build a Spare Blade, Stolen Blade or Serial Killer theory on one such notice, and don't treat the survivor as a suspect over it, above all when the push comes from a player the counts don't clear. A real attack is backed by a seen visitor, a protector's save notice, a fired trap, a cause of death of the same kind or a free slot in the counts.",
    "status": "active",
    "support": [
     {
@@ -25461,6 +25622,11 @@
      "game": "game_20261014_141543_1005",
      "weight": 1.0,
      "note": "Alice (1.0): her unexplained 'attack survival' was her hidden Paranoid trait; she didn't build a case on it."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Alice, Dave, Erin, Heidi, Ivan, Niaj and Olivia filed 'helped'. Discounting the N3 Paranoid notices via the FT counts stopped the Werewolf's push to hang Ivan."
     }
    ],
    "against": [],
@@ -25474,6 +25640,12 @@
      "change": "edited",
      "old": "The hidden Paranoid trait (Village only) tells its holder on about a quarter of nights that they were attacked and survived, when nobody attacked them. The fake attack is usually 'the Katana'. So a lone attack notice may be nothing at all when no protector reports a save, no trap fired, no visitor was seen and no other attack happened that night. Holder: report it as 'told the Katana attacked me; cause unconfirmed', never as proof of a second blade, a protector or a hidden killer. Town: don't build a Spare Blade or Stolen Blade theory on one such notice, and don't treat the survivor as suspect over it. A real attack is backed by a seen visitor, a protector's save notice or a fired trap.",
      "note": "Revision: the Paranoid trait now also fakes Vigilante and Serial Killer attacks."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "edited",
+     "old": "The hidden Paranoid trait (Village only) tells its holder on about a quarter of nights that they were attacked and survived, when nobody attacked them. The made-up attack is the Katana's about two times in three and otherwise a Vigilante's or a Serial Killer's (always the Katana's when neither role can be in the game), worded exactly like a real notice. So a lone attack notice may be nothing at all when no protector reports a save, no trap fired, no visitor was seen and no other attack happened that night. Holder: report it as 'told the Katana (or a Serial Killer, or a Vigilante) attacked me; cause unconfirmed', never as proof of a second blade, a hidden Serial Killer, a protector or a hostile Vigilante. Town: don't build a Spare Blade, Stolen Blade or Serial Killer theory on one such notice, and don't treat the survivor as suspect over it. A real attack is backed by a seen visitor, a protector's save notice, a fired trap or a cause of death of the same kind.",
+     "note": "Game 1005: Ivan and Dave both got fake N3 Katana notices (both Paranoid). Niaj's 2/2 count and Ivan's 'no visitors' alert showed they were fake, and Frank's 'two Paranoids is unlikely' push failed. Every Village player filed it."
     }
    ]
   },
@@ -25675,7 +25847,7 @@
   {
    "id": "t402",
    "audience": "Jester",
-   "tip": "Don't beg for the rope or announce a night action as bait ('I'll shoot X tonight, hang me to stop it'). Experienced tables read it as Jester play, refuse the hang, and a Vigilante or killer removes you at night, which wins nothing. Don't fake a visit result about the first night victim either: their real visitors come out the next Day and break it, and a lie with no motive reads as Jester or Roleplayer. Your best window is the first Day with nominations. Look like a real Yakuza: quietly defend the player the town is hanging, vote with them, keep one consistent story, and once the table says 'Jester' aloud, stop making new claims.",
+   "tip": "Never fake-claim a Neutral killer's traits (e.g. 'Standard Defense' to explain a survival). It makes you the top target for a Vigilante's Strong shot or a Kitsune's release at night, and dying at night wins nothing. Don't beg for the rope or announce a night action as bait ('I'll shoot X tonight, hang me to stop it') either. Experienced tables read it as Jester play, refuse the hang, and a Vigilante or killer removes you at night. Don't fake a visit result about the first night victim: their real visitors come out the next Day and break it, and a lie with no motive reads as Jester or Roleplayer. Your best window is the first Day with nominations: make your suspicious move early on a Day with trials left, so the fix is a hang that Day, not a night shot. Look like a real Yakuza: quietly defend the player the town is hanging, vote with them, keep one consistent story, and once the table says 'Jester' aloud, stop making new claims.",
    "status": "active",
    "support": [
     {
@@ -25689,6 +25861,12 @@
     {
      "game": "game_20261014_141543_1005",
      "change": "added"
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "edited",
+     "old": "Don't beg for the rope or announce a night action as bait ('I'll shoot X tonight, hang me to stop it'). Experienced tables read it as Jester play, refuse the hang, and a Vigilante or killer removes you at night, which wins nothing. Don't fake a visit result about the first night victim either: their real visitors come out the next Day and break it, and a lie with no motive reads as Jester or Roleplayer. Your best window is the first Day with nominations. Look like a real Yakuza: quietly defend the player the town is hanging, vote with them, keep one consistent story, and once the table says 'Jester' aloud, stop making new claims.",
+     "note": "Game 1005: Judy (Jester, lost, 1.0) escalated from thanking a Medic to 'innate' to 'Standard Defense'. The table called it Jester baiting and Alice shot her on N2. Moderator agrees."
     }
    ]
   },
@@ -25722,6 +25900,11 @@
      "game": "game_20261015_041156_663825",
      "weight": 0.4,
      "note": "Dave (Mayor) revealed, voted Guilty on Jester Grace in a 7-0 hang (his vote doubled), and the revenge killed him. His doubled vote also made Heidi misread the 7-from-6 total as a Ballot Stuffer. One low-strength game."
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Heidi (1.0) revealed on D3, when it struck her from the no-visit Werewolf pool and her doubled vote backed Olivia's count. Earlier would have drawn the Katana."
     }
    ],
    "against": [],
@@ -25976,7 +26159,7 @@
   {
    "id": "t415",
    "audience": "Yakuza",
-   "tip": "(Oathsworn) Your oath fires only if you are dead when the next Night begins, so marking costs nothing on a night you survive, and an unspent token dies with you. Spend it on any night your own death is a real risk: you hold the Katana and attack, an Enforcer is claimed or likely, a Veteran, trap or mirror may be in play, or you are one of the last unclaimed players. Mark a key investigator or a player the Village's protectors and watchers keep visiting: the mark kills them and every visitor that next Night through any protection. Don't save it 'for a better moment'.",
+   "tip": "(Oathsworn) Your oath fires only if you are dead when the next Night begins, so marking costs nothing on a night you survive, and an unspent token dies with you. A Day hang triggers it only if you marked the night before, and you can't mark once you are on trial, so a Day 2 hang can come before any 'night I expect to die'. Spend it on Night 1, or on any night your own death is a real risk: you hold the Katana or attack, you make a visit a map or watch could expose, an Enforcer is claimed or likely, a Veteran, trap or mirror may be in play, or you are one of the last unclaimed players. Mark a key investigator, or a player the Village's protectors and watchers keep visiting: the mark kills them and every visitor that next Night through any protection. Don't save it 'for a better moment'.",
    "status": "active",
    "support": [
     {
@@ -25990,6 +26173,12 @@
     {
      "game": "game_20261016_060619_1008",
      "change": "added"
+    },
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "edited",
+     "old": "(Oathsworn) Your oath fires only if you are dead when the next Night begins, so marking costs nothing on a night you survive, and an unspent token dies with you. Spend it on any night your own death is a real risk: you hold the Katana and attack, an Enforcer is claimed or likely, a Veteran, trap or mirror may be in play, or you are one of the last unclaimed players. Mark a key investigator or a player the Village's protectors and watchers keep visiting: the mark kills them and every visitor that next Night through any protection. Don't save it 'for a better moment'.",
+     "note": "Game 1005: Bob (Oathsworn) attacked on N1, was mapped and hanged on D2 with the oath unspent. Bob and Grace (1.0 each) say mark on N1 or on any visible-visit night."
     }
    ]
   },
@@ -26009,6 +26198,186 @@
    "history": [
     {
      "game": "game_20261016_060619_1008",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t417",
+   "audience": "Village",
+   "tip": "(Village investigators and protectors with tokens) Understating your remaining tokens in public (e.g. a Bloodhound saying '0 tokens left' while holding one) keeps the Katana and blockers off your last use, because the Yakuza rank kills by the results still to come. Spend the hidden token on your best lead, and when you post the result, explain the bluff in the same message and cite the role's starting count ('Bloodhounds start with 2; I hid one'). Tables accept that at once. An accused who builds a defense on 'you said 0' is attacking a normal bluff, not the result, so judge the result against the visit data instead. Don't use the bluff to hide a result that already bears on a vote (t1), and keep the true count in your will.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Olivia claimed 0 Bloodhound tokens on D3, survived N3, spent her last token on Frank and caught the Werewolf. Alice, Carol, Erin, Heidi, Ivan, Niaj and Olivia all filed it (1.0 each). Frank's 'you said 0' defense failed."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t418",
+   "audience": "Everyone",
+   "tip": "Reading a Werewolf. A rampage at a player's house Strong-attacks the target and every other visitor, so causes of death come in pairs: a victim with Katana + Werewolf causes plus a second victim with Werewolf alone means the rampage hit the first victim's house and the second was visiting there. That visitor is very often the Katana holder, so check their will against the visit counts (a will claiming a visit elsewhere is false). A rampage counts as one Attack per victim, so a Bloodhound trio that jumps by 2 or more on a full-moon night, after you subtract every claimed shot and release, fits a Werewolf. The Werewolf acts only on even nights and its home rampage isn't a visit, so build the pool from players who claim no visit on the full-moon night, strike confirmed ones (a revealed Mayor, an alert result) and hang before the next even night. A Not Evil read doesn't clear it, and an exact-role check can be fooled by a Disguised one, so rely on attack counts and visit math.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Carol died to Katana + Werewolf and Mallory (the holder) to Werewolf alone. Olivia's scent subtraction gave Frank exactly 2 attacks, and he was hanged D4 before the full moon. Alice, Carol, Dave, Erin, Heidi, Ivan and Olivia filed it (1.0 each)."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t419",
+   "audience": "Werewolf",
+   "tip": "Your rampage at a busy house adds one Attack per victim to any Bloodhound count, so one big rampage can single you out. While a Bloodhound is claimed or likely, rampage at a quiet target or at home, or kill the Bloodhound on your next full moon before their tokens reach you. On odd nights you have no action, so the Day before an even night is when the town hangs you: keep the no-visit pool wide. Choose a cover with no tokens and no public output. A claimed Prosecutor, Medic or Coroner holding unused tokens gets told 'use it tonight to clear yourself', and the refusal becomes the case. Count the no-visit claimants once a Fortune Teller posts a full visited set: if the pool is 3-4 players, a visiting claim with a believable result that fits the counts is safer. Saying a disguise would fool exact-role checks persuades nobody.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Frank (Werewolf, lost, 1.0). His Prosecutor cover with 2 unused tokens was Erin's D4 lead, his Carol rampage scored 2 attacks on Olivia's count, and he was hanged D4."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t420",
+   "audience": "Fortune Teller",
+   "tip": "Your two counts only settle something once every living player has stated what they did that night, including token visits they may have hidden (a Bloodhound scent, a profile, a mark). Ask for all the accounts first, list the claimed visitors and visited by name, and only then post which slots are left. Filling the gap with a guessed visit (a Katana on X, a blocker on Y) and leaning on someone from it is retracted the moment a hidden visit comes out, and it hands the real liar cover.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Niaj (FT, 1.0) filled his N3 2/2 with a guessed Katana on Ivan plus a Pharmacist and leaned Ivan. Olivia's hidden token visit then filled the slot instead."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t421",
+   "audience": "Yakuza",
+   "tip": "When a public visit result has already put you at a victim's house (a map group, a watch), take a cover whose story explains the outcome everyone saw on its own. A protector's claim explains a failed kill. A 'Lookout: the only visitor was X' claim only works if the victim had their own Defense. A cover that needs an extra, unprovable assumption loses to any real claimant whose story needs nothing extra (a Kitsune or Medic at the same target), and a Jester's Defense claim can't rescue it. Check before claiming: does my result plus the known facts explain the night without help? If not, choose another cover or say less.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Bob (Oathsworn, 1.0) claimed Lookout seeing only Dave at Judy. Dave's real Kitsune charm explained the survival alone, Carol's map held both, and Bob was hanged 10-3. Moderator, Grace, Heidi."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t422",
+   "audience": "Yakuza",
+   "tip": "Fake results and wills under Fortune Teller or Cartographer counts. Don't write a fake 'N2: tracked X, X visited no one' into your will before the night resolves, and never claim another player visited no one. Many roles visit only when they spend a token (Bloodhound, Profiler, Chronicler, Kitsune), so the claim is easy to disprove, and once you die it exposes you and points at your teammates. If you fake a visit, name a target who really was visited that night (your own Katana victim) and give a result that fits, e.g. 'visited no one' for a player whose action is Astral. Don't volunteer an anomaly nobody can check either ('I was blocked with no visitor') on a night the counts leave no room for a blocker. Under an Astral cover, report a plain, harmless result (a wrong guess on a quiet player) or no action.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Mallory's pre-written 'tracked Olivia, she visited no one' broke on Olivia's token visit and Niaj's N2 visited set. Grace's true Drowsy 'blocked, no visitor' under an Oracle cover was the whole case that hanged her 9-1. Mallory, Grace, Bob and the moderator (1.0 each)."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t423",
+   "audience": "Yakuza",
+   "tip": "On even nights, while a Werewolf may be alive, the investigator you most want dead (the Cartographer or Lookout who just exposed you) is also the Werewolf's likely rampage target, and a rampage kills every visitor, the Katana holder included. Don't stack extra visits on that target (a frame or forge on top of the Katana). Hit a less obvious target on full-moon nights or kill the info role on an odd night, and keep the holder's visit apart from other teammates' actions.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: on N2 holder Mallory visited Carol with the Katana plus a forge, and Frank's rampage at Carol's house killed her too. Grace and Mallory (1.0 each)."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t424",
+   "audience": "Ritualist",
+   "tip": "Your guess is an exact-role check, so it sees a Disguised player's disguise, not their true role. A Disguised player can safely claim their real role in public, and guessing that claim fails, which announces you as a Ritualist and spends the tokens. Before guessing, look for a second source behind the claim (results that fit facts your team knows, a profile or archive entry), not the claim alone.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Niaj (FT, 1.0) gives it as a rules point; Frank was Disguised. Thin, untested in play."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t425",
+   "audience": "Vigilante",
+   "tip": "When a suspect's own claim keeps changing, shoot above whatever Defense they last claimed (Strong against a claimed Standard Defense). A shot that kills tells you their exact role, so it can settle the claim dispute their story was propping up, and you should post it the next morning. A night kill on a player who may be a Jester is safe: it gives them no win and fires no revenge, unlike a hang. But don't aim at a player who has openly claimed a never-blocks-wins Neutral (t247).",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261016_071747_1005",
+     "weight": 1.0,
+     "note": "Game 1005: Alice spent all 3 tokens on a Strong N2 shot on Judy, whose Defense claim kept escalating. The kill revealed Jester, confirmed Dave's charm and the Bob hang, and no revenge fired. Alice and the moderator (1.0 each); Grace notes the night kill beat leaving her alive."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261016_071747_1005",
      "change": "added"
     }
    ]
