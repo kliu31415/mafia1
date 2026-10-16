@@ -1,0 +1,19 @@
+Setup:
+  Alice    seat 1  Trapper           anthropic/claude-opus-5.5 (via Claude Code)
+  Bob      seat 2  Mirror Maker      anthropic/claude-opus-5.5 (via Claude Code)  trait: Remorseful
+  Carol    seat 3  Enforcer          anthropic/claude-opus-5.5 (via Claude Code)
+  Dave     seat 4  Arsonist          anthropic/claude-opus-5.5 (via Claude Code)  trait: Zealot
+  Erin     seat 5  Bounty Hunter     anthropic/claude-opus-5.5 (via Claude Code)  trait: Loud, Zealot  (targets: Dave, Heidi, Grace)
+  Frank    seat 6  Enforcer          anthropic/claude-opus-5.5 (via Claude Code)  trait: Merciful
+  Grace    seat 7  Ballot Stuffer    anthropic/claude-opus-5.5 (via Claude Code)  trait: Curt
+  Heidi    seat 8  Auditor           anthropic/claude-opus-5.5 (via Claude Code)  trait: Merciful
+  Ivan     seat 9  Oathsworn         anthropic/claude-opus-5.5 (via Claude Code)
+  Judy     seat 10 Tracker           anthropic/claude-opus-5.5 (via Claude Code)  trait: Cursed
+  Mallory  seat 11 Saint             anthropic/claude-opus-5.5 (via Claude Code)
+  Niaj     seat 12 Lookout           anthropic/claude-opus-5.5 (via Claude Code)  trait: Ashamed
+  Olivia   seat 13 Roleplayer        anthropic/claude-opus-5.5 (via Claude Code)  trait: Cursed  (fake_role: Tracker)
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 1 to 3 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Traits (R24) were picked by hand too: roughly 9 to 11 in all, each dealt to a player it fits, and a player may hold more than one.
