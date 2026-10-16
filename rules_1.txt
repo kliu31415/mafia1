@@ -310,8 +310,9 @@ Bloodhound
   Night: at the end of every night, code draws three random players other than you from those alive at the start of
   the night, and you learn their names and one combined count: how many Attacks (R3) the three have made in total
   this game, tonight's included, whether or not the Attacks killed anyone. Each player's Katana attacks, shots,
-  alert or trap hits and so on all count; a role-blocked attack never happened, so it doesn't. This needs no action
-  and a role-block doesn't stop it.
+  alert or trap hits and so on all count, one for each player an Attack hits (a Werewolf's rampage on two players
+  counts 2); a role-blocked attack never happened, so it doesn't. This needs no action and a role-block doesn't
+  stop it.
   Night: may also spend a token to track one player other than yourself: they take one of the three places that
   night and code draws the other two. A role-block stops the tracking (R9) but not the result.
 

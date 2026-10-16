@@ -31,10 +31,11 @@ class Bloodhound(RoleLogic):
         "code tells them the result at the end of the night", token="scent", visit=True,
         note="Also, every night while the game has a Bloodhound, use the attacks op once with the attacker of every "
         "Attack that happened tonight, fatal or not: the Katana holder for the Katana, a Vigilante's shot, the "
-        "Serial Killer, a Veteran's alert for each visitor it hits, a Trapper's trap, an Arsonist's ignite, a "
-        "Ritualist's attack (one entry per attack; repeats allowed; [] if there were none). Leave out role-blocked "
-        "attackers, Jester revenge, a Cursed player's curse and an Avenger's attack (code counts those). Code "
-        "counts them for the Bloodhound's result, which it also gives on nights with no token.")
+        "Serial Killer, a Veteran's alert or a Werewolf's rampage once for each player it hits, a Trapper's trap, "
+        "an Arsonist's ignite, a Ritualist's attack (one entry per attack; repeats allowed; [] if there were "
+        "none). Leave out role-blocked attackers, Jester revenge, a Cursed player's curse and an Avenger's attack "
+        "(code counts those). Code counts them for the Bloodhound's result, which it also gives on nights with no "
+        "token.")
 
     def check_op(self, game: Game, change: dict) -> str | None:
         if change["op"] != ATTACKS:
