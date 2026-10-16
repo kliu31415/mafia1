@@ -141,3 +141,13 @@ Night actions:
   Grace (Medic): target Erin; "Standard protection on Erin (Coroner claim, free of tokens). Erin is a power-role claim that could be a Katana target, and her Dave exam is needed for the vote."
   Heidi (Sheriff): target Frank
 Katana: Carol holds it and attacks Heidi.
+(to Erin) Moderator (private): You examined Dave: their role was Trapper. 2 coroner tokens left.
+(to Heidi) Moderator (private): You investigated Frank tonight. Result: Evil.
+(to Grace) Moderator (private): You protected Erin tonight with Standard Defense. Your protection did not stop an attack. 2 medic tokens left.
+(to Carol) Moderator (private): Your Katana attack on Heidi succeeded.
+[Moderator summary] Night 2: Carol (holding the Katana) attacked Heidi with a Standard attack and killed her (no protection on her). Heidi (Sheriff) checked Frank and got Evil. Grace (Medic) protected Erin; no attack reached Erin. Erin (Roleplayer, thinks she is a Coroner) examined Dave; code gives her result. Alice (Roleplayer, thinks she is a Scout) gets her result from code. Bob did not act. Visits: Carol->Heidi, Grace->Erin, Heidi->Frank. Alive: Alice, Bob, Carol, Erin, Frank, Grace (4 Village, 2 Yakuza), so the game goes on.
+[Night check] Night 2: correct
+(to Alice) Moderator (private): The players were in only 2 visit groups tonight; one from each: Alice and Heidi.
+(to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Heidi. Frank (Grunt) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Heidi. Carol (Grunt) chose no action.
