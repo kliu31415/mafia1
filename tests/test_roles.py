@@ -3200,3 +3200,18 @@ def test_an_oathsworn_never_has_more_than_one_token(game_factory):
         apply_ops(game, players, {"op": "set_tokens", "player": "Alice", "token": "oath", "value": 2})
     apply_ops(game, players, {"op": "set_tokens", "player": "Alice", "token": "oath", "value": 0})
     assert game.player("Alice").tokens["oath"] == 0
+
+
+def test_a_forged_will_is_shown_to_its_dead_owner_as_a_forgery(game_factory):
+    # Carol took the forgery for her own will in her debrief (game_20261016_071747_1005)
+    from night import run_night
+    from players import player_messages
+    calls = [("apply_changes", {"changes": [{"op": "kill", "player": "Alice", "cause": "Katana"},
+                                            {"op": "set_last_will", "player": "Alice", "text": "Bob is Yakuza."}]})]
+    game, players = game_factory(["Vanilla Villager", "Vanilla Villager", "Fabricator", "Grunt"])
+    game.player("Alice").last_will = "real will"
+    run_night(game, players, Moderator(game, ScriptedClient(moderator_calls=calls), players, Model.HAIKU_5_5,
+                                       "(rules)"))
+    alice = json.dumps(player_messages(game, game.player("Alice"), "(rules)", "debrief", False, ""))
+    assert "as you wrote it: real will" in alice and "replaced by a forgery" in alice
+    assert "forgery" not in json.dumps(player_messages(game, game.player("Bob"), "(rules)", "x", False, ""))

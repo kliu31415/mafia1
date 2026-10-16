@@ -11,7 +11,7 @@ from events import RESULT
 from llm import (SHORT_REASON, LLMClient, Model, LLMReply, answer_json, cache_block, default_effort, lower_effort,
                  rules_system, schema_errors)
 from roles import Alignment, ROLES, logic
-from roles.base import believed_role, dead_before_tonight
+from roles.base import OWN_WILLS, believed_role, dead_before_tonight
 from state import Game, Player, phase_label
 from traits import ACTION_TRAITS, briefing as trait_briefing, night_traits
 from texts import blank, describe_action, player_view
@@ -210,6 +210,15 @@ def role_briefing(game: Game, p: Player) -> str:
     return " ".join(lines)
 
 
+def own_will_text(game: Game, p: Player) -> str:
+    """p's will in their own prompt. A forged one is shown to its dead owner as a forgery, beside what they wrote:
+    Carol took the forgery for her own will in her debrief (game_20261016_071747_1005)."""
+    if (wrote := game.role_state.get(OWN_WILLS, {}).get(p.name)) is not None:
+        return (f"Your last will as you wrote it: {wrote or '(none)'}\nIt was replaced by a forgery when you died; "
+                f"the will revealed to everyone was: {p.last_will or '(none)'}\n\n")
+    return f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
+
+
 def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field: bool = False,
                     context: str = "") -> list[dict]:
     """context: text several of this player's calls share after their own part (the post-game reveal), cached too."""
@@ -248,8 +257,8 @@ def player_messages(game: Game, p: Player, rules: str, task: str, feedback_field
             + f"Public ledger (a summary of public facts so far):\n{game.public_ledger()}\n\n"
             + (f"Your night history (what you submitted each night, and your private results):\n{nights}\n\n"
                if nights else "")
-            + f"Your current last will (revealed to everyone if you die): {p.last_will or '(none yet)'}\n\n"
-            f"Your private notepad (only you can see it; it carries over between turns; {word_count(p.notepad)} of "
+            + own_will_text(game, p)
+            + f"Your private notepad (only you can see it; it carries over between turns; {word_count(p.notepad)} of "
             f"{notepad_words(game)} words used):\n{notepad}\n\n"
             f"Every response has a 'notepad' field: set it to replace your notepad (max {notepad_words(game)} "
             "words; longer is truncated), or leave it empty (\"\") to keep it as is. It is the only place "

@@ -371,6 +371,7 @@ def record_attack(game: Game, attacker: str) -> None:
     game.role_state.setdefault(CODE_ATTACKS, {}).setdefault(game.day, []).append(attacker)
 
 
+OWN_WILLS = "own_wills"  # game.role_state: a player whose revealed will was forged -> the will they wrote (players.py)
 AVENGED = "avenged"  # game.role_state: Avenger -> players their attack hit tonight (traits.py; cleared at night end)
 MOD_NOTICES = "moderator_notices"  # game.role_state: what code tells the moderator in its current apply_changes result
 

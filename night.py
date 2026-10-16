@@ -6,7 +6,7 @@ from players import (BOOL, Players, STR, blank, cap_words, name_enum, night_acti
                      tokens_left)
 from day import LAST_WILL_WORDS
 from roles import Alignment, Status, logic
-from roles.base import code_faked_roles
+from roles.base import OWN_WILLS, code_faked_roles
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from traits import NOT_ATTACKS, night_traits, trait_logic
@@ -169,6 +169,9 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
             undone.append("cleaned")
         if undone:
             game.log.write("night_effects_undone", day=game.day, player=p.name, undone=undone)
+    for name, will in wills.items():  # the forged one is revealed; its dead owner still sees what they wrote
+        if not (p := game.player(name)).alive and p.last_will != will:
+            game.role_state.setdefault(OWN_WILLS, {})[name] = will
     game.pass_katana()
     game.day += 1
 
