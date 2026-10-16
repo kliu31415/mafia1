@@ -257,3 +257,17 @@ Trial votes on Bob: 4 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Bob] Guilty - Alice, Carol, Erin, Grace; Innocent - Bob
 Bob is executed by hanging (4 Guilty of 5 votes; 3 needed).
 Bob died (executed by hanging). Their role isn't revealed. Their last will: "Bob, Vigilante (Good). I hold 3 shot tokens (1 Basic, 2 Standard, 3 Strong) and have fired none. I visited no one on Nights 1-3. Alice's Scout groups put the Night 3 Katana holder in Alice's group: Alice, Grace (Medic visit) and the holder. Grace or Alice is the holder by that arithmetic; I am not in that group. Vote on mechanical evidence."
+
+===== NIGHT 4 =====
+Night actions:
+  Carol (Grunt): target Grace; Katana vote: Carol holds, attacks Grace
+  Erin (Roleplayer): target Bob; chose to spend 1 token(s); "Coroner exam on Bob (dead before this night). Astral Visit."
+  Grace (Medic): target Alice; "Free Standard protection on Alice (another player, 0 tokens). Alice is the Scout whose groups have exposed the Katana holder, and she was the Night 3 Katana target."
+Katana: Carol holds it and attacks Grace.
+(to Erin) Moderator (private): You examined Bob: their role was Profiler. 0 coroner tokens left.
+(to Carol) Moderator (private): Your Katana attack on Grace succeeded tonight.
+(to Grace) Moderator (private): You protected Alice tonight with Standard Defense. Your protection did not stop an attack. 2 medic tokens left.
+[Moderator summary] Night 4: Carol (Grunt, Katana holder) attacked Grace with Standard Katana; Grace (Defense None, unprotected) dies. Grace's Standard protection on Alice stopped nothing (no attack on Alice). Erin (Roleplayer, believes Coroner) used examine op on Bob; code gives random result, token spent. Alice (Roleplayer, believes Scout) gets code result. Visits: Carol->Grace, Grace->Alice. Remaining: Alice, Carol, Erin; game continues.
+[Night check] Night 4: correct
+(to Alice) Moderator (private): Tonight Alice, Carol and Grace were each in a different visit group.
+(to Grace) Moderator (private): You were attacked tonight (Katana) and died.
