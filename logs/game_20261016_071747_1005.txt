@@ -256,3 +256,22 @@ Trial votes on Grace: 9 Guilty, 1 Innocent (the votes are secret; 10 votes from 
 [Secret trial votes on Grace] Guilty - Alice, Dave, Erin, Frank, Heidi, Ivan, Niaj, Olivia; Innocent - Grace
 Grace is executed by hanging (9 Guilty of 10 votes; 6 needed; 10 votes from 9 voters: a role changed the count on purpose (rules R4), not an error).
 Grace died (executed by hanging). Their role isn't revealed. Their last will: "Grace - Oracle. N1: no guess. N2: planned to guess Dave = Kitsune, but I was role-blocked with no visitor (Niaj's 3 visited = Carol, Judy, Dave), so probably Drowsy. No result. Notes: the Werewolf rampaged at Carol's (Carol: Katana + WW, Mallory: WW). Heidi is the confirmed Mayor. Frank should prove Prosecutor with a prosecution. That leaves Ivan: "Veteran, never alerted, don't visit me" is the textbook WW cover, since a home rampage looks like an alert. If N4 brings a WW kill, hang Ivan."
+
+===== NIGHT 3 =====
+Night actions:
+  Alice (Vigilante): no action
+  Dave (Kitsune): target Heidi
+  Erin (Profiler): target Frank; chose to spend 1 token(s)
+  Ivan (Veteran): chose to spend 1 token(s)
+  Olivia (Bloodhound): target Frank; chose to spend 1 token(s)
+Katana: no attack (no target); nobody holds it.
+(to Ivan) Moderator (private): You went on alert tonight. Nobody visited you. You have 2 alert tokens left.
+(to Ivan) Moderator (private): You were attacked with the Katana tonight and survived.
+(to Niaj) Moderator (private): Tonight: 2 players were visited; 2 players visited someone.
+[Moderator end_phase refused] Not ended: your tell() to Dave, Erin was held and not sent. If it said anything besides the result of their own action (e.g. whether their attack succeeded, a role-block, that they died), send that part again now; otherwise call end_phase again.
+(to Erin) Moderator (private): You were role-blocked tonight.
+(to Dave) Moderator (private): You were attacked with the Katana tonight and survived.
+[Moderator summary] Night 3: no Yakuza alive, so there was no Katana attack. Dave charmed Heidi; there were no attacks, so nothing was swallowed. Erin was role-blocked by Drowsy: no profile and no token spent. Ivan went on alert (3->2 tokens) and had no visitors. Olivia tracked Frank with her last scent token. Frank (Werewolf) has no action on an odd night. Dave and Ivan got Paranoid fake Katana attacks. Niaj's Fortune Teller counts: 2 visited, 2 visitors. No deaths.
+[Night check] Night 3: correct
+(to Dave) Moderator (private): Your fox charm on Heidi swallowed no attack tonight.
+(to Olivia) Moderator (private): Your Bloodhound check of Dave, Erin and Frank: together they have made 3 attacks this game, tonight's included. 0 scent tokens left.
