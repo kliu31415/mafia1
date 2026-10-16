@@ -251,3 +251,21 @@ Niaj (public): Logic check: Grace and Ivan were Yakuza. If Frank was Yakuza too,
 Carol (public): Niaj, on me: I killed Ivan, the Katana holder. Yakuza don't use an Enforcer kill on their own Katana holder, and if Frank alone had killed Ivan, a Yakuza me would gain nothing by claiming the hit. Niaj's N1 watch and Heidi's audit both fit me. If Frank was Village, the last Yakuza held the Katana on N3 and didn't swing. That fits someone afraid of an Enforcer visit or a trap. The claim nobody can test is Mallory's Saint, and it also protects her from any rope. I'm not pushing a hang on it, but I'll keep watching.
 Mallory (public): Carol, I can't prove a role that has no action. That's how the Saint works. But two separate tracks show I visited nobody N3, and I'm the only Saint claim, with no counter-claim. Pointing at the one player we can't hang is a dead end. Trackers and Niaj: Carol and Dave tonight.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Alice (Trapper): no action
+  Carol (Enforcer): target Mallory
+  Dave (Arsonist): target Carol; "douse"
+  Heidi (Auditor): no action
+  Judy (Tracker): target Carol
+  Niaj (Lookout): target Judy
+  Olivia (Roleplayer): target Dave
+Katana: no attack (no target); nobody holds it.
+(to Carol) Moderator (private): You visited Mallory tonight. You did not attack anyone. 0 enforcer tokens left.
+(to Dave) Moderator (private): You doused Carol tonight.
+(to Judy) Moderator (private): You tracked Carol tonight. Carol visited Mallory.
+(to Niaj) Moderator (private): You watched Judy tonight. Nobody else visited Judy.
+(to Olivia) Moderator (private): You tracked Dave tonight. Dave visited Niaj.
+[Moderator summary] Night 4: Nobody held the Katana and the Yakuza made no attack (all Yakuza are dead). Carol (Enforcer, 0 tokens) made a free Basic visit to Mallory. Mallory made no attack, so Carol did not attack. Dave (Arsonist) doused Carol; she is Good, so she isn't told. Doused now: Carol, Judy, Mallory, Niaj. Judy tracked Carol and saw her visit Mallory. Niaj watched Judy and saw nobody else visit her. Olivia (Roleplayer, fake Tracker) targeted Dave and got a random result: 'Dave visited Niaj'. Alice and Heidi did not act. Nobody was attacked and nobody died. Alice's trap on Heidi was not triggered. Recorded visits: Carol->Mallory, Dave->Carol, Judy->Carol, Niaj->Judy.
+[Night check] Night 4: correct
