@@ -405,3 +405,15 @@ def test_the_sheet_opens_with_the_most_often_decisive_tips(tmp_path):
     tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=tips.SHEET_WORDS, ids=["t1"])
     assert f"Start with a section '{tips.TOP}'" in client.prompts[0][1] and tips.SHEET_WORDS == 1200
     assert tips.player_view(out.read_text(encoding="utf-8")).startswith(f"## {tips.TOP}\n- A duplicate claim")
+
+
+def test_a_top_pin_asks_for_the_tip_first_in_the_sheet(tmp_path):
+    out = tmp_path / "tips.md"
+    nb = tips.new_notebook()
+    tips.apply_ops(nb, [op("add", tip="Roles repeat.", note="g1")], "g1")
+    tips.notebook_path(out).write_text(json.dumps(nb), encoding="utf-8")
+    client = TipsClient([])
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t1"], top=True)
+    assert f"TOP: Kevin asked for it in the '{tips.TOP}' section" in client.prompts[-1][1]
+    tips.pin(out, client, ModelSpec(Model.OPUS_5_5), max_words=500, ids=["t1"], unpin=True)
+    assert "TOP:" not in client.prompts[-1][1] and "PINNED:" not in client.prompts[-1][1]

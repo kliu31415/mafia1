@@ -25,6 +25,7 @@ Usage:
     uv run tips.py revise --note "..."                  # after a rules change: reword or retire what no longer holds
     uv run tips.py stamp                                # the tips hold under the changed rules as they are (no call)
     uv run tips.py pin t12 t40                          # these entries always go on the sheet (--unpin)
+    uv run tips.py pin --top t47                        # ... and first, in its "Most often decisive" section
     uv run tips.py show tips/tips.md                    # what players see
     uv run mafia.py --tips tips/tips.md --tips-for half # a random half of the seats get the tips
     uv run mafia.py --player-tips Alice=tips/history/tips_20261009_120000.md,gpt-6-luna=none
@@ -258,6 +259,7 @@ def entry_line(e: dict, notes: int = 3) -> str:
     games = {x["game"] for x in e["support"]}
     line = (f"[{e['id']}] ({e['audience']}) {e['tip']} | "
             + ("PINNED: Kevin asked for it on the sheet | " if e.get("pinned") else "")
+            + (f"TOP: Kevin asked for it in the '{TOP}' section | " if e.get("top") else "")
             + f"support: {len(games)} games, total weight {sum(x['weight'] for x in e['support']):.2f}")
     if e["against"]:
         line += (f" | against: {len(e['against'])} reports, total weight {sum(x['weight'] for x in e['against']):.2f}: "
@@ -438,6 +440,7 @@ def write_sheet(client: LLMClient, spec: ModelSpec, rules: str, nb: dict, max_wo
          "needs clearly more support than reports, or a rewording that fixes what went wrong. Thinly supported "
          "entries make the sheet only if they are clearly valuable. For each tip give the number of games "
          "that support it.\n"
+         f"- Every TOP entry goes in the '{TOP}' section, ahead of the others there.\n"
          "- Every PINNED entry goes on the sheet, merged with a related tip or on its own, keeping its point, "
          "whatever its evidence.\n"
          "- Each tip is one or two concrete sentences a player can act on, saying what tends to work and why. "
@@ -695,8 +698,9 @@ def stamp(out: Path, on_error: Callable[..., None] = print_alert) -> str:
 
 
 def pin(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, ids: list[str], unpin: bool = False,
-        on_error: Callable[..., None] = print_alert) -> Path:
-    """Pins (or unpins) notebook entries, so the sheet always carries them, then rewrites the sheet."""
+        on_error: Callable[..., None] = print_alert, top: bool = False) -> Path:
+    """Pins (or unpins) notebook entries, so the sheet always carries them, then rewrites the sheet. top: also put
+    them first in its TOP section (unpin clears that too)."""
     with locked(out, on_error):
         nb_path = notebook_path(out)
         nb = json.loads(nb_path.read_text(encoding="utf-8"))
@@ -706,8 +710,11 @@ def pin(out: Path, client: LLMClient, spec: ModelSpec, max_words: int, ids: list
         for i in ids:
             if unpin:
                 by_id[i].pop("pinned", None)
+                by_id[i].pop("top", None)
             else:
                 by_id[i]["pinned"] = True
+                if top:
+                    by_id[i]["top"] = True
         keep_old_sheet(out)
         write_atomic(nb_path, json.dumps(nb, indent=1, ensure_ascii=False))
         return _rewrite_sheet(out, nb, client, spec, current_rules(), max_words, on_error, 0.0,
@@ -745,6 +752,7 @@ def main() -> None:
                         "rewrite the sheet; revise pins the entries it adds")
     pn.add_argument("ids", nargs="+")
     pn.add_argument("--unpin", action="store_true")
+    pn.add_argument("--top", action="store_true", help=f"also put them first in the sheet's '{TOP}' section")
     pn.add_argument("--out", default=str(ROOT / "tips/tips.md"), help="the players' sheet (default tips/tips.md)")
     pn.add_argument("--model", default="opus-5.5", help="model[:effort] that rewrites the sheet")
     pn.add_argument("--max-words", type=int, default=SHEET_WORDS, help="length cap for the whole tips file")
@@ -761,7 +769,8 @@ def main() -> None:
         print(player_view(Path(args.file).read_text(encoding="utf-8")))
         return
     if args.cmd == "pin":
-        pin(Path(args.out), tool_client(), parse_model_spec(args.model), args.max_words, args.ids, args.unpin)
+        pin(Path(args.out), tool_client(), parse_model_spec(args.model), args.max_words, args.ids, args.unpin,
+            top=args.top)
         return
     if args.cmd == "revise":
         # one answer covers the whole notebook (hundreds of entries), far past a game turn's 16k-token cap
