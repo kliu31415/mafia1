@@ -1,6 +1,6 @@
 # Tips from past games
 
-Written 2026-10-16 08:17 UTC by opus-5.5 with `uv run tips.py build`, from the 401 active entries of tips_notebook.json (97 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules faee28de8a58b5dc.
+Written 2026-10-16 08:17 UTC by opus-5.5 with `uv run tips.py build`, from the 401 active entries of tips_notebook.json (97 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules 8f2138dae76eb0b8.
 
 ## Everyone
 - Ballots are secret, so keep a notepad of every announced total and each player's stated vote. A stated vote that doesn't fit a small total is usually a miscast. Ask that player once to re-check their reminder, and don't hang on the mismatch alone. (seen in 22 games)
