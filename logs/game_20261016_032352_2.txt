@@ -119,3 +119,24 @@ Heidi died (executed by hanging). Their role isn't revealed. Their last will: "H
 
 ===== NIGHT 2 =====
 (to Frank, Grace) Frank (Yakuza chat): Frank: Grace keeps the Katana, no holder move. My proposed target is Bob. He's a Sheriff claim, which is the one role that can read either of us as Evil on a later Day. Alice's Vigilante is the other threat, so if Bob is protected or the claim collapses, we move to Alice next. Grace, vote Bob as the target and I'll vote the same. Lock it once you agree.
+(to Frank, Grace) Grace (Yakuza chat): Agreed on Bob. He's the Sheriff claim, and a Sheriff who reads us Evil on a later Day is the biggest threat we face. I'm keeping the Katana on me (holder vote: Grace) and voting Bob as the Katana target. Frank, lock the same vote. If Carol's Medic protection lands on Bob and the attack fails, we move to Alice next, not a retry on the same name.
+(to Frank, Grace) Frank (Yakuza chat): Frank: Agreed. Grace keeps the Katana (holder vote: Grace), and we both vote Bob as the Katana target. If Bob survives, we keep Alice as the next name, as Grace said. Locking this vote now.
+(to Frank, Grace) Grace (Yakuza chat): Grace: Agreed. Bob is tonight's Katana target, and I keep the Katana on me (holder vote: Grace). Frank, lock the same vote. Keep your Oracle claim quiet during the Day and don't contradict Dave's map without a reason. Locking now.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Sheriff): target Frank; "Sheriff investigation on Frank (Oracle claim, the one unverified power claim that pushed a Day 2 vote against Heidi's report)."
+  Carol (Medic): target Bob; "Standard Medic protection on Bob (free, 0 tokens). Bob is the Sheriff claimant whose result is consistent with the rest of the claims, so he is a likely Katana target."
+  Dave (Roleplayer): target Bob; chose to spend 1 token(s); "Spend my last map token (Astral Visit) on Bob to learn Bob's visit group tonight. Bob is my lead for the Katana holder after the N1 map."
+  Erin (Roleplayer): chose to spend 1 token(s); "Spending my archive token to consult the archive tonight."
+  Frank (Grunt): no role action; Katana vote: Grace holds, attacks Bob
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Bob
+Katana: Grace holds it and attacks Bob.
+(to Erin) Moderator (private): The archive shows 6 roles, one for each of the 6 other players who were alive when the night began (including any who died tonight): 3 of them are the real roles of 3 of those players, the other 3 are fakes, all in random order: Mirror Maker, Vigilante, Veteran, Decoy, Tracker, Magpie.
+(to Bob) Moderator (private): You investigated Frank tonight. Result: Evil. You were also attacked with the Katana tonight and survived.
+(to Carol) Moderator (private): You protected Bob tonight (Standard Defense, no token spent). Your protection stopped an attack. 2 medic tokens left.
+(to Grace) Moderator (private): Your Katana attack on Bob failed tonight.
+[Moderator summary] Night 2: Grace kept the Katana and attacked Bob (Standard); Carol's Standard protection on Bob stopped it, so Bob survives and is told of the Katana attack. Bob's Sheriff check on Frank (Grunt, not holding the Katana) shows Evil. Dave (Roleplayer, thinks he's a Cartographer) spent his last map token on Bob; code gives a random result. Erin (Roleplayer, thinks she's an Archivist) spent her archive token; code gives a random result. Visits: Bob->Frank, Carol->Bob, Grace->Bob. No deaths.
+[Night check] Night 2: correct
+(to Dave) Moderator (private): Tonight's visit groups have sizes 3, 1, 1, 1, 1. You mapped Bob: their group is just themselves. 0 map tokens left.
+(to Frank) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Grace (Grunt) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Frank (Grunt) chose no action.
