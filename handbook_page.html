@@ -80,6 +80,8 @@ a.rl, a.tl { color:inherit; border-bottom:1px dotted var(--muted); } a.rl:hover,
 .pw .track { flex:1; height:6px; background:var(--chip); border-radius:3px; position:relative; }
 .pw .track i { position:absolute; top:0; bottom:0; border-radius:3px; background:var(--fc, var(--accent)); }
 .pw .track .zero { position:absolute; top:-2px; bottom:-2px; width:1px; background:var(--muted); }
+.pw .track b { position:absolute; top:-3px; bottom:-3px; width:2px; margin-left:-1px; background:var(--fg); opacity:.55; }
+.pw .val { color:var(--fg); font-weight:600; } .pw .pn { white-space:nowrap; }
 /* drawer */
 #drawer { position:fixed; top:0; right:0; bottom:0; width:min(560px, 100vw); background:var(--card); border-left:1px solid var(--line);
   box-shadow:-8px 0 30px rgba(0,0,0,.12); z-index:20; overflow:auto; padding:22px 26px 40px; transform:translateX(105%);
@@ -228,9 +230,9 @@ const RF = {faction: "", q: "", category: "", status: "", script: ""};
 function powerBar(p, faction, label = "power") {
   if (!p) return "";
   const lo = -1.4, hi = 1.0, x = v => (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * 100, z = x(0), v = x(p.power);
-  return `<div class="pw ${faction}" title="Power ${fmt(p.power)} (prior ${fmt(p.prior)}, fit from ${p.games} games): logits added to the Village's chance">
-    <span>${esc(label)}</span><div class="track"><span class="zero" style="left:${z}%"></span><i style="left:${Math.min(z, v)}%;width:${Math.abs(v - z)}%"></i></div>
-    <span>${fmt(p.power)}</span></div>`;
+  return `<div class="pw ${faction}" title="Power ${fmt(p.power)} (prior ${fmt(p.prior)}, the tick; fit from ${p.games} games): logits added to the Village's chance">
+    <span>${esc(label)}</span><div class="track"><span class="zero" style="left:${z}%"></span><i style="left:${Math.min(z, v)}%;width:${Math.abs(v - z)}%"></i><b style="left:${x(p.prior)}%"></b></div>
+    <span class="pn"><span class="val">${fmt(p.power)}</span> · prior ${fmt(p.prior)} · n=${p.games}</span></div>`;
 }
 function roleChips(r) {
   return [r.night ? `<span class="chip">night action</span>` : "",
@@ -326,7 +328,7 @@ function renderTraitFilters() {
   $("#tfe").onchange = e => { TF.effect = e.target.value; renderTraits(); };
 }
 function renderTraits() {
-  $("#traitintro").innerHTML = `A trait is an extra ability on top of a role (${linkify("R24")}); its mark is the corner badge the HTML logs draw on its holder's icon. Power bars show what it adds to the Village's score, by the holder's faction (a Neutral holder adds 0).`;
+  $("#traitintro").innerHTML = `A trait is an extra ability on top of a role (${linkify("R24")}); its mark is the corner badge the HTML logs draw on its holder's icon. Power bars show what it adds to the Village's score, by the holder's faction (a Neutral holder adds 0), with its prior (the tick) and n, the finished games the fit had it in.`;
   $$("#tff button").forEach(b => b.classList.toggle("on", b.dataset.f === TF.faction));
   const q = RF.q.toLowerCase(), order = GROUPS();
   const shown = D.traits.filter(t => (!TF.faction || t.factions.includes(TF.faction)) && (!TF.hidden || (TF.hidden === "hidden") === t.hidden)
