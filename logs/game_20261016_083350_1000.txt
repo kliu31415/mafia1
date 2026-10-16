@@ -395,3 +395,122 @@ Katana: Carol holds it and attacks Bob.
 (to Bob) Moderator (private): Your shot killed Mallory. Their role was Party Animal.
 (to Mallory) Moderator (private): You were attacked tonight (Vigilante) and died.
 (to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Bob. Mallory (Mortician) chose to act on Bob, spending 1 token(s) ("Clean Bob.").
+
+===== DAY 5 =====
+Mallory died (killed by Vigilante). Their role isn't revealed. Their last will: "Mallory - Party Animal. N1 and N2 I held my block, with nothing to go on. N3 I blocked Ivan (Yakuza Mortician, per Bob's kill). Any exact-role check on me (Coroner, Vigilante kill and so on) shows Party Animal. I was wrong to vote Guilty on Niaj, because Ivan and Erin steered it. On D4 I exposed Olivia as the Magpie, and she confessed. She lied for three days, so don't trust any "steal" result she gives. If I flip Party Animal, the last Yakuza is among the D4 Guilty voters who pushed me hardest. Look at who wanted a fast hang on an untestable claim."
+Speaking order today goes around the circle in seat order, starting with Dave.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+[Claim] Dave: Scout (passive). N1: Alice/Frank/Mallory different groups. N2: Bob/Carol/Ivan different groups. N3: all one group. N4: only 2 groups, Bob in one, Dave in the other. D4: Guilty on Mallory and Carol.
+Dave (public): N4 Scout, exact wording: "The players were in only 2 visit groups tonight; one from each: Bob and Dave." So 7 players, only 2 groups. Bob shot Mallory, so they share a group, and I'm in the other one. Nobody who links to Bob or Mallory linked to me. Everyone: give your exact N4 target and result. Bob, what role did your kill on Mallory show? Olivia, who did you steal from? Heidi, you have no tokens, so you can't have been a group of one. Someone visited you, or you visited someone. Who?
+[Claim] Frank: Kitsune, 0 tokens. Charms: N1 Ivan, N2 Erin, N3 Dave: nothing. N4 Bob: swallowed a Standard 'Katana' attack, which I'm holding to release. D4: Guilty on Mallory and Carol.
+Frank (public): My N4: I charmed Bob. Exact result: "Your fox charm on Bob swallowed a Standard Attack announced as 'Katana'." So the Katana holder visited Bob on N4, and I'm now holding that attack to release on whoever we pin. That puts the holder in Bob's group, and by Dave's result that's not Dave's group. Bob, what role did Mallory show? Carol, who did you track N4 and what did you get? Heidi, did you visit anyone N4? Olivia, who did you steal from, and did it work?
+[Claim] Heidi: Mirror Maker (0 tokens). N2: mirror on Erin, stopped 0. N3: mirror on Bob, stopped 1 (reflected onto Erin). N4: no action. D4: Guilty on Mallory and Carol.
+Heidi (public): N4: I had no tokens, took no action and visited nobody. I was told nothing. If Dave's 2-group result is true, I can't have been a group of one, so someone visited me, and nobody has claimed it yet. Olivia, did you steal from me? Carol, who did you track on N4? Bob, what role did Mallory show? Note that a Katana holder also gets their own action, so one Yakuza can link two parts of the board. Frank, hold the swallowed attack until the results line up.
+[Claim] Olivia: Magpie (Neutral, never blocks wins). Steals: N1 Frank (1/3), N2 Dave (none), N3 Bob (2/3), N4 Carol (none). Grudge trait. D4: Innocent on Mallory and Carol.
+Olivia (public): N4 I stole from Carol. Exact result: "Carol had no tokens, so you stole nothing." So Olivia–Carol is one link in Dave's groups. The Katana holder visited Bob, so they're in Bob's group with Mallory and Frank. Carol, who did you track on N4? That one link decides whether Heidi, Dave or Carol can be the holder, so let's hear it before anyone nominates. Dave's 2-group result is still only his word, so I won't hang on it alone.
+[Claim] Bob: Vigilante, 0 tokens. N3: shot Ivan, "Mortician". N4: shot Mallory, "Party Animal" (my mistake). Attacked by Katana and survived on N3 (mirror) and N4. D4: Guilty on Mallory and Carol.
+Bob (public): My N4 result, exact wording: "Your shot killed Mallory. Their role was Party Animal." She was Village, and that one's on me. I was also told "You were attacked with the Katana tonight and survived," which fits Frank's charm.
+
+Groups: the holder visited me, so they're in my group with Mallory and Frank. If Dave's result is true, that rules him out as the holder. Heidi says she did nothing and was told nothing, so someone visited her and she wasn't told. A Fixer's visit gives no notice. That means a Yakuza may have fixed Heidi, so Heidi, your trial votes today could count reversed.
+
+Carol, give your exact N4 target and result. If you tracked Dave, then Dave, Carol and Olivia are one group, and both the holder and Heidi's visitor are in my group, which leaves Frank. If you tracked Heidi, then Dave is alone, and your group only joins mine if you're the holder.
+[Claim] Carol: Tracker. N1: Mallory, nobody. N2: Alice, nobody. N3: Dave, nobody. N4: Dave, nobody. D4: Innocent on Mallory and on myself.
+Carol (public): N4 I tracked Dave again, since his Scout results are what everyone is building on. Exact result: "Your target visited nobody." So Dave, me and Olivia (her steal on me) make one group. By Dave's result the other group is {Bob, Mallory, Frank, Heidi}, and the Katana holder is in it. Mallory is dead, so the holder is Frank or Heidi. Bob reached the same point.
+
+Look at what Frank's claim gets him. A Yakuza holder who says "I swallowed a Katana attack and I'm holding it" gets a free cover for tonight's Katana kill: whoever dies, he calls it his "release on the pinned player". Nobody can check the swallow, and none of his charms have ever been confirmed by anyone else. Heidi's mirror on Bob N3 was confirmed by the reflection onto Erin. Frank's story is only his own word. I lean Frank.
+(to Carol, Olivia) Carol -> Olivia (private): Careful: if Frank is Yakuza, his 'held Katana release' is a free kill tonight, and it could be on you before your third steal. I'm voting with you whatever happens.
+[Claim] Dave: Scout (passive). N4: only 2 groups, Bob | Dave. D4: Guilty on Mallory and Carol. D5: nominated Frank.
+Dave (public): Nominating Frank. Carol and Olivia both put Carol on my side, so the holder is in Bob's group: Frank or Heidi. Heidi's N3 mirror is the only thing that explains Erin dying to a reflected Katana. If Frank held the Katana, he hit Bob with it and used his own action on Heidi, which would be her unclaimed visitor. Nobody can check his "swallowed attack", and it gives him cover for tonight's kill. He also built the D2 Spare Blade theory that rescued Ivan and Erin. Guilty.
+Dave nominated Frank. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Frank] Yes - Dave, Heidi, Bob, Carol; No - Frank, Olivia
+Nomination votes on Frank: 4 Yes (the votes are secret).
+Frank is put on trial (4 Yes).
+Frank (public): I'm Village, the Kitsune. Three points.
+
+1. On N4 Bob took a Standard Katana attack and survived. Heidi had no tokens left. I'm the only claimed protector who could have stopped that attack. If I were the holder who attacked him, who saved Bob? Nobody else has claimed it. Alice's N1 sample showed a Kitsune visiting, and Olivia admits she stole a token from me on N1.
+
+2. Carol's N4 "track on Dave" is the only thing that puts the holder in my group. Take it away and everything fits better. Carol holds the Katana and hits Bob, then uses her own action on Heidi. That's a fix, which is why Heidi was visited and told nothing. Olivia's steal on Carol links Carol into Bob's group, and Dave is alone. That matches Dave's 2 groups exactly. Under Carol's version, Heidi needs a visitor nobody can name.
+
+3. Carol also "tracked" Dave on N3. If that visit was a Fixer's, it explains one of our four stated Guilty votes counting Innocent on D4.
+
+She's also the only living player who stated Guilty on Niaj alongside Ivan and Erin. If you hang me, the swallowed attack is lost. If you keep me, I release it tonight on the Yakuza. Vote Innocent.
+(to Frank, Olivia) Frank -> Olivia (private): I'm Village, and I'm holding a real swallowed Katana attack. If I'm hanged, it's gone. If I live, it goes on the Yakuza tonight, and nobody comes after you, since you never block wins. Carol's N4 track is the only thing that puts the holder in my group. Please vote Innocent.
+(to Bob, Frank) Frank -> Bob (private): You saw the Carol branch yourself: Carol as holder hitting you, with her own action fixing Heidi, fits Dave's 2 groups perfectly. And who else could have stopped the Katana on you N4? Nobody else claims a save. Please vote Innocent, and I'll release on Carol tonight unless results say otherwise.
+(to Frank, Heidi) Frank -> Heidi (private): Your silent visitor on N4 was most likely a Fixer: you weren't told anything, so it wasn't a block. If that's right, your trial votes today count reversed. Keep that in mind when you vote. I'm Village, and the holder who hit Bob is Carol, not me.
+[Claim] Heidi: Mirror Maker (0 tokens). N2: mirror on Erin, stopped 0. N3: mirror on Bob, stopped 1 (reflected onto Erin). N4: no action, told nothing. D4: Guilty on Mallory and Carol. D5: Yes on Frank's nomination, Innocent in trial.
+Heidi (public): I'm switching to Innocent. Frank's first point decides it for me. Bob was hit by the Katana on N4 and survived. I had no tokens left, and nobody else claims to have saved him. If Frank was the holder, Bob's survival needs a hidden defense trait that nobody can show. If Frank is the Kitsune, it's explained in full. Carol's version needs nothing unusual: Carol holds the Katana and hits Bob, uses her own action on me, Olivia's steal links her in, and Dave is alone. That still fits Dave's 2 groups. Also, the 3-4 totals on D4 fit Dave lying about his Guilty, with Carol and Dave covering each other's N3/N4 "visited nobody". Frank's release tonight is a free kill for the Village. Don't throw it away.
+[Claim] Olivia: Magpie (Neutral, never blocks wins). Steals: N1 Frank (1/3), N2 Dave (none), N3 Bob (2/3), N4 Carol (none). Grudge trait. D4: Innocent on Mallory and Carol. D5: No/Innocent on Frank.
+Olivia (public): Innocent. Frank's first point holds: Bob survived a Katana attack on N4, Heidi had no tokens, and only a Kitsune charm explains it. Also, my empty steal on Carol doesn't clear her. A steal happens after that night's token use, so a Fixer who spent her last token on Heidi on N4 would come back "no tokens" too. Carol as holder plus a fix on Heidi fits Dave's 2 groups with nobody unexplained. Keep Frank and his release.
+[Claim] Bob: Vigilante, 0 tokens. N3: shot Ivan, "Mortician". N4: shot Mallory, "Party Animal". Survived the Katana on N3 (mirror) and N4 (Frank's charm). D5: Yes on Frank's nomination, Innocent in trial. Lean: Carol is Yakuza.
+Bob (public): I'm voting Innocent. Frank's Kitsune claim has the most outside support of any claim here. Alice's N1 sample listed a Kitsune, and nobody else alive can be it. Frank also said on D2 that the Magpie had hit him, days before Olivia confessed to that steal. And on N4 I survived a Standard Katana attack when no other protector was claimed. Carol's branch fits without any hidden traits. She holds the Katana, hits me, and fixes Heidi, who nominated her yesterday. Olivia's steal on her came back empty because she had spent her last fixer token. Fixing a likely Guilty voter on N3 also explains both 3-4 totals. Heidi, if you were fixed, your Innocent counts Guilty today, but it's still 3-3 and he isn't hanged. Frank, release on Carol tonight.
+[Claim] Carol: Tracker. N1 Mallory, N2 Alice, N3 Dave, N4 Dave: all visited nobody. D5: Innocent on Frank (his charm explains Bob). The holder is Heidi.
+Carol (public): Frank's first point is fair, so I'm switching to Innocent. If his charm saved Bob, he's the Kitsune and not the holder. But look at what the holder then has to be. Erin was the Fixer. Alice's sample listed a Fixer, and Erin "checked" Dave on N2 and Frank on N3. That N3 visit fixing Frank explains both 3-4 totals on D4 by itself: Frank's Guilty counted Innocent. Nobody needs a second, living Fixer, so "Carol fixed Heidi on N4" invents a role we have no sign of.
+
+Now take the N4 board with no inventions. Bob went to Mallory, Frank went to Bob, Olivia came to me, and I went to Dave. The holder visited Bob. The only person left in Bob's group is Heidi, who claims "no action, told nothing", which leaves her the one link nobody can explain. If Heidi took the Katana to Bob, every claim fits, and nobody needs an unnamed visitor. Frank, release on Heidi.
+[Claim] Dave: Scout (passive). N4: only 2 groups, Bob | Dave. D5: nominated Frank, now Innocent (his charm explains Bob). Carol is the holder: her N4 track on me is false.
+Dave (public): I'm switching to Innocent. Bob's survival needs Frank's charm, and Erin's death needs Heidi's mirror. Carol as holder fits my result exactly: Katana on Bob, her own action on Heidi, and I'm alone. Her "track on Dave" is the lie. Next I nominate Carol. Bob, Heidi, Frank, vote Yes.
+Frank (public): Thank you all. One correction that helps everyone: Carol's point about Erin holds up. Erin "checked" Dave on N2 and me on N3. If Erin was the Fixer, a fixed Dave explains Niaj's 6-4 and a fixed Frank explains both 3-4 totals on D4. I can't see my own fix, so I may well have been the flipped Guilty. That means Carol doesn't need a second Fixer. Heidi's silent N4 visitor could still be a Diviner's visit, though, and that gives no notice either.
+
+So the holder who hit Bob on N4 is Carol or Heidi. Each of them has one claim nobody else backs up: Carol's track on Dave, and Heidi's "no action". I'll release the attack tonight on whichever of them the rest of today's discussion breaks. Please keep pressing both.
+Trial votes on Frank: 0 Guilty, 6 Innocent (the votes are secret).
+[Secret trial votes on Frank] Guilty - nobody; Innocent - Bob, Carol, Dave, Frank, Heidi, Olivia
+Frank is found Innocent (0 Guilty of 6 votes; 4 needed).
+Frank (public): Nominating Carol. Heidi's N3 mirror is the only thing that explains Erin dying to a reflected Katana, so Heidi isn't the holder. Carol posted her N4 "track on Dave" after Dave's result was out, and it fits that result by design. If her hang doesn't end the game, I'll release tonight on the other suspect.
+Frank nominated Carol. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Carol] Yes - Frank, Heidi, Bob, Dave; No - Olivia, Carol
+Nomination votes on Carol: 4 Yes (the votes are secret).
+Carol is put on trial (4 Yes).
+Carol (public): I'm the Tracker. Everything against me rests on one result nobody can check: Dave's 2-group count. Olivia said she won't hang on Dave's word alone. Heidi said the D4 3-4 totals fit Dave lying about his own Guilty. Look at Dave's record. His only outside backing was a "Not Evil" from Erin, who was Yakuza. He nominated Mallory, who turned out to be a Village Party Animal. Today he nominated Frank, the one man holding a Katana attack to release. Without his count, nothing puts me in Bob's group. Under his version, I'm a Yakuza with a second role that visited Heidi and left no notice. That's a role nobody has shown.
+
+Here's an offer that costs you nothing. Frank's release kills me tonight just as surely as a rope does. Keep me, and release on whoever you're surest of. A rope on the wrong player can't be taken back. Vote Innocent.
+(to Carol, Heidi) Carol -> Heidi (private): You said it yourself: the D4 totals fit Dave lying. His count is the only thing against me, his only vouch was Yakuza Erin, and he pushed a Village Party Animal and then the Kitsune. Please stay Innocent. Frank's release can still settle this tonight.
+(to Carol, Olivia) Carol -> Olivia (private): You said you wouldn't hang on Dave's word alone. That's all this is. Please stay Innocent and I'll keep my promise to you.
+[Claim] Dave: Scout (passive). N4: only 2 groups, Bob | Dave. D5: Innocent on Frank; Yes and Guilty on Carol (her N4 track on me is false).
+Dave (public): My count is real. I'm the Scout, and a passive result gives me no reason to lie. Erin died to the Katana while Bob survived N3, and only Heidi's mirror explains that, so Heidi isn't Yakuza. That leaves Carol. Guilty. Heidi, Olivia: we need four.
+[Claim] Frank: Kitsune, 0 tokens. N1 Ivan, N2 Erin, N3 Dave: nothing. N4 Bob: swallowed a Standard 'Katana' attack, holding it to release. D5: Innocent on myself, nominated Carol, Guilty.
+Frank (public): Guilty. Carol only switched her holder theory to Heidi after my charm cleared me, and the reflection that killed Erin confirms Heidi's mirror. Bob, Heidi, Olivia: we need four. If the game goes on after this hang, I release tonight on the next suspect.
+[Claim] Heidi: Mirror Maker (0 tokens). N2: mirror on Erin, stopped 0. N3: mirror on Bob, stopped 1 (reflected onto Erin). N4: no action. D5: Innocent on Frank, Yes and Guilty on Carol.
+Heidi (public): Guilty. Carol is quoting me on Dave, so here's why I've moved off that. Dave nominated Mallory, and a Yakuza Dave would never vote Innocent on his own nomination of a Villager. So the Mallory 3-4 was a fix, most likely Erin's N3 visit to Frank, and not Dave lying. I know I visited nobody on N4. Frank's charm explains Bob surviving, so Frank isn't the holder. That leaves Carol.
+Olivia (public): Innocent. A correction you should all weigh: Heidi's N3 visit to Bob was only "confirmed" by my track, and that track was fake. Only Heidi says she mirrored Bob. Carol and Heidi each rest on one claim nobody backs up. Frank has a release tonight that can't be undone, so use it instead of a rope.
+[Claim] Bob: Vigilante, 0 tokens. N3: shot Ivan, "Mortician". N4: shot Mallory, "Party Animal". Survived the Katana on N3 (mirror) and N4 (Frank's charm). D5: Innocent on Frank, Guilty on Carol.
+Bob (public): Guilty. Olivia, Erin's death backs Heidi's mirror, not your fake track. The Katana attacked me on N3 and I lived, and Erin died to the Katana that same night. Only a reflection explains both. So Heidi isn't the holder. Frank's charm explains my N4 survival. That leaves Carol: Katana on me, her own action on Heidi, and her "track on Dave" written to fit his result.
+[Claim] Carol: Tracker. N1 Mallory, N2 Alice, N3 Dave, N4 Dave: all visited nobody. D5: Innocent on Frank, Innocent on myself. Let Frank's release settle it tonight.
+Carol (public): Last word. I'm the Tracker. Weigh what each choice costs. Frank's release goes off tonight whatever you do. If I'm Yakuza and you keep me, Frank releases on me, I die, and the Village wins in the morning. The worst that happens is one more night. If I'm Village and you hang me, the rope can't be undone. Then the real holder is still alive at 5 and holds the Katana, and Frank's release is the only tool you have left. Hanging me only gets you something if you're certain, and the whole case is one passive count from Dave that nobody else can check. Heidi still has an unclaimed N4 visitor. Dave pushed Mallory, a Village Party Animal, and then Frank, the Kitsune. One Innocent from any of the four of you costs the Village nothing and lets tonight's release settle it for sure. Vote Innocent.
+(to Carol, Heidi) Carol -> Heidi (private): Frank's release happens tonight either way. If I'm guilty, I die tonight and the Village still wins. If I'm not, a rope on me can't be undone. Your one Innocent costs nothing. Please.
+Trial votes on Carol: 4 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Carol] Guilty - Bob, Dave, Frank, Heidi; Innocent - Carol, Olivia
+Carol is executed by hanging (4 Guilty of 6 votes; 4 needed).
+Carol died (executed by hanging). Their role isn't revealed. Their last will: "Carol: Tracker (Village). N1 tracked Mallory: "Your target visited nobody." N2 tracked Alice: "visited nobody". N3 tracked Dave: "visited nobody". N4 tracked Dave again: "visited nobody". Erin was the only Fixer: her N3 visit fixed Frank and explains both 3-4 totals on D4. The case against me rested on Dave's 2-group count, which nobody can check. His only vouch came from Yakuza Erin, and he pushed Mallory (Village) and then Frank (Kitsune). If I flip Village, look at Dave and Heidi. Ivan, a Yakuza Mortician, came to me on N3 for a clean, so the Yakuza expected me to die."
+The game is over. Winners: Alice (dead), Bob, Dave, Frank, Grace (dead), Heidi, Judy (dead), Niaj (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Niaj] Kindred results from my own trial arrived when I could no longer use them. Letting players update their will after their own trial vote would fix this.
+[Feedback from Dave] The Scout's one-group result wording ("all in one visit group tonight, including Erin") is a little confusing. Otherwise the interface worked well.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Bob, Dave, Frank, Grace, Heidi, Judy, Niaj
+Cost by player (USD):
+  Alice (Insomniac)     $0.0000   12 calls  claude-opus-5.5
+  Bob (Vigilante)       $0.0000   39 calls  claude-opus-5.5
+  Carol (Fabricator)    $0.0000   49 calls  claude-opus-5.5
+  Dave (Scout)          $0.0000   39 calls  claude-opus-5.5
+  Erin (Fixer)          $0.0000   25 calls  claude-opus-5.5
+  Frank (Kitsune)       $0.0000   41 calls  claude-opus-5.5
+  Grace (Bloodhound)    $0.0000    5 calls  claude-opus-5.5
+  Heidi (Mirror Maker)  $0.0000   39 calls  claude-opus-5.5
+  Ivan (Mortician)      $0.0000   25 calls  claude-opus-5.5
+  Judy (Coroner)        $0.0000   12 calls  claude-opus-5.5
+  Mallory (Mortician)   $0.0000   40 calls  claude-opus-5.5
+  Niaj (Prosecutor)     $0.0000   18 calls  claude-opus-5.5
+  Olivia (Magpie)       $0.0000   38 calls  claude-opus-5.5
+  Moderator             $0.0000    7 calls  claude-opus-5.5
+  Night checks          $0.0000    4 calls  claude-opus-5.5
+  Strategy review       $0.0000    1 calls  claude-opus-5.5
+  Log review            $0.0000    1 calls  claude-opus-5.5
+  Total                 $0.0000  395 calls
