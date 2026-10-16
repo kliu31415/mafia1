@@ -46,6 +46,12 @@ def via_note(p: dict) -> str:
     return " (via Claude Code)" if p.get("via") == "claude_code" else ""
 
 
+def phase_ended(r: dict) -> bool:
+    """Whether an end_phase tool record ended the phase: the code refuses one with work left (e.g. a held tell), and
+    the moderator's later end_phase repeats the summary, which was then shown twice (game_20261016_060619_1008)."""
+    return (r.get("result") or {}).get("ok") is not False
+
+
 def text_line(r: dict) -> str | None:
     k = r["kind"]
     if r.get("alert"):  # GameLog.error
@@ -76,6 +82,8 @@ def text_line(r: dict) -> str | None:
             return f"Katana: no attack ({res.get('note', 'no target')}); {res.get('holder') or 'nobody'} holds it."
         case "moderator_tool" if r["name"] == "end_phase":
             summary = tool_args(r["args"]).get("summary", "")
+            if not phase_ended(r):  # refused, so a later end_phase writes the summary that counts
+                return f"[Moderator end_phase refused] {(r.get('result') or {}).get('note', '')}"
             return f"[Moderator summary] {summary}"
         case "briefing":
             return f"[Setup note to players] {r['setup_note']}"
@@ -897,7 +905,7 @@ def render_html(jsonl_path: Path) -> Path:
                                                  for c in r.get("tool_calls") or []])
                             + pre("Usage", r.get("usage"))))
         elif k == "moderator_tool":
-            if r["name"] == "end_phase":
+            if r["name"] == "end_phase" and phase_ended(r):
                 line("hidden", "Moderator summary", str(tool_args(r["args"]).get("summary", "")))
             else:
                 out.append(call(f"Tool {esc(r['name'])} result", pre("Args", r.get("args")) + pre("Result", r.get("result"))))

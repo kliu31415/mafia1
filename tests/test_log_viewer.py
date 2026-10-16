@@ -247,3 +247,12 @@ def test_the_setup_line_shows_a_starting_status_as_text_not_a_dict():
     line = text_line({"kind": "setup", "katana": None, "players": [
         {"name": "Erin", "seat": 2, "role": "Roleplayer", "model": "m", "status": {"fake_role": "Sheriff"}}]})
     assert line and "(fake_role: Sheriff)" in line and "{" not in line
+
+
+def test_a_refused_end_phase_doesnt_show_its_summary_as_the_phase_summary():
+    from log_viewer import text_line
+    refused = {"kind": "moderator_tool", "name": "end_phase", "args": '{"summary": "Night 1, first try."}',
+               "result": {"ok": False, "note": "Not ended: a tell was held."}}
+    ended = {"kind": "moderator_tool", "name": "end_phase", "args": '{"summary": "Night 1."}', "result": {"ok": True}}
+    assert text_line(refused) == "[Moderator end_phase refused] Not ended: a tell was held."
+    assert text_line(ended) == "[Moderator summary] Night 1."
