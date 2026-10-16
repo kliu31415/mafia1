@@ -114,3 +114,29 @@ Frank (public): Agreed: no rope today. Every visitor to Heidi now has a claim th
 Heidi (public): Agreed, no rope today. Every visit to me is accounted for now. Ivan, Mallory and Frank: please be ready to claim on Day 3. Without votes today I'll have nothing to audit tonight, so tomorrow's votes matter.
 Niaj (public): Agreed, no rope today. Every visit to Heidi is explained. Frank, Ivan and Mallory: please claim on Day 3. My results go in my will each night.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+Night actions:
+  Alice (Trapper): no action
+  Bob (Mirror Maker): target Niaj; chose to spend 1 token(s)
+  Carol (Enforcer): target Ivan; second target Mallory; chose to spend 1 token(s)
+  Dave (Arsonist): target Niaj; "douse"
+  Frank (Enforcer): target Mallory; second target Ivan; chose to spend 1 token(s)
+  Heidi (Auditor): no action
+  Ivan (Oathsworn): no role action; Katana vote: Ivan holds, attacks Bob
+  Judy (Tracker): target Ivan
+  Niaj (Lookout): target Bob
+  Olivia (Roleplayer): target Mallory
+Katana: Ivan holds it and attacks Bob.
+(to Ivan) Moderator (private): Your Katana attack on Bob succeeded: Bob died.
+(to Carol) Moderator (private): You visited Ivan and Mallory tonight. You attacked one of them, and your attack killed. 2 enforcer tokens left.
+(to Frank) Moderator (private): You visited Mallory and Ivan tonight. You attacked one of them, and your attack killed. 2 enforcer tokens left.
+(to Dave) Moderator (private): You doused Niaj tonight.
+(to Judy) Moderator (private): You tracked Ivan tonight. Ivan visited Bob.
+(to Niaj) Moderator (private): You watched Bob tonight. Bob's visitors: Ivan.
+(to Olivia) Moderator (private): You tracked Mallory tonight. Mallory visited Judy.
+[Moderator summary] Night 2: Ivan (Katana holder) killed Bob with the Katana (Standard vs None). Carol and Frank (Enforcers, each 1 token for two targets: Ivan + Mallory, Basic) each attacked Ivan, the only one of the two who attacked; both attacks fatal, Ivan died (cause Enforcer). Bob's mirror on Niaj stopped nothing (last token spent). Dave doused Niaj (Good, not told). Judy tracked Ivan -> Bob. Niaj watched Bob -> Ivan. Olivia (Roleplayer, fake Tracker) got random result Mallory -> Judy. Alice and Heidi did not act; Alice's trap on Heidi was not triggered. Ivan did not use his oath token. All Yakuza are now dead; Dave (Arsonist) still alive, so the game continues.
+[Night check] Night 2: correct
+(to Bob) Moderator (private): Your mirror on Niaj stopped 0 attacks tonight. You have 0 mirror tokens left.
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Ivan) Moderator (private): You were attacked tonight (Enforcer) and died.
