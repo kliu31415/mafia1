@@ -150,6 +150,13 @@ night actions already run in parallel.
   frames are moderator-only), so they'd need Fabricator ops first. Maintenance: one table in the role's file maps
   each store (Status key, Game field, role_state key) to its wording or "not seen"; a test running mock games fails
   on any unlisted key, so a new lasting effect costs one line. Open choices: every night or tokens, visit or not.
+- **Banked Katana attack** (Kevin, Oct 16 2026: punted). A Yakuza role or trait that banks one Katana attack (cap 1)
+  on a night the Yakuza skip theirs. As stated it defers a kill rather than adding one, LLM Yakuza rarely skip, and the
+  payoff is a delayed Spare Blade (about +0.15). Rulings needed: only a majority's chosen no-attack counts (not a split
+  vote, blocked holder or saved target, R8); the banked attack works like Spare Blade and never stacks with it or with
+  Expert/Master/Berserker. Its best hook is social: a no-kill night backs a fake protective claim. Livelier variants:
+  spend the bank as a Day strike (about +0.4); a skip makes the next Katana attack Strong or a rampage; or each skip
+  upgrades the bank (Strong, then Divine).
 - **Mole and Interceptor** (Oct 11, 2026). Mole (Village posing as Yakuza in their chat): too strong, since one will
   naming every Yakuza ends the game. Interceptor (reads the Yakuza chat under shuffled labels): terse or silent chat
   defeats it, so it mostly taxes Yakuza coordination.
