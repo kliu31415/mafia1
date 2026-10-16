@@ -1,0 +1,18 @@
+Setup:
+  Alice    seat 1  Vigilante         anthropic/claude-opus-5.5 (via Claude Code)  trait: Martyr
+  Bob      seat 2  Oathsworn         anthropic/claude-opus-5.5 (via Claude Code)  trait: Merciful
+  Carol    seat 3  Cartographer      anthropic/claude-opus-5.5 (via Claude Code)  trait: Stocked, Faultline
+  Dave     seat 4  Kitsune           anthropic/claude-opus-5.5 (via Claude Code)  trait: Paranoid
+  Erin     seat 5  Profiler          anthropic/claude-opus-5.5 (via Claude Code)  trait: Drowsy, Grudge
+  Frank    seat 6  Werewolf          anthropic/claude-opus-5.5 (via Claude Code)  trait: Disguised as Prosecutor
+  Grace    seat 7  Ritualist         anthropic/claude-opus-5.5 (via Claude Code)  trait: Narrow Escape, Drowsy
+  Heidi    seat 8  Mayor             anthropic/claude-opus-5.5 (via Claude Code)
+  Ivan     seat 9  Veteran           anthropic/claude-opus-5.5 (via Claude Code)  trait: Paranoid
+  Judy     seat 10 Jester            anthropic/claude-opus-5.5 (via Claude Code)
+  Mallory  seat 11 Fabricator        anthropic/claude-opus-5.5 (via Claude Code)  trait: Merciful
+  Niaj     seat 12 Fortune Teller    anthropic/claude-opus-5.5 (via Claude Code)  trait: Disguised as Enforcer, Ashamed
+  Olivia   seat 13 Bloodhound        anthropic/claude-opus-5.5 (via Claude Code)
+  Katana starts with Bob
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 2 to 4 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Traits (R24) were picked by hand too: roughly 13 to 15 in all, each dealt to a player it fits, and a player may hold more than one.
