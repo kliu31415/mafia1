@@ -973,7 +973,7 @@ def test_scout_with_fewer_than_three_groups(game_factory):
     game.phase = "night"
     game.night_visits[game.day] = [["Carol", "Bob"], ["Bob", "Dave"], ["Alice", "Dave"]]
     game.run_night_end_hooks()
-    assert "were all in one visit group tonight, including" in told(game, "Alice")[-1]
+    assert "were all in 1 visit group tonight; one from it:" in told(game, "Alice")[-1]
     game.night_visits[game.day] = [["Carol", "Bob"], ["Bob", "Dave"]]  # Alice alone
     game.run_night_end_hooks()
     assert "Alice" in told(game, "Alice")[-1] and "only 2 visit groups" in told(game, "Alice")[-1]
@@ -2724,9 +2724,9 @@ def test_a_kindred_player_learns_two_random_players_whose_votes_counted_like_the
     # fewer than two the same way
     cast2 = {"Alice": False, "Bob": True, "Carol": True, "Dave": False}
     trait_logic("Kindred").after_trial_vote(game, "Bob", cast2, guilty=["Bob", "Carol"])
-    assert told(game, "Alice")[-1].endswith("you voted Innocent, and only Dave's vote counted as Innocent too.")
+    assert told(game, "Alice")[-1].endswith("you voted Innocent; only Dave's vote counted as Innocent.")
     trait_logic("Kindred").after_trial_vote(game, "Bob", {"Alice": False, "Bob": True}, guilty=["Bob"])
-    assert told(game, "Alice")[-1].endswith("you voted Innocent, and nobody else's vote counted as Innocent.")
+    assert told(game, "Alice")[-1].endswith("you voted Innocent; nobody else's vote counted as Innocent.")
 
 
 def test_a_faultline_player_learns_one_random_voter_from_each_side(game_factory):

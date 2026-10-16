@@ -40,5 +40,5 @@ class Scout(RoleLogic):
             elif len(names) == 2:
                 text = f"The players were in only 2 visit groups tonight; one from each: {join_names(names)}."
             else:
-                text = f"The players were all in one visit group tonight, including {names[0]}."
+                text = f"The players were all in 1 visit group tonight; one from it: {names[0]}."
             game.tell([p.name], text)

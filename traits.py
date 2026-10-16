@@ -687,8 +687,9 @@ class Kindred(TraitLogic):
                     f"{join_names(picked)}'s votes counted as {way}" if len(picked) == 2 else
                     f"only {picked[0]}'s vote counted as {way}")
             game.log.write("kindred", day=game.day, player=name, nominee=nominee, named=picked)
-            game.emit(f"(Only you see this) Kindred: in the trial of {nominee}, you voted {way}, and {text}"
-                      + (" too." if picked else "."), [name], cat=VOTE)
+            # No "too": a Zealot's or fixed vote didn't count the way it was cast (game_20261016_083350_1000).
+            game.emit(f"(Only you see this) Kindred: in the trial of {nominee}, you voted {way}; {text}.", [name],
+                      cat=VOTE)
 
 
 class Remorseful(TraitLogic):
