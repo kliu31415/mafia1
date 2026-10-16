@@ -197,3 +197,18 @@ Trial votes on Frank: 5 Guilty, 1 Innocent (the votes are secret).
 [Secret trial votes on Frank] Guilty - Alice, Bob, Carol, Erin, Grace; Innocent - Frank
 Frank is executed by hanging (5 Guilty of 6 votes; 4 needed).
 Frank died (executed by hanging). Their role isn't revealed. Their last will: "Frank, Grunt, no night action. I have no night information beyond the public results. Judge each claim by its checkable result, and don't trust any claim that contradicts Heidi's Night 1 Sheriff check on Erin."
+
+===== NIGHT 3 =====
+Night actions:
+  Bob (Vigilante): no action
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Alice
+  Erin (Roleplayer): target Frank; chose to spend 1 token(s)
+  Grace (Medic): target Alice; "Free Standard protection on Alice, the Scout claim, as the likeliest Katana target. Target not announced."
+Katana: Carol holds it and attacks Alice.
+(to Erin) Moderator (private): You examined Frank: their role was Hitman. 1 coroner token left.
+(to Alice) Moderator (private): You were attacked with the Katana tonight and survived.
+(to Grace) Moderator (private): You protected Alice tonight with Standard Defense. Your protection stopped an attack. 2 medic tokens left.
+(to Carol) Moderator (private): Your Katana attack on Alice tonight failed: Alice survived.
+[Moderator summary] Night 3: Carol (Katana holder) attacked Alice with a Standard Katana attack. Grace (Medic) gave Alice free Standard protection, so the attack failed. Alice was told she survived a Katana attack, Grace was told her protection stopped an attack, and Carol was told her attack failed. Erin (Roleplayer, believes Coroner) examined Frank: examine op used, code gives a random result and spends the token. Alice's Scout result comes from code. Bob took no action. Visits recorded: Carol->Alice, Grace->Alice. Nobody died.
+[Night check] Night 3: correct
+(to Alice) Moderator (private): Tonight Alice, Carol and Erin were each in a different visit group.
