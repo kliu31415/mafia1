@@ -40,3 +40,24 @@ Discussion time is over. The day ends.
 (to Frank, Grace) Grace (Yakuza chat): Agreed. Heidi is our night target. I'll vote Heidi as the Katana target and keep the Katana on myself (no holder move).
 (to Frank, Grace) Frank (Yakuza chat): Frank: Agreed. Heidi is tonight's target, and Grace keeps the Katana with no holder move. I'll vote Heidi as the target. Let's both lock it in.
 (to Frank, Grace) Grace (Yakuza chat): Agreed: Heidi is tonight's target. I'm keeping the Katana on me (holder vote: Grace), and I vote Heidi as the Katana target. Frank, please lock the same vote. Nothing else from me.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Sheriff): target Dave
+  Carol (Medic): target Heidi; "Standard Medic protection on Heidi, free (0 tokens). Heidi publicly claimed a visit-based night role, so they are a likely Katana target."
+  Dave (Roleplayer): target Heidi; chose to spend 1 token(s); "Spend one map token (Astral Visit) on Heidi to learn her visit group. Heidi said she has a night role that cares about visits, so her group should show who she visited or was visited by."
+  Erin (Roleplayer): no action
+  Frank (Grunt): no role action; Katana vote: Grace holds, attacks Heidi
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Heidi
+  Heidi (Roleplayer): chose to spend 1 token(s); "Staying awake tonight to learn the roles of up to 3 players who visited someone. No target."
+Katana: Grace holds it and attacks Heidi.
+(to Bob) Moderator (private): You investigated Dave tonight. Result: Not Evil.
+(to Carol) Moderator (private): You protected Heidi tonight with Standard Defense. Your protection stopped an attack. 2 medic tokens left.
+(to Grace) Moderator (private): Your Katana attack on Heidi tonight did not succeed.
+[Moderator summary] Night 1: Bob (Sheriff) checked Dave -> Not Evil. Carol (Medic) protected Heidi (Standard, 0 tokens). Grace (Katana holder) attacked Heidi with Standard Katana; stopped by Medic protection. Heidi survives, told of Katana attack. Dave (Roleplayer/Cartographer) mapped Heidi via map op; Heidi (Roleplayer/Insomniac) stayed awake via stay_awake op. Erin, Alice, Frank did not act. Visits: Bob->Dave, Carol->Heidi, Grace->Heidi. No deaths.
+(to Heidi) Moderator (private): You were attacked with the Katana tonight and survived.
+[Moderator summary] Night 1: Bob (Sheriff) checked Dave -> Not Evil. Carol (Medic) protected Heidi (Standard, 0 tokens spent, 2 left). Grace (Katana holder) made a Standard Katana attack on Heidi; Carol's protection stopped it. Heidi survived and was told of the Katana attack. Dave (Roleplayer/Cartographer) mapped Heidi with the map op; Heidi (Roleplayer/Insomniac) stayed awake with the stay_awake op. Alice, Erin and Frank did not act. Visits: Bob->Dave, Carol->Heidi, Grace->Heidi. No deaths.
+[Night check] Night 1: correct
+(to Dave) Moderator (private): Tonight's visit groups have sizes 3, 3, 1, 1. You mapped Heidi: their group is Bob, Dave and Heidi. 1 map token left.
+(to Heidi) Moderator (private): You lay awake all night. More than 3 players visited someone tonight; you heard 3 of them, drawn at random. Their roles: Oathsworn, Oracle, Vigilante. 1 insomniac token left.
+(to Frank) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Heidi. Grace (Grunt) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Heidi. Frank (Grunt) chose no action.
