@@ -39,3 +39,22 @@ Discussion time is over. The day ends.
 (to Carol, Frank) Frank (Yakuza chat): Agreed: Carol keeps the Katana, and it attacks Dave. I'm voting Dave too. My cover is Grunt with no night action. Ready.
 (to Carol, Frank) Carol (Yakuza chat): Agreed. Carol keeps the Katana (no holder change). Katana attack on Dave, and I'm voting Dave. My cover is Grunt with no night action. Ready.
 (to Carol, Frank) Frank (Yakuza chat): Agreed. Carol keeps the Katana, attack on Dave, and I'm voting Dave. My cover is Grunt with no night action. Ready.
+Night actions:
+  Bob (Vigilante): no action
+  Carol (Grunt): no role action; Katana vote: Carol holds, attacks Dave
+  Dave (Roleplayer): target Frank; chose to spend 1 token(s); "Profiling Frank on Night 1 to get an early read on one player."
+  Erin (Roleplayer): no action
+  Frank (Grunt): no role action; Katana vote: Carol holds, attacks Dave
+  Grace (Medic): target Heidi; "Free Standard protection on Heidi. No result expected to be shared publicly unless it bears on a vote."
+  Heidi (Sheriff): target Erin
+Katana: Carol holds it and attacks Dave.
+(to Dave) Moderator (private): You profiled Frank: their role is Census Taker, Magpie or Medic (exactly one is true, and at least one of the three is a Good role and at least one is not Good). 2 profile tokens left.
+(to Carol) Moderator (private): Your Katana attack on Dave succeeded.
+(to Grace) Moderator (private): You protected Heidi tonight with Standard Defense. Your protection did not stop an attack. 2 medic tokens left.
+(to Heidi) Moderator (private): You investigated Erin tonight. Result: Not Evil.
+[Moderator summary] Night 1: Carol (Katana holder) attacked Dave with a Standard Katana attack; Dave (no Defense) died, cause Katana. Dave (Roleplayer, believes Profiler) profiled Frank via the profile op; code gives the random result, not a visit. Grace (Medic) protected Heidi with Standard protection, no token spent; no attack stopped. Heidi (Sheriff) checked Erin: Not Evil. Alice (Roleplayer/Scout) gets her result from code. Bob, Erin, Frank took no action. Visits: Carol->Dave, Grace->Heidi, Heidi->Erin.
+[Night check] Night 1: correct
+(to Alice) Moderator (private): Tonight Carol, Erin and Frank were each in a different visit group.
+(to Dave) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Dave. Frank (Grunt) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Carol holds the Katana and chose to attack Dave. Carol (Grunt) chose no action.
