@@ -20,6 +20,9 @@ def revealed(game: Game, p: Player) -> bool:
 
 @register("Mayor")
 class Mayor(RoleLogic):
+    def public_role(self, game: Game, p: Player) -> bool:
+        return revealed(game, p)  # the announcement is true
+
     def briefing(self, game: Game, p: Player) -> list[str]:
         return ["Once per game, on one of your own Day speaking turns, you may reveal yourself as the Mayor: everyone "
                 "is told right after that turn, and it is true. From then on each of your Guilty/Innocent trial votes "

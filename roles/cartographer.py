@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (RecordedAction, RoleLogic, acted_tonight, join_names, register,
-                        tokens_left_text, visit_groups)
+from roles.base import (RecordedAction, RoleLogic, acted_tonight, believed_role, fake_groups, is_fake, join_names,
+                        register, tokens_left_text, visit_groups)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -15,7 +15,7 @@ MAPS = "cartographer_maps"  # game.role_state: Cartographer -> the player whose 
 
 @register("Cartographer")
 class Cartographer(RoleLogic):
-    roleplayer_can_fake = False  # code works out the groups from the recorded visits
+    roleplayer = "code"  # the same result from random visits
     code_tells_user = True
     action = RecordedAction("map", "maps player's visit group (code tells them its names at the end of the night)",
                             "code tells them the names in that player's group, from your record_visits list",
@@ -28,9 +28,11 @@ class Cartographer(RoleLogic):
         assert target
         game.role_state.setdefault(MAPS, {})[by.name] = target.name  # told once the visits are in
 
+    fake_carry_out = carry_out  # at_night_end gives a Roleplayer random groups
+
     def at_night_end(self, game: Game) -> None:
         maps = game.role_state.pop(MAPS, {})
-        users = [p for p in game.players if p.role == self.role and acted_tonight(game, p)]
+        users = [p for p in game.players if believed_role(p) == self.role and acted_tonight(game, p)]
         if not users:
             return
         groups = visit_groups(game)
@@ -38,8 +40,10 @@ class Cartographer(RoleLogic):
             game.log.error("cartographer_no_visits", f"night {game.day}: no visits were recorded, so the "
                            "Cartographer got no result", day=game.day, players=[p.name for p in users])
             return
-        sizes = ", ".join(str(len(g)) for g in groups)
+        real = groups
         for p in users:
+            groups = fake_groups(game) if is_fake(p) else real  # random for a Roleplayer (rules: Roleplayer)
+            sizes = ", ".join(str(len(g)) for g in groups)
             text = f"Tonight's visit groups have sizes {sizes}."
             if (target := maps.get(p.name)) is not None:
                 group = next(g for g in groups if target in g)

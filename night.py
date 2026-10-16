@@ -6,6 +6,7 @@ from players import (BOOL, Players, STR, blank, cap_words, name_enum, night_acti
                      tokens_left)
 from day import LAST_WILL_WORDS
 from roles import Alignment, Status, logic
+from roles.base import code_faked_roles
 from events import PHASE, YAKUZA_CHAT
 from state import Game, majority
 from traits import NOT_ATTACKS, night_traits, trait_logic
@@ -242,8 +243,9 @@ def snapshot(x):
 def role_notes(game: Game) -> str:
     """Reminders from roles/*.py for roles in this game (alive or dead, e.g. a dead Trapper's traps), and from
     traits.py for its traits."""
-    notes = [logic(r).night_note for r in sorted({p.role for p in game.players}) if logic(r).night_note]
-    notes += [note for r in sorted({p.role for p in game.players}) if (note := logic(r).tonight_note(game))]
+    roles = sorted({p.role for p in game.players} | code_faked_roles(game))  # a Roleplayer's coded fake role too
+    notes = [logic(r).night_note for r in roles if logic(r).night_note]
+    notes += [note for r in roles if (note := logic(r).tonight_note(game))]
     notes += [trait_logic(t).night_note for t in sorted({t for p in game.players for t in p.traits})
               if trait_logic(t).night_note]  # traits are secret, but the moderator knows them
     notes += [note for t in sorted({t for p in game.players for t in p.traits})

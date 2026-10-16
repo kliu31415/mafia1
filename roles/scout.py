@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import RoleLogic, acted_tonight, join_names, register, visit_groups
+from roles.base import RoleLogic, acted_tonight, believed_role, fake_groups, is_fake, join_names, register, visit_groups
 
 if TYPE_CHECKING:
     from state import Game
@@ -12,12 +12,12 @@ if TYPE_CHECKING:
 
 @register("Scout")
 class Scout(RoleLogic):
-    roleplayer_can_fake = False  # code draws the names from the recorded visits
+    roleplayer = "code"  # the same draw from random visits
     night_note = ("Code tells the Scout their result every night from your record_visits list; don't tell() them "
                   "anything about it.")
 
     def at_night_end(self, game: Game) -> None:
-        users = [p for p in game.players if p.role == self.role and acted_tonight(game, p)]
+        users = [p for p in game.players if believed_role(p) == self.role and acted_tonight(game, p)]
         if not users:
             return
         groups = visit_groups(game)
@@ -25,8 +25,9 @@ class Scout(RoleLogic):
             game.log.error("scout_no_visits", f"night {game.day}: no visits were recorded, so the Scout got no "
                            "result", day=game.day, players=[p.name for p in users])
             return
-        group_of = {n: tuple(g) for g in groups for n in g}
         for p in users:
+            mine = fake_groups(game) if is_fake(p) else groups  # random for a Roleplayer (rules: Roleplayer)
+            group_of = {n: tuple(g) for g in mine for n in g}
             # A random player, then their group is set aside, so a group comes up in proportion to its size.
             pool = list(group_of)  # the Scout too (Kevin: simpler)
             names: list[str] = []

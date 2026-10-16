@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from roles.base import (CODE_ATTACKS, RecordedAction, RoleLogic, acted_tonight, join_names, register,
-                        tokens_left_text)
+from roles.base import (CODE_ATTACKS, RecordedAction, RoleLogic, acted_tonight, believed_role, is_fake, join_names,
+                        register, tokens_left_text)
 
 if TYPE_CHECKING:
     from state import Game, Player
@@ -23,7 +23,7 @@ def attack_count(game: Game, names: list[str]) -> int:
 
 @register("Bloodhound")
 class Bloodhound(RoleLogic):
-    roleplayer_can_fake = False  # code draws the group and counts
+    roleplayer = "code"  # the real group, a random count
     night_end_order = 1  # after a Cursed player's curse, which counts as an attack tonight
     code_tells_user = True
     action = RecordedAction(
@@ -59,9 +59,11 @@ class Bloodhound(RoleLogic):
         assert target
         game.role_state.setdefault(TRACKS, {})[by.name] = target.name  # told at the end of the night
 
+    fake_carry_out = carry_out  # at_night_end draws a Roleplayer's count
+
     def at_night_end(self, game: Game) -> None:
         tracks = game.role_state.pop(TRACKS, {})
-        users = [p for p in game.players if p.role == self.role and acted_tonight(game, p)]
+        users = [p for p in game.players if believed_role(p) == self.role and acted_tonight(game, p)]
         if not users:
             return
         if game.day not in game.role_state.get(ATTACKS, {}):
@@ -72,7 +74,8 @@ class Bloodhound(RoleLogic):
             others = [q.name for q in game.players if acted_tonight(game, q) and q.name not in (p.name, target)]
             drawn = game.rng.sample(others, min(3 - (target is not None), len(others)))
             group = [q.name for q in game.players if q.name in {*drawn, *([target] if target else [])}]
-            n = attack_count(game, group)
+            # A Roleplayer's count is random (rules: Roleplayer): at most about one attack a night each so far.
+            n = game.rng.randint(0, game.day) if is_fake(p) else attack_count(game, group)
             text = (f"Your Bloodhound check of {join_names(group)}: together they have made {n} "
                     f"attack{'' if n == 1 else 's'} this game, tonight's included.")
             if target:

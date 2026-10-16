@@ -29,7 +29,7 @@ def tonight(game: Game) -> dict:
 @register("Mirror Maker")
 class MirrorMaker(RoleLogic):
     code_tells_user = True
-    roleplayer_can_fake = False  # code tells the result
+    roleplayer = "never"  # code tells the result
     night_note = (
         f"Mirror Maker: a Mirror Maker who acted on another player (and wasn't role-blocked) placed a mirror on them "
         f"(it spends a token). Resolve it right after any fox charm (Kitsune) and before traps and Defense: use the "

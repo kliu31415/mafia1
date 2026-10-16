@@ -78,9 +78,11 @@ class RoleLogic:
     # carry_out, and target_error for any check beyond the standard ones.
     action: RecordedAction | None = None
     blocks_win: bool = True  # False for Neutrals the win check ignores (rules: "if we ignore Jesters...")
-    # False for roles whose results code delivers (live PMs, random samples), which the moderator can't fake
-    # for a Roleplayer who believes they have the role.
-    roleplayer_can_fake: bool = True
+    # Whether a Roleplayer may believe they have this (Investigative) role, and who then gives their random results
+    # (rules: Roleplayer): "moderator" (it invents them), "code" (the role's own code does, when the user is_fake:
+    # the moderator records their actions with the role's ops as for a real user, and fake_carry_out stands in for
+    # carry_out) or "never" (live PMs, public effects, results a random draw could plainly contradict).
+    roleplayer: str = "moderator"
     # Reminder for the moderator's night resolution, for effects with no submitted action or that
     # need a special op. Included when anyone in the game has (or had) the role.
     night_note: str = ""
@@ -105,6 +107,10 @@ class RoleLogic:
     def shown_role(self, p: Player) -> str:
         """The role the player is told they have."""
         return f"{p.role} ({p.info.alignment.value})"
+
+    def believed_role(self, p: Player) -> str:
+        """The role the player believes they have, and acts as (believed_role below)."""
+        return p.role
 
     def acts_at_night(self, game: Game, p: Player) -> bool:
         """Whether the player is asked for a night action (Yakuza always are, for the Katana vote)."""
@@ -197,7 +203,8 @@ class RoleLogic:
         by = game.player(change["by"])
         if self.action.token:
             spend_token(game, by.name, self.action.token)
-        self.carry_out(game, by, game.player(change["player"]) if self.action.target else None)
+        target = game.player(change["player"]) if self.action.target else None
+        (self.fake_carry_out if is_fake(by) else self.carry_out)(game, by, target)
         return None
 
     def target_error(self, game: Game, by: Player, target: Player | None) -> str | None:
@@ -208,6 +215,16 @@ class RoleLogic:
     def carry_out(self, game: Game, by: Player, target: Player | None) -> None:
         """A RecordedAction's effect, once checked and its token spent. Tell a private result with game.tell."""
         raise NotImplementedError(self.role)
+
+    def fake_carry_out(self, game: Game, by: Player, target: Player | None) -> None:
+        """carry_out for a Roleplayer who believes they have this role (roleplayer = "code"): a random result in
+        the same words as a real one, and no other effect (it isn't a visit, and nobody else learns anything)."""
+        raise NotImplementedError(f"{self.role}: a Roleplayer's random result")
+
+    def public_role(self, game: Game, p: Player) -> bool:
+        """Whether this role's effect has made living p's role public and true (a revealed Mayor). Called once per
+        registered role, whether or not anyone has it."""
+        return False
 
     def defense(self, game: Game, p: Player) -> str:
         """This player's Defense outside any night effect (rules R3): their role's, unless the role earns more during
@@ -239,6 +256,57 @@ def seen_role(game: Game, p: Player) -> str:
     """The role exact-role checks (rules R18, R19) see for p: their true role unless a trait disguises it. Code that
     reports a player's role in a result uses this, never the role field itself (a test checks)."""
     return game.role_state.get(DISGUISES, {}).get(p.name, p.role)
+
+
+def believed_role(p: Player) -> str:
+    """The role p believes they have and acts as: a Roleplayer's fake role (rules: Roleplayer), else their own."""
+    return logic(p.role).believed_role(p)
+
+
+def is_fake(p: Player) -> bool:
+    """Whether p only believes they have their believed_role (a Roleplayer): code gives them random results."""
+    return believed_role(p) != p.role
+
+
+def code_faked_roles(game: Game) -> set[str]:
+    """Roles that only Roleplayers believe they have and whose code gives them results (roleplayer = "code"): the
+    moderator gets their ops and night notes as if the role were in the game."""
+    return {r for p in game.players if (r := believed_role(p)) != p.role and logic(r).roleplayer == "code"}
+
+
+def public_role(game: Game, p: Player) -> str | None:
+    """p's role as public announcements told everyone it truly is, or None: a death that showed the role (rules R12;
+    a Chronicler's mark, ...) unless a Mortician cleaned it, or a role's own reveal (a Mayor). A Roleplayer's random
+    result about p gives this instead of a draw, which would be plainly wrong."""
+    if not p.alive and p.death is not None and not p.status.get(Status.CLEANED):
+        if game.rule_settings["flips"] == "role":
+            return p.role  # what death_reveal announced
+        if game.role_reveal_reason(p):
+            return seen_role(game, p)
+    if any(r.public_role(game, p) for r in LOGIC.values()):
+        return seen_role(game, p)
+    return None
+
+
+def public_alignment(game: Game, p: Player) -> Alignment | None:
+    """p's true alignment, when a death announcement showed only that (--flips alignment) and no clean hid it."""
+    if not p.alive and p.death is not None and not p.status.get(Status.CLEANED) \
+            and game.rule_settings["flips"] == "alignment":
+        return p.info.alignment
+    return None
+
+
+def random_role(game: Game, p: Player) -> str:
+    """A random role on the game's script for a Roleplayer's result about p: p's public role if there is one, else
+    a role p could have given what is public (their alignment, if a death showed it)."""
+    from roles import ROLES
+    from scripts import script_roles
+    if (role := public_role(game, p)) is not None:
+        return role
+    pool = sorted(script_roles(game))
+    if (side := public_alignment(game, p)) is not None:
+        pool = [r for r in pool if ROLES[r].alignment is side] or pool
+    return game.rng.choice(pool)
 
 
 def acted_tonight(game: Game, p: Player) -> bool:
@@ -347,7 +415,8 @@ def token_user_error(game: Game, by_name: str, role: str, kind: str | None = Non
     """check_op for a role op: None if `by` has `role`, was alive when the night began (acted_tonight) and,
     for an op that spends a `kind` token, has one."""
     by = game.player(by_name)
-    if by.role != role or not acted_tonight(game, by):
+    if believed_role(by) != role or not acted_tonight(game, by) \
+            or (is_fake(by) and logic(role).roleplayer != "code"):  # a Roleplayer's fake role only if code fakes it
         return f"{by.name} is not a {role} who was alive when the night began"
     if kind and by.tokens.get(kind, 0) < 1:
         return f"{by.name} has no {kind} token left"
@@ -380,11 +449,13 @@ def neighbor_group(game: Game, user: str, target: str) -> list[str]:
     return list(dict.fromkeys([circle[i - 1], target, circle[(i + 1) % len(circle)]]))
 
 
-def visit_groups(game: Game) -> list[list[str]] | None:
+def visit_groups(game: Game, visits: list[list[str]] | None = None) -> list[list[str]] | None:
     """Tonight's visit groups (Cartographer): the connected parts of the undirected graph whose nodes are the
     players alive at the start of the night and whose edges are the moderator's record_visits pairs (self-visits
-    link no one), each in seat order, largest first, then by first seat. None if no visits were recorded."""
-    visits = game.night_visits.get(game.day)
+    link no one), each in seat order, largest first, then by first seat. None if no visits were recorded.
+    `visits` replaces the recorded ones (fake_visits)."""
+    if visits is None:
+        visits = game.night_visits.get(game.day)
     if visits is None:
         return None
     nodes = [p.name for p in game.players if acted_tonight(game, p)]
@@ -401,6 +472,19 @@ def visit_groups(game: Game) -> list[list[str]] | None:
     for n in nodes:
         groups.setdefault(find(n), []).append(n)
     return sorted(groups.values(), key=lambda g: (-len(g), nodes.index(g[0])))
+
+
+def fake_groups(game: Game) -> list[list[str]]:
+    """visit_groups for a random night's visits (fake_visits)."""
+    return visit_groups(game, fake_visits(game)) or []
+
+
+def fake_visits(game: Game) -> list[list[str]]:
+    """A random night's visits, for a Roleplayer's random result from visits (rules: Roleplayer): each player alive
+    when the night began visits a random other one, with probability 1/2."""
+    nodes = [p.name for p in game.players if acted_tonight(game, p)]
+    return [[a, game.rng.choice([b for b in nodes if b != a])] for a in nodes
+            if len(nodes) > 1 and game.rng.random() < 0.5]
 
 
 def recorded_action_parts(role: str, cls: type[RoleLogic]) -> None:

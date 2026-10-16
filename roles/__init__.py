@@ -181,8 +181,10 @@ ROLES: dict[str, RoleInfo] = {
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False,
                            summary="Thinks they are a random Investigative role; gets random results.",
                            acts_at_night=True, tested=True,
-                           notes="code assigns the fake role (with its tokens and night prompts); "
-                           "moderator draws its results at random"),
+                           notes="code assigns the fake role (with its tokens and night prompts); the moderator "
+                           "draws its results at random, or for a role set to roleplayer='code' (Coroner, Profiler, "
+                           "Archivist, Bloodhound, Scout, Cartographer, Insomniac; Oct 16, untested live) records its "
+                           "op as for a real user and the role's code draws them (fake_carry_out, is_fake)"),
     "Saint": RoleInfo(Alignment.GOOD, "Outsider", False,
                       summary="No night action. If hanged, the Village loses at once and the Yakuza win.",
                       unique=True, notes="code ends the game when it's hanged (RoleLogic.decides_game)"),

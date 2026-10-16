@@ -200,10 +200,112 @@ def test_roleplayers_never_get_a_role_code_delivers_results_for(game_factory):
     import random
     from roles import logic
     game, _ = game_factory(["Roleplayer", "Vanilla Villager", "Grunt"])
-    for seed in range(40):
+    seen = set()
+    for seed in range(200):
         game.rng = random.Random(seed)
         logic("Roleplayer").setup(game, game.player("Alice"))
-        assert game.player("Alice").status[Status.FAKE_ROLE] not in ("Eavesdropper", "Archivist")
+        seen.add(game.player("Alice").status[Status.FAKE_ROLE])
+    assert all(logic(r).roleplayer != "never" for r in seen) and "Eavesdropper" not in seen
+    assert {"Coroner", "Scout", "Sheriff"} <= seen  # code-faked roles too
+
+
+CODE_FAKED = sorted(r for r in ROLES if ROLES[r].category == "Investigative" and logic(r).roleplayer == "code")
+FAKE_SEATS = ["Sheriff", "Vanilla Villager", "Vanilla Villager", "Grunt", "Medic", "Jester", "Lookout"]
+
+
+def fake_role_night(game_factory, role: str, fake: bool, seed: int, act: bool = True):
+    """Night 2 of a game where Alice is a `role`, or a Roleplayer who believes she is one: Frank died on Day 2, the
+    moderator records some visits and Alice's action (unless not `act`), and the night ends. Returns (game, a
+    snapshot of the game's state once the night ended)."""
+    import json
+    import random
+    from roles.base import HANGING_CAUSE, believed_role
+    game, players = game_factory(["Roleplayer" if fake else role, *FAKE_SEATS])
+    alice = game.player("Alice")
+    if fake:
+        alice.status[Status.FAKE_ROLE] = role
+        alice.tokens = dict(ROLES[role].tokens)
+        assert believed_role(alice) == role and alice.role == "Roleplayer"
+    game.rng = random.Random(seed)
+    game.day, game.phase = 2, "day"
+    game.kill("Frank", HANGING_CAUSE)
+    game.phase = "night"
+    game.night_visits[game.day] = [["Bob", "Carol"], ["Erin", "Dave"], ["Grace", "Erin"], ["Heidi", "Bob"]]
+    game.night_actions[game.day] = {"Alice": {"act": True}}
+    action = logic(role).action
+    if "attacks" in logic(role).ops:
+        apply_ops(game, players, {"op": "attacks", "attackers": ["Erin"]})
+
+    def state():
+        return json.dumps([game.role_state, game.night_visits, game.katana_holder, game.personal_winners,
+                           [(p.name, p.alive, p.status, p.tokens, p.traits) for p in game.players]],
+                          sort_keys=True, default=str)
+    if action and act:
+        op = {"op": action.op, "by": "Alice"}
+        if action.target:
+            op["player"] = "Frank" if action.target == "dead" else "Carol"
+        apply_ops(game, players, op)
+    game.run_night_end_hooks()
+    return game, state()
+
+
+@pytest.mark.parametrize("role", CODE_FAKED)
+def test_a_roleplayer_gets_a_random_result_like_the_real_role_and_nothing_else_happens(game_factory, role):
+    """rules: Roleplayer. For every role whose code gives a Roleplayer its random results: the Roleplayer is told one
+    result shaped like a real user's (same opening, same tokens-left ending), nobody else is told anything, and
+    nothing else in the game changes but the Roleplayer's spent token. A new role set to roleplayer = "code" gets
+    these checks too."""
+    import json
+    tokens_left = re.compile(r"\d+ [a-z]+ tokens? left\.$")
+    differs = False
+    for seed in range(8):
+        real, _ = fake_role_night(game_factory, role, False, seed)
+        game, after = fake_role_night(game_factory, role, True, seed)
+        _, before = fake_role_night(game_factory, role, True, seed, act=False)  # the same night without the action
+        real_result, = told(real, "Alice")
+        fake_result, = told(game, "Alice")
+        assert fake_result.split()[:2] == real_result.split()[:2], (real_result, fake_result)
+        differs |= fake_result != real_result
+        assert bool(tokens_left.search(fake_result)) == bool(tokens_left.search(real_result))
+        assert all(not told(game, p.name) for p in game.players if p.name != "Alice")
+        b, a = json.loads(before), json.loads(after)
+        for kind in ROLES[role].tokens:  # the only change: one token spent
+            alice = next(p for p in b[-1] if p[0] == "Alice")
+            alice[3][kind] -= 1
+        assert a == b
+    assert differs  # the real result, same seed, isn't simply passed on
+
+
+@pytest.mark.parametrize("role", CODE_FAKED)
+def test_the_moderator_handles_a_code_faked_role_like_a_real_one(game_factory, role):
+    from night import role_notes
+    from players import Players, night_action_schema
+    real = fake_role_night(game_factory, role, False, 0)[0]
+    game = fake_role_night(game_factory, role, True, 0)[0]
+    assert night_action_schema(game, game.player("Alice")) == night_action_schema(real, real.player("Alice"))
+    notes = role_notes(game)
+    if logic(role).night_note:
+        assert logic(role).night_note in notes
+    assert f"Alice believes they are a {role}" in notes
+    mod = Moderator(game, ScriptedClient(), Players(game, ScriptedClient(), rules="(rules)"), Model.HAIKU_5_5, "x")
+    assert set(logic(role).ops) <= set(mod.ops)
+
+
+def test_a_roleplayers_random_role_never_contradicts_a_public_one(game_factory):
+    import random
+    from roles.base import HANGING_CAUSE, public_role, random_role
+    game, _ = game_factory(["Roleplayer", "Mayor", "Vanilla Villager", "Grunt", "Chronicler", "Sheriff"])
+    game.role_state["mayor_revealed"] = ["Bob"]
+    assert public_role(game, game.player("Bob")) == "Mayor" and public_role(game, game.player("Carol")) is None
+    game.kill("Carol", HANGING_CAUSE)  # hidden-role flips (the default): her role stays secret
+    assert public_role(game, game.player("Carol")) is None
+    for seed in range(20):
+        game.rng = random.Random(seed)
+        assert random_role(game, game.player("Bob")) == "Mayor"
+    game.rule_settings = {**game.rule_settings, "flips": "alignment"}
+    game.kill("Dave", HANGING_CAUSE)
+    assert {random_role(game, game.player("Dave")) for _ in range(30)} <= {
+        r for r, i in ROLES.items() if i.alignment is Alignment.EVIL}
 
 
 def test_vulture_wins_alone_at_dawn_once_few_enough_are_left(game_factory):
@@ -870,10 +972,10 @@ def test_the_roleplayer_rule_lists_exactly_the_roles_it_can_be():
     from pathlib import Path
     rules = Path("rules_1.txt").read_text(encoding="utf-8")
     text = " ".join(rules.split("\nRoleplayer\n", 1)[1].split("\n\n")[0].split())
-    found = re.search(r"at the start from (.+?)\.", text)
+    found = re.search(r"Investigative roles in the game's rules other than the (.+?)\.", text)
     assert found
-    listed = set(re.split(r", | and ", found[1]))
-    assert listed == {r for r, i in ROLES.items() if i.category == "Investigative" and logic(r).roleplayer_can_fake}
+    listed = set(re.split(r", the | and the |, | and ", found[1]))
+    assert listed == {r for r, i in ROLES.items() if i.category == "Investigative" and logic(r).roleplayer == "never"}
 
 
 def test_day_1_is_talk_only(tmp_path, monkeypatch):
@@ -1254,7 +1356,9 @@ def test_role_results_read_roles_through_seen_role():
     import pathlib
     allowed = re.compile(r"self\.role\b|\.role (?:==|!=) (?:self\.role|ROLE|role)\b|ROLES\[\w+\.role\]|"
                          r"logic\(\w+\.role\)|me\.role = \"Jester\"|cls\.role = role|return game\.role_state\.get|"
-                         r"f\"\{p\.role\} \(\{p\.info|\(\{me\.role\}\) \{'won' if won")
+                         r"f\"\{p\.role\} \(\{p\.info|\(\{me\.role\}\) \{'won' if won|"
+                         r"!= p\.role\b|or p\.role  # none before setup|return p\.role$|"  # believed_role
+                         r"return p\.role  # what death_reveal announced")
     bad = [f"{f.name}: {line.strip()}" for f in sorted(pathlib.Path("roles").glob("*.py"))
            for line in f.read_text(encoding="utf-8").splitlines()
            if re.search(r"\.role\b", line) and not allowed.search(line)]
@@ -2056,6 +2160,7 @@ def test_an_armed_role_with_a_night_action_is_asked_for_both(game_factory):
     from players import night_action_schema
     game, _ = game_factory(["Roleplayer", "Sheriff", "Vanilla Villager", "Grunt"])
     logic("Roleplayer").setup(game, game.player("Alice"))
+    game.player("Alice").status[Status.FAKE_ROLE] = "Lookout"  # one asked for a night action (a Scout isn't)
     for name in ("Alice", "Bob"):
         game.player(name).traits = ["Armed"]
         props = night_action_schema(game, game.player(name))["properties"]

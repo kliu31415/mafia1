@@ -455,10 +455,11 @@ Mayor
 Outsiders (Village roles: Good, and win with the Village, but the role helps the Village less or can hurt it)
 
 Roleplayer
-  You are told your role is X, chosen at random at the start from Sheriff, Tracker, Lookout, Seer, Fortune Teller
-  and Oracle.
-  You aren't told that you're a Roleplayer. The moderator gives you random results: each one is drawn at random
-  from the results your role could get that night, whatever really happened, so it is true only by chance.
+  You are told your role is X, chosen at random at the start from the Investigative roles in the game's rules other
+  than the Eavesdropper, Chronicler, Census Taker and Auditor.
+  You aren't told that you're a Roleplayer. You get random results: each one is drawn at random from the results
+  your role could get that night, whatever really happened, so it is true only by chance. A result never contradicts
+  a role or alignment that was publicly and truly announced (e.g. a revealed Mayor).
   Exact-role checks see you as Roleplayer (R19). Your night actions only happen in your imagination: they aren't
   visits, have no effect, and no other role sees them.
 

@@ -20,7 +20,7 @@ def census_group(game: Game, taker: str, target: str) -> list[str]:
 
 @register("Census Taker")
 class CensusTaker(RoleLogic):
-    roleplayer_can_fake = False  # code draws the group and the count
+    roleplayer = "never"  # code draws the group and the count
     code_tells_user = True
     action = RecordedAction("census", "takes a census around player",
                             "code draws the group and the count and tells them", visit=True)

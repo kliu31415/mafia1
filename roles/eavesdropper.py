@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 @register("Eavesdropper")
 class Eavesdropper(RoleLogic):
-    roleplayer_can_fake = False  # live PMs
+    roleplayer = "never"  # live PMs
     code_tells_user = True
     action = RecordedAction("eavesdrop", "reads player's private messages tomorrow",
                             "code shows them the target's private messages tomorrow and tells them so at dawn",

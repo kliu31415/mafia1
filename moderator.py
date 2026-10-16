@@ -10,7 +10,7 @@ from llm import LLMClient, LLMReply, Model, ModelSpec, cache_block, clean_json, 
 from players import ANSWER_SCHEMA, Players
 from events import ANNOUNCEMENT
 from roles import Alignment, RoleLogic, Status, logic
-from roles.base import MOD_NOTICES, acted_tonight
+from roles.base import MOD_NOTICES, acted_tonight, believed_role, code_faked_roles
 from state import Game
 from traits import TraitLogic, kill_error, trait_logic
 import variants
@@ -119,7 +119,7 @@ class Moderator:
         self.op_refused: set[str] = set()  # users of a role op that apply_changes refused this phase
         self.op_results: list[str] = []  # what this apply_changes call's role ops told the moderator (apply_op)
         docs = []
-        for role in sorted({p.role for p in game.players}):
+        for role in sorted({p.role for p in game.players} | code_faked_roles(game)):  # a Roleplayer's too
             for op, (required, optional, doc) in logic(role).ops.items():
                 self.ops[op] = (required, optional)
                 self.op_roles[op] = logic(role)
@@ -407,7 +407,7 @@ class Moderator:
             return []
         acted = g.night_actions.get(g.day, {})
         # A player who died tonight is being told about the attack, not their action's result.
-        held = [n for n in to if n not in self.tells_held and logic(g.player(n).role).code_tells_user
+        held = [n for n in to if n not in self.tells_held and logic(believed_role(g.player(n))).code_tells_user
                 and (n in self.code_told or acted.get(n, {}).get("act") and n not in self.op_refused)
                 and g.player(n).alive]
         if held:

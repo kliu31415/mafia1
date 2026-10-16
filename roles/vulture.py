@@ -50,7 +50,7 @@ def power_up(game: Game, name: str) -> str:
 
 @register("Vulture")
 class Vulture(RoleLogic):
-    roleplayer_can_fake = False  # code tells the result
+    roleplayer = "never"  # code tells the result
     code_tells_user = True
     night_end_order = 3  # after every other night-end effect (a Cursed player's curse), so all tonight's deaths count
     action = RecordedAction("scavenge", "visits player (code checks at the end of the night whether they died)",

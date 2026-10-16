@@ -15,7 +15,7 @@ MARKS = "chronicler_marks"  # game.role_state: Chronicler's name -> the players 
 
 @register("Chronicler")
 class Chronicler(RoleLogic):
-    roleplayer_can_fake = False  # the reveal is public and done by code
+    roleplayer = "never"  # the reveal is public and done by code
     code_tells_user = True
     action = RecordedAction("mark", "marks player (code reveals their role publicly if they ever die)",
                             "code sets the mark; when the marked player dies, the death announcement reveals "

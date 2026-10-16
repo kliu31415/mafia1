@@ -29,7 +29,7 @@ def audit_text(game: Game, audited: str) -> str:
 
 @register("Auditor")
 class Auditor(RoleLogic):
-    roleplayer_can_fake = False  # code reads the votes
+    roleplayer = "never"  # code reads the votes
     code_tells_user = True
     action = RecordedAction("audit", "audits player", "code tells them the player's votes from the Day", visit=True)
 

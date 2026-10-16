@@ -25,7 +25,7 @@ def charge_text(charge: dict) -> str:
 @register("Kitsune")
 class Kitsune(RoleLogic):
     code_tells_user = True
-    roleplayer_can_fake = False  # code keeps the charge
+    roleplayer = "never"  # code keeps the charge
     night_note = (
         "Kitsune: a Kitsune with no swallowed attack who acted (and wasn't role-blocked) laid a fox charm on its "
         f"target. Resolve the charm FIRST, before any other protection (Medic, Trapper, ...): use the {CHARM} op "

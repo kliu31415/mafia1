@@ -42,7 +42,7 @@ def count_text(game: Game, role: str) -> str:
 
 @register(ROLE)
 class TalentAgent(RoleLogic):
-    roleplayer_can_fake = False  # code reads the true roles
+    roleplayer = "never"  # code reads the true roles
     code_tells_user = True
     ops = {"scout_talent": ({"by"}, {"role"},
                             "{op:'scout_talent', role?, by}: the Talent Agent `by` spends a token to scan (no role: "
