@@ -47,3 +47,36 @@ Heidi (public): See you in the morning. Tomorrow, the first thing I'll check is 
 Ivan (public): See you in the morning. On Day 2 I'll be looking at who pushes a nomination before giving a reason.
 Judy (public): Fair enough, all of you. But notice how quickly everyone came round to "fair point, Judy, but..." too. Tomorrow I'll be watching who leads and who only follows.
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Grace, Mallory) Bob (Yakuza chat): Plan proposal: I keep the Katana tonight (I have no action of my own tonight, so my only visit is the attack). Target: Judy. She's the most active reader and will push hard on Day 2. Alternative: Erin, who's organizing claim formats. Mallory: frame someone likely to be checked (Carol or Ivan?), and save the forge token. Grace: no ritual guess N1 unless you're very confident; a wrong guess outs you. Covers: me = Lookout, Grace = Sheriff? (risky if a real Sheriff exists, so maybe Auditor instead), Mallory = Tracker. No visible PMs between us by Day. If I end up on trial, I'll use my oath mark the night before I expect to die; I'll tell you who it is so you avoid visiting them. Note: my trial votes always count Innocent (Merciful trait), so don't count on my Guilty votes. Everyone vote holder Bob, target Judy unless objections.
+(to Bob, Grace, Mallory) Grace (Yakuza chat): Agree: holder Bob, target Judy. I'll vote both. No ritual guess tonight, since there's nothing to confirm a role against yet. I'll save tokens for claimed roles later (e.g. a claimed Sheriff or Medic, or for confirming a Coroner/Chronicler claim). Cover: I'd prefer Oracle over Sheriff/Auditor. Oracle is an Astral Visit, so no Tracker or Lookout can ever catch me "not visiting", and it has no results anyone can cross-check. I'll fake a quiet wrong guess if asked. Mallory: framing a likely checked player is fine. Maybe frame whoever looks most like a town read so a Sheriff wastes a check. Noted Bob's Merciful votes; I'll vote Guilty on town mislynches when it's safe, to make up for that.
+(to Bob, Grace, Mallory) Mallory (Yakuza chat): Agree: holder Bob, target Judy. I'll vote both. Heads up: I'm ALSO Merciful, so my trial votes always count Innocent too. That leaves only Grace's Guilty votes counting for us on trials. We should push nominations and talk, but not rely on our own Guilty votes, and never claim a Guilty vote the totals could disprove. Cover: I'll take Tracker. My frame is a real visit, so if I say "tracked X" it matches any Lookout or Tracker who sees me at X. Tonight I'll frame Carol (just a frame, saving the forge token). Grace on Oracle is fine. Bob on Lookout is fine too, but don't make up visitors that a real Tracker could contradict. Keep any made-up results vague or "no visitors". Bob, tell us your oath target early if you get pressured.
+(to Bob, Grace, Mallory) Bob (Yakuza chat): Confirmed: holder Bob, target Judy. Covers: me Lookout, Grace Oracle, Mallory Tracker. Mallory, framing Carol is fine. Since two of us are Merciful, at most Grace's Guilty vote counts for us on any trial, so we win mostly with the Katana, not with hangings. By Day, push nominations and steer town votes, and never claim a Guilty vote the totals could disprove. If I'm the one cleared by the Katana-holder read, don't lean on it. I'll keep any fake Lookout results to "no visitors".
+(to Bob, Grace, Mallory) Grace (Yakuza chat): Confirmed: holder Bob, target Judy. Covers: Bob Lookout, Grace Oracle, Mallory Tracker. Noted that Mallory is Merciful too, so on trials only my Guilty vote counts for us. On Day 2 I'll keep a low profile and save my tokens for a confirmed claim (Sheriff, Medic, Coroner, etc.). Ready.
+(to Bob, Grace, Mallory) Mallory (Yakuza chat): Confirmed: holder Bob, target Judy. I'm framing Carol, no forge. Tomorrow I'll keep it low-key and say nothing about my Tracker result unless a vote depends on it. Ready.
+Night actions:
+  Alice (Vigilante): no action
+  Bob (Oathsworn): no role action; Katana vote: Bob holds, attacks Judy
+  Carol (Cartographer): target Judy; chose to spend 1 token(s)
+  Dave (Kitsune): target Judy
+  Erin (Profiler): target Judy; chose to spend 1 token(s)
+  Grace (Ritualist): no role action; Katana vote: Bob holds, attacks Judy
+  Ivan (Veteran): no action
+  Mallory (Fabricator): target Carol; "Frame only, no forge."; Katana vote: Bob holds, attacks Judy
+  Olivia (Bloodhound): no action
+Katana: Bob holds it and attacks Judy.
+(to Bob) Moderator (private): Your Katana attack on Judy failed tonight. You still have 1 oath token.
+(to Judy) Moderator (private): You were attacked with the Katana tonight and survived.
+(to Mallory) Moderator (private): You framed Carol tonight. You did not forge a will. 1 fabricator token left.
+(to Niaj) Moderator (private): Tonight: 2 players were visited; 3 players visited someone.
+[Moderator end_phase refused] Not ended: your tell() to Erin was held and not sent. If it said anything besides the result of their own action (e.g. whether their attack succeeded, a role-block, that they died), send that part again now; otherwise call end_phase again.
+(to Erin) Moderator (private): You were role-blocked tonight.
+[Moderator summary] Night 1: Bob held the Katana and attacked Judy (Standard). Dave's fox charm on Judy swallowed that attack, so Dave now holds a Standard 'Katana' attack. Judy survived and was told about the Katana attack. Carol mapped Judy (map op). Erin's Drowsy trait role-blocked her, so she made no profile and spent no token; she was told she was role-blocked. Mallory framed Carol, but no alignment check targeted Carol. Bloodhound attacks: [Bob]. Fortune Teller: 2 players visited, 3 visitors. Visits: Bob->Judy, Dave->Judy, Mallory->Carol. No deaths.
+[Night check] Night 1: correct
+(to Carol) Moderator (private): Tonight's visit groups have sizes 3, 2, 1, 1, 1, 1, 1, 1, 1, 1. You mapped Judy: their group is Bob, Dave and Judy. 2 map tokens left.
+(to Dave) Moderator (private): Your fox charm on Judy swallowed a Standard Attack announced as 'Katana'. Release it on a later night (you can't charm until you do).
+(to Olivia) Moderator (private): Your Bloodhound check of Erin, Frank and Ivan: together they have made 0 attacks this game, tonight's included.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Judy. Grace (Ritualist) chose no action; Mallory (Fabricator) chose to act on Carol ("Frame only, no forge.").
+(to Grace) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Judy. Bob (Oathsworn) chose no action; Mallory (Fabricator) chose to act on Carol ("Frame only, no forge.").
+(to Mallory) Moderator (private): Yakuza night summary: Bob holds the Katana and chose to attack Judy. Bob (Oathsworn) chose no action; Grace (Ritualist) chose no action.
