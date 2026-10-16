@@ -1,62 +1,62 @@
 {
- "written": "2026-10-15 08:15 UTC",
- "games": 97,
- "offset": 0.111,
+ "written": "2026-10-16 06:24 UTC",
+ "games": 102,
+ "offset": 0.084,
  "roles": {
   "Vanilla Villager": {
    "prior": 0.25,
-   "power": 0.217,
-   "games": 78
+   "power": 0.234,
+   "games": 80
   },
   "Sheriff": {
    "prior": 0.55,
-   "power": 0.745,
-   "games": 49
+   "power": 0.752,
+   "games": 53
   },
   "Tracker": {
    "prior": 0.45,
-   "power": 0.482,
-   "games": 29
+   "power": 0.516,
+   "games": 31
   },
   "Lookout": {
    "prior": 0.45,
-   "power": 0.555,
-   "games": 46
+   "power": 0.554,
+   "games": 48
   },
   "Seer": {
    "prior": 0.4,
-   "power": 0.584,
+   "power": 0.585,
    "games": 19
   },
   "Fortune Teller": {
    "prior": 0.35,
-   "power": 0.364,
+   "power": 0.363,
    "games": 20
   },
   "Oracle": {
    "prior": 0.45,
-   "power": 0.515,
-   "games": 24
+   "power": 0.499,
+   "games": 25
   },
   "Eavesdropper": {
    "prior": 0.4,
-   "power": 0.452,
+   "power": 0.451,
    "games": 11
   },
   "Archivist": {
    "prior": 0.4,
-   "power": 0.458,
+   "power": 0.464,
    "games": 25
   },
   "Census Taker": {
    "prior": 0.45,
-   "power": 0.465,
-   "games": 9
+   "power": 0.449,
+   "games": 10
   },
   "Profiler": {
    "prior": 0.45,
-   "power": 0.385,
-   "games": 12
+   "power": 0.37,
+   "games": 13
   },
   "Coroner": {
    "prior": 0.35,
@@ -65,17 +65,17 @@
   },
   "Chronicler": {
    "prior": 0.4,
-   "power": 0.436,
+   "power": 0.443,
    "games": 4
   },
   "Auditor": {
    "prior": 0.4,
-   "power": 0.466,
+   "power": 0.472,
    "games": 8
   },
   "Bloodhound": {
    "prior": 0.4,
-   "power": 0.401,
+   "power": 0.402,
    "games": 6
   },
   "Cartographer": {
@@ -85,27 +85,27 @@
   },
   "Scout": {
    "prior": 0.3,
-   "power": 0.453,
+   "power": 0.458,
    "games": 16
   },
   "Insomniac": {
    "prior": 0.35,
-   "power": 0.518,
-   "games": 5
+   "power": 0.501,
+   "games": 6
   },
   "Medic": {
    "prior": 0.55,
-   "power": 0.794,
-   "games": 59
+   "power": 0.785,
+   "games": 64
   },
   "Trapper": {
    "prior": 0.7,
-   "power": 0.593,
+   "power": 0.594,
    "games": 17
   },
   "Kitsune": {
    "prior": 0.6,
-   "power": 0.368,
+   "power": 0.369,
    "games": 7
   },
   "Mirror Maker": {
@@ -115,113 +115,123 @@
   },
   "Vigilante": {
    "prior": 0.45,
-   "power": 0.638,
-   "games": 33
+   "power": 0.652,
+   "games": 37
   },
   "Enforcer": {
    "prior": 0.45,
-   "power": 0.41,
-   "games": 4
+   "power": 0.395,
+   "games": 5
   },
   "Veteran": {
    "prior": 0.5,
-   "power": 0.532,
+   "power": 0.536,
    "games": 16
   },
   "Sniper": {
    "prior": 0.45,
-   "power": 0.431,
+   "power": 0.433,
    "games": 8
   },
   "Prosecutor": {
    "prior": 0.4,
-   "power": 0.472,
+   "power": 0.471,
    "games": 14
   },
   "Party Animal": {
    "prior": 0.45,
-   "power": 0.552,
+   "power": 0.551,
    "games": 10
   },
   "Mayor": {
    "prior": 0.4,
-   "power": 0.419,
-   "games": 1
+   "power": 0.401,
+   "games": 2
   },
   "Roleplayer": {
    "prior": 0.0,
-   "power": 0.097,
-   "games": 9
+   "power": 0.015,
+   "games": 11
+  },
+  "Saint": {
+   "prior": 0.05,
+   "power": 0.05,
+   "games": 0
   },
   "Grunt": {
    "prior": -0.85,
-   "power": -0.786,
-   "games": 79
+   "power": -0.781,
+   "games": 83
   },
   "Pharmacist": {
    "prior": -1.1,
-   "power": -0.952,
+   "power": -0.955,
    "games": 30
   },
   "Ritualist": {
    "prior": -1.0,
-   "power": -1.109,
+   "power": -1.104,
    "games": 20
   },
   "Fabricator": {
    "prior": -1.0,
-   "power": -0.833,
-   "games": 25
+   "power": -0.844,
+   "games": 27
   },
   "Ballot Stuffer": {
    "prior": -1.2,
-   "power": -1.038,
+   "power": -1.037,
    "games": 19
   },
   "Fixer": {
    "prior": -0.95,
-   "power": -1.035,
+   "power": -1.034,
    "games": 8
   },
   "Diviner": {
    "prior": -1.05,
-   "power": -0.957,
+   "power": -0.955,
    "games": 23
   },
   "Mortician": {
    "prior": -0.95,
-   "power": -0.831,
-   "games": 13
+   "power": -0.845,
+   "games": 14
   },
   "Wiretap": {
    "prior": -1.0,
-   "power": -0.951,
+   "power": -0.949,
    "games": 13
   },
   "Informant": {
    "prior": -0.95,
-   "power": -0.83,
+   "power": -0.829,
    "games": 3
   },
   "Talent Agent": {
    "prior": -0.95,
-   "power": -0.973,
+   "power": -0.974,
    "games": 5
+  },
+  "Oathsworn": {
+   "prior": -1.3,
+   "power": -1.3,
+   "games": 0
   },
   "Vulture": {
    "prior": -0.25,
-   "power": -0.149,
-   "games": 8
+   "power": -0.129,
+   "games": 9
   },
   "Serial Killer": {
    "prior": -0.6,
-   "power": -0.75,
+   "power": -0.749,
    "games": 17
   },
   "Arsonist": {
    "prior": -0.8,
-   "power": -0.914,
-   "games": 18
+   "power": -0.931,
+   "games": 19
   },
   "Werewolf": {
    "prior": -0.6,
@@ -230,27 +240,27 @@
   },
   "Jester": {
    "prior": -0.15,
-   "power": -0.143,
+   "power": -0.144,
    "games": 31
   },
   "Executioner": {
    "prior": -0.2,
-   "power": -0.03,
+   "power": -0.028,
    "games": 21
   },
   "Bounty Hunter": {
    "prior": -0.3,
-   "power": -0.285,
+   "power": -0.286,
    "games": 7
   },
   "Hitman": {
    "prior": -0.4,
-   "power": -0.4,
-   "games": 0
+   "power": -0.395,
+   "games": 2
   },
   "Magpie": {
    "prior": -0.15,
-   "power": -0.192,
+   "power": -0.195,
    "games": 3
   },
   "Decoy": {
@@ -262,102 +272,102 @@
  "traits": {
   "Martyr": {
    "prior": 0.15,
-   "power": 0.272,
-   "games": 5
+   "power": 0.255,
+   "games": 6
   },
   "Armed": {
    "prior": 0.25,
-   "power": 0.35,
+   "power": 0.354,
    "games": 4
   },
   "Armed@Yakuza": {
    "prior": 0.2,
-   "power": 0.223,
+   "power": 0.222,
    "games": 2
   },
   "Cursed": {
    "prior": -0.1,
-   "power": -0.03,
+   "power": -0.028,
    "games": 16
   },
   "Avenger": {
    "prior": 0.3,
-   "power": 0.383,
+   "power": 0.385,
    "games": 4
   },
   "Kindred": {
    "prior": 0.15,
-   "power": 0.164,
+   "power": 0.169,
    "games": 3
   },
   "Remorseful": {
    "prior": -0.1,
-   "power": -0.05,
-   "games": 1
+   "power": -0.066,
+   "games": 2
   },
   "Ashamed": {
    "prior": -0.05,
-   "power": -0.05,
-   "games": 0
+   "power": -0.069,
+   "games": 1
   },
   "Faultline": {
    "prior": 0.15,
-   "power": 0.154,
+   "power": 0.157,
    "games": 3
   },
   "Notorious": {
    "prior": -0.1,
-   "power": -0.055,
+   "power": -0.053,
    "games": 12
   },
   "Grudge": {
    "prior": 0.1,
-   "power": 0.164,
+   "power": 0.168,
    "games": 3
   },
   "Grudge@Yakuza": {
    "prior": 0.3,
-   "power": 0.371,
+   "power": 0.37,
    "games": 2
   },
   "Loud": {
    "prior": 0.1,
-   "power": 0.107,
+   "power": 0.108,
    "games": 4
   },
   "Curt": {
    "prior": -0.1,
-   "power": -0.118,
-   "games": 4
+   "power": -0.101,
+   "games": 5
   },
   "Confidant": {
    "prior": 0.1,
-   "power": 0.115,
+   "power": 0.112,
    "games": 5
   },
   "Zealot": {
    "prior": -0.1,
-   "power": -0.093,
+   "power": -0.086,
    "games": 4
   },
   "Zealot@Yakuza": {
    "prior": -0.15,
-   "power": -0.164,
+   "power": -0.165,
    "games": 1
   },
   "Merciful": {
    "prior": -0.1,
-   "power": -0.1,
-   "games": 0
+   "power": -0.119,
+   "games": 1
   },
   "Merciful@Yakuza": {
    "prior": -0.15,
-   "power": -0.115,
-   "games": 2
+   "power": -0.098,
+   "games": 3
   },
   "Drowsy": {
    "prior": -0.15,
-   "power": -0.175,
+   "power": -0.171,
    "games": 2
   },
   "Spare Blade": {
@@ -377,43 +387,48 @@
   },
   "Katana Master": {
    "prior": 0.25,
-   "power": 0.198,
+   "power": 0.197,
    "games": 2
+  },
+  "Berserker": {
+   "prior": 0.45,
+   "power": 0.45,
+   "games": 0
   },
   "Paranoid": {
    "prior": -0.1,
-   "power": -0.12,
-   "games": 3
+   "power": -0.136,
+   "games": 4
   },
   "Stocked": {
    "prior": 0.15,
-   "power": 0.21,
-   "games": 1
+   "power": 0.19,
+   "games": 2
   },
   "Disguised": {
    "prior": -0.1,
-   "power": -0.036,
+   "power": -0.033,
    "games": 4
   },
   "Disguised@Yakuza": {
    "prior": 0.3,
-   "power": 0.253,
-   "games": 3
+   "power": 0.271,
+   "games": 4
   },
   "Bonded": {
    "prior": 0.0,
-   "power": 0.029,
+   "power": 0.03,
    "games": 2
   },
   "Rival": {
    "prior": -0.15,
-   "power": -0.115,
+   "power": -0.116,
    "games": 1
   },
   "Selfish": {
    "prior": -0.1,
-   "power": -0.103,
-   "games": 3
+   "power": -0.085,
+   "games": 4
   },
   "Selfless": {
    "prior": -0.15,
@@ -427,43 +442,48 @@
   },
   "Usurper": {
    "prior": -0.3,
-   "power": -0.325,
+   "power": -0.327,
    "games": 1
   },
   "Shaky": {
    "prior": -0.3,
-   "power": -0.315,
+   "power": -0.316,
    "games": 1
   },
   "Turncoat": {
    "prior": -0.4,
-   "power": -0.4,
+   "power": -0.419,
+   "games": 1
+  },
+  "Spiteful": {
+   "prior": -0.15,
+   "power": -0.15,
    "games": 0
   },
   "Sleepwalker": {
    "prior": -0.05,
-   "power": 0.026,
+   "power": 0.027,
    "games": 11
   },
   "Sleepwalker@Yakuza": {
    "prior": 0.05,
-   "power": 0.007,
+   "power": 0.008,
    "games": 2
   },
   "Narrow Escape": {
    "prior": 0.15,
-   "power": 0.109,
+   "power": 0.108,
    "games": 1
   },
   "Narrow Escape@Yakuza": {
    "prior": 0.1,
-   "power": 0.116,
+   "power": 0.115,
    "games": 2
   },
   "Oblivious": {
    "prior": -0.1,
-   "power": -0.1,
-   "games": 0
+   "power": -0.119,
+   "games": 1
   },
   "Oblivious@Yakuza": {
    "prior": -0.05,
