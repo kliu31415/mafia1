@@ -1,6 +1,6 @@
 # Tips from past games
 
-Written 2026-10-17 14:03 UTC by opus-5.5 with `uv run tips.py build`, from the 419 active entries of tips_notebook.json (101 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules 9b5187c3e21149c4.
+Written 2026-10-17 14:03 UTC by opus-5.5 with `uv run tips.py build`, from the 419 active entries of tips_notebook.json (101 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules a4bd03b31963e907.
 
 ## Most often decisive
 - Only the Mayor, Vulture, Hitman and Saint are Unique, so two claimants of one role can both be real. Two real holders often pick the same targets, and towns have repeatedly hanged the real one as the later 'copier'. But 'both can be real' isn't evidence for either: test both that Day or night with an exact-role check, a watch or the visit counts. (seen in 52 games)
