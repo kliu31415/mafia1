@@ -182,7 +182,7 @@ ROLES: dict[str, RoleInfo] = {
                       "doubles its trial votes after the reveal (Kevin, Oct 15)"),
     "Magistrate": RoleInfo(Alignment.GOOD, "Support", False,
                            summary="Day, once: call a second session, so that Day's first hanging doesn't end it.",
-                           tokens={"session": 1}, unique=True,
+                           tokens={"session": 1}, unique=True, tested=True,
                            notes="day action (act) after R25's delay, or at once when a hanging comes first; core "
                            "day code asks RoleLogic.hanging_keeps_day_going (Kevin, Oct 17)"),
     "Roleplayer": RoleInfo(Alignment.GOOD, "Outsider", False,
