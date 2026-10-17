@@ -335,3 +335,17 @@ Bob (public): Fine, no more hangs today. Tonight I guess Frank = Party Animal an
 (to Bob, Carol) Carol -> Bob (private): Agreed. I'll do it quietly. Post your Frank guess result first thing tomorrow.
 Erin (public): Agreed. Tomorrow my counts will show whether Frank's block and any hidden visit really happened, and with this few players left, a hidden visitor will have nowhere to go. Nobody spend protection on me.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Bob (Oracle): target Frank; named role Party Animal
+  Carol (Enforcer): target Frank; second target Ivan; chose to spend 1 token(s)
+  Frank (Party Animal): target Ivan
+  Ivan (Ritualist): target Bob; named role Oracle; chose to spend 1 token(s); Katana vote: Ivan holds, attacks Frank
+Katana: Ivan holds it and attacks Frank.
+(to Bob) Moderator (private): You guessed that Frank is a Party Animal. You were right.
+(to Carol) Moderator (private): You visited Frank and Ivan tonight. You did not attack. 0 enforcer tokens left.
+(to Frank) Moderator (private): You visited Ivan tonight.
+(to Ivan) Moderator (private): You were role-blocked tonight. 1 ritual token left.
+[Moderator summary] Night 4: Frank (Party Animal, can't be blocked) role-blocked Ivan, so Ivan's Ritualist guess (Bob = Oracle, 1 token) never happened and spent no token, and his Katana attack on Frank failed. The Katana stays with Ivan. Katana Master was not used. Bob's Oracle guess Frank = Party Animal was RIGHT (Astral). Carol (Enforcer) visited Frank and Ivan and spent her last token (now 0). Neither of them made an attack of their own, so she did not attack. Visits: Carol->Frank, Carol->Ivan, Frank->Ivan. No deaths.
+[Night check] Night 4: correct
