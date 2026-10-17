@@ -163,8 +163,10 @@ def classic_draw(n: int, rng: random.Random, pool: str, script: str) -> list[str
     return village[:village_slots] + yakuza + neutrals
 
 
-YAKUZA_ODDS = {-1: 20, 0: 65, 1: 15}  # standard: Yakuza count around round(3/13 of the seats)
-NEUTRAL_ODDS = {0: 15, 1: 35, 2: 35, 3: 15}
+# standard: Yakuza count round(3/13 of the seats) or one more, half the time each, never fewer (Kevin, Oct 17 2026: 3 or
+# 4 of 13, never 2, since the Yakuza had been winning too little; it was 20% 2, 65% 3, 15% 4)
+YAKUZA_ODDS = {0: 50, 1: 50}
+NEUTRAL_ODDS = {0: 10, 1: 20, 2: 40, 3: 20, 4: 10}  # standard (Kevin, Oct 17 2026; was 0-3 at 15-35-35-15)
 MAX_OUTSIDERS = 2  # standard
 VILLAGE_NEEDS = {"Investigative": 2, "Killing": 1, "Protective": 1}  # standard: Kevin, Oct 12 2026
 POWER_CATEGORIES = ("Investigative", "Killing", "Protective", "Support")  # Village roles with a power
@@ -199,11 +201,11 @@ def yakuza_odds(n: int) -> dict[int, int]:
 
 def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None,
                    script: str = "all") -> list[str]:
-    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): usually 3 Yakuza, sometimes 2 or 4 (about 3/13
-    of the seats, scaled), 0-3 Neutrals (mostly 1-2), at least MIN_VILLAGE non-Outsider Village roles
-    (VILLAGE_NEEDS among them: Kevin, Oct 12 2026), the rest Good. With fewer Yakuza than usual their roles lean
-    strong, with more they lean weak. Then CANDIDATES random picks of the Yakuza, Neutral and Village roles are
-    tried, and a random one within BAND of a role_power.score of 0 is kept (with one Neutral fewer only if none
+    """The standard setup (Kevin, Oct 10 2026; designed for 13 players): 3 or 4 Yakuza, half the time each (about 3/13
+    of the seats and one more, scaled; never fewer since Oct 17 2026), 0-4 Neutrals (mostly 1-3), at least
+    MIN_VILLAGE non-Outsider Village roles (VILLAGE_NEEDS among them: Kevin, Oct 12 2026), the rest Good. With more
+    Yakuza than usual their roles lean weak. Then CANDIDATES random picks of the Yakuza, Neutral and Village roles
+    are tried, and a random one within BAND of a role_power.score of 0 is kept (with one Neutral fewer only if none
     is; else the closest): e.g. weaker Village roles and more Outsiders against weak Yakuza. Every draw leans
     towards newer roles (not live-tested yet) and roles in fewer past games (logs/), so a seed's setup can change
     as games are added."""
@@ -270,21 +272,16 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
         if good:
             return rng.choice(good)
         tried += scored
-    if yakuza is None and n_yakuza < usual:
-        # Two Yakuza in 13 seats often can't be balanced by any roles (21 of 44 such draws): fall back to the usual
-        # count (Kevin's to veto, Oct 12 2026).
-        return balanced_setup(n, rng, pool, usual, script)
     return min(tried, key=lambda x: x[0])[1]
 
 
 SETUPS = {
     "standard": Setup(balanced_setup, (13, 13),
-                      "usually 3 Yakuza for 13 players (about 3 in 13 seats; sometimes one fewer, occasionally one "
-                      "more); 0 to 3 Neutrals, usually 1 or 2; the rest are Good: at least 5 Village roles that "
-                      "aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix "
-                      "of Village roles and up to 2 Outsiders. Roles may repeat, except "
-                      "unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. "
-                      "fewer Yakuza tend to get stronger roles.", STANDARD_OFF),
+                      "3 or 4 Yakuza for 13 players (each about half the time); 0 to 4 Neutrals, usually 2; "
+                      "the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them "
+                      "Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 "
+                      "Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides "
+                      "are roughly balanced by strength: e.g. more Yakuza tend to get weaker roles.", STANDARD_OFF),
     "classic": Setup(random_setup, (11, 15),
                      "about 30% of the players are Yakuza (rounded, at least 1), each with a different Yakuza "
                      "role; 0 to 2 are Neutral (at most 1 below 9 players), each a different Neutral role; the rest "
