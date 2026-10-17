@@ -97,9 +97,10 @@
   "game_20261016_032352_2",
   "game_20261016_060619_1008",
   "game_20261016_071747_1005",
-  "game_20261016_083350_1000"
+  "game_20261016_083350_1000",
+  "game_20261017_001453_1001"
  ],
- "next_id": 430,
+ "next_id": 432,
  "entries": [
   {
    "id": "t1",
@@ -331,6 +332,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Alice, Heidi, Judy: Ivan held his watch until Judy claimed, then shaped it to break her claim, the retrofit tell. Dave: holding his Scout result on D2 let the Yakuza forge Alice's will pointing at him; once posted, his N4 count hanged Carol."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Judy's N1 watch, Niaj's Insomniac list and Heidi's census logs were posted in full; they named Carol's and Heidi's visits and roles before those two claimed, built a confirmed core and drove both Yakuza hangs. Filed 'helped' by nearly every player."
     }
    ],
    "against": [
@@ -1354,6 +1360,11 @@
      "game": "game_20261016_032332_3",
      "weight": 0.16,
      "note": "Frank: holder and target were agreed every night and every Katana vote went in."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: all three Katana votes matched every night; no kill was lost to a split. Erin."
     }
    ],
    "against": [],
@@ -1884,6 +1895,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.4,
      "note": "Moderator (0.4): Carol protected Day 1 hinter Heidi on N1 and claimed Sheriff Bob on N2-N3, which stopped two Katana attacks. This was the game's decisive play."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Alice and Bob filed 'helped' on 'protect vocal analysts early': Bob's mirror on the Day 2 opener caught both Neutral killers."
     }
    ],
    "against": [
@@ -1971,6 +1987,11 @@
      "game": "game_20261015_070737_7",
      "weight": 0.32,
      "note": "Ivan and Judy filed 'hurt': protecting the claimed Sheriff made Judy predictable and she was killed N3. Mostly a misapplication. The entry already says not to keep a fixed pattern and to spend a self-protection token after a public save, and Judy announced her protection, against t94. But the sheet line gives no warning about the switch."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Olivia (Hitman) filed 'hurt': protectors following the line made the organizer a trap for attackers. Audience misfit from the hostile side; the tip worked as intended for the Village. Neutral-killer side added as a new entry."
     }
    ],
    "history": [
@@ -3140,6 +3161,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Carol voted Yes on Mallory's nomination, then Innocent and defended her; Dave, Frank and Heidi cited the switch when they nominated and hanged Carol. Carol, Grace, Olivia, Mallory, moderator."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Frank stated Guilty on doomed teammate Ivan and voted Innocent; trial 1 came in 4 vs 5 planned, Ivan was renominated and hanged, and Frank landed in the four-player suspect pool and died to Carol's release. Moderator, Frank, Erin, Ivan, Dave."
     }
    ],
    "against": [
@@ -4612,6 +4638,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 0.5,
      "note": "Frank filed 'hurt': his D2 will-hint was a half-hint and hurt him. This is a misapplication, since the entry forbids half-hints, but it shows the cost."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Heidi (Census Taker) hinted at no role, but merely questioning Ivan's trap story on D2 made her the N2 Katana target. The entry doesn't warn that pressing a suspect also marks a hidden investigator."
     }
    ],
    "history": [
@@ -5047,6 +5078,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Grace: the four living players who stated Guilty on hanged Prosecutor Niaj were exactly the four Yakuza; after Bob's shot showed Ivan a Mortician, the town went after that bloc and hanged Carol."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: stated votes against the 4-Guilty total narrowed the hidden Innocent to Dave, Frank, Grace and Judy; two were later confirmed, leaving Yakuza Frank. Dave, Judy, Niaj, Frank, moderator."
     }
    ],
    "against": [
@@ -5713,6 +5749,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005: every Village player and the moderator filed 'helped'. All three hangs (Bob on map + charm, Grace on an impossible block, Frank on scent subtraction) rested on mechanics and hit non-Village players."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: both hangs rested on corroborated mechanics (census plus Insomniac Diviner hit plus missing Jester announcement for Ivan; census plus Judy's confirmed watch, Enforcer negatives and Carol's release for Erin), and both hit Yakuza. Grace, Judy, Mallory, moderator."
     }
    ],
    "against": [
@@ -6827,6 +6868,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005: Grace and Mallory: no teammate PMs, so no Yakuza link came from the PM ledger."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: the Yakuza sent no teammate PMs, but on his own trial Day Ivan PM'd all four Guilty-slot voters (Frank among them), which tied Frank to the missing vote. Ivan's 'hurt' is non-application; Frank filed 'helped'."
     }
    ],
    "against": [
@@ -7809,6 +7855,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Carol, Erin, Ivan, Mallory and the moderator: after the mirror stopped N3 on Bob the team retried N4, Frank's charm swallowed it, cleared Frank and put the holder in Bob's group for Dave's Scout count."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: after the swallowed N2 attack on Census Taker Heidi the team neither removed Kitsune Carol nor retook Heidi the next night; her N3 census ended the game, as the checker clause warns."
     }
    ],
    "against": [
@@ -9045,6 +9096,11 @@
      "game": "game_20261015_041156_663825",
      "weight": 0.56,
      "note": "Carol doubled her Innocent vote on doomed Bob, and he was hanged 5-4 anyway. The 9-from-8 total showed a Ballot Stuffer, and it put her among the three Innocent voters (moderator, Carol)."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Frank broke a planned bare-5 Guilty list with a hidden Innocent instead of a planned doubled vote; it saved Ivan for one trial only. Ivan: with 9 voters and 6 town Guilty, a doubled Innocent made 5-5 of 10; decide in night chat before the Day."
     }
    ],
    "against": [],
@@ -9634,6 +9690,11 @@
      "game": "game_20261013_125044_576063",
      "weight": 0.4,
      "note": "Moderator (0.4) as not applied: Bob announced his N2 and N3 alerts and his remaining tokens. SK Frank never visited on an alert night, killed Carol and Grace instead, and attacked Bob on N4 once he said he had none left."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: after Dave claimed Veteran the Yakuza routed around him and killed his Bond partner instead; he died with all 3 alerts unused. Frank's announced audit of Dave also made him skip an alert."
     }
    ],
    "against": [],
@@ -10123,6 +10184,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 0.6,
      "note": "Ivan held his oath and Grace held her ballot tokens for a later moment, and both died with them on N1 and N2."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Ivan died with oath and Spare Blade unused, and Frank's ballot tokens never decided a trial."
     }
    ],
    "against": [
@@ -10596,6 +10662,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Heidi, Mallory, Niaj, Judy and the moderator: Heidi organized Day 1 (vote tracking) and was named in Yakuza chat as the N1 target. The Bounty Hunter also attacked her, and only Bob's mirror saved her."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Trapper Mallory's Day 1 push for investigators to post night/target/result was the reason Yakuza chat gave for her N1 kill, before her trap armed."
     }
    ],
    "against": [
@@ -10942,6 +11013,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005, moderator (1.0): Mallory applied 'write tonight's plan and its readings in your will' to a fake cover and pre-wrote a made-up result, which Olivia's real visit disproved after her death. An audience misfit (the tip is for honest roles); t422 carries the Yakuza side."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Alice (Werewolf) filed 'hurt': writing tonight's plan and invented Fortune Teller counts into her will exposed her cover after death. Audience misfit: the tip is for honest roles; t350 and t422 cover fakes."
     }
    ],
    "history": [
@@ -11595,7 +11671,7 @@
   {
    "id": "t91",
    "audience": "Village",
-   "tip": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner (or a Magpie, Vulture or Decoy, which also read Evil) as well as a Yakuza. An Evil read on a player who self-nominates, claims no role, answers the case with 'judge me on that' or won't prove their claim is the Jester signature: a Yakuza who reads Evil doesn't ask for the rope. A self-nomination is never a reason to vote Guilty. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens, a revealed Mayor, whose doubled vote is the Village's best trial asset) must vote Innocent, and so must anyone with the Cursed trait (R24), whose curse would kill a second Good player. The exception is a player with the Ashamed trait (R24), who dies at once if they vote Innocent and the nominee is hanged and wasn't Village: they should say so and be among the Guilty votes.",
+   "tip": "(Village) Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a claimant with 0 tokens fits a Jester or Executioner (or a Magpie, Vulture or Decoy, which also read Evil) as well as a Yakuza. An Evil read on a player who self-nominates, claims no role, answers the case with 'judge me on that' or won't prove their claim is the Jester signature: a Yakuza who reads Evil doesn't ask for the rope. The reverse holds too: a Jester or Executioner claim made only after a census or check caught the player, from someone who then argues against being hanged, is the Yakuza signature. Hang them: a hanged Jester's win is announced with the role, so silence afterwards proves the claim false and opens up everyone who argued to spare them. A self-nomination is never a reason to vote Guilty. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you hang a possible Jester, agree in public on a named Guilty list and have everyone else vote Innocent. Use a bare majority only when the nominee really looks like a Jester. When they are more likely Yakuza, add one or two buffer Guilty votes from less valuable players, chosen before the trial: one hidden Yakuza in the Guilty slots sinks a bare plan. If the total comes in short, renominate the same Day with a buffer, and treat the stated-Guilty voters as the pool for the hidden Innocent. Don't ask to swap out of your slot at the last moment; the missing vote gets pinned on you. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens, a revealed Mayor, whose doubled vote is the Village's best trial asset) must vote Innocent, and so must anyone with the Cursed trait, whose curse would kill a second Good player, or the Bonded trait, whose partner dies with them. The exception is a player with the Ashamed trait (R24), who dies at once if they vote Innocent and the nominee is hanged and wasn't Village: they should say so and be among the Guilty votes.",
    "status": "active",
    "support": [
     {
@@ -11737,6 +11813,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005: Dave, Erin and Judy filed 'helped'. The town refused to hang Judy despite her escalating claims, and she died at night with no win or revenge."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Carol, Heidi, Niaj, Alice, Mallory, Olivia, Erin and Ivan filed 'helped': the town read a Jester who fought the rope as fake, hanged Ivan with investigators off the Guilty list, and the missing win announcement confirmed him Yakuza."
     }
    ],
    "against": [
@@ -11784,6 +11865,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005: Grace (1.0) filed 'wrong': a Vigilante's night kill on the likely Jester beat leaving her alive, since it fires no revenge and the revealed role confirmed Dave. A refinement rather than a contradiction; t425 carries it."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Dave, Grace, Judy, Bob and the moderator (1.0 each) filed 'hurt': the bare-majority line was exploited by Yakuza Ivan's fake Jester claim, and Frank's single hidden Innocent sank trial 1. A buffer was needed. Edited."
     }
    ],
    "history": [
@@ -11856,6 +11942,12 @@
      "change": "edited",
      "old": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester, Executioner or Hitman as well as a Yakuza. An Evil read on a player who self-nominates, claims no role, answers the case with 'judge me on that' or won't prove their claim is the Jester signature: a Yakuza who reads Evil doesn't ask for the rope. A self-nomination is never a reason to vote Guilty. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens, a revealed Mayor, whose doubled vote is the Village's best trial asset) must vote Innocent, and so must anyone with the Cursed trait (R24), whose curse would kill a second Good player. The exception is a player with the Ashamed trait (R24), who dies at once if they vote Innocent and the nominee is hanged and wasn't Village: they should say so and be among the Guilty votes.",
      "note": "Revision: the Hitman is now a Killing Neutral and reads Not Evil to the Sheriff, while the Chaos Neutrals (Magpie, Vulture, Decoy) read Evil. The list of what an Evil read fits was fixed."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "edited",
+     "old": "Jester warnings: suspect a Jester in a player who pushes hard with no evidence, self-nominates 'as a test', votes Yes on their own nomination (or misstates that vote), refuses offered tests of their own result, or makes a lone, easily disproved claim that contradicts a well-supported report and seems eager to be tried. A typical case is jumping onto a survey or archive pool's role so the real holder counterclaims. Track the conversion: if an archive lists Executioner and anyone has died at night, an Executioner whose target that was is now a Jester. An Evil Sheriff result on a Vanilla claimant with 0 tokens fits a Jester or Executioner (or a Magpie, Vulture or Decoy, which also read Evil) as well as a Yakuza. An Evil read on a player who self-nominates, claims no role, answers the case with 'judge me on that' or won't prove their claim is the Jester signature: a Yakuza who reads Evil doesn't ask for the rope. A self-nomination is never a reason to vote Guilty. A mild early dissent plus a lone PM to a player later exposed as Yakuza doesn't rule a Jester out. A caught liar is a liar, not necessarily a Yakuza, and reckless, checkable lies are what a Jester tells. If a more clearly Yakuza player is available, hang them first. While the Katana still kills, don't spend the Day on a proven liar who doesn't fit as a killer. Before any hang, ask whether the nominee wins by being hanged, and if so prefer to leave them alive. Naming the Jester risk aloud and then voting Guilty anyway is the worst of both. If you must hang, agree in public on a bare majority of Guilty votes and have everyone else vote Innocent. The revenge Divine-attacks a random Guilty voter, and no protection stops it. Confirmed power roles (Medic, investigators, a Prosecutor with tokens, a revealed Mayor, whose doubled vote is the Village's best trial asset) must vote Innocent, and so must anyone with the Cursed trait (R24), whose curse would kill a second Good player. The exception is a player with the Ashamed trait (R24), who dies at once if they vote Innocent and the nominee is hanged and wasn't Village: they should say so and be among the Guilty votes.",
+     "note": "Game 1001: census-caught Yakuza Ivan claimed Executioner-turned-Jester and fought the rope. The bare-5 plan failed 4-5 to Frank's hidden Innocent; a 6-Guilty renomination hanged him, and no Jester announcement confirmed he was Yakuza. Dave, Grace, Judy, Bob and the moderator flagged the bare majority as exploitable; Carol, Heidi, Niaj, Mallory and others used the 'Jester who fights the rope is fake' reading."
     }
    ]
   },
@@ -13398,6 +13490,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005: Bob, Carol, Grace and Mallory: killing Cartographer Carol and guessing on FT Niaj were the right targets. Carol died a night too late, and Drowsy saved Niaj, whose counts then broke two Yakuza."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: every player and the moderator filed 'helped' on 'a Census Taker first': the team followed it N2 (charm saved Heidi), dropped it N3, and her N1 and N3 censuses caught Ivan and Erin."
     }
    ],
    "against": [
@@ -13932,6 +14029,11 @@
      "game": "game_20261014_112108_1000",
      "weight": 1.0,
      "note": "Frank: a trap arms the next night, so put it early on a likely future target and leave it. His trap on Lookout Judy made her untouchable to the Yakuza (Ivan), and her watches then caught two holders."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Mallory's N1 trap armed only from N2, and she died N1; she says aim it at the N2 target and write its location in your will."
     }
    ],
    "against": [
@@ -14404,6 +14506,11 @@
      "game": "game_20261009_164356_960898",
      "weight": 0.26,
      "note": "Heidi, Ivan, Niaj, Carol and Dave: Grace named Carol, Mallory and Niaj as Alice's visitors before they claimed. Dave's timeline check saved her on D2. By D4 Bob, Mallory and Frank had flipped and Niaj was confirmed, so only Carol (the SK) was left, and she was hanged."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Judy named Carol, Heidi and Mallory as Ivan's N1 visitors before Carol and Heidi claimed; their matching claims confirmed all three, and Heidi then used Judy as a known-Good anchor. Judy, Carol, Heidi, Mallory, Niaj, moderator."
     }
    ],
    "against": [
@@ -15025,6 +15132,11 @@
      "game": "game_20261013_125440_1028",
      "weight": 1.0,
      "note": "Carol's two overlapping survey groups crossed with claims (Erin's Party Animal in a Pharmacist group, plus the blocked release on Judy) named Erin. Caveat from the same game: the Wiretap group's passive Villager, Dave, was shot on the pool alone."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Heidi's N3 census '1 of Erin/Frank/Judy Good' plus Judy's self-knowledge and confirmed watch pinned Erin and Frank. Judy, Carol, Mallory, Niaj, Dave."
     }
    ],
    "against": [],
@@ -16360,7 +16472,7 @@
   {
    "id": "t172",
    "audience": "Diviner",
-   "tip": "(Diviner) Picking yourself gives you Strong Defense for the night but no reading; do it once you hold the Katana and expect a block or attack. Early on, use draws to find Neutrals as well as power roles, and report every draw to the team in night chat before the Day's votes. A Jester drawn in a group whose member later reads Evil (and isn't your teammate) is almost surely that player: then vote Innocent on him and never block or target him.",
+   "tip": "(Diviner) Picking yourself gives you Strong Defense for the night but no reading; do it once you hold the Katana and expect a block or attack. A self-pick is still a self-visit (R6): an Insomniac's list shows 'Diviner', Fortune Teller counts include it, and a Yakuza-only role on a list proves a living Yakuza. Once an Insomniac has named Diviner, stop acting, self-picks included, unless the gain clearly outweighs confirming you are still alive. Early on, use draws to find Neutrals as well as power roles, and report every draw to the team in night chat before the Day's votes. A Jester drawn in a group whose member later reads Evil (and isn't your teammate) is almost surely that player: then vote Innocent on him and never block or target him.",
    "status": "active",
    "support": [
     {
@@ -16379,6 +16491,12 @@
     {
      "game": "game_20261010_013419_977337",
      "change": "added"
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "edited",
+     "old": "(Diviner) Picking yourself gives you Strong Defense for the night but no reading; do it once you hold the Katana and expect a block or attack. Early on, use draws to find Neutrals as well as power roles, and report every draw to the team in night chat before the Day's votes. A Jester drawn in a group whose member later reads Evil (and isn't your teammate) is almost surely that player: then vote Innocent on him and never block or target him.",
+     "note": "Game 1001: Erin's Diviner visit showed on Niaj's N1 Insomniac list, proving a Yakuza Diviner existed; she says self-targets for Defense get heard too and should stop once named."
     }
    ]
   },
@@ -20384,6 +20502,11 @@
      "game": "game_20261015_070737_7",
      "weight": 0.32,
      "note": "Checking the 8-3 and 7-2 totals against the stated votes showed that Erin was the Innocent on both Grunts. Ivan, Alice."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: the notepad of stated Guilty slots made trial 1's shortfall visible at once and pointed at Frank."
     }
    ],
    "against": [
@@ -21167,6 +21290,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Alice posted 'Fixer' in her sample and was killed that night; she adds: list on the same turn which claimants could hide that role based on who visited, since the next result dies with you."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Niaj posted 'Census Taker, Diviner, Kitsune' before Carol and Heidi claimed, with an open call; their claims confirmed it and left a Yakuza Diviner to account for (Erin). Niaj, Carol, moderator."
     }
    ],
    "against": [],
@@ -21229,6 +21357,11 @@
      "game": "game_20261010_150921_904458",
      "weight": 1.0,
      "note": "Frank (Diviner) claimed Jester on D5. Alice, Carol, Dave, Erin, Grace, Ivan, Judy, Mallory, Niaj, Olivia and the moderator all cited the same proof: the game hadn't ended at Heidi's hang, N4 had no kill while only Frank was blocked, he had claimed Oracle before Grace spoke, and the census read him not Good. Hanging him won the game."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Ivan's Executioner-to-Jester claim after Heidi's census was tested by hanging him; no Jester win was announced, which proved the claim false. Grace, Heidi, Judy, Mallory, Niaj."
     }
    ],
    "against": [],
@@ -21254,7 +21387,7 @@
   {
    "id": "t257",
    "audience": "Yakuza",
-   "tip": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another win-blocker (a Serial Killer, Arsonist, Werewolf or Vulture) is plausibly alive. Run the win check yourself first: Jesters, Executioners, Bounty Hunters, Hitmen, Magpies and Decoys never block the end, so if your teammate's death would have ended the game with only Village and those roles left, the town will say a blocker is still alive and point at you. A continuing game doesn't itself prove a Yakuza is alive, so the argument bites only when you are the one plausible blocker. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
+   "tip": "(Yakuza) Once a census, check or exact-role result catches you, don't fall back on a fake Jester or Executioner claim. A hanged Jester's or Executioner's win is announced with the role, so the town can test the claim for free by hanging you, and the silence that follows confirms you as Yakuza and casts doubt on everyone who argued to spare you. A 'Jester' who argues against the rope reads fake at once, since a real Jester wants the hang, and leaning on the revenge odds moves only a few voters. As the last Yakuza it is worse unless another win-blocker (Serial Killer, Arsonist, Werewolf, Vulture) is plausibly alive: Jesters, Executioners, Bounty Hunters, Hitmen, Magpies and Decoys never block the end, so the town will say a blocker is still alive and point at you, and a no-kill night on which you were blocked proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession. If caught, push doubt onto an unclaimed or dead member of the group, claim a Village role that disputes the result, or accept the hang quietly and keep teammates out of it. Place any oath mark the night before (t415).",
    "status": "active",
    "support": [
     {
@@ -21280,6 +21413,12 @@
      "change": "edited",
      "old": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another win-blocker (a Serial Killer, Arsonist or Vulture) is plausibly alive. Run the win check yourself first: Jesters, Executioners, Bounty Hunters and Magpies never block the end, so if your teammate's death would have ended the game with only Village and those roles left, the town will say a blocker is still alive and point at you. A continuing game doesn't itself prove a Yakuza is alive, so the argument bites only when you are the one plausible blocker. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
      "note": "Revision: Werewolf blocks wins; Hitman and Decoy never do. Lists updated; rest unchanged."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "edited",
+     "old": "As the last Yakuza, don't fall back on a fake Jester or Executioner claim unless another win-blocker (a Serial Killer, Arsonist, Werewolf or Vulture) is plausibly alive. Run the win check yourself first: Jesters, Executioners, Bounty Hunters, Hitmen, Magpies and Decoys never block the end, so if your teammate's death would have ended the game with only Village and those roles left, the town will say a blocker is still alive and point at you. A continuing game doesn't itself prove a Yakuza is alive, so the argument bites only when you are the one plausible blocker. A no-kill night on which you were blocked then proves you held the Katana. A chain of cover retreats (Oracle, then Roleplayer, then Jester) reads as a confession.",
+     "note": "Game 1001: Ivan (Oathsworn) claimed Executioner-turned-Jester after Heidi's census and argued against his hang; he was hanged and the missing win announcement confirmed him. Frank, Erin, Ivan, Olivia and Heidi each filed this lesson. Broadened from last-Yakuza only."
     }
    ]
   },
@@ -21323,6 +21462,11 @@
      "game": "game_20261015_080049_1001",
      "weight": 1.0,
      "note": "Bob (1.0): a census counts a Turncoat as Good and never counts Neutrals, so a 'Good' count beside a suspect can hide a Turncoat."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Heidi chained censuses on outside anchors (revealed Neutral killers, a Lookout who named her visit, the missing Jester announcement); N1 caught Ivan and N3 caught Erin."
     }
    ],
    "against": [],
@@ -21379,7 +21523,7 @@
   {
    "id": "t261",
    "audience": "Yakuza",
-   "tip": "Kill a claimed Census Taker early, ahead of Oracles and Profilers. Its count reads true alignment, so the holder's disguise and frames don't fool it, and each night it lives it chains new confirmed-Good players and narrows your team by subtraction. It also makes a fake 'I'm Neutral' dodge checkable.",
+   "tip": "(Yakuza) Kill a claimed or likely Census Taker early, ahead of Oracles and Profilers. Its count reads true alignment, so the holder's disguise and frames don't fool it, each census chains new confirmed-Good players and narrows your team by subtraction, and it makes a fake 'I'm Neutral' dodge checkable. If a protector saves it once, don't drop it: kill or block the protector, or strike on the first night the protector can't cover it (a Kitsune holding a swallowed attack can't charm anyone, a Mirror Maker out of tokens). Never trade that kill for a flashy two-for-one (a Bonded pair's heartbreak) on a player whose information is already public.",
    "status": "active",
    "support": [
     {
@@ -21403,6 +21547,12 @@
     {
      "game": "game_20261010_150921_904458",
      "change": "added"
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "edited",
+     "old": "Kill a claimed Census Taker early, ahead of Oracles and Profilers. Its count reads true alignment, so the holder's disguise and frames don't fool it, and each night it lives it chains new confirmed-Good players and narrows your team by subtraction. It also makes a fake 'I'm Neutral' dodge checkable.",
+     "note": "Game 1001: the N2 Katana on Heidi was swallowed by Carol's charm. On N3 Frank noted Carol couldn't charm, but the team took Niaj (plus Bonded Dave) instead; Heidi's N3 census hanged Erin. Moderator, Frank, Erin, Ivan, Bob."
     }
    ]
   },
@@ -23115,6 +23265,11 @@
      "game": "game_20261011_134026_7102",
      "weight": 0.4,
      "note": "Moderator, Dave, Carol: Bob said on D2 he would spend his last Insomniac token on N2. Dave, the last Yakuza, still killed Tracker Frank and also divined Bob, the list read 'Diviner, Tracker' again, and he was hanged D3. Killing Bob instead would have buried the result. One game."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Niaj's N1 list showed 'Diviner' and the team never made the Insomniac a Katana target; Erin's Diviner role then had to be accounted for. Erin, Niaj."
     }
    ],
    "against": [],
@@ -23671,6 +23826,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Frank kept his charm target quiet, charmed the likeliest target (claimed Vigilante Bob) on N4 and swallowed the Katana; the notice cleared him on D5."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Carol charmed Heidi on N2 (who had pressed Ivan) and swallowed the Katana, then released it on Frank, the least-verified Guilty-slot suspect, and said the death was hers. Carol, moderator."
     }
    ],
    "against": [],
@@ -23802,6 +23962,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Moderator, Carol, Frank: on N2 both Enforcers paid for a double visit to the unclaimed pair Ivan and Mallory, and both killed holder Ivan. Mallory, who made no attack, was untouched."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Grace aimed visits at likely holders; her 'no attack' results on Judy and Frank fed the elimination that pinned Erin as the N3 holder. She adds that 'you attacked' is reported even when the attack fails on Strong Defense."
     }
    ],
    "against": [],
@@ -24625,6 +24790,11 @@
      "game": "game_20261016_071747_1005",
      "weight": 1.0,
      "note": "Game 1005: Mallory (1.0): a fake visit claim adds a visited player under posted counts. Name a really visited target (your own Katana victim), not a quiet bystander."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Werewolf Alice's Fortune Teller will gave 7 N1 visitors; once claims came out Heidi counted 8, which exposed the cover after her death. Alice, Carol, moderator."
     }
    ],
    "against": [],
@@ -24712,6 +24882,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Alice and Niaj declared Zealot early, so the 11-1 and 6-4 totals could be read and the 6-4 pointed correctly at a fixed Innocent (Alice). Niaj: a Zealot nominee is one vote cheaper to hang, so make the claim checkable before nomination."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 0.5,
+     "note": "Game 1001: Niaj advises declaring a vote-fixing trait on Day 2 so bare-majority plans and shortfall checks can count it. Thin: no trait vote mattered here."
     }
    ],
    "against": [],
@@ -25488,6 +25663,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Alice, Bob, Carol, Frank, Heidi, Judy, Mallory, Niaj, Olivia and the moderator: every 'track' fake Tracker Dave (Arsonist) posted confirmed a fact that was already public (Judy to Heidi, Niaj to Bob, Mallory to nobody, Carol to Mallory). That 'never risked anything' pattern was the D5 case that hanged him and won the game."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Erin's fake Tracker results only repeated Bob's will and Alice's inactivity, and her late 'Frank visited no one' sold out a dead teammate who couldn't answer. Judy, Carol, Grace, Heidi and Bob read it as fake; she was hanged 4-1."
     }
    ],
    "against": [],
@@ -25891,6 +26071,11 @@
      "game": "game_20261016_032352_2",
      "weight": 0.16,
      "note": "Frank, Grace, Erin (0.16 each): Frank's Oracle cover posted a wrong N1 guess on Dave that the town could check, which broke the cover within a Day. Pick a cover with no result that can be shown wrong."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Erin's Tracker cover produced only public facts and Frank's Auditor cover had 'nothing to audit' and a will audit that matched no visit; both read as unverified. Erin, Frank, Heidi."
     }
    ],
    "against": [],
@@ -26336,6 +26521,11 @@
      "game": "game_20261016_083350_1000",
      "weight": 1.0,
      "note": "Game 1000: Heidi spent her last mirror on claimed Vigilante Bob on N3; it reflected the Katana and killed holder Erin."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Bob's unannounced N2 mirror on Day 2 organizer Carol killed both Neutral killers (Werewolf Alice, Hitman Olivia); Bob died to the rampage at that house. He adds: on even nights with a Werewolf alive, the mirror visit can cost your life."
     }
    ],
    "against": [],
@@ -26349,7 +26539,7 @@
   {
    "id": "t414",
    "audience": "Everyone",
-   "tip": "A reflected attack (Mirror Maker) kills its attacker under the original attack's cause. So when a player reports surviving attacks and other players die that night with matching causes ('Katana', 'Bounty Hunter', 'Serial Killer'), read it as a reflection first. Each dead player was the attacker of that kind: a reflected Katana death is the holder, and a 'Bounty Hunter' death is the Bounty Hunter itself. Line the deaths up with a Lookout's visitor list on the survivor: every dead visitor is confirmed, and their will is the lie to check (e.g. a no-visit 'Fortune Teller' will on a player the watch saw visit). Ask the table whether a Mirror Maker covered the survivor, but don't press them into a public claim.",
+   "tip": "(Everyone) A reflected attack (Mirror Maker) kills its attacker under the original attack's cause. So when a player reports surviving attacks and other players die that night with matching causes ('Katana', 'Bounty Hunter', 'Serial Killer', 'Hitman', 'Werewolf'), read it as a reflection first. Each dead player was the attacker of that kind: a reflected Katana death is the holder, and a 'Bounty Hunter' death is the Bounty Hunter itself. A Werewolf rampage at a mirrored house is reflected onto the Werewolf, while every other visitor there still takes the rampage: so a Werewolf death on a player whose will claims no visit, beside another victim who died to Werewolf plus their own attack's cause, reads as a reflected rampage and a visiting attacker caught in it. Check the protectors' wills (a dead Mirror Maker naming the ward) before suspecting the ward. Line the deaths up with a Lookout's visitor list on the survivor: every dead visitor is confirmed, and their will is the lie to check (e.g. a no-visit 'Fortune Teller' will on a player the watch saw visit). Ask the table whether a Mirror Maker covered the survivor, but don't press them into a public claim.",
    "status": "active",
    "support": [
     {
@@ -26368,6 +26558,12 @@
     {
      "game": "game_20261016_060619_1008",
      "change": "added"
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "edited",
+     "old": "A reflected attack (Mirror Maker) kills its attacker under the original attack's cause. So when a player reports surviving attacks and other players die that night with matching causes ('Katana', 'Bounty Hunter', 'Serial Killer'), read it as a reflection first. Each dead player was the attacker of that kind: a reflected Katana death is the holder, and a 'Bounty Hunter' death is the Bounty Hunter itself. Line the deaths up with a Lookout's visitor list on the survivor: every dead visitor is confirmed, and their will is the lie to check (e.g. a no-visit 'Fortune Teller' will on a player the watch saw visit). Ask the table whether a Mirror Maker covered the survivor, but don't press them into a public claim.",
+     "note": "Game 1001: Bob's N2 mirror on Carol reflected Alice's rampage (she died to Werewolf, her will claiming FT/no visit) and Olivia's Hitman shot, and Olivia also died to the rampage as a visitor. Alice, Bob, moderator."
     }
    ]
   },
@@ -26381,6 +26577,11 @@
      "game": "game_20261016_060619_1008",
      "weight": 1.0,
      "note": "Ivan (Oathsworn, lost), Grace and the moderator (1.0 each): Ivan held the oath on N2, attacked Bob as the last unclaimed Yakuza with an Enforcer claimed, and died to two Enforcer visits with the token unused. A mark on Judy or Niaj would have taken them and their visitors."
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Ivan held his oath (and Spare Blade) 'until real danger', was exposed by the D3 census and hanged with both unused; a N2 mark on Heidi would have killed her. Ivan, moderator."
     }
    ],
    "against": [],
@@ -26460,7 +26661,7 @@
   {
    "id": "t419",
    "audience": "Werewolf",
-   "tip": "Your rampage at a busy house adds one Attack per victim to any Bloodhound count, so one big rampage can single you out. While a Bloodhound is claimed or likely, rampage at a quiet target or at home, or kill the Bloodhound on your next full moon before their tokens reach you. On odd nights you have no action, so the Day before an even night is when the town hangs you: keep the no-visit pool wide. Choose a cover with no tokens and no public output. A claimed Prosecutor, Medic or Coroner holding unused tokens gets told 'use it tonight to clear yourself', and the refusal becomes the case. Count the no-visit claimants once a Fortune Teller posts a full visited set: if the pool is 3-4 players, a visiting claim with a believable result that fits the counts is safer. Saying a disguise would fool exact-role checks persuades nobody.",
+   "tip": "(Werewolf) Your rampage at a busy house adds one Attack per victim to any Bloodhound count, so one big rampage can single you out. On your first full moon, while unclaimed protectors (Mirror Maker, Trapper, Kitsune, Medic) may exist, rampage at home or at a quiet house, never at the vocal organizer: protectors crowd there, a mirror reflects your Strong house rampage back onto you and a trap hits back Strong, and either beats your Standard Defense. A home rampage hits only your visitors, and those attacks aren't visits, so they can't be reflected or trapped back. While a Bloodhound is claimed or likely, kill them on your next full moon before their tokens reach you. On odd nights you have no action, so the Day before an even night is when the town hangs you: keep the no-visit pool wide. Choose a cover with no tokens and no public output. A claimed Prosecutor, Medic or Coroner holding unused tokens gets told 'use it tonight to clear yourself', and the refusal becomes the case. Never write invented counts into a will (t350). Count the no-visit claimants once a Fortune Teller posts a full visited set: if the pool is 3-4 players, a visiting claim with a believable result that fits the counts is safer. Saying a disguise would fool exact-role checks persuades nobody.",
    "status": "active",
    "support": [
     {
@@ -26474,6 +26675,12 @@
     {
      "game": "game_20261016_071747_1005",
      "change": "added"
+    },
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "edited",
+     "old": "Your rampage at a busy house adds one Attack per victim to any Bloodhound count, so one big rampage can single you out. While a Bloodhound is claimed or likely, rampage at a quiet target or at home, or kill the Bloodhound on your next full moon before their tokens reach you. On odd nights you have no action, so the Day before an even night is when the town hangs you: keep the no-visit pool wide. Choose a cover with no tokens and no public output. A claimed Prosecutor, Medic or Coroner holding unused tokens gets told 'use it tonight to clear yourself', and the refusal becomes the case. Count the no-visit claimants once a Fortune Teller posts a full visited set: if the pool is 3-4 players, a visiting claim with a believable result that fits the counts is safer. Saying a disguise would fool exact-role checks persuades nobody.",
+     "note": "Game 1001: Alice rampaged at Day 2 organizer Carol's house on N2; Bob's mirror reflected it and killed her. Her own lesson: rampage at home on the first full moon."
     }
    ]
   },
@@ -26673,6 +26880,46 @@
    "history": [
     {
      "game": "game_20261016_083350_1000",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t430",
+   "audience": "Neutral",
+   "tip": "(Neutral killers: Hitman, Werewolf, Serial Killer, Bounty Hunter) Don't attack the most visible Village organizer or the Day's opener early. Village protectors (Medic, Mirror Maker, Kitsune, Trapper) are told to guard exactly that player, and a mirror reflects a visiting attack back on you, a trap hits back Strong and a charm hands the town a stored kill. Before attacking, count the protective roles the setup could hold, assume several are unclaimed, and hit a quiet, Village-looking player nobody bothers to guard. While a Werewolf may be alive, even nights are dangerous for any visitor: a rampage at a popular target's house kills every visitor there, so on Night 2 and Night 4 visit low-profile targets or skip a kill your win doesn't need. If your Night 1 target also died to another attacker, your cause of death is now public and protectors will plan around you: switch to quieter targets at once.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Werewolf Alice and Hitman Olivia both hit Day 2 organizer Carol on N2; Bob's mirror reflected both and the rampage killed Olivia as a visitor. Alice, Olivia, moderator."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261017_001453_1001",
+     "change": "added"
+    }
+   ]
+  },
+  {
+   "id": "t431",
+   "audience": "Everyone",
+   "tip": "(If you have the Bonded trait) Don't reveal the bond in public unless the vote math really needs it. Once the Yakuza know, one Katana kill on the less protected partner takes both of you, and if one partner is a Veteran or guarded, the attacker simply hits the other. Keep the bond in your will so a heartbreak death reads correctly. If you must explain a vote (e.g. staying out of a Jester's revenge pool), say 'I have a reason to stay out of the revenge pool' and stop there, or have the less protected partner name it and tell protectors which one to cover. A claimed Veteran who is Bonded still dies when the partner does, so alerts protect nothing for the pair.",
+   "status": "active",
+   "support": [
+    {
+     "game": "game_20261017_001453_1001",
+     "weight": 1.0,
+     "note": "Game 1001: Dave (Veteran) and Niaj revealed their bond; on N3 the Yakuza killed Niaj and Dave died of heartbreak with 3 alerts unused. Dave, Niaj, Mallory."
+    }
+   ],
+   "against": [],
+   "history": [
+    {
+     "game": "game_20261017_001453_1001",
      "change": "added"
     }
    ]
