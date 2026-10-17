@@ -1,0 +1,18 @@
+Setup:
+  Alice    seat 1  Mirror Maker      anthropic/claude-opus-5.5 (via Claude Code)  trait: Rival of Frank, Confidant
+  Bob      seat 2  Oracle            anthropic/claude-opus-5.5 (via Claude Code)  trait: Cursed
+  Carol    seat 3  Enforcer          anthropic/claude-opus-5.5 (via Claude Code)  trait: Spiteful, Merciful
+  Dave     seat 4  Hitman            anthropic/claude-opus-5.5 (via Claude Code)
+  Erin     seat 5  Decoy             anthropic/claude-opus-5.5 (via Claude Code)
+  Frank    seat 6  Party Animal      anthropic/claude-opus-5.5 (via Claude Code)  trait: Curt, Rival of Alice
+  Grace    seat 7  Informant         anthropic/claude-opus-5.5 (via Claude Code)  trait: Sleepwalker, Usurper
+  Heidi    seat 8  Oracle            anthropic/claude-opus-5.5 (via Claude Code)  trait: Bonded to Olivia
+  Ivan     seat 9  Ritualist         anthropic/claude-opus-5.5 (via Claude Code)  trait: Katana Master, Grudge
+  Judy     seat 10 Profiler          anthropic/claude-opus-5.5 (via Claude Code)
+  Mallory  seat 11 Oracle            anthropic/claude-opus-5.5 (via Claude Code)  trait: Grudge
+  Niaj     seat 12 Informant         anthropic/claude-opus-5.5 (via Claude Code)  trait: Shaky, Merciful
+  Olivia   seat 13 Oathsworn         anthropic/claude-opus-5.5 (via Claude Code)  trait: Bonded to Heidi
+  Katana starts with Grace
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were picked by hand, not drawn by a standard setup. Roughly: 3 to 5 Yakuza, 0 to 3 Neutrals, and the rest Village. Any other role in the rules may be in it, and roles may repeat. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Traits (R24) were picked by hand too: roughly 15 to 17 in all, each dealt to a player it fits, and a player may hold more than one.
