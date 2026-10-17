@@ -231,6 +231,11 @@ class RoleLogic:
         the game (the Vulture's power-ups). Code that resolves an attack itself (a Sniper's shot) uses it."""
         return p.info.defense
 
+    def barred_targets(self, game: Game, p: Player) -> dict[str, str]:
+        """Living players p can't choose as tonight's target, each with why (told in p's night task), e.g. the player a
+        role-blocker chose last night (rules R9). They are left out of the night answer's target choices."""
+        return {}
+
     def tonight_note(self, game: Game) -> str:
         """A note for the moderator about this night only (night.role_notes), e.g. a Defense a player has earned.
         Called once a night, as the night's resolution begins, when anyone in the game has (or had) the role."""

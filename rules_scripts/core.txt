@@ -119,7 +119,8 @@ A role-blocked player's actions that night have no effect, exactly as if they ha
 no tokens spent. It lasts only that one night (not the next Day or later nights). Role-blocked players are told
 they were role-blocked. Any player can be role-blocked unless their role says otherwise; blocking a player who
 has no night action, or who chose not to act, has no other effect, but they are still told. A role-blocker learns
-only whether the block failed because its target can't be role-blocked.
+only whether the block failed because its target can't be role-blocked. A role-blocker can't choose the same
+player two nights in a row (a night it doesn't act breaks the run).
 A result a role gets with no action at all (its text says "This needs no action") isn't an action, so a role-block
 doesn't stop it; automatic actions, such as a Sleepwalker's visit or the Seer's random pair, are stopped (R7).
 

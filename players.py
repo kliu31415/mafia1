@@ -119,9 +119,11 @@ def night_action_schema(game: Game, p: Player) -> dict:
     names = game.alive_names()
     action = logic(believed_role(p)).action  # a Roleplayer's fake role's: same choices as a real one
     dead = dead_before_tonight(game) if action and action.target == "dead" else None  # e.g. the Coroner's
+    barred = logic(p.role).barred_targets(game, p)  # e.g. a role-blocker's last target (rules R9)
+    choices = [n for n in names if n not in barred]
     props = {
         "act": BOOL,
-        "target": (nullable(name_enum(names)) if dead is None else nullable(name_enum(dead)) if dead
+        "target": (nullable(name_enum(choices)) if dead is None else nullable(name_enum(dead)) if dead
                    else {"type": "null"}),
         "second_target": nullable(name_enum(names)),
         "guessed_role": nullable(name_enum(list(ROLES))),

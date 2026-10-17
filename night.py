@@ -46,6 +46,8 @@ def run_night(game: Game, players: Players, moderator: Moderator, checker: Night
         if p.info.alignment is Alignment.EVIL:
             task += (" Also vote on who should hold the Katana and who the Katana should attack (or null). "
                      + katana_majority_note(game))
+        task += "".join(f" You can't target {name} tonight: {why}."
+                        for name, why in logic(p.role).barred_targets(game, p).items())
         task += "".join(f" {trait_logic(t).action_task}" for t in night_traits(game, p))
         task += (f" You may also update your last will (max {LAST_WILL_WORDS} words; an empty last_will keeps it). "
                  "This is your last chance before tonight resolves: tonight's results arrive after it.")

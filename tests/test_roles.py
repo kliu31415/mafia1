@@ -3216,3 +3216,30 @@ def test_a_forged_will_is_shown_to_its_dead_owner_as_a_forgery(game_factory):
     alice = json.dumps(player_messages(game, game.player("Alice"), "(rules)", "debrief", False, ""))
     assert "as you wrote it: real will" in alice and "replaced by a forgery" in alice
     assert "forgery" not in json.dumps(player_messages(game, game.player("Bob"), "(rules)", "x", False, ""))
+
+
+def test_role_blockers_cant_choose_the_same_player_two_nights_in_a_row(game_factory):
+    # rules R9: per blocker, so only last night's own choice is barred, and a night without acting breaks the run.
+    from llm import Model
+    from moderator import Moderator
+    from night import run_night
+    from players import night_action_schema
+
+    def decide(name, task, schema):
+        if name in ("Alice", "Bob") and "Choose your night action" in task:
+            return {"act": True, "target": "Dave" if "can't target Carol" in task else "Carol"}
+        return None
+    client = ScriptedClient(decide)
+    game, players = game_factory(["Party Animal", "Pharmacist", "Medic", "Vanilla Villager", "Grunt"], client)
+    for night in (1, 2, 3):
+        game.day = night
+        run_night(game, players, Moderator(game, client, players, Model.HAIKU_5_5, "(rules)"))
+    assert [game.night_actions[n]["Bob"]["target"] for n in (1, 2, 3)] == ["Carol", "Dave", "Carol"]
+    assert [game.night_actions[n]["Alice"]["target"] for n in (1, 2, 3)] == ["Carol", "Dave", "Carol"]
+    tasks = [task for name, task in client.asked if name == "Bob" and "Choose your night action" in task]
+    assert "can't target" not in tasks[0] and "You can't target Carol tonight" in tasks[1]
+    game.day, game.phase = 4, "night"
+    assert "Carol" not in night_action_schema(game, game.player("Bob"))["properties"]["target"]["anyOf"][0]["enum"]
+    assert "Carol" in night_action_schema(game, game.player("Erin"))["properties"]["target"]["anyOf"][0]["enum"]
+    game.night_actions[3]["Bob"]["act"] = False  # didn't act on Night 3: nobody is barred on Night 4
+    assert "Carol" in night_action_schema(game, game.player("Bob"))["properties"]["target"]["anyOf"][0]["enum"]

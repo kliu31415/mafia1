@@ -172,7 +172,9 @@ ROLES: dict[str, RoleInfo] = {
                            tested=True, notes="moderator records the prosecution; code runs the trial next day"),
     "Party Animal": RoleInfo(Alignment.GOOD, "Support", False,
                              summary="Night: role-block one player. Immune to role-blocks.",
-                             acts_at_night=True, tested=True),
+                             acts_at_night=True, tested=True,
+                             notes="moderator resolves the block; code leaves last night's target out of its "
+                             "choices (R9)"),
     "Mayor": RoleInfo(Alignment.GOOD, "Support", False,
                       summary="Day, once: reveal as the Mayor (confirmed); then trial votes count twice.",
                       unique=True, tested=True,
@@ -194,7 +196,9 @@ ROLES: dict[str, RoleInfo] = {
                       tested=True),
     "Pharmacist": RoleInfo(Alignment.EVIL, "Yakuza", True,
                            summary="Night: role-block one player. Immune to role-blocks.",
-                           acts_at_night=True, tested=True),
+                           acts_at_night=True, tested=True,
+                           notes="moderator resolves the block; code leaves last night's target out of its "
+                           "choices (R9)"),
     "Ritualist": RoleInfo(Alignment.EVIL, "Yakuza", True,
                           summary="Token: guess a player's exact role; if right, attack them, "
                           "if wrong, exposed at dawn.",
