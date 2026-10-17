@@ -374,8 +374,8 @@ class Game:
         if "(dead)" in line:
             line += " Dead players still win with their side."
         winning = {win_side(self.player(n)) for n in self.winners or [] if n not in self.personal_winners}
-        if left_out := [f"{p.name} ({', '.join(win_blockers(self, p))}, {'alive' if p.alive else 'dead'})"
-                        for p in self.players if win_side(p) in winning and win_blockers(self, p)]:
+        if left_out := [f"{p.name} ({'; '.join(f'{t}, {trait_logic(t).denies_win_why(self, p)}' for t in blockers)})"
+                        for p in self.players if win_side(p) in winning and (blockers := win_blockers(self, p))]:
             line += f" A trait keeps them from sharing their side's win: {', '.join(left_out)}."
         for u in filter(None, (usurper(self, f) for f in winning)):
             line += f" {u.name} (Usurper) is the last {u.faction} player alive, so they take their side's win alone."

@@ -2970,6 +2970,7 @@ def test_rivals_share_their_side_win_only_once_the_other_has_died(tmp_path):
     game.kill(a, "executed by hanging", guilty_voters=[])
     game.winners = winners = game.check_winner() or []  # a has died, so b now shares it; a doesn't, b is alive
     assert b in winners and a not in winners
+    assert f"{a} (Rival, {b} is alive)." in game.winners_line()  # why a lost, not that a is dead
     assert bundle_error(["Rival", "Bonded"]) and bundle_error(["Rival", "Turncoat"])
 
 

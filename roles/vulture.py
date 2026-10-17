@@ -41,11 +41,11 @@ def power_up(game: Game, name: str) -> str:
             counts += 1
             if state["bonus"] < counts and START + counts <= cap(game):
                 state["bonus"] = counts
-                return f"your threshold is now {threshold(game, name)} players"
+                return f"Your threshold is now {threshold(game, name)} players"
         elif ATTACK_LEVELS.index(state["defense"]) < ATTACK_LEVELS.index(step):
             state["defense"] = step
-            return f"you now have {step} Defense"
-    return "you have every power-up already, so nothing changes"
+            return f"You now have {step} Defense"
+    return "You have every power-up already, so nothing changes"
 
 
 @register("Vulture")

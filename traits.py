@@ -488,6 +488,10 @@ class TraitLogic:
         """Whether this trait keeps p from sharing their faction's win as the game ends (Rival; rules R1, R24)."""
         return False
 
+    def denies_win_why(self, game: Game, p: Player) -> str:
+        """Why this trait kept p from their side's win, for the game's end line."""
+        return "alive" if p.alive else "dead"
+
     def random_visit(self, game: Game, p: Player) -> str | None:
         """A target code draws for the living holder's automatic visit tonight (Sleepwalker; rules R24), or None.
         night.py adds it to their trait_actions, marked automatic; the holder isn't told whom."""
@@ -1074,6 +1078,9 @@ class Rival(TraitLogic):
     def denies_win(self, game: Game, p: Player) -> bool:
         rival = game.role_state.get(RIVALS, {}).get(p.name)  # rules R24: dead at the end; leaving isn't dying
         return bool(rival) and not game.player(rival).death
+
+    def denies_win_why(self, game: Game, p: Player) -> str:
+        return f"{game.role_state.get(RIVALS, {}).get(p.name)} is alive"
 
 
 class Selfish(TraitLogic):
