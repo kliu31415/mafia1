@@ -26,6 +26,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import variants
+from records import setup_record
 from roles import Alignment
 from traits import FACTIONS, TRAITS, hand_powers, power_key, village_power, village_sign
 
@@ -127,7 +128,7 @@ def games(log_dir: Path) -> list[Played]:
             dealt += [(t, holder) for t in dict.fromkeys([*p["traits"], *added])]
         if any(r not in PRIOR for r in roles) or any(t not in TRAITS for t, _ in dealt):
             continue
-        setup = json.loads(path.open(encoding="utf-8").readline())
+        setup = setup_record(path)
         same = variants.full((setup.get("settings") or {})) == variants.DEFAULTS
         out.append(Played(roles, int(g["winning_faction"] == "Village"), 1.0 if same else OTHER_SETTINGS_WEIGHT,
                           tuple(dealt)))

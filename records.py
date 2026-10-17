@@ -77,6 +77,27 @@ def read_records(path: Path) -> tuple[list[dict], int]:
     return records, unreadable
 
 
+def setup_record(path: Path) -> dict:
+    """The log's "setup" record, read without loading the whole log: it comes after any records a trait writes as
+    it is dealt (a Bonded pair's "bond", game_20261017_001453_1001), so it isn't always the first line. {} if the
+    log has none near the top."""
+    try:
+        with path.open(encoding="utf-8") as f:
+            for _, line in zip(range(SETUP_WITHIN), f):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if isinstance(r, dict) and r.get("kind") == "setup":
+                    return r
+    except OSError:
+        pass
+    return {}
+
+
+SETUP_WITHIN = 50  # lines: the records traits write as they are dealt, at most a few per player
+
+
 # Who a model call's cost belongs to, for records that aren't a player's or the moderator's own call.
 # These all run on the moderator's model.
 CALLER_BY_KIND = {"moderator_call": "Moderator", "night_check": "Night checks", "review": "Log review",

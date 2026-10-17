@@ -20,7 +20,6 @@ Vanilla Villagers, 3 Yakuza, 1 Neutral):
 - Roles in EXCLUDED are never drawn.
 """
 
-import json
 import math
 import random
 from collections import Counter
@@ -28,6 +27,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
+from records import setup_record
 from roles import ROLES, Alignment, logic
 from scripts import roles_of
 
@@ -179,11 +179,7 @@ def role_uses(log_dir: Path = LOG_DIR) -> Counter:
     """Role -> how many live games in log_dir it was in (read from each log's first line, the setup record)."""
     uses: Counter = Counter()
     for path in sorted(log_dir.glob("game_*.jsonl")):
-        try:
-            with path.open(encoding="utf-8") as f:
-                setup = json.loads(f.readline())
-        except (OSError, ValueError):
-            continue
+        setup = setup_record(path)
         uses.update({p.get("role") for p in setup.get("players") or []} - {None})
     return uses
 

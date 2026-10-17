@@ -318,3 +318,11 @@ def test_games_are_dated_and_ordered_by_their_start_time_not_their_name(tmp_path
     games, _ = stats.load_games([tmp_path])
     assert [(g["game"], g["date"]) for g in games] == [("game_20261012_080000_1", "20261011"),
                                                        ("game_20261012_010000_2", "20261012")]
+
+
+def test_role_uses_finds_the_setup_record_after_records_written_as_traits_are_dealt(tmp_path):
+    # A Bonded pair's "bond" record comes before "setup" (game_20261017_001453_1001), which once broke the index build
+    lines = [{"kind": "bond", "players": ["Dave", "Niaj"]},
+             {"kind": "setup", "players": [{"name": "Dave", "role": "Veteran"}, {"name": "Niaj", "role": "Insomniac"}]}]
+    (tmp_path / "game_1.jsonl").write_text("".join(json.dumps(r) + "\n" for r in lines), encoding="utf-8")
+    assert setups.role_uses(tmp_path) == Counter({"Veteran": 1, "Insomniac": 1})
