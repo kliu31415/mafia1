@@ -292,7 +292,8 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
 SETUPS = {
     "standard": Setup(balanced_setup, (13, 13),
                       "3 or 4 Yakuza for 13 players (each about half the time); 0 to 4 Neutrals, usually 2, at most "
-                      "2 of them Neutral killers; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them "
+                      "2 of them Neutral killers; the rest are Good: at least 5 Village roles that aren't Outsiders "
+                      "(at least 2 of them "
                       "Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 "
                       "Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides "
                       "are roughly balanced by strength: e.g. more Yakuza tend to get weaker roles.", STANDARD_OFF),
