@@ -628,6 +628,9 @@ def build_parser() -> argparse.ArgumentParser:
                     "; or comma-separated role names (see setups.py)")
     ap.add_argument("--yakuza", type=int, default=None, help="for the standard setup: exactly this many Yakuza "
                     "(players are still told the setup's usual range)")
+    ap.add_argument("--drawn-by", default=None, choices=SETUPS, help="for a role list (and --traits) that this "
+                    "setup drew, e.g. on another machine, whose draw leans on its own logs: players are told the "
+                    "setup's own description, and each --traits item goes to its own player, as in the draw")
     ap.add_argument("--script", default=scripts.DEFAULT, choices=scripts.SCRIPTS, help="the roles this game can "
                     "use (scripts.py): players see only these roles' rules, and every role in the game is one of "
                     "them; 'all' is every role")
@@ -799,7 +802,7 @@ def resume_game(ap: argparse.ArgumentParser, args: argparse.Namespace) -> None:
 
 def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: int) -> tuple[list[str], dict | None]:
     """The game's roles in seat order, from --roles (a named setup drawn from the seed, or a list), and the setup
-    record for a drawn one (None for a list)."""
+    record for a drawn one (None for a list, unless --drawn-by names the setup that drew it elsewhere)."""
     try:
         named = parse_setup(args.roles)
     except ValueError as e:
@@ -812,6 +815,11 @@ def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: in
         roles, setup = seeded_setup(name, n, seed, args.role_pool, args.script, args.yakuza, all_frontier(args))
     else:
         roles = [r.strip() for r in args.roles.split(",")]
+        if args.drawn_by:  # drawn elsewhere: told as that setup's draw (setups.setup_note)
+            setup = {"kind": "random", "name": args.drawn_by, "players": len(roles), "pool": args.role_pool,
+                     "drawn_elsewhere": True, **({"frontier": True} if all_frontier(args) else {})}
+    if named and args.drawn_by:
+        ap.error("--drawn-by is for a role list; a named setup is drawn here")
     unknown = [r for r in roles if r not in ROLES]
     if unknown:
         ap.error(f"unknown roles: {unknown}")
@@ -837,7 +845,7 @@ def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: 
     """The traits to deal (rules R24): --traits, or by default drawn for a drawn setup and none for a role list."""
     if args.traits is None:
         return seeded_traits(roles, seed, bool(setup.get("frontier"))) if setup else []
-    if setup:  # the setup note mustn't tell players the traits were drawn (setups.setup_note)
+    if setup and not setup.get("drawn_elsewhere"):  # the setup note mustn't say the traits were drawn (setup_note)
         setup["traits_given"] = True
     if args.traits == "none":
         return []

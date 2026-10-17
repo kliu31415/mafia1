@@ -360,3 +360,20 @@ def test_a_game_of_frontier_models_balances_for_frontier_play(monkeypatch):
     monkeypatch.setattr(setups, "LOG_DIR", Path("/nonexistent"))
     _, record = setups.seeded_setup("standard", 13, 5, frontier=True)
     assert record["frontier"] is True and "frontier" not in setups.seeded_setup("standard", 13, 5)[1]
+
+
+def test_a_role_list_drawn_elsewhere_is_told_as_its_setups_draw():
+    # Kevin, Oct 17 2026: a cloud game replaying a standard draw said its roles and traits were picked by hand,
+    # with a Yakuza range (3 to 5) the standard setup never deals
+    import mafia
+    from setups import SETUPS, setup_note
+    roles = ["Sheriff", "Medic", "Vigilante", "Tracker", "Lookout", "Mayor", "Jester", "Ritualist", "Mortician",
+             "Mortician", "Ballot Stuffer", "Scout", "Seer"]
+    args = mafia.build_parser().parse_args(["--roles", ",".join(roles), "--drawn-by", "standard",
+                                            "--traits", "Martyr@Village,Drowsy+Rival@Yakuza"])
+    got, setup = mafia.choose_roles(mafia.build_parser(), args, 7)
+    traits = mafia.choose_traits(mafia.build_parser(), args, got, setup, 7)
+    assert got == roles and setup and setup["kind"] == "random" and not setup.get("traits_given")
+    note = setup_note(setup, roles, traits=traits)
+    assert SETUPS["standard"].describe in note and "by hand" not in note and "a 1/3 chance each" in note
+    assert "by hand" in setup_note(None, roles, traits=traits)  # a plain list still says so
