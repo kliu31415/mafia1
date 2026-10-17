@@ -251,3 +251,49 @@ Katana: Grace holds it and attacks Frank.
 (to Frank) Moderator (private): You were attacked tonight (Katana) and died.
 (to Alice) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Frank. Grace (Grunt) chose no action.
 (to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Frank. Alice (Pharmacist) chose to act on Frank ("Pharmacist block on Frank (stops his Medic protection tonight). Katana holder Grace attacks Frank.").
+
+===== DAY 4 =====
+Frank died (killed by Katana). Their role isn't revealed. Their last will: "Frank, Medic (2 medic tokens left). N1 I protected Erin with Standard Defense; no attack was stopped. N2 I protected Carol with Standard Defense; no attack was stopped. N3 I protected Erin with Standard Defense (free). I did not protect Heidi or Bob, who were killed by Katana. Dave (Jester) was hanged on Day 2; I withdrew my Guilty lean on him. Carol died to a Jester revenge, which Medic protection would not stop. Judge claims against posted results and vote totals. Suspicion: the Katana holder is alive among Alice, Erin and Grace; Alice has not stated a role beyond Vanilla."
+Speaking order today goes around the circle in seat order, starting with Grace.
+3 players are alive, so a nomination needs 2 Yes votes (rules R4).
+Grace (public): Erin’s confirmed Magistrate use establishes her role, not her alignment. At four, she pushed trials without a corroborated break; now we’re three and should resolve her case against us. Erin, explain why your repeated accusations should outweigh the evidence you actually have.
+Grace nominated Erin. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Erin] Yes - Grace, Alice, Erin; No - nobody
+Nomination votes on Erin: 3 Yes (the votes are secret).
+Erin is put on trial (3 Yes).
+[Claim] Erin: Magistrate. D2: called the second session; publicly confirmed before Dave’s trial. D3: Innocent on Frank; nominations of Alice and Grace failed. I am Village.
+Erin (public): Grace says my confirmed Magistrate role establishes role, not alignment. But there are no traits or role changes in this game: only the real Magistrate could call the second session, and Magistrate is a Village role. The moderator’s public announcement proves this is more than a claim. I am not Yakuza. My Day 3 nominations were attempts to force accountability while we still had a chance, not mechanical evidence against anyone. Please vote Innocent. Then use the remaining nominations today to resolve Alice versus Grace: both claim Vanilla and both voted Guilty on Dave and Frank, but neither claim is verified and neither is proven guilty. Don’t execute a confirmed Village player at three and hand the game to the Yakuza.
+Grace (public): Erin’s Magistrate use is real; I won’t dispute that. But today’s decision is whether her repeated push to execute either of us on the strength of vote patterns deserves confidence. It doesn’t. I’m voting Guilty.
+[Claim] Alice: Vanilla Villager. No N1/N2 action or results. D2: Guilty on Dave. D3: Yes and Guilty on Frank. D4: Guilty on Erin.
+Alice (public): Alice here. I'm voting Guilty. Erin's Magistrate claim can't be checked, and she has nominated Alice and Grace repeatedly on thin grounds, including re-nominating Grace after three failed attempts. That's pressure, not proof, but it's the most concrete thing we have on her. At three alive, I'd rather decide on the record we have than keep stalling.
+Erin (public): Do not hang me. The moderator-confirmed second session was my Magistrate action; Magistrate is a Village role, and setup says nobody has traits, so there is no plausible way for me to be Yakuza. You both accept the action was real; Alice’s claim that it “can’t be checked” is contradicted by the public announcement. My repeated nominations were judgment calls, not proof, and I accept scrutiny for them—but neither of you has produced a mechanical break. You both voted Guilty on Dave and Frank; Grace initiated Frank’s trial, Alice joined it and now asks to hang confirmed Village. If you acquit me, use the remaining trials to scrutinize them, starting with Grace’s repeated unsupported pushes. Don’t give the Katana a free night.
+Trial votes on Erin: 2 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Erin] Guilty - Alice, Grace; Innocent - Erin
+Erin is executed by hanging (2 Guilty of 3 votes; 2 needed).
+Erin died (executed by hanging). Their role isn't revealed. Their last will: "My Magistrate action was confirmed publicly on D2. Magistrate is a Village role, and this game has no traits. Grace and Alice both voted Guilty on Dave and Frank; Grace initiated Frank’s trial. Neither fact alone proves alignment, but both should be examined if I am acquitted. At three alive, do not let the Katana holder get another free night."
+The game is over. Winners: Alice, Grace, Dave (dead). Dead players still win with their side.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Alice, Grace, Dave
+Cost by player (USD):
+  Alice (Pharmacist)      $0.0000   45 calls  claude-haiku-5.5
+  Bob (Vanilla Villager)  $0.0325   17 calls  gpt-6-luna
+  Carol (Vigilante)       $0.0000   18 calls  claude-haiku-5.5
+  Dave (Jester)           $0.0222   11 calls  gpt-6-luna
+  Erin (Magistrate)       $0.0865   36 calls  gpt-6-luna
+  Frank (Medic)           $0.0000   37 calls  claude-haiku-5.5
+  Grace (Grunt)           $0.0753   44 calls  gpt-6-luna
+  Heidi (Sheriff)         $0.0000    5 calls  claude-haiku-5.5
+  Moderator               $0.0000    4 calls  claude-opus-5.5
+  Night checks            $0.0000    3 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.2165  222 calls
