@@ -242,3 +242,71 @@ Katana: Judy holds it and attacks Grace.
 (to Bob) Moderator (private): Yakuza night summary: Judy holds the Katana and chose to attack Grace. Judy (Mortician) chose no action; Olivia (Ritualist) chose to act on Alice, naming Scout, spending 1 token(s) ("Ritual: guess Alice = Scout, 1 token, Standard attack.").
 (to Judy) Moderator (private): Yakuza night summary: Judy holds the Katana and chose to attack Grace. Bob (Mortician) chose to act on Grace, spending 1 token(s) ("Clean Grace (Mortician token)."); Olivia (Ritualist) chose to act on Alice, naming Scout, spending 1 token(s) ("Ritual: guess Alice = Scout, 1 token, Standard attack.").
 (to Olivia) Moderator (private): Yakuza night summary: Judy holds the Katana and chose to attack Grace. Bob (Mortician) chose to act on Grace, spending 1 token(s) ("Clean Grace (Mortician token)."); Judy (Mortician) chose no action.
+
+===== DAY 4 =====
+Grace died (killed by Katana). Their last will was cleaned by a Mortician.
+Alice died (killed by Ritualist). Their role isn't revealed. Their last will: "Alice - Scout (Good; passive, I never visit anyone). Each night I learn 3 names, each from a different visit group (visit direction ignored).
+N1: Erin, Heidi and Olivia were in different groups.
+N2: Alice, Judy and Mallory were in different groups. Mallory's N2 group = Mallory, Erin (shot her), Niaj (Seer pair Frank+Mallory), Frank, the Katana holder who hit Erin, and Ivan/Bob if their tracks/watches on Niaj were real. Judy (tracked Dave) was in a separate group, so Judy was NOT the N2 Katana holder.
+D2: Innocent on Carol. The curse proved she was Village. Niaj died to the Ritualist, so he was a real Seer and Mallory was not Good.
+D3: Guilty on Frank (stated Guilty: Ivan, Judy, Olivia, Bob, me; Innocent: Grace, Frank; totals matched). Frank went Sheriff -> Disguised -> Decoy. If Frank really was the Decoy, he never visited, so Ivan's N1 'Frank visited Judy' track was invented: Ivan is Yakuza (or Roleplayer). If the game kept going after Frank's hang, Yakuza are still alive.
+Leads, in order: Ivan (track backed a fake Sheriff), Grace (defended Frank, steered at me with nothing), then Bob (no checkable results: blocked N1, empty watch N2). Olivia nominated both hangs, but her Oracle miss on Frank was right.
+The Ritualist is alive. Archive math: at least 2 of Bob/Frank/Ivan/Judy/Mallory lied about their roles."
+Speaking order today goes around the circle in seat order, starting with Ivan.
+4 players are alive, so a nomination needs 3 Yes votes (rules R4).
+[Claim] Ivan: Tracker. N1: Frank->Judy. N2: Niaj->Frank+Mallory. N3: Olivia went nowhere (fits Oracle). Bob's N2 'no visitors on Niaj' is false: I visited Niaj.
+Ivan (public): Bob's N2 watch on Niaj says "no visitors." I tracked Niaj N2, and a track is a visit. My result also matched the chosen pair in Niaj's will. So Bob's watch is false. Frank told three different stories, so his Decoy claim proves nothing. N3: I tracked Olivia, and she went nowhere, which fits an Oracle. Nominating Bob.
+Ivan nominated Bob. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Bob] Yes - Ivan; No - Judy, Olivia, Bob
+Nomination votes on Bob: 1 Yes (the votes are secret).
+The nomination of Bob failed (1 Yes).
+Judy (public): Ivan's N1 track backed a fake Sheriff who then admitted to being the Decoy and never visited. That track was invented. Nominating Ivan.
+Judy nominated Ivan. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Ivan] Yes - Judy, Olivia, Bob; No - Ivan
+Nomination votes on Ivan: 3 Yes (the votes are secret).
+Ivan is put on trial (3 Yes).
+Ivan (public): I'm Good. Frank told three stories: Sheriff, then Disguised, then Decoy. Olivia's Oracle result proved the Sheriff claim was false, but nothing proves the Decoy one. My N1 track saw Frank visit Judy. That fits a Yakuza Diviner, and Dave's archive showed Diviner twice. A Yakuza about to hang gains the most by framing the Tracker who could expose his team on his way out. Now the hard fact: I tracked Niaj on N2, and a track is a visit. Bob says his watch on Niaj saw no visitors. One of us is lying, and the Ritualist who killed Niaj and Alice is still alive. Count it: at 4 alive, if you hang a Villager today, the Yakuza reach parity tonight and win. Hang me and you're betting the game on Frank's last lie. Vote Innocent, then nominate Bob.
+(to Ivan, Olivia) Ivan -> Olivia (private): Your Oracle proved Frank lied about Sheriff. Why trust his last-gasp Decoy over my Niaj track? Bob's 'no visitors' watch is the real break. Only your Innocent can stop this hang.
+(to Ivan, Judy) Ivan -> Judy (private): Frank was a proven liar. A Yakuza Diviner visiting you N1 fits my track. Bob's 'no visitors on Niaj' contradicts my N2 visit. Hang the wrong one and Yakuza win tonight. Vote Innocent, then Bob.
+Judy (public): I'm voting Guilty. Ivan's N1 track backed a Sheriff claim that Frank later dropped, and it's the only thing that ever made Ivan look confirmed. The Diviner idea came up only now that he's on trial. Bob's empty watch fits an Astral ritual.
+Olivia (public): Voting Guilty. Frank was never a Sheriff, and Ivan's N1 track was the only thing propping up that fake claim. Bob's empty watch fits an Astral ritual.
+Bob (public): I'm voting Guilty. Ivan's N1 track backed a Sheriff claim that Frank later admitted was fake. The "Diviner" explanation only turned up once Ivan was on trial. My empty N2 watch fits the Astral ritual that killed Niaj.
+Ivan (public): Last word. Do the count: Grace died to the Katana and Alice to the Ritualist last night, so at least one Yakuza is among Bob, Judy and Olivia. If I'm hanged and I'm Good, they kill again tonight and the Village is finished. Only one hard contradiction exists today: I tracked Niaj N2, a track is a visit, and Bob says Niaj had no visitors. One of us is lying. Look at Bob's record: blocked N1, an empty watch N2, and he still hasn't posted an N3 watch at all. Nothing he's said can be checked. Frank lied twice before his Decoy story, so that's the shakiest thing anyone is asking you to hang on. Judy, Olivia: a single Innocent from either of you keeps the Village alive. Acquit me, nominate Bob, and if I'm wrong you'll still have one more day to hang me.
+(to Ivan, Olivia) Ivan -> Olivia (private): I confirmed you went nowhere N3, which fits Oracle. Bob posted no N3 watch at all. One Innocent from you saves the Village. Then hang Bob.
+Trial votes on Ivan: 3 Guilty, 1 Innocent (the votes are secret).
+[Secret trial votes on Ivan] Guilty - Bob, Judy, Olivia; Innocent - Ivan
+Ivan is executed by hanging (3 Guilty of 4 votes; 3 needed).
+Ivan died (executed by hanging). Their role isn't revealed. Their last will: "Ivan, Tracker (Good). N1: tracked Frank, he visited Judy (Frank told three stories: Sheriff, Disguised, Decoy. A Yakuza Diviner fits the archive's double Diviner). N2: tracked Niaj, he visited Frank and Mallory, which matches his will. A track is a VISIT, so Bob's 'no visitors on Niaj' watch is false. N3: tracked Olivia, she went nowhere (fits Oracle). Bob never posted an N3 watch. Bob is lying: hang Bob. D2: Yes/Guilty on Carol. D3: Yes/Guilty on Frank. D4: nominated Bob."
+The game is over. Winners: Bob, Judy, Olivia. A trait keeps them from sharing their side's win: Mallory (Rival, dead).
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+[Feedback from Dave] The Archivist rule needs a clear statement on whether fakes can repeat. I misread it, and that misreading shaped the town's reasoning.
+[Feedback from Carol] The Vulture result message has a lowercase 'your' after a period. Hidden Drowsy blocks look the same as real role-blocks. Archive fakes can repeat a role and mislead the town.
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Bob, Judy, Olivia
+Cost by player (USD):
+  Alice (Scout)             $0.0000   17 calls  claude-opus-5.5
+  Bob (Mortician)           $0.0000   28 calls  claude-opus-5.5
+  Carol (Kitsune)           $0.0000   12 calls  claude-opus-5.5
+  Dave (Archivist)          $0.0000   13 calls  claude-opus-5.5
+  Erin (Vigilante)          $0.0000   12 calls  claude-opus-5.5
+  Frank (Decoy)             $0.0000   17 calls  claude-opus-5.5
+  Grace (Bounty Hunter)     $0.0000   17 calls  claude-opus-5.5
+  Heidi (Kitsune)           $0.0000    5 calls  claude-opus-5.5
+  Ivan (Vulture)            $0.0000   24 calls  claude-opus-5.5
+  Judy (Mortician)          $0.0000   29 calls  claude-opus-5.5
+  Mallory (Ballot Stuffer)  $0.0000   16 calls  claude-opus-5.5
+  Niaj (Seer)               $0.0000   13 calls  claude-opus-5.5
+  Olivia (Ritualist)        $0.0000   28 calls  claude-opus-5.5
+  Moderator                 $0.0000    6 calls  claude-opus-5.5
+  Night checks              $0.0000    3 calls  claude-opus-5.5
+  Strategy review           $0.0000    1 calls  claude-opus-5.5
+  Log review                $0.0000    1 calls  claude-opus-5.5
+  Total                     $0.0000  242 calls
