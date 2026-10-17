@@ -33,8 +33,9 @@ class Werewolf(RoleLogic):
         "any faction (not visits; Astral Visits aren't visits, so they aren't hit). Resolve each like any attack "
         "(Defense, Medics, charms, traps, mirrors: give the visit flag code gives). An Enforcer counts a rampage at a "
         "player's house, its hits on visitors included, as an Attack of the Werewolf's own choosing; a home rampage "
-        "doesn't count. Tell the Werewolf how many players it attacked and how many of those attacks killed, never "
-        "who the visitors were (e.g. 'Your rampage attacked 3 players and killed 2').")
+        "doesn't count. Tell the Werewolf how many players it attacked and how many of those attacks killed (an "
+        "attack a mirror reflects back at the Werewolf isn't one of them), never who the visitors were (e.g. 'Your "
+        "rampage attacked 3 players and killed 2 of them').")
     ops = {
         OP: ({"by"}, {"player"},
              f"{{op:'{OP}', by, player}}: the Werewolf `by` rampaged at player's house, or at home if player is left "
