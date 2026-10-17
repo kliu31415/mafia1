@@ -89,3 +89,44 @@ Olivia (public): No N1 result from me that matters for a vote. Agree there's no 
 Alice (public): Nothing from me that settles a vote yet. Agreed, no hang on nothing today. Ivan's trap is useful to us: anyone who attacks him tonight takes a Strong hit back.
 Bob (public): Nothing from N1 that bears on a vote. Noted Niaj as a fixed Guilty for the vote math. No hang on nothing today.
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 2 =====
+(to Erin, Frank, Ivan) Erin (Yakuza chat): N2 plan: I keep the Katana and attack Heidi. She's the one poking at Ivan over the trap, so she's either an investigator or about to start digging into us. Please both vote holder=Erin, target=Heidi. Warning: my N1 Diviner hit Werewolf in the Olivia/Alice/Bob group, 60% Alice. Tonight is a full moon, so DON'T visit Alice or anyone she might rampage on. The Werewolf has Standard Defense, so the Katana can't kill them anyway. Never attack Ivan (Mallory's trap is armed now). Tonight I'll Diviner Niaj's group (Judy/Niaj/Olivia, no Yakuza in it) for more info. Ivan, keep the oath. Frank, keep the ballots. Day plan: we quietly steer the town toward Alice later as a Werewolf/Hitman suspect. My cover stays Tracker. Tomorrow I'll say I tracked someone harmless. If anyone has a better target, say so now.
+(to Erin, Frank, Ivan) Frank (Yakuza chat): Agreed: holder=Erin, target=Heidi. I'll vote both. Good catch on Alice as the likely Werewolf. One option, Erin: it's a full moon, and if the wolf rampages at Heidi's house, you as a visitor take a Strong hit with no Defense. Diviner on yourself would give you Strong Defense tonight, which would stop that and a Hitman's Basic too. Your call. The Niaj group info is useful too, and the risk is fairly small. No Day 2 votes happened, so tomorrow my Auditor cover is "nothing to audit again" unless trials happen. I won't visit anyone, so I'm safe from the wolf. Day plan noted: we slowly build a Werewolf/Hitman case on Alice, I'm saving the ballots, and no day PMs.
+(to Erin, Frank, Ivan) Ivan (Yakuza chat): Agreed: holder=Erin, target=Heidi. I'll vote both. I second Frank: Erin, think about Diviner on yourself tonight. A rampage at Heidi's or a Hitman shot at you would cost us the Katana holder, and the Niaj group info can wait a night. I'm not visiting anyone, so the wolf can't touch me. Medic cover for tomorrow: "N2 protected Carol (Standard, no token), no attack stopped." Carol opened Day 2 by organizing, so that fits a Medic. I'll back a slow Alice case later, but let's not be the first to push it. Holding the oath and the extra blade for now.
+(to Erin, Frank, Ivan) Erin (Yakuza chat): Good point, both of you. I'll take it: tonight I'll use the Diviner on myself for Strong Defense, which covers a rampage at Heidi's and a Hitman shot. The Niaj group can wait until N3. Final: holder=Erin, target=Heidi. Ivan, keep the extra blade for now. If Heidi survives, we'll talk about it tomorrow night. Covers are unchanged: I'm Tracker and will say I tracked someone quiet, Frank is Auditor with nothing to audit, and Ivan is Medic (Carol N2, nothing stopped). No day PMs.
+(to Erin, Frank, Ivan) Frank (Yakuza chat): Confirmed: holder=Erin, target=Heidi. Diviner on yourself is the right call. Covers are unchanged. See you tomorrow night.
+(to Erin, Frank, Ivan) Ivan (Yakuza chat): Confirmed: holder=Erin, target=Heidi. Voting both now. Erin on the Diviner for herself, me with no action, Frank with no action. Covers unchanged. See you tomorrow night.
+Night actions:
+  Alice (Werewolf): target Carol
+  Bob (Mirror Maker): target Carol; chose to spend 1 token(s)
+  Carol (Kitsune): target Heidi
+  Dave (Veteran): no action
+  Erin (Diviner): target Erin; Katana vote: Erin holds, attacks Heidi
+  Frank (Ballot Stuffer): no role action; Katana vote: Erin holds, attacks Heidi
+  Grace (Enforcer): target Heidi; second target Frank; chose to spend 1 token(s)
+  Heidi (Census Taker): target Grace
+  Ivan (Oathsworn): no role action; Katana vote: Erin holds, attacks Heidi
+  Judy (Lookout): target Ivan
+  Niaj (Insomniac): no action
+  Olivia (Hitman): target Carol
+Katana: Erin holds it and attacks Heidi.
+(to Heidi) Moderator (private): Your census of Dave, Grace and Olivia counted Good players (drawn at random this time): 2 of the 3 are Good. It counts true alignment, so frames and disguises (the Katana holder, Notorious) don't change it, and a Turncoat counts as Good. Neutral players are never counted, as either Good or Evil.
+(to Alice) Moderator (private): Your rampage attacked 3 players and killed 2.
+(to Olivia) Moderator (private): Your attack on Carol failed.
+(to Grace) Moderator (private): You visited Heidi and Frank tonight. You did not attack. 2 enforcer tokens left.
+(to Judy) Moderator (private): You watched Ivan tonight. Nobody visited Ivan.
+[Moderator end_phase refused] Not ended: your tell() to Carol, Erin, Heidi was held and not sent. If it said anything besides the result of their own action (e.g. whether their attack succeeded, a role-block, that they died), send that part again now; otherwise call end_phase again.
+(to Carol) Moderator (private): You were attacked by the Werewolf and by the Hitman tonight, and you survived both attacks.
+(to Heidi) Moderator (private): You were attacked with the Katana tonight and survived.
+(to Erin) Moderator (private): Your Katana attack on Heidi failed.
+[Moderator summary] Night 2: Alice the Werewolf rampaged at Carol's house. That made a Strong Attack on Carol (a visit) and one on each of her visitors, Bob and Olivia. Bob's mirror on Carol stopped two attacks on her and reflected both: Alice's Strong Attack and Olivia's Basic Hitman attack. Alice has Standard Defense, so the reflected Strong Attack killed her (by Bob, cause Werewolf). Olivia died to two fatal attacks: the Werewolf rampage (Alice) and her own reflected Hitman attack (Bob). Bob died to the rampage's attack on visitors (Alice). Carol's charm on Heidi swallowed Erin's Katana attack, so Heidi survived. Erin divined herself; as a Yakuza she had Strong Defense and gets no result. Grace, the Enforcer, visited Heidi and Frank with 1 token. Neither of them made an attack, so she didn't attack, and she has 2 tokens left. Heidi took a census around Grace. Judy watched Ivan, who had no visitors. The trap on Ivan didn't go off. Deaths: Alice, Bob, Olivia.
+[Night check] Night 2: correct
+(to Carol) Moderator (private): Your fox charm on Heidi swallowed a Standard Attack announced as 'Katana'. Release it on a later night (you can't charm until you do).
+(to Bob) Moderator (private): Your mirror on Carol stopped 2 attacks tonight. You have 1 mirror token left.
+(to Alice) Moderator (private): You were attacked tonight (Werewolf) and died.
+(to Bob) Moderator (private): You were attacked tonight (Werewolf) and died.
+(to Olivia) Moderator (private): You were attacked tonight (Werewolf and Hitman) and died.
+(to Erin) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Heidi. Frank (Ballot Stuffer) chose no action; Ivan (Oathsworn) chose no action.
+(to Frank) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Heidi. Erin (Diviner) chose to act on Erin; Ivan (Oathsworn) chose no action.
+(to Ivan) Moderator (private): Yakuza night summary: Erin holds the Katana and chose to attack Heidi. Erin (Diviner) chose to act on Erin; Frank (Ballot Stuffer) chose no action.
