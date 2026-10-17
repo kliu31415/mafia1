@@ -55,3 +55,83 @@ Katana: Grace holds it and attacks Heidi.
 (to Heidi) Moderator (private): You were attacked tonight (Katana) and died.
 (to Alice) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Heidi. Grace (Grunt) chose no action.
 (to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Heidi. Alice (Pharmacist) chose to act on Dave.
+
+===== DAY 2 =====
+Heidi died (killed by Katana). Their role isn't revealed. Their last will: "Heidi is the Sheriff. Night 1 check: Dave. I will post the result and any later results publicly as soon as I have them, with the night, target and exact wording."
+Speaking order today goes around the circle in seat order, starting with Bob.
+7 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Bob (public): Heidi's will claims Sheriff and says she checked Dave, but gives no result. We shouldn't treat that as a read on Dave. Any living player with a result, please give the target and exact wording.
+Carol (public): Carol here. I have no night result, since I took no action on Night 1. Heidi's Sheriff claim is unverified. Dave, if you were checked, say so, and anyone with a real result please post target and exact wording.
+Dave (public): Heidi was right to check me. I can't give a clean explanation for that, and I don't want to waste the day on it.
+Erin (public): Heidi’s will says only that she checked Dave; it gives no result. Dave, what exactly did you mean by “she was right to check me”? Did you learn or infer something, or are you just saying you expected suspicion? Please answer plainly.
+(to Erin) Moderator (private): You called a second session. It takes effect after a random number of speaking turns (possibly right after this one), or at once if a hanging happens first; you'll be told.
+[Claim] Frank: Medic. N1: protected Erin (Standard, 0 tokens). Protection did not stop an attack. 2 medic tokens left.
+Frank (public): Frank, Medic. Night 1 result, exact wording: I protected Erin with Standard Defense, and my protection did not stop an attack. Dave, Erin's question still stands: what did you mean by "Heidi was right to check me"?
+[Claim] Grace: Vanilla Villager. No Night 1 result.
+Grace (public): Dave, what specifically did you mean by “Heidi was right to check me”? Her will gives no result, so we can't infer what she found. Please clarify before we draw conclusions.
+Alice (public): Alice here, no night result to post. Dave, Erin and Grace have both asked you a plain question, and "she was right to check me" needs a real answer. Did you know Heidi checked you, or are you guessing?
+Someone has called a second session: today the first execution doesn't end the Day. The one after it does, as usual.
+(to Erin) Moderator (private): Your second session has taken effect.
+Bob (public): Dave still hasn’t explained how he knew Heidi checked him; her will gives no result. I’m nominating Dave so he can clarify on trial.
+Bob nominated Dave. Everyone now votes Yes/No simultaneously.
+[Secret nomination votes on Dave] Yes - Bob, Carol, Dave, Erin, Frank, Grace, Alice; No - nobody
+Nomination votes on Dave: 7 Yes (the votes are secret).
+Dave is put on trial (7 Yes).
+Dave (public): I didn’t know Heidi checked me before her will said so. “Right” was deliberately provocative, and I handled the follow-up badly. I was testing whether anyone had information beyond what the will actually said. I have no result from Heidi and won’t invent one now. Judge me for the misdirection if you think it warrants a guilty vote.
+[Claim] Erin: Magistrate. D2: called the second session; it is now active.
+Erin (public): I’m the Magistrate; I called the second session, which is now active. Dave’s remark was suspicious, but we have no result from Heidi or corroborated evidence that establishes guilt. I’ll vote Innocent rather than hang on an unexplained phrase; we can revisit Dave if stronger evidence emerges.
+Frank (public): Frank here. Dave, you said "Heidi was right to check me" before anyone had mentioned a check. Your later claim that you only learned of it from the will doesn't fit that line. Heidi's will names you as her Night 1 check, and her Katana death fits a real Sheriff. I lean Guilty unless you can give a concrete reason for your first remark.
+Grace (public): Heidi’s will already named Dave as her check before he spoke; it gave no result. His “right to check me” was provocative, but he says he was testing for hidden information, and nothing corroborates guilt. I don’t think awkward phrasing alone warrants a hanging.
+Alice (public): Alice here. Dave's story has shifted: he said "Heidi was right to check me" before any check had been mentioned, then said he didn't know about it until the will. That unexplained slip is the only concrete thing we have on him, so I'll vote Guilty. Let's not spend more of the day on it.
+Bob (public): Heidi’s will named Dave as her check before he spoke, so his wording doesn’t show he knew anything beyond the will. It’s odd, but there’s no result or corroboration here; I’ll vote Innocent.
+Carol (public): Carol here. I'm voting Guilty on Dave. "Heidi was right to check me" came before anyone had mentioned a check, and his later "I only learned it from the will" doesn't fit that line. Heidi's claim is unverified, so this is a judgment on his wording, not on a result. Dave, if you know anything beyond the will, say exactly what and how.
+Dave (public): I already explained: I was being provocative, not signaling a result. There is no result to add, and I won't make up a claim to answer a wording problem. Use your judgment.
+Trial votes on Dave: 5 Guilty, 2 Innocent (the votes are secret).
+[Secret trial votes on Dave] Guilty - Alice, Carol, Dave, Frank, Grace; Innocent - Bob, Erin
+Dave is executed by hanging (5 Guilty of 7 votes; 4 needed).
+Dave died (executed by hanging). Their role isn't revealed. Their last will: "Day 1: Bob and Carol both favored low-noise discussion and prompt result posting; I questioned the repeated consensus. That alone is weak evidence. Night 1: Heidi's will says she checked Dave as Sheriff, but gives no result. A target alone does not establish anyone's alignment. I was told I was role-blocked, which gives me no useful information about who blocked me."
+Dave was the Jester: being hanged wins them the game.
+A second session was called today, so this execution doesn't end the Day. The next execution will, as usual.
+6 players are alive, so a nomination needs 4 Yes votes (rules R4).
+Carol (public): Dave was the Jester, so a Sheriff check on him would read Evil. That fits Heidi's claim. Frank and Erin, post any further results with exact wording. No one should vote without a concrete break, such as a result, a visit or a contradicted claim.
+Erin (public): Important correction: Bob had already said Heidi’s will named Dave as her check before Dave spoke; Carol then directly asked whether he was checked. His “right to check me” wasn’t a knowledge slip. The Guilty case relied on a false timeline. Please volunteer your trial vote and reasoning; Dave being Jester doesn’t clear anyone who voted Guilty.
+[Claim] Frank: Medic, 2 tokens. N1: protected Erin (Standard), no attack stopped. D2: Guilty on Dave.
+Frank (public): Frank correction: I was wrong about Dave. Heidi's will was posted at Day start, and Bob named her check before Dave spoke, so my "before any check was mentioned" claim was false. Erin is right on that point, and I withdraw my lean. The count is a break: Dave (Jester), Alice, Carol and I make 4 Guilty, so one of Bob, Erin or Grace counted Guilty despite stating or implying Innocent. Grace, please say how you voted.
+[Claim] Grace: Vanilla Villager. No Night 1 result. D2: voted Guilty on Dave.
+Grace (public): I voted Guilty on Dave, as did Alice, Carol and Frank by their stated accounts. That’s four; Bob and Erin said Innocent, making Dave’s own ballot the likely fifth—not evidence that one of Bob, Erin or me secretly voted Guilty.
+Alice (public): Alice here, no night result to post. Dave being Jester means Heidi's Sheriff check on him would read Evil, which fits her claim, so her claim carries some weight. Frank and Erin, please keep your claims consistent with any results you post, and I'd like to hear Bob and Carol's plans for Night 2 results as well.
+[Claim] Bob: Vanilla Villager; no Night 1 action or results. D2: Innocent on Dave.
+Bob (public): I voted Innocent. My nomination was a mistake: Dave’s remark was ambiguous, and his Jester win tells us nothing about faction. The tally is fully explained: Alice, Carol, Frank, Grace and Dave Guilty; Erin and I Innocent—no hidden vote discrepancy. Alice and Carol, your original rationale used the mistaken timeline; what independently justified your Guilty votes?
+Carol (public): Carol here. No night result to post; I'm holding my shots until there's a concrete lead. The second session was called by someone, and Erin is the only player who has claimed Magistrate, so her claim is the most likely to be true for now. Heidi's Sheriff check on Dave also fits, since a Jester reads Evil. Frank, Erin, Bob, Grace and Alice: please post any Night 2 results with target and exact wording.
+Erin (public): Let's not nominate again on this record: with the second session active, the next execution ends the Day. The 5–2 tally fits Alice, Carol, Frank and Grace claiming Guilty, Bob and me Innocent, with Dave supplying the fifth Guilty if all accounts are accurate; no hidden-vote discrepancy is shown. Alice and Carol, what independent reason justified your votes after the chronology was corrected? Grace, please explain your claimed Guilty vote given your defense of Dave at trial.
+Frank (public): Frank, Medic, 2 tokens, no change. Dave's Jester win means the Guilty case against him was built on a wrong timeline, so I withdraw it. I'll post Night 2 results promptly with target and exact wording. Erin's Magistrate claim is unverified; I won't vote without a concrete break.
+Grace (public): I joined the Guilty vote on an ambiguous phrase; that was poor judgment, not a confirmed read. Dave’s Jester reveal gives us no alignment information, and the 5–2 tally matches the votes people reported. Without a corroborated break, I won’t push another trial today.
+Alice (public): Alice here, no new night result. I agree with Erin: no nomination without a concrete break. Frank, Erin, Carol and Bob, please post any Night 2 results with target and exact wording.
+Bob (public): Alice and Carol, did you have any reason for voting Guilty besides the mistaken timeline? I made the nomination and own that mistake. Dave’s Jester reveal tells us nothing about anyone’s faction; I won’t nominate again without corroborated evidence.
+Carol (public): Carol here, no night result yet. Heidi's Sheriff claim fits Dave's Jester role, but it was never posted, so I'm not treating it as proof. Frank and Erin, your claims are unverified too; please keep them consistent with any results. I'm not nominating today. I'll hold my shots until there's a concrete lead.
+Erin (public): Carol, what do you mean by “shots”—are you claiming an attack role, and what evidence would justify using one? Alice, did you have any reason to vote Guilty beyond the mistaken timeline? I won’t nominate; the next execution ends the Day.
+[Claim] Frank: Medic (2 tokens). N1: protected Erin (Standard), no attack stopped. D2: withdrew Guilty on Dave.
+Frank (public): Frank, Medic, 2 tokens. I'll post any Night 2 result at the start of Day 3 with target and exact wording. Carol, you said you're "holding my shots." Which role do you hold, and what would make you fire?
+Grace (public): Agreed: no further nomination today; with the second session active, another execution ends the Day. The 5–2 tally fits the stated votes plus Dave’s. Carol, clarify whether “shots” was literal and what would justify using them; nobody should be pushed on an unverified implication.
+Alice (public): Alice here, no new night result. Agreed: no nomination without a concrete break. Frank and Erin, please post any Night 2 results with target and exact wording as promised.
+Carol (public): Carol here, no new information and no nomination from me. Heidi's Sheriff read on Dave fits his Jester role. Frank, Erin and Bob, please post any Night 2 results with target and exact wording.
+Erin (public): No nomination from me: the next execution ends the Day, and we still have no corroborated break. Carol, were “shots” literal—what role or action do you mean? Alice, what independent reason supported Guilty after the timeline correction? Dave being Jester settles neither.
+Frank (public): Frank here, Medic, no new result. I'm not nominating. Carol and Alice, please answer the earlier questions: what independent reason did you have for your Guilty votes, and if "shots" means a role, which one? I'll post my Night 2 result at the start of Day 3 with target and exact wording.
+Grace (public): I also voted Guilty on the same mistaken reading, so Alice isn’t uniquely implicated by that bad case. We should judge each of us by our own reasoning, not treat the Jester’s execution as proof of anyone’s alignment. I’m not nominating.
+Alice (public): Alice here, no new night result and no nomination from me. Agree with Erin: no vote without a concrete break. Frank and Erin, keep posting results with target and exact wording.
+Bob (public): No new evidence has emerged. Dave’s Jester reveal makes none of us guilty or innocent, and the reported ballots fully explain the 5–2 tally. I won’t nominate; let’s not force a second execution.
+Carol (public): Carol here, no new result and no nomination. I'm holding my Vigilante shots until there's a concrete break. Frank and Erin, post your Night 2 results at the start of Day 3 with target and exact wording.
+Erin (public): No nomination from me. Carol has now explicitly claimed Vigilante; please preserve the shots unless a concrete, corroborated lead appears. Dave’s Jester reveal does not make his Guilty voters Yakuza, and the 5–2 tally is fully accounted for. Let’s end today without another unsupported trial.
+Frank (public): Frank here, Medic, 2 tokens. No nomination from me. Carol, you claimed Vigilante; hold your shots until a corroborated lead appears. I'll post my Night 2 result at the start of Day 3 with target and exact wording.
+Alice (public): Alice here, no new night result and no nomination. Agree: no trial without a concrete break. Frank, Erin and Carol, please post your Night 2 results at the start of Day 3 with target and exact wording.
+Bob (public): One detail worth preserving for tomorrow: Dave’s will says he was role-blocked N1. That could fit either a Village Party Animal or Yakuza Pharmacist, and Dave’s claim isn’t independently verified, so it proves no alignment. If anyone has corroborating information about a block, post it tomorrow. No nomination from me.
+[Claim] Carol: Vigilante, 3 shot tokens. N1: no action. D2: no nomination.
+Carol (public): Carol, Vigilante with 3 shots. N1: no action. Heidi's Sheriff claim fits Dave's Jester role, so I lean toward treating it as real. No nomination from me.
+Frank (public): Frank, Medic, 2 tokens. No nomination from me. I'll post my Night 2 result at the start of Day 3 with target and exact wording.
+Grace (public): I’m not nominating. My Guilty vote was a bad read on Dave’s wording, not a confirmed read; his Jester reveal neither clears nor implicates the other voters. Tomorrow, let’s assess claims against corroborated results.
+Alice (public): Alice here, no new night result and no nomination. Carol, your three shots are a serious claim, so post any target and result exactly as it happens. Frank and Erin, please post your Night 2 results at the start of Day 3 with target and exact wording.
+[Claim] Carol: Vigilante, 3 shot tokens. N1: no action. D2: no nomination. N2: no action planned unless a corroborated lead appears.
+Carol (public): Carol here. No nomination from me. I'm holding my 3 shots for a corroborated lead, so no Night 2 shot without one. Frank and Erin, please keep your Medic and Magistrate claims consistent with any results.
+Frank (public): Frank here, Medic, 2 tokens. No nomination from me. I'll post my Night 2 result at the start of Day 3 with target and exact wording.
+Alice (public): Alice here, no night result and no nomination. Frank, Erin and Carol: please post your Night 2 results at the start of Day 3, with target and exact wording.
+Discussion time is over. The day ends.
