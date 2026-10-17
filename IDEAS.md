@@ -80,6 +80,12 @@ night actions already run in parallel.
   a stale script keep its old edits with a warning instead of failing the test.
 - **Random scripts.** Besides hand-made scripts, draw a ~25-role script for each game (always containing the roles
   in play), so role stats stay poolable across games once there are too many roles to show them all.
+- **Same-model choices line up** (Kevin, Oct 17 2026: punted; undesirable but not serious, since roles rarely
+  repeat 3+ times). In game_20261017_060549_1008 all three Oracles guessed Erin = Seer on Night 1, from one Day 1
+  hint (she was a Decoy). Identical models given the same clue choose the same, and the CLI route has no
+  temperature. Options: a private random number each night that players may use to pick between close options
+  (general, enables mixed strategies; may be ignored or over-used), a tip on diversifying obvious guesses when a
+  role may repeat, or more mixed-model seats.
 
 ## Turned down for now
 
