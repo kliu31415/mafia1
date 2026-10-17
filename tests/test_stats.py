@@ -150,7 +150,9 @@ def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch)
         assert len(roles) == 13 and all(r in ROLES for r in roles)
         by = Counter(ROLES[r].alignment for r in roles)
         yakuza_counts[by[Alignment.EVIL]] += 1
-        assert 2 <= by[Alignment.EVIL] <= 4 and by[Alignment.NEUTRAL] <= 3
+        assert 3 <= by[Alignment.EVIL] <= 4 and by[Alignment.NEUTRAL] <= 4  # Kevin, Oct 17 2026
+        killers = [r for r in roles if ROLES[r].alignment is Alignment.NEUTRAL and ROLES[r].subcategory == "Killing"]
+        assert len(killers) <= setups.MAX_NEUTRAL_KILLERS
         village = [r for r in roles if ROLES[r].alignment is Alignment.GOOD]
         assert sum(ROLES[r].category not in ("Outsider",) for r in village) >= 5
         categories = Counter(ROLES[r].category for r in village)
@@ -161,7 +163,7 @@ def test_standard_setups_are_mostly_balanced_and_follow_their_shape(monkeypatch)
         others = [r for r in roles if r != "Vanilla Villager"]
         repeats += len(others) > len(set(others))
         chances.append(role_power.village_chance(roles))
-    assert yakuza_counts.most_common(1)[0][0] == 3
+    assert set(yakuza_counts) == {3, 4}  # half the time each
     assert 5 <= repeats <= 95  # roles may repeat (Kevin, Oct 11 2026), but most draws are still varied
     assert sum(0.4 <= c <= 0.6 for c in chances) >= 80  # most setups are roughly balanced
 
@@ -326,3 +328,35 @@ def test_role_uses_finds_the_setup_record_after_records_written_as_traits_are_de
              {"kind": "setup", "players": [{"name": "Dave", "role": "Veteran"}, {"name": "Niaj", "role": "Insomniac"}]}]
     (tmp_path / "game_1.jsonl").write_text("".join(json.dumps(r) + "\n" for r in lines), encoding="utf-8")
     assert setups.role_uses(tmp_path) == Counter({"Veteran": 1, "Insomniac": 1})
+
+
+def test_all_frontier_games_get_their_own_offset(tmp_path, monkeypatch):
+    # Kevin, Oct 17 2026: the Village won 10 of 11 all-Opus games the powers had aimed at even
+    base = ["Sheriff", "Medic", "Grunt"]
+    data = ([role_power.Played(base, 1, frontier=True)] * 18 + [role_power.Played(base, 0, frontier=True)] * 2
+            + [role_power.Played(base, 1)] * 10 + [role_power.Played(base, 0)] * 10)
+    *_, frontier = role_power.fit_all(data)
+    assert frontier > 0.5
+    path = tmp_path / "role_power.json"
+    path.write_text(json.dumps({"offset": 0.0, "roles": {}, "frontier_offset": 1.0}), encoding="utf-8")
+    assert role_power.score(base, path, frontier=True) == role_power.score(base, path) + 1.0
+    assert role_power.load_frontier(tmp_path / "missing.json") == role_power.FRONTIER_PRIOR
+
+
+def test_drawn_traits_hold_at_most_two_vote_traits():
+    roles = ["Sheriff", "Medic", "Tracker", "Lookout", "Vigilante", "Seer", "Trapper", "Auditor", "Oracle",
+             "Fixer", "Fabricator", "Mortician", "Jester"]
+    for seed in range(40):
+        held = [t for item in setups.draw_traits(roles, random.Random(seed)) for t in item.split("@")[0].split("+")]
+        assert sum(t in setups.VOTE_TRAITS for t in held) <= setups.MAX_VOTE_TRAITS
+
+
+def test_a_game_of_frontier_models_balances_for_frontier_play(monkeypatch):
+    import mafia
+    parser = mafia.build_parser()
+    assert mafia.all_frontier(parser.parse_args(["--players", "opus-5.5"]))
+    assert not mafia.all_frontier(parser.parse_args(["--players", "opus-5.5,haiku-5.5"]))
+    assert not mafia.all_frontier(parser.parse_args(["--players", "opus-5.5", "--humans", "1"]))
+    monkeypatch.setattr(setups, "LOG_DIR", Path("/nonexistent"))
+    _, record = setups.seeded_setup("standard", 13, 5, frontier=True)
+    assert record["frontier"] is True and "frontier" not in setups.seeded_setup("standard", 13, 5)[1]

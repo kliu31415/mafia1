@@ -88,7 +88,7 @@ from gamelog import GameLog, usage_by_caller
 from human import DEFAULT_PORT as HUMAN_PORT, HumanSeats
 from log_viewer import render_html, usage_lines
 from llm import (API_KEY_ENV_VAR, EFFORTS, LLMClient, MockClient, Model, ModelSpec, OpenRouterClient,
-                 default_effort, load_api_key, parse_model_spec)
+                 default_effort, load_api_key, model_tier, parse_model_spec)
 from moderator import Moderator
 from night_check import NightChecker
 from night import run_night
@@ -809,7 +809,7 @@ def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: in
         name, n = named
         if args.yakuza is not None and name != "standard":
             ap.error("--yakuza only works with the standard setup")
-        roles, setup = seeded_setup(name, n, seed, args.role_pool, args.script, args.yakuza)
+        roles, setup = seeded_setup(name, n, seed, args.role_pool, args.script, args.yakuza, all_frontier(args))
     else:
         roles = [r.strip() for r in args.roles.split(",")]
     unknown = [r for r in roles if r not in ROLES]
@@ -822,11 +822,21 @@ def choose_roles(ap: argparse.ArgumentParser, args: argparse.Namespace, seed: in
     return roles, setup
 
 
+def all_frontier(args: argparse.Namespace) -> bool:
+    """Whether every seat is a frontier model (llm.MODELS tier; no human seats), so a drawn setup balances with the
+    all-frontier offset (role_power.FRONTIER_PRIOR). A model list that doesn't parse counts as not."""
+    try:
+        return not args.humans and all(model_tier(parse_model_spec(m).model.value) == "frontier"
+                                       for m in args.players.split(","))
+    except ValueError:
+        return False
+
+
 def choose_traits(ap: argparse.ArgumentParser, args: argparse.Namespace, roles: list[str], setup: dict | None,
                   seed: int) -> list[str]:
     """The traits to deal (rules R24): --traits, or by default drawn for a drawn setup and none for a role list."""
     if args.traits is None:
-        return seeded_traits(roles, seed) if setup else []
+        return seeded_traits(roles, seed, bool(setup.get("frontier"))) if setup else []
     if setup:  # the setup note mustn't tell players the traits were drawn (setups.setup_note)
         setup["traits_given"] = True
     if args.traits == "none":

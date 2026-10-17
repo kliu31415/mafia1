@@ -35,6 +35,11 @@ FILE = ROOT / "tips" / "role_power.json"
 OFFSET_PRIOR = -0.3  # hidden flips and secret votes favor the Yakuza (Oct 10 games)
 PRIOR_SD = 0.3  # how far data may move a power: the prior's weight (smaller = stickier)
 OFFSET_SD = 0.5
+# All-frontier games (every seat a frontier model, llm.MODELS tier) get an extra offset (Kevin, Oct 17 2026): fitted
+# mostly on cheaper models' games, the powers aimed all-Opus setups at 46-58% for the Village, yet it won 10 of 11
+# (Oct 13-17). Its prior is 0 with a wide spread, so the frontier games themselves decide it.
+FRONTIER_PRIOR = 0.0
+FRONTIER_SD = 1.0
 OTHER_SETTINGS_WEIGHT = 0.5  # games played under other rule settings than today's defaults count half
 # A power "looks off" when the games pull it from its prior by this many of the pulls the prior itself expects (off);
 # it stays flagged until that falls below OFF_CLEAR, so a power near the line doesn't flag again every game. Tested
@@ -71,6 +76,7 @@ class Played:
     won: int  # 1 if the Village won, else 0
     weight: float = 1.0
     traits: tuple[tuple[str, Alignment], ...] = ()  # (trait, holder's alignment) for each dealt trait
+    frontier: bool = False  # every seat a frontier model (FRONTIER_PRIOR)
 
 
 def load(path: Path | None = None) -> tuple[float, dict[str, float]]:
@@ -94,17 +100,28 @@ def load_traits(path: Path | None = None) -> dict[str, float]:
     return {k: fitted.get(k, p) for k, p in TRAIT_PRIOR.items()}
 
 
-def score(roles: list[str], path: Path | None = None, traits: Iterable[tuple[str, Alignment]] = ()) -> float:
-    """The setup's score: the offset, its roles' powers and its traits' (trait, holder's alignment) powers for the
-    Village (traits.village_power)."""
+def load_frontier(path: Path | None = None) -> float:
+    """The extra offset for an all-frontier game (FRONTIER_PRIOR): the last fit's, or the prior without one."""
+    try:
+        return float(json.loads((path or FILE).read_text(encoding="utf-8"))["frontier_offset"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return FRONTIER_PRIOR
+
+
+def score(roles: list[str], path: Path | None = None, traits: Iterable[tuple[str, Alignment]] = (),
+          frontier: bool = False) -> float:
+    """The setup's score: the offset (plus the all-frontier one for a game of frontier models), its roles' powers and
+    its traits' (trait, holder's alignment) powers for the Village (traits.village_power)."""
     offset, power = load(path)
     traits = list(traits)
     trait_power = load_traits(path) if traits else {}
-    return offset + sum(power[r] for r in roles) + sum(village_power(t, a, trait_power) for t, a in traits)
+    return (offset + (load_frontier(path) if frontier else 0.0) + sum(power[r] for r in roles)
+            + sum(village_power(t, a, trait_power) for t, a in traits))
 
 
-def village_chance(roles: list[str], path: Path | None = None, traits: Iterable[tuple[str, Alignment]] = ()) -> float:
-    return 1 / (1 + math.exp(-score(roles, path, traits)))
+def village_chance(roles: list[str], path: Path | None = None, traits: Iterable[tuple[str, Alignment]] = (),
+                   frontier: bool = False) -> float:
+    return 1 / (1 + math.exp(-score(roles, path, traits, frontier)))
 
 
 def games(log_dir: Path) -> list[Played]:
@@ -131,7 +148,7 @@ def games(log_dir: Path) -> list[Played]:
         setup = setup_record(path)
         same = variants.full((setup.get("settings") or {})) == variants.DEFAULTS
         out.append(Played(roles, int(g["winning_faction"] == "Village"), 1.0 if same else OTHER_SETTINGS_WEIGHT,
-                          tuple(dealt)))
+                          tuple(dealt), g["frontier_share"] >= 1))
     return out
 
 
@@ -142,42 +159,54 @@ def terms(game: Played) -> list[tuple[str, int]]:
 
 def fit(data: list[Played], steps: int = 3000,
         rate: float = 0.05) -> tuple[float, dict[str, float], dict[str, float]]:
-    """(offset, power per role, power per trait key) maximizing the games' weighted log-likelihood minus the pull
-    towards the priors (L2, PRIOR_SD for roles and traits alike), by gradient ascent. Deterministic, and quick for a
-    few hundred games."""
+    """(offset, power per role, power per trait key): fit_all without the all-frontier offset."""
+    return fit_all(data, steps, rate)[:3]
+
+
+def fit_all(data: list[Played], steps: int = 3000,
+            rate: float = 0.05) -> tuple[float, dict[str, float], dict[str, float], float]:
+    """(offset, power per role, power per trait key, all-frontier offset) maximizing the games' weighted
+    log-likelihood minus the pull towards the priors (L2: PRIOR_SD for roles and traits alike, FRONTIER_SD for the
+    frontier offset), by gradient ascent. Deterministic, and quick for a few hundred games."""
     power, trait_power, offset = dict(PRIOR), dict(TRAIT_PRIOR), OFFSET_PRIOR
+    frontier = FRONTIER_PRIOR
     total = sum(g.weight for g in data) or 1.0
     game_terms = [terms(g) for g in data]
     for _ in range(steps):
         grad = {r: -(power[r] - PRIOR[r]) / PRIOR_SD ** 2 for r in power}
         t_grad = {k: -(trait_power[k] - TRAIT_PRIOR[k]) / PRIOR_SD ** 2 for k in trait_power}
         g_off = -(offset - OFFSET_PRIOR) / OFFSET_SD ** 2
+        g_front = -(frontier - FRONTIER_PRIOR) / FRONTIER_SD ** 2
         for g, tt in zip(data, game_terms):
-            x = offset + sum(power[r] for r in g.roles) + sum(sign * trait_power[k] for k, sign in tt)
+            x = (offset + frontier * g.frontier + sum(power[r] for r in g.roles)
+                 + sum(sign * trait_power[k] for k, sign in tt))
             err = g.weight * (g.won - 1 / (1 + math.exp(-x)))
             g_off += err
+            g_front += err * g.frontier
             for r in g.roles:
                 grad[r] += err
             for k, sign in tt:
                 t_grad[k] += sign * err
         step = rate / max(1.0, total / 20)
         offset += step * g_off
+        frontier += step * g_front
         for r in power:
             power[r] += step * grad[r]
         for k in trait_power:
             trait_power[k] += step * t_grad[k]
-    return offset, power, trait_power
+    return offset, power, trait_power, frontier
 
 
 def off(data: list[Played], offset: float, power: dict[str, float],
-        trait_power: dict[str, float]) -> dict[str, float]:
+        trait_power: dict[str, float], frontier: float = 0.0) -> dict[str, float]:
     """How far the games pulled each power from its prior, in units of the pull the prior expects (a z-score): if the
     priors were right, a power's shift would spread with variance PRIOR_SD**2 minus its fitted variance (from the
     fit's curvature, each power on its own). Roles and trait keys no game had are left out."""
     curve = {k: 1 / PRIOR_SD ** 2 for k in [*power, *trait_power]}
     for g in data:
         tt = terms(g)
-        x = offset + sum(power[r] for r in g.roles) + sum(sign * trait_power[k] for k, sign in tt)
+        x = (offset + frontier * g.frontier + sum(power[r] for r in g.roles)
+             + sum(sign * trait_power[k] for k, sign in tt))
         v = g.weight / (2 + math.exp(x) + math.exp(-x))  # weight * p * (1 - p)
         for r in set(g.roles):
             curve[r] += v * g.roles.count(r) ** 2
@@ -205,18 +234,20 @@ def update(log_dir: Path, path: Path | None = None, on_new_off: Callable[[str], 
     from roles import ROLES
     path = path or FILE
     data = games(log_dir)
-    offset, power, trait_power = fit(data)
+    offset, power, trait_power, frontier = fit_all(data)
     try:
         was = json.loads(path.read_text(encoding="utf-8")).get("off", {})
     except (OSError, ValueError):
         was = {}
-    z = off(data, offset, power, trait_power)
+    z = off(data, offset, power, trait_power, frontier)
     flagged = {k: round(v, 2) for k, v in z.items() if abs(v) >= (OFF_CLEAR if k in was else OFF_FLAG)}
     seen = {r: sum(r in g.roles for g in data) for r in PRIOR}
     trait_seen = {k: sum(k in dict(terms(g)) for g in data) for k in TRAIT_PRIOR}
     written = f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"written": written, "games": len(data), "offset": round(offset, 3),
+                                "frontier_offset": round(frontier, 3),
+                                "frontier_games": sum(g.frontier for g in data),
                                 "roles": {r: {"prior": PRIOR[r], "power": round(power[r], 3), "games": seen[r]}
                                           for r in PRIOR},
                                 "traits": {k: {"prior": TRAIT_PRIOR[k], "power": round(trait_power[k], 3),
@@ -227,7 +258,10 @@ def update(log_dir: Path, path: Path | None = None, on_new_off: Callable[[str], 
     rows = sorted(PRIOR, key=lambda r: (ROLES[r].alignment.value, -power[r]))
     lines = [f"# Role power\n\nRefit {written} by `role_power.py` from {len(data)} finished live games "
              f"(Village won {village}). Power is how much a role adds to the Village's win chance, in logits "
-             f"(+0.4 is about +10 points near even). Offset {offset:+.2f} (prior {OFFSET_PRIOR:+.2f}). Change the "
+             f"(+0.4 is about +10 points near even). Offset {offset:+.2f} (prior {OFFSET_PRIOR:+.2f}); "
+             f"all-frontier games add {frontier:+.2f} ({sum(g.frontier for g in data)} games, prior "
+             f"{FRONTIER_PRIOR:+.2f}). "
+             "Change the "
              "priors in role_power.py; this file is rewritten after every game.\n",
              "| Role | Side | Prior | Power | Games |", "|---|---|---|---|---|"]
     lines += [f"| {r} | {ROLES[r].alignment.value} | {PRIOR[r]:+.2f} | {power[r]:+.2f} | {seen[r]} |" for r in rows]

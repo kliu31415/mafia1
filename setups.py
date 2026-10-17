@@ -168,6 +168,9 @@ def classic_draw(n: int, rng: random.Random, pool: str, script: str) -> list[str
 YAKUZA_ODDS = {0: 50, 1: 50}
 NEUTRAL_ODDS = {0: 10, 1: 20, 2: 40, 3: 20, 4: 10}  # standard (Kevin, Oct 17 2026; was 0-3 at 15-35-35-15)
 MAX_OUTSIDERS = 2  # standard
+# Kevin, Oct 17 2026: with up to 4 Neutrals, at most 2 Neutral killers (subcategory Killing), so nights don't turn
+# into a lottery; the other Neutrals come from Chaos.
+MAX_NEUTRAL_KILLERS = 2
 VILLAGE_NEEDS = {"Investigative": 2, "Killing": 1, "Protective": 1}  # standard: Kevin, Oct 12 2026
 POWER_CATEGORIES = ("Investigative", "Killing", "Protective", "Support")  # Village roles with a power
 STANDARD_OFF = ("Vanilla Villager", "Grunt")  # Kevin, Oct 12 2026: no ability of their own
@@ -177,10 +180,11 @@ CANDIDATES = 60  # standard: Neutral and Village picks tried per setup
 LOG_DIR = Path(__file__).parent / "logs"  # past games, for role_uses
 
 
-def role_uses(log_dir: Path = LOG_DIR) -> Counter:
-    """Role -> how many live games in log_dir it was in (read from each log's first line, the setup record)."""
+def role_uses(log_dir: Path | None = None) -> Counter:
+    """Role -> how many live games in log_dir (default LOG_DIR, read when called, so a test can point it elsewhere)
+    it was in, from each log's setup record."""
     uses: Counter = Counter()
-    for path in sorted(log_dir.glob("game_*.jsonl")):
+    for path in sorted((log_dir or LOG_DIR).glob("game_*.jsonl")):
         setup = setup_record(path)
         uses.update({p.get("role") for p in setup.get("players") or []} - {None})
     return uses
@@ -200,7 +204,7 @@ def yakuza_odds(n: int) -> dict[int, int]:
 
 
 def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | None = None,
-                   script: str = "all") -> list[str]:
+                   script: str = "all", frontier: bool = False) -> list[str]:
     """The standard setup (Kevin, Oct 10 2026; designed for 13 players): 3 or 4 Yakuza, half the time each (about 3/13
     of the seats and one more, scaled; never fewer since Oct 17 2026), 0-4 Neutrals (mostly 1-3), at least
     MIN_VILLAGE non-Outsider Village roles (VILLAGE_NEEDS among them: Kevin, Oct 12 2026), the rest Good. With more
@@ -208,9 +212,12 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
     are tried, and a random one within BAND of a role_power.score of 0 is kept (with one Neutral fewer only if none
     is; else the closest): e.g. weaker Village roles and more Outsiders against weak Yakuza. Every draw leans
     towards newer roles (not live-tested yet) and roles in fewer past games (logs/), so a seed's setup can change
-    as games are added."""
+    as games are added. frontier: every seat is a frontier model, whose games the fit gives an offset of their own
+    (role_power.FRONTIER_PRIOR: the Village won 10 of 11 all-Opus games aimed at even)."""
     import role_power
     offset, power = role_power.load()
+    if frontier:
+        offset += role_power.load_frontier()
 
     def score(roles: list[str]) -> float:
         return offset + sum(power[r] for r in roles)
@@ -225,12 +232,15 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
         return [r for r in allowed if ROLES[r].alignment is alignment
                 and (not categories or ROLES[r].category in categories)]
 
+    def chaos_only(r: str) -> float:
+        return 0.0 if ROLES[r].subcategory == "Killing" else 1.0
+
     def draw(roles: list[str], k: int, weight=lambda r: 1.0, taken: tuple[str, ...] = ()) -> list[str]:
         """k roles drawn with replacement, heavier ones more often; a role may repeat (Kevin, Oct 11 2026) unless
         it is unique (rules R2), in which case it never repeats one in `taken` or already drawn."""
         picked: list[str] = []
         for _ in range(k):
-            options = [r for r in roles if not (ROLES[r].unique and r in (*taken, *picked))]
+            options = [r for r in roles if not (ROLES[r].unique and r in (*taken, *picked)) and weight(r) > 0]
             if not options:
                 break
             picked += rng.choices(options, [weight(r) * novelty(r) for r in options])
@@ -250,6 +260,10 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
         # unbalanced, since no Village mix made up for them.
         evil = draw(of(Alignment.EVIL), n_yakuza, lambda r: math.exp(lean * (-power[r] - 0.95)))
         neutrals = draw(of(Alignment.NEUTRAL), n_neutrals)
+        killers = [r for r in neutrals if ROLES[r].subcategory == "Killing"]
+        if len(killers) > MAX_NEUTRAL_KILLERS:  # the extra Neutral killers are redrawn as Chaos Neutrals
+            kept = killers[:MAX_NEUTRAL_KILLERS] + [r for r in neutrals if ROLES[r].subcategory != "Killing"]
+            neutrals = kept + draw(of(Alignment.NEUTRAL), len(neutrals) - len(kept), chaos_only, taken=tuple(kept))
         slots = n - len(evil) - len(neutrals)
         village = [r for category, k in VILLAGE_NEEDS.items() for r in draw(of(Alignment.GOOD, category), k)]
         rest = of(Alignment.GOOD, *POWER_CATEGORIES)
@@ -277,8 +291,8 @@ def balanced_setup(n: int, rng: random.Random, pool: str = "all", yakuza: int | 
 
 SETUPS = {
     "standard": Setup(balanced_setup, (13, 13),
-                      "3 or 4 Yakuza for 13 players (each about half the time); 0 to 4 Neutrals, usually 2; "
-                      "the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them "
+                      "3 or 4 Yakuza for 13 players (each about half the time); 0 to 4 Neutrals, usually 2, at most "
+                      "2 of them Neutral killers; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them "
                       "Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 "
                       "Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides "
                       "are roughly balanced by strength: e.g. more Yakuza tend to get weaker roles.", STANDARD_OFF),
@@ -291,19 +305,21 @@ SETUPS = {
 
 
 def seeded_setup(name: str, n: int | None, seed: int, pool: str = "all", script: str = "all",
-                 yakuza: int | None = None) -> tuple[list[str], dict]:
+                 yakuza: int | None = None, frontier: bool = False) -> tuple[list[str], dict]:
     """A named setup's roles as a game with this seed draws them (mafia.py --roles NAME[:N] --seed SEED; the
     handbook's setup builder), and its setup record. Its own RNG, so a seed's setup doesn't depend on the rest of the
-    game (and vice versa)."""
+    game (and vice versa). frontier: balance for a game of frontier models only (balanced_setup)."""
     n = players_for(name, n, seed)
-    options = {"yakuza": yakuza} if yakuza is not None else {}
+    options: dict = {"yakuza": yakuza} if yakuza is not None else {}
+    if frontier and name == "standard":
+        options["frontier"] = True
     roles = SETUPS[name].draw(n, random.Random(f"setup|{seed}"), pool, script=script, **options)
     return roles, {"kind": "random", "name": name, "players": n, "pool": pool, **options}
 
 
-def seeded_traits(roles: list[str], seed: int) -> list[str]:
+def seeded_traits(roles: list[str], seed: int, frontier: bool = False) -> list[str]:
     """The traits a drawn setup deals for this seed (draw_traits on its own RNG, like seeded_setup)."""
-    return draw_traits(roles, random.Random(f"traits|{seed}"))
+    return draw_traits(roles, random.Random(f"traits|{seed}"), frontier)
 
 
 # Kevin, Oct 13 2026: each player independently holds 0, 1 or 2 traits, a 1/3 chance each (TRAIT_COUNT_ODDS; a
@@ -312,9 +328,14 @@ def seeded_traits(roles: list[str], seed: int) -> list[str]:
 TRAIT_COUNT_ODDS = {0: 1, 1: 1, 2: 1}  # odds of each player's trait count
 TRAITS_EACH = max(TRAIT_COUNT_ODDS)
 TRAIT_SAMPLES = 40  # random trait sets tried; balance picks among them
+# Traits that fix or skew how a player's trial vote counts, unseen by others (Kevin, Oct 17 2026: at most
+# MAX_VOTE_TRAITS a game). game_20261015_080049_1001 had 6, every trial after Day 2 failed, and vote totals, a big part
+# of how the town reads Days, became noise.
+VOTE_TRAITS = frozenset({"Merciful", "Zealot", "Turncoat", "Remorseful", "Ashamed"})
+MAX_VOTE_TRAITS = 2
 
 
-def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
+def draw_traits(roles: list[str], rng: random.Random, frontier: bool = False) -> list[str]:
     """Traits for a drawn setup (traits.py, rules R24): each seat's count from TRAIT_COUNT_ODDS, then TRAIT_SAMPLES
     random sets of which traits fill those counts; one set is picked with odds scaled down the further
     role_power.score (of the roles and the set's traits, with their fitted powers) leaves even (Kevin: traits help
@@ -322,7 +343,8 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     random order, draws its traits from those it fits (none it excludes, and a unique trait once); a paired trait
     (Bonded) also fills a free place of another seat it fits, so both partners' counts include it. Each player's
     traits come out as one item ("Martyr+Kindred"), dealt to one player. An item with a trait that can go to more
-    than one faction names the faction of its seat ("Grudge@Yakuza"), so the balance knows which side it helps."""
+    than one faction names the faction of its seat ("Grudge@Yakuza"), so the balance knows which side it helps.
+    A set holds at most MAX_VOTE_TRAITS of VOTE_TRAITS. frontier: balance for a game of frontier models only."""
     import role_power
     from traits import FACTIONS, TRAITS, bundle_error, fits
     faction_name = {a: f for f, a in FACTIONS.items()}
@@ -342,8 +364,10 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
 
         for i in order:
             while len(held[i]) < counts[i]:
+                votes = sum(t in VOTE_TRAITS for h in held for t in h)
                 options = [t for t in TRAITS if free(i, t) and not (TRAITS[t].unique and any(t in h for h in held))
-                           and not (TRAITS[t].pairs and not partners(i, t))]  # rules R24
+                           and not (TRAITS[t].pairs and not partners(i, t))  # rules R24
+                           and not (t in VOTE_TRAITS and votes >= MAX_VOTE_TRAITS)]
                 if not options:
                     break  # nothing else fits this seat: it holds fewer (rare)
                 held[i].append(t := rng.choice(options))
@@ -357,7 +381,7 @@ def draw_traits(roles: list[str], rng: random.Random) -> list[str]:
     sets = [sample() for _ in range(TRAIT_SAMPLES)]
     # Each set's odds, scaled down the further it leaves the setup from even (in units of BAND), so traits lean
     # towards what evens the sides.
-    off = [(role_power.score(roles, traits=powers(c)) / BAND) ** 2 for c in sets]
+    off = [(role_power.score(roles, traits=powers(c), frontier=frontier) / BAND) ** 2 for c in sets]
     weight = [math.exp(min(off) - o) for o in off]  # relative to the most even, so they never all round to 0
     chosen = rng.choices(sets, weight)[0]
     return ["+".join(h) + (f"@{faction_name[ROLES[r].alignment]}" if any(len(TRAITS[t].alignments) > 1 for t in h)
