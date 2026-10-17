@@ -14,10 +14,11 @@ labels stable: add new paragraphs at the end of the general rules (R16, ...) ins
   commits). After pushing, check your commit's run (GitHub tools: workflow runs for `checks.yml` on main) and fix a
   red one yourself, including breakage from another thread's push; Kevin doesn't watch CI emails.
 - Small changes: test with offline mock games only, no live games.
-- Bigger changes: also run a live game in the background: about 7-8 players with cheap player models
-  (haiku-5.5, gpt-6-luna) and an opus-5.5 moderator. Keep a status line saying a live game is running
-  until it finishes (games take 10-40 minutes).
-- Low-cost API calls (Haiku, Luna) are fine whenever they help verify that code works.
+- Bigger changes: also run a live game in the background: about 7-8 players, all haiku-5.5 through Claude Code
+  (the default where `claude` is on PATH; no OpenRouter/API models unless Kevin asks; Kevin, Oct 17 2026), with an
+  opus-5.5 moderator, also through Claude Code. Keep a status line saying a live game is running until it finishes
+  (games take 10-40 minutes).
+- Cheap Haiku calls through Claude Code are fine whenever they help verify that code works.
 - Don't pick DeepSeek V4.1 Flash as a player unless Kevin asks: its thinking often runs into the token cap, so
   turns fall back to defaults, and its feedback reports problems that didn't happen (details above its entry in
   `llm.py`). When reviewing alerts, check its reports against the log before treating them as bugs.
