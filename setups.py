@@ -20,6 +20,7 @@ Vanilla Villagers, 3 Yakuza, 1 Neutral):
 - Roles in EXCLUDED are never drawn.
 """
 
+import json
 import math
 import random
 from collections import Counter
@@ -181,8 +182,18 @@ LOG_DIR = Path(__file__).parent / "logs"  # past games, for role_uses
 
 
 def role_uses(log_dir: Path | None = None) -> Counter:
-    """Role -> how many live games in log_dir (default LOG_DIR, read when called, so a test can point it elsewhere)
-    it was in, from each log's setup record."""
+    """Role -> how many live games it was in. By default from the last role-power fit (tips/role_power.json, its
+    roles' "games"), which the PC publishes to main and the logs branch, so a seed draws the same setup on the PC and
+    in a cloud sandbox with no logs (Kevin, Oct 17 2026: cloud games had passed their drawn roles as a list, so
+    players were told the roles were picked by hand). Without that file, or for an explicit log_dir, it counts the
+    logs' setup records (LOG_DIR, read when called, so a test can point it elsewhere)."""
+    if log_dir is None:
+        import role_power
+        try:
+            fitted = json.loads(role_power.FILE.read_text(encoding="utf-8"))["roles"]
+            return Counter({r: v["games"] for r, v in fitted.items() if v.get("games")})
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            pass
     uses: Counter = Counter()
     for path in sorted((log_dir or LOG_DIR).glob("game_*.jsonl")):
         setup = setup_record(path)

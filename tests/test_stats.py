@@ -377,3 +377,15 @@ def test_a_role_list_drawn_elsewhere_is_told_as_its_setups_draw():
     note = setup_note(setup, roles, traits=traits)
     assert SETUPS["standard"].describe in note and "by hand" not in note and "a 1/3 chance each" in note
     assert "by hand" in setup_note(None, roles, traits=traits)  # a plain list still says so
+
+
+def test_role_uses_come_from_the_published_fit_so_a_seed_draws_the_same_everywhere(tmp_path, monkeypatch):
+    # Kevin, Oct 17 2026: cloud sandboxes have no logs, so their seeded draws differed and games passed role lists
+    path = tmp_path / "role_power.json"
+    path.write_text(json.dumps({"roles": {"Medic": {"games": 4}, "Seer": {"games": 0}}}), encoding="utf-8")
+    monkeypatch.setattr(role_power, "FILE", path)
+    monkeypatch.setattr(setups, "LOG_DIR", tmp_path / "no logs here")
+    assert setups.role_uses() == {"Medic": 4}
+    first = setups.seeded_setup("standard", 13, 3)[0]
+    monkeypatch.setattr(setups, "LOG_DIR", Path("logs"))  # whatever logs a machine has don't change the draw
+    assert setups.seeded_setup("standard", 13, 3)[0] == first
