@@ -318,8 +318,8 @@ TRAITS: dict[str, TraitInfo] = {
     # Village and Yakuza (Kevin, Oct 13 2026: random pairs; Neutrals left out, since a Serial Killer bonded to anyone
     # could never win). Dealt as one trait; on_dealt bonds a random partner, who gets it too.
     "Bonded": TraitInfo(frozenset({Alignment.GOOD, Alignment.EVIL}),
-                        "You are bonded to the player named below, of any faction (you aren't told theirs), and they "
-                        "to you. If either of you dies, the other dies of heartbreak at once (rules R24).",
+                        "You are bonded to the player named below, a Village or Yakuza player (you aren't told which), "
+                        "and they to you. If either of you dies, the other dies of heartbreak at once (rules R24).",
                         "Bonded to one other player: if either dies, the other dies of heartbreak.",
                         power=0.0, pairs=True,
                         mark=("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' opacity='0.8'>"
