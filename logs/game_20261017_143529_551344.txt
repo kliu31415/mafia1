@@ -234,3 +234,20 @@ Grace (public): No new evidence has emerged, and the repeated nominations have n
 Alice (public): Alice here. No new result and no nomination from me. Frank and Erin, please post your Night 3 results at the start of Day 4 with target, night and exact wording.
 Erin (public): Frank, which of Alice or Grace do you believe is Yakuza, and will you support a trial? Alice and Grace, state your strongest specific case against the other; recycled claims won't resolve this at four.
 Discussion time is over. The day ends.
+
+===== NIGHT 3 =====
+(to Alice, Grace) Alice (Yakuza chat): Holder: Grace. Target: Frank. Alice blocks Frank with the Pharmacist action (stops any Medic protection on Frank, and on the target). Grace, confirm and vote the same. No daytime PMs.
+(to Alice, Grace) Grace (Yakuza chat): Confirmed: Holder Grace, target Frank. I have no other action. Alice blocks Frank as planned.
+Night actions:
+  Alice (Pharmacist): target Frank; "Pharmacist block on Frank (stops his Medic protection tonight). Katana holder Grace attacks Frank."; Katana vote: Grace holds, attacks Frank
+  Frank (Medic): target Erin; "Standard protection on Erin, free (0 tokens). Erin is the only confirmed-role Magistrate and a likely Katana target. I keep 2 tokens in reserve."
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Frank
+Katana: Grace holds it and attacks Frank.
+(to Frank) Moderator (private): You were role-blocked tonight. 2 medic tokens left.
+(to Alice) Moderator (private): You visited Frank tonight.
+(to Grace) Moderator (private): Your Katana attack on Frank succeeded.
+[Moderator summary] Night 3: Alice (Pharmacist) role-blocked Frank, so his Standard protection on Erin did not happen and he spent no tokens. Grace, holding the Katana, made a Standard attack on Frank (Defense None), and Frank died (Katana). Visits: Alice->Frank, Grace->Frank. Alive: Alice, Erin, Grace. The game continues, since Erin (Village) is still alive.
+[Night check] Night 3: correct
+(to Frank) Moderator (private): You were attacked tonight (Katana) and died.
+(to Alice) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Frank. Grace (Grunt) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Frank. Alice (Pharmacist) chose to act on Frank ("Pharmacist block on Frank (stops his Medic protection tonight). Katana holder Grace attacks Frank.").
