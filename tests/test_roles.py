@@ -436,6 +436,75 @@ def test_a_revealed_mayor_is_announced_and_its_trial_votes_count_twice(game_fact
     assert offered == ["Alice", "Alice"]  # once per game: not offered again
 
 
+def magistrate_decide(nominees: list[str], call: bool = True):
+    """Alice (the Magistrate) calls a second session on her first turn; once she has, each turn nominates the next
+    living nominee, and everyone votes Yes and Guilty."""
+    called: list[str] = []
+
+    def decide(name, task, schema):
+        props = schema["properties"]
+        if "vote" in props:
+            return {"vote": True}
+        out: dict = {"public_message": "Hello."} if "public_message" in props else {}
+        if "act" in props and call:
+            out["act"] = True
+            called.append(name)
+        elif "nominate" in props and called and nominees:
+            out["nominate"] = nominees.pop(0)
+        return out
+    return decide
+
+
+MAGISTRATE_SETUP = ["Magistrate", "Vanilla Villager", "Vanilla Villager", "Grunt", "Grunt", "Grunt",
+                    "Vanilla Villager"]
+
+
+def test_a_magistrates_waiting_call_keeps_the_day_going_after_the_first_hanging(game_factory):
+    from day import run_day
+    game, players = game_factory(MAGISTRATE_SETUP, ScriptedClient(magistrate_decide(["Dave", "Erin", "Frank"])))
+    game.day = 2
+    game.rng.randint = lambda a, b: b  # type: ignore[method-assign]  # rules R25: the longest delay, so still waiting
+    run_day(game, players)
+    public = [e.text for e in game.events if e.visible_to is None]
+    assert not game.player("Dave").alive and not game.player("Erin").alive and game.player("Frank").alive
+    assert ("A second session was called today, so this execution doesn't end the Day. The next execution will, as "
+            "usual.") in public
+    assert not any(t.startswith("Someone has called a second session") for t in public)  # it took effect at once
+    assert game.player("Alice").tokens["session"] == 0 and "magistrate_open" not in game.role_state
+    assert not any("Alice" in t for t in public if "session" in t)
+
+
+def test_a_magistrates_call_is_announced_after_its_delay(game_factory):
+    from day import run_day
+    game, players = game_factory(MAGISTRATE_SETUP, ScriptedClient(magistrate_decide(["Dave", "Erin", "Frank"])))
+    game.day = 2
+    game.rng.randint = lambda a, b: a  # type: ignore[method-assign]  # right after Alice's own turn
+    run_day(game, players)
+    public = [e.text for e in game.events if e.visible_to is None]
+    called = public.index("Someone has called a second session: today the first execution doesn't end the Day. The "
+                          "one after it does, as usual.")
+    hanged = public.index(next(t for t in public if t.startswith("Dave is executed")))
+    assert called < hanged and not game.player("Erin").alive and game.player("Frank").alive
+
+
+def test_a_magistrates_call_is_refunded_at_day_end_and_dropped_if_the_caller_dies(game_factory):
+    from day import chat_turn, hanging_ends_day, run_trial
+    from roles import logic
+    game, players = game_factory(MAGISTRATE_SETUP, ScriptedClient(magistrate_decide([])))
+    game.day, game.phase = 2, "day"
+    alice = game.player("Alice")
+    chat_turn(game, players, alice, rnd=1, can_nominate=False)
+    assert alice.tokens["session"] == 0 and game.role_state["magistrate_pending"]
+    game.role_state["magistrate_pending"][0][1] = 5
+    logic("Magistrate").at_day_end(game)  # no hanging before it took effect: the token comes back
+    assert alice.tokens["session"] == 1 and "magistrate_pending" not in game.role_state
+    assert any("you got your token back" in t for t in told(game, "Alice"))
+    chat_turn(game, players, alice, rnd=2, can_nominate=False)  # called again, then hanged while it waits
+    game.role_state["magistrate_pending"][0][1] = 5
+    assert run_trial(game, players, game.player("Bob"), "Alice", 1) == "executed"
+    assert hanging_ends_day(game) and "magistrate_open" not in game.role_state
+
+
 def test_diviner_draws_from_the_target_and_neighbors_mostly_the_target(game_factory):
     game, players = game_factory(["Diviner", "Vanilla Villager", "Medic", "Grunt", "Pharmacist", "Jester"])
     game.phase = "night"

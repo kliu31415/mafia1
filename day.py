@@ -147,6 +147,17 @@ def day_action_logics(game: Game) -> list[RoleLogic]:
     return [logic(role) for role in sorted({q.role for q in game.players})]
 
 
+def hanging_ends_day(game: Game) -> bool:
+    """Rules R4: a hanging ends the Day, unless a role's effect keeps it going."""
+    if game.check_winner() is not None:
+        return True
+    for role_logic in day_action_logics(game):
+        if role_logic.hanging_keeps_day_going(game):
+            announce_votes_needed(game)
+            return False
+    return True
+
+
 def end_day_after_three_trials(game: Game) -> None:
     game.emit("Three trials ended in Innocent verdicts. The day ends.")
 
@@ -185,8 +196,10 @@ def play_day(game: Game, players: Players) -> None:
         game.emit(f"{name} is being prosecuted and goes straight to trial.", cat=NOMINATION)
         game.vote_record.append(f"Day {game.day}: {name} was prosecuted (straight to trial)")
         if run_trial(game, players, nominator, name, rnd=1, prosecuted=True) == "executed":
-            return
-        trials += 1
+            if hanging_ends_day(game):
+                return
+            continue
+        trials += 1  # only Innocent verdicts count toward the limit
     if trials >= MAX_TRIALS_PER_DAY:
         end_day_after_three_trials(game)
         return
@@ -218,7 +231,7 @@ def play_day(game: Game, players: Players) -> None:
             over = False
             if nominee:
                 outcome = run_nomination(game, players, nominator=p, nominee=nominee, rnd=rnd)
-                over = outcome == "executed"  # an execution ends the day
+                over = outcome == "executed" and hanging_ends_day(game)  # an execution ends the day (rules R4)
                 trials += outcome == "innocent"  # failed nominations don't count toward the limit
                 if not over and trials >= MAX_TRIALS_PER_DAY:
                     end_day_after_three_trials(game)

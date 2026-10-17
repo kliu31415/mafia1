@@ -18,7 +18,7 @@ R2 (Factions)
 - Yakuza (Evil): fewer players, stronger roles; they know each other and share a night chat.
 - Neutral: each Neutral player is their own one-person faction, even if two players have the same Neutral role.
 The list of roles in the game is not public. A role may appear more than once in a game, except these unique
-roles, which appear at most once: Mayor, Vulture, Hitman, Saint.
+roles, which appear at most once: Mayor, Magistrate, Vulture, Hitman, Saint.
 
 R15 (Alignments)
 Every player has one of three alignments: Good (Village), Evil (Yakuza) or Neutral. Some roles and effects change
@@ -61,7 +61,7 @@ Trials:
   Innocent). Votes are secret: only the Guilty and Innocent totals are announced, never who voted which way. Each
   voter is privately reminded of their own vote.
 - If a majority of all votes counted are Guilty, the nominee is Executed by Hanging, a Divine Attack, and the Day
-  ends immediately.
+  ends immediately, unless a role's effect keeps it going.
 - If three nominations pass (failed ones don't count) and all three trials end Innocent, the Day ends.
 - Some roles can change how votes are counted. If an announced vote total doesn't match the number of voters,
   a role manipulated the count on purpose; it is not an error. One use of such a role can change every trial
@@ -457,6 +457,14 @@ Mayor
   after that turn, not after R25's random delay: the moderator announces publicly that you are the Mayor, and this
   is true. It confirms your role only. From then on each of your Guilty/Innocent trial votes counts twice; your
   nomination (Yes/No) votes stay one vote each.
+
+Magistrate
+  Tokens: 1 session token.
+  Day: on one of your own speaking turns, you may spend the token to call a second session. This day action takes
+  effect after R25's random delay: the moderator announces publicly, without naming you, that today the first
+  execution doesn't end the Day; the next execution ends it as usual. If a hanging happens while your call is still
+  waiting, it takes effect at that moment and the Day goes on. If you die first, it doesn't take effect. If the Day
+  ends before it takes effect, you get the token back. The limit of three Innocent trials a Day still applies.
 
 Outsiders (Village roles: Good, and win with the Village, but the role helps the Village less or can hurt it)
 

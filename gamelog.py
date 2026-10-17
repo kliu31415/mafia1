@@ -146,7 +146,9 @@ from records import caller_of, read_records, redact, safe_print
 # 81: Oathsworn role: "oathsworn_mark" (player, target, day), "oathsworn_fires"/"oathsworn_lapses" (player, target,
 #     day) as the next Night begins, "oath_fulfilled" (player, target, visitors, day)
 # 82: Berserker trait: "berserker" records (player, target, visitors, day) when its rampage is recorded
-LOG_VERSION = 82
+# 83: Magistrate role: "session_called" (player, day, delay), "session_open"/"session_dropped"/"session_refunded"
+#     (player, day)
+LOG_VERSION = 83
 
 ALERT_LINES_PER_SOURCE = 3  # ALERT lines printed per (kind, player); the rest are only logged and counted
 

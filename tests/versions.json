@@ -1,5 +1,5 @@
 {
- "log_version": 82,
+ "log_version": 83,
  "log": {
   "attacks": ["attackers", "day"],
   "avenger": ["attacked", "day", "player"],
@@ -57,6 +57,10 @@
   "rivals": ["players"],
   "saint_hanged": ["day", "player"],
   "section": ["title"],
+  "session_called": ["day", "delay", "player"],
+  "session_dropped": ["day", "player"],
+  "session_open": ["day", "player"],
+  "session_refunded": ["day", "player"],
   "setup": ["katana", "log_version", "players", "role_info", "trait_info"],
   "shame": ["day", "hanged", "player"],
   "steal": ["day", "player", "target", "token"],

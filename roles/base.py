@@ -158,6 +158,11 @@ class RoleLogic:
     def at_day_end(self, game: Game) -> None:
         """The Day is ending (and the game isn't over): day actions still waiting take effect (rules R25)."""
 
+    def hanging_keeps_day_going(self, game: Game) -> bool:
+        """A hanging just happened and the game isn't over: whether this role's effect keeps the Day going instead
+        of ending it (rules R4; Magistrate). Returning True uses the effect up; later roles aren't asked."""
+        return False
+
     def reverses_trial_vote(self, game: Game, voter: Player) -> bool:
         """Whether this role's effect counts `voter`'s Guilty/Innocent vote today as the opposite (Fixer). Called once
         per registered role, whether or not anyone has it."""

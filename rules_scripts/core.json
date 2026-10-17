@@ -1,15 +1,15 @@
 {
  "script": "core",
- "cut_sha256": "8f09bb01161d4390",
+ "cut_sha256": "cfc8d99ab02b14f6",
  "text_sha256": "5dee336c31310ec5",
  "made_by": "a Claude Code session",
- "made": "2026-10-17T14:25:37+00:00",
+ "made": "2026-10-17T14:34:19+00:00",
  "cost": 0.0,
  "edits": [
   {
-   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Mayor, Vulture, Hitman, Saint.",
+   "old": "The list of roles in the game is not public. A role may appear more than once in a game, except these unique\nroles, which appear at most once: Mayor, Magistrate, Vulture, Hitman, Saint.",
    "new": "The list of roles in the game is not public. A role may appear more than once in a game.",
-   "reason": "The unique roles (Mayor, Vulture, Hitman, Saint) are not on the script."
+   "reason": "The unique roles (Mayor, Magistrate, Vulture, Hitman, Saint) are not on the script."
   },
   {
    "old": "(Oracle, Diviner, Ritualist, Mortician, Coroner,\n  Talent Agent, a Vigilante's kill)",
@@ -85,6 +85,11 @@
    "old": "  Who: Village players only, except a Saint.\n",
    "new": "  Who: Village players only.\n",
    "reason": "Saint is not on the script."
+  },
+  {
+   "old": "a Divine Attack, and the Day\n  ends immediately, unless a role's effect keeps it going.",
+   "new": "a Divine Attack, and the Day\n  ends immediately.",
+   "reason": "No role on the script keeps the Day going after a hanging (Magistrate is not on the script)."
   }
  ]
 }
