@@ -36,3 +36,43 @@ Mallory (public): Agreed. Short today, results tomorrow.
 Frank (public): Short from me too. I'll post my night result in full first thing tomorrow, and you can hold me to it.
 (to Frank, Niaj) Frank -> Niaj (private): Between us: I'm Sheriff. I'll check someone tonight and send you the result before I post it. Got any early reads?
 Discussion time is over. The day ends.
+
+===== NIGHT 1 =====
+(to Bob, Judy, Mallory, Olivia) Bob (Yakuza chat): Proposal: Mallory keeps the Katana tonight (no point moving it on N1) and attacks Frank. He all but claimed an investigator with a result coming tomorrow and said he'd lead the vote analysis, so he's the biggest info threat. Small Veteran/bait risk, but I think it's worth taking. I'll spend a clean on Frank so his will (and any result) never comes out. Judy, save your tokens for now. Olivia, I'd hold the Ritualist tokens until we have a good exact-role read, since a miss outs you. Covers that fit our real visits: me Lookout (I visit), Judy Tracker, Olivia Oracle (astral, same as Ritual), Mallory Sheriff or Auditor. No daytime PMs between us. Objections?
+(to Bob, Judy, Mallory, Olivia) Judy (Yakuza chat): Agreed. Mallory keeps the Katana and attacks Frank, Bob cleans Frank, and I'll hold my tokens. I'll use Tracker as my cover. One thought: Frank pushing that hard on Day 1 could be Veteran or Jester bait. If the attack on Frank fails, we treat him as protected or Veteran and don't retry blindly. Tomorrow nobody pushes on Frank's PM to Niaj too early, and no daytime PMs between us. Everyone please submit the same holder and target so the vote actually passes.
+(to Bob, Judy, Mallory, Olivia) Mallory (Yakuza chat): Agree on Frank as the target and on Bob cleaning him. One tweak: since Bob is already visiting Frank to clean, let Bob hold the Katana tonight and make the attack too. Then Frank has only one visitor from us, not two. If Frank is a Veteran, we lose one member and not two. A Lookout or Tracker also sees only one name, and the holder reads Good to checks. So holder: Bob, target: Frank. If you'd rather I keep it, I'm fine with that, but one visitor is safer. I'll take Auditor as my cover. N1 audit result is "cast no votes", since Day 1 had none, which nobody can disprove. No daytime PMs between us, agreed.
+(to Bob, Judy, Mallory, Olivia) Olivia (Yakuza chat): Agree with Mallory's tweak: holder Bob, target Frank, and Bob cleans Frank on the same visit. That's one visitor and one name for any Lookout or Tracker. Everyone please vote holder Bob and target Frank so it passes. I'll hold my ritual tokens tonight and keep Oracle as my cover. My N1 'guess' will be a miss on someone quiet, so I have no result to defend. Tomorrow, watch Niaj: Frank PM'd him, so Niaj may know Frank's role and may claim it or protect his info. If Frank survives, we treat him as protected or Veteran and don't go back. No daytime PMs between us.
+(to Bob, Judy, Mallory, Olivia) Bob (Yakuza chat): Fine by me. Holder: Bob, target: Frank, and I clean Frank on the same visit. Everyone please vote holder Bob and target Frank so it passes. If anyone tracks me, my cover is Lookout watching Frank, since he was the loudest about having a result. Tomorrow: if Frank's attack fails, we treat him as protected or Veteran and leave him alone. Keep the covers: Judy Tracker, Olivia Oracle, Mallory Auditor. No daytime PMs between us.
+(to Bob, Judy, Mallory, Olivia) Judy (Yakuza chat): Agreed: holder Bob, target Frank, and Bob cleans Frank on the same visit. I'm voting holder Bob and target Frank. I'll hold my tokens and keep Tracker as my cover. If anyone asks, my N1 track was on someone quiet and they went nowhere. Ready.
+(to Bob, Judy, Mallory, Olivia) Mallory (Yakuza chat): Confirmed: holder Bob, target Frank, Bob cleans Frank. I'm voting that way. I have no night action, and my cover is Auditor ("cast no votes" on N1). Ready.
+(to Bob, Judy, Mallory, Olivia) Olivia (Yakuza chat): Confirmed: holder Bob, target Frank, Bob cleans Frank. I'm voting that way, holding my ritual tokens tonight and keeping Oracle as my cover. Ready.
+Night actions:
+  Bob (Mortician): target Frank; chose to spend 1 token(s); "Clean Frank (Mortician token)."; Katana vote: Bob holds, attacks Frank
+  Carol (Kitsune): target Frank
+  Dave (Archivist): chose to spend 1 token(s); "Consult the archive."
+  Erin (Vigilante): no action
+  Grace (Bounty Hunter): target Heidi; chose to spend 1 token(s); trait action: Sleepwalker on Heidi
+  Heidi (Kitsune): target Frank
+  Ivan (Vulture): target Frank
+  Judy (Mortician): no role action; Katana vote: Bob holds, attacks Frank
+  Mallory (Ballot Stuffer): no role action; Katana vote: Bob holds, attacks Frank
+  Niaj (Seer): no action
+  Olivia (Ritualist): no role action; Katana vote: Bob holds, attacks Frank
+Katana: Bob holds it and attacks Frank.
+(to Dave) Moderator (private): The archive shows 12 roles, one for each of the 12 other players who were alive when the night began (including any who died tonight): 6 of them are the real roles of 6 of those players, the other 6 are fakes, all in random order: Seer, Kitsune, Mortician, Diviner, Chronicler, Ballot Stuffer, Fabricator, Oracle, Oathsworn, Vulture, Ritualist, Diviner.
+(to Grace) Moderator (private): Your bounty on Heidi is claimed.
+(to Bob) Moderator (private): You were role-blocked tonight. 3 mortician tokens left.
+(to Grace) Moderator (private): Your attack on Heidi succeeded. 0 attack tokens left.
+(to Niaj) Moderator (private): Seer result: Carol and Mallory do NOT have the same alignment. 1 seer token left.
+[Moderator end_phase refused] Not ended: your tell() to Carol was held and not sent. If it said anything besides the result of their own action (e.g. whether their attack succeeded, a role-block, that they died), send that part again now; otherwise call end_phase again.
+(to Carol) Moderator (private): You were role-blocked tonight.
+[Moderator summary] Night 1: Bob (Drowsy) was role-blocked, so the Katana attack on Frank and the clean didn't happen and no tokens were spent. Carol (Drowsy) was role-blocked, so her charm on Frank didn't happen. Dave consulted the archive. Grace (Bounty Hunter) made a Strong Attack on Heidi, who had no defense or protection, and killed her. Grace's sleepwalk visit also went to Heidi. Heidi's charm was on Frank, but no attack reached him, so it swallowed nothing. Ivan (Vulture) scavenged Frank, who survived. Niaj's random Seer pair was Carol and Mallory, who have different alignments. Visits: Grace->Heidi (twice), Heidi->Frank, Ivan->Frank.
+[Night check] Night 1: correct
+(to Heidi) Moderator (private): Your fox charm on Frank swallowed no attack tonight.
+(to Alice) Moderator (private): Tonight Erin, Heidi and Olivia were each in a different visit group.
+(to Ivan) Moderator (private): You visited Frank, who didn't die tonight, so you gained nothing.
+(to Heidi) Moderator (private): You were attacked tonight (Bounty Hunter) and died.
+(to Bob) Moderator (private): Yakuza night summary: Bob holds the Katana (moved from Mallory) and chose to attack Frank. Judy (Mortician) chose no action; Mallory (Ballot Stuffer) chose no action; Olivia (Ritualist) chose no action.
+(to Judy) Moderator (private): Yakuza night summary: Bob holds the Katana (moved from Mallory) and chose to attack Frank. Bob (Mortician) chose to act on Frank, spending 1 token(s) ("Clean Frank (Mortician token)."); Mallory (Ballot Stuffer) chose no action; Olivia (Ritualist) chose no action.
+(to Mallory) Moderator (private): Yakuza night summary: Bob holds the Katana (moved from Mallory) and chose to attack Frank. Bob (Mortician) chose to act on Frank, spending 1 token(s) ("Clean Frank (Mortician token)."); Judy (Mortician) chose no action; Olivia (Ritualist) chose no action.
+(to Olivia) Moderator (private): Yakuza night summary: Bob holds the Katana (moved from Mallory) and chose to attack Frank. Bob (Mortician) chose to act on Frank, spending 1 token(s) ("Clean Frank (Mortician token)."); Judy (Mortician) chose no action; Mallory (Ballot Stuffer) chose no action.
