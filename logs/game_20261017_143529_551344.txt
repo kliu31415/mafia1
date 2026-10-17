@@ -135,3 +135,26 @@ Carol (public): Carol here. No nomination from me. I'm holding my 3 shots for a 
 Frank (public): Frank here, Medic, 2 tokens. No nomination from me. I'll post my Night 2 result at the start of Day 3 with target and exact wording.
 Alice (public): Alice here, no night result and no nomination. Frank, Erin and Carol: please post your Night 2 results at the start of Day 3, with target and exact wording.
 Discussion time is over. The day ends.
+
+===== NIGHT 2 =====
+(to Alice, Grace) Alice (Yakuza chat): Holder: Grace. Target: Bob. Pharmacist block: Carol (she claims Vigilante, the only real shooter threat). Bob is quiet, unclaimed, and unlikely to be protected. Grace, confirm and vote the same, and say if you object before we lock.
+(to Alice, Grace) Grace (Yakuza chat): Agreed: Holder Grace, target Bob. Alice, block Carol as planned. No other action from me.
+(to Alice, Grace) Alice (Yakuza chat): Confirmed: Holder Grace. Target Bob. I block Carol with my Pharmacist action. No objections, no daytime PMs. Ready.
+(to Alice, Grace) Grace (Yakuza chat): Confirmed: Holder Grace, target Bob. Alice blocks Carol as planned. No objections; ready to lock.
+Night actions:
+  Alice (Pharmacist): target Carol; ""Pharmacist role-block on Carol, as agreed in Yakuza chat.""; Katana vote: Grace holds, attacks Bob
+  Carol (Vigilante): no action
+  Frank (Medic): target Carol; "Standard protection on Carol (free, 0 tokens). Carol is the claimed Vigilante and a likely Katana target."
+  Grace (Grunt): no role action; Katana vote: Grace holds, attacks Bob
+Katana: Grace holds it and attacks Bob.
+(to Alice) Moderator (private): You visited Carol tonight.
+(to Carol) Moderator (private): You were role-blocked tonight.
+(to Frank) Moderator (private): You protected Carol tonight with Standard Defense. Your protection did not stop an attack. You have 2 medic tokens left.
+(to Grace) Moderator (private): Your Katana attack on Bob succeeded: Bob died tonight.
+[Moderator summary] Night 2: Alice (Pharmacist) role-blocked Carol (Carol had chosen no action; told she was blocked). Frank (Medic) gave Carol Standard protection with 0 tokens; no attack on Carol, so nothing stopped (2 tokens left). Grace held the Katana and made a Standard attack on Bob (Defense None, unprotected), so Bob died, cause Katana. Visits: Alice->Carol, Frank->Carol, Grace->Bob. Code handles Dave's Jester revenge.
+[Night check] Night 2: correct
+[Revenge] Dave's Divine Attack hits Carol.
+(to Bob) Moderator (private): You were attacked tonight (Katana) and died.
+(to Carol) Moderator (private): You were attacked tonight (Jester's revenge) and died.
+(to Alice) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Grace (Grunt) chose no action.
+(to Grace) Moderator (private): Yakuza night summary: Grace holds the Katana and chose to attack Bob. Alice (Pharmacist) chose to act on Carol (""Pharmacist role-block on Carol, as agreed in Yakuza chat."").
