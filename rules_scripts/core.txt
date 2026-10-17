@@ -189,7 +189,8 @@ Visit-based results (Tracker, Lookout, Fortune Teller) are never changed by any 
 === PART 5: THE YAKUZA ===
 
 R8 (Yakuza and the Katana)
-- One random Yakuza starts with the Katana. The Yakuza share a private chat at night.
+- One random Yakuza starts with the Katana. The Yakuza share a private chat at night. Each Yakuza chat message
+  is at most 200 words; longer messages are cut.
 - Each night the Yakuza vote, at the same time, on who holds the Katana that night (and the next Day) and whom it
   attacks, if anyone. Both choices need a majority of living Yakuza; with two Yakuza alive, both must agree.
   Without a majority on a target, no attack happens; without a majority on a holder, the Katana doesn't move.
