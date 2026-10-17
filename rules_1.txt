@@ -272,9 +272,12 @@ Archivist
   than you who were alive when the night began (players who died that night count): you are shown N roles, in
   random order and without names, of which floor(0.5 * N) are real and the rest are fake. The real ones are the
   roles of floor(0.5 * N) of those players, chosen at random; a role appears as many times as it was drawn, so
-  two drawn Vanilla Villagers show twice. This is an exact-role check (R19).
+  two drawn Kitsunes show twice. This is an exact-role check (R19).
   Each fake is drawn at random from all the roles in these rules, including roles that are in the game, except
   that the result never shows a unique role (R2) twice.
+  Reading it: you can't tell which entries are real. A listed role may be fake; a role missing from the list may
+  still be in play (only half the players are drawn); and a role listed once says nothing about how many players
+  hold it, so it doesn't count against a second player who claims it.
 
 Census Taker
   Night: may take a census around one player other than yourself (a visit to that player only).
