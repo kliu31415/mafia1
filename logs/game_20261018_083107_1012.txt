@@ -1,0 +1,18 @@
+Setup:
+  Alice    seat 1  Enforcer          anthropic/claude-opus-5.5 (via Claude Code)  trait: Bonded to Frank
+  Bob      seat 2  Wiretap           anthropic/claude-opus-5.5 (via Claude Code)
+  Carol    seat 3  Werewolf          anthropic/claude-opus-5.5 (via Claude Code)  trait: Grudge
+  Dave     seat 4  Census Taker      anthropic/claude-opus-5.5 (via Claude Code)  trait: Kindred, Selfish
+  Erin     seat 5  Informant         anthropic/claude-opus-5.5 (via Claude Code)  trait: Zealot
+  Frank    seat 6  Informant         anthropic/claude-opus-5.5 (via Claude Code)  trait: Bonded to Alice
+  Grace    seat 7  Informant         anthropic/claude-opus-5.5 (via Claude Code)
+  Heidi    seat 8  Eavesdropper      anthropic/claude-opus-5.5 (via Claude Code)  trait: Grudge
+  Ivan     seat 9  Mirror Maker      anthropic/claude-opus-5.5 (via Claude Code)
+  Judy     seat 10 Saint             anthropic/claude-opus-5.5 (via Claude Code)
+  Mallory  seat 11 Hitman            anthropic/claude-opus-5.5 (via Claude Code)  trait: Merciful
+  Niaj     seat 12 Enforcer          anthropic/claude-opus-5.5 (via Claude Code)  trait: Drowsy, Curt
+  Olivia   seat 13 Seer              anthropic/claude-opus-5.5 (via Claude Code)  trait: Drowsy
+  Katana starts with Erin
+Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (tips/tips.md), Dave (tips/tips.md), Erin (tips/tips.md), Frank (tips/tips.md), Grace (tips/tips.md), Heidi (tips/tips.md), Ivan (tips/tips.md), Judy (tips/tips.md), Mallory (tips/tips.md), Niaj (tips/tips.md), Olivia (tips/tips.md)
+[Setup note to players] Setup (the role list itself is secret).
+This game has 13 players. Its roles were drawn at random by the standard setup: 3 or 4 Yakuza for 13 players (each about half the time); 0 to 4 Neutrals, usually 2, at most 2 of them Neutral killers; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. more Yakuza tend to get weaker roles. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Separately, traits (R24) are dealt: each player, independently of everyone else, has 0, 1 or 2 traits, a 1/3 chance each (rarely fewer, when no other trait fits them). Which traits are dealt is drawn to help balance the sides; some traits can go only to Village players.
