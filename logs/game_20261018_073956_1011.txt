@@ -223,3 +223,47 @@ Olivia nominated Frank. Everyone now votes Yes/No simultaneously.
 Nomination votes on Frank: 1 Yes (the votes are secret).
 The nomination of Frank failed (1 Yes).
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 4 =====
+Night actions:
+  Frank (Serial Killer): target Olivia
+Katana: no attack (no target); nobody holds it.
+(to Frank) Moderator (private): You attacked Olivia tonight, and your attack succeeded. You were also attacked tonight by an Avenger, and you survived.
+[Moderator summary] Night 4: Frank (Serial Killer) made a Strong Attack on Olivia (Saint, Defense None, no protection, no armed trap). Olivia died. Her Avenger trait dealt Frank a Basic Attack as an Astral Visit, which his Standard Defense stopped, so Frank survived and was told he was attacked by an Avenger. The Yakuza are all dead and there was no Katana attack. Frank is the only player left, so the Serial Killer wins alone.
+[Night check] Night 4: correct
+(to Olivia) Moderator (private): You were attacked tonight (Serial Killer) and died.
+
+===== DAY 5 =====
+Olivia died (killed by Serial Killer). Their role isn't revealed. Their last will: "Olivia: SAINT (Village), no Notorious trait. Erin's N1 Evil check on me was fake (Erin showed Fabricator). I also had Avenger, but its Basic hit-back can't get through a Serial Killer's Standard Defense.
+Final count: Niaj died N3 to the SK and to Ivan's Vigilante shot, and Ivan died to Niaj's Avenger. That left only Frank and me, and the game kept going. So Frank is the Serial Killer: he killed Carol N1, Judy N2 and Niaj N3. His Medic claim was cover, and Dave's N2 count of 6 visitors never had room for his "protect"."
+The game is over. Winners: Frank, Bob (left).
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Frank, Bob
+Cost by player (USD):
+  Alice (Census Taker)    $0.0000    5 calls  claude-opus-5.5
+  Bob (Bounty Hunter)     $0.0000   15 calls  claude-opus-5.5
+  Carol (Wiretap)         $0.0000    7 calls  claude-opus-5.5
+  Dave (Informant)        $0.0000   20 calls  claude-opus-5.5
+  Erin (Fabricator)       $0.0000   16 calls  claude-opus-5.5
+  Frank (Serial Killer)   $0.0000   23 calls  claude-opus-5.5
+  Grace (Trapper)         $0.0000    5 calls  claude-opus-5.5
+  Heidi (Informant)       $0.0000   14 calls  claude-opus-5.5
+  Ivan (Vigilante)        $0.0000   18 calls  claude-opus-5.5
+  Judy (Chronicler)       $0.0000   11 calls  claude-opus-5.5
+  Mallory (Census Taker)  $0.0000   12 calls  claude-opus-5.5
+  Niaj (Oracle)           $0.0000   17 calls  claude-opus-5.5
+  Olivia (Saint)          $0.0000   22 calls  claude-opus-5.5
+  Moderator               $0.0000    7 calls  claude-opus-5.5
+  Night checks            $0.0000    4 calls  claude-opus-5.5
+  Strategy review         $0.0000    1 calls  claude-opus-5.5
+  Log review              $0.0000    1 calls  claude-opus-5.5
+  Total                   $0.0000  198 calls
