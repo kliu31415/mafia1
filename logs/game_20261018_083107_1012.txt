@@ -330,3 +330,49 @@ Olivia nominated Carol. Everyone now votes Yes/No simultaneously.
 Nomination votes on Carol: 1 Yes (the votes are secret).
 The nomination of Carol failed (1 Yes).
 A full round passed with no public messages. The day ends.
+
+===== NIGHT 6 =====
+Night actions:
+  Carol (Werewolf): target Olivia
+  Olivia (Seer): no action
+Katana: no attack (no target); nobody holds it.
+(to Carol) Moderator (private): Your rampage attacked 1 player and killed 1 of them.
+(to Olivia) Moderator (private): You were role-blocked tonight.
+[Moderator summary] Night 6 (full moon): Carol (Werewolf) rampaged at Olivia's house; that was the only visit. Olivia (Seer) was role-blocked by her Drowsy trait, so she made no visit, spent no token and got no random pair. Olivia has no Defense, so the Strong Werewolf attack killed her. No Katana: no Yakuza are alive. Carol is the only player left, so the Werewolf wins alone.
+[Night check] Night 6: correct
+(to Olivia) Moderator (private): You were attacked tonight (Werewolf) and died.
+
+===== DAY 7 =====
+Olivia died (killed by Werewolf). Their role isn't revealed. Their last will: "Olivia: Seer (Good). Random pairs: N1 Niaj/Bob DIFFERENT. N2 Niaj/Judy SAME (Judy was the Saint, so Niaj read Good). N3: role-blocked (token unspent). N4: Carol/Niaj DIFFERENT. Niaj was Good, so Carol is NOT Good.
+Only Carol and I are left and the game didn't end, so Carol is the Yakuza or the Werewolf. N4 killed Grace with the Werewolf and Niaj with the Katana. Carol's Auditor claim was cover. Nobody died on N5, an odd night when a Werewolf can't act, which fits Carol being the Werewolf. D3: Innocent on Mallory, Guilty on Bob. D4: Guilty on Mallory. D5 and D6: nominated Carol each time; every nomination failed with 1 Yes."
+The game is over. Winners: Carol.
+
+===== POST-GAME FEEDBACK: RULES, INTERFACE AND BUGS (DEBRIEF) =====
+
+===== POST-GAME LESSONS: TIPS PLAYERS WISH THEY'D KNOWN, AND HOW PAST TIPS WENT =====
+
+===== MODERATOR STRATEGY REVIEW =====
+
+===== OUTSIDE LOG REVIEW (RULES AND BUGS) =====
+
+===== GAME OVER =====
+Winners: Carol
+Cost by player (USD):
+  Alice (Enforcer)      $0.0000    9 calls  claude-opus-5.5
+  Bob (Wiretap)         $0.0000   22 calls  claude-opus-5.5
+  Carol (Werewolf)      $0.0000   39 calls  claude-opus-5.5
+  Dave (Census Taker)   $0.0000   18 calls  claude-opus-5.5
+  Erin (Informant)      $0.0000   24 calls  claude-opus-5.5
+  Frank (Informant)     $0.0000   13 calls  claude-opus-5.5
+  Grace (Informant)     $0.0000   30 calls  claude-opus-5.5
+  Heidi (Eavesdropper)  $0.0000    9 calls  claude-opus-5.5
+  Ivan (Mirror Maker)   $0.0000    5 calls  claude-opus-5.5
+  Judy (Saint)          $0.0000    9 calls  claude-opus-5.5
+  Mallory (Hitman)      $0.0000   25 calls  claude-opus-5.5
+  Niaj (Enforcer)       $0.0000   24 calls  claude-opus-5.5
+  Olivia (Seer)         $0.0000   35 calls  claude-opus-5.5
+  Moderator             $0.0000   12 calls  claude-opus-5.5
+  Night checks          $0.0000    6 calls  claude-opus-5.5
+  Strategy review       $0.0000    1 calls  claude-opus-5.5
+  Log review            $0.0000    1 calls  claude-opus-5.5
+  Total                 $0.0000  282 calls
