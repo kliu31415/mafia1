@@ -1,6 +1,6 @@
 # Tips from past games
 
-Written 2026-10-18 09:35 UTC by opus-5.5 with `uv run tips.py build`, from the 427 active entries of tips_notebook.json (104 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules a51ee6c1a0d7b6de.
+Written 2026-10-18 09:35 UTC by opus-5.5 with `uv run tips.py build`, from the 427 active entries of tips_notebook.json (104 games). Players never see this preamble; they see every section below. Earlier sheets are in history/. Entries last checked against rules 324e6d9f7a77ba4a.
 
 ## Most often decisive
 - Only the Mayor, Magistrate, Vulture, Hitman and Saint are Unique, so a second claimant of another role is often real. Tables keep hanging real duplicate Kitsunes, Census Takers and Enforcers as 'copiers'. But the fact that roles can repeat is no evidence for either claimant. Test both that Day or night (a watch, an exact-role check, a mark). Don't hang on timing, and don't let the pair through untested. (seen in 54 games)
