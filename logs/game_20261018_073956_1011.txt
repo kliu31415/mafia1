@@ -17,3 +17,21 @@ Tips from past games given to: Alice (tips/tips.md), Bob (tips/tips.md), Carol (
 [ERROR tips_stale] tips/tips.md was last checked against an older version of the rules, so some tips may no longer hold; on the PC, `uv run sync_logs.py pull` (or `uv run tips.py revise`, then `sync_logs.py publish-tips`) revises it
 [Setup note to players] Setup (the role list itself is secret).
 This game has 13 players. Its roles were drawn at random by the standard setup: 3 or 4 Yakuza for 13 players (each about half the time); 0 to 4 Neutrals, usually 2, at most 2 of them Neutral killers; the rest are Good: at least 5 Village roles that aren't Outsiders (at least 2 of them Investigative, 1 Killing and 1 Protective), plus any mix of Village roles and up to 2 Outsiders. Roles may repeat, except unique ones (R2). The roles are picked so that the sides are roughly balanced by strength: e.g. more Yakuza tend to get weaker roles. This setup never uses these roles, so nobody has them: Vanilla Villager, Grunt. Results that name a role (including fakes) never name them either. Separately, traits (R24) are dealt: each player, independently of everyone else, has 0, 1 or 2 traits, a 1/3 chance each (rarely fewer, when no other trait fits them). Which traits are dealt is drawn to help balance the sides; some traits can go only to Village players.
+
+===== DAY 1 =====
+Speaking order today goes around the circle in seat order, starting with Heidi.
+Day 1 is for talking only (rules R1): there are no nominations or trials today, and it lasts at most 2 rounds.
+Heidi (public): Morning all. Day 1 has no votes, so let's not throw claims around yet. Investigators, keep your results until they matter. I'll be watching who pushes hardest for early hard claims.
+Ivan (public): Agreed, Heidi. No claims on Day 1. I'll be watching how people vote once nominations open.
+Judy (public): Agreed. Quiet Day 1. Watch the voting patterns from Day 2.
+Mallory (public): Agreed. Quiet Day 1, and votes from Day 2 tell us more than words.
+Niaj (public): Agreed. Quiet Day 1. Watch who pushes hard on Day 2 nominations and who goes vague when the votes come.
+Olivia (public): Agreed. Quiet Day 1. Nominations show intent, so I'll be watching who pushes hard for a hang without a real mechanical reason.
+Alice (public): Agreed. Quiet Day 1. From Day 2, I'll be checking stated votes against the totals.
+Bob (public): Agreed. Quiet Day 1. From Day 2 I'll be paying attention to results that line up with each other, not lone claims.
+Carol (public): Agreed. Quiet Day 1. From Day 2 I'll be watching who sends PMs, and who comes out of each other's night results looking clean.
+Dave (public): Agreed. Quiet Day 1. Votes from Day 2 will tell us more than talk.
+Erin (public): Agreed. Quiet Day 1. From Day 2, I'll compare nomination totals with what people say they voted, since Yes/No counts are the cleanest check.
+Frank (public): Agreed. Quiet Day 1. From Day 2 I'll be watching whose night results get used to shield whom.
+Grace (public): Agreed. Quiet Day 1. From Day 2 I'll weigh results that are backed up by other results, and watch who changes their story.
+A full round passed with no public messages. The day ends.
