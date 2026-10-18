@@ -31,7 +31,8 @@ class CensusTaker(RoleLogic):
         kind = game.rng.choice([Alignment.GOOD, Alignment.EVIL])
         n = sum(game.player(q).info.alignment is kind for q in group)  # true alignment (rules R19)
         text = (f"Your census of {join_names(group)} counted {kind.value} players (drawn at random this time): {n} of "
-                f"the {len(group)} {'is' if n == 1 else 'are'} {kind.value}. It counts true alignment, so frames and "
-                "disguises (the Katana holder, Notorious) don't change it, and a Turncoat counts as Good. "
+                f"the {len(group)} {'is' if n == 1 else 'are'} {kind.value}. It counts true alignment, so nothing that changes "
+                "how a player reads to alignment checks (a frame, holding the Katana, Notorious) changes it, and a "
+                "Turncoat counts as Good. "
                 "Neutral players are never counted, as either Good or Evil.")
         game.tell([by.name], text)
