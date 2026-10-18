@@ -543,9 +543,10 @@ Wiretap
   not a night action or a visit, so role-blocks don't stop it. Nobody is told that a Wiretap exists.
 
 Informant
-  You passively see how every player voted in each Guilty/Innocent trial vote, right after the vote. This is not a
-  night action or a visit, so role-blocks don't stop it. Nobody is told that an Informant exists, and the other
-  Yakuza aren't told the votes: what you share in the night chat is up to you.
+  You passively see how every player voted in each Guilty/Innocent trial vote, right after the vote, as each vote
+  counted (after any change such as a Fixer's or Merciful's, so a vote may differ from what its voter says). This
+  is not a night action or a visit, so role-blocks don't stop it. Nobody is told that an Informant exists, and the
+  other Yakuza aren't told the votes: what you share in the night chat is up to you.
 
 Talent Agent
   Tokens: 3 talent tokens, at most one a night.
