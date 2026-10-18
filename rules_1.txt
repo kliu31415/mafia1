@@ -250,7 +250,8 @@ Seer
   night began (players who die that night count, R10), and whether their alignments (Good/Neutral/Evil) are the
   same (alignment check, R19). Instead, you may spend a token to choose the
   two living players yourself (not including yourself). A chosen pair is a visit to both players; the random
-  pair isn't a visit. A role-block stops both.
+  pair isn't a visit. A role-block stops both. If fewer than two other players were alive when the night began,
+  there is no random pair: you are told so, and learn nothing.
 
 Fortune Teller
   Night: at the end of every night, you learn two numbers about that night, each labeled: how many players were
